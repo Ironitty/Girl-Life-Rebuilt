@@ -78,11 +78,11 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 function enterGetRandom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'loc') {
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
   } else {
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
   }
   return;

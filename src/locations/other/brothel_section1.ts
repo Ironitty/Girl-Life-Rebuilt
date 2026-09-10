@@ -26,7 +26,7 @@ function enterSection1PrefUpdate(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pain ?? 0)?.['total'] >= 10) {
       if (((s as any).pain ?? 0)?.['total'] <= 45) {
-        if (Math.floor(Math.random() * 10) + 1 === 1) {
+        if ((Math.floor(Math.random() * 10) + 1) === 1) {
           if (((s as any).fetishes ?? 0)?.['maso_pref'] < -25) {
             qspCall(s, 'fetish', 'add_pref', 'maso', (-1));
           } else {
@@ -35,10 +35,10 @@ function enterSection1PrefUpdate(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (Math.floor(Math.random() * 8) + 1 === 1) {
+        if ((Math.floor(Math.random() * 8) + 1) === 1) {
           qspCall(s, 'fetish', 'add_pref', 'maso', 1);
         }
-        if (Math.floor(Math.random() * 8) + 1 === 1) {
+        if ((Math.floor(Math.random() * 8) + 1) === 1) {
           qspCall(s, 'fetish', 'add_pref', 'maso', (-1));
         }
       }
@@ -50,12 +50,12 @@ function enterSection1PrefUpdate(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'mood', 'lower', 'tiny');
     }
-    if (Math.floor(Math.random() * 10) + 1 === 1) {
+    if ((Math.floor(Math.random() * 10) + 1) === 1) {
       if (((s as any).fetishes ?? 0)?.['bound_pref'] > 15) {
         qspCall(s, 'fetish', 'add_pref', 'bound', 1);
       } else {
         qspCall(s, 'fetish', 'add_pref', 'bound', (-1));
-        if (Math.floor(Math.random() * 100) + 1 <= ((s as any).min ?? 0)(((s as any).pcs_horny ?? 0), 100)) {
+        if ((Math.floor(Math.random() * 100) + 1) <= ((s as any).min ?? 0)(((s as any).pcs_horny ?? 0), 100)) {
           qspCall(s, 'fetish', 'add_pref', 'bound', 1);
         } else {
           qspCall(s, 'fetish', 'add_pref', 'bound', (-1));
@@ -68,12 +68,12 @@ function enterSection1PrefUpdate(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(s, 'mood', 'lower', 'tiny');
       }
-      if (Math.floor(Math.random() * 10) + 1 === 1) {
+      if ((Math.floor(Math.random() * 10) + 1) === 1) {
         if (((s as any).fetishes ?? 0)?.['humiliation_pref'] > 15) {
           qspCall(s, 'fetish', 'add_pref', 'humiliation', 1);
         } else {
           qspCall(s, 'fetish', 'add_pref', 'humiliation', (-1));
-          if (Math.floor(Math.random() * 100) + 1 <= ((s as any).min ?? 0)(((s as any).pcs_horny ?? 0), 100)) {
+          if ((Math.floor(Math.random() * 100) + 1) <= ((s as any).min ?? 0)(((s as any).pcs_horny ?? 0), 100)) {
             qspCall(s, 'fetish', 'add_pref', 'humiliation', 1);
           } else {
             qspCall(s, 'fetish', 'add_pref', 'humiliation', (-1));
@@ -86,12 +86,12 @@ function enterSection1PrefUpdate(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'mood', 'lower', 'tiny');
         }
-        if (Math.floor(Math.random() * 10) + 1 === 1) {
+        if ((Math.floor(Math.random() * 10) + 1) === 1) {
           if (((s as any).fetishes ?? 0)?.['sub_pref'] > 15) {
             qspCall(s, 'fetish', 'add_pref', 'sub', 1);
           } else {
             qspCall(s, 'fetish', 'add_pref', 'sub', (-1));
-            if (Math.floor(Math.random() * 100) + 1 <= ((s as any).min ?? 0)(((s as any).pcs_horny ?? 0), 100)) {
+            if ((Math.floor(Math.random() * 100) + 1) <= ((s as any).min ?? 0)(((s as any).pcs_horny ?? 0), 100)) {
               qspCall(s, 'fetish', 'add_pref', 'sub', 1);
             } else {
               qspCall(s, 'fetish', 'add_pref', 'sub', (-1));

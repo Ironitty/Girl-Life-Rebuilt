@@ -67,7 +67,7 @@ function enterUpdateDate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToDate(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     (s as any).ARGS[1] = ((s as any).daystart ?? 0);
   }
   (s as any).dateVars['daystart'] = qspUntranslated(s, "ARGS[1]", { location: "time" });

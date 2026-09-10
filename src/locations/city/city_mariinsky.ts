@@ -28,7 +28,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 
 function enterTickets(s: GameState, scene: SceneBuilder): void {
   (s as any).setloc['StageTitle'] = 'Mariinsky Tickets';
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_tickets ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_tickets ?? 0)';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('fluff text for purchasing tickets');
   scene.build();
@@ -36,7 +36,7 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).setloc['StageTitle'] = 'Mariinsky Main Stage';
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_stage ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_stage ?? 0)';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('For over two centuries, the grand stage of St. Petersburgs\' has been the most prestigious of all Russia\'s ballet and opera theatres and, each year, hosts the Vaganova Ballet Academy\'s performances for their students. You gaze in wonder as you take your seat at the rich facade and feel the presence of all those illustrious performers who have tread those boards.');
   scene.actions([
@@ -92,7 +92,7 @@ function enterStageDoor(s: GameState, scene: SceneBuilder): void {
 
 function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).setloc['StageTitle'] = 'Changing Room';
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).changing_room ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).changing_room ?? 0)';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   if (((s as any).balletqw ?? 0)?.['rehearsals'] === 1) {
     scene.text('You enter the changing room and see the other dancers getting for today\'s rehearsals. You quickly change into your dance outfit and head out onto the stage.');

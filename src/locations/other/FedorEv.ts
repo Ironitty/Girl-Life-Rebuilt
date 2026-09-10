@@ -18,14 +18,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Dimka Aftermath'] }]);
       } else {
         scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Gorslut'] }]);
-        if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  ((s as any).FedorLove ?? 0) === 0) {
+        if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  (!((s as any).FedorLove ?? 0))) {
           scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Gorslut 2'] }]);
         } else {
           scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'Fedor Breakup'] }]);
           if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).FedorvsDimka ?? 0) === 1) {
             scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Vs Dimka'] }]);
           } else {
-            if (Math.floor(Math.random() * 2) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
               scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date 2'] }]);
             } else {
               scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date 3'] }]);

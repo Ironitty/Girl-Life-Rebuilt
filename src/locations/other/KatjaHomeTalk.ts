@@ -58,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'first_boy_sex_follow_up'] }]);
                 }
-                if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 0  &&  ((s as any).yearstart ?? 0) === 1  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).katjaQW ?? 0)?.['marcus_asked'] === 0  &&  Math.floor(Math.random() * 101) + 50 < ((s as any).min ?? 0)(((s as any).katjaQW ?? 0)?.['horny'], 100)) {
+                if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 0  &&  ((s as any).yearstart ?? 0) === 1  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).katjaQW ?? 0)?.['marcus_asked'] === 0  &&  (Math.floor(Math.random() * 101) + 50) < ((s as any).min ?? 0)(((s as any).katjaQW ?? 0)?.['horny'], 100)) {
                   scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'Marcus_discussion'] }]);
                 } else {
                   scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'Marcus_answer_talk'] }]);
@@ -69,8 +69,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).katjaQW ?? 0)?.['slut'] >= 60  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 40  &&  (((s as any).katjaQW ?? 0)?.['knows_BJ'] + ((s as any).katjaQW ?? 0)?.['knows_anal']) >= 2  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  ((s as any).katjaQW ?? 0)?.['anal_quest'] === 0  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] !== 4  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['anal_sex'] === 0) {
                       scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'anal_sex_with_boy_ask'] }]);
                     } else {
-                      if (((s as any).min ?? 0)(((s as any).katjaQW ?? 0)?.['horny'], 100) > Math.floor(Math.random() * 361) + 40  ||  (((s as any).katjaQW ?? 0)?.['QWstage'] === 2  &&  ((s as any).min ?? 0)(((s as any).katjaQW ?? 0)?.['horny'], 100) > Math.floor(Math.random() * 121) + 40)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
-                        if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13)  &&  Math.floor(Math.random() * 7) + 0 ===0  &&  ((s as any).katjaQW ?? 0)?.['Marcus_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['marcus_pussy'] > 0) {
+                      if (((s as any).min ?? 0)(((s as any).katjaQW ?? 0)?.['horny'], 100) > (Math.floor(Math.random() * 361) + 40)  ||  (((s as any).katjaQW ?? 0)?.['QWstage'] === 2  &&  ((s as any).min ?? 0)(((s as any).katjaQW ?? 0)?.['horny'], 100) > (Math.floor(Math.random() * 121) + 40))  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
+                        if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13)  &&  (Math.floor(Math.random() * 7) + 0) ===0  &&  ((s as any).katjaQW ?? 0)?.['Marcus_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['marcus_pussy'] > 0) {
                           (s as any).katjaQW['Marcus_day'] = ((s as any).daystart ?? 0);
                           scene.actions([{ label: 'Continue', goto: ['katjaHomeTalk', 'marcus_kiss'] }]);
                         } else {
@@ -115,7 +115,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go to the disco [+$func(\'money\', \'get_cost_string\', 25)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 25);
       (s as any).minut = ((s as any).minut ?? 0) + 10;

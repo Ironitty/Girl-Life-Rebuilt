@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal', 'journalmenu');
   scene.text('<center><h2>Work</h2></center>');
-  if (((s as any).arrsize ?? 0)('evt_event') !== 0) {
+  if (Object.keys((s as any).evt_event ?? {}).length !== 0) {
     qspCall(s, 'jobs_gigs', 'disp_evt', 2);
   }
   qspCall(s, 'jobs', 'show_all');

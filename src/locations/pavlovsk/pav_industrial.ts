@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A23'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['Chernov'] === 0  &&  ((((s as any).month ?? 0) === 11  &&  ((s as any).day ?? 0) > 18)  ||  ((s as any).month ?? 0) === 12)  &&  ((s as any).hour ?? 0) >= 14) {
     scene.actions([{ label: 'Continue', goto: ['albina_election_events', 'start'] }]);
   }
-  if (Math.floor(Math.random() * 5) + 1 >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
+  if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
     if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
       scene.text('<br>You catch people staring at you intently, as if they\'re supposed to know who you are but can\'t quite remember why. You sincerely hope they don\'t realize your promiscuous adventures are the reason why. The occasional person chuckling and pointing at you crushes those hopes, and you quickly keep walking before they get a chance to say anything.');
     } else {

@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  (s as any).prof_iterations = (((s as any).ARGS ?? 0)[0] > 0) ? (qspUntranslated(s, "ARGS[0]", { location: "perf_profile" })) : (500000);
+  (s as any).prof_iterations = ((((s as any).ARGS ?? 0)[0] > 0) ? (qspUntranslated(s, "ARGS[0]", { location: "perf_profile" })) : (500000));
   (s as any).prof_saved_gameover = ((s as any).cheatVars ?? 0)?.['gameover'];
   (s as any).prof_saved_hunger = ((s as any).cheatVars ?? 0)?.['hunger'];
   (s as any).prof_saved_thirst = ((s as any).cheatVars ?? 0)?.['thirst'];
@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).cheatVars['inf_willpower'] = ((s as any).prof_saved_inf_willpower ?? 0);
   (s as any).prof_total_ms = ((s as any).prof_end ?? 0) - ((s as any).prof_start ?? 0);
   (s as any).prof_avg_ms = ((s as any).prof_total_ms ?? 0) / ((s as any).prof_iterations ?? 0);
-  (s as any).prof_per_sec = (((s as any).prof_total_ms ?? 0) > 0) ? (((s as any).prof_iterations ?? 0) * 1000 / ((s as any).prof_total_ms ?? 0)) : (0);
+  (s as any).prof_per_sec = ((((s as any).prof_total_ms ?? 0) > 0) ? (((s as any).prof_iterations ?? 0) * 1000 / ((s as any).prof_total_ms ?? 0)) : (0));
   scene.actions([
     { label: 'Run again', goto: ['perf_profile', ''] },
   ]);

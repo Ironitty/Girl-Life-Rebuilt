@@ -387,7 +387,7 @@ function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
     (s as any).temprand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).temprand ?? 0) === 0) {
+    if ((!((s as any).temprand ?? 0))) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('Today\'s lesson concerns the history of art and its impact on society throughout the ages. Professor Ilyushin focuses on one time period when \'art made a real difference in the world,\' as he puts it.');
       scene.text('The lecture goes by fairly quickly.');

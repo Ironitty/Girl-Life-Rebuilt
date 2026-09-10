@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).dimbadgirl = 0;
-  if (((s as any).dimlinaQW ?? 0) === 0) {
+  if ((!((s as any).dimlinaQW ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina1'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina2'] }]);

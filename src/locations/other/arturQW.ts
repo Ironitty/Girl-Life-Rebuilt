@@ -16,7 +16,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (((s as any).arturQW ?? 0) === 0) {
+    if ((!((s as any).arturQW ?? 0))) {
       (s as any).arturQW = 1;
     }
     qspCall(s, 'stat', '');
@@ -28,7 +28,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -54,7 +54,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -78,7 +78,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -122,7 +122,7 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -148,7 +148,7 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

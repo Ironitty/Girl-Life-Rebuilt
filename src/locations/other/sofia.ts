@@ -40,7 +40,7 @@ function enterSpyingSexIntrodesc(s: GameState, scene: SceneBuilder): void {
 function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   scene.img('images/characters/city/university/girl/sofia/dorm/spying_sex1.jpg');
-  if (((s as any).spyscenefirst ?? 0) === 0) {
+  if ((!((s as any).spyscenefirst ?? 0))) {
     (s as any).spyscenefirst = 1;
     qspCall(s, 'sofia', 'spying_sex_introdesc');
   }
@@ -51,7 +51,7 @@ function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
   }, goto: ['uni_dorm', 'second_floor'] },
     { label: 'Continue to watch', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0=== 0) {
+    if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
       scene.text('Sofia suddenly stops and pops his cock out of her mouth. "Did you hear that?" she asks.');
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
@@ -69,7 +69,7 @@ function enterSpyingSex1(s: GameState, scene: SceneBuilder): void {
 function enterSpyingSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   scene.img('images/characters/city/university/girl/sofia/dorm/spying_sex2.jpg');
-  if (((s as any).spyscenefirst ?? 0) === 0) {
+  if ((!((s as any).spyscenefirst ?? 0))) {
     (s as any).spyscenefirst = 1;
     qspCall(s, 'sofia', 'spying_sex_introdesc');
   }
@@ -80,7 +80,7 @@ function enterSpyingSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
   }, goto: ['uni_dorm', 'second_floor'] },
     { label: 'Continue to watch', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0=== 0) {
+    if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
       // TODO-QSP: dynamic text: <<$sexpartner>> suddenly stops. "Did you hear that?" he asks.
       scene.text(`${((s as any).sexpartner ?? 0)} suddenly stops. "Did you hear that?" he asks.`);
@@ -99,7 +99,7 @@ function enterSpyingSex2(s: GameState, scene: SceneBuilder): void {
 function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   scene.img('images/characters/city/university/girl/sofia/dorm/spying_sex3.jpg');
-  if (((s as any).spyscenefirst ?? 0) === 0) {
+  if ((!((s as any).spyscenefirst ?? 0))) {
     (s as any).spyscenefirst = 1;
     qspCall(s, 'sofia', 'spying_sex_introdesc');
   }
@@ -108,7 +108,7 @@ function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave before you get caught', goto: ['uni_dorm', 'second_floor'] },
     { label: 'Continue to watch', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0=== 0) {
+    if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
       // TODO-QSP: dynamic text: <<$sexpartner>> suddenly stops. "Did you hear that?" he asks.
       scene.text(`${((s as any).sexpartner ?? 0)} suddenly stops. "Did you hear that?" he asks.`);
@@ -127,7 +127,7 @@ function enterSpyingSex3(s: GameState, scene: SceneBuilder): void {
 function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   scene.img('images/characters/city/university/girl/sofia/dorm/spying_sex4.jpg');
-  if (((s as any).spyscenefirst ?? 0) === 0) {
+  if ((!((s as any).spyscenefirst ?? 0))) {
     (s as any).spyscenefirst = 1;
     qspCall(s, 'sofia', 'spying_sex_introdesc');
   }
@@ -138,7 +138,7 @@ function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
   }, goto: ['uni_dorm', 'second_floor'] },
     { label: 'Continue to watch', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0=== 0) {
+    if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
       // TODO-QSP: dynamic text: <<$sexpartner>> suddenly stops. "Did you hear that?" he asks.
       scene.text(`${((s as any).sexpartner ?? 0)} suddenly stops. "Did you hear that?" he asks.`);
@@ -157,7 +157,7 @@ function enterSpyingSex4(s: GameState, scene: SceneBuilder): void {
 function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   scene.img('images/characters/city/university/girl/sofia/dorm/spying_sex5.jpg');
-  if (((s as any).spyscenefirst ?? 0) === 0) {
+  if ((!((s as any).spyscenefirst ?? 0))) {
     (s as any).spyscenefirst = 1;
     qspCall(s, 'sofia', 'spying_sex_introdesc');
   }
@@ -168,7 +168,7 @@ function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
   }, goto: ['uni_dorm', 'second_floor'] },
     { label: 'Continue to watch', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0=== 0) {
+    if ((Math.floor(Math.random() * 4) + 0)=== 0) {
       qspCall(s, 'arousal', 'end');
       scene.text('Sofia suddenly stops. "Did you hear that?" she asks.');
       scene.text('You quickly close the door and head for the elevator before you\'re seen.');
@@ -186,7 +186,7 @@ function enterSpyingSex5(s: GameState, scene: SceneBuilder): void {
 function enterSpyingSex6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   scene.img('images/characters/city/university/girl/sofia/dorm/spying_sex6.jpg');
-  if (((s as any).spyscenefirst ?? 0) === 0) {
+  if ((!((s as any).spyscenefirst ?? 0))) {
     (s as any).spyscenefirst = 1;
     qspCall(s, 'sofia', 'spying_sex_introdesc');
   }

@@ -37,8 +37,8 @@ function enterAddEventPages(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: $np_pages[] = "gs 'newspaper_pages', 'ballet_first'"
         }
       }
-      if (Math.floor(Math.random() * 10) + 0 === 0  &&  ((s as any).NewspaperVars ?? 0)?.['gad_missing_day'] < ((s as any).daystart ?? 0)) {
-        if (Math.floor(Math.random() * 10) + 0 < 4) {
+      if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).NewspaperVars ?? 0)?.['gad_missing_day'] < ((s as any).daystart ?? 0)) {
+        if ((Math.floor(Math.random() * 10) + 0) < 4) {
         }
         // TODO-QSP: $randname += ' ' + $func('npcrnamefile', 'rusSur')
         (s as any).NewspaperVars['gad_missing_name'] = ((s as any).randname ?? 0);

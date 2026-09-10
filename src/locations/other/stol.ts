@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cigIN ?? 0) <= 0  ||  ((s as any).cigIN ?? 0) > ((s as any).mc_inventory ?? 0)?.['cigarettes']) {
       scene.text('You can\'t put this amount into the drawer.');
     } else {
-      (s as any).stolcigarettes['' + String((s as any).$loc ?? '') + ''] = ((s as any).stolcigarettes['' + String((s as any).$loc ?? '') + ''] ?? 0) + (((s as any).cigIN ?? 0));
+      (s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] = ((s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] ?? 0) + (((s as any).cigIN ?? 0));
       (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) - (((s as any).cigIN ?? 0));
     }
   }, goto: ['stol', 'start'] },
@@ -62,7 +62,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cigOUT ?? 0) <= 0  ||  ((s as any).cigOUT ?? 0) > ((s as any).stolcigarettes ?? 0)?.[String(((s as any).loc ?? 0))]) {
       scene.text('You can\'t take this amount from your drawer.');
     } else {
-      (s as any).stolcigarettes['' + String((s as any).$loc ?? '') + ''] = ((s as any).stolcigarettes['' + String((s as any).$loc ?? '') + ''] ?? 0) - (((s as any).cigOUT ?? 0));
+      (s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] = ((s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] ?? 0) - (((s as any).cigOUT ?? 0));
       (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (((s as any).cigOUT ?? 0));
     }
   }, goto: ['stol', 'start'] },
@@ -130,7 +130,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
         // TODO-QSP: jump 'study_loop'
       }
     } else {
@@ -142,14 +142,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
         // TODO-QSP: jump 'exam_loop'
       }
     }
   }
   if (((s as any).lernHome ?? 0) > 0) {
     // TODO-QSP: '<br>You have homework to do. Finishing everything will take <<lernHome>> '+iif(lernHome = 1, 'hour....
-    qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+    qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
     if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
       (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
     } else {
@@ -158,13 +158,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Do some homework [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Do some homework (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+    qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
     if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
       (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
     } else {
@@ -199,7 +199,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Finish all of your homework [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -255,7 +255,7 @@ function enterStrapon(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/shared/home/bedroom/stol1.jpg');
   }
-  if (((s as any).strapNumber ?? 0) === 0) {
+  if ((!((s as any).strapNumber ?? 0))) {
     scene.text('Your strapon harness doesn\'t have a dildo attached to it.');
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1) {
@@ -313,7 +313,7 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'grades', 'optional_activity_attribute', '<<$ARGS[1]>>', '<<$ARGS[2]>>', 'no', ((s as any).pcs_intel ?? 0));
     }
     qspCall(s, 'stat', '');
-    if (((s as any).dyneval ?? 0) ('RESULT === \'0\'') < ((s as any).dyneval ?? 0) ('RESULT === \'1\'')) {
+    if ((0 as any) < (0 as any)) {
       scene.text('You study for half an hour, but you can tell you\'ll need to study more if you want to completely understand this week\'s material.');
     } else {
       scene.text('You study for half an hour and think you understand everything that was covered this week.');
@@ -333,7 +333,7 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).preziktype ?? 0) === 2  ||  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
         // TODO-QSP: dynamic text: You have <<iif(preziktype = 2, mc_inventory['normal_condoms'], mc_inventory['nor...
-        scene.text(`You have ${(((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms']) : (((s as any).mc_inventory ?? 0)?.['normal_condoms']+((s as any).mc_inventory ?? 0)?.['equipped_condoms'])} normal, and ${(((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'])} sabotaged <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);
+        scene.text(`You have ${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms']) : (((s as any).mc_inventory ?? 0)?.['normal_condoms']+((s as any).mc_inventory ?? 0)?.['equipped_condoms']))} normal, and ${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']))} sabotaged <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);
       } else {
         // TODO-QSP: dynamic text: You have <<mc_inventory['equipped_condoms']+mc_inventory['normal_condoms']>> <a ...
         scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['normal_condoms']} <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);

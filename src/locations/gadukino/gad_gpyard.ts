@@ -411,7 +411,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   (s as any).hunterVars['check'] = 0;
   (s as any).mushroom_pickers = 0;
   (s as any).forestpicnic = 0;
-  if (((s as any).gadstay ?? 0) === 1  &&  ((s as any).lost_girl ?? 0) === 0) {
+  if (((s as any).gadstay ?? 0) === 1  &&  (!((s as any).lost_girl ?? 0))) {
     if (((s as any).daystart ?? 0) > (((s as any).grandmaQW ?? 0)?.['last_day_helped'] + 3)  &&  ((s as any).daystart ?? 0) > (((s as any).grandpaQW ?? 0)?.['last_day_helped'] + 3)) {
       if ((((s as any).daystart ?? 0) - ((s as any).grandmaQW ?? 0)?.['last_day_helped']) <= (((s as any).daystart ?? 0) - ((s as any).grandpaQW ?? 0)?.['last_day_helped'])) {
         // TODO-QSP: dynamic text: You haven't helped your grandparents with any chores in <<daystart - grandmaQW['...

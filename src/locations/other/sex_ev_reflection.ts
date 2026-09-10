@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['thought_mood'] === '') {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
   } else {
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
     } else {
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'upset1', 'jpg');

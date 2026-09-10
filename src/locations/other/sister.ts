@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Decline and move along [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -74,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A33', 5);
     qspCall(s, 'drugs', 'alcohol', 'beer', 3);
     qspCall(s, 'stat', '');
-    if (((s as any).AniaFrends ?? 0) === 0) {
+    if ((!((s as any).AniaFrends ?? 0))) {
       (s as any).AniaFrends = 1;
       scene.img('images/characters/pavlovsk/resident/anya/community/anyaroma1.jpg');
       scene.text('You meet Anya\'s friends, who are all her former classmates. There\'s the small and nimble Lusya, the ditzy Ira, a tall athletic guy whom everyone calls "Rex" and a lanky, red-haired guy named Roma. After the introductions, you sit down with them, drinking beer and chatting with Anya and her friends.');

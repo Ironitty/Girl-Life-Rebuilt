@@ -137,7 +137,7 @@ function enterUrbanRapeStruggle(s: GameState, scene: SceneBuilder): void {
         scene.text('"Made me work for it you cunt. Now I\'m going to <i>really</i> enjoy this!" You feel your pants violently yanked down over your ass. "No panties! You fucking <i>whore!</i>"');
       }
     }
-    if (Math.floor(Math.random() * 2) + 0 === 1) {
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
       (s as any).temp['rape'] = 'vaginal';
       scene.actions([
         { label: '<i><b>MMMMMRRMMPH-!!!</b></i>', handler: (st: GameState) => {
@@ -204,7 +204,7 @@ function enterUrbanRapeStruggleAfter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 4) {
           (s as any).temp_thresh = 8;
         }
-        if (Math.floor(Math.random() * 40) + 1 <= ((s as any).temp_thresh ?? 0)) {
+        if ((Math.floor(Math.random() * 40) + 1) <= ((s as any).temp_thresh ?? 0)) {
           scene.actions([
             { label: 'Pass out', goto: ['abduction', 'abdCarTrunk'] },
           ]);

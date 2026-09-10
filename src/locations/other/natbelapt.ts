@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).NatashaHomeDay = ((s as any).daystart ?? 0);
     (s as any).NatashaLoc = 0;
   }
-  if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday']) > (280 + ((s as any).rand ?? 0)(-2, 2))) {
+  if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday']) > (280 + (Math.floor(Math.random() * (2 - -2 + 1)) + (-2)))) {
     (s as any).NatbelQW['babycount'] = ((s as any).NatbelQW['babycount'] ?? 0) + (1);
     (s as any).NatbelQW['pregday'] = 0;
   }

@@ -131,7 +131,7 @@ function enterStartWithCondom(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_stats', 'npc_condom_stats');
   }
-  if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  (Math.floor(Math.random() * 2) + 1 === 1  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] !== 1)) {
+  if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((Math.floor(Math.random() * 2) + 1) === 1  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] !== 1)) {
     // TODO-QSP: dynamic text: With the condom securely wrapped around <<$npcdesc>>'s cock, he moves back in be...
     scene.text(`With the condom securely wrapped around ${((s as any).npcdesc ?? 0)}'s cock, he moves back in between your legs before he stops, hesitating.`);
     qspCall(s, 'sex_ev_virgin', 'start_options2');
@@ -144,7 +144,7 @@ function enterStartWithCondom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStartWithoutCondom(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  (Math.floor(Math.random() * 2) + 1 === 1  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] !== 1)) {
+  if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((Math.floor(Math.random() * 2) + 1) === 1  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] !== 1)) {
     // TODO-QSP: dynamic text: <<$npcdesc>> moves back in between your legs before he stops, hesitating.
     scene.text(`${((s as any).npcdesc ?? 0)} moves back in between your legs before he stops, hesitating.`);
     qspCall(s, 'sex_ev_virgin', 'start_options2');
@@ -183,7 +183,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
   if (((s as any).know_virgin ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     scene.text('"Knock it off," you shake your head. "You know I\'m saving my virginity."');
   } else {
-    (s as any).know_virgin[$npcID] = 1;
+    (s as any).know_virgin[String((s as any).npcID ?? 0)] = 1;
     scene.text('"We can\'t do that," you shake your head. "I\'m saving my virginity."');
   }
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] !== -1)  ||  ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0)  &&  ((s as any).sex_ev ?? 0)?.['virgin_deny'] === 0) {
@@ -191,7 +191,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['sex_ev_virgin', 'buy_virginity1'] },
     ]);
   } else {
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.text('"Come on," he whispers. "I\'m so fucking hard for you right now... Let me pop your cherry..."');
     } else {
       scene.text('"Come on," he whispers. "What are you waiting for? Just lose it already. It\'ll feel <i>really</i> good..."');
@@ -247,7 +247,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupWait(s: GameState, scene: SceneBuilder): void {
-  (s as any).know_virgin[$npcID] = 1;
+  (s as any).know_virgin[String((s as any).npcID ?? 0)] = 1;
   // TODO-QSP: $sex_ev['bed_room']
   if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
     // TODO-QSP: dynamic text: "Wait!" you yelp, closing up your legs halfway. <<$npcdesc>> freezes up, body ov...

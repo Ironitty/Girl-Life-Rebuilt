@@ -18,7 +18,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Push his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -40,7 +40,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Close your eyes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -85,7 +85,7 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'bj_random');
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.actions([
         { label: 'Swallow his cum', handler: (st: GameState) => {
     (s as any).KatalkinSwallow = ((s as any).KatalkinSwallow ?? 0) + (1);
@@ -172,7 +172,7 @@ function enterDKatsub(s: GameState, scene: SceneBuilder): void {
       { label: 'Undress and assume the position', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/katbeforeanal.jpg');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('For a brief second, you wonder how many girls he\'s had in his office like this before you. There definitely seems to be a degree of routine in how he treats you, and the way he commands you to do things reinforce that image. You quickly take off your clothes and drop to your hands and knees.');
       scene.text('You can tell he noticed your hesitation, and his commands get more impatient and strict. "Spread your ass cheeks and show me your holes."');
       scene.text('You quickly do as he says and he runs his hands over your ass cheeks before he pushes two fingers against your clenched sphincter.');

@@ -39,19 +39,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sexvolume ?? 0) <= 0) {
     (s as any).sexvolume = 0;
   }
-  if (((s as any).sexspecpot ?? 0) === 0) {
+  if ((!((s as any).sexspecpot ?? 0))) {
     (s as any).sexspecpot = ((s as any).npcSpermPot ?? 0);
   }
-  if (((s as any).sexspecpot ?? 0) === 0) {
+  if ((!((s as any).sexspecpot ?? 0))) {
     (s as any).sexspecpot = ((s as any).sexvolume ?? 0) * ((s as any).rand ?? 0)(250, 300);
   }
   if (((s as any).sexspecpot ?? 0) < 0) {
     (s as any).sexspecpot = 0;
   }
-  if (((s as any).vibratorIN ?? 0) === 1  &&  ((s as any).spafinloc ?? 0) === 0) {
+  if (((s as any).vibratorIN ?? 0) === 1  &&  (!((s as any).spafinloc ?? 0))) {
     (s as any).vibratorIN = 0;
   }
-  if (((s as any).isprok ?? 0) === 1  &&  ((s as any).spafinloc ?? 0) === 0) {
+  if (((s as any).isprok ?? 0) === 1  &&  (!((s as any).spafinloc ?? 0))) {
     (s as any).isprok = 0;
   }
   if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).spafinloc ?? 0) === 3) {
@@ -61,15 +61,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sexcontra ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) > 1000) {
     (s as any).sexcontra = 2;
   }
-  if (((s as any).cumprecheck ?? 0) === 1  &&  ((s as any).cumnostd ?? 0) === 0) {
-    (s as any).cumarrkno[cumarrtemp] = (-1);
+  if (((s as any).cumprecheck ?? 0) === 1  &&  (!((s as any).cumnostd ?? 0))) {
+    (s as any).cumarrkno[String((s as any).cumarrtemp ?? 0)] = (-1);
     qspCall(s, 'dinSex', 'std_trigger');
   } else {
-    (s as any).cumarrkno[cumarrtemp] = (-2);
+    (s as any).cumarrkno[String((s as any).cumarrtemp ?? 0)] = (-2);
     if (((s as any).sexpartkno ?? 0) === 1) {
-      (s as any).cumarrkno[cumarrtemp] = 1;
+      (s as any).cumarrkno[String((s as any).cumarrtemp ?? 0)] = 1;
     } else {
-      (s as any).cumarrkno[cumarrtemp] = 0;
+      (s as any).cumarrkno[String((s as any).cumarrtemp ?? 0)] = 0;
     }
     if (((s as any).spafinloc ?? 0) <= 0  &&  ((s as any).cumcondslip ?? 0) > 0) {
       if (((s as any).dick_length ?? 0) > ((s as any).cumcondslip_deep ?? 0)) {
@@ -80,16 +80,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sparrtemp = 0;
     if (((s as any).cumprecheck ?? 0) === 1) {
-      if (((s as any).sexcontra ?? 0) < 3  &&  ((s as any).spafinloc ?? 0) === 0) {
+      if (((s as any).sexcontra ?? 0) < 3  &&  (!((s as any).spafinloc ?? 0))) {
         // TODO-QSP: $cumarrnam[cumarrtemp] = $npcID
-        (s as any).cumarrcnt[cumarrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-        (s as any).cumarrppt[cumarrtemp] = ((s as any).sexspecpot ?? 0);
-        (s as any).cumarrage[cumarrtemp] = 0;
-        (s as any).cumarrdel[cumarrtemp] = 0;
-        (s as any).cumarrcon[cumarrtemp] = ((s as any).sexcontra ?? 0);
-        (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/12);
+        (s as any).cumarrcnt[String((s as any).cumarrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+        (s as any).cumarrppt[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+        (s as any).cumarrage[String((s as any).cumarrtemp ?? 0)] = 0;
+        (s as any).cumarrdel[String((s as any).cumarrtemp ?? 0)] = 0;
+        (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexcontra ?? 0);
+        (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/12);
         if (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]) {
-          (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+          (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
         }
       }
     } else {
@@ -102,10 +102,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).spafinloc ?? 0) <= 0) {
         // TODO-QSP: $cumarrnam[cumarrtemp] = $npcID
-        (s as any).cumarrage[cumarrtemp] = 0;
-        (s as any).cumarrdel[cumarrtemp] = 0;
-        (s as any).cumarrcnt[cumarrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-        (s as any).cumarrppt[cumarrtemp] = ((s as any).sexspecpot ?? 0);
+        (s as any).cumarrage[String((s as any).cumarrtemp ?? 0)] = 0;
+        (s as any).cumarrdel[String((s as any).cumarrtemp ?? 0)] = 0;
+        (s as any).cumarrcnt[String((s as any).cumarrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+        (s as any).cumarrppt[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
         if (((s as any).sexcontra ?? 0) > 2) {
           if (((s as any).noprotect ?? 0) === 1) {
             (s as any).noprotect = 0;
@@ -148,19 +148,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   }
                   (s as any).break_thresh = ((s as any).break_thresh ?? 0) + (((s as any).slip_thresh ?? 0));
                   (s as any).slip_thresh = 0;
-                  if (((s as any).temprand ?? 0) === 0) {
-                    (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/4);
-                    (s as any).cumarrcon[cumarrtemp] = 3;
+                  if ((!((s as any).temprand ?? 0))) {
+                    (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/4);
+                    (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 3;
                   } else {
-                    (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
-                    (s as any).cumarrcon[cumarrtemp] = 4;
+                    (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+                    (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 4;
                     (s as any).sexcontra = 4;
-                    (s as any).sparrage[sparrtemp] = 0;
-                    (s as any).sparrloc[sparrtemp] = 0;
+                    (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                    (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = 0;
                     // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-                    (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-                    (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                    (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                    (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                    (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                    (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumloc[0] = 1;
@@ -170,47 +170,47 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     (s as any).stat['broken_condoms'] = ((s as any).stat['broken_condoms'] ?? 0) + (1);
                     (s as any).stat['last_broken_condom'] = ((s as any).daystart ?? 0);
                     (s as any).stat['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-                    (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                    (s as any).sparrslc[sparrtemp] = 0;
+                    (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                    (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
                     qspCall(s, 'dina', 'ferteggfather');
-                    (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (5);
-                    (s as any).cumarrcon[cumarrtemp] = 3;
+                    (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (5);
+                    (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 3;
                     if (((s as any).npcCondom ?? 0) !== '') {
                     }
                   }
                   if (((s as any).sexcontra ?? 0) === 4) {
-                    (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
-                    (s as any).cumarrcon[cumarrtemp] = 4;
-                    (s as any).sparrage[sparrtemp] = 0;
-                    (s as any).sparrloc[sparrtemp] = 0;
+                    (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+                    (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 4;
+                    (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                    (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = 0;
                     // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-                    (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-                    (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                    (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                    (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                    (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                    (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumloc[0] = 1;
                     (s as any).condom_break = 1;
                     (s as any).stat['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-                    (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                    (s as any).sparrslc[sparrtemp] = 0;
+                    (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                    (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
                     qspCall(s, 'dina', 'ferteggfather');
                   } else {
-                    (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/200);
-                    (s as any).cumarrcon[cumarrtemp] = 5;
+                    (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/200);
+                    (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 5;
                     (s as any).cumcondslip = 1;
                     (s as any).cumcondsanb = ((s as any).cumarrtemp ?? 0);
-                    (s as any).sparrage[sparrtemp] = 0;
-                    (s as any).sparrloc[sparrtemp] = 17;
+                    (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                    (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = 17;
                     // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-                    (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-                    (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                    (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                    (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                    (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                    (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
                     (s as any).cumloc[0] = 1;
-                    (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                    (s as any).sparrslc[sparrtemp] = 0;
+                    (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                    (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
                     (s as any).cumcondslip = ((s as any).cumcondslip ?? 0) + (1);
                     if (((s as any).cumcondslip_deep ?? 0) <= 0) {
                       (s as any).cumcondslip_deep = 0;
@@ -222,18 +222,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).sexcontra ?? 0) === 6) {
                     } else {
                       // TODO-QSP: break_thresh * 3
-                      (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/3);
-                      (s as any).cumarrcon[cumarrtemp] = 6;
+                      (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/3);
+                      (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 6;
                       if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {
-                        (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
-                        (s as any).cumarrcon[cumarrtemp] = 4;
+                        (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+                        (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 4;
                         (s as any).sexcontra = 4;
-                        (s as any).sparrage[sparrtemp] = 0;
-                        (s as any).sparrloc[sparrtemp] = 0;
+                        (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                        (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = 0;
                         // TODO-QSP: $sparrnam[sparrtemp] = $boy
-                        (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-                        (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                        (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                        (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                        (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                        (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                         (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                         (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
                         (s as any).cumloc[0] = 1;
@@ -241,23 +241,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                         (s as any).stat['broken_condoms'] = ((s as any).stat['broken_condoms'] ?? 0) + (1);
                         (s as any).stat['last_broken_condom'] = ((s as any).daystart ?? 0);
                         (s as any).stat['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-                        (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                        (s as any).sparrslc[sparrtemp] = 0;
+                        (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                        (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
                       }
                       if (((s as any).sexcontra ?? 0) === 7) {
                         // TODO-QSP: break_thresh * 3
-                        (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/3);
-                        (s as any).cumarrcon[cumarrtemp] = 7;
+                        (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/3);
+                        (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 7;
                         if (((s as any).temprand ?? 0) <= ((s as any).break_thresh ?? 0)) {
-                          (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
-                          (s as any).cumarrcon[cumarrtemp] = 4;
+                          (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]/2);
+                          (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = 4;
                           (s as any).sexcontra = 4;
-                          (s as any).sparrage[sparrtemp] = 0;
-                          (s as any).sparrloc[sparrtemp] = 0;
+                          (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                          (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = 0;
                           // TODO-QSP: $sparrnam[sparrtemp] = $boy
-                          (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-                          (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                          (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                          (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                          (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                          (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                           (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                           (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
                           (s as any).cumloc[0] = 1;
@@ -265,27 +265,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                           (s as any).stat['broken_condoms'] = ((s as any).stat['broken_condoms'] ?? 0) + (1);
                           (s as any).stat['last_broken_condom'] = ((s as any).daystart ?? 0);
                           (s as any).stat['cum_vagina_ml'] = ((s as any).stat['cum_vagina_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
-                          (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                          (s as any).sparrslc[sparrtemp] = 0;
+                          (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                          (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
                         }
                         qspCall(s, 'dina', 'ferteggfather');
                       }
-                      (s as any).sparrage[sparrtemp] = 0;
-                      (s as any).sparrloc[sparrtemp] = 0;
+                      (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                      (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = 0;
                       // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-                      (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
-                      (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                      (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                      (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
+                      (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                      (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                       (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                       (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (((s as any).sexvolume ?? 0));
                       (s as any).cumloc[0] = 1;
-                      (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                      (s as any).sparrslc[sparrtemp] = 0;
-                      (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrcpt[cumarrtemp] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 5 * 4);
-                      (s as any).cumarrcon[cumarrtemp] = ((s as any).sexcontra ?? 0);
+                      (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                      (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
+                      (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 5 * 4);
+                      (s as any).cumarrcon[String((s as any).cumarrtemp ?? 0)] = ((s as any).sexcontra ?? 0);
                       qspCall(s, 'dina', 'ferteggfather');
                     }
-                    if (((s as any).spafinloc ?? 0) === 0  &&  ((s as any).cumnostd ?? 0) === 0) {
+                    if (((s as any).spafinloc ?? 0) === 0  &&  (!((s as any).cumnostd ?? 0))) {
                       qspCall(s, 'dinSex', 'std_trigger');
                     }
                     if (((s as any).spafinloc ?? 0) === 0  &&  ((s as any).sexcontra ?? 0) !== 3) {
@@ -296,7 +296,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                         (s as any).stat['last_creampie_known'] = ((s as any).daystart ?? 0);
                       }
                       // TODO-QSP: npc_last_creampie[$sparrnam[sparrtemp]] = daystart
-                      if (((s as any).cumnostd ?? 0) === 0) {
+                      if ((!((s as any).cumnostd ?? 0))) {
                         qspCall(s, 'dinSex', 'std_trigger');
                       }
                       if (((s as any).cycle ?? 0) > 3  ||  ((s as any).birth_control ?? 0)?.['safe'] === 1  ||  ((s as any).succubusflag ?? 0) === 1) {
@@ -341,56 +341,56 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                       }
                     }
                     if (((s as any).sexcontra ?? 0) < 3) {
-                      (s as any).sparrage[sparrtemp] = 0;
-                      (s as any).sparrcnt[sparrtemp] = ((s as any).stat ?? 0)?.['cum_count'];
+                      (s as any).sparrage[String((s as any).sparrtemp ?? 0)] = 0;
+                      (s as any).sparrcnt[String((s as any).sparrtemp ?? 0)] = ((s as any).stat ?? 0)?.['cum_count'];
                       if ((((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).clothingworntype ?? 0) === 'nude')  &&  (((s as any).spafinloc ?? 0) === 2  ||  ((s as any).spafinloc ?? 0) === 5)) {
                         (s as any).spafinloc = ((s as any).spafinloc ?? 0) - (1);
                       }
                       if (((s as any).clothingworntype ?? 0) === 'nude') {
                         if (((s as any).spafinloc ?? 0) === 6) {
                           (s as any).spafinloc = 4;
-                          if (Math.floor(Math.random() * 2) + 0 === 0) {
+                          if ((!(Math.floor(Math.random() * 2) + 0))) {
                             (s as any).spafinloc = 1;
                           }
                         } else {
                           (s as any).spafinloc = 15;
-                          if (Math.floor(Math.random() * 2) + 0 === 0) {
+                          if ((!(Math.floor(Math.random() * 2) + 0))) {
                             (s as any).spafinloc = 8;
                           }
-                          if (Math.floor(Math.random() * 2) + 0 === 0) {
+                          if ((!(Math.floor(Math.random() * 2) + 0))) {
                             (s as any).spafinloc = 14;
                           }
                         }
                       }
-                      (s as any).sparrloc[sparrtemp] = ((s as any).spafinloc ?? 0);
+                      (s as any).sparrloc[String((s as any).sparrtemp ?? 0)] = ((s as any).spafinloc ?? 0);
                       if (((s as any).spafinloc ?? 0) === 12  &&  ((s as any).pcs_breath ?? 0) === 1) {
                         (s as any).pcs_breath = 0;
                       }
-                      if (((s as any).spafinloc ?? 0) === 12  &&  ((s as any).trait_vars ?? 0)?.['cumeater'] > 0  &&  Math.floor(Math.random() * 4) + 0 === 0) {
+                      if (((s as any).spafinloc ?? 0) === 12  &&  ((s as any).trait_vars ?? 0)?.['cumeater'] > 0  &&  (!(Math.floor(Math.random() * 4) + 0))) {
                         (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (2);
                         (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (1);
                       }
                       // TODO-QSP: $sparrnam[sparrtemp] = $npcID
-                      (s as any).sparrppt[sparrtemp] = ((s as any).sexspecpot ?? 0);
-                      (s as any).sparrvol[sparrtemp] = ((s as any).sparrvol[sparrtemp] ?? 0) + (((s as any).sexvolume ?? 0));
+                      (s as any).sparrppt[String((s as any).sparrtemp ?? 0)] = ((s as any).sexspecpot ?? 0);
+                      (s as any).sparrvol[String((s as any).sparrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).sparrtemp ?? 0)] ?? 0) + (((s as any).sexvolume ?? 0));
                       (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) + (((s as any).sexvolume ?? 0));
                       if (((s as any).spafinloc ?? 0) === 3) {
                         (s as any).cumsumass = ((s as any).cumsumass ?? 0) + (((s as any).sexvolume ?? 0));
                       }
-                      (s as any).sparridt[sparrtemp] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                      (s as any).sparrslc[sparrtemp] = 0;
-                      (s as any).cumloc[spafinloc] = 1;
+                      (s as any).sparridt[String((s as any).sparrtemp ?? 0)] = ((s as any).cumarrkno ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                      (s as any).sparrslc[String((s as any).sparrtemp ?? 0)] = 0;
+                      (s as any).cumloc[String((s as any).spafinloc ?? 0)] = 1;
                     }
                     if (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarrtemp ?? 0)]) {
-                      (s as any).cumarrcpt[cumarrtemp] = ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                      (s as any).cumarrcpt[String((s as any).cumarrtemp ?? 0)] = ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
                     }
                     (s as any).sexpartkno = 0;
                     (s as any).sexunaware = 0;
                   }
-                  if (((s as any).spafinloc ?? 0) === 3  &&  ((s as any).cumnostd ?? 0) === 0) {
+                  if (((s as any).spafinloc ?? 0) === 3  &&  (!((s as any).cumnostd ?? 0))) {
                     qspCall(s, 'dinSex', 'std_trigger');
                   }
-                  if (((s as any).spafinloc ?? 0) === 12  &&  ((s as any).cumnostd ?? 0) === 0) {
+                  if (((s as any).spafinloc ?? 0) === 12  &&  (!((s as any).cumnostd ?? 0))) {
                     qspCall(s, 'dinSex', 'std_trigger_oral');
                   }
                   (s as any).cumprecheck = 0;
@@ -400,13 +400,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).cumsumass ?? 0) >= 60) {
                     (s as any).arrmodtmp = qspUntranslated(s, "arrpos('sparrloc', 3)", { location: "cum_manage" });
                     if (((s as any).sparrslc ?? 0)?.[String((s as any).arrmodtmp ?? 0)] <= 0) {
-                      (s as any).sparrslc[arrmodtmp] = ((s as any).sparrslc[arrmodtmp] ?? 0) + (1);
+                      (s as any).sparrslc[String((s as any).arrmodtmp ?? 0)] = ((s as any).sparrslc[String((s as any).arrmodtmp ?? 0)] ?? 0) + (1);
                     }
                   }
                   if (((s as any).cumsumvag ?? 0) >= 60) {
                     (s as any).arrmodtmp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "cum_manage" });
                     if (((s as any).sparrslc ?? 0)?.[String((s as any).arrmodtmp ?? 0)] <= 0) {
-                      (s as any).sparrslc[arrmodtmp] = ((s as any).sparrslc[arrmodtmp] ?? 0) + (1);
+                      (s as any).sparrslc[String((s as any).arrmodtmp ?? 0)] = ((s as any).sparrslc[String((s as any).arrmodtmp ?? 0)] ?? 0) + (1);
                     }
                   }
                   if (((s as any).cumnpcID ?? 0) !== '') {

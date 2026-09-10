@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).kattalkrand = Math.floor(Math.random() * 5) + 0;
   }
-  if (((s as any).kattalkrand ?? 0) === 0) {
+  if ((!((s as any).kattalkrand ?? 0))) {
     if (((s as any).stat ?? 0)?.['bj'] > 0) {
       qspCall(s, 'katja_sex_talk', 'bj_talk1');
     } else {
@@ -200,7 +200,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell Katja about the times you\'ve gone down on another girl and how it feels. She blushes and bites her lip.');
-    if (((s as any).katjaQW ?? 0)?.['horny'] > 50  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 40  &&  ((s as any).rand ?? 0)(-30, 30) < ((s as any).katjaQW ?? 0)?.['dom']  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
+    if (((s as any).katjaQW ?? 0)?.['horny'] > 50  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 40  &&  (Math.floor(Math.random() * (30 - -30 + 1)) + (-30)) < ((s as any).katjaQW ?? 0)?.['dom']  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
       scene.text('Katja asks you to show her how you lick pussy.');
       scene.actions([
         { label: 'Show her', handler: (st: GameState) => {

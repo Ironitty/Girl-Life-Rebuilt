@@ -19,7 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Don\'t tell him you can\'t pay [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -37,7 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Offer to trade sex for a ride [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -153,7 +153,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Beg him not to cum inside you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -161,7 +161,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
       { label: 'Beg him not to cum inside you', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
-    if (((s as any).ending ?? 0) === 0  ||  Math.floor(Math.random() * 3) + 0 !== 0) {
+    if (((s as any).ending ?? 0) === 0  ||  (Math.floor(Math.random() * 3) + 0) !== 0) {
       qspCall(s, 'taxi', 'cum1');
     } else {
       qspCall(s, 'taxi', 'cum2');
@@ -173,7 +173,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Wrap your legs around him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -187,10 +187,10 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    if (((s as any).pcs_horny ?? 0) > 95  &&  Math.floor(Math.random() * 5) + 0 < 1) {
+    if (((s as any).pcs_horny ?? 0) > 95  &&  (Math.floor(Math.random() * 5) + 0) < 1) {
       (s as any).ending = 2;
     }
-    if (((s as any).ending ?? 0) === 0) {
+    if ((!((s as any).ending ?? 0))) {
       qspCall(s, 'taxi', 'cum1');
     }
     if (((s as any).ending ?? 0) === 1) {
@@ -303,8 +303,8 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
       (s as any).konvert = 0;
     }
   }
-  if (((s as any).taxi_pay ?? 0) === 0) {
-    if (((s as any).taxioffer ?? 0) === 0) {
+  if ((!((s as any).taxi_pay ?? 0))) {
+    if ((!((s as any).taxioffer ?? 0))) {
       qspCall(s, 'money', 'pay', 250);
     } else {
       (s as any).taxioffer = 0;
@@ -333,7 +333,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tell him your a virgin [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -344,7 +344,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wait, I\'m still a virgin! Please don\'t fuck my pussy!" you plead, hoping to change his mind. He pauses for just a moment, considering.');
     scene.actions([
       { label: 'See how he reacts', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 100) + 0 < 25) {
+    if ((Math.floor(Math.random() * 100) + 0) < 25) {
       qspCall(s, 'taxi', 'alleyvag');
       qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
       qspCall(s, 'cum_call', '', '', 'Taxi Driver');
@@ -365,7 +365,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Accept the consequences of your actions', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 100) + 1 > 50) {
+    if ((Math.floor(Math.random() * 100) + 1) > 50) {
       qspCall(s, 'taxi', 'alleyvag');
       qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
       qspCall(s, 'cum_call', '', '', 'Taxi Driver');
@@ -417,11 +417,11 @@ function enterAlleyanal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandom(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 4) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 4) + 0))) {
     scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['city_island', ''] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);

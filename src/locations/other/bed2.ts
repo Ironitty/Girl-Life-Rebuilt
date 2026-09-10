@@ -11,7 +11,7 @@ function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_makeup ?? 0) !== 1  &&  ((s as any).cosmetic_tattoo ?? 0) === 0) {
+  if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.img('images/shared/home/bed.jpg');

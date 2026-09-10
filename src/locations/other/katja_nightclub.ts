@@ -23,8 +23,8 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['disco_loc'] >= 3  &&  ((s as any).katjaQW ?? 0)?.['disco_loc'] <= 6) {
       if (((s as any).katjaQW ?? 0)?.['disco_check_time'] + 30 < ((s as any).totminut ?? 0)) {
         (s as any).katjaQW['disco_check_time'] = ((s as any).totminut ?? 0);
-        if ((Math.floor(Math.random() * 15) + 1 <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50) / 10  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0)  ||  (((s as any).katjaQW ?? 0)?.['liberated']  &&  Math.floor(Math.random() * 4) + 0 === 0)) {
-          if (((s as any).katjaQW ?? 0)?.['disco_loc'] === 3  &&  Math.floor(Math.random() * 5) + 0 < 4) {
+        if (((Math.floor(Math.random() * 15) + 1) <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50) / 10  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0)  ||  (((s as any).katjaQW ?? 0)?.['liberated']  &&  (Math.floor(Math.random() * 4) + 0) === 0)) {
+          if (((s as any).katjaQW ?? 0)?.['disco_loc'] === 3  &&  (Math.floor(Math.random() * 5) + 0) < 4) {
             (s as any).katjaQW['nightclub_private_room_boy'] = 1;
             (s as any).katjaQW['disco_loc'] = 7;
           } else {
@@ -44,7 +44,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
             (s as any).locat['katja'] = ((s as any).locat ?? 0)?.['katja_save2'];
           }
         } else {
-          if (Math.floor(Math.random() * 5) + 0 === 0) {
+          if ((!(Math.floor(Math.random() * 5) + 0))) {
             (s as any).katjaQW['disco_loc'] = 2;
             (s as any).katjaQW['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
           } else {
@@ -57,7 +57,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
       if (((s as any).katjaQW ?? 0)?.['disco_check_time'] + 15 < ((s as any).totminut ?? 0)) {
         (s as any).katjaQW['disco_check_time'] = ((s as any).totminut ?? 0);
         (s as any).katjaQW['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (1);
-        if (Math.floor(Math.random() * 9) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 9) + 0))) {
           (s as any).katjaQW['disco_loc'] = 8;
         } else {
           (s as any).katjaQW['disco_loc'] = 1;
@@ -66,7 +66,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
       if (((s as any).katjaQW ?? 0)?.['disco_loc'] === 7) {
         if (((s as any).katjaQW ?? 0)?.['disco_check_time'] + 60 < ((s as any).totminut ?? 0)) {
           (s as any).katjaQW['disco_check_time'] = ((s as any).totminut ?? 0);
-          if (Math.floor(Math.random() * 5) + 0 === 0) {
+          if ((!(Math.floor(Math.random() * 5) + 0))) {
             (s as any).katjaQW['disco_loc'] = 8;
           } else {
             (s as any).katjaQW['disco_loc'] = 7;
@@ -77,7 +77,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).katjaQW ?? 0)?.['disco_check_time'] + 15 < ((s as any).totminut ?? 0)) {
           (s as any).katjaQW['disco_check_time'] = ((s as any).totminut ?? 0);
-          if (Math.floor(Math.random() * 6) + 0 === 0) {
+          if ((!(Math.floor(Math.random() * 6) + 0))) {
             (s as any).katjaQW['disco_loc'] = 2;
           } else {
             (s as any).katjaQW['disco_loc'] = 1;
@@ -86,7 +86,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
         if (((s as any).katjaQW ?? 0)?.['disco_loc'] === 9) {
           if (((s as any).katjaQW ?? 0)?.['disco_check_time'] + 60 < ((s as any).totminut ?? 0)) {
             (s as any).katjaQW['disco_check_time'] = ((s as any).totminut ?? 0);
-            if (Math.floor(Math.random() * 5) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 5) + 0))) {
               (s as any).katjaQW['disco_loc'] = 8;
             } else {
               (s as any).katjaQW['disco_loc'] = 9;
@@ -97,16 +97,16 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).katjaQW ?? 0)?.['disco_check_time'] + 15 < ((s as any).totminut ?? 0)) {
             (s as any).katjaQW['disco_check_time'] = ((s as any).totminut ?? 0);
-            if (Math.floor(Math.random() * 4) + 1 <= 3) {
+            if ((Math.floor(Math.random() * 4) + 1) <= 3) {
               (s as any).katjaQW['disco_loc'] = 1;
             } else {
               (s as any).katjaQW['disco_loc'] = 2;
               (s as any).katjaQW['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (1);
-              if (Math.floor(Math.random() * 9) + 0 === 0) {
+              if ((!(Math.floor(Math.random() * 9) + 0))) {
                 (s as any).katjaQW['disco_loc'] = 8;
               } else {
                 (s as any).katjaQW['disco_loc'] = 3;
-                if (Math.floor(Math.random() * 12) + 1 <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50) / 10  ||  (((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0  &&  Math.floor(Math.random() * 8) + 1 <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50) / 10)  ||  (((s as any).katjaQW ?? 0)?.['liberated'] === 1  &&  Math.floor(Math.random() * 4) + 0 === 0)) {
+                if ((Math.floor(Math.random() * 12) + 1) <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50) / 10  ||  (((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0  &&  (Math.floor(Math.random() * 8) + 1) <= (((s as any).min ?? 0)(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50) / 10)  ||  (((s as any).katjaQW ?? 0)?.['liberated'] === 1  &&  (Math.floor(Math.random() * 4) + 0) === 0)) {
                   (s as any).katjaQW['disco_loc'] = Math.floor(Math.random() * 3) + 4;
                 }
               }

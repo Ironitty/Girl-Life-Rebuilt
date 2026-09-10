@@ -228,7 +228,7 @@ function enterGoToParkAndWork(s: GameState, scene: SceneBuilder): void {
 function enterSetDiscoDateAct(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6)  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22) {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['natbel_dates_repeat', 'disco_date1'] }]);
     }

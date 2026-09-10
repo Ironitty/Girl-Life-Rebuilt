@@ -141,7 +141,7 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
 
 function enterSavva(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/savva/savva.jpg');
-  if (((s as any).know_Savva ?? 0) === 0) {
+  if ((!((s as any).know_Savva ?? 0))) {
     scene.text('You see a young man at the counter; he looks about your sister\'s age, but has a shy, quiet, almost girlish quality about him.');
     scene.text('"Can I help you?" he asks so quietly that you can barely hear him.');
   } else {
@@ -204,7 +204,7 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
 
 function enterViola(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big205.jpg');
-  if (((s as any).know_Viola ?? 0) === 0) {
+  if ((!((s as any).know_Viola ?? 0))) {
     scene.text('You see a young woman at the counter who is about a year or two older than your sister. She\'s reading a magazine when you walk up, only glancing up at you as you stop at the counter. "How can I help you?"');
   } else {
     // TODO-QSP: dynamic text: "What's up, <<$pcs_nickname>>? You here to do a little shopping or to kill some ...

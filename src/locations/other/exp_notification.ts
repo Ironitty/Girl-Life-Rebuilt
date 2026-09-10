@@ -5,9 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterTrackExp(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('exp_ignored_stats', ((s as any).locArgs?.[1] ?? 0)) < 0  &&  (((s as any).arrpos ?? 0)('att_name', ((s as any).locArgs?.[1] ?? 0)) >= 0  ||  ((s as any).arrpos ?? 0)('skl_name', ((s as any).locArgs?.[1] ?? 0)) >= 0)) {
+  if ((Array.isArray((s as any).exp_ignored_stats) ? ((s as any).exp_ignored_stats as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0  &&  ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  ||  (Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0)) {
     // TODO-QSP: exp_tracked_values[$ARGS[1]] += ARGS[2]
-    if (((s as any).arrpos ?? 0)('exp_tracked_names', ((s as any).locArgs?.[1] ?? 0)) < 0) {
+    if ((Array.isArray((s as any).exp_tracked_names) ? ((s as any).exp_tracked_names as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
       // TODO-QSP: $exp_tracked_names[] = $ARGS[1]
     }
   }
@@ -35,7 +35,7 @@ function enterGetMessage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsEmpty(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).arrsize ?? 0)('exp_tracked_names') === 0);
+  (s as any).result = (Object.keys((s as any).exp_tracked_names ?? {}).length === 0);
   return;
   scene.build();
 }

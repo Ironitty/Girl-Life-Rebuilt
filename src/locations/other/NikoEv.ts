@@ -59,7 +59,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLunchIntro(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).NikoIntro ?? 0) === 0) {
+  if ((!((s as any).NikoIntro ?? 0))) {
     (s as any).NikoIntro = 1;
   }
   qspCall(s, 'stat', '');
@@ -150,7 +150,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You approach Niko and his eyes light up. "Hello <<$pcs_firstname>>. I'm so glad ...
       scene.text(`You approach Niko and his eyes light up. "Hello ${((s as any).pcs_firstname ?? 0)}. I'm so glad to see you again. Please take a seat and chat with me."`);
     }
-    if (((s as any).NikoLuv ?? 0) > -4  &&  ((s as any).NikoPayback ?? 0) === 0) {
+    if (((s as any).NikoLuv ?? 0) > -4  &&  (!((s as any).NikoPayback ?? 0))) {
       scene.actions([
         { label: 'Chat', handler: (st: GameState) => {
     (s as any).NikoLuv = ((s as any).NikoLuv ?? 0) + (1);
@@ -180,7 +180,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).NikoIntro ?? 0) > -1) {
-      if (((s as any).NikoLuv ?? 0) > -4  &&  ((s as any).NikoVolkovQW ?? 0) === 0  &&  ((s as any).NikoPayback ?? 0) === 0) {
+      if (((s as any).NikoLuv ?? 0) > -4  &&  ((s as any).NikoVolkovQW ?? 0) === 0  &&  (!((s as any).NikoPayback ?? 0))) {
         scene.actions([
           { label: 'Insult', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A189', (-5));
@@ -199,7 +199,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).NikoPayed ?? 0) !== ((s as any).daystart ?? 0)) {
         if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           qspCall(s, 'money', 'pay', 200);
           (s as any).NikoPayed = ((s as any).daystart ?? 0);
@@ -269,7 +269,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins. "I have something special for us today. Are you ready to find out what it is?"');
     scene.actions([
       { label: 'Go with him', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 4) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['NikoDates', 'teacher_block'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['NikoWhore', 'Locker Room'] }]);

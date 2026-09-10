@@ -81,7 +81,7 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
 
 function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = (((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20);
+  (s as any).dick = ((((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
   if (((s as any).ARGS ?? 0)[1] === 0) {
     (s as any).ARGS[1] = (-1);
   }
@@ -144,7 +144,7 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).xec ?? 0)} starts to stretch your anus using three fingers.`);
   }
   // TODO-QSP: *p '<<$boydesc>> pulls <<$xyr>> fingers out of your ass and you feel '
-  if (Math.floor(Math.random() * 2) + 0===0) {
+  if ((Math.floor(Math.random() * 2) + 0)===0) {
     // TODO-QSP: dynamic text: <<$xyr>> fake cock near your hole.' else '<<$xem>> pushing <<$xyr>> fake cock in...
     scene.text(`${((s as any).xyr ?? 0)} fake cock near your hole.' else '${((s as any).xem ?? 0)} pushing ${((s as any).xyr ?? 0)} fake cock into your hole.`);
   }
@@ -176,7 +176,7 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = (((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20);
+  (s as any).dick = ((((s as any).ARGS ?? 0)[2] > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "dinSex2" })) : (20));
   if (((s as any).ARGS ?? 0)[1] === 0) {
     (s as any).ARGS[1] = (-1);
   }
@@ -292,7 +292,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You feel like your anus is stretching when <<$xyr2>> penis enters you. You start...
     scene.text(`You feel like your anus is stretching when ${((s as any).xyr2 ?? 0)} penis enters you. You start to moan rhythmically in unison with ${((s as any).xyr2 ?? 0)} cock's movements inside of you.`);
   }
-  if (((s as any).totPain ?? 0) === 0) {
+  if ((!((s as any).totPain ?? 0))) {
     // TODO-QSP: dynamic text: Feelings merge together when you move inside two members in contact with each ot...
     scene.text(`Feelings merge together when you move inside two members in contact with each other through a thin opening sharing your vagina filled ${((s as any).dick1 ?? 0)} centimeter and a member of your ${((s as any).anustipe ?? 0)} anus filled ${((s as any).dick2 ?? 0)} centimeter member. Your abdomen burns as if pleasant sunlight was spreading heat throughout your body.`);
     (s as any).bonusMana = ((s as any).pcs_mood ?? 0);

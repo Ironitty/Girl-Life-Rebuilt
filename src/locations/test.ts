@@ -32,7 +32,7 @@ function pavStreetEnter(s: GameState, scene: SceneBuilder): void {
       st.minut += 15;
       if (st.minut >= 60) { st.minut -= 60; st.hour++; }
       st.totminut = st.minut + st.hour * 60 + st.daystart * 1440;
-      pavStreetEnter(st);
+      pavStreetEnter(st, new SceneBuilder());
     }},
   ];
 }
@@ -80,7 +80,7 @@ function pavCafeEnter(s: GameState, scene: SceneBuilder): void {
           st2.minut += 30;
           if (st2.minut >= 60) { st2.minut -= 60; st2.hour++; }
           st2.totminut = st2.minut + st2.hour * 60 + st2.daystart * 1440;
-          pavCafeEnter(st2);
+          pavCafeEnter(st2, new SceneBuilder());
         }},
         { label: 'Leave', goto: ['pav_street', ''] },
       ];
@@ -147,7 +147,7 @@ function pavHotelRoomEnter(s: GameState, scene: SceneBuilder): void {
           if (st2.hour >= 24) { st2.hour = 0; st2.daystart++; }
           st2.pcs_sleep = Math.min(100, st2.pcs_sleep + 10);
           st2.totminut = st2.minut + st2.hour * 60 + st2.daystart * 1440;
-          pavHotelRoomEnter(st2);
+          pavHotelRoomEnter(st2, new SceneBuilder());
         }},
       ];
     }},

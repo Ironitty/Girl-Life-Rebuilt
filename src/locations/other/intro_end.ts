@@ -43,7 +43,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 
 function enterSetRandomUniCourse(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 2) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
     qspCall(s, 'uni_admin', 'courses', 'enroll_teaching', 1);
   } else {
     qspCall(s, 'uni_admin', 'courses', 'enroll_nursing', 1);
@@ -178,7 +178,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     scene.text('The first time she saw a man\'s penis was a mind-opening experience, awakening unfamiliar feelings. Luckily it seems that she\'s retained her attraction towards women, making her changing sexuality easier to deal with. So far, she hasn\'t had the time to really explore a woman\'s pleasure.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).start_location ?? 0) === 0) {
+    if ((!((s as any).start_location ?? 0))) {
       scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
     } else {
       scene.img('images/system/1_openings/shared/site_gadukino.jpg');

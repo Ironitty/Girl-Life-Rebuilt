@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).school_period ?? 0) === 0) {
+  if ((!((s as any).school_period ?? 0))) {
     if (((s as any).week ?? 0) === 1) {
       scene.text('<b>Next period</b>: Math');
     }

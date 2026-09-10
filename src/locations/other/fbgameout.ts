@@ -139,7 +139,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'React [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -152,7 +152,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pass', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_ftbll ?? 0) >= 70) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_ftbll ?? 0) >= 70) {
       qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A149', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A3', (-1));
@@ -192,7 +192,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Shoot', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_ftbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_ftbll ?? 0) >= 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
       qspCall(s, 'mood', 'raise', 'small');
       qspCall(s, 'sweat', 'add', 20);
@@ -227,7 +227,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Dribble', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_ftbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_ftbll ?? 0) >= 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A149', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A165', 1);
@@ -304,7 +304,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     scene.text(`You hesitate a little as you hear someone yell out "Run after her ${((s as any).pcs_nickname ?? 0)}! You're the only one who can stop her!"`);
     scene.text('Running as fast as you can, you start catching up to her. You can almost reach out to her, but you\'re still unsure on how to stop her.');
     scene.text('All of a sudden, you hear someone yell from behind. "Stop her! She\'s winding up a shot!"');
-    if (Math.floor(Math.random() * 2) + 0 === 1) {
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
       scene.text('You finally decide what to do, Using the last of your strength, you run up to her and give her a slight bump on the shoulder just as she\'s about to take the shot.');
       scene.text('Lina manages to take a shot, but your interference means that it\'s way off and misses.');
       scene.text('You hear Lina yell out in frustration as your teammates congratulate you for a job well done.');
@@ -336,7 +336,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'React [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -349,7 +349,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pass', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_ftbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_ftbll ?? 0) >= 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A149', 1);
       qspCall(s, 'mood', 'raise', 'small');
@@ -388,7 +388,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Shoot', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_ftbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_ftbll ?? 0) >= 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
       qspCall(s, 'mood', 'raise', 'small');
       qspCall(s, 'sweat', 'add', 20);
@@ -424,7 +424,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Dribble', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_ftbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_ftbll ?? 0) >= 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A149', 1);
       qspCall(s, 'npc_relationship', 'modify', 'A165', 1);

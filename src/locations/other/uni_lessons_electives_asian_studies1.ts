@@ -19,7 +19,7 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
     scene.text('"My name is Hou Da, but you may call me Professor Da. I\'m going to teach you about the various Asian cultures and history."');
     scene.text('With that over, she begins today\'s lecture as you hear a few of your classmates snicker about how she is Professor Yes in Russian.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -28,7 +28,7 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Da [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -48,7 +48,7 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAsianStudies_101Listen(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 2) + 0 === 1) {
+  if ((Math.floor(Math.random() * 2) + 0) === 1) {
     qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
   } else {
     qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
@@ -108,7 +108,7 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
     scene.text('"My name is Hou Da, but you may call me Professor Da. I\'m going to teach you about the various Asian cultures and history."');
     scene.text('With that over, she begins today\'s lecture as you hear a few of your classmates snicker about how she is Professor Yes in Russian.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -117,7 +117,7 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Da [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

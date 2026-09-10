@@ -58,13 +58,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['city_residential', ''] },
       ]);
     }
-    if (((s as any).pcs_apprnc ?? 0) < Math.floor(Math.random() * 400) + 0) {
+    if (((s as any).pcs_apprnc ?? 0) < (Math.floor(Math.random() * 400) + 0)) {
       scene.actions([
         { label: 'Leave work', goto: ['city_residential', ''] },
       ]);
     } else {
       if (((s as any).palevorin ?? 0) <= 1  ||  ((s as any).palevorin ?? 0) === 3) {
-        if (((s as any).palevorin ?? 0) === 0) {
+        if ((!((s as any).palevorin ?? 0))) {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, you and I have not met properly. Come into the warehouse...
           scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, you and I have not met properly. Come into the warehouse. We can have a drink and a bite to eat while we get acquainted."`);
         } else {
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -121,7 +121,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Get fired [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -133,7 +133,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head. "No, I won\'t go with you."');
     scene.text('Before you notice him raising his hand, you feel the burning sensation on your cheek as he slaps you. "Then get out of here whore! You\'re fired and I don\'t want to see you back here!" He pushes you out from behind his stall, loud enough that many people are looking in your direction to what\'s going on.');
     scene.text('You walk away in shame while rubbing your stinging cheek.');
-    if (((s as any).rinslut ?? 0) === 0) {
+    if ((!((s as any).rinslut ?? 0))) {
       (s as any).rinslut = 1;
     }
     scene.actions([
@@ -172,7 +172,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -194,7 +194,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -204,7 +204,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'set_fired', 'city_market_saleswoman');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (((s as any).rinslut ?? 0) === 0) {
+    if ((!((s as any).rinslut ?? 0))) {
       (s as any).rinslut = 1;
     }
     if (((s as any).repa ?? 0) < 6) {
@@ -234,7 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     return;
     if (((s as any).hour ?? 0) < 14) {
       if (qspFunc(s, 'money', 'can_afford', 200, 'cash') === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         (s as any).tetaKataQW = ((s as any).tetaKataQW ?? 0) + (1);
         qspCall(s, 'money', 'pay', 200, 'cash');
@@ -251,11 +251,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).rintakrand = Math.floor(Math.random() * 6) + 0;
     (s as any).talkrand = Math.floor(Math.random() * 3) + 0;
     if (((s as any).hour ?? 0) === 9) {
-      if (((s as any).rintakrand ?? 0) === 0) {
+      if ((!((s as any).rintakrand ?? 0))) {
         scene.actions([
           { label: 'Watch Hassan and Nadia', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('"You will sell more today, and to the rich ladies. I need the money, Nadia."');
     }
     if (((s as any).talkrand ?? 0) === 1) {
@@ -274,7 +274,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('They continue to talk, but you don\'t know the language and can\'t understand what they\'re saying.');
     }
     if (((s as any).talkrand ?? 0) === 1) {
@@ -293,7 +293,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('They continue to talk, but you don\'t know the language and can\'t understand what they\'re saying.');
     }
     if (((s as any).talkrand ?? 0) === 1) {
@@ -311,7 +311,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'View the Armenians', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('They continue to talk, but you don\'t know the language and can\'t understand what they\'re saying.');
     }
     if (((s as any).talkrand ?? 0) === 1) {
@@ -329,7 +329,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$rintak>>
           scene.text(`${((s as any).rintak ?? 0)}`);
           if (((s as any).hour ?? 0) === 10) {
-            if (((s as any).rintakrand ?? 0) === 0) {
+            if ((!((s as any).rintakrand ?? 0))) {
               scene.actions([
                 { label: 'Watch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -379,7 +379,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 // TODO-QSP: dynamic text: <<$rintak>>
                 scene.text(`${((s as any).rintak ?? 0)}`);
                 if (((s as any).hour ?? 0) === 11) {
-                  if (((s as any).rintakrand ?? 0) === 0) {
+                  if ((!((s as any).rintakrand ?? 0))) {
                     scene.actions([
                       { label: 'Look at Nadia and Armenians', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -427,7 +427,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       // TODO-QSP: dynamic text: <<$rintak>>
                       scene.text(`${((s as any).rintak ?? 0)}`);
                       if (((s as any).hour ?? 0) === 12) {
-                        if (((s as any).rintakrand ?? 0) === 0) {
+                        if ((!((s as any).rintakrand ?? 0))) {
                           scene.actions([
                             { label: 'Chat with Nadia', handler: (st: GameState) => {
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) - (1);
@@ -445,7 +445,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('Anna tells you that her friend used to clean an office building not far from here and that they are looking for a new cleaner if you need to make some extra cash.');
       if (((s as any).job_hiring_step ?? 0)?.['city_office_cleaner'] === 0) {
         (s as any).job_hiring_step['city_office_cleaner'] = 1;
@@ -485,7 +485,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: dynamic text: <<$rintak>>
                             scene.text(`${((s as any).rintak ?? 0)}`);
                             if (((s as any).hour ?? 0) === 13) {
-                              if (((s as any).rintakrand ?? 0) === 0) {
+                              if ((!((s as any).rintakrand ?? 0))) {
                               } else {
                                 if (((s as any).rintakrand ?? 0) === 2) {
                                 } else {
@@ -495,14 +495,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   scene.text(`${((s as any).rintak ?? 0)}`);
                                 }
                                 (s as any).pokrand = Math.floor(Math.random() * 2) + 0;
-                                if (((s as any).pokrand ?? 0) === 0) {
+                                if ((!((s as any).pokrand ?? 0))) {
                                   (s as any).pokupatel = 0;
                                   scene.text('');
                                   scene.text('Aunt Katya pushes her trolley through the market carrying cakes and coffee.');
                                 } else {
                                   (s as any).pokupatel = 1;
                                   (s as any).poktiprand = Math.floor(Math.random() * 8) + 0;
-                                  if (((s as any).poktiprand ?? 0) === 0) {
+                                  if ((!((s as any).poktiprand ?? 0))) {
                                     (s as any).pokti = 1;
                                   }
                                   if (((s as any).poktiprand ?? 0) === 1) {
@@ -534,7 +534,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     { label: 'How can I help you?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pokvnirand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).pokvnirand ?? 0) === 0) {
+    if ((!((s as any).pokvnirand ?? 0))) {
       // TODO-QSP: dynamic text: <<$poktip>> examines your wares with little interest.
       scene.text(`${((s as any).poktip ?? 0)} examines your wares with little interest.`);
     } else {
@@ -646,7 +646,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).annaQW = ((s as any).annaQW ?? 0) + (1);
     (s as any).NadiaQW = ((s as any).NadiaQW ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('Anna tells you that her skirt needed altering and that there is a great tailor\'s shop nearby.');
     } else {
       scene.text('Nadia tells you how some pervert molested her on the subway by rubbing his dick on her ass.');
@@ -660,7 +660,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Watch Abdul and Anna', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).talkrand ?? 0) === 0) {
+    if ((!((s as any).talkrand ?? 0))) {
       scene.text('"We\'re fucked, you can\'t sell anything!" Abdul shouts at Anna. "No wonder! You give me this rotten shit to sell! Nobody wants it!" she retorts.');
     }
     if (((s as any).talkrand ?? 0) === 1) {

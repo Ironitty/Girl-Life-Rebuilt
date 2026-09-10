@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     return;
   }
-  if (((s as any).cumloc ?? 0)[12] === 1  &&  Math.floor(Math.random() * 31) + 0 === 0) {
+  if (((s as any).cumloc ?? 0)[12] === 1  &&  (!(Math.floor(Math.random() * 31) + 0))) {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).static_num ?? 0), (-10));
     qspCall(s, 'fame', 'pav', 'sex', 15);
     // TODO-QSP: dynamic text: <<$npc_firstname[$static_num]>> looks at you, "What is that smell on your breath...

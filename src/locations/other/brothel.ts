@@ -65,7 +65,7 @@ function enterSit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/bar.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  if (((s as any).alko ?? 0) >= 6  &&  Math.floor(Math.random() * 100) + 1 <= 30  &&  ((s as any).job_status ?? 0)?.['highway_brothel_prostitute'] === '') {
+  if (((s as any).alko ?? 0) >= 6  &&  (Math.floor(Math.random() * 100) + 1) <= 30  &&  ((s as any).job_status ?? 0)?.['highway_brothel_prostitute'] === '') {
     scene.text('You try to take a seat behind the bar, but you\'re too drunk to sit up straight. Instead, you rest your head on the bar, mumbling incoherently');
     qspCall(s, 'brothel', 'abduction_start');
   } else {
@@ -91,7 +91,7 @@ function enterOrder(s: GameState, scene: SceneBuilder): void {
   scene.text('You signal to the barman that you want something.');
   scene.text('"What would you like miss?"');
   qspCall(s, 'jobs', 'get_job_definition', 'highway_brothel_prostitute');
-  if (((s as any).alko ?? 0) >= 6  &&  Math.floor(Math.random() * 100) + 1 <= 30  &&  ((s as any).job_status ?? 0)?.['highway_brothel_prostitute'] === '') {
+  if (((s as any).alko ?? 0) >= 6  &&  (Math.floor(Math.random() * 100) + 1) <= 30  &&  ((s as any).job_status ?? 0)?.['highway_brothel_prostitute'] === '') {
     scene.text('You try to order another drink, but as you faint all that gets out of your mouth is some drunken babble…');
     qspCall(s, 'brothel', 'abduction_start');
   } else {
@@ -248,7 +248,7 @@ function enterAbducted5(s: GameState, scene: SceneBuilder): void {
 
 function enterAbducted6(s: GameState, scene: SceneBuilder): void {
   (s as any).analPlugIn = 0;
-  (s as any).analPlugOut = hadOwnanalPlugIn;
+  (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
   qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/pullplugfromass.mp4');
@@ -271,7 +271,7 @@ function enterAbducted7(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Admit that you somehow liked it as you fancy to be dominated [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -370,7 +370,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask to get your hard earned wage', goto: ['brothel', 'get_paid'] },
     ]);
   }
-  if (((s as any).section_warn ?? 0) === 0) {
+  if ((!((s as any).section_warn ?? 0))) {
     scene.actions([
       { label: 'Second section', goto: ['brothel', 'section2_warning'] },
     ]);
@@ -474,7 +474,7 @@ function enterSection1Lobby(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     // TODO-QSP: $temp_text[] = '- remove your panties.'
   }
-  if (((s as any).arrsize ?? 0)('temp_text') === 0) {
+  if (Object.keys((s as any).temp_text ?? {}).length === 0) {
     scene.actions([
       { label: 'Get in a cage', goto: ['brothel_section1', 'section1_cage'] },
     ]);
@@ -483,7 +483,7 @@ function enterSection1Lobby(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_i = 0;
     // TODO-QSP: :lobby1_loop
     (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
-    if (((s as any).temp_i ?? 0) < ((s as any).arrsize ?? 0)('temp_text')) {
+    if (((s as any).temp_i ?? 0) < Object.keys((s as any).temp_text ?? {}).length) {
       // TODO-QSP: jump 'lobby1_loop'
     }
   }

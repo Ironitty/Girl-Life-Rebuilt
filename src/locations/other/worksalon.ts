@@ -11,7 +11,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/salonwork.jpg');
   scene.text('You show up to work and see your coworkers already working. You give them a friendly wave as you head over to your work station.');
   (s as any).salonjobrand = Math.floor(Math.random() * 11) + 0;
-  if (((s as any).salonjobrand ?? 0) === 2  &&  ((s as any).pcs_apprnc ?? 0) > 80  &&  ((s as any).alla ?? 0) === 0) {
+  if (((s as any).salonjobrand ?? 0) === 2  &&  ((s as any).pcs_apprnc ?? 0) > 80  &&  (!((s as any).alla ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['worksalon', '2'] }]);
   } else {
     scene.text('As you head over to your work station, your boss comes over and leans close to you. "Go into my office and take your clothes off, then bend over my desk. I will be there shortly." He says to you as he gives your ass a slap.');
@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell him no and go to your work station [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tell Masha to give you a massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -115,7 +115,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Ask Masha to give you a massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -184,7 +184,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Order her to lick your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -218,7 +218,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Order her to lick your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -295,7 +295,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Massage', handler: (st: GameState) => {
     (s as any).masstime = ((s as any).hour ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (((s as any).salonjobrand ?? 0) === 0) {
+    if ((!((s as any).salonjobrand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['worksalon', '0'] }]);
     }
     if (((s as any).salonjobrand ?? 0) === 1) {
@@ -329,7 +329,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Finish the massage [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -368,7 +368,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Use Masha [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -428,7 +428,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell him to fuck off and return to work [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -453,11 +453,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 
 function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A71');
-  if (((s as any).beautyadmin ?? 0) === 0) {
+  if ((!((s as any).beautyadmin ?? 0))) {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).beautyadmin = 1;
   }
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/city/citycenter/mall/salon/sex/pashavag.jpg');
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(s, 'boyStat', 'A71');

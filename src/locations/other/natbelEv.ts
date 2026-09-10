@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 18) {
     (s as any).NatashaLoc = Math.floor(Math.random() * 7) + 1;
   }
-  if (((s as any).NatashaLoc ?? 0) === 0) {
+  if ((!((s as any).NatashaLoc ?? 0))) {
   } else {
     if (((s as any).NatashaLoc ?? 0) === 2) {
     } else {

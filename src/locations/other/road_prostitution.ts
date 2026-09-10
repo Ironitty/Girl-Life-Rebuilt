@@ -13,7 +13,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      (s as any).prostitute_names[$prostitution_location] = ((s as any).pcs_nickname ?? 0);
+      (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -37,7 +37,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -71,7 +71,7 @@ function enterEventCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRoadSegment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).nroad ?? 0) === 0) {
+  if ((!((s as any).nroad ?? 0))) {
   } else {
     if (((s as any).nroad ?? 0) === 2) {
       scene.text('');

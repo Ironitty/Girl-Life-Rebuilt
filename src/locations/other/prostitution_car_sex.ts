@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   (s as any).cumnostd = 1;
-  if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob'  ||  (Math.floor(Math.random() * 3) + 0 < 2  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0)) {
+  if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob'  ||  ((Math.floor(Math.random() * 3) + 0) < 2  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0)) {
     (s as any).prostitute['blowjob_first'] = 1;
     scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'Blowjob'] }]);
   } else {
@@ -43,7 +43,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: You wrap your lips around his member'+iif($prostitute_client_condom = 'Yes', '; ...
     scene.text('You wrap your lips around his member\'+iif($prostitute_client_condom = \'Yes\', \'; with those modern condom there\'s no real difference to bare skin. You suck and run\', \' sucking and running\')+\' your tongue along his shaft while your hands fondle his balls. "Don\'t be shy \'+iif(rand(1, 10) < 4, \'whore\', \'girl\')+\'," he murmurs before pushing his cock further into your mouth.');
-    qspCall(s, 'arousal', 'bj', (((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) ? (6) : (12), 'unknown', 'prostitution', 'no_orgasm_msg');
+    qspCall(s, 'arousal', 'bj', ((((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) ? (6) : (12)), 'unknown', 'prostitution', 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
       scene.actions([
@@ -53,7 +53,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       (s as any).prostitute['scene_repeat'] = ((s as any).prostitute['scene_repeat'] ?? 0) + (1);
-      if (((s as any).prostitute_fetish ?? 0)?.['rimjob'] !== 'blocked'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0  &&  (Math.floor(Math.random() * 100) + 1 + ((s as any).prostitute ?? 0)?.['rim_pity_counter']) > 90) {
+      if (((s as any).prostitute_fetish ?? 0)?.['rimjob'] !== 'blocked'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0  &&  ((Math.floor(Math.random() * 100) + 1) + ((s as any).prostitute ?? 0)?.['rim_pity_counter']) > 90) {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'prostitution_car_sex', 'rimjob_start');

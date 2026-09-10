@@ -10,9 +10,9 @@ function enterFmtPts(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ARGS ?? 0)[1] === 0) {
     return;
   }
-  (s as any).temp_fmt['abs'] = (((s as any).ARGS ?? 0)[1] < 0) ? (-((s as any).ARGS ?? 0)[1]) : (qspUntranslated(s, "ARGS[1]", { location: "archetypes" }));
+  (s as any).temp_fmt['abs'] = ((((s as any).ARGS ?? 0)[1] < 0) ? (-((s as any).ARGS ?? 0)[1]) : (qspUntranslated(s, "ARGS[1]", { location: "archetypes" })));
   (s as any).temp_fmt['whole'] = ((s as any).temp_fmt ?? 0)?.['abs'] / 250;
-  (s as any).temp_fmt['sign'] = (((s as any).ARGS ?? 0)[1] > 0) ? ('+') : ('-');
+  (s as any).temp_fmt['sign'] = ((((s as any).ARGS ?? 0)[1] > 0) ? ('+') : ('-'));
   if (((s as any).locArgs?.[2] ?? 0) === 'fine') {
     (s as any).temp_fmt['tenths'] = (((s as any).temp_fmt ?? 0)?.['abs'] % 250) * 10 / 250;
     if (((s as any).temp_fmt ?? 0)?.['whole'] === 0  &&  ((s as any).temp_fmt ?? 0)?.['tenths'] === 0) {
@@ -27,9 +27,9 @@ function enterFmtPts(s: GameState, scene: SceneBuilder): void {
 
 function enterClamp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_const ?? 0)?.['point_cap'] > 0) {
-    (s as any).arch_vars['' + String((s as any).$ARGS[1] ?? '') + '_points'] = qspFunc(s, 'math', 'int_clamp', ((s as any).arch_vars ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_points'], 0, ((s as any).arch_const ?? 0)?.['point_cap']);
+    (s as any).arch_vars['' + String((s as any).$ARGS[1] || '') + '_points'] = qspFunc(s, 'math', 'int_clamp', ((s as any).arch_vars ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_points'], 0, ((s as any).arch_const ?? 0)?.['point_cap']);
   } else {
-    (s as any).arch_vars['' + String((s as any).$ARGS[1] ?? '') + '_points'] = qspUntranslated(s, "max(0, arch_vars['<<ARGS[1]>>_points'])", { location: "archetypes" });
+    (s as any).arch_vars['' + String((s as any).$ARGS[1] || '') + '_points'] = qspUntranslated(s, "max(0, arch_vars['<<ARGS[1]>>_points'])", { location: "archetypes" });
   }
   return;
   scene.build();

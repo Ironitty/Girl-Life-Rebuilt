@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Toggle Debug Variables</center>') {
-    if (((s as any).objectWindowDebug ?? 0) === 0) {
+    if ((!((s as any).objectWindowDebug ?? 0))) {
       (s as any).objectWindowDebug = 1;
     } else {
       (s as any).objectWindowDebug = 0;
@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).selobj ?? 0) === '<center>Switch HTML</center>') {
-    (s as any).usehtml = (((s as any).usehtml ?? 0)) ? (0) : (1);
+    (s as any).usehtml = ((((s as any).usehtml ?? 0)) ? (0) : (1));
   }
   if (((((s as any).selobj ?? 0)).indexOf((':'))) + 1 > 0) {
     (s as any).tmpPos = ((((s as any).selobj ?? 0)).indexOf((':'))) + 1 - 1;

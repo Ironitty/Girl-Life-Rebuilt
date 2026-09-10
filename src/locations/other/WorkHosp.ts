@@ -23,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Work in the operating room (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
-    if (((s as any).jobhosprand ?? 0) === 0) {
+    if ((!((s as any).jobhosprand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['WorkHosp', '2'] }]);
     }
     scene.text('You work as part of the operating team, helping the doctors with whatever tasks they request of you.');
@@ -34,7 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Help the doctors in the emergency room (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
-    if (((s as any).jobhosprand ?? 0) === 0) {
+    if ((!((s as any).jobhosprand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['WorkHosp', '3'] }]);
     }
     scene.text('You spend a frenzied hour helping patients that come into the emergency room.');
@@ -50,7 +50,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Masturbate (0:15)', handler: (st: GameState) => {
     (s as any).mastrrand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).mastrrand ?? 0) === 0) {
+    if ((!((s as any).mastrrand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['WorkHosp', '1'] }]);
     } else {
       (s as any).picrand = 11;
@@ -75,7 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Chat with Kat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).kat = ((s as any).kat ?? 0) + (1);
-    if (((s as any).npc_rel ?? 0)?.['A219'] > 60  &&  ((s as any).military ?? 0) === 0) {
+    if (((s as any).npc_rel ?? 0)?.['A219'] > 60  &&  (!((s as any).military ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['WorkHosp', 'milit'] }]);
     }
     scene.text('You spend some time chatting with Kat.');
@@ -105,7 +105,7 @@ function enterMilit(s: GameState, scene: SceneBuilder): void {
 
 function enter0(s: GameState, scene: SceneBuilder): void {
   (s as any).katprorand = Math.floor(Math.random() * 3) + 0;
-  if (((s as any).katprorand ?? 0) === 0) {
+  if ((!((s as any).katprorand ?? 0))) {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
     (s as any).picrand = 11;
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -132,7 +132,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :docloop
     qspCall(s, 'WorkHosp', 'randdoc');
     if (((s as any).boydesc ?? 0) === ((s as any).boydesc ?? 0)[1]) {
-      (s as any).docfuck[randdoc] = ((s as any).docfuck[randdoc] ?? 0) - (1);
+      (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop'
     }
     if (((s as any).docfuck ?? 0)?.[String((s as any).randdoc ?? 0)] === 1) {

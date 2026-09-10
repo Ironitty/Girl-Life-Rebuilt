@@ -142,7 +142,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -295,7 +295,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).protect = Math.floor(Math.random() * 2) + 0;
   (s as any).pose = 1;
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'dinsex', 'sexcum');
   }
   scene.actions([
@@ -321,7 +321,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog2.jpg');
     scene.text('The next man, wanting to outdo the man before, grabbed his cock, thrust it into your anus, and started to relentlessly slamming into your eager butt.');
     qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri');
@@ -332,7 +332,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Lie on your back', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A171');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_mis1.jpg');
     scene.text('You\'re on your back. You move your head, wanting to see who\'s about to ravage you next, and you see Stepan, the fisherman, the man you are close to and found of…');
     scene.text('You look into his eyes and ask him not to do this while Stepan readies his cock between your splayed legs… You only hear him say, "I\'ve been fantasizing about this for a long time."');
@@ -341,7 +341,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     scene.text('You take your mind off him and bite inside your cheek as you realize there are still many men left waiting to be pleasured…');
     (s as any).pose = 0;
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
@@ -360,7 +360,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang', 'rough');
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
     (s as any).pose = 0;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     qspCall(s, 'stat', '');
@@ -381,7 +381,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
 function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'boyStat', 'A62');
-  (s as any).npc_had_sex[$boy] = 1;
+  (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
   scene.img('images/locations/gadukino/sex/river/gadriver_gang_mis3.jpg');
   scene.text('You see another familiar face, this time, it\'s Vasyan.');
   scene.text('"Mitka and Kolyamba are also here somewhere, waiting for their turn", he says and smiles wickedly at you.');
@@ -393,7 +393,7 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang');
   (s as any).protect = Math.floor(Math.random() * 2) + 0;
   (s as any).pose = 0;
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'dinsex', 'sexcum');
   }
   qspCall(s, 'stat', '');
@@ -442,7 +442,7 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang');
     (s as any).pose = 1;
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     scene.text('The men cum inside you, slowly backing out from you, feeling satisfied. Then, he proclaimed loudly that he loves fucking your pussy and proceeded to motorboat you despite the presence of other men\'s cum.');
@@ -462,7 +462,7 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang');
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
     (s as any).pose = 1;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     scene.text('They soon cum all over your body. Finally, one of them twisted your nipples lightly before giving you a wink before they all departed.');
@@ -508,7 +508,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Another one', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A172');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog9.jpg');
     if (((s as any).hunterVars ?? 0)?.['were_met'] === 0) {
       scene.text('You squint a little to see who\'s next in line while sucking someone\'s cock. But, instead, you see an unknown village man penetrating your ass.');
@@ -535,7 +535,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'gangbang');
     (s as any).pose = 1;
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     qspCall(s, 'stat', '');
@@ -562,7 +562,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang');
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
     (s as any).pose = 0;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     qspCall(s, 'stat', '');
@@ -581,7 +581,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
     (s as any).pose = 1;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     scene.actions([
@@ -593,7 +593,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a third man lying on the ground, and you might as well just do it. So you climb on top of him as well.');
     (s as any).protect = Math.floor(Math.random() * 2) + 0;
     (s as any).pose = 1;
-    if (Math.floor(Math.random() * 2) + 0 === 1) {
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'dinsex', 'sexcum');
     }
     scene.text('Bouncing on the cock of another guy, you suddenly hear the voice of Kolyamba.');
@@ -725,7 +725,7 @@ function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -761,7 +761,7 @@ function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -797,7 +797,7 @@ function enterGadukinoVasyan(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -847,7 +847,7 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

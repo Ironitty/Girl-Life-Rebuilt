@@ -31,13 +31,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('You quickly wipe your face, doing your best to clean up a bit as Arthur goes to retrieve your gift.');
-    if (((s as any).bag ?? 0) === 0) {
+    if ((!((s as any).bag ?? 0))) {
       qspCall(s, 'purses', 'add_item', 'gm', 13);
       qspCall(s, 'purses', 'wear', 'gm', 13);
       scene.text('Arthur gives you a quality handbag. You take it, feeling a mixture of joy and guilt welling up inside you. "Did I really just sleep with a stranger for a purse? Does this make me a whore, or a slut?" You think to yourself');
     } else {
       (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).mc_inventory['travel_makeup'] = ((s as any).mc_inventory['travel_makeup'] ?? 0) + (20);
         scene.text('Arthur hands you a portable set of cosmetics.');
       } else {

@@ -147,7 +147,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinSex', 'std_trigger');
   qspCall(s, 'dinSex', 'std_trigger_oral');
-  if (((s as any).lcwork_counter ?? 0) === 0) {
+  if ((!((s as any).lcwork_counter ?? 0))) {
     scene.img('images/locations/city/industrial/bbq/sex/4a.jpg');
     scene.text('As you walk up to the couple, you notice the guy grinning deviously while his girlfriend\'s face is a deep shade of red. Before you can get a word in, the guy looks at his girl and grins: "What do you say, babe? She\'s cute, right?"');
     scene.text('The girl is still blushing, but can\'t keep her eyes off you and nods quietly. The guy looks at you and smiles: "She\'s a bit shy. It\'s our first time bringing someone else in the bedroom. You\'re our waitress, right? Are you ready to go?"');

@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     return;
   }
   (s as any).employment_conflict = 1 - qspFunc(s, 'jobs', 'check_employment_possible', qspUntranslated(s, "\u00000\u0000", { location: "jobs" }), (-1));
-  if (((s as any).arrpos ?? 0)('job_list', ((s as any).locArgs?.[1] ?? 0)) === -1) {
+  if ((Array.isArray((s as any).job_list) ? ((s as any).job_list as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) === -1) {
     // TODO-QSP: $job_list[] = $ARGS[1]
   }
   qspCall(s, 'jobs', 'get_job_definition', ((s as any).locArgs?.[1] ?? 0));

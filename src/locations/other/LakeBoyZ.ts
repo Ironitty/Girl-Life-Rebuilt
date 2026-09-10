@@ -14,14 +14,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/lake/event/sunbathe_lake.jpg');
     }
     scene.text('He seems nice enough so you decide to give him your name.');
-    if (Math.floor(Math.random() * 11) + 0 === 0  &&  ((s as any).pcs_apprnc ?? 0) >= Math.floor(Math.random() * 81) + 40  &&  ((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
+    if ((Math.floor(Math.random() * 11) + 0) === 0  &&  ((s as any).pcs_apprnc ?? 0) >= (Math.floor(Math.random() * 81) + 40)  &&  ((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
       // TODO-QSP: dynamic text: <<$boydesc>> smiles as he says, "You're a pretty cool girl. Maybe we can hang ou...
       scene.text(`${((s as any).boydesc ?? 0)} smiles as he says, "You're a pretty cool girl. Maybe we can hang out again?"`);
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -34,11 +34,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Give him your phone number', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'tiny');
-    if (Math.floor(Math.random() * 3) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
       qspCall(s, 'lover', 'add_boyfriend', ((s as any).boy ?? 0));
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).bmFrend[Tboynum] = 1;
+    (s as any).bmFrend[String((s as any).Tboynum ?? 0)] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You give <<$boydesc>> your phone number and he adds it to his contact list.
     scene.text(`You give ${((s as any).boydesc ?? 0)} your phone number and he adds it to his contact list.`);
@@ -55,7 +55,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -79,7 +79,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Thank him for the beer and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -97,13 +97,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/lake/event/drinkbeer.jpg');
     // TODO-QSP: dynamic text: You drink more beer with <<$boydesc>>. He begins stroking your leg and puts his ...
     scene.text(`You drink more beer with ${((s as any).boydesc ?? 0)}. He begins stroking your leg and puts his hand on your chest as he leans into you.`);
-    if (Math.floor(Math.random() * 100) + 1 <= 20) {
+    if ((Math.floor(Math.random() * 100) + 1) <= 20) {
       scene.text('Leaned in he whispers to you, "I need to taste those lips."');
       qspCall(s, 'willpower', 'kiss', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Push him away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -130,7 +130,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

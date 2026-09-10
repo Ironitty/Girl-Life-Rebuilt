@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Masturbate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -110,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Seduce him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -217,12 +217,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b>Community Center - Men\'s Restroom</b></center>');
         scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/mensrape3.mp4');
         scene.text('You look inside the men\'s restroom and see Dimka grabbing some chick by the hair and forcing her down onto his 16cm penis.');
-        if (((s as any).DimaRudeQW ?? 0) === 0) {
+        if ((!((s as any).DimaRudeQW ?? 0))) {
           qspCall(s, 'willpower', 'bj', 'self');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Interrupt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -250,7 +250,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {

@@ -17,11 +17,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="exec: gt \'pav_train_hall_events\', \'manager\'">station manager\'s office</a>. The <a href="exec:minut += 1 & gt \'pav_train_hall\', \'toilet\'">toilets</a> are located at the back of the building.');
   // TODO-QSP: dynamic text: The long-distance trains are at the station platforms between '+func('time', 'ge...
   scene.text('The long-distance trains are at the station platforms between \'+func(\'time\', \'get_time_string\', 11, 0)+\'-\'+func(\'time\', \'get_time_string\', 11, 30)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\'-\'+func(\'time\', \'get_time_string\', 18, 30)+\'.');
-  if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
+  if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
     if (((s as any).OluQW ?? 0)?.['met'] === 0) {
       scene.text('You see a very large black man sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi. It doesn\'t look like anyone is taking him up on his offer, though.');
     } else {
-      if (((s as any).week ?? 0) !== 1  ||  Math.floor(Math.random() * 5) + 0 !== 0) {
+      if (((s as any).week ?? 0) !== 1  ||  (Math.floor(Math.random() * 5) + 0) !== 0) {
         // TODO-QSP: dynamic text: You see your aunt's boyfriend <a href="exec:minut += 1 & gt 'olutaxi', 'station'...
         scene.text('You see your aunt\'s boyfriend <a href="exec:minut += 1 & gt \'olutaxi\', \'station\'">Olu</a> sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
       } else {
@@ -42,7 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt ''gopskver''">Vitek, Dan and Vasily</a> hanging around.'
     }
   }
-  if (((s as any).podbros ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+  if (((s as any).podbros ?? 0) === 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     scene.text('As you walk through the station building, you notice a man\'s <a href="exec: gt \'pav_train_hall_events\', \'wallet1\'">wallet</a> fall out of his pocket.');
   }
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {

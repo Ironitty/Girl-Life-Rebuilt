@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 7) {
     scene.text('Rolan is here.');
-    if (Math.floor(Math.random() * 101) + 0 >= 30) {
+    if ((Math.floor(Math.random() * 101) + 0) >= 30) {
       scene.actions([{ label: 'Continue', goto: ['rolanbath', 'ev'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['rolanbath', 'sexev'] }]);
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: A <a href="exec:gt 'mirror','start'">mirror</a>, where you can ' + iif(pcs_hairb...
   scene.text('A <a href="exec:gt \'mirror\',\'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair hangs over the sink.');
   if (((s as any).rolanworker ?? 0) === 2  &&  (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 9  ||  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 10)) {
-    if (((s as any).workertool ?? 0) === 0) {
+    if ((!((s as any).workertool ?? 0))) {
       scene.actions([
         { label: 'Get some tools', goto: ['rolanbath', 'tools'] },
       ]);
@@ -79,7 +79,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to forget that Rolan\'s bathroom door doesn\'t have a latch.');
       scene.text('The idea that the door is open occupies your mind while you are showering. It would be very embarrassing if Rolan was to enter at the wrong time.');
       (s as any).rolan_act = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).rolan_act ?? 0) === 0) {
+      if ((!((s as any).rolan_act ?? 0))) {
         scene.actions([
           { label: 'Sing in the shower', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -283,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('You try to forget that Rolan\'s bathroom door doesn\'t latch.');
         scene.text('The idea that the door is open occupies your mind while you are bathing. It would be very embarrassing if Rolan entered at the wrong time.');
         (s as any).rolan_act = Math.floor(Math.random() * 4) + 0;
-        if (((s as any).rolan_act ?? 0) === 0) {
+        if ((!((s as any).rolan_act ?? 0))) {
           scene.actions([
             { label: 'Sing in the bath', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

@@ -21,7 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).rand ?? 0) (0, 99) < 97) {
+  if ((Math.floor(Math.random() * 100) + 0) < 97) {
     // TODO-QSP: exit
   }
   scene.actions([{ label: 'Continue', goto: ['bdsm_landing', 'event_1'] }]);

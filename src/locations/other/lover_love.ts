@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Sit in the limousine', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You get into the limo, and it drives off. Soon you arrive at the wedding, <<$npc...
     scene.text(`You get into the limo, and it drives off. Soon you arrive at the wedding, ${((s as any).npcdesc ?? 0)} is waiting for you as you walk down the aisle.`);
-    if (((s as any).npcGender ?? 0) === 0) {
+    if ((!((s as any).npcGender ?? 0))) {
       scene.actions([
         { label: 'Marry husband', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -73,8 +73,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go looking for the dress', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).npc_love[$npcID] = 3;
-    if (((s as any).npcGender ?? 0) === 0) {
+    (s as any).npc_love[String((s as any).npcID ?? 0)] = 3;
+    if ((!((s as any).npcGender ?? 0))) {
       // TODO-QSP: dynamic text: You get into a taxi with your soon to be husband and go to the store to choose a...
       scene.text(`You get into a taxi with your soon to be husband and go to the store to choose a dress. You choose an expensive and luxurious dress. ${((s as any).npcdesc ?? 0)} pays for the purchase.`);
       // TODO-QSP: dynamic text: After a long day you feel tired and ask <<$npcdesc>> to drive you home, warning ...

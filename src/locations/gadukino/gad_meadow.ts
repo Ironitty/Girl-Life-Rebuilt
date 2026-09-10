@@ -23,20 +23,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_QW ?? 0)?.['A63'] > 13  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] === 0  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 11) {
         scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'mira_lesb_talk1'] }]);
       }
-      if (((s as any).npc_QW ?? 0)?.['A63'] > 13  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] === 1  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 11  &&  Math.floor(Math.random() * 5) + 1 === 1  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
+      if (((s as any).npc_QW ?? 0)?.['A63'] > 13  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] === 1  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 11  &&  (Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
         scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'mira_lesb_talk3'] }]);
       }
       if (((s as any).npc_QW ?? 0)?.['A63'] > 13  &&  ((s as any).MiraVars ?? 0)?.['had_sex'] === 1  &&  ((s as any).MiraVars ?? 0)?.['QW'] > 11) {
         scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'mira_lesb_talk2'] }]);
       }
-      if (((s as any).MiraVars ?? 0)?.['had_sex'] === 2  &&  Math.floor(Math.random() * 5) + 1 > 3  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 15) {
+      if (((s as any).MiraVars ?? 0)?.['had_sex'] === 2  &&  (Math.floor(Math.random() * 5) + 1) > 3  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 15) {
         scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'mira_lesb'] }]);
       }
       if (((s as any).MiraVars ?? 0)?.['meadow'] !== 2  &&  ((s as any).MiraVars ?? 0)?.['meadow'] !== 5) {
         qspCall(s, 'gad_meadow', 'Mira_free_and_here');
       } else {
         (s as any).temp_md = Math.floor(Math.random() * 21) + 0;
-        if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 15  &&  ((s as any).temper ?? 0) >= 12  &&  ((s as any).temp_md ?? 0) === 0) {
+        if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 15  &&  ((s as any).temper ?? 0) >= 12  &&  (!((s as any).temp_md ?? 0))) {
           scene.text('In the clearing you notice <a href="exec: gt \'gad_meadow\', \'0\'">Mira</a>.');
         } else {
           scene.text('In the clearing you notice <a href="exec: gt \'gad_meadow\', \'1\'">Mira with Mitka</a>.');
@@ -61,10 +61,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             }
             if (((s as any).MiraVars ?? 0)?.['meadow'] !== 1) {
-              if (((s as any).sunWeather ?? 0) === 0) {
+              if ((!((s as any).sunWeather ?? 0))) {
                 scene.text('You can exercise in your meadow once the weather improves.');
               } else {
-                if (((s as any).pcs_stam ?? 0) < 10  ||  ((s as any).pcs_stam ?? 0) < 15  &&  (((s as any).mc_inventory ?? 0)?.['book_yoga'] + ((s as any).mc_inventory ?? 0)?.['hula_hoop']) === 0) {
+                if (((s as any).pcs_stam ?? 0) < 10  ||  ((s as any).pcs_stam ?? 0) < 15  &&  (!(((s as any).mc_inventory ?? 0)?.['book_yoga'] + ((s as any).mc_inventory ?? 0)?.['hula_hoop']))) {
                   scene.text('Your meadow is a perfect place to exercise, but you don\'t have the energy right now.');
                 } else {
                   if (((s as any).PSport ?? 0)) {
@@ -85,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
                           scene.actions([
                             { label: 'Exercise nude [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                           ]);
                         } else {

@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Your huge plasma TV instantly comes to life with vibrant colors and crystal-clear sound. The high-definition picture makes even the advertisements look impressive.');
   }
-  if (((s as any).kabel ?? 0) === 0) {
+  if ((!((s as any).kabel ?? 0))) {
     scene.text('Without cable service, you only have access to a single channel that cycles between advertisements and basic news updates. The limited options are disappointing, but it\'s better than nothing.');
     scene.actions([
       { label: 'Watch TV (1:00)', handler: (st: GameState) => {
@@ -81,7 +81,7 @@ function enterKable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPav(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).tvtime ?? 0) === 0) {
+  if ((!((s as any).tvtime ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).tvtime = 1;
     qspCall(s, 'stat', '');
@@ -135,7 +135,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGad(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).tvtime ?? 0) === 0) {
+  if ((!((s as any).tvtime ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).tvtime = 1;
     qspCall(s, 'stat', '');
@@ -169,7 +169,7 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMeyhome(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).tvtime ?? 0) === 0) {
+  if ((!((s as any).tvtime ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).tvtime = 1;
     qspCall(s, 'stat', '');

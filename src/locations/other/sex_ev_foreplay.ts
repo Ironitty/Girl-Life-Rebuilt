@@ -34,7 +34,7 @@ function enterBedStart(s: GameState, scene: SceneBuilder): void {
   (s as any).sex_ev['start_time'] = ((s as any).totminut ?? 0);
   // TODO-QSP: ! gs 'sex_ev_start', 'undress_function'
   // TODO-QSP: ! $sex_ev['bed_room']
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     // TODO-QSP: ! player wins initiative
     // TODO-QSP: ! 'You both tear your clothes off, getting naked as fast as possible, you finishing just before he d...
     qspCall(s, 'sex_ev_foreplay', 'foreplay_choose');
@@ -45,7 +45,7 @@ function enterBedStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_foreplay', 'generous_initiative');
     } else {
       qspCall(s, 'sex_ev_foreplay', 'selfish_initiative');
-      if (Math.floor(Math.random() * 2) + 0 === 1) {
+      if ((Math.floor(Math.random() * 2) + 0) === 1) {
         qspCall(s, 'sex_ev_foreplay', 'generous_initiative');
       } else {
         qspCall(s, 'sex_ev_foreplay', 'selfish_initiative');
@@ -58,7 +58,7 @@ function enterBedStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerousInitiative(s: GameState, scene: SceneBuilder): void {
-  if ((Math.floor(Math.random() * 2) + 0 === 1  ||  ((s as any).npc_pussyeater ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  ((s as any).sex_ev ?? 0)?.['sensitive_cuni'] !== 1) {
+  if (((Math.floor(Math.random() * 2) + 0) === 1  ||  ((s as any).npc_pussyeater ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  ((s as any).sex_ev ?? 0)?.['sensitive_cuni'] !== 1) {
     if (((s as any).sex_ev ?? 0)?.['start_shower'] === 1) {
       // TODO-QSP: dynamic text: <<$npcdesc>> drags you back into the bedroom, your hair still wet from the showe...
       scene.text(`${((s as any).npcdesc ?? 0)} drags you back into the bedroom, your hair still wet from the shower, and shoves you backwards onto the bed kneeling between your legs.`);
@@ -88,12 +88,12 @@ function enterPoliteInitiative(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSelfishInitiative(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 3) + 1 === 1  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === '69') {
+  if ((Math.floor(Math.random() * 3) + 1) === 1  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === '69') {
     // TODO-QSP: dynamic text: "I wanna sixty-nine," <<$npc_usedname[$npcID]>> grins at you.
     scene.text(`"I wanna sixty-nine," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} grins at you.`);
     qspCall(s, 'sex_ev_foreplay', '69_start');
   } else {
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.actions([
         { label: 'Continue', goto: ['sex_ev_foreplay', 'selfish_bj_start'] },
       ]);
@@ -115,7 +115,7 @@ function enterSelfishBjStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Don\'t wanna suck cock', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"I don\'t really want to suck your dick right now," you complain. "Can we do something else?"');
-    if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+    if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('"Okay, like what then?" he asks.');
       qspCall(s, 'sex_ev_foreplay', 'foreplay_choose');
       if (((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
@@ -129,7 +129,7 @@ function enterSelfishBjStart(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'sex_ev_sex', 'sex_start');
       }
     } else {
-      if (Math.floor(Math.random() * 2) + 0 === 1) {
+      if ((Math.floor(Math.random() * 2) + 0) === 1) {
         // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>." He prods forward relentlessly with his cock, poking...
         scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}." He prods forward relentlessly with his cock, poking you in the cheek with it, trying to push it past your lips. "Just do it."`);
       } else {
@@ -139,7 +139,7 @@ function enterSelfishBjStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'How about a handy instead? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

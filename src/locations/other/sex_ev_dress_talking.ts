@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).sex_ev ?? 0)?.['sex_ev_ask'] === 0) {
-    if (((s as any).arrpos ?? 0)('lover', ((s as any).npcID ?? 0)) < 0) {
+    if ((Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'dating'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'husband') {
         scene.actions([
           { label: 'We should hook up again later (fuckbuddies?)', goto: ['sex_ev_hookup_leave', 'pc_fuckbuddy_request'] },
@@ -89,7 +89,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
-      if (((s as any).arrpos ?? 0)('lover', ((s as any).npcID ?? 0)) === 0) {
+      if ((!(Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1))) {
         scene.actions([
           { label: 'End things with <<$npcdesc>>', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_dress_talking', 'break_up_ev'
@@ -99,7 +99,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sex_ev ?? 0)?.['panty_wear'] === 1  &&  ((s as any).sex_ev ?? 0)?.['bra_wear'] === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: $sex_ev_dress_topics[] += "xgt 'sex_ev_dress_talking', 'no_panties_today'"
       }
-      if (((s as any).sex_ev ?? 0)?.['dress_end'] === 0  &&  ((s as any).sex_ev ?? 0)?.['sex_ev_ask'] === 0  &&  Math.floor(Math.random() * 2) + 0 === 1  &&  ((s as any).sex_ev ?? 0)?.['type'] !== 'hookup') {
+      if (((s as any).sex_ev ?? 0)?.['dress_end'] === 0  &&  ((s as any).sex_ev ?? 0)?.['sex_ev_ask'] === 0  &&  (Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).sex_ev ?? 0)?.['type'] !== 'hookup') {
         // TODO-QSP: $sex_ev_dress_topics[] += "xgt 'sex_ev_dress_talking', 'npc_sex_ev_invite'"
       }
       qspCall(s, 'sex_ev_dress_talking', 'dress_talk_boy');
@@ -118,7 +118,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sex_ev ?? 0)?.['hookup_continuation_check'] === 0  &&  ((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
         // TODO-QSP: $sex_ev_dress_topics[] += "xgt 'sex_ev_hookup_leave', 'hookup_continuation'"
       }
-      if (Math.floor(Math.random() * 2) + 1 === 1  &&  ((s as any).arrsize ?? 0)('sex_ev_dress_topics') > 0) {
+      if ((Math.floor(Math.random() * 2) + 1) === 1  &&  Object.keys((s as any).sex_ev_dress_topics ?? {}).length > 0) {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: dynamic $sex_ev_dress_topics[rand(0, arrsize('sex_ev_dress_t...

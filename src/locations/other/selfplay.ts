@@ -5,13 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).dildonumber ?? 0) === 0) {
+  if ((!((s as any).dildonumber ?? 0))) {
     (s as any).dildohand = 0;
   }
   if (((s as any).dildonumber ?? 0) > 0) {
     (s as any).dildohand = (((s as any).dildonumber ?? 0) + 1) * 5;
   }
-  if (((s as any).mastrOnce ?? 0) === 0) {
+  if ((!((s as any).mastrOnce ?? 0))) {
     (s as any).mastrOnce = 1;
     (s as any).org_temp = ((s as any).orgasm ?? 0);
     if (((s as any).pcs_inhib ?? 0) < 30) {
@@ -145,7 +145,7 @@ function enterHoleCapDesc(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4)) {
     if (((s as any).pussycap ?? 0) === 3) {
     } else {
-      if (((s as any).pussycap ?? 0) === 0) {
+      if ((!((s as any).pussycap ?? 0))) {
       }
       if (((s as any).auto_vag_lube ?? 0) === 1  &&  ((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
         if (((s as any).pussycap ?? 0) === 3) {
@@ -170,7 +170,7 @@ function enterHoleCapDesc(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
                     if (((s as any).analcap ?? 0) === 3) {
                     } else {
-                      if (((s as any).analcap ?? 0) === 0) {
+                      if ((!((s as any).analcap ?? 0))) {
                       }
                       if (((s as any).trait_vars ?? 0)?.['buttslut'] < 2) {
                         if (((s as any).auto_anal_lube ?? 0) === 1  &&  ((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {

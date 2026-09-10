@@ -62,7 +62,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'money', 'earn', 2000);
     (s as any).cumanalRand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).cumanalRand ?? 0) === 0) {
+    if ((!((s as any).cumanalRand ?? 0))) {
       (s as any).spafinloc = 4;
       qspCall(s, 'cum_manage', '');
       scene.text('Suddenly the man groans loudly and abruptly pulls his member out of your stretched anus. The sudden emptiness feels strange, but you smile seductively at the man as he jerks himself off over your ass cheeks. When he\'s done covering your buttocks with his seed, he lets out a satisfied sigh and gives you your money.');

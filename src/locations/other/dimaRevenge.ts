@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaRevenge ?? 0) === 3) {
     // TODO-QSP: gt 'dimaRevenge', 3
   } else {
-    if (((s as any).dimaRevChoice ?? 0) === 0) {
+    if ((!((s as any).dimaRevChoice ?? 0))) {
       // TODO-QSP: gt 'dimaRevenge', 4
     } else {
       // TODO-QSP: gt 'dimaRevenge', 4, 'lunch'
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           return;
         }
         qspCall(s, 'stat', '');
-        if (((s as any).DimaRudeBlock ?? 0) === 0) {
+        if ((!((s as any).DimaRudeBlock ?? 0))) {
           (s as any).DimaRudeBlock = 1;
         }
         if (((s as any).ARGS ?? 0)[0] === 1) {
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).ARGS ?? 0)[0] < 4) {
             // TODO-QSP: exit
           }
-          if (((s as any).dimaRevChoice ?? 0) === 0) {
+          if ((!((s as any).dimaRevChoice ?? 0))) {
             if (((s as any).ARGS ?? 0)[0] === 4) {
               (s as any).dimaRevenge = ((s as any).dimaRevenge ?? 0) + (1);
               qspCall(s, 'fame', 'pav', 'sex', 60);
@@ -287,7 +287,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wasn\'t talking about you, I swear," you tell her. She isn\'t listening, though, and brings her arm back to punch you.');
     scene.text('You break out of Lera\'s hold and duck, causing Lena to punch Lera in the face. Great, now they are both pissed. You get ready to defend yourself.');
     (s as any).win = 1;
-    if (((s as any).win ?? 0) === 0) {
+    if ((!((s as any).win ?? 0))) {
       scene.text('Lera is unconscious on the ground as you hold Lena by the hair. "I didn\'t say shit about you," you tell her.');
       // TODO-QSP: dynamic text: You let go of her and turn to head home, but then you see Vitek walking towards ...
       scene.text(`You let go of her and turn to head home, but then you see Vitek walking towards you. He looks pissed. He must have just seen you beat up his sister. You make to run but are tripped by Lena. You close your eyes, afraid of what he'll do to you, but nothing happens. You open your eyes to see Ivan${((s as any).dimaRevenge ?? 0)?.['Fedor Involved']}holding Vitek back. Vitek is swearing at the top of his lungs. As you get up and dust yourself off, Dan, Vasily, Pauline and Katyusha come to investigate and see Vitek getting ganged up on. Things get crazy after that.`);
@@ -470,7 +470,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/locker/lockerroom.jpg');
     scene.text('You wait in the men\'s locker room for Dimka. You pass the time until lunch talking to Lavrenti about what you are going to Dimka when he gets here. After a few more minutes, you hear footsteps and both of you hide in a corner. Dimka walks in. Seeing no one, he walks further into the room. You take that moment to strike.');
     (s as any).win = 1;
-    if (((s as any).win ?? 0) === 0) {
+    if ((!((s as any).win ?? 0))) {
       scene.text('You punch Dimka one more time, knocking him out. You look at his unconscious face and say, "You think that hurt, wait until you see what happens next. Lavrenti help me bring him to the showers."');
     } else {
       scene.text('Dimka places his arms around your neck and squeezes causing you to wheeze in pain. Lavrenti wraps his arm around Dimka\'s neck and starts choking him out, but while he\'s doing that, Dimka still has a hold on your windpipe. Dimka passes out first and releases his grip.');

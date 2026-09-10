@@ -122,7 +122,7 @@ function enterInfoColumn(s: GameState, scene: SceneBuilder): void {
   scene.text(`Nina in the 3rd alley sells goat milk at ${qspFunc(s, 'money', 'string_price', 300)} per liter`);
   if (((s as any).pcs_energy ?? 0) < 70) {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300);
       (s as any).minut = ((s as any).minut ?? 0) + 30;

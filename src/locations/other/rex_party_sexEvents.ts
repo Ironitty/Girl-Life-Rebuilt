@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'boys') {
     scene.text('<center><b>Ira and Lena</b></center>');
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_3_2.mp4');
     } else {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_3_1.jpg');
@@ -16,8 +16,8 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
     scene.text('The buzz of the booze makes you feel a lot more liberated as you slap each of the girls on the ass, which they return the favor and soon all three of you are taking turns slapping each other\'s asses, in front of the guys.');
     qspCall(s, 'arousal', 'foreplay', 5, 'exhibitionism', 'lesbian');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
-      if (((s as any).rex_love ?? 0) === 0) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
+      if ((!((s as any).rex_love ?? 0))) {
         scene.text('Seeing what you are doing, Rex walks over and grabs you, then drags you into another room.');
       }
       if (((s as any).rex_love ?? 0) === 1) {
@@ -85,7 +85,7 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Start bed games', handler: (st: GameState) => {
     scene.text('<center><b>Ira and Lena</b></center>');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_iralena_7_${Math.floor(Math.random() * 3) + 5}.jpg`);
     } else {
       scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_iralena_7_${Math.floor(Math.random() * 2) + 8}.mp4`);
@@ -135,12 +135,12 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
 
 function enterIraLenaRex(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Ira and Lena</b></center>');
-  if (((s as any).rex_love ?? 0) === 0) {
+  if ((!((s as any).rex_love ?? 0))) {
     qspCall(s, 'npcStat', 'A57');
   } else {
     qspCall(s, 'npcStat', 'A56');
   }
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_4_2.mp4');
   } else {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_4_1.jpg');
@@ -154,7 +154,7 @@ function enterIraLenaRex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Suck together', handler: (st: GameState) => {
     scene.text('<center><b>Ira and Lena</b></center>');
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_iralena_5_${Math.floor(Math.random() * 2) + 1}.jpg`);
     } else {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_5_3.mp4');
@@ -209,7 +209,7 @@ function enterIraLenaRexCum(s: GameState, scene: SceneBuilder): void {
   (s as any).spafinloc = 7;
   qspCall(s, 'cum_manage', '');
   scene.text('<center><b>Ira and Lena</b></center>');
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     (s as any).spafinloc = 12;
     qspCall(s, 'cum_manage', '');
     (s as any).spafinloc = 14;
@@ -299,7 +299,7 @@ function enterRexSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A57');
   qspCall(s, 'dinsex2', 'stamina_npc');
   qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 1);
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_rex_party_gost_14_${Math.floor(Math.random() * 6) + 1}.jpg`);
   } else {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_rex_party_gost_14_7.mp4');
@@ -308,7 +308,7 @@ function enterRexSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Rex gently grabbed you by the hair and began to move his penis to your mouth.
   }
   // TODO-QSP: caress it, my love, he asked with a smile.'
-  if (((s as any).rex_love ?? 0) === 0) {
+  if ((!((s as any).rex_love ?? 0))) {
     // TODO-QSP: 'Entering the room, Rex grabbed you by the hair and began to move his penis to your mouth.
   }
   // TODO-QSP: stroke it, bitch, he asked with a vicious smile.'
@@ -343,7 +343,7 @@ function enterRexSexCow(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  if (((s as any).sexvar ?? 0) === 0) {
+  if ((!((s as any).sexvar ?? 0))) {
     // TODO-QSP: act 'Make him cum': gt 'rex_party_sexEvents', 'rex_sex_cum'
   }
   if (((s as any).sexvar ?? 0) > 0) {
@@ -360,7 +360,7 @@ function enterRexSexDog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex2', 'stamina_npc');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   (s as any).rex_sex = ((s as any).rex_sex ?? 0) + (1);
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_rex_party_gost_9_${Math.floor(Math.random() * 4) + 2}.mp4`);
   } else {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_rex_party_gost_9_1.jpg');
@@ -377,7 +377,7 @@ function enterRexSexDog(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
-  if (((s as any).sexvar ?? 0) === 0) {
+  if ((!((s as any).sexvar ?? 0))) {
     // TODO-QSP: act 'Make him cum': gt 'rex_party_sexEvents', 'rex_sex_cum'
   }
   if (((s as any).sexvar ?? 0) > 0) {
@@ -412,7 +412,7 @@ function enterRexSexMissionary(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sexvar ?? 0) > 0) {
     // TODO-QSP: act 'Get on top': gt 'rex_party_sexEvents', 'rex_sex_cow'
   }
-  if (((s as any).sexvar ?? 0) === 0) {
+  if ((!((s as any).sexvar ?? 0))) {
     // TODO-QSP: act 'Make him cum': gt 'rex_party_sexEvents', 'rex_sex_cum'
   }
   scene.build();
@@ -433,7 +433,7 @@ function enterRexSexCum(s: GameState, scene: SceneBuilder): void {
   (s as any).sexpartkno = 1;
   (s as any).sexvolume = 20;
   qspCall(s, 'cum_manage', '');
-  if (((s as any).rex_love ?? 0) === 0) {
+  if ((!((s as any).rex_love ?? 0))) {
     (s as any).party_boys_in = ((s as any).party_boys_in ?? 0) + (1);
   }
   if (((s as any).rex_love ?? 0) === 1) {
@@ -571,7 +571,7 @@ function enterSisterHand(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Caress each other', handler: (st: GameState) => {
     scene.text('<center><b>Anya</b></center>');
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_sister_6_${Math.floor(Math.random() * 3) + 1}.mp4`);
       scene.text('Stopping a moment so you can both catch your breath, neither of you wants it to end, but you are both also desperate for release.');
       scene.text('Anya smiles wickedly at you. "Well little sis, let\'s see who eats pussy better and brings the other to orgasm first."');
@@ -586,7 +586,7 @@ function enterSisterHand(s: GameState, scene: SceneBuilder): void {
         { label: 'Cum', goto: ['rex_party_sexEvents', 'sister_cum'] },
       ]);
     } else {
-      if (Math.floor(Math.random() * 2) + 1 === 1) {
+      if ((Math.floor(Math.random() * 2) + 1) === 1) {
         scene.img('images/locations/pavlovsk/resident/rekshome/party/party_sister_7_1.mp4');
       } else {
         scene.img('images/locations/pavlovsk/resident/rekshome/party/party_sister_7_2.jpg');
@@ -678,7 +678,7 @@ function enterDjSuck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rex_love ?? 0) === 1) {
     scene.text('You don\'t think Rex would like you playing these games with the DJ. You\'ve had a little fun, but that\'s enough.');
   }
-  if (((s as any).rex_love ?? 0) === 0) {
+  if ((!((s as any).rex_love ?? 0))) {
     scene.actions([
       { label: 'Kiss it and make it better', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'The DJ at Rex\'s Party', Math.floor(Math.random() * 6) + 17);
@@ -817,7 +817,7 @@ function enterGirlOrgy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOrgy(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).rex_love ?? 0) === 0) {
+  if ((!((s as any).rex_love ?? 0))) {
     qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
@@ -831,7 +831,7 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   }
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_19.jpg');
     // TODO-QSP: dynamic text: The guys soon are unable to withstand just watching, decide to join the fun. The...
     scene.text('The guys soon are unable to withstand just watching, decide to join the fun. The guys walk up in front of you girls and unbutton their pants, pulling out their hard dicks. You and the other pretty girls look at each other and decide to go with it. You kneel down in front of \' + iif(rex_love = 0, \'one of the guys\', \'Rex\') + \' and happily begin to suck his already rock-hard member. After you and the girls make the guys cum, each of you swallowing down the sperm, you continue with the fun.');
@@ -901,7 +901,7 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'Boy from Rex\'s Party', 17);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_4.mp4');
     // TODO-QSP: dynamic text: Together they get you out to the street and one of the guys pushes you down to y...
     scene.text(`Together they get you out to the street and one of the guys pushes you down to your knees and pull his cock out. "Come on, ${((s as any).pcs_nickname ?? 0)}, start sucking." You put you hand on his member and start to lick the whole length before wrapping your lips around the head. You keep sucking, taking turns on the guy's dicks, until they are all hard and ready. Then one of them tells you to bend over.`);
@@ -973,19 +973,19 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_cumloc[4] = 'back'
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID1 ?? 0));
     qspCall(s, 'cum_call', 'butt', ((s as any).npcID1 ?? 0));
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1, 0, 0, 20
     }
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID2 ?? 0));
     qspCall(s, 'cum_call', 'vagina', ((s as any).npcID2 ?? 0));
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 20
     }
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID3 ?? 0));
     qspCall(s, 'cum_call', 'back', ((s as any).npcID3 ?? 0));
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 20
     }
@@ -1033,23 +1033,23 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_cumloc[12] = 'hair'
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID1 ?? 0));
     qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0));
-    if (Math.floor(Math.random() * 6) + 0 === 5) {
+    if ((Math.floor(Math.random() * 6) + 0) === 5) {
       (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1, 0, 0, 0, 20
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).i2 = 1;
       }
     }
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID2 ?? 0));
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
     // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 0, 20
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       (s as any).i2 = 1;
     }
-    if (Math.floor(Math.random() * 6) + 0 === 5) {
+    if ((Math.floor(Math.random() * 6) + 0) === 5) {
       (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 0, 20
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).i2 = 1;
       }
     }
@@ -1057,13 +1057,13 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID3 ?? 0));
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
     // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 0, 20
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       (s as any).i2 = 1;
     }
-    if (Math.floor(Math.random() * 6) + 0 === 5) {
+    if ((Math.floor(Math.random() * 6) + 0) === 5) {
       (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 0, 20
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).i2 = 1;
       }
     }
@@ -1110,39 +1110,39 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID1 ?? 0));
     // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       (s as any).i2 = 1;
     }
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID1, 0, 0, 0, 20
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).i2 = 1;
       }
     }
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID2 ?? 0));
     // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       (s as any).i2 = 1;
     }
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID2, 0, 0, 0, 20
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).i2 = 1;
       }
     }
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
     qspCall(s, 'cum_call', 'precum', ((s as any).npcID3 ?? 0));
     // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       (s as any).i2 = 1;
     }
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
       // TODO-QSP: gs 'cum_call', $temp_cumloc[temp_rand], $npcID3, 0, 0, 0, 20
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).i2 = 1;
       }
     }

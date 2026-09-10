@@ -66,10 +66,10 @@ function enterShowTeeth(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
     if (((s as any).locArgs?.[1] ?? 0) !== '') {
-      if (((s as any).arrsize ?? 0)('ObjDebugVars') > 0) {
+      if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
         (s as any).i = 0;
         // TODO-QSP: :DeleteDebugVarLoop
-        if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('ObjDebugVars')) {
+        if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
           if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
             (s as any).i = 0;
           } else {

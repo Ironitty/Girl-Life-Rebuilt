@@ -23,7 +23,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
-    if (Math.floor(Math.random() * 5) + 1 === 1  &&  ((s as any).hour ?? 0) >= 20) {
+    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).hour ?? 0) >= 20) {
       scene.text('When the movie ends, you and Artem leave the theater and he offers to walk you home. The two of you head back through the park, but see a group of older gopniks hanging out around a bench just up ahead. They\'re drinking and are a little rowdy.');
       scene.actions([
         { label: 'Just walk past them', goto: ['artem_date_events', 'artemGopSkver'] },
@@ -49,7 +49,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('You don\'t really feel like going to the cinema. "Let\'s just enjoy the walk we\'re on."');
-    if (Math.floor(Math.random() * 5) + 1 === 1  &&  ((s as any).hour ?? 0) >= 20) {
+    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).hour ?? 0) >= 20) {
       scene.text('Artem is happy enough to just spend time with you, regardless of what the two of you are doing. He nods as you continue on your walk, talking about everyday things. After walking for a while, you see a group of older gopniks hanging out around a bench just up ahead. They\'re drinking and are a little rowdy.');
       scene.actions([
         { label: 'Just walk past them', goto: ['artem_date_events', 'artemGopSkver'] },
@@ -120,7 +120,7 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stand up to them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -167,7 +167,7 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Stand up to them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -188,7 +188,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Get between them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -241,7 +241,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -300,7 +300,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Fight them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -315,7 +315,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -357,7 +357,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Try to escape', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (((s as any).rand ?? 0)(1, 100 + ((s as any).pcs_run ?? 0)) < 80) {
+    if ((Math.floor(Math.random() * (100 + ((s as any).pcs_run ?? 0) - 1 + 1)) + (1)) < 80) {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/caught.jpg');
@@ -369,7 +369,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Fight them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

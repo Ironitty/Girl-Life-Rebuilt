@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 0  &&  ((s as any).koncepo ?? 0) === 1  ||  ((s as any).psiha ?? 0) === 1  ||  ((s as any).pavserhom ?? 0) === 3) {
     // TODO-QSP: act 'Read the notice on the door': gt 'koncepod', 'prs'
   }
-  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 0  &&  ((s as any).psiha ?? 0) === 0) {
+  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 0  &&  (!((s as any).psiha ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['koncepod', 'read_notice_board'] }]);
   }
   if (((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 1  &&  ((s as any).psiha ?? 0) === 0  &&  ((s as any).mesec ?? 0) === 0  &&  ((s as any).pavserpsiday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -79,7 +79,7 @@ function enterKrr2x1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Stairs</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/koncepod3.jpg');
-  if (((s as any).psiho ?? 0) === 0) {
+  if ((!((s as any).psiho ?? 0))) {
     scene.text('You stop at the door and immediately open it. You have the eerie feeling of the old man\'s presence, causing a chill to run down your spine.');
     scene.text('You look at your hand and try to focus on it to rid yourself of the unsettling feeling.');
     scene.text('Your heart pounds like a trapped bird. Looking at the ordinary architecture, the flight of stairs, and the general atmosphere of the old building helps. You begin to calm down.');
@@ -102,7 +102,7 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Corridor</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/corridor.jpg');
-  if (((s as any).psiho ?? 0) === 0  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 0  &&  (!((s as any).psi1day ?? 0))) {
     (s as any).psi1day = 0;
     scene.text('Closing the gray door behind you, you\'re prepared to see… well, anything. You find yourself in a terribly narrow and gloomy hallway.');
     scene.text('The first thing you notice is the wallpaper. It\'s covered in a rather strange pattern and clearly very old.');
@@ -119,7 +119,7 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
   }, goto: ['koncepod', 'start'] },
     ]);
   }
-  if (((s as any).psiho ?? 0) === 3  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 3  &&  (!((s as any).psi1day ?? 0))) {
     qspCall(s, 'koncepod', 'pavser7');
   }
   if (((s as any).psi1day ?? 0) === 1) {
@@ -150,7 +150,7 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living Room</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/hall.jpg');
-  if (((s as any).psiho ?? 0) === 0  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 0  &&  (!((s as any).psi1day ?? 0))) {
     if (((s as any).pcs_hairbsh ?? 0) === 1) {
       (s as any).pcs_hairbsh = 0;
     }
@@ -238,7 +238,7 @@ function enterKhr2x(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/kitchen.jpg');
-  if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 0  &&  ((s as any).psihc ?? 0) === 0  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 0  &&  ((s as any).psihc ?? 0) === 0  &&  (!((s as any).psi1day ?? 0))) {
     scene.text('Touring the apartment, you\'re struck by the contrast between the finished and unfinished areas. At least the kitchen is clean.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -266,7 +266,7 @@ function enterKhr2x(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 1  &&  ((s as any).psihc ?? 0) === 1  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 1  &&  ((s as any).psihc ?? 0) === 1  &&  (!((s as any).psi1day ?? 0))) {
     (s as any).psihb = 1;
     (s as any).psiho = 3;
     scene.text('You return to the kitchen, and avoiding each other\'s eyes, you drift into different rooms.');
@@ -287,7 +287,7 @@ function enterVnr2x(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/bathroom.jpg');
   scene.text('Above the washbasin hangs an <a href="exec:gt \'mirror\',\'start\'">oval mirror</a>.');
-  if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 1  &&  ((s as any).psihc ?? 0) === 0  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 2  &&  ((s as any).psihb ?? 0) === 1  &&  ((s as any).psihc ?? 0) === 0  &&  (!((s as any).psi1day ?? 0))) {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + 60;
     (s as any).piss = ((s as any).piss ?? 0) + 1;
     qspCall(s, 'stat', '');
@@ -342,7 +342,7 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bedroom</b></center>');
   scene.img('images/locations/pushkin/vacanthouse/bedroom.jpg');
-  if (((s as any).psiho ?? 0) === 1  &&  ((s as any).psi1day ?? 0) === 0) {
+  if (((s as any).psiho ?? 0) === 1  &&  (!((s as any).psi1day ?? 0))) {
     scene.text('The condition of the bedroom plunges you further into bewilderment. It\'s quite a shabby room with a perfectly preserved antique plush ottoman awkwardly placed in the middle.');
     scene.actions([
       { label: '"The ottoman would look better in the living room," you remark.', handler: (st: GameState) => {

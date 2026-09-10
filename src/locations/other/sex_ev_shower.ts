@@ -36,7 +36,7 @@ function enterBeforeBorrowShower(s: GameState, scene: SceneBuilder): void {
         { label: 'I want to shower', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_start', 'undress_function');
     scene.text('"It\'s for me," you roll your eyes. "I\'ll feel better if I clean up first."');
-    if (Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+    if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
       scene.text('"How about I join you in there?" he says looking at you meaningfully.');
       qspCall(s, 'sex_ev_shower', 'borrow_shower2');
     } else {
@@ -54,7 +54,7 @@ function enterBeforeBorrowShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       qspCall(s, 'sex_ev_start', 'undress_function');
-      if (Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+      if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
         scene.text('"How about I join you in there?" he says looking at you meaningfully.');
         qspCall(s, 'sex_ev_shower', 'borrow_shower2');
       } else {
@@ -128,7 +128,7 @@ function enterAfterAlone(s: GameState, scene: SceneBuilder): void {
   (s as any).sex_ev['start_shower'] = 1;
   qspCall(s, 'stat', '');
   scene.text('You slip into the bathroom and turn on the faucet. Hot water comes pouring out and you gratefully step under, rinsing the post-sex feeling from your body.');
-  if (Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+  if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_shower', 'boy_shower_join1'
@@ -220,7 +220,7 @@ function enterMorningAlone(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You turn the knob on the faucet and hot water comes pouring out, washing away the sweat of the sex you decided to start the day with.');
     }
-    if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1  &&  Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).sex_ev ?? 0)?.['morning_fuck'] === 0) {
+    if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 1  &&  (Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).sex_ev ?? 0)?.['morning_fuck'] === 0) {
       (s as any).sex_ev['boy_asleep'] = 0;
       // TODO-QSP: dynamic text: A few minutes later, you hear the door open and <<$npcdesc>> comes clambering in...
       scene.text(`A few minutes later, you hear the door open and ${((s as any).npcdesc ?? 0)} comes clambering into the shower after you.`);
@@ -443,7 +443,7 @@ function enterWashBoy1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerSexMenu(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sex_ev ?? 0)?.['cum_count'] >= 5 + ((s as any).sex_ev ?? 0)?.['extra_cum']  &&  Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+  if (((s as any).sex_ev ?? 0)?.['cum_count'] >= 5 + ((s as any).sex_ev ?? 0)?.['extra_cum']  &&  (Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
     if (((s as any).sex_ev ?? 0)?.['sex_over'] === 0) {
       // TODO-QSP: dynamic text: <<$npcdesc>> grins back at you but doesn't push for something more, seeming just...
       scene.text(`${((s as any).npcdesc ?? 0)} grins back at you but doesn't push for something more, seeming just be revving you up for the main event.`);
@@ -479,7 +479,7 @@ function enterShowerReachCock(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/shower/jerkoff2.mp4');
     // TODO-QSP: dynamic text: You allow the soap to slip from your fingers, instead snaking your hand down to ...
     scene.text(`You allow the soap to slip from your fingers, instead snaking your hand down to wrap them around ${((s as any).npcdesc ?? 0)}'s cock.`);
-    if (((s as any).sex_ev ?? 0)?.['cum_count'] >= 5 + ((s as any).sex_ev ?? 0)?.['extra_cum']  ||  Math.floor(Math.random() * 10) + 1 > ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+    if (((s as any).sex_ev ?? 0)?.['cum_count'] >= 5 + ((s as any).sex_ev ?? 0)?.['extra_cum']  ||  (Math.floor(Math.random() * 10) + 1) > ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
       scene.text('Unfortunately, if you wanted something more, it seems like you already took it out of him. No matter how you work it, his cock stays soft and squishy, though not for lack of enjoyment on his part judging by the groans your fingers elicit.');
       qspCall(s, 'sex_ev_shower', 'shower_together_end');
     } else {

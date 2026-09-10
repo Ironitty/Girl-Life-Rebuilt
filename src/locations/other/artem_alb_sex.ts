@@ -35,7 +35,7 @@ function enterAlbina_3some(s: GameState, scene: SceneBuilder): void {
 
 function enterGame(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/uni/dorm_game_tv.jpg');
-  if (Math.floor(Math.random() * 3) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 3) + 0))) {
     scene.text('The two battle it out over multiple rounds, with Artem slowly gaining the edge over Albina before he eventually emerges victorious.');
     scene.text('Albina tosses her controller aside in frustrated defeat. "<i>How</i>?! How did you do that?! Nobody has ever beaten my strategy like that!"');
     if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 5) {

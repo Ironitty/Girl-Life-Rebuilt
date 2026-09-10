@@ -88,7 +88,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).boydesc ?? 0)} reaches down, helping you to your feet before grabbing onto your hips and guiding you to the bed. He gently pushes you onto your back, lines up his penis with your pussy, and pushes inside. He starts fucking your pussy, gently at first, before picking up his pace and moaning loudly. You lay still, enjoying his cock inside of you, thrusting its way deeper in you, causing waves of pleasure to fill you. After a few seconds ${((s as any).boydesc ?? 0)} says, "I'm about to cum."`);
   qspCall(s, 'arousal', 'vaginal', 5);
   qspCall(s, 'stat', '');
-  if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] >= 1  &&  ((s as any).preziktype ?? 0) === 0) {
+  if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] >= 1  &&  (!((s as any).preziktype ?? 0))) {
     scene.actions([
       { label: 'Cum inside', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/vadim/sex/mitka2.mp4');

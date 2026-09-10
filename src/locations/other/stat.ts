@@ -106,7 +106,7 @@ function enterApplyCaps(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = 0;
   }
   if (((s as any).cheatVars ?? 0)?.['makeup_smear'] === 1) {
-    if (((s as any).cosmetic_tattoo ?? 0) === 0  &&  ((s as any).pcs_makeup ?? 0) === 0) {
+    if (((s as any).cosmetic_tattoo ?? 0) === 0  &&  (!((s as any).pcs_makeup ?? 0))) {
       (s as any).pcs_makeup = 1;
     }
   }
@@ -115,7 +115,7 @@ function enterApplyCaps(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('sparrvol') > 0) {
+  if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
     (s as any).suctempi = 0;
     // TODO-QSP: :SuccAbsorbLoop
     if (((s as any).sparrvol ?? 0)?.[String((s as any).suctempi ?? 0)] > 0) {
@@ -127,7 +127,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
         (s as any).succubxp = ((s as any).succubxp ?? 0) + (5);
         (s as any).sucabscum = 1;
         qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).suctempi ?? 0));
-        (s as any).cumloc[suctemploc] = 0;
+        (s as any).cumloc[String((s as any).suctemploc ?? 0)] = 0;
       }
     }
     (s as any).suctempi = ((s as any).suctempi ?? 0) - (1);
@@ -209,7 +209,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'archetypes', 'loop');
   qspCall(s, 'traits', 'minute');
-  if (((s as any).inSleep ?? 0) === 0) {
+  if ((!((s as any).inSleep ?? 0))) {
     qspCall(s, 'stat_sklattrib', '');
   }
   if (((s as any).pcs_hydra ?? 0) > ((s as any).hydra_check ?? 0)) {
@@ -230,11 +230,11 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
   (s as any).cumSUM = ((s as any).cumsumbod ?? 0)/40;
   if (((s as any).husID ?? 0) !== '') {
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
-      (s as any).npc_pervert[$husID] = 1;
+      (s as any).npc_pervert[String((s as any).husID ?? 0)] = 1;
     }
     if (((s as any).spouseVars ?? 0)?.['gentle_add'] > 10) {
-      (s as any).npc_gentle[$husID] = 1;
-      (s as any).npc_rough[$husID] = 0;
+      (s as any).npc_gentle[String((s as any).husID ?? 0)] = 1;
+      (s as any).npc_rough[String((s as any).husID ?? 0)] = 0;
     }
   }
   if (((s as any).food_loc_last ?? 0) !== ((s as any).loc ?? 0)) {
@@ -279,7 +279,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_vaginal ?? 0) > ((s as any).stat_seen_vaginal ?? 0)) {
     (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
     (s as any).stat['last_sex_day_vaginal'] = ((s as any).daystart ?? 0);
-    if (((s as any).temp_rape_this_tick ?? 0) === 0) {
+    if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 250, (-2000), 'Vaginal sex');
       (s as any).temp_base_act_fired = 1;
     }
@@ -289,7 +289,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_anal ?? 0) > ((s as any).stat_seen_anal ?? 0)) {
     (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
     (s as any).stat['last_sex_day_anal'] = ((s as any).daystart ?? 0);
-    if (((s as any).temp_rape_this_tick ?? 0) === 0) {
+    if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 300, (-2400), 'Anal sex');
       (s as any).temp_base_act_fired = 1;
     }
@@ -299,7 +299,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_oral ?? 0) > ((s as any).stat_seen_oral ?? 0)) {
     (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
     (s as any).stat['last_sex_day_oral'] = ((s as any).daystart ?? 0);
-    if (((s as any).temp_rape_this_tick ?? 0) === 0) {
+    if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 150, (-1200), 'Oral sex');
       (s as any).temp_base_act_fired = 1;
     }
@@ -322,14 +322,14 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
   (s as any).stat_seen_rape = ((s as any).temp_rape_count ?? 0);
   (s as any).temp_gangbang = ((s as any).stat ?? 0)?.['gangbang_count'];
   if (((s as any).temp_gangbang ?? 0) > ((s as any).stat_seen_gangbang ?? 0)) {
-    if (((s as any).temp_rape_this_tick ?? 0) === 0) {
+    if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 600, (-4000), 'Gangbang');
     }
   }
   (s as any).stat_seen_gangbang = ((s as any).temp_gangbang ?? 0);
   (s as any).temp_prostitution = ((s as any).stat ?? 0)?.['prostitution_count'];
   if (((s as any).temp_prostitution ?? 0) > ((s as any).stat_seen_prostitution ?? 0)) {
-    if (((s as any).temp_rape_this_tick ?? 0) === 0) {
+    if ((!((s as any).temp_rape_this_tick ?? 0))) {
       qspCall(s, 'archetypes', 'sex_change', 500, (-2400), 'Prostitution');
     }
   }
@@ -357,7 +357,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'sweat', 'remove_deo');
         }
         if (((s as any).spanked ?? 0) > 0) {
-          if (((s as any).spankedtime ?? 0) === 0) {
+          if ((!((s as any).spankedtime ?? 0))) {
             (s as any).spankedtime = ((s as any).totminut ?? 0);
           }
           if ((((s as any).spankedtime ?? 0) + 2040) <= ((s as any).totminut ?? 0)) {
@@ -507,7 +507,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
         }
         qspCall(s, 'stat_sklattrib_lvlset', '');
         qspCall(s, 'stat', 'apply_caps');
-        if ((((s as any).inSleep ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['stat_display'] === 1)  &&  ((s as any).arrpos ?? 0)('ARGS', 'no_display') < 0) {
+        if ((((s as any).inSleep ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['stat_display'] === 1)  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_display') : -1) < 0) {
           qspCall(s, 'outdoors', 'main');
           qspCall(s, 'stat_display', '');
         }

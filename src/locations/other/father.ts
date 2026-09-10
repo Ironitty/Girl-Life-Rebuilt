@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Your stepdad folds up his paper and leaves the kitchen.');
     return;
   }
-  if (((s as any).hcolfronce ?? 0) === 0) {
+  if ((!((s as any).hcolfronce ?? 0))) {
     (s as any).hcolfatherremember = ((s as any).pcs_haircol ?? 0);
     (s as any).hcolfronce = 1;
   }
@@ -70,7 +70,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['\'tongue\'']}.jpg`);
     scene.text('You open your mouth and stick out your tongue and wiggle it at him showing him your piercing.');
-    if (((s as any).TouchedByFather ?? 0) === 0) {
+    if ((!((s as any).TouchedByFather ?? 0))) {
       // TODO-QSP: dynamic text: Your stepfather shakes his head: "<<$pcs_nickname>>, tongue piercings are only f...
       scene.text(`Your stepfather shakes his head: "${((s as any).pcs_nickname ?? 0)}, tongue piercings are only for lewd women who use their mouth to please men."`);
     }
@@ -96,7 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['\'lip\'']}.jpg`);
     scene.text('You shrug. "I don\'t know… I just like the way lip rings look, so I got one. Don\'t you think it looks cute?"');
-    if (((s as any).TouchedByFather ?? 0) === 0) {
+    if ((!((s as any).TouchedByFather ?? 0))) {
       scene.text('Your stepfather shakes his head: "Kids these days, always adding new holes to themselves…"');
     }
     if (((s as any).TouchedByFather ?? 0) > 0) {
@@ -472,7 +472,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Trying your cutest face on your stepfather, you ask him for some money. He just ...
       scene.text(`Trying your cutest face on your stepfather, you ask him for some money. He just shakes his head wearily: "No, ${((s as any).pcs_nickname ?? 0)}. I've already given you some money today, don't be greedy."`);
     } else {
-      if ((((s as any).npc_rel ?? 0)?.['A28'] <= 40  ||  (((s as any).pcs_apprnc ?? 0) + (((s as any).npc_rel ?? 0)?.['A28'] / 10)) <= 60)  &&  ((s as any).TouchedByFather ?? 0) === 0) {
+      if ((((s as any).npc_rel ?? 0)?.['A28'] <= 40  ||  (((s as any).pcs_apprnc ?? 0) + (((s as any).npc_rel ?? 0)?.['A28'] / 10)) <= 60)  &&  (!((s as any).TouchedByFather ?? 0))) {
         scene.text('You ask your stepfather for some money, but he shakes his head in response: "I already gave my salary to your mother, go ask her."');
       } else {
         scene.text('You ask your stepfather for some money, but he shakes his head in response: "I already gave my salary to your mother, go ask her."');

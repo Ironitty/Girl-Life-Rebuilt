@@ -46,7 +46,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).tobiQW ?? 0) === 1) {
     if (qspFunc(s, 'money', 'can_afford', 100000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 100000);
       (s as any).tobiQW = 2;
@@ -71,7 +71,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).tobiQW ?? 0) === 2  &&  ((s as any).srodpaper ?? 0) <= 0) {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 10000);
       (s as any).srodpaper = ((s as any).srodpaper ?? 0) + (1);

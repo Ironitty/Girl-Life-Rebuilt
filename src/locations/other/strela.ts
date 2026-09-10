@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay the money for Fedor [+$func(\'money\', \'get_cost_string\', 30000,...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 30000, 'cash');
       (s as any).strelaQW = (-1);

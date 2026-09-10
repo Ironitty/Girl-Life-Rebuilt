@@ -73,7 +73,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add') {
     // TODO-QSP: gs 'purse_attributes', $ARGS[2], ARGS[3]
-    if (((s as any).PurseQuality ?? 0) === 0) {
+    if ((!((s as any).PurseQuality ?? 0))) {
       // TODO-QSP: exit
     }
     // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
@@ -191,7 +191,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You already own this purse.');
     return;
   }
-  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', $((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._purses ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
+  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._purses ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
   (s as any).shop_utils_view['base_price'] = ((s as any).PursePrice ?? 0);
   (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['base_price'] * ((s as any).max ?? 0)(0, 100 - ((s as any).shop_utils_view ?? 0)?.['discount_total']) / 100;
   (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['price'] / 50 * 50;
@@ -209,7 +209,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
       { label: 'Buy (<<$shop_utils_view[\'price_string\']>>)', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
     // TODO-QSP: gs 'purses', 'add_item', $shop_utils_view['type'], shop_utils_view['number']
-    if (((s as any).bag ?? 0) === 0) {
+    if ((!((s as any).bag ?? 0))) {
       // TODO-QSP: gs 'purses', 'wear', $shop_utils_view['type'], shop_utils_view['number']
     }
     dynamicGoto(st, 'loc', 'loc_arg');

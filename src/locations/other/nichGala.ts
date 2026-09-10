@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   scene.text('She hands you a binder containing a contract and a pen.');
                   if (((s as any).locArgs?.[0] ?? 0) === 'contractOfferRead') {
                     scene.img('images/characters/city/gala/slave/contract.jpg');
-                    if (((s as any).nichGalaContractRead ?? 0) === 0) {
+                    if ((!((s as any).nichGalaContractRead ?? 0))) {
                       scene.text('You start reading the first few lines:');
                       scene.text('');
                       scene.text('Slave Contract');
@@ -387,7 +387,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       if (((s as any).ARGS ?? 0)[1] === 5) {
                                         scene.img('images/characters/city/gala/slave/doctorEx.jpg');
                                         scene.text('The doctor probes you with various tools and also takes a blood sample.');
-                                        if (((s as any).Venera ?? 0) === 0) {
+                                        if ((!((s as any).Venera ?? 0))) {
                                           scene.text('"Good news. It appears as if your slave is healthy."');
                                         } else {
                                           scene.text('"I am afraid I have bad news. Your slave has a STD. I have the cure for it here. But it isn\'t cheap. Buying a new slave might be cheaper."');
@@ -414,7 +414,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                                         ]);
                                       } else {
-                                        if (((s as any).preg ?? 0) === 0) {
+                                        if ((!((s as any).preg ?? 0))) {
                                           // TODO-QSP: gt 'nichGala', 'slaveDoc', 8
                                         }
                                         scene.img('images/characters/city/gala/slave/doctorEx.jpg');
@@ -510,7 +510,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           }
                                           if (((s as any).locArgs?.[0] ?? 0) === 'slaveImplant') {
                                             if (((s as any).ARGS ?? 0)[1] === 0) {
-                                              if (((s as any).nichGalaImplantLevel ?? 0) === 0) {
+                                              if ((!((s as any).nichGalaImplantLevel ?? 0))) {
                                                 // TODO-QSP: gt 'nichGala', 'slaveImplant', 1
                                               } else {
                                                 (s as any).nichTempDayDifference = ((s as any).daystart ?? 0) - ((s as any).nichGalaImplantDay ?? 0);
@@ -527,7 +527,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 } else {
                                                   // TODO-QSP: gt 'nichGala', 'slaveImplant', 50
                                                   if (((s as any).nichGalaImplantLevel ?? 0) === 3) {
-                                                    if (((s as any).nichGalaTattoo ?? 0) === 0) {
+                                                    if ((!((s as any).nichGalaTattoo ?? 0))) {
                                                       // TODO-QSP: gt 'nichGala', 'slaveImplant', 100
                                                     } else {
                                                       // TODO-QSP: gt 'nichGala', 'slaveImplant', 120
@@ -886,9 +886,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           ]);
                                                                         }
                                                                         if (((s as any).locArgs?.[0] ?? 0) === 'training') {
-                                                                          if (((s as any).nichGalaTrainStage ?? 0) === 0) {
+                                                                          if ((!((s as any).nichGalaTrainStage ?? 0))) {
                                                                             (s as any).minut = ((s as any).minut ?? 0) + 5;
-                                                                            if (((s as any).nichGalaTrainCounter ?? 0) === 0) {
+                                                                            if ((!((s as any).nichGalaTrainCounter ?? 0))) {
                                                                               scene.text('Gala leads you up to a small room in the attic featuring nothing but an old mirror, a chair and a small table with lots of candles on it.');
                                                                               scene.text('"Since this is your first training session I will lay down the ground rules."');
                                                                               scene.text('"1. You will talk to nobody about your training."');
@@ -1124,7 +1124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                           } else {
                                                                                                             scene.img('images/characters/city/gala/02.jpg');
                                                                                                             scene.text('Gala is the wife of Nicholas and the mother of Tanya.');
-                                                                                                            if (((s as any).nichGalaOpinion ?? 0) === 0) {
+                                                                                                            if ((!((s as any).nichGalaOpinion ?? 0))) {
                                                                                                               scene.text('She seems to be pretty indifferent about you.');
                                                                                                             } else {
                                                                                                               scene.text('You have the feeling that she doesn\'t like you. She seems to think that you are a slut.');

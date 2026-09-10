@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('Your kitchen garden has been plowed, vegetable beds are finished and apple trees have been planted.');
         scene.text('The tired workers are resting in the shade.');
         if (qspFunc(s, 'money', 'can_afford', 3000, 'cash') === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           qspCall(s, 'money', 'pay', 3000, 'cash');
           (s as any).exhib['status'] = 16;

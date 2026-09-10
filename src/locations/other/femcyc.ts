@@ -13,26 +13,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).rcntorgzm = 0;
       (s as any).rcntorgzmtmp = 0;
     }
-    if (((s as any).rcntorgzmtmp ?? 0) === 0) {
+    if ((!((s as any).rcntorgzmtmp ?? 0))) {
       (s as any).rcntorgzmtmp = 1;
     }
   }
   (s as any).cumarr_idx = 0;
   // TODO-QSP: :cumarrloop
-  if (((s as any).cumarr_idx ?? 0) < ((s as any).arrsize ?? 0)('cumarrnam')) {
+  if (((s as any).cumarr_idx ?? 0) < Object.keys((s as any).cumarrnam ?? {}).length) {
     if (((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] > 0  &&  ((s as any).cumarrage ?? 0)?.[String((s as any).cumarr_idx ?? 0)] < 144) {
       if (((s as any).rcntorgzm ?? 0) === 1  &&  ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] < ((s as any).cumarrppt ?? 0)?.[String((s as any).cumarr_idx ?? 0)]  &&  ((s as any).cumarrage ?? 0)?.[String((s as any).cumarr_idx ?? 0)] < 1) {
-        (s as any).cumarrcpt[cumarr_idx] = ((s as any).cumarrcpt[cumarr_idx] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] / 12);
+        (s as any).cumarrcpt[String((s as any).cumarr_idx ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarr_idx ?? 0)] ?? 0) + (((s as any).cumarrppt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] / 12);
       }
       (s as any).cumpdrop = ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] / (144 - ((s as any).cumarrage ?? 0)?.[String((s as any).cumarr_idx ?? 0)]);
       if (((s as any).cycle ?? 0) !== 2) {
         (s as any).cumpdrop = ((s as any).cumpdrop ?? 0) + (((s as any).cumpdrop ?? 0) * ((s as any).rand ?? 0)(0, 2));
       }
-      (s as any).cumarrcpt[cumarr_idx] = ((s as any).cumarrcpt[cumarr_idx] ?? 0) - (((s as any).cumpdrop ?? 0));
+      (s as any).cumarrcpt[String((s as any).cumarr_idx ?? 0)] = ((s as any).cumarrcpt[String((s as any).cumarr_idx ?? 0)] ?? 0) - (((s as any).cumpdrop ?? 0));
       if (((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] <= 0) {
         qspCall(s, 'cum_cleanup', 'cleanwomb', ((s as any).cumarr_idx ?? 0));
       } else {
-        (s as any).cumarrage[cumarr_idx] = ((s as any).cumarrage[cumarr_idx] ?? 0) + (1);
+        (s as any).cumarrage[String((s as any).cumarr_idx ?? 0)] = ((s as any).cumarrage[String((s as any).cumarr_idx ?? 0)] ?? 0) + (1);
         (s as any).cumarr_idx = ((s as any).cumarr_idx ?? 0) + (1);
       }
     } else {
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'cumarrloop'
   }
   if (((s as any).succubusflag ?? 0) === 1) {
-    if (((s as any).arrsize ?? 0)('cumarrppt') > 0) {
+    if (Object.keys((s as any).cumarrppt ?? {}).length > 0) {
       (s as any).succycletmp = 0;
       // TODO-QSP: :sucvagabs
       if (((s as any).cumarrdel ?? 0)?.[String((s as any).succycletmp ?? 0)] === 0) {
@@ -61,13 +61,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).sucabscum = 1;
           (s as any).succycletmp = ((s as any).succycletmp ?? 0) + (1);
         }
-        if (((s as any).succycletmp ?? 0) < ((s as any).arrsize ?? 0)('cumarrppt')) {
+        if (((s as any).succycletmp ?? 0) < Object.keys((s as any).cumarrppt ?? {}).length) {
           // TODO-QSP: jump 'sucvagabs'
         }
       }
     }
     (s as any).cumarrtemp = 0;
-    if (((s as any).arrsize ?? 0)('sparrvol') > 0) {
+    if (Object.keys((s as any).sparrvol ?? {}).length > 0) {
       // TODO-QSP: :cumspaloop
       if (((s as any).succubusflag ?? 0) === 1) {
         if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 3  ||  ((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 12) {
@@ -75,14 +75,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).succubxp = ((s as any).succubxp ?? 0) + (3);
           (s as any).sucabscum = 1;
           if (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] > 0) {
-            (s as any).sparrvol[cumarrtemp] = 0;
+            (s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] = 0;
           }
         }
         (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30*((s as any).succublvl ?? 0));
-        (s as any).sparrvol[cumarrtemp] = ((s as any).sparrvol[cumarrtemp] ?? 0) - (30*((s as any).succublvl ?? 0));
+        (s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] ?? 0) - (30*((s as any).succublvl ?? 0));
         if (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 0) {
           (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)]);
-          (s as any).sparrvol[cumarrtemp] = 0;
+          (s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] = 0;
         }
         // TODO-QSP: end !}
       }
@@ -94,92 +94,92 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).sparrtmpv = qspUntranslated(s, "arrpos('cumarrcnt', sparrcnt[cumarrtemp])", { location: "femcyc" });
           if (((s as any).sparrtmpv ?? 0) >= 0) {
             if (((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 4) {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).cumarrcpt[sparrtmpv] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 5);
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 5);
             } else {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).cumarrcpt[sparrtmpv] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 30);
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 30);
             }
           }
         } else {
           (s as any).sparrtmpv = qspUntranslated(s, "arrpos('cumarrcnt', sparrcnt[cumarrtemp])", { location: "femcyc" });
           if (((s as any).sparrtmpv ?? 0) >= 0) {
             if (((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 4) {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).cumarrcpt[sparrtmpv] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 40);
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 40);
             } else {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).cumarrcpt[sparrtmpv] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 60);
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] ?? 0) + (((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 60);
             }
           }
           if (((s as any).sparrslc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 1  &&  ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 5) {
             if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 1) {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
-              (s as any).cumarrppt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
+              (s as any).cumarrppt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
               // TODO-QSP: $cumarrnam[sparrtmpv] = $sparrnam[cumarrtemp]
-              (s as any).cumarrage[sparrtmpv] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-              (s as any).cumarrdel[sparrtmpv] = 1;
-              (s as any).cumarrkno[sparrtmpv] = (-1);
-              (s as any).cumarrcon[sparrtmpv] = 0;
-              (s as any).cumarrcnt[sparrtmpv] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrage[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrdel[String((s as any).sparrtmpv ?? 0)] = 1;
+              (s as any).cumarrkno[String((s as any).sparrtmpv ?? 0)] = (-1);
+              (s as any).cumarrcon[String((s as any).sparrtmpv ?? 0)] = 0;
+              (s as any).cumarrcnt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
             }
           } else {
             if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 2) {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
-              (s as any).cumarrppt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
+              (s as any).cumarrppt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
               // TODO-QSP: $cumarrnam[sparrtmpv] = $sparrnam[cumarrtemp]
-              (s as any).cumarrage[sparrtmpv] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-              (s as any).cumarrdel[sparrtmpv] = 3;
-              (s as any).cumarrkno[sparrtmpv] = (-1);
-              (s as any).cumarrcon[sparrtmpv] = 0;
-              (s as any).cumarrcnt[sparrtmpv] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrage[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrdel[String((s as any).sparrtmpv ?? 0)] = 3;
+              (s as any).cumarrkno[String((s as any).sparrtmpv ?? 0)] = (-1);
+              (s as any).cumarrcon[String((s as any).sparrtmpv ?? 0)] = 0;
+              (s as any).cumarrcnt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
             } else {
-              (s as any).cumarrcpt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
-              (s as any).cumarrppt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
+              (s as any).cumarrppt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
               // TODO-QSP: $cumarrnam[sparrtmpv] = $sparrnam[cumarrtemp]
-              (s as any).cumarrage[sparrtmpv] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-              (s as any).cumarrdel[sparrtmpv] = 2;
-              (s as any).cumarrkno[sparrtmpv] = (-1);
-              (s as any).cumarrcon[sparrtmpv] = 0;
-              (s as any).cumarrcnt[sparrtmpv] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrage[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+              (s as any).cumarrdel[String((s as any).sparrtmpv ?? 0)] = 2;
+              (s as any).cumarrkno[String((s as any).sparrtmpv ?? 0)] = (-1);
+              (s as any).cumarrcon[String((s as any).sparrtmpv ?? 0)] = 0;
+              (s as any).cumarrcnt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
             }
             if (((s as any).sparrslc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 5  &&  ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 5) {
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 3) {
-                (s as any).cumarrcpt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
-                (s as any).cumarrppt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
+                (s as any).cumarrppt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
                 // TODO-QSP: $cumarrnam[sparrtmpv] = $sparrnam[cumarrtemp]
-                (s as any).cumarrage[sparrtmpv] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                (s as any).cumarrdel[sparrtmpv] = 2;
-                (s as any).cumarrkno[sparrtmpv] = (-1);
-                (s as any).cumarrcon[sparrtmpv] = 0;
-                (s as any).cumarrcnt[sparrtmpv] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                (s as any).cumarrage[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                (s as any).cumarrdel[String((s as any).sparrtmpv ?? 0)] = 2;
+                (s as any).cumarrkno[String((s as any).sparrtmpv ?? 0)] = (-1);
+                (s as any).cumarrcon[String((s as any).sparrtmpv ?? 0)] = 0;
+                (s as any).cumarrcnt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
               } else {
-                (s as any).cumarrcpt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
-                (s as any).cumarrppt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
+                (s as any).cumarrppt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
                 // TODO-QSP: $cumarrnam[sparrtmpv] = $sparrnam[cumarrtemp]
-                (s as any).cumarrage[sparrtmpv] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                (s as any).cumarrdel[sparrtmpv] = 3;
-                (s as any).cumarrkno[sparrtmpv] = (-1);
-                (s as any).cumarrcon[sparrtmpv] = 0;
-                (s as any).cumarrcnt[sparrtmpv] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                (s as any).cumarrage[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                (s as any).cumarrdel[String((s as any).sparrtmpv ?? 0)] = 3;
+                (s as any).cumarrkno[String((s as any).sparrtmpv ?? 0)] = (-1);
+                (s as any).cumarrcon[String((s as any).sparrtmpv ?? 0)] = 0;
+                (s as any).cumarrcnt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
                 if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 6) {
-                  (s as any).cumarrcpt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
-                  (s as any).cumarrppt[sparrtmpv] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                  (s as any).cumarrcpt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)] * ((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 1000;
+                  (s as any).cumarrppt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrppt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
                   // TODO-QSP: $cumarrnam[sparrtmpv] = $sparrnam[cumarrtemp]
-                  (s as any).cumarrage[sparrtmpv] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
-                  (s as any).cumarrdel[sparrtmpv] = 3;
-                  (s as any).cumarrkno[sparrtmpv] = (-1);
-                  (s as any).cumarrcon[sparrtmpv] = 0;
-                  (s as any).cumarrcnt[sparrtmpv] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                  (s as any).cumarrage[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
+                  (s as any).cumarrdel[String((s as any).sparrtmpv ?? 0)] = 3;
+                  (s as any).cumarrkno[String((s as any).sparrtmpv ?? 0)] = (-1);
+                  (s as any).cumarrcon[String((s as any).sparrtmpv ?? 0)] = 0;
+                  (s as any).cumarrcnt[String((s as any).sparrtmpv ?? 0)] = ((s as any).sparrcnt ?? 0)?.[String((s as any).cumarrtemp ?? 0)];
                 }
               }
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 0  ||  ((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 3  ||  ((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 12) {
-                (s as any).sparrvol[cumarrtemp] = ((s as any).sparrvol[cumarrtemp] ?? 0) - (((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 2);
+                (s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] = ((s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] ?? 0) - (((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] / 2);
                 if (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)] < 0) {
-                  (s as any).sparrvol[cumarrtemp] = 0;
+                  (s as any).sparrvol[String((s as any).cumarrtemp ?? 0)] = 0;
                 }
               }
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 0  &&  ((s as any).cumsumvag ?? 0) > 60) {
-                (s as any).sparrslc[cumarrtemp] = 1;
+                (s as any).sparrslc[String((s as any).cumarrtemp ?? 0)] = 1;
               }
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 3  &&  ((s as any).cumsumass ?? 0) > 60) {
-                (s as any).sparrslc[cumarrtemp] = 1;
+                (s as any).sparrslc[String((s as any).cumarrtemp ?? 0)] = 1;
               }
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 17) {
                 (s as any).cumcondslip = ((s as any).cumcondslip ?? 0) + (1);
@@ -195,9 +195,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               }
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] !== 0  &&  ((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] !== 3  &&  ((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] !== 12  &&  ((s as any).sparrage ?? 0) < 5) {
-                (s as any).sparrslc[cumarrtemp] = ((s as any).sparrslc[cumarrtemp] ?? 0) + (1);
+                (s as any).sparrslc[String((s as any).cumarrtemp ?? 0)] = ((s as any).sparrslc[String((s as any).cumarrtemp ?? 0)] ?? 0) + (1);
               }
-              (s as any).sparrage[cumarrtemp] = ((s as any).sparrage[cumarrtemp] ?? 0) + (1);
+              (s as any).sparrage[String((s as any).cumarrtemp ?? 0)] = ((s as any).sparrage[String((s as any).cumarrtemp ?? 0)] ?? 0) + (1);
               (s as any).ctemp[0] = ((s as any).ctemp[0] ?? 0) + (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)]);
               if (((s as any).sparrloc ?? 0)?.[String((s as any).cumarrtemp ?? 0)] === 0) {
                 (s as any).ctemp[1] = ((s as any).ctemp[1] ?? 0) + (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)]);
@@ -206,7 +206,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).ctemp[2] = ((s as any).ctemp[2] ?? 0) + (((s as any).sparrvol ?? 0)?.[String((s as any).cumarrtemp ?? 0)]);
               }
             }
-            if (((s as any).cumarrtemp ?? 0) < ((s as any).arrsize ?? 0)('sparrvol')) {
+            if (((s as any).cumarrtemp ?? 0) < Object.keys((s as any).sparrvol ?? {}).length) {
               (s as any).cumarrtemp = ((s as any).cumarrtemp ?? 0) + (1);
               // TODO-QSP: jump 'cumspaloop'
             }

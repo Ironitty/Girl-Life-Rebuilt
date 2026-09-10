@@ -222,7 +222,7 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).unisemestrstats ?? 0)?.['assignment_progress'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
-    (s as any).unisemestrstats['assignment_progress'] = (((s as any).ARGS ?? 0)[2] <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100);
+    (s as any).unisemestrstats['assignment_progress'] = ((((s as any).ARGS ?? 0)[2] <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
     qspCall(s, 'uniutil', 'assignment_progress', 'set', qspFunc(s, 'uniutil', 'assignment_progress', 'get') + ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0) / 20, ((s as any).pcs_intel ?? 0) / 10));
@@ -452,7 +452,7 @@ function enterExamOutcome(s: GameState, scene: SceneBuilder): void {
 
 function enterPassedSemesters(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'get') {
-    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['prev_passed_count'] + (qspFunc(s, 'uniutil', 'semester_result', 'is_passed')) ? (1) : (0);
+    (s as any).result = ((s as any).unisemestrstats ?? 0)?.['prev_passed_count'] + ((qspFunc(s, 'uniutil', 'semester_result', 'is_passed')) ? (1) : (0));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
     (s as any).unisemestrstats['prev_passed_count'] = qspUntranslated(s, "ARGS[2]", { location: "uniutil" });

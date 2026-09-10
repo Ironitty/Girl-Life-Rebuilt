@@ -4,11 +4,11 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'start'  ||  ((s as any).locArgs?.[0] ?? 0) === '') {
-    if (((s as any).nichGentleclubVisits ?? 0) === 0) {
+    if ((!((s as any).nichGentleclubVisits ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['nichClub', 'firstVisit'] }]);
     }
   } else {
-    if (((s as any).nichClubStage ?? 0) === 0) {
+    if ((!((s as any).nichClubStage ?? 0))) {
       scene.img('images/characters/city/nicholas/gentleclub/entry1.jpg');
       scene.text('The drive to the club takes about half an hour.');
       scene.text('Sitting next to you, Nicholas is wearing one of his finest suits.');

@@ -17,7 +17,7 @@ function enterActive(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterConvo(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).gp_chores ?? 0) === 0) {
+  if ((!((s as any).gp_chores ?? 0))) {
     scene.text('You approach your <relation> to ask if they have any jobs for you today.');
     if (((s as any).gp_chores ?? 0)?.['mood'] < 0) {
       (s as any).gp_chores['bonus'] = 0;

@@ -77,7 +77,7 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Book a driving course [+$func(\'money\', \'get_cost_string\', 30000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.text('<center><b>The Vladimir Lenin community center</b></center>');
       scene.img('images/locations/city/industrial/community/reception.jpg');

@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Quite a large billiard room, there are plenty of tables in the main hall, but there are some tables in individual cubicles.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     if (qspFunc(s, 'money', 'can_afford', 125) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 125);
       (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -19,10 +19,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 4) + 0);
       (s as any).billrand = Math.floor(Math.random() * 6) + 0;
       qspCall(s, 'stat', '');
-      if (((s as any).billrand ?? 0) === 0) {
+      if ((!((s as any).billrand ?? 0))) {
         scene.text('You play one of the guys here and he asks if you want to make it more interesting.');
         if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           (s as any).billvar = 0;
         }
@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stick to practice games [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).billrand ?? 0) === 1) {
         scene.text('You play a couple of the guys here and they ask if you want to make it more interesting.');
         if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           (s as any).billvar = 0;
         }
@@ -69,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stick to practice games [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -108,7 +108,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', goto: ['city_mall', ''] },
     { label: 'Play for money [+$func(\'money\', \'get_cost_string\', 250)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);

@@ -13,7 +13,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0))}"><td>&nbsp;<font color="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0))}" size="+2"><b>${((s as any).shop_title ?? 0)}</b></font>&nbsp;</td></table></center>`);
   // TODO-QSP: *p '<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", "rgb_to_hex", bc...
   (s as any).icon_height = ((s as any).fsize ?? 0) * 15 / 10;
-  if (((s as any).icon_height ?? 0) === 0) {
+  if ((!((s as any).icon_height ?? 0))) {
     (s as any).icon_height = 18;
   }
   (s as any).i = 1;
@@ -51,15 +51,15 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   (s as any).ARGS[2] = qspUntranslated(s, "min(cart_curr_quantity['<<ARGS[1]>>'], ARGS[2])", { location: "item_cart" });
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) - (((s as any).cost_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] * ((s as any).ARGS ?? 0)[2]);
-  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] ?? '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] ?? '') + ''] ?? 0) - (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
+  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) - (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   scene.build();
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  (s as any).ARGS[2] = (((s as any).max_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] !== 0) ? (((s as any).min ?? 0)(((s as any).max_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] - (((s as any).cart_curr_quantity ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] + ((s as any).mc_inventory ?? 0)[$((s as any).var_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))]]), ((s as any).ARGS ?? 0)[2])) : (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
+  (s as any).ARGS[2] = ((((s as any).max_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] !== 0) ? (((s as any).min ?? 0)(((s as any).max_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] - (((s as any).cart_curr_quantity ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))]]), ((s as any).ARGS ?? 0)[2])) : (qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] * ((s as any).ARGS ?? 0)[2]);
-  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] ?? '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] ?? '') + ''] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
+  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
   if (((s as any).event_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] !== '') {
     // TODO-QSP: dynamic "<<$event_curr_aisle['<<ARGS[1]>>']>>"
   }
@@ -69,7 +69,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)?.[String(qspUntranslated(s, "ARGS[1]", { location: "item_cart" }))] * ((s as any).max ?? 0)(1, ((s as any).ARGS ?? 0)[2]));
-  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] ?? '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] ?? '') + ''] ?? 0) + (1 * ((s as any).max ?? 0)(1, ((s as any).ARGS ?? 0)[2]));
+  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (1 * ((s as any).max ?? 0)(1, ((s as any).ARGS ?? 0)[2]));
   scene.build();
 }
 

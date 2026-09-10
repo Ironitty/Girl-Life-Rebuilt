@@ -139,7 +139,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -185,7 +185,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -244,7 +244,7 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -290,7 +290,7 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -347,7 +347,7 @@ function enterSexy(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -391,7 +391,7 @@ function enterSexy(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -431,7 +431,7 @@ function enterTransparent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -459,7 +459,7 @@ function enterTransparent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -518,7 +518,7 @@ function enterTransLing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
     scene.text('You have the discipline to not turn or shy your body away from the camera to hide yourself, but your expressions are very rigid and sometimes awkward. Maybe you need to work more on your confidence in your body before you\'ll be able to progress here.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -562,7 +562,7 @@ function enterTransLing(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -620,7 +620,7 @@ function enterTopless(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -664,7 +664,7 @@ function enterTopless(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);
@@ -819,7 +819,7 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
     scene.text('The practice shoot ends and he calls you over to his computer to show you what you need to work on.');
-    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  ((s as any).commercial ?? 0) === 0) {
+    if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
       scene.actions([
         { label: 'Leave', goto: ['foto_events', 'commercial'] },
       ]);

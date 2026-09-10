@@ -134,7 +134,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Order take-out [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 350);
       scene.actions([{ label: 'Continue', goto: ['food', 'fast_food'] }]);

@@ -92,7 +92,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 1;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 1;
     (s as any).numbud = 1;
   }
@@ -113,7 +113,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 2;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 2;
     (s as any).numbud = 1;
   }
@@ -134,7 +134,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 3;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 3;
     (s as any).numbud = 1;
   }
@@ -155,7 +155,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 4;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 4;
     (s as any).numbud = 1;
   }
@@ -176,7 +176,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 5;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 5;
     (s as any).numbud = 1;
   }
@@ -197,7 +197,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 6;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 6;
     (s as any).numbud = 1;
   }
@@ -218,7 +218,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 7;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 7;
     (s as any).numbud = 1;
   }
@@ -239,7 +239,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 8;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 8;
     (s as any).numbud = 1;
   }
@@ -260,7 +260,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 9;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 9;
     (s as any).numbud = 1;
   }
@@ -281,7 +281,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     (s as any).bud2 = 0;
     (s as any).numbud = 2;
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
     (s as any).bud1 = 0;
     (s as any).numbud = 1;
   }
@@ -315,7 +315,7 @@ function enterBuildTable(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).numbud ?? 0) === 1) {
   }
-  if (((s as any).numbud ?? 0) === 0) {
+  if ((!((s as any).numbud ?? 0))) {
   }
   // TODO-QSP: $numbud_table += '<tr><<$num_html>><a href="exec:gt ''alarmclock'', ''1''">1<<$html_num>>'
   // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''2''">2<<$html_num>>'

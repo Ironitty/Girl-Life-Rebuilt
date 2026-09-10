@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Your favorite summer residence.');
   if (((s as any).sunWeather ?? 0) === 1) {
     if (((s as any).pcs_stam ?? 0) >=15  ||  (((s as any).pcs_stam ?? 0) >= 10  &&  ((s as any).mc_inventory ?? 0)?.['book_yoga'] + ((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0)) {
-      if (((s as any).PSport ?? 0) === 0) {
+      if ((!((s as any).PSport ?? 0))) {
         scene.text('You could do some exercises here if you were wearing exercise clothes.');
       } else {
         scene.text('You can do some exercises here.');

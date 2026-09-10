@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterHasAppointment(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') ? (1) : (0);
+  (s as any).result = ((((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') ? (1) : (0));
   return;
   scene.build();
 }
@@ -19,7 +19,7 @@ function enterGetAppointmentId(s: GameState, scene: SceneBuilder): void {
 
 function enterGetEventDisplayTs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_events', 'get_event', ((s as any).locArgs?.[1] ?? 0));
-  (s as any).result = (((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_end_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']);
+  (s as any).result = ((((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_end_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']));
   return;
   scene.build();
 }

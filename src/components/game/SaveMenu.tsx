@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { listSaves, deleteSave, serializeSave, deserializeSave } from '../../core/save';
 import { useGameStore } from '../../core/store';
 import { getLocation } from '../../core/location';
+import { SceneBuilder } from '../../core/scene';
 import { toDate } from '../../core/time';
 
 interface SaveInfo {
@@ -87,7 +88,7 @@ export default function SaveMenu({ onClose, onLoad }: { onClose: () => void; onL
       const loc = state.loc;
       const def = getLocation(loc);
       if (def?.enter) {
-        def.enter(state);
+        def.enter(state, new SceneBuilder());
       }
       useGameStore.setState({ ...state, reminders: [] });
       setMessage('Save imported');

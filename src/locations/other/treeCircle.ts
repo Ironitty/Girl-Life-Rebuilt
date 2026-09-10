@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tpKnown ?? 0)?.[String((s as any).EntryPoint ?? 0)] === 0) {
       scene.text('You take the fairy\'s advice and get to know this circle.');
       (s as any).minut = ((s as any).minut ?? 0) + 15;
-      (s as any).tpKnown[$EntryPoint] = 1;
+      (s as any).tpKnown[String((s as any).EntryPoint ?? 0)] = 1;
     }
     if (((s as any).pcs_mana ?? 0) > ((s as any).spellMana ?? 0)?.['teleport']) {
       (s as any).canTeleport = 1;
@@ -43,12 +43,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You can feel something strange and powerful in this place, but you can\'t quite put your finger on it. It is intriguing though, so you take your time and look the place over to try to understand it.');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).tpKnown[$EntryPoint] = 1;
+    (s as any).tpKnown[String((s as any).EntryPoint ?? 0)] = 1;
   }
   qspCall(s, 'treeCircActs', '', ((s as any).EntryPoint ?? 0));
   (s as any).i = 0;
   // TODO-QSP: :LocLoop
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('tpLocations')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).tpLocations ?? {}).length) {
     if (((s as any).EntryPoint ?? 0) !== ((s as any).tpLocations ?? 0)?.[String((s as any).i ?? 0)]) {
       // TODO-QSP: gs 'treeCircActs', $tpLocations[i]
     }

@@ -324,7 +324,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Resist Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -362,7 +362,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Remove Katja\'s hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -385,7 +385,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Return Katja\'s touch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -433,7 +433,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Resist Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -471,7 +471,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Remove Katja\'s hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -514,7 +514,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Resist Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -560,7 +560,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Resist Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -605,7 +605,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Drag her to the toilet [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -644,7 +644,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Drag her to the toilet [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -696,7 +696,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Remove Katja\'s hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -720,7 +720,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Return Katja\'s touch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -772,7 +772,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Remove Katja\'s hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -823,7 +823,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Remove Katja\'s head [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -877,7 +877,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Return Katja\'s touch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -1021,7 +1021,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
           }
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
-        if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+        if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
           // TODO-QSP: jump 'study_loop'
         }
       } else {
@@ -1037,7 +1037,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
           }
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
-        if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+        if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
           // TODO-QSP: jump 'exam_loop'
         }
       }
@@ -1077,7 +1077,7 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
         // TODO-QSP: jump 'study_loop2'
       }
     } else {
@@ -1093,7 +1093,7 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
         // TODO-QSP: jump 'exam_loop2'
       }
     }
@@ -1142,7 +1142,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'optional_activity_attribute', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'yes', ((s as any).min ?? 0)(((s as any).modifier ?? 0)+10, 100));
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
   qspCall(s, 'stat', '');
-  if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).pcs_hotcat ?? 0) > Math.floor(Math.random() * 16) + 5) {
+  if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).pcs_hotcat ?? 0) > (Math.floor(Math.random() * 16) + 5)) {
     scene.actions([{ label: 'Continue', goto: ['katja_uni_sex', 'library_threesome1'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_uni_sex', 'library_licking1'] }]);
@@ -1150,7 +1150,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You and Katja start studying for your <<$ARGS[2]>> class. The library is mostly ...
     scene.text(`You and Katja start studying for your ${((s as any).locArgs?.[2] ?? 0)} class. The library is mostly quiet so you and Katja try to keep your voices down, though she can't always help herself when she gets excited about the material before realizing her volume and turning red with embarrassment.`);
-    if (((s as any).dyneval ?? 0) ('RESULT === \'0\'') < ((s as any).dyneval ?? 0) ('RESULT === \'1\'')) {
+    if ((0 as any) < (0 as any)) {
       scene.text('You study together for half an hour, making good progress, but can tell that you will need to study more if you want to completely understand this week\'s material.');
     } else {
       scene.text('You study together for half an hour, making good progress, feeling like you have a good grasp on the material that was covered this week.');
@@ -1283,7 +1283,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
           scene.text('You follow Katja\'s advice and pack your stuff. You\'re in no condition to study right now.');
         } else {
           qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-          if (((s as any).study_mod ?? 0) === 0) {
+          if ((!((s as any).study_mod ?? 0))) {
             scene.text('You study for half an hour, but you don\'t think you are improving.');
           } else {
             scene.text('You study for half an hour and think you are improving a little.');
@@ -1295,7 +1295,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'grades', 'grade_award', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).study_mod ?? 0));
           }
           qspCall(s, 'stat', '');
-          if ((((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).no_study ?? 0) === 0) {
+          if ((((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).hour ?? 0) > 7  &&  (!((s as any).no_study ?? 0))) {
             qspCall(s, 'katja_meynold_schedule', '');
             if (((s as any).locat ?? 0)?.['katja'] === 29) {
               qspCall(s, 'katja_uni', 'study_select');
@@ -1309,7 +1309,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_library', 'start'] },
             ]);
           } else {
-            if (((s as any).no_study ?? 0) === 0) {
+            if ((!((s as any).no_study ?? 0))) {
               scene.text('"Well, it looks like the library is closing up," Katja says, reaching to pack up her stuff. "But it was nice studying together. We should do it again sometime!"');
               scene.text('You leave together, parting ways at the entrance with a wave and a smile.');
             } else {

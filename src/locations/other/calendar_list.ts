@@ -691,7 +691,7 @@ function enterStarletsPracticeRegular(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStarletsPracticeFriday(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).odd_week ?? 0) === 0) {
+  if ((!((s as any).odd_week ?? 0))) {
     (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 5;
   } else {
     (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 12;
@@ -1045,7 +1045,7 @@ function enterBelgangPaymentDeadline(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_0(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_0';
-  (s as any).event_vars['title'] = '((s as any).Menstrual ?? 0) ((s as any).Phase ?? 0)' + $(((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)');
+  (s as any).event_vars['title'] = '((s as any).Menstrual ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 3;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';
@@ -1055,7 +1055,7 @@ function enterCyclePhase_0(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_1(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_1';
-  (s as any).event_vars['title'] = '((s as any).Follicular ?? 0) ((s as any).Phase ?? 0)' + $(((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)');
+  (s as any).event_vars['title'] = '((s as any).Follicular ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 5;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';
@@ -1065,7 +1065,7 @@ function enterCyclePhase_1(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_2(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_2';
-  (s as any).event_vars['title'] = '((s as any).Fertile ?? 0) ((s as any).Phase ?? 0)' + $(((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)');
+  (s as any).event_vars['title'] = '((s as any).Fertile ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 7;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';
@@ -1075,7 +1075,7 @@ function enterCyclePhase_2(s: GameState, scene: SceneBuilder): void {
 
 function enterCyclePhase_3(s: GameState, scene: SceneBuilder): void {
   (s as any).event_vars['id'] = 'cycle_3';
-  (s as any).event_vars['title'] = '((s as any).Luteal ?? 0) ((s as any).Phase ?? 0)' + $(((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)');
+  (s as any).event_vars['title'] = '((s as any).Luteal ?? 0) ((s as any).Phase ?? 0)' + ((((s as any).cheatVars ?? 0)?.['track_period'] === 1) ? ('') : (' (est.)'));
   (s as any).event_vars['color'] = 9;
   (s as any).event_vars['all_day'] = 1;
   (s as any).event_vars['recur'] = 'daily';

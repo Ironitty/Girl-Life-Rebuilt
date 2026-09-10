@@ -30,14 +30,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).hour ?? 0) !== 16  &&  ((s as any).hour ?? 0) !== 17)  &&  ((s as any).blockBedrPar ?? 0) === 1) {
     (s as any).blockBedrPar = 0;
   }
-  if (((s as any).locat ?? 0)?.['Mother'] === 1  &&  ((s as any).hour ?? 0) === 22  &&  ((s as any).minut ?? 0) < 30  &&  ((s as any).motherQW ?? 0)?.['con_steal_talk'] + 4 < ((s as any).daystart ?? 0)  &&  ((s as any).prezikday ?? 0) + 4 > ((s as any).daystart ?? 0)  &&  Math.floor(Math.random() * 5) + 1 === 1) {
+  if (((s as any).locat ?? 0)?.['Mother'] === 1  &&  ((s as any).hour ?? 0) === 22  &&  ((s as any).minut ?? 0) < 30  &&  ((s as any).motherQW ?? 0)?.['con_steal_talk'] + 4 < ((s as any).daystart ?? 0)  &&  ((s as any).prezikday ?? 0) + 4 > ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
     // TODO-QSP: gt 'mother', 'condom_steal', iif(locat['Stepdad'] = 1, 'talk', 'hear')
   }
-  if (((s as any).GspravkaAmbush ?? 0) === 0) {
+  if ((!((s as any).GspravkaAmbush ?? 0))) {
     (s as any).GspravkaTalked = ((s as any).daystart ?? 0);
     (s as any).GspravkaAmbush = Math.floor(Math.random() * 6) + 5;
   }
-  if (((s as any).locat ?? 0)?.['Mom_athome'] === 1  &&  (((s as any).GspravkaTalked ?? 0) <= ((s as any).daystart ?? 0) - ((s as any).GspravkaAmbush ?? 0))  &&  ((s as any).motherKnowRaped ?? 0) === 0) {
+  if (((s as any).locat ?? 0)?.['Mom_athome'] === 1  &&  (((s as any).GspravkaTalked ?? 0) <= ((s as any).daystart ?? 0) - ((s as any).GspravkaAmbush ?? 0))  &&  (!((s as any).motherKnowRaped ?? 0))) {
     if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).GspravkaT ?? 0) !== 1  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21))) {
       (s as any).GspravkaAmbush = Math.floor(Math.random() * 5) + 3;
       scene.actions([{ label: 'Continue', goto: ['mother', 'referral'] }]);
@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'daily_routine', 'offer_here');
-    if (((s as any).blockBedrPar ?? 0) === 0) {
+    if ((!((s as any).blockBedrPar ?? 0))) {
       if (((s as any).locat ?? 0)?.['Anya'] === 11  &&  ((s as any).sisboytrioQW ?? 0) === 1  &&  ((s as any).sisThank ?? 0) !== 1) {
         scene.actions([
           { label: 'Go to your room', handler: (st: GameState) => {
@@ -97,7 +97,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).hour ?? 0) === 22  &&  ((s as any).parsexrand ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).parentsexday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).parsexrand = ((s as any).daystart ?? 0);
-        if (Math.floor(Math.random() * 6) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 6) + 0))) {
           scene.actions([
             { label: 'Go to your parents\' room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -166,12 +166,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 0  &&  ((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
         scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'bathroom_dildos1'] }]);
       }
-      if (((s as any).nodimkaK ?? 0) >= Math.floor(Math.random() * 4) + 7  &&  ((s as any).DimkaWarnedToday ?? 0) === 0  &&  ((s as any).DimaRudeBlock ?? 0) === 0) {
+      if (((s as any).nodimkaK ?? 0) >= (Math.floor(Math.random() * 4) + 7)  &&  ((s as any).DimkaWarnedToday ?? 0) === 0  &&  (!((s as any).DimaRudeBlock ?? 0))) {
         (s as any).nodimkaK = 0;
-        if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 24  &&  ((s as any).week ?? 0) <=5  &&  ((s as any).DimkaWarnedToday ?? 0) === 0) {
+        if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 24  &&  ((s as any).week ?? 0) <=5  &&  (!((s as any).DimkaWarnedToday ?? 0))) {
           scene.actions([{ label: 'Continue', goto: ['dimaEv', 'Dimka_warning'] }]);
         }
-        if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 24  &&  ((s as any).week ?? 0) >=6  &&  ((s as any).DimkaWarnedToday ?? 0) === 0) {
+        if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 24  &&  ((s as any).week ?? 0) >=6  &&  (!((s as any).DimkaWarnedToday ?? 0))) {
           scene.actions([{ label: 'Continue', goto: ['dimaEv', 'Dimka_warning'] }]);
         }
       }
@@ -204,7 +204,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
         if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
-          if (((s as any).artemvbrosvid ?? 0) === 1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] < 2  &&  ((s as any).mothervideotalk ?? 0) === 0  ||  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj'] === 1  &&  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).BJvideoPublic ?? 0) === 0) {
+          if (((s as any).artemvbrosvid ?? 0) === 1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] < 2  &&  ((s as any).mothervideotalk ?? 0) === 0  ||  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj'] === 1  &&  ((s as any).brotherQW ?? 0)?.['refused_seeporn_bj_day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).BJvideoPublic ?? 0))) {
             (s as any).BJvideoPublic = 1;
             (s as any).brotherQW['refused_seeporn_bj'] = 0;
             (s as any).brotherQW['refused_seeporn_bj_day'] = ((s as any).daystart ?? 0);
@@ -268,7 +268,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           }
-          if (((s as any).artemvbrosvid ?? 0)===1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] >= 2  &&  ((s as any).mothervideotalk ?? 0) === 0  &&  ((s as any).BJvideoPublic ?? 0) === 0) {
+          if (((s as any).artemvbrosvid ?? 0)===1  &&  ((s as any).artemhakday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] >= 2  &&  ((s as any).mothervideotalk ?? 0) === 0  &&  (!((s as any).BJvideoPublic ?? 0))) {
             (s as any).BJvideoPublic = 1;
             qspCall(s, 'mood', 'lower', 'min');
             qspCall(s, 'stat', '');
@@ -418,7 +418,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 20) {
-            if (((s as any).Gcall ?? 0) === 0) {
+            if ((!((s as any).Gcall ?? 0))) {
               (s as any).numnpcboy = 0;
               // TODO-QSP: :markboyfrendcall
               (s as any).numnpcboy = ((s as any).numnpcboy ?? 0) + (1);

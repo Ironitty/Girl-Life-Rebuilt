@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Gala ordered you to break up with Tanya. Maybe you should talk with her. But if you do so you risk losing her.');
       if (((s as any).nichTanya ?? 0)?.['Relationship'] === 2) {
-        if (((s as any).nichTanya ?? 0)?.['FuckCounter'] > Math.floor(Math.random() * 11) + 30  &&  ((s as any).nichTanya ?? 0)?.['FuckToday'] === 0) {
+        if (((s as any).nichTanya ?? 0)?.['FuckCounter'] > (Math.floor(Math.random() * 11) + 30)  &&  ((s as any).nichTanya ?? 0)?.['FuckToday'] === 0) {
           scene.text('As you approach her she greets you with a smile. She walks over to her bed and sits down on the edge. Apparently she expects you to sit next to her.');
           // TODO-QSP: dynamic text: Once you'he settled down she says with a serious voice "<<$pcs_nickname>>, we ha...
           scene.text(`Once you'he settled down she says with a serious voice "${((s as any).pcs_nickname ?? 0)}, we have to talk."`);
@@ -54,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).nichTanya['PropDate'] = 1;
         }
       } else {
-        if (((s as any).nichTanya ?? 0)?.['FuckCounter'] > Math.floor(Math.random() * 4) + 22  &&  ((s as any).nichTanya ?? 0)?.['FuckToday'] === 0) {
+        if (((s as any).nichTanya ?? 0)?.['FuckCounter'] > (Math.floor(Math.random() * 4) + 22)  &&  ((s as any).nichTanya ?? 0)?.['FuckToday'] === 0) {
           scene.text('As you approach her she greets you with a smile. She walks over to her bed and sits down on the edge. Apparently she expects you to sit next to her.');
           // TODO-QSP: dynamic text: Once you'he settled down she says with a serious voice "<<$pcs_nickname>>, we ha...
           scene.text(`Once you'he settled down she says with a serious voice "${((s as any).pcs_nickname ?? 0)}, we have to talk."`);

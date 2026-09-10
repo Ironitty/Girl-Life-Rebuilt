@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Apologize [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Try to get on his good side [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -89,7 +89,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_apprnc ?? 0) + (((s as any).npc_rel ?? 0)?.['A28']/10) <= 60) {
           qspCall(s, 'dinfather', 'garchat');
         } else {
-          if (Math.floor(Math.random() * 100) + 0 < 80) {
+          if ((Math.floor(Math.random() * 100) + 0) < 80) {
             qspCall(s, 'dinfather', 'garchat');
           } else {
             scene.text('You relax and share funny stories with your stepfather.');
@@ -134,7 +134,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Apologize [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -166,7 +166,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Try to get on his good side [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -190,7 +190,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_apprnc ?? 0) + (((s as any).npc_rel ?? 0)?.['A28']/10) <= 60) {
           qspCall(s, 'dinfather', 'garhelpchat');
         } else {
-          if (Math.floor(Math.random() * 100) + 0 < 80) {
+          if ((Math.floor(Math.random() * 100) + 0) < 80) {
             qspCall(s, 'dinfather', 'garhelpchat');
           } else {
             scene.text('You help your stepfather while he works on the Gazelle, handing him the bolts and tools he needs.');
@@ -211,7 +211,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
                       { label: 'Spread your legs [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {
@@ -278,7 +278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
                       { label: '\'Accidentally\' drop the wrench [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {
@@ -380,7 +380,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Seduce your stepfather [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -468,13 +468,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A28'] < 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A28', 3);
     }
-    if (((s as any).fathersex ?? 0) === 0) {
+    if ((!((s as any).fathersex ?? 0))) {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).fathersex = ((s as any).fathersex ?? 0) + (1);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/father.gar.cum1,0.jpg');
     scene.text('You feel his dick pushing into your ass.');
-    if (((s as any).protect ?? 0) === 0) {
+    if ((!((s as any).protect ?? 0))) {
       scene.text('After a thorough fucking, you feel your stepfather\'s cock begin to throb within you. Your stepfather\'s body spasms, his cock filling your ass with his sperm.');
       qspCall(s, 'arousal', 'anal', 10, 'sub', 'incest');
       (s as any).spafinloc = 3;
@@ -504,13 +504,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A28'] < 100) {
       qspCall(s, 'npc_relationship', 'modify', 'A28', 3);
     }
-    if (((s as any).fathersex ?? 0) === 0) {
+    if ((!((s as any).fathersex ?? 0))) {
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).fathersex = ((s as any).fathersex ?? 0) + (1);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/father/sex/father.gar.cum1,0.jpg');
     scene.text('You feel his dick pushing into your pussy.');
-    if (((s as any).protect ?? 0) === 0) {
+    if ((!((s as any).protect ?? 0))) {
       scene.text('After a thorough fucking, you feel your stepfather\'s cock begin to throb within you. Your stepfather\'s body spasms, his cock filling your pussy with his sperm.');
       qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'incest');
       (s as any).spafinloc = 0;
@@ -554,7 +554,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Persist and ask if you can join them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -581,7 +581,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Try to persuade him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -601,7 +601,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_apprnc ?? 0) + (((s as any).npc_rel ?? 0)?.['A28']/10) <= 60) {
               qspCall(s, 'dinfather', 'gardrunkchat');
             } else {
-              if (Math.floor(Math.random() * 3) + 0 > 0) {
+              if ((Math.floor(Math.random() * 3) + 0) > 0) {
                 qspCall(s, 'dinfather', 'gardrunkchat');
               } else {
                 scene.text('You relax and have some drinks with the guys, happy to just sit back and listen to the funny stories they exchange.');
@@ -623,7 +623,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                         scene.actions([
                           { label: 'Show him your breasts [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                         ]);
                       } else {
@@ -669,7 +669,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                         scene.actions([
                           { label: 'Get their attention by dropping your bottle [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                         ]);
                       } else {
@@ -756,7 +756,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                         scene.actions([
                           { label: 'Spread your legs [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                         ]);
                       } else {

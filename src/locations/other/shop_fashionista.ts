@@ -170,7 +170,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Buy it [+$func(\'money\', \'get_cost_string\', 750)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 750) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
       scene.text('You put the underwear aside for now so that you can take it to the register with you.');
@@ -294,7 +294,7 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
     scene.text('You remove your panties in front Rimma and noticed how her cheeks glowed red, and her breathing quickened.');
     scene.actions([
       { label: 'Do you like me?', handler: (st: GameState) => {
-    if (((s as any).RimmaSex ?? 0) === 0) {
+    if ((!((s as any).RimmaSex ?? 0))) {
       (s as any).RimmaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }

@@ -41,7 +41,7 @@ function enterYaqw(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 10);
     qspCall(s, 'stat', '');
     scene.text('You clean Yaroslav\'s apartment, as he sits sorting through some papers and reading them.');
-    if (((s as any).rand ?? 0) (0, 2) !== 0) {
+    if ((Math.floor(Math.random() * 3) + 0) !== 0) {
       // TODO-QSP: dynamic text: Suddenly he turns to you. "<<$pcs_nickname>>, can you also clean the floor in th...
       scene.text(`Suddenly he turns to you. "${((s as any).pcs_nickname ?? 0)}, can you also clean the floor in the bathroom?"`);
       if (((s as any).yarikwork ?? 0) > 0) {

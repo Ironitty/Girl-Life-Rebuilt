@@ -24,7 +24,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Flirt with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -42,7 +42,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Press on and seduce him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -62,7 +62,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Don\'t do it, but tell him he deserves better [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -224,7 +224,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'You don\'t want to do this [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -269,7 +269,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'You don\'t want to do this [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -432,7 +432,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and let her do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -664,7 +664,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Beg him to let you try again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -784,7 +784,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'That\'s not good enough [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -837,14 +837,14 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Show some skin to get him off faster', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.img('images/locations/shared/postoffice/sex/postevent4-4.jpg');
     } else {
       scene.img('images/locations/shared/postoffice/sex/postevent4-5.jpg');
     }
     scene.text('You wordlessly slip out of your clothes and the man grins triumphantly at you. "That\'s it, girl! Way to go the extra mile!"');
     scene.text('You ignore his comments as his eyes rove your exposed body.');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('When he reaches out to touch you, you slap his hand away. "No touching! That was not part of the deal. Try that again and I\'m out of here!"');
       scene.text('He raises his hands apologetically and puts them behind his head while you resume jerking him off. A few minutes later, his breathing becomes more shallow and you can tell he\'s close to orgasming.');
       scene.text('You place your fingers around the base of his shaft and only very lightly brush one over his cock with a cruel grin until you see his cock spasm and shoot his cum straight up into the air, splattering onto his stomach.');

@@ -47,7 +47,7 @@ function enterPrevMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterTalkMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).date_ev['prev_arg'] = 'talk_menu';
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     scene.actions([
       { label: 'Make small talk', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_talk', 'small_talk'
@@ -71,7 +71,7 @@ function enterRandTopic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['fun_talk'] === 0) {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_talk', 'fun_talk'"
   }
-  if (((s as any).arrsize ?? 0)('date_ev_topics') === 0) {
+  if (Object.keys((s as any).date_ev_topics ?? {}).length === 0) {
     qspCall(s, 'date_talk', 'date_continue');
   }
   scene.build();
@@ -111,7 +111,7 @@ function enterWeekendTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_talk', 'talk_img');
   if (((s as any).week ?? 0) >= 6) {
     scene.text('"So, how\'s your weekend going?" you ask.');
-    if (Math.floor(Math.random() * 100) + 1 < ((s as any).npc_chrsm ?? 0)?.[String((s as any).npcID ?? 0)]) {
+    if ((Math.floor(Math.random() * 100) + 1) < ((s as any).npc_chrsm ?? 0)?.[String((s as any).npcID ?? 0)]) {
       scene.text('"Better now that I\'m with you," he says, looking into your eyes.');
       scene.actions([
         { label: 'Impressed', handler: (st: GameState) => {
@@ -222,7 +222,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
       { label: 'Flash him', handler: (st: GameState) => {
     // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
     scene.text('"Sure."');
-    if (((s as any).PCloDress ?? 0) === 0) {
+    if ((!((s as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: Without hesitation, you pull up your top giving <<$npcdesc>> an unobstructed loo...
       scene.text(`Without hesitation, you pull up your top giving ${((s as any).npcdesc ?? 0)} an unobstructed look at ${((s as any).pcdesc_breasts ?? 0)} breasts. You let the view linger for a few seconds while you give him a lusty look before tugging your top back down.`);
     } else {
@@ -262,7 +262,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
       { label: 'Prove it', handler: (st: GameState) => {
     // TODO-QSP: gs $date_ev['loc'], 'flash_mov'
     scene.text('"Here, let me show you."');
-    if (((s as any).PCloDress ?? 0) === 0) {
+    if ((!((s as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: Before <<$npcdesc>> can say anything, you pull up your top, giving him an unobst...
       scene.text(`Before ${((s as any).npcdesc ?? 0)} can say anything, you pull up your top, giving him an unobstructed look at ${((s as any).pcdesc_breasts ?? 0)} breasts. You let the view linger for a few seconds while you give him a lusty look before tugging your top back down.`);
     } else {
@@ -291,7 +291,7 @@ function enterFlirtArg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $flirt_rand1[] = '"You make me feel special... Like nobody ever has before..."'
   } else {
     if (((s as any).pantyworntype ?? 0) === 'none') {
-      if (Math.floor(Math.random() * 1) + 1 === 1) {
+      if ((Math.floor(Math.random() * 1) + 1) === 1) {
         // TODO-QSP: $flirt_rand1[] = '"Can I tell you a secret?"'
         // TODO-QSP: $flirt_rand2[] = '"What''s that?"'
         // TODO-QSP: $flirt_rand3[] = '"I always wear underwear that match my socks." One of his eyebrows goes up at that...

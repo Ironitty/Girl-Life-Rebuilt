@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).argc = 0;
   if (((s as any).risk_boy ?? 0) === '') {
   }
-  (s as any).eff_contra = (((s as any).argc ?? 0) > 1) ? (qspUntranslated(s, "ARGS[1]", { location: "cuminsidereact" })) : (((s as any).sexcontra ?? 0));
+  (s as any).eff_contra = ((((s as any).argc ?? 0) > 1) ? (qspUntranslated(s, "ARGS[1]", { location: "cuminsidereact" })) : (((s as any).sexcontra ?? 0)));
   if (((s as any).eff_contra ?? 0) !== 3) {
     (s as any).tmp = qspFunc(s, 'pregriskeval', 'eff_contra');
     if (((s as any).succubusflag ?? 0) === 1) {

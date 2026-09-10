@@ -7,16 +7,16 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   (s as any).stat['hookup'] = ((s as any).stat['hookup'] ?? 0) + (1);
-  (s as any).npc_hookup[$npcID] = ((s as any).npc_hookup[$npcID] ?? 0) + (1);
-  (s as any).npc_last_sex[$npcID] = ((s as any).daystart ?? 0);
+  (s as any).npc_hookup[String((s as any).npcID ?? 0)] = ((s as any).npc_hookup[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  (s as any).npc_last_sex[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   if (((s as any).hookup ?? 0)?.['virgin'] === 1  &&  ((s as any).hookup ?? 0)?.['fuck'] > 0) {
-    (s as any).npc_virgin_take[$npcID] = 1;
+    (s as any).npc_virgin_take[String((s as any).npcID ?? 0)] = 1;
   }
   qspCall(s, 'hookup_after', 'dress');
   if (((s as any).hookup ?? 0)?.['fuckbuddy'] > 0) {
-    (s as any).know_virgin[$npcID] = ((s as any).hookup ?? 0)?.['virgin'];
+    (s as any).know_virgin[String((s as any).npcID ?? 0)] = ((s as any).hookup ?? 0)?.['virgin'];
     qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
-    (s as any).npc_no_booty_call[$npcID] = ((s as any).daystart ?? 0);
+    (s as any).npc_no_booty_call[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {

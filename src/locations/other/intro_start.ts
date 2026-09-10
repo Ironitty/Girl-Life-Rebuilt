@@ -186,7 +186,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (((s as any).start_type ?? 0)?.['loc'] === 'uni'  ||  ((s as any).start_type ?? 0)?.['loc'] === 'city'  ||  ((s as any).start_location ?? 0) === 0) {
+        if (((s as any).start_type ?? 0)?.['loc'] === 'uni'  ||  ((s as any).start_type ?? 0)?.['loc'] === 'city'  ||  (!((s as any).start_location ?? 0))) {
           scene.img('images/system/1_openings/shared/site_pavlovsk.jpg');
           if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
             scene.text('You give Gustav directions to your family\'s apartment building. Half an hour later, he drops you off in front of your apartment complex in Pavlovsk.');

@@ -39,7 +39,7 @@ function enterBench(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWait(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).rand ?? 0) (1, 10) === 1) {
+  if ((Math.floor(Math.random() * 10) + 1) === 1) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
       scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'events1'] }]);
     } else {
@@ -131,7 +131,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).events = Math.floor(Math.random() * 23) + 0;
   }
-  if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A144'] > 50  &&  Math.floor(Math.random() * 2) + 0 === 1  &&  ((s as any).anushka_met ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).locat ?? 0)?.['A144'] === 23  ||  ((s as any).locat ?? 0)?.['A144'] === 22)) {
+  if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).npc_rel ?? 0)?.['A144'] > 50  &&  (Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).anushka_met ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).locat ?? 0)?.['A144'] === 23  ||  ((s as any).locat ?? 0)?.['A144'] === 22)) {
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       // TODO-QSP: jump 'reroll_jump1'
     }
@@ -171,7 +171,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).minut = ((s as any).minut ?? 0) + 3;
       scene.img('images/locations/pavlovsk/resident/apartment/events/evggkiss\' + rand(1, 3) + \'.jpg');
-      if (Math.floor(Math.random() * 4) + 1 === 1  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 14)) {
+      if ((Math.floor(Math.random() * 4) + 1) === 1  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 14)) {
         scene.text('You notice Lena and Lera passionately kissing each other, completely unaware that anyone is watching them.');
       } else {
         scene.text('You notice two girls passionately kissing each other, completely unaware that anyone is watching them.');
@@ -272,7 +272,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
                     (s as any).minut = ((s as any).minut ?? 0) + 3;
                     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/evgopbj.jpg');
-                    if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+                    if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
                       scene.text('Between two of the storage buildings, you notice Sonia squatting between Vitek, Dan and Vasily, taking turns sucking their cocks. It doesn\'t take too long before the three gopniks start jerking their dicks and cumming all over Sonia\'s face.');
                       scene.text('The trio begin laughing as they put their dicks back in the pants. Dan then pulls out his phone and starts taking photos of Sonia covered in their cum. As she gets to her feet, Vitek and Vasily grab her by the arms and start pulling her towards the street, never giving her a chance to clean the cum from her face. She tries to struggle, but they don\'t seem to care and they\'re soon gone.');
                     } else {
@@ -315,7 +315,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Move away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -377,7 +377,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell him no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -422,7 +422,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                             scene.actions([
                               { label: 'Tell him no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                             ]);
                           } else {
@@ -440,7 +440,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell him no again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -481,7 +481,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                               scene.actions([
                                 { label: 'Tell him no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                               ]);
                             } else {
@@ -499,7 +499,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell him no again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

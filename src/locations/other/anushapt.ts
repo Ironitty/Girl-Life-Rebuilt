@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('He rolls his eyes. "No." He says no like you are an idiot for asking. "She works as a waitress or something at a coffee shop near where they live, like she could get a cool job like Rad, she is just some dumb waitress."');
       scene.text('You just sigh, you are briefly tempted to point out that your mom is just a waitress too. But no point trying to talk to him about that. "Anyways thanks I guess."');
       scene.text('He shrugs. "Whatever, Mom said I can\'t let any of her friends since she doesn\'t live here anymore." Before you can even get a word in, he slowly closes the door checking you out as he does. With nothing more to do, you turn to leave.');
-      if (((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).locat ?? 0)?.['A144'] !== 22  &&  (Math.floor(Math.random() * 5) + 0 === 0)) {
+      if (((((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).locat ?? 0)?.['A144'] !== 22  &&  ((Math.floor(Math.random() * 5) + 0) === 0)) {
         qspCall(s, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/anushapt/valeria.jpg');
         scene.text('You stand outside the Konstantinov household knocking on the door. It\'s some time before someone answers it. In the end, it turns out to be Anushka\'s mother.');
@@ -173,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take a peek [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -316,7 +316,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take a peek [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -363,7 +363,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take a peek [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

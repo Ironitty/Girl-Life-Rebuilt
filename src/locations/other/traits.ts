@@ -76,7 +76,7 @@ function enterMinute(s: GameState, scene: SceneBuilder): void {
     return;
   }
   (s as any).temp_loop_mul = ((s as any).totminut ?? 0) - ((s as any).trait_vars ?? 0)?.['last_update'];
-  if (((s as any).temp_loop_mul ?? 0) === 0) {
+  if ((!((s as any).temp_loop_mul ?? 0))) {
     // TODO-QSP: killvar 'temp_loop_mul'
     // TODO-QSP: exit
   }
@@ -118,7 +118,7 @@ function enterGetDetails(s: GameState, scene: SceneBuilder): void {
 
 function enterLevel(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ARGS ?? 0)[2] !== ((s as any).trait_vars ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-    (s as any).temp_level['dir'] = (((s as any).ARGS ?? 0)[2] > ((s as any).trait_vars ?? 0)[((s as any).locArgs?.[1] ?? 0)]) ? ('up') : ('down');
+    (s as any).temp_level['dir'] = ((((s as any).ARGS ?? 0)[2] > ((s as any).trait_vars ?? 0)[((s as any).locArgs?.[1] ?? 0)]) ? ('up') : ('down'));
     // TODO-QSP: trait_vars[$ARGS[1]] = ARGS[2]
     if (((s as any).temp_level ?? 0)?.['dir'] === 'up') {
       // TODO-QSP: trait_vars[$ARGS[1] + '_discovered'] = 1
@@ -131,7 +131,7 @@ function enterLevel(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRegisterAttskl(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('traitattskl', ((s as any).locArgs?.[1] ?? 0)) < 0) {
+  if ((Array.isArray((s as any).traitattskl) ? ((s as any).traitattskl as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     // TODO-QSP: $traitattskl[] = $ARGS[1]
   }
   return;
@@ -139,7 +139,7 @@ function enterRegisterAttskl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeregisterAttskl(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('traitattskl', ((s as any).locArgs?.[1] ?? 0)) >= 0) {
+  if ((Array.isArray((s as any).traitattskl) ? ((s as any).traitattskl as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
     qspCall(s, 'array', 'remove_element', '$traitattskl', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
@@ -189,7 +189,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_card['opac'] = '1.0';
   } else {
     (s as any).temp_card['opac'] = '0.5';
-    (s as any).temp_card['border'] = (((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#555555') : ('#aaaaaa');
+    (s as any).temp_card['border'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('#555555') : ('#aaaaaa'));
   }
   (s as any).card_in['icon'] = ((s as any).temp_card ?? 0)?.['icon'];
   (s as any).card_in['title'] = ((s as any).temp_card ?? 0)?.['name'];
@@ -221,21 +221,21 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_show_all['i'] = 0;
   // TODO-QSP: :sa_render_act
-  if (((s as any).temp_show_all ?? 0)?.['i'] < ((s as any).arrsize ?? 0)('temp_active')) {
+  if (((s as any).temp_show_all ?? 0)?.['i'] < Object.keys((s as any).temp_active ?? {}).length) {
     // TODO-QSP: $result += $func('traits', 'card', $temp_active[temp_show_all['i']], trait_vars[$temp_active[temp_sh...
     (s as any).temp_show_all['i'] = ((s as any).temp_show_all['i'] ?? 0) + (1);
     // TODO-QSP: jump 'sa_render_act'
   }
   (s as any).temp_show_all['i'] = 0;
   // TODO-QSP: :sa_render_vis
-  if (((s as any).temp_show_all ?? 0)?.['i'] < ((s as any).arrsize ?? 0)('temp_visible')) {
+  if (((s as any).temp_show_all ?? 0)?.['i'] < Object.keys((s as any).temp_visible ?? {}).length) {
     // TODO-QSP: $result += $func('traits', 'card', $temp_visible[temp_show_all['i']], 0)
     (s as any).temp_show_all['i'] = ((s as any).temp_show_all['i'] ?? 0) + (1);
     // TODO-QSP: jump 'sa_render_vis'
   }
   (s as any).temp_show_all['i'] = 0;
   // TODO-QSP: :sa_render_hid
-  if (((s as any).temp_show_all ?? 0)?.['i'] < ((s as any).arrsize ?? 0)('temp_hidden')) {
+  if (((s as any).temp_show_all ?? 0)?.['i'] < Object.keys((s as any).temp_hidden ?? {}).length) {
     // TODO-QSP: $result += $func('traits', 'card', $temp_hidden[temp_show_all['i']], 0)
     (s as any).temp_show_all['i'] = ((s as any).temp_show_all['i'] ?? 0) + (1);
     // TODO-QSP: jump 'sa_render_hid'

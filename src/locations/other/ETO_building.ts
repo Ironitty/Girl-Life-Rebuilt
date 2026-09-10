@@ -90,7 +90,7 @@ function enterAttic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/cherdak.jpg');
   scene.text('A flight of stairs leads to the roof through the attic. It\'s dark and scary. This is clearly no place for a decent girl.');
-  if (Math.floor(Math.random() * 100) + 1 > 90) {
+  if ((Math.floor(Math.random() * 100) + 1) > 90) {
     scene.text('In the depths of the attic, you hear a group of <a href="exec:gt \'ETO_building\', \'attic_teens\'">teens</a> talking. It seems they don\'t notice you.');
   }
   scene.actions([
@@ -126,7 +126,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
-    if (((s as any).PSwim ?? 0) === 0) {
+    if ((!((s as any).PSwim ?? 0))) {
       if (qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
         scene.actions([
           { label: 'Change into a bikini', goto: ['changingroom', ''] },

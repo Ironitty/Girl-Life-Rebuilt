@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 20) + 1 < ((s as any).sex_ev ?? 0)?.['cum_count'] + ((s as any).sex_ev ?? 0)?.['extra_cum']) {
+  if ((Math.floor(Math.random() * 20) + 1) < ((s as any).sex_ev ?? 0)?.['cum_count'] + ((s as any).sex_ev ?? 0)?.['extra_cum']) {
     (s as any).sex_ev['continuation'] = 1;
   }
   (s as any).sex_ev['leaving'] = 1;

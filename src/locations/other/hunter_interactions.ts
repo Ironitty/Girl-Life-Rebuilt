@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 15  &&  ((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
-        if (((s as any).smokbj ?? 0) === 0) {
+        if ((!((s as any).smokbj ?? 0))) {
           scene.img('images/characters/shared/headshots_main/big172.jpg');
           scene.text('You follow Andrei outside. He gives you a cigarette, and the two of you continue on with your conversation. Suddenly Andrei, looking in your eyes, says:');
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you help me out?"

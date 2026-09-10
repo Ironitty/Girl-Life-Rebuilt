@@ -162,7 +162,7 @@ function enter3way1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A3');
     qspCall(s, 'arousal', 'bj', (-5), 'dom');
     qspCall(s, 'stat', '');
-    if (((s as any).FedorLoveTalk ?? 0) === 1  &&  ((s as any).IvanPregChat ?? 0) === 0) {
+    if (((s as any).FedorLoveTalk ?? 0) === 1  &&  (!((s as any).IvanPregChat ?? 0))) {
       scene.actions([
         { label: 'Inside me', handler: (st: GameState) => {
     (s as any).IvanPregChat = 1;
@@ -357,7 +357,7 @@ function enter3way3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A3');
     qspCall(s, 'arousal', 'anal', (-5), 'sub');
     qspCall(s, 'stat', '');
-    if (((s as any).FedorLoveTalk ?? 0) === 1  &&  ((s as any).IvanPregChat ?? 0) === 0) {
+    if (((s as any).FedorLoveTalk ?? 0) === 1  &&  (!((s as any).IvanPregChat ?? 0))) {
       scene.actions([
         { label: 'Inside me', handler: (st: GameState) => {
     (s as any).IvanPregChat = 1;

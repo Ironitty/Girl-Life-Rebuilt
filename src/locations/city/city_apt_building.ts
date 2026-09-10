@@ -28,7 +28,7 @@ function enterHousemates(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor_1(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 6) + 0 === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor1_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor1_event_time ?? 0) - 1440)) {
+  if ((Math.floor(Math.random() * 6) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor1_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor1_event_time ?? 0) - 1440)) {
     (s as any).floor1_event_time = ((s as any).totminut ?? 0);
     qspCall(s, 'city_apt_building', 'floor1_events', ((s as any).locArgs?.[1] ?? 0));
   }
@@ -55,7 +55,7 @@ function enterFloor_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor_2(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 4) + 0 === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor2_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor2_event_time ?? 0) - 1440)) {
+  if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor2_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor2_event_time ?? 0) - 1440)) {
     (s as any).floor2_event_time = ((s as any).totminut ?? 0);
     qspCall(s, 'city_apt_building', 'floor2_events');
   }
@@ -82,7 +82,7 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor_3(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 4) + 0 === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor3_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor3_event_time ?? 0) - 1440)) {
+  if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor3_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor3_event_time ?? 0) - 1440)) {
     (s as any).floor3_event_time = ((s as any).totminut ?? 0);
     qspCall(s, 'city_apt_building', 'floor3_events', '<<$ARGS[1]>>');
   }
@@ -114,7 +114,7 @@ function enterFloor_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor_4(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 4) + 0 === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor4_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor4_event_time ?? 0) - 1440)) {
+  if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor4_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor4_event_time ?? 0) - 1440)) {
     (s as any).floor4_event_time = ((s as any).totminut ?? 0);
     qspCall(s, 'city_apt_building', 'floor4_events');
   }
@@ -139,7 +139,7 @@ function enterFloor_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFloor_5(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 4) + 0 === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor5_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor5_event_time ?? 0) - 1440)) {
+  if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor5_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor5_event_time ?? 0) - 1440)) {
     (s as any).floor5_event_time = ((s as any).totminut ?? 0);
     qspCall(s, 'city_apt_building', 'floor5_events');
   }
@@ -193,7 +193,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).daystage ?? 0) < 4  &&  ((s as any).sunWeather ?? 0) === 1) {
-    if (((s as any).PSwim ?? 0) === 0) {
+    if ((!((s as any).PSwim ?? 0))) {
       if (qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
         scene.actions([
           { label: 'Change into a bikini', goto: ['changingroom', ''] },
@@ -297,7 +297,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckLiftEvents(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 31) + 0 >= 7) {
+  if ((Math.floor(Math.random() * 31) + 0) >= 7) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gt 'city_apt_building', 'lift_event_<<rand(1, 7)>>', $ARGS[1]

@@ -23,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).sanrand = Math.floor(Math.random() * 11) + 0;
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 2)
     qspCall(s, 'stat', '');
-    if (((s as any).sanrand ?? 0) === 0) {
+    if ((!((s as any).sanrand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['Military', 'san0'] }]);
     }
     if (((s as any).sanrand ?? 0) === 1) {
@@ -41,7 +41,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).milprorand = Math.floor(Math.random() * 11) + 0;
     qspCall(s, 'stat', '');
     scene.text('You walk for a while in the forest.');
-    if (((s as any).milprorand ?? 0) === 0) {
+    if ((!((s as any).milprorand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['Military', 'pro0'] }]);
     }
     if (((s as any).milprorand ?? 0) === 1) {
@@ -67,7 +67,7 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -98,7 +98,7 @@ function enterSan1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -126,7 +126,7 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -167,7 +167,7 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

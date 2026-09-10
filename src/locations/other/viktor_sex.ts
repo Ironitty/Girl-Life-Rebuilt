@@ -863,7 +863,7 @@ function enterWakeupViktor(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You spend a few seconds just letting the warm water rain down on your head before you give yourself a thorough wash, spending a few more minutes in the shower\'s warm embrace before turning the water off and stepping out.');
     scene.text('Grabbing a towel, you dry yourself off before wrapping it around your body and stepping out into the hallway.');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'hj', 5);

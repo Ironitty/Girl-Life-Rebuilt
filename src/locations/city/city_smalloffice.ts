@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Put your hand on his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).borodachTimes = ((s as any).borodachTimes ?? 0) + (1);
     qspCall(s, 'stat', '');
     (s as any).picrand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).picrand ?? 0) === 0) {
+    if ((!((s as any).picrand ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/residential/office/sex/guard/hj.jpg"></center>`);
     }
@@ -160,7 +160,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Sorry, I have to go [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -187,7 +187,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'React [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -283,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'paycheck', 'city_office_toilet_cleaner');
     qspCall(s, 'sweat', 'add', 30);
     scene.img('images/locations/city/residential/office/clener2.jpg');
-    if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jourySex ?? 0) > 0  &&  ((s as any).jouryResult ?? 0) === 0) {
+    if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jourySex ?? 0) > 0  &&  (!((s as any).jouryResult ?? 0))) {
       // TODO-QSP: dynamic text: You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as ...
       scene.text(`You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as somebody comes in, you turn around and see Yuri standing there. He, quickly comes over to you, "${((s as any).pcs_nickname ?? 0)}, don't approach me at the office, well, you know, I don't want the rest of the office to gossip about me seeing the cleaner."`);
       return;
@@ -296,7 +296,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -327,7 +327,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).StasikValera ?? 0) > 0  &&  ((s as any).svQW ?? 0) === 0) {
+    if (((s as any).StasikValera ?? 0) > 0  &&  (!((s as any).svQW ?? 0))) {
       // TODO-QSP: dynamic text: You clean the toilet and all of a sudden you hear the toilet door as someone wal...
       scene.text(`You clean the toilet and all of a sudden you hear the toilet door as someone walks in, as you turn around you see a man. To your surprise, it is Stasik, with him is his friend Valera that you've met at the beach. Stasik also apparently recognizes you, walking up to you, "Hi ${((s as any).pcs_nickname ?? 0)}, you work here as a cleaner?"`);
       return;
@@ -423,7 +423,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
-        if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jourySex ?? 0) === 0) {
+        if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  (!((s as any).jourySex ?? 0))) {
           scene.text('You fill a bucket of water and head over to the office with a mop. The office staff keeps out of the way while you clean the floor. Yuri looks at you studying every inch of your figure.');
         }
         if (((s as any).jouryQw ?? 0) > 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).jourySex ?? 0) > 0) {

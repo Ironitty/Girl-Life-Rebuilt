@@ -8,9 +8,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'pav_park') {
     (s as any).chance = 75;
   } else {
-    (s as any).ml_approach = (Math.floor(Math.random() * 101) + 0 > 80  &&  (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0)) >= 120  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).ml_delparcoQW ?? 0)?.['stage'] === 0);
+    (s as any).ml_approach = ((Math.floor(Math.random() * 101) + 0) > 80  &&  (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0)) >= 120  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).ml_delparcoQW ?? 0)?.['stage'] === 0);
   }
-  (s as any).ml_approach = Math.floor(Math.random() * 100) + 1 > ((s as any).chance ?? 0)  &&  (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0)) >= 120  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).ml_delparcoQW ?? 0)?.['stage'] === 0;
+  (s as any).ml_approach = (Math.floor(Math.random() * 100) + 1) > ((s as any).chance ?? 0)  &&  (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0)) >= 120  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).ml_delparcoQW ?? 0)?.['stage'] === 0;
   if (((s as any).ml_approach ?? 0)) {
     if (((s as any).fame ?? 0)?.['pav_slut'] > 250  ||  ((s as any).fame ?? 0)?.['pav_prostitute'] > 250  ||  ((s as any).fame ?? 0)?.['pav_sex'] > 250  ||  ((s as any).fame ?? 0)?.['pav_porn'] > 500  ||  ((s as any).fame ?? 0)?.['pav_stripping'] > 500) {
       (s as any).ml_delparcoQW['Stage'] = 100;

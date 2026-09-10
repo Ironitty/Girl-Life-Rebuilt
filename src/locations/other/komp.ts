@@ -168,7 +168,7 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
       scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((s as any).predsum ?? 0))} in cash.`);
       scene.actions([
         { label: 'Accept the offer', handler: (st: GameState) => {
-    qspCall(s, 'homes_properties', 'tenants_move_in', 'city_apartment', (((s as any).month ?? 0) + 1 > 12) ? (1) : (((s as any).month ?? 0) + 1), 0);
+    qspCall(s, 'homes_properties', 'tenants_move_in', 'city_apartment', ((((s as any).month ?? 0) + 1 > 12) ? (1) : (((s as any).month ?? 0) + 1)), 0);
     qspCall(s, 'money', 'earn', ((s as any).predsum ?? 0), 'cash');
   }, goto: ['komp', 'start'] },
       ]);
@@ -200,7 +200,7 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *p $access['noporn']
     scene.img('images/pc/items/accessories/computer/komp.jpg');
     scene.text('You go to a porn site and browse through videos for a few minutes.');
-    if (((s as any).porn_studio ?? 0)?.['pickup_porn'] === 1  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn_seen'] === 0  &&  Math.floor(Math.random() * 5) + 1 === 1) {
+    if (((s as any).porn_studio ?? 0)?.['pickup_porn'] === 1  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn_seen'] === 0  &&  (Math.floor(Math.random() * 5) + 1) === 1) {
       (s as any).porn_studio['pickup_porn_seen'] = 1;
       scene.actions([{ label: 'Continue', goto: ['pickup_porn', 'discover_video'] }]);
     }
@@ -214,7 +214,7 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Look up Albina\'s porno [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -322,7 +322,7 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
     (s as any).elektro = ((s as any).elektro ?? 0) + (3);
     qspCall(s, 'mood', 'raise', 'small');
     scene.img('images/pc/items/accessories/computer/porno.jpg');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('You find a video of a girl who is tied up naked and gagged being spanked, whipped and otherwise left at the mercy of her very dominant Master, a man with huge muscular arms.');
       scene.text('You spend some time watching it while imagining what it would be like to be both master and slave.');
     } else {
@@ -347,7 +347,7 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You have no internet access. '+iif(access['metered'], ' You have to buy more minutes.', ' Maybe you...
   } else {
     qspCall(s, 'sweat', 'add', 10);
-    if (((s as any).divanmastr ?? 0) === 0) {
+    if ((!((s as any).divanmastr ?? 0))) {
       (s as any).divanmastr = 1;
       if (((s as any).pcs_inhib ?? 0) < 30) {
         qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
@@ -417,8 +417,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for a kind man', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    (s as any).npc_gentle[$npcID] = 1;
-    (s as any).npc_rough[$npcID] = 0;
+    (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 1;
+    (s as any).npc_rough[String((s as any).npcID ?? 0)] = 0;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
@@ -429,8 +429,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for a normal guy', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    (s as any).npc_gentle[$npcID] = 0;
-    (s as any).npc_rough[$npcID] = 0;
+    (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 0;
+    (s as any).npc_rough[String((s as any).npcID ?? 0)] = 0;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
@@ -441,8 +441,8 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for a strong man', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    (s as any).npc_gentle[$npcID] = 0;
-    (s as any).npc_rough[$npcID] = 1;
+    (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 0;
+    (s as any).npc_rough[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
     scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);

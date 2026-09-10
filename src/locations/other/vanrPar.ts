@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('The bathroom is very small and unimpressive. Nevertheless, it has everything you need.');
   // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt 'mirror','start'">mirror</a> w...
   scene.text('There is a shower, toilet, sink, <a href="exec:gt \'mirror\',\'start\'">mirror</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair, and even a bathtub.');
-  if (((s as any).vanr_lock ?? 0) === 0) {
+  if ((!((s as any).vanr_lock ?? 0))) {
     scene.text('The door is not locked and does not close properly. <a href="exec:gt \'vanrPar\',\'latch\'">Latch the door</a> or <a href="exec:gt \'vanrPar\',\'perm_latch\'">Always latch the door</a>.');
   } else {
     scene.text('The door is always securely locked, ensuring your privacy. <a href="exec:gt \'vanrPar\',\'latch\'">Remove automatic latching</a>.');
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: dynamic text: <i>Huh? Where'd my dildo go? I thought I- oh shit! <<$npc_nickname['A29']>> prob...
     scene.text(`<i>Huh? Where'd my dildo go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29']} probably took it again…</i>`);
-    if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  ((s as any).vanrPar_suction_dildo ?? 0) === 0) {
+    if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  (!((s as any).vanrPar_suction_dildo ?? 0))) {
       scene.text('<i>Huh? Where\'d my dildos go? I thought I left them right here…</i>');
     } else {
       scene.text('<i>Huh? Where\'d my dildo go? I thought I left it right here…</i>');

@@ -22,7 +22,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -47,7 +47,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A89');
     (s as any).LCEugenefirst = 1;
     (s as any).npc_QW['A89'] = 2;
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/characters/city/eugene/sex/firsttimebj1.jpg');
     scene.text('You smile as you walk over to her, and she bites her lip as you drop to your knees and start sucking her cock. You feel it rapidly growing and stiffening in your mouth as you suck on it, and it\'s soon rock-hard and completely filling your mouth.');
     qspCall(s, 'arousal', 'bj', 2);

@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             }
             if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-              (s as any).aksex[akrand] = 1;
+              (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
               (s as any).guy = ((s as any).guy ?? 0) + (1);
             }
             (s as any).num = ((s as any).num ?? 0) - (1);

@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -52,7 +52,7 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -64,7 +64,7 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Get a room with Vika', handler: (st: GameState) => {
-    if (((s as any).vikasex ?? 0) === 0) {
+    if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
     }
   }, goto: ['lezbsex', 'start'] },
@@ -88,7 +88,7 @@ function enterEnd3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
   }, goto: ['uni_dorm', 'tenth_floor'] },
       { label: 'Stay and enjoy yourself', handler: (st: GameState) => {
-    if (((s as any).vikasex ?? 0) === 0) {
+    if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
     }
     scene.img('images/locations/city/island/university/dorm/sex/party/vechend2.jpg');
@@ -113,7 +113,7 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -125,7 +125,7 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Go with Vika to an empty room', handler: (st: GameState) => {
-    if (((s as any).vikasex ?? 0) === 0) {
+    if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
     }
   }, goto: ['lezbsex', 'start'] },
@@ -161,7 +161,7 @@ function enterEnd7(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave him blueballed [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -220,7 +220,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -232,7 +232,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Caress Vika', handler: (st: GameState) => {
-    if (((s as any).vikasex ?? 0) === 0) {
+    if ((!((s as any).vikasex ?? 0))) {
       (s as any).vikasex = 1;
     }
     scene.img('images/locations/city/island/university/dorm/sex/party/itog81.jpg');
@@ -301,7 +301,7 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

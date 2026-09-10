@@ -7,8 +7,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
-  (s as any).npc_meetday[$npcID] = 0;
-  (s as any).npc_dates[$npcID] = ((s as any).npc_dates[$npcID] ?? 0) + (1);
+  (s as any).npc_meetday[String((s as any).npcID ?? 0)] = 0;
+  (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
   qspCall(s, 'lover_pref', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -23,36 +23,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
       (s as any).randchan = Math.floor(Math.random() * 3) + 0;
-      if (((s as any).randchan ?? 0) === 0) {
+      if ((!((s as any).randchan ?? 0))) {
       } else {
         if (((s as any).randchan ?? 0) === 2) {
         }
         if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
           (s as any).randchan = Math.floor(Math.random() * 2) + 0;
-          if (((s as any).randchan ?? 0) === 0) {
+          if ((!((s as any).randchan ?? 0))) {
           }
         }
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
             (s as any).randchan = Math.floor(Math.random() * 3) + 0;
-            if (((s as any).randchan ?? 0) === 0) {
+            if ((!((s as any).randchan ?? 0))) {
             } else {
               if (((s as any).randchan ?? 0) === 2) {
               }
               if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
                 (s as any).randchan = Math.floor(Math.random() * 2) + 0;
-                if (((s as any).randchan ?? 0) === 0) {
+                if ((!((s as any).randchan ?? 0))) {
                 }
               }
               if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
                 (s as any).randchan = Math.floor(Math.random() * 3) + 0;
-                if (((s as any).randchan ?? 0) === 0) {
+                if ((!((s as any).randchan ?? 0))) {
                 } else {
                   if (((s as any).randchan ?? 0) === 2) {
                   }
                   if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
                     (s as any).randchan = Math.floor(Math.random() * 2) + 0;
-                    if (((s as any).randchan ?? 0) === 0) {
+                    if ((!((s as any).randchan ?? 0))) {
                     }
                   }
                 }
@@ -67,7 +67,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
                     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
                   }
-                  if (((s as any).pcs_lip ?? 0) === 0) {
+                  if ((!((s as any).pcs_lip ?? 0))) {
                   }
                   if (((s as any).pcs_lip ?? 0) === 1) {
                   }

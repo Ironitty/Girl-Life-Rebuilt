@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterRegularUpdate(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).dounspell ?? 0) === 0) {
+  if ((!((s as any).dounspell ?? 0))) {
     qspCall(s, 'body', 'UpdateBodyMeasurement');
     (s as any).temp_weight = qspFunc(s, 'body', 'CalcWeight2');
     (s as any).pcs_weight[0] = ((s as any).temp_weight ?? 0) / 10;
@@ -92,7 +92,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body', 'Update_Eyelashes');
   qspCall(s, 'body', 'Update_Hair');
   qspCall(s, 'body', 'Update_Pubes_and_leghair');
-  if (((s as any).mc_inventory ?? 0)?.['scrunchies'] > 0  &&  Math.floor(Math.random() * 100) + 1 <= 8) {
+  if (((s as any).mc_inventory ?? 0)?.['scrunchies'] > 0  &&  (Math.floor(Math.random() * 100) + 1) <= 8) {
     (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) - (1);
   }
   if (((s as any).skinDailyPenalty ?? 0)  < 0) {

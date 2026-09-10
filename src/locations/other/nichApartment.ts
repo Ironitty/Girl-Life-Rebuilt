@@ -12,14 +12,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'nichUtil', 'checkOutfit');
   }
   if (((s as any).locArgs?.[0] ?? 0) === ''  ||  ((s as any).locArgs?.[0] ?? 0) === 'start'  ||  ((s as any).locArgs?.[0] ?? 0) === 'return') {
-    if (((s as any).nichWork ?? 0) === 0) {
+    if ((!((s as any).nichWork ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['nichApartment', 'visitTanya'] }]);
     }
     qspCall(s, 'stat', '');
     scene.text('<center><b>Nicholas\' Apartment</b></center>');
     scene.img('images/locations/city/citycenter/nichApartment/hallway.jpg');
     scene.text('You are standing in a luxurious and spacious city center home.');
-    if (((s as any).nichGalaDisabled ?? 0) === 0) {
+    if ((!((s as any).nichGalaDisabled ?? 0))) {
       // TODO-QSP: $nickFamDesc += ' He lives here with his wife <a href="exec: gt ''nichGala'', ''desc''">Gala</a>.'
     }
     // TODO-QSP: $nickFamDesc += ' <a href="exec: gt ''nichTanya'', ''desc''">Tanya</a> is the daughter of Gala and s...

@@ -10,7 +10,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/dimkahome/house.jpg');
   scene.text('You walk up the path from the street to a relatively large, nice looking two-story house. You notice balconies on the front and side of the home. You exhale a deep breathe as you wonder what it would be like to live in such a nice place. You approach the front door and knock.');
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  ((s as any).kanikuli ?? 0) > 0) {
-    if (((((s as any).week ?? 0) < 6  &&  (((s as any).hour ?? 0) > 15  ||  (((s as any).hour ?? 0) === 15  &&  ((s as any).minut ?? 0) >= 30))  &&  ((s as any).hour ?? 0) < 19)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 19))  &&  Math.floor(Math.random() * 5) + 0 !== 0) {
+    if (((((s as any).week ?? 0) < 6  &&  (((s as any).hour ?? 0) > 15  ||  (((s as any).hour ?? 0) === 15  &&  ((s as any).minut ?? 0) >= 30))  &&  ((s as any).hour ?? 0) < 19)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 19))  &&  (Math.floor(Math.random() * 5) + 0) !== 0) {
       scene.text('A few moments later Dimka\'s mother answers the door. "Oh, you must be one of Dimka\'s friends. Maybe more than friends." She says with a sly smile as she invites you in. "He is in his room, feel free to go on upstairs."');
       scene.actions([
         { label: 'Enter', goto: ['dimaHome', 'hallway'] },
@@ -24,7 +24,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 19  &&  Math.floor(Math.random() * 5) + 0 !== 0) {
+    if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 19  &&  (Math.floor(Math.random() * 5) + 0) !== 0) {
       scene.text('A few moments later Dimka\'s mother answers the door. "Oh, you must be one of Dimka\'s friends. Maybe more than friends." She says with a sly smile as she invites you in. "He is in his room, feel free to go on upstairs."');
       scene.actions([
         { label: 'Enter', goto: ['dimaHome', 'hallway'] },
@@ -95,9 +95,9 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/kitchen.jpg');
   scene.text('You enter the kitchen, finding that it matches the decor and cleanliness of the rest of the home. All the granite and glass surfaces are polished to a reflective gleam. A large chandelier hangs above the kitchen table, while the tiled floor glints in the light.');
-  if ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).rand ?? 0) (0, 1) === 1)  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 19  &&  ((s as any).week ?? 0) === 5)) {
+  if ((((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22  &&  (Math.floor(Math.random() * 2) + 0) === 1)  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 19  &&  ((s as any).week ?? 0) === 5)) {
     scene.text('You see Dimka\'s mother Olya is in the kitchen, drinking tea. She is finely dressed with flawless makeup. You don\'t think she has noticed you yet.');
-    if (((s as any).met_DimkaMother ?? 0) === 0) {
+    if ((!((s as any).met_DimkaMother ?? 0))) {
       scene.actions([
         { label: 'Talk', goto: ['dimaHome', 'kitchen1'] },
       ]);
@@ -119,12 +119,12 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Study</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/study.jpg');
-  if (Math.floor(Math.random() * 2) + 0 === 0  ||  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 9  &&  ((s as any).week ?? 0) >= 6) {
+  if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 9  &&  ((s as any).week ?? 0) >= 6) {
     scene.actions([
       { label: 'Leave the study', goto: ['dimaHome', 'hallway'] },
     ]);
   } else {
-    if (((s as any).met_DimkaDad ?? 0) === 0) {
+    if ((!((s as any).met_DimkaDad ?? 0))) {
       scene.text('You see Dimka\'s father Leonid sitting behind a beautiful polished large wooden desk. He is well dressed and not bad looking, for an older guy. He seems to be working on something, you don\'t think he has noticed you yet.');
       if (((s as any).pcs_hotcat ?? 0) >= 7) {
         scene.actions([{ label: 'Continue', goto: ['dimaHome', 'study1'] }]);
@@ -594,7 +594,7 @@ function enterStudy3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Not his business [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -826,7 +826,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -848,7 +848,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -865,7 +865,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -893,7 +893,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -964,7 +964,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No I don\'t thnk I can [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -994,7 +994,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1022,7 +1022,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1074,7 +1074,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1091,7 +1091,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1119,7 +1119,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1178,7 +1178,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1195,7 +1195,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1241,7 +1241,7 @@ function enterDimkaMakeout(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1258,7 +1258,7 @@ function enterDimkaMakeout(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'I said no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1300,7 +1300,7 @@ function enterDimkaSeduce(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1317,7 +1317,7 @@ function enterDimkaSeduce(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop kissing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1358,7 +1358,7 @@ function enterDimkaMakeout2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1375,7 +1375,7 @@ function enterDimkaMakeout2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'I said no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

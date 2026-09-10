@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Spy', handler: (st: GameState) => {
     (s as any).nichRand = Math.floor(Math.random() * 4) + 0;
-    if (((s as any).nichRand ?? 0) === 0  ||  ((s as any).nichTanyaSpyLast ?? 0) === ((s as any).daystart ?? 0)  ||  ((s as any).nichTanyaSpyCounter ?? 0) === 0) {
+    if (((s as any).nichRand ?? 0) === 0  ||  ((s as any).nichTanyaSpyLast ?? 0) === ((s as any).daystart ?? 0)  ||  (!((s as any).nichTanyaSpyCounter ?? 0))) {
       scene.text('The view is obscured by something. You can\'t see anything.');
     } else {
       scene.img(`${((s as any).nichTempPic ?? 0)}`);
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).nichCleanAppropriate = 0;
       } else {
         (s as any).nichRand = Math.floor(Math.random() * 4) + 0;
-        if (((s as any).nichRand ?? 0) === 0) {
+        if ((!((s as any).nichRand ?? 0))) {
           scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is lying on her bed listening to music.');
         } else {
           scene.text('<a href="exec: gt \'nichTanya\', \'bedroomTanya\'">Tanya</a> is lying on her bed watching TV.');
@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('Tanya is not here at the moment.');
         }
         if (((s as any).nichWork ?? 0) === 2) {
-          if (((s as any).nichCleanAppropriate ?? 0) === 0) {
+          if ((!((s as any).nichCleanAppropriate ?? 0))) {
             scene.text('It wouldn\'t be appropriate to clean this room now.');
           } else {
             qspCall(s, 'nichChore', 'inspect', 'tanya');

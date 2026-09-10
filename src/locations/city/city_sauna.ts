@@ -53,7 +53,7 @@ function enterSauna2(s: GameState, scene: SceneBuilder): void {
   scene.text('A one hour session costs \' + $func(\'money\', \'string_price\', 2000) + \'.');
   if (((s as any).saunaday ?? 0) !== ((s as any).daystart ?? 0)) {
     if (qspFunc(s, 'money', 'can_afford', 2000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 2000);
       (s as any).minut = ((s as any).minut ?? 0) + 60;

@@ -28,7 +28,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"Nope, never heard of her!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -45,7 +45,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You give him a sweet smile and say: "Yes, that\'s me. Why are you asking?"');
     scene.text('The man looks a tad embarrassed to bring it up, but he\'s too horny to back down now: "I hear you\'re a prostitute, who services men in the stairwell here. Is that right?"');
-    if (((s as any).pcs_sleep ?? 0) < 10  ||  ((s as any).pod_whore_client_count ?? 0) === 0) {
+    if (((s as any).pcs_sleep ?? 0) < 10  ||  (!((s as any).pod_whore_client_count ?? 0))) {
       scene.actions([
         { label: 'Decline, you\'re too tired', handler: (st: GameState) => {
     // TODO-QSP: gt 'pod_whore', 'hide', 'pod_client_talk_noson'
@@ -56,7 +56,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Decline, you don\'t want to fuck him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

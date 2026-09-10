@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).belact ?? 0) > 0) {
     (s as any).belyvag = Math.floor(Math.random() * 4) + 0;
-    if (((s as any).belyvag ?? 0) === 0) {
+    if ((!((s as any).belyvag ?? 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> grunts loudly while you suck him off. "Time to give you a real poun...
       scene.text(`${((s as any).boydesc ?? 0)} grunts loudly while you suck him off. "Time to give you a real pounding!"`);
       scene.actions([

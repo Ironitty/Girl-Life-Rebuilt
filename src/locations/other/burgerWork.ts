@@ -84,13 +84,13 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).komblrand = 0;
     if (((s as any).BurgerQW ?? 0)?.['IlyQWBlackmail'] >= 2) {
-      if (((s as any).komblrand ?? 0) === 0) {
+      if ((!((s as any).komblrand ?? 0))) {
         scene.text('After work, you are about to leave the bistro, but Ilyushkin stops you. "Where are you going, baby? Want to suck my dick?"');
         qspCall(s, 'willpower', 'bj', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -122,7 +122,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -139,7 +139,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -161,7 +161,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

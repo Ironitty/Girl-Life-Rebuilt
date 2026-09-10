@@ -10,7 +10,7 @@ function enterSetRandomTemplate(s: GameState, scene: SceneBuilder): void {
 
 function enterGetRandomTemplate(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 22) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   } else {
     if (((s as any).temp_rand ?? 0) === 2) {
     } else {

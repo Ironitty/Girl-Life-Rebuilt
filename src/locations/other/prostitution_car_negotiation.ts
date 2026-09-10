@@ -109,7 +109,7 @@ function enterLookClient(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: iif(prostitute['mesec_mod'] = 0, 'He really doesn''t like', 'He tells you that he likes')+' to fuck ...
         }
         scene.text('You offer him…');
-        if (Math.floor(Math.random() * 10) + 1 < 10) {
+        if ((Math.floor(Math.random() * 10) + 1) < 10) {
           scene.actions([
             { label: 'A blowjob', handler: (st: GameState) => {
     // TODO-QSP: $prostitute['client_scene'] = 'Blowjob'
@@ -182,7 +182,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: '… you\'re not in the mood [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -302,7 +302,7 @@ function enterClientRegular(s: GameState, scene: SceneBuilder): void {
           if ((((s as any).prostitute_auto ?? 0)?.['reg_vag_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal')  ||  (((s as any).prostitute_auto ?? 0)?.['reg_anal_creampie'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal')) {
           }
         }
-        qspCall(s, 'prostitution_functions', 'payment', (((s as any).prostitute_client_condom ?? 0) === 'Yes') ? ('condom_yes') : ('condom_no'), (((s as any).prostitute_client_cumshot ?? 0) === 'Inside') ? ('inside_yes') : ('inside_no'));
+        qspCall(s, 'prostitution_functions', 'payment', ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? ('condom_yes') : ('condom_no')), ((((s as any).prostitute_client_cumshot ?? 0) === 'Inside') ? ('inside_yes') : ('inside_no')));
         scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'client_regular_success'] }]);
         qspCall(s, 'prostitution_functions', 'payment', 'condom_yes', 'inside_no');
         scene.text('… should always use a condom. He was always nice, never mistreated you and without a condom he would surely catch your STD.');

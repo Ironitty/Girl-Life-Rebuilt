@@ -287,7 +287,7 @@ function enterIgorPeg(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg2.jpg');
     if (((s as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
       scene.text('You step into the harness and pull it up into place. With Igor\'s help, you quickly get the harness strapped tightly in place. You could use a moment to cast the Penis Envy spell if you like.');
-      if (((s as any).penisEnvyVariable ?? 0) === 0) {
+      if ((!((s as any).penisEnvyVariable ?? 0))) {
         scene.actions([
           { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -363,7 +363,7 @@ function enterStraponIgorBj(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Establish dominance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -426,7 +426,7 @@ function enterStraponIgorBj(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Establish dominance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -519,7 +519,7 @@ function enterStraponIgorMagic(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Keep fucking him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -592,7 +592,7 @@ function enterStraponIgorMagic(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Keep fucking him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -723,7 +723,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -741,7 +741,7 @@ function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Make him submit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -905,7 +905,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
     scene.text('He lets go of your hair and lets you guide the action, but after a while he starts moving his hips forward to force his dick further into your mouth.');
     qspCall(s, 'arousal', 'bj', 3, 'sub', 'inhibition');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 4) + 1 === 1  &&  ((s as any).stat ?? 0)?.['vaginal'] > 0) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1  &&  ((s as any).stat ?? 0)?.['vaginal'] > 0) {
       scene.text('He reaches down and pulls you up before roughly shoving you over to the railing and bending you over it. He quickly strips you from the waist down and you feel him rubbing the tip of his hard cock against your wet slit.');
       scene.actions([
         { label: 'Get fucked', goto: ['pav_discoev1', 'dan_fuck'] },

@@ -83,7 +83,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/pavlovsk/resident/mom/prost9.jpg');
   }
-  if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).VKChurchIntro ?? 0) === 0) {
+  if (((s as any).motherKnowWhore ?? 0) === 0  &&  (!((s as any).VKChurchIntro ?? 0))) {
     // TODO-QSP: dynamic text: You suddenly hear someone calling you out. "<<$pcs_firstname>>? I never expected...
     scene.text(`You suddenly hear someone calling you out. "${((s as any).pcs_firstname ?? 0)}? I never expected you to come here without me dragging you."`);
     scene.text('You turn to see your mother sitting in the middle row, who motions for you to sit next to her.');
@@ -108,7 +108,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
     (s as any).VKChurchIntro = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/enterchurch.jpg');
-    if (((s as any).VKChurch ?? 0) === 0) {
+    if ((!((s as any).VKChurch ?? 0))) {
       scene.text('You try to make yourself comfortable on the hard wooden pew while waiting for the sermon to start.');
       scene.text('Your mother turns to you. "It\'s been a long time since you were last here. I should show you how to follow the sermon."');
       scene.text('You give your mother a nod as everyone takes a seat around you. The room then slowly falls into silence as the sermon begins.');

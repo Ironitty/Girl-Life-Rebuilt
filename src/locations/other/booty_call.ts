@@ -12,19 +12,19 @@ function enterScheduler(s: GameState, scene: SceneBuilder): void {
 function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_bc_i = 0;
   // TODO-QSP: :bc_sched_loop
-  if (((s as any).temp_bc_i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+  if (((s as any).temp_bc_i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'fuckbuddy') {
       qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).temp_bc_id ?? 0));
       qspCall(s, 'booty_call', 'bc_npc_stat_update', ((s as any).temp_bc_id ?? 0));
-      if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  Math.floor(Math.random() * 300) + 0 < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
+      if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 300) + 0) < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
         qspCall(s, 'booty_call', 'schedule_sms', ((s as any).temp_bc_id ?? 0));
       }
     } else {
       qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).temp_bc_id ?? 0));
       qspCall(s, 'booty_call', 'bc_npc_stat_update', ((s as any).temp_bc_id ?? 0));
-      if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  Math.floor(Math.random() * 300) + 0 < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
+      if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 300) + 0) < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
         if (((s as any).daystart ?? 0) >= (((s as any).npc_sugar_daddy_timer ?? 0)?.[String((s as any).temp_bc_id ?? 0)] - (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] - 40) / 6)) {
-          (s as any).sugar_daddy_call[$temp_bc_id] = 1;
+          (s as any).sugar_daddy_call[String((s as any).temp_bc_id ?? 0)] = 1;
           qspCall(s, 'booty_call', 'schedule_sms', ((s as any).temp_bc_id ?? 0));
         }
       }

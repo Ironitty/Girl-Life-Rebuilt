@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
     (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
     (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
-    if (((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  Math.floor(Math.random() * 3) + 1 === 1) {
+    if (((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
     }
     scene.text('<center><b>Nicholas\' Living Room</b></center>');
@@ -74,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('<a href="exec: gt \'nichGala\'">Gala</a> and Tanya are sitting on the couch chatting with each other.');
         } else {
           (s as any).nichRand = Math.floor(Math.random() * 3) + 0;
-          if (((s as any).nichRand ?? 0) === 0) {
+          if ((!((s as any).nichRand ?? 0))) {
             scene.text('<a href="exec: gt \'nichGala\'">Gala</a> is sitting on the couch reading a book.');
           } else {
             scene.text('<a href="exec: gt \'nichGala\'">Gala</a> is sitting on the couch reading a magazine.');
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).nichWork ?? 0) === 2  &&  ((s as any).nichOutfitState ?? 0) === 0) {
+    if (((s as any).nichWork ?? 0) === 2  &&  (!((s as any).nichOutfitState ?? 0))) {
       if (((s as any).nichNichPresent ?? 0) === 1) {
         // TODO-QSP: dynamic text: Nicholas looks at you with a displeased expression. "<<$pcs_nickname>>, I though...
         scene.text(`Nicholas looks at you with a displeased expression. "${((s as any).pcs_nickname ?? 0)}, I thought I made it clear that you have to wear your uniform here. Go back to your room and put it on."`);
@@ -102,7 +102,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).nichWork ?? 0) === 2) {
-        if (((s as any).nichCleanAppropriate ?? 0) === 0) {
+        if ((!((s as any).nichCleanAppropriate ?? 0))) {
           scene.text('It wouldn\'t be appropriate to clean this room now.');
         } else {
           qspCall(s, 'nichChore', 'inspect', 'living');
@@ -228,7 +228,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want to talk to you after breakfast."`);
                     scene.text('"Of course, Mistress Gala." You reply as is expected of you.');
                     (s as any).nichAfterBFEvent = 210;
-                    if (((s as any).nichGalaContractActive ?? 0) === 1  &&  ((s as any).nichGalaContractLast ?? 0) + Math.floor(Math.random() * 3) + 5 <= ((s as any).daystart ?? 0)) {
+                    if (((s as any).nichGalaContractActive ?? 0) === 1  &&  ((s as any).nichGalaContractLast ?? 0) + (Math.floor(Math.random() * 3) + 5) <= ((s as any).daystart ?? 0)) {
                       scene.text('Gala looks at you with a stern look on her face.');
                       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want to talk to you after breakfast."
                       scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want to talk to you after breakfast."`);

@@ -12,7 +12,7 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
-    if (((s as any).arrsize ?? 0)('sleep_events_priority') > 0) {
+    if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
       // TODO-QSP: gt 'dream_events', 'event_handler2', 'priority'
     } else {
       scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler2'] }]);
@@ -84,11 +84,11 @@ function enterSuccubusDream(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNoDream(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).start_type ?? 0)?.['magic'] !== 'tg'  ||  Math.floor(Math.random() * 10) + 0 > 2) {
+  if (((s as any).start_type ?? 0)?.['magic'] !== 'tg'  ||  (Math.floor(Math.random() * 10) + 0) > 2) {
     scene.text('You sleep without dreaming.');
   } else {
     (s as any).temp = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).temp ?? 0) === 0) {
+    if ((!((s as any).temp ?? 0))) {
       scene.text('You have hazy dreams about your past.');
     } else {
       scene.text('You dream about the moon looking at the world with his one bloody eye.');
@@ -100,7 +100,7 @@ function enterNoDream(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
-  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).pcs_ass ?? 0) === 0  &&  (((s as any).stat ?? 0)?.['anal'] + ((s as any).stat ?? 0)?.['bj'] + ((s as any).stat ?? 0)?.['hj'] + ((s as any).stat ?? 0)?.['cuni']+ ((s as any).stat ?? 0)?.['female_sexual_partners'] + ((s as any).stat ?? 0)?.['male_sexual_partners'] + ((s as any).stat ?? 0)?.['herm_sexual_partners']) === 0) {
+  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).pcs_ass ?? 0) === 0  &&  (!(((s as any).stat ?? 0)?.['anal'] + ((s as any).stat ?? 0)?.['bj'] + ((s as any).stat ?? 0)?.['hj'] + ((s as any).stat ?? 0)?.['cuni']+ ((s as any).stat ?? 0)?.['female_sexual_partners'] + ((s as any).stat ?? 0)?.['male_sexual_partners'] + ((s as any).stat ?? 0)?.['herm_sexual_partners']))) {
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 1;
   } else {
     (s as any).temp_rand = ((s as any).rand ?? 0)(1, 7 + ((s as any).succublvl ?? 0));

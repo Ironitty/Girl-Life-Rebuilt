@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['city_residential', ''] },
       ]);
     } else {
-      if (((s as any).mistendbound ?? 0) > 50  &&  Math.floor(Math.random() * 4) + 0 === 0) {
+      if (((s as any).mistendbound ?? 0) > 50  &&  (!(Math.floor(Math.random() * 4) + 0))) {
         scene.img('images/characters/city/natalya/sex/dom26.jpg');
         scene.text('You ring the bell. Nobody answers, but you can definitely hear somebody inside. You try the handle and to your surprise, the door isn\'t locked. You\'ve barely crossed the threshold when you see your slave sitting on a chair. She seems to have bound herself in anticipation of your arrival. You help her off the chair and bend her over…');
         scene.actions([

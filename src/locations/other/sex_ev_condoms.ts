@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).sex_ev['condom_count'] = Math.floor(Math.random() * 6) + 5;
     if (((s as any).sex_ev ?? 0)?.['condom_count'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0  &&  ((s as any).npc_no_condoms ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
-      if (Math.floor(Math.random() * 5) + 1 === 1) {
+      if ((Math.floor(Math.random() * 5) + 1) === 1) {
         (s as any).sex_ev['condom_count'] = 0;
       } else {
         (s as any).sex_ev['condom_count'] = Math.floor(Math.random() * 10) + 1;

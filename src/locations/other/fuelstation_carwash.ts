@@ -36,7 +36,7 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You wash the windows of several cars and earn <<$func('money', 'string_profit', ...
       scene.text(`You wash the windows of several cars and earn ${qspFunc(s, 'money', 'string_profit', 100)}.`);
       qspCall(s, 'money', 'earn', 100);
-      if (Math.floor(Math.random() * 100) + 1 <= ((s as any).min ?? 0)(((s as any).max ?? 0)(20, ((s as any).slut_compare ?? 0)), 80)) {
+      if ((Math.floor(Math.random() * 100) + 1) <= ((s as any).min ?? 0)(((s as any).max ?? 0)(20, ((s as any).slut_compare ?? 0)), 80)) {
         scene.text('As you finish washing another car, the driver walks up to you to give you a tip. From the way he\'s looking at you, it\'s obvious he\'s interested in something more as well.');
         (s as any).carwashscene = Math.floor(Math.random() * 100) + 1;
         if (((s as any).carwashscene ?? 0) <= ((s as any).min ?? 0)(((s as any).max ?? 0)(25, ((s as any).slut_compare ?? 0)), 50)  &&  ((s as any).carwashscene ?? 0) >= 25) {

@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).boydesc ?? 0)} approaches you. "Hey, I need your help with something."`);
       scene.actions([
         { label: 'Sure what is it?', handler: (st: GameState) => {
-    if (((s as any).campfire ?? 0) === 0) {
+    if ((!((s as any).campfire ?? 0))) {
       if (((s as any).hunterVars ?? 0)?.['collective_opinion'] >= 15) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says. "The fire is out. Can you please ensure it keeps g...
         scene.text(`"${((s as any).pcs_nickname ?? 0)}," he says. "The fire is out. Can you please ensure it keeps going while we are outside?"`);
@@ -107,7 +107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"I\'ll help later, busy right now" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

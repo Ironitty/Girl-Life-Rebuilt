@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: copyarr 'trace_args', 'ARGS'
     qspCall(s, 'debug_tools', 'trace', 'loc_change');
   }
-  if (((s as any).settingmode ?? 0) === 0) {
+  if ((!((s as any).settingmode ?? 0))) {
     // TODO-QSP: killvar 'cheatmenu'
   }
   // TODO-QSP: copyarr 'modARGS', 'ARGS'

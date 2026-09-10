@@ -15,7 +15,7 @@ function enterZoyaChatMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterZoyaSmallTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-  if (Math.floor(Math.random() * 5) + 1 === 1) {
+  if ((Math.floor(Math.random() * 5) + 1) === 1) {
     scene.text('"Thank you for coming over by the way," Zoya smiles at you warmly. "I\'m not just being polite. After everything Albina\'s been through, I\'m glad she has a friend like you to rely on. She needs it."');
     qspCall(s, 'albina_mother_events', 'zoya_chat_menu');
   }
@@ -427,7 +427,7 @@ function enterPeep2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Keep watching', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 3) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
       scene.img('images/locations/pavlovsk/resident/albinahome/zoyapeeping1.jpg');
       scene.text('Before you can peek back in and watch any further, you hear someone coming and run over to the bathroom, pretending to leave just as Albina arrives. She has an inquisitive look on her face.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>? What are you doing?" she asks, noticing the flushed appearan...

@@ -58,9 +58,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             (s as any).temprand = Math.floor(Math.random() * 1001) + 0;
           }
-          if (((s as any).temprand ?? 0) === 0) {
+          if ((!((s as any).temprand ?? 0))) {
             (s as any).temprand = Math.floor(Math.random() * 2) + 0;
-            if (((s as any).temprand ?? 0) === 0) {
+            if ((!((s as any).temprand ?? 0))) {
               qspCall(s, 'din_bad', 'takepill');
               (s as any).tabletkipt = (-2);
               (s as any).tabletkipi = 1;
@@ -72,7 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'notification', 'add', '<<$temp_img>>You find yourself holding the bottle of birth control pills, you cannot remember if you took one or not.');
             }
             if (((s as any).tabletkipd ?? 0) > 0) {
-              if (Math.floor(Math.random() * 10) + 0 === 0) {
+              if ((!(Math.floor(Math.random() * 10) + 0))) {
                 if (((s as any).tabletkipt ?? 0) < 0) {
                   qspCall(s, 'notification', 'add', '<<$temp_img>>You don\'t think you have taken your pill today.');
                 } else {
@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
             (s as any).pilldaychk = ((s as any).daystart ?? 0);
             qspCall(s, 'din_bad', 'takepill');
-            if (Math.floor(Math.random() * 8) + 0 === 0  &&  ((s as any).tabletkiday ?? 0) >= (((s as any).daystart ?? 0) - 1)) {
+            if ((Math.floor(Math.random() * 8) + 0) === 0  &&  ((s as any).tabletkiday ?? 0) >= (((s as any).daystart ?? 0) - 1)) {
               (s as any).tabletkipd = ((s as any).tabletkipd ?? 0) + (1);
             }
             (s as any).tabletkiday = ((s as any).daystart ?? 0);

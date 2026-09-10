@@ -35,7 +35,7 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/expensiverest/maitredseat.jpg');
     scene.text('The well-dressed maître d\' politely asks whether you would prefer the VIP section or the common room.');
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.text('<center><b>Babel</b></center>');
       scene.img('images/locations/city/citycenter/expensiverest/maitredvip.jpg');
@@ -78,7 +78,7 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Babel, Common Room</b></center>');
   scene.img('images/locations/city/citycenter/expensiverest/restoran2.jpg');
   scene.text('The room emits a good atmosphere with its soft lighting and light furniture. You hear the sounds of music, the clinks of glasses and female laughter. It seems you can finally relax a little.');
-  if (Math.floor(Math.random() * 101) + 0 > 80  &&  ((s as any).npc_QW ?? 0)?.['A192'] === 0  &&  ((s as any).pcs_energy ?? 0) > 15  &&  ((s as any).nastjaday ?? 0) !== ((s as any).daystart ?? 0)) {
+  if ((Math.floor(Math.random() * 101) + 0) > 80  &&  ((s as any).npc_QW ?? 0)?.['A192'] === 0  &&  ((s as any).pcs_energy ?? 0) > 15  &&  ((s as any).nastjaday ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).nastjaday = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/anastasia/nastja1.jpg');
@@ -87,7 +87,7 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Smile at her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

@@ -81,7 +81,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.text('As you look around, you see an attractive young black man sitting at one of the tables. He notices you and gives you a quick once-over before returning to what he was doing.');
               scene.text('After a few minutes, he finishes his drink before getting up and leaving.');
             }
-            if (((s as any).temp_familiar_here ?? 0) === 0) {
+            if ((!((s as any).temp_familiar_here ?? 0))) {
               scene.text('As you look around, you don\'t see anyone you recognize hanging out today.');
             }
           }

@@ -33,7 +33,7 @@ function enterRapist(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRobber(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 11) + 0 < 5) {
+  if ((Math.floor(Math.random() * 11) + 0) < 5) {
     (s as any).fightEnding = 8;
   } else {
     (s as any).fightEnding = 9;

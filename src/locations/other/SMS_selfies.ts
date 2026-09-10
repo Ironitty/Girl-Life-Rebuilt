@@ -49,7 +49,7 @@ function enterSelfieMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).SMSSelfieVars['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<a href="exec: gs \'SMS_selfies\', \'showlocation\', <<SMSSelfieVars[\'i\']>>"><<$selfieLocDesc[SMSSelfieVars[\'i\']]>> selfies</a>');
   (s as any).SMSSelfieVars['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('</tr></td><tr><td>');
   (s as any).SMSSelfieVars['i'] = ((s as any).SMSSelfieVars['i'] ?? 0) + (1);
-  if (((s as any).SMSSelfieVars ?? 0)?.['i'] < ((s as any).arrsize ?? 0)('selfieLoc')) {
+  if (((s as any).SMSSelfieVars ?? 0)?.['i'] < Object.keys((s as any).selfieLoc ?? {}).length) {
     // TODO-QSP: jump 'LocationLoop'
   }
   (s as any).SMSSelfieVars['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<a href="exec: gs \'SMS_selfies\', \'exit\', <<ARGS[2]>>">Exit</a></td></tr></table>');

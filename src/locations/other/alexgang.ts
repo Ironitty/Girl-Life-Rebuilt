@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('After arriving at Alexei\'s apartment, he offers you various alcoholic beverages before sitting down at a table in the living room to chat as he always does.');
   scene.text('Suddenly, the doorbell rings, and Alexei walks towards the door to answer it. You hear a man\'s voice in the hallway, "Hello Alexei, I hope I\'m not disturbing?" He answers, "Not at all, my friend. Come in."');
-  if (((s as any).alexgangbang ?? 0) === 0) {
+  if ((!((s as any).alexgangbang ?? 0))) {
     scene.text('You\'re a little surprised and wonder who it could be, but then you see Alexander, the nightclub owner, enter the room. He greets you as he sits down on a chair.');
     scene.text('Alexei pours alcohol into three glasses and hands them out. All of you spend some time drinking and talking together. Before long, Alexander asked you to call him by his nickname, Sasha.');
     // TODO-QSP: dynamic text: After a while, Alexei puts the bottle aside to pull out his dick from his pants....
@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Alexei lifts you up to put you down in front of the bed where Sasha has seated himself. He tells you to get on all fours with your head placed before Sasha. Sasha starts to unbutton his pants, which leaves no doubt as to what you\'re expected to do.');
     scene.actions([
       { label: 'Give Sasha a blowjob', handler: (st: GameState) => {
-    if (((s as any).sashaclubsex ?? 0) === 0) {
+    if ((!((s as any).sashaclubsex ?? 0))) {
       (s as any).sashaclubsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }

@@ -23,7 +23,7 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).sisterbfspy ?? 0) >= 4) {
         (s as any).sisterQW['lesbDay'] = ((s as any).daystart ?? 0);
-        if (((s as any).sisterLesb ?? 0) === 0) {
+        if ((!((s as any).sisterLesb ?? 0))) {
           qspCall(s, 'willpower', 'foreplay', 'self');
         } else {
           qspCall(s, 'willpower', 'foreplay', 'self', 'easy');
@@ -31,7 +31,7 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Touch her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -64,7 +64,7 @@ function enterSisterSleep_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Continue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -106,7 +106,7 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -162,7 +162,7 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -332,7 +332,7 @@ function enterSisterSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_lesbian'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_strapon'] }]);
-    if (Math.floor(Math.random() * 3) + 1 === 1) {
+    if ((Math.floor(Math.random() * 3) + 1) === 1) {
       scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_strapon'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['sistersleep', 'sister_lesbian'] }]);
@@ -537,7 +537,7 @@ function enterSisterStraponAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/anya/sex/strap6.jpg');
   scene.text('You do as she says and lie down on your side as Anya goes to her dresser, pulls out a small bottle of lube and generously applies it to the strap-on. She then rubs some on your anus.');
   scene.text('She then lies down behind you and lines the dildo up with your ass. Once she has it in place, she pushes forward. You feel the pressure building before the head of the dildo suddenly pops into your ass.');
-  if (((s as any).pcs_ass ?? 0) === 0) {
+  if ((!((s as any).pcs_ass ?? 0))) {
     scene.text('Your first impression is unbearable pain. You want to move away, but her hands on your hips hold you in place and pull you further back as she thrusts her hips forward and the dildo goes deeper into your ass. You gradually stop resisting as the pain slowly gives way to pleasure. Once you stop resisting, she lets go of your hip and lifts your leg up with her hand.');
   } else {
     scene.text('It hurts a little at first, but the pain quickly gives way to pleasure. As you start to moan, she starts thrusting the dildo deeper into your ass. Reading your actions well, she finds the right rhythm and depth and starts butt fucking you to ecstasy.');
@@ -572,7 +572,7 @@ function enterSisterStraponAnal(s: GameState, scene: SceneBuilder): void {
 function enterDrunkAfterParty(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/body/cum/cumsleep/cumsleep1.jpg');
   scene.text('Your sister is totally wasted, evidenced by the fact that she didn\'t undress, clean off her makeup, or even wipe away the cum she is currently drooling into her pillow.');
-  if (((s as any).sisboyparty ?? 0) === 0) {
+  if ((!((s as any).sisboyparty ?? 0))) {
     scene.text('<i>Is she really so drunk that she can\'t even remember to wipe her mouth after blowing her boyfriend?</i>');
   } else {
     scene.text('<i>I wonder if that\'s Roma\'s cum or someone else\'s…</i>');

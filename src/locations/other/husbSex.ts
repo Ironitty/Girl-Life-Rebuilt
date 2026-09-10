@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['husbSex', 'husb_debt_event'] }]);
   }
   scene.text('<center><b>Bedroom</b></center>');
-  if (((s as any).rembedr ?? 0) === 0) {
+  if ((!((s as any).rembedr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/bedr.jpg');
   } else {
     scene.img('images/locations/city/residential/apartment/bedr2.jpg');
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Finally, <<$npcdesc>> wins his unequal battle with the straps of your bra.
   scene.text(`Finally, ${((s as any).npcdesc ?? 0)} wins his unequal battle with the straps of your bra.`);
   (s as any).sexrand = Math.floor(Math.random() * 4) + 0;
-  if (((s as any).sexrand ?? 0) === 0) {
+  if ((!((s as any).sexrand ?? 0))) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wrap your lips around my cock."
     scene.text(`"${((s as any).pcs_nickname ?? 0)}, wrap your lips around my cock."`);
     scene.actions([

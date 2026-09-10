@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'has_access', 'village_cottage')) {
     scene.text('Enter <a href="exec:gt \'dachamy\', \'start\'">your yard</a>.');
     scene.text('Across the street from your cottage is another <a href="exec:gt \'ETO_village\', \'neighbor_cottage\'">cottage</a> almost identical to yours.');
-    if (((s as any).arrsize ?? 0)('lover') > 0) {
+    if (Object.keys((s as any).lover ?? {}).length > 0) {
       (s as any).temp_i = 0;
       (s as any).temp_max_i = 0;
       // TODO-QSP: :lover_pickup_loop
@@ -40,7 +40,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 40  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
       scene.text('<a href="exec:gt \'vladimirQW_meet\',\'3\'">There\'s an Audi parked in front of your cottage, and standing beside it, you notice Vladimir</a>.');
     }
-    if (((s as any).arrsize ?? 0)('lover') > 0) {
+    if (Object.keys((s as any).lover ?? {}).length > 0) {
       (s as any).temp_i = 0;
       (s as any).temp_max_i = 0;
       // TODO-QSP: :lover_pickup_loop2

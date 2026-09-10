@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) - (120);
     }
-    if (((s as any).rand ?? 0)(0, ((s as any).temp_prob_chance ?? 0)) >= 5) {
+    if ((Math.floor(Math.random() * (((s as any).temp_prob_chance ?? 0) - 0 + 1)) + (0)) >= 5) {
       // TODO-QSP: killvar 'temp_prob_chance'
       // TODO-QSP: exit
     }

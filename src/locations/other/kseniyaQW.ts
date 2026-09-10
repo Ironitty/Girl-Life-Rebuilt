@@ -33,7 +33,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).exhibitionQW ?? 0) === 1) {
     scene.actions([
       { label: 'Find the flashing woman', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) <= 18  &&  Math.floor(Math.random() * 4) + 0 === 0) {
+    if (((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) <= 18  &&  (!(Math.floor(Math.random() * 4) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event2'] }]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -49,7 +49,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Search for Ksenya', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) <= 18  &&  Math.floor(Math.random() * 4) + 0 === 0) {
+    if (((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) <= 18  &&  (!(Math.floor(Math.random() * 4) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['kseniyaQW', 'event3'] }]);
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;

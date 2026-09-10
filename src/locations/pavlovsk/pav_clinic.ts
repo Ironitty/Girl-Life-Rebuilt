@@ -149,7 +149,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/city/residential/office/clener1.jpg');
         scene.text('As instructed, you take a mop and a bucket from the maintenance closet and begin by cleaning the corridors throughout the clinic. Once you\'re done with that, you enter the examination rooms and offices one by one, occasionally hearing a softly muttered curse from a doctor when you interrupt their work. Nevertheless, you work quickly and the doctors don\'t give you any trouble while you clean the floors of the rooms.');
         (s as any).ginrand = Math.floor(Math.random() * 2) + 0;
-        if (((s as any).Gspravka ?? 0) < 10  &&  ((s as any).ginrand ?? 0) === 0) {
+        if (((s as any).Gspravka ?? 0) < 10  &&  (!((s as any).ginrand ?? 0))) {
           scene.text('When you clean the floor of the gynecologist\'s examination room, he leaves the room to let you do your work in peace. You\'re alone now.');
           if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowRaped ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
             scene.actions([

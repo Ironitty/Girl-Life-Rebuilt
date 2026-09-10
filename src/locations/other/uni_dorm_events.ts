@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 100) + 0;
   (s as any).uni_dorm['event_minut'] = ((s as any).totminut ?? 0) + 60;
-  if (((s as any).temp ?? 0) === 0) {
+  if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/2girl_hump\' + rand(1, 2) + \'.jpg');
     scene.text('As you walk down the hall, you see two girls grinding and dancing provocatively against each other while another takes photos with her phone. Some boys are also watching them.');
     scene.text('As you pass by, you wonder if they\'re just doing it to get the boys attention or if they\'re actually into it.');

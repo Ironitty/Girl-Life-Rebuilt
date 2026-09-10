@@ -23,7 +23,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
       (s as any).DoubleBan = 1;
     }
   }
-  if (((s as any).BlowBan ?? 0) === 0) {
+  if ((!((s as any).BlowBan ?? 0))) {
     scene.actions([
       { label: 'Blow them', handler: (st: GameState) => {
     (s as any).sexdvoeloc = 0;
@@ -31,21 +31,21 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).sameboy ?? 0) === 1) {
-    if (((s as any).DoubleBan ?? 0) === 0) {
+    if ((!((s as any).DoubleBan ?? 0))) {
       scene.actions([
         { label: 'Double penetration', handler: (st: GameState) => {
     (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 1;
   }, goto: ['sexdvoe', 'sex'] },
       ]);
     }
-    if (((s as any).SpitVagBan ?? 0) === 0) {
+    if ((!((s as any).SpitVagBan ?? 0))) {
       scene.actions([
         { label: 'Spit roast (pussy)', handler: (st: GameState) => {
     (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 3;
   }, goto: ['sexdvoe', 'sex'] },
       ]);
     }
-    if (((s as any).SpitAssBan ?? 0) === 0) {
+    if ((!((s as any).SpitAssBan ?? 0))) {
       scene.actions([
         { label: 'Spit roast (ass)', handler: (st: GameState) => {
     (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 5;
@@ -53,7 +53,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    if (((s as any).DoubleBan ?? 0) === 0) {
+    if ((!((s as any).DoubleBan ?? 0))) {
       scene.actions([
         { label: 'DP (<<$npcdesc[0]>> (<<$npcID[0]>>) in pussy)', handler: (st: GameState) => {
     (s as any).sexdvoeloc = 1;
@@ -63,7 +63,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sexdvoe', 'sex'] },
       ]);
     }
-    if (((s as any).SpitVagBan ?? 0) === 0) {
+    if ((!((s as any).SpitVagBan ?? 0))) {
       scene.actions([
         { label: 'Spit roast (<<$npcdesc[0]>> (<<$npcID[0]>>) in pussy)', handler: (st: GameState) => {
     (s as any).sexdvoeloc = 3;
@@ -73,7 +73,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sexdvoe', 'sex'] },
       ]);
     }
-    if (((s as any).SpitAssBan ?? 0) === 0) {
+    if ((!((s as any).SpitAssBan ?? 0))) {
       scene.actions([
         { label: 'Spit roast (<<$npcdesc[0]>> (<<$npcID[0]>>) in ass)', handler: (st: GameState) => {
     (s as any).sexdvoeloc = 5;
@@ -92,14 +92,14 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
       (s as any).sexdvoe = Math.floor(Math.random() * 2) + 2;
       (s as any).sexdvoe = Math.floor(Math.random() * 4) + 0;
     }
-    if (((s as any).sexdvoe ?? 0) === 0) {
+    if ((!((s as any).sexdvoe ?? 0))) {
       (s as any).sexdvoeloc = 0;
     } else {
-      (s as any).sexdvoeloc = rand(3, 4);
+      (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 3;
       if (((s as any).sexdvoe ?? 0) === 2) {
-        (s as any).sexdvoeloc = rand(5, 6);
+        (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 5;
       } else {
-        (s as any).sexdvoeloc = rand(1, 2);
+        (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 1;
       }
     }
   } },

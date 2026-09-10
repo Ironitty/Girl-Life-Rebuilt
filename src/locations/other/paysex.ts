@@ -16,7 +16,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
   qspCall(s, 'dinsex2', 'stamina_npc');
   (s as any).temp_randpicture = Math.floor(Math.random() * 3) + 0;
-  if (((s as any).temp_randpicture ?? 0) === 0) {
+  if ((!((s as any).temp_randpicture ?? 0))) {
   }
   if (((s as any).temp_randpicture ?? 0) === 1) {
   }
@@ -29,15 +29,15 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).paysexrand = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).temp1 ?? 0)') - 1);
   // TODO-QSP: $temp2[x] = $temp1[paysexrand]
   (s as any).x = ((s as any).x ?? 0) + (1);
-  if (((s as any).arrsize ?? 0)('temp1') > 0) {
+  if (Object.keys((s as any).temp1 ?? {}).length > 0) {
     // TODO-QSP: jump 'randomorder'
   }
   (s as any).j = 0;
   (s as any).i = 0;
   // TODO-QSP: :arrayloop
   // TODO-QSP: gs 'boyStat', $temp2[j]
-  if (((s as any).j ?? 0) === 0) {
-    if (((s as any).paysxsex ?? 0) === 0) {
+  if ((!((s as any).j ?? 0))) {
+    if ((!((s as any).paysxsex ?? 0))) {
       (s as any).paysxsex = 1;
     }
     qspCall(s, 'arousal', 'vaginal', 5, 'prostitution');
@@ -53,7 +53,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'cum_call', '', $temp2[j], 1 else gs 'cum_call', '', $temp2[j]
     }
   } else {
-    if (((s as any).paysxanal ?? 0) === 0) {
+    if ((!((s as any).paysxanal ?? 0))) {
       (s as any).paysxanal = 1;
     }
     qspCall(s, 'arousal', 'anal', (-5), 'prostitution', 'gangbang');
@@ -65,7 +65,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)]}`);
     }
     if (((s as any).j ?? 0) === 2) {
-      if (((s as any).paysxbj ?? 0) === 0) {
+      if ((!((s as any).paysxbj ?? 0))) {
         (s as any).paysxbj = 1;
       }
       qspCall(s, 'arousal', 'bj', (-5), 'prostitution', 'gangbang');
@@ -77,7 +77,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
         scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)]}`);
       }
     } else {
-      if (((s as any).paysxhj ?? 0) === 0) {
+      if ((!((s as any).paysxhj ?? 0))) {
         (s as any).paysxhj = 1;
       }
       qspCall(s, 'arousal', 'hj', (-5), 'prostitution', 'gangbang');

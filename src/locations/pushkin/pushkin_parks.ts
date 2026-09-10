@@ -42,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
   }, goto: ['pushkin', ''] },
     { label: 'Walk around the park (1 hour)', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  ((s as any).exhibitionQW ?? 0) === 0) {
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
       // TODO-QSP: gt 'kseniyaQW', 'event1', 1
     }
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -66,7 +66,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/park/lug.jpg');
   scene.text('It\'s a small but well maintained meadow with evergreen grass, perfect for laying down to rest, have a picnic or just sunbathe. Mothers with small children regularly visit this place. Despite that, if you feel like exposing yourself here, there would be less people to see it, making it easier to find the bravery to do so.');
   if (((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
-    if (Math.floor(Math.random() * 601) + 0 <= ((s as any).pcs_apprnc ?? 0)) {
+    if ((Math.floor(Math.random() * 601) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
       qspCall(s, 'npcgeneratec', '', 0, '', 'like');
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You notice <<$npcheight_pref>>, <<$npcbuild>>, <<$npchair>> haired guy coming to...
@@ -87,7 +87,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pavserhom ?? 0) === 0  &&  ((s as any).psiha ?? 0) === 0  &&  qspFunc(s, 'homes_properties', 'has_access', 'city_apartment') === 0) {
-    if (Math.floor(Math.random() * 100) + 1 >= 90) {
+    if ((Math.floor(Math.random() * 100) + 1) >= 90) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
       qspCall(s, 'stat', '');
       scene.text('On the path stands a <a href="exec: gt \'pushkin_parks\', \'pavserjil\'">man</a> looking like he is waiting for someone.');
@@ -97,7 +97,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) >= 35) {
     scene.actions([
       { label: 'Flash your tits', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  ((s as any).exhibitionQW ?? 0) === 0) {
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
       // TODO-QSP: gt 'kseniyaQW', 'event1', 1
     }
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
@@ -112,7 +112,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
     scene.actions([
       { label: 'Flash your pussy', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  ((s as any).exhibitionQW ?? 0) === 0) {
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
       // TODO-QSP: gt 'kseniyaQW', 'event1', 1
     }
     qspCall(s, 'flash', 'pussy', 'outdoors', 5);
@@ -183,7 +183,7 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
       { label: 'Investigate a mysterious copse of trees', goto: ['treeCircle', 'PushkinPark'] },
     ]);
   }
-  if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).rand ?? 0) (1, 4) <= ((s as any).pcs_magik ?? 0)  &&  (((s as any).hour ?? 0) <=6  ||  ((s as any).hour ?? 0) >=19)) {
+  if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  (Math.floor(Math.random() * 4) + 1) <= ((s as any).pcs_magik ?? 0)  &&  (((s as any).hour ?? 0) <=6  ||  ((s as any).hour ?? 0) >=19)) {
     if (((s as any).knowsfairy ?? 0) < 1  &&  ((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
       // TODO-QSP: xgt 'MagEncounterFairy'
     } else {

@@ -131,7 +131,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).evgenQW ?? 0) < 4  ||  ((s as any).kolkaseepornday ?? 0) === ((s as any).daystart ?? 0)) {
                   // TODO-QSP: dynamic text: Your brother grins, "Hi, <<$pcs_nickname>>. Fancy a game of football?"
                   scene.text(`Your brother grins, "Hi, ${((s as any).pcs_nickname ?? 0)}. Fancy a game of football?"`);
-                  if (((s as any).PSport ?? 0) === 0) {
+                  if ((!((s as any).PSport ?? 0))) {
                     scene.text('Kolka points at your outfit, "Oh, you can\'t play dressed like that! Go put on some sportswear, or just watch us play if you want."');
                   } else {
                     scene.text('He adds, "Or you could just watch us."');
@@ -175,7 +175,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       { label: 'Ask if he liked the show', goto: ['brother2', 'nattalk'] },
                     ]);
                   }
-                  if (((s as any).brotherQW ?? 0)?.['Sex'] > 6  &&  ((s as any).brotherQW ?? 0)?.['Sex'] < 9  &&  ((s as any).brother_DTR ?? 0) === 0) {
+                  if (((s as any).brotherQW ?? 0)?.['Sex'] > 6  &&  ((s as any).brotherQW ?? 0)?.['Sex'] < 9  &&  (!((s as any).brother_DTR ?? 0))) {
                     scene.actions([
                       { label: 'Talk about your relationship', goto: ['brother2', 'DTR'] },
                     ]);
@@ -266,7 +266,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).brotherrand ?? 0) < 5) {
                     scene.text('As you look, you can clearly see the outline of his morning wood pitching a tent under the blanket.');
                   }
-                  if (((s as any).week ?? 0) < 6  &&  ((s as any).kanikuli ?? 0) === 0) {
+                  if (((s as any).week ?? 0) < 6  &&  (!((s as any).kanikuli ?? 0))) {
                     if (((s as any).brotherwakeup ?? 0) >= 10) {
                       if (((s as any).brotherQW ?? 0)?.['Sex'] >= 5) {
                         scene.actions([
@@ -339,7 +339,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).brotherQW['last_day_homework'] = ((s as any).daystart ?? 0);
               }
               if (((s as any).loc ?? 0) === 'sitrPar'  &&  ((s as any).brotherQW ?? 0)?.['Age'] < 18  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).npc_rel ?? 0)?.['A34'] >= 20  &&  ((s as any).brotherQW ?? 0)?.['last_day_homework'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['Kolka'] === 7) {
-                if (Math.floor(Math.random() * 3) + 1 === 1) {
+                if ((Math.floor(Math.random() * 3) + 1) === 1) {
                   qspCall(s, 'stat', '');
                   scene.text('<center><b>Kolka</b></center>');
                   scene.img('images/characters/shared/headshots_main/big34.jpg');

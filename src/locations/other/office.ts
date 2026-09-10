@@ -109,7 +109,7 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/office/lobby.jpg');
   scene.text('This is the main hall for your work floor. It is nicely decorated and you can hear other people working in the office.');
   if (((s as any).job_status ?? 0)?.['city_office_secretary'] === 'employed') {
-    if (((s as any).PCloOffice ?? 0) === 0) {
+    if ((!((s as any).PCloOffice ?? 0))) {
       scene.text('You are not dressed according to the corporate dress code.');
     } else {
       if (qspFunc(s, 'jobs', 'is_arrival_time', 'city_office_secretary') === 1) {
@@ -222,7 +222,7 @@ function enterRestrooms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Go to the mens restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -244,7 +244,7 @@ function enterWomensRestrooms(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Women\'s Restrooms</b></center>');
   scene.img('images/locations/city/citycenter/office/womensbr.jpg');
-  if (((s as any).office_ladies_entry ?? 0) === 0) {
+  if ((!((s as any).office_ladies_entry ?? 0))) {
     (s as any).office_ladies_entry = 1;
     scene.text('You enter the women\'s restroom and find some women at the sink, one checking her makeup as they both talk. They give you a brief smile before they both exit, leaving you alone in the restroom.');
   }
@@ -263,7 +263,7 @@ function enterWomensRestrooms(s: GameState, scene: SceneBuilder): void {
 function enterMensRestrooms(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Mens Restrooms</b></center>');
-  if (Math.floor(Math.random() * 4) + 1 === 1) {
+  if ((Math.floor(Math.random() * 4) + 1) === 1) {
     (s as any).temp = Math.floor(Math.random() * 6) + 1;
     if (((s as any).temp ?? 0) === 1) {
       scene.img('images/locations/city/citycenter/office/sex/restroom/mensroom/fuck1.jpg');

@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).SStip ?? 0) === 0) {
+  if ((!((s as any).SStip ?? 0))) {
     scene.img('images/characters/city/stas/sex/stas.jpg');
     scene.text('You enter your apartment and immediately the two of you start kissing. He pulls down your top to expose your breasts, beginning to fondle them as the two of you continue to kiss, and slowly pulls you into the bedroom.');
     qspCall(s, 'boyStat', 'A50');
@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/stas/sex/sex.jpg');
     scene.text('During the kissing, he manages to get all your clothes off, as well as his own. He pushes your legs up till your knees are pulled up against your chest. He rubs the tip of his dick against your pussy, which is already wet with desire. You moan and try to lift yourself up to take him inside of you, but he keeps teasing you by just rubbing the tip against your pussy.');
     qspCall(s, 'shortgs', 'undress');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     // TODO-QSP: dynamic text: You feel like you almost can't take the teasing anymore when he fully pushes him...
     scene.text(`You feel like you almost can't take the teasing anymore when he fully pushes himself inside of you, his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick filling your pussy up. He gently fucks you, slowly working himself deeper into you while he continues to kiss you and kneed your breasts. You moan in deep pleasure as the two of you make love.`);
     qspCall(s, 'dinsex', 'vaginal_sex', 15, 'sub');

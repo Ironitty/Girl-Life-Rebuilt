@@ -75,7 +75,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away from her', goto: ['gkafe', ''] },
     ]);
   }
-  if (((s as any).hcolfronce ?? 0) === 0) {
+  if ((!((s as any).hcolfronce ?? 0))) {
     (s as any).hcolmotherremember = ((s as any).pcs_haircol ?? 0);
     (s as any).hcolfronce = 1;
   }
@@ -155,7 +155,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_tongue'] === 0  &&  ((s as any).motherQW ?? 0)?.['piercing_talkday'] !== ((s as any).daystart ?? 0)) {
             (s as any).motherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
-            if (Math.floor(Math.random() * 100) + 1 >= 75) {
+            if ((Math.floor(Math.random() * 100) + 1) >= 75) {
               // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> sees the glimmer of metal in your mouth. "<<$pcs_n...
               scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} sees the glimmer of metal in your mouth. "${((s as any).pcs_nickname ?? 0)}, what's that in your mouth? I thought I saw something shiny…"`);
               scene.actions([
@@ -264,7 +264,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
               }
             }
-            if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  ((s as any).SAtestatGift ?? 0) === 0) {
+            if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  &&  (!((s as any).SAtestatGift ?? 0))) {
               if (((s as any).class ?? 0)?.['school_grade_average'] >= 90) {
                 qspCall(s, 'npc_relationship', 'modify', 'A29', 40);
                 // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> is delighted you graduated. "I'm so proud right no...
@@ -486,7 +486,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npc_nickname['A29']>> decides that you've spent long enough looking for new c...
       scene.text(`${((s as any).npc_nickname ?? 0)?.['A29']} decides that you've spent long enough looking for new clothes and goes home with you.`);
     } else {
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         (s as any).numrand = Math.floor(Math.random() * 150) + 1;
         if (qspFunc(s, 'clothing', 'is_owned', 'gm_dress', ((s as any).numrand ?? 0))) {
           // TODO-QSP: jump 'markbuyclomother'
@@ -681,10 +681,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
-          if (((s as any).motherKnowWhore ?? 0) === 0) {
+          if ((!((s as any).motherKnowWhore ?? 0))) {
             (s as any).motherKnowWhore = 1;
           }
-          if (((s as any).motherKnowSpravka ?? 0) === 0) {
+          if ((!((s as any).motherKnowSpravka ?? 0))) {
             (s as any).motherKnowSpravka = 1;
           }
           if (((s as any).momslut ?? 0) < 2) {
@@ -699,10 +699,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).npc_QW ?? 0)?.['A29'] >= 2) {
             qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
-            if (((s as any).motherKnowWhore ?? 0) === 0) {
+            if ((!((s as any).motherKnowWhore ?? 0))) {
               (s as any).motherKnowWhore = 1;
             }
-            if (((s as any).motherKnowSpravka ?? 0) === 0) {
+            if ((!((s as any).motherKnowSpravka ?? 0))) {
               (s as any).motherKnowSpravka = 1;
             }
             // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> notices the cum on you and looks at you with a tin...

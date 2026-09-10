@@ -22,7 +22,7 @@ function enterShowerdin(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).lactation['lactmess'] = 0;
   qspCall(s, 'sweat', 'shower');
-  if (((s as any).noshampoo ?? 0) === 0) {
+  if ((!((s as any).noshampoo ?? 0))) {
     (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) - (1);
   }
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] < 0) {
@@ -31,7 +31,7 @@ function enterShowerdin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body', 'SkinGain', 'CleanSelf');
   qspCall(s, 'stat', '');
   if (((s as any).false_lashes ?? 0) >= 1) {
-    if (Math.floor(Math.random() * 5) + 0 < 3) {
+    if ((Math.floor(Math.random() * 5) + 0) < 3) {
       scene.text('You\'re careful enough that your false lashes make it through relatively unscathed.');
     } else {
       scene.text('Unfortunately, your false lashes don\'t make it through the shower.');
@@ -200,7 +200,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Use the showerhead on your pussy', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 6) + 0 === 0  &&  ((s as any).locM ?? 0) === 'uni_dorm') {
+    if ((Math.floor(Math.random() * 6) + 0) === 0  &&  ((s as any).locM ?? 0) === 'uni_dorm') {
       scene.actions([{ label: 'Continue', goto: ['vann', 'v4'] }]);
     }
     scene.img('images/shared/home/bathroom/wash2.mp4');

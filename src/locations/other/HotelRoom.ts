@@ -32,7 +32,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'food', 'hotel_food');
     }
@@ -91,7 +91,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'food', 'hotel_food');
     }
@@ -154,7 +154,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'food', 'hotel_food');
     }
@@ -216,7 +216,7 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'food', 'hotel_food');
     }
@@ -278,7 +278,7 @@ function enterShower1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'din_van', 'private', 'HotelRoom', (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) ? ('') : ('bath'));
+      qspCall(s, 'din_van', 'private', 'HotelRoom', ((((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) ? ('') : ('bath')));
       qspCall(s, 'home_events', 'bathroom');
       scene.actions([
         { label: 'Return to your room', handler: (st: GameState) => {

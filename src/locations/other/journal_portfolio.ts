@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: *p '<a href="exec:gt ''journal_portfolio'', ''image_view'', ''locations'', <<i>>"><img height="250" ...
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('portfolio_locations')) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_locations ?? {}).length) {
       // TODO-QSP: jump 'looplocations'
     }
     (s as any).i = 0;
@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: *p '<a href="exec:gt ''journal_portfolio'', ''image_view'', ''people'', <<i>>"><img height="250" src...
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('portfolio_people')) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_people ?? {}).length) {
       // TODO-QSP: jump 'looppeople'
     }
     scene.actions([

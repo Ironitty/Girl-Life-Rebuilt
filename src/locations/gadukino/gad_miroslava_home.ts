@@ -153,7 +153,7 @@ function enterMirabrother(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     (s as any).bja = ((s as any).bja ?? 0) + (1);
-    if (((s as any).mirabrosextime ?? 0) === 0) {
+    if ((!((s as any).mirabrosextime ?? 0))) {
       (s as any).mirabrosextime = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }

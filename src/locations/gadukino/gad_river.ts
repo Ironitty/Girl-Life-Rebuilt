@@ -46,13 +46,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 20, 'gangbang', 'sub');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'boyStat', 'A61');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'boyStat', 'A62');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 3);
     qspCall(s, 'stat', '');
@@ -67,9 +67,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go with him', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A62');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
-    if (((s as any).mesec ?? 0) === 0) {
+    if ((!((s as any).mesec ?? 0))) {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex20.jpg');
       scene.text('As soon as you open the door, Vasyan pushes you inside and pulls your clothes off crudely. Once you are naked, he moves you towards the sofa and forces you to your knees…');
       qspCall(s, 'arousal', 'vaginal', 20, 'sub');
@@ -101,9 +101,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex17.jpg');
     scene.text('The boys take you to Vasyan\'s house, where they rudely keep pushing you until you are bent over the kitchen table. They then take turns fucking you…');
     qspCall(s, 'boyStat', 'A61');
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
-    if (((s as any).mesec ?? 0) === 0) {
+    if ((!((s as any).mesec ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
       qspCall(s, 'dinsex', 'vaginal_sex', 20, 'sub', 'gangbang');
       qspCall(s, 'dinsex', 'sexcum');
@@ -112,8 +112,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dinsex', 'analsex', 20, 'sub', 'gangbang');
     }
     qspCall(s, 'boyStat', 'A62');
-    (s as any).npc_had_sex[$boy] = 1;
-    if (((s as any).mesec ?? 0) === 0) {
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    if ((!((s as any).mesec ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
       qspCall(s, 'dinsex', 'vaginal_sex', 20, 'sub', 'gangbang');
       qspCall(s, 'dinsex', 'sexcum');

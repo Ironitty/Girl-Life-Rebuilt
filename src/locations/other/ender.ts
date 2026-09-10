@@ -119,7 +119,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 4) {
                   (s as any).temp_thresh = 8;
                 }
-                if (Math.floor(Math.random() * 80) + 1 <= ((s as any).temp_thresh ?? 0)) {
+                if ((Math.floor(Math.random() * 80) + 1) <= ((s as any).temp_thresh ?? 0)) {
                   scene.text('Your assailant knocks you down with one final hit, and you pass out.');
                   scene.actions([
                     { label: 'Pass out', goto: ['abduction', 'abdCarTrunk'] },
@@ -284,7 +284,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                             scene.actions([
                               { label: 'Run! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                             ]);
                           } else {
@@ -320,7 +320,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                               scene.actions([
                                 { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                               ]);
                             } else {
@@ -350,7 +350,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                                 scene.actions([
                                   { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                                 ]);
                               } else {

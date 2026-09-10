@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterCounter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Experimental Pharmacy</b></center>');
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\pharmacist1.jpg');
     scene.text('You approach the pharmacy front desk. The older pharmacist behind the counter looks up at you and gives you a smile.');
     scene.text('"How can I help you?"');

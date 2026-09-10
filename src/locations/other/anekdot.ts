@@ -5,7 +5,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).anrand = Math.floor(Math.random() * 40) + 0;
   // TODO-QSP: *p '"'
-  if (((s as any).anrand ?? 0) === 0) {
+  if ((!((s as any).anrand ?? 0))) {
     scene.text('What is the difference between a snowman and a snow-woman?');
     scene.text('Snowballs."');
   } else {

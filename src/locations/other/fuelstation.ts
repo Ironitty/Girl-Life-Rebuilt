@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).zprbenz = (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel']);
         (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
         if (qspFunc(s, 'money', 'can_afford', ((s as any).zprpay ?? 0)) === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           (s as any).zprbenz = ((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'];
           (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;

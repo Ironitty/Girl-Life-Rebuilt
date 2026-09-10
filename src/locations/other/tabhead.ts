@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).tabhead_max_i = 0;
-  if (((s as any).tabhead_max_i ?? 0) === 0) {
+  if ((!((s as any).tabhead_max_i ?? 0))) {
     return;
   }
   (s as any).tabhead_i = 0;
@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $tabhead_table += '<a href="exec:<<$tabsaction[tabhead_i]>>"><<$tabsname[tabhead_i]>></a>'
   }
   // TODO-QSP: $tabhead_table += '</th>'
-  if (((s as any).tabhead_i ?? 0) > 0  &&  ((s as any).arrpos ?? 0)('tabsrow', ((s as any).tabhead_i ?? 0)) >= 0) {
+  if (((s as any).tabhead_i ?? 0) > 0  &&  (Array.isArray((s as any).tabsrow) ? ((s as any).tabsrow as any[]).indexOf(((s as any).tabhead_i ?? 0)) : -1) >= 0) {
     // TODO-QSP: $tabhead_table += '</tr><tr>'
   }
   (s as any).tabhead_i = ((s as any).tabhead_i ?? 0) + (1);

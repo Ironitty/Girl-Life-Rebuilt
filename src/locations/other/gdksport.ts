@@ -30,7 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('You see <a href="exec:minut += 3 & gt \'IvanEv\', \'ivan_vitek_fight1\'">Ivan</a> entering the sports club carrying a large sports bag.');
     }
     if (((s as any).ivanQW ?? 0)?.['ivan_boxing_invite'] === 1) {
-      if (((s as any).temp_ivan_seen ?? 0) === 0) {
+      if ((!((s as any).temp_ivan_seen ?? 0))) {
         scene.text('You see Ivan entering the sports club carrying a large sports bag. He heads into the boxing area of the gym.');
       }
       scene.actions([
@@ -61,10 +61,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A23'] === 0  &&  ((s as any).cheerleaders_on ?? 0) === 1  &&  ((s as any).kanikuli ?? 0) === 0) {
+  if (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A23'] === 0  &&  ((s as any).cheerleaders_on ?? 0) === 1  &&  (!((s as any).kanikuli ?? 0))) {
     scene.text('Albina is at cheerleading practice, so there is no Starlets training today.');
   }
-  if (((s as any).PSport ?? 0) === 0) {
+  if ((!((s as any).PSport ?? 0))) {
     if (((s as any).PCloSport ?? 0) !== 1) {
       scene.text('<font color = "red">🗴</font> You are not dressed in sports clothes.</font>');
     }
@@ -119,7 +119,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Take a dance lesson. You have <<gsAboDance>> lessons remaining (2:00)', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['danceGev', ''] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['gdksport', 'dance2'] }]);
@@ -167,7 +167,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('You\'ve run out of shampoo and will have to buy some more before you can wash yourself.');
         }
-        if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  ((s as any).deodorant_on ?? 0) === 0) {
+        if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
           scene.actions([
             { label: 'Apply deodorant (<<mc_inventory[\'deodorant\']>> <<iif(mc_inventory[\'deodorant\'] = 1, \'application\', \'applications\')>> left)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -300,7 +300,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/bathroom/dush.mp4');
-  if (((s as any).IvanShowerYes ?? 0) === 1  &&  Math.floor(Math.random() * 4) + 0 === 1  &&  ((s as any).ShowerIvan ?? 0) < 3) {
+  if (((s as any).IvanShowerYes ?? 0) === 1  &&  (Math.floor(Math.random() * 4) + 0) === 1  &&  ((s as any).ShowerIvan ?? 0) < 3) {
     if (((s as any).ShowerIvan ?? 0) === 1) {
       (s as any).ShowerIvan = 2;
     }
@@ -311,7 +311,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Not today [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -342,7 +342,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Throw him out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -361,12 +361,12 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.text('You enter the shower and turn the water on before you lather your body with a washcloth and start cleaning yourself.');
-    if ((((s as any).vballVars ?? 0)?.['coach_lust'] >= 40  ||  ((s as any).vballVars ?? 0)?.['coachsex'] === 1)  &&  Math.floor(Math.random() * 4) + 0 === 0  &&  ((s as any).voltrenerVoyeur ?? 0) === 0) {
+    if ((((s as any).vballVars ?? 0)?.['coach_lust'] >= 40  ||  ((s as any).vballVars ?? 0)?.['coachsex'] === 1)  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  (!((s as any).voltrenerVoyeur ?? 0))) {
       scene.actions([
         { label: 'Continue', goto: ['volley_coach_shower', '0'] },
       ]);
     } else {
-      if ((((s as any).vballVars ?? 0)?.['coach_lust'] >= 40  ||  ((s as any).vballVars ?? 0)?.['coachsex'] === 1)  &&  Math.floor(Math.random() * 4) + 0 === 0  &&  ((s as any).voltrenerVoyeur ?? 0) === 2  &&  ((s as any).IvanShowerYes ?? 0) === 0) {
+      if ((((s as any).vballVars ?? 0)?.['coach_lust'] >= 40  ||  ((s as any).vballVars ?? 0)?.['coachsex'] === 1)  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).voltrenerVoyeur ?? 0) === 2  &&  (!((s as any).IvanShowerYes ?? 0))) {
         scene.actions([
           { label: 'Continue', goto: ['volley_coach_shower', '2'] },
         ]);
@@ -393,7 +393,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Escape from the shower [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -414,7 +414,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Wash together', handler: (st: GameState) => {
     (s as any).IvanShowerQW = 1;
     (s as any).IvanShowerYes = 0;
-    if (((s as any).ShowerIvan ?? 0) === 0) {
+    if ((!((s as any).ShowerIvan ?? 0))) {
       (s as any).ShowerIvan = 1;
     }
   }, goto: ['gdksport', 'ShowerWithIvan'] },

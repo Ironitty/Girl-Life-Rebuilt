@@ -132,7 +132,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
       qspCall(s, 'stat', '');
-      if (Math.floor(Math.random() * 100) + 1 > 10) {
+      if ((Math.floor(Math.random() * 100) + 1) > 10) {
         qspCall(s, 'Serge_Shulgin', 'hide', 'serge_tv_rand');
       } else {
         scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvrekl\' + rand(1, 4) + \'.mp4');
@@ -314,7 +314,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: end & !! --- sleep_sex_rought_event2 ---
                             if (((s as any).locArgs?.[1] ?? 0) === 'serge_textb') {
                               (s as any).serge_textb = Math.floor(Math.random() * 7) + 0;
-                              if (((s as any).serge_textb ?? 0) === 0) {
+                              if ((!((s as any).serge_textb ?? 0))) {
                               }
                               if (((s as any).serge_textb ?? 0) === 1) {
                               }
@@ -333,7 +333,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                               // TODO-QSP: end & !! --- serge_textb ---
                               if (((s as any).locArgs?.[1] ?? 0) === 'serge_textb2') {
                                 (s as any).serge_textb2 = Math.floor(Math.random() * 6) + 0;
-                                if (((s as any).serge_textb2 ?? 0) === 0) {
+                                if ((!((s as any).serge_textb2 ?? 0))) {
                                 }
                                 if (((s as any).serge_textb2 ?? 0) === 1) {
                                 }
@@ -350,7 +350,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                 // TODO-QSP: end & !! --- serge_textb2 ---
                                 if (((s as any).locArgs?.[1] ?? 0) === 'serge_tv_rand') {
                                   (s as any).temp_rand = Math.floor(Math.random() * 12) + 0;
-                                  if (((s as any).temp_rand ?? 0) === 0) {
+                                  if ((!((s as any).temp_rand ?? 0))) {
                                   }
                                   if (((s as any).temp_rand ?? 0) === 1) {
                                   }

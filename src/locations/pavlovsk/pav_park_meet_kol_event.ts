@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pav_park_meet_kol_event_is_winter = (((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 2  ||  ((s as any).month ?? 0) === 12);
     (s as any).pav_park_meet_kol_event_is_day = (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3);
     (s as any).temprand = Math.floor(Math.random() * 3) + 1;
-    if (((s as any).pav_park_meet_kol_event_is_winter ?? 0) === -1  &&  ((s as any).pav_park_meet_kol_event_is_day ?? 0) === 0) {
+    if (((s as any).pav_park_meet_kol_event_is_winter ?? 0) === -1  &&  (!((s as any).pav_park_meet_kol_event_is_day ?? 0))) {
       (s as any).temprand = 1;
     }
     if (((s as any).temprand ?? 0) === 1) {

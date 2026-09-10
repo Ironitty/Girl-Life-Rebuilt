@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Stop the kiss', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } },
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'This is going too far', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } },

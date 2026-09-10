@@ -34,10 +34,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['pavlin', 'pavlbarcont'] },
       ]);
     }
-    if (((s as any).custangry ?? 0) === 1  &&  ((s as any).custleft ?? 0) === 0) {
+    if (((s as any).custangry ?? 0) === 1  &&  (!((s as any).custleft ?? 0))) {
       scene.actions([
         { label: 'Go to <<$npc_nickname[\'A217\']>>', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He hurt me. H-He raped me. He even forced himself into my ass."');
@@ -69,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).custangry ?? 0) === 0  &&  ((s as any).custleft ?? 0) === 1) {
         scene.actions([
           { label: 'Go to <<$npc_nickname[\'A217\']>>', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He threw me into the wall. So I started screaming and told him to leave."');
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Go to <<$npc_nickname[\'A217\']>>', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 6) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 6) + 0))) {
       scene.text('He looks none too pleased as you approach and gingerly sit next to him.');
       scene.text('"Explain yourself," he says sternly, noticing your wince as you sit down. His hands are clenched into fists on the table.');
       scene.text('"H-He refused to use a condom. We argued and then he... He hurt me. So I fought back and told him to leave."');

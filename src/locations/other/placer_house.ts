@@ -165,7 +165,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).tipsexrand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).tipsexrand ?? 0) === 0) {
+    if ((!((s as any).tipsexrand ?? 0))) {
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/park/event/katja/swallow2.jpg');
@@ -239,7 +239,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You pull away from the boys and lie back on the bed. One of them immediately not...
     scene.text(`You pull away from the boys and lie back on the bed. One of them immediately notices what you want and gets between your legs, slamming his cock inside you. You make a gesture for the other guy to move his cock back to your mouth, which he happily does. Soon you find yourself on some stranger's bed, getting roughly pounded while you're giving another a deepthroating blowjob… is this even about waiting for ${((s as any).ev_name ?? 0)} any more, or do you just enjoy being here?`);
     (s as any).sexrand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).sexrand ?? 0) === 0) {
+    if ((!((s as any).sexrand ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
       qspCall(s, 'dinsex', 'vaginal_sex', 10);
       qspCall(s, 'dinsex', 'sexcum');
@@ -288,7 +288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).sexrand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).sexrand ?? 0) === 0) {
+    if ((!((s as any).sexrand ?? 0))) {
       (s as any).spafinloc = 12;
       qspCall(s, 'cum_manage', '');
       (s as any).spafinloc = 11;

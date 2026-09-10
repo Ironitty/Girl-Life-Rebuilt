@@ -51,7 +51,7 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
   (s as any).heightTypeRand = 3;
   (s as any).customerAge = Math.floor(Math.random() * 76) + 15;
   (s as any).raceRand = Math.floor(Math.random() * 3) + 0;
-  if (((s as any).raceRand ?? 0) === 0) {
+  if ((!((s as any).raceRand ?? 0))) {
     (s as any).dickChance = 30;
     (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + (((s as any).rand ?? 0)(-3, 2));
     (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + (((s as any).rand ?? 0)(-2, 8));
@@ -157,7 +157,7 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
                           { label: 'Sob and wait', goto: ['abductionCustomer', 'abdCustomer-virgin1'] },
                         ]);
                       } else {
-                        if (((s as any).buyout ?? 0) === 0) {
+                        if ((!((s as any).buyout ?? 0))) {
                           scene.text('He is clearly expecting you to start pleasuring him. You decide to:');
                           scene.actions([
                             { label: 'Show him your body', goto: ['abductionCustomer', 'abdCustomer-show'] },

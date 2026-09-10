@@ -37,19 +37,19 @@ function enterRandomOpp(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: $opp_name[i] = 'Opponent 1'
   // TODO-QSP: $opp_image[i] = 'images/locations/shared/street/mugger.jpg'
-  (s as any).opp_def[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_run[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_wrstlng[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_kick[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_punch[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_jab[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_stren[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_agil[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_vital[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_health[i] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
-  (s as any).opp_react[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_willpwr[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_shoot[i] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_def[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_run[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_wrstlng[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_kick[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_punch[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_jab[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_stren[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_agil[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_vital[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_health[String((s as any).i ?? 0)] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
+  (s as any).opp_react[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_willpwr[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  (s as any).opp_shoot[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
   scene.build();
 }
 
@@ -101,7 +101,7 @@ function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).inFight = 1;
   qspCall(s, 'themes', 'indoors');
-  if (((s as any).arrsize ?? 0)('pcs_health') > ((s as any).arrsize ?? 0)('opp_health')) {
+  if (Object.keys((s as any).pcs_health ?? {}).length > Object.keys((s as any).opp_health ?? {}).length) {
     (s as any).tableSize = 0;
   } else {
     (s as any).tableSize = 0;
@@ -129,15 +129,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $HTMLText += '</table>'
   (s as any).i = 0;
   // TODO-QSP: :PCSTimerInit
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('pcs_health')) {
-    (s as any).pcs_timer[i] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+  if (((s as any).i ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
+    (s as any).pcs_timer[String((s as any).i ?? 0)] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'PCSTimerInit'
   }
   (s as any).i = 0;
   // TODO-QSP: :OppTimerInit
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('opp_health')) {
-    (s as any).opp_timer[i] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+  if (((s as any).i ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
+    (s as any).opp_timer[String((s as any).i ?? 0)] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'OppTimerInit'
   }
@@ -153,9 +153,9 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
   (s as any).fightTimLow = 99999;
   (s as any).i = 0;
   // TODO-QSP: :LowTimerLoop1
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('pcs_timer')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).pcs_timer ?? {}).length) {
     if (((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      (s as any).pcs_stun[i] = ((s as any).pcs_stun[i] ?? 0) - (1);
+      (s as any).pcs_stun[String((s as any).i ?? 0)] = ((s as any).pcs_stun[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
       if (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
         (s as any).fightTimLow = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
@@ -167,9 +167,9 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 0;
   // TODO-QSP: :LowTimerLoop2
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('opp_timer')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).opp_timer ?? {}).length) {
     if (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      (s as any).opp_stun[i] = ((s as any).opp_stun[i] ?? 0) - (1);
+      (s as any).opp_stun[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
       if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
         (s as any).fightTimLow = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
@@ -267,7 +267,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   (s as any).j = 0;
   // TODO-QSP: :OppLoopRC1
-  if (((s as any).j ?? 0) < ((s as any).arrsize ?? 0)('opp_health')) {
+  if (((s as any).j ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
     // TODO-QSP: $fightStatText += func('fight', 'printStats', 'opp', j)
     (s as any).j = ((s as any).j ?? 0) + (1);
     // TODO-QSP: jump 'OppLoopRC1'
@@ -277,7 +277,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
   (s as any).j = 0;
   // TODO-QSP: :PCSLoopRC1
-  if (((s as any).j ?? 0) < ((s as any).arrsize ?? 0)('pcs_health')) {
+  if (((s as any).j ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
     // TODO-QSP: $fightStatText += func('fight', 'printStats', 'pcs', j)
     (s as any).j = ((s as any).j ?? 0) + (1);
     // TODO-QSP: jump 'PCSLoopRC1'

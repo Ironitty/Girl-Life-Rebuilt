@@ -27,7 +27,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     scene.text('Walk casually…');
     scene.text('Almost there…');
     scene.text('The exit of the supermarket comes closer and closer with every step, and you try to do whatever you can to control your nerves.');
-    if (Math.floor(Math.random() * 5) + 0 !== 0  ||  ((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 150  ||  ((((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 50)  &&  (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 17))) {
+    if ((Math.floor(Math.random() * 5) + 0) !== 0  ||  ((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 150  ||  ((((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 50)  &&  (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 17))) {
       (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Shoplifting');
       scene.text('As you walk by the counters and leave the supermarket, you feel a rush of excitement. You\'re almost there now, feeling relieved as well as triumphant. You\'re going to make it for sure!');
@@ -97,7 +97,7 @@ function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Deny [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -117,7 +117,7 @@ function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Offer him relief', goto: ['shoplifting', 'bj'] },
       { label: 'Offer a bribe [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe'] }]);
     }
@@ -140,7 +140,7 @@ function enterSecurityroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Offer him relief', goto: ['shoplifting', 'bj'] },
       { label: 'Offer a bribe [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe'] }]);
     }
@@ -413,7 +413,7 @@ function enterBribe(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay up [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 5000, 'cash');
@@ -597,7 +597,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     scene.text('Walk casually…');
     scene.text('Almost there…');
     scene.text('The exit of the supermarket comes closer and closer with every step, and you try to do whatever you can to control your nerves.');
-    if (Math.floor(Math.random() * 5) + 0 > 0  ||  ((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 150  ||  ((((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 50)  &&  (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 17))) {
+    if ((Math.floor(Math.random() * 5) + 0) > 0  ||  ((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 150  ||  ((((s as any).pcs_observ ?? 0) + ((s as any).pcs_persuas ?? 0) > 50)  &&  (((s as any).hour ?? 0) === 12  ||  ((s as any).hour ?? 0) === 17))) {
       (s as any).mc_inventory['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) + (50);
       scene.text('As you walk by the counters and leave the supermarket, you feel a rush of excitement. You\'re almost there now, feeling relieved as well as triumphant. You\'re going to make it for sure!');
       scene.text('You feel your hands trembling in your pockets, getting worse with every step. No matter what you do, you can\'t shake the feeling that someone must\'ve spotted you… surely they\'ve spotted you!');
@@ -673,7 +673,7 @@ function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Deny [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -692,7 +692,7 @@ function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
       { label: 'Offer him blowjob', goto: ['shoplifting', 'bj_pav'] },
       { label: 'Offer a bribe [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe_pav'] }]);
     }
@@ -714,7 +714,7 @@ function enterSecurityroomPav(s: GameState, scene: SceneBuilder): void {
       { label: 'Offer him a blowjob', goto: ['shoplifting', 'bj_pav'] },
       { label: 'Offer a bribe [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe_pav'] }]);
     }
@@ -864,7 +864,7 @@ function enterBribePav(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay up [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 5000, 'cash');
@@ -915,7 +915,7 @@ function enterQuietPav(s: GameState, scene: SceneBuilder): void {
     { label: 'Offer him blowjob', goto: ['shoplifting', 'bj_pav'] },
     { label: 'Offer a bribe [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['shoplifting', 'bribe_pav'] }]);
     }

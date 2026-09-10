@@ -16,10 +16,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         // TODO-QSP: $sleep_events[] = 'gs ''sleep_events'', ''wake_horny'' '
       }
-      if (((s as any).strip_club ?? 0)?.['ivanna_dream'] === 1  &&  Math.floor(Math.random() * 60) + 0 === 0) {
+      if (((s as any).strip_club ?? 0)?.['ivanna_dream'] === 1  &&  (!(Math.floor(Math.random() * 60) + 0))) {
         // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_events'', ''ivanna_dream'' '
       }
-      if ((((s as any).start_type ?? 0) === 'sg_tg'  &&  (((s as any).year ?? 0) === 2016  &&  (((s as any).month ?? 0) > 8  &&  ((s as any).month ?? 0) < 11))  ||  (((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg')  &&  (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) < 11))  &&  Math.floor(Math.random() * 9) + 0 === 0) {
+      if ((((s as any).start_type ?? 0) === 'sg_tg'  &&  (((s as any).year ?? 0) === 2016  &&  (((s as any).month ?? 0) > 8  &&  ((s as any).month ?? 0) < 11))  ||  (((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg')  &&  (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) < 11))  &&  (!(Math.floor(Math.random() * 9) + 0))) {
         if (((s as any).tgQW ?? 0)?.['dream_sex_anya'] === 0  &&  ((s as any).start_type ?? 0) === 'sg_tg') {
           // TODO-QSP: $tgQWtemp[] = 'dream_sex_anya'
         } else {
@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).tgQW ?? 0)?.['dream_sex_katja_vicky'] === 0  &&  (((s as any).start_type ?? 0) === 'sg_tg'  ||  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 1)) {
                 // TODO-QSP: $tgQWtemp[] = 'dream_sex_katja_vicky'
               }
-              if (((s as any).arrsize ?? 0)('tgQWtemp') > 0) {
+              if (Object.keys((s as any).tgQWtemp ?? {}).length > 0) {
                 // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_events'', ''male_dream'' '
               }
             }

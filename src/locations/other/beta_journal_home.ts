@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You rent a two bedroom apartment in Pushkin. Your rent for the apartment is subt...
     scene.text(`You rent a two bedroom apartment in Pushkin. Your rent for the apartment is subtracted automatically in the sum of ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_rent_amount', 'old_town_apartment'))} us electric bill on the 25th of each month. You are currently paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')}</b> days.`);
   }
-  if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  ((s as any).constructionstatus ?? 0) === 0) {
+  if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  (!((s as any).constructionstatus ?? 0))) {
     scene.text('You own a vacant block in the city suburbs.');
   }
   if (((s as any).accessible_property ?? 0)?.['matryona_mansion'] === 2  &&  ((s as any).constructionstatus ?? 0) === 1) {

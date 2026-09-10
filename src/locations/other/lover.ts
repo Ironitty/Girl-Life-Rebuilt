@@ -16,11 +16,11 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).spouseVars['sexday'] = 0;
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
-      (s as any).npc_pervert[$husID] = 1;
+      (s as any).npc_pervert[String((s as any).husID ?? 0)] = 1;
     }
     if (((s as any).spouseVars ?? 0)?.['gentle_add'] > 10) {
-      (s as any).npc_gentle[$husID] = 1;
-      (s as any).npc_rough[$husID] = 0;
+      (s as any).npc_gentle[String((s as any).husID ?? 0)] = 1;
+      (s as any).npc_rough[String((s as any).husID ?? 0)] = 0;
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).husID ?? 0)] <= 10) {
       qspCall(s, 'lover_love', 'divorce');
@@ -36,11 +36,11 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).spouseVars['sexday'] = 0;
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
-      (s as any).npc_pervert[$wifID] = 1;
+      (s as any).npc_pervert[String((s as any).wifID ?? 0)] = 1;
     }
     if (((s as any).spouseVars ?? 0)?.['gentle_add'] > 10) {
-      (s as any).npc_gentle[$wifID] = 1;
-      (s as any).npc_rough[$wifID] = 0;
+      (s as any).npc_gentle[String((s as any).wifID ?? 0)] = 1;
+      (s as any).npc_rough[String((s as any).wifID ?? 0)] = 0;
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).wifID ?? 0)] <= 10) {
       qspCall(s, 'lover_love', 'divorce');
@@ -72,7 +72,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
   }
-  if (((s as any).arrpos ?? 0)('lover', ((s as any).npcID ?? 0)) < 0) {
+  if ((Array.isArray((s as any).lover) ? ((s as any).lover as any[]).indexOf(((s as any).npcID ?? 0)) : -1) < 0) {
     // TODO-QSP: $lover[] = $npcID
     // TODO-QSP: gs 'telefon', 'AddContact', $npcID, $npc_icon[$npcID], 0
   }
@@ -93,7 +93,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'telefon', 'ClearSMSSchedule', ((s as any).locArgs?.[1] ?? 0));
     (s as any).telefon_index = qspUntranslated(s, "arrpos('contact', ARGS[1])", { location: "lover" });
     if (((s as any).telefon_index ?? 0) >= 0) {
-      (s as any).contactAnon[telefon_index] = 1;
+      (s as any).contactAnon[String((s as any).telefon_index ?? 0)] = 1;
     }
   }
   return;

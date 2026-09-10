@@ -17,7 +17,7 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Enter [+$func(\'money\', \'get_cost_string\', 25)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', 25 & minut += 15 & gt 'pav_voc_school', 'disco'
     }

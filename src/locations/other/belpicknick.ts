@@ -16,7 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -51,7 +51,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -98,13 +98,13 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex2', 'd_vag_sex_bottle', 5, 10);
   qspCall(s, 'stat', '');
   scene.text('Okay, so dancing is not something you do well. You have to entertain them with the bottle now, and decide to take the easiest route: you spread your legs and put the neck of the bottle against your pussy lips. You slowly push it in as far as it will go, trying to make a show of it by spreading your legs as far as you can and fucking yourself slowly with the neck of the bottle.');
-  if (Math.floor(Math.random() * 100) + 1 <= 10) {
+  if ((Math.floor(Math.random() * 100) + 1) <= 10) {
     scene.text('Even though the criminals seem enthralled by your show, one of them is getting frustrated: "Whatever. You shouldn\'t be putting bottles up there, but our cocks! Get over here whore, it\'s time you get fucked."');
     qspCall(s, 'willpower', 'gangbang', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -124,7 +124,7 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -153,13 +153,13 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Not sure what they want to see you consider putting it in your ass but at the last second you turn the bottle around in your hand. You spread your legs and put the bottom of the bottle against your pussy lips, and slowly begin to push it in. You try to make a show of it by spreading your legs as far as you can and fucking yourself slowly with the bottom of the bottle, which is stretching your pussy out a great deal.');
   }
-  if (Math.floor(Math.random() * 100) + 1 <= 80) {
+  if ((Math.floor(Math.random() * 100) + 1) <= 80) {
     scene.text('Even though the criminals seem enthralled by your show, one of them is getting frustrated: "Whatever. You shouldn\'t be putting bottles up there, but our cocks! Get over here whore, it\'s time you get fucked."');
     qspCall(s, 'willpower', 'gangbang', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -179,7 +179,7 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -208,13 +208,13 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Realising they want you to put it in your ass, you spread your legs and put the neck of the bottle against your puckered butthole. After lubricating it with a bit of saliva you slowly push it in as far as it will go, trying to make a show of it by spreading your legs as far as you can and fucking yourself slowly with the neck of the bottle.');
   }
-  if (Math.floor(Math.random() * 100) + 1 <= 70) {
+  if ((Math.floor(Math.random() * 100) + 1) <= 70) {
     scene.text('Even though the criminals seem enthralled by your show, one of them is getting frustrated: "Whatever. You shouldn\'t be putting bottles up there, but our cocks! Get over here whore, it\'s time you get fucked."');
     qspCall(s, 'willpower', 'gangbang', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -234,7 +234,7 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -267,7 +267,7 @@ function enterAbHard(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -292,19 +292,19 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A115', 'a');
     qspCall(s, 'npcStat', 'A116', 'c');
-    if (((s as any).sashaBeliSex ?? 0) === 0) {
+    if ((!((s as any).sashaBeliSex ?? 0))) {
       (s as any).sashaBeliSex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).sipliGangSex ?? 0) === 0) {
+    if ((!((s as any).sipliGangSex ?? 0))) {
       (s as any).sipliSex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).kolGangSex ?? 0) === 0) {
+    if ((!((s as any).kolGangSex ?? 0))) {
       (s as any).kolGangSex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).tatarGangSex ?? 0) === 0) {
+    if ((!((s as any).tatarGangSex ?? 0))) {
       (s as any).tatarGangSex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
@@ -320,7 +320,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     (s as any).fuckerrand = Math.floor(Math.random() * 4) + 1;
     (s as any).gmember = ((s as any).fuckerrand ?? 0);
     qspCall(s, 'belpicknick', 'vibor');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: Suddenly the cock you're currently sucking on is pulled away from you, and <<$bo...
       scene.text(`Suddenly the cock you're currently sucking on is pulled away from you, and ${((s as any).boydesc ?? 0)} pushes you onto your back saying he wants to try another hole now.`);
       scene.actions([
@@ -341,7 +341,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -363,7 +363,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
   (s as any).times_picknick = ((s as any).times_picknick ?? 0) - (1);
   (s as any).pickrand = Math.floor(Math.random() * 2) + 0;
-  if (((s as any).pickrand ?? 0) === 0) {
+  if ((!((s as any).pickrand ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/vadim/sex/sex.jpg"></...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/pavlovsk/vadim/sex/sex.jpg"></center>`);
   }
@@ -401,7 +401,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'belpicknick', 'vibor');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: All of a sudden, <<$boydesc>> slows down and tells you to get on all fours, sayi...
       scene.text(`All of a sudden, ${((s as any).boydesc ?? 0)} slows down and tells you to get on all fours, saying he wants to try another hole now.`);
       scene.actions([
@@ -417,7 +417,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -440,7 +440,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
   (s as any).times_picknick = ((s as any).times_picknick ?? 0) - (1);
   (s as any).pickrand = Math.floor(Math.random() * 2) + 0;
-  if (((s as any).pickrand ?? 0) === 0) {
+  if ((!((s as any).pickrand ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/vadim/sex/sexd.jpg"><...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/pavlovsk/vadim/sex/sexd.jpg"></center>`);
   }
@@ -448,7 +448,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/vadim/sex/sexd1.jpg">...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/pavlovsk/vadim/sex/sexd1.jpg"></center>`);
   }
-  if (Math.floor(Math.random() * 100) + 1 <= 70) {
+  if ((Math.floor(Math.random() * 100) + 1) <= 70) {
     // TODO-QSP: dynamic text: You get down on all fours revealing your cute tushy. <<$boydesc>> steps up from ...
     scene.text(`You get down on all fours revealing your cute tushy. ${((s as any).boydesc ?? 0)} steps up from behind and shoves his dick into your pussy. You are surprised as he begins pounding you roughly right from the get go you. He keeps up this pace for five minutes, almost without slowing the pace, only occasionally stopping to take a breath. You think he would be tired soon, but it turns out that he is more tenacious than one might assume.`);
     // TODO-QSP: dynamic text: As he's pounding away, you forget where you are, screaming your head off. <<$boy...
@@ -489,7 +489,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'belpicknick', 'vibor');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> pushes you onto your back saying he wants to try another hole now.
       scene.text(`${((s as any).boydesc ?? 0)} pushes you onto your back saying he wants to try another hole now.`);
       scene.actions([
@@ -505,7 +505,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

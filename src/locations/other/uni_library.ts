@@ -22,7 +22,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
       // TODO-QSP: jump 'study_loop'
     }
   } else {
@@ -34,7 +34,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('class_list_institution')) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
       // TODO-QSP: jump 'exam_loop'
     }
   }
@@ -67,7 +67,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/library/study\' + rand(1, 7) + \'.jpg');
   // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> class. The library i...
   scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? 0)} class. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it is a good environment to study in and you can see a number of other students studying as well.`);
-  if (((s as any).dyneval ?? 0) ('RESULT === \'0\'') < ((s as any).dyneval ?? 0) ('RESULT === \'1\'')) {
+  if ((0 as any) < (0 as any)) {
     scene.text('You study for half an hour and can tell that you will need to study more if you want to completely understand this week\'s material.');
   } else {
     scene.text('You study for half an hour and believe you now understand everything that is being covered this week.');
@@ -161,7 +161,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
       if (((s as any).no_study ?? 0) === 1) {
         scene.text('You try to study for half an hour, but get nothing done.');
       } else {
-        if (((s as any).study_mod ?? 0) === 0) {
+        if ((!((s as any).study_mod ?? 0))) {
           scene.text('You study for half an hour, but you don\'t think you\'re improving.');
         } else {
           scene.text('You study for half an hour and think you\'re improving a little.');

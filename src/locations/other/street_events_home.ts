@@ -24,7 +24,7 @@ function enterMinorDebtPayoff(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'money', 'debt_pay', 'workDolg', 'desk');
     scene.text('"I have the money up in my apartment. Let me go get it," you say, moving towards the door. You quickly rush inside, take the money out of the drawer and go back to pay them. They take the money and count it, then look at each other, nod and leave.');
-    qspCall(s, 'money', 'debt_pay', 'workDolg', (((s as any).debt_payoff_at_home ?? 0)) ? ('desk') : ('cash'));
+    qspCall(s, 'money', 'debt_pay', 'workDolg', ((((s as any).debt_payoff_at_home ?? 0)) ? ('desk') : ('cash')));
     qspCall(s, 'money', 'debt_add', 'workDolg', 10000);
     if (((s as any).debt_payoff_at_home ?? 0)) {
       scene.text('You tell them that you don\'t have enough money. They smack you, push you into your apartment, and follow you inside. Rummaging through your stuff, they find your stash and take it.');
@@ -55,7 +55,7 @@ function enterMinorDidntDeliverDisk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/car.jpg');
   scene.text('You are grabbed and thrown into the back seat of a car. Right and left of you, there are two angry Indian men sitting. In the front seat, the porn studio manager turns around. "Where is the envelope?" he demands.');
-  if (((s as any).konvert ?? 0) === 0) {
+  if ((!((s as any).konvert ?? 0))) {
     qspCall(s, 'money', 'debt_add', 'workDolg', 200000);
     (s as any).workDolgDay = 7;
     (s as any).job_termination_reason['city_pornstudio_delivery'] = 'blacklisted';

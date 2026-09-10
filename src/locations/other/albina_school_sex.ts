@@ -28,7 +28,7 @@ function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -82,7 +82,7 @@ function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
 
 function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A23');
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/pavlovsk/school/bathroom/maekup.jpg');
     // TODO-QSP: dynamic text: Satisfied, she climbs off of you and helps you to your feet. "That was amazing, ...
     scene.text(`Satisfied, she climbs off of you and helps you to your feet. "That was amazing, ${((s as any).pcs_nickname ?? 0)}! I really needed that," she says before pulling her thong back on and fixing her skirt.`);
@@ -137,7 +137,7 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -159,7 +159,7 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big23.jpg');
-    if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).AlbinaQW ?? 0)?.['julia_sex'] === 0) {
+    if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['julia_sex'] === 0) {
       scene.text('You silently nod and she discreetly motions for you to follow her to one of the empty classrooms. Once inside, she grabs hold of you and is about to kiss you when she jumps back and squeals in fright. You look round and find Julia blankly staring at the two of you.');
       scene.actions([
         { label: 'Continue', goto: ['albina_school_sex', 'lunch_fun_1_2'] },

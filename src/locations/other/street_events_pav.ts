@@ -56,7 +56,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the cosmetics [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay1 ?? 0), 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       qspCall(s, 'money', 'pay', ((s as any).tovpay1 ?? 0), 'cash');
@@ -67,7 +67,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy the lip balm [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay2 ?? 0), 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (20);
@@ -77,7 +77,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy the vitamins [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay3 ?? 0), 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);
@@ -125,7 +125,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the cosmetics [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay1 ?? 0), 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       qspCall(s, 'money', 'pay', ((s as any).tovpay1 ?? 0), 'cash');
@@ -136,7 +136,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy the lip balm [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay2 ?? 0), 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       (s as any).mc_inventory['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) + (20);
@@ -146,7 +146,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy the vitamins [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay3 ?? 0), 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 15;
       (s as any).mc_inventory['vitamins'] = ((s as any).mc_inventory['vitamins'] ?? 0) + (20);

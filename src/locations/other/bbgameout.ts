@@ -125,13 +125,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -143,7 +143,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribbleboy.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as he\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the other boys busy so that they can\'t help out their teammate.');
@@ -173,7 +173,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -204,7 +204,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -274,13 +274,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -292,7 +292,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribbleboy.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as he\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the other boys busy so that they can\'t help out their teammate.');
@@ -322,7 +322,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -353,7 +353,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -423,13 +423,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -441,7 +441,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribbleboy.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as he\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the other boys busy so that they can\'t help out their teammate.');
@@ -472,7 +472,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -503,7 +503,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -557,7 +557,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_events', 'rand_girl_arg', 0, 1, 0, 0, 0, 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  if (Math.floor(Math.random() * 4) + 0 > 0) {
+  if ((Math.floor(Math.random() * 4) + 0) > 0) {
     scene.actions([{ label: 'Continue', goto: ['bbgameout', 'marcusno'] }]);
   }
   scene.img('images/characters/shared/headshots_main/146.jpg');
@@ -605,13 +605,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -624,7 +624,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -656,7 +656,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       // TODO-QSP: dynamic text: You're pressured, but are able to keep control of the ball. You can't move, but ...
       scene.text(`You're pressured, but are able to keep control of the ball. You can't move, but then you see ${((s as any).rand_girl ?? 0)} lift her hand, calling for your attention.`);
@@ -692,7 +692,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot1.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -754,13 +754,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -773,7 +773,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -805,7 +805,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       // TODO-QSP: dynamic text: You're pressured, but are able to keep control of the ball. You can't move, but ...
       scene.text(`You're pressured, but are able to keep control of the ball. You can't move, but then you see ${((s as any).rand_girl ?? 0)} lift her hand, calling for your attention.`);
@@ -841,7 +841,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot1.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -903,13 +903,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -922,7 +922,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -955,7 +955,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       // TODO-QSP: dynamic text: You're pressured, but are able to keep control of the ball. You can't move, but ...
       scene.text(`You're pressured, but are able to keep control of the ball. You can't move, but then you see ${((s as any).rand_girl ?? 0)} lift her hand, calling for your attention.`);
@@ -991,7 +991,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot1.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1066,13 +1066,13 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1084,7 +1084,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -1114,7 +1114,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -1144,7 +1144,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot1.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1203,13 +1203,13 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1221,7 +1221,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -1251,7 +1251,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -1281,7 +1281,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot1.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1340,13 +1340,13 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1358,7 +1358,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -1388,7 +1388,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -1418,7 +1418,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot1.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1495,13 +1495,13 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1513,7 +1513,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can d...
       scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((s as any).pcs_nickname ?? 0)}."`);
@@ -1545,7 +1545,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
@@ -1576,7 +1576,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 40);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot2.jpg');
       scene.text('"Watch this!" you confidently tell both your amused opponent and your teammates, who seem willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1638,13 +1638,13 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1656,7 +1656,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can d...
       scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((s as any).pcs_nickname ?? 0)}."`);
@@ -1688,7 +1688,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
@@ -1719,7 +1719,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot2.jpg');
       scene.text('"Watch this!" you confidently tell both your amused opponent and your teammates, who seem willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1781,13 +1781,13 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Pass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Shoot [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1799,7 +1799,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/dribblegirl.jpg');
       // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can d...
       scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((s as any).pcs_nickname ?? 0)}."`);
@@ -1831,7 +1831,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsidepass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
@@ -1861,7 +1861,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 30);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 101) + 0 + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/outsideshoot2.jpg');
       scene.text('"Watch this!" you confidently tell both your amused opponent and your teammates, who seem willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');

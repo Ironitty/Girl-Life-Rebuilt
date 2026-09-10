@@ -45,7 +45,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You get cold easily?" ${((s as any).npcdesc ?? 0)} asks, seemingly pleased by your naked body pressed up against his.`);
     scene.actions([
       { label: 'Not really', handler: (st: GameState) => {
-    (s as any).pc_gets_chilly[$npcID] = (-1);
+    (s as any).pc_gets_chilly[String((s as any).npcID ?? 0)] = (-1);
     scene.text('"Not really," you shake your head. "I\'m usually pretty tolerant of the cold. Must be the contrast from how warm I was during the sex."');
     scene.actions([
       { label: 'Smile', handler: (st: GameState) => {
@@ -71,7 +71,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
   } },
       { label: 'I\'m always cold', handler: (st: GameState) => {
-    (s as any).pc_gets_chilly[$npcID] = 1;
+    (s as any).pc_gets_chilly[String((s as any).npcID ?? 0)] = 1;
     // TODO-QSP: dynamic text: "I'm always cold," you shiver, snuggling as far as you can into <<$npcdesc>>'s w...
     scene.text(`"I'm always cold," you shiver, snuggling as far as you can into ${((s as any).npcdesc ?? 0)}'s warmth. "I would wear a jacket in the summer."`);
     // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'

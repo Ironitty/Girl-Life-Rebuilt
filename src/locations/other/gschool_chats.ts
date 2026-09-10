@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_chats', 'nerd_event_check');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/pavlovsk/school/chat/nerd\' + rand(1, 3) + \'.jpg');
-  if (((s as any).PSchool ?? 0) === 0) {
+  if ((!((s as any).PSchool ?? 0))) {
     scene.text('You are using the school uniform cheat and are not wearing a uniform, therefore there are no reactions to your uniform.');
   } else {
     if (((s as any).PCloInhibit ?? 0) <= 5) {

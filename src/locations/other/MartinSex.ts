@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'npc_relationship', 'modify', 'A216', Math.floor(Math.random() * 2) + 0);
   scene.img('images/locations/city/industrial/bar/martinafterhours.jpg');
-  if (((s as any).MartinSexTalk ?? 0) === 0  &&  ((s as any).MartinSex ?? 0) === 0) {
+  if (((s as any).MartinSexTalk ?? 0) === 0  &&  (!((s as any).MartinSex ?? 0))) {
     scene.text('You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.');
     // TODO-QSP: dynamic text: "Oh, I didn't think you were still here, <<$pcs_firstname>>."
     scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname ?? 0)}."`);
@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You get closer to him, an inch away from touching him, and lower your voice to a whisper. "If I\'m that smart, why don\'t you let me decide what I want?"');
     scene.text('He looks at you, longing but self-possessed. "Some decisions are better made for you."');
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
-      if (((s as any).cycle ?? 0) === 0) {
+      if ((!((s as any).cycle ?? 0))) {
         scene.text('You are half-tempted to go on the offensive, show him what he\'s missing out on by acting like a knight in shining armor and see if that won\'t change his mind, but then you remember that you are on your period, so stripping isn\'t really a sexy option right now.');
         if (((s as any).stat ?? 0)?.['bj'] > 20) {
           scene.text('Or you could just pull his pants off and blow him - you\'ve done it enough times to know how convincing that can be, and your period certainly isn\'t going to stand in the way of <i>that</i>.');
@@ -166,11 +166,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('But instead of forgetting about him or wallowing in self-pity, you are now standing here, and feeling indecisive at that. What are you gonna do, apologize to him for not letting yourself be patronized? It\'s not like he was right… right?');
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
       scene.text('Maybe he just needs a little push. Maybe, all you have to do is show him that you aren\'t too young, show him what he is missing out on.');
-      if (((s as any).cycle ?? 0) === 0) {
+      if ((!((s as any).cycle ?? 0))) {
         scene.text('But, damn, since you are currently on your period, that isn\'t an option today. You will have to think of something else or come back some other time.');
       }
       if (((s as any).stat ?? 0)?.['bj'] > 20) {
-        if (((s as any).cycle ?? 0) === 0) {
+        if ((!((s as any).cycle ?? 0))) {
           scene.text('A good blowjob would probably set him straight right quick, no matter what time of the month it is.');
         } else {
           scene.text('And if all else fails, you can just go down on Martin - what man\'s going to argue with a woman who her lips wrapped around his cock?');
@@ -193,7 +193,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (((s as any).MartinSexTalk ?? 0) === 2  &&  ((s as any).MartinSex ?? 0) === 0) {
+    if (((s as any).MartinSexTalk ?? 0) === 2  &&  (!((s as any).MartinSex ?? 0))) {
       scene.text('You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.');
       // TODO-QSP: dynamic text: "Oh, I didn't think you were still here, <<$pcs_firstname>>."
       scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname ?? 0)}."`);
@@ -203,7 +203,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thought so," you say, smiling back.');
       scene.text('Martin rejected you, but you can tell that he is attracted to you, no matter what he said about age. You told him that you understand, but that doesn\'t mean it has to be the final word in the matter…');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
-        if (((s as any).cycle ?? 0) === 0) {
+        if ((!((s as any).cycle ?? 0))) {
           scene.text('You are half-tempted to go on the offensive, show him what he\'s missing out on by acting like a knight in shining armor and see if that won\'t change his mind, but then you remember that you are on your period, so stripping isn\'t really a sexy option right now.');
           scene.text('Or you could just pull his pants off and blow him - you\'ve done it enough times to know how convincing that can be, and your period certainly isn\'t going to stand in the way of <i>that</i>.');
         } else {

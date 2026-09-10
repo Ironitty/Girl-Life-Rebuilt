@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A76');
     qspCall(s, 'npcStat', 'A176', 'a');
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-    if (((s as any).TatianaSex ?? 0) === 0) {
+    if ((!((s as any).TatianaSex ?? 0))) {
       (s as any).TatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
@@ -279,7 +279,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A76');
     qspCall(s, 'npcStat', 'A218', 'a');
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-    if (((s as any).TatianaSex ?? 0) === 0) {
+    if ((!((s as any).TatianaSex ?? 0))) {
       (s as any).TatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }

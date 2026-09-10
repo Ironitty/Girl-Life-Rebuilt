@@ -15,7 +15,7 @@ function enterUndressFunction(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).sex_ev['top_noun'] = 'top';
     }
-    if (((s as any).CloSkirtShortness ?? 0) === 0) {
+    if ((!((s as any).CloSkirtShortness ?? 0))) {
       (s as any).sex_ev['CloPantsShortness'] = ((s as any).CloPantsShortness ?? 0);
       (s as any).sex_ev['bottom_noun'] = 'pants';
     } else {
@@ -23,7 +23,7 @@ function enterUndressFunction(s: GameState, scene: SceneBuilder): void {
       (s as any).sex_ev['CloSkirtShortness'] = ((s as any).CloSkirtShortness ?? 0);
     }
     if (((s as any).CloStyle2 ?? 0) === 4) {
-      (s as any).npc_know_schoolgirl[$npcID] = 1;
+      (s as any).npc_know_schoolgirl[String((s as any).npcID ?? 0)] = 1;
     }
     qspCall(s, 'outfit', 'transfer_backup', 0, 'sex_ev');
     qspCall(s, 'outfit', 'safe_backup', 'sex_ev');

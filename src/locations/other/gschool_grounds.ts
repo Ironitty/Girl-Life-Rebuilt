@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, are you coming to the New Year's Eve party or not?" some...
       scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, are you coming to the New Year's Eve party or not?" someone calls out to you. "You haven't paid the ${qspFunc(s, 'money', 'string_price', 1000)} entry fee yet!"`);
       if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         // TODO-QSP: gs 'money', 'pay', 1000 & gt 'nyp_school', 'start'
       }

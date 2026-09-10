@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   qspCall(s, 'arousal', 'bj', 1, 'unknown', 'prostitution');
-  if (Math.floor(Math.random() * 101) + 0 >= 70) {
+  if ((Math.floor(Math.random() * 101) + 0) >= 70) {
     qspCall(s, 'dinSex', 'std_trigger');
   }
   qspCall(s, 'stat', '');
@@ -37,7 +37,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/shared/sex/blowjob/bjp${((s as any).tmppicrand ?? 0)}.jpg`);
   }
   scene.text('You put a condom between your lips and slowly guide your mouth to his penis, gently rolling the condom down using only your lips. You can tell the guy is impressed with your skills.');
-  if (((s as any).prosti ?? 0) === 0) {
+  if ((!((s as any).prosti ?? 0))) {
     scene.text('You proceed to give him a blowjob, licking and sucking his condom-clad penis. The taste of the rubber is a bit unpleasant, but you do a good job and in no time the guy groans loudly.');
     scene.text('When you feel his cock slowly softening between your lips, you pull your head back. The man ties a knot in the condom and tosses it away carelessly.');
     (s as any).spafinloc = 12;

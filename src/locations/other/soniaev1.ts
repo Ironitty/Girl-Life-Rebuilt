@@ -65,7 +65,7 @@ function enterHomesex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/activities/misc/puton_strapon1.mp4');
     scene.text('"I\'m going to fuck you with my cock," you tell her.');
     scene.text('She bites her lower lip, turned on at the idea before taking you by the hand and leading you to her bedroom. You both start to get undressed and you pull the harness up over your hips and pull the straps tight until it fits snugly.');
-    if (((s as any).penisEnvyVariable ?? 0) === 0) {
+    if ((!((s as any).penisEnvyVariable ?? 0))) {
       scene.actions([
         { label: 'Cast Penis Envy', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -344,7 +344,7 @@ function enterStraponFucking(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -382,7 +382,7 @@ function enterStraponPussy(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Fuck her ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -426,7 +426,7 @@ function enterStraponAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tear her ass up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -739,7 +739,7 @@ function enterStraponMagicBedroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Fuck her ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

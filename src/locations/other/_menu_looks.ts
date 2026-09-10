@@ -54,7 +54,7 @@ function enterBody(s: GameState, scene: SceneBuilder): void {
 function enterClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Clothes');
   scene.text('<center><h1>Clothes</h1></center>');
-  if (((s as any).ward_img_hgt ?? 0) === 0) {
+  if ((!((s as any).ward_img_hgt ?? 0))) {
     (s as any).ward_img_hgt = 150;
   }
   // TODO-QSP: $temp_table += '<tr>'

@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).met_someone = 0;
-  if (((s as any).encounter ?? 0) === 0) {
+  if ((!((s as any).encounter ?? 0))) {
   } else {
     if (((s as any).encounter ?? 0) === 2) {
       if (((s as any).arch_vars ?? 0)?.['main_active'] !== 'bimbo'  ||  ((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
@@ -34,11 +34,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).placerParameter['number_of_man'] = 1;
         } else {
           (s as any).placerParameter['number_of_man'] = 0;
-          if (Math.floor(Math.random() * 2) + 0 === 0) {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
             (s as any).placerParameter['number_of_man'] = 1;
           } else {
             (s as any).placerParameter['number_of_man'] = 2;
-            if (Math.floor(Math.random() * 2) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
               (s as any).placerParameter['number_of_man'] = 3;
             } else {
               (s as any).placerParameter['number_of_man'] = 4;
@@ -146,7 +146,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     scene.text('As you expected, the park is mostly deserted at this time of day. You occasionally see a wild animal, scrounging for food.');
                   }
                 }
-                if (((s as any).soniaQW ?? 0)?.['slut']===5  &&  Math.floor(Math.random() * 10) + 1>=9  &&  ((s as any).hour ?? 0)>14  &&  ((s as any).hour ?? 0)<20) {
+                if (((s as any).soniaQW ?? 0)?.['slut']===5  &&  (Math.floor(Math.random() * 10) + 1)>=9  &&  ((s as any).hour ?? 0)>14  &&  ((s as any).hour ?? 0)<20) {
                   scene.text('');
                   scene.text('<b>While you walk past a row of bushes, you hear some strange sounds coming from behind them.</b>');
                   scene.text('');
@@ -208,7 +208,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Leave with your friend [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

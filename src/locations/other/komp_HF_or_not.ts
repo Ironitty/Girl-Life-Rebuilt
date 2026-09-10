@@ -72,7 +72,7 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :fu_loop_2
   (s as any).i = 1;
   // TODO-QSP: :fu_loop
-  if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  ((s as any).hotcat_rating_set ?? 0) === 0) {
+  if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
     (s as any).hotcat_rating_set = 1;
     // TODO-QSP: $fu_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="<<func('...
     // TODO-QSP: $fu_text += '<<$pcs_nickname>>, <<pcs_hotcat>>/10' + '</td>'
@@ -175,7 +175,7 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :fu_loop_2_uni
   (s as any).i = 1;
   // TODO-QSP: :fu_loop_uni
-  if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  ((s as any).hotcat_rating_set ?? 0) === 0) {
+  if (((s as any).pcs_hotcat ?? 0) === ((s as any).j ?? 0)  &&  (!((s as any).hotcat_rating_set ?? 0))) {
     (s as any).fu_count = ((s as any).fu_count ?? 0) + (1);
     (s as any).hotcat_rating_set = 1;
     // TODO-QSP: $fu_text += '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="<<$func(...

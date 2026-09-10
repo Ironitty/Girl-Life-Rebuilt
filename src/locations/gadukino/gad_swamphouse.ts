@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You see an old <a href="exec: gs \'gad_swamphouse\', \'washstand\' ">washstand</a> you can use to wash your hands and face. There is a well-used <a href="exec: gs \'gad_swamphouse\', \'tub\'">tub</a> nearby that you can use to bathe in.');
     scene.text('In the other corner, you see a small <a href="exec: gs \'gad_swamphouse\', \'stove\'">stove</a>. With water from the spring and some mushrooms or meat, you could cook something to eat, or you could warm the water so you can bathe in the tub.');
-    if (((s as any).stovefire ?? 0) === 0) {
+    if ((!((s as any).stovefire ?? 0))) {
       // TODO-QSP: dynamic text: The hut feels '+iif(temper < 15, 'quite cold. Maybe you should start a fire on t...
       scene.text('The hut feels \'+iif(temper < 15, \'quite cold. Maybe you should start a fire on the old stove.\', \'quite warm, even without the stove fire burning.\')+\'');
     } else {
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('There\'s nobody here right now');
           }
         }
-        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).clothesAtLocation ?? 0) === 0) {
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).clothesAtLocation ?? 0))) {
           scene.actions([
             { label: 'Get undressed', handler: (st: GameState) => {
     if ((((s as any).hunterVars ?? 0)?.['KnowSlut'] > 0  ||  (((s as any).pcs_inhib ?? 0) >= 25  ||  ((s as any).trait_vars ?? 0)?.['exhibitionist'] < 1)  &&  ((s as any).hunterVars ?? 0)?.['inside'] === 1)  ||  ((s as any).hunterVars ?? 0)?.['outside'] === 1) {
@@ -92,7 +92,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
-        if (((s as any).clothesAtLocation ?? 0) === 1  &&  ((s as any).swamp_clothes ?? 0) === 0) {
+        if (((s as any).clothesAtLocation ?? 0) === 1  &&  (!((s as any).swamp_clothes ?? 0))) {
           if (((s as any).clothingworntype ?? 0) === 'nude') {
             scene.actions([
               { label: 'Get dressed', handler: (st: GameState) => {
@@ -138,11 +138,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Masturbate', goto: ['selfplay', 'start'] },
           ]);
         }
-        if ((((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).swamp_clothes ?? 0) === 0  &&  ((s as any).clothesAtLocation ?? 0) === 0)  ||  ((s as any).swamp_enema ?? 0) === 0) {
+        if ((((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).swamp_clothes ?? 0) === 0  &&  ((s as any).clothesAtLocation ?? 0) === 0)  ||  (!((s as any).swamp_enema ?? 0))) {
           scene.actions([
             { label: 'Look for some clothes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (((s as any).swamp_enema ?? 0) === 0) {
+    if ((!((s as any).swamp_enema ?? 0))) {
       (s as any).swamp_enema = 1;
       (s as any).mc_inventory['enema_kit'] = 1;
       qspCall(s, 'stat', '');
@@ -172,7 +172,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).bucket ?? 0) > 0  &&  ((s as any).pcs_hydra ?? 0) < 80) {
           // TODO-QSP: act 'Grab a drink of water': gt 'gad_swamphouse', 'bucket'
         }
-        if (((s as any).bucket ?? 0) > 0  &&  ((s as any).pcs_hairbsh ?? 0) === 0) {
+        if (((s as any).bucket ?? 0) > 0  &&  (!((s as any).pcs_hairbsh ?? 0))) {
           // TODO-QSP: act 'Use the wash basin': gt 'gad_swamphouse', 'washstand'
         }
         if (((s as any).hotwater ?? 0) === 1  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pcs_sweat ?? 0) > 19) {

@@ -57,7 +57,7 @@ function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ninelmet ?? 0) > 0  &&  ((s as any).sick ?? 0) <= 50) {
       scene.actions([{ label: 'Continue', goto: ['housecall', 'ninel1'] }]);
     } else {
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.actions([{ label: 'Continue', goto: ['home_events', 'call_doctor2'] }]);
       } else {
         scene.actions([{ label: 'Continue', goto: ['housecall', 'ninel0'] }]);
@@ -372,7 +372,7 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
     (s as any).srok_otsidki = ((s as any).srok_otsidki ?? 0) + (5);
     (s as any).pcs_mass['body'] = 10;
     (s as any).fat = 10;
-    if (((s as any).defcurly ?? 0) === 0) {
+    if ((!((s as any).defcurly ?? 0))) {
       (s as any).curly = 0;
     } else {
       (s as any).curly = 2147483647;
@@ -562,7 +562,7 @@ function enterGoHomeNakedPre(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Run for it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

@@ -36,7 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     (s as any).constructionstatus = qspFunc(s, 'homes_properties', 'get_property_construction_status', 'matryona_mansion');
-    if (((s as any).constructionstatus ?? 0) === 0) {
+    if ((!((s as any).constructionstatus ?? 0))) {
       scene.text('Your vacant plot of land is near hear');
     } else {
       scene.text('You mansion is partially built near here.');
@@ -55,7 +55,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Look for Alexandria [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -93,7 +93,7 @@ function enterPs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Insane asylum<h4></center>');
   scene.text('The inscription on the sign by the road reads, "Closed to the public".');
-  if (((s as any).psiklik ?? 0) === 0) {
+  if ((!((s as any).psiklik ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum0.jpg" ></cen...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/suburb/asylum0.jpg" ></center>`);
   }

@@ -17,25 +17,25 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] === ((s as any).npclastgenerated ?? 0)) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('cumarrnam', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).cumarrnam) ? ((s as any).cumarrnam as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('sparrnam', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).sparrnam) ? ((s as any).sparrnam as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('cumfthname', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).cumfthname) ? ((s as any).cumfthname as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('wombpotfath', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).wombpotfath) ? ((s as any).wombpotfath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('wombName', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).wombName) ? ((s as any).wombName as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('ChildFath', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).ChildFath) ? ((s as any).ChildFath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
-    if (((s as any).arrpos ?? 0)('ChildThFath', ((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) >= 0) {
+    if ((Array.isArray((s as any).ChildThFath) ? ((s as any).ChildThFath as any[]).indexOf(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]) : -1) >= 0) {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
     // TODO-QSP: gs 'npccleanc', $ucase($npc_index[i_gs_cl])
@@ -68,7 +68,7 @@ function enterFindInNpcStat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_npc_i = 1;
   // TODO-QSP: :npcfindloop
-  if (((s as any).dyneval ?? 0)('result === npcID\'0\'') === ((s as any).locArgs?.[1] ?? 0)) {
+  if ((0 as any) === ((s as any).locArgs?.[1] ?? 0)) {
   }
   (s as any).temp_npc_i = ((s as any).temp_npc_i ?? 0) + (1);
   if (((s as any).temp_npc_i ?? 0) < 10  &&  ((s as any).result ?? 0) === '') {
@@ -113,7 +113,7 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   (s as any).npc_results['guys'] = 0;
   (s as any).npc_results['girls'] = 0;
   (s as any).npc_results['herms'] = 0;
-  if (((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0)) === 0) {
+  if (((s as any).arrsize ?? 0)(!(((s as any).locArgs?.[1] ?? 0)))) {
     // TODO-QSP: exit
   }
   (s as any).temp_npcVars['outer_i'] = 0;
@@ -121,8 +121,8 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_npcVars['char'] = 0;
   (s as any).temp_npcVars['inner_i'] = 1;
   // TODO-QSP: :loop_inner_npc_count
-  (s as any).temp_npcVars['npcID'] = $((s as any).temp_npcVars ?? 0)?.['char'] + ((s as any).temp_npcVars ?? 0)?.['inner_i'];
-  if (((s as any).dyneval ?? 0)("((s as any).result ?? 0) === ((s as any).locArgs?.[1] ?? 0)['\'2\'']") > 0) {
+  (s as any).temp_npcVars['npcID'] = ((s as any).temp_npcVars ?? 0)?.['char'] + ((s as any).temp_npcVars ?? 0)?.['inner_i'];
+  if ((0 as any) > 0) {
     if (((s as any).npc_gender ?? 0)[((s as any).temp_npcVars ?? 0)?.['npcID']] === 0) {
       (s as any).npc_results['guys'] = ((s as any).npc_results['guys'] ?? 0) + (1);
     } else {
@@ -131,7 +131,7 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_npcVars['inner_i'] = ((s as any).temp_npcVars['inner_i'] ?? 0) + (1);
-  if (((s as any).temp_npcVars ?? 0)?.['inner_i'] < ((s as any).dyneval ?? 0)("((s as any).result ?? 0) === ((s as any).temp_npcVars ?? 0)?.['char']((s as any).arraynumber ?? 0)")) {
+  if (((s as any).temp_npcVars ?? 0)?.['inner_i'] < (0 as any)) {
     // TODO-QSP: jump 'loop_inner_npc_count'
   }
   // TODO-QSP: $ARGS[2] = $mid($ARGS[2], 2)

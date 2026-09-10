@@ -8,7 +8,7 @@ function enterReceptionOptionLabel(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rol_state ?? 0) === 'none') {
   } else {
     if (((s as any).temp_rol_state ?? 0) === 'pending') {
-      (s as any).temp_rol_daystart = (((s as any).temp_rol_recur ?? 0) !== '') ? (((s as any).daystart ?? 0)) : (((s as any).event_daystart ?? 0)?.[String((s as any).temp_rol_id ?? 0)]);
+      (s as any).temp_rol_daystart = ((((s as any).temp_rol_recur ?? 0) !== '') ? (((s as any).daystart ?? 0)) : (((s as any).event_daystart ?? 0)?.[String((s as any).temp_rol_id ?? 0)]));
       if (((s as any).temp_rol_daystart ?? 0) === ((s as any).daystart ?? 0)) {
       }
     }
@@ -40,7 +40,7 @@ function enterHerpesShot(s: GameState, scene: SceneBuilder): void {
   (s as any).GerpesNapr = ((s as any).GerpesNapr ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.text('You see the nurse and she gives you a painful injection in your ass.');
-  if (((s as any).GerpesNapr ?? 0) === 0) {
+  if ((!((s as any).GerpesNapr ?? 0))) {
     (s as any).Gerpes = (-10);
     scene.text('You have completed the treatment.');
   }
@@ -59,7 +59,7 @@ function enterGonorrheaShot(s: GameState, scene: SceneBuilder): void {
   (s as any).TriperNapr = ((s as any).TriperNapr ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.text('You see the nurse and she gives you a painful injection in your ass.');
-  if (((s as any).TriperNapr ?? 0) === 0) {
+  if ((!((s as any).TriperNapr ?? 0))) {
     (s as any).TriperOral = 0;
     (s as any).TriperOralSigns = 0;
     (s as any).Triper = 0;
@@ -131,7 +131,7 @@ function enterHerpesCure(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetElectrolysisAct(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).lashair ?? 0) === 0) {
+  if ((!((s as any).lashair ?? 0))) {
     if (qspFunc(s, 'money', 'can_afford', 80000)) {
       // TODO-QSP: '<a href="exec: gt ''clinic_functions'', ''electrolysis''">Electrolysis</a> laser hair removal of le...
     } else {
@@ -319,7 +319,7 @@ function enterSetGetStringBreastImplantAct(s: GameState, scene: SceneBuilder): v
 }
 
 function enterSetDrainStringBreastImplantAct(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).stringimplant ?? 0) === 0) {
+  if ((!((s as any).stringimplant ?? 0))) {
     // TODO-QSP: dynamic text: Drain string implant - ' + $func('money', 'string_price', 2000) + ' - You don't ...
     scene.text('Drain string implant - \' + $func(\'money\', \'string_price\', 2000) + \' - You don\'t have string implants.');
     return;
@@ -339,7 +339,7 @@ function enterSetDrainStringBreastImplantAct(s: GameState, scene: SceneBuilder):
 }
 
 function enterSetBuySiliconeBagAct(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).fillimplant ?? 0) === 0) {
+  if ((!((s as any).fillimplant ?? 0))) {
     // TODO-QSP: dynamic text: Buy silicone bag - ' + $func('money', 'string_price', 500) + ' - You don't have ...
     scene.text('Buy silicone bag - \' + $func(\'money\', \'string_price\', 500) + \' - You don\'t have fillable implants.');
     return;

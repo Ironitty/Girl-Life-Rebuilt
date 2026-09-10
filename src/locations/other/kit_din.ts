@@ -144,7 +144,7 @@ function enterSantehnikend2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'debt_add', 'santehnikDolg', 1500);
   if (((s as any).Grisha ?? 0) >= 1) {
   }
-  if (((s as any).Grisha ?? 0) === 0) {
+  if ((!((s as any).Grisha ?? 0))) {
     (s as any).Grisha = 1;
   }
   qspCall(s, 'stat', '');
@@ -163,7 +163,7 @@ function enterSantehnikend3(s: GameState, scene: SceneBuilder): void {
   (s as any).ransloman = 0;
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
-  if (((s as any).GrishaSex ?? 0) === 0) {
+  if ((!((s as any).GrishaSex ?? 0))) {
     (s as any).GrishaSex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }

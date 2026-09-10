@@ -16,7 +16,7 @@ function enterComputers_101(s: GameState, scene: SceneBuilder): void {
     scene.text('He stops at the front of the class. "My name is Evgeny Yurievich Blagov, but you may call me Professor Blagov. All that I ask from you is that attend my class and pay attention. If you want to pass my class that is."');
     scene.text('With that over, he begins today\'s lecture.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -25,7 +25,7 @@ function enterComputers_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Blagov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -99,7 +99,7 @@ function enterComputers_102(s: GameState, scene: SceneBuilder): void {
     scene.text('He stops at the front of the class. "My name is Evgeny Yurievich Blagov, but you may call me Professor Blagov. All that I ask from you is that attend my class and pay attention. If you want to pass my class that is."');
     scene.text('With that over, he begins today\'s lecture.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -108,7 +108,7 @@ function enterComputers_102(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Blagov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

@@ -144,7 +144,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, I'm just teasing," she giggles before putting a ...
         scene.text(`"Don't worry ${((s as any).pcs_nickname ?? 0)}, I'm just teasing," she giggles before putting a box of condoms on the counter and adding it to your purchase. "I'm not here to judge. Goodness knows, I'd be one to talk."`);
         scene.text('She places the box into a paper bag before sliding it across the counter towards you.');
-        if (((s as any).pharmacyfirstbirthcontrol ?? 0) === 0) {
+        if ((!((s as any).pharmacyfirstbirthcontrol ?? 0))) {
           scene.text('"We also have birth control pills if you\'d like to start going bareback."');
           qspCall(s, 'pav_pharmacy', 'birth_control_addon');
         }
@@ -155,7 +155,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
           scene.text('"Used up my gift already?" Luda asks, which only serves to make you blush even harder. "I\'m glad it went to good use."');
         }
         scene.text('She pulls a box of condoms from behind the counter and adds it to your purchase.');
-        if (((s as any).pharmacyfirstbirthcontrol ?? 0) === 0) {
+        if ((!((s as any).pharmacyfirstbirthcontrol ?? 0))) {
           scene.text('"We also have birth control pills if you\'d like to start going bareback."');
           qspCall(s, 'pav_pharmacy', 'birth_control_addon');
         }
@@ -188,7 +188,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"Used up my gift already?" Luda smiles. "I\'m glad it went to good use."');
         }
-        if (((s as any).pharmacyfirstbirthcontrol ?? 0) === 0) {
+        if ((!((s as any).pharmacyfirstbirthcontrol ?? 0))) {
           scene.text('"We also have birth control pills if you\'d like to start going bareback."');
           qspCall(s, 'pav_pharmacy', 'birth_control_addon');
         }
@@ -242,7 +242,7 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'pav_pharmacy', 'luda_stopped_bc');
         }
-        if (((s as any).pharmacyfirstbirthcontrol ?? 0) === 0) {
+        if ((!((s as any).pharmacyfirstbirthcontrol ?? 0))) {
           scene.text('"Of course, darling." She rummages around the counter and comes up with a box of condoms. "We also have birth control pills if you prefer bareback. As long as you know your partner is clean, of course."');
           qspCall(s, 'pav_pharmacy', 'birth_control_addon');
         } else {

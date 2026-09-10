@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text('You have to wear some makeup to start your work.');
-        if (((s as any).pcs_makeup ?? 0) === 0) {
+        if ((!((s as any).pcs_makeup ?? 0))) {
           scene.text('He looks at you dismissively. "Fix your makeup first, girl. You look horrible."');
           scene.actions([
             { label: 'Continue', goto: ['city_nightclub', 'start'] },
@@ -56,7 +56,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Enter the club [+$func(\'money\', \'get_cost_string\', 250)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       if (((s as any).pcs_makeup ?? 0) > 1  &&  ((s as any).pcs_sweat ?? 0) < 50  &&  (((s as any).PCloSkirt ?? 0) > 2  ||  ((s as any).PCloPants ?? 0) > 4  ||  ((s as any).PCloPanties ?? 0) === 1  ||  (((s as any).clothingworntype ?? 0) === 'salacious_dress'  ||  ((s as any).clothingworntype ?? 0) === 'salacious_outfits'))) {
         scene.text('You can feel his eyes roaming all over your body, but he eventually nods and lets you pass. You\'re stopped just inside the door by another large man, who indicates the cashier window. You step over to it and pay the entry fee. After that, he steps aside and lets you go inside.');
@@ -73,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.text('The bouncer shakes his head. "At least wear some makeup, girl."');
-          if (((s as any).pcs_makeup ?? 0) === 0) {
+          if ((!((s as any).pcs_makeup ?? 0))) {
             scene.text('The bouncer shakes his head. "Fix your makeup first, girl."');
             scene.actions([
               { label: 'Continue', goto: ['city_nightclub', 'start'] },

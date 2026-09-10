@@ -21,7 +21,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  if (((s as any).objects ?? 0)?.['chew'] > 0  &&  Math.floor(Math.random() * 10) + 1 > 5  &&  ((s as any).rex ?? 0)?.['chew_day'] !== ((s as any).daystart ?? 0)) {
+  if (((s as any).objects ?? 0)?.['chew'] > 0  &&  (Math.floor(Math.random() * 10) + 1) > 5  &&  ((s as any).rex ?? 0)?.['chew_day'] !== ((s as any).daystart ?? 0)) {
     (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) + (1);
     (s as any).objects['chew'] = ((s as any).objects['chew'] ?? 0) - (1);
     (s as any).rex['chew_day'] = ((s as any).daystart ?? 0);

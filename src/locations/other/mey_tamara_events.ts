@@ -228,7 +228,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_lashes = 2;
     }
     (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (40);
-    if (((s as any).shorthair ?? 0) === 0) {
+    if ((!((s as any).shorthair ?? 0))) {
       (s as any).curly = 7;
     }
     (s as any).pcs_pubes = 0;
@@ -435,7 +435,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).args ?? 0)[0] === 'check_look') {
             scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
             if ((((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_dress'  ||  ((s as any).clothingworntype ?? 0) === 'fashionista_dress')  &&  (((s as any).pcs_makeup ?? 0) === 3  ||  ((s as any).pcs_makeup ?? 0) === 2)  &&  ((s as any).pcs_sweat ?? 0) <= 20  &&  ((s as any).pcs_apprnc ?? 0) >= 60) {
-              if (((s as any).shorthair ?? 0) === 0  &&  ((s as any).pcs_hairbsh ?? 0) === 0) {
+              if (((s as any).shorthair ?? 0) === 0  &&  (!((s as any).pcs_hairbsh ?? 0))) {
                 scene.img('images/characters/pavlovsk/school/girl/vicky/event/party0.jpg');
                 scene.text('Tamara examines you and shakes her head in dissaproval. You\'re not ready for your great "debut"… Disappointed, you head back…');
                 scene.actions([
@@ -597,7 +597,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).args ?? 0)[0] === 'party4') {
             (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
-            if (((s as any).zz_stage ?? 0) === 0) {
+            if ((!((s as any).zz_stage ?? 0))) {
               (s as any).zz_stage = 16;
             }
             scene.img('images/characters/pavlovsk/school/girl/vicky/event/party\'+iif(zz_stage = 18, 17, zz_stage)+\'.jpg');
@@ -785,7 +785,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/eve...
               scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/pavlovsk/school/girl/vicky/event/reputation'+zz_stage+'.jpg"></center>`);
             }
-            if (((s as any).zz_stage ?? 0) === 0) {
+            if ((!((s as any).zz_stage ?? 0))) {
               scene.text('You stand in front of Tamara, with your eyes tearing up.');
               scene.text('"Well, what do you want? I don\'t want you here anymore."');
             } else {

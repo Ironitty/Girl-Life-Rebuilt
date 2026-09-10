@@ -464,7 +464,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
 function enterPerm(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'money', 'pay', 1500);
-  if (((s as any).defcurly ?? 0) === 0) {
+  if ((!((s as any).defcurly ?? 0))) {
     (s as any).curly = Math.floor(Math.random() * 5) + 12;
     qspCall(s, 'stat', '');
     scene.img(`${qspFunc(s, '\'$face_image\'', '')}`);
@@ -485,7 +485,7 @@ function enterPerm2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'money', 'pay', 1500);
   (s as any).curly = 0;
-  if (((s as any).defcurly ?? 0) === 0) {
+  if ((!((s as any).defcurly ?? 0))) {
     qspCall(s, 'stat', '');
     scene.img(`${qspFunc(s, '\'$face_image\'', '')}`);
     scene.text('You get your hair straightened, as it should be naturally.');

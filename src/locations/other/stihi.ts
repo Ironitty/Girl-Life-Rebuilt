@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).strand = Math.floor(Math.random() * 11) + 0;
-  if (((s as any).strand ?? 0) === 0) {
+  if ((!((s as any).strand ?? 0))) {
     // TODO-QSP: You - my happiness among a heap of misery!
     // TODO-QSP: You - the sense that I wanted to find.
     // TODO-QSP: You - the muse. Not what one would die.

@@ -38,7 +38,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tits ?? 0) >= 5) {
       scene.text('Your large breasts are tightly constricted by the fabric, leaving you feeling a little uncomfortable.');
     }
-    if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('Glancing behind you, you notice the minimal amount of coverage, leaving your prominent ass cheeks on full display.');
     }
     scene.text('You then return to the chief lifeguard, who motions for you to follow her out to the pool.');
@@ -139,7 +139,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     scene.text(`"That's me," you reply. "I'm ${((s as any).pcs_nickname ?? 0)}."`);
     // TODO-QSP: dynamic text: "A beautiful name for a beautiful girl," he smiles. "I'll be seeing you around, ...
     scene.text(`"A beautiful name for a beautiful girl," he smiles. "I'll be seeing you around, ${((s as any).pcs_nickname ?? 0)}."`);
-    if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('As you walk away, you sense him checking out your ass.');
     }
   } else {
@@ -286,7 +286,7 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'lifeguard');
     qspCall(s, 'stat', '');
     scene.text('You slip out of your swimsuit and get dressed back into your clothes.');
-    if (Math.floor(Math.random() * 3) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
       (s as any).pav_swimpool['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
       scene.text('You\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
     }
@@ -299,9 +299,9 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
     scene.text('You slip out of your swimsuit and enter one of the shower stalls, enjoying the sensation of the warm water on your skin.');
-    if (Math.floor(Math.random() * 3) + 0 > 0  ||  ((s as any).pav_swimpool ?? 0)?.['vadim_shower_reject'] !== 0  ||  ((s as any).pcs_hotcat ?? 0) < 6) {
+    if ((Math.floor(Math.random() * 3) + 0) > 0  ||  ((s as any).pav_swimpool ?? 0)?.['vadim_shower_reject'] !== 0  ||  ((s as any).pcs_hotcat ?? 0) < 6) {
       scene.text('Once you\'re finished, you step out and wrap yourself in one of the poor quality towels that have been provided for staff use before heading to your locker and getting dressed.');
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         (s as any).pav_swimpool['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
         scene.text('You\'re startled when you think you hear a camera click, as if someone was taking photos, but you don\'t see anything. You tell yourself you\'re just being paranoid and continue getting dressed.');
       }
@@ -464,7 +464,7 @@ function enterShiftPart1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_hotcat ?? 0) >= 6) {
       scene.text('"Hey there, beautiful," he says with a smile. "Maria said I was to show you the ropes, so get up on the chair and let\'s get started."');
       scene.text('You nod and climb up into the chair as Vadim watches.');
-      if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
         scene.text('You can sense him checking out your ass as you do and turn around to see him smiling up at you as you take a seat in the chair.');
       }
       scene.text('"Let\'s get started then, beautiful."');
@@ -507,7 +507,7 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       scene.img('images/locations/pavlovsk/community/swim/kidsplash.jpg');
       scene.text('You watch a kid splashing water in the corner of the pool. Since he isn\'t bothering anyone, you leave him be and return your focus to other parts of the pool.');
     } else {
@@ -519,7 +519,7 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.img('images/locations/pavlovsk/community/swim/exitloosebra.jpg');
         scene.text('You watch a girl exiting the pool who is unaware that the string of her bikini top has loosened. As she pulls her hair back, her top suddenly falls off, exposing her breasts to anyone who\'s watching. She gets a few whistles and cheers from both men and boys in the pool.');
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('She blushes as she quickly grabs her top and fixes it back in place before retying the knot on the string. She then hurries away as you hear some of the boys complaining.');
         } else {
           scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed breasts on show for a few seconds before she slowly fixes her bikini top. She winks at everyone in the pool before walking away, much to the joy of some of the boys.');
@@ -529,7 +529,7 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_rand ?? 0) === 4) {
           scene.img('images/locations/pavlovsk/community/swim/exitloosepanties.jpg');
           scene.text('You watch a girl exiting the pool who is unaware that her bikini bottom has loosened. As she pulls herself out of the water, her bottom slides down and exposes her ass to anyone watching. She gets a few whistles and cheers from both men and boys in the pool.');
-          if (Math.floor(Math.random() * 2) + 0 === 0) {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
             scene.text('She blushes as she quickly climbs out of the pool and grabs her bottom before pulling it up. She then hurries away as you hear some of the boys complaining.');
           } else {
             scene.text('She doesn\'t seem to mind about her wardrobe malfunction and lets everyone watch as she leaves her exposed ass on show while climbing out of the water. She then slowly pulls her bikini bottom back up and winks at everyone in the pool before walking away, much to the joy of some of the boys.');

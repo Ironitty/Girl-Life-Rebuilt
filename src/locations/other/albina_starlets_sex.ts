@@ -706,7 +706,7 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   (s as any).s = 1;
   // TODO-QSP: :loop_whore7
   qspCall(s, 'npcgeneratec', '', 0, 'The old man\'s friend <<s>>', Math.floor(Math.random() * 31) + 30, 0, 1);
-  (s as any).AlbinaQW['Cust' + String((s as any).s ?? '') + ''] = ((s as any).npclastgenerated ?? 0);
+  (s as any).AlbinaQW['Cust' + String((s as any).s || '') + ''] = ((s as any).npclastgenerated ?? 0);
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust<<s>>'], s
   (s as any).s = ((s as any).s ?? 0) + (1);
   if (((s as any).s ?? 0) < 12) {
@@ -873,7 +873,7 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.img('images/characters/pavlovsk/school/girl/albina/sex/prostitute/dom_reward.jpg');
       scene.text('After a few minutes, she lets out a pleasured moan as she climaxes, coating your face in her juices. When she\'s finished, she roughly pulls on the leash and has you look up at her. She has a rather pleasured look on her face as she smiles down at you.');
       scene.text('"I think you\'ve earned your reward," she says as you follow her across the room on all fours. "Here\'s a treat. Now sit nice like a good girl," she says, holding a piece of chocolate above you.');

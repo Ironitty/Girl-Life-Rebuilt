@@ -28,7 +28,7 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Spy on them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -44,14 +44,14 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Keep spying on them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Keep spying on them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    if (((s as any).sisterbfspy ?? 0) === 0) {
+    if ((!((s as any).sisterbfspy ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy1'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['sisterQW', 'spy2'] }]);

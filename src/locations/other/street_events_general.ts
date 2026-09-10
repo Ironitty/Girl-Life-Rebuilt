@@ -9,7 +9,7 @@ function enterRandomRape(s: GameState, scene: SceneBuilder): void {
   (s as any).streetev_day = ((s as any).daystart ?? 0);
   // TODO-QSP: $streetev_title
   scene.img('images/locations/shared/street/rapist.jpg');
-  if (Math.floor(Math.random() * 100) + 1 + ((s as any).pcs_observ ?? 0) >= 100) {
+  if ((Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_observ ?? 0) >= 100) {
     scene.text('You notice a hooded man standing in a darkened alleyway up ahead. Feeling he is up to no good you cross the street to the other side before you get to him. You see him look your direction before fading back into the darkness of the alleyway.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -136,7 +136,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
   (s as any).streetev_day = ((s as any).daystart ?? 0);
   // TODO-QSP: $streetev_title
   scene.img('images/locations/shared/street/pursesnatch.jpg');
-  if (Math.floor(Math.random() * 301) + 0 < (((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0))) {
+  if ((Math.floor(Math.random() * 301) + 0) < (((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0))) {
     scene.text('As you are walking down the street minding your own business, you are suddenly jerked sideways and nearly pulled off your feet. You quickly regain your balance, and instinctively, your fingers hold your purse tighter as you feel something tugging on it. A man is trying to snatch your purse, but he runs away when you don\'t let go of it immediately.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -153,7 +153,7 @@ function enterRandomSnatching(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'loc');
   } },
       { label: 'Chase him', handler: (st: GameState) => {
-    if ((((s as any).pcs_run ?? 0) + ((s as any).pcs_stam ?? 0)) < Math.floor(Math.random() * 131) + 120) {
+    if ((((s as any).pcs_run ?? 0) + ((s as any).pcs_stam ?? 0)) < (Math.floor(Math.random() * 131) + 120)) {
       qspCall(s, 'purses', 'dispose');
       qspCall(s, 'money', 'set', 0, 'cash');
       qspCall(s, 'stat', '');
@@ -218,12 +218,12 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 20, ((s as any).npcID1 ?? 0), 'group', 'rough', 'sub');
     qspCall(s, 'arousal', 'anal', 20, ((s as any).npcID ?? 0), 'group', 'rough', 'sub');
     qspCall(s, 'arousal', 'anal', 20, ((s as any).npcID1 ?? 0), 'group', 'rough', 'sub');
-    qspCall(s, 'cum_call', 'stomach', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'butt', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'mouth', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'face', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'clothes', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'anus', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
+    qspCall(s, 'cum_call', 'stomach', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'butt', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'mouth', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'face', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'clothes', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'anus', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -257,7 +257,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
       scene.actions([
         { label: 'Agree [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -278,7 +278,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -390,7 +390,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomLover(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 100) + 0 < 40 - (20 / (((s as any).stat ?? 0)?.['lesbian_count'] + 1))) {
+  if ((Math.floor(Math.random() * 100) + 0) < 40 - (20 / (((s as any).stat ?? 0)?.['lesbian_count'] + 1))) {
     scene.actions([{ label: 'Continue', goto: ['dateF', 'start'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['dateM', 'start'] }]);
@@ -422,7 +422,7 @@ function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 50, 'cash');
@@ -466,7 +466,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 50, 'cash');
@@ -512,7 +512,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 50, 'cash');
@@ -558,7 +558,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 50, 'cash');
@@ -593,7 +593,7 @@ function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Get your portrait done [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
       qspCall(s, 'money', 'pay', 50, 'cash');

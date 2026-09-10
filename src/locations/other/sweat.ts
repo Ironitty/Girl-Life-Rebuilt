@@ -27,7 +27,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeo(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).deodorant_on ?? 0) === 0) {
+  if ((!((s as any).deodorant_on ?? 0))) {
     (s as any).deodorant_on = 1;
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (2);
   }

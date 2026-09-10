@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterPcCondomFunc(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  ((s as any).preziktype ?? 0) === 0) {
+  if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (!((s as any).preziktype ?? 0))) {
     (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   } else {
     (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
@@ -55,7 +55,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Don\'t drink the beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -75,7 +75,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/disco/outside_talk.jpg');
     // TODO-QSP: dynamic text: You spend some time getting to know <<$npcdesc>> a bit better before he checks h...
     scene.text(`You spend some time getting to know ${((s as any).npcdesc ?? 0)} a bit better before he checks his watch. "I have to get going, but I really enjoyed chatting with you!"`);
-    if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).pcs_apprnc ?? 0) >= Math.floor(Math.random() * 81) + 40) {
+    if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).pcs_apprnc ?? 0) >= (Math.floor(Math.random() * 81) + 40)) {
       scene.text('"I would love to see you again! How about you give me your number, so we can go on a date some time?" he adds.');
       scene.actions([
         { label: 'Decline and go back to the disco', goto: ['pav_disco', ''] },
@@ -125,7 +125,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Ask him to stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -135,7 +135,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/pavlovsk/community/disco/sex/grab_tit.jpg');
       scene.text('He\'s too drunk to notice your objections and slides a hand underneath your clothes, squeezing your breasts.');
       scene.actions([
@@ -173,7 +173,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -220,8 +220,8 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Math.floor(Math.random() * 2) + 1 === 1) {
-        if (Math.floor(Math.random() * 2) + 0 === 0  &&  ((s as any).pcs_apprnc ?? 0) >= Math.floor(Math.random() * 81) + 40) {
+      if ((Math.floor(Math.random() * 2) + 1) === 1) {
+        if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).pcs_apprnc ?? 0) >= (Math.floor(Math.random() * 81) + 40)) {
           scene.text('He checks his watch and frowns. "I have to get going, but I would love to see you again! How about you give me your number, so we can go on a date sometime?"');
           scene.actions([
             { label: 'Decline and go back to the disco', goto: ['pav_disco', ''] },
@@ -230,7 +230,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'npcgeneratec', '', 0, '', 'like');
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    (s as any).bmFrend[Tboynum] = 1;
+    (s as any).bmFrend[String((s as any).Tboynum ?? 0)] = 1;
     qspCall(s, 'lover', 'add_dating', ((s as any).npcID ?? 0));
     qspCall(s, 'stat', '');
     scene.text('You smile and give him your number, which he diligently adds to his phone.');
@@ -249,7 +249,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -274,7 +274,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -329,7 +329,7 @@ function enterDecline(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -357,7 +357,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss him back', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).bmKISS[Tboynum] = ((s as any).bmKISS[Tboynum] ?? 0) + (1);
+    (s as any).bmKISS[String((s as any).Tboynum ?? 0)] = ((s as any).bmKISS[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
     scene.text('You lean in and reciprocate the kiss before you feel his hands on your chest.');
@@ -366,7 +366,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -382,13 +382,13 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let him', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 3, 'no_orgasm_msg');
-    (s as any).bmTITS[Tboynum] = ((s as any).bmTITS[Tboynum] ?? 0) + (1);
+    (s as any).bmTITS[String((s as any).Tboynum ?? 0)] = ((s as any).bmTITS[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
     // TODO-QSP: dynamic text: You ignore <<$npcdesc>>'s hands and kiss him, letting him pull your clothes asid...
     scene.text(`You ignore ${((s as any).npcdesc ?? 0)}'s hands and kiss him, letting him pull your clothes aside, so your ${((s as any).titsize ?? 0)} breasts fall out. He kneads them eagerly and continues to kiss and lick them, making your nipples poke out fiercely in the evening air.`);
     scene.text('You moan under his touch, letting your leg slide between his. You can feel his cock brushing up against your thigh, stiff as a rock.');
-    if (Math.floor(Math.random() * 3) + 0 === 1  &&  ((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {
+    if ((Math.floor(Math.random() * 3) + 0) === 1  &&  ((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {
       scene.text('"Hey," he breathes between kisses. "I was wondering... Do you want to come back to my place for some coffee?"');
       // TODO-QSP: act'Only if "coffee" means "sex"':
       scene.img('images/locations/pavlovsk/community/disco/sex/tits.jpg');
@@ -414,7 +414,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (Math.floor(Math.random() * 2) + 0 === 1) {
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
       if (((s as any).npc_residence ?? 0)?.[String((s as any).npcID ?? 0)] === 'pav_residential') {
         scene.text('"Hey," he breathes between kisses. "Why don\'t we take this back to my place?"');
         qspCall(s, 'family_schedule', '');
@@ -530,7 +530,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -556,7 +556,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Remove his hands and walk away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -587,7 +587,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stare at it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -613,13 +613,13 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Jerk him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Jerk him off', handler: (st: GameState) => {
-    (s as any).bmHJ[Tboynum] = ((s as any).bmHJ[Tboynum] ?? 0) + (1);
+    (s as any).bmHJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmHJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     // TODO-QSP: gs 'cum_call', 'face', $npcID, temp['known_cumID']
@@ -637,7 +637,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck it', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 5, 'no_orgasm_msg');
-    (s as any).bmBJ[Tboynum] = ((s as any).bmBJ[Tboynum] ?? 0) + (1);
+    (s as any).bmBJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksuck.jpg');
     scene.text('Without even realizing it, you move in. Then, after a few kisses and licks, you let it slide into your mouth and diligently suck him off.');
@@ -668,7 +668,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Spit [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -722,7 +722,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -746,7 +746,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Go back to the disco [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -775,7 +775,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
 function enterHandjob(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Jerk him off', handler: (st: GameState) => {
-    (s as any).bmHJ[Tboynum] = ((s as any).bmHJ[Tboynum] ?? 0) + (1);
+    (s as any).bmHJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmHJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
     qspCall(s, 'arousal', 'hj', 5, 'no_orgasm_msg');
     qspCall(s, 'stat', '');
     if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -787,7 +787,7 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Make him cum [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -886,17 +886,17 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'fame', 'pav', 'sex', 'medium');
   }
-  (s as any).pav_disco_bj[$npcID] = ((s as any).totminut ?? 0);
-  (s as any).bmBJ[Tboynum] = ((s as any).bmBJ[Tboynum] ?? 0) + (1);
+  (s as any).pav_disco_bj[String((s as any).npcID ?? 0)] = ((s as any).totminut ?? 0);
+  (s as any).bmBJ[String((s as any).Tboynum ?? 0)] = ((s as any).bmBJ[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
   (s as any).gdk['bj'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/public/outdoor/bj1.mp4');
   // TODO-QSP: dynamic text: Knees to the ground, you take <<$npcdesc>>'s <<$npc_dick_noun[$npcID]>> in your ...
   scene.text(`Knees to the ground, you take ${((s as any).npcdesc ?? 0)}'s ${((s as any).npc_dick_noun ?? 0)?.[String((s as any).npcID ?? 0)]} in your hand and guide it into your mouth to start sucking. He groans under your touch, and you see him tilting his head back in pleasure above you.`);
-  if (Math.floor(Math.random() * 2) + 0 === 0  &&  ((s as any).gdk ?? 0)?.['fuck'] !== 2) {
+  if ((Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).gdk ?? 0)?.['fuck'] !== 2) {
     // TODO-QSP: xgt 'pav_disco_sex', 'fuck_pre1'
   } else {
-    if (Math.floor(Math.random() * 10) + 1 >= ((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+    if ((Math.floor(Math.random() * 10) + 1) >= ((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
         // TODO-QSP: dynamic text: After several minutes, you feel <<$npcdesc>> begin to stiffen up.
         scene.text(`After several minutes, you feel ${((s as any).npcdesc ?? 0)} begin to stiffen up.`);
@@ -1004,7 +1004,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Insist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1025,7 +1025,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/community/dk_night.jpg');
       scene.text('"Come on! Please!"');
       scene.text('"I told you, I don\'t use them," he growls. "Why the fuck would I have any if I don\'t use them!"');
-      if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  ((s as any).preziktype ?? 0) === 0) {
+      if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (!((s as any).preziktype ?? 0))) {
         scene.actions([
           { label: 'Get a condom from your purse', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
@@ -1067,7 +1067,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  ((s as any).preziktype ?? 0) === 0) {
+    if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (!((s as any).preziktype ?? 0))) {
       scene.actions([
         { label: 'Get a condom from your purse', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');

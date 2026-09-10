@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A149', 'like', 1, 'pav_disco');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big149.jpg');
-  if (Math.floor(Math.random() * 4) + 1 === 1) {
+  if ((Math.floor(Math.random() * 4) + 1) === 1) {
     scene.text('Lazar is out on the dance floor dancing with a small group of people. The girls in the group are all competing for his attention.');
     scene.actions([
       { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },

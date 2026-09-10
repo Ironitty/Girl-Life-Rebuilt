@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The nudist beach is closed.');
   } else {
     scene.text('It\'s too cold for any nudist activities.');
-    if (qspFunc(s, 'changingroom', 'count_swim_item') > 0  &&  ((s as any).PSwim ?? 0) === 0) {
+    if (qspFunc(s, 'changingroom', 'count_swim_item') > 0  &&  (!((s as any).PSwim ?? 0))) {
       scene.actions([
         { label: 'Change into your swimwear', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

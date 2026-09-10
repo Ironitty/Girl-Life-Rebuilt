@@ -48,7 +48,7 @@ function enterMFCHourlyEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_camVars['v1'] = qspFunc(s, 'math', 'long_mult', ((s as any).temp_camVars ?? 0)?.['PO_g'], ((s as any).temp_camVars ?? 0)?.['X']);
     (s as any).temp_camVars['v2'] = qspFunc(s, 'math', 'long_div', ((s as any).temp_camVars ?? 0)?.['v1'], ((s as any).temp_camVars ?? 0)?.['N']);
     (s as any).temp_camVars['r_PO'] = qspUntranslated(s, "val(temp_camVars['v2'])", { location: "komp_cam_functions" });
-    if (((s as any).temp_camVars ?? 0)?.['days_not_online'] >= 3  &&  Math.floor(Math.random() * 3) + 0 === 0  ||  ((s as any).temp_camVars ?? 0)?.['days_not_online'] >= 7  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+    if (((s as any).temp_camVars ?? 0)?.['days_not_online'] >= 3  &&  (Math.floor(Math.random() * 3) + 0) === 0  ||  ((s as any).temp_camVars ?? 0)?.['days_not_online'] >= 7  &&  (!(Math.floor(Math.random() * 2) + 0))) {
       (s as any).temp_camVars['r_PO'] = ((s as any).temp_camVars['r_PO'] ?? 0) + (qspUntranslated(s, "rand(0, rand(0, rand(0, temp_camVars['days_not_online'])))", { location: "komp_cam_functions" }));
     }
     (s as any).temp_camVars['minFollower'] = ((s as any).camGirl ?? 0)?.['MFC_maxFollowers'] / 10;
@@ -204,7 +204,7 @@ function enterCamming(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "komp_cam_functions" }));
     // TODO-QSP: gs 'internet_mobile', 'use_internet', $subs, ARGS[1]
   }
-  (s as any).ARGS[1] = (((s as any).ARGS ?? 0)[1] < 0) ? (-((s as any).ARGS ?? 0)[1]) : (qspUntranslated(s, "ARGS[1]", { location: "komp_cam_functions" }));
+  (s as any).ARGS[1] = ((((s as any).ARGS ?? 0)[1] < 0) ? (-((s as any).ARGS ?? 0)[1]) : (qspUntranslated(s, "ARGS[1]", { location: "komp_cam_functions" })));
   // TODO-QSP: gs 'komp_cam_functions', 'UpdateCamBonus', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   // TODO-QSP: gs 'komp_cam_functions', 'UpdateStats', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   // TODO-QSP: gs 'komp_cam_functions', 'views', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
@@ -234,7 +234,7 @@ function enterUpdateCamBonus(s: GameState, scene: SceneBuilder): void {
       (s as any).camGirl['CamBonus'] = ((s as any).camGirl['CamBonus'] ?? 0) + (10);
     }
   }
-  (s as any).camGirl['CamBonus'] = ((s as any).camGirl ?? 0)?.['CamBonus'] * 480 / (480 + ((s as any).camGirl ?? 0)[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._time ?? 0)']);
+  (s as any).camGirl['CamBonus'] = ((s as any).camGirl ?? 0)?.['CamBonus'] * 480 / (480 + ((s as any).camGirl ?? 0)[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._time ?? 0)']);
   (s as any).camGirl['CamBonus'] = qspUntranslated(s, "min(max(0, camGirl['CamBonus']), 250)", { location: "komp_cam_functions" });
   scene.build();
 }
@@ -244,22 +244,22 @@ function enterMFC_UpdateCamBonus(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (600 * ((s as any).camGirl ?? 0)?.['MFC_Viewers']   / (5000 + ((s as any).camGirl ?? 0)?.['MFC_Viewers']));
   (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (600 * ((s as any).camGirl ?? 0)?.['MFC_Followers'] / (5000 + ((s as any).camGirl ?? 0)?.['MFC_Followers']));
   (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (120);
-  if (((s as any).arrpos ?? 0)('ARGS', 'dance') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('dance') : -1) >= 0) {
     (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (120);
   }
-  if (((s as any).arrpos ?? 0)('ARGS', 'request') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('request') : -1) >= 0) {
     (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (120);
   }
-  if (((s as any).arrpos ?? 0)('ARGS', 'private') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('private') : -1) >= 0) {
     (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (240);
   }
-  if (((s as any).arrpos ?? 0)('ARGS', 'erotic') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('erotic') : -1) >= 0) {
     (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (360);
   }
-  if (((s as any).arrpos ?? 0)('ARGS', 'fetish') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('fetish') : -1) >= 0) {
     (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (480);
   }
-  if (((s as any).arrpos ?? 0)('ARGS', 'porn') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('porn') : -1) >= 0) {
     (s as any).temp_camVars['Bonus_base'] = ((s as any).temp_camVars['Bonus_base'] ?? 0) + (600);
   }
   (s as any).temp_camVars['fame_bonus'] = ((s as any).fame ?? 0)?.['city_sexind'] + ((s as any).fame ?? 0)?.['city_social'];
@@ -300,12 +300,12 @@ function enterMFC_UpdateStats(s: GameState, scene: SceneBuilder): void {
 
 function enterViews(s: GameState, scene: SceneBuilder): void {
   (s as any).cam_viewsVars['dt'] = qspUntranslated(s, "ARGS[1]", { location: "komp_cam_functions" });
-  (s as any).cam_viewsVars['tt'] = ((s as any).camGirl ?? 0)?.[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._time ?? 0)'];
-  (s as any).cam_viewsVars['N'] = ((s as any).camConst ?? 0)?.[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._N ?? 0)'];
-  (s as any).cam_viewsVars['Ot'] = ((s as any).camGirl ?? 0)?.[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Outsiders ?? 0)'];
-  (s as any).cam_viewsVars['Lt'] = ((s as any).camGirl ?? 0)?.[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Lurkers ?? 0)'];
-  (s as any).cam_viewsVars['At'] = ((s as any).camGirl ?? 0)?.[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Actives ?? 0)'];
-  (s as any).cam_viewsVars['Pt'] = ((s as any).camGirl ?? 0)?.[$((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Passives ?? 0)'];
+  (s as any).cam_viewsVars['tt'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._time ?? 0)'];
+  (s as any).cam_viewsVars['N'] = ((s as any).camConst ?? 0)?.[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._N ?? 0)'];
+  (s as any).cam_viewsVars['Ot'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Outsiders ?? 0)'];
+  (s as any).cam_viewsVars['Lt'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Lurkers ?? 0)'];
+  (s as any).cam_viewsVars['At'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Actives ?? 0)'];
+  (s as any).cam_viewsVars['Pt'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? 0)?.['type'] + '((s as any)._Passives ?? 0)'];
   if (((qspUntranslated(s, "\u00000\u0000", { location: "komp_cam_functions" })).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
     // TODO-QSP: gs 'LOCA', 'camGirl', 'views', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   } else {
@@ -340,7 +340,7 @@ function enterMFCViews(s: GameState, scene: SceneBuilder): void {
   (s as any).cam_viewsVars['PA_g'] = 2000;
   (s as any).cam_viewsVars['PO_g'] = 1;
   (s as any).cam_viewsVars['PO_a'] = 30;
-  if (((s as any).arrpos ?? 0)('ARGS', 'private') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('private') : -1) >= 0) {
     // TODO-QSP: cam_viewsVars['OL_g'] /= 5
     // TODO-QSP: cam_viewsVars['OL_a'] /= 5
     // TODO-QSP: cam_viewsVars['LO_g'] *= 2
@@ -459,19 +459,19 @@ function enterMFCDonate(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_camVars['dt'] = qspUntranslated(s, "ARGS[1]", { location: "komp_cam_functions" });
   (s as any).temp_camVars['CamBonus'] = (25 + 10 * ((s as any).temp_camVars ?? 0)?.['dt']) / 50 + (75 + ((s as any).camGirl ?? 0)?.['CamBonus']) / 50;
   (s as any).temp_camVars['eff_V'] = ((s as any).temp_camVars ?? 0)?.['CamBonus'] * ((s as any).camGirl ?? 0)?.['MFC_Actives'] + ((s as any).camGirl ?? 0)?.['MFC_Lurkers'];
-  if (((s as any).arrpos ?? 0)('ARGS', 'request') >= 0) {
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('request') : -1) >= 0) {
     (s as any).temp_camVars['p'] = 100;
   } else {
     (s as any).temp_camVars['p'] = 67 * ((s as any).temp_camVars ?? 0)?.['eff_V'] / (((s as any).temp_camVars ?? 0)?.['N'] / 100 + ((s as any).temp_camVars ?? 0)?.['eff_V']);
   }
-  if (Math.floor(Math.random() * 100) + 0 >= ((s as any).temp_camVars ?? 0)?.['p']) {
+  if ((Math.floor(Math.random() * 100) + 0) >= ((s as any).temp_camVars ?? 0)?.['p']) {
     return;
   }
   (s as any).temp_camVars['mult'] = 100 * ((s as any).temp_camVars ?? 0)?.['CamBonus'] * ((s as any).temp_camVars ?? 0)?.['eff_V'] / (((s as any).temp_camVars ?? 0)?.['N'] / 10 + ((s as any).temp_camVars ?? 0)?.['eff_V']);
   if (((s as any).temp_camVars ?? 0)?.['mult'] > 1) {
     (s as any).temp_camVars['mult'] = qspUntranslated(s, "rand(1, temp_camVars['mult'])", { location: "komp_cam_functions" });
   }
-  if (((s as any).rand ?? 0)(0, ((s as any).temp_camVars ?? 0)?.['eff_V'] / ((s as any).temp_camVars ?? 0)?.['CamBonus']) < ((s as any).camGirl ?? 0)?.['MFC_Actives']) {
+  if ((Math.floor(Math.random() * (((s as any).temp_camVars ?? 0)?.['eff_V'] / ((s as any).temp_camVars ?? 0)?.['CamBonus'] - 0 + 1)) + (0)) < ((s as any).camGirl ?? 0)?.['MFC_Actives']) {
     (s as any).temp_camVars['payout'] = 4 * ((s as any).max ?? 0)(1, (((s as any).temp_camVars ?? 0)?.['mult'] / 2));
   } else {
     (s as any).temp_camVars['payout'] = 2 * ((s as any).max ?? 0)(1, (((s as any).temp_camVars ?? 0)?.['mult'] / 2));

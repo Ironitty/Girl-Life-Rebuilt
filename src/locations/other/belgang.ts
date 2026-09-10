@@ -119,7 +119,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You\'re tearing up as you look down at your shoes, not daring to look him in the eye. "I\'m… I\'m sorry, mister Bely. I simply don\'t have the of money. If you give me some more time, I wi-"');
-    if (((s as any).belgangPayextension ?? 0) === 0) {
+    if ((!((s as any).belgangPayextension ?? 0))) {
       (s as any).belgangPayextension = ((s as any).belgangPayextension ?? 0) + (1);
       qspCall(s, 'money', 'debt_add', 'belgangPay', 2000);
       qspCall(s, 'money', 'debt_add', 'belgangPayWeek', 2000);
@@ -129,7 +129,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'belgang', 'update_debt_calendar');
       // TODO-QSP: dynamic text: He frowns, abruptly cutting you off. You can see the disapproval in his eyes whe...
       scene.text(`He frowns, abruptly cutting you off. You can see the disapproval in his eyes when you glance up. "That is very unfortunate, ${((s as any).pcs_nickname ?? 0)}," he says. "You can pay me next week, but I expect ' + $func('money', 'string_debt_addition', 2000) + ' extra."`);
-      if (((s as any).belgangProstitute ?? 0) === 0) {
+      if ((!((s as any).belgangProstitute ?? 0))) {
         (s as any).belgangProstitute = 1;
         // TODO-QSP: dynamic text: "And don't worry, <<$pcs_nickname>>. I'll give you some opportunities to help yo...
         scene.text(`"And don't worry, ${((s as any).pcs_nickname ?? 0)}. I'll give you some opportunities to help you pay your debts," he says with a dangerous smile.`);
@@ -186,7 +186,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Get into the jeep', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
     scene.text('You open the door and take a seat in the back as Vadim drives through the city.');
-    if (((s as any).temper ?? 0) >= 18  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) <= 19  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+    if (((s as any).temper ?? 0) >= 18  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).hour ?? 0) <= 19  &&  (!(Math.floor(Math.random() * 3) + 0))) {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
       scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
       scene.text('As the car leaves the city and goes off-road at some point, one of the more silent criminals feels the need to explain: "We have a little picnic planned for today. We know just the place… nice and quiet. You\'ll be able to entertain us there without interruptions."');

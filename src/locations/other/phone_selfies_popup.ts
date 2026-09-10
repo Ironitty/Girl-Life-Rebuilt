@@ -7,7 +7,7 @@ function enterSetSelfie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShow(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).temp_suppress_other_selfies ?? 0) === 0) {
+  if ((!((s as any).temp_suppress_other_selfies ?? 0))) {
     if (((s as any).cfg_vars ?? 0)?.['use_popups'] === 1) {
     } else {
       // TODO-QSP: view 'images/pc/activities/phone/selfies/<<$ARGS[1]>>/<<$ARGS[2]>>/<<$selfieFilePrefix[ARGS[3]]>><<A...

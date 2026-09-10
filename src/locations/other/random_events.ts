@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   (s as any).temp_freq = qspUntranslated(s, "max(0, rand_events_temp['freq'])", { location: "random_events" });
-  if (((s as any).temp_freq ?? 0) === 0) {
+  if ((!((s as any).temp_freq ?? 0))) {
     // TODO-QSP: exit
   }
   (s as any).rand_events_total_weight = ((s as any).rand_events_total_weight ?? 0) + (((s as any).temp_freq ?? 0));

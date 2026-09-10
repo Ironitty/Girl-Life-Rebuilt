@@ -40,7 +40,7 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Ask Reinhold to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -73,7 +73,7 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to deflate the situation', handler: (st: GameState) => {
     scene.text('<center><b>?????????</b></center>');
     scene.img('images/characters/city/thelilith/thelilith.jpg');
-    if (Math.floor(Math.random() * 100) + 1 < ((s as any).pcs_persuas ?? 0)) {
+    if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_persuas ?? 0)) {
       qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 2);
       scene.text('You must stop this, they are two high-level wizards in the middle of the street, go figure the level of damage, so there is only one thing you can do… stand between the two, look into their eyes and…');
       scene.text('"Ok you two stop right now! I don\'t care who you think you are, this is a public place, so stop the cock wielding contest!"');
@@ -156,7 +156,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
       { label: 'Badmouth Tatiana', handler: (st: GameState) => {
     scene.text('<center><b>Alexandria</b></center>');
     scene.img('images/characters/city/alexandria/alexandria3.jpg');
-    if (Math.floor(Math.random() * 100) + 1 < ((s as any).pcs_persuas ?? 0)) {
+    if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_persuas ?? 0)) {
       qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 2);
       scene.text('Actually, you think that there is some truth in Alexandria\'s words, and it is a good moment to voice your opinions.');
       scene.text('"I don\'t know Tatiana enough, and I am reluctant to judge without hearing an explanation, but… her description of you seemed to me too forced, more rumor than anything else, and that weird thing about your hair."');
@@ -298,7 +298,7 @@ function enterInterview3(s: GameState, scene: SceneBuilder): void {
         { label: '"That is horrible!"', handler: (st: GameState) => {
     scene.text('<center><b>Aleksei</b></center>');
     scene.img('images/characters/city/alexandria/chair.jpg');
-    if (Math.floor(Math.random() * 100) + 1 < ((s as any).pcs_splcstng ?? 0)) {
+    if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_splcstng ?? 0)) {
       qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 2);
       scene.text('At your words, Aleksei tilts his head and semes to think about them.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, Let's see, <i>It</i> was a dangerous parasite, whose feeding...
@@ -457,7 +457,7 @@ function enterFilipp(s: GameState, scene: SceneBuilder): void {
       { label: '"Mr. Aleksei already paid you"', goto: ['alexandriaEv', 'persufilipp'] },
       { label: 'Give him a <i>contribution</i> [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'contribution'] }]);
     }
@@ -509,7 +509,7 @@ function enterKneel(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/ana/sex/bribex.mp4');
-  if (((s as any).pcs_throat ?? 0) === 0) {
+  if ((!((s as any).pcs_throat ?? 0))) {
     scene.text('There is a pregnant silence, as you kneel and try to think what to do… until Mr.Kudashov, seeming tired of your indecision, sigh, and take out his <i>tool</i>… and you gasp… this guy is <i>big</i>, easily 25cm! and he doesn\'t seemed in full swing!');
     scene.text('"Oh! Don\'t tell me that you have never? sigh… time for a lesson. First! Spit! A lot with the tongue all the way down and up!"');
     scene.text('Filipp sounds amused, as he gives you pointers, and with those and some help taken from porn, you take out your tongue and give him a lick… he tastes salty… sweaty, but not necessarily… <i>bad</i>, and with some uncertainty, you begin to go up and down her tool.');
@@ -584,7 +584,7 @@ function enterPersufilipp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Filipp</b></center>');
   scene.img('images/characters/city/ana/bribes.jpg');
-  if (Math.floor(Math.random() * 100) + 1 < ((s as any).pcs_persuas ?? 0)) {
+  if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_persuas ?? 0)) {
     scene.text('Filipp Kudashov tilts his head and looks at you with smugness "Ms. Assistant, I don\'t know what are you insinuating but…" You cut him before he can continue.');
     scene.text('"No Mr.Kudashov, listen to me. I am as you say <i>Mr.Aleksei\'s Assistant</i>… I work for <i>Mr.Aleksei</i>… No some two-bit criminal… No some mediocre penpusher… No Mr. Kudashov, I work for someone with <i>true power</i>, so don\'t try to play with me and for extension Mr.Aleksei. We have a deal, you were generously compensated, so were is the sword?"');
     scene.text('You don\'t know if call your words a bluff, mostly because you are pretty sure they are true, but will Filipp take them seriously?');
@@ -614,7 +614,7 @@ function enterPersufilipp(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['alexandriaEv', 'kneel'] },
       { label: 'Give him a <i>contribution</i> [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['alexandriaEv', 'contribution'] }]);
     }
@@ -923,7 +923,7 @@ function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1149,7 +1149,7 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Pay them a new TV [+$func(\'money\', \'get_cost_string\', 15000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 15000);
@@ -1175,7 +1175,7 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'fight', 'start'
   } },
     { label: 'Talk calmly and try to retreat through the window.', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 100) + 1 < ((s as any).pcs_persuas ?? 0)) {
+    if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_persuas ?? 0)) {
       if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
       }
       (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1331,7 +1331,7 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -1510,7 +1510,7 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"You know that I am not going to stop." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1527,7 +1527,7 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"Or you can kindly give me the key." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

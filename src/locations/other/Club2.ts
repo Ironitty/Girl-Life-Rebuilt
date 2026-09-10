@@ -132,7 +132,7 @@ function enterToilet2(s: GameState, scene: SceneBuilder): void {
     scene.text('Before long, the second man also cums in your mouth. You swallow both loads and wipe your face.');
     qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'group');
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-    if (Math.floor(Math.random() * 100) + 1 > ((s as any).pcs_horny ?? 0)) {
+    if ((Math.floor(Math.random() * 100) + 1) > ((s as any).pcs_horny ?? 0)) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     } else {
       (s as any).pcs_horny = 0;
@@ -147,7 +147,7 @@ function enterToilet2(s: GameState, scene: SceneBuilder): void {
     scene.text(`${qspFunc(s, 'money', 'string_profit', 2000)} pokes through the hole.`);
     (s as any).guy = ((s as any).guy ?? 0) + (2);
     qspCall(s, 'arousal', 'end');
-    if (((s as any).pornstudio ?? 0) === 0) {
+    if ((!((s as any).pornstudio ?? 0))) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     (s as any).pornstudio = 1;

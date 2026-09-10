@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: npc_rel_hotcat[$ARGS[0]] = pcs_hotcat
     return;
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     (s as any).ARGS[1] = 2;
   }
   // TODO-QSP: npc_attraction[$ARGS[0]] = pcs_apprnc

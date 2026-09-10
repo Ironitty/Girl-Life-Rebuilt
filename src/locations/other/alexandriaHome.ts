@@ -14,7 +14,7 @@ function enterIntercom(s: GameState, scene: SceneBuilder): void {
   scene.text('The house is situated on the more wealthy side of the neighborhood. It\'s big and expensive, but not by too much, and sits in a nebulous middle point, making it utterly forgettable, yet classy. You wonder if the neighnours know that one of the most powerful beings in the world lives here.');
   scene.actions([
     { label: 'Call the intercom', handler: (st: GameState) => {
-    if (((s as any).succubusQW ?? 0) > 1  &&  ((s as any).succubusQW ?? 0) < 5  &&  ((s as any).AlexSuc ?? 0) === 0) {
+    if (((s as any).succubusQW ?? 0) > 1  &&  ((s as any).succubusQW ?? 0) < 5  &&  (!((s as any).AlexSuc ?? 0))) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).AlexSuc = 1;
       qspCall(s, 'stat', '');

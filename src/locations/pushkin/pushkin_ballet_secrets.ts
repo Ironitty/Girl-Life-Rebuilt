@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'init');
   (s as any).setloc['StageTitle'] = 'Ballet Secrets';
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).ballet ?? 0)-((s as any).shop ?? 0)-((s as any).window?.jpg ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).ballet ?? 0)-((s as any).shop ?? 0)-((s as any).window?.jpg ?? 0)';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -55,7 +55,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   (s as any).balletqw['ballet_secrets_visit'] = 1;
   (s as any).balletqw['shoe_order'] = ((s as any).daystart ?? 0) + 14;
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).ballet_secrets_fitting_1?.jpg ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).ballet_secrets_fitting_1?.jpg ?? 0)';
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
@@ -80,7 +80,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
 function enterReception(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'reception');
   (s as any).setloc['StageTitle'] = 'Ballet Secrets - Reception';
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).reception?.jpg ?? 0)';
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).reception?.jpg ?? 0)';
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');

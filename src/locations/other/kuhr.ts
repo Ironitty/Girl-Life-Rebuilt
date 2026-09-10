@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Kitchen</b></center>');
-  if (((s as any).remkuhr ?? 0) === 0) {
+  if ((!((s as any).remkuhr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/kuhr.jpg');
   } else {
     scene.img('images/locations/city/residential/apartment/kuhr2.jpg');
   }
-  if (Math.floor(Math.random() * 51) + 0 === 0  &&  ((s as any).santehnikDolg ?? 0) === 0  &&  ((s as any).remkuhr ?? 0) === 0  &&  ((s as any).daystart ?? 0) > ((s as any).kransloman ?? 0)[1] + 90) {
+  if ((Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).santehnikDolg ?? 0) === 0  &&  ((s as any).remkuhr ?? 0) === 0  &&  ((s as any).daystart ?? 0) > ((s as any).kransloman ?? 0)[1] + 90) {
     (s as any).kransloman = 1;
     (s as any).kransloman[1] = ((s as any).daystart ?? 0);
   }
@@ -42,7 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] === 0  ||  ((s as any).edahot ?? 0) > 0) {
     }
-    if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  ((s as any).edahot ?? 0) === 0) {
+    if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
     }
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
     scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
@@ -90,7 +90,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterLeak(s: GameState, scene: SceneBuilder): void {
   scene.text('You notice a leak in your sink. It\'s broken and you\'ll need to call a plumber.');
-  if (((s as any).Grisha ?? 0) === 0) {
+  if ((!((s as any).Grisha ?? 0))) {
     scene.actions([
       { label: 'Call the plumber', goto: ['kit_din', 'santehnik'] },
     ]);

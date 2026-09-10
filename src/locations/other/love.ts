@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_love[$npcID] = 1;
+  (s as any).npc_love[String((s as any).npcID ?? 0)] = 1;
   // TODO-QSP: dynamic text: You start talking about living together. <<$npcdesc>> tells you that <<$xe>> is ...
   scene.text(`You start talking about living together. ${((s as any).npcdesc ?? 0)} tells you that ${((s as any).xe ?? 0)} is not against it, but first ${((s as any).xe ?? 0)} wants you to meet ${((s as any).xyr ?? 0)} parents.`);
   // TODO-QSP: dynamic text: <<$xec>> warns you that <<$xyr>> mother is very demanding and rigorous. <<$npcde...
@@ -24,7 +24,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   scene.text(`For your next date, if you are ready, ${((s as any).npcdesc ?? 0)} will take you to ${((s as any).xyr ?? 0)} parents.`);
   scene.actions([
     { label: 'To invite', handler: (st: GameState) => {
-    if (((s as any).npcGender ?? 0) === 0) {
+    if ((!((s as any).npcGender ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['sexm', 'room'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['lezbsex', 'startloverhome'] }]);
@@ -51,30 +51,30 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m unemployed."');
   }
   if (((s as any).modelfoto ?? 0)?.['nude'] > 30) {
-    (s as any).npc_rel[$npcID] = 0;
+    (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
     // TODO-QSP: dynamic text: She smiles and says with disgust, "Why are you not telling us about the photos y...
     scene.text(`She smiles and says with disgust, "Why are you not telling us about the photos you shot for these web sites?" She pulls out the nude photos of you and lies them out on the table. "My ${((s as any).temp_mother_relat ?? 0)}, your mother cares about you. This girl is not worthy of you."`);
     // TODO-QSP: dynamic text: <<$npcdesc>> blushes and screams, "<<$pcs_nickname>>, I loved you so, and you… y...
     scene.text(`${((s as any).npcdesc ?? 0)} blushes and screams, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
   } else {
-    (s as any).npc_rel[$npcID] = 0;
+    (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
     // TODO-QSP: dynamic text: She smiles and says with disgust, "<<$temp_mother_relatc>>, everyone knows that ...
     scene.text(`She smiles and says with disgust, "${((s as any).temp_mother_relatc ?? 0)}, everyone knows that this girl is a slut. ${((s as any).pcs_nickname ?? 0)} does not just wait tables, she lets every customer, even the Armenians who go there, tear up every hole she has. She doesn't deserve you!"`);
     // TODO-QSP: dynamic text: <<$npcdesc>> blushes and says, "<<$pcs_nickname>>, I loved you so, and you… you ...
     scene.text(`${((s as any).npcdesc ?? 0)} blushes and says, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
     if (((s as any).frot ?? 0) > 3) {
-      (s as any).npc_rel[$npcID] = 0;
+      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: She smiles and says with disgust, "<<$temp_mother_relatc>>, this girl is a slut ...
       scene.text(`She smiles and says with disgust, "${((s as any).temp_mother_relatc ?? 0)}, this girl is a slut and lets every pervert who settles down next to her on the subway grope her. She is not worthy of you!"`);
       // TODO-QSP: dynamic text: <<$npcdesc>> blushes and says, "<<$pcs_nickname>>, I loved you so, and you… you ...
       scene.text(`${((s as any).npcdesc ?? 0)} blushes and says, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
     } else {
-      (s as any).npc_rel[$npcID] = 0;
+      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: She smiles and says with disgust, "<<$temp_mother_relatc>>, your girlfriend moon...
       scene.text(`She smiles and says with disgust, "${((s as any).temp_mother_relatc ?? 0)}, your girlfriend moonlights at the sex shop, sucking the members of countless strangers. Do you want a wife like that? She is not worthy of you!"`);
       // TODO-QSP: dynamic text: <<$npcdesc>> blushes and says, "<<$pcs_nickname>>, I loved you so, and you… you ...
       scene.text(`${((s as any).npcdesc ?? 0)} blushes and says, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
-      (s as any).npc_love[$npcID] = 2;
+      (s as any).npc_love[String((s as any).npcID ?? 0)] = 2;
       // TODO-QSP: dynamic text: She looks at her <<$temp_mother_relat>> with tearful eyes and says, "Alright. We...
       scene.text(`She looks at her ${((s as any).temp_mother_relat ?? 0)} with tearful eyes and says, "Alright. Well ${((s as any).temp_mother_relat ?? 0)}, it's your choice. Who am I to interfere with your life? I just gave birth to you, nursed you and helped you grow up. But of course you are free to forget about your mother who loves you and only wishes the best for you. If you insist on keeping her, please do. I certainly don't forbid it. "`);
       // TODO-QSP: dynamic text: <<$npcdesc>> looks down, "Mother, what are you saying? Of course I love you, but...

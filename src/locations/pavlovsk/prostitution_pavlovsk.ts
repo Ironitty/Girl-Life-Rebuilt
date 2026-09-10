@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterChance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_pavlovsk', 'pav_rnd');
-  if (((s as any).prostitute ?? 0)?.['pav_daily_count'] < ((s as any).prostitute ?? 0)?.['pav_daily_max']  &&  Math.floor(Math.random() * 1000) + 1 < ((s as any).min ?? 0)(((s as any).prostitute ?? 0)?.['pav_rnd'], 400)) {
+  if (((s as any).prostitute ?? 0)?.['pav_daily_count'] < ((s as any).prostitute ?? 0)?.['pav_daily_max']  &&  (Math.floor(Math.random() * 1000) + 1) < ((s as any).min ?? 0)(((s as any).prostitute ?? 0)?.['pav_rnd'], 400)) {
     scene.actions([{ label: 'Continue', goto: ['prostitution_pavlovsk', 'rng'] }]);
   }
   scene.build();
@@ -76,7 +76,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Look for a customer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -85,7 +85,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'prostitution_pavlovsk', 'pav_rnd');
     (s as any).prostitute['pav_rnd'] = ((s as any).prostitute['pav_rnd'] ?? 0) + (100);
-    if (Math.floor(Math.random() * 1000) + 1 < ((s as any).min ?? 0)(((s as any).prostitute ?? 0)?.['pav_rnd'], 600)) {
+    if ((Math.floor(Math.random() * 1000) + 1) < ((s as any).min ?? 0)(((s as any).prostitute ?? 0)?.['pav_rnd'], 600)) {
       (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 36) + 5);
       (s as any).prostitute['pav_search'] = 1;
       (s as any).prostitute['pav_rnd_pity'] = 0;

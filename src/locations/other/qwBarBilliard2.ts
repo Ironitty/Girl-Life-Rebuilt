@@ -44,7 +44,7 @@ function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
       { label: 'Maybe I could… I\'m almost broke though', goto: ['qwBarBilliard2', 'VicArt_Ev1_Broke'] },
       { label: 'Maybe I could… (Play for cash) [+$func(\'money\', \'get_cost_string\', 1000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['qwBarBilliard2', 'VicArt_Ev1_Cash'] }]);
     }

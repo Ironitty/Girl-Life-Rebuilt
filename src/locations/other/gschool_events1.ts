@@ -6,14 +6,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).scoolboy = Math.floor(Math.random() * 5) + 1;
-  if (((s as any).scoolboy ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0) {
+  if (((s as any).scoolboy ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('He tries to hide it, but the proud grin on his face tells you Dimka was the one groping your ass.');
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.img('images/characters/shared/headshots_main/big8.jpg');
-    if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('You can tell from his grin that Svyatoslav was the one groping your ass.');
       scene.text('"Nice! Good to see all your working out is good for something at least," he laughs and a few of the other boys join in.');
     } else {
@@ -137,7 +137,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -170,7 +170,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -202,7 +202,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -233,7 +233,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -292,7 +292,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.text('The brazen look on his face betrays Dan. It must have been him touching your ass. Knowing him, he probably would\'ve gone further if there weren\'t so many people here.');
         scene.actions([
           { label: 'Continue', goto: ['gschool_events1', 'rand_gopnic1'] },

@@ -55,7 +55,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Flash your tits to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -76,7 +76,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Flash your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -98,7 +98,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Flash both your tits and your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -120,7 +120,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Offer a blowjob in exchange for jumping the queue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -148,7 +148,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Cum on your face', handler: (st: GameState) => {
-    if (((s as any).pcs_haircol ?? 0) === 0) {
+    if ((!((s as any).pcs_haircol ?? 0))) {
     } else {
       if (((s as any).pcs_haircol ?? 0) === 2) {
       }
@@ -180,7 +180,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 0;
   // TODO-QSP: :loopcard
-  if (((s as any).i ?? 0) === 0) {
+  if ((!((s as any).i ?? 0))) {
     (s as any).n = 5;
     (s as any).price = 60;
   } else {
@@ -254,7 +254,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     { label: 'Check received mail', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).arrpos ?? 0)('mail_region', ((s as any).region ?? 0)) < 0  &&  ((s as any).arrpos ?? 0)('mail_region', 'all') < 0) {
+    if ((Array.isArray((s as any).mail_region) ? ((s as any).mail_region as any[]).indexOf(((s as any).region ?? 0)) : -1) < 0  &&  (Array.isArray((s as any).mail_region) ? ((s as any).mail_region as any[]).indexOf('all') : -1) < 0) {
       scene.text('You have no mail.');
     } else {
       scene.text('You have mail.');

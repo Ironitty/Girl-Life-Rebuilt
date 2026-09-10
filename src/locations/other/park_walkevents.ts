@@ -85,7 +85,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Further', handler: (st: GameState) => {
     (s as any).locbegrand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).locbegrand ?? 0) === 0) {
+    if ((!((s as any).locbegrand ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
     }
     if (((s as any).locbegrand ?? 0) === 1) {

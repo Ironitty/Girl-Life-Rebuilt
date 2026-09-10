@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5);
     qspCall(s, 'stat', '');
     (s as any).tiprand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).tiprand ?? 0) === 0) {
+    if ((!((s as any).tiprand ?? 0))) {
       (s as any).pose = 1;
       // TODO-QSP: dynamic text: <<$boydesc>> gets up and helps you take off your clothes, before he puts his han...
       scene.text(`${((s as any).boydesc ?? 0)} gets up and helps you take off your clothes, before he puts his hands on your shoulders and motions for you to get on your hands and knees so he can fuck you from behind.`);
@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).ppsex = ((s as any).ppsex ?? 0) + (1);
     qspCall(s, 'stat', '');
-    if (((s as any).tiprand ?? 0) === 0) {
+    if ((!((s as any).tiprand ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/shared/sex/vag/doggy/fbhdog.jpg"></center...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/shared/sex/vag/doggy/fbhdog.jpg"></center>`);
     }

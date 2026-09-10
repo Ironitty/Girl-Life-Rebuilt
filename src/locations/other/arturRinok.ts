@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arturKnow ?? 0) === 0) {
+  if ((!((s as any).arturKnow ?? 0))) {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('The handsome Armenian man smiles while handing you a plump tangerine.');
@@ -22,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -34,12 +34,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     // TODO-QSP: dynamic text: Sensing the man has "other" intentions, you start to refuse and back away from t...
-    scene.text(`Sensing the man has "other" intentions, you start to refuse and back away from the Armenian. He puts his hand out to stop your retreat and says "Hey, I mean no offense. Perhaps my Russian is no good. Nothing bad will happen I swear! I'll even give you ${(((s as any).bag ?? 0)===0) ? ('a handbag') : ('cosmetics')} if you come and spend some time with me."`);
+    scene.text(`Sensing the man has "other" intentions, you start to refuse and back away from the Armenian. He puts his hand out to stop your retreat and says "Hey, I mean no offense. Perhaps my Russian is no good. Nothing bad will happen I swear! I'll even give you ${((((s as any).bag ?? 0)===0) ? ('a handbag') : ('cosmetics'))} if you come and spend some time with me."`);
     qspCall(s, 'willpower', 'drink', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -61,7 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -105,7 +105,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -166,7 +166,7 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
 function enterWork_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
-  if (((s as any).arturDaysWorked2 ?? 0) === 0) {
+  if ((!((s as any).arturDaysWorked2 ?? 0))) {
     scene.text('"I see my new, super sexy secretary came." Arthur smiles while eyeing you lustfully.');
   }
   scene.text('You quickly get to work. "We\'ve got the usual paperwork to complete." Arthur instructs you as you begin.');
@@ -192,7 +192,7 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

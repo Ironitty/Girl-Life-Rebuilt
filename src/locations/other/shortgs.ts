@@ -19,7 +19,7 @@ function enterAutosave(s: GameState, scene: SceneBuilder): void {
 
 function enterShowTable(s: GameState, scene: SceneBuilder): void {
   (s as any).tab_tmp = 0;
-  if ((((s as any).st_count ?? 0) % ((s as any).tab_tmp ?? 0)) === 0) {
+  if ((!(((s as any).st_count ?? 0) % ((s as any).tab_tmp ?? 0)))) {
     // TODO-QSP: $result += "<tr>"
   }
   // TODO-QSP: $result += "<td><<$ARGS[1]>></td>"

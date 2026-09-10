@@ -5,10 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).therapistFuckedPussyStage ?? 0) < 2  &&  ((s as any).knowpreg ?? 0) === 0) {
+  if (((s as any).therapistFuckedPussyStage ?? 0) < 2  &&  (!((s as any).knowpreg ?? 0))) {
     if (((s as any).shotdays ?? 0) < 14  &&  ((s as any).birth_control ?? 0)?.['implant_status'] === 0) {
       if (qspFunc(s, 'money', 'can_afford', 2750) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         // TODO-QSP: xgt 'medical_din', 'birth_control_shot'
       }
@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).birth_control ?? 0)?.['implant_status'] === 0) {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: xgt 'medical_din', 'birth_control_implant'
     }
@@ -29,7 +29,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).birth_control ?? 0)?.['implant_status'] === 1  ||  ((s as any).birth_control ?? 0)?.['implant_status'] === 2) {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: xgt 'medical_din', 'birth_control_renew'
     }

@@ -110,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               { label: 'Offer to go to the forest', goto: ['miroslava', 'offer_go_forest'] },
             ]);
           }
-          if (((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_forest'  &&  ((s as any).MiraVars ?? 0)?.['nudetalk'] > 1  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 5  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).forestpicnic ?? 0) === 0) {
+          if (((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_forest'  &&  ((s as any).MiraVars ?? 0)?.['nudetalk'] > 1  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 5  &&  ((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).forestpicnic ?? 0))) {
             if (((s as any).pcs_inhib ?? 0) >= 25  ||  ((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
               scene.actions([
                 { label: 'Offer to walk naked', handler: (st: GameState) => {

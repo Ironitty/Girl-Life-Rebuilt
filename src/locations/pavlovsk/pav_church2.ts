@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'church_reduction', 'pav', 1);
   }
   scene.img('images/locations/pavlovsk/church/confession.jpg');
-  if (((s as any).confK ?? 0) === 0) {
+  if ((!((s as any).confK ?? 0))) {
     (s as any).confK = ((s as any).confK ?? 0) + (1);
     scene.text('You wait for the priest to finish listening to an old woman, then approach him.');
     scene.text('You bow down, touching the floor with your right hand before placing it over your left hand with your palms upward and say "Bless me, Father."');
@@ -196,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you've jerked off <<$func('string', 'parse_nu...
-    scene.text(`You hesitantly tell the priest how you've jerked off ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_jerked'])} ${(((s as any).stat ?? 0)?.['men_jerked'] === 1) ? ('guy') : ('guys')}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you've jerked off ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_jerked'])} ${((((s as any).stat ?? 0)?.['men_jerked'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for the marital bed, child. As long as the act of foreplay leads to sexual intercourse where the male climaxes into the female, then genital stimulation is certainly permissible. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -208,7 +208,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse to give the father a handjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -282,7 +282,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you performed oral sex on <<$func('string', '...
-    scene.text(`You hesitantly tell the priest how you performed oral sex on ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_blown'])} ${(((s as any).stat ?? 0)?.['men_blown'] === 1) ? ('guy') : ('guys')}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you performed oral sex on ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_blown'])} ${((((s as any).stat ?? 0)?.['men_blown'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for the marital bed, child. As long as the act of foreplay leads to sexual intercourse where the male climaxes into the female, then oral stimulation is certainly permissible. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -294,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse to give the father a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -368,7 +368,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you've had anal sex <<$func('string', 'parse_...
-    scene.text(`You hesitantly tell the priest how you've had anal sex ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['anal'])} ${(((s as any).stat ?? 0)?.['anal'] === 1) ? ('time') : ('times')}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you've had anal sex ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['anal'])} ${((((s as any).stat ?? 0)?.['anal'] === 1) ? ('time') : ('times'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for procreation, child. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -380,7 +380,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse to let the father fuck your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -454,7 +454,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you've had sex with <<$func('string', 'parse_...
-    scene.text(`You hesitantly tell the priest how you've had sex with ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_fucked'])} ${(((s as any).stat ?? 0)?.['men_fucked'] === 1) ? ('guy') : ('guys')}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you've had sex with ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_fucked'])} ${((((s as any).stat ?? 0)?.['men_fucked'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for the marital bed, child. Make sure that the male climaxes into the female, in order to comply with church. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -466,7 +466,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse to let the father fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -592,7 +592,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you have masturbated <<$func('string', 'parse...
-    scene.text(`You hesitantly tell the priest how you have masturbated ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['mast'])} ${(((s as any).stat ?? 0)?.['mast'] === 1) ? ('time') : ('times')}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you have masturbated ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['mast'])} ${((((s as any).stat ?? 0)?.['mast'] === 1) ? ('time') : ('times'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for your husband, child. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -604,7 +604,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse to masturbate in front of the father [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterNpcUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
-    (s as any).npc_usedname[$npcID] = ((s as any).npc_firstname ?? 0)?.[String((s as any).npcID ?? 0)];
+    (s as any).npc_usedname[String((s as any).npcID ?? 0)] = ((s as any).npc_firstname ?? 0)?.[String((s as any).npcID ?? 0)];
   }
   qspCall(s, 'boy_updater', 'fav_body_part');
   qspCall(s, 'boy_updater', 'dick_update');
@@ -41,7 +41,7 @@ function enterStartingStats(s: GameState, scene: SceneBuilder): void {
   (s as any).sex_ev['cum_tits'] = ((s as any).cum_loc ?? 0)?.['tits'];
   (s as any).sex_ev['cum_hair'] = ((s as any).cum_loc ?? 0)?.['hair'];
   (s as any).sex_ev['starting_sweat'] = ((s as any).pcs_sweat ?? 0);
-  if (((s as any).orgasm ?? 0) === 0) {
+  if ((!((s as any).orgasm ?? 0))) {
     (s as any).sex_ev['never_orgasmed'] = 1;
   }
   (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
@@ -78,19 +78,19 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
   (s as any).sex_ev['last_cum_time'] = ((s as any).totminut ?? 0);
   (s as any).sex_ev['finish_time'] = ((s as any).totminut ?? 0);
   // TODO-QSP: $npc_last_sex_enjoyment[$npcID] = $sex_ev['fuck_enjoyment']
-  (s as any).npc_last_orgasm_count[$npcID] = ((s as any).sex_ev ?? 0)?.['orgasm_count'];
+  (s as any).npc_last_orgasm_count[String((s as any).npcID ?? 0)] = ((s as any).sex_ev ?? 0)?.['orgasm_count'];
   if (((s as any).locArgs?.[1] ?? 0) === 'unhappy') {
-    (s as any).npc_last_sex_score[$npcID] = 0;
+    (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 0;
   } else {
-    (s as any).npc_last_sex_score[$npcID] = 1 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+    (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 1 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
     if (((s as any).locArgs?.[1] ?? 0) === 'okay') {
-      (s as any).npc_last_sex_score[$npcID] = 2 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+      (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 2 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
     } else {
-      (s as any).npc_last_sex_score[$npcID] = 3 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+      (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 3 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
       if (((s as any).locArgs?.[1] ?? 0) === 'great') {
-        (s as any).npc_last_sex_score[$npcID] = 4 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+        (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 4 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
       } else {
-        (s as any).npc_last_sex_score[$npcID] = 5 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
+        (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 5 + ((s as any).sex_ev ?? 0)?.['fav_npc_position'];
       }
       if (((s as any).npc_last_sex_score ?? 0)?.[String((s as any).npcID ?? 0)] <= 0) {
         // TODO-QSP: $npc_last_sex_quality[$npcID] = 'unhappy'

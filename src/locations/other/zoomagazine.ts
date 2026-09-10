@@ -13,10 +13,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Pet Emporium</b></center>');
   scene.img('images/locations/city/citycenter/mall/pet shop/shop.jpg');
-  if (((s as any).krolik ?? 0) === 0) {
+  if ((!((s as any).krolik ?? 0))) {
     // TODO-QSP: 'Rabbit - ' + $func('money', 'string_price', 2000)
     if (qspFunc(s, 'money', 'can_afford', 2000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       if (((s as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'old_town_apartment') {
         (s as any).minut = ((s as any).minut ?? 0) + 10;

@@ -8,7 +8,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).prosti = 0;
   (s as any).protect = 1;
   qspCall(s, 'stat', '');
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.img('images/locations/shared/sex/car/sexcar1.jpg');
     scene.text('You obediently lie down on your back in the back seat, and the man pounces you eagerly. Within seconds, his cock is deep inside you.');
   } else {

@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'yearstart', '');
   qspCall(s, 'fame', '');
   qspCall(s, 'telefon', 'DailyStatRefresh', ((s as any).ciklNewWeek ?? 0));
-  if ((((s as any).film ?? 0) > 0  ||  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0)  &&  ((s as any).pfilmNO ?? 0) === 0  &&  ((s as any).pfilmSTOP ?? 0) === 0) {
+  if ((((s as any).film ?? 0) > 0  ||  ((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] > 0)  &&  ((s as any).pfilmNO ?? 0) === 0  &&  (!((s as any).pfilmSTOP ?? 0))) {
     qspCall(s, 'pornschedule', 'schedule');
   }
   qspCall(s, 'jobs', 'daily_check');
@@ -145,7 +145,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).straight ?? 0) > 0) {
                 (s as any).straight = ((s as any).straight ?? 0) - (1);
               }
-              if (((s as any).straight ?? 0) === 0) {
+              if ((!((s as any).straight ?? 0))) {
                 (s as any).curly = 2147483647;
               }
             }
@@ -192,9 +192,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).TriperOral = ((s as any).TriperOral ?? 0) + (1);
               }
               // TODO-QSP: If TriperOral > 14 and TriperNapr = 0:
-              if (((s as any).rand ?? 0)(((s as any).TriperOral ?? 0), 100) > 80) {
+              if ((Math.floor(Math.random() * (100 - ((s as any).TriperOral ?? 0) + 1)) + (((s as any).TriperOral ?? 0))) > 80) {
                 (s as any).TriperOral = 0;
-                if (((s as any).Triper ?? 0) === 0) {
+                if ((!((s as any).Triper ?? 0))) {
                   (s as any).TriperOnce = 0;
                 }
                 (s as any).TriperOralSigns = 0;
@@ -214,14 +214,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).TriperOnce ?? 0) === 1) {
             (s as any).Venera = ((s as any).Venera ?? 0) + (1);
           }
-          if (((s as any).ashrinkdays ?? 0) === 0) {
+          if ((!((s as any).ashrinkdays ?? 0))) {
             (s as any).ashrinkdays = 6;
           }
-          if (((s as any).vshrinkdays ?? 0) === 0) {
+          if ((!((s as any).vshrinkdays ?? 0))) {
             (s as any).vshrinkdays = 6;
           }
-          if (((s as any).pcs_ass ?? 0) > 1  &&  ((s as any).ashrink ?? 0) > 0  &&  ((s as any).analPlugIn ?? 0) === 0) {
-            if (((s as any).daystart ?? 0) %(((s as any).ashrinkdays ?? 0)) === 0) {
+          if (((s as any).pcs_ass ?? 0) > 1  &&  ((s as any).ashrink ?? 0) > 0  &&  (!((s as any).analPlugIn ?? 0))) {
+            if (((s as any).daystart ?? 0) % ((s as any).ashrinkdays ?? 0) === 0) {
               (s as any).pcs_ass = ((s as any).pcs_ass ?? 0) - (((s as any).ashrink ?? 0));
             }
             if (((s as any).pcs_ass ?? 0) < 0) {
@@ -229,7 +229,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           }
           if (((s as any).pcs_vag ?? 0) > 25  &&  ((s as any).vshrink ?? 0) > 0) {
-            if (((s as any).daystart ?? 0) %(((s as any).vshrinkdays ?? 0)) === 0) {
+            if (((s as any).daystart ?? 0) % ((s as any).vshrinkdays ?? 0) === 0) {
               (s as any).pcs_vag = ((s as any).pcs_vag ?? 0) - (((s as any).vshrink ?? 0));
             }
             if (((s as any).pcs_vag ?? 0) < 20) {
@@ -262,13 +262,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).preg ?? 0) === 1) {
             (s as any).pregtime = ((s as any).pregChem ?? 0) / 24;
-            if (((s as any).pregtimes ?? 0) === 0) {
+            if ((!((s as any).pregtimes ?? 0))) {
               (s as any).pregtimes = 1;
             }
           } else {
             qspCall(s, 'gameover', 'check', 4);
             (s as any).pregminut = ((s as any).totminut ?? 0) + 1440;
-            if (((s as any).preg ?? 0) === 0) {
+            if ((!((s as any).preg ?? 0))) {
               qspCall(s, 'array', 'remove_element', 'npc_pregtalk', 'A14');
               qspCall(s, 'array', 'remove_element', 'npc_pregtalk', 'A16');
               qspCall(s, 'array', 'remove_element', 'npc_pregtalk', 'A23');
@@ -294,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (25);
                 }
               } else {
-                if (((s as any).pregtimes ?? 0) === 0) {
+                if ((!((s as any).pregtimes ?? 0))) {
                   if (((s as any).age ?? 0) < 18) {
                     (s as any).razeba = 1;
                     if (((s as any).pcs_horny ?? 0) > 0  &&  ((s as any).pcs_horny ?? 0) <= 50) {
@@ -352,7 +352,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         }
                       }
                       if (((s as any).pregtimes ?? 0) > 0) {
-                        if (((s as any).preg ?? 0) === 0) {
+                        if ((!((s as any).preg ?? 0))) {
                           (s as any).razeba = 5;
                           if (((s as any).pcs_horny ?? 0) > 0  &&  ((s as any).pcs_horny ?? 0) <= 50) {
                             (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -378,7 +378,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).NatbelQW ?? 0)?.['seethroughwearing'] === 1) {
                     (s as any).NatbelQW['seethroughwearing'] = 0;
                   }
-                  if (((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).dimaRudeBlock ?? 0) === 0) {
+                  if (((s as any).dimaFilm ?? 0) === 1  &&  (!((s as any).dimaRudeBlock ?? 0))) {
                     (s as any).nodimkaK = ((s as any).nodimkaK ?? 0) + (1);
                     (s as any).DimkaWarnedToday = 0;
                   }
@@ -409,7 +409,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'npc_relationship', 'set', 'A9', 0);
                   }
                   qspCall(s, 'katja_procedural', 'cikl');
-                  if (((s as any).npc_rel ?? 0)?.['A69'] > 60  &&  Math.floor(Math.random() * 4) + 0 === 0) {
+                  if (((s as any).npc_rel ?? 0)?.['A69'] > 60  &&  (!(Math.floor(Math.random() * 4) + 0))) {
                     qspCall(s, 'npc_relationship', 'modify', 'A69', (-1));
                   }
                   qspCall(s, 'soniadisco', 'cikl');
@@ -441,7 +441,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   }
                   // TODO-QSP: :shantftb
                   if (((s as any).shantbog ?? 0) > 0) {
-                    if (Math.floor(Math.random() * 11) + 0 < 3) {
+                    if ((Math.floor(Math.random() * 11) + 0) < 3) {
                       qspCall(s, 'money', 'earn', 30000);
                     } else {
                       (s as any).shantpopala = ((s as any).shantpopala ?? 0) + (1);
@@ -545,7 +545,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).late = 0;
                                           }
                                         }
-                                        if (((s as any).kanikuli ?? 0) === 0) {
+                                        if ((!((s as any).kanikuli ?? 0))) {
                                           qspCall(s, 'gschool_socialchg', 'group_student_rel_change');
                                           if (((s as any).grupvalue ?? 0)[1] > 0) {
                                             (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (Math.floor(Math.random() * 2) + 0);
@@ -568,7 +568,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).grupvalue[4] = 0;
                                           }
                                         }
-                                        if (((s as any).oldgrupvalue_set ?? 0) === 0) {
+                                        if ((!((s as any).oldgrupvalue_set ?? 0))) {
                                           (s as any).oldgrupvalue_set = 1;
                                           (s as any).old_grupvalue[1] = qspUntranslated(s, "grupvalue[1]", { location: "cikl" });
                                           (s as any).old_grupvalue[2] = qspUntranslated(s, "grupvalue[2]", { location: "cikl" });
@@ -677,7 +677,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).ciklVars['i'] = ((s as any).loc_count ?? 0) - 1;
                                       // TODO-QSP: :loopCloLoc
                                       (s as any).CloLostOn = ((s as any).CloLosDay ?? 0)?.[String((s as any).CloLoc ?? 0)];
-                                      if (((s as any).CloLostOn ?? 0) + Math.floor(Math.random() * 8) + 7 < ((s as any).daystart ?? 0)) {
+                                      if (((s as any).CloLostOn ?? 0) + (Math.floor(Math.random() * 8) + 7) < ((s as any).daystart ?? 0)) {
                                         qspCall(s, 'clothing', 'recover_lost_clothes', ((s as any).CloLoc ?? 0), 2);
                                       }
                                       (s as any).ciklVars['i'] = ((s as any).ciklVars['i'] ?? 0) - (1);
@@ -706,9 +706,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).rex['timer_day'] = ((s as any).daystart ?? 0);
                                         (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) - (1);
                                         if (((s as any).cheat ?? 0)?.['dog_rel'] === 0  &&  ((s as any).rex ?? 0)?.['gadukino_day'] !== ((s as any).daystart ?? 0)) {
-                                          (s as any).npcRelTemp = 0 - (((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed'] === 0) ? ((-1)) : ((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed']));
+                                          (s as any).npcRelTemp = 0 - ((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed'] === 0) ? ((-1)) : ((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed'])));
                                           qspCall(s, 'npc_relationship', 'modify_exact', 'A29', ((s as any).npcRelTemp ?? 0));
-                                          (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) - ((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed'] === 0) ? ((-1)) : ((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed'])));
+                                          (s as any).rex['relationship'] = ((s as any).rex['relationship'] ?? 0) - (((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed'] === 0) ? ((-1)) : ((((s as any).rex ?? 0)?.['count_walk'] + ((s as any).rex ?? 0)?.['count_feed']))));
                                         }
                                         (s as any).rex['count_run'] = 0;
                                         (s as any).rex['count_walk'] = ((s as any).rex ?? 0)?.['count_walk_base'];
@@ -725,7 +725,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       }
                                       (s as any).starlets_on = 0;
                                       (s as any).cheerleaders_on = 0;
-                                      if (((s as any).is_natholi ?? 0) === 0) {
+                                      if ((!((s as any).is_natholi ?? 0))) {
                                         if ((((s as any).week ?? 0) === 5  &&  ((s as any).odd_week ?? 0) === 0)  ||  (((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 3  ||  ((s as any).week ?? 0) >= 6)) {
                                           (s as any).starlets_on = 1;
                                         } else {
@@ -825,7 +825,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       if (((s as any).lib_book_loaned ?? 0) !== '') {
                                         (s as any).lib_debt = ((s as any).lib_debt ?? 0) + (50);
                                       }
-                                      if (((s as any).set_npc_uni_eduType ?? 0) === 0) {
+                                      if ((!((s as any).set_npc_uni_eduType ?? 0))) {
                                         (s as any).set_npc_uni_eduType = 1;
                                         (s as any).npc_uni_active['A77'] = 1;
                                         (s as any).npc_uni_active['A82'] = 1;
@@ -876,7 +876,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       }
                                       qspCall(s, 'komp_cam_functions', 'cikl');
                                       (s as any).gad_stand = 0;
-                                      if (((s as any).arrsize ?? 0)('policeQW_courthearing_dates') > 0  &&  ((s as any).daystart ?? 0) > ((s as any).policeQW_courthearing_dates ?? 0)[0]) {
+                                      if (Object.keys((s as any).policeQW_courthearing_dates ?? {}).length > 0  &&  ((s as any).daystart ?? 0) > ((s as any).policeQW_courthearing_dates ?? 0)[0]) {
                                         (s as any).policeQW['missed_court_dates'] = ((s as any).policeQW['missed_court_dates'] ?? 0) + (1);
                                         (s as any).policeQW['tot_court_dates_missed'] = ((s as any).policeQW['tot_court_dates_missed'] ?? 0) + (1);
                                         // TODO-QSP: policeQW_courtletter_dates[] = daystart + rand(3, 6)
@@ -893,10 +893,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           // TODO-QSP: $policeQW_courtletter_subjects[] = 'missed_fine'
                                         }
                                       }
-                                      if (((s as any).arrsize ?? 0)('policeQW_courtletter_dates') > 1) {
+                                      if (Object.keys((s as any).policeQW_courtletter_dates ?? {}).length > 1) {
                                         qspCall(s, 'array', 'coupled_sort', 'policeQW_courtletter_dates', '$policeQW_courtletter_subjects');
                                       }
-                                      if (((s as any).arrsize ?? 0)('policeQW_courthearing_dates') > 1) {
+                                      if (Object.keys((s as any).policeQW_courthearing_dates ?? {}).length > 1) {
                                         qspCall(s, 'array', 'coupled_sort', 'policeQW_courthearing_dates', '$policeQW_courthearing_subjects');
                                       }
                                       if (((s as any).blackmailQW ?? 0)?.['stage'] > 0) {

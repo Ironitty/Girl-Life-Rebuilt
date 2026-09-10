@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk down the hall to the office at the end. You read Director written on the door, you knock on the door and enter. Sitting behind the desk is Stas while Vitali sits in a large comfortable chair and in the third chair you see a woman.');
   if (((s as any).svQW ?? 0) === 2) {
     if (((s as any).TorgPredDay ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (((s as any).TorgPredZ ?? 0) === 0  &&  ((s as any).TorgPredZV ?? 0) === 0) {
+      if (((s as any).TorgPredZ ?? 0) === 0  &&  (!((s as any).TorgPredZV ?? 0))) {
         scene.actions([
           { label: 'Take the job', handler: (st: GameState) => {
     (s as any).TorgPredZ = 3;
@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You head into the office to get paid, Stat is pleased with your work and hands <...
     scene.text(`You head into the office to get paid, Stat is pleased with your work and hands ${qspFunc(s, 'money', 'string_profit', 500)} over to you.`);
     if (((s as any).npc_has_sex ?? 0)?.['A50'] === 0) {
-      if (((s as any).TPworkTimes ?? 0) >= 3  &&  ((s as any).TPmainQW ?? 0) === 0  &&  ((s as any).mesec ?? 0) === 0) {
+      if (((s as any).TPworkTimes ?? 0) >= 3  &&  ((s as any).TPmainQW ?? 0) === 0  &&  (!((s as any).mesec ?? 0))) {
         if (((s as any).PCloSkirt ?? 0) > 0) {
           scene.text('Stas asks, "How do you like it so far, do you enjoy working for me?"');
           scene.actions([
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).TPmainQW ?? 0) === 1) {
-      if (((s as any).npc_has_sex ?? 0)?.['A50']  &&  ((s as any).StVaGang ?? 0) === 0) {
+      if (((s as any).npc_has_sex ?? 0)?.['A50']  &&  (!((s as any).StVaGang ?? 0))) {
         scene.text('');
         // TODO-QSP: !! Sveta gave Stas, he did not consider her a whore, and wants to continue the relationship
       }
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).TPmainQW ?? 0) === 1  &&  ((s as any).npc_has_sex ?? 0)?.['A50']  &&  ((s as any).StVaGang ?? 0) === 0) {
+    if (((s as any).TPmainQW ?? 0) === 1  &&  ((s as any).npc_has_sex ?? 0)?.['A50']  &&  (!((s as any).StVaGang ?? 0))) {
       scene.text('As Stas notices you, he smiles broadly and is obviously pleased to see you. He leans in close and whispers, as not to be overheard, "I really like you and I want us to start dating."');
       if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
         scene.text('You\'re not that sure your current boyfriend would be pleased if you accepted this offer. Stas, of course, is very nice and kind, but you need to first figure out what to do with your current relationship.');
@@ -139,7 +139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tell him no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`<a href="exec:gs 'carF','start'">Your ${((s as any).car ?? 0)?.['name']}</a> is parked at the curb.`);
   }
   if (((s as any).hour ?? 0) >= 13  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).bodimodel ?? 0) === 1  &&  ((s as any).arts ?? 0) === 0  &&  ((s as any).tusa ?? 0) === 1) {
-    if (Math.floor(Math.random() * 5) + 1 === 1) {
+    if ((Math.floor(Math.random() * 5) + 1) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       qspCall(s, 'dibodi', '');

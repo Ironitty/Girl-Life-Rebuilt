@@ -33,7 +33,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinsex2', 'stamina_npc');
   (s as any).pos = 1;
-  if (((s as any).pdsxbj ?? 0) === 0) {
+  if ((!((s as any).pdsxbj ?? 0))) {
     (s as any).pdsxbj = 1;
   }
   scene.img(`images/locations/shared/sex/pod/minet${((s as any).picrand ?? 0)}.jpg`);
@@ -67,7 +67,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).pos = 2;
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
-  if (((s as any).pdsxsex ?? 0) === 0) {
+  if ((!((s as any).pdsxsex ?? 0))) {
     (s as any).pdsxsex = 1;
   }
   scene.img(`images/locations/shared/sex/pod/uvag${((s as any).picrand ?? 0)}.jpg`);
@@ -96,7 +96,7 @@ function enterAss(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinsex2', 'stamina_npc');
   (s as any).pos = 3;
-  if (((s as any).pdsxanal ?? 0) === 0) {
+  if ((!((s as any).pdsxanal ?? 0))) {
     (s as any).pdsxanal = 1;
   }
   if (((s as any).picrand ?? 0) === 12) {
@@ -132,7 +132,7 @@ function enterVoy(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= (((s as any).randhorny ?? 0) - ((s as any).trait_vars ?? 0)?.['exhibitionist_exp'])) {
     qspCall(s, 'stat', '');
   }
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     (s as any).pos = 4;
     scene.img(`images/locations/shared/sex/pod/vag${((s as any).picrand ?? 0)}.jpg`);
     scene.text('While the other girl is enjoying getting her pussy fucked, you find that she\'ll do whatever you want her to do.');
@@ -173,7 +173,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The man groans, pumping his seed deep inside your pussy.');
     (s as any).tmp = qspFunc(s, 'pregriskeval', '');
-    if (((s as any).tmp ?? 0) === 0) {
+    if ((!((s as any).tmp ?? 0))) {
       scene.text('<br>"Oh, shit!" you think, when you feel his cock pumping his load deep inside you. Hopefully you won\'t end up pregnant…');
       qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
       qspCall(s, 'arousal', 'end');

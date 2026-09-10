@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
   (s as any).temp = Math.floor(Math.random() * 10) + 0;
-  if (((s as any).temp ?? 0) === 0) {
+  if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/general_education/banana.jpg');
     scene.text('As Professor Kovalyov continues his lecture, you can\'t help but notice how attractive he is. He has a mesmerizing smile while he talks and this seems to have an effect on the other girls, even the shy Katja. You remember she used to be quite the shy girl in school, always resisting any charm. But now… She\'s half finished eating her banana while listening to Professor Kovalyov and is almost deepthroating it. Her mind is likely wandering somewhere else…');
   } else {

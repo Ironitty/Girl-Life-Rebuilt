@@ -19,7 +19,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).setloc['imagepath'] = 'locations/gadukino/gp_dacha/';
   (s as any).setloc['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
-  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + $((s as any).setloc ?? 0)?.['room_image'];
+  (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + ((s as any).setloc ?? 0)?.['room_image'];
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');

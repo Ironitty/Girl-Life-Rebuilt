@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0)('attributes_\'0\'_shoes')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_shoes', ARGS[1]
   }
-  if (((s as any).ShoQuality ?? 0) === 0) {
+  if ((!((s as any).ShoQuality ?? 0))) {
     // TODO-QSP: exit
   }
   if (((s as any).ShoHeels ?? 0) < 2) {

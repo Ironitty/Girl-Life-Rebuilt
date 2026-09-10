@@ -98,7 +98,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Come in, Miss <<$pcs_lastname>>! Please, tell me what can I help you with today...
     scene.text(`"Come in, Miss ${((s as any).pcs_lastname ?? 0)}! Please, tell me what can I help you with today?"`);
     qspCall(s, 'therapist', 'therapyOptions');
-    if (((s as any).hypnoFlashGreet ?? 0) === 0) {
+    if ((!((s as any).hypnoFlashGreet ?? 0))) {
       // TODO-QSP: dynamic text: "Come in! Miss <<$pcs_lastname>>, as you know, I'm going to inspect you now."
       scene.text(`"Come in! Miss ${((s as any).pcs_lastname ?? 0)}, as you know, I'm going to inspect you now."`);
       scene.actions([
@@ -139,7 +139,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Very good Miss <<$pcs_lastname>>. I see you are very well mannered."
       scene.text(`"Very good Miss ${((s as any).pcs_lastname ?? 0)}. I see you are very well mannered."`);
       scene.text('"Thank you Dr. Pavlov."');
-      if (((s as any).hypnoTouchWhenever ?? 0) === 1  &&  Math.floor(Math.random() * 2) + 1 === 1) {
+      if (((s as any).hypnoTouchWhenever ?? 0) === 1  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
         scene.actions([
           { label: 'Get groped', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/gropePussy.jpg');

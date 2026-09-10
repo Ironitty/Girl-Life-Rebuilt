@@ -31,9 +31,9 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
   scene.text('I\'d like to buy a seat at a hookah, please.');
   // TODO-QSP: dynamic text: Okay, that will be ' + $func('money', 'string_price', 100) + ' please.
   scene.text('Okay, that will be \' + $func(\'money\', \'string_price\', 100) + \' please.');
-  if (((s as any).smoketab ?? 0) === 0) {
+  if ((!((s as any).smoketab ?? 0))) {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: dynamic text: You glance at her name badge, before looking back at her. Smiling, you hand over...
       scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((s as any).npc_firstname ?? 0)?.['A262']}!"`);

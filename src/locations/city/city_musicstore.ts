@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_musicstore', '');
   qspCall(s, 'stat', '');
-  if (((s as any).ml_musicstorevisited ?? 0) === 0) {
+  if ((!((s as any).ml_musicstorevisited ?? 0))) {
     (s as any).ml_musicstorevisited = 1;
     scene.actions([{ label: 'Continue', goto: ['city_musicstore', 'firstvisit'] }]);
   } else {
@@ -140,7 +140,7 @@ function enterCameback(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask Jimmy about the guitar [+$func(\'money\', \'get_cost_string\', 3400)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3400) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.img('images/locations/city/citycenter/mall/musicstore/jimmy.jpg');
       scene.text('You walk up to the counter where Jimmy is busy tinkering with a guitar.');

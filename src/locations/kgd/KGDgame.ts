@@ -60,9 +60,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :farm_loop
     if (((s as any).KGD ?? 0)?.['farm_' + String(((s as any).i ?? 0))] === 0) {
       (s as any).KGD['money'] = ((s as any).KGD['money'] ?? 0) - (150);
-      (s as any).KGD['farm_' + String((s as any).i ?? '') + ''] = 1;
-      (s as any).KGD['farm_level_' + String((s as any).i ?? '') + ''] = 1;
-      (s as any).KGD['farm_rate_' + String((s as any).i ?? '') + ''] = 5;
+      (s as any).KGD['farm_' + String((s as any).i || '') + ''] = 1;
+      (s as any).KGD['farm_level_' + String((s as any).i || '') + ''] = 1;
+      (s as any).KGD['farm_rate_' + String((s as any).i || '') + ''] = 5;
       (s as any).KGD['farm_owned'] = ((s as any).KGD['farm_owned'] ?? 0) + (1);
       (s as any).i = 10;
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'curloc'); } }]);
@@ -108,8 +108,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).i ?? 0) === 3) {
       }
-      (s as any).KGD['place_' + String((s as any).i ?? '') + ''] = '<<i>><<$temp_suffix>> place is empty';
-      (s as any).KGD['place_' + String((s as any).i ?? '') + '_rank'] = 0;
+      (s as any).KGD['place_' + String((s as any).i || '') + ''] = '<<i>><<$temp_suffix>> place is empty';
+      (s as any).KGD['place_' + String((s as any).i || '') + '_rank'] = 0;
       (s as any).i = ((s as any).i ?? 0) + (1);
       if (((s as any).i ?? 0) < 6) {
         // TODO-QSP: jump 'kgdplace_loop'

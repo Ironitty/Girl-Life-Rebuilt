@@ -70,7 +70,7 @@ function enterResetBody(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_pubes = 30;
   (s as any).pcs_leghair = 12;
   (s as any).pcs_teeth = 0;
-  (s as any).pcs_makeup = (((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (5);
+  (s as any).pcs_makeup = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (5));
   (s as any).hscrunchw = 0;
   (s as any).glass = 0;
   (s as any).pcs_throat = 0;
@@ -187,8 +187,8 @@ function enterResetSkills(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_def = 0;
   (s as any).pcs_shoot = 0;
   (s as any).pcs_bushcraft = 0;
-  (s as any).pcs_makupskl = (((s as any).start_type ?? 0)?.['magic'] === 'tg') ? (0) : (10);
-  (s as any).pcs_heels = (((s as any).start_type ?? 0)?.['magic'] === 'tg') ? (0) : (5);
+  (s as any).pcs_makupskl = ((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? (0) : (10));
+  (s as any).pcs_heels = ((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? (0) : (5));
   (s as any).pcs_danc = 0;
   (s as any).pcs_dancero = 0;
   (s as any).pcs_dancpol = 0;

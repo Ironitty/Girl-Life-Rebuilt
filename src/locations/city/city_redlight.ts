@@ -110,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).university ?? 0)?.['diploma'] === 0  &&  ((s as any).university ?? 0)?.['fakediplom'] === 0) {
     if (qspFunc(s, 'money', 'can_afford', 100000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', 100000, 'cash');

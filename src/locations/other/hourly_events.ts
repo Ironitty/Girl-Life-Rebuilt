@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).inSleep ?? 0) === 1) {
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((8 + ((s as any).succublvl ?? 0)) / 2);
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - ((16 + ((s as any).succublvl ?? 0)) / 2);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) + ((((s as any).pcs_sleep ?? 0) > 90) ? (((s as any).stammax ?? 0)/2) : ((((s as any).pcs_sleep ?? 0) > 80) ? (((s as any).stammax ?? 0)/4) : (((s as any).stammax ?? 0)/8)));
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) + (((((s as any).pcs_sleep ?? 0) > 90) ? (((s as any).stammax ?? 0)/2) : (((((s as any).pcs_sleep ?? 0) > 80) ? (((s as any).stammax ?? 0)/4) : (((s as any).stammax ?? 0)/8)))));
     if (((s as any).alko ?? 0) > 0) {
       (s as any).alko = ((s as any).alko ?? 0) - (1);
     }
@@ -34,12 +34,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sleepVars ?? 0)?.['no_sleep_loss'] === 0) {
       if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (4);
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (1);
         }
       } else {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (5);
-        if (Math.floor(Math.random() * 3) + 0 <= 1) {
+        if ((Math.floor(Math.random() * 3) + 0) <= 1) {
           (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (1);
         }
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (5);
@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).sleepVars['no_sleep_loss'] = 0;
     }
-    if (((s as any).pcs_sleep ?? 0) <= 0  &&  ((s as any).succublvl ?? 0) === 0) {
+    if (((s as any).pcs_sleep ?? 0) <= 0  &&  (!((s as any).succublvl ?? 0))) {
       (s as any).pcs_condition['lack_of_sleep'] = ((s as any).pcs_condition['lack_of_sleep'] ?? 0) + (2);
       if (((s as any).pcs_mood_effects ?? 0)?.['slpredcheck'] === 1) {
         qspCall(s, 'mood', 'lower', 'tiny');
@@ -117,7 +117,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_stam = ((s as any).stammax ?? 0);
   }
   qspCall(s, 'femcyc', '');
-  if (((s as any).hour ?? 0) === ((s as any).birth_control ?? 0)?.['auto_hour']  &&  ((s as any).birth_control ?? 0)?.['auto_hour'] > 0  &&  ((s as any).inSleep ?? 0) === 0) {
+  if (((s as any).hour ?? 0) === ((s as any).birth_control ?? 0)?.['auto_hour']  &&  ((s as any).birth_control ?? 0)?.['auto_hour'] > 0  &&  (!((s as any).inSleep ?? 0))) {
     qspCall(s, 'fertility', 'birth_control_status_update');
   } else {
     qspCall(s, 'fertility', 'birth_control_status_update');
@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).inSleep ?? 0) === 1) {
       (s as any).pcs_period['period_warning'] = 0;
     } else {
-      if (((s as any).pcs_period ?? 0)?.['period_warning'] === 0  &&  ((s as any).placebopart ?? 0) > 0  &&  ((s as any).lutH ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 0) {
+      if (((s as any).pcs_period ?? 0)?.['period_warning'] === 0  &&  ((s as any).placebopart ?? 0) > 0  &&  ((s as any).lutH ?? 0) > 0  &&  (!((s as any).knowpreg ?? 0))) {
         (s as any).pcs_period['period_warning'] = 1;
       } else {
         (s as any).pcs_period['period_warning'] = 2;
@@ -139,7 +139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).pcs_period['period_warning'] = 0;
           }
         }
-        if (((s as any).inSleep ?? 0) === 0) {
+        if ((!((s as any).inSleep ?? 0))) {
           (s as any).vomit['daily_check'] = 0;
         } else {
           if (((s as any).vomit ?? 0)?.['daily_check'] === 0) {
@@ -148,13 +148,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).vomit['hangover'] = 1;
             } else {
               (s as any).vomit['morning_sick'] = 1;
-              if (Math.floor(Math.random() * 1000) + 1 === 1) {
+              if ((Math.floor(Math.random() * 1000) + 1) === 1) {
                 (s as any).vomit['unlucky'] = 1;
               }
             }
           }
           (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + (((s as any).manamax ?? 0) / 20);
-          if (((s as any).alko ?? 0) > 0  &&  ((s as any).alkoblock ?? 0) === 0) {
+          if (((s as any).alko ?? 0) > 0  &&  (!((s as any).alkoblock ?? 0))) {
             if (((s as any).alko ?? 0) >= 6) {
               qspCall(s, 'exp_deg', 'run', 1);
               qspCall(s, 'exp_deg', 'vball', 1);
@@ -247,7 +247,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).clit_size ?? 0) >= 40  &&  ((s as any).pcs_horny ?? 0) < 60) {
               (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
             }
-            if (((s as any).inSleep ?? 0) === 0) {
+            if ((!((s as any).inSleep ?? 0))) {
               qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 2) + 0);
               if (((s as any).temper ?? 0) >= 20) {
                 qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 2) + 0);
@@ -258,7 +258,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).pcs_leghair = 0;
               qspCall(s, 'body_desc', 'pube_desc_update');
             } else {
-              (s as any).temp_hair_interval = (((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] === 1) ? (720) : ((((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] === 0) ? (1440) : (1800));
+              (s as any).temp_hair_interval = ((((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] === 1) ? (720) : (((((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] === 0) ? (1440) : (1800))));
               if (((s as any).totminut ?? 0) > ((s as any).stat ?? 0)?.['leg_hair_growth_timer'] + ((s as any).temp_hair_interval ?? 0)) {
                 (s as any).stat['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
                 (s as any).pcs_leghair = ((s as any).pcs_leghair ?? 0) + (1);

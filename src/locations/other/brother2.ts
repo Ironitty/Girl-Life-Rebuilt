@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).brotherchat ?? 0) === 8) {
             // TODO-QSP: dynamic text: "… I just want more time to play football with Zhendos and Mishan though," he mo...
             scene.text(`"… I just want more time to play football with Zhendos and Mishan though," he moans. "I can't do anything with them when ${((s as any).npc_nickname ?? 0)?.['A29']} is dragging us to boring old Gadukino every other weekend."`);
-            if (((s as any).seepornofut ?? 0) === 0) {
+            if ((!((s as any).seepornofut ?? 0))) {
               // TODO-QSP: dynamic text: "It's okay Kolka," you console him. "Just enjoy the time you have with them. In ...
               scene.text(`"It's okay Kolka," you console him. "Just enjoy the time you have with them. In a couple years ${((s as any).npc_nickname ?? 0)?.['A29']} might not force you to go anymore but you all might end up too busy to hang out."`);
             } else {

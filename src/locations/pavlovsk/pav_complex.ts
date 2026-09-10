@@ -22,9 +22,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).alkoblock = 0;
   (s as any).boynumBlock = 0;
   qspCall(s, 'stat', '');
-  if (((s as any).complx_rand ?? 0)[1] + Math.floor(Math.random() * 6) + 5 < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50  &&  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
+  if (((s as any).complx_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50  &&  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
     (s as any).complx_rand[1] = ((s as any).daystart ?? 0);
-    if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
+    if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
       // TODO-QSP: gt 'gossips', 'complex', 'girls_slutrep'
     } else {
       // TODO-QSP: gt 'gossips', 'complex', 'old_women_slutrep'
@@ -50,7 +50,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).motherWorry = 1;
   }
   if (((((s as any).minut ?? 0) + 60 * (((s as any).hour ?? 0) + ((s as any).daystart ?? 0) * 24) - ((s as any).pavcomplexevent_time ?? 0)) > 60)  ||  ((((s as any).daystart ?? 0) + 1) * 1440 < ((s as any).pavcomplexevent_time ?? 0))) {
-    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  (!(Math.floor(Math.random() * 3) + 0))) {
       (s as any).pavcomplexevent_time = ((s as any).minut ?? 0) + 60 * (((s as any).hour ?? 0) + ((s as any).daystart ?? 0) * 24);
       scene.actions([{ label: 'Continue', goto: ['pav_aptcourtev', 'events1'] }]);
     } else {
@@ -234,7 +234,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   }
   if (((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 22))  &&  (((s as any).ed_event_day ?? 0) !== ((s as any).daystart ?? 0))) {
     if (((s as any).anushkaQW ?? 0)?.['seen_ed'] === 0) {
-      if (Math.floor(Math.random() * 6) + 0 === 1) {
+      if ((Math.floor(Math.random() * 6) + 0) === 1) {
         scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed4.jpg');
         scene.text('As you\'re walking around the garages, you notice an open garage door. You see a tattooed man inside working on a motorcycle. He looks really rough and dangerous - he must be one of the bikers that live around the area. You have heard your mother warn you about them before.');
         scene.text('As you pass by, you can hear the man talking to someone else. You throw a quick glance towards them, and you see the man showing something off to a younger man sitting on a motorcycle. Looking closer, you realize that the younger man is Valentin. They seem really into it and you quickly move on before they can turn their attention to you.');
@@ -244,7 +244,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'valentin_bogdanov_schedule', '');
       if (((s as any).anushkaQW ?? 0)?.['first_visit'] >= 1) {
-        if (Math.floor(Math.random() * 5) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 5) + 0))) {
           (s as any).ed_event_day = ((s as any).daystart ?? 0);
           (s as any).garageedevent = Math.floor(Math.random() * 5) + 1;
           if (((s as any).garageedevent ?? 0) === 1) {
@@ -337,7 +337,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Talk to Valentin [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -585,7 +585,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 3) + 3);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed5.jpg');
-    if (((s as any).LearntAboutMotorcycle ?? 0) === 0) {
+    if ((!((s as any).LearntAboutMotorcycle ?? 0))) {
       (s as any).LearntAboutMotorcycle = 1;
       scene.text('You walk up to his bike and pick up a random tool. "Actually, I was wondering if maybe you can teach me a little about working on motorcycles?" you ask hopefully.');
       scene.text('He arches a brow and seems slightly surprised, but shrugs. "Sure, if you want to learn."');

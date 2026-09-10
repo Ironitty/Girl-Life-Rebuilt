@@ -20,7 +20,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The entrance fee is <<$func('money', 'string_price', 100)>> for the full day, bu...
     scene.text(`The entrance fee is ${qspFunc(s, 'money', 'string_price', 100)} for the full day, but students get a discount and it only costs them ${qspFunc(s, 'money', 'string_price', 60)}.`);
     if (((s as any).job_status ?? 0)?.['pav_pool_lifeguard'] !== 'employed') {
-      (s as any).pav_swimpool['entrancefee'] = (((s as any).gschoolVars ?? 0)?.['school_diploma'] <= 0) ? (60) : (100);
+      (s as any).pav_swimpool['entrancefee'] = ((((s as any).gschoolVars ?? 0)?.['school_diploma'] <= 0) ? (60) : (100));
     }
     if (((s as any).job_status ?? 0)?.['pav_pool_lifeguard'] !== 'employed'  &&  (((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 1  &&  ((s as any).week ?? 0) === 6  ||  ((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 2  &&  ((s as any).week ?? 0) === 7)) {
       if (((s as any).hour ?? 0) === 8) {
@@ -68,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_pool', 'entrance'] },
           { label: 'Pay and enter [+$func(\'money\', \'get_cost_string\', pav_sw...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "pav_pool" })) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       // TODO-QSP: gs 'money', 'pay', pav_swimpool['entrancefee']

@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Make out with <<$npc_nickname[$npcID]>>', goto: ['katja_city_sex', 'first_time'] },
     ]);
   } else {
-    if (Math.floor(Math.random() * 5) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
       scene.text('When he comes back, he has a small bag of white powder. "I brought us this to make things more fun," he says while holding out the bag of cocaine.');
       if (((s as any).katjaQW ?? 0)?.['coke_stage'] === -1) {
         scene.actions([
@@ -40,7 +40,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Okay, Okay. I'll put it away," ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]} says and leaves the room to hide his drugs.`);
     // TODO-QSP: dynamic text: Katja has relaxed by the time he comes back, and you start to enjoy your wine wh...
     scene.text(`Katja has relaxed by the time he comes back, and you start to enjoy your wine while making small talk. ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]}'s free hand gently caresses you and Katja's thighs from time to time. Katja returns his touch and you do the same.`);
-    if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') > 80  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= Math.floor(Math.random() * 31) + 70) {
+    if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') > 80  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * 31) + 70)) {
       scene.text('"Why don\'t you show us your bedroom?" Katja asks after a few minutes.');
       // TODO-QSP: dynamic text: <<$npc_nickname[$npcID]>> quickly gets up. "Right this way."
       scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]} quickly gets up. "Right this way."`);
@@ -69,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -103,7 +103,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Convince her to try it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -153,7 +153,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -179,7 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Convince Katja to do some lines with you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -224,7 +224,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -246,7 +246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Convince Katja not to do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -321,7 +321,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -348,7 +348,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Convince her not to do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -437,7 +437,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     // TODO-QSP: dynamic text: You're soon relaxing and having some wine while getting to know each other a lit...
     scene.text(`You're soon relaxing and having some wine while getting to know each other a little. ${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]}'s free hand gently caresses your and Katja's thighs on occasion. Katja returns his touch and you do the same.`);
-    if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') > 80  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= Math.floor(Math.random() * 31) + 70) {
+    if (qspFunc(s, 'katja_procedural', 'willing_to_be_naughty') > 80  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * 31) + 70)) {
       scene.text('"Why don\'t you show us your bedroom?" Katja asks after a few minutes.');
       // TODO-QSP: dynamic text: <<$npc_nickname[$npcID]>> quickly gets up. "Right this way."
       scene.text(`${((s as any).npc_nickname ?? 0)?.[String((s as any).npcID ?? 0)]} quickly gets up. "Right this way."`);

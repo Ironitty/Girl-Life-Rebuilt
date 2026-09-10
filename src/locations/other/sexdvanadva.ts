@@ -28,7 +28,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).picrand ?? 0) === 14) {
     (s as any).sexdvarand = Math.floor(Math.random() * 5) + 0;
   }
-  if (((s as any).sexdvarand ?? 0) === 0) {
+  if ((!((s as any).sexdvarand ?? 0))) {
     scene.img(`images/locations/shared/sex/sexdvanadva/minet${((s as any).picrand ?? 0)}.jpg`);
     scene.text('The two of you suck their cocks.');
     qspCall(s, 'arousal', 'bj', 10, 'sub');

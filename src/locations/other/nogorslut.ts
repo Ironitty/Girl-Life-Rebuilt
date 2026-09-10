@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`You chat about random topics and ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "nogorslut" })}']>> happily listens to your stories, sharing several new stories and anecdotes as well.`);
         if (((s as any).numnpc ?? 0) === 1) {
           qspCall(s, 'mood', 'raise', 'small');
-          if (((s as any).DimaLoveIgor ?? 0) === 1  &&  ((s as any).meetDiana ?? 0) === 0) {
+          if (((s as any).DimaLoveIgor ?? 0) === 1  &&  (!((s as any).meetDiana ?? 0))) {
             (s as any).meetDiana = 1;
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, can you set up a meeting with Diana and me? I'd really l...
             scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, can you set up a meeting with Diana and me? I'd really liked that."`);
@@ -36,8 +36,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('"What? Is this because my family are so rich? Is there some way you could help? What if you two were out on a walk and I could bump into you, then you could tell her how down to earth I am."');
             scene.text('Struggling to not laugh at his pomposity you agree to his plan.');
           }
-          if (((s as any).DimaRudeQW ?? 0) > 0  &&  ((s as any).DimaRudeBlock ?? 0) === 0) {
-            if (((s as any).kanikuli ?? 0) === 0) {
+          if (((s as any).DimaRudeQW ?? 0) > 0  &&  (!((s as any).DimaRudeBlock ?? 0))) {
+            if ((!((s as any).kanikuli ?? 0))) {
               scene.text('Dimka looks into your eyes with a disinterested look and after a while says, "Whatever. When the holidays are over, we\'ll go to my place. I\'ll be waiting for you by the school entrance."');
             } else {
               scene.text('Dimka looks into your eyes with a disinterested look and after a while says, "Whatever. After school, we\'re going to my place. I\'ll wait for you by the entrance."');
@@ -74,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: You chat about random topics and <<$npc_firstname['A<<numnpc>>']>> happily liste...
               scene.text(`You chat about random topics and ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "nogorslut" })}']>> happily listens to your stories, sharing several new stories and anecdotes as well.`);
               if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).loc ?? 0) !== 'pav_disco') {
-                if (Math.floor(Math.random() * 5) + 0 === 0) {
+                if ((!(Math.floor(Math.random() * 5) + 0))) {
                   // TODO-QSP: dynamic text: You start to talk to Ivan when he leans in closes and whispers in your ear. "Tel...
                   scene.text(`You start to talk to Ivan when he leans in closes and whispers in your ear. "Tell me you're bored ${((s as any).pcs_nickname ?? 0)}."`);
                   scene.actions([

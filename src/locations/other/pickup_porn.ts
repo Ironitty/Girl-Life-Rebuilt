@@ -73,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -82,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (Math.floor(Math.random() * 3) + 1 === 1) {
+    if ((Math.floor(Math.random() * 3) + 1) === 1) {
       qspCall(s, 'fame', 'city', 'sex', 2);
     }
     qspCall(s, 'stat', '');
@@ -139,7 +139,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -284,7 +284,7 @@ function enterHesitantStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -548,7 +548,7 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tits ?? 0) >= 4) {
     scene.text('He pays special attention to your breasts, complimenting not only their size, but their shape.');
   }
-  if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+  if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
     scene.text('He can\'t keep his eyes or his hands off your ass, complimenting not only its size, but its firmness as well.');
   }
   scene.text('He then moves the scene on, motioning for you to suck his dick as he climbs off the bed.');
@@ -577,7 +577,7 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting5.jpg');
     scene.text('He suddenly pulls out and grins at you before having you flip over and get onto your hands and knees, spreading your legs slightly before you feel his finger thrusting into your pussy, causing you to moan softly before he pulls it out and his cock stretches your pussy once more.');
     scene.text('He resumes fucking you a little harder than before, causing you to moan loudly in pleasure as you try your best to look as sexy as you can, knowing he\'s filming you from his point of view.');
-    if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He can\'t seem to resist your ass, his hand constantly running over your jiggling cheeks as he thrusts into you.');
     }
     scene.actions([
@@ -621,11 +621,11 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('After rehydrating yourself, you tell him you\'re ready to continue and he grabs his camera and starts filming you again as you walk into the ensuite bathroom and turn the shower on.');
     scene.text('You flirt with him and let him record your naked body some more before you step into the shower and start cleaning yourself.');
     scene.text('He continues to record you as you rinse your hair and lather up your body, all while listening to him compliment your body and answering his questions about yourself, the sex you just had, and whether or not you\'ll join the industry.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He makes sure to capture you from every angle, paying special attention to both your breasts and ass. At one point, he even has you press them up against the glass door of the shower.');
     } else {
       scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
-      if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
         scene.text('He makes sure to capture you from every angle, paying special attention to your ass. At one point, he even has you lather it up before pressing it up against the glass door of the shower.');
       } else {
         scene.text('He makes sure to capture you from every angle.');
@@ -658,11 +658,11 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You tell him you\'re ready to continue and he grabs his camera and starts filming you again as you walk into the ensuite bathroom and turn the shower on.');
     scene.text('You flirt with him and let him record your naked body some more before you step into the shower and start cleaning yourself.');
     scene.text('He continues to record you as you rinse your hair and lather up your body, all while listening to him compliment your body and answering his questions about yourself, the sex you just had, and whether or not you\'ll join the industry.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He makes sure to capture you from every angle, paying special attention to both your breasts and ass. At one point, he even has you press them up against the glass door of the shower.');
     } else {
       scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
-      if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
         scene.text('He makes sure to capture you from every angle, paying special attention to your ass. At one point, he even has you lather it up before pressing it up against the glass door of the shower.');
       } else {
         scene.text('He makes sure to capture you from every angle.');

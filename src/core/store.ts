@@ -35,7 +35,7 @@ interface GameStore extends GameState {
   loadGame: (slot: number) => Promise<void>;
 }
 
-export const initialState: GameState = {
+export const initialState = {
   hour: 9,
   minut: 0,
   daystart: 1,
@@ -538,7 +538,7 @@ function extractState(s: GameStore): GameState {
 }
 
 export const useGameStore = create<GameStore>((set, get) => ({
-  ...initialState,
+  ...(initialState as unknown as GameState),
   reminders: [],
 
   set: (partial) => {

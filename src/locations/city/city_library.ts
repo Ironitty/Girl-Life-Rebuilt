@@ -32,7 +32,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'spellList', 'numAvailableSpells', 'librarySpells') <= 0) {
       scene.text('There doesn\'t seem to be any more spells to learn here, but you can still improve your skills in the ones that you\'ve already found.');
     } else {
-      if (Math.floor(Math.random() * 10) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 10) + 0))) {
         qspCall(s, 'spellList', 'addAvailableSpells', 'librarySpells');
       }
     }

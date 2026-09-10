@@ -175,7 +175,7 @@ function enterStopHere2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah," he nods. "Probably should."');
     }
     qspCall(s, 'sex_ev_after', 'finish_sex');
-    if (Math.floor(Math.random() * 10) + 1 >= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).sex_ev ?? 0)?.['blowjob_continue_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['cum_count'] < 5) {
+    if ((Math.floor(Math.random() * 10) + 1) >= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).sex_ev ?? 0)?.['blowjob_continue_ask'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['cum_count'] < 5) {
       if (((s as any).sex_ev ?? 0)?.['npc_late_work'] === 1) {
         qspCall(s, 'sex_ev_after', 'finish_sex');
       } else {

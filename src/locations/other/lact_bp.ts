@@ -8,11 +8,11 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterBuildBp(s: GameState, scene: SceneBuilder): void {
   (s as any).bp_i = 0;
-  (s as any).bpID_arr[bp_i] = ((s as any).bp_i ?? 0);
-  (s as any).bpType_arr[bp_i] = qspUntranslated(s, "ARGS[1]", { location: "lact_bp" });
-  (s as any).bpLocID_arr[bp_i] = qspUntranslated(s, "ARGS[2]", { location: "lact_bp" });
-  (s as any).bpbID1_arr[bp_i] = (-1);
-  (s as any).bpbID2_arr[bp_i] = (-1);
+  (s as any).bpID_arr[String((s as any).bp_i ?? 0)] = ((s as any).bp_i ?? 0);
+  (s as any).bpType_arr[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[1]", { location: "lact_bp" });
+  (s as any).bpLocID_arr[String((s as any).bp_i ?? 0)] = qspUntranslated(s, "ARGS[2]", { location: "lact_bp" });
+  (s as any).bpbID1_arr[String((s as any).bp_i ?? 0)] = (-1);
+  (s as any).bpbID2_arr[String((s as any).bp_i ?? 0)] = (-1);
   (s as any).result = ((s as any).bp_i ?? 0);
   scene.build();
 }
@@ -28,7 +28,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === ((s as any).ARGS ?? 0)[1]) {
       qspCall(s, 'lact_bp', 'update_mbottle', ((s as any).vmb_i ?? 0));
       if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
-        (s as any).mbarrfill[vmb_i] = 0;
+        (s as any).mbarrfill[String((s as any).vmb_i ?? 0)] = 0;
         // TODO-QSP: dynamic text: <br><<vmb_i + 1>>. - An empty <<mbarrtype[vmb_i]/10>>ml bottle. You can use it t...
         scene.text(`<br>${((s as any).vmb_i ?? 0) + 1}. - An empty ${((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)]/10}ml bottle. You can use it to store your breast milk.`);
       } else {
@@ -130,7 +130,7 @@ function enterTimeStamp(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (43200);
         if (((s as any).ts_i ?? 0) === 2) {
           (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (40320);
-          if ((((s as any).year ?? 0) % 4) === 0  &&  (((s as any).year ?? 0) % 100) !== 0  ||  (((s as any).year ?? 0) % 400) === 0) {
+          if ((((s as any).year ?? 0) % 4) === 0  &&  (((s as any).year ?? 0) % 100) !== 0  ||  (!(((s as any).year ?? 0) % 400))) {
             (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (1440);
           }
         }

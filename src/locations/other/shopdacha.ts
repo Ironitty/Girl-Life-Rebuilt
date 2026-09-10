@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Shop closed.');
   } else {
     if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'purchased', 'city_apartment')) {
-      if (((s as any).rembedr ?? 0) === 0) {
+      if ((!((s as any).rembedr ?? 0))) {
         if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
           (s as any).rembedr = 1;
           qspCall(s, 'money', 'pay', 50000, 'card');
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (((s as any).remsitr ?? 0) === 0) {
+    if ((!((s as any).remsitr ?? 0))) {
       if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
         (s as any).remsitr = 1;
         qspCall(s, 'money', 'pay', 50000, 'card');
@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (((s as any).remkorr ?? 0) === 0) {
+  if ((!((s as any).remkorr ?? 0))) {
     if (qspFunc(s, 'money', 'can_afford', 50000, 'card') === 1) {
       (s as any).remkorr = 1;
       qspCall(s, 'money', 'pay', 50000, 'card');

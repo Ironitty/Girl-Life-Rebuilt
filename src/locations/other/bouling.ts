@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).boulwin = Math.floor(Math.random() * 29) + 0;
           }
           if (((s as any).boulwin ?? 0) > 10) {
-            if (((s as any).boulvar ?? 0) === 0) {
+            if ((!((s as any).boulvar ?? 0))) {
               qspCall(s, 'money', 'earn', 300);
               // TODO-QSP: dynamic text: You win and receive ' + $func('money', 'string_profit', 300) + '.
               scene.text('You win and receive \' + $func(\'money\', \'string_profit\', 300) + \'.');
@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   { label: 'Leave', goto: ['bouling', ''] },
                 ]);
               }
-              if (((s as any).boulvar ?? 0) === 0) {
+              if ((!((s as any).boulvar ?? 0))) {
                 qspCall(s, 'money', 'pay', 300);
                 // TODO-QSP: dynamic text: You lose and pay ' + $func('money', 'string_price', 300) + '.
                 scene.text('You lose and pay \' + $func(\'money\', \'string_price\', 300) + \'.');
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
                       { label: 'Offer sex instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {

@@ -28,7 +28,7 @@ function enterCiklSms(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) === 6  &&  ((s as any).gopnikbandQW ?? 0)?.['on_tour'] === 0) {
     (s as any).gopnikbandQW['on_tour'] = 1;
-    if (((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  ((s as any).arrpos ?? 0)('contact', 'A144') < 0) {
+    if (((s as any).npc_rel ?? 0)?.['A144'] >= 50  &&  (Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A144') : -1) < 0) {
       qspCall(s, 'telefon', 'AddContact', 'A144', 'icon_na', 1);
     }
   } else {

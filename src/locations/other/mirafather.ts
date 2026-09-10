@@ -154,7 +154,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Go inside', handler: (st: GameState) => {
     (s as any).pose = 0;
     (s as any).temp_mf = Math.floor(Math.random() * 10) + 0;
-    if (((s as any).temp_mf ?? 0) === 0) {
+    if ((!((s as any).temp_mf ?? 0))) {
       scene.img('images/locations/gadukino/sex/mira/mirafathersex.jpg');
     } else {
       scene.img('images/locations/gadukino/sex/mira/mirafathersex1.jpg');
@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/gadukino/sex/mira/mirafatherbj4.jpg');
             }
             if (((s as any).temp_mf ?? 0) < 5) {
-              if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  Math.floor(Math.random() * 3) + 0 < 2) {
+              if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  (Math.floor(Math.random() * 3) + 0) < 2) {
                 qspCall(s, 'dinsex', 'boy_puts_condom');
                 qspCall(s, 'dinsex', 'vaginal_sex', 10);
                 qspCall(s, 'dinsex', 'sexcum');

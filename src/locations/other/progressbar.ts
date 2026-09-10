@@ -96,10 +96,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).progressbar['max_value'] = qspUntranslated(s, "ARGS[2]", { location: "progressbar" });
                 (s as any).progressbar['phantom_raw'] = qspUntranslated(s, "ARGS[3]", { location: "progressbar" });
                 (s as any).progressbar['overlay'] = 0;
-                (s as any).progressbar['overlay_gradient'] = (((s as any).locArgs?.[5] ?? 0) === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0));
-                (s as any).progressbar['label_pos'] = (((s as any).locArgs?.[6] ?? 0) === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0));
+                (s as any).progressbar['overlay_gradient'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0)));
+                (s as any).progressbar['label_pos'] = ((((s as any).locArgs?.[6] ?? 0) === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0)));
                 (s as any).progressbar['thresholds'] = ((s as any).locArgs?.[7] ?? 0);
-                (s as any).progressbar['bar_width_val'] = (((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200);
+                (s as any).progressbar['bar_width_val'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
                 (s as any).progressbar['bar_width_css'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']) + '((s as any).px ?? 0)';
                 (s as any).progressbar['bar_width_attr'] = qspUntranslated(s, "str(progressbar['bar_width_val'])", { location: "progressbar" });
                 if (((s as any).progressbar ?? 0)?.['max_value'] > 0) {
@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).progressbar['phantom_on_color'] = ((s as any).pb_lc_result ?? 0);
                     }
                   }
-                  (s as any).progressbar['mode'] = (((s as any).ARGS ?? 0)[8] > 0) ? (((s as any).ARGS ?? 0)[8] - 1) : (0);
+                  (s as any).progressbar['mode'] = ((((s as any).ARGS ?? 0)[8] > 0) ? (((s as any).ARGS ?? 0)[8] - 1) : (0));
                   if (((s as any).progressbar ?? 0)?.['mode'] === 2) {
                     if (((s as any).progressbar ?? 0)?.['bar_color'] !== '') {
                     }

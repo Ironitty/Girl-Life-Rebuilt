@@ -8,7 +8,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'clock', 'pav_mailgirl');
   scene.text('He guides you to the back room, where a number of small packages and letters are packed into a shoulder bag.');
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 1;
-  (s as any).post_vars['load'] = (((s as any).temp_rand ?? 0) === 1) ? (0) : ((((s as any).temp_rand ?? 0) <= 3) ? (1) : (2));
+  (s as any).post_vars['load'] = ((((s as any).temp_rand ?? 0) === 1) ? (0) : (((((s as any).temp_rand ?? 0) <= 3) ? (1) : (2))));
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
@@ -46,7 +46,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Use the more dangerous shortcuts to save time [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

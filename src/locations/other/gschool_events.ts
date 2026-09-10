@@ -93,7 +93,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Stumble and fall towards him', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big26.jpg');
-    if (Math.floor(Math.random() * 5) + 0 > 0) {
+    if ((Math.floor(Math.random() * 5) + 0) > 0) {
       scene.text('You stumble and fall into your teacher\'s arms as he deftly catches you.');
       // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>! Are you okay? Did you hurt yourself?"
       scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}! Are you okay? Did you hurt yourself?"`);
@@ -119,7 +119,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A26'] < 10) {
       if (((s as any).pcs_hotcat ?? 0) < 5) {
         scene.img('images/characters/shared/headshots_main/big26.jpg');
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('"Good morning, Mr. Tsarev!" you smile. "Have a nice day."');
           scene.text('He just nods his head in your direction and passes, not paying attention to you.');
         } else {
@@ -136,7 +136,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       scene.img('images/characters/shared/headshots_main/big26.jpg');
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.text('"Good morning Mr. Tsarev!" you smile. "I hope you have a nice day. I\'m looking forward to your lesson."');
         // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>. I'm expecting your homework today. Are you prepared, ...
         scene.text(`"Hello ${((s as any).pcs_firstname ?? 0)}. I'm expecting your homework today. Are you prepared, or should I not ask you for it?" he asks in a friendly manner.`);
@@ -159,7 +159,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/building/flirty.jpg');
     if (((s as any).npc_rel ?? 0)?.['A26'] < 10) {
       if (((s as any).pcs_hotcat ?? 0) < 5) {
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('"You\'re looking so handsome today, Mr. Tsarev!" you say, trying to attract his attention with a smile.');
           // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you shouldn't be saying things like that," he replies, ...
           scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, you shouldn't be saying things like that," he replies, but still smiles back at you in response.`);
@@ -169,7 +169,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
         }
         qspCall(s, 'npc_relationship', 'modify', 'A26', 1);
       } else {
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('"You\'re looking so handsome today, Mr. Tsarev!" you say, trying to attract his attention with a smile.');
           // TODO-QSP: dynamic text: "Thank you, Miss <<$pcs_lastname>>. I'd pay you a compliment, but we're not supp...
           scene.text(`"Thank you, Miss ${((s as any).pcs_lastname ?? 0)}. I'd pay you a compliment, but we're not supposed to have such informal relationships with students," he replies, but still smiles back.`);
@@ -180,7 +180,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.text('"You\'re looking a little glum today, Mr. Tsarev," you say, trying to attract his attention with a smile.');
         scene.text('"My wife had the night shift at work, so I had to eat at the cafe this morning," he replies and you laugh together.');
         scene.text('"Well, maybe I can cook for you sometime, to say thank you for what I\'ve learned in your class?" you answer in a serious voice.');
@@ -253,9 +253,9 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
 
 function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (((s as any).break_rand ?? 0)[1] + Math.floor(Math.random() * 6) + 5 < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50) {
+  if (((s as any).break_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50) {
     (s as any).break_rand[1] = ((s as any).daystart ?? 0);
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: gt 'gossips', 'school', 'boys_slutrep'
     } else {
       // TODO-QSP: gt 'gossips', 'school', 'girls_slutrep'
@@ -276,7 +276,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -303,7 +303,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (((s as any).rand ?? 0) (0, 2) === 0) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
       qspCall(s, 'gschool_events', 'rand_boy_arg', 0, 0, 0, 1, 0, 0);
     } else {
       qspCall(s, 'gschool_events', 'rand_boy_arg', 1, 1, 0, 0, 0, 0);
@@ -311,7 +311,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Slap the boy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -337,7 +337,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tease the boy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -378,7 +378,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'leave_break_events');
     if (((s as any).break_rand ?? 0) <= 5  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200  &&  ((s as any).grupTipe ?? 0) !== 4) {
       scene.img('images/characters/shared/headshots_main/big9.jpg');
-      if (((s as any).AlbinaQW ?? 0)?.['Friends'] >= 1  &&  ((s as any).SchoolGossip ?? 0) > 0  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+      if (((s as any).AlbinaQW ?? 0)?.['Friends'] >= 1  &&  ((s as any).SchoolGossip ?? 0) > 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
         (s as any).AlbinaQW['Protect'] = 1;
         (s as any).minut = ((s as any).minut ?? 0) + 60;
         // TODO-QSP: dynamic text: During the break, you're approached by Vitek and some other gopniks. "I know why...
@@ -397,7 +397,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Threaten to scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -458,7 +458,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tell him to get lost [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -530,7 +530,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Slap him across the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -562,7 +562,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Kick him in the balls [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -586,7 +586,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Tease him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -614,7 +614,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Taunt him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -668,7 +668,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.img('images/locations/pavlovsk/school/events/skirtpulledup.jpg');
-          if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+          if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
             scene.text('As you walk down the hallway, you feel someone moving in behind you and quickly pulling your skirt up. Your skirt is barely in the air before you feel a hand firmly squeezing your ass. As you move to turn around, the hand quickly pulls away.');
             scene.text('You can tell from his admiring expression that Lazar was the one groping your ass. All the workouts you\'ve been doing have made your ass big and firm enough to impress him.');
           } else {
@@ -679,7 +679,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Slap him across the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -710,7 +710,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Kick him in the balls [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -734,7 +734,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Tease him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -763,7 +763,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Taunt him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -804,7 +804,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Slap him across the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -838,7 +838,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Tease him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -867,7 +867,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Taunt him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -931,7 +931,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Tease them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -961,7 +961,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Taunt them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -1226,7 +1226,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Not today [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1247,7 +1247,7 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).accessoriesBonus = qspFunc(s, 'AppearanceSystem', 'CalcAccessoriesBonus');
   (s as any).groomingBonus = qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus');
   (s as any).groomingPenalty = qspFunc(s, 'AppearanceSystem', 'CalcGroomingPenalty');
-  (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', ((s as any).arch_effects ?? 0)?.['appearance_effect'] + ((s as any).succappbonus ?? 0) + (((s as any).glamouractive ?? 0) === 1) ? (150) : (0));
+  (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', ((s as any).arch_effects ?? 0)?.['appearance_effect'] + ((s as any).succappbonus ?? 0) + ((((s as any).glamouractive ?? 0) === 1) ? (150) : (0)));
   (s as any).pcs_hotcat = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).pcs_apprnc ?? 0));
   scene.build();
 }

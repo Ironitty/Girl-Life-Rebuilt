@@ -28,10 +28,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('This small open-air market is located near the train station. None of the stall owners accept card payments, so you\'ll need cash on hand to buy anything here.');
   scene.text('A sign on one of the stalls says, "Cash paid for secondhand clothes"; you can sell <a href="exec:gs \'portnoi\'">all your unwanted clothes here</a>.');
-  if (((s as any).pavtrain_book ?? 0) === 0) {
+  if ((!((s as any).pavtrain_book ?? 0))) {
     scene.text('Perhaps you will find some books when you stroll through the market.');
   }
-  if (((s as any).pavmarket_porn ?? 0) === 0) {
+  if ((!((s as any).pavmarket_porn ?? 0))) {
     scene.text('Rumor has it that you can find some spicy toys around here somewhere.');
   }
   if (((s as any).arturQW ?? 0) === 1  &&  (((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)  &&  ((s as any).hour ?? 0) < 12) {
@@ -40,7 +40,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
     scene.text('The market stalls are buzzing with shoppers. Everyone seems to be in a good mood, and you can hear back-and-forth bargaining as you pass by.');
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 100  &&  Math.floor(Math.random() * 10) + 0 === 0) {
+    if (((s as any).fame ?? 0)?.['pav_slut'] >= 100  &&  (!(Math.floor(Math.random() * 10) + 0))) {
       qspCall(s, 'stat', '');
       scene.text('An Armenian man suddenly approaches you.');
       scene.text('"You girl who like men, no? Come meet real men, have good time," he says in broken Russian.');
@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act 'Go to the porn stall': minut += 5
       // TODO-QSP: gt 'pav_train_market', 4
     }
-    if (((s as any).arturKnow ?? 0) === 1  &&  ((s as any).arturQW ?? 0) === 0) {
+    if (((s as any).arturKnow ?? 0) === 1  &&  (!((s as any).arturQW ?? 0))) {
       scene.actions([
         { label: 'Look for Arthur', goto: ['arturRinok', 'start'] },
       ]);
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       }
-      if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0  &&  ((s as any).gobQW ?? 0) === 0) {
+      if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0  &&  (!((s as any).gobQW ?? 0))) {
         scene.actions([
           { label: 'Sell tapestry', handler: (st: GameState) => {
     (s as any).gobQW = 1;
@@ -146,7 +146,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       }
-      if (((s as any).ShowerIvan ?? 0) === 5  &&  ((s as any).porndeal ?? 0) === 0  &&  Math.floor(Math.random() * 10) + 1 <= 4  &&  ((s as any).ricewine ?? 0) !== 1  &&  ((s as any).lookwine ?? 0) !== ((s as any).daystart ?? 0)) {
+      if (((s as any).ShowerIvan ?? 0) === 5  &&  ((s as any).porndeal ?? 0) === 0  &&  (Math.floor(Math.random() * 10) + 1) <= 4  &&  ((s as any).ricewine ?? 0) !== 1  &&  ((s as any).lookwine ?? 0) !== ((s as any).daystart ?? 0)) {
         qspCall(s, 'stat', '');
         (s as any).minut = ((s as any).minut ?? 0) + 20;
         (s as any).lookwine = ((s as any).daystart ?? 0);
@@ -194,7 +194,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey, you really want that rice wine?" he asks after checking to ensure no one is watching.');
     scene.text('"Yes," you answer. "But it\'s too expensive. I can\'t afford it."');
     scene.text('"How about we make a deal?" he asks. "Go to the porn dealer and buy me a porn magazine, and I\'ll get you the wine."');
-    if (((s as any).pornmarkonce ?? 0) === 0) {
+    if ((!((s as any).pornmarkonce ?? 0))) {
       (s as any).pornmarkonce = 1;
       scene.text('"Where can I find the porn dealer?" you ask, and he happily gives you directions.');
     }
@@ -361,7 +361,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).mc_inventory ?? 0)?.['card'] < 2) {
       if (qspFunc(s, 'money', 'can_afford', 700, 'cash') === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'money', 'pay', 700, 'cash');
@@ -387,7 +387,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).porndeal ?? 0) === 1) {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
@@ -408,7 +408,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_suction'] === 0) {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
@@ -437,7 +437,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'erotic', 5);
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/pavlovsk/market/pornmag.jpg');
-    if (((s as any).TimesBuyPorno ?? 0) === 0) {
+    if ((!((s as any).TimesBuyPorno ?? 0))) {
       scene.text('You look over the magazine covers, which are covered in images of half-naked girls. Many of them appear to be near your own age. The salesman notices your interest and looks at you expectantly.');
       scene.actions([
         { label: 'Look through a magazine', handler: (st: GameState) => {
@@ -462,7 +462,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy a magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
@@ -500,7 +500,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
@@ -532,7 +532,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Buy magazine [+$func(\'money\', \'get_cost_string\', 400, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 400, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', 400, 'cash');
@@ -569,7 +569,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The salesman only deals in cash.');
     if (((s as any).mc_inventory ?? 0)?.['dildo_normal'] === 0) {
       if (qspFunc(s, 'money', 'can_afford', 700, 'cash') === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         (s as any).mc_inventory['dildo_normal'] = 1;
@@ -602,7 +602,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Buy another 15cm suction dildo [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);

@@ -5,7 +5,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).locat['A23'] = 0;
   if (((s as any).yearstart ?? 0) === 1) {
-    if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0) {
+    if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (!((s as any).kanikuli ?? 0))) {
       if (((s as any).week ?? 0) < 6) {
         if (((s as any).hour ?? 0) < 7  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) < 30)) {
           (s as any).locat['A23'] = 1;
@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).hour ?? 0) < 9) {
                 if (((s as any).locat ?? 0)?.['A23_rand1'] !== ((s as any).daystart ?? 0)) {
                   (s as any).locat['A23_rand1'] = ((s as any).daystart ?? 0);
-                  if (Math.floor(Math.random() * 3) + 0 === 0) {
+                  if ((!(Math.floor(Math.random() * 3) + 0))) {
                     (s as any).locat['A23_save1'] = 36;
                   } else {
                     (s as any).locat['A23_save1'] = 1;
@@ -121,7 +121,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).hour ?? 0) < 9) {
                               if (((s as any).locat ?? 0)?.['A23_rand1'] !== ((s as any).daystart ?? 0)) {
                                 (s as any).locat['A23_rand1'] = ((s as any).daystart ?? 0);
-                                if (Math.floor(Math.random() * 3) + 0 === 0) {
+                                if ((!(Math.floor(Math.random() * 3) + 0))) {
                                   (s as any).locat['A23_save1'] = 36;
                                 } else {
                                   (s as any).locat['A23_save1'] = 1;
@@ -192,7 +192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).hour ?? 0) < 9) {
                                           if (((s as any).locat ?? 0)?.['A23_rand1'] !== ((s as any).daystart ?? 0)) {
                                             (s as any).locat['A23_rand1'] = ((s as any).daystart ?? 0);
-                                            if (Math.floor(Math.random() * 3) + 0 === 0) {
+                                            if ((!(Math.floor(Math.random() * 3) + 0))) {
                                               (s as any).locat['A23_save1'] = 36;
                                             } else {
                                               (s as any).locat['A23_save1'] = 1;
@@ -272,7 +272,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           if (((s as any).hour ?? 0) === 19) {
                                                             (s as any).locat['A23'] = 29;
                                                           } else {
-                                                            if (((s as any).sunWeather ?? 0) === 1  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+                                                            if (((s as any).sunWeather ?? 0) === 1  &&  (!(Math.floor(Math.random() * 2) + 0))) {
                                                               (s as any).locat['A23'] = 17;
                                                             } else {
                                                               (s as any).locat['A23'] = 18;
@@ -349,7 +349,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                           (s as any).locat['A23'] = 25;
                                                                                         } else {
                                                                                           (s as any).locat['A23'] = 26;
-                                                                                          if (Math.floor(Math.random() * 3) + 0 === 1) {
+                                                                                          if ((Math.floor(Math.random() * 3) + 0) === 1) {
                                                                                             (s as any).locat['A23'] = 27;
                                                                                           } else {
                                                                                             (s as any).locat['A23'] = 34;
@@ -374,7 +374,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                   if (((s as any).week ?? 0) === 4  ||  (((s as any).university ?? 0)?.['exam_week'] === 2  &&  (((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 5))) {
                                                                                                     (s as any).locat['A23'] = 12;
                                                                                                   } else {
-                                                                                                    if (((s as any).sunWeather ?? 0) === 1  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+                                                                                                    if (((s as any).sunWeather ?? 0) === 1  &&  (!(Math.floor(Math.random() * 2) + 0))) {
                                                                                                       (s as any).locat['A23'] = 17;
                                                                                                     } else {
                                                                                                       (s as any).locat['A23'] = 18;

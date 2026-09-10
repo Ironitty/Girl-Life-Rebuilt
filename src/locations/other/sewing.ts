@@ -83,7 +83,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTapestry(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).newgobelen ?? 0) === 0) {
+  if ((!((s as any).newgobelen ?? 0))) {
     (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
     (s as any).newgobelen = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 15;

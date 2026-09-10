@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).nichCleanAppropriate = 0;
     }
     if (((s as any).nichWork ?? 0) === 2) {
-      if (((s as any).nichCleanAppropriate ?? 0) === 0) {
+      if ((!((s as any).nichCleanAppropriate ?? 0))) {
         scene.text('It wouldn\'t be appropriate to clean this room now.');
       } else {
         qspCall(s, 'nichChore', 'inspect', 'study');

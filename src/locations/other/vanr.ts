@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.text('<center><b>Bathroom</b></center>');
-  if (((s as any).remvanr ?? 0) === 0) {
+  if ((!((s as any).remvanr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/vanr.jpg');
     scene.text('Your bathroom is old and in a bad state. The suite is unattractive and stained, but at least the <a href="exec:gt \'mirror\',\'start\'">mirror</a> is reasonably new.');
   } else {

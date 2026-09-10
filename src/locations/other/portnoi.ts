@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'gm_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('gm_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).gm_outfits ?? {}).length) {
       // TODO-QSP: jump 'gm_outfitsmet'
     }
     (s as any).i = 1;
@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'gm_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('gm_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).gm_dress ?? {}).length) {
       // TODO-QSP: jump 'gm_dressmet'
     }
     (s as any).i = 1;
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'office', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('office')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).office ?? {}).length) {
       // TODO-QSP: jump 'officemet'
     }
     (s as any).i = 1;
@@ -60,7 +60,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'gm_maid', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('gm_maid')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).gm_maid ?? {}).length) {
       // TODO-QSP: jump 'gm_maidmet'
     }
     (s as any).i = 1;
@@ -69,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'gm_server', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('gm_server')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).gm_server ?? {}).length) {
       // TODO-QSP: jump 'gm_servermet'
     }
     (s as any).i = 1;
@@ -78,7 +78,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'school', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('school')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).school ?? {}).length) {
       // TODO-QSP: jump 'schoolmet'
     }
     (s as any).i = 1;
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'misc_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('misc_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).misc_outfits ?? {}).length) {
       // TODO-QSP: jump 'misc_outfitsmet'
     }
     (s as any).i = 1;
@@ -96,7 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'cats_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('cats_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).cats_outfits ?? {}).length) {
       // TODO-QSP: jump 'cats_outfitsmet'
     }
     (s as any).i = 1;
@@ -105,7 +105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'cats_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('cats_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).cats_dress ?? {}).length) {
       // TODO-QSP: jump 'cats_dressmet'
     }
     (s as any).i = 1;
@@ -114,7 +114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'flamingos_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('flamingos_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).flamingos_dress ?? {}).length) {
       // TODO-QSP: jump 'flamingos_dressmet'
     }
     (s as any).i = 1;
@@ -123,7 +123,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'flamingos_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('flamingos_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).flamingos_outfits ?? {}).length) {
       // TODO-QSP: jump 'flamingos_outfitsmet'
     }
     (s as any).i = 1;
@@ -132,7 +132,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'coco_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('coco_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).coco_dress ?? {}).length) {
       // TODO-QSP: jump 'coco_dressmet'
     }
     (s as any).i = 1;
@@ -141,7 +141,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'coco_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('coco_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).coco_outfits ?? {}).length) {
       // TODO-QSP: jump 'coco_outfitsmet'
     }
     (s as any).i = 1;
@@ -150,7 +150,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'fashionista_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('fashionista_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).fashionista_dress ?? {}).length) {
       // TODO-QSP: jump 'fashionista_dressmet'
     }
     (s as any).i = 1;
@@ -159,7 +159,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'fashionista_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('fashionista_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).fashionista_outfits ?? {}).length) {
       // TODO-QSP: jump 'fashionista_outfitsmet'
     }
     (s as any).i = 1;
@@ -168,7 +168,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'moncheri_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('moncheri_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).moncheri_dress ?? {}).length) {
       // TODO-QSP: jump 'moncheri_dressmet'
     }
     (s as any).i = 1;
@@ -177,7 +177,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'moncheri_gown', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('moncheri_gown')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).moncheri_gown ?? {}).length) {
       // TODO-QSP: jump 'moncheri_gownmet'
     }
     (s as any).i = 1;
@@ -186,7 +186,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'scandalicious_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('scandalicious_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).scandalicious_dress ?? {}).length) {
       // TODO-QSP: jump 'scandalicious_dressmet'
     }
     (s as any).i = 1;
@@ -195,7 +195,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'scandalicious_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('scandalicious_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).scandalicious_outfits ?? {}).length) {
       // TODO-QSP: jump 'scandalicious_outfitsmet'
     }
     (s as any).i = 1;
@@ -204,7 +204,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'scandalicious_bikinis', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('scandalicious_bikinis')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).scandalicious_bikinis ?? {}).length) {
       // TODO-QSP: jump 'scandalicious_bikinismet'
     }
     (s as any).i = 1;
@@ -213,7 +213,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'scandalicious_swimsuit', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('scandalicious_swimsuit')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).scandalicious_swimsuit ?? {}).length) {
       // TODO-QSP: jump 'scandalicious_swimsuitmet'
     }
     (s as any).i = 1;
@@ -222,7 +222,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'allure_bikinis', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('allure_bikinis')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).allure_bikinis ?? {}).length) {
       // TODO-QSP: jump 'allure_bikinismet'
     }
     (s as any).i = 1;
@@ -231,7 +231,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'allure_swimsuit', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('allure_swimsuit')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).allure_swimsuit ?? {}).length) {
       // TODO-QSP: jump 'allure_swimsuitmet'
     }
     (s as any).i = 1;
@@ -240,7 +240,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'fancy_burlesque', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('fancy_burlesque')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).fancy_burlesque ?? {}).length) {
       // TODO-QSP: jump 'fancy_burlesquemet'
     }
     (s as any).i = 1;
@@ -249,7 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'eroto_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('eroto_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).eroto_dress ?? {}).length) {
       // TODO-QSP: jump 'eroto_dressmet'
     }
     (s as any).i = 1;
@@ -258,7 +258,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'eroto_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('eroto_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).eroto_outfits ?? {}).length) {
       // TODO-QSP: jump 'eroto_outfitsmet'
     }
     (s as any).i = 1;
@@ -267,7 +267,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'eroto_strip', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('eroto_strip')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).eroto_strip ?? {}).length) {
       // TODO-QSP: jump 'eroto_stripmet'
     }
     (s as any).i = 1;
@@ -276,7 +276,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'salacious_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('salacious_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).salacious_dress ?? {}).length) {
       // TODO-QSP: jump 'salacious_dressmet'
     }
     (s as any).i = 1;
@@ -285,7 +285,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'salacious_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('salacious_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).salacious_outfits ?? {}).length) {
       // TODO-QSP: jump 'salacious_outfitsmet'
     }
     (s as any).i = 1;
@@ -294,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'dolls_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('dolls_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).dolls_outfits ?? {}).length) {
       // TODO-QSP: jump 'dolls_outfitsmet'
     }
     (s as any).i = 1;
@@ -303,7 +303,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'dolls_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('dolls_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).dolls_dress ?? {}).length) {
       // TODO-QSP: jump 'dolls_dressmet'
     }
     (s as any).i = 1;
@@ -312,7 +312,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'bomba_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('bomba_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).bomba_outfits ?? {}).length) {
       // TODO-QSP: jump 'bomba_outfitsmet'
     }
     (s as any).i = 1;
@@ -321,7 +321,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'bomba_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('bomba_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).bomba_dress ?? {}).length) {
       // TODO-QSP: jump 'bomba_dressmet'
     }
     (s as any).i = 1;
@@ -330,7 +330,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'nerdvana_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('nerdvana_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).nerdvana_outfits ?? {}).length) {
       // TODO-QSP: jump 'nerdvana_outfitsmet'
     }
     (s as any).i = 1;
@@ -339,7 +339,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'nerdvana_cosplay', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('nerdvana_cosplay')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).nerdvana_cosplay ?? {}).length) {
       // TODO-QSP: jump 'nerdvana_cosplaymet'
     }
     (s as any).i = 1;
@@ -348,7 +348,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'nerdvana_bikinis', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('nerdvana_bikinis')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).nerdvana_bikinis ?? {}).length) {
       // TODO-QSP: jump 'nerdvana_bikinismet'
     }
     (s as any).i = 1;
@@ -357,7 +357,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'nerdvana_swimsuit', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('nerdvana_swimsuit')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).nerdvana_swimsuit ?? {}).length) {
       // TODO-QSP: jump 'nerdvana_swimsuitmet'
     }
     (s as any).i = 1;
@@ -366,7 +366,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'danilovich_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('danilovich_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).danilovich_outfits ?? {}).length) {
       // TODO-QSP: jump 'danilovichmet'
     }
     (s as any).i = 1;
@@ -375,7 +375,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'danilovich_swimsuit', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('danilovich_swimsuit')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).danilovich_swimsuit ?? {}).length) {
       // TODO-QSP: jump 'danilovich_swimsuitmet'
     }
     (s as any).i = 1;
@@ -384,7 +384,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'market_outfits', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('market_outfits')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).market_outfits ?? {}).length) {
       // TODO-QSP: jump 'market_outfitsmet'
     }
     (s as any).i = 1;
@@ -393,7 +393,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic($batch_sell, 'materinstvo_dress', i)
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('materinstvo_dress')) {
+    if (((s as any).i ?? 0) <= Object.keys((s as any).materinstvo_dress ?? {}).length) {
       // TODO-QSP: jump 'materinstvo_dressmet'
     }
     // TODO-QSP: dynamic text: You sold <<poshvalldrop>> items of unwanted clothing for a total of <<$func('mon...

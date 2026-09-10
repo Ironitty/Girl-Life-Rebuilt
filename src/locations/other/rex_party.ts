@@ -92,7 +92,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 function enterToilet(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  if (((s as any).alko ?? 0) > 3  &&  Math.floor(Math.random() * 100) + 1 <= 30) {
+  if (((s as any).alko ?? 0) > 3  &&  (Math.floor(Math.random() * 100) + 1) <= 30) {
     scene.actions([{ label: 'Continue', goto: ['rex_party_sexEvents', 'toilet_sex_events'] }]);
   }
   scene.text('<center><b>Toilet</b></center>');
@@ -167,7 +167,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_4_\' + rand(1, 8) + \'.jpg');
     scene.text('The party is in full swing. In one corner. a <a href="exec: gt \'rex_party_smallEvents\', \'dj\'">guy</a>, the party DJ, is spinning beats at the turntable. You want to give it a try and <a href="exec: gt \'rex_party_smallEvents\', \'dance\'">spin some beats</a>.');
     scene.text('<a href="exec: gt \'rex_party_smallEvents\', \'roma\'">Roma</a> and <a href="exec: gt \'rex_party_smallEvents\', \'anya\'">Anya</a> are locked together having fun dancing.');
-    if (((s as any).rex_love ?? 0) === 0) {
+    if ((!((s as any).rex_love ?? 0))) {
       scene.text('<a href="exec: gt \'rex_party_smallEvents\', \'rex\'">Rex</a> is having fun dancing with some <a href="exec: gt \'rex_party_smallEvents\', \'party_girls\'">girls</a>.');
     }
     if (((s as any).rex_love ?? 0) === 1) {

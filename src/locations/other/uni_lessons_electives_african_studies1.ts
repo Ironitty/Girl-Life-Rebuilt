@@ -21,7 +21,7 @@ function enterAfricanStudies_101(s: GameState, scene: SceneBuilder): void {
     scene.text('He pauses for a moment and looks around, seeming to gaze briefly at each student. "Including the abhorrent tragedy that was slavery and how we can still today address that, with social and personal reparations."');
     scene.text('He goes on to discuss his general feelings on the topic, which seems to mostly be that whites should be making social and personal reparations to black Africans or their decedents for slavery. It is at this point you realize he has just launched into his first lecture.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -30,7 +30,7 @@ function enterAfricanStudies_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Bryant [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -50,7 +50,7 @@ function enterAfricanStudies_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAfricanStudies_101Listen(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 2) + 0 === 1) {
+  if ((Math.floor(Math.random() * 2) + 0) === 1) {
     qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
   } else {
     qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
@@ -87,7 +87,7 @@ function enterAfricanStudies_101NoAttention(s: GameState, scene: SceneBuilder): 
 function enterAfricanStudies_101Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to...');
-  if (((s as any).meet_kendra ?? 0) === 0) {
+  if ((!((s as any).meet_kendra ?? 0))) {
     scene.actions([
       { label: 'The ebony girl', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_talk_kendra_1'] },
     ]);
@@ -139,7 +139,7 @@ function enterAfricanStudies102(s: GameState, scene: SceneBuilder): void {
     scene.text('He pauses for a moment and looks around, seeming to gaze briefly at each student. "Including the abhorrent tragedy that was slavery and how we can still today address that, with social and personal reparations."');
     scene.text('He goes on to discuss his general feelings on the topic, which seems to mostly be that whites should be making social and personal reparations to black Africans or their decedents for slavery. It is at this point you realize he has just launched into his first lecture.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -148,7 +148,7 @@ function enterAfricanStudies102(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Bryant [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -202,7 +202,7 @@ function enterAfricanStudies_102NoAttention(s: GameState, scene: SceneBuilder): 
 function enterAfricanStudies_102Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to...');
-  if (((s as any).meet_kendra ?? 0) === 0) {
+  if ((!((s as any).meet_kendra ?? 0))) {
     scene.actions([
       { label: 'The ebony girl', goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_talk_kendra_1'] },
     ]);
@@ -382,7 +382,7 @@ function enterAfricanStudies_101TalkAnushka(s: GameState, scene: SceneBuilder): 
     scene.text('You sit next to Anushka, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
   } else {
     scene.text('You sit next to Anushka and the two of you talk, but she seems more focused on the class than you. She seems rather amused by Professor Bryant\'s propaganda lectures about reparations.');
-    if (Math.floor(Math.random() * 5) + 0 === 0  &&  ((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
+    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
       if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
         scene.text('You sit next to Anushka, who smiles at you as you sit down. "What up?"');
         scene.text('The two of you are soon talking a fair bit, but she seems fairly focused on the class as well.');
@@ -426,7 +426,7 @@ function enterAfricanStudies_102TalkAnushka(s: GameState, scene: SceneBuilder): 
     scene.text('You sit next to Anushka, but she dismisses all of your attempts to speak with her until she tells you to leave her alone.');
   } else {
     scene.text('You sit next to Anushka and the two of you talk, but she seems more focused on the class than you. She seems rather amused by Professor Bryant\'s propaganda lectures about reparations.');
-    if (Math.floor(Math.random() * 5) + 0 === 0  &&  ((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
+    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
       if (((s as any).fame ?? 0)?.['city_slut'] < 300  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 300) {
         scene.text('You sit next to Anushka, who smiles at you as you sit down. "What up?"');
         scene.text('The two of you are soon talking a fair bit, but she seems fairly focused on the class as well.');
@@ -806,7 +806,7 @@ function enterAfricanStudies_101TalkHaruna(s: GameState, scene: SceneBuilder): v
       scene.text('You sit next to Haruna, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
     } else {
       scene.text('You sit next to Haruna and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
-      if (Math.floor(Math.random() * 5) + 0 > 0) {
+      if ((Math.floor(Math.random() * 5) + 0) > 0) {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. But you can\'t help but notice, that even though he seems happy to talk to you, he spends a lot of time watching and checking out Anushka.');
@@ -842,7 +842,7 @@ function enterAfricanStudies_101TalkHaruna(s: GameState, scene: SceneBuilder): v
       scene.text('You sit next to Haruna and he gives you a look of disgust before turning and ignoring you. Despite your efforts, he keeps ignoring you until you give up.');
     } else {
       scene.text('You sit next to Haruna and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
-      if (Math.floor(Math.random() * 5) + 0 > 0) {
+      if ((Math.floor(Math.random() * 5) + 0) > 0) {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. But you can\'t help but notice, that even though he seems happy to talk to you, he spends a lot of time watching and checking out Anushka.');
@@ -890,7 +890,7 @@ function enterAfricanStudies_102TalkHaruna(s: GameState, scene: SceneBuilder): v
       scene.text('You sit next to Haruna, who frowns as you sit down and proceeds to ignore you. Despite your efforts, he keeps ignoring you until you give up.');
     } else {
       scene.text('You sit next to Haruna and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
-      if (Math.floor(Math.random() * 5) + 0 > 0) {
+      if ((Math.floor(Math.random() * 5) + 0) > 0) {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. But you can\'t help but notice, that even though he seems happy to talk to you, he spends a lot of time watching and checking out Anushka.');
@@ -926,7 +926,7 @@ function enterAfricanStudies_102TalkHaruna(s: GameState, scene: SceneBuilder): v
       scene.text('You sit next to Haruna and he gives you a look of disgust before turning and ignoring you. Despite your efforts, he keeps ignoring you until you give up.');
     } else {
       scene.text('You sit next to Haruna and start talking to him. He\'s more interested in the lesson than you, but slowly starts to respond to you as he takes notes.');
-      if (Math.floor(Math.random() * 5) + 0 > 0) {
+      if ((Math.floor(Math.random() * 5) + 0) > 0) {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
       } else {
         scene.text('You sit next to Haruna and spend most of the class quietly talking with him. But you can\'t help but notice, that even though he seems happy to talk to you, he spends a lot of time watching and checking out Anushka.');

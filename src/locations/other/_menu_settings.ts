@@ -164,7 +164,7 @@ function enterToggleMenuSymOpt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :toggle_menu_sym_opt_loop
   if (((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)] !== '') {
     (s as any).temp_tms_colon = qspUntranslated(s, "instr(ARGS[temp_tms_pi], ':')", { location: "_menu_settings" });
-    (s as any).tms_opt_val[tms_opt_count] = parseFloat(qspUntranslated(s, "\u00001\u0000", { location: "_menu_settings" }));
+    (s as any).tms_opt_val[String((s as any).tms_opt_count ?? 0)] = parseFloat(qspUntranslated(s, "\u00001\u0000", { location: "_menu_settings" }));
     // TODO-QSP: $tms_opt_lbl[tms_opt_count] = mid($ARGS[temp_tms_pi], temp_tms_colon + 1)
     (s as any).tms_opt_count = ((s as any).tms_opt_count ?? 0) + (1);
     (s as any).temp_tms_pi = ((s as any).temp_tms_pi ?? 0) + (1);
@@ -200,7 +200,7 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[4] ?? 0) !== ''  &&  ((s as any).locArgs?.[5] ?? 0) !== '') {
     // TODO-QSP: *p '&nbsp;|&nbsp;'
-    if (((s as any).temp_tms_matched ?? 0) === 0) {
+    if ((!((s as any).temp_tms_matched ?? 0))) {
       // TODO-QSP: dynamic '$temp_tms_custom_val = $str(' + $ARGS[4] + ')'
       // TODO-QSP: *p '<b>Custom: <<$temp_tms_custom_val>>%</b>'
     } else {

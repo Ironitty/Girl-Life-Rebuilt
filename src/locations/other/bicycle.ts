@@ -175,7 +175,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/gadukino/village/bike_2.jpg');
         scene.text('You enjoy the breath of fresh air from riding your bike by the seemingly endless fields of the village.');
       }
-      if (((s as any).PCloSkirt ?? 0) === 0) {
+      if ((!((s as any).PCloSkirt ?? 0))) {
         qspCall(s, 'mood', 'raise', 'tiny');
         qspCall(s, 'stat', '');
         scene.img('images/locations/gadukino/village/bike.jpg');

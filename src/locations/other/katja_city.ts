@@ -25,7 +25,7 @@ function enterMetroRide(s: GameState, scene: SceneBuilder): void {
   scene.text('The train arrives and you board before finding a place to sit as it leaves the station.');
   scene.actions([
     { label: 'Chat with Katja', handler: (st: GameState) => {
-    if (((s as any).katjaQW ?? 0)?.['drinks'] > Math.floor(Math.random() * 5) + 10) {
+    if (((s as any).katjaQW ?? 0)?.['drinks'] > (Math.floor(Math.random() * 5) + 10)) {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/city/metro_drunk.jpg');
       scene.text('Katja is so drunk that she doesn\'t make it to a seat and just lies on the floor.');
       scene.text('You try to get her up, but she insists that she\'s fine and just needs a nap.');
@@ -87,7 +87,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
         scene.text('You don\'t have enough to pay the entrance fee, so Katja pays for you.');
         scene.text('"You\'re paying for us next time," she says with a slight hint of annoyance.');
       }
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.text('"Let\'s start with a dance," she says when you\'re finally inside the club and drags you to the dance floor.');
         scene.actions([
           { label: 'Go to the dance floor', handler: (st: GameState) => {
@@ -108,7 +108,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).katjaQW ?? 0)?.['on_date'] === 1) {
         (s as any).katjaQW['on_date'] = 0;
-        if (((s as any).katjaQW ?? 0)?.['drinks'] > Math.floor(Math.random() * 5) + 8) {
+        if (((s as any).katjaQW ?? 0)?.['drinks'] > (Math.floor(Math.random() * 5) + 8)) {
           (s as any).minut = ((s as any).minut ?? 0) + 30;
           qspCall(s, 'stat', '');
           scene.text('Katja is so drunk that she can barely walk, so you decide to help her home. It takes quite a while since she tries to sit down several times and refuses to walk further, but you eventually manage to get her back to her dorm room and into her bed, where she immediately falls asleep. You leave her to sleep and quietly leave the room.');
@@ -116,7 +116,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
             { label: 'Leave', goto: ['uni_dorm', 'second_floor'] },
           ]);
         } else {
-          if (((s as any).katjaQW ?? 0)?.['horny'] > Math.floor(Math.random() * 41) + 40  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
+          if (((s as any).katjaQW ?? 0)?.['horny'] > (Math.floor(Math.random() * 41) + 40)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
             scene.text('You exit the metro station near the university and Katja suggests that you come with her to her room.');
             scene.actions([
               { label: 'Go with her', goto: ['katja_uni_sex', 'coming_home_from_date'] },

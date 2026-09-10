@@ -5,10 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterBreakup(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('ARGS')  === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length  === 1) {
     (s as any).ARGS[1] = 14;
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 2) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     (s as any).ARGS[2] = 'slut';
   }
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] > 0) {
@@ -1199,7 +1199,7 @@ function enterCityDate1Sporthub(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
-        if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  ((s as any).deodorant_on ?? 0) === 0) {
+        if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
           // TODO-QSP: 'Your deodorant will last you for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['de...
           scene.actions([
             { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {

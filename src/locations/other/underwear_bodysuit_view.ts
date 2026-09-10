@@ -92,7 +92,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add') {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[2] + '_bodysuits', ARGS[3]
-    if (((s as any).BraQuality ?? 0) === 0) {
+    if ((!((s as any).BraQuality ?? 0))) {
       // TODO-QSP: exit
     }
     // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
@@ -225,7 +225,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You already own this item.');
     return;
   }
-  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', $((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._bodysuits ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
+  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._bodysuits ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
   (s as any).shop_utils_view['base_price'] = ((s as any).BraPrice ?? 0);
   (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['base_price'] * ((s as any).max ?? 0)(0, 100 - ((s as any).shop_utils_view ?? 0)?.['discount_total']) / 100;
   (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['price'] / 50 * 50;
@@ -340,7 +340,7 @@ function enterViewItemWearHypno(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Put it on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

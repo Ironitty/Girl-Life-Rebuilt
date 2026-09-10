@@ -23,7 +23,7 @@ function enterWlBlock(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckForWlife(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('mod_name') > 0) {
+  if (Object.keys((s as any).mod_name ?? {}).length > 0) {
     (s as any).mod_i = 0;
     // TODO-QSP: :mod_exec
     if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] === 'wlife') {
@@ -32,7 +32,7 @@ function enterCheckForWlife(s: GameState, scene: SceneBuilder): void {
       }
     }
     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
-    if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+    if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length) {
       // TODO-QSP: jump 'mod_exec'
     }
   }
@@ -111,7 +111,7 @@ function enterIsSolicitationLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc_arg ?? 0) !== ''  &&  ((s as any).loc_arg ?? 0) !== 'start') {
     // TODO-QSP: exit
   }
-  if (((s as any).arrpos ?? 0)('solicitation_locations', ((s as any).loc ?? 0)) < 0) {
+  if ((Array.isArray((s as any).solicitation_locations) ? ((s as any).solicitation_locations as any[]).indexOf(((s as any).loc ?? 0)) : -1) < 0) {
     // TODO-QSP: exit
   }
   (s as any).result = 1;

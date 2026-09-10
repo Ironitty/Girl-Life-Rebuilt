@@ -14,14 +14,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 2;
   // TODO-QSP: :kgdexp_loop
-  (s as any).KGD['needExpNextLvl_' + String((s as any).i ?? '') + ''] = (((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))] * 10) * ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))];
-  (s as any).KGD['needExp_' + String((s as any).i ?? '') + ''] = ((s as any).KGD ?? 0)?.['needExpNextLvl_' + String(((s as any).i ?? 0))] - ((s as any).KGD ?? 0)?.['exp_' + String(((s as any).i ?? 0))];
+  (s as any).KGD['needExpNextLvl_' + String((s as any).i || '') + ''] = (((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))] * 10) * ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))];
+  (s as any).KGD['needExp_' + String((s as any).i || '') + ''] = ((s as any).KGD ?? 0)?.['needExpNextLvl_' + String(((s as any).i ?? 0))] - ((s as any).KGD ?? 0)?.['exp_' + String(((s as any).i ?? 0))];
   if (((s as any).KGD ?? 0)?.['needExp_' + String(((s as any).i ?? 0))] <= 0  &&  ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))] > ((s as any).KGD ?? 0)?.['lvlr_' + String(((s as any).i ?? 0))]) {
-    (s as any).KGD['lvlr_' + String((s as any).i ?? '') + ''] = ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))];
-    (s as any).KGD['lvl_' + String((s as any).i ?? '') + ''] = ((s as any).KGD['lvl_' + String((s as any).i ?? '') + ''] ?? 0) + (1);
-    (s as any).KGD['exp_' + String((s as any).i ?? '') + ''] = 0;
-    (s as any).KGD['HP_' + String((s as any).i ?? '') + ''] = ((s as any).KGD['HP_' + String((s as any).i ?? '') + ''] ?? 0) + (10);
-    (s as any).KGD['damage_' + String((s as any).i ?? '') + ''] = ((s as any).KGD['damage_' + String((s as any).i ?? '') + ''] ?? 0) + (5);
+    (s as any).KGD['lvlr_' + String((s as any).i || '') + ''] = ((s as any).KGD ?? 0)?.['lvl_' + String(((s as any).i ?? 0))];
+    (s as any).KGD['lvl_' + String((s as any).i || '') + ''] = ((s as any).KGD['lvl_' + String((s as any).i || '') + ''] ?? 0) + (1);
+    (s as any).KGD['exp_' + String((s as any).i || '') + ''] = 0;
+    (s as any).KGD['HP_' + String((s as any).i || '') + ''] = ((s as any).KGD['HP_' + String((s as any).i || '') + ''] ?? 0) + (10);
+    (s as any).KGD['damage_' + String((s as any).i || '') + ''] = ((s as any).KGD['damage_' + String((s as any).i || '') + ''] ?? 0) + (5);
   }
   if (((s as any).i ?? 0) < 6) {
     (s as any).i = ((s as any).i ?? 0) + (1);

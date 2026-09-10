@@ -189,7 +189,7 @@ function generateSceneBody(
         }
         const bareFlag = node.raw.match(/^\$(\w+)$/);
         if (bareFlag) {
-          out.push(`s.scene = { ...s.scene, mainText: String((s as any).${bareFlag[1]} ?? ''), curActs: [] };`);
+          out.push(`s.scene = { ...s.scene, mainText: String((s as any).${bareFlag[1]} || ''), curActs: [] };`);
           stateReads.push(bareFlag[1]);
         }
         break;
@@ -339,7 +339,7 @@ function translateInlineAct(
     if (part === 'cla' || part === '*clr' || part.startsWith('*clr')) continue;
     const flagMatch = part.match(/^\$(\w+)$/);
     if (flagMatch) {
-      handlerBits.push(`st.scene = { ...st.scene, mainText: String((st as any).${flagMatch[1]} ?? ''), curActs: [] };`);
+      handlerBits.push(`st.scene = { ...st.scene, mainText: String((st as any).${flagMatch[1]} || ''), curActs: [] };`);
       stateReads.push(flagMatch[1]);
       continue;
     }
@@ -413,12 +413,17 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   let c = cond;
   const phs: [string, string][] = [];
   c = c.replace(/¾/g, '(3/4)').replace(/⅔/g, '(2/3)').replace(/¼/g, '(1/4)').replace(/⅓/g, '(1/3)').replace(/×/g, '*').replace(/−/g, '-');
-  c = c.replace(/\bmod\b/g, '%');
-  c = c.replace(/\band\b/g, ' && ');
-  c = c.replace(/\bor\b/g, ' || ');
-  c = c.replace(/\bnot\b/g, '!');
-  c = c.replace(/\bno\s*\(/g, '!(');
-  c = c.replace(/\bno\b/g, '!');
+  c = c.replace(/\bmod\s*\(([^)]+)\)/gi, (_, arg) => {
+    const trimmed = arg.trim();
+    if (/^[a-zA-Z_]\w*$/.test(trimmed)) return `% ${trimmed}`;
+    return `% (${trimmed})`;
+  });
+  c = c.replace(/\bmod\b/gi, '%');
+  c = c.replace(/\band\b/gi, ' && ');
+  c = c.replace(/\bor\b/gi, ' || ');
+  c = c.replace(/\bnot\b/gi, '!');
+  c = c.replace(/\bno\s*\(/gi, '!(');
+  c = c.replace(/\bno\b/gi, '!');
   c = unescapeDoubled(c);
   c = c.replace(/\b0+(?=\d)/g, '');
   c = c.replace(/(<>)|(!=)|( ! )|(>=)|(<=)|(=)/g, (_, ne, neq, bang, gte, lte) => {
@@ -449,6 +454,56 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   // QSP func('module', 'func', args) / $func(...) calls (before $ARGS/$ stripping)
   c = replaceFuncCalls(c, stateReads, todos, stateVar, phs);
   c = replaceBuiltinFuncs(c, stateReads, todos, stateVar, phs);
+  // dyneval() in conditions - treat as 0 with TODO
+  {
+    let out = '';
+    let i = 0;
+    while (i < c.length) {
+      const m = c.slice(i).match(/^(?:\$?)dyneval\s*\(/);
+      if (m) {
+        const start = i + m[0].length;
+        let depth = 1;
+        let inStr = false;
+        let j = start;
+        while (j < c.length && depth > 0) {
+          const ch = c[j];
+          if (inStr) {
+            if (ch === "'" && c[j - 1] !== '\\') inStr = false;
+          } else {
+            if (ch === "'") inStr = true;
+            else if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+          }
+          j++;
+        }
+        const arg = c.slice(start, j - 1);
+        const ph = `\u0000${phs.length}\u0000`;
+        todos.push(`dyneval: ${truncate(arg, 80)}`);
+        phs.push([ph, '(0 as any)']);
+        out += ph;
+        i = j;
+      } else {
+        out += c[i];
+        i++;
+      }
+    }
+    c = out;
+  }
+  // arrsize() in conditions - QSP array size function
+  c = c.replace(/\b(?:\$?)arrsize\s*\(\s*['"]?\$?(\w+)['"]?\s*\)/g, (_, arrName) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    phs.push([ph, `Object.keys((${stateVar} as any).${arrName} ?? {}).length`]);
+    stateReads.push(arrName);
+    return ph;
+  });
+  // arrpos('$arr', val) in conditions - QSP array position function
+  c = c.replace(/\b(?:\$?)arrpos\s*\(\s*['"]?\$?(\w+)['"]?\s*,\s*([^)]+)\)/g, (_, arrName, val) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    const valTranslated = translateCondition(val.trim(), stateReads, todos, stateVar);
+    phs.push([ph, `(Array.isArray((${stateVar} as any).${arrName}) ? ((${stateVar} as any).${arrName} as any[]).indexOf(${valTranslated}) : -1)`]);
+    stateReads.push(arrName);
+    return ph;
+  });
   c = c.replace(/\$ARGS\[(\d+)\]/g, (_, idx) => {
     const ph = `\u0000${phs.length}\u0000`;
     phs.push([ph, `((${stateVar} as any).locArgs?.[${idx}] ?? 0)`]);
@@ -465,11 +520,19 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     return ph;
   });
   // QSP rand(a, b) / random(a, b) in conditions (case-insensitive)
-  c = c.replace(/\b(?:rand|random)\((\d+),\s*(\d+)\)/gi, (_, a, b) => {
-    const ai = parseInt(a);
-    const bi = parseInt(b);
+  c = c.replace(/\b(?:rand|random)\s*\(([^,)]+),\s*([^)]+)\)/gi, (_, a, b) => {
     const ph = `\u0000${phs.length}\u0000`;
-    phs.push([ph, `Math.floor(Math.random() * ${bi - ai + 1}) + ${ai}`]);
+    const aStr = a.trim();
+    const bStr = b.trim();
+    if (/^\d+$/.test(aStr) && /^\d+$/.test(bStr)) {
+      const ai = parseInt(aStr);
+      const bi = parseInt(bStr);
+      phs.push([ph, `(Math.floor(Math.random() * ${bi - ai + 1}) + ${ai})`]);
+    } else {
+      const aTranslated = translateCondition(aStr, stateReads, todos, stateVar);
+      const bTranslated = translateCondition(bStr, stateReads, todos, stateVar);
+      phs.push([ph, `(Math.floor(Math.random() * (${bTranslated} - ${aTranslated} + 1)) + (${aTranslated}))`]);
+    }
     return ph;
   });
   // Strip $ prefix from remaining QSP variable names
@@ -523,6 +586,41 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   for (let pi = phs.length - 1; pi >= 0; pi--) {
     c = c.split(phs[pi][0]).join(phs[pi][1]);
   }
+  // QSP (expr) = 0 means "NOT expr" - convert (boolean_expr) === 0 to !(boolean_expr)
+  // Skip when preceded by arithmetic operators (+, -, *, /, %) since the (expr) is an operand, not a boolean
+  {
+    let out = '';
+    let i = 0;
+    while (i < c.length) {
+      if (c[i] === '(' && (i === 0 || !/\w/.test(c[i - 1]))) {
+        // Check if preceded by arithmetic operator (skip spaces)
+        let k = i - 1;
+        while (k >= 0 && c[k] === ' ') k--;
+        const prev = k >= 0 ? c[k] : '';
+        const isArithOperand = /[+\-*/%]/.test(prev);
+        // Find matching closing paren
+        let depth = 1;
+        let j = i + 1;
+        while (j < c.length && depth > 0) {
+          if (c[j] === '(') depth++;
+          else if (c[j] === ')') depth--;
+          j++;
+        }
+        // Check if followed by === 0
+        if (!isArithOperand && depth === 0 && c.slice(j, j + 7) === ' === 0' && (j + 7 >= c.length || !/\w/.test(c[j + 7]))) {
+          out += '(!(' + c.slice(i + 1, j - 1) + '))';
+          i = j + 7;
+        } else {
+          out += c[i];
+          i++;
+        }
+      } else {
+        out += c[i];
+        i++;
+      }
+    }
+    c = out;
+  }
   return c;
 }
 
@@ -540,12 +638,23 @@ function translateAssignLhs(varName: string, stateReads: string[], stateVar: str
       const parts = key.split(/<<|>>/);
       const keyExpr = parts
         .map((p, i) => i % 2 === 1
-          ? `String((${stateVar} as any).${p.trim()} ?? '')`
+           ? `String((${stateVar} as any).${p.trim()} || '')`
           : `'${p.replace(/''/g, "'").replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`)
         .join(' + ');
       return `${obj}[${keyExpr}]`;
     }
     return `${obj}['${key.replace(/''/g, "'")}']`;
+  }
+  const arrUnq = varName.match(/^(\w+)\[(\$?)(\w+)\]$/);
+  if (arrUnq) {
+    const obj = arrUnq[1];
+    const idx = arrUnq[3];
+    if (/^\d+$/.test(idx)) {
+      stateReads.push(obj);
+      return `${obj}[${idx}]`;
+    }
+    stateReads.push(obj, idx);
+    return `${obj}[String((${stateVar} as any).${idx} ?? 0)]`;
   }
   return varName;
 }
@@ -668,7 +777,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     const qCount = (before.match(/'/g) || []).length + (before.match(/"/g) || []).length;
     if (qCount % 2 === 0) {
       todos.push(`stmt sep: ${truncate(v, 60)}`);
-      return gsMatch[1].trim();
+      return translateValue(gsMatch[1].trim(), stateReads, todos, stateVar);
     }
   }
   // QSP variable names with spaces (no operators present)
@@ -693,7 +802,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     return '0';
   }
   // iif(cond, a, b) - must be checked before the condition-like branch (cond contains comparisons)
-  if (/^iif\(/.test(v)) {
+  if (/^\$?iif\(/.test(v)) {
     const openIdx = v.indexOf('(');
     let depth = 0, end = -1, inStr = false, strCh = '';
     for (let j = openIdx; j < v.length; j++) {
@@ -710,7 +819,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
         const cond = translateCondition(parts[0].trim(), stateReads, todos, stateVar);
         const a = translateValue(parts[1].trim(), stateReads, todos, stateVar);
         const b = translateValue(parts[2].trim(), stateReads, todos, stateVar);
-        return `(${cond}) ? (${a}) : (${b})`;
+        return `((${cond}) ? (${a}) : (${b}))`;
       }
     }
     todos.push(`iif: ${truncate(v, 60)}`);
@@ -799,10 +908,15 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     v = v.replace(/¾/g, '(3/4)').replace(/⅔/g, '(2/3)').replace(/¼/g, '(1/4)').replace(/⅓/g, '(1/3)').replace(/×/g, '*').replace(/−/g, '-');
     // Strip leading zeros from numeric literals (not quoted keys) to avoid octal/invalid literals
     v = v.replace(/(?<!')\b(\d+)\b/g, (n) => n.replace(/^0+(?=\d)/, ''));
-    // QSP (if <condition>) embedded in arithmetic
+    // QSP (if <condition>) embedded in arithmetic: number (if cond) = number * (cond ? 1 : 0)
+    v = v.replace(/(\d+)\s*\(if\s+(.+?)\)/g, (_, num, cond) => {
+      const ph = `\u0000${phs.length}\u0000`;
+      phs.push([ph, `${num} * (${translateCondition(cond.trim(), stateReads, todos, stateVar)} ? 1 : 0)`]);
+      return ph;
+    });
     v = v.replace(/\(if\s+(.+?)\)/g, (_, cond) => {
       const ph = `\u0000${phs.length}\u0000`;
-      phs.push([ph, `(${translateCondition(cond.trim(), stateReads, todos, stateVar)})`]);
+      phs.push([ph, `(${translateCondition(cond.trim(), stateReads, todos, stateVar)} ? 1 : 0)`]);
       return ph;
     });
     // QSP inline else: "expr else expr2"
@@ -819,7 +933,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
         const a = translateValue(parts[1].trim(), stateReads, todos, stateVar);
         const b = translateValue(parts[2].trim(), stateReads, todos, stateVar);
         const ph = `\u0000${phs.length}\u0000`;
-        phs.push([ph, `(${cond}) ? (${a}) : (${b})`]);
+        phs.push([ph, `((${cond}) ? (${a}) : (${b}))`]);
         return ph;
       }
       return args;
@@ -970,7 +1084,7 @@ function replaceBalanced(v: string, name: string, cb: (inner: string) => string)
   let out = '';
   let i = 0;
   while (i < v.length) {
-    const re = new RegExp(`\\b${name}\\s*\\(`);
+    const re = new RegExp(`(?<!\\w)\\$?${name}\\s*\\(`);
     const m = re.exec(v.slice(i));
     if (!m) {
       out += v.slice(i);
@@ -1147,7 +1261,7 @@ function replaceDynamicsOutsideQuotes(v: string, cb: (expr: string) => string): 
 function replaceArrayAccesses(c: string, stateReads: string[], todos: string[], stateVar: string, phs: [string, string][]): string {
   let i = 0;
   let result = '';
-  const re = /\b(\$?[a-zA-Z_]\w*)\[(['"])(.+?)\2\]/g;
+  const re = /(?<!\w)(\$?[a-zA-Z_]\w*)\[(['"])(.+?)\2\]/g;
   while (true) {
     re.lastIndex = i;
     const m = re.exec(c);

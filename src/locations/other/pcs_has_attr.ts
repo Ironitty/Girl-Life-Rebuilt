@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'AND') {
+  if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' && ') {
     (s as any).pha_i = 1;
     (s as any).pha_maxi = 0;
     if (((s as any).pha_maxi ?? 0) === 1) {

@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Have a seat', goto: ['parkKafe', 'table'] },
     { label: 'Order take-out (0:20) [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 350);
       scene.actions([{ label: 'Continue', goto: ['food', 'fast_food'] }]);
@@ -90,7 +90,7 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Turn them down [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -111,8 +111,8 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'city', 'sex', 3);
     qspCall(s, 'drugs', 'alcohol', 'beer');
     scene.text('One of the guys orders another round at the bar and brings you all a beer. You realize that you\'ve gotten drunk a little too quickly for only one beer, but the guys have already started guiding you into the woods.');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
-      if (((s as any).parkara ?? 0) === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      if ((!((s as any).parkara ?? 0))) {
         (s as any).parkara = 1;
       }
       scene.img('images/characters/city/jora/sex/022.jpg');
@@ -127,7 +127,7 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['parkkafe', 'klof 1'] },
       ]);
     } else {
-      if (((s as any).parkara ?? 0) === 0) {
+      if ((!((s as any).parkara ?? 0))) {
         (s as any).parkara = 1;
       }
       scene.img('images/characters/city/jora/sex/004.jpg');
@@ -155,7 +155,7 @@ function enterKlof1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/jora/11 1.jpg');
   scene.text('You try to stand up, but immediately fall back on your ass, still feeling dizzy.');
-  if (((s as any).parkarainmouthnow ?? 0) === 0) {
+  if ((!((s as any).parkarainmouthnow ?? 0))) {
     scene.text('Your pussy feels itchy as something warm and sticky trickles down your leg.');
     scene.text('"Did you like it, baby?" one of them mockingly asks.');
   } else {
@@ -188,7 +188,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Reject him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -410,7 +410,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -802,7 +802,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide and snoop', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 10);
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 100) + 1 < 20) {
+    if ((Math.floor(Math.random() * 100) + 1) < 20) {
       scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/starting.jpg');
       scene.text('You hide behind a tree to see what Rolan is doing. He seems in bad condition, his whole body is shaking, maybe he needs help.');
       scene.actions([

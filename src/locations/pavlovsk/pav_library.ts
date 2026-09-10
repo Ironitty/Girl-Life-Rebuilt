@@ -23,14 +23,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The library is closed.');
     return;
   }
-  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).kanikuli ?? 0) === 0) {
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  (!((s as any).kanikuli ?? 0))) {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).nerdstudynight ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
       (s as any).temp_nerds_here = 1;
       scene.text('The nerds are sitting at a table studying together.');
     } else {
       if (((s as any).nataliaQW ?? 0)?.['library_day_check'] !== ((s as any).daystart ?? 0)) {
         (s as any).nataliaQW['library_day_check'] = ((s as any).daystart ?? 0);
-        if (Math.floor(Math.random() * 4) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 4) + 0))) {
           (s as any).nataliaQW['library_day'] = ((s as any).daystart ?? 0);
         }
       }
@@ -44,7 +44,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You could do your homework with the help of one of the computers.');
   }
   if (((s as any).lernHome ?? 0) > 0) {
-    qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+    qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
     if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
       (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
     } else {
@@ -53,7 +53,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Do your homework [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

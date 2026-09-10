@@ -66,7 +66,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopclonum'
   }
   (s as any).j = ((s as any).j ?? 0) + (1);
-  if (((s as any).j ?? 0) < ((s as any).arrsize ?? 0)('loc_clothestypes')) {
+  if (((s as any).j ?? 0) < Object.keys((s as any).loc_clothestypes ?? {}).length) {
     // TODO-QSP: jump 'loopclotype'
   }
   scene.build();

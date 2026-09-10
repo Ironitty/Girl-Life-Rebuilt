@@ -15,7 +15,7 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
     (s as any).university['first_visit_psychology_101'] = 1;
     scene.text('You walk into the classroom and take a seat. The rest of your classmates walk in one-by-one before a decent looking young man, likely in his mid or late twenties walks in, who appears to be in good shape enters the classroom and closes the door. He stops at the front of the class. "My name is Dmitriy Kucherov, but you may call me, Professor Kucherov. I am going to teach you how the human mind works in this class, or at least the basics understanding of how people think and more importantly why they think the way they do." With that he begins today\'s lecture.');
   }
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -24,7 +24,7 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Kucherov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -80,7 +80,7 @@ function enterPsychology_101Talk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to...');
-  if (((s as any).meet_kendra ?? 0) === 0) {
+  if ((!((s as any).meet_kendra ?? 0))) {
     scene.actions([
       { label: 'The ebony girl', goto: ['uni_lessons_electives_psychology1', 'psychology_101_talk_kendra_1'] },
     ]);
@@ -102,7 +102,7 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/computer/class.jpg');
   scene.text('You walk into the classroom and take a seat at one of the tables. The rest of your classmates walk in one-by-one before Professor Kucherov enters the classroom and closes the door. He turns to the class and begins today\'s lecture.');
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -111,7 +111,7 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Kucherov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -164,7 +164,7 @@ function enterPsychology_102NoAttention(s: GameState, scene: SceneBuilder): void
 function enterPsychology_102Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to...');
-  if (((s as any).meet_kendra ?? 0) === 0) {
+  if ((!((s as any).meet_kendra ?? 0))) {
     scene.actions([
       { label: 'The ebony girl', goto: ['uni_lessons_electives_psychology1', 'psychology_102_talk_kendra_1'] },
     ]);

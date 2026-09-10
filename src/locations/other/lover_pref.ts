@@ -99,7 +99,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
             if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] <= 40) {
             } else {
-              if (Math.floor(Math.random() * 2) + 0 === 0) {
+              if ((!(Math.floor(Math.random() * 2) + 0))) {
               }
               (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
               if (((s as any).temp_rand ?? 0) === 0  &&  ((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {

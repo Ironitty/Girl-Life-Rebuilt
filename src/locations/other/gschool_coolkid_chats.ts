@@ -36,7 +36,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -52,7 +52,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: $func('npc_reactions', 'general', 'A1')
-    if (((s as any).DimaRudeQW ?? 0) > 0  &&  ((s as any).DimaRudeBlock ?? 0) === 0) {
+    if (((s as any).DimaRudeQW ?? 0) > 0  &&  (!((s as any).DimaRudeBlock ?? 0))) {
       scene.text('Dimka looks into your eyes with a disinterested glare. "Whatever. After school, we\'re going to my place. I\'ll wait for you by the entrance."');
     } else {
       if ((((s as any).dimaRevenge ?? 0) === 6  &&  (((s as any).dimaRevChoice ?? 0) === 3  ||  ((s as any).dimaRevChoice ?? 0) === 5  ||  ((s as any).dimaRevChoice ?? 0) === 6))  ||  (((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 2)  ||  (((s as any).dimaRevenge ?? 0) === 8  &&  (((s as any).dimaRevChoice ?? 0) === 1  ||  ((s as any).dimaRevChoice ?? 0) === 4))) {

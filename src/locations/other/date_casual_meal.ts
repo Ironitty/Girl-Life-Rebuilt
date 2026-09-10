@@ -46,7 +46,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterFlashImg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_oneline', 'flash');
-  if (((s as any).PCloDress ?? 0) === 0) {
+  if ((!((s as any).PCloDress ?? 0))) {
     scene.img('images/shared/romance/dates/casual_dining/show_tits1.jpg');
   } else {
     scene.img('images/shared/romance/dates/casual_dining/show_tits_d2.jpg');
@@ -56,7 +56,7 @@ function enterFlashImg(s: GameState, scene: SceneBuilder): void {
 
 function enterFlashMov(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_oneline', 'flash');
-  if (((s as any).PCloDress ?? 0) === 0) {
+  if ((!((s as any).PCloDress ?? 0))) {
     if (((s as any).date_ev ?? 0)?.['dialogue_setting'] === 'between bites of food') {
       scene.img('images/shared/romance/dates/casual_dining/show_tits1.mp4');
     } else {
@@ -133,7 +133,7 @@ function enterRestaurantTalkingImg(s: GameState, scene: SceneBuilder): void {
 function enterArriveSeparate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restauraunt_ext_img');
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'sit_down');
-  if (Math.floor(Math.random() * 4) + 0 + ((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
+  if ((Math.floor(Math.random() * 4) + 0) + ((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
     // TODO-QSP: dynamic text: As you walk up to the restaurant, you find <<$npcdesc>> already there waiting fo...
     scene.text(`As you walk up to the restaurant, you find ${((s as any).npcdesc ?? 0)} already there waiting for you.`);
     scene.actions([

@@ -29,13 +29,13 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (((s as any).car ?? 0)?.['ID'] === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 2) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 3) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     (s as any).ARGS[3] = ((s as any).region ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['loc_arg']  &&  ((s as any).locArgs?.[3] ?? 0) === ((s as any).car ?? 0)?.['region']) {
@@ -50,10 +50,10 @@ function enterIsHereArea(s: GameState, scene: SceneBuilder): void {
   if (((s as any).car ?? 0)?.['ID'] === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 2) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     (s as any).ARGS[2] = ((s as any).region ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['region']) {
@@ -67,13 +67,13 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).car ?? 0)?.['ID'] === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     (s as any).ARGS[1] = ((s as any).loc ?? 0);
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 2) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
   }
-  if (((s as any).arrsize ?? 0)('ARGS') === 3) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     (s as any).ARGS[3] = ((s as any).region ?? 0);
   }
   (s as any).car['loc'] = ((s as any).locArgs?.[1] ?? 0);

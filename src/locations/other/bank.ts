@@ -127,7 +127,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) === 16  &&  ((s as any).minut ?? 0) >= 30  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 32  &&  ((s as any).region ?? 0) === 'city') {
     scene.text('Seems like <a href="exec:gs\'mey_tamara_events\',\'tamara\'">Tamara Meynold</a> is heading home.');
   }
-  if (((s as any).bankAccount ?? 0) === 0) {
+  if ((!((s as any).bankAccount ?? 0))) {
     scene.text('Do you want to open an account?');
     scene.actions([
       { label: 'Open account', handler: (st: GameState) => {
@@ -171,7 +171,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).bankDebtLimit ?? 0) === 0) {
+    if ((!((s as any).bankDebtLimit ?? 0))) {
       scene.actions([
         { label: 'See about getting basic credit or overdraft protection', handler: (st: GameState) => {
     qspCall(st, 'bank', 'ask_overdraft');
@@ -196,7 +196,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: You have <<$func('money', 'format', karta - bankDebtLimit)>> in your account.
       scene.text(`You have ${qspFunc(s, 'money', 'format', ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0))} in your account.`);
-      if (((s as any).bankDebtLimit ?? 0) === 0) {
+      if ((!((s as any).bankDebtLimit ?? 0))) {
         scene.text('You do not have an overdraft protection on your account.');
       } else {
         // TODO-QSP: 'You can take out a loan of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', bankDebtLimit...
@@ -306,7 +306,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Co-operate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -316,7 +316,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'npcgeneratec', '', 0, 'Mr. Karpenko, Loan Officer for VTB Bank', Math.floor(Math.random() * 7) + 21);
     // TODO-QSP: $npc_thdick[$npclastgenerated] = 'thick'
-    (s as any).npc_dick[$npclastgenerated] = 21;
+    (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 21;
     // TODO-QSP: $npc_firstname[$npclastgenerated] = 'Filip'
     // TODO-QSP: $npc_nickname[$npclastgenerated] = 'Mr. Karpenko'
     // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Karpenko'

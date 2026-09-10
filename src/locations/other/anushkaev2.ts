@@ -52,7 +52,7 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 5) + 0 === 0  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
+    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
       scene.actions([{ label: 'Continue', goto: ['anushkaev2', 'watch_nushrad_maksim_blackmail'] }]);
     }
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad5.jpg');
@@ -123,7 +123,7 @@ function enterWatchNushradMaksimBlackmail(s: GameState, scene: SceneBuilder): vo
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -279,7 +279,7 @@ function enterRad3some(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Push him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -554,7 +554,7 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 5) + 0 === 0  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
+    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
       scene.actions([{ label: 'Continue', goto: ['anushkaev2', 'watch_nushval_maksim_blackmail'] }]);
     }
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval4.jpg');
@@ -617,7 +617,7 @@ function enterWatchNushvalMaksimBlackmail(s: GameState, scene: SceneBuilder): vo
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -969,7 +969,7 @@ function enterWatchNushmar(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
       { label: 'Keep watching', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 5) + 1 === 1  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
+    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
       scene.actions([{ label: 'Continue', goto: ['anushkaev2', 'watch_nushmar_maksim_blackmail'] }]);
     }
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar4.jpg');
@@ -1022,7 +1022,7 @@ function enterWatchNushmarMaksimBlackmail(s: GameState, scene: SceneBuilder): vo
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1510,7 +1510,7 @@ function enterDiscoEmptyroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You find an unlocked door and tell her to go inside. "Head in, I\'ll join you in a minute." You quickly walk to the women\'s restroom, enter one of the stalls and slide the strap-on harness on under your skirt so the dildo hangs between your legs. The strap-on in place, you head back to the room where you left Anushka.');
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
     qspCall(s, 'stat', '');
-    if (((s as any).penisEnvyVariable ?? 0) === 0) {
+    if ((!((s as any).penisEnvyVariable ?? 0))) {
       scene.actions([
         { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');

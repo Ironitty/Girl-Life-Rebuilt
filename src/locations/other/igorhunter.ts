@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A173');
   (s as any).lover_picture_number = 31;
-  (s as any).npc_pervert[$boy] = 0;
+  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 0;
   (s as any).boyage = ((s as any).year ?? 0) - (((s as any).npc_dob ?? 0)?.['A173'] / 10000);
   (s as any).boy_birth_month = (((s as any).npc_dob ?? 0)?.['A173'] / 100) % 100;
   (s as any).boy_birth_date = ((s as any).npc_dob ?? 0)?.['A173'] % 100;
@@ -30,7 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).hunterVars ?? 0)?.['IgorLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 10  &&  Math.floor(Math.random() * 5) + 1 === 1  &&  ((s as any).hunterVars ?? 0)?.['Igorsex'] === 0) {
+    if (((s as any).hunterVars ?? 0)?.['IgorLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 10  &&  (Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).hunterVars ?? 0)?.['Igorsex'] === 0) {
       scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
       scene.text('You walk up to Igor to spend time together, but he suddenly kisses you and whispers,');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let's make love."
@@ -241,7 +241,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                     ]);
                   }
-                  if (Math.floor(Math.random() * 7) + 0 === 0) {
+                  if ((!(Math.floor(Math.random() * 7) + 0))) {
                     scene.actions([
                       { label: 'Break up with Igor', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/brosila.jpg');

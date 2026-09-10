@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).locat['A144'] = 22;
         } else {
           if (((s as any).locat ?? 0)?.['A144_rand1'] !== ((s as any).daystart ?? 0)) {
-            if (Math.floor(Math.random() * 5) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 5) + 0))) {
               (s as any).locat['A144'] = 23;
             } else {
               (s as any).locat['A144'] = 22;
@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).locat['A144'] = 24;
             } else {
               if (((s as any).locat ?? 0)?.['A144_rand2'] !== ((s as any).daystart ?? 0)) {
-                if (Math.floor(Math.random() * 2) + 0 === 0) {
+                if ((!(Math.floor(Math.random() * 2) + 0))) {
                   (s as any).locat['A144'] = 23;
                 } else {
                   (s as any).locat['A144'] = 22;
@@ -44,7 +44,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).locat['A144'] = 24;
             } else {
               if (((s as any).locat ?? 0)?.['A144_rand3'] !== ((s as any).daystart ?? 0)) {
-                if (Math.floor(Math.random() * 4) + 0 === 0) {
+                if ((!(Math.floor(Math.random() * 4) + 0))) {
                   (s as any).locat['A144'] = 23;
                 } else {
                   (s as any).locat['A144'] = 22;
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               } else {
                 (s as any).locat['A144'] = 25;
                 if (((s as any).locat ?? 0)?.['A144_rand4'] !== ((s as any).daystart ?? 0)) {
-                  if (Math.floor(Math.random() * 4) + 0 === 0) {
+                  if ((!(Math.floor(Math.random() * 4) + 0))) {
                     (s as any).locat['A144'] = 23;
                   } else {
                     (s as any).locat['A144'] = 22;
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).locat['A144'] = 11;
                 } else {
                   if (((s as any).locat ?? 0)?.['A144_rand1'] !== ((s as any).daystart ?? 0)) {
-                    if (Math.floor(Math.random() * 4) + 0 === 0) {
+                    if ((!(Math.floor(Math.random() * 4) + 0))) {
                       (s as any).locat['A144'] = 23;
                     } else {
                       (s as any).locat['A144'] = 22;
@@ -103,7 +103,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).locat['A144'] = 11;
                   } else {
                     if (((s as any).locat ?? 0)?.['A144_rand2'] !== ((s as any).daystart ?? 0)) {
-                      if (Math.floor(Math.random() * 2) + 0 === 0) {
+                      if ((!(Math.floor(Math.random() * 2) + 0))) {
                         (s as any).locat['A144'] = 23;
                       } else {
                         (s as any).locat['A144'] = 22;
@@ -119,7 +119,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).locat['A144'] = 23;
                   } else {
                     if (((s as any).locat ?? 0)?.['A144_rand3'] !== ((s as any).daystart ?? 0)) {
-                      if (Math.floor(Math.random() * 2) + 0 === 0) {
+                      if ((!(Math.floor(Math.random() * 2) + 0))) {
                         (s as any).locat['A144'] = 23;
                       } else {
                         (s as any).locat['A144'] = 22;
@@ -132,7 +132,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   }
                   if (((s as any).hour ?? 0) < 20) {
                     if (((s as any).locat ?? 0)?.['A144_rand4'] !== ((s as any).daystart ?? 0)) {
-                      if (Math.floor(Math.random() * 4) + 0 === 0) {
+                      if ((!(Math.floor(Math.random() * 4) + 0))) {
                         (s as any).locat['A144'] = 23;
                       } else {
                         (s as any).locat['A144'] = 22;
@@ -149,7 +149,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).locat['A144'] = 20;
                   } else {
                     if (((s as any).locat ?? 0)?.['A144_rand1'] !== ((s as any).daystart ?? 0)) {
-                      if (Math.floor(Math.random() * 4) + 0 === 0) {
+                      if ((!(Math.floor(Math.random() * 4) + 0))) {
                         (s as any).locat['A144'] = 23;
                       } else {
                         (s as any).locat['A144'] = 22;
@@ -161,7 +161,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                     if (((s as any).hour ?? 0) < 17) {
                       if (((s as any).locat ?? 0)?.['A144_rand2'] !== ((s as any).daystart ?? 0)) {
-                        if (Math.floor(Math.random() * 2) + 0 === 0) {
+                        if ((!(Math.floor(Math.random() * 2) + 0))) {
                           (s as any).locat['A144'] = 23;
                         } else {
                           (s as any).locat['A144'] = 22;
@@ -173,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       }
                     } else {
                       if (((s as any).locat ?? 0)?.['A144_rand3'] !== ((s as any).daystart ?? 0)) {
-                        if (Math.floor(Math.random() * 2) + 0 === 0) {
+                        if ((!(Math.floor(Math.random() * 2) + 0))) {
                           (s as any).locat['A144'] = 23;
                         } else {
                           (s as any).locat['A144'] = 22;
@@ -185,7 +185,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       }
                       if (((s as any).hour ?? 0) < 22) {
                         if (((s as any).locat ?? 0)?.['A144_rand4'] !== ((s as any).daystart ?? 0)) {
-                          if (Math.floor(Math.random() * 4) + 0 === 0) {
+                          if ((!(Math.floor(Math.random() * 4) + 0))) {
                             (s as any).locat['A144'] = 23;
                           } else {
                             (s as any).locat['A144'] = 22;

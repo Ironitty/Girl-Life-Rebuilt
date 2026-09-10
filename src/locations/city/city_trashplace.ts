@@ -11,7 +11,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'This seems wrong [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -51,7 +51,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Speak to the manager', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).pornstudio ?? 0) === 0) {
+    if ((!((s as any).pornstudio ?? 0))) {
       (s as any).pornstudio = 1;
     }
     qspCall(s, 'stat', '');
@@ -64,7 +64,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     scene.text('The man ignores him. "I remember you saying you were having problems with your deliveries?"');
     scene.text('"Yes. Our people are becoming too well known."');
     scene.text('"Then this girl is just the person to help you."');
-    if (((s as any).film ?? 0) === 0) {
+    if ((!((s as any).film ?? 0))) {
       scene.actions([
         { label: 'Inquire', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -75,7 +75,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -86,7 +86,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_industrial', ''] },
       ]);
     }
-    if (((s as any).age ?? 0) < 18  &&  ((s as any).fakepassport ?? 0) === 0) {
+    if (((s as any).age ?? 0) < 18  &&  (!((s as any).fakepassport ?? 0))) {
       scene.actions([
         { label: 'I don\'t have a passport', handler: (st: GameState) => {
     scene.text('"I\'m sorry, but I can\'t help you without a passport. Come back when you get one."');
@@ -108,7 +108,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -199,7 +199,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/musorka.jpg');
   scene.text('A long line of trash cans for all the local apartments, shamefully hidden behind a corrugated iron fence.');
-  if (((s as any).bumtolik ?? 0) === 2  &&  Math.floor(Math.random() * 2) + 0 === 1) {
+  if (((s as any).bumtolik ?? 0) === 2  &&  (Math.floor(Math.random() * 2) + 0) === 1) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/musorka.jpg');
     scene.text('You see the homeless person who you gave money to last time. He smiles, waving at you as he walks over to say something.');
@@ -208,7 +208,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Listen to him', goto: ['city_trashplaceevents', 'pos8'] },
     ]);
   }
-  if (((s as any).bumtolik ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20  &&  Math.floor(Math.random() * 2) + 0 === 1) {
+  if (((s as any).bumtolik ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20  &&  (Math.floor(Math.random() * 2) + 0) === 1) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/bumt2.jpg');
     scene.text('You see a girl feeding the homeless.');
@@ -232,7 +232,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Speak to him', goto: ['city_trashplaceevents', 'pos10'] },
       ]);
     }
-    if (((s as any).bumtolik ?? 0) === 0) {
+    if ((!((s as any).bumtolik ?? 0))) {
       scene.text('"Hey there!" you hear a voice call out from the bins.');
       scene.actions([
         { label: 'See who spoke', goto: ['city_trashplaceevents', 'pos2'] },
@@ -252,14 +252,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).bomzQW ?? 0) === 0  &&  Math.floor(Math.random() * 10) + 1 >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).week ?? 0) !== 4) {
+  if (((s as any).bomzQW ?? 0) === 0  &&  (Math.floor(Math.random() * 10) + 1) >= 8  &&  ((s as any).hour ?? 0) <= 16  &&  ((s as any).week ?? 0) !== 4) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/bum.jpg');
     scene.text('As you\'re about to leave, a drunk old man stumbles up to you. He looks and smells like he hasn\'t washed in weeks.');
     // TODO-QSP: dynamic text: "It's national give ' + $func('money', 'string_price', 300) + ' to a bum day, so...
     scene.text('"It\'s national give \' + $func(\'money\', \'string_price\', 300) + \' to a bum day, so come on then!" he drunkenly demands.');
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300, 'cash');
       qspCall(s, 'stat', '');

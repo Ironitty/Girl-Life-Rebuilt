@@ -342,7 +342,7 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('The movie ends and the crowd gets up and starts leaving the theater. Fedor collects the popcorn, drinks and candy bags and throws them in the trash then returns to you. Fedor kisses you on the cheek and asks "Are you ready to go home?"');
-  if (((s as any).FedorRest ?? 0) === 0) {
+  if ((!((s as any).FedorRest ?? 0))) {
     scene.actions([
       { label: 'I\'d like to wash up first', goto: ['FedorEv3', 'Restroom Fedor'] },
     ]);
@@ -430,11 +430,11 @@ function enterMensRoom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Have a quick wash (0:10)', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 20) + 1;
-    if (((s as any).VK ?? 0) <= 5  &&  ((s as any).WithFedor ?? 0) === 0) {
+    if (((s as any).VK ?? 0) <= 5  &&  (!((s as any).WithFedor ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Man'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Man 2'] }]);
-      if (((s as any).VK ?? 0) <= 15  &&  ((s as any).WithFedor ?? 0) === 0) {
+      if (((s as any).VK ?? 0) <= 15  &&  (!((s as any).WithFedor ?? 0))) {
         scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Gang'] }]);
       } else {
         scene.actions([{ label: 'Continue', goto: ['FedorEv3', 'Restroom Rescue'] }]);

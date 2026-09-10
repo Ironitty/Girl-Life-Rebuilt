@@ -605,31 +605,31 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any)._drink['0,price'] = 0;
                   (s as any)._drink['1,name'] = 'Energy Drink';
                   (s as any)._drink['1,type'] = 'only_cost_energy_drink';
-                  (s as any)._drink['1,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (60);
+                  (s as any)._drink['1,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (60));
                   (s as any)._drink['2,name'] = 'Beer on tap';
                   (s as any)._drink['2,type'] = 'only_cost_beer';
-                  (s as any)._drink['2,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (60);
+                  (s as any)._drink['2,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (60));
                   (s as any)._drink['3,name'] = 'Vodka';
                   (s as any)._drink['3,type'] = 'only_cost_vodka';
-                  (s as any)._drink['3,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (120);
+                  (s as any)._drink['3,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (120));
                   (s as any)._drink['4,name'] = 'Scotch';
                   (s as any)._drink['4,type'] = 'only_cost_scotch';
-                  (s as any)._drink['4,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (140);
+                  (s as any)._drink['4,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (140));
                   (s as any)._drink['5,name'] = 'Glass of Wine';
                   (s as any)._drink['5,type'] = 'only_cost_wine';
-                  (s as any)._drink['5,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (160);
+                  (s as any)._drink['5,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (160));
                   (s as any)._drink['6,name'] = 'Black Russian';
                   (s as any)._drink['6,type'] = 'only_cost_black_russian';
-                  (s as any)._drink['6,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (250);
+                  (s as any)._drink['6,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (250));
                   (s as any)._drink['7,name'] = 'Champagne';
                   (s as any)._drink['7,type'] = 'only_cost_champagne';
-                  (s as any)._drink['7,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (220);
+                  (s as any)._drink['7,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (220));
                   (s as any)._drink['8,name'] = 'Vodka Martini';
                   (s as any)._drink['8,type'] = 'only_cost_vodka_martini';
-                  (s as any)._drink['8,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (250);
+                  (s as any)._drink['8,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (250));
                   (s as any)._drink['9,name'] = 'Fancy cocktail';
                   (s as any)._drink['9,type'] = 'only_cost_cocktail';
-                  (s as any)._drink['9,price'] = (((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (300);
+                  (s as any)._drink['9,price'] = ((((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') ? (0) : (300));
                 }
                 (s as any).food_loop = 0;
                 // TODO-QSP: :loop_diner_drinks
@@ -663,7 +663,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
                 // TODO-QSP: $_str += '</tr>'
                 (s as any).food_loop = ((s as any).food_loop ?? 0) + (1);
-                if (((s as any).food_loop ?? 0) < ((s as any).arrsize ?? 0)('_drink')/3) {
+                if (((s as any).food_loop ?? 0) < Object.keys((s as any)._drink ?? {}).length/3) {
                   // TODO-QSP: jump 'loop_diner_drinks'
                 }
                 // TODO-QSP: $_str += '</table></center>'

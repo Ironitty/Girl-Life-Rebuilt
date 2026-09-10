@@ -227,7 +227,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
 
 function enter21(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'TerminalOffice', '21');
-  if (((s as any).TerminalOfficeBuhWorkTime ?? 0) === 0) {
+  if ((!((s as any).TerminalOfficeBuhWorkTime ?? 0))) {
     (s as any).YouNotOpenDoorBuh = 1;
     qspCall(s, 'stat', '');
     qspCall(s, 'TerminalOffice', 'TerminalOfficeScreen', 'A door with a sign', 'terminal6');
@@ -273,7 +273,7 @@ function enter21(s: GameState, scene: SceneBuilder): void {
 
 function enter31(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'TerminalOffice', '31');
-  if (((s as any).TerminalOfficeDirWorkTime ?? 0) === 0) {
+  if ((!((s as any).TerminalOfficeDirWorkTime ?? 0))) {
     (s as any).YouNotOpenDoorDir = 1;
     qspCall(s, 'stat', '');
     qspCall(s, 'TerminalOffice', 'TerminalOfficeScreen', 'A door with a sign', 'terminal5');
@@ -286,7 +286,7 @@ function enter31(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'TerminalOffice', 'TerminalOfficeScreen', 'The Director\'s office', 'terminal1');
     scene.text('You knock and open the door. Behind a massive desk, you see a man. He\'s talking on the phone and apparently not in the mood. He\'s a bit surprised as you aren\'t the person he was expecting, so he dismissively waves his hand, clearly indicating that you need to leave the office.');
-    if (((s as any).AboutBussines ?? 0) === 0) {
+    if ((!((s as any).AboutBussines ?? 0))) {
       scene.actions([
         { label: 'Talk', handler: (st: GameState) => {
     // TODO-QSP: delact $selact

@@ -22,7 +22,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).expdegVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
     (s as any).expdegVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
     (s as any).expdegVars['deg_loss_mult'] = 75 * ((s as any).expdegVars ?? 0)?.['deg_loss_mult'] / 100;
-    if (((s as any).arrpos ?? 0)('att_name', ((s as any).locArgs?.[0] ?? 0)) >= 0) {
+    if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
       (s as any).expdegVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
       (s as any).expdegVars['attrArray'] = '';
     } else {
@@ -39,11 +39,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :traitdegloop
     (s as any).temp_sklattrib['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "exp_deg" });
     if (((s as any).temp_sklattrib ?? 0)?.['trait'] !== '') {
-      (s as any).expdegVars['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[$((s as any).temp_sklattrib ?? 0)?.['trait'] + '-' + $((s as any).expdegVars ?? 0)?.['statName'] + '-((s as any).deg_loss ?? 0)']);
+      (s as any).expdegVars['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? 0)?.['trait'] + '-' + ((s as any).expdegVars ?? 0)?.['statName'] + '-((s as any).deg_loss ?? 0)']);
       (s as any).expdegVars['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $expdegVars[\'statName\'] + \'-deg_loss']);
     }
     (s as any).tl = ((s as any).tl ?? 0) + (1);
-    if (((s as any).tl ?? 0) < ((s as any).arrsize ?? 0)('traitattskl')) {
+    if (((s as any).tl ?? 0) < Object.keys((s as any).traitattskl ?? {}).length) {
       // TODO-QSP: jump 'traitdegloop'
     }
     // TODO-QSP: dynamic "

@@ -142,7 +142,7 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).random = Math.floor(Math.random() * 15) + 0;
-  if (((s as any).random ?? 0) === 0) {
+  if ((!((s as any).random ?? 0))) {
     qspCall(s, 'shop_pussycats', '0');
   } else {
     qspCall(s, 'shop_pussycats', '1');

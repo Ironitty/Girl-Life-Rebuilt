@@ -23,7 +23,7 @@ function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
 
 function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_randomVars['string'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).temp_randomVars['delimiter'] = (((s as any).locArgs?.[2] ?? 0) === '') ? ('|') : (((s as any).locArgs?.[2] ?? 0));
+  (s as any).temp_randomVars['delimiter'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? ('|') : (((s as any).locArgs?.[2] ?? 0)));
   if (((qspUntranslated(s, "\u00000\u0000", { location: "random" })).indexOf((qspUntranslated(s, "\u00001\u0000", { location: "random" })))) + 1 <= 0) {
     return;
   }
@@ -44,7 +44,7 @@ function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPickFrom(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
   }
   (s as any).temp_randomVars['i'] = ((s as any).rand ?? 0)(1, ((s as any).arrsize ?? 0)('((s as any).ARGS ?? 0)') - 1);
   if (((s as any).ARGS ?? 0)[((s as any).temp_randomVars ?? 0)?.['i']] === '') {

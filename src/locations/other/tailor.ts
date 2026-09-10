@@ -54,10 +54,10 @@ function enterSetResizeCurrentAct(s: GameState, scene: SceneBuilder): void {
       scene.text('The tailor is looking irritatingly at you, "Why are you wasting my time with exercise clothing? That type of clothing does not need to be resized…"');
     } else {
       scene.text('The tailor is looking irritatingly at you, "Is this a joke? Your clothes could not fit you better if they were made for you. I have no time for such foolishness."');
-      if (((s as any).dyneval ?? 0)('result === (\'0\'_b[\'1\'] > pcs_hips + 4  ||  \'2\'_b[\'3\'] < pcs_hips - 4)')) {
+      if ((0 as any)) {
         scene.text('The tailor looks irritatingly at you, "Why are you wasting my time? Your clothing does not need to be resized. It might not be perfect, but it is still fine."');
       } else {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         (s as any).minut = ((s as any).minut ?? 0) + 10;
         qspCall(s, 'money', 'pay', 500);
         qspCall(s, 'stat', '');

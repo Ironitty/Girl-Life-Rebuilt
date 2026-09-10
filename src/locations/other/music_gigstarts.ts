@@ -61,7 +61,7 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m Zariyah, I\'m managing Del Parco and we are planning to run some live music evenings. Would you be interested in playing in a more formal setting?"');
     }
     qspCall(s, 'music_actions', 'willpower_cost');
-    if (((s as any).will_cost ?? 0) === 0) {
+    if ((!((s as any).will_cost ?? 0))) {
       scene.actions([
         { label: 'Accept', goto: ['music_gigstarts', 'delparco_accept'] },
       ]);
@@ -69,7 +69,7 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Accept', goto: ['music_gigstarts', 'delparco_accept'] },
         { label: 'Accept', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     }
@@ -86,7 +86,7 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_delparcoQW['Next Date'] = ((s as any).daystart ?? 0) + (12 - ((s as any).week ?? 0));
   scene.img('images/pc/activities/music/zariyah.jpg');
   scene.text('You look at the woman a bit surprised, then you smile back "Of course! I mean… you mean like a proper stage performance?"');
-  if (((s as any).rules ?? 0) === 0) {
+  if ((!((s as any).rules ?? 0))) {
     scene.text('She nods "Well, it\'s a small cafe so you wouldn\'t be playing on a stage, per se, but yes, in front of people. You would sing and play your music." she looks at her watch "I will have to go, but please come to the cafe before next Friday, during the week, and we can discuss the details. Poka!" she gives a small wave and hurries off.');
   } else {
     scene.text('She nods "Well, it\'s a small cafe so you wouldn\'t be playing on a stage, per se, but yes, in front of people. You would sing and play your music." she looks at her watch "I will have to go, but please come to the cafe before next Friday, during the week, and we can discuss the details. Poka!" she gives a small wave but then turns around');
@@ -107,7 +107,7 @@ function enterDelparcoDecline(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_delparcoQW['Stage'] = 1;
   scene.img('images/pc/activities/music/zariyah.jpg');
   scene.text('You look at the woman a bit surprised - "I\'m… that\'s really nice but… I\'m not sure… "');
-  if (((s as any).rules ?? 0) === 0) {
+  if ((!((s as any).rules ?? 0))) {
     scene.text('She looks at you for a long moment then shakes her head - "You need to be a bit more confident if you want do anything with music. Listen, " - she looks at her watch - " I have to run, but please, think about it and if you change your mind, come to the cafe on any weekday to talk. You are good, and you should not miss out on opportunities." - she says, giving you an encouraging smile before heading off.');
   } else {
     if (((s as any).ml_delparcoQW ?? 0)?.['Drinking Rule'] === 0  &&  ((s as any).ml_delparcoQW ?? 0)?.['Weed Rule'] === 0) {

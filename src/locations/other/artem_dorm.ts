@@ -115,7 +115,7 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
 function enterComputer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'internet_mobile', 'get_access', 'free', 'nocamshow', 'noporn');
-  if (((s as any).ArtemCompUse ?? 0) === 0) {
+  if ((!((s as any).ArtemCompUse ?? 0))) {
     (s as any).ArtemCompUse = 1;
     scene.text('<center><b>Artem\'s Dorm Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/laptop.jpg');

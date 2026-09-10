@@ -255,7 +255,7 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
   scene.text(`hypnoDay: ${((s as any).hypnoDay ?? 0)}`);
   // TODO-QSP: dynamic text: missCum: <<missCum>> / timeTresh: <<timeTresh>>
   scene.text(`missCum: ${((s as any).missCum ?? 0)} / timeTresh: ${((s as any).timeTresh ?? 0)}`);
-  if (((s as any).preziktype ?? 0) === 0) {
+  if ((!((s as any).preziktype ?? 0))) {
     // TODO-QSP: dynamic text: condoms: in use(normal)/damaged/bad condoms: <<mc_inventory['equipped_condoms']+...
     scene.text(`condoms: in use(normal)/damaged/bad condoms: ${((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['normal_condoms']}/${((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']}/${((s as any).mc_inventory ?? 0)?.['bad_condoms']}`);
   } else {
@@ -289,7 +289,7 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
-    if (((s as any).ptype ?? 0) === 0) {
+    if ((!((s as any).ptype ?? 0))) {
     }
     if (((s as any).ptype ?? 0) === 1) {
     }
@@ -445,20 +445,20 @@ function enterPermanent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'edit_porn', 'Porn schedule editor');
   qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'archetypes', 'Disable archetype system');
   // TODO-QSP: dynamic text: Never get addicted: <a href="exec:gs 'cheatmenu_din', 'addict' & gt 'cheatmenu_d...
-  scene.text(`Never get addicted: <a href="exec:gs 'cheatmenu_din', 'addict' & gt 'cheatmenu_din', 'permanent'">${(((s as any).cheatVars ?? 0)?.['drugs_immune']) ? ('Enabled') : ('Disabled')}</a>`);
+  scene.text(`Never get addicted: <a href="exec:gs 'cheatmenu_din', 'addict' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['drugs_immune']) ? ('Enabled') : ('Disabled'))}</a>`);
   // TODO-QSP: dynamic text: Enable sleeping with vibrator inserted: <a href="exec:gs 'cheatmenu_din', 'Vibra...
-  scene.text(`Enable sleeping with vibrator inserted: <a href="exec:gs 'cheatmenu_din', 'Vibrator' & gt 'cheatmenu_din', 'permanent'">${(((s as any).cheatVars ?? 0)?.['sleep_vib']) ? ('Enabled') : ('Disabled')}</a>`);
+  scene.text(`Enable sleeping with vibrator inserted: <a href="exec:gs 'cheatmenu_din', 'Vibrator' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['sleep_vib']) ? ('Enabled') : ('Disabled'))}</a>`);
   // TODO-QSP: dynamic text: Clothes never dirty: <a href="exec:gs 'cheatmenu_din', 'clothes_dirt' & gt 'chea...
-  scene.text(`Clothes never dirty: <a href="exec:gs 'cheatmenu_din', 'clothes_dirt' & gt 'cheatmenu_din', 'permanent'">${(((s as any).cheatVars ?? 0)?.['clothes_dirt']) ? ('Enabled') : ('Disabled')}</a>`);
+  scene.text(`Clothes never dirty: <a href="exec:gs 'cheatmenu_din', 'clothes_dirt' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['clothes_dirt']) ? ('Enabled') : ('Disabled'))}</a>`);
   // TODO-QSP: dynamic text: Clothing Archetypes and the effects of wearing special clothes: <a href="exec:gs...
-  scene.text(`Clothing Archetypes and the effects of wearing special clothes: <a href="exec:gs 'cheatmenu_din', 'BimboCloth' & gt 'cheatmenu_din', 'permanent'">${(((s as any).cheatVars ?? 0)?.['bimbo']) ? ('Disabled') : ('Enabled')}</a>`);
+  scene.text(`Clothing Archetypes and the effects of wearing special clothes: <a href="exec:gs 'cheatmenu_din', 'BimboCloth' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['bimbo']) ? ('Disabled') : ('Enabled'))}</a>`);
   if (((s as any).cheatVars ?? 0)?.['bimbo'] === 0) {
     // TODO-QSP: dynamic text:   Succubus clothing invulnerability: <a href="exec:gs 'cheatmenu_din', 'SuccuBim...
-    scene.text(`  Succubus clothing invulnerability: <a href="exec:gs 'cheatmenu_din', 'SuccuBimbo' & gt 'cheatmenu_din', 'permanent'">${(((s as any).cheatVars ?? 0)?.['suc_bimbo']) ? ('Enabled') : ('Disabled')}</a>`);
+    scene.text(`  Succubus clothing invulnerability: <a href="exec:gs 'cheatmenu_din', 'SuccuBimbo' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['suc_bimbo']) ? ('Enabled') : ('Disabled'))}</a>`);
   }
   qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'always_horny', 'Set arousal to always be at 50 or more');
   // TODO-QSP: dynamic text: Periods (and pregnancies): <a href="exec:gs 'cheatmenu_din', 'slutshot' & gt 'ch...
-  scene.text(`Periods (and pregnancies): <a href="exec:gs 'cheatmenu_din', 'slutshot' & gt 'cheatmenu_din', 'permanent'">${(((s as any).cheatVars ?? 0)?.['no_periods']) ? ('Disabled') : ('Enabled')}</a>`);
+  scene.text(`Periods (and pregnancies): <a href="exec:gs 'cheatmenu_din', 'slutshot' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['no_periods']) ? ('Disabled') : ('Enabled'))}</a>`);
   if (((s as any).cheatVars ?? 0)?.['no_periods'] === 0) {
     qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_pregnancy', '  Impregnation', 'Disabled', 'Enabled');
   }
@@ -592,7 +592,7 @@ function enterState(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'std_cure\' & gs \'stat\'">Cure all stds</a>');
   scene.text('<a href="exec:vgape = 0 & agape = 0 & nippain = 0 & painpub = 0 & pirs_pain_ton = 0 & mesec = 0 & spanked = 0 & drugVars[\'heroin_need\'] = 0 & drugVars[\'cocaine_addict\'] = 0 & drugVars[\'heroin_high\'] = 0 & drugVars[\'heroin_used\'] = 0 & drugVars[\'heroin_hours_addicted\'] = 0 & drugVars[\'heroin_taper\'] = 0 & drugVars[\'cocaine_system\'] = 0 & fingal = 0 & mosol = 0 & frost = 0 & sick = 0 & hypnoWithdrawal = 0 & gs \'cheatmenu_din\', \'std_cure\' & killvar \'pain\' & gs \'pain\', \'calc\' & gs \'stat\'">Cure all ailments.</a>');
-  if (((s as any).preg ?? 0) === 0) {
+  if ((!((s as any).preg ?? 0))) {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'force_preg\' & gs \'stat\' & gt \'cheatmenu_din\', \'state\'">Force random pregnancy</a>');
     if (((s as any).cycle ?? 0) !== 5) {
       scene.text('<a href="exec: gs \'stat\'');
@@ -681,47 +681,47 @@ function enterBodyMod(s: GameState, scene: SceneBuilder): void {
   scene.text('You may select from the following sizes:');
   scene.text('');
   if (((s as any).knowpreg ?? 0) === 1  ||  (((s as any).preg ?? 0) === 1  &&  (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).pregChem ?? 0) > 3600))) {
-    if ((((s as any).pregChem ?? 0) < 2688) === 0) {
+    if ((!(((s as any).pregChem ?? 0) < 2688))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 100"><<func('body_structure'...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 100">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 100)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 2688  &&  ((s as any).pregChem ?? 0) < 3192) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 2688  &&  ((s as any).pregChem ?? 0) < 3192))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 2688"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 2688">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 2688)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 3192  &&  ((s as any).pregChem ?? 0) < 3696) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 3192  &&  ((s as any).pregChem ?? 0) < 3696))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3192"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3192">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 3192)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 3696  &&  ((s as any).pregChem ?? 0) < 4200) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 3696  &&  ((s as any).pregChem ?? 0) < 4200))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3696"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3696">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 3696)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 4200  &&  ((s as any).pregChem ?? 0) < 4704) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 4200  &&  ((s as any).pregChem ?? 0) < 4704))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4200"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4200">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 4200)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 4704  &&  ((s as any).pregChem ?? 0) < 5208) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 4704  &&  ((s as any).pregChem ?? 0) < 5208))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4704"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4704">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 4704)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 5208  &&  ((s as any).pregChem ?? 0) < 5712) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 5208  &&  ((s as any).pregChem ?? 0) < 5712))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5208"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5208">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 5208)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 5712  &&  ((s as any).pregChem ?? 0) < 6216) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 5712  &&  ((s as any).pregChem ?? 0) < 6216))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5712"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5712">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 5712)}</a>`);
       scene.text('');
     }
-    if ((((s as any).pregChem ?? 0) >= 6216) === 0) {
+    if ((!(((s as any).pregChem ?? 0) >= 6216))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 6216"><<func('body_structure...
       scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 6216">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 6216)}</a>`);
       scene.text('');
@@ -1071,7 +1071,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt ''cheatmenu_din'', ''looks''">Reduce time by 5 minutes</a>'
   }
   scene.text('</td><td width="33%" valign="top">');
-  if (((s as any).dounspell ?? 0) === 0) {
+  if ((!((s as any).dounspell ?? 0))) {
     if (((s as any).fat ?? 0) !== 0) {
       // TODO-QSP: '<a href="exec:fat = 0
       // TODO-QSP: gt ''cheatmenu_din'', ''looks''">Zero fat</a>'
@@ -1092,7 +1092,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec:gt \'cheatmenu_din\', \'tatoo\'">Tattoo removal</a>');
   // TODO-QSP: dynamic text: <<$hair>>
   scene.text(`${((s as any).hair ?? 0)}`);
-  if (((s as any).pcs_haircol ?? 0) === 0) {
+  if ((!((s as any).pcs_haircol ?? 0))) {
     // TODO-QSP: dynamic text: Your hair is now (prev) <<$pcs_haircolor>> <a href="exec:pcs_haircol +=1 & gt 'c...
     scene.text(`Your hair is now (prev) ${((s as any).pcs_haircolor ?? 0)} <a href="exec:pcs_haircol +=1 & gt 'cheatmenu_din', 'looks' & nathcol = pcs_haircol">(next)</a>`);
   } else {
@@ -1123,7 +1123,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_di...
           scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
         }
-        if (((s as any).hairgrowcht ?? 0) === 0) {
+        if ((!((s as any).hairgrowcht ?? 0))) {
           // TODO-QSP: '<a href="exec:hairgrowcht = 1
           // TODO-QSP: gt ''cheatmenu_din'', ''looks''">Stop hair growth</a>'
         }

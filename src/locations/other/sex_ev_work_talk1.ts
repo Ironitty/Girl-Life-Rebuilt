@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterJobTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'stop_talk');
-  if (((s as any).npc_job_known ?? 0) === 0) {
+  if ((!((s as any).npc_job_known ?? 0))) {
     qspCall(s, 'sex_ev_work_talk1', 'whats_your_job');
   }
   scene.actions([
@@ -181,13 +181,13 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'sex_ev_pillow_talk2', 'small_talk');
             if (((s as any).npc_occupation ?? 0)?.[String((s as any).npcID ?? 0)] === 'criminal') {
               if (((s as any).npc_criminal_open ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-                (s as any).npc_criminal_known[$npcID] = 1;
+                (s as any).npc_criminal_known[String((s as any).npcID ?? 0)] = 1;
                 if (((s as any).npc_crime_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'drug_dealer') {
                   // TODO-QSP: dynamic text: "I sell drugs," <<$npcdesc>> says blatantly.
                   scene.text(`"I sell drugs," ${((s as any).npcdesc ?? 0)} says blatantly.`);
                   scene.actions([
                     { label: 'Uncomfortable', handler: (st: GameState) => {
-    (s as any).npc_criminal_discomfort[$npcID] = 1;
+    (s as any).npc_criminal_discomfort[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Oh." You gulp uncomfortably, unsure of what else to say.');
     qspCall(s, 'sex_ev_pillow_talk2', 'small_talk');
   } },
@@ -214,7 +214,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                   scene.text(`"I steal things," ${((s as any).npcdesc ?? 0)} says blatantly.`);
                   scene.actions([
                     { label: 'Uncomfortable', handler: (st: GameState) => {
-    (s as any).npc_criminal_discomfort[$npcID] = 1;
+    (s as any).npc_criminal_discomfort[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Oh." You gulp uncomfortably, unsure of what else to say.');
     qspCall(s, 'sex_ev_pillow_talk2', 'small_talk');
   } },
@@ -234,7 +234,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk2', 'small_talk');
   } },
                     { label: 'Uncomfortable', handler: (st: GameState) => {
-    (s as any).npc_criminal_discomfort[$npcID] = 1;
+    (s as any).npc_criminal_discomfort[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Oh." You gulp uncomfortably, unsure of what else to say.');
     qspCall(s, 'sex_ev_pillow_talk2', 'small_talk');
   } },

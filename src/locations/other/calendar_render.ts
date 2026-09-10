@@ -5,7 +5,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_color_idx = (((s as any).ARGS ?? 0)[1] - 1) % 20;
   if (((s as any).theme ?? 0)?.['is_dark'] === 1) {
-    if (((s as any).temp_color_idx ?? 0) === 0) {
+    if ((!((s as any).temp_color_idx ?? 0))) {
     } else {
       if (((s as any).temp_color_idx ?? 0) === 2) {
       } else {
@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).temp_color_idx ?? 0) === 18) {
                       }
-                      if (((s as any).temp_color_idx ?? 0) === 0) {
+                      if ((!((s as any).temp_color_idx ?? 0))) {
                       } else {
                         if (((s as any).temp_color_idx ?? 0) === 2) {
                         } else {

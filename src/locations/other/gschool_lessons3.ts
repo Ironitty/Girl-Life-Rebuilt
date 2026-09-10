@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('"She\'s always piling on the work and expects everyone to have it finished by the end of class!" you overhear a girl complain with a heavy sigh.');
   scene.text('Clearing her throat, Ms. Braakman raises her voice to speak over the noise. "The sooner everyone takes out their textbooks, the quicker we can get started. Who knows, maybe we\'ll finish early and you\'ll have some free time."');
   scene.text('Hearing this, the room settles down and the lesson begins.');
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -22,7 +22,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Volunteer to read', goto: ['gschool_lessonsev3', 'reading'] },
       { label: 'Avoid being chosen', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 4) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 4) + 0))) {
       scene.img('images/locations/pavlovsk/school/classroom/literature/work.jpg');
       scene.text('Nobody raises their hand and you keep your head down and pretend to be deep in thought as Ms. Braakman starts scanning the room. Unfortunately, she stops and points at you. "Please read the next passage."');
       if (((s as any).grupTipe ?? 0) === 4) {
@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You get a few laughs as Ms. Braakman shoots you an icy glare. "Miss <<$pcs_lastn...
     scene.text(`You get a few laughs as Ms. Braakman shoots you an icy glare. "Miss ${((s as any).pcs_lastname ?? 0)}, dont't use that language in my class! Now read the passage! I won't ask you again."`);
     scene.text('"Then you\'re going to waiting a <i>looong</i> time, because I\'m not reading shit!"');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('The class erupts into laughter as Ms. Braakman\'s face turns red and her expression darkens, a mix of rage and embarrassment.');
       scene.text('"Get out of my class and report to the principal\'s office right now!" she barks.');
       scene.actions([
@@ -170,7 +170,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Be a smart ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -249,7 +249,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -307,7 +307,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Play with your phone', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
     scene.text('You take out your phone and start playing a game, hoping the boring lesson will be over soon.');
-    if (Math.floor(Math.random() * 2) + 0 > 0) {
+    if ((Math.floor(Math.random() * 2) + 0) > 0) {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Ms. Braakman\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -322,7 +322,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -338,7 +338,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take photos under your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -378,7 +378,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Hide the phone in your bra [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

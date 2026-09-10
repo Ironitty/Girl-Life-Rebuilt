@@ -45,7 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_mall', ''] },
     { label: 'Buy Scrunchies [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 100);
       (s as any).mc_inventory['scrunchies'] = ((s as any).mc_inventory['scrunchies'] ?? 0) + (10);
@@ -61,7 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Buy Hair accessories [+$func(\'money\', \'get_cost_string\', 120)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 120) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 120);
       (s as any).mc_inventory['kirbygrips'] = ((s as any).mc_inventory['kirbygrips'] ?? 0) + (10);
@@ -544,7 +544,7 @@ function enterStraighthair(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'pay', 500);
     (s as any).curly = 0;
     qspCall(s, 'stat', '');
-    if (((s as any).defcurly ?? 0) === 0) {
+    if ((!((s as any).defcurly ?? 0))) {
       qspCall(s, 'hairsalon', 'mixed');
       scene.text('About twenty minutes pass as your braids were removed and your hair was straightened back to its original shape, "You can pay at the reception, hun." the hairdresser tells you before heading off…');
     } else {
@@ -563,7 +563,7 @@ function enterStraighthair(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 20;
       (s as any).curly = 0;
       qspCall(s, 'stat', '');
-      if (((s as any).defcurly ?? 0) === 0) {
+      if ((!((s as any).defcurly ?? 0))) {
         qspCall(s, 'hairsalon', 'mixed');
         scene.text('About twenty minutes pass as your hair is straightened back to its original shape, "You can pay at the receptionist." the hairdresser tells you before heading off…');
       } else {

@@ -331,13 +331,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
-  (s as any).tsg = (((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0);
+  (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
   scene.actions([{ label: 'Continue', goto: ['intro_end', 'start'] }]);
   scene.build();
 }
 
 function enterQuickLeave(s: GameState, scene: SceneBuilder): void {
-  (s as any).tsg = (((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0);
+  (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
   scene.actions([{ label: 'Continue', goto: ['intro_end', 'quick_start'] }]);
   scene.build();
 }

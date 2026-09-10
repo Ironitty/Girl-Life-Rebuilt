@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Terminal', ''] },
     ]);
   }
-  if (((s as any).trfatherMishaQW ?? 0) === 0) {
+  if ((!((s as any).trfatherMishaQW ?? 0))) {
     (s as any).trfatherMishaQW = 1;
   }
   if (((s as any).fatherMishaCar ?? 0) > 0) {

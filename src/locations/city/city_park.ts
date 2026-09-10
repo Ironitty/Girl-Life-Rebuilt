@@ -22,7 +22,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'music_actions', 'clear_restrictions');
-  if (((s as any).WalkInsidePark ?? 0) === 0) {
+  if ((!((s as any).WalkInsidePark ?? 0))) {
     (s as any).WalkInsidePark = 1;
   }
   qspCall(s, 'stat', '');
@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is parked nearby.
     scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name']}</a> is parked nearby.`);
   }
-  if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 20  &&  Math.floor(Math.random() * 101) + 0 >= 80) {
+  if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 2  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 20  &&  (Math.floor(Math.random() * 101) + 0) >= 80) {
     qspCall(s, 'arousal', 'flash', (-5));
     scene.text('A man walks past you and notices that you didn\'t put on any panties.');
     scene.text('He whistles at you. "Did you forget to put on your underwear today, honey?"');
@@ -95,7 +95,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pusher ?? 0) === 1  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 21) {
     scene.text('There\'s a drug dealer casually sitting on one of the benches. He\'s trying not to be too suspicious.');
     if (qspFunc(s, 'money', 'can_afford', 360) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       (s as any).temp_doses = qspUntranslated(s, "input (\"How many doses do you want to buy?\")", { location: "city_park" });

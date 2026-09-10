@@ -231,7 +231,7 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
   }
 }
 
-export function qspFunc(s: GameState, module: string, func: string, ...args: unknown[]): unknown {
+export function qspFunc(s: GameState, module: string, func: string, ...args: unknown[]): any {
   switch (module) {
     case 'money': {
       switch (func) {

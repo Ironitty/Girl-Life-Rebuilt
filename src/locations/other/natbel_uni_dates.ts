@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).natbel_here = 1;
   if (((s as any).week ?? 0) >= 4) {
     if (qspFunc(s, 'money', 'can_afford', 930, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates', 'nightclub_date_ask'] }]);
     }

@@ -52,7 +52,7 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
-  if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).soniaQW ?? 0)?.['slut'] < 4  &&  ((s as any).rand ?? 0)(0, 1+((s as any).soniaQW ?? 0)?.['slut'])=== 0) {
+  if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).soniaQW ?? 0)?.['slut'] < 4  &&  (Math.floor(Math.random() * (1+((s as any).soniaQW ?? 0)?.['slut'] - 0 + 1)) + (0))=== 0) {
     if (((s as any).soniaQW ?? 0)?.['slut'] === 1) {
       if ((((s as any).soniaQW ?? 0)?.['slutdays']+7) < ((s as any).daystart ?? 0)) {
         (s as any).soniaQW['slut'] = 2;
@@ -70,7 +70,7 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
         scene.text('"What do you mean, such a shame? Why do you even care?"');
         scene.text('"Oh it\'s nothing. I just used to like her a lot, but she was such a prude back then that she wouldn\'t even go on a date with me!"');
       }
-      if (((s as any).fuckornot ?? 0) === 0) {
+      if ((!((s as any).fuckornot ?? 0))) {
         (s as any).fuckornot = 1;
         (s as any).fuckornot_day = ((s as any).daystart ?? 0);
         scene.text('Several boys are snickering and looking at something on a tablet computer. "Have you guys checked out this site?"');
@@ -137,7 +137,7 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
               scene.text('"Oh she\'s done. You don\'t cross Albina like that. Word is her parents found out about her skipping class to spend time with that asshole guy she was seeing and sent her to live with her super strict aunt in Moscow."');
               scene.text('"Damn, poor girl. I heard Albina only put her on the squad because of her puppies. That said, there\'s a few hot chicks I\'d like to see replace her."');
               scene.text('The boys start discussing who they\'d like to see in "that hot cheerleading outfit."');
-              if (Math.floor(Math.random() * 2) + 0 === 0) {
+              if ((!(Math.floor(Math.random() * 2) + 0))) {
                 qspCall(s, 'gschool_gossip', 'mixed', ((s as any).locArgs?.[1] ?? 0));
               } else {
                 qspCall(s, 'gschool_gossip', 'boys', ((s as any).locArgs?.[1] ?? 0));

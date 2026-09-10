@@ -52,7 +52,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Make up an excuse and leave', goto: ['katspalnya', 'start'] },
     { label: 'Chat with Kat', handler: (st: GameState) => {
-    if (((s as any).telkat ?? 0) === 0) {
+    if ((!((s as any).telkat ?? 0))) {
       (s as any).telkat = 1;
     }
     qspCall(s, 'npc_relationship', 'modify', 'A219', 1);

@@ -13,13 +13,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).boynumBlock = 0;
     qspCall(s, 'schedule', 'A23');
     qspCall(s, 'stat', '');
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  (((s as any).hour ?? 0) >= 8  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).cumloc ?? 0)[11] === 1  &&  Math.floor(Math.random() * 4) + 0 === 0  &&  ((s as any).npcdaycheck ?? 0)[54] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  (((s as any).hour ?? 0) >= 8  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).cumloc ?? 0)[11] === 1  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).npcdaycheck ?? 0)[54] !== ((s as any).daystart ?? 0)) {
       scene.actions([{ label: 'Continue', goto: ['pav_residential', 'meet_misha_street_events'] }]);
     }
     if (((s as any).pcs_magik ?? 0) >= 1  &&  ((s as any).mainQW ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
       scene.actions([{ label: 'Continue', goto: ['pav_residential', 'meet_tatiana_mainQW'] }]);
     }
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).AndRev ?? 0) === 1  &&  (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) <= 2)  &&  Math.floor(Math.random() * 100) + 1 >= 90  &&  ((s as any).AndRevstart ?? 0) !== ((s as any).daystart ?? 0)) {
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).AndRev ?? 0) === 1  &&  (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) <= 2)  &&  (Math.floor(Math.random() * 100) + 1) >= 90  &&  ((s as any).AndRevstart ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([{ label: 'Continue', goto: ['pav_residential', 'boilerroom_revenge_event'] }]);
     }
     if (((s as any).npc_QW ?? 0)?.['A113'] === 1  &&  ((s as any).daybelisex ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 9) {
@@ -84,13 +84,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).locat ?? 0)?.['A23'] === 37) {
         (s as any).locat['A23_save1'] = 1;
-        if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
+        if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['walk_of_shame'] !== ((s as any).daystart ?? 0)) {
           (s as any).AlbinaQW['walk_of_shame'] = ((s as any).daystart ?? 0);
           // TODO-QSP: dynamic text: As you walk down the street, you spot a rather disheveled looking <a href="exec:...
           scene.text('As you walk down the street, you spot a rather disheveled looking <a href="exec:minut += 5 & gt \'albina_events\',\'walk_of_shame\'">Albina</a> ducking down an alleyway, as if she doesn\'t want to be seen.');
         }
       }
-      if (Math.floor(Math.random() * 5) + 1 >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+      if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
         if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
           scene.text('<br>You catch people staring at you intently, as if they\'re supposed to know who you are but can\'t quite place you. You sincerely hope they don\'t realize your promiscuous adventures are the reason why they recognize you, but the occasional person chuckling and pointing at you crushes those hopes, and you quickly keep walking before they get a chance to say anything.');
         } else {
@@ -116,7 +116,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt 'pav_lake'">lake</a> is also nearby, which me...
       scene.text('The <a href="exec: minut += 5 & gt \'pav_lake\'">lake</a> is also nearby, which means the area can get quite busy with people coming to swim in the summer or skate in the winter.');
       if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
-        if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0) {
+        if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
           // TODO-QSP: '<a href="exec:minut += 10
           // TODO-QSP: gt ''dimaHome'', ''home''">Dimka</a> lives in one of the fancier houses in town.'
         }
@@ -150,7 +150,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).st_count = 0;
         (s as any).show_table = '';
-        if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0) {
+        if (((s as any).DimaBeHomeOnce ?? 0) === 1  &&  (!((s as any).DimaRudeBlock ?? 0))) {
           // TODO-QSP: gs 'show_table', 'Fancier house of <a href="exec:minut += 10
           // TODO-QSP: gt ''dimaHome'', ''home''">Dimka Nosov</a>', '3'
         }

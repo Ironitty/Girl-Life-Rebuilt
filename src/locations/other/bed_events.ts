@@ -12,7 +12,7 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 1) {
-    if (((s as any).arrsize ?? 0)('sleep_events_priority') > 0) {
+    if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
       // TODO-QSP: gt 'bed_events', 'event_handler2', 'priority'
     } else {
       scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_handler2'] }]);
@@ -75,7 +75,7 @@ function enterRab2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -114,7 +114,7 @@ function enterRab2(s: GameState, scene: SceneBuilder): void {
       (s as any).analPlugIn = 0;
       (s as any).analPlugOut = 1;
     }
-    if (((s as any).pcs_makeup ?? 0) !== 1  &&  ((s as any).cosmetic_tattoo ?? 0) === 0) {
+    if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
       (s as any).pcs_makeup = 0;
     }
     scene.img('images/characters/city/nicholas/sex/r1.jpg');
@@ -160,7 +160,7 @@ function enterVor2(s: GameState, scene: SceneBuilder): void {
       { label: 'Scream', goto: ['bed_events', 'vor3'] },
     ]);
   } else {
-    if (((s as any).dog_bravery ?? 0) === 0) {
+    if ((!((s as any).dog_bravery ?? 0))) {
       (s as any).dog_bravery = Math.floor(Math.random() * 100) + 1;
     }
     if (((s as any).dog_bravery ?? 0) < 50) {
@@ -249,7 +249,7 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVorend(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).remsitr ?? 0) === 0) {
+  if ((!((s as any).remsitr ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sitr...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/residential/apartment/sitr.jpg"></center>`);
   }

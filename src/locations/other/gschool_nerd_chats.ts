@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big2.jpg');
-  if (Math.floor(Math.random() * 8) + 1 === 1  &&  ((s as any).artem_twoweek_block ?? 0) + 10 <= ((s as any).daystart ?? 0)) {
+  if ((Math.floor(Math.random() * 8) + 1) === 1  &&  ((s as any).artem_twoweek_block ?? 0) + 10 <= ((s as any).daystart ?? 0)) {
     (s as any).artem_twoweek_block = ((s as any).daystart ?? 0);
     scene.text('Just as you\'re about to head over to Artem, the gopniks come crowding into the classroom. Making snide remarks, they push and shove the nerds and outcasts around as they spread out.');
     scene.text('Dan seems to zero in on Artem, knocking a book out of his hand before shoving him and laughing when Artem tries to pick it up.');

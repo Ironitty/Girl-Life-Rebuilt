@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 3: 2600
   // TODO-QSP: 4: 2700
   // TODO-QSP: 5: 2800
-  (s as any).CloStrength = 225000 + 5625 * ((s as any).CloQuality ?? 0) + 18750 (((s as any).CloStyle ?? 0) === 2) + 37500 (((s as any).CloStyle ?? 0) === 5);
+  (s as any).CloStrength = 225000 + 5625 * ((s as any).CloQuality ?? 0) + 18750 * (((s as any).CloStyle ?? 0) === 2 ? 1 : 0) + 37500 * (((s as any).CloStyle ?? 0) === 5 ? 1 : 0);
   // TODO-QSP: 2: 236250
   // TODO-QSP: 3: 241875
   // TODO-QSP: 4: 247500

@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gnewQW ?? 0) === 0  &&  ((s as any).gopnew ?? 0)?.['ran'] >= 1) {
       scene.actions([{ label: 'Continue', goto: ['gopnew', 'coward_1'] }]);
     } else {
-      if (((s as any).gnewQW ?? 0) === 0) {
+      if ((!((s as any).gnewQW ?? 0))) {
         qspCall(s, 'gopnew', 'start0');
       } else {
         qspCall(s, 'gopnew', 'start1');

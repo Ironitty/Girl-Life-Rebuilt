@@ -186,7 +186,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'telefon', 'AddContact', 'A23', 'images/characters/shared/headshots_main/23.jpg', 0);
         (s as any).temp_showtext = 1;
       } else {
-        (s as any).contactAnon[temp_index] = 0;
+        (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
         (s as any).temp_showtext = 1;
       }
       if (((s as any).temp_showtext ?? 0)) {
@@ -204,7 +204,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'telefon', 'AddContact', 'A23', 'images/characters/shared/headshots_main/23.jpg', 0);
         (s as any).temp_showtext = 1;
       } else {
-        (s as any).contactAnon[temp_index] = 0;
+        (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
         (s as any).temp_showtext = 1;
       }
       if (((s as any).temp_showtext ?? 0)) {
@@ -272,10 +272,10 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('She then pulls out her phone. "Here\'s my number so I can keep in contact with you."');
     (s as any).temp_index = qspUntranslated(s, "arrpos('contact', 'A23')", { location: "albina_starlets" });
-    if (((s as any).arrpos ?? 0)('contact', 'A23') < 0) {
+    if ((Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A23') : -1) < 0) {
       qspCall(s, 'telefon', 'AddContact', 'A23', 'images/characters/shared/headshots_main/23.jpg', 0);
     } else {
-      (s as any).contactAnon[temp_index] = 0;
+      (s as any).contactAnon[String((s as any).temp_index ?? 0)] = 0;
     }
     scene.text('You add each other\'s numbers to your phones before you say goodbye and she walks away.');
     scene.actions([
@@ -424,7 +424,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

@@ -25,7 +25,7 @@ function enterPavLakeNudeNudist(s: GameState, scene: SceneBuilder): void {
 function enterPavLakeNudeForestPiss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).zz_stage ?? 0) <= 9) {
     scene.img(`images/locations/pavlovsk/lake/secluded_beach/piss_forest_start/piss_forest_start_${((s as any).zz_stage ?? 0)}.jpg`);
-    if (((s as any).zz_stage ?? 0) === 0) {
+    if ((!((s as any).zz_stage ?? 0))) {
       scene.text('You follow a girl in a tight dress through the woods. She looks to be searching for a safe place to pee.');
     } else {
       scene.text('The girl suddenly stops over a patch of dirt between a group of tall trees. She lifts her dress up and you\'re shocked to see that she isn\'t wearing panties.');

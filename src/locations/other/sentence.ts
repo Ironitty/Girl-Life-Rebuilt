@@ -99,7 +99,7 @@ function enterPoliceArrest(s: GameState, scene: SceneBuilder): void {
     scene.text('The other officer handcuffs your hands behind your back and they escort you down to their car. They roughly shove you in the backseat before driving you to the police station, where they remove your cuffs and throw you in a holding cell.');
     scene.actions([
       { label: 'The next morning', handler: (st: GameState) => {
-    if (((s as any).temp_arrest ?? 0) === 0) {
+    if ((!((s as any).temp_arrest ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest1'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['sentence', 'police_arrest2'] }]);
@@ -122,7 +122,7 @@ function enterPoliceArrest1(s: GameState, scene: SceneBuilder): void {
   scene.text('"I have no excuse, your honor…" you meekly answer.');
   // TODO-QSP: policeQW_courthearing_dates[] = -daystart
   // TODO-QSP: $policeQW_courthearing_subjects[] = $mid($policeQW_courtletter_subjects[0], 14)
-  if (((s as any).arrsize ?? 0)('policeQW_courthearing_dates') > 1) {
+  if (Object.keys((s as any).policeQW_courthearing_dates ?? {}).length > 1) {
     qspCall(s, 'array', 'coupled_sort', 'policeQW_courthearing_dates', '$policeQW_courthearing_subjects');
   }
   scene.actions([

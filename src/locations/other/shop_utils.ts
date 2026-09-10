@@ -35,13 +35,13 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'add_type') {
-    if (((s as any).arrpos ?? 0)('shop_display_types', ((s as any).locArgs?.[2] ?? 0)) < 0) {
+    if ((Array.isArray((s as any).shop_display_types) ? ((s as any).shop_display_types as any[]).indexOf(((s as any).locArgs?.[2] ?? 0)) : -1) < 0) {
       // TODO-QSP: $shop_display_types[] = $ARGS[2]
     }
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'add_item') {
-    if (((s as any).arrpos ?? 0)('shop_display_items', ((s as any).locArgs?.[2] ?? 0) + '-' + ((s as any).ARGS ?? 0)[3]) < 0) {
+    if ((Array.isArray((s as any).shop_display_items) ? ((s as any).shop_display_items as any[]).indexOf(((s as any).locArgs?.[2] ?? 0) + '-' + ((s as any).ARGS ?? 0)[3]) : -1) < 0) {
       // TODO-QSP: $shop_display_items[] = $ARGS[2] + '-' + ARGS[3]
     }
     return;

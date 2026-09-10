@@ -10,11 +10,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('Inside the small office is a young man sitting at a computer, tapping away at the keyboard.');
-  if (((s as any).film ?? 0) === 0) {
+  if ((!((s as any).film ?? 0))) {
     scene.text('"Who are you? This office is for staff only."');
   } else {
     scene.text('"Hi there, what can I do for you?"');
-    if (((s as any).pfilmNO ?? 0) === 0) {
+    if ((!((s as any).pfilmNO ?? 0))) {
       scene.actions([
         { label: 'Change your porn name', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -30,7 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).pfilmSTOP ?? 0) === 0) {
+    if ((!((s as any).pfilmSTOP ?? 0))) {
       scene.actions([
         { label: 'What\'s the rating of my videos?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -116,7 +116,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Remove them [+$func(\'money\', \'get_cost_string\', films_...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).films_stop_payment ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', ((s as any).films_stop_payment ?? 0));

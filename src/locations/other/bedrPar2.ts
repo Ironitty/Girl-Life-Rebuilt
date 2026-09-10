@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Steal condoms from your parents\' stash', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 5);
     qspCall(s, 'stat', '');
-    if (((s as any).preziktype ?? 0) === 0) {
+    if ((!((s as any).preziktype ?? 0))) {
       (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {

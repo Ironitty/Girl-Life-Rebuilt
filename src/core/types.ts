@@ -162,6 +162,13 @@ export interface GameState {
   arch_effects: Record<string, number>;
   skill_levels: Record<string, number>;
   drugVars: Record<string, number>;
+  mc_inventory: Record<string, number>;
+  min_arousal: number;
+  hair_length: number;
+  butt: number;
+  breast: number;
+  bodysuitworntype: string;
+  bodysuitwornnumber: number;
   no_exp_gain: number;
   stren_plus_lvl: number;
   inhib_exp: number;
@@ -499,6 +506,7 @@ export interface GameState {
   PShoHeels: number;
   PShoPain: Record<string, number>;
   PShoMaxStrength: number;
+  PShoStrength: number;
 
   PBraBorrowed: number;
   PBraDirt: number;

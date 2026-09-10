@@ -44,7 +44,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add') {
     // TODO-QSP: gs 'piercing_attributes', $ARGS[2], ARGS[3]
-    if (((s as any).PirQuality ?? 0) === 0) {
+    if ((!((s as any).PirQuality ?? 0))) {
       // TODO-QSP: exit
     }
     // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
@@ -104,7 +104,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', $((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._piercings ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
+  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? 0)?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '((s as any)._piercings ?? 0)', ((s as any).shop_utils_view ?? 0)?.['number']);
   (s as any).shop_utils_view['base_price'] = ((s as any).PirPrice ?? 0);
   (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['base_price'] * ((s as any).max ?? 0)(0, 100 - ((s as any).shop_utils_view ?? 0)?.['discount_total']) / 100;
   (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? 0)?.['price'] / 50 * 50;

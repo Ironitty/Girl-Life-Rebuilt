@@ -100,51 +100,51 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ballet_debug ?? 0) === 1) {
       // TODO-QSP: if nclass > 0: $ballet_class_debug += nclass + ' - ' + $loc_arg + iif(nclass = 5, ' -|- <br>', ', ')
     }
-    (s as any).ballet_grade_attendance[week] = ((s as any).ballet_grade_attendance[week] ?? 0) + (1);
+    (s as any).ballet_grade_attendance[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance[String((s as any).week ?? 0)] ?? 0) + (1);
     if (((s as any).pcs_makeup ?? 0) > 1) {
-      (s as any).ballet_grade_mua[week] = ((s as any).ballet_grade_mua[week] ?? 0) + (1);
+      (s as any).ballet_grade_mua[String((s as any).week ?? 0)] = ((s as any).ballet_grade_mua[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      (s as any).ballet_grade_mua[week] = ((s as any).ballet_grade_mua[week] ?? 0) - (1);
+      (s as any).ballet_grade_mua[String((s as any).week ?? 0)] = ((s as any).ballet_grade_mua[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).hbraids ?? 0) > 0  ||  ((s as any).hpingripw ?? 0) > 0  ||  ((s as any).pcs_hairlng ?? 0) <= 80) {
-      (s as any).ballet_grade_braids[week] = ((s as any).ballet_grade_braids[week] ?? 0) + (1);
+      (s as any).ballet_grade_braids[String((s as any).week ?? 0)] = ((s as any).ballet_grade_braids[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      (s as any).ballet_grade_braids[week] = ((s as any).ballet_grade_braids[week] ?? 0) - (1);
+      (s as any).ballet_grade_braids[String((s as any).week ?? 0)] = ((s as any).ballet_grade_braids[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).pcs_pubes ?? 0) < 4  &&  ((s as any).pcs_leghair ?? 0) < 4) {
-      (s as any).ballet_grade_shave[week] = ((s as any).ballet_grade_shave[week] ?? 0) + (1);
+      (s as any).ballet_grade_shave[String((s as any).week ?? 0)] = ((s as any).ballet_grade_shave[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      (s as any).ballet_grade_shave[week] = ((s as any).ballet_grade_shave[week] ?? 0) - (1);
+      (s as any).ballet_grade_shave[String((s as any).week ?? 0)] = ((s as any).ballet_grade_shave[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).apparel ?? 0)?.['status'] === 'sport'  ||  ((s as any).apparel ?? 0)?.['status'] === 'dance') {
-      (s as any).ballet_grade_uniform[week] = ((s as any).ballet_grade_uniform[week] ?? 0) + (1);
+      (s as any).ballet_grade_uniform[String((s as any).week ?? 0)] = ((s as any).ballet_grade_uniform[String((s as any).week ?? 0)] ?? 0) + (1);
     } else {
-      (s as any).ballet_grade_uniform[week] = ((s as any).ballet_grade_uniform[week] ?? 0) - (1);
+      (s as any).ballet_grade_uniform[String((s as any).week ?? 0)] = ((s as any).ballet_grade_uniform[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).pcs_cupsize ?? 0) > 20) {
-      (s as any).ballet_grade_appearance[week] = ((s as any).ballet_grade_appearance[week] ?? 0) - (1);
+      (s as any).ballet_grade_appearance[String((s as any).week ?? 0)] = ((s as any).ballet_grade_appearance[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).thinkpreg ?? 0) > 1  ||  ((s as any).knowpreg ?? 0) > 1) {
-      (s as any).ballet_grade_discipline[week] = ((s as any).ballet_grade_discipline[week] ?? 0) - (200);
+      (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (200);
     }
     if (((s as any).pcs_missing_teeth ?? 0) > 0  ||  ((s as any).pcs_teeth ?? 0) !== -1) {
-      (s as any).ballet_grade_appearance[week] = ((s as any).ballet_grade_appearance[week] ?? 0) - (5);
+      (s as any).ballet_grade_appearance[String((s as any).week ?? 0)] = ((s as any).ballet_grade_appearance[String((s as any).week ?? 0)] ?? 0) - (5);
     }
     if (((s as any).pcs_brace ?? 0) > 1) {
-      (s as any).ballet_grade_discipline[week] = ((s as any).ballet_grade_discipline[week] ?? 0) - (1);
+      (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 1) {
-      (s as any).ballet_grade_discipline[week] = ((s as any).ballet_grade_discipline[week] ?? 0) - (5);
+      (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (5);
     }
     if (((s as any).alko ?? 0) > 1) {
-      (s as any).ballet_grade_discipline[week] = ((s as any).ballet_grade_discipline[week] ?? 0) - (1);
+      (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (1);
     }
     if (((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['weed_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['heroin_high'] > 0  ||  ((s as any).drugVars ?? 0)?.['cocaine_system'] > 0  ||  ((s as any).drugVars ?? 0)?.['amphetamine_high'] > 0) {
-      (s as any).ballet_grade_discipline[week] = ((s as any).ballet_grade_discipline[week] ?? 0) - (50);
+      (s as any).ballet_grade_discipline[String((s as any).week ?? 0)] = ((s as any).ballet_grade_discipline[String((s as any).week ?? 0)] ?? 0) - (50);
     }
   }
   if (((s as any).nclass ?? 0) === 5  &&  ((s as any).school_daily_check ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).ballet_daily_score[week] = ((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] - ((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)];
+    (s as any).ballet_daily_score[String((s as any).week ?? 0)] = ((s as any).ballet_grade_attendance ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_mua ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_braids ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_shave ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_grade_uniform ?? 0)?.[String((s as any).week ?? 0)] + ((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)] - ((s as any).ballet_grade_discipline ?? 0)?.[String((s as any).week ?? 0)];
     (s as any).ballet_grade_score['class'] = ((s as any).ballet_grade_score['class'] ?? 0) + (((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)]);
   }
   if (((s as any).locArgs?.[1] ?? 0)=== 'grade') {

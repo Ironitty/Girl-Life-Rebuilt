@@ -19,7 +19,7 @@ function enterNPCLoop(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td width="400" cellspacing="0" cellpadding="20" valign="top">');
   scene.text('*** THIS IS A WORK IN PROGRESS ***');
-  if (((s as any).n ?? 0) === 0) {
+  if ((!((s as any).n ?? 0))) {
     (s as any).n = 1;
     (s as any).o = 10;
   }
@@ -100,7 +100,7 @@ function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterSelection(s: GameState, scene: SceneBuilder): void {
   (s as any).s = qspUntranslated(s, "val(input(\"Which NPC do you want to edit? Enter #\"))", { location: "NPCChanger" });
-  if (((s as any).s ?? 0) === 0) {
+  if ((!((s as any).s ?? 0))) {
     (s as any).n = (((s as any).o ?? 0) - 10);
     scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'NPCLoop'] }]);
   } else {
@@ -139,31 +139,31 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEditf(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_firstname['A' + String((s as any).s ?? '') + ''] = qspUntranslated(s, "input('Enter new first name')", { location: "NPCChanger" });
+  (s as any).npc_firstname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new first name')", { location: "NPCChanger" });
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditn(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_nickname['A' + String((s as any).s ?? '') + ''] = qspUntranslated(s, "input('Enter new nickname')", { location: "NPCChanger" });
+  (s as any).npc_nickname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new nickname')", { location: "NPCChanger" });
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditl(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_lastname['A' + String((s as any).s ?? '') + ''] = qspUntranslated(s, "input('Enter new last name')", { location: "NPCChanger" });
+  (s as any).npc_lastname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new last name')", { location: "NPCChanger" });
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditu(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_usedname['A' + String((s as any).s ?? '') + ''] = qspUntranslated(s, "input('Enter new used name')", { location: "NPCChanger" });
+  (s as any).npc_usedname['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new used name')", { location: "NPCChanger" });
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }
 
 function enterEditd(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_dob['A' + String((s as any).s ?? '') + ''] = qspUntranslated(s, "input('Enter new date of birth (yyyymmdd)')", { location: "NPCChanger" });
+  (s as any).npc_dob['A' + String((s as any).s || '') + ''] = qspUntranslated(s, "input('Enter new date of birth (yyyymmdd)')", { location: "NPCChanger" });
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   scene.build();
 }

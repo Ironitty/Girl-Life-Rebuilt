@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).tmpl = (((s as any).ARGS ?? 0)[1] === 0) ? (10) : (qspUntranslated(s, "ARGS[1]", { location: "oral" }));
+  (s as any).tmpl = ((((s as any).ARGS ?? 0)[1] === 0) ? (10) : (qspUntranslated(s, "ARGS[1]", { location: "oral" })));
   (s as any).frost = 0;
   // TODO-QSP: dynamic text: Your one hand caress his <<dick>> cm cock, while the other cups his balls as you...
   scene.text(`Your one hand caress his ${((s as any).dick ?? 0)} cm cock, while the other cups his balls as you lick his cock.`);

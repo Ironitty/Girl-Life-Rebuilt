@@ -221,11 +221,11 @@ function enterRenderBanner(s: GameState, scene: SceneBuilder): void {
 function enterRenderToc(s: GameState, scene: SceneBuilder): void {
   (s as any).rt_ao_i = 0;
   // TODO-QSP: :rt_ao_loop
-  if (((s as any).rt_ao_i ?? 0) < ((s as any).arrsize ?? 0)('help_toc_sections')) {
+  if (((s as any).rt_ao_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
     if (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ao_key ?? 0)] === ((s as any).help_page_key ?? 0)) {
-      (s as any).help_toc_open[$rt_ao_key] = 1;
+      (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
     } else {
-      (s as any).help_toc_open[$rt_ao_key] = 1;
+      (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
       // TODO-QSP: :rt_ao_gloop
       if (((s as any).rt_ao_grem ?? 0) !== '') {
         (s as any).rt_ao_gsp = qspUntranslated(s, "instr(rt_ao_grem, ' ')", { location: "help" });
@@ -233,8 +233,8 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
           if (((' \' + $help_toc_children[$rt_ao_gk] + \' ').indexOf((' \' + $help_page_key + \' '))) + 1 > 0) {
-            (s as any).help_toc_open[$rt_ao_key] = 1;
-            (s as any).help_toc_open[$rt_ao_gk] = 1;
+            (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
+            (s as any).help_toc_open[String((s as any).rt_ao_gk ?? 0)] = 1;
           }
         }
         // TODO-QSP: jump 'rt_ao_gloop'
@@ -243,14 +243,14 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
     (s as any).rt_ao_i = ((s as any).rt_ao_i ?? 0) + (1);
     // TODO-QSP: jump 'rt_ao_loop'
   }
-  if (((s as any).arrsize ?? 0)('help_toc_sections') === 0) {
+  if (Object.keys((s as any).help_toc_sections ?? {}).length === 0) {
     // TODO-QSP: $rt_html += '<small><i>No topics yet.</i></small>'
   } else {
     (s as any).rt_i = 0;
     // TODO-QSP: :rt_sec_loop
-    if (((s as any).rt_i ?? 0) < ((s as any).arrsize ?? 0)('help_toc_sections')) {
+    if (((s as any).rt_i ?? 0) < Object.keys((s as any).help_toc_sections ?? {}).length) {
       (s as any).rt_open = ((s as any).help_toc_open ?? 0)?.[String((s as any).rt_key ?? 0)];
-      (s as any).rt_has_kids = (((s as any).rt_kids ?? 0) !== '') ? (1) : (0);
+      (s as any).rt_has_kids = ((((s as any).rt_kids ?? 0) !== '') ? (1) : (0));
       if (((s as any).rt_has_kids ?? 0)) {
       }
       if (((s as any).rt_page ?? 0) !== '') {

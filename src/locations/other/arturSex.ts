@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  if (((s as any).arturSex ?? 0) === 0) {
+  if ((!((s as any).arturSex ?? 0))) {
     (s as any).arturSex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Masturbate him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).temp = Math.floor(Math.random() * 3) + 0;
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
-    if (((s as any).temp ?? 0) === 0) {
+    if ((!((s as any).temp ?? 0))) {
       // TODO-QSP: act 'Continue': gt 'arturdin', 'bed'
     }
     if (((s as any).temp ?? 0) === 1) {

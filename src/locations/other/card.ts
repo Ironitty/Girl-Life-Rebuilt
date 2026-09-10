@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/accessories/cards/porndeck.jpg');
   // TODO-QSP: dynamic text: You pull your deck of cards out and spread them around ' + iif($card_loc = 'gad_...
   scene.text('You pull your deck of cards out and spread them around \' + iif($card_loc = \'gad_gpbarn\', \'an old desk in the barn\', \'your desk\') + \' to look at them.');
-  if (((s as any).card_deck ?? 0) === 0) {
+  if ((!((s as any).card_deck ?? 0))) {
     scene.actions([
       { label: 'Throw away your deck of vintage porn cards', handler: (st: GameState) => {
     (s as any).mc_inventory['vintage_card'] = 0;
@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     (s as any).papkarand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).papkarand ?? 0) === 0) {
+    if ((!((s as any).papkarand ?? 0))) {
     }
     if (((s as any).papkarand ?? 0) === 1) {
     }
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).nomcard = 10;
       }
     }
-    if (((s as any).card_deck ?? 0) === 0) {
+    if ((!((s as any).card_deck ?? 0))) {
       scene.img(`images/pc/items/accessories/cards/card/${((s as any).papkacard ?? 0)}/${((s as any).papkacard ?? 0)}${((s as any).numcard ?? 0)}.jpg`);
     } else {
       scene.img(`images/pc/items/accessories/cards/card2/${((s as any).papkacard ?? 0)}/${((s as any).papkacard ?? 0)}${((s as any).numcard ?? 0)}.jpg`);

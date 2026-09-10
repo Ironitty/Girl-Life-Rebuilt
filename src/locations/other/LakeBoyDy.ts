@@ -10,7 +10,7 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
     scene.text('You quickly get dressed and follow the fat man to his car. He guides you to an old Mitsubishi Pajero, and takes place behind the wheel while he invites you to relax in the passenger seat. Once you get in the car, he puts his hand on your knee as he starts the engine.');
-    if (((s as any).npc_QW ?? 0)?.['A113'] === 0  &&  ((s as any).belgangday ?? 0) === 0) {
+    if (((s as any).npc_QW ?? 0)?.['A113'] === 0  &&  (!((s as any).belgangday ?? 0))) {
       scene.text('"My name is Vadim Bely… you can call me Mr. Bely. What\'s your name, girl?"');
       // TODO-QSP: dynamic text: You're still a bit intimidated by his presence, and just say your name: "<<$pcs_...
       scene.text(`You're still a bit intimidated by his presence, and just say your name: "${((s as any).pcs_nickname ?? 0)}."`);
@@ -43,7 +43,7 @@ function enterGo(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Apologize and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -96,7 +96,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -118,7 +118,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Kick him in the balls [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -206,7 +206,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('The men leave you alone and take a seat a bit further down the beach. You scrape your stuff together as quickly as you can and just want to leave as soon as possible, unsure how you\'re going to gather that amount of money.');
-    if (((s as any).belfirstweek ?? 0) === 0) {
+    if ((!((s as any).belfirstweek ?? 0))) {
       qspCall(s, 'money', 'debt_add', 'belgangPayWeek', ((s as any).belgangPayWeekAmount ?? 0));
     }
     qspCall(s, 'belgang', 'update_debt_calendar');
@@ -271,7 +271,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSucksasha(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sashaBeliSex ?? 0) === 0) {
+  if ((!((s as any).sashaBeliSex ?? 0))) {
     (s as any).sashaBeliSex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
@@ -289,7 +289,7 @@ function enterSucksasha(s: GameState, scene: SceneBuilder): void {
     scene.text('"I expect the first payment next Sunday. By the way, you can call me Mr. Bely."');
   }
   scene.text('The two men leave you to collect your thoughts and walk away, taking a seat a bit further down at the beach. The younger guy pulls out his phone and watches the video of you giving the fat man a blowjob again, while the fat man makes a call with your passport in his hand - you hope he\'s not digging up more info on you while you quickly gather your things and get ready to leave.');
-  if (((s as any).belfirstweek ?? 0) === 0) {
+  if ((!((s as any).belfirstweek ?? 0))) {
     qspCall(s, 'money', 'debt_add', 'belgangPayWeek', ((s as any).belgangPayWeekAmount ?? 0));
   }
   qspCall(s, 'money', 'debt_pay', 'belgangPay', 100, 'none');

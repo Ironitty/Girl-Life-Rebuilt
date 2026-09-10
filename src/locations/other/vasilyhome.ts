@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  if (((s as any).shgopsex_init ?? 0) === 0) {
+  if ((!((s as any).shgopsex_init ?? 0))) {
     qspCall(s, 'gopsex', 'settings');
   }
   qspCall(s, 'stat', '');

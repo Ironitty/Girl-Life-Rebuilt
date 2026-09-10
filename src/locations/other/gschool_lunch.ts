@@ -11,7 +11,7 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['gschool_events', 'break_events'] }]);
   }
   qspCall(s, 'dimaRevenge', 'dimaRevenge_event_check');
-  if (((s as any).marcus_event ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).Marcus_sextype ?? 0) > 0  &&  Math.floor(Math.random() * 4) + 0 === 0) {
+  if (((s as any).marcus_event ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).Marcus_sextype ?? 0) > 0  &&  (!(Math.floor(Math.random() * 4) + 0))) {
     scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'marcus_event'] }]);
   }
   if (((s as any).cheerleadingQW ?? 0)?.['bella_stasya_gossip'] === 0  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] === 0  &&  ((s as any).cheerleadingQW ?? 0)?.['gossip'] >= 3  &&  (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 200)) {
@@ -25,7 +25,7 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
 function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  if (((s as any).school_lunch ?? 0) === 0) {
+  if ((!((s as any).school_lunch ?? 0))) {
     if (((s as any).NikoVolkovQW ?? 0) === 5  &&  ((s as any).NikoEv ?? 0) === 5  &&  ((s as any).NikoDate ?? 0) === 0  &&  ((s as any).NikoDate_Day ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).school_lunch = 1;
       scene.actions([{ label: 'Continue', goto: ['NikoDates', 'hallway_strip'] }]);
@@ -77,7 +77,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Buy food [+$func(\'money\', \'get_cost_string\', 50)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 50);
       qspCall(s, 'food', 'medium_meal');

@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('ARGS') === 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     (s as any).ARGS[1] = ((s as any).month ?? 0);
   }
   if (((s as any).ARGS ?? 0)[1] === 1) {

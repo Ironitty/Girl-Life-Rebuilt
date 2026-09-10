@@ -10,7 +10,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   if (((s as any).lost_girl ?? 0) === 1) {
-    if (((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0) + 1  &&  ((s as any).rand ?? 0)(((s as any).forest_lostday ?? 0) - ((s as any).daystart ?? 0), 30) >= 30  &&  ((s as any).DayStage ?? 0) === 2) {
+    if (((s as any).daystart ?? 0) > ((s as any).forest_lostday ?? 0) + 1  &&  (Math.floor(Math.random() * (30 - ((s as any).forest_lostday ?? 0) - ((s as any).daystart ?? 0) + 1)) + (((s as any).forest_lostday ?? 0) - ((s as any).daystart ?? 0))) >= 30  &&  ((s as any).DayStage ?? 0) === 2) {
       // TODO-QSP: gt 'gad_forest_lost', 'rescue', 'ranger', 'gad_swamp_yard'
     }
   }
@@ -54,7 +54,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'bicycle', 'gad_swamp_yard');
-  if (((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  Math.floor(Math.random() * 2) + 1 === 1) {
+  if (((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'gad_swamp_yard', 'daytime_flavor_events');
   }
   scene.actions([
@@ -131,14 +131,14 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).bucket ?? 0) > 0) {
-      if (((s as any).boletus ?? 0) > 0  &&  ((s as any).mushroom_soup ?? 0) === 0) {
+      if (((s as any).boletus ?? 0) > 0  &&  (!((s as any).mushroom_soup ?? 0))) {
         // TODO-QSP: act 'Cook some mushroom soup (0:30)': gs 'hunter_favors', 'mushroom_soup'
       }
-      if (((s as any).raw_meat ?? 0) > 0  &&  ((s as any).meat_stew ?? 0) === 0) {
+      if (((s as any).raw_meat ?? 0) > 0  &&  (!((s as any).meat_stew ?? 0))) {
         // TODO-QSP: act 'Cook some meat stew (1:00)': gs 'hunter_favors', 'meat_stew'
       }
     }
-    if (((s as any).bucket ?? 0) >= 5  &&  ((s as any).hotwater ?? 0) === 0) {
+    if (((s as any).bucket ?? 0) >= 5  &&  (!((s as any).hotwater ?? 0))) {
       scene.actions([
         { label: 'Heat up water (0:30)', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hotwater.jpg');
@@ -205,7 +205,7 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/gadukino/hunters/\'+iif(DayStage = 2, \'campfire_out_day.jpg\', \'campfire_out_night.jpg\')+\'');
     scene.text('You can use this firepit to light a fire if you have some firewood available.');
-    if (((s as any).firewood ?? 0) >= 10  &&  ((s as any).campfire ?? 0) === 0) {
+    if (((s as any).firewood ?? 0) >= 10  &&  (!((s as any).campfire ?? 0))) {
       scene.actions([
         { label: 'Light fire', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype <> \'nude\', \'campfire_light.jpg\', \'campfire_light_nude.jpg\')+\'');
@@ -234,7 +234,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('You approach Andrei shooting some bottles with his pistol. You think maybe he can teach you a few tricks.');
     scene.actions([
       { label: 'Ask if you can shoot too', handler: (st: GameState) => {
-    if (((s as any).hunterVars ?? 0)?.['collective_opinion'] > 50  &&  Math.floor(Math.random() * 4) + 1 === 1) {
+    if (((s as any).hunterVars ?? 0)?.['collective_opinion'] > 50  &&  (Math.floor(Math.random() * 4) + 1) === 1) {
       scene.img('images/locations/gadukino/hunters/andrei_shooting.jpg');
       scene.text('"Sure thing! But, say, how about we spice it up a bit? If you can hit that bottle over there in one shot, I will do anything you want," says Andrei.');
       scene.text('"And what if I cannot?" you ask.');

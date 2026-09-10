@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).Enc_Rand = Math.floor(Math.random() * 2) + 1;
-  if (((s as any).Enc_Rand ?? 0) === 1  &&  ((s as any).Jaska_Ev ?? 0) === 0) {
+  if (((s as any).Enc_Rand ?? 0) === 1  &&  (!((s as any).Jaska_Ev ?? 0))) {
     scene.img('images/locations/city/industrial/bar/billiard_1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('While you\'re sitting idly at the counter, drink in hand, you take a look around the room. After a moment, your attention is pulled to three guys playing pool. Two of them look to be in their mid to late 30s, while the third looks to be in his early 20s. They\'re all dressed casually albeit a bit rough looking.');
@@ -158,7 +158,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Not that kind of girl [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -226,7 +226,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Grind back against him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -242,7 +242,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take charge [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

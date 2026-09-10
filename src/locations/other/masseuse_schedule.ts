@@ -11,11 +11,11 @@ function enterScheduleReset(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :loop_masseuse_sched_part
     (s as any).ms_j = 1;
     // TODO-QSP: :loop_masseuse_sched_inner
-    (s as any).masseuse['' + String((s as any).ms_i ?? '') + '_shift_' + String((s as any).ms_j ?? '') + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
+    (s as any).masseuse['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
     if (((s as any).masseuse ?? 0)?.[String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'] !== 1) {
-      (s as any).masseuse['' + String((s as any).ms_i ?? '') + '_shift_' + String((s as any).ms_j ?? '') + '_taken'] = (((s as any).rand ?? 0)(0, 2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2) === 0) ? (1) : (0);
+      (s as any).masseuse['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     }
-    (s as any).masseuse['next_' + String((s as any).ms_i ?? '') + '_shift_' + String((s as any).ms_j ?? '') + '_taken'] = (((s as any).rand ?? 0)(0, 2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2) === 0) ? (1) : (0);
+    (s as any).masseuse['next_' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     (s as any).ms_j = ((s as any).ms_j ?? 0) + (1);
     if (((s as any).ms_j ?? 0) < 4) {
       // TODO-QSP: jump 'loop_masseuse_sched_inner'
@@ -52,10 +52,10 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
       (s as any).ms_hour2 = 21;
     }
     (s as any).ms_slot = ((s as any).ARGS ?? 0)[2] - 1;
-    (s as any).ms_booked = (((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).ms_target_day ?? 0)) + ', ' + String(((s as any).ms_slot ?? 0))] !== '') ? (1) : (0);
+    (s as any).ms_booked = ((((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).ms_target_day ?? 0)) + ', ' + String(((s as any).ms_slot ?? 0))] !== '') ? (1) : (0));
     (s as any).ms_worked = ((s as any).masseuse ?? 0)?.['worked_' + String(((s as any).ms_target_day ?? 0)) + '_' + String(qspUntranslated(s, "ARGS[2]", { location: "masseuse_schedule" }))];
     (s as any).ms_taken = ((s as any).masseuse ?? 0)?.[String((s as any).ms_taken_key ?? 0)];
-    (s as any).ms_past = (((s as any).ms_target_day ?? 0) < ((s as any).daystart ?? 0)) ? (1) : (0);
+    (s as any).ms_past = ((((s as any).ms_target_day ?? 0) < ((s as any).daystart ?? 0)) ? (1) : (0));
     // TODO-QSP: $result += '<tr><td>'
     if (((s as any).ms_taken ?? 0) === 1  ||  ((s as any).ms_past ?? 0) === 1  ||  (((s as any).week ?? 0) === ((s as any).ARGS ?? 0)[1]  &&  ((s as any).hour ?? 0) >= ((s as any).ms_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).ms_hour2 ?? 0))) {
       // TODO-QSP: $result += '<<$ms_time_string>> shift'

@@ -26,7 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).photographyEv ?? 0) === 2  &&  ((s as any).photography_start ?? 0) === 0) {
+  if (((s as any).photographyEv ?? 0) === 2  &&  (!((s as any).photography_start ?? 0))) {
     scene.actions([
       { label: 'Show portfolio', goto: ['shop_photography', 'showportfolio'] },
     ]);
@@ -36,7 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Talk to the shop owner', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    if (((s as any).photographyEv ?? 0) === 0) {
+    if ((!((s as any).photographyEv ?? 0))) {
       (s as any).photographyEv = 1;
       scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
       scene.text('"Hello there! What\'s your name?" the friendly man behind the counter asks with a smile.');

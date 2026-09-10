@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 6) + 0 > 0) {
+  if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
     (s as any).scooltiperand = Math.floor(Math.random() * 16) + 1;
     if (((s as any).scooltiperand ?? 0) === 1) {
@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
                       { label: 'Ignore it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {
@@ -224,7 +224,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell on them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

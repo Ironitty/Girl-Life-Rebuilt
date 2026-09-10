@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBedroom');
     (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBedroom');
     (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBedroom');
-    if (((s as any).nichGalaAct ?? 0) === 'snooze'  &&  ((s as any).evtGalaMast1 ?? 0) === 0) {
+    if (((s as any).nichGalaAct ?? 0) === 'snooze'  &&  (!((s as any).evtGalaMast1 ?? 0))) {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
     }
     scene.text('<center><b>Nicholas\' Master Bedroom</b></center>');

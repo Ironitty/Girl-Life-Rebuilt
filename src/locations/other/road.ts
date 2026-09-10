@@ -30,7 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'car_funcs', 'is_here')  &&  ((s as any).nroad ?? 0) !== 10) {
       // TODO-QSP: 'You parked <a href="exec:gs ''carF'', ''start''">your <<$car[''name'']>></a>'+iif(prostitute['road'...
     }
-    if (((s as any).nroad ?? 0) === 0) {
+    if ((!((s as any).nroad ?? 0))) {
       // TODO-QSP: act 'Walk to the City Industrial Region (0:15)': minut += 15
       scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
     }
@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).nroad ?? 0) === 0) {
+    if ((!((s as any).nroad ?? 0))) {
       scene.text('You\'re on the outskirts of St. Petersburg. You see a number of crudely made huts near the trees. A bunch of homeless people must have sought shelter here.');
       // TODO-QSP: dynamic text: A <a href="exec:minut += 5 & gt 'furi'">lorry</a> is parked next to the road. Th...
       scene.text('A <a href="exec:minut += 5 & gt \'furi\'">lorry</a> is parked next to the road. The driver is currently taking a break and is having a cigarette. He could probably bring you to Gadukino or Pavlovsk, for a price…');

@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/\' + iif(DayStage < 4, \'dk.jpg\', \'dk_night.jpg\') + \'');
   if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) >= 40  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', 25 & minut += (60 - minut) & pav_disco_in = daystart & gt 'pav_disco'
     }

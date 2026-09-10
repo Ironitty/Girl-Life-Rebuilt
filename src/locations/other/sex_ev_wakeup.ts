@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vomit ?? 0)?.['hangover'] + ((s as any).vomit ?? 0)?.['morning_sick'] + ((s as any).vomit ?? 0)?.['unlucky'] > 0) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'throw_up'] }]);
   } else {
-    if ((((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'facial'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted')  &&  Math.floor(Math.random() * 2) + 1 === 2) {
+    if ((((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'facial'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted')  &&  (Math.floor(Math.random() * 2) + 1) === 2) {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'cumshot_wakeup1'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wakeup_fondling'] }]);
@@ -180,17 +180,17 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'Wake me up next time', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 1;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Wake me up next time," you say. "Maybe I want to get some too."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'That\'s fine', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 2;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
     scene.text('"That\'s fine," you say. "A guy\'s gotta take care of his needs, doesn\'t he?"');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 2;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
     scene.text('"Feel free to do it again," you grin. "I have the best orgasms when I\'m sleeping."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -212,7 +212,7 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 2;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
     scene.text('"I love it when you fuck me in my sleep," you grin. "I have the best orgasms."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -237,17 +237,17 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah. Got horny while you were asleep. Is that okay?"');
       scene.actions([
         { label: 'Ask next time', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 1;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Just ask next time," you smirk.');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'That\'s fine', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 2;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
     scene.text('"That\'s fine," you smirk. "A guy\'s gotta take care of his needs, doesn\'t he?"');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 2;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
     scene.text('"Feel free to do it again," you grin. "I have the best orgasms when I\'m sleeping."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -272,7 +272,7 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
           { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[$npcID] = 2;
+    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
     scene.text('"Feel free to do it again," you grin. "I have the best orgasms when I\'m sleeping."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },

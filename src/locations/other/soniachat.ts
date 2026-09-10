@@ -55,7 +55,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -178,7 +178,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_looop
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''telling_ma...
         }
@@ -403,7 +403,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''soniachat'', ''tell_about_generic_boyfri...
     }
@@ -607,7 +607,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -709,7 +709,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1172,7 +1172,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1210,7 +1210,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/activities/misc/puton_strapon1.mp4');
     scene.text('You get up and grab your stuff. "I\'ll be right back, I\'ve got to go do something in the bathroom."');
     scene.text('She gives you a curious gaze, but doesn\'t pry as you smile at her and hurry to the bathroom. Once inside, you quickly put on your strapon harness with attached dildo.');
-    if (((s as any).penisEnvyVariable ?? 0) === 0) {
+    if ((!((s as any).penisEnvyVariable ?? 0))) {
       scene.actions([
         { label: 'Cast Penis Envy', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -1234,7 +1234,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/magic/penis_envy/reveal_skirt1.jpg');
         scene.text('You open the door to her room and see her sitting on her bed in a sexy little blue lingerie; she must have changed while you were casting your spell.');
         // TODO-QSP: dynamic text: She's smiling at you in anticipation and you feel your new dick starting to stir...
-        scene.text(`She's smiling at you in anticipation and you feel your new dick starting to stir and get hard at the sight of her. Not wanting to disappoint her, you walk up next to her bed and pull up your ${(((s as any).PCloDress ?? 0) > 0) ? ('dress') : ('skirt')}, letting your new dick dangle in full view.`);
+        scene.text(`She's smiling at you in anticipation and you feel your new dick starting to stir and get hard at the sight of her. Not wanting to disappoint her, you walk up next to her bed and pull up your ${((((s as any).PCloDress ?? 0) > 0) ? ('dress') : ('skirt'))}, letting your new dick dangle in full view.`);
         scene.text('Her eyes widen as she stares at your dick hanging down. "Wow, that looks so real!"');
       }
       scene.text('You smile. "It\'s a new realistic dildo that\'s supposed to look and feel real. Not to mention it shoots fake cum."');
@@ -1374,7 +1374,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_loop_hc
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic "act 'Get married to <<$npc_usedname[$temp_npcid]>>': gt 'soniachat', 'telling_marrige_dream...
         }

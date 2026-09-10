@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  (s as any).eff_contra = (((s as any).arrsize ?? 0)('ARGS') > 0) ? (qspUntranslated(s, "ARGS[0]", { location: "pregriskeval" })) : (((s as any).sexcontra ?? 0));
+  (s as any).eff_contra = ((Object.keys((s as any).ARGS ?? {}).length > 0) ? (qspUntranslated(s, "ARGS[0]", { location: "pregriskeval" })) : (((s as any).sexcontra ?? 0)));
   if (((s as any).knowpreg ?? 0) === 1  ||  ((s as any).thinkpreg ?? 0) === 1) {
     (s as any).RESULT = (-4);
   } else {

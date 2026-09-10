@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).parkrand = ((s as any).parkrand ?? 0) - ((((s as any).succublvl ?? 0)-1));
     }
     if (((s as any).knowsfairy ?? 0) < 1  &&  ((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).fairyskip ?? 0) !== ((s as any).daystart ?? 0)) {
-      if (((s as any).rand ?? 0) (1, 4) <= ((s as any).pcs_magik ?? 0)) {
+      if ((Math.floor(Math.random() * 4) + 1) <= ((s as any).pcs_magik ?? 0)) {
         (s as any).fairyrand = 19;
       } else {
         (s as any).fairyrand = 21;

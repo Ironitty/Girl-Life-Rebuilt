@@ -125,7 +125,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 10  &&  ((s as any).shootingday ?? 0) !== ((s as any).daystart ?? 0)) {
       if (((s as any).hunterVars ?? 0)?.['KnowSlut'] === 0) {
-        if (((s as any).shooting ?? 0) === 0) {
+        if ((!((s as any).shooting ?? 0))) {
           scene.actions([
             { label: 'Ask to learn how to shoot the rifle', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -189,7 +189,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Ask to shoot the rifle', handler: (st: GameState) => {
-    if (((s as any).fingal ?? 0) === 0) {
+    if ((!((s as any).fingal ?? 0))) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       (s as any).shootingday = ((s as any).daystart ?? 0);
       qspCall(s, 'stat', '');
@@ -208,7 +208,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_shoot ?? 0) >= 1  &&  ((s as any).pcs_shoot ?? 0) <= 10) {
         scene.actions([
           { label: 'Go shooting (1:00)', handler: (st: GameState) => {
-    if ((((s as any).pcs_stren ?? 0) + ((s as any).pcs_shoot ?? 0) > 20)  ||  (((s as any).pcs_stren ?? 0) + ((s as any).pcs_shoot ?? 0) < 20  &&  Math.floor(Math.random() * 2) + 1 === 1)) {
+    if ((((s as any).pcs_stren ?? 0) + ((s as any).pcs_shoot ?? 0) > 20)  ||  (((s as any).pcs_stren ?? 0) + ((s as any).pcs_shoot ?? 0) < 20  &&  (Math.floor(Math.random() * 2) + 1) === 1)) {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'exp_gain', 'shoot', 1);
       qspCall(s, 'stat', '');
@@ -270,7 +270,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       } else {
-        if (((s as any).huntslutsex ?? 0) === 0) {
+        if ((!((s as any).huntslutsex ?? 0))) {
           (s as any).minut = ((s as any).minut ?? 0) + 5;
           (s as any).shootingday = ((s as any).daystart ?? 0);
           (s as any).hunterVars['sexnude'] = 1;
@@ -345,15 +345,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).boyAsexa = 0;
     (s as any).boyBsexa = 0;
     (s as any).boyCsexa = 0;
-    if (((s as any).hunterandreisex ?? 0) === 0) {
+    if ((!((s as any).hunterandreisex ?? 0))) {
       (s as any).hunterandreisex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).huntersergeisex ?? 0) === 0) {
+    if ((!((s as any).huntersergeisex ?? 0))) {
       (s as any).huntersergeisex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).hunterigorsex ?? 0) === 0) {
+    if ((!((s as any).hunterigorsex ?? 0))) {
       (s as any).hunterigorsex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
@@ -1359,7 +1359,7 @@ function enterHuntersgroupVias(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1411,7 +1411,7 @@ function enterHuntersgroupVas(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -1449,7 +1449,7 @@ function enterHuntersgroupVas1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -1487,7 +1487,7 @@ function enterHuntersgroupVa(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1536,7 +1536,7 @@ function enterHuntersgroupVs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1586,7 +1586,7 @@ function enterHuntersgroupVi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1656,7 +1656,7 @@ function enterHuntersgroupVis(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1709,7 +1709,7 @@ function enterHuntersgroupVis1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -1747,7 +1747,7 @@ function enterHuntersgroupVi1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1790,7 +1790,7 @@ function enterHuntersgroupVs1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1850,7 +1850,7 @@ function enterHuntersgroupVia(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1898,7 +1898,7 @@ function enterHuntersgroupVia1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -1930,7 +1930,7 @@ function enterHuntersgroupVi2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -1977,7 +1977,7 @@ function enterHuntersgroupVa1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -2025,7 +2025,7 @@ function enterHuntersgroupVaOsHi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2064,7 +2064,7 @@ function enterHuntersgroupVOsHi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2103,7 +2103,7 @@ function enterHuntersgroupVaOHi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -2165,10 +2165,10 @@ function enterHuntersgroupDPasi(s: GameState, scene: SceneBuilder): void {
     (s as any).silavag = 0;
     (s as any).dick2 = 14;
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   (s as any).dirty_dickC = ((s as any).dirty_dickC ?? 0) + (1);
@@ -2176,7 +2176,7 @@ function enterHuntersgroupDPasi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'gangbang');
   qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang');
   qspCall(s, 'stat', '');
-  if (((s as any).lubonus ?? 0) === 0) {
+  if ((!((s as any).lubonus ?? 0))) {
     (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   }
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
@@ -2217,10 +2217,10 @@ function enterHuntersgroupDPsi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62', 'b');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   (s as any).dirty_dickC = ((s as any).dirty_dickC ?? 0) + (1);
@@ -2270,10 +2270,10 @@ function enterHuntersgroupDPas(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62', 'b');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   qspCall(s, 'dinsex', 'boy_puts_his_condom', ((s as any).boydesc1 ?? 0));
@@ -2324,10 +2324,10 @@ function enterHuntersgroupDPai(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62', 'b');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   (s as any).dirty_dickC = ((s as any).dirty_dickC ?? 0) + (1);
@@ -2381,7 +2381,7 @@ function enterHuntersgroupVsOaHi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -2422,7 +2422,7 @@ function enterHuntersgroupVsOHi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -2477,7 +2477,7 @@ function enterHuntersgroupVsOi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2516,7 +2516,7 @@ function enterHuntersgroupVOi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
@@ -2555,7 +2555,7 @@ function enterHuntersgroupVsO(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -2603,7 +2603,7 @@ function enterHuntersgroupVOaHi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2637,7 +2637,7 @@ function enterHuntersgroupViOa(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2670,7 +2670,7 @@ function enterHuntersgroupViO(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -2720,7 +2720,7 @@ function enterHuntersgroupVaOs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2759,7 +2759,7 @@ function enterHuntersgroupVOs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2798,7 +2798,7 @@ function enterHuntersgroupVaO(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
@@ -2846,7 +2846,7 @@ function enterHuntersgroupAsOa(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   (s as any).dirty_dickB = ((s as any).dirty_dickB ?? 0) + (1);
@@ -2880,7 +2880,7 @@ function enterHuntersgroupAsO(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   (s as any).dirty_dickB = ((s as any).dirty_dickB ?? 0) + (1);
@@ -2929,7 +2929,7 @@ function enterHuntersgroupAOa(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang');
@@ -2963,10 +2963,10 @@ function enterHuntersgroupDPis(s: GameState, scene: SceneBuilder): void {
     (s as any).silavag = 0;
     (s as any).dick2 = 15;
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   (s as any).dirty_dickB = ((s as any).dirty_dickB ?? 0) + (1);
@@ -3002,10 +3002,10 @@ function enterHuntersgroupDPia(s: GameState, scene: SceneBuilder): void {
     (s as any).silavag = 0;
     (s as any).dick2 = 16;
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
-  if (((s as any).boyAsexa ?? 0) === 0) {
+  if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
   (s as any).dirty_dickA = ((s as any).dirty_dickA ?? 0) + (1);
@@ -3115,7 +3115,7 @@ function enterHuntersgroupAa(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsexa ?? 0) === 0) {
+  if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupa1.\'+rand(0, 4)+\'.jpg');
@@ -3139,7 +3139,7 @@ function enterHuntersgroupAaEnd1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsexa ?? 0) === 0) {
+  if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupaend1.jpg');
@@ -3178,7 +3178,7 @@ function enterHuntersgroupAaEnd2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsexa ?? 0) === 0) {
+  if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupaaend2.jpg');
@@ -3217,7 +3217,7 @@ function enterHuntersgroupAs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupa1.\'+rand(0, 4)+\'.jpg');
@@ -3238,7 +3238,7 @@ function enterHuntersgroupAsEnd1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupaend1.jpg');
@@ -3277,7 +3277,7 @@ function enterHuntersgroupAsEnd2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsexa ?? 0) === 0) {
+  if ((!((s as any).boyBsexa ?? 0))) {
     (s as any).boyBsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupaend2.jpg');
@@ -3316,7 +3316,7 @@ function enterHuntersgroupAi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupa1.\'+rand(0, 4)+\'.jpg');
@@ -3337,7 +3337,7 @@ function enterHuntersgroupAiEnd1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupaend1.jpg');
@@ -3376,7 +3376,7 @@ function enterHuntersgroupAiEnd2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsexa ?? 0) === 0) {
+  if ((!((s as any).boyCsexa ?? 0))) {
     (s as any).boyCsexa = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupaend2.jpg');
@@ -3415,7 +3415,7 @@ function enterHuntersgroupVa2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupv0.\'+rand(0, 1)+\'.jpg');
@@ -3436,7 +3436,7 @@ function enterHuntersgroupVa2end(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A63');
   }
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupvend.jpg');
@@ -3474,7 +3474,7 @@ function enterHuntersgroupVs2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupv0.\'+rand(0, 1)+\'.jpg');
@@ -3495,7 +3495,7 @@ function enterHuntersgroupVs2end(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A61');
   }
-  if (((s as any).boyBsex ?? 0) === 0) {
+  if ((!((s as any).boyBsex ?? 0))) {
     (s as any).boyBsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupvend.jpg');
@@ -3533,7 +3533,7 @@ function enterHuntersgroupVi3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupv0.\'+rand(0, 1)+\'.jpg');
@@ -3555,7 +3555,7 @@ function enterHuntersgroupVi3end(s: GameState, scene: SceneBuilder): void {
   if (((s as any).forest_gopsex ?? 0) === 3) {
     qspCall(s, 'boyStat', 'A62');
   }
-  if (((s as any).boyCsex ?? 0) === 0) {
+  if ((!((s as any).boyCsex ?? 0))) {
     (s as any).boyCsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersgroupvend.jpg');
@@ -3736,7 +3736,7 @@ function enterHunterslutSTART(s: GameState, scene: SceneBuilder): void {
   (s as any).dirty_dickA = 0;
   (s as any).dirty_dickB = 0;
   (s as any).dirty_dickC = 0;
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     scene.img('images/locations/gadukino/sex/hunter/hanterslutstart1.jpg');
     scene.text('Crouching, you took the cock in your hand and brought it towards the mouth. You began kissing the penis head…');
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
@@ -3760,7 +3760,7 @@ function enterHunterslutEND(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: After disposing of the used condom, <<$boydesc>> puts you in front of him. Kneel...
     scene.text(`After disposing of the used condom, ${((s as any).boydesc ?? 0)} puts you in front of him. Kneeling down, you licked the head of the cock while masturbating him… `);
   }
-  if (((s as any).protect ?? 0) === 0) {
+  if ((!((s as any).protect ?? 0))) {
     // TODO-QSP: dynamic text: You went down on your knees. Took the cock in hand and began masturbating <<$boy...
     scene.text(`You went down on your knees. Took the cock in hand and began masturbating ${((s as any).boydesc ?? 0)}, licking the penis head at the same time…`);
   }
@@ -3820,7 +3820,7 @@ function enterHunterslutORAL(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutCOW(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hanterslutcow1.\'+rand(1, 4)+\'.jpg');
@@ -3843,7 +3843,7 @@ function enterHunterslutCOW(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutHANDS(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersluthands1.\'+rand(1, 2)+\'.jpg');
@@ -3866,7 +3866,7 @@ function enterHunterslutHANDS(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutTREE(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersluttree1.\'+rand(1, 3)+\'.jpg');
@@ -3889,7 +3889,7 @@ function enterHunterslutTREE(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutTREELEG(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hantersluttreeleg1.\'+rand(1, 4)+\'.jpg');
@@ -3912,7 +3912,7 @@ function enterHunterslutTREELEG(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutLEG1(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hanterslutleg1.\'+rand(1, 2)+\'.jpg');
@@ -3935,7 +3935,7 @@ function enterHunterslutLEG1(s: GameState, scene: SceneBuilder): void {
 
 function enterHunterslutLEG2(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
-  if (((s as any).boyAsex ?? 0) === 0) {
+  if ((!((s as any).boyAsex ?? 0))) {
     (s as any).boyAsex = 1;
   }
   scene.img('images/locations/gadukino/sex/hunter/hanterslutleg2.\'+rand(1, 2)+\'.jpg');

@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0)('attributes_tattoo_\'0\'')) {
     // TODO-QSP: gs '$attributes_tattoo_<<$ARGS[0]>>', ARGS[1]
   }
-  if (((s as any).TatQuality ?? 0) === 0) {
+  if ((!((s as any).TatQuality ?? 0))) {
     // TODO-QSP: exit
   }
   scene.build();

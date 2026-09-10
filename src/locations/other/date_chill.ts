@@ -283,8 +283,8 @@ function enterNetflixTv2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIntermission1(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
-    if (Math.floor(Math.random() * 2) + 1 === 1  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'blowjob') {
+  if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1  ||  ((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'blowjob') {
       scene.text('"Hey, can you suck my dick?"');
       scene.actions([
         { label: 'No (annoyed)', handler: (st: GameState) => {
@@ -361,7 +361,7 @@ function enterBjInsist(s: GameState, scene: SceneBuilder): void {
 function enterUnzipPants(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   scene.text('You unzip his pants and pull out his cock.');
-  if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex'  ||  (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'casual'  &&  Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)])) {
+  if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex'  ||  (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'casual'  &&  (Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)])) {
     scene.text('He gets into it.');
     scene.actions([
       { label: 'Jerk him', goto: ['date_chill', 'chill_hj1'] },
@@ -420,7 +420,7 @@ function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/handjob/television1.mp4');
   // TODO-QSP: dynamic text: You gently jerk <<$npcdesc>>'s cock while you both continue watching the show.
   scene.text(`You gently jerk ${((s as any).npcdesc ?? 0)}'s cock while you both continue watching the show.`);
-  if (Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+  if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'chill_cum');
@@ -698,7 +698,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_count_chill[$npcID] = ((s as any).date_count_chill[$npcID] ?? 0) + (1);
+  (s as any).date_count_chill[String((s as any).npcID ?? 0)] = ((s as any).date_count_chill[String((s as any).npcID ?? 0)] ?? 0) + (1);
   scene.build();
 }
 

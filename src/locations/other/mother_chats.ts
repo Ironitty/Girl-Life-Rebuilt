@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterRapeTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).rape_talk_mom = ((s as any).rape_count ?? 0);
-  if (((s as any).motherKnowRaped ?? 0) === 0) {
+  if ((!((s as any).motherKnowRaped ?? 0))) {
     (s as any).motherKnowRaped = 1;
   }
   qspCall(s, 'stat', '');
@@ -237,7 +237,7 @@ function enterLostVirginityTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('You rip your arm out of your mother\'s grasp. "How could you treat me like that?!" you hiss. "I\'m not a naughty little girl you can pull around by the ear anymore! Yes, I had sex, but that doesn\'t make me a whore or a slut!"');
   // TODO-QSP: dynamic text: "I wanted the best for you and your sister!" your <<$npc_nickname['A29']>> shout...
   scene.text(`"I wanted the best for you and your sister!" your ${((s as any).npc_nickname ?? 0)?.['A29']} shouts back. "All this trouble I went through to bring you up properly as a decent young lady and this is what I get! As long as you're living in my house, you'll do as I say!"`);
-  if (((s as any).momslut ?? 0) === 0) {
+  if ((!((s as any).momslut ?? 0))) {
     scene.actions([
       { label: 'So you want me to move out?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -304,7 +304,7 @@ function enterLostVirginityTalk1(s: GameState, scene: SceneBuilder): void {
   scene.text('You rip yourself out of your mother\'s grasp. "I\'m not a naughty little girl you can pull around by the ear anymore!" you hiss. "Yes, I had sex, but that doesn\'t make me a whore or a slut!"');
   // TODO-QSP: dynamic text: "I wanted the best for you and your sister!" your <<$npc_nickname['A29']>> shout...
   scene.text(`"I wanted the best for you and your sister!" your ${((s as any).npc_nickname ?? 0)?.['A29']} shouts back. "All this trouble I went through to bring you up properly as a decent young lady and this is what I get! As long as you're living in my house, you'll do as I say!"`);
-  if (((s as any).momslut ?? 0) === 0) {
+  if ((!((s as any).momslut ?? 0))) {
     scene.actions([
       { label: 'So you want me to move out?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

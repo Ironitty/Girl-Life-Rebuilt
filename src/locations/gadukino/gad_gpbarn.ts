@@ -71,7 +71,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  if (((s as any).BikeLoc ?? 0) === 0  &&  Math.floor(Math.random() * 11) + 0 >= 6) {
+  if (((s as any).BikeLoc ?? 0) === 0  &&  (Math.floor(Math.random() * 11) + 0) >= 6) {
     (s as any).BikeLoc = 1;
     qspCall(s, 'exp_gain', 'observ', 3);
     qspCall(s, 'stat', '');
@@ -85,10 +85,10 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
     scene.text('In a far corner of the barn, you find a hessian sack filled with mostly junk, but at the bottom, you find a good-quality messenger bag.');
     scene.text('You can use this cool-looking bag as a handbag.');
     qspCall(s, 'purses', 'add_item', 'gm', 5);
-    if (((s as any).bag ?? 0) === 0) {
+    if ((!((s as any).bag ?? 0))) {
       qspCall(s, 'purses', 'wear', 'gm', 5);
     }
-    if (((s as any).mc_inventory ?? 0)?.['vintage_card'] === 0  &&  ((s as any).vcard_trash ?? 0) === 0  &&  Math.floor(Math.random() * 11) + 0 >= 8) {
+    if (((s as any).mc_inventory ?? 0)?.['vintage_card'] === 0  &&  ((s as any).vcard_trash ?? 0) === 0  &&  (Math.floor(Math.random() * 11) + 0) >= 8) {
       (s as any).mc_inventory['vintage_card'] = 1;
       qspCall(s, 'exp_gain', 'observ', 3);
       qspCall(s, 'stat', '');
@@ -100,7 +100,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.img('images/locations/gadukino/village/bracelet.jpg');
       scene.text('While looking through the barn, you spot a metal glint under a wood pile. Upon closer inspection, you see a silver bracelet crafted into a snake\'s likeness. Strange, but fantastic that you would find something this valuable in the barn.');
-      if (((s as any).findbraclet ?? 0) > 0  &&  ((s as any).findneck ?? 0) === 0  &&  Math.floor(Math.random() * 11) + 0 >= 10) {
+      if (((s as any).findbraclet ?? 0) > 0  &&  ((s as any).findneck ?? 0) === 0  &&  (Math.floor(Math.random() * 11) + 0) >= 10) {
         (s as any).findneck = 1;
         qspCall(s, 'exp_gain', 'observ', 3);
         qspCall(s, 'stat', '');

@@ -11,14 +11,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
     (s as any).gdeystboyrand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).gdeystboyrand ?? 0) === 0) {
+    if ((!((s as any).gdeystboyrand ?? 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> invites you to his home.
       scene.text(`${((s as any).boydesc ?? 0)} invites you to his home.`);
       qspCall(s, 'willpower', 'sex', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Decline and go home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and go home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -68,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
     (s as any).diskoIvrand = Math.floor(Math.random() * 101) + 0;
-    if (((s as any).discofirsttime ?? 0) === 0) {
+    if ((!((s as any).discofirsttime ?? 0))) {
       (s as any).diskoIvrand = 0;
     }
     // TODO-QSP: set $clubDescription = '<h1><center><b><font color="maroon">Inside the club</font></b></center></h1>...
@@ -76,7 +76,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`You accompany ${((s as any).boydesc ?? 0)} and when you reach the club he pays the entrance fee and you both walk in. Together with your ${((s as any).bfTitle ?? 0)?.[String((s as any).numnpc ?? 0)]} you head to the dance floor and start dancing.`);
     if (((s as any).diskoIvrand ?? 0) >= 80) {
       (s as any).diskoIvTiperand = Math.floor(Math.random() * 2) + 0;
-      if (((s as any).diskoIvTiperand ?? 0) === 0) {
+      if ((!((s as any).diskoIvTiperand ?? 0))) {
         // TODO-QSP: dynamic text: While you are dancing with <<$boydesc>> a drunk kid in sweatpants and sweatshirt...
         scene.text(`While you are dancing with ${((s as any).boydesc ?? 0)} a drunk kid in sweatpants and sweatshirt approaches.`);
         // TODO-QSP: gs 'npcgeneratec', 0, 'Gopnik', age + rand(-1, 1)
@@ -88,7 +88,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -105,7 +105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Go home', goto: ['pav_residential', ''] },
       ]);
     } else {
-      (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (20);
+      (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (20);
       // TODO-QSP: dynamic text: The Gopnik quickly pounces on your guy and punches him in the face. It seems tha...
       scene.text(`The Gopnik quickly pounces on your guy and punches him in the face. It seems that ${((s as any).boydesc ?? 0)} doesn't stand a chance against the three Gopniks and before he gets completely beaten up he offers all his money to the angry Gopniks and apologizes repeatedly before all of them. You quickly leave the dance floor and ${((s as any).boydesc ?? 0)} suggests that you both head home.`);
       // TODO-QSP: dynamic text: The discussion escalates quickly into a fight and soon the Gopniks charge at you...
@@ -117,7 +117,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Separate them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -180,8 +180,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`At this point ${((s as any).boydesc ?? 0)} comes from the side and punches the hooligan hard on his already broken nose. The poor guy flies backwards and comes crashing down to the floor. Two other Gopniks used the distraction to grab onto your ${((s as any).bfTitle ?? 0)?.[String((s as any).numnpc ?? 0)]} and try to pin his arms.`);
       scene.actions([
         { label: 'Scratch one of the Gopnik\'s face', handler: (st: GameState) => {
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) + (5);
-    (s as any).GopWin[numnpc] = ((s as any).GopWin[numnpc] ?? 0) + (1);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (5);
+    (s as any).GopWin[String((s as any).numnpc ?? 0)] = ((s as any).GopWin[String((s as any).numnpc ?? 0)] ?? 0) + (1);
     scene.actions([
       { label: 'Go home', goto: ['pav_residential', ''] },
     ]);
@@ -201,13 +201,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: set $badKick = 'You try to kick the hooligan between his legs but he saw it coming. He blocks your k...
     if (((s as any).pcs_agil ?? 0) >= 70) {
       (s as any).bollrand = Math.floor(Math.random() * 2) + 0;
-      if (((s as any).bollrand ?? 0) === 0) {
+      if ((!((s as any).bollrand ?? 0))) {
         // TODO-QSP: dynamic text: You kick your foot directly in the Gopnick's crotch, hitting his balls hard. He ...
         scene.text(`You kick your foot directly in the Gopnick's crotch, hitting his balls hard. He flops down on his knees howling and clutching his crotch. Two Gopniks grab your ${((s as any).bfTitle ?? 0)?.[String((s as any).numnpc ?? 0)]} and try to hold his arms.`);
         scene.actions([
           { label: 'Scratch one of the Gopnik\'s face', handler: (st: GameState) => {
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) + (5);
-    (s as any).GopWin[numnpc] = ((s as any).GopWin[numnpc] ?? 0) + (1);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (5);
+    (s as any).GopWin[String((s as any).numnpc ?? 0)] = ((s as any).GopWin[String((s as any).numnpc ?? 0)] ?? 0) + (1);
     scene.actions([
       { label: 'Go home', goto: ['pav_residential', ''] },
     ]);
@@ -239,7 +239,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go home', goto: ['pav_residential', ''] },
         { label: 'Watch them fight', handler: (st: GameState) => {
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (20);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (20);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <<$boydesc>> can't escape the attacks of the three Gopniks and soon falls under ...
     scene.text(`${((s as any).boydesc ?? 0)} can't escape the attacks of the three Gopniks and soon falls under a barrage of punches. The Gopniks drag him into the streets where they steal all his money, take off his shoes, and throw him into the bushes.`);
@@ -256,7 +256,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Dance with the Gopnik', handler: (st: GameState) => {
-    (s as any).otnBoyFrend[numnpc] = 0;
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
     (s as any).DPtipe = 2;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You decide to dance with the Gopnik. For a moment <<$boydesc>> is staring at you...
@@ -284,7 +284,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          (s as any).otnBoyFrend[numnpc] = 0;
+          (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
           qspCall(s, 'mood', 'lower', 'small');
           qspCall(s, 'pain', '', 4, 'cheeks', 'slap');
           qspCall(s, 'stat', '');
@@ -301,7 +301,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Decline his offer and keep dancing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -323,7 +323,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tell him to piss off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -331,7 +331,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Tell him to piss off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'mood', 'lower', 'small');
-    (s as any).otnBoyFrend[numnpc] = 0;
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Watch him leave', goto: ['pav_disco', ''] },
@@ -348,7 +348,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Tell him to piss off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -356,7 +356,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Tell him to piss off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'mood', 'lower', 'small');
-    (s as any).otnBoyFrend[numnpc] = 0;
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Watch him leave', goto: ['pav_disco', ''] },
@@ -379,7 +379,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change your mind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -389,7 +389,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'boyStat', $boy[1]
     qspCall(s, 'stat', '');
     qspCall(s, 'mood', 'lower', 'small');
-    (s as any).otnBoyFrend[numnpc] = 0;
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You angrily spit at him, "Go fuck yourself, asshole!", and storm out of the rest...
     scene.text(`You angrily spit at him, "Go fuck yourself, asshole!", and storm out of the restroom. Just as you reach the dance floor you see that ${((s as any).boydesc ?? 0)} is returning from the bar. You quickly grab his hands and begin dancing with him, still a little furious about the incident.`);
@@ -421,7 +421,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Suggest to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -438,7 +438,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Dance', handler: (st: GameState) => {
-    (s as any).otnBoyFrend[numnpc] = 0;
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = 0;
     qspCall(s, 'mood', 'lower', 'small');
     qspCall(s, 'pain', '', 3, 'cheeks', 'slap');
     qspCall(s, 'stat', '');
@@ -466,14 +466,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Decline [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) + (5);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (5);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You politely refuse his invitation. The guy looks dejected but leaves without ma...
@@ -486,7 +486,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Accept', handler: (st: GameState) => {
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (20);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (20);
     qspCall(s, 'mood', 'lower', 'small');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You start to dance with him. A few minutes later <<$boydesc>> comes up to you an...
@@ -515,7 +515,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Kiss [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -523,7 +523,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Kiss', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'kiss', 5);
-    (s as any).kissBoyFrend[numnpc] = ((s as any).kissBoyFrend[numnpc] ?? 0) + (1);
+    (s as any).kissBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).kissBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     // TODO-QSP: dynamic text: You tenderly embrace <<$boydesc>> and began to kiss his lips.
@@ -534,7 +534,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Jerk guy', handler: (st: GameState) => {
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).dick = ((s as any).dickBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)];
@@ -553,11 +553,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
     (s as any).dick = ((s as any).dickBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)];
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker.jpg');
     scene.text('You squatted in front of him and bring your face to his cock.');
@@ -604,7 +604,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -619,7 +619,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -627,7 +627,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Remove his hand', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You take his hand out of your pants, and he shakes his head, not understanding.');
     scene.actions([
@@ -647,7 +647,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Substitute ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -657,11 +657,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).anala = ((s as any).anala ?? 0) + (1);
     // TODO-QSP: gs 'boyStat', $nameBoyfrend[numnpc]
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img(`images/shared/sex/anal/doggy/anal${Math.floor(Math.random() * 13) + 0}.mp4`);
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -679,12 +679,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     (s as any).sexa = ((s as any).sexa ?? 0) + (1);
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     // TODO-QSP: gs 'boyStat', $nameBoyfrend[numnpc]
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
     scene.text('He quickly takes off his clothes and lays down on top of you.');
@@ -711,7 +711,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Remove hands', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You remove his hands from your exposed breasts, and he looks puzzled, not sure why.');
     scene.actions([
@@ -730,7 +730,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Jerk him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -739,7 +739,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'hj', 5);
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).dick = ((s as any).dickBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)];
@@ -760,11 +760,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
     (s as any).dick = ((s as any).dickBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)];
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker.jpg');
     scene.text('You squat in front of your guy and bring your face to his cock.');
@@ -821,7 +821,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -829,7 +829,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Remove his hand', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You remove his hands from your exposed breasts, and he looks puzzled, not sure why.');
     scene.actions([
@@ -842,7 +842,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -851,7 +851,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You remove his hand from your knee and he shakes his head, puzzled what to do next.');
     scene.actions([
@@ -865,7 +865,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -874,7 +874,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'kiss', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'kiss', 5);
-    (s as any).kissBoyFrend[numnpc] = ((s as any).kissBoyFrend[numnpc] ?? 0) + (1);
+    (s as any).kissBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).kissBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     // TODO-QSP: dynamic text: You turn your head to the guy and your lips meet. <<$boydesc>> starts to passion...
@@ -894,7 +894,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -909,7 +909,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -917,7 +917,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Remove his hand', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You pull his hand from your pussy, and he just looks at you, slightly confused.');
     scene.actions([
@@ -938,7 +938,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Substitute ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -947,11 +947,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     // TODO-QSP: gs 'boyStat', $nameBoyfrend[numnpc]
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/anal/doggy/anal31.jpg');
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -967,12 +967,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Surrender', handler: (st: GameState) => {
     (s as any).sexa = ((s as any).sexa ?? 0) + (1);
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     // TODO-QSP: gs 'boyStat', $nameBoyfrend[numnpc]
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
     scene.text('He quickly takes off his clothes and lays down on top of you.');
@@ -999,7 +999,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1007,7 +1007,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Remove his hand', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You take his hand out of your pants, and he shakes his head, not understanding.');
     scene.actions([
@@ -1026,7 +1026,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Jerk him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1035,7 +1035,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'hj', 5);
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).dick = ((s as any).dickBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)];
@@ -1055,11 +1055,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
     (s as any).dick = ((s as any).dickBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)];
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker.jpg');
     scene.text('You squat in front of your guy and bring your face to his cock.');
@@ -1070,7 +1070,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Substitute ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1080,11 +1080,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).anala = ((s as any).anala ?? 0) + (1);
     // TODO-QSP: gs 'boyStat', $nameBoyfrend[numnpc]
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/anal/doggy/anal31.jpg');
     qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -1125,12 +1125,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     (s as any).sexa = ((s as any).sexa ?? 0) + (1);
     if (((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
-      (s as any).gnpcSex[numnpc] = 1;
+      (s as any).gnpcSex[String((s as any).numnpc ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     // TODO-QSP: gs 'boyStat', $nameBoyfrend[numnpc]
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 9) + 0);
-    (s as any).GboyBalabol[numnpc] = 1;
+    (s as any).GboyBalabol[String((s as any).numnpc ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
     scene.text('He quickly takes off his clothes and lays down on top of you.');
@@ -1151,7 +1151,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Kiss', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'kiss', 5);
-    (s as any).kissBoyFrend[numnpc] = ((s as any).kissBoyFrend[numnpc] ?? 0) + (1);
+    (s as any).kissBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).kissBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/kiss/kiss.jpg');
     // TODO-QSP: dynamic text: You turn your head to the guy and your lips meet. <<$boydesc>> starts to passion...
@@ -1167,7 +1167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1176,7 +1176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You remove his hand from your knee and he shakes his head, puzzled what to do next.');
     scene.actions([
@@ -1192,7 +1192,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$boydesc>> takes you to his home. You came to a small two-story house, in whic...
     scene.text(`${((s as any).boydesc ?? 0)} takes you to his home. You came to a small two-story house, in which there are several apartments and ${((s as any).boydesc ?? 0)} guides you to his apartment. He opened the door with a key and lets you inside.`);
     (s as any).boyhouserand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).boyhouserand ?? 0) === 0) {
+    if ((!((s as any).boyhouserand ?? 0))) {
       scene.text('There was no one else at home and he suggested you go to the recreation room and watch a movie.');
       scene.actions([
         { label: 'Watch Movie', handler: (st: GameState) => {
@@ -1201,13 +1201,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You settled comfortably on the sofa and <<$boydesc>> rummages in the drawers, fi...
     scene.text(`You settled comfortably on the sofa and ${((s as any).boydesc ?? 0)} rummages in the drawers, finds a movie, and puts it in the VCR and starts it, then sits down next to you.`);
     (s as any).boyvideorand = Math.floor(Math.random() * 4) + 0;
-    if (((s as any).boyvideorand ?? 0) === 0) {
+    if ((!((s as any).boyvideorand ?? 0))) {
       scene.text('When the movie starts you quickly realize it\'s a porn video. The actors do not have time to exchange but a few sentences before the girl was already naked and kneeling in front of the guy with his cock in her mouth.');
       qspCall(s, 'willpower', 'voyeur', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse to watch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -1215,7 +1215,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Refuse to watch', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (20);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (20);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You got up from the couch upset with the guy claiming that you are not intereste...
     scene.text(`You got up from the couch upset with the guy claiming that you are not interested in watching that type of trash. ${((s as any).boydesc ?? 0)} gets embarrassed and blushing began stuttering an apology.`);
@@ -1237,13 +1237,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('A Hollywood thriller started playing in which the protagonist smashed everything around him while he managed to not even get scratched. In the film, he ends up killing his best friend, after which the hero drops to his knees beside the body screaming "NO!" in the rain. Finally the hero and main villain meet and after a hard fight he killed the bad guy, the film ends as expected, with an explosion in the background from which the hero escaped.');
       (s as any).boyprirand = Math.floor(Math.random() * 3) + 0;
-      if (((s as any).boyprirand ?? 0) === 0) {
+      if ((!((s as any).boyprirand ?? 0))) {
         scene.text('You feel him lay hand on your knee and began to stroke it.');
         qspCall(s, 'willpower', 'sex', 'resist', 'easy');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Remove his hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -1252,7 +1252,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).otnBoyFrend[numnpc] = ((s as any).otnBoyFrend[numnpc] ?? 0) - (10);
+    (s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpc ?? 0)] ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.text('You remove his hand from your knee and he shakes his head, puzzled what to do next.');
     scene.actions([
@@ -1267,7 +1267,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -1311,14 +1311,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         (s as any).gdeystboyrand = Math.floor(Math.random() * 2) + 0;
-        if (((s as any).gdeystboyrand ?? 0) === 0) {
+        if ((!((s as any).gdeystboyrand ?? 0))) {
           // TODO-QSP: dynamic text: <<$boydesc>> suggested that you two go to his home.
           scene.text(`${((s as any).boydesc ?? 0)} suggested that you two go to his home.`);
           qspCall(s, 'willpower', 'sex', 'resist', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Refuse to go to his home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -1343,7 +1343,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Refuse to go to his home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -1364,14 +1364,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             (s as any).tipgbrand = Math.floor(Math.random() * 2) + 0;
-            if (((s as any).tipgbrand ?? 0) === 0) {
+            if ((!((s as any).tipgbrand ?? 0))) {
               // TODO-QSP: dynamic text: <<$boydesc>> suggested going to the disco.
               scene.text(`${((s as any).boydesc ?? 0)} suggested going to the disco.`);
               qspCall(s, 'willpower', 'misc', 'resist', 'easy');
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
                   { label: 'Refuse and go home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
@@ -1393,7 +1393,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
             if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpc ?? 0)] >= 80  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0) {
               (s as any).gdeystboyrand = Math.floor(Math.random() * 2) + 0;
-              if (((s as any).gdeystboyrand ?? 0) === 0) {
+              if ((!((s as any).gdeystboyrand ?? 0))) {
                 // TODO-QSP: dynamic text: <<$boydesc>> offered to go to his home.
                 scene.text(`${((s as any).boydesc ?? 0)} offered to go to his home.`);
                 scene.actions([
@@ -1408,7 +1408,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
                     { label: 'Refuse and go home [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                   ]);
                 } else {

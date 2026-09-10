@@ -21,12 +21,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).sex_ev['loc'] = ((s as any).sex_ev ?? 0)?.['locat'];
     }
-    if (((s as any).arrsize ?? 0)('date_ev') <= 0  &&  (((s as any).sex_ev ?? 0)?.['date_before_sex'] + ((s as any).sex_ev ?? 0)?.['sex_before_date']) === 0) {
+    if (Object.keys((s as any).date_ev ?? {}).length <= 0  &&  (!(((s as any).sex_ev ?? 0)?.['date_before_sex'] + ((s as any).sex_ev ?? 0)?.['sex_before_date']))) {
       (s as any).sex_ev['sex_before_date'] = 1;
     } else {
       (s as any).sex_ev['date_before_sex'] = 1;
     }
-    if (((s as any).arrsize ?? 0)('date_ev') > 0) {
+    if (Object.keys((s as any).date_ev ?? {}).length > 0) {
       if (((s as any).date_ev ?? 0)?.['npc_home_sex'] === 1) {
         // TODO-QSP: xgt 'sex_ev_start', 'date_npc_home_start'
       } else {

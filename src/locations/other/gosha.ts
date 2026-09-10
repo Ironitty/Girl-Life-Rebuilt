@@ -48,7 +48,7 @@ function enterGoshaRoom(s: GameState, scene: SceneBuilder): void {
 function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A83');
   (s as any).sexpartkno = 1;
-  if (((s as any).goshsex ?? 0) === 0) {
+  if ((!((s as any).goshsex ?? 0))) {
     (s as any).goshsex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }

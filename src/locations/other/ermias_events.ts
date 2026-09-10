@@ -19,7 +19,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -55,7 +55,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -128,13 +128,13 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/miss/africanmis1.mp4');
     scene.text('"Will you fuck me missionary style?" you ask.');
     scene.text('He grins before he pulls you to your feet and swiftly has you undressed.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He squeezes one of your large breasts in his hand while squeezing and smacking your ass with the other.');
       scene.text('"Nice big tits <i>and</i> a great ass," he grins. "Rare to find both on the same girl."');
     } else {
       scene.text('He gropes and squeezes your large breasts in his hands.');
       scene.text('"Nice big tits like these are one of my favorite things about white girls," he grins.');
-      if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
         scene.text('He gropes and firmly spanks your ass with his hands.');
         scene.text('"I love a white girl with a big ass," he grins.');
       } else {
@@ -153,7 +153,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Keep going [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -283,7 +283,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Keep going [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -484,13 +484,13 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/africandoggy3.mp4');
     scene.text('"Will you fuck me doggystyle?" you ask.');
     scene.text('He grins before he pulls you to your feet and swiftly has you undressed.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He squeezes one of your large breasts in his hand while squeezing and smacking your ass with the other.');
       scene.text('"Nice big tits <i>and</i> a great ass," he grins. "Rare to find both on the same girl."');
     } else {
       scene.text('He gropes and squeezes your large breasts in his hands.');
       scene.text('"Nice big tits like these are one of my favorite things about white girls," he grins.');
-      if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
         scene.text('He gropes and firmly spanks your ass with his hands.');
         scene.text('"I love a little white girl with a big ass," he grins.');
       } else {
@@ -510,7 +510,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Keep going [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -641,7 +641,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Keep going [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -844,13 +844,13 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/cowgirl/africancowgirl3.mp4');
     scene.text('You slyly smile at him. "I want to ride you."');
     scene.text('He grins before he pulls you to your feet and swiftly has you undressed.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He squeezes one of your large breasts in his hand while squeezing and smacking your ass with the other.');
       scene.text('"Nice big tits <i>and</i> a great ass," he grins. "Rare to find both on the same girl."');
     } else {
       scene.text('He gropes and squeezes your large breasts in his hands.');
       scene.text('"Nice big tits like these are one of my favorite things about white girls," he grins.');
-      if (qspFunc(s, 'pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+      if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
         scene.text('He gropes and firmly spanks your ass with his hands.');
         scene.text('"I love a white girl with a big ass," he grins.');
       } else {
@@ -866,7 +866,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Keep going [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -994,7 +994,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Keep going [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {

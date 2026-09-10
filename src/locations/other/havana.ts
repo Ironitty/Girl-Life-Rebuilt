@@ -32,11 +32,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('Kickboxing');
   scene.text('Free access to swimming pool');
   qspCall(s, 'shortgs', 'clothing_status');
-  if (((s as any).PSport ?? 0) === 0) {
-    if (((s as any).PCloStyle2 ?? 0) !== 6  &&  ((s as any).PCloSport ?? 0) === 0) {
+  if ((!((s as any).PSport ?? 0))) {
+    if (((s as any).PCloStyle2 ?? 0) !== 6  &&  (!((s as any).PCloSport ?? 0))) {
       scene.text('<font color = "red">🗴</font> You\'re not dressed in sports clothes.</font>');
     }
-    if (((s as any).PShoStyle2 ?? 0) !== 2  &&  ((s as any).PShoSport ?? 0) === 0) {
+    if (((s as any).PShoStyle2 ?? 0) !== 2  &&  (!((s as any).PShoSport ?? 0))) {
       scene.text('<font color = "red">🗴</font> You\'re not wearing training shoes.</font>');
     }
     scene.text('Sportswear is required for all available classes and activities.');
@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Use the pool [+$func(\'money\', \'get_cost_string\', 150)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 150) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 150);
       qspCall(s, 'stat', '');
@@ -58,7 +58,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).abonement ?? 0) === 0) {
+  if ((!((s as any).abonement ?? 0))) {
     scene.text('How long do you want to subscribe for?');
   } else {
     scene.text('Extend your subscription:');
@@ -130,7 +130,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
     scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? 0)} more classes.`);
   }
-  if (((s as any).nichTanya ?? 0)?.['Known'] === 0  &&  (Math.floor(Math.random() * 100) + 1 <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
+  if (((s as any).nichTanya ?? 0)?.['Known'] === 0  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
     scene.text('You notice <a href="exec:gt \'havana\', \'fitgirl\'">a cute girl</a> in the locker room.');
   }
   if (((s as any).fightClubQW ?? 0)?.['story'] === 0  &&  ((s as any).kickbox ?? 0)?.['sash'] >= 2  &&  (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  ||  ((s as any).gschoolVars ?? 0)?.['block'] === 1)) {
@@ -169,12 +169,12 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['havana_pool', 'start'] },
     ]);
   } else {
-    if (((s as any).PSwim ?? 0) === 0) {
+    if ((!((s as any).PSwim ?? 0))) {
       scene.actions([
         { label: 'Change into swimwear', goto: ['changingroom', ''] },
       ]);
     }
-    if (((s as any).pcs_makeup ?? 0) !== 1  &&  ((s as any).cosmetic_tattoo ?? 0) === 0) {
+    if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
       // TODO-QSP: *pl 'You need to wash your make-up off first if you want to go in the pool.'
     }
   }
@@ -249,7 +249,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  ((s as any).deodorant_on ?? 0) === 0) {
+    if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
       // TODO-QSP: 'Your deodorant will last for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['deodor...
       scene.actions([
         { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
@@ -270,7 +270,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Exit the locker room', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PSwim ?? 0) === 0) {
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PSwim ?? 0))) {
       if (((s as any).Fit ?? 0)?.['FMR'] === 0  &&  ((s as any).vidage ?? 0) <= 40  &&  ((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).fame ?? 0)?.['city_sport'] >= 10) {
         scene.actions([{ label: 'Continue', goto: ['havana', 'FMR'] }]);
       } else {

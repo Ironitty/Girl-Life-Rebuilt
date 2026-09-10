@@ -7,21 +7,21 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterCleanloc(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('sparrnam') <= 0) {
+  if (Object.keys((s as any).sparrnam ?? {}).length <= 0) {
     return;
   }
   (s as any).temp_cum_cleanup_cleanloc_i = 0;
   // TODO-QSP: :cleanlocloop
-  if (((s as any).temp_cum_cleanup_cleanloc_i ?? 0) < ((s as any).arrsize ?? 0)('sparrnam')) {
+  if (((s as any).temp_cum_cleanup_cleanloc_i ?? 0) < Object.keys((s as any).sparrnam ?? {}).length) {
     if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === ((s as any).ARGS ?? 0)[1]) {
       if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 0  &&  ((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 3) {
         qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_cleanloc_i ?? 0));
         // TODO-QSP: jump 'cleanlocloop'
       } else {
-        (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - ((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 0) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0));
-        (s as any).cumsumass = ((s as any).cumsumass ?? 0) - ((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 3) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0));
-        (s as any).sparrvol[temp_cum_cleanup_cleanloc_i] = 0;
-        (s as any).sparrslc[temp_cum_cleanup_cleanloc_i] = 0;
+        (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 0) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0)));
+        (s as any).cumsumass = ((s as any).cumsumass ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 3) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0)));
+        (s as any).sparrvol[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
+        (s as any).sparrslc[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
         qspCall(s, 'cum_cleanup', '', 15);
       }
     }
@@ -138,10 +138,10 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
                   }
                   if (((s as any).ARGS ?? 0)[0] === 1  ||  ((s as any).ARGS ?? 0)[0] === 10) {
                     // TODO-QSP: !{full external clean !}
-                    if (((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0) {
+                    if (((s as any).isprok ?? 0) === 0  &&  (!((s as any).vibratorIN ?? 0))) {
                       // TODO-QSP: deresidue[] = 0
                     }
-                    if (((s as any).analPlugIn ?? 0) === 0) {
+                    if ((!((s as any).analPlugIn ?? 0))) {
                       // TODO-QSP: deresidue[] = 3
                     }
                     // TODO-QSP: toclean[] = 1
@@ -242,10 +242,10 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
                                   }
                                   (s as any).temp_cum_cleanup_i = 0;
                                   // TODO-QSP: :cumcleanloop
-                                  if (((s as any).temp_cum_cleanup_i ?? 0) < ((s as any).arrsize ?? 0)('sparrnam')) {
+                                  if (((s as any).temp_cum_cleanup_i ?? 0) < Object.keys((s as any).sparrnam ?? {}).length) {
                                     (s as any).temp_cum_cleanup_pos = qspUntranslated(s, "arrpos('deresidue', sparrloc[temp_cum_cleanup_i])", { location: "cum_cleanup" });
                                     if (((s as any).temp_cum_cleanup_pos ?? 0) >= 0) {
-                                      if (((s as any).temp_cum_cleanup_pos ?? 0) < ((s as any).arrsize ?? 0)('deresidue')) {
+                                      if (((s as any).temp_cum_cleanup_pos ?? 0) < Object.keys((s as any).deresidue ?? {}).length) {
                                         if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0) {
                                           if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).ARGS ?? 0)[0] === 10  ||  ((s as any).ARGS ?? 0)[0] === 1  ||  ((s as any).ARGS ?? 0)[0] === 3))))) {
                                             (s as any).isprok = 0;
@@ -269,7 +269,7 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
                                     if (((s as any).temp_cum_cleanup_pos ?? 0) < 0) {
                                       (s as any).temp_cum_cleanup_i = ((s as any).temp_cum_cleanup_i ?? 0) + (1);
                                     } else {
-                                      if (((s as any).temp_cum_cleanup_pos ?? 0) >= ((s as any).arrsize ?? 0)('toclean')) {
+                                      if (((s as any).temp_cum_cleanup_pos ?? 0) >= Object.keys((s as any).toclean ?? {}).length) {
                                         if (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] <= 0  &&  (((s as any).sparrnam ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === ''  ||  ((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] !== 0  ||  (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0  &&  ((s as any).sparrage ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] > 10))) {
                                           qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
                                         } else {
@@ -277,7 +277,7 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
                                         }
                                       } else {
                                         if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0) {
-                                          if (((s as any).cumsumvag ?? 0) * Math.floor(Math.random() * 4) + 6 / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).ARGS ?? 0)[0] === 10  ||  ((s as any).ARGS ?? 0)[0] === 1  ||  ((s as any).ARGS ?? 0)[0] === 3))))) {
+                                          if (((s as any).cumsumvag ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).ARGS ?? 0)[0] === 10  ||  ((s as any).ARGS ?? 0)[0] === 1  ||  ((s as any).ARGS ?? 0)[0] === 3))))) {
                                             if (((s as any).ARGS ?? 0)[0] === 3) {
                                               (s as any).isprok = 0;
                                               (s as any).vibratorIN = 0;
@@ -287,7 +287,7 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
                                             (s as any).temp_cum_cleanup_i = ((s as any).temp_cum_cleanup_i ?? 0) + (1);
                                           }
                                         } else {
-                                          if ((((s as any).cumsumass ?? 0) * Math.floor(Math.random() * 4) + 6 / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  ((s as any).analPlugIn ?? 0) === 0)  ||  ((s as any).ARGS ?? 0)[0] === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).ARGS ?? 0)[0] === 10  ||  ((s as any).ARGS ?? 0)[0] === 1  ||  ((s as any).ARGS ?? 0)[0] === 3))))) {
+                                          if ((((s as any).cumsumass ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  ((s as any).analPlugIn ?? 0) === 0)  ||  ((s as any).ARGS ?? 0)[0] === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).ARGS ?? 0)[0] === 10  ||  ((s as any).ARGS ?? 0)[0] === 1  ||  ((s as any).ARGS ?? 0)[0] === 3))))) {
                                             if (((s as any).ARGS ?? 0)[0] === 3  ||  ((s as any).ARGS ?? 0)[0] === 7) {
                                               (s as any).analPlugIn = 0;
                                               (s as any).analPlugOut = 0;

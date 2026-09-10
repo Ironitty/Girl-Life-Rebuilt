@@ -242,7 +242,7 @@ function enterSellWares(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 250) + 0;
   if (((s as any).temp_rand ?? 0) >= ((s as any).pcs_chrsm ?? 0) + ((s as any).pcs_persuas ?? 0)) {
-    if (Math.floor(Math.random() * 3) + 0 > 0) {
+    if ((Math.floor(Math.random() * 3) + 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_talk'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['gad_market', 'sell_nobody'] }]);

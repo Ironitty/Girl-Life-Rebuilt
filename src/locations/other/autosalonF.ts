@@ -58,7 +58,7 @@ function enterVehicleTableRow(s: GameState, scene: SceneBuilder): void {
 function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  if (((s as any).autosalonF_carnum ?? 0) === 0) {
+  if ((!((s as any).autosalonF_carnum ?? 0))) {
     (s as any).autosalonF_carnum = qspUntranslated(s, "ARGS[1]", { location: "autosalonF" });
     qspCall(s, 'car_attributes', '', ((s as any).autosalonF_carnum ?? 0));
   }
@@ -135,7 +135,7 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', ((s as any).CarPrice ?? 0), 'bank') === 0) {
     scene.actions([
       { label: 'Buy a <<$CarName>>  [+$func(\'wrap\', \'neg\', \'(<<$func(\'money\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noMoney ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
   } },
     ]);
   } else {

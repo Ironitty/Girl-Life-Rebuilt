@@ -63,7 +63,7 @@ function enterWallet1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Keep it all for yourself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -79,7 +79,7 @@ function enterWallet1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -116,7 +116,7 @@ function enterWallet1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -149,7 +149,7 @@ function enterWallet2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -185,7 +185,7 @@ function enterWallet2(s: GameState, scene: SceneBuilder): void {
 
 function enterVera(s: GameState, scene: SceneBuilder): void {
   (s as any).verarand = Math.floor(Math.random() * 2) + 0;
-  if (((s as any).verakassir ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).verarand ?? 0) === 0) {
+  if (((s as any).verakassir ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  (!((s as any).verarand ?? 0))) {
     scene.text('Vera is enjoying a cigarette during a slow moment at the ticket office. She beckons you to come over and have a chat.');
     scene.actions([
       { label: 'Chat with Vera', handler: (st: GameState) => {
@@ -196,7 +196,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', 'A27', 1);
       scene.text('You walk up to Vera and greet her before you talk for a few minutes about your day.');
       (s as any).veratalkrand = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).veratalkrand ?? 0) === 0) {
+      if ((!((s as any).veratalkrand ?? 0))) {
         scene.text('"Do you think I\'m still attractive?" she suddenly asks. "Anatoly doesn\'t seem interested in me any more. I bet it\'s all those young sluts in his classes wearing those tiny skirts! Stupid tramps, stealing my husband from me…"');
         return;
         scene.actions([
@@ -269,7 +269,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_train_hall', ''] },
         ]);
       }
-      if (((s as any).veraboyrand ?? 0) === 0) {
+      if ((!((s as any).veraboyrand ?? 0))) {
         scene.img('images/characters/pavlovsk/resident/vera/sex/bvtalk0.jpg');
         scene.text('Vera nods. "My first time was with an adult man when I was only 14 years old. I grew up in Gadukino, where basically everyone knows one another and shares everything, so I never dated the local guys. Then one guy, a handsome older man came to the village in his expensive car. He invited me over to his place to have some martinis."');
         scene.text('She seems thoughtful, as if remembering the past. "I felt really attracted to him, so I let him take me to his place. He kept offering me more martinis until I was really drunk, then he took off his shirt and I became a bit giddy as I licked his chest. Then suddenly, bam! He threw me on my back, ripped my clothes away and stuck his cock inside me. It wasn\'t unbearable, but I had never had sex before so I was shocked!"');
@@ -634,7 +634,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_train_hall', ''] },
         ]);
       }
-      if (((s as any).verakassir ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).verarand ?? 0) === 0) {
+      if (((s as any).verakassir ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20  &&  (!((s as any).verarand ?? 0))) {
         scene.text('Vera is enjoying a cigarette during a slow moment at the ticket office. You could go and have a chat.');
         scene.actions([
           { label: 'Chat with Vera', handler: (st: GameState) => {

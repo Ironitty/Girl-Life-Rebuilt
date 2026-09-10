@@ -23,13 +23,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('As you head to class, you overhear many of your fellow students talking. It seems someone has made websites ranking both the male and female students on how bangable they are. You overhear someone mention the links and make a note of them to check when you get a chance.');
         } else {
           scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'day_warm'] }]);
-          if (((s as any).temper ?? 0) >= 8  &&  Math.floor(Math.random() * 10) + 0 === 0) {
+          if (((s as any).temper ?? 0) >= 8  &&  (!(Math.floor(Math.random() * 10) + 0))) {
             scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'day_warm'] }]);
           } else {
             scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'day_cold'] }]);
           }
           if ((((s as any).hour ?? 0) > 15  ||  ((s as any).hour ?? 0) === 1)  &&  (((s as any).daystage ?? 0) === 4  ||  ((s as any).daystage ?? 0) === 5)) {
-            if (((s as any).temper ?? 0) >= 12  &&  Math.floor(Math.random() * 5) + 0 === 0) {
+            if (((s as any).temper ?? 0) >= 12  &&  (!(Math.floor(Math.random() * 5) + 0))) {
               scene.actions([{ label: 'Continue', goto: ['uni_grounds', 'night_warm'] }]);
             }
           }
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'mother_chats', 'reconciliation_talk');
           return;
         }
-        if (((s as any).hotcat ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 15  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn'] === 0  &&  ((s as any).film ?? 0) === 0  &&  Math.floor(Math.random() * 3) + 1 === 1) {
+        if (((s as any).hotcat ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 15  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn'] === 0  &&  ((s as any).film ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
           scene.actions([{ label: 'Continue', goto: ['pickup_porn', 'start'] }]);
         }
         scene.text('<center><b>University Campus</b></center>');

@@ -33,12 +33,12 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 20, ((s as any).npcID1 ?? 0), 'group', 'rough', 'sub');
     qspCall(s, 'arousal', 'anal', 20, ((s as any).npcID ?? 0), 'group', 'rough', 'sub');
     qspCall(s, 'arousal', 'anal', 20, ((s as any).npcID1 ?? 0), 'group', 'rough', 'sub');
-    qspCall(s, 'cum_call', 'stomach', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'butt', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'mouth', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'face', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'clothes', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
-    qspCall(s, 'cum_call', 'anus', (Math.floor(Math.random() * 2) + 0===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0)));
+    qspCall(s, 'cum_call', 'stomach', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'butt', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'mouth', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'face', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'clothes', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
+    qspCall(s, 'cum_call', 'anus', (((Math.floor(Math.random() * 2) + 0)===0) ? (((s as any).npcID ?? 0)) : (((s as any).npcID1 ?? 0))));
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -69,7 +69,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give her [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 50, 'cash');
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -89,7 +89,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give her [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 100, 'cash');
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -109,7 +109,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give her [+$func(\'money\', \'get_cost_string\', 250, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250, 'cash');
       qspCall(s, 'mood', 'raise', 'small');
@@ -129,7 +129,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give her [+$func(\'money\', \'get_cost_string\', 500, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 500, 'cash');
       qspCall(s, 'mood', 'raise', 'medium');
@@ -149,7 +149,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give her [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 1000, 'cash');
       qspCall(s, 'mood', 'raise', 'large');

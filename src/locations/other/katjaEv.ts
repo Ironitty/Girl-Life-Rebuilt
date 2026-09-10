@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         // TODO-QSP: dynamic text: Katja is blushing fairly obviously and looks at you longingly. "<<$pcs_nickname>...
         scene.text(`Katja is blushing fairly obviously and looks at you longingly. "${((s as any).pcs_nickname ?? 0)}, what do you want to do?"`);
-        if (((s as any).katjaQW ?? 0)?.['horny'] >= Math.floor(Math.random() * -49) + 150  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1  &&  ((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
+        if (((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * -49) + 150)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1  &&  ((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
           scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'home_work_ask_katja_no_artem'] }]);
         }
         // TODO-QSP: dynamic text: Katja is as red as a lobster and her chest is heaving from her heavy breaths. Sh...
@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Katja looks at you with a smile. "What do you want to do, <<$pcs_nickname>>?"
       scene.text(`Katja looks at you with a smile. "What do you want to do, ${((s as any).pcs_nickname ?? 0)}?"`);
     }
-    if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).FedorKatjaChat ?? 0) === 0) {
+    if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  (!((s as any).FedorKatjaChat ?? 0))) {
       (s as any).FedorKatjaChat = 1;
       scene.text('You and Katja run into Fedor, who gives you a wave. "Hey girls, what are you two up to?"');
       scene.text('Katja downcasts her eyes, noticeably embarrassed. "We\'re just going to do our homework together."');
@@ -54,7 +54,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '"Let\'s hang out"', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    if (((s as any).katjaQW ?? 0)?.['QWstage'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 50  &&  Math.floor(Math.random() * 6) + 1 === 1) {
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A14'] >= 50  &&  (Math.floor(Math.random() * 6) + 1) === 1) {
       (s as any).minut = ((s as any).minut ?? 0) + (5);
       scene.actions([{ label: 'Continue', goto: ['KatjaHomeTalk', 'TamVal'] }]);
     }

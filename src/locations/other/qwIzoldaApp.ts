@@ -34,11 +34,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('Isolde suggested that you drink wine. You agreed and went to the kitchen. Isolde opened a bottle of wine and poured two glasses. You drank it.');
       qspCall(s, 'drugs', 'alcohol', 'wine');
       qspCall(s, 'stat', '');
-      if (((s as any).izoldaQW ?? 0) >= 10  &&  ((s as any).izoldaSex ?? 0) === 0) {
+      if (((s as any).izoldaQW ?? 0) >= 10  &&  (!((s as any).izoldaSex ?? 0))) {
         scene.text('Soon you both drunk and Isolde invited you to go to the lounge to relax.');
         scene.actions([
           { label: 'Go Isolde', handler: (st: GameState) => {
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).izoldaSex = 1;
     scene.img('images/characters/city/isolde/sex/izoldasex.jpg');
     scene.text('The room suddenly Isolde you kissed and hugged her gently.');
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Go Isolde', handler: (st: GameState) => {
     (s as any).izoldaSex = ((s as any).izoldaSex ?? 0) + (1);
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     scene.img('images/characters/city/isolde/sex/izoldasex.jpg');
     scene.text('The room suddenly Isolde you kissed and hugged her gently.');
     qspCall(s, 'arousal', 'kiss', 5, 'lesbian');

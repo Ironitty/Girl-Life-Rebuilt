@@ -100,7 +100,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).KGname ?? 0)} has fallen.`);
     // TODO-QSP: dynamic text: You have won the fight and earned <<KGOLPrizeM>> coins and <<KGOLPrizeExp>> expe...
     scene.text(`You have won the fight and earned ${((s as any).KGOLPrizeM ?? 0)} coins and ${((s as any).KGOLPrizeExp ?? 0)} experience.`);
-    if (((s as any).KGOLennumBoss ?? 0) === 1  &&  ((s as any).boss5lvl ?? 0) === 0) {
+    if (((s as any).KGOLennumBoss ?? 0) === 1  &&  (!((s as any).boss5lvl ?? 0))) {
       (s as any).boss5lvl = 1;
       (s as any).KGOLhirka = ((s as any).KGOLhirka ?? 0) + (5000);
       scene.text('The boss drops a hirka');
@@ -142,7 +142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLini = ((s as any).rand ?? 0)(((s as any).KGOLspeed ?? 0) / 2, ((s as any).KGOLspeed ?? 0) * 2);
   if (((s as any).KGOLini ?? 0) === ((s as any).KGOLiniV ?? 0)) {
     (s as any).hodrand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).hodrand ?? 0) === 0) {
+    if ((!((s as any).hodrand ?? 0))) {
       (s as any).KGOLini = 1;
       (s as any).KGOLiniV = 0;
     }

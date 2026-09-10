@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 100) + 0 < 70) {
+  if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
   scene.actions([{ label: 'Continue', goto: ['bdsm_bedeast', 'event_<<rand(1, 10)>>'] }]);

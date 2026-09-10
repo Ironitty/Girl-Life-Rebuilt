@@ -8,7 +8,7 @@ function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).sex_ev['morning_event_check'] = 1;
   if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     if (((s as any).hour ?? 0) < 11) {
-      if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  Math.floor(Math.random() * 4) + 1 < 4  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
+      if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 4) + 1) < 4  &&  ((s as any).sex_ev ?? 0)?.['loc'] !== 'hotel_room') {
         (s as any).sex_ev['boy_make_breakfast'] = 1;
         (s as any).sex_ev['boy_shower'] = 0;
         (s as any).sex_ev['morning_event_go'] = 1;
@@ -19,7 +19,7 @@ function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['wake_fuck'] !== 1) {
-      if (Math.floor(Math.random() * 2) + 1 === 1) {
+      if ((Math.floor(Math.random() * 2) + 1) === 1) {
         (s as any).sex_ev['boy_in_shower'] = 1;
       } else {
         (s as any).sex_ev['boy_shower'] = 1;
@@ -134,7 +134,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'sex_ev_after', 'relax_together'
   } },
       { label: 'Use the bathroom', handler: (st: GameState) => {
-    if (((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['boy_in_shower'] !== 1  &&  Math.floor(Math.random() * 3) + 1 === 1  &&  ((s as any).sex_ev ?? 0)?.['bathroom_check'] === 0) {
+    if (((s as any).sex_ev ?? 0)?.['boy_asleep'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['boy_in_shower'] !== 1  &&  (Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).sex_ev ?? 0)?.['bathroom_check'] === 0) {
       (s as any).sex_ev['bathroom_check'] = 1;
       // TODO-QSP: $npc_bedroom[$npcID]
       // TODO-QSP: dynamic text: You get up to pad your way towards <<$npcdesc>>'s bathroom and he calls from beh...
@@ -160,7 +160,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Take a shower', handler: (st: GameState) => {
     scene.text('"I need a shower," you say over your shoulder.');
-    if (Math.floor(Math.random() * 10) + 1 < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
+    if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
       scene.text('"Maybe I should join you," he says suggestively.');
       scene.actions([
         { label: 'No thanks', handler: (st: GameState) => {

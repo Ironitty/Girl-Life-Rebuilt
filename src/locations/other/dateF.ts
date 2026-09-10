@@ -335,7 +335,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: '"Let\'s go to the park"', goto: ['dateF', 'datepark'] },
       ]);
     }
-    if (Math.floor(Math.random() * 5) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
       scene.text('"We could just go to my place and make out." She says with a blush that exposes her arousal.');
       scene.actions([
         { label: 'Let\'s have sex', goto: ['hookup_female', 'quickie'] },

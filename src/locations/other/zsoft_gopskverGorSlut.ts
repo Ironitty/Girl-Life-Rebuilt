@@ -8,7 +8,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/skver.jpg');
   (s as any).temp_rand = Math.floor(Math.random() * 11) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -31,7 +31,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 10) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 11) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -54,7 +54,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 10) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -74,7 +74,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temp_rand ?? 0)[1] === 1) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -85,7 +85,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 4) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 16) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -118,7 +118,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 15) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -137,7 +137,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 8) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -152,7 +152,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 6) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -163,7 +163,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 4) {
   }
   (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -195,7 +195,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -220,7 +220,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).alko ?? 0) >= 6) {
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -232,7 +232,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -246,7 +246,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
-  if (((s as any).temp_rand ?? 0) === 0) {
+  if ((!((s as any).temp_rand ?? 0))) {
   }
   if (((s as any).temp_rand ?? 0) === 1) {
   }
@@ -257,7 +257,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) >= 6) {
   } else {
     (s as any).temp_rand = Math.floor(Math.random() * 12) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -305,7 +305,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -324,7 +324,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
     qspCall(s, 'stat', '');
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -337,7 +337,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 5) {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -354,7 +354,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 7) {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -367,7 +367,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 5) {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -387,7 +387,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$shultextrand33>> speaks "<<$poza_gop_text>>"
     scene.text(`${((s as any).shultextrand33 ?? 0)} speaks "${((s as any).poza_gop_text ?? 0)}"`);
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -398,7 +398,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 4) {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -409,7 +409,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 4) {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -420,7 +420,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 4) {
     }
     (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     if (((s as any).temp_rand ?? 0) === 1) {
     }
@@ -504,9 +504,9 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hairbsh = 0;
     (s as any).BjBeerQW = ((s as any).BjBeerQW ?? 0) + (1);
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 100) + 1 <= 15) {
+    if ((Math.floor(Math.random() * 100) + 1) <= 15) {
       (s as any).temp_randB = Math.floor(Math.random() * 3) + 0;
-      if (((s as any).temp_randB ?? 0) === 0) {
+      if ((!((s as any).temp_randB ?? 0))) {
         scene.img(`images/locations/pavlovsk/park/sex/gop/bjbeer${((s as any).DoubleRand ?? 0)}.jpg`);
         // TODO-QSP: dynamic text: By now you know what they want, and humbly open your mouth as wide as possible. ...
         scene.text(`By now you know what they want, and humbly open your mouth as wide as possible. Vitek immediately guides his cock towards your mouth, and impatiently pushes it down your ${((s as any).throattipe ?? 0)} throat.`);
@@ -536,7 +536,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         scene.text('You try to protest and turn away from the camera, but Dan\'s firm grip on your hair makes it so you cannot move.');
         // TODO-QSP: dynamic text: You can only imagine how incredibly foolish and humiliating you must look in the...
         scene.text(`You can only imagine how incredibly foolish and humiliating you must look in the video: on your knees, with two thick cocks in your cute little mouth wedged in so tightly that they make your cheeks bulge. "Open wider, ${((s as any).shultextrand2 ?? 0)}" Dan tells you once more before unceremoniously cramming himself further down your throat, stretching your mouth to the limit.`);
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('Your cosmetics have gotten smeared from the tears in your eyes, now running all the way down your cheeks. You have strands of saliva hanging out of your mouth, attaching your chin to your boobs.');
         } else {
           scene.text('Your eyes have gotten all teary from the rough treatment, and there are strands of saliva hanging out of your mouth, attaching your chin to your boobs.');
@@ -545,7 +545,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         scene.text(`Luckily the guys don't last long, and finish fairly quickly. They both pull out and drop their loads on your face, and wipe their dicks on your ${((s as any).pcs_haircolor ?? 0)} ${((s as any).curly_txt ?? 0)} hair. They make you lick their cocks clean, but don't let go of your hair just yet.`);
         // TODO-QSP: dynamic text: Vasily grins as he tells the camera: "And that was the premiere presentation of ...
         scene.text(`Vasily grins as he tells the camera: "And that was the premiere presentation of ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} in her very first production called "Gagging Whore"! You delivered an excellent performance ${((s as any).pcs_nickname ?? 0)}, say hi to your mother!" He zooms in on your face, and continues to film.`);
-        if (Math.floor(Math.random() * 2) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('By now you would rather just disappear in a large hole in the ground and never come back, but that\'s not an option. You hesitantly look at the camera, wiping the tears and cum from your eyes as you softly mutter: "Hi mother…"');
           scene.text('You desperately hope Vasily was just having a bit of fun with you, and that he\'ll delete the recording before anyone else sees it.');
         } else {
@@ -567,10 +567,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/park/gop/sex/group/oral/o\'+rand(1, 33)+\'.jpg');
       (s as any).temp_randC = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).temp_randC ?? 0) === 0) {
+      if ((!((s as any).temp_randC ?? 0))) {
         // TODO-QSP: dynamic text: You spread your <<$pc_desc['lips']>> lips and wrap them around Vitek's cock. At ...
         scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips']} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
-        if (Math.floor(Math.random() * 2) + 0) {
+        if ((Math.floor(Math.random() * 2) + 0)) {
           scene.text('Even though it\'s difficult, you manage to take both of their erections deep inside your mouth. You sometimes tease them with your tongue.');
         } else {
           scene.text('The cocks in your mouth are making it difficult for you to breathe, and you can feel tears forming in the corners of your eyes while you do your best to not anger the guys. Choking and gasping, you do your best to service them both, but most of your efforts are focused on keeping down the compulsion to retch. It\'s becoming more and more difficult.');
@@ -588,7 +588,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -610,7 +610,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).temp_rand = Math.floor(Math.random() * 2) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
     }
     // TODO-QSP: <<$shultextrand33>> looks at his friends and grins: "If I were to guess, our <<$shultextrand2>> has ...
     // TODO-QSP: The other guys begin to slap their cocks against your cheeks, impatiently waiting for you to focus a...

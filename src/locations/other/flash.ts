@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloOnePiece ?? 0) === 1) {
     // TODO-QSP: jump 'flash_can_flash_end'
   }
-  (s as any).temp_threshold = ((s as any).pcs_inhib ?? 0) + ((s as any).trait_vars ?? 0)?.['exhibitionist'] * 10 + (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) ? (5) : (0) + ((s as any).alko ?? 0) / 2;
+  (s as any).temp_threshold = ((s as any).pcs_inhib ?? 0) + ((s as any).trait_vars ?? 0)?.['exhibitionist'] * 10 + ((((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) ? (5) : (0)) + ((s as any).alko ?? 0) / 2;
   if (((s as any).locArgs?.[1] ?? 0) === 'bra') {
     if (((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).PCloCoverTop ?? 0) >= 4) {
       // TODO-QSP: jump 'flash_can_flash_end'

@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_text += '</td> <td bgcolor="<<$temp_bgcolor>>" align="right"><font color="<<$func("shortgs", "...
   // TODO-QSP: *p '<<$temp_text>>'
   (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
-  if (((s as any).cetl_i ?? 0) < ((s as any).arrsize ?? 0)('trial_names')) {
+  if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
     // TODO-QSP: jump 'loop_start'
   }
   // TODO-QSP: *p '</table></center>'

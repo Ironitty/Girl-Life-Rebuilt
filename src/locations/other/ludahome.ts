@@ -56,7 +56,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (Math.floor(Math.random() * 10) + 1 <= 3) {
+      if ((Math.floor(Math.random() * 10) + 1) <= 3) {
         scene.img('images/characters/shared/headshots_main/big30.jpg');
         // TODO-QSP: dynamic text: You stand outside your aunt's apartment, knocking on the door. The door is answe...
         scene.text(`You stand outside your aunt's apartment, knocking on the door. The door is answered by Luda, and she smiles as soon as she sees you. "${((s as any).pcs_nickname ?? 0)}! Come in, come in!"`);
@@ -80,7 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You stand outside your aunt's apartment, knocking on the door. The door is answe...
         scene.text(`You stand outside your aunt's apartment, knocking on the door. The door is answered by Luda, and she smiles as soon as she sees you. "${((s as any).pcs_nickname ?? 0)}! Come in, come in!"`);
         scene.text('She invites you in and closes the door behind you.');
-        if (Math.floor(Math.random() * 4) + 1 <= 3) {
+        if ((Math.floor(Math.random() * 4) + 1) <= 3) {
           scene.img('images/characters/shared/headshots_main/big55.jpg');
           if (((s as any).OluQW ?? 0)?.['sex'] === 1) {
             scene.text('You stand outside your aunt\'s apartment, knocking on the door. The door is answered by Olu, who gives you a friendly smile. When he sees you, his smile turns into a hungry grin as his eyes roam all over your body.');

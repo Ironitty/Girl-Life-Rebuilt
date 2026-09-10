@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('policeQW_courtletter_dates') > 0  &&  ((s as any).daystart ?? 0) >= ((s as any).policeQW_courtletter_dates ?? 0)[0]) {
+  if (Object.keys((s as any).policeQW_courtletter_dates ?? {}).length > 0  &&  ((s as any).daystart ?? 0) >= ((s as any).policeQW_courtletter_dates ?? 0)[0]) {
     scene.actions([{ label: 'Continue', goto: ['courtletter', 'letter'] }]);
   }
   scene.build();
@@ -60,7 +60,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
       if (qspFunc(s, 'money', 'can_afford_debt', qspUntranslated(s, "\u00000\u0000", { location: "courtletter" }), 'cash') === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
         (s as any).policeQW['missed_fine_deadlines'] = 0;
@@ -119,7 +119,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
       if (qspFunc(s, 'money', 'can_afford_debt', qspUntranslated(s, "\u00000\u0000", { location: "courtletter" }), 'cash') === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
         (s as any).policeQW['missed_fine_deadlines'] = 0;

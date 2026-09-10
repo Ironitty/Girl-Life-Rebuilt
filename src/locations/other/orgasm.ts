@@ -7,9 +7,9 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_buildup = ((s as any).max ?? 0)(0, ((s as any).orgasm_buildup ?? 0) - 70);
   if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2  &&  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 0) {
-    if (((s as any).orgasm_or ?? 0) !== 'custom'  &&  ((s as any).locArgs?.[0] ?? 0) !== 'hypno'  &&  Math.floor(Math.random() * 9) + 1 > 2) {
+    if (((s as any).orgasm_or ?? 0) !== 'custom'  &&  ((s as any).locArgs?.[0] ?? 0) !== 'hypno'  &&  (Math.floor(Math.random() * 9) + 1) > 2) {
       (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).orgasm_rand ?? 0) === 0) {
+      if ((!((s as any).orgasm_rand ?? 0))) {
       } else {
         if (((s as any).orgasm_rand ?? 0) === 2) {
         }
@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         (s as any).virgin_stats['orgasm'] = 1;
       }
-      if (((s as any).arrsize ?? 0)('stim') > 0) {
+      if (Object.keys((s as any).stim ?? {}).length > 0) {
         (s as any).orgasm_i = 0;
         // TODO-QSP: :fetish_loop
         if (((s as any).temp_fetish_name ?? 0) !== 'creampie') {
@@ -45,88 +45,88 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
         (s as any).orgasm_i = ((s as any).orgasm_i ?? 0) + (1);
-        if (((s as any).orgasm_i ?? 0) < ((s as any).arrsize ?? 0)('fetish_name')) {
+        if (((s as any).orgasm_i ?? 0) < Object.keys((s as any).fetish_name ?? {}).length) {
           // TODO-QSP: jump 'fetish_loop'
         }
       }
       if (((s as any).orgasm_or ?? 0) === 'custom'  ||  ((s as any).orgasm_txt ?? 0) !== '') {
       } else {
         (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-        if (((s as any).orgasm_rand ?? 0) === 0) {
+        if ((!((s as any).orgasm_rand ?? 0))) {
         } else {
           if (((s as any).orgasm_rand ?? 0) === 2) {
           }
           if (((s as any).pcs_horny ?? 0) <= 20) {
             (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (10);
             (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-            if (((s as any).orgasm_rand ?? 0) === 0) {
+            if ((!((s as any).orgasm_rand ?? 0))) {
             } else {
               if (((s as any).orgasm_rand ?? 0) === 2) {
               }
               if (((s as any).pcs_horny ?? 0) <= 30) {
                 (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (20);
                 (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                if (((s as any).orgasm_rand ?? 0) === 0) {
+                if ((!((s as any).orgasm_rand ?? 0))) {
                 } else {
                   if (((s as any).orgasm_rand ?? 0) === 2) {
                   }
                   if (((s as any).pcs_horny ?? 0) <= 40) {
                     (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (30);
                     (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                    if (((s as any).orgasm_rand ?? 0) === 0) {
+                    if ((!((s as any).orgasm_rand ?? 0))) {
                     } else {
                       if (((s as any).orgasm_rand ?? 0) === 2) {
                       }
                       if (((s as any).pcs_horny ?? 0) <= 50) {
                         (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (40);
                         (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                        if (((s as any).orgasm_rand ?? 0) === 0) {
+                        if ((!((s as any).orgasm_rand ?? 0))) {
                         } else {
                           if (((s as any).orgasm_rand ?? 0) === 2) {
                           }
                           if (((s as any).pcs_horny ?? 0) <= 60) {
                             (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (50);
                             (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                            if (((s as any).orgasm_rand ?? 0) === 0) {
+                            if ((!((s as any).orgasm_rand ?? 0))) {
                             } else {
                               if (((s as any).orgasm_rand ?? 0) === 2) {
                               }
                               if (((s as any).pcs_horny ?? 0) <= 70) {
                                 (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (60);
-                                if (Math.floor(Math.random() * 100) + 0 < 1) {
+                                if ((Math.floor(Math.random() * 100) + 0) < 1) {
                                   (s as any).orgasmic = ((s as any).totminut ?? 0);
                                 }
                                 (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                                if (((s as any).orgasm_rand ?? 0) === 0) {
+                                if ((!((s as any).orgasm_rand ?? 0))) {
                                 } else {
                                   if (((s as any).orgasm_rand ?? 0) === 2) {
                                   }
                                   if (((s as any).pcs_horny ?? 0) <= 80) {
                                     (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (70);
-                                    if (Math.floor(Math.random() * 100) + 0 < 5) {
+                                    if ((Math.floor(Math.random() * 100) + 0) < 5) {
                                       (s as any).orgasmic = ((s as any).totminut ?? 0);
                                     }
                                     (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                                    if (((s as any).orgasm_rand ?? 0) === 0) {
+                                    if ((!((s as any).orgasm_rand ?? 0))) {
                                     } else {
                                       if (((s as any).orgasm_rand ?? 0) === 2) {
                                       }
                                       if (((s as any).pcs_horny ?? 0) <= 90) {
                                         (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (80);
-                                        if (Math.floor(Math.random() * 100) + 0 < 10) {
+                                        if ((Math.floor(Math.random() * 100) + 0) < 10) {
                                           (s as any).orgasmic = ((s as any).totminut ?? 0);
                                         }
                                         (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                                        if (((s as any).orgasm_rand ?? 0) === 0) {
+                                        if ((!((s as any).orgasm_rand ?? 0))) {
                                         } else {
                                           if (((s as any).orgasm_rand ?? 0) === 2) {
                                           }
                                           (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (90);
-                                          if (Math.floor(Math.random() * 100) + 0 < 25) {
+                                          if ((Math.floor(Math.random() * 100) + 0) < 25) {
                                             (s as any).orgasmic = ((s as any).totminut ?? 0);
                                           }
                                           (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
-                                          if (((s as any).orgasm_rand ?? 0) === 0) {
+                                          if ((!((s as any).orgasm_rand ?? 0))) {
                                           } else {
                                             if (((s as any).orgasm_rand ?? 0) === 2) {
                                             }

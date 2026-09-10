@@ -22,7 +22,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`"What did you do this time, ${((s as any).pcs_lastname ?? 0)}? No, I don't want to know. I really don't care. You obviously have no respect for me or your teachers."`);
     scene.text('She looks over your file some more and shakes her head slightly. "You\'ve been here enough and you know what comes next. So, what will it be this time? Spanking or Saturday detention?"');
     scene.text('She seems more than a bit annoyed that you appear to be immune to her punishment system, or maybe that you\'re that troubled of a student.');
-    if (((s as any).detention_set ?? 0) === 0) {
+    if ((!((s as any).detention_set ?? 0))) {
       scene.actions([
         { label: 'Choose detention', handler: (st: GameState) => {
     (st as any).detention_set = 1;
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('She looks over your file some more and shakes her head slightly. "We can\'t have you continuing to get in trouble like this - I\'ll have to punish you."');
       scene.text('She looks directly at you for a moment to make sure you understand that, when you cause problems, you\'ll be getting punished.');
       scene.text('"I believe in giving students a voice in their future, so I\'ll let you decide: Saturday detention, or a spanking, right now. Which will it be?"');
-      if (((s as any).detention_set ?? 0) === 0) {
+      if ((!((s as any).detention_set ?? 0))) {
         scene.actions([
           { label: 'Choose detention', handler: (st: GameState) => {
     (st as any).detention_set = 1;

@@ -29,13 +29,13 @@ function enterBodimod2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The studio of the artist</b></center>');
   scene.img('images/locations/pushkin/artscor.jpg');
   scene.text('The walls of the hallway leading to the art school are decorated in a variety of art. Even if the sign out front did not indicate this was the school, this hallway would be a dead give away.');
-  if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).arts_day ?? 0) !== ((s as any).daystart ?? 0)) {
+  if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).arts_day ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('There are a number of students gathered here. Some of them have removed their clothes and have already been painted by Masya.');
     scene.text('One of the girls calls you over, "Hello again, I\'m so glad you came to join us again. Quick, get your clothes off. Masya has nearly finished painting Emilia."');
     scene.actions([
       { label: 'Strip off and join in', handler: (st: GameState) => {
     (s as any).arts_day = ((s as any).daystart ?? 0);
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['artstudia', 'bodimod3'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['artstudia', 'bodimod4'] }]);

@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
-  (s as any).sd_qa['text'] = (((s as any).locArgs?.[2] ?? 0) !== ''  &&  ((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0));
+  (s as any).sd_qa['text'] = ((((s as any).locArgs?.[2] ?? 0) !== ''  &&  ((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
   // TODO-QSP: $sd_alerts[] = $sd_qa['text']
   return;
   scene.build();
@@ -29,7 +29,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
     (s as any).sd_qm['action_arg'] = ((s as any).locArgs?.[5] ?? 0);
     (s as any).sd_qm['gate'] = ((s as any).locArgs?.[6] ?? 0);
   }
-  (s as any).sd_qm['title'] = (((s as any).stat_texts ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '((s as any)._tooltip ?? 0)']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]);
+  (s as any).sd_qm['title'] = ((((s as any).stat_texts ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '((s as any)._tooltip ?? 0)']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]));
   (s as any).sd_qm['display'] = ((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).sd_qm ?? 0)?.['action_arg'] !== '') {
     (s as any).sd_qm['action'] = ((s as any).sd_qm ?? 0)?.['action_arg'];
@@ -83,7 +83,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sd_qm ?? 0)?.['display'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 2  ||  ((s as any).sd_qm ?? 0)?.['icon'] === '')) {
-      (s as any).sd_qm['final_text'] = ((s as any).iif ?? 0)(((s as any).locArgs?.[2] ?? 0) !== '', qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), qspUntranslated(s, "\u00000\u0000", { location: "stat_display_compute" })), ((s as any).sd_qm ?? 0)?.['display']);
+      (s as any).sd_qm['final_text'] = ((((s as any).locArgs?.[2] ?? 0) !== '') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).sd_qm ?? 0)?.['display'])) : (((s as any).sd_qm ?? 0)?.['display']));
       // TODO-QSP: $sd_texts[] = $sd_qm['final_text']
     }
     return;

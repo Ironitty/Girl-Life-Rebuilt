@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowsfairy ?? 0) === 1) {
     scene.text('You find yourself in the area where you know the fairy to hang around.');
-    if (((s as any).fairyshoo ?? 0) === 0) {
+    if ((!((s as any).fairyshoo ?? 0))) {
       scene.actions([
         { label: 'Look for the fairy to chat', goto: ['MagEncounterFairy', 'fairy_chat'] },
         { label: 'Just be on your way', handler: (st: GameState) => {
@@ -126,7 +126,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (((s as any).fairyshoo ?? 0) === 1  &&  Math.floor(Math.random() * 3) + 1 === 2) {
+    if (((s as any).fairyshoo ?? 0) === 1  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
       (s as any).fairyshoo = 0;
     } else {
       (s as any).fairyshoo = ((s as any).fairyshoo ?? 0) - (1);
@@ -135,7 +135,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + (25 * ((s as any).pcs_magik ?? 0));
     qspCall(s, 'mood', 'raise', 'small');
     qspCall(s, 'MagEncounterFairy', 'fairychattopic');
-    if (((s as any).fairyQW ?? 0)?.['skin_increase'] <= 10  &&  ((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).fairyshoo ?? 0) === 0) {
+    if (((s as any).fairyQW ?? 0)?.['skin_increase'] <= 10  &&  ((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).fairyshoo ?? 0))) {
       if (((s as any).pcs_skin ?? 0) <= 990) {
         (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (10);
       } else {

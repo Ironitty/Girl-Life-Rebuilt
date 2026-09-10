@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_events', 'sugar_daddy_gift');
     } else {
       qspCall(s, 'sex_ev_events', 'sugar_daddy_gift');
-      (s as any).sugar_gift_day[$npcID] = 1;
+      (s as any).sugar_gift_day[String((s as any).npcID ?? 0)] = 1;
       qspCall(s, 'sex_ev_pillow_talk', 'topics');
     }
     qspCall(s, 'sex_ev_pillow_talk', 'topics');

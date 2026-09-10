@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).LCWorkRand = Math.floor(Math.random() * 6) + 1;
       if (((s as any).LCWorkRand ?? 0) === 1) {
         (s as any).randguycafe = Math.floor(Math.random() * 4) + 3;
-        if (((s as any).LCwork ?? 0) === 0) {
+        if ((!((s as any).LCwork ?? 0))) {
           scene.text('A group of men are seated at one of the tables. They\'re talking loudly and laughing while having drinks.');
         }
         if (((s as any).LCwork ?? 0) === 1) {
@@ -47,35 +47,35 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text(`<a href="exec:gt 'LCwork', 'start1'">${((s as any).randguycafe ?? 0)} men</a> are seated at one of the tables. They're talking loudly and laughing while having drinks.`);
         }
       } else {
-        if (((s as any).LCwork ?? 0) === 0) {
+        if ((!((s as any).LCwork ?? 0))) {
           scene.text('An older man is sitting at one of the tables, enjoying his meal.');
         }
         if (((s as any).LCwork ?? 0) === 1) {
           scene.text('<a href="exec:gt \'LCwork\', \'start2\'">An older man</a> is sitting at one of the tables, enjoying his meal.');
         }
         if (((s as any).LCWorkRand ?? 0) === 3) {
-          if (((s as any).LCwork ?? 0) === 0) {
+          if ((!((s as any).LCwork ?? 0))) {
             scene.text('Two guys are sitting at one of the tables in a corner. They\'ve clearly had a few drinks already.');
           }
           if (((s as any).LCwork ?? 0) === 1) {
             scene.text('<a href="exec:gt \'LCwork\', \'start3\'">Two men</a> are sitting at one of the tables. They\'ve clearly had a few drinks already.');
           }
         } else {
-          if (((s as any).LCwork ?? 0) === 0) {
+          if ((!((s as any).LCwork ?? 0))) {
             scene.text('A fairly young couple are seated at one of the tables having a lively discussion. The girl seems a bit embarrassed about something, while the guy exudes confidence.');
           }
           if (((s as any).LCwork ?? 0) === 1) {
             scene.text('<a href="exec:gt \'LCwork\', \'start4\'">A fairly young couple</a> are seated at one of the tables having a lively discussion. The girl seems a bit embarrassed about something, while the guy exudes confidence.');
           }
           if (((s as any).LCWorkRand ?? 0) === 5) {
-            if (((s as any).LCwork ?? 0) === 0) {
+            if ((!((s as any).LCwork ?? 0))) {
               scene.text('A woman sits by herself at one of the tables, enjoying a nice meal.');
             }
             if (((s as any).LCwork ?? 0) === 1) {
               scene.text('<a href="exec:gt \'LCwork\', \'start5\'">A woman</a> sits by herself at one of the tables, enjoying a nice meal.');
             }
           } else {
-            if (((s as any).LCwork ?? 0) === 0) {
+            if ((!((s as any).LCwork ?? 0))) {
               scene.text('A fat man is sitting at one of the tables. He\'s loudly talking on his phone, receiving a few disgruntled looks from other diners.');
             }
             if (((s as any).LCwork ?? 0) === 1) {
@@ -93,7 +93,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Order take-out (0:20) [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 350);
       scene.actions([{ label: 'Continue', goto: ['food', 'fast_food'] }]);

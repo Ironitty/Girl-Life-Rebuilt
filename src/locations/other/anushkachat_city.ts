@@ -9,7 +9,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
-  if (Math.floor(Math.random() * 10) + 1 === 1  &&  ((s as any).anushkaQW ?? 0)?.['dreams'] < 3  &&  ((s as any).anushkaQW ?? 0)?.['dreams_daystart'] > ((s as any).daystart ?? 0) + 7) {
+  if ((Math.floor(Math.random() * 10) + 1) === 1  &&  ((s as any).anushkaQW ?? 0)?.['dreams'] < 3  &&  ((s as any).anushkaQW ?? 0)?.['dreams_daystart'] > ((s as any).daystart ?? 0) + 7) {
     (s as any).anushkaQW['dreams_daystart'] = ((s as any).daystart ?? 0);
     scene.actions([{ label: 'Continue', goto: ['anushka_dreams', 'dreams'] }]);
   } else {
@@ -270,7 +270,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -427,7 +427,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -881,7 +881,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''anushkachat_city'', ''tell_about_generic...
     }

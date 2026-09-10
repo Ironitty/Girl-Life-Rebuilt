@@ -16,7 +16,7 @@ function enterIvanVitekFight1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}!" he grins, happy to see you. "Here to do some training?"`);
     scene.text('You smile at him and nod. "Yeah, I am. What are you doing here?"');
     scene.text('He nods over at a hall. "I\'ve been training for a boxing match. It\'s coming up fast, and I\'m pretty excited about it!"');
-    if (((s as any).kotovVSprohorov ?? 0) === 0) {
+    if ((!((s as any).kotovVSprohorov ?? 0))) {
       scene.text('He pauses for a second. "I\'m sparring with Vitek today. It\'s part of my preparation for the big match. You can come and watch if you\'d like?"');
       scene.actions([
         { label: 'That sounds like fun', handler: (st: GameState) => {
@@ -126,7 +126,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
     { label: 'Teach me to box', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/ivan/training/train2.jpg');
     scene.text('You smile at him. "I was just wondering if you had some time to teach me some boxing moves?"');
-    if (((s as any).PSport ?? 0) === 0) {
+    if ((!((s as any).PSport ?? 0))) {
       scene.text('He punches the heavy bag a few more times before he answers. "I told you I would, but you\'ll need to change into some workout clothes first. Do you have any?"');
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
@@ -284,7 +284,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell him to go away', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } },
@@ -329,7 +329,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell him to go away', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } },

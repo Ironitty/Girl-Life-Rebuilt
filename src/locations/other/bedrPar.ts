@@ -17,11 +17,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === ''  ||  ((s as any).locArgs?.[0] ?? 0) === 'start') {
     if (((s as any).locat ?? 0)?.['Mother'] === 26  &&  ((s as any).prevloc ?? 0) === 'bedrPar'  &&  qspFunc(s, 'homes_properties', 'can_live_here')) {
       scene.img('images/characters/pavlovsk/resident/mom/prost1.jpg');
-      if (((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  Math.floor(Math.random() * 3) + 1 === 1  &&  ((s as any).mom ?? 0)?.['condoms'] === 0) {
+      if (((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0  &&  (Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).mom ?? 0)?.['condoms'] === 0) {
         scene.actions([{ label: 'Continue', goto: ['mother', 'condom_find'] }]);
       } else {
         scene.actions([{ label: 'Continue', goto: ['mother', 'dildo_find'] }]);
-        if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1  &&  ((s as any).analPlugIn ?? 0) === 0  &&  ((s as any).motherQW ?? 0)?.['seen_plug'] !== 1  &&  Math.floor(Math.random() * 3) + 1 === 1) {
+        if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1  &&  ((s as any).analPlugIn ?? 0) === 0  &&  ((s as any).motherQW ?? 0)?.['seen_plug'] !== 1  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
           scene.actions([{ label: 'Continue', goto: ['mother', 'plug_find'] }]);
         } else {
           scene.text('You walk into your bedroom and find your mother sweeping and dusting the room, folding clothes and putting them away and making the beds.');
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Your pussy tastes great, Anya!</b>"`);
                         } else {
                           (s as any).parfixrand = Math.floor(Math.random() * 10) + 0;
-                          if (((s as any).parfixrand ?? 0) === 0) {
+                          if ((!((s as any).parfixrand ?? 0))) {
                             // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Wha...
                             scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>What did you say to me?</b>"`);
                           }
@@ -288,7 +288,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'internet_mobile', 'get_access');
                           if (((s as any).locat ?? 0)?.['Anya_inroom'] === 1) {
                             qspCall(s, 'music_actions', 'not_alone');
-                            if (((s as any).sisboytrio ?? 0) === 0) {
+                            if ((!((s as any).sisboytrio ?? 0))) {
                               qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You shouldn\'t watch porn with your sister in the room. She would notice for sure!');
                             }
                             qspCall(s, 'internet_mobile', 'add_limitation', 'nocamshow', 'You can\'t do any webcam activities with your sister in the room!');

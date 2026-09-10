@@ -21,7 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Walk to the hunters\' cabin (0:15)', handler: (st: GameState) => {
     if (((s as any).DayStage ?? 0) < 4) {
-      if (Math.floor(Math.random() * 10) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 10) + 0))) {
         scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
       } else {
         (s as any).swamp_stuck = 0;
@@ -47,7 +47,7 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gadukino_event', 'sound');
     qspCall(s, 'stat', '');
     scene.text('<center><h4>Swamp</h4></center>');
-    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0) {
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
       scene.img('images/locations/gadukino/hunters/goswamp1.jpg');
     } else {
       scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');
@@ -76,13 +76,13 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).swamp_check ?? 0) > ((s as any).swamprand ?? 0)) {
       scene.text('<center><h4>Swamp</h4></center>');
-      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0) {
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
         scene.img('images/locations/gadukino/hunters/goswamp.jpg');
       } else {
         scene.img('images/locations/gadukino/hunters/goswamp_ski.jpg');
         if (((s as any).clothingworntype ?? 0) === 'nude') {
           (s as any).swamprand = Math.floor(Math.random() * 4) + 0;
-          if (((s as any).swamprand ?? 0) === 0) {
+          if ((!((s as any).swamprand ?? 0))) {
             scene.img('images/locations/gadukino/hunters/goswamp_nude0..jpg');
           } else {
             scene.img('images/locations/gadukino/hunters/goswamp_nude0.\' + rand(1, 3) + \'.jpg');
@@ -90,7 +90,7 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
         }
         scene.text('Your efforts are not vain as you begin to feel the mud\'s hold loosen. Then, with another burst of strength, you free yourself and sigh in relief.');
         scene.text('<center><h4>Swamp</h4></center>');
-        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0) {
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
           scene.img('images/locations/gadukino/hunters/goswamp1.jpg');
         } else {
           scene.img('images/locations/gadukino/hunters/goswamp_ski1.jpg');

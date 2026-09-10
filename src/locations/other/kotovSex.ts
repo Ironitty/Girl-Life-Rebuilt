@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Keep refusing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep Refusing', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).kotovLoveQW = (-1);
-    (s as any).npc_rel[$boy] = 0;
+    (s as any).npc_rel[String((s as any).boy ?? 0)] = 0;
     scene.text('When you keep refusing, he pushes you away and shouts: "Fine, go to your mother! Just leave me the fuck alone, we are done for! I\'m so fucking done with this!"');
     scene.text('Nothing you say can change his mind. Vitek feels like you\'ve been leading him on for too long, and now he wants nothing to do with you.');
     scene.actions([
@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, ${((s as any).pcs_nickname ?? 0)}. I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   } else {
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     (s as any).i = Math.floor(Math.random() * 6) + 1;
     if (((s as any).i ?? 0) <= 2) {
       scene.img('images/shared/sex/sequence/kotovpre\'+rand(0, 4)+\'.mp4');

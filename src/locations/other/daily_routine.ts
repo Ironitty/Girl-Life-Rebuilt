@@ -77,7 +77,7 @@ function enterHub(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: jump 'droutine_hub_loop'
   }
-  if (((s as any).dr_any ?? 0) === 0) {
+  if ((!((s as any).dr_any ?? 0))) {
     scene.text('Everything that can be done right now is finished.');
   }
   if (((s as any).dr_unavail ?? 0) !== '') {
@@ -430,7 +430,7 @@ function enterStepApplyMakeup(s: GameState, scene: SceneBuilder): void {
   (s as any).droutine['current_style'] = 'chain';
   (s as any).droutine['current_room'] = 'bathroom';
   (s as any).droutine['current_runner'] = 'gt \'mirror\', \'apply_makeup_do\'';
-  (s as any).droutine['can_run'] = (((s as any).droutine_settings ?? 0)?.['makeup_level'] === 4) ? ((((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3  &&  ((s as any).pcs_makeup ?? 0) !== 0)) : ((((s as any).droutine_settings ?? 0)?.['makeup_level'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= ((s as any).min ?? 0)(((s as any).droutine_settings ?? 0)?.['makeup_level'], 3)  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).droutine_settings ?? 0)?.['makeup_level'] + 1));
+  (s as any).droutine['can_run'] = ((((s as any).droutine_settings ?? 0)?.['makeup_level'] === 4) ? ((((s as any).mc_inventory ?? 0)?.['cosmetics'] >= 3  &&  ((s as any).pcs_makeup ?? 0) !== 0)) : ((((s as any).droutine_settings ?? 0)?.['makeup_level'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] >= ((s as any).min ?? 0)(((s as any).droutine_settings ?? 0)?.['makeup_level'], 3)  &&  ((s as any).pcs_makeup ?? 0) < ((s as any).droutine_settings ?? 0)?.['makeup_level'] + 1)));
   (s as any).droutine['current_quick'] = 1;
   (s as any).droutine['skip_reason'] = 'no cosmetics or already applied';
   scene.build();
@@ -630,7 +630,7 @@ function enterStepCookMeal(s: GameState, scene: SceneBuilder): void {
   (s as any).droutine['current_style'] = 'chain';
   (s as any).droutine['current_room'] = 'kitchen';
   (s as any).droutine['current_runner'] = 'gt \'kit_din\', \'cook_meal_do\'';
-  (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  ((s as any).edahot ?? 0) === 0);
+  (s as any).droutine['can_run'] = (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0  &&  (!((s as any).edahot ?? 0)));
   (s as any).droutine['skip_reason'] = 'no food supplies or a meal is already prepared';
   scene.build();
 }
@@ -655,85 +655,85 @@ function enterHomeHasFood(s: GameState, scene: SceneBuilder): void {
 function enterCatalogBuild(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_dci = 0;
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'teeth';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'teeth';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'mouthwash';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'mouthwash';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'shower';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'shower';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'bath';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'bath';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'quickwash';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'quickwash';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'deodorant';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'deodorant';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'skincare';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'skincare';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'shave';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'shave';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'enema';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'enema';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'tampon';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'tampon';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'peeprivate';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'peeprivate';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'removemakeup';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'removemakeup';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'removelashes';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'removelashes';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'buttplug_in';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'buttplug_in';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'buttplug_out';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'buttplug_out';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'vibe_in';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'vibe_in';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'vibe_out';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'vibe_out';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'apply_makeup';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'apply_makeup';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'brush_hair';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'brush_hair';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'lipbalm';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'lipbalm';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'apply_lashes';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'apply_lashes';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'birth_control';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'birth_control';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'outfit_school';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_school';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'outfit_sport';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_sport';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'outfit_restore';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_restore';
   (s as any).temp_dci_ws = 1;
   // TODO-QSP: :droutine_cat_wloop
   if (((s as any).temp_dci_ws ?? 0) <= 60) {
     if (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] !== ''  &&  (((s as any).defclothingnumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] + ((s as any).defbranumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] + ((s as any).defpantynumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] + ((s as any).defshoenumber ?? 0)?.[String((s as any).temp_dci_ws ?? 0)] > 0)) {
       (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-      (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'outfit_wardrobe_<<temp_dci_ws>>';
+      (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'outfit_wardrobe_<<temp_dci_ws>>';
     }
     (s as any).temp_dci_ws = ((s as any).temp_dci_ws ?? 0) + (1);
     // TODO-QSP: jump 'droutine_cat_wloop'
   }
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'cook_meal';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'cook_meal';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'eat_meal';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'eat_meal';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'snack';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'snack';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'leftovers';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'leftovers';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'water';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'water';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'tea';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'tea';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'vitamin';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'vitamin';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'fill_bottle';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'fill_bottle';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'sandwich';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'sandwich';
   (s as any).temp_dci = ((s as any).temp_dci ?? 0) + (1);
-  (s as any).droutine_catalog['id_' + String((s as any).temp_dci ?? '') + ''] = 'medicine';
+  (s as any).droutine_catalog['id_' + String((s as any).temp_dci || '') + ''] = 'medicine';
   (s as any).droutine_catalog['count'] = ((s as any).temp_dci ?? 0);
   scene.build();
 }
@@ -917,12 +917,12 @@ function enterRemoveStepCore(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_dri = qspUntranslated(s, "ARGS[2]", { location: "daily_routine" });
   // TODO-QSP: :droutine_rsc_loop
   if (((s as any).temp_dri ?? 0) < ((s as any).temp_drc ?? 0)) {
-    (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_dri ?? '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
+    (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_dri || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_dri ?? 0) + 1)];
     (s as any).temp_dri = ((s as any).temp_dri ?? 0) + (1);
     // TODO-QSP: jump 'droutine_rsc_loop'
   }
-  (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_drc ?? '') + ''] = '';
-  (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_count'] = ((s as any).temp_drc ?? 0) - 1;
+  (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = '';
+  (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0) - 1;
   scene.build();
 }
 
@@ -940,8 +940,8 @@ function enterToggleStep(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'daily_routine', 'remove_step_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_tp ?? 0));
   } else {
     (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(qspUntranslated(s, "\u00000\u0000", { location: "daily_routine" })) + '_count'] + 1;
-    (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_drc ?? '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-    (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_count'] = ((s as any).temp_drc ?? 0);
+    (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+    (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
   scene.build();
@@ -949,10 +949,10 @@ function enterToggleStep(s: GameState, scene: SceneBuilder): void {
 
 function enterSetBath(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sb_pos = qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'shower');
-  if (((s as any).temp_sb_pos ?? 0) === 0) {
+  if ((!((s as any).temp_sb_pos ?? 0))) {
     (s as any).temp_sb_pos = qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'bath');
   }
-  if (((s as any).temp_sb_pos ?? 0) === 0) {
+  if ((!((s as any).temp_sb_pos ?? 0))) {
     (s as any).temp_sb_pos = qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'quickwash');
   }
   qspCall(s, 'daily_routine', 'remove_step_id', ((s as any).locArgs?.[1] ?? 0), 'shower');
@@ -961,19 +961,19 @@ function enterSetBath(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) !== 'none') {
     if (((s as any).temp_sb_pos ?? 0) > 0) {
       (s as any).temp_sb_n = ((s as any).droutine ?? 0)?.[String(qspUntranslated(s, "\u00000\u0000", { location: "daily_routine" })) + '_count'] + 1;
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_count'] = ((s as any).temp_sb_n ?? 0);
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_sb_n ?? 0);
       (s as any).temp_sb_i = ((s as any).temp_sb_n ?? 0);
       // TODO-QSP: :set_bath_ins_loop
       if (((s as any).temp_sb_i ?? 0) > ((s as any).temp_sb_pos ?? 0)) {
-        (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_sb_i ?? '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_sb_i ?? 0) - 1)];
+        (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_sb_i || '') + ''] = ((s as any).droutine ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_step_' + String(((s as any).temp_sb_i ?? 0) - 1)];
         (s as any).temp_sb_i = ((s as any).temp_sb_i ?? 0) - (1);
         // TODO-QSP: jump 'set_bath_ins_loop'
       }
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_sb_pos ?? '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_sb_pos || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
     } else {
       (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(qspUntranslated(s, "\u00000\u0000", { location: "daily_routine" })) + '_count'] + 1;
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_drc ?? '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_count'] = ((s as any).temp_drc ?? 0);
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
     }
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
@@ -988,8 +988,8 @@ function enterSetMakeupOpt(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'apply_makeup') === 0) {
       (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(qspUntranslated(s, "\u00000\u0000", { location: "daily_routine" })) + '_count'] + 1;
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_drc ?? '') + ''] = 'apply_makeup';
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_count'] = ((s as any).temp_drc ?? 0);
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = 'apply_makeup';
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
     }
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]
@@ -1004,8 +1004,8 @@ function enterSetLashesOpt(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'daily_routine', 'step_pos', ((s as any).locArgs?.[1] ?? 0), 'apply_lashes') === 0) {
       (s as any).temp_drc = ((s as any).droutine ?? 0)?.[String(qspUntranslated(s, "\u00000\u0000", { location: "daily_routine" })) + '_count'] + 1;
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_step_' + String((s as any).temp_drc ?? '') + ''] = 'apply_lashes';
-      (s as any).droutine['' + String((s as any).$ARGS[1] ?? '') + '_count'] = ((s as any).temp_drc ?? 0);
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_step_' + String((s as any).temp_drc || '') + ''] = 'apply_lashes';
+      (s as any).droutine['' + String((s as any).$ARGS[1] || '') + '_count'] = ((s as any).temp_drc ?? 0);
     }
   }
   // TODO-QSP: gt 'daily_routine', 'manage_phase', $ARGS[1]

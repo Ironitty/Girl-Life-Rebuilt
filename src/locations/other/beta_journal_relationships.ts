@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beta_journal', 'nav_construct');
   scene.text('<center>');
-  if (((s as any).panel_show ?? 0) !== 1  ||  ((s as any).panel_show ?? 0) === 0) {
+  if (((s as any).panel_show ?? 0) !== 1  ||  (!((s as any).panel_show ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 1 & gs '<<$loc_id>>', 'init'">Show Family</a>
     scene.text(`<a href="exec:panel_show = 1 & gs '${((s as any).loc_id ?? 0)}', 'init'">Show Family</a>`);
   } else {
@@ -57,7 +57,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterRelFamily(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table width="90%" cellspacing="0" cellpadding="0" valign="top">');
-  if (((s as any).kid ?? 0) > 0  ||  ((s as any).arrsize ?? 0)('lover') > 0) {
+  if (((s as any).kid ?? 0) > 0  ||  Object.keys((s as any).lover ?? {}).length > 0) {
     // TODO-QSP: gs $loc_id, 'rel_spouse_kids'
   }
   (s as any).rel_id = 29;
@@ -285,7 +285,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).grupTipe ?? 0) < 5) {
       }
-      if (((s as any).grupTipe ?? 0) === 0) {
+      if ((!((s as any).grupTipe ?? 0))) {
         // TODO-QSP: 'You are not a member of any particular school social group.' + $journal_school_standing
       } else {
         // TODO-QSP: 'Your school social group consists of the popular, cool and beautiful.' + $journal_school_standing

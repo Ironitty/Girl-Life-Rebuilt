@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterGetSmsId(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('ARGS') > 1) {
+  if (Object.keys((s as any).ARGS ?? {}).length > 1) {
     (s as any).result = qspUntranslated(s, "SMSIdentifier[ARGS[1]]", { location: "SMStext_builder" });
   } else {
     (s as any).result = ((s as any).SMSBuilderVars ?? 0)?.['SMSIdentifier'];

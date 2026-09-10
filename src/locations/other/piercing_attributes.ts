@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0)('attributes_piercing_\'0\'')) {
     // TODO-QSP: gs '$attributes_piercing_<<$ARGS[0]>>', ARGS[1]
   }
-  if (((s as any).PirQuality ?? 0) === 0) {
+  if ((!((s as any).PirQuality ?? 0))) {
     (s as any).PirFirst = 0;
     return;
   }

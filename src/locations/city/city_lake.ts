@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at \'+func(\'time\', \'get_time_string\', 8, 0)+\'.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    if (((s as any).PSwim ?? 0) === 0) {
+    if ((!((s as any).PSwim ?? 0))) {
       // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is parked near the l...
       scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name']}</a> is parked near the lake.`);
     } else {

@@ -38,7 +38,7 @@ function enterRegenerate(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).regenVal ?? 0));
   (s as any).regenArrIdx = qspUntranslated(s, "arrpos('spellTimeName', 'regenerate')", { location: "spell" });
   if (((s as any).regenArrIdx ?? 0) >= 0) {
-    (s as any).spellComplete[regenArrIdx] = ((s as any).totminut ?? 0) + 120;
+    (s as any).spellComplete[String((s as any).regenArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
     // TODO-QSP: $spellCompExec[regenArrIdx] = 'pcs_health += (5 * <<regenVal>>)'
     // TODO-QSP: $spellTickExec[regenArrIdx] = 'pcs_health += <<regenVal>>'
   } else {
@@ -100,7 +100,7 @@ function enterBerserk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'painkiller', 'spell');
   (s as any).drugVars['painkiller_points'] = ((s as any).drugVars['painkiller_points'] ?? 0) + (50);
   if (((s as any).spellArrIdx ?? 0) >= 0) {
-    (s as any).spellComplete[spellArrIdx] = ((s as any).totminut ?? 0) + 120;
+    (s as any).spellComplete[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
   } else {
     (s as any).healthPercent = ((s as any).pcs_health ?? 0) * 100 / ((s as any).healthmax ?? 0);
     (s as any).staminPercent = ((s as any).pcs_stam ?? 0) * 100 / ((s as any).stammax ?? 0);
@@ -156,7 +156,7 @@ function enterGlamour(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).spellArrIdx = qspUntranslated(s, "arrpos('spellTimeName', 'glamour')", { location: "spell" });
   if (((s as any).spellArrIdx ?? 0) >= 0) {
-    (s as any).spellComplete[spellArrIdx] = ((s as any).totminut ?? 0) + 120;
+    (s as any).spellComplete[String((s as any).spellArrIdx ?? 0)] = ((s as any).totminut ?? 0) + 120;
   } else {
     (s as any).glamouractive = 1;
     qspCall(s, 'spellTimer', 'add', 'glamour', 120, 'glamouractive = 0');

@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('sex_ev') > 0) {
+  if (Object.keys((s as any).sex_ev ?? {}).length > 0) {
     qspCall(s, 'sex_ev_leave', 'exit');
   }
   (s as any).minut = ((s as any).minut ?? 0) + 2;

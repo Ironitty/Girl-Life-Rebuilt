@@ -43,7 +43,7 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Caress Yourself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -98,7 +98,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -148,13 +148,13 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
 function enterHole(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', Math.floor(Math.random() * 23) + 18);
   if (((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] < 6) {
-    (s as any).npc_dick[$npclastgenerated] = 6;
+    (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 6;
   }
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/gloryhole/action/looking.jpg');
-  if (((s as any).stat ?? 0)?.['gloryhole'] === 0  ||  Math.floor(Math.random() * 5) + 1 === 5) {
+  if (((s as any).stat ?? 0)?.['gloryhole'] === 0  ||  (Math.floor(Math.random() * 5) + 1) === 5) {
     scene.actions([
       { label: 'Sign the wall', handler: (st: GameState) => {
     (s as any).stat['know_glory'] = 1;
@@ -165,7 +165,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Suck it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -176,12 +176,12 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gloryhole', 'blowjob'] },
       ]);
     }
-    if (((s as any).pcs_throat ?? 0) === 0) {
+    if ((!((s as any).pcs_throat ?? 0))) {
       qspCall(s, 'willpower', 'hj', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Touch the shaft [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -216,7 +216,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stick your finger in the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -242,7 +242,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -256,7 +256,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take his money and Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -330,7 +330,7 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -400,7 +400,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Step back [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -465,7 +465,7 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -504,7 +504,7 @@ function enterCondom(s: GameState, scene: SceneBuilder): void {
 function enterPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp = Math.floor(Math.random() * 5) + 1;
-  if (Math.floor(Math.random() * 3) + 0 > 0) {
+  if ((Math.floor(Math.random() * 3) + 0) > 0) {
     scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp ?? 0)}.mp4`);
   } else {
     if (((s as any).protect ?? 0) === 1) {
@@ -519,12 +519,12 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).protect ?? 0) !== 1) {
     qspCall(s, 'dinSex', 'std_trigger');
-    if (((s as any).tabletkicheck ?? 0) === 0) {
+    if ((!((s as any).tabletkicheck ?? 0))) {
       qspCall(s, 'willpower', 'cum_inside', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Allow him to cum inside [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -620,7 +620,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     { label: 'Keep Going', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).temp = Math.floor(Math.random() * 5) + 1;
-    if (Math.floor(Math.random() * 3) + 0 > 0) {
+    if ((Math.floor(Math.random() * 3) + 0) > 0) {
       scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp ?? 0)}.mp4`);
     } else {
       scene.img(`images/locations/shared/gloryhole/sex/anal${((s as any).temp ?? 0)}.mp4`);
@@ -637,7 +637,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -662,7 +662,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Turn around, kneel and let him cum in your mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

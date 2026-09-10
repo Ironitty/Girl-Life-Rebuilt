@@ -163,7 +163,7 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     { label: 'Return to dressing room', goto: ['bdsm_dressing', ''] },
     { label: 'Pay to extend your membership and return to the dressing room [+$func(\'money\', \'get_cost_string\', 10000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).bdsmclub['payday'] = ((s as any).daystart ?? 0);
       (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);

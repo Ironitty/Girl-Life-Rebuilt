@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $result += 'stylish/'
       // TODO-QSP: $result += 'noglass/'
     }
-    if (((s as any).pcs_eyecol ?? 0) === 0) {
+    if ((!((s as any).pcs_eyecol ?? 0))) {
       // TODO-QSP: $result += 'blue/'
     } else {
       // TODO-QSP: $result += 'blue/'
@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $result += 'blue/'
         // TODO-QSP: $result += 'blue/'
       }
-      if (((s as any).pcs_haircol ?? 0) === 0) {
+      if ((!((s as any).pcs_haircol ?? 0))) {
         // TODO-QSP: $result += 'black/'
       } else {
         // TODO-QSP: $result += 'brunette/'

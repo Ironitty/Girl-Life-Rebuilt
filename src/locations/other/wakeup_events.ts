@@ -12,7 +12,7 @@ function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_done'] < 10) {
-    if (((s as any).arrsize ?? 0)('sleep_events_priority') > 0) {
+    if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
       // TODO-QSP: xgt 'wakeup_events', 'event_handler2', 'priority'
     } else {
       // TODO-QSP: xgt 'wakeup_events', 'event_handler2'
@@ -34,7 +34,7 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrsize ?? 0)('sleep_events_priority') > 0) {
+  if (Object.keys((s as any).sleep_events_priority ?? {}).length > 0) {
     // TODO-QSP: xgt 'wakeup_events', 'event_handler2', 'priority'
   }
   // TODO-QSP: xgt 'wakeup_events', 'event_handler'
@@ -75,7 +75,7 @@ function enterMotherLaundry2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).vomit ?? 0)?.['hangover'] === 1  &&  Math.floor(Math.random() * 76) + 50 > ((s as any).trait_vars ?? 0)?.['drinking_exp']  ||  ((s as any).vomit ?? 0)?.['unlucky'] === 1  ||  ((s as any).vomit ?? 0)?.['morning_sick'] === 1) {
+  if (((s as any).vomit ?? 0)?.['hangover'] === 1  &&  (Math.floor(Math.random() * 76) + 50) > ((s as any).trait_vars ?? 0)?.['drinking_exp']  ||  ((s as any).vomit ?? 0)?.['unlucky'] === 1  ||  ((s as any).vomit ?? 0)?.['morning_sick'] === 1) {
     if (((s as any).loc ?? 0) === qspFunc(s, 'homes_properties_attr', 'get_property_attribute', '$bedroom')  &&  qspFunc(s, 'homes_properties', 'is_at_a_home')) {
       // TODO-QSP: $sleep_events[] = 'gs ''wakeup_events'', ''vomiting_event'' '
       return;

@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/diner/kafe.jpg');
     // TODO-QSP: dynamic text: After the dance, you sit down again at the table. The waitress brings the bill o...
     scene.text('After the dance, you sit down again at the table. The waitress brings the bill over. You take a look at the bill and are slightly stunned by the total. \' + $func(\'money\', \'string_price\', 5000) + \'! Stas takes the bill out of your hands and says, "Do not worry, I\'ll pay."');
-    if (((s as any).StasKafe ?? 0) === 0) {
+    if ((!((s as any).StasKafe ?? 0))) {
       scene.text('<center><b>Cafe</b></center>');
       scene.img('images/locations/city/residential/cafe/kafe.jpg');
       scene.text('You sit on a chair across the table from Stas. He waves over a waitress. When the waitress arrives, he orders champagne and fruit. The order is brought over to your table quickly. Stas pours champagne in glasses and hands you one. "A toast to friendship."');
@@ -155,7 +155,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No thank you, I\'ll pay [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 5000);
       qspCall(s, 'stat', '');
@@ -171,7 +171,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Invite him in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

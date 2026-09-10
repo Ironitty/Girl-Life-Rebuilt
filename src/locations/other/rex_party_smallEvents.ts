@@ -133,7 +133,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
                       } else {
                         qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', Math.floor(Math.random() * 6) + 17);
                         qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-                        if (Math.floor(Math.random() * 2) + 0 === 0) {
+                        if ((!(Math.floor(Math.random() * 2) + 0))) {
                           qspCall(s, 'cum_call', 'anus', 'unconscious rapist', 2);
                         } else {
                           qspCall(s, 'cum_call', '', '', 'unconscious rapist', 2);
@@ -141,14 +141,14 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', Math.floor(Math.random() * 6) + 17);
                         qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
                         (s as any).sexunaware = 1;
-                        if (Math.floor(Math.random() * 2) + 0 === 0) {
+                        if ((!(Math.floor(Math.random() * 2) + 0))) {
                           qspCall(s, 'cum_call', 'anus', 'unconscious rapist', 2);
                         } else {
                           qspCall(s, 'cum_call', '', '', 'unconscious rapist', 2);
                         }
                         qspCall(s, 'npcgeneratec', '', 0, 'unconscious rapist', Math.floor(Math.random() * 6) + 17);
                         qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-                        if (Math.floor(Math.random() * 2) + 0 === 0) {
+                        if ((!(Math.floor(Math.random() * 2) + 0))) {
                           qspCall(s, 'cum_call', 'anus', 'unconscious rapist', 2);
                         } else {
                           qspCall(s, 'cum_call', '', '', 'unconscious rapist', 2);
@@ -176,7 +176,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
     scene.text('She smiles at you. "It looks like you had fun tonight. How are you feeling?"');
     scene.text('You groan, feeling sick. Your head is pounding, you feel like you are about to throw up and you are sore in more places than you can remember. "Go away and let me sleep, sis"');
     scene.text('Anya shakes you again. "Get up you drunk idiot! Mom will kill us both if you don\'t come home tonight."');
-    if (((s as any).Rex_save ?? 0) === 1  &&  ((s as any).rex_love ?? 0) === 0) {
+    if (((s as any).Rex_save ?? 0) === 1  &&  (!((s as any).rex_love ?? 0))) {
       scene.text('As you leave the apartment, you gently kiss Rex on the cheek, thanking for the evening.');
     }
     if (((s as any).rex_love ?? 0) === 1) {
@@ -209,7 +209,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
                         scene.text('She smiles at you. "Well it looks like you had fun tonight. How are you feeling?"');
                         scene.text('You groan, feeling sick. Your head is pounding and you are sore in more places than you can remember. "Let me sleep sis! I feel so sick."');
                         scene.text('Anya shakes you again. "Get up you drunk idiot! Mom is going to kill us both since we haven\'t come home yet!"');
-                        if (((s as any).Rex_save ?? 0) === 1  &&  ((s as any).rex_love ?? 0) === 0) {
+                        if (((s as any).Rex_save ?? 0) === 1  &&  (!((s as any).rex_love ?? 0))) {
                           scene.text('As you leave the apartment, you gently kiss Rex on the cheek, thanking for the evening.');
                         }
                         if (((s as any).rex_love ?? 0) === 1) {

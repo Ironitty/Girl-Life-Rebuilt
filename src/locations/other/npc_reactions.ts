@@ -10,8 +10,8 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneral(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_reaction_first_time ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_tan'] === 1  &&  ((s as any).pcs_tan ?? 0) === 0) {
-    (s as any).npc_reaction_first_time['' + String((s as any).$ARGS[1] ?? '') + '_tan'] = 0;
+  if (((s as any).npc_reaction_first_time ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_tan'] === 1  &&  (!((s as any).pcs_tan ?? 0))) {
+    (s as any).npc_reaction_first_time['' + String((s as any).$ARGS[1] || '') + '_tan'] = 0;
   }
   if (qspFunc(s, 'pcs_has_attr', 'cum_face')  &&  ((s as any).npc_reaction_hourly ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '_cum_on_face'] === 0) {
   } else {

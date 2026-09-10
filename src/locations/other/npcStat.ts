@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).ARGS ?? 0)[0] > 0)  ||  ((s as any).locArgs?.[0] ?? 0) !== ''  &&  ((s as any).isnum ?? 0)(((s as any).locArgs?.[0] ?? 0))) {
-    (s as any).npclastcalledn = (((s as any).locArgs?.[0] ?? 0) !== ''  &&  ((s as any).isnum ?? 0)(((s as any).locArgs?.[0] ?? 0))) ? (qspUntranslated(s, "val(ARGS[0])", { location: "npcStat" })) : (qspUntranslated(s, "ARGS[0]", { location: "npcStat" }));
+    (s as any).npclastcalledn = ((((s as any).locArgs?.[0] ?? 0) !== ''  &&  ((s as any).isnum ?? 0)(((s as any).locArgs?.[0] ?? 0))) ? (qspUntranslated(s, "val(ARGS[0])", { location: "npcStat" })) : (qspUntranslated(s, "ARGS[0]", { location: "npcStat" })));
     (s as any).npcStatVars['tempID'] = '((s as any).A ?? 0)' + ((s as any).npclastcalledn ?? 0);
   } else {
     (s as any).npcStatVars['tempID'] = qspUntranslated(s, "ucase(ARGS[0])", { location: "npcStat" });
@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npcStatVars['rel_hotcat'] = ((s as any).npc_rel_hotcat ?? 0)?.[String((s as any).npclastcalled ?? 0)];
   } else {
     (s as any).npcStatVars['gender'] = 0;
-    if (((s as any).npclastcalledn ?? 0) === 0) {
+    if ((!((s as any).npclastcalledn ?? 0))) {
       (s as any).npcStatVars['name'] = 'a tiny sized';
       (s as any).npcStatVars['dick_length'] = 5;
       (s as any).npcStatVars['dick_girth'] = 8;
@@ -225,11 +225,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npcStatVars ?? 0)?.['haircol'] === 0) {
             (s as any).npcStatVars['hair'] = 'black';
           } else {
-            (s as any).npcStatVars['hair'] = (((s as any).npcStatVars ?? 0)?.['gender'] === 0) ? ('brown') : ('brunette');
+            (s as any).npcStatVars['hair'] = ((((s as any).npcStatVars ?? 0)?.['gender'] === 0) ? ('brown') : ('brunette'));
             if (((s as any).npcStatVars ?? 0)?.['haircol'] === 2) {
               (s as any).npcStatVars['hair'] = 'red';
             } else {
-              (s as any).npcStatVars['hair'] = (((s as any).npcStatVars ?? 0)?.['gender'] === 0) ? ('blond') : ('blonde');
+              (s as any).npcStatVars['hair'] = ((((s as any).npcStatVars ?? 0)?.['gender'] === 0) ? ('blond') : ('blonde'));
               (s as any).npcStatVars['hair'] = 'dyed';
             }
             if (((s as any).npcStatVars ?? 0)?.['eyecol'] === 0) {
@@ -244,11 +244,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               if (((s as any).npcStatVars ?? 0)?.['outfit'] === '') {
                 (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-                if (((s as any).temp_rand ?? 0) === 0) {
+                if ((!((s as any).temp_rand ?? 0))) {
                   (s as any).npcStatVars['outfit'] = 'a tracksuit';
                 } else {
                   (s as any).npcStatVars['outfit'] = 'jeans  &&  a ' + ((s as any).iif ?? 0)(((s as any).npcStatVars ?? 0)?.['gender'] === 0, 'sweater', 'blouse');
-                  (s as any).npcStatVars['outfit'] = '((s as any).an ?? 0) ((s as any).expensive ?? 0) ' + (((s as any).npcStatVars ?? 0)?.['gender'] === 0) ? ('suit') : ('dress');
+                  (s as any).npcStatVars['outfit'] = '((s as any).an ?? 0) ((s as any).expensive ?? 0) ' + ((((s as any).npcStatVars ?? 0)?.['gender'] === 0) ? ('suit') : ('dress'));
                 }
               }
               (s as any).temp_statVars['i_max'] = 0;
@@ -517,33 +517,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         // TODO-QSP: $personc<<npcStat_i>>      = $npcStatVars['personc']
                                                         // TODO-QSP: "
                                                       } else {
-                                                        (s as any).npcStat_i = (((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).isnum ?? 0)(((s as any).locArgs?.[1] ?? 0))) ? (qspUntranslated(s, "val(ARGS[1])", { location: "npcStat" })) : (qspUntranslated(s, "ARGS[1]", { location: "npcStat" }));
-                                                        (s as any).npcStatcalled[npcStat_i] = ((s as any).daystart ?? 0);
+                                                        (s as any).npcStat_i = ((((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).isnum ?? 0)(((s as any).locArgs?.[1] ?? 0))) ? (qspUntranslated(s, "val(ARGS[1])", { location: "npcStat" })) : (qspUntranslated(s, "ARGS[1]", { location: "npcStat" })));
+                                                        (s as any).npcStatcalled[String((s as any).npcStat_i ?? 0)] = ((s as any).daystart ?? 0);
                                                         // TODO-QSP: $npcID[npcStat_i]      = $npclastcalled
-                                                        (s as any).npcInanimate[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['inanimate'];
+                                                        (s as any).npcInanimate[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['inanimate'];
                                                         // TODO-QSP: $npcdesc[npcStat_i]      = $npcStatVars['name']
-                                                        (s as any).dick_length[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['dick_length'];
-                                                        (s as any).dick_width[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['dick_girth'];
-                                                        (s as any).npcSexskill[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['sexskill'];
-                                                        (s as any).npcSpermPot[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['spermpot'];
-                                                        (s as any).npcSpermVol[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['spermvol'];
+                                                        (s as any).dick_length[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['dick_length'];
+                                                        (s as any).dick_width[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['dick_girth'];
+                                                        (s as any).npcSexskill[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['sexskill'];
+                                                        (s as any).npcSpermPot[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['spermpot'];
+                                                        (s as any).npcSpermVol[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['spermvol'];
                                                         // TODO-QSP: $boy[npcStat_i]        = $npcID[npcStat_i]
                                                         // TODO-QSP: $boydesc[npcStat_i]      = $npcdesc[npcStat_i]
-                                                        (s as any).dick[npcStat_i] = ((s as any).dick_length ?? 0)?.[String((s as any).npcStat_i ?? 0)];
+                                                        (s as any).dick[String((s as any).npcStat_i ?? 0)] = ((s as any).dick_length ?? 0)?.[String((s as any).npcStat_i ?? 0)];
                                                         if (((s as any).npcSexskill ?? 0)?.[String((s as any).npcStat_i ?? 0)] > 2) {
-                                                          (s as any).silavag[npcStat_i] = ((s as any).max ?? 0)(0, ((s as any).min ?? 0)(((s as any).npcSexskill ?? 0)?.[String((s as any).npcStat_i ?? 0)] / 34, 2));
+                                                          (s as any).silavag[String((s as any).npcStat_i ?? 0)] = ((s as any).max ?? 0)(0, ((s as any).min ?? 0)(((s as any).npcSexskill ?? 0)?.[String((s as any).npcStat_i ?? 0)] / 34, 2));
                                                         } else {
-                                                          (s as any).silavag[npcStat_i] = ((s as any).npcSexskill ?? 0)?.[String((s as any).npcStat_i ?? 0)];
+                                                          (s as any).silavag[String((s as any).npcStat_i ?? 0)] = ((s as any).npcSexskill ?? 0)?.[String((s as any).npcStat_i ?? 0)];
                                                         }
                                                         // TODO-QSP: $dick_girth[npcStat_i]    = $npcStatVars['thdick']
                                                         // TODO-QSP: $dick_girth_pref[npcStat_i]  = $npcStatVars['thdick_pref']
                                                         // TODO-QSP: $dick_class[npcStat_i]    = $npcStatVars['dick_class']
                                                         // TODO-QSP: $dick_desc[npcStat_i]    = $npcStatVars['dick_desc']
                                                         // TODO-QSP: $dick_desc_pref[npcStat_i]  = $npcStatVars['dick_desc_pref']
-                                                        (s as any).npcAge[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['age'];
-                                                        (s as any).npcGender[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['gender'];
-                                                        (s as any).npcApprnc[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['apprnc'];
-                                                        (s as any).npcHotcat[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['hotcat'];
+                                                        (s as any).npcAge[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['age'];
+                                                        (s as any).npcGender[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['gender'];
+                                                        (s as any).npcApprnc[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['apprnc'];
+                                                        (s as any).npcHotcat[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['hotcat'];
                                                         // TODO-QSP: $npcHair[npcStat_i]      = $npcStatVars['hair']
                                                         // TODO-QSP: $npcEyes[npcStat_i]      = $npcStatVars['eyes']
                                                         // TODO-QSP: $npcClo[npcStat_i]      = $npcStatVars['outfit']
@@ -553,8 +553,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         // TODO-QSP: $npcBuild[npcStat_i]    = $npcStatVars['build_desc']
                                                         // TODO-QSP: $npcBuild_pref[npcStat_i]  = $npcStatVars['build_desc_pref']
                                                         // TODO-QSP: $npcRelat[npcStat_i]    = $npcStatVars['relat']
-                                                        (s as any).npcAttraction[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['attraction'];
-                                                        (s as any).npcRelHotcat[npcStat_i] = ((s as any).npcStatVars ?? 0)?.['rel_hotcat'];
+                                                        (s as any).npcAttraction[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['attraction'];
+                                                        (s as any).npcRelHotcat[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['rel_hotcat'];
                                                         // TODO-QSP: $npcLikes[npcStat_i]    = $npcStatVars['likes']
                                                         // TODO-QSP: $npcDislikes[npcStat_i]    = $npcStatVars['dislikes']
                                                         // TODO-QSP: $npcCondom[npcStat_i]    = $npcStatVars['condom']

@@ -37,7 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Sergey is standing at the kitchen counter. He\'s making soup, cutting up ingredients and throwing them into a large pan.');
     scene.text('You don\'t want to get in his way and sit down on a chair near the kitchen table, so you can have a chat with him while he keeps preparing the food.');
     (s as any).serge_textbk_rand = Math.floor(Math.random() * 5) + 0;
-    if (((s as any).serge_textbk_rand ?? 0) === 0) {
+    if ((!((s as any).serge_textbk_rand ?? 0))) {
     }
     if (((s as any).serge_textbk_rand ?? 0) === 1) {
     }
@@ -89,7 +89,7 @@ function enterKuhBuh(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/serge/serge1.jpg');
     scene.text('Sergey pours himself another glass and licks his lips, getting ready to tell a story. You sit down next to him, wondering what he\'s going to want to talk about today.');
     (s as any).remp_rand = Math.floor(Math.random() * 6) + 0;
-    if (((s as any).remp_rand ?? 0) === 0) {
+    if ((!((s as any).remp_rand ?? 0))) {
     }
     if (((s as any).remp_rand ?? 0) === 1) {
     }
@@ -129,7 +129,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Convince him to give you some [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -177,7 +177,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Quickly get away from him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -395,7 +395,7 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave him alone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -425,7 +425,7 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stop teasing Sergey [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

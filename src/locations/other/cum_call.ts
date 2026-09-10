@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).isnum ?? 0)(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) === 0) {
+  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).isnum ?? 0)(!(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))))) {
     if (((s as any).ARGS ?? 0)[2] !== 1) {
       qspCall(s, 'npcgeneratec', '', 0, ((s as any).locArgs?.[1] ?? 0), Math.floor(Math.random() * 43) + 18, 0, 1);
       // TODO-QSP: $ARGS[1] = $npclastgenerated
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
-  (s as any).sexpartkno = (((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0);
+  (s as any).sexpartkno = ((((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0));
   if (((s as any).ARGS ?? 0)[2] === 1) {
     (s as any).sexpartkno = 1;
   } else {
@@ -50,8 +50,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).sexcontra = 3;
         }
       }
-      (s as any).sexspecpot = (((s as any).ARGS ?? 0)[4] > 0) ? (qspUntranslated(s, "ARGS[4]", { location: "cum_call" })) : (((s as any).npcSpermPot ?? 0));
-      (s as any).sexvolume = (((s as any).ARGS ?? 0)[5] > 0) ? (qspUntranslated(s, "ARGS[5]", { location: "cum_call" })) : (0);
+      (s as any).sexspecpot = ((((s as any).ARGS ?? 0)[4] > 0) ? (qspUntranslated(s, "ARGS[4]", { location: "cum_call" })) : (((s as any).npcSpermPot ?? 0)));
+      (s as any).sexvolume = ((((s as any).ARGS ?? 0)[5] > 0) ? (qspUntranslated(s, "ARGS[5]", { location: "cum_call" })) : (0));
     }
   }
   scene.build();

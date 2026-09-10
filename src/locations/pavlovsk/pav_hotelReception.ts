@@ -16,7 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><h4>Hotel reception</h4></center>');
   scene.img('images/locations/pavlovsk/hotel/resep.girl0,\'+rand(0, 10)+\'.jpg');
-  if (((s as any).pavHotelMaid ?? 0) === 0) {
+  if ((!((s as any).pavHotelMaid ?? 0))) {
     scene.text('The same cute brunette as always is manning the reception desk. You wonder if she ever takes a break.');
   } else {
     // TODO-QSP: dynamic text: <<$receptionName>> is manning the reception desk yet again. You wonder if she ev...
@@ -101,7 +101,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Yes [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 5000, 'cash');
       (s as any).nichHotelReferral = 2;
@@ -130,7 +130,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Rent a room', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/resep.girl0,\'+rand(0, 10)+\'.jpg');
-    if (((s as any).pavHotelMaid ?? 0) === 0) {
+    if ((!((s as any).pavHotelMaid ?? 0))) {
       scene.text('The girl behind the desk smiles at you. "Hello miss! Would you like to rent a room?"');
     } else {
       // TODO-QSP: dynamic text: <<$receptionName>> smiles at you. "Hello <<$pcs_nickname>>! Would you like to re...

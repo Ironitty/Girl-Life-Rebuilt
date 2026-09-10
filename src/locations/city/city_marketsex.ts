@@ -21,7 +21,7 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     scene.text('Not wanting to be rude, you keep drinking. Once you start feeling tipsy, he pulls you in close and gives you a hug before he begins to fondle your breasts and squeeze your ass.');
     scene.actions([
       { label: 'Let him undress you', handler: (st: GameState) => {
-    if (((s as any).palevorin ?? 0) === 0) {
+    if ((!((s as any).palevorin ?? 0))) {
       (s as any).palevorin = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
@@ -57,7 +57,7 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Agree to gangbang [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -66,11 +66,11 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     (s as any).palevorin = 4;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (((s as any).abdulasex ?? 0) === 0) {
+    if ((!((s as any).abdulasex ?? 0))) {
       (s as any).abdulasex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).hasansex ?? 0) === 0) {
+    if ((!((s as any).hasansex ?? 0))) {
       (s as any).hasansex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
@@ -117,7 +117,7 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'Suck', handler: (st: GameState) => {
-    if (((s as any).palevorin ?? 0) === 0) {
+    if ((!((s as any).palevorin ?? 0))) {
       (s as any).palevorin = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
@@ -150,7 +150,7 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Agree to suck them as well [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -159,11 +159,11 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     (s as any).palevorin = 4;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    if (((s as any).abdulasex ?? 0) === 0) {
+    if ((!((s as any).abdulasex ?? 0))) {
       (s as any).abdulasex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    if (((s as any).hasansex ?? 0) === 0) {
+    if ((!((s as any).hasansex ?? 0))) {
       (s as any).hasansex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
@@ -270,7 +270,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).rand_act = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).rand_act ?? 0) === 0) {
+    if ((!((s as any).rand_act ?? 0))) {
       (s as any).spafinloc = 12;
       qspCall(s, 'cum_manage', '');
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);

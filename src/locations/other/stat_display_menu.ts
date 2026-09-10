@@ -9,7 +9,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p $func('stat_display_menu', 'general_options')
   (s as any).temp_ls_i = 0;
   // TODO-QSP: :loop_sections
-  if (((s as any).temp_ls_i ?? 0) < ((s as any).arrsize ?? 0)('stat_order')) {
+  if (((s as any).temp_ls_i ?? 0) < Object.keys((s as any).stat_order ?? {}).length) {
     // TODO-QSP: *p $func('stat_display_menu', 'section_table', temp_ls_i)
     (s as any).temp_ls_i = ((s as any).temp_ls_i ?? 0) + (1);
     // TODO-QSP: jump 'loop_sections'
@@ -60,24 +60,24 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
     (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
   }
   if (((s as any).rco ?? 0)?.['entry_val'] === 'custom') {
-    (s as any).rco['label'] = '((s as any).Custom ?? 0): ' + $((s as any).rco ?? 0)?.['cur_str'];
+    (s as any).rco['label'] = '((s as any).Custom ?? 0): ' + ((s as any).rco ?? 0)?.['cur_str'];
   } else {
     (s as any).rco['label'] = ((s as any).rco ?? 0)?.['entry_lbl'];
   }
-  (s as any).rco['action_left'] = (((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_left[0]", { location: "stat_display_menu" }));
-  (s as any).rco['action_right'] = (((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_right[0]", { location: "stat_display_menu" }));
+  (s as any).rco['action_left'] = ((((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_left[0]", { location: "stat_display_menu" })));
+  (s as any).rco['action_right'] = ((((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_right[0]", { location: "stat_display_menu" })));
   if (((s as any).rco ?? 0)?.['action_left'] === ''  ||  ((s as any).rco ?? 0)?.['action_right'] === '') {
     (s as any).rco['idx_prev'] = (((s as any).rco ?? 0)?.['idx'] - 1 + ((s as any).rco ?? 0)?.['size']) % ((s as any).rco ?? 0)?.['size'];
     (s as any).rco['idx_next'] = (((s as any).rco ?? 0)?.['idx'] + 1) % ((s as any).rco ?? 0)?.['size'];
     (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_prev']], '|')", { location: "stat_display_menu" });
-    (s as any).rco['prev_val'] = (((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" }));
+    (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
     (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_next']], '|')", { location: "stat_display_menu" });
-    (s as any).rco['next_val'] = (((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" }));
+    (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? 0)?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
     if (((s as any).rco ?? 0)?.['action_left'] === '') {
-      (s as any).rco['action_left'] = (parseFloat(qspUntranslated(s, "\u00000\u0000", { location: "stat_display_menu" })) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + $((s as any).rco ?? 0)?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = ' + $((s as any).rco ?? 0)?.['prev_val'] + '');
+      (s as any).rco['action_left'] = ((parseFloat(qspUntranslated(s, "\u00000\u0000", { location: "stat_display_menu" })) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['prev_val'] + ''));
     }
     if (((s as any).rco ?? 0)?.['action_right'] === '') {
-      (s as any).rco['action_right'] = (parseFloat(qspUntranslated(s, "\u00000\u0000", { location: "stat_display_menu" })) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + $((s as any).rco ?? 0)?.['next_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = ' + $((s as any).rco ?? 0)?.['next_val'] + '');
+      (s as any).rco['action_right'] = ((parseFloat(qspUntranslated(s, "\u00000\u0000", { location: "stat_display_menu" })) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['next_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? 0)?.['next_val'] + ''));
     }
   }
   // TODO-QSP: $result +=    '<tr>'
@@ -148,7 +148,7 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_st_icon['hide'] = 'images/system/ui/\' + iif(stat_hide[$temp_st_key] = 1, \'hide_\', \'show_\') + $temp_st_icon_color + \'.png';
   (s as any).temp_st_icon['expand'] = 'images/system/ui/\' + iif(stat_collapse[$temp_st_key] = 0, \'expand_\', \'collapse_\') + $temp_st_icon_color + \'.png';
   (s as any).temp_st_align_val = ((s as any).stat_cfg ?? 0)?.['((s as any).align_ ?? 0)' + ((s as any).temp_st_key ?? 0)];
-  if (((s as any).temp_st_align_val ?? 0) === 0) {
+  if ((!((s as any).temp_st_align_val ?? 0))) {
     (s as any).temp_st_align_eff = ((s as any).stat_cfg ?? 0)?.['global_align'];
   } else {
     (s as any).temp_st_align_eff = ((s as any).temp_st_align_val ?? 0) - 1;
@@ -160,13 +160,13 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_st_align_label[0] = 'Left'
   // TODO-QSP: $temp_st_align_label[1] = 'Center'
   // TODO-QSP: $temp_st_align_label[2] = 'Right'
-  if (((s as any).temp_st_align_val ?? 0) === 0) {
+  if ((!((s as any).temp_st_align_val ?? 0))) {
     (s as any).temp_st_title['align'] = 'Global Alignment (\' + $temp_st_align_label[temp_st_align_eff] + \') — click to set explicitly';
   } else {
     (s as any).temp_st_title['align'] = 'Aligned \' + $temp_st_align_label[temp_st_align_eff] + \' — click to cycle';
   }
-  (s as any).temp_st_title['hide'] = (((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('Show Section') : ('Hide Section');
-  (s as any).temp_st_title['expand'] = (((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('Collapse Options') : ('Expand Options');
+  (s as any).temp_st_title['hide'] = ((((s as any).stat_hide ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 1) ? ('Show Section') : ('Hide Section'));
+  (s as any).temp_st_title['expand'] = ((((s as any).stat_collapse ?? 0)?.[String((s as any).temp_st_key ?? 0)] === 0) ? ('Collapse Options') : ('Expand Options'));
   (s as any).temp_st_td['icon'] = '<td align="center" width="1%" style="text-align:center; padding:3px;">';
   (s as any).temp_st_td['spacer'] = '<td align="center" width="1%" style="text-align:center; padding:3px;"><span style="display:inline-block; padding:2px; line-height:0; border:1px solid transparent; border-radius:6px;"><img height="32" src="<<$temp_st_icon[\'raise\']>>" style="visibility:hidden"></span></td>';
   (s as any).temp_st_td['cell'] = '<td align="center" valign="middle" bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:1px solid <<$theme_hex[\'goth\']>>; background-color: <<$theme_hex[\'table_bg_alt\']>>; padding:3px; text-align:center; vertical-align:middle;">';
@@ -545,7 +545,7 @@ function enterRelationsOptions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
-  (s as any).ro['c'] = (((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b');
+  (s as any).ro['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
   (s as any).ro['up'] = 'images/system/ui/angle_up_\'   + $ro[\'c\'] + \'.png';
   (s as any).ro['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
   (s as any).ro['bdr'] = '1px solid <<$theme_hex[\'goth\']>>';
@@ -563,7 +563,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).ro['hidden'] = 0;
   (s as any).ro['hide_icon'] = 'images/system/ui/\' + iif(ro[\'hidden\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
-  (s as any).ro['label'] = (((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'key\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']]);
+  (s as any).ro['label'] = ((((s as any).ro ?? 0)?.['hidden'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'key\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['key']]));
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:5px 6px;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -588,7 +588,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
-  (s as any).ro['c'] = (((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b');
+  (s as any).ro['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
   (s as any).ro['up'] = 'images/system/ui/angle_up_\'   + $ro[\'c\'] + \'.png';
   (s as any).ro['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
   (s as any).ro['bdr'] = '1px solid <<$theme_hex[\'goth\']>>';
@@ -599,10 +599,10 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_rns_gloop
   (s as any).ro['gkey'] = qspUntranslated(s, "skill_group_order[ro['gi']]", { location: "stat_display_menu" });
   (s as any).ro['ghid'] = ((s as any).stat_hide ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['((s as any).show_skills_ ?? 0)' + $((s as any).ro ?? 0)?.['gkey']];
+  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['((s as any).show_skills_ ?? 0)' + ((s as any).ro ?? 0)?.['gkey']];
   (s as any).ro['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   (s as any).ro['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
-  (s as any).ro['glbl'] = (((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>');
+  (s as any).ro['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -621,13 +621,13 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     (s as any).ro['mi'] = 0;
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rns_mloop
-    (s as any).ro['mkey'] = ((s as any).skill_grp ?? 0)?.[$((s as any).ro ?? 0)?.['gkey'] + '((s as any)._ ?? 0)' + String(((s as any).ro ?? 0)?.['mi'])];
+    (s as any).ro['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '((s as any)._ ?? 0)' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rns_mdone'
     }
     (s as any).ro['mhid'] = ((s as any).stat_hide_skill ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
     (s as any).ro['mhi_ic'] = 'images/system/ui/\' + iif(ro[\'mhid\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
-    (s as any).ro['mlbl'] = (((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'mkey\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]);
+    (s as any).ro['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $sd_dn[$ro[\'mkey\']] + \'</font>') : (((s as any).sd_dn ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]));
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg_alt\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg_alt\']>>; padding:4px 6px;">');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -648,7 +648,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td></tr>');
   (s as any).ro['gi'] = ((s as any).ro['gi'] ?? 0) + (1);
-  if (((s as any).ro ?? 0)?.['gi'] < ((s as any).arrsize ?? 0)('skill_group_order')) {
+  if (((s as any).ro ?? 0)?.['gi'] < Object.keys((s as any).skill_group_order ?? {}).length) {
     // TODO-QSP: jump '_rns_gloop'
   }
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');
@@ -657,7 +657,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
-  (s as any).ro['c'] = (((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b');
+  (s as any).ro['c'] = ((((s as any).theme ?? 0)?.['is_dark'] === 1) ? ('w') : ('b'));
   (s as any).ro['up'] = 'images/system/ui/angle_up_\'   + $ro[\'c\'] + \'.png';
   (s as any).ro['down'] = 'images/system/ui/angle_down_\' + $ro[\'c\'] + \'.png';
   (s as any).ro['bdr'] = '1px solid <<$theme_hex[\'goth\']>>';
@@ -668,10 +668,10 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_rnr_gloop
   (s as any).ro['gkey'] = qspUntranslated(s, "rel_group_order[ro['gi']]", { location: "stat_display_menu" });
   (s as any).ro['ghid'] = ((s as any).stat_hide_rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['((s as any).show_rels_ ?? 0)' + $((s as any).ro ?? 0)?.['gkey']];
+  (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['((s as any).show_rels_ ?? 0)' + ((s as any).ro ?? 0)?.['gkey']];
   (s as any).ro['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   (s as any).ro['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
-  (s as any).ro['glbl'] = (((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>');
+  (s as any).ro['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td bgcolor="<<$theme_hex[\'table_bg\']>>" style="border:<<$ro[\'bdr\']>>; background-color:<<$theme_hex[\'table_bg\']>>; padding:5px 6px;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="vertical-align:middle;">');
   (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 3px 0 0;">');
@@ -699,13 +699,13 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     (s as any).ro['nm'] = ((s as any).stat_cfg ?? 0)?.['rel_name_mode'];
     (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rnr_mloop
-    (s as any).ro['mkey'] = ((s as any).rel_grp ?? 0)?.[$((s as any).ro ?? 0)?.['gkey'] + '((s as any)._ ?? 0)' + String(((s as any).ro ?? 0)?.['mi'])];
+    (s as any).ro['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '((s as any)._ ?? 0)' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rnr_mdone'
     }
     (s as any).ro['mhid'] = ((s as any).stat_hide_rel ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
     (s as any).ro['mhi_ic'] = 'images/system/ui/\' + iif(ro[\'mhid\'] = 1, \'hide_\', \'show_\') + $ro[\'c\'] + \'.png';
-    (s as any).ro['eff_nm'] = (((s as any).ro ?? 0)?.['mkey'] !== ''  &&  ((s as any).sd_rel_name_override ?? 0)[((s as any).ro ?? 0)?.['mkey']] > 0) ? (((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]) : (((s as any).ro ?? 0)?.['nm']);
+    (s as any).ro['eff_nm'] = ((((s as any).ro ?? 0)?.['mkey'] !== ''  &&  ((s as any).sd_rel_name_override ?? 0)[((s as any).ro ?? 0)?.['mkey']] > 0) ? (((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']]) : (((s as any).ro ?? 0)?.['nm']));
     if (((s as any).ro ?? 0)?.['eff_nm'] === 1) {
       (s as any).ro['mname'] = ((s as any).npc_firstname ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
     } else {
@@ -736,7 +736,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
       if (((s as any).ro ?? 0)?.['mname'] === '') {
         (s as any).ro['mname'] = ((s as any).ro ?? 0)?.['mkey'];
       }
-      (s as any).ro['mlbl'] = (((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $ro[\'mname\'] + \'</font>') : (((s as any).ro ?? 0)?.['mname']);
+      (s as any).ro['mlbl'] = ((((s as any).ro ?? 0)?.['mhid'] === 1) ? ('<font color="gray">\' + $ro[\'mname\'] + \'</font>') : (((s as any).ro ?? 0)?.['mname']));
       (s as any).ro['nmo'] = ((s as any).sd_rel_name_override ?? 0)?.[((s as any).ro ?? 0)?.['mkey']];
       if (((s as any).ro ?? 0)?.['nmo'] === 1) {
         (s as any).ro['nmo_ic'] = 'images/system/ui/name_first_\'    + $ro[\'c\'] + \'.png';
@@ -768,7 +768,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</td></tr>');
       (s as any).ro['gi'] = ((s as any).ro['gi'] ?? 0) + (1);
-      if (((s as any).ro ?? 0)?.['gi'] < ((s as any).arrsize ?? 0)('rel_group_order')) {
+      if (((s as any).ro ?? 0)?.['gi'] < Object.keys((s as any).rel_group_order ?? {}).length) {
         // TODO-QSP: jump '_rnr_gloop'
       }
       (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');

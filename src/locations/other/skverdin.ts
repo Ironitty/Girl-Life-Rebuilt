@@ -26,8 +26,8 @@ function enterDPpHand(s: GameState, scene: SceneBuilder): void {
   scene.text(`You clasp your fingers around his erect ${((s as any).dick ?? 0)}cm cock and pull back the foreskin to reveal the purple head, then start to slowly move your hand back and forth.`);
   qspCall(s, 'arousal', 'hj', 2, 'sub');
   qspCall(s, 'stat', '');
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
-    if (Math.floor(Math.random() * 5) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> takes you by the shoulders and pushes down, trying to force you to ...
       scene.text(`${((s as any).boydesc ?? 0)} takes you by the shoulders and pushes down, trying to force you to kneel.`);
     } else {
@@ -44,7 +44,7 @@ function enterDPpHand(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Give him a handjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -67,7 +67,7 @@ function enterDPpHjcum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/pphjcum.jpg');
   // TODO-QSP: *p 'You speed up your movements and tighten your grip, continuing to stroke his cock until he reache...
-  if (Math.floor(Math.random() * 100) + 0 < 20) {
+  if ((Math.floor(Math.random() * 100) + 0) < 20) {
     qspCall(s, 'cum_call', 'clothes', ((s as any).npcID ?? 0));
   }
   scene.actions([

@@ -439,7 +439,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvent2(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).nanny_cleaning ?? 0) === 0  ||  ((s as any).nanny_food ?? 0) === 0) {
+  if (((s as any).nanny_cleaning ?? 0) === 0  ||  (!((s as any).nanny_food ?? 0))) {
     // TODO-QSP: exit
   }
   if (((s as any).MishaLove ?? 0) === 1) {
@@ -452,12 +452,12 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
         { label: 'I am finished', goto: ['buklinik_event', 'event2_nanny_act1'] },
       ]);
     } else {
-      if (((s as any).nanny_act ?? 0) === 3  &&  ((s as any).nanny_vika ?? 0) === 0) {
+      if (((s as any).nanny_act ?? 0) === 3  &&  (!((s as any).nanny_vika ?? 0))) {
         scene.actions([
           { label: 'About your request', goto: ['buklinik_event', 'event2_nanny_act3'] },
         ]);
       } else {
-        if (((s as any).nanny_act ?? 0) === 5  &&  ((s as any).nanny_vika ?? 0) === 0) {
+        if (((s as any).nanny_act ?? 0) === 5  &&  (!((s as any).nanny_vika ?? 0))) {
           scene.actions([
             { label: 'So let\'s start', goto: ['buklinik_event', 'event2_nanny_act5'] },
           ]);

@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('A dirt road leading to the outskirts of Gadukino. You are surrounded by grainfields where the grains appear, reaching all the way to the heavens.');
   // TODO-QSP: dynamic text: The forest ' + iif(gad_meadow_found = 1, 'and meadow ', ') + 'can be found furth...
   scene.text('The forest \' + iif(gad_meadow_found = 1, \'and meadow \', \') + \'can be found further down the road, away from the village.');
-  if (Math.floor(Math.random() * 10) + 0 === 0  &&  ((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 20  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 11  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] > 2)) {
+  if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).GadBoy ?? 0)?.['first_drink'] > 0  &&  ((s as any).GadBoy ?? 0)?.['mitka_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 20  &&  (((s as any).npc_QW ?? 0)?.['A63'] < 11  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] > 2)) {
     scene.text('<a href="exec:gt \'mitka\'">Mitka</a> is smoking near the road, he smiles at you as you walk by.');
   } else {
     scene.text('<a href="exec:gt \'gad_road\', \'drinking_invite\'">Mitka, Kolyamba, and Vasyan</a> are walking down the road towards the woods, drinking moonshine and talking loudly.');
@@ -42,7 +42,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 22) {
-      if (((s as any).PSport ?? 0) === 0) {
+      if ((!((s as any).PSport ?? 0))) {
         scene.text('You could go for a run here if you were wearing sports clothes and shoes.');
       } else {
         if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {

@@ -188,7 +188,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
     scene.actions([
       { label: 'I have a boyfriend', handler: (st: GameState) => {
-    (s as any).npc_know_boyfriend[$npcID] = 1;
+    (s as any).npc_know_boyfriend[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
     // TODO-QSP: dynamic text: "I have a boyfriend," you say, giving him a look as you're <<$sex_ev['dress_desc...
     scene.text(`"I have a boyfriend," you say, giving him a look as you're ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
@@ -248,7 +248,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_girlfriends ?? 0) > 0) {
     scene.actions([
       { label: 'I have a girlfriend', handler: (st: GameState) => {
-    (s as any).npc_know_girlfriend[$npcID] = 1;
+    (s as any).npc_know_girlfriend[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_leave', 'dress_loop');
     // TODO-QSP: dynamic text: "I have a girlfriend," you say, giving him a look as you're <<$sex_ev['dress_des...
     scene.text(`"I have a girlfriend," you say, giving him a look as you're ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);

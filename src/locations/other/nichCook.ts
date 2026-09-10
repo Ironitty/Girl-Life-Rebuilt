@@ -6,10 +6,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jegor/cook.jpg');
-  if (((s as any).nichKnowsCook ?? 0) === 0) {
+  if ((!((s as any).nichKnowsCook ?? 0))) {
     scene.text('The cook looks pretty old. You guess that he is at least in his late 60s.');
     scene.text('When he notices you he looks up from his work.');
-    if (((s as any).nichOutfitState ?? 0) === 0) {
+    if ((!((s as any).nichOutfitState ?? 0))) {
       scene.text('"Hello. My name is Jegor. And who might you be?" Before you have the chance to reply he laughs out. "Just kidding. I know you are the new maid. Didn\'t anybody tell you to wear your uniform around here? It\'s something that\'s important to Master Nicholas. Anyways, I think I didn\'t catch your name."');
     } else {
       scene.text('"Hello. You must be the new maid I heard about. My name is Jegor."');
@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).nichOutfitState ?? 0) === 0) {
+    if ((!((s as any).nichOutfitState ?? 0))) {
       // TODO-QSP: dynamic text: Jegor is busy preparing some meals. When he notices you he smiles at you. "Nice ...
       scene.text(`Jegor is busy preparing some meals. When he notices you he smiles at you. "Nice to see you, ${((s as any).pcs_nickname ?? 0)}. Did you get fired? Or did you just forget to put your uniform on?" He winks at you before continuing his work.`);
     } else {

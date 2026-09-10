@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
-        if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).VitekVsNiko ?? 0) === 0) {
+        if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).kotovLoveQW ?? 0) > 0  &&  (!((s as any).VitekVsNiko ?? 0))) {
           // TODO-QSP: act 'Tell him what Niko did to you': gt 'NikoPayback', 'Vitek Help 2'
         }
         scene.actions([
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -76,7 +76,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).kotovQW = ((s as any).kotovQW ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.text('You go to the dance floor and started dancing with Vitek, he pawed at your ass with his strong hands.');
-    if (((s as any).kotovLoveQW ?? 0) === 0) {
+    if ((!((s as any).kotovLoveQW ?? 0))) {
       if (((s as any).kotovQW ?? 0) < 5  ||  ((s as any).npc_rel ?? 0)?.['A9'] === 0) {
         scene.actions([
           { label: 'Move away', handler: (st: GameState) => {
@@ -120,7 +120,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -162,7 +162,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Argue that it\'s not true [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -194,7 +194,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -234,7 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Accuse him of sleeping around', handler: (st: GameState) => {
-    (s as any).npc_rel[$static_num] = 0;
+    (s as any).npc_rel[String((s as any).static_num ?? 0)] = 0;
     (s as any).kotovLoveQW = (-1);
     qspCall(s, 'stat', '');
     scene.text('You started yelling at Vitek that he has fucked other girls. Vitek started yelling at you and suddenly, there is a ringing in your head, your vision is blurry. You find you\'re on the floor, with Vitek standing over you. Your cheek burns with pain, it takes you a few moments to understand what happened, it seems he slapped you, so hard it knocked you off your feet. "Stay away from me you fucking whore, it\'s over between us!"');

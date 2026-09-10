@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).placerParameter['want_to_meet'] = 0;
-  if (Math.floor(Math.random() * 151) + 0 < ((s as any).pcs_apprnc ?? 0)  &&  (Math.floor(Math.random() * 11) + 0 > 2  ||  ((s as any).placerParameter ?? 0)?.['friend_index'] === 14)) {
+  if ((Math.floor(Math.random() * 151) + 0) < ((s as any).pcs_apprnc ?? 0)  &&  ((Math.floor(Math.random() * 11) + 0) > 2  ||  ((s as any).placerParameter ?? 0)?.['friend_index'] === 14)) {
     (s as any).placerParameter['want_to_meet'] = 1;
     if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
       (s as any).placerStringParameter['text_someone'] = 'guy';
@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             (s as any).knowrand = Math.floor(Math.random() * 5) + 0;
           }
-          if (((s as any).knowrand ?? 0) === 0) {
+          if ((!((s as any).knowrand ?? 0))) {
             (s as any).placerParameter['know_slut'] = 1;
           }
         }
@@ -43,9 +43,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).placerParameter['slut_visual'] = ((s as any).placerParameter['slut_visual'] ?? 0) + (1);
           }
           if (((s as any).placerParameter ?? 0)?.['recognize_status'] === 2) {
-            if (Math.floor(Math.random() * 2) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
             }
-            if (Math.floor(Math.random() * 2) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
             }
           }
           (s as any).placerStringParameter['text_start_meet'] = '<<$txt_a>> <<$txt_b>>';
@@ -71,7 +71,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
           (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
-          if (((s as any).temp_rand ?? 0) === 0) {
+          if ((!((s as any).temp_rand ?? 0))) {
             (s as any).placerStringParameter['text_start_meet'] = 'Nice clothes, slut!';
           } else {
             (s as any).placerStringParameter['text_start_meet'] = 'Hey, slut!';
@@ -86,7 +86,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               (s as any).placerStringParameter['text_start_meet'] = ((s as any).placerStringParameter['text_start_meet'] ?? 0) + (' ');
               (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
-              if (((s as any).temp_rand ?? 0) === 0) {
+              if ((!((s as any).temp_rand ?? 0))) {
                 (s as any).placerStringParameter['text_start_meet'] = ((s as any).placerStringParameter['text_start_meet'] ?? 0) + ('How much for a blowjob?');
               } else {
                 (s as any).placerStringParameter['text_start_meet'] = ((s as any).placerStringParameter['text_start_meet'] ?? 0) + ('Didn\'t I see you at the brothel the other day?');

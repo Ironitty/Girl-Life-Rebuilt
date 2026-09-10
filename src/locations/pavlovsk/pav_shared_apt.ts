@@ -41,9 +41,9 @@ function enterUpdate(s: GameState, scene: SceneBuilder): void {
   (s as any).Yakov['comes'] = 16;
   (s as any).Yakov['sleeps'] = 22;
   (s as any).Yakov['wakes'] = 5;
-  (s as any).Oleg['mood_txt'] = (((s as any).Oleg ?? 0)?.['mood'] === 1) ? ('great') : ('');
-  (s as any).Nestor['mood_txt'] = (((s as any).Nestor ?? 0)?.['mood'] === 1) ? ('great') : ('');
-  (s as any).Yakov['mood_txt'] = (((s as any).Yakov ?? 0)?.['mood'] === 1) ? ('great') : ('');
+  (s as any).Oleg['mood_txt'] = ((((s as any).Oleg ?? 0)?.['mood'] === 1) ? ('great') : (''));
+  (s as any).Nestor['mood_txt'] = ((((s as any).Nestor ?? 0)?.['mood'] === 1) ? ('great') : (''));
+  (s as any).Yakov['mood_txt'] = ((((s as any).Yakov ?? 0)?.['mood'] === 1) ? ('great') : (''));
   if (((s as any).shared_apt ?? 0)?.['childWarning'] === 1  &&  ((s as any).shared_apt ?? 0)?.['childWarningDay'] === 0) {
     (s as any).shared_apt['childWarningDay'] = ((s as any).daystart ?? 0);
   }
@@ -200,7 +200,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['food_basic'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] === 0  ||  ((s as any).edahot ?? 0) > 0) {
     }
-    if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  ((s as any).edahot ?? 0) === 0) {
+    if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
     }
     // TODO-QSP: dynamic text: In the refrigerator there's enough (your own) food for <b><<mc_inventory['food_b...
     scene.text(`In the refrigerator there's enough (your own) food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> servings. ${((s as any).edagot ?? 0)}`);
@@ -225,7 +225,7 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'pav_shared_apt', 'update');
   qspCall(s, 'music_actions', 'clear_restrictions');
-  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  ((s as any).tobiQW ?? 0) === 0) {
+  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
   }
   scene.text('<center><b>Living Room</b></center>');

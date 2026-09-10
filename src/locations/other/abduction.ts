@@ -121,14 +121,14 @@ function enterAbdSomeoneComing(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_leghair = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   }
-  if (((s as any).broken ?? 0) === 0  &&  ((s as any).rapeCount ?? 0) === 0  &&  ((s as any).tortureCount ?? 0) === 0  &&  ((s as any).examed ?? 0) === 0) {
+  if (((s as any).broken ?? 0) === 0  &&  ((s as any).rapeCount ?? 0) === 0  &&  ((s as any).tortureCount ?? 0) === 0  &&  (!((s as any).examed ?? 0))) {
     scene.text('The man comes up to you. He grabs your chain and forcibly wraps a blindfold around your head to cover your eyes.');
     scene.text('He leads you up the stairs as you feel a breath of fresh air that sensually caresses your bare skin.');
     scene.actions([
       { label: 'Continue', goto: ['abduction', 'abdExamStart'] },
     ]);
   } else {
-    if (((s as any).broken ?? 0) === 0) {
+    if ((!((s as any).broken ?? 0))) {
       scene.text('You fearfully back away from the man and curl up against the wall, your body trembling in fear of what\'s going to happen next.');
       if (((s as any).rapeCount ?? 0) >= 5) {
         // TODO-QSP: act 'Plead that you can''t take any more': gt 'abduction', 'abdBreak1'
@@ -194,7 +194,7 @@ function enterAbdExamStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -323,7 +323,7 @@ function enterAbdBreak1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Spit in his face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -368,7 +368,7 @@ function enterAbdBrokenGivePainkiller(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse and keep your mouth shut [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

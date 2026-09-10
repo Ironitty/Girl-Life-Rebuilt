@@ -322,7 +322,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -471,7 +471,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -764,7 +764,7 @@ function enterStraponCrossdress(s: GameState, scene: SceneBuilder): void {
         scene.text('You grin at him as you stand up, stroking the strap-on like it was a real dick. "Well get on your knees then, bitch!"');
         scene.text('He blushes as he gets down on his knees in front of you.');
         scene.text('"Come and suck my dick, baby," you tell him with a grin. Now would be an ideal time to cast Penis Envy.');
-        if (((s as any).penisEnvyVariable ?? 0) === 0) {
+        if ((!((s as any).penisEnvyVariable ?? 0))) {
           scene.actions([
             { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -824,7 +824,7 @@ function enterStraponCrossdress(s: GameState, scene: SceneBuilder): void {
       scene.text('He eagerly gets down on his knees in front of you.');
       if (((s as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
         scene.text('"Come and suck my dick, baby," you tell him with a grin. Now would be an ideal time to cast Penis Envy.');
-        if (((s as any).penisEnvyVariable ?? 0) === 0) {
+        if ((!((s as any).penisEnvyVariable ?? 0))) {
           scene.actions([
             { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -938,7 +938,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1127,7 +1127,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1351,7 +1351,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1542,7 +1542,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take it like a bitch [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

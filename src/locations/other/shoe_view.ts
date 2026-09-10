@@ -303,7 +303,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add') {
     // TODO-QSP: gs 'shoe_attributes', $ARGS[2], ARGS[3]
-    if (((s as any).ShoQuality ?? 0) === 0) {
+    if ((!((s as any).ShoQuality ?? 0))) {
       // TODO-QSP: exit
     }
     // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]

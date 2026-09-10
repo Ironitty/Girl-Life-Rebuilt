@@ -11,11 +11,11 @@ function enterGetMetroImage(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).workDisk ?? 0) === 3  &&  ((s as any).konvert ?? 0) === 1) {
-    if (Math.floor(Math.random() * 101) + 0 >= 80) {
+    if ((Math.floor(Math.random() * 101) + 0) >= 80) {
       (s as any).konvert = 0;
     }
   }
-  if (((s as any).pusher ?? 0) === 1  &&  ((s as any).dealer ?? 0) === 0) {
+  if (((s as any).pusher ?? 0) === 1  &&  (!((s as any).dealer ?? 0))) {
     scene.text('You see a tall, emaciated man leaning against the wall next to the tracks, looking very shady. He notices you looking and beckons you to come closer.');
     scene.actions([
       { label: 'Talk to the man', goto: ['metro', 'dealer'] },

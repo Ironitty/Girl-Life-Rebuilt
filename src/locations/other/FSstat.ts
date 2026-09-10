@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).FScolor = 5;
   }
-  if (((s as any).FScolor ?? 0) === 0) {
+  if ((!((s as any).FScolor ?? 0))) {
     (s as any).FScolor['text'] = 'Black hair';
     (s as any).FSsherst['text'] = 'Black';
   } else {
@@ -122,7 +122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).FStits ?? 0) <= 0) {
                         (s as any).FStits['text'] = '';
                       } else {
-                        if (((s as any).FStitsLine ?? 0) === 0) {
+                        if ((!((s as any).FStitsLine ?? 0))) {
                           (s as any).FStits['text'] = 'Female breast <<$FStitrazm[\'text\']>>';
                         } else {
                           (s as any).FStits['text'] = 'Two pairs of women\'s breasts <<$FStitrazm[\'text\']>>';
@@ -152,7 +152,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).FShour ?? 0) >= 24) {
                           (s as any).FShour = ((s as any).FShour ?? 0) - (24);
                           (s as any).FSday = ((s as any).FSday ?? 0) + (1);
-                          if (((s as any).FSsup ?? 0) === 0) {
+                          if ((!((s as any).FSsup ?? 0))) {
                             (s as any).FSHP = ((s as any).FSHP ?? 0) - (10);
                           } else {
                             (s as any).FSsup = ((s as any).FSsup ?? 0) - (1);

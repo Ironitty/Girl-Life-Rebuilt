@@ -52,7 +52,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('Looking out over the frozen lake, you see a figure in the distance figure skating and doing all types of crazy moves. Stepping onto the ice and skating out, you notice that it\'s <a href="exec:gt \'gschool_socialchg1\', \'tVeronika\'">Veronika</a>.');
       }
     }
-    if (((s as any).konki_cloth ?? 0) === 1  ||  ((s as any).pcs_ski_worn ?? 0) === 0) {
+    if (((s as any).konki_cloth ?? 0) === 1  ||  (!((s as any).pcs_ski_worn ?? 0))) {
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
         if (((s as any).temper ?? 0) >= 20  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 15  &&  ((((s as any).kanikuli ?? 0) === 0  &&  ((s as any).week ?? 0) === 7)  ||  (((s as any).kanikuli ?? 0) > 0  &&  ((s as any).week ?? 0) % 2 === 0))) {
           if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -102,7 +102,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Return', goto: ['pav_lake', ''] },
       ]);
     }
-    if (((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10  &&  ((s as any).konki_cloth ?? 0) === 0  &&  ((s as any).pcs_ski_worn ?? 0) === 0) {
+    if (((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10  &&  ((s as any).konki_cloth ?? 0) === 0  &&  (!((s as any).pcs_ski_worn ?? 0))) {
       if (qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
         scene.actions([
           { label: 'Use changing room', goto: ['changingroom', ''] },
@@ -111,7 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('You should buy some swimwear if you intend on spending time at the beach.');
       }
       if (((s as any).clothingworntype ?? 0) === 'nude') {
-        if (((s as any).sauna_stripped ?? 0) === 0) {
+        if ((!((s as any).sauna_stripped ?? 0))) {
           qspCall(s, 'pav_lake', 'lost_clothing');
         }
       } else {
@@ -120,7 +120,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Strip naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -147,7 +147,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).temper ?? 0) >= 15  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).konki_cloth ?? 0) === 0  &&  ((s as any).pcs_ski_worn ?? 0) === 0) {
+    if (((s as any).temper ?? 0) >= 15  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) < 10  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).konki_cloth ?? 0) === 0  &&  (!((s as any).pcs_ski_worn ?? 0))) {
       if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
         if (((s as any).pcs_stam ?? 0) >= (10 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
           scene.actions([
@@ -160,7 +160,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       }
-      if (((s as any).KsenyaQW ?? 0) === 1  &&  Math.floor(Math.random() * 3) + 1 === 1  &&  ((s as any).sunWeather ?? 0) === 1) {
+      if (((s as any).KsenyaQW ?? 0) === 1  &&  (Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).sunWeather ?? 0) === 1) {
         scene.actions([{ label: 'Continue', goto: ['pav_lake', 'klake'] }]);
       }
       scene.actions([
@@ -190,7 +190,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).konki_cloth ?? 0) === 0  &&  ((s as any).pcs_ski_worn ?? 0) === 0) {
+    if (((s as any).konki_cloth ?? 0) === 0  &&  (!((s as any).pcs_ski_worn ?? 0))) {
       scene.actions([
         { label: 'Go to the secluded beach', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

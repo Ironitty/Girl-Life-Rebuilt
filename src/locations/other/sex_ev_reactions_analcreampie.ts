@@ -28,7 +28,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_acp_known ?? 0) === 1) {
     scene.actions([
       { label: 'First anal creampie', handler: (st: GameState) => {
-    (s as any).npc_first_creampie[$npcID] = 1;
+    (s as any).npc_first_creampie[String((s as any).npcID ?? 0)] = 1;
     scene.actions([
       { label: 'Is that what it feels like?', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['accidental_creampie_count'] === 1) {

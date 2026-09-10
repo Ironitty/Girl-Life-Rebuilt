@@ -42,7 +42,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('The tiny cafe is wonderfully situated and you enjoy the beautiful scenery as you eat.');
-  if (((s as any).stallionQ ?? 0) === 0) {
+  if ((!((s as any).stallionQ ?? 0))) {
     (s as any).stallionQ = 1;
   }
   scene.actions([

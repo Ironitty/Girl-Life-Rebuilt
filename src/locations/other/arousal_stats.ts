@@ -24,7 +24,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arousal_maxi ?? 0) > 0) {
     (s as any).arousal_i = 0;
     // TODO-QSP: :arousal_stat_core_loop1
-    if (((s as any).dyneval ?? 0)('result === \'0\'[arousal_temp_npcID]') === 0) {
+    if ((!(0 as any))) {
       if (((s as any).locArgs?.[7] ?? 0) !== '') {
         qspCall(s, 'arousal_stats', '', ((s as any).locArgs?.[7] ?? 0), ((s as any).arousal_temp_npcID ?? 0));
       }
@@ -197,15 +197,15 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'archetypes', 'sex_change', 100, (-800), 'Masturbation');
         (s as any).temp_base_act_fired = 1;
       }
-      if (((s as any).arrsize ?? 0)('arousal_npc_oral') > 0) {
+      if (Object.keys((s as any).arousal_npc_oral ?? {}).length > 0) {
         qspCall(s, 'archetypes', 'sex_change', 150, (-1200), 'Oral sex');
         (s as any).temp_base_act_fired = 1;
       }
-      if (((s as any).arrsize ?? 0)('arousal_npc_vaginal') > 0) {
+      if (Object.keys((s as any).arousal_npc_vaginal ?? {}).length > 0) {
         qspCall(s, 'archetypes', 'sex_change', 250, (-2000), 'Vaginal sex');
         (s as any).temp_base_act_fired = 1;
       }
-      if (((s as any).arrsize ?? 0)('arousal_npc_anal') > 0) {
+      if (Object.keys((s as any).arousal_npc_anal ?? {}).length > 0) {
         qspCall(s, 'archetypes', 'sex_change', 300, (-2400), 'Anal sex');
         (s as any).temp_base_act_fired = 1;
       }
@@ -261,8 +261,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         (s as any).stat['female_sexual_times'] = ((s as any).stat['female_sexual_times'] ?? 0) + (1);
         (s as any).stat['herm_sexual_times'] = ((s as any).stat['herm_sexual_times'] ?? 0) + (1);
       }
-      (s as any).npc_sexual[$arousal_temp_npcID] = ((s as any).npc_sexual[$arousal_temp_npcID] ?? 0) + (1);
-      (s as any).npc_last_sexual[$arousal_temp_npcID] = ((s as any).daystart ?? 0);
+      (s as any).npc_sexual[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).npc_sexual[String((s as any).arousal_temp_npcID ?? 0)] ?? 0) + (1);
+      (s as any).npc_last_sexual[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).daystart ?? 0);
       (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
       (s as any).stat['last_sex_day_known'] = ((s as any).daystart ?? 0);
       (s as any).arousal_i = ((s as any).arousal_i ?? 0) + (1);
@@ -288,7 +288,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         (s as any).stat['female_hidden_sexual_times'] = ((s as any).stat['female_hidden_sexual_times'] ?? 0) + (1);
         (s as any).stat['herm_hidden_sexual_times'] = ((s as any).stat['herm_hidden_sexual_times'] ?? 0) + (1);
       }
-      (s as any).npc_hidden_sexual[$arousal_temp_npcID] = ((s as any).npc_hidden_sexual[$arousal_temp_npcID] ?? 0) + (1);
+      (s as any).npc_hidden_sexual[String((s as any).arousal_temp_npcID ?? 0)] = ((s as any).npc_hidden_sexual[String((s as any).arousal_temp_npcID ?? 0)] ?? 0) + (1);
       (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
       (s as any).stat['last_sex_day_hidden'] = ((s as any).daystart ?? 0);
       (s as any).arousal_i = ((s as any).arousal_i ?? 0) + (1);

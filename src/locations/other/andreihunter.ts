@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boystat', 'A172');
-  (s as any).npc_rough[$boy] = 1;
+  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
   (s as any).boyage = ((s as any).npc_dob ?? 0)?.[String((s as any).boy ?? 0)];
   (s as any).boyage = (((s as any).boyage ?? 0) - ((s as any).boyage ?? 0) % 10000) / 10000;
   (s as any).boyage = ((s as any).year ?? 0) - ((s as any).boyage ?? 0);
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['Andreisex'] === 0  &&  Math.floor(Math.random() * 3) + 0 === 1) {
+    if (((s as any).hunterVars ?? 0)?.['AndreiLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['Andreisex'] === 0  &&  (Math.floor(Math.random() * 3) + 0) === 1) {
       scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
       qspCall(s, 'arousal', 'kiss', 5);
       qspCall(s, 'stat', '');
@@ -167,7 +167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
               ]);
             }
-            if (Math.floor(Math.random() * 10) + 0 === 0) {
+            if ((!(Math.floor(Math.random() * 10) + 0))) {
               scene.actions([
                 { label: 'Break up with Andrei', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/brosila.jpg');

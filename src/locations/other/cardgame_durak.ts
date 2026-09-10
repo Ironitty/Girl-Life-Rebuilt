@@ -20,7 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloSkirt ?? 0) > 0) {
       (s as any).cgd_cs = Math.floor(Math.random() * 5) + 1;
     } else {
-      if (Math.floor(Math.random() * 2) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         (s as any).cgd_cs = Math.floor(Math.random() * 2) + 6;
       } else {
         (s as any).cgd_cs = Math.floor(Math.random() * 7) + 8;
@@ -38,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Not now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -55,7 +55,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: <<iif(RAND(0,1) = 0,'Dan','Vitek')>> sighs: "I'm tired of playing cards. Let's j...
-    scene.text(`${(Math.floor(Math.random() * 2) + 0 === 0) ? ('Dan') : ('Vitek')} sighs: "I'm tired of playing cards. Let's just watch some TV or something, or have some more beers."`);
+    scene.text(`${(((!(Math.floor(Math.random() * 2) + 0))) ? ('Dan') : ('Vitek'))} sighs: "I'm tired of playing cards. Let's just watch some TV or something, or have some more beers."`);
     scene.actions([
       { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
     ]);
@@ -142,7 +142,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
                   { label: 'Deal and try your hardest to win [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {

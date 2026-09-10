@@ -33,7 +33,7 @@ function enterFoyer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckFoyerEvents(s: GameState, scene: SceneBuilder): void {
-  if (Math.floor(Math.random() * 100) + 0 < 85) {
+  if ((Math.floor(Math.random() * 100) + 0) < 85) {
     // TODO-QSP: exit
   }
   scene.actions([{ label: 'Continue', goto: ['bdsm_hallway', 'foyer_event_<<rand(1, 5)>>'] }]);

@@ -43,7 +43,7 @@ function enterPayback(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Money [+$func(\'money\', \'get_cost_string\', 200)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 200);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -102,7 +102,7 @@ function enterPayback2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Money [+$func(\'money\', \'get_cost_string\', 200)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).NikoPayed = ((s as any).daystart ?? 0);
       qspCall(s, 'money', 'pay', 200);

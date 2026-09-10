@@ -16,7 +16,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Working hours: '+func('time', 'get_time_string', 9, 0)+' to '+func('time', 'get_...
   scene.text('Working hours: \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 17, 0)+\'');
   (s as any).temp = Math.floor(Math.random() * 10) + 0;
-  if (((s as any).temp ?? 0) === 0) {
+  if ((!((s as any).temp ?? 0))) {
     scene.text('Surprisingly, there is no one around the shelter…');
   }
   if (((s as any).temp ?? 0) === 1) {

@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'library_functions', 'set_home_read_acts');
     qspCall(s, 'music_actions', 'start');
-    if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  ((s as any).tobiQW ?? 0) === 0) {
+    if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
     }
     if (((s as any).sick ?? 0) >= 1) {
@@ -113,7 +113,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
     scene.text('You should start preparing breakfast before \'+func(\'time\', \'get_time_string\', 7, 15)+\' during the week and before \'+func(\'time\', \'get_time_string\', 8, 15)+\' on weekends.');
-    if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  ((s as any).nichPregnancy ?? 0) === 0) {
+    if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
       scene.text('');
       scene.text('<b>You are pregnant but Nicholas hasn\'t realized it yet. He won\'t allow you to continue working for him if he figures it out, that\'s for sure. Maybe you should wear baggy clothes to hide your condition?</b>');
     }
@@ -130,7 +130,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go to the hallway', handler: (st: GameState) => {
-    if (((s as any).nichEvtGalaTele1 ?? 0) === 1  &&  ((s as any).nichGalaOpinion ?? 0) === 1  &&  (Math.floor(Math.random() * 100) + 1 <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
+    if (((s as any).nichEvtGalaTele1 ?? 0) === 1  &&  ((s as any).nichGalaOpinion ?? 0) === 1  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
       scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'evtBodyguardIntim1'] }]);
     } else {
       if (((s as any).clothingworntype ?? 0) !== 'nude') {

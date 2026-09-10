@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterShellOpen(s: GameState, scene: SceneBuilder): void {
-  (s as any).cs_icon_size = (((s as any).card_in ?? 0)?.['icon_size'] > 0) ? (((s as any).card_in ?? 0)?.['icon_size']) : (48);
+  (s as any).cs_icon_size = ((((s as any).card_in ?? 0)?.['icon_size'] > 0) ? (((s as any).card_in ?? 0)?.['icon_size']) : (48));
   (s as any).cs_col_w = ((s as any).cs_icon_size ?? 0) + 22;
   // TODO-QSP: $result += '<tr>'
   if (((s as any).card_in ?? 0)?.['icon'] !== '') {
@@ -47,7 +47,7 @@ function enterShell(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
-  (s as any).card_in['icon'] = (((s as any).ARGS ?? 0)[2] > 0) ? ('images/characters/shared/headshots_main/\' + $str(ARGS[2]) + \'.jpg') : ('');
+  (s as any).card_in['icon'] = ((((s as any).ARGS ?? 0)[2] > 0) ? ('images/characters/shared/headshots_main/\' + $str(ARGS[2]) + \'.jpg') : (''));
   (s as any).card_in['icon_size'] = 90;
   (s as any).card_in['title'] = ((s as any).locArgs?.[1] ?? 0);
   (s as any).card_in['border'] = ((s as any).theme_hex ?? 0)?.['accent'];

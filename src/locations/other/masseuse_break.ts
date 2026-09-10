@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re taking a break.');
   // TODO-QSP: dynamic text: There's a vending machine in the corner you can buy '+iif(func('money', 'can_aff...
   scene.text('There\'s a vending machine in the corner you can buy \'+iif(func(\'money\', \'can_afford\', 100, \'cash\'), \'<a href="exec:gs \'money\', \'pay\', 100, \'cash\' & gt \'food\', \'snack\'">snacks</a>\', \'snacks\' + $func(\'money\', \'get_cost_string\', 100, \'cash\'))+\' from and a fridge stocked with <a href="exec:gt \'beverage\', \'water\'">bottled water</a> and <a href="exec:gt \'beverage\', \'juice\'">juice</a> for masseuses to enjoy, as well as a <a href="exec:gt \'beverage\', \'coffee\'">coffee machine</a>.');
-  if (Math.floor(Math.random() * 2) + 0 === 1) {
+  if ((Math.floor(Math.random() * 2) + 0) === 1) {
     if (((s as any).masseuse ?? 0)?.['meet_lei'] === 0) {
       scene.text('The only other person in here right now is <a href="exec:gt\'masseuse_break\',\'lei_talk\'">a small asian girl</a> taking duck face selfies on her phone.');
     } else {

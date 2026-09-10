@@ -40,7 +40,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('<center>This small natural beach is hidden away from the general public on an inlet of the lake, and is only accessible through a nearby forest trail. Other than those seeking privacy and some of the local kids, nobody really comes here outside of winter, when people come to use the nearby sauna.</center>');
       scene.text('<center>The lake in Pavlovsk has been frozen over ever since winter arrived. However, the ice is broken in a small part of the inlet, so those brave enough to take a dip in the icy cold water can.</center>');
     }
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 8  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).ivanfedorseennaked ?? 0) !== ((s as any).daystart ?? 0)  &&  Math.floor(Math.random() * 4) + 0 === 0  &&  ((s as any).fedorKozlovQW ?? 0) >= 0) {
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) <= 8  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).ivanfedorseennaked ?? 0) !== ((s as any).daystart ?? 0)  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).fedorKozlovQW ?? 0) >= 0) {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         qspCall(s, 'arousal', 'flash', (-5), 'exhibitionism');
         qspCall(s, 'fame', 'pav', 'sex', 3);
@@ -70,11 +70,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Take off your clothes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
-          if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).sauna_stripped ?? 0) === 0) {
+          if (((s as any).clothingworntype ?? 0) === 'nude'  &&  (!((s as any).sauna_stripped ?? 0))) {
             scene.actions([
               { label: 'Put your clothes back on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -108,7 +108,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'willpower', 'exhib', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
-    if (((s as any).PSwim ?? 0) === 0) {
+    if ((!((s as any).PSwim ?? 0))) {
       qspCall(s, 'outfit', 'backup', 'swim');
     }
     qspCall(s, 'outfit', 'strip_all');
@@ -257,7 +257,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).voyeurism_start ?? 0) === 0) {
+    if ((!((s as any).voyeurism_start ?? 0))) {
       scene.actions([
         { label: 'Look around the beach', handler: (st: GameState) => {
     (s as any).voyeurism_start_view = Math.floor(Math.random() * 3) + 1;
@@ -283,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Watch couple on the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -292,7 +292,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'voyeur', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    if (((s as any).voyeurism ?? 0) === 0) {
+    if ((!((s as any).voyeurism ?? 0))) {
       qspCall(s, 'arousal', 'voyeur_sex', 5);
       (s as any).voyeurism = ((s as any).voyeurism ?? 0) + (1);
       qspCall(s, 'stat', '');
@@ -322,7 +322,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Spy on other nudists on the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -349,7 +349,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).voyeurism ?? 0) >= 17  &&  ((s as any).voyeurism_start ?? 0) === 2) {
-        if (((s as any).voyeurism_forest ?? 0) === 0) {
+        if ((!((s as any).voyeurism_forest ?? 0))) {
           scene.actions([
             { label: 'Explore the forest', goto: ['pav_lake_nude_forest', ''] },
           ]);

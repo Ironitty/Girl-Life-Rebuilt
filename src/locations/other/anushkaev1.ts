@@ -252,7 +252,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
       scene.text('While she finishes getting undressed you use the time to cast the penis envy spell on the strapon.');
       qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
       qspCall(s, 'stat', '');
-      if (((s as any).penisEnvyVariable ?? 0) === 0) {
+      if ((!((s as any).penisEnvyVariable ?? 0))) {
         scene.actions([
           { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -644,7 +644,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Punish that ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -880,7 +880,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Punish that ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -983,7 +983,7 @@ function enterDomnushFuckpussy(s: GameState, scene: SceneBuilder): void {
     scene.text('You push her face forward onto the bed, then crawl on your knees behind her. Once behind her, you grab her hips and lift them back, encouraging her to get on all fours in front of you. You take the strap-on harness and slide it on, pulling the straps tightly before rubbing her pussy with your fingers and finding that it\'s already soaking wet. You could use this moment to cast the spell.');
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
     qspCall(s, 'stat', '');
-    if (((s as any).penisEnvyVariable ?? 0) === 0) {
+    if ((!((s as any).penisEnvyVariable ?? 0))) {
       scene.actions([
         { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -1239,7 +1239,7 @@ function enterDomnushFuckass2(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at her ass and then to the lube bottle in your hand. Do you really want to do that to your friend? Would she mind? Maybe she\'ll enjoy it? Would you get off on it more? You could use this moment to cast the spell.');
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
     qspCall(s, 'stat', '');
-    if (((s as any).penisEnvyVariable ?? 0) === 0) {
+    if ((!((s as any).penisEnvyVariable ?? 0))) {
       scene.actions([
         { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -1477,7 +1477,7 @@ function enterDomnushFuckassNolubeMagic(s: GameState, scene: SceneBuilder): void
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Fuck her ass raw [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1609,7 +1609,7 @@ function enterCouchStraponGive(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Sit on her face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -1629,7 +1629,7 @@ function enterCouchStraponGive(s: GameState, scene: SceneBuilder): void {
       scene.text('You look at her ass and then to the lube bottle in your hand. Do you really want to do that to your friend? Would she mind? Maybe she\'ll enjoy it? Would you get off on it more? You could use this moment to cast the spell.');
       qspCall(s, 'arousal', 'cuni_give', 3, 'lesbian');
       qspCall(s, 'stat', '');
-      if (((s as any).penisEnvyVariable ?? 0) === 0) {
+      if ((!((s as any).penisEnvyVariable ?? 0))) {
         scene.actions([
           { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
     qspCall(s, 'castSpell', 'penisenvy');
@@ -1731,7 +1731,7 @@ function enterCouchFuckHerAss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Fuck her ass hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1864,7 +1864,7 @@ function enterCouchFuckHerAssMagic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Fuck her ass hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

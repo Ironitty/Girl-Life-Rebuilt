@@ -70,7 +70,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).artfucktimes ?? 0) < 2) {
     (s as any).artrand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).artrand ?? 0) === 0) {
+    if ((!((s as any).artrand ?? 0))) {
       // TODO-QSP: act 'Continue': gt 'arturdin', 'sexdog'
     }
     if (((s as any).artrand ?? 0) === 1) {
@@ -81,7 +81,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     (s as any).artrand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).artrand ?? 0) === 0) {
+    if ((!((s as any).artrand ?? 0))) {
       // TODO-QSP: act 'Continue': gt 'arturdin', 'sexdog_cum'
     }
     if (((s as any).artrand ?? 0) === 1) {

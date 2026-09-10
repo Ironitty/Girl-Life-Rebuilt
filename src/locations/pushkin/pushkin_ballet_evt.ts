@@ -38,7 +38,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['kuhrPar', ''] },
       ]);
     }
-    if (((s as any).letter_delay ?? 0) === 0) {
+    if ((!((s as any).letter_delay ?? 0))) {
       scene.actions([
         { label: 'Think about the opportunity', handler: (st: GameState) => {
     (s as any).letter_delay = ((s as any).daystart ?? 0);
@@ -220,7 +220,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$npc_firstname['A279']>> hands you the card and a pen to sign, and you quickly...
       scene.text(`${((s as any).npc_firstname ?? 0)?.['A279']} hands you the card and a pen to sign, and you quickly scribble your wishes and name into it. You briefly consider putting some cash in it as a present.`);
       if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         (s as any).birthday_party['events'] = 2;
         scene.img(`${((s as any).npc_img_path ?? 0)?.['\'A279\'']}/279.jpg`);
@@ -364,7 +364,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBarreExercise(s: GameState, scene: SceneBuilder): void {
-  (s as any).ballet_homework[week] = ((s as any).ballet_homework[week] ?? 0) + (1);
+  (s as any).ballet_homework[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
   (s as any).ballet_grade_score['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
   qspCall(s, 'exercise', 'tier1', 30, 'agil', 'stren');
   qspCall(s, 'stat', '');
@@ -583,7 +583,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       scene.text(`Hi, you come to join us?", one of the girls asks, whilst the other girl says, "She's in ${((s as any).npc_firstname ?? 0)?.['A286']}'s class", her eyes light up, "can you help teach us? We'd love to learn from you!"`);
       scene.actions([
         { label: 'Practice with the girls', handler: (st: GameState) => {
-    (s as any).ballet_homework[week] = ((s as any).ballet_homework[week] ?? 0) + (1);
+    (s as any).ballet_homework[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
     (s as any).ballet_grade_score['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
     qspCall(s, 'exercise', 'tier1', 60, 'agil', 'stren');
     scene.text('You spend an hour helping the girls through the various forms, giving tips and advice. At the end of it they thank you ethuastically for your time and teaching.');

@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     if (((s as any).locArgs?.[0] ?? 0) !== 'skip_resepevent') {
-      if (((s as any).hour ?? 0) === 0  &&  ((s as any).hotresepQW_day ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).hotresepQW ?? 0) < 3  ||  (((s as any).hotresepQW ?? 0) === 3  &&  Math.floor(Math.random() * 10) + 1 === 10))) {
+      if (((s as any).hour ?? 0) === 0  &&  ((s as any).hotresepQW_day ?? 0) !== ((s as any).daystart ?? 0)  &&  (((s as any).hotresepQW ?? 0) < 3  ||  (((s as any).hotresepQW ?? 0) === 3  &&  (Math.floor(Math.random() * 10) + 1) === 10))) {
         if (((s as any).HotelRoom ?? 0)?.['pav'] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
           scene.actions([{ label: 'Continue', goto: ['pav_hotel', 'resep_event1'] }]);
         } else {
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('<center><h4>Pavlovsk Hotel</h4></center>');
       scene.img('images/locations/pavlovsk/hotel/hotel.hole.jpg');
-      if (((s as any).pavHotelMaid ?? 0) === 0) {
+      if ((!((s as any).pavHotelMaid ?? 0))) {
         // TODO-QSP: dynamic text: You're always surprised by how fancy the hotel looks on the inside given the sha...
         scene.text('You\'re always surprised by how fancy the hotel looks on the inside given the shabby exterior. A cute brunette is manning the <a href="exec:minut += 1 & gt \'pav_hotelReception\'">reception desk</a>.');
         scene.text('She gives you a friendly nod when you get into her sight range.');
@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Don\'t visit the therapist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

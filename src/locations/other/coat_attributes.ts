@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0)('attributes_\'0\'_coats')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_coats', ARGS[1]
   }
-  if (((s as any).CoatQuality ?? 0) === 0) {
+  if ((!((s as any).CoatQuality ?? 0))) {
     // TODO-QSP: exit
   }
   (s as any).CoatMaxStrength = ((s as any).CoatStrength ?? 0);

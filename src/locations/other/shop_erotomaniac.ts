@@ -189,7 +189,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 11  ||  ((s as any).hour ?? 0) < 3) {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 50, 'cash');
       (s as any).minut = ((s as any).minut ?? 0) + 10;

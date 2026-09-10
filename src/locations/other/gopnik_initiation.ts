@@ -706,7 +706,7 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><b><h4><font color=#E400FF><<"Nikolai [Niko] Volkov">></font></h4></b></...
   scene.text(`<center><b><h4><font color=#E400FF>${'Nikolai [Niko] Volkov'}</font></h4></b></center>`);
   qspCall(s, 'stat', '');
-  if (((s as any).NikoGOPParty ?? 0) === 0) {
+  if ((!((s as any).NikoGOPParty ?? 0))) {
     (s as any).NikoGOPParty = 1;
     if (((s as any).NikoFightDay ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).NikoPayback ?? 0) > 0) {
       scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/bruised2.jpg');
@@ -766,7 +766,7 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/brother/upset.jpg');
       scene.text('Niko seems to be resting while having a smoke. It\'s probably best not to disturb him.');
     }
-    if (((s as any).NikoGOPParty ?? 0) === 0) {
+    if ((!((s as any).NikoGOPParty ?? 0))) {
       scene.actions([
         { label: 'Wave and walk away', goto: ['gopnik_initiation', 'explore'] },
       ]);

@@ -26,7 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).tatiana_mission_reminder = 14;
   }
   if (((s as any).succubusflag ?? 0) === 1) {
-    if (((s as any).sucbypass ?? 0) === 0) {
+    if ((!((s as any).sucbypass ?? 0))) {
       if (((s as any).sucpcinfo ?? 0) < 2) {
         // TODO-QSP: xgt 'tatiana_lab', 'suctraining'
       } else {
@@ -138,7 +138,7 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (((s as any).bodyModMana ?? 0));
     qspCall(s, 'arousal', 'flash', (-30));
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).bodyModTime ?? 0));
-    (s as any).pain[$bodyModPain] = 100;
+    (s as any).pain[String((s as any).bodyModPain ?? 0)] = 100;
     qspCall(s, 'body', 'UpdateBodyMeasurement');
     qspCall(s, 'AppearanceSystem', 'UpdateBaseAppearance');
     qspCall(s, 'body', 'Update_Appearance');

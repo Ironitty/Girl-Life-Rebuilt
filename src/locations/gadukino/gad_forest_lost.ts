@@ -92,7 +92,7 @@ function enterWander(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestsearch...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestsearch_nude0.'+rand(1, 4)+'.jpg"></center>`);
     }
-    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0) {
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestsearch...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestsearch0.'+rand(1, 4)+'.jpg"></center>`);
     }
@@ -151,7 +151,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax_...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax_nude'+ rand(1, 3) +'.jpg"></center>`);
   }
-  if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0  &&  ((s as any).bonfire ?? 0) === 0) {
+  if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0  &&  (!((s as any).bonfire ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax1...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax1.jpg"></center>`);
   }
@@ -159,7 +159,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax2...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax2.jpg"></center>`);
   }
-  if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) > 0  &&  ((s as any).bonfire ?? 0) === 0) {
+  if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) > 0  &&  (!((s as any).bonfire ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax_...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax_ski1.jpg"></center>`);
   }
@@ -172,12 +172,12 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax_ski3.jpg"></center>`);
   }
   scene.text('You decide this is as good of place as any to stop and take a break.');
-  if (((s as any).bonfire ?? 0) === 0) {
+  if ((!((s as any).bonfire ?? 0))) {
     scene.text('You should build a bonfire to increase the chance of being rescued and decrease the chance of being attacked by wolves.');
   } else {
     scene.text('Your bonfire burns bright, increasing the chance of being rescued and decreasing the chance of being attacked by wolves.');
   }
-  if (((s as any).bonfire ?? 0) === 0) {
+  if ((!((s as any).bonfire ?? 0))) {
     if (((s as any).pcs_sleep ?? 0) < 40) {
       scene.actions([
         { label: 'Nap on the ground (2:00)', handler: (st: GameState) => {
@@ -188,7 +188,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax_...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax_sleepnude1.' + rand(1, 2) + '.jpg"></center>`);
     }
-    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0) {
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax_...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax_sleep.jpg"></center>`);
     }
@@ -226,7 +226,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax_...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax_nude' + rand(1, 2) + '.jpg"></center>`);
     }
-    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).PCloSkirt ?? 0) === 0) {
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gadforestrelax3...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gadforestrelax3.jpg"></center>`);
     }
@@ -391,7 +391,7 @@ function enterPicking(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'gad_forest', 'picking_clothes', ((s as any).forest_args1 ?? 0), 'berry');
         // TODO-QSP: dynamic text: After searching for mushrooms and berries for half an hour you found <<new_bilbe...
         scene.text(`After searching for mushrooms and berries for half an hour you found ${((s as any).new_bilberry ?? 0)} kg of berries.`);
-        if (((s as any).new_boletus ?? 0) > 0  &&  ((s as any).new_bilberry ?? 0) === 0) {
+        if (((s as any).new_boletus ?? 0) > 0  &&  (!((s as any).new_bilberry ?? 0))) {
           qspCall(s, 'mood', 'raise', 'tiny');
           qspCall(s, 'stat', '');
           qspCall(s, 'gad_forest', 'picking_clothes', ((s as any).forest_args1 ?? 0), 'mushroom');

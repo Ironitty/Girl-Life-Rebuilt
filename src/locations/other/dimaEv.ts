@@ -123,7 +123,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Suck him', handler: (st: GameState) => {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
-    if (((s as any).maxdra ?? 0) === 0) {
+    if ((!((s as any).maxdra ?? 0))) {
       (s as any).maxdra = 1;
     }
     if (((s as any).maxdra ?? 0) === 6) {
@@ -137,7 +137,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
     (s as any).dimadalrand = 0;
     qspCall(s, 'arousal', 'bj', 15, 'sub');
     qspCall(s, 'stat', '');
-    if (((s as any).dimadalrand ?? 0) === 0) {
+    if ((!((s as any).dimadalrand ?? 0))) {
       scene.actions([
         { label: 'Further', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);

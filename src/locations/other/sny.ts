@@ -16,7 +16,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -60,7 +60,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -104,7 +104,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -148,7 +148,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -193,7 +193,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
       { label: 'Barf', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (60 * ((s as any).alko ?? 0));
     qspCall(s, 'stat', '');
-    if (((s as any).NosovRevenge ?? 0) === 0) {
+    if ((!((s as any).NosovRevenge ?? 0))) {
       (s as any).partyPantyCum = 1;
       qspCall(s, 'npcgeneratec', '', 0, 'Stranger', Math.floor(Math.random() * 28) + 18);
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -225,7 +225,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     scene.text('You are quite drunk and not thinking straight. Someone\'s hand pulls you into the center of the room with the dancing boys and girls. Dimka suddenly pulls your top down, exposing your breasts to everyone in the room. You sluggishly pull your top back up. Dimka takes you by the hand and drags you out of the room.');
     if (((s as any).alko ?? 0) > 3) {
       scene.img('images/locations/pavlovsk/resident/dimkahome/newyear/alb.jpg');
-      if (((s as any).fedorKozlovQW ?? 0) === 0) {
+      if ((!((s as any).fedorKozlovQW ?? 0))) {
         scene.text('You are a little drunk but having fun when you notice Albina sitting on the couch and kissing Ivan while Fedor paws at her breasts. Looking around you some more, you notice that Katja is nowhere to be seen.');
       } else {
         scene.text('You are a little drunk but having fun when you notice Albina sitting on the couch and kissing Ivan. Looking around you some more, you notice that Katja is nowhere to be seen.');
@@ -252,7 +252,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

@@ -58,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('The main square of Pavlovsk Park. Spring has come, melting the worst of the snow. As a result, the trees are sprouting new leaves.');
         scene.text('There are puddles everywhere, all the remains from the melted snow. Many people in the park are having fun with them, trying to jump over them and mocking those that fail. They\'re not particularly deep though; plenty of others just walk through without giving them a second thought.');
         scene.text('The park isn\'t particularly crowded this time of year. However, many people think it\'s too cold to spend much time outdoors.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You can\'t believe it, but it\'s snowing today. With winter over, you had hoped the snow was done for the year.');
           } else {
@@ -69,7 +69,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
         scene.text('The main square of Pavlovsk Park. Spring has come, melting the worst of the snow. As a result, the trees are sprouting new leaves.');
         scene.text('There is no particular reason to visit the park during the night, so it\'s largely deserted. However, in the distance, you see one person running through the park, probably using it as a shortcut to go home faster.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You can\'t believe it, but it\'s snowing tonight. With winter over, you had hoped that the snow was done for the year.');
           } else {
@@ -82,7 +82,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.text('The main square of Pavlovsk Park. At this time of year, it\'s one of the primary places in town where locals and tourists enjoy spending their spare time.');
         scene.text('It\'s always busy: people are resting, walking, playing and dating to their heart\'s desires, enjoying the pleasant surroundings.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You can\'t believe it, but it\'s snowing today. Why is it snowing in the middle of summer?! You look up at the heavens and get no response.');
           } else {
@@ -93,7 +93,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
         scene.text('The main square of Pavlovsk Park. At this time of year, it\'s one of the places where locals and tourists enjoy going in their spare time.');
         scene.text('However, there is no particular reason to visit the park during the night, and as a result, it\'s largely deserted. In the distance, you see one person running through the park, probably using it as a shortcut to get home faster.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You can\'t believe it, but it\'s snowing this evening. Why is it snowing in the middle of summer?! You look up at the heavens and get no response.');
           } else {
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.text('The main square of Pavlovsk Park. Autumn has come, and some trees are already shedding their leaves. The leaves still on the trees have changed colour and are a beautiful mix of red and brown.');
         scene.text('Everywhere in the park, people enjoy nature. Some take photos of the fallen leaves, kids play around and couples walk hand-in-hand, simply enjoying each other\'s company.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You can\'t believe it, but it\'s snowing today. You hope this isn\'t a sign that winter is coming early this year.');
           } else {
@@ -116,7 +116,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('The main square of Pavlovsk Park. Autumn has come, and some trees are already shedding their leaves.');
         scene.text('It gets pretty cold at night, and you try to stay active to keep yourself warm. The lone soul you see running across the park is probably trying to get home faster and out of the cold.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You can\'t believe it, but it\'s snowing today. You hope this isn\'t a sign that winter is coming early this year.');
           } else {
@@ -129,7 +129,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
         scene.text('The main square of Pavlovsk Park. It\'s winter, and the park is busy with locals and tourists alike.');
         scene.text('There\'s snow everywhere, and kids have gathered to make snowmen and enjoy snowball fights. Some adults are joining them, happy to play like kids again for a moment.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You look up at the snow coming down. Despite the cold, it is a beautiful sight to behold.');
           } else {
@@ -139,7 +139,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('The main square of Pavlovsk Park. It\'s winter, and the nights in Pavlovsk are freezing.');
         scene.text('As you expected, the park is mostly deserted. However, you occasionally see a wild animal scrounging for food.');
-        if (((s as any).sunWeather ?? 0) === 0) {
+        if ((!((s as any).sunWeather ?? 0))) {
           if (((s as any).temper ?? 0) < 5) {
             scene.text('You look up at the snow coming down. Despite the cold, it is a beautiful sight to behold.');
           } else {
@@ -173,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: 'You see <a href="exec:numnpc = SkverBoy
         // TODO-QSP: gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]>></a> walking across the main square of the park. He doesn''t...
       }
-      if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  ((s as any).FedorOutcast ?? 0) === 0) {
+      if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  (!((s as any).FedorOutcast ?? 0))) {
         scene.text('You can see the <a href="exec:gt \'FedorMisc\', \'Outcast Intro\'">train tracks</a> from here.');
       } else {
         scene.text('You can see the train tracks where <a href="exec:gt \'FedorMisc\', \'Outcast\'">Fedor</a> spends his time.');
@@ -259,7 +259,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Go for a walk (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  ((s as any).exhibitionQW ?? 0) === 0) {
+    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
       // TODO-QSP: gt 'kseniyaQW', 'event1', 1
     }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] > 0  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['Vicky'] === 11) {

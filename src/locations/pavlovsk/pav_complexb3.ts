@@ -155,7 +155,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21) {
-    if (((s as any).PSwim ?? 0) === 0) {
+    if ((!((s as any).PSwim ?? 0))) {
       if (qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
         scene.actions([
           { label: 'Change into a bikini', goto: ['changingroom', ''] },

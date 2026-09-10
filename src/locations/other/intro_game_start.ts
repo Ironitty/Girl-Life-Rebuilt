@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Start the game', handler: (st: GameState) => {
     (s as any).music_loop = 0;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      if (((s as any).start_location ?? 0) === 0) {
+      if ((!((s as any).start_location ?? 0))) {
         scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_pavlovsk'] }]);
       } else {
         scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_gadukino'] }]);

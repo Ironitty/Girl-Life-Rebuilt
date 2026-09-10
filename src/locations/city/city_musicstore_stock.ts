@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('cleanHTML', $temp_html)
   if (((s as any).ml_guitars ?? 0)?.['burny-rlg55-vld'] === 0) {
     if (qspFunc(s, 'money', 'can_afford', 43990) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).ml_guitars['burny-rlg55-vld'] = 1;
       qspCall(s, 'money', 'pay', 43990);

@@ -17,7 +17,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse to service him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -94,7 +94,7 @@ function enter1_2ndPart(s: GameState, scene: SceneBuilder): void {
     scene.text(`Uncle Misha takes a minute to catch his breath and admire his handiwork on your face before leaning down and kissing you on the forehead. He throws a couple of crumpled bills on the floor. "Very nice, ${((s as any).pcs_nickname ?? 0)}. Here, take these for your efforts," he says as you scramble to pick them up, indicating he's done with you now and expects you to leave.`);
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'money', 'earn', 200);
-    (s as any).npc_had_sex[$boy] = 1;
+    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave Uncle Misha\'s apartment', goto: ['pod_ezd', 'etaj_2'] },
@@ -146,7 +146,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     // TODO-QSP: :misha_tootight
     (s as any).stepmisha = Math.floor(Math.random() * 13) + 0;
-    if (((s as any).stepmisha ?? 0) === 0) {
+    if ((!((s as any).stepmisha ?? 0))) {
       scene.img(`images/characters/pavlovsk/resident/misha/sex/misha.cum0,${Math.floor(Math.random() * 2) + 0}.jpg`);
       // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
       // TODO-QSP: gs 'cum_call', 'face', $boy[2], 1

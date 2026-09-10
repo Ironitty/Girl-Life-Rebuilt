@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Small cinema ticket costs \' + $func(\'money\', \'string_price\', 300) + \'.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300);
       scene.actions([{ label: 'Continue', goto: ['city_cinema', 'watch_movie'] }]);

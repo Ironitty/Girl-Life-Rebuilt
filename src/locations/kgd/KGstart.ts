@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (qspFunc(s, 'money', 'can_afford', 1000, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 1000, 'bank');
       (s as any).KFOnLineReaga = ((s as any).KFOnLineReaga ?? 0) + (30);
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Buy game coins [+$func(\'money\', \'get_cost_string\', 1, \'ba...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).KGOLdonat = qspUntranslated(s, "input(\"How many coins do you wish to purchase?\")", { location: "KGstart" });
       if (((s as any).KGOLdonat ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((s as any).KGOLdonat ?? 0), 'bank') === 0) {
@@ -78,7 +78,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Pay for access [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 1000, 'bank');
       (s as any).KFOnLineReaga = ((s as any).KFOnLineReaga ?? 0) + (30);

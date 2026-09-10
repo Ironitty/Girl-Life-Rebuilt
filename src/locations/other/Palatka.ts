@@ -10,7 +10,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>tent</b></center>');
   scene.img('images/locations/city/shared/military/palatka.jpg');
   (s as any).palrand = Math.floor(Math.random() * 11) + 0;
-  if (((s as any).palrand ?? 0) === 0) {
+  if ((!((s as any).palrand ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['Palatka', 'pal0'] }]);
   }
   if (((s as any).palrand ?? 0) === 1) {
@@ -34,7 +34,7 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Send [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -68,7 +68,7 @@ function enterPal1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Say thank you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

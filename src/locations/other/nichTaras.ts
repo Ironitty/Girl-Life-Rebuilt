@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).nichAbdStage ?? 0) === 0) {
+  if ((!((s as any).nichAbdStage ?? 0))) {
     (s as any).inSleep = 0;
     (s as any).stat_cfg['time_hidden'] = 1;
     qspCall(s, 'outfit', 'strip_all');
@@ -219,7 +219,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: dynamic text: In one corner of the room stands an <a href="exec:minut += 10&gt 'nichTaras', 'd...
                   scene.text('In one corner of the room stands an <a href="exec:minut += 10&gt \'nichTaras\', \'dungeon\', \'bed\'">old bed</a> with a dirty mattress on it.');
                   scene.text('There is also a bucket with water and another one with some kind of bad tasting food. You could <a href="exec:gt \'nichTaras\', \'dungeon\', \'eat\'">eat and drink</a> from them.');
-                  if (((s as any).nichTarasMirror ?? 0) === 0) {
+                  if ((!((s as any).nichTarasMirror ?? 0))) {
                     scene.text('In another corner of the room is an <a href="exec:gt \'nichTaras\', \'dungeon\', \'mirror\'">old mirror</a>.');
                   } else {
                     scene.text('The mirror you threw over lies in one corner of the room.');
@@ -287,7 +287,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.img('images/characters/city/taras/mirror.jpg');
                   scene.text('This is a dirty old mirror standing on the ground.');
-                  if (((s as any).nichTarasMirror ?? 0) === 0) {
+                  if ((!((s as any).nichTarasMirror ?? 0))) {
                     scene.actions([
                       { label: 'Throw over', handler: (st: GameState) => {
     (s as any).nichTarasMirror = 1;
@@ -308,7 +308,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   ]);
                 }
                 if (((s as any).locArgs?.[0] ?? 0) === 'session') {
-                  if (((s as any).nichTarasSession ?? 0) === 0) {
+                  if ((!((s as any).nichTarasSession ?? 0))) {
                     if (((s as any).nichTarasMirror ?? 0) === 1  &&  ((s as any).nichTarasMirrorCount ?? 0) === 1) {
                       (s as any).nichTarasSession = (-1);
                       (s as any).nichTarasMirror = 0;
@@ -320,7 +320,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                   if (((s as any).nichTarasSession ?? 0) === -1) {
-                    if (((s as any).nichTarasSessionStage ?? 0) === 0) {
+                    if ((!((s as any).nichTarasSessionStage ?? 0))) {
                       scene.text('Of course Taras can\'t miss the fact that you threw over his mirror.');
                       scene.text('"What the hell, bitch? Did you seriously throw my mirror over?"');
                       scene.text('He walks over to it and places it back up.');
@@ -428,7 +428,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           ]);
                         }
                         if (((s as any).nichTarasSession ?? 0) === 1) {
-                          if (((s as any).nichTarasSessionStage ?? 0) === 0) {
+                          if ((!((s as any).nichTarasSessionStage ?? 0))) {
                             scene.img('images/characters/city/taras/rope1a.jpg');
                             scene.text('Taras holds your nose shut until you are forced to open your mouth to breath. Then he forces a dildo gag into your mouth. The fake member is so long it almost reaches your throat, making it difficult to breath.');
                             scene.text('Taras lets go of you and takes out a rope with many knots in it, which he places between two poles at hip height.');

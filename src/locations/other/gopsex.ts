@@ -49,7 +49,7 @@ function enterGgSexOrgasm(s: GameState, scene: SceneBuilder): void {
     scene.text('<font color = red><b>You have a period. As his cock rams your cunt, period blood is leaking out of your box.</b></font>');
   } else {
     (s as any).horny_orgasm_text = Math.floor(Math.random() * 12) + 0;
-    if (((s as any).horny_orgasm_text ?? 0) === 0) {
+    if ((!((s as any).horny_orgasm_text ?? 0))) {
       // TODO-QSP: dynamic text: You are trying to come, and you beg him to ' + func('gopsex', 'hide', 'gop_sexte...
       scene.text('You are trying to come, and you beg him to \' + func(\'gopsex\', \'hide\', \'gop_sextext1\') + \' you harder.');
     } else {
@@ -85,7 +85,7 @@ function enterGgSexOrgasm(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'mood', 'raise', 'small');
                 (s as any).pcs_hairbsh = 0;
                 (s as any).orgasm_text = Math.floor(Math.random() * 12) + 0;
-                if (((s as any).orgasm_text ?? 0) === 0) {
+                if ((!((s as any).orgasm_text ?? 0))) {
                   scene.text('The excitement exceeds your limits, and you scream loudly as you undergo an intense climax.');
                 } else {
                   scene.text('Your body begins shaking, and you cum violently.');

@@ -26,15 +26,15 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).industw?.jpg ?? 0)';
+      (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).industw?.jpg ?? 0)';
     } else {
-      (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).industwn?.jpg ?? 0)';
+      (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).industwn?.jpg ?? 0)';
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).nord?.jpg ?? 0)';
+      (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).nord?.jpg ?? 0)';
     } else {
-      (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).nord2?.jpg ?? 0)';
+      (s as any).setloc['StageImage'] = ((s as any).setloc ?? 0)?.['imagepath'] + '/((s as any).nord2?.jpg ?? 0)';
     }
   }
   qspCall(s, 'core_library', 'stage_title');

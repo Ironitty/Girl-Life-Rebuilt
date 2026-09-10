@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['foto', 'studio'] }]);
   }
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
-  if (((s as any).studio_strip ?? 0) === 0) {
+  if ((!((s as any).studio_strip ?? 0))) {
     scene.text('Apparently there\'s a "dress code" here and all models are required to be naked in the studio, even if they never do nude shoots. Supposedly, it\'s primarily to save time when dressing up and the wardrobe department has an easier time fitting the clothing properly if you\'re already naked. And if it\'s a nude shoot, it saves even more time because then you can walk right on set. Makes sense you suppose… Kinda…');
   } else {
     scene.text('Entering the studio, you head to the back room to strip down.');
@@ -59,7 +59,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).pcs_inhib ?? 0) < 30  &&  ((s as any).daystart ?? 0) < ((s as any).studio_underwear ?? 0)) {
             scene.text('You really wish you had brought panties today…');
           }
-          if (((s as any).mesec ?? 0) > 0  &&  ((s as any).isprok ?? 0) === 0) {
+          if (((s as any).mesec ?? 0) > 0  &&  (!((s as any).isprok ?? 0))) {
             // TODO-QSP: msg 'As your panties come off you realize you''re going to have a problem when your pad goes with it...
           }
           qspCall(s, 'outfit', 'backup', 'foto');
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).lastwornbratype['foto'] = ((s as any).braworntype ?? 0);
     (s as any).lastwornbranumber['foto'] = ((s as any).brawornnumber ?? 0);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
-    if (((s as any).studio_strip_talk ?? 0) === 0) {
+    if ((!((s as any).studio_strip_talk ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['foto_events', 'studio_strip_talk1'] }]);
     } else {
       if (((s as any).braworntype ?? 0) !== 'none') {
@@ -115,7 +115,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/photo/strip3.mp4');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
-    if (((s as any).studio_strip_talk ?? 0) === 0) {
+    if ((!((s as any).studio_strip_talk ?? 0))) {
       scene.actions([{ label: 'Continue', goto: ['foto_events', 'studio_strip_talk1'] }]);
     } else {
       if (((s as any).underwear ?? 0)?.['type'] === 2) {

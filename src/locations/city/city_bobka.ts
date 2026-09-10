@@ -14,7 +14,7 @@ function enterInject(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You desperately grab the syringe and inject yourself<<$tempval>>.
   scene.text(`You desperately grab the syringe and inject yourself${((s as any).tempval ?? 0)}.`);
   scene.text('Meanwhile, Bobka is looking down at you haughtily, shaking his head while laughing softly. "Another happy customer. Just like you\'re going to make a lot of customers happy one day…"');
-  if (((s as any).HaveMetBobka ?? 0) === 0) {
+  if ((!((s as any).HaveMetBobka ?? 0))) {
     // TODO-QSP: dynamic text: "By the way, I'm Bobka. Who are you?"<br>The drug is quickly clouding your mind,...
     scene.text(`"By the way, I'm Bobka. Who are you?"<br>The drug is quickly clouding your mind, and you barely register him talking. "${((s as any).pcs_nickname ?? 0)}…" you softly mutter.`);
     (s as any).HaveMetBobka = 1;

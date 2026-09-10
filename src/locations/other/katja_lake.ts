@@ -329,7 +329,7 @@ function enterBeachInSwimwear1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeachInSwimwear2(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).PSwim ?? 0) === 0) {
+  if ((!((s as any).PSwim ?? 0))) {
     qspCall(s, 'stat', '');
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
@@ -358,7 +358,7 @@ function enterBeachInSwimwear2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).PSwim ?? 0) === 0) {
+  if ((!((s as any).PSwim ?? 0))) {
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {
@@ -373,7 +373,7 @@ function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSaunaInSwimmwear2(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).PSwim ?? 0) === 0) {
+  if ((!((s as any).PSwim ?? 0))) {
     qspCall(s, 'changingroom', 'view_swim_list');
     scene.actions([
       { label: 'Find something else to do', handler: (st: GameState) => {

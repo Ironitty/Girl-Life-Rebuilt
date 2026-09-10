@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterAddToEventsList(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('events_list', ((s as any).locArgs?.[1] ?? 0)) === -1) {
+  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) === -1) {
     // TODO-QSP: $events_list[] = $ARGS[1]
   }
   return;
@@ -23,7 +23,7 @@ function enterRemoveFromEventsList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangeTitle(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('events_list', ((s as any).locArgs?.[1] ?? 0)) >= 0) {
+  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
     // TODO-QSP: $event_title[$ARGS[1]] = $ARGS[2]
   }
   return;
@@ -31,7 +31,7 @@ function enterChangeTitle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMarkDone(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('events_list', ((s as any).locArgs?.[1] ?? 0)) >= 0) {
+  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
     // TODO-QSP: $event_title[$ARGS[1]] = '<s><<$event_title[$ARGS[1]]>></s>'
   }
   return;
@@ -41,7 +41,7 @@ function enterMarkDone(s: GameState, scene: SceneBuilder): void {
 function enterGetBlockingEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_block_idx = 0;
   // TODO-QSP: :build_blocking_list
-  if (((s as any).temp_block_idx ?? 0) < ((s as any).arrsize ?? 0)('events_list')) {
+  if (((s as any).temp_block_idx ?? 0) < Object.keys((s as any).events_list ?? {}).length) {
     if (((s as any).temp_block_id ?? 0) !== ''  &&  ((s as any).event_blocking ?? 0)?.[String((s as any).temp_block_id ?? 0)] !== 0) {
       // TODO-QSP: $blocking_events_list[] = $temp_block_id
     }
@@ -149,13 +149,13 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).event_vars ?? 0)?.['recur'] === 'biweekly') {
           (s as any).day_diff = ((s as any).event_vars ?? 0)?.['daystart'] - ((s as any).ARGS ?? 0)[2];
-          (s as any).day_diff = (((s as any).day_diff ?? 0) < 0) ? (0 - ((s as any).day_diff ?? 0)) : (((s as any).day_diff ?? 0));
+          (s as any).day_diff = ((((s as any).day_diff ?? 0) < 0) ? (0 - ((s as any).day_diff ?? 0)) : (((s as any).day_diff ?? 0)));
           if (((s as any).day_diff ?? 0) % 14 === 0) {
             (s as any).result = 1;
           }
         } else {
           (s as any).day_diff = ((s as any).event_vars ?? 0)?.['daystart'] - ((s as any).ARGS ?? 0)[2];
-          (s as any).day_diff = (((s as any).day_diff ?? 0) < 0) ? (0 - ((s as any).day_diff ?? 0)) : (((s as any).day_diff ?? 0));
+          (s as any).day_diff = ((((s as any).day_diff ?? 0) < 0) ? (0 - ((s as any).day_diff ?? 0)) : (((s as any).day_diff ?? 0)));
           if (((s as any).day_diff ?? 0) % 7 === 0) {
             (s as any).result = 1;
           }

@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).locat['katja'] = 0;
   if (((s as any).yearstart ?? 0) === 1) {
-    if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0) {
+    if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (!((s as any).kanikuli ?? 0))) {
       if (((s as any).week ?? 0) <= 5) {
         if ((((s as any).hour ?? 0) < 6)  ||  (((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) < 45)) {
           (s as any).locat['katja'] = 1;
@@ -350,7 +350,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                             if (((s as any).hour ?? 0) < 16) {
                                                                               if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                                                                 if (((s as any).sunWeather ?? 0) === 1) {
-                                                                                  if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  Math.floor(Math.random() * 5) + 0 > 0) {
+                                                                                  if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  (Math.floor(Math.random() * 5) + 0) > 0) {
                                                                                     (s as any).locat['katja'] = 42;
                                                                                   } else {
                                                                                     (s as any).locat['katja'] = qspFunc(s, 'random', 'pick_from', 43, 43, 44, 44, 30, 31);
@@ -620,7 +620,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                         if (((s as any).hour ?? 0) < 16) {
                                                                                                                                           if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                                                                                                                             if (((s as any).sunWeather ?? 0) === 1) {
-                                                                                                                                              if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  Math.floor(Math.random() * 5) + 0 > 0) {
+                                                                                                                                              if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  (Math.floor(Math.random() * 5) + 0) > 0) {
                                                                                                                                                 (s as any).locat['katja'] = 42;
                                                                                                                                               } else {
                                                                                                                                                 (s as any).locat['katja'] = qspFunc(s, 'random', 'pick_from', 43, 43, 44, 44, 30, 31);
@@ -794,7 +794,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                               } else {
                                                                                                                                                                                 if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                                                                                                                                                                   if (((s as any).sunWeather ?? 0) === 1) {
-                                                                                                                                                                                    if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  Math.floor(Math.random() * 5) + 0 > 0) {
+                                                                                                                                                                                    if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  (Math.floor(Math.random() * 5) + 0) > 0) {
                                                                                                                                                                                       (s as any).locat['katja'] = 42;
                                                                                                                                                                                     } else {
                                                                                                                                                                                       (s as any).locat['katja'] = qspFunc(s, 'random', 'pick_from', 43, 43, 44, 44, 30, 31);
@@ -957,7 +957,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                             if (((s as any).hour ?? 0) < 16) {
                                                                                                                                                                                                               if (((s as any).locat ?? 0)?.['katja_rand1'] !== ((s as any).daystart ?? 0)) {
                                                                                                                                                                                                                 if (((s as any).sunWeather ?? 0) === 1) {
-                                                                                                                                                                                                                  if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  Math.floor(Math.random() * 5) + 0 > 0) {
+                                                                                                                                                                                                                  if (((s as any).temper ?? 0) >= 20  &&  ((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 9  &&  (Math.floor(Math.random() * 5) + 0) > 0) {
                                                                                                                                                                                                                     (s as any).locat['katja'] = 42;
                                                                                                                                                                                                                   } else {
                                                                                                                                                                                                                     (s as any).locat['katja'] = qspFunc(s, 'random', 'pick_from', 43, 43, 44, 44, 30, 31);

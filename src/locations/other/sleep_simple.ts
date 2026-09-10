@@ -57,7 +57,7 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).sleepVars ?? 0)?.['stime'] % 7 === 0) {
       (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
-      if (Math.floor(Math.random() * 100) + 1 <= 18) {
+      if ((Math.floor(Math.random() * 100) + 1) <= 18) {
         (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (1);
       }
     }

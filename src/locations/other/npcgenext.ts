@@ -14,16 +14,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).isnum ?? 0)(((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))))  &&  parseFloat(qspUntranslated(s, "\u00001\u0000", { location: "npcgenext" })) < 10) {
     }
-    if (Math.floor(Math.random() * 101) + 0 === 100) {
+    if ((Math.floor(Math.random() * 101) + 0) === 100) {
       (s as any).tempvenerial = Math.floor(Math.random() * 4) + 1;
       if (((s as any).tempvenerial ?? 0) === 1) {
-        (s as any).npc_herpes[$tempvan1] = 1;
+        (s as any).npc_herpes[String((s as any).tempvan1 ?? 0)] = 1;
       } else {
-        (s as any).npc_syth[$tempvan1] = 1;
+        (s as any).npc_syth[String((s as any).tempvan1 ?? 0)] = 1;
         if (((s as any).tempvenerial ?? 0) === 3) {
-          (s as any).npc_gon[$tempvan1] = 1;
+          (s as any).npc_gon[String((s as any).tempvan1 ?? 0)] = 1;
         } else {
-          (s as any).npc_thrush[$tempvan1] = 1;
+          (s as any).npc_thrush[String((s as any).tempvan1 ?? 0)] = 1;
         }
       }
     }

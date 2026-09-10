@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_girlfriends = ((s as any).pcs_girlfriends ?? 0) + (1);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+    if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
       // TODO-QSP: jump 'girlfriend_looop'
     }
     if (((s as any).analorgasm ?? 0) > 0) {
@@ -175,10 +175,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :danilovichfix
     if (((s as any).danilovich ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-      (s as any).danilovich_outfits[i] = 1;
-      (s as any).danilovich_outfits_s[i] = ((s as any).danilovich_s ?? 0)?.[String((s as any).i ?? 0)];
-      (s as any).danilovich_outfits_h[i] = ((s as any).danilovich_h ?? 0)?.[String((s as any).i ?? 0)];
-      (s as any).danilovich_outfits_b[i] = ((s as any).danilovich_b ?? 0)?.[String((s as any).i ?? 0)];
+      (s as any).danilovich_outfits[String((s as any).i ?? 0)] = 1;
+      (s as any).danilovich_outfits_s[String((s as any).i ?? 0)] = ((s as any).danilovich_s ?? 0)?.[String((s as any).i ?? 0)];
+      (s as any).danilovich_outfits_h[String((s as any).i ?? 0)] = ((s as any).danilovich_h ?? 0)?.[String((s as any).i ?? 0)];
+      (s as any).danilovich_outfits_b[String((s as any).i ?? 0)] = ((s as any).danilovich_b ?? 0)?.[String((s as any).i ?? 0)];
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 170) {
@@ -196,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :saveupdaterloop852_1
     (s as any).temp1 = qspFunc(s, 'array', 'get_me_index', '$npc_firstname', ((s as any).text ?? 0));
     if (((s as any).temp1 ?? 0) >= 0) {
-      (s as any).npc_index[$text] = ((s as any).text ?? 0);
+      (s as any).npc_index[String((s as any).text ?? 0)] = ((s as any).text ?? 0);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < ((s as any).carraynumber ?? 0)) {
@@ -206,7 +206,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :saveupdaterloop852_2
     (s as any).temp1 = qspFunc(s, 'array', 'get_me_index', '$npc_firstname', ((s as any).text ?? 0));
     if (((s as any).temp1 ?? 0) >= 0) {
-      (s as any).npc_index[$text] = ((s as any).text ?? 0);
+      (s as any).npc_index[String((s as any).text ?? 0)] = ((s as any).text ?? 0);
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) < ((s as any).barraynumber ?? 0)) {
@@ -217,15 +217,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :saveupdaterloop853_1
     if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 5) {
-      (s as any).npcGoSchool['A' + String((s as any).i ?? '') + ''] = '<a href="exec:gt \'gschool_outcast_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
+      (s as any).npcGoSchool['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_outcast_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
     } else {
-      (s as any).npcGoSchool['A' + String((s as any).i ?? '') + ''] = '<a href="exec:gt \'gschool_gopnik_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
+      (s as any).npcGoSchool['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_gopnik_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
       if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 3) {
-        (s as any).npcGoSchool['A' + String((s as any).i ?? '') + ''] = '<a href="exec:gt \'gschool_nerd_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
+        (s as any).npcGoSchool['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_nerd_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
       } else {
-        (s as any).npcGoSchool['A' + String((s as any).i ?? '') + ''] = '<a href="exec:gt \'gschool_jock_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
+        (s as any).npcGoSchool['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_jock_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
         if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1) {
-          (s as any).npcGoSchool['A' + String((s as any).i ?? '') + ''] = '<a href="exec:gt \'gschool_coolkid_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
+          (s as any).npcGoSchool['A' + String((s as any).i || '') + ''] = '<a href="exec:gt \'gschool_coolkid_chats\', \' + $lcase($npc_usedname[\'A<<i>>\']) + \'"><<$npc_usedname["A<<i>>"]>></a>';
         }
         (s as any).i = ((s as any).i ?? 0) + (1);
         if (((s as any).i ?? 0) < 250) {
@@ -261,21 +261,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).i = 1;
           // TODO-QSP: :loopcatsbrassave
           if (((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-            (s as any).cats_brasS[i] = ((s as any).kats_brasS ?? 0)?.[String((s as any).i ?? 0)];
-            (s as any).cats_bras[i] = ((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)];
+            (s as any).cats_brasS[String((s as any).i ?? 0)] = ((s as any).kats_brasS ?? 0)?.[String((s as any).i ?? 0)];
+            (s as any).cats_bras[String((s as any).i ?? 0)] = ((s as any).kats_bras ?? 0)?.[String((s as any).i ?? 0)];
           }
           (s as any).i = ((s as any).i ?? 0) + (1);
-          if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('kats_bras')) {
+          if (((s as any).i ?? 0) <= Object.keys((s as any).kats_bras ?? {}).length) {
             // TODO-QSP: jump 'loopcatsbrassave'
           }
           (s as any).i = 1;
           // TODO-QSP: :loopcatspantiessave
           if (((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-            (s as any).cats_pantiesS[i] = ((s as any).kats_pantiesS ?? 0)?.[String((s as any).i ?? 0)];
-            (s as any).cats_panties[i] = ((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)];
+            (s as any).cats_pantiesS[String((s as any).i ?? 0)] = ((s as any).kats_pantiesS ?? 0)?.[String((s as any).i ?? 0)];
+            (s as any).cats_panties[String((s as any).i ?? 0)] = ((s as any).kats_panties ?? 0)?.[String((s as any).i ?? 0)];
           }
           (s as any).i = ((s as any).i ?? 0) + (1);
-          if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('kats_panties')) {
+          if (((s as any).i ?? 0) <= Object.keys((s as any).kats_panties ?? {}).length) {
             // TODO-QSP: jump 'loopcatspantiessave'
           }
           if (((s as any).AvelinaQW ?? 0)?.['encourage'] === 1) {
@@ -705,26 +705,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'savedOutfits') {
                   }
                   if (((s as any).nichTanyaKnown ?? 0) === 1) {
-                    (s as any).nichTanya['Known'] = nichTanyaKnown;
-                    (s as any).nichTanya['Relationship'] = nichTanyaRelationship;
-                    (s as any).nichTanya['RelationshipState'] = nichTanyaRelationshipState;
-                    (s as any).nichTanya['RelationshipBreakup'] = nichTanyaRelationshipBreakup;
-                    (s as any).nichTanya['BF'] = nichTanyaBF;
-                    (s as any).nichTanya['Date'] = nichTanyaDate;
-                    (s as any).nichTanya['DateCounter'] = nichTanyaDateCounter;
-                    (s as any).nichTanya['DateLast'] = nichTanyaDateLast;
-                    (s as any).nichTanya['DateShopping'] = nichTanyaDateShopping;
-                    (s as any).nichTanya['FuckCounter'] = nichTanyaFuckCounter;
-                    (s as any).nichTanya['FuckLast'] = nichTanyaFuckLast;
-                    (s as any).nichTanya['FuckToday'] = nichTanyaFuckToday;
-                    (s as any).nichTanya['FuckPositions'] = nichTanyaFuckPositions;
-                    (s as any).nichTanya['Strapon'] = nichTanyaStrapon;
-                    (s as any).nichTanya['Dominance'] = nichTanyaDominance;
-                    (s as any).nichTanya['Uni'] = nichTanyaUni;
-                    (s as any).nichTanya['UniStart'] = nichTanyaUniStart;
-                    (s as any).nichTanya['Room'] = nichTanyaRoom;
-                    (s as any).nichTanya['PropSex'] = nichTanyaPropSex;
-                    (s as any).nichTanya['PropDate'] = nichTanyaPropDate;
+                    (s as any).nichTanya['Known'] = ((s as any).nichTanyaKnown ?? 0);
+                    (s as any).nichTanya['Relationship'] = ((s as any).nichTanyaRelationship ?? 0);
+                    (s as any).nichTanya['RelationshipState'] = ((s as any).nichTanyaRelationshipState ?? 0);
+                    (s as any).nichTanya['RelationshipBreakup'] = ((s as any).nichTanyaRelationshipBreakup ?? 0);
+                    (s as any).nichTanya['BF'] = ((s as any).nichTanyaBF ?? 0);
+                    (s as any).nichTanya['Date'] = ((s as any).nichTanyaDate ?? 0);
+                    (s as any).nichTanya['DateCounter'] = ((s as any).nichTanyaDateCounter ?? 0);
+                    (s as any).nichTanya['DateLast'] = ((s as any).nichTanyaDateLast ?? 0);
+                    (s as any).nichTanya['DateShopping'] = ((s as any).nichTanyaDateShopping ?? 0);
+                    (s as any).nichTanya['FuckCounter'] = ((s as any).nichTanyaFuckCounter ?? 0);
+                    (s as any).nichTanya['FuckLast'] = ((s as any).nichTanyaFuckLast ?? 0);
+                    (s as any).nichTanya['FuckToday'] = ((s as any).nichTanyaFuckToday ?? 0);
+                    (s as any).nichTanya['FuckPositions'] = ((s as any).nichTanyaFuckPositions ?? 0);
+                    (s as any).nichTanya['Strapon'] = ((s as any).nichTanyaStrapon ?? 0);
+                    (s as any).nichTanya['Dominance'] = ((s as any).nichTanyaDominance ?? 0);
+                    (s as any).nichTanya['Uni'] = ((s as any).nichTanyaUni ?? 0);
+                    (s as any).nichTanya['UniStart'] = ((s as any).nichTanyaUniStart ?? 0);
+                    (s as any).nichTanya['Room'] = ((s as any).nichTanyaRoom ?? 0);
+                    (s as any).nichTanya['PropSex'] = ((s as any).nichTanyaPropSex ?? 0);
+                    (s as any).nichTanya['PropDate'] = ((s as any).nichTanyaPropDate ?? 0);
                   }
                 }
                 if (((s as any).temp_current_save_version ?? 0) < 80901) {
@@ -737,7 +737,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'lusso_panties[i] = 1'
                     // TODO-QSP: dynamic 'lusso_pantiesS[i] = boutique_pantiesS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('boutique_panties')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).boutique_panties ?? {}).length) {
                     // TODO-QSP: jump 'loopboutiquepanties'
                   }
                   (s as any).i = 0;
@@ -747,7 +747,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'lusso_bras[i] = 1'
                     // TODO-QSP: dynamic 'lusso_brasS[i] = boutique_brasS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('boutique_bras')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).boutique_bras ?? {}).length) {
                     // TODO-QSP: jump 'loopboutiquebras'
                   }
                   (s as any).i = 0;
@@ -757,7 +757,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'gm_panties[i] = 1'
                     // TODO-QSP: dynamic 'gm_pantiesS[i] = cheap_pantiesS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('cheap_panties')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).cheap_panties ?? {}).length) {
                     // TODO-QSP: jump 'loopcheappanties'
                   }
                   (s as any).i = 0;
@@ -767,7 +767,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'gm_bras[i] = 1'
                     // TODO-QSP: dynamic 'gm_brasS[i] = cheap_brasS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('cheap_bras')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).cheap_bras ?? {}).length) {
                     // TODO-QSP: jump 'loopcheapbras'
                   }
                   (s as any).i = 0;
@@ -777,7 +777,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'salacious_panties[i] = 1'
                     // TODO-QSP: dynamic 'salacious_pantiesS[i] = exhibitionist_pantiesS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('exhibitionist_panties')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).exhibitionist_panties ?? {}).length) {
                     // TODO-QSP: jump 'loopexhibitionistpanties'
                   }
                   (s as any).i = 0;
@@ -787,7 +787,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'salacious_bras[i] = 1'
                     // TODO-QSP: dynamic 'salacious_brasS[i] = exhibitionist_brasS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('exhibitionist_bras')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).exhibitionist_bras ?? {}).length) {
                     // TODO-QSP: jump 'loopexhibitionistbras'
                   }
                   (s as any).i = 0;
@@ -797,7 +797,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'eroto_panties[i] = 1'
                     // TODO-QSP: dynamic 'eroto_pantiesS[i] = sexshop_pantiesS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('sexshop_panties')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).sexshop_panties ?? {}).length) {
                     // TODO-QSP: jump 'loopsexshoppanties'
                   }
                   (s as any).i = 0;
@@ -807,7 +807,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'eroto_bras[i] = 1'
                     // TODO-QSP: dynamic 'eroto_brasS[i] = sexshop_brasS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('sexshop_bras')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).sexshop_bras ?? {}).length) {
                     // TODO-QSP: jump 'loopsexshopbras'
                   }
                   (s as any).i = 0;
@@ -817,7 +817,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'danilovich_panties[i] = 1'
                     // TODO-QSP: dynamic 'danilovich_pantiesS[i] = sport_pantiesS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('sport_panties')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).sport_panties ?? {}).length) {
                     // TODO-QSP: jump 'loopsportpanties'
                   }
                   (s as any).i = 0;
@@ -827,7 +827,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: dynamic 'danilovich_bras[i] = 1'
                     // TODO-QSP: dynamic 'danilovich_brasS[i] = sport_brasS[i]'
                   }
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('sport_bras')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).sport_bras ?? {}).length) {
                     // TODO-QSP: jump 'loopsportbras'
                   }
                   if (((s as any).metmira ?? 0) === 1) {
@@ -849,10 +849,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).i = 0;
                   // TODO-QSP: :loopboys
                   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).i ?? 0)] !== '') {
-                    (s as any).npc_rel_type[i] = 'fuckbuddy';
+                    (s as any).npc_rel_type[String((s as any).i ?? 0)] = 'fuckbuddy';
                   }
                   (s as any).i = ((s as any).i ?? 0) + (1);
-                  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('boys')) {
+                  if (((s as any).i ?? 0) <= Object.keys((s as any).boys ?? {}).length) {
                     // TODO-QSP: jump 'loopboys'
                   }
                   if (((s as any).traits ?? 0) > 0  ||  ((s as any).trait ?? 0) > 0) {
@@ -871,16 +871,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).temp_current_save_version ?? 0) < 90000) {
                   if (((s as any).photography_job ?? 0) > 0) {
-                    (s as any).photography['experience'] = photography_job;
+                    (s as any).photography['experience'] = ((s as any).photography_job ?? 0);
                   }
-                  if (((s as any).arrsize ?? 0)('fuckbuddy') > 0) {
+                  if (Object.keys((s as any).fuckbuddy ?? {}).length > 0) {
                     (s as any).i_fb = 0;
                     // TODO-QSP: :loopFuckbuddies
-                    if (((s as any).arrpos ?? 0)('_fuckbuddies', ((s as any).fuckbuddy ?? 0)?.[String((s as any).i_fb ?? 0)]) === -1) {
+                    if ((Array.isArray((s as any)._fuckbuddies) ? ((s as any)._fuckbuddies as any[]).indexOf(((s as any).fuckbuddy ?? 0)?.[String((s as any).i_fb ?? 0)]) : -1) === -1) {
                       // TODO-QSP: $_fuckbuddies[] = $fuckbuddy[i_fb]
                     }
                     (s as any).i_fb = ((s as any).i_fb ?? 0) + (1);
-                    if (((s as any).i_fb ?? 0) < ((s as any).arrsize ?? 0)('fuckbuddy')) {
+                    if (((s as any).i_fb ?? 0) < Object.keys((s as any).fuckbuddy ?? {}).length) {
                       // TODO-QSP: jump 'loopFuckbuddies'
                     }
                   }
@@ -909,11 +909,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).makeup_routine_update_index = 1;
                   // TODO-QSP: :makeup_routine_update_loop
                   if (((s as any).temp_makeup_routine ?? 0) !== '') {
-                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index ?? '') + '_makeup'] = 0;
-                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index ?? '') + '_lipbalm'] = 0;
-                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index ?? '') + '_lashes'] = 0;
-                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index ?? '') + ''] = ((s as any).temp_makeup_routine ?? 0);
-                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index ?? '') + '_name'] = ((s as any).temp_makeup_routine_name ?? 0);
+                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index || '') + '_makeup'] = 0;
+                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index || '') + '_lipbalm'] = 0;
+                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index || '') + '_lashes'] = 0;
+                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index || '') + ''] = ((s as any).temp_makeup_routine ?? 0);
+                    (s as any).makeup['routine_' + String((s as any).makeup_routine_update_index || '') + '_name'] = ((s as any).temp_makeup_routine_name ?? 0);
                   }
                   (s as any).makeup_routine_update_index = ((s as any).makeup_routine_update_index ?? 0) + (1);
                   if (((s as any).makeup_routine_update_index ?? 0) <= 4) {
@@ -1307,7 +1307,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: killvar 'toldonguard'
                   }
                   if (((s as any).courtletter_date ?? 0) > 0) {
-                    (s as any).policeQW_courtletter_dates[0] = courtletter_date;
+                    (s as any).policeQW_courtletter_dates[0] = ((s as any).courtletter_date ?? 0);
                     if (((s as any).shplft_tmp ?? 0) > 0) {
                       // TODO-QSP: $policeQW_courtletter_subjects[0] = 'shoplift_<<$detec_type>>'
                     } else {
@@ -1315,7 +1315,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                   if (((s as any).courthearing_date ?? 0) > 0) {
-                    (s as any).policeQW_courthearing_dates[0] = courthearing_date;
+                    (s as any).policeQW_courthearing_dates[0] = ((s as any).courthearing_date ?? 0);
                     if (((s as any).shplft_tmp ?? 0) > 0) {
                       // TODO-QSP: $policeQW_courthearing_subjects[0] = 'shoplift_<<$detec_type>>'
                     } else {
@@ -1377,49 +1377,49 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: killvar 'alarm_holiday'
                   }
                   (s as any).npctemp = 264;
-                  (s as any).npc_dna['A' + String((s as any).npctemp ?? '') + ''] = '1290130369 1043654233 5049908515 3153411713 0721993774 2486220839 0288719745';
-                  (s as any).npc_firstname['A' + String((s as any).npctemp ?? '') + ''] = 'Yakov';
-                  (s as any).npc_nickname['A' + String((s as any).npctemp ?? '') + ''] = 'Yakov';
-                  (s as any).npc_lastname['A' + String((s as any).npctemp ?? '') + ''] = '';
-                  (s as any).npc_usedname['A' + String((s as any).npctemp ?? '') + ''] = 'Yakov';
-                  (s as any).npc_dob['A' + String((s as any).npctemp ?? '') + ''] = 19961215;
-                  (s as any).npc_notes['A' + String((s as any).npctemp ?? '') + ''] = 'Yakov is a fitness-focused sports enthusiast with blond hair and a tanned complexion.';
-                  (s as any).npc_gender['A' + String((s as any).npctemp ?? '') + ''] = 0;
+                  (s as any).npc_dna['A' + String((s as any).npctemp || '') + ''] = '1290130369 1043654233 5049908515 3153411713 0721993774 2486220839 0288719745';
+                  (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Yakov';
+                  (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Yakov';
+                  (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = '';
+                  (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Yakov';
+                  (s as any).npc_dob['A' + String((s as any).npctemp || '') + ''] = 19961215;
+                  (s as any).npc_notes['A' + String((s as any).npctemp || '') + ''] = 'Yakov is a fitness-focused sports enthusiast with blond hair and a tanned complexion.';
+                  (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
                   qspCall(s, 'npcstaticdefaults', 'defaults');
-                  (s as any).npc_thdick['A' + String((s as any).npctemp ?? '') + ''] = 'well proportioned';
-                  (s as any).npc_dick['A' + String((s as any).npctemp ?? '') + ''] = 14;
-                  (s as any).npc_sexskill['A' + String((s as any).npctemp ?? '') + ''] = 1;
-                  (s as any).npc_occupation['A' + String((s as any).npctemp ?? '') + ''] = 'personal_trainer';
-                  (s as any).npc_style['A' + String((s as any).npctemp ?? '') + ''] = 5;
+                  (s as any).npc_thdick['A' + String((s as any).npctemp || '') + ''] = 'well proportioned';
+                  (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 14;
+                  (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 1;
+                  (s as any).npc_occupation['A' + String((s as any).npctemp || '') + ''] = 'personal_trainer';
+                  (s as any).npc_style['A' + String((s as any).npctemp || '') + ''] = 5;
                   (s as any).npctemp = 265;
-                  (s as any).npc_dna['A' + String((s as any).npctemp ?? '') + ''] = '1085950303 4348731991 6618084127 9067996922 8669859044 9431283301 0673267503';
-                  (s as any).npc_firstname['A' + String((s as any).npctemp ?? '') + ''] = 'Nestor';
-                  (s as any).npc_nickname['A' + String((s as any).npctemp ?? '') + ''] = 'Nestor';
-                  (s as any).npc_lastname['A' + String((s as any).npctemp ?? '') + ''] = '';
-                  (s as any).npc_usedname['A' + String((s as any).npctemp ?? '') + ''] = 'Nestor';
-                  (s as any).npc_dob['A' + String((s as any).npctemp ?? '') + ''] = 19930127;
-                  (s as any).npc_notes['A' + String((s as any).npctemp ?? '') + ''] = 'Nestor is a gopnik with a reputation for being rude and aggressive. His motto seems to be "the younger, the better," which can be concerning. He has a tough demeanor, with dark hair and dark skin, giving off an intimidating presence.';
-                  (s as any).npc_gender['A' + String((s as any).npctemp ?? '') + ''] = 0;
+                  (s as any).npc_dna['A' + String((s as any).npctemp || '') + ''] = '1085950303 4348731991 6618084127 9067996922 8669859044 9431283301 0673267503';
+                  (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Nestor';
+                  (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Nestor';
+                  (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = '';
+                  (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Nestor';
+                  (s as any).npc_dob['A' + String((s as any).npctemp || '') + ''] = 19930127;
+                  (s as any).npc_notes['A' + String((s as any).npctemp || '') + ''] = 'Nestor is a gopnik with a reputation for being rude and aggressive. His motto seems to be "the younger, the better," which can be concerning. He has a tough demeanor, with dark hair and dark skin, giving off an intimidating presence.';
+                  (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
                   qspCall(s, 'npcstaticdefaults', 'defaults');
-                  (s as any).npc_thdick['A' + String((s as any).npctemp ?? '') + ''] = 'massive';
-                  (s as any).npc_dick['A' + String((s as any).npctemp ?? '') + ''] = 22;
-                  (s as any).npc_sexskill['A' + String((s as any).npctemp ?? '') + ''] = 1;
-                  (s as any).npc_style['A' + String((s as any).npctemp ?? '') + ''] = 2;
+                  (s as any).npc_thdick['A' + String((s as any).npctemp || '') + ''] = 'massive';
+                  (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 22;
+                  (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 1;
+                  (s as any).npc_style['A' + String((s as any).npctemp || '') + ''] = 2;
                   (s as any).npctemp = 266;
-                  (s as any).npc_dna['A' + String((s as any).npctemp ?? '') + ''] = '5654106058 6395942483 3363408422 7113656738 1111862818 8859290040 7960339191';
-                  (s as any).npc_firstname['A' + String((s as any).npctemp ?? '') + ''] = 'Oleg';
-                  (s as any).npc_nickname['A' + String((s as any).npctemp ?? '') + ''] = 'Oleg';
-                  (s as any).npc_lastname['A' + String((s as any).npctemp ?? '') + ''] = '';
-                  (s as any).npc_usedname['A' + String((s as any).npctemp ?? '') + ''] = 'Oleg';
-                  (s as any).npc_dob['A' + String((s as any).npctemp ?? '') + ''] = 19950712;
-                  (s as any).npc_notes['A' + String((s as any).npctemp ?? '') + ''] = 'Oleg is a shy, young-looking guy with thick glasses, a slim frame, and very pale skin.';
-                  (s as any).npc_gender['A' + String((s as any).npctemp ?? '') + ''] = 0;
+                  (s as any).npc_dna['A' + String((s as any).npctemp || '') + ''] = '5654106058 6395942483 3363408422 7113656738 1111862818 8859290040 7960339191';
+                  (s as any).npc_firstname['A' + String((s as any).npctemp || '') + ''] = 'Oleg';
+                  (s as any).npc_nickname['A' + String((s as any).npctemp || '') + ''] = 'Oleg';
+                  (s as any).npc_lastname['A' + String((s as any).npctemp || '') + ''] = '';
+                  (s as any).npc_usedname['A' + String((s as any).npctemp || '') + ''] = 'Oleg';
+                  (s as any).npc_dob['A' + String((s as any).npctemp || '') + ''] = 19950712;
+                  (s as any).npc_notes['A' + String((s as any).npctemp || '') + ''] = 'Oleg is a shy, young-looking guy with thick glasses, a slim frame, and very pale skin.';
+                  (s as any).npc_gender['A' + String((s as any).npctemp || '') + ''] = 0;
                   qspCall(s, 'npcstaticdefaults', 'defaults');
-                  (s as any).npc_thdick['A' + String((s as any).npctemp ?? '') + ''] = 'thick';
-                  (s as any).npc_dick['A' + String((s as any).npctemp ?? '') + ''] = 17;
-                  (s as any).npc_sexskill['A' + String((s as any).npctemp ?? '') + ''] = 1;
-                  (s as any).npc_occupation['A' + String((s as any).npctemp ?? '') + ''] = 'programmer';
-                  (s as any).npc_style['A' + String((s as any).npctemp ?? '') + ''] = 3;
+                  (s as any).npc_thdick['A' + String((s as any).npctemp || '') + ''] = 'thick';
+                  (s as any).npc_dick['A' + String((s as any).npctemp || '') + ''] = 17;
+                  (s as any).npc_sexskill['A' + String((s as any).npctemp || '') + ''] = 1;
+                  (s as any).npc_occupation['A' + String((s as any).npctemp || '') + ''] = 'programmer';
+                  (s as any).npc_style['A' + String((s as any).npctemp || '') + ''] = 3;
                   if (((s as any).sp_rel ?? 0)                  > 0) {
                     (s as any).npc_rel['A264'] = ((s as any).sp_rel ?? 0);
                     // TODO-QSP: killvar 'sp_rel'
@@ -1885,13 +1885,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     if (((s as any).start_type ?? 0)?.['cat']  === '') {
                                       (s as any).start_type['cat'] = 'friendless';
                                     }
-                                    if (((s as any).arrsize ?? 0)('fashionista') > 0) {
+                                    if (Object.keys((s as any).fashionista ?? {}).length > 0) {
                                       // TODO-QSP: :loopfashionista2
                                       if (((s as any).fashionista ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-                                        (s as any).fashionista_dress[i] = 1;
-                                        (s as any).fashionista_dress_h[i] = ((s as any).fashionista_h ?? 0)?.[String((s as any).i ?? 0)];
-                                        (s as any).fashionista_dress_b[i] = ((s as any).fashionista_b ?? 0)?.[String((s as any).i ?? 0)];
-                                        (s as any).fashionista_dress_s[i] = ((s as any).fashionista_s ?? 0)?.[String((s as any).i ?? 0)];
+                                        (s as any).fashionista_dress[String((s as any).i ?? 0)] = 1;
+                                        (s as any).fashionista_dress_h[String((s as any).i ?? 0)] = ((s as any).fashionista_h ?? 0)?.[String((s as any).i ?? 0)];
+                                        (s as any).fashionista_dress_b[String((s as any).i ?? 0)] = ((s as any).fashionista_b ?? 0)?.[String((s as any).i ?? 0)];
+                                        (s as any).fashionista_dress_s[String((s as any).i ?? 0)] = ((s as any).fashionista_s ?? 0)?.[String((s as any).i ?? 0)];
                                       }
                                       (s as any).i = ((s as any).i ?? 0) + (4);
                                       if (((s as any).i ?? 0) <= 200) {
@@ -1910,14 +1910,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).therapistQW['hotel_key'] = ((s as any).therapist_key ?? 0);
                                       // TODO-QSP: killvar 'therapist_key'
                                     }
-                                    if (((s as any).arrsize ?? 0)('homes') === 16) {
+                                    if (Object.keys((s as any).homes ?? {}).length === 16) {
                                       // TODO-QSP: $homes[] = 'hotel_therapist'
                                     }
                                     if (((s as any).home_name ?? 0)?.['hotel_therapist'] === '') {
                                       (s as any).home_name['hotel_therapist'] = 'hotel_therapist';
                                       (s as any).home_name['17'] = 'hotel_therapist';
                                     }
-                                    if (((s as any).arrsize ?? 0)('homes') === 17) {
+                                    if (Object.keys((s as any).homes ?? {}).length === 17) {
                                       // TODO-QSP: $homes[] = 'pushkin_ballet_dorm'
                                     }
                                     if (((s as any).home_name ?? 0)?.['pushkin_ballet_dorm'] === '') {
@@ -1942,7 +1942,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       }
                                       (s as any).rej_idx = ((s as any).rej_idx ?? 0) + (1);
                                       // TODO-QSP: jump 'lutcycloop'
-                                      if (((s as any).arrsize ?? 0)('Babyptype') <= 0) {
+                                      if (Object.keys((s as any).Babyptype ?? {}).length <= 0) {
                                         (s as any).preg = 0;
                                         (s as any).pregChem = 0;
                                         (s as any).knowpreg = 0;
@@ -1962,7 +1962,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).bdsmclub['payday'] = ((s as any).BDSMpayDay ?? 0);
                                       }
                                     }
-                                    if (((s as any).motherQW ?? 0)?.['seen_dildos'] > 0  &&  ((s as any).motherKnowDildo ?? 0) === 0) {
+                                    if (((s as any).motherQW ?? 0)?.['seen_dildos'] > 0  &&  (!((s as any).motherKnowDildo ?? 0))) {
                                       (s as any).motherKnowDildo = 1;
                                     }
                                     if (((s as any).motherQW ?? 0)?.['seen_dildos'] === 0  &&  ((s as any).motherKnowDildo ?? 0) > 0) {
@@ -1994,7 +1994,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       // TODO-QSP: jump 'trtrstinsdlp'
                                     }
                                     (s as any).tl = ((s as any).tl ?? 0) + (1);
-                                    if (((s as any).tl ?? 0) < ((s as any).arrsize ?? 0) ('traitattskl')) {
+                                    if (((s as any).tl ?? 0) < Object.keys((s as any).traitattskl ?? {}).length) {
                                       // TODO-QSP: jump 'trtrstloop'
                                     }
                                     if (((s as any).x ?? 0) === 1) {
@@ -2007,7 +2007,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     }
                                     // TODO-QSP: "
                                     (s as any).i = ((s as any).i ?? 0) + (1);
-                                    if ((((s as any).x ?? 0) === 1  &&  ((s as any).i ?? 0) < ((s as any).arrsize ?? 0) ('att_name'))  ||  (((s as any).x ?? 0) === 2  &&  ((s as any).i ?? 0) < ((s as any).arrsize ?? 0) ('skl_name'))) {
+                                    if ((((s as any).x ?? 0) === 1  &&  ((s as any).i ?? 0) < Object.keys((s as any).att_name ?? {}).length)  ||  (((s as any).x ?? 0) === 2  &&  ((s as any).i ?? 0) < Object.keys((s as any).skl_name ?? {}).length)) {
                                       // TODO-QSP: jump 'rstloop_inner'
                                     }
                                     (s as any).i = 0;
@@ -2549,7 +2549,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       // TODO-QSP: killvar 'bcream_used'
                                     }
                                     (s as any).home_name['gad_gpbarn'] = 'grandparents_house';
-                                    if (((s as any).arrpos ?? 0)('npc_pref_traits', 'body_ass_heart') < 0) {
+                                    if ((Array.isArray((s as any).npc_pref_traits) ? ((s as any).npc_pref_traits as any[]).indexOf('body_ass_heart') : -1) < 0) {
                                       qspCall(s, 'npc_set_preference', 'A14', 'body_ass_heart', 'like');
                                     }
                                     if (((s as any).begsec ?? 0)    > 0) {
@@ -2742,7 +2742,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).vladimirQW['day'] = ((s as any).vladimirday ?? 0);
                                       }
                                     }
-                                    if (((s as any).arrpos ?? 0)('contact', 'A108') > -1) {
+                                    if ((Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A108') : -1) > -1) {
                                       (s as any).temp_pos = qspUntranslated(s, "arrpos('contact', 'A108')", { location: "saveupdater" });
                                       if (((((s as any).contactICode ?? 0)?.[String((s as any).temp_pos ?? 0)]).indexOf(('telefon'))) + 1 > 0) {
                                         // TODO-QSP: $contactICode[temp_pos] = replace($contactICode[temp_pos], "'telefon', 'vladimir'", "'vladimirQW_loc...
@@ -2751,13 +2751,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         // TODO-QSP: $contactISche[temp_pos] = replace($contactISche[temp_pos], "vladimirday", "vladimirQW['day']")
                                       }
                                     }
-                                    if (((s as any).arrpos ?? 0)('contact', 'A192') > -1) {
+                                    if ((Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A192') : -1) > -1) {
                                       (s as any).temp_pos = qspUntranslated(s, "arrpos('contact', 'A192')", { location: "saveupdater" });
                                       if (((((s as any).contactOCode ?? 0)?.[String((s as any).temp_pos ?? 0)]).indexOf(('telefon'))) + 1 > 0) {
                                         // TODO-QSP: $contactOCode[temp_pos] = replace($contactOCode[temp_pos], 'telefon', 'nastja')
                                       }
                                     }
-                                    if (((s as any).arrsize ?? 0)('contact') > ((s as any).arrsize ?? 0)('contactOSMSCode')) {
+                                    if (Object.keys((s as any).contact ?? {}).length > Object.keys((s as any).contactOSMSCode ?? {}).length) {
                                       (s as any).temp_maxi = 0;
                                       (s as any).temp_i = 0;
                                       // TODO-QSP: :saveupdater_SMSCODE_scheduling_loop
@@ -2787,15 +2787,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).blackmailQW['total_material'] = 1;
                                         }
                                         if (((s as any).blackmailQW ?? 0)?.['init_flashimage'] !== ''  &&  ((qspUntranslated(s, "\u00001\u0000", { location: "saveupdater" })).indexOf(('.jpg'))) + 1 === 0) {
-                                          (s as any).blackmailQW['init_flashimage'] = $((s as any).blackmailQW ?? 0)?.['init_flashimage'] + '.((s as any).jpg ?? 0)';
+                                          (s as any).blackmailQW['init_flashimage'] = ((s as any).blackmailQW ?? 0)?.['init_flashimage'] + '.((s as any).jpg ?? 0)';
                                         }
                                         if (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] === ''  &&  ((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
                                           (s as any).blackmailQW['blackmail_image_chosen'] = ((s as any).blackmailQW ?? 0)?.['init_flashimage'];
                                         }
-                                        if (((s as any).igor_krossdress ?? 0) > 0  &&  ((s as any).igor_eqwtday ?? 0) > 0  &&  ((s as any).igor_progulkaday ?? 0) === 0) {
+                                        if (((s as any).igor_krossdress ?? 0) > 0  &&  ((s as any).igor_eqwtday ?? 0) > 0  &&  (!((s as any).igor_progulkaday ?? 0))) {
                                           (s as any).igor_krossdress = 0;
                                         }
-                                        if (((s as any).arrsize ?? 0)('transportVars') > 4) {
+                                        if (Object.keys((s as any).transportVars ?? {}).length > 4) {
                                           // TODO-QSP: copyarr('temp_transportVars', 'transportVars')
                                           (s as any).transportVars['trainpass_day'] = ((s as any).temp_transportVars ?? 0)?.['trainpass_day'];
                                           (s as any).transportVars['buspass_day'] = ((s as any).temp_transportVars ?? 0)?.['buspass_day'];
@@ -2978,12 +2978,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).cheatVars['no_trait_exhib'] = ((s as any).exhib_cheat ?? 0);
                                         }
                                         if (((s as any).cheatKlisma ?? 0) !== '') {
-                                          if (((s as any).cheatKlisma ?? 0) === 0) {
+                                          if ((!((s as any).cheatKlisma ?? 0))) {
                                             (s as any).cheatVars['enema'] = 1;
                                           }
                                         }
                                         if (((s as any).Enable_auto_tampons ?? 0) !== '') {
-                                          if (((s as any).Enable_auto_tampons ?? 0) === 0) {
+                                          if ((!((s as any).Enable_auto_tampons ?? 0))) {
                                             (s as any).cheatVars['auto_tampons'] = 1;
                                           }
                                         }
@@ -3067,11 +3067,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           qspCall(s, 'miroslava_schedule', '');
                                           // TODO-QSP: killvar 'MiraLoc'
                                         }
-                                        if (((s as any).arrsize ?? 0)('mitkabuhday')    !== 0) {
+                                        if (Object.keys((s as any).mitkabuhday ?? {}).length    !== 0) {
                                           (s as any).GadBoy['drunk_event'] = ((s as any).mitkabuhday ?? 0);
                                           // TODO-QSP: killvar 'mitkabuhday'
                                         }
-                                        if (((s as any).arrsize ?? 0)('mitkabuhmiraday')  !== 0) {
+                                        if (Object.keys((s as any).mitkabuhmiraday ?? {}).length  !== 0) {
                                           (s as any).MiraVars['drunk_event'] = ((s as any).mitkabuhmiraday ?? 0);
                                           // TODO-QSP: killvar 'mitkabuhmiraday'
                                         }
@@ -3122,7 +3122,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).home_name['gad_swamp_yard'] = 'hunters_lodge';
                                         qspCall(s, 'array', 'remove_element', '$home_name', 'swamphouse');
                                         qspCall(s, 'array', 'remove_element', '$home_name', 'swamp_yard');
-                                        if (((s as any).arrsize ?? 0)('newspaperVars') === 0) {
+                                        if (Object.keys((s as any).newspaperVars ?? {}).length === 0) {
                                           qspCall(s, 'newspaper', 'cikl');
                                         }
                                         if (((s as any).HotelRoom ?? 0)?.['pav_hotel'] !== 0) {
@@ -3191,10 +3191,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         }
                                       }
                                       if (((s as any).temp_current_save_version ?? 0) < 90302) {
-                                        if (((s as any).arrsize ?? 0)('npc_pref_values') > 0) {
+                                        if (Object.keys((s as any).npc_pref_values ?? {}).length > 0) {
                                           (s as any).su_i = 1;
                                           // TODO-QSP: :su_pref_values_update_loop
-                                          if (((s as any).arrsize ?? 0)('npc_pref_traits') > 0) {
+                                          if (Object.keys((s as any).npc_pref_traits ?? {}).length > 0) {
                                             qspCall(s, 'npc_set_preference', 'rebuild_preferences', 'A<<su_i>>');
                                           }
                                           (s as any).su_i = ((s as any).su_i ?? 0) + (1);
@@ -3216,7 +3216,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).su_i = 0;
                                           // TODO-QSP: :zaprFreplaceloop
                                           if (((qspUntranslated(s, "\u00000\u0000", { location: "saveupdater" })).indexOf(('zaprF'))) + 1 > 0) {
-                                            (s as any).blackmailQW['selfie_location_' + String((s as any).su_i ?? '') + ''] = qspUntranslated(s, "replace(blackmailQW['selfie_location_<<su_i>>'], 'zaprF', 'fuelstation')", { location: "saveupdater" });
+                                            (s as any).blackmailQW['selfie_location_' + String((s as any).su_i || '') + ''] = qspUntranslated(s, "replace(blackmailQW['selfie_location_<<su_i>>'], 'zaprF', 'fuelstation')", { location: "saveupdater" });
                                           }
                                           (s as any).su_i = ((s as any).su_i ?? 0) + (1);
                                           if (((s as any).su_i ?? 0) < 10) {
@@ -3312,7 +3312,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           // TODO-QSP: killvar 'KikDefV'
                                         }
                                         if (((s as any).healthV ?? 0)    !== 0) {
-                                          (s as any).temp_kickboxVars['npc_health'] = healthV;
+                                          (s as any).temp_kickboxVars['npc_health'] = ((s as any).healthV ?? 0);
                                           (s as any).temp_kickboxVars['npc_max_health'] = ((s as any).temp_kickboxVars ?? 0)?.['npc_vital'] * 10 + ((s as any).temp_kickboxVars ?? 0)?.['npc_stren'] * 5;
                                           (s as any).temp_kickboxVars['npc_stam'] = (30 * (2 * ((s as any).temp_kickboxVars ?? 0)?.['npc_vital'] + ((s as any).temp_kickboxVars ?? 0)?.['npc_agil'] + ((s as any).temp_kickboxVars ?? 0)?.['npc_stren']) + 1000) / 13;
                                         }
@@ -3408,13 +3408,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).su_i = 0;
                                         // TODO-QSP: :appearance_update_loop
                                         if (((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)] > 0) {
-                                          (s as any).npc_apprnc[su_i] = 3 * ((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)];
+                                          (s as any).npc_apprnc[String((s as any).su_i ?? 0)] = 3 * ((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)];
                                           if (((s as any).npc_apprnc ?? 0)?.[String((s as any).su_i ?? 0)] > 190) {
-                                            (s as any).npc_apprnc[su_i] = 190;
+                                            (s as any).npc_apprnc[String((s as any).su_i ?? 0)] = 190;
                                           }
                                         }
                                         (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-                                        if (((s as any).su_i ?? 0) < ((s as any).arrsize ?? 0)('npc_apprnc')) {
+                                        if (((s as any).su_i ?? 0) < Object.keys((s as any).npc_apprnc ?? {}).length) {
                                           // TODO-QSP: jump 'appearance_update_loop'
                                         }
                                         // TODO-QSP: copyarr 'npc_hotcat', 'hotcat_rating'
@@ -3851,37 +3851,37 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).su_ds_i = 0;
                                           // TODO-QSP: :daystart_fix_loops
                                           if (((s as any).booty_call_invite ?? 0)?.[String((s as any).su_ds_i ?? 0)]      !== 0) {
-                                            (s as any).booty_call_invite[isu_ds_i] = ((s as any).booty_call_invite[isu_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).booty_call_invite[String((s as any).isu_ds_i ?? 0)] = ((s as any).booty_call_invite[String((s as any).isu_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).loverday ?? 0)?.[String((s as any).su_ds_i ?? 0)]          !== 0) {
-                                            (s as any).loverday[su_ds_i] = ((s as any).loverday[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).loverday[String((s as any).su_ds_i ?? 0)] = ((s as any).loverday[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).meetday ?? 0)?.[String((s as any).su_ds_ii ?? 0)]          !== 0) {
-                                            (s as any).meetday[su_ds_i] = ((s as any).meetday[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).meetday[String((s as any).su_ds_i ?? 0)] = ((s as any).meetday[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).npc_sugar_daddy_timer ?? 0)?.[String((s as any).su_ds_i ?? 0)]    !== 0) {
-                                            (s as any).npc_sugar_daddy_timer[su_ds_i] = ((s as any).npc_sugar_daddy_timer[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).npc_sugar_daddy_timer[String((s as any).su_ds_i ?? 0)] = ((s as any).npc_sugar_daddy_timer[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).npc_no_booty_call ?? 0)?.[String((s as any).su_ds_i ?? 0)]      !== 0) {
-                                            (s as any).npc_no_booty_call[su_ds_i] = ((s as any).npc_no_booty_call[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).npc_no_booty_call[String((s as any).su_ds_i ?? 0)] = ((s as any).npc_no_booty_call[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).su_ds_i ?? 0)]      !== 0) {
-                                            (s as any).npc_booty_call_date[su_ds_i] = ((s as any).npc_booty_call_date[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).npc_booty_call_date[String((s as any).su_ds_i ?? 0)] = ((s as any).npc_booty_call_date[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).npc_bc_promise ?? 0)?.[String((s as any).su_ds_i ?? 0)]        !== 0) {
-                                            (s as any).npc_bc_promise[su_ds_i] = ((s as any).npc_bc_promise[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).npc_bc_promise[String((s as any).su_ds_i ?? 0)] = ((s as any).npc_bc_promise[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).npc_last_booty_call ?? 0)?.[String((s as any).su_ds_i ?? 0)]      !== 0) {
-                                            (s as any).npc_last_booty_call[su_ds_i] = ((s as any).npc_last_booty_call[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).npc_last_booty_call[String((s as any).su_ds_i ?? 0)] = ((s as any).npc_last_booty_call[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).policeQW_courthearing_dates ?? 0)?.[String((s as any).su_ds_i ?? 0)]  !== 0) {
-                                            (s as any).policeQW_courthearing_dates[su_ds_i] = ((s as any).policeQW_courthearing_dates[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).policeQW_courthearing_dates[String((s as any).su_ds_i ?? 0)] = ((s as any).policeQW_courthearing_dates[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).policeQW_courtletter_dates ?? 0)?.[String((s as any).su_ds_i ?? 0)]  !== 0) {
-                                            (s as any).policeQW_courtletter_dates[su_ds_i] = ((s as any).policeQW_courtletter_dates[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).policeQW_courtletter_dates[String((s as any).su_ds_i ?? 0)] = ((s as any).policeQW_courtletter_dates[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           if (((s as any).porndaystart ?? 0)?.[String((s as any).su_ds_i ?? 0)]        !== 0) {
-                                            (s as any).porndaystart[su_ds_i] = ((s as any).porndaystart[su_ds_i] ?? 0) + (((s as any).ds_diff ?? 0));
+                                            (s as any).porndaystart[String((s as any).su_ds_i ?? 0)] = ((s as any).porndaystart[String((s as any).su_ds_i ?? 0)] ?? 0) + (((s as any).ds_diff ?? 0));
                                           }
                                           (s as any).su_ds_i = ((s as any).su_ds_i ?? 0) + (1);
                                           if (((s as any).su_ds_i ?? 0) < 99) {
@@ -3975,22 +3975,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).nhour ?? 0)  !== 0) {
                                           // TODO-QSP: killvar 'nhour'
                                         }
-                                        if (((s as any).arrsize ?? 0)('bodimgsets') / 10 > 4) {
+                                        if (Object.keys((s as any).bodimgsets ?? {}).length / 10 > 4) {
                                           (s as any).su_i = 4;
                                           (s as any).su_j = 0;
                                           // TODO-QSP: :su_bodimgset_move_loop
                                           if (((s as any).su_j ?? 0) < 9) {
-                                            (s as any).cheatVars['fix_biset_' + String((s as any).su_i-4 ?? '') + '_desc_' + String((s as any).su_j ?? '') + ''] = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).su_j ?? 0));
-                                            if ((((s as any).su_j ?? 0) >= 1  &&  ((s as any).su_j ?? 0) <= 5)  ||  ((s as any).dyneval ?? 0)('result === imgset\'0\'ovr[\'1\']') === 0) {
-                                              (s as any).cheatVars['fix_biset_' + String((s as any).su_i-4 ?? '') + '_img_' + String((s as any).su_j ?? '') + ''] = '<<su_j>>';
+                                            (s as any).cheatVars['fix_biset_' + String((s as any).su_i-4 || '') + '_desc_' + String((s as any).su_j || '') + ''] = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).su_j ?? 0));
+                                            if ((((s as any).su_j ?? 0) >= 1  &&  ((s as any).su_j ?? 0) <= 5)  ||  (!(0 as any))) {
+                                              (s as any).cheatVars['fix_biset_' + String((s as any).su_i-4 || '') + '_img_' + String((s as any).su_j || '') + ''] = '<<su_j>>';
                                             }
                                             (s as any).su_j = ((s as any).su_j ?? 0) + (1);
                                           } else {
-                                            (s as any).cheatVars['fix_biset_' + String((s as any).su_i-4 ?? '') + '_folder'] = ((s as any).bodimgsets ?? 0)?.[10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0)];
+                                            (s as any).cheatVars['fix_biset_' + String((s as any).su_i-4 || '') + '_folder'] = ((s as any).bodimgsets ?? 0)?.[10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0)];
                                             (s as any).su_j = 0;
                                             (s as any).su_i = ((s as any).su_i ?? 0) + (1);
                                           }
-                                          if (10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0) < ((s as any).arrsize ?? 0)('bodimgsets')) {
+                                          if (10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0) < Object.keys((s as any).bodimgsets ?? {}).length) {
                                             // TODO-QSP: jump 'su_bodimgset_move_loop'
                                           }
                                         }
@@ -4109,35 +4109,35 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         // TODO-QSP: :piercing_owned_update_loop
                                         // TODO-QSP: dynamic "
                                         if (((s as any).pirsC ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['ears_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['ears_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsC<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsD ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['nose_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['nose_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsD<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsE ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['brow_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['brow_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsE<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsB ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['lip_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['lip_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsB<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsA ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['tongue_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['tongue_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsA<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsN ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['navel_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['navel_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsN<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsF ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['nipples_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['nipples_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsF<<su_i>>_owned'
                                         }
                                         if (((s as any).pirsG ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
-                                          (s as any).pcs_piercings['pussy_' + String((s as any).su_i ?? '') + '_owned'] = 1;
+                                          (s as any).pcs_piercings['pussy_' + String((s as any).su_i || '') + '_owned'] = 1;
                                           // TODO-QSP: killvar 'pirsG<<su_i>>_owned'
                                         }
                                         // TODO-QSP: "
@@ -4468,14 +4468,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).igor_qweday ?? 0)      !== 0) {
                                           // TODO-QSP: killvar 'igor_qweday'
                                         }
-                                        if (((s as any).arrsize ?? 0)('npc_pic') > 0) {
+                                        if (Object.keys((s as any).npc_pic ?? {}).length > 0) {
                                           // TODO-QSP: copyarr '$npc_icon', '$npc_pic'
                                           (s as any).su_i = 0;
                                           // TODO-QSP: :icon_to_pic_loop
                                           // TODO-QSP: $npc_pic[su_i] = 'images/characters/shared/headshots_generic/' + mid($npc_pic[su_i], 8, len($npc_pic...
                                           // TODO-QSP: $npc_icon[su_i] = 'images/system/phone/icons/' + $npc_icon[su_i]
                                           (s as any).su_i = ((s as any).su_i ?? 0) + (1);
-                                          if (((s as any).su_i ?? 0) < ((s as any).arrsize ?? 0)('npc_pic')) {
+                                          if (((s as any).su_i ?? 0) < Object.keys((s as any).npc_pic ?? {}).length) {
                                             // TODO-QSP: jump 'icon_to_pic_loop'
                                           }
                                         }
@@ -4483,13 +4483,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).su_max_i = 190;
                                         // TODO-QSP: :npc_selfie_update_loop
                                         if (((s as any).npc_selfie ?? 0)?.['A' + String(((s as any).su_i ?? 0))] !== '') {
-                                          (s as any).npc_selfie['A' + String((s as any).su_i ?? '') + ''] = qspUntranslated(s, "replace(su_temp_str, 'numnpc = ', ' gt 'phone_selfies', 'listretrieve2', 'A')", { location: "saveupdater" });
+                                          (s as any).npc_selfie['A' + String((s as any).su_i || '') + ''] = qspUntranslated(s, "replace(su_temp_str, 'numnpc = ', ' gt 'phone_selfies', 'listretrieve2', 'A')", { location: "saveupdater" });
                                         }
                                         (s as any).su_i = ((s as any).su_i ?? 0) + (1);
                                         if (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0)) {
                                           // TODO-QSP: jump 'npc_selfie_update_loop'
                                         }
-                                        if (((s as any).arrpos ?? 0)('contact', 'A157') >= 0) {
+                                        if ((Array.isArray((s as any).contact) ? ((s as any).contact as any[]).indexOf('A157') : -1) >= 0) {
                                           (s as any).su_tel_pos = qspUntranslated(s, "arrpos('contact', 'A157')", { location: "saveupdater" });
                                           // TODO-QSP: $contactICode[su_tel_pos] = replace($contactICode[su_tel_pos], 'telefon', 'lover_call')
                                         }
@@ -4518,7 +4518,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         if (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0)) {
                                           // TODO-QSP: jump 'su_pref_update_loop_904'
                                         }
-                                        if (((s as any).arrsize ?? 0)('lover') > 0) {
+                                        if (Object.keys((s as any).lover ?? {}).length > 0) {
                                           (s as any).saveupdaterVars['lover_number'] = 0;
                                           // TODO-QSP: :su_lover_to_npcgeneratec_loop
                                           (s as any).saveupdaterVars['npcID'] = qspUntranslated(s, "lover[saveupdaterVars['lover_number']]", { location: "saveupdater" });
@@ -4565,7 +4565,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_bmi_obese', 'like'
                                             }
                                             if (((s as any).titlover ?? 0)[((s as any).saveupdaterVars ?? 0)?.['lover_number']] === 0) {
-                                              if (Math.floor(Math.random() * 2) + 0 === 0) {
+                                              if ((!(Math.floor(Math.random() * 2) + 0))) {
                                                 // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_small', 'like'
                                               } else {
                                                 // TODO-QSP: gs 'npc_set_preference', $saveupdaterVars['npcID'], 'body_tits_average', 'like'
@@ -4687,29 +4687,29 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                               // TODO-QSP: gs 'telefon', 'AddContact', $saveupdaterVars['npcID'], $npc_icon[$saveupdaterVars['npcID']]
                                                               // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', $saveupdaterVars['npcID'], "gt 'lover_call', 'callingTheLover', ...
                                                               (s as any).saveupdaterVars['lover_number'] = ((s as any).saveupdaterVars['lover_number'] ?? 0) + (1);
-                                                              if (((s as any).saveupdaterVars ?? 0)?.['lover_number'] < ((s as any).arrsize ?? 0)('lover')) {
+                                                              if (((s as any).saveupdaterVars ?? 0)?.['lover_number'] < Object.keys((s as any).lover ?? {}).length) {
                                                                 // TODO-QSP: jump 'su_lover_to_npcgeneratec_loop'
                                                               }
                                                             }
                                                             if (((s as any).husID ?? 0) !== '') {
                                                               // TODO-QSP: $lover[] = $husID
-                                                              (s as any).npc_rel[$husID] = ((s as any).husband ?? 0);
+                                                              (s as any).npc_rel[String((s as any).husID ?? 0)] = ((s as any).husband ?? 0);
                                                               // TODO-QSP: $npc_rel_type[$husID]  = 'husband'
                                                               // TODO-QSP: $npc_usedname[$husID]  = $husname
                                                               if (((s as any).husHair ?? 0) === 'black') {
-                                                                (s as any).npc_haircol[$husID] = 0;
+                                                                (s as any).npc_haircol[String((s as any).husID ?? 0)] = 0;
                                                               } else {
-                                                                (s as any).npc_haircol[$husID] = 1;
+                                                                (s as any).npc_haircol[String((s as any).husID ?? 0)] = 1;
                                                                 if (((s as any).husHair ?? 0) === 'red') {
-                                                                  (s as any).npc_haircol[$husID] = 2;
+                                                                  (s as any).npc_haircol[String((s as any).husID ?? 0)] = 2;
                                                                 } else {
-                                                                  (s as any).npc_haircol[$husID] = 3;
+                                                                  (s as any).npc_haircol[String((s as any).husID ?? 0)] = 3;
                                                                 }
                                                                 if (((s as any).husBody ?? 0) === 'short') {
-                                                                  (s as any).npc_height[$husID] = Math.floor(Math.random() * 10) + 160;
+                                                                  (s as any).npc_height[String((s as any).husID ?? 0)] = Math.floor(Math.random() * 10) + 160;
                                                                 } else {
-                                                                  (s as any).npc_height[$husID] = Math.floor(Math.random() * 9) + 171;
-                                                                  (s as any).npc_height[$husID] = Math.floor(Math.random() * 10) + 181;
+                                                                  (s as any).npc_height[String((s as any).husID ?? 0)] = Math.floor(Math.random() * 9) + 171;
+                                                                  (s as any).npc_height[String((s as any).husID ?? 0)] = Math.floor(Math.random() * 10) + 181;
                                                                 }
                                                                 if (((s as any).husFat ?? 0) === 'thin') {
                                                                   (s as any).saveupdaterVars['bmi'] = 17;
@@ -4720,20 +4720,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   } else {
                                                                     (s as any).saveupdaterVars['bmi'] = 27;
                                                                   }
-                                                                  (s as any).npc_weight[$husID] = ((s as any).saveupdaterVars ?? 0)?.['bmi'] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] / 10000;
-                                                                  (s as any).npc_dick[$husID] = ((s as any).husDick ?? 0);
-                                                                  (s as any).npc_gentle[$husID] = 0;
-                                                                  (s as any).npc_rough[$husID] = 0;
-                                                                  if (((s as any).harakHusb ?? 0) === 0) {
-                                                                    (s as any).npc_gentle[$husID] = 1;
+                                                                  (s as any).npc_weight[String((s as any).husID ?? 0)] = ((s as any).saveupdaterVars ?? 0)?.['bmi'] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] / 10000;
+                                                                  (s as any).npc_dick[String((s as any).husID ?? 0)] = ((s as any).husDick ?? 0);
+                                                                  (s as any).npc_gentle[String((s as any).husID ?? 0)] = 0;
+                                                                  (s as any).npc_rough[String((s as any).husID ?? 0)] = 0;
+                                                                  if ((!((s as any).harakHusb ?? 0))) {
+                                                                    (s as any).npc_gentle[String((s as any).husID ?? 0)] = 1;
                                                                   } else {
-                                                                    (s as any).npc_rough[$husID] = 1;
+                                                                    (s as any).npc_rough[String((s as any).husID ?? 0)] = 1;
                                                                   }
                                                                   if (((s as any).izvratH ?? 0) > 0) {
-                                                                    (s as any).npc_pervert[$husID] = 1;
+                                                                    (s as any).npc_pervert[String((s as any).husID ?? 0)] = 1;
                                                                   }
-                                                                  (s as any).npc_sexskill[$husID] = ((s as any).silavagH ?? 0);
-                                                                  (s as any).npc_finance[$husID] = ((s as any).husbFin ?? 0);
+                                                                  (s as any).npc_sexskill[String((s as any).husID ?? 0)] = ((s as any).silavagH ?? 0);
+                                                                  (s as any).npc_finance[String((s as any).husID ?? 0)] = ((s as any).husbFin ?? 0);
                                                                   (s as any).PRinStyle = 1;
                                                                   (s as any).PRinStyle2 = 1;
                                                                   (s as any).spouseVars['marry_day'] = ((s as any).daystart ?? 0) - ((s as any).husbanday ?? 0);
@@ -4749,7 +4749,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                 (s as any).stat['ex_fuckbuddies'] = 0;
                                                                 (s as any).stat['sugardaddies_current'] = 0;
                                                                 (s as any).stat['ex_sugardaddies'] = 0;
-                                                                if (((s as any).arrsize ?? 0)('fuckbuddy') > 0) {
+                                                                if (Object.keys((s as any).fuckbuddy ?? {}).length > 0) {
                                                                   (s as any).su_i = 0;
                                                                   (s as any).su_max_i = 0;
                                                                   // TODO-QSP: :su_fuckbuddy_to_lover_loop
@@ -4761,7 +4761,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     // TODO-QSP: jump 'su_fuckbuddy_to_lover_loop'
                                                                   }
                                                                 }
-                                                                if (((s as any).arrsize ?? 0)('sugar_daddy') > 0) {
+                                                                if (Object.keys((s as any).sugar_daddy ?? {}).length > 0) {
                                                                   (s as any).su_i = 0;
                                                                   (s as any).su_max_i = 0;
                                                                   // TODO-QSP: :su_sugar_daddy_to_lover_loop
@@ -4773,7 +4773,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     // TODO-QSP: jump 'su_sugar_daddy_to_lover_loop'
                                                                   }
                                                                 }
-                                                                if (((s as any).arrsize ?? 0)('ex_fuckbuddy') > 0) {
+                                                                if (Object.keys((s as any).ex_fuckbuddy ?? {}).length > 0) {
                                                                   (s as any).su_i = 0;
                                                                   (s as any).su_max_i = 0;
                                                                   // TODO-QSP: :su_ex_fuckbuddy_to_ex_lover_loop
@@ -4784,7 +4784,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     // TODO-QSP: jump 'su_ex_fuckbuddy_to_ex_lover_loop'
                                                                   }
                                                                 }
-                                                                if (((s as any).arrsize ?? 0)('ex_sugar_daddy') > 0) {
+                                                                if (Object.keys((s as any).ex_sugar_daddy ?? {}).length > 0) {
                                                                   (s as any).su_i = 0;
                                                                   (s as any).su_max_i = 0;
                                                                   // TODO-QSP: :su_ex_sugar_daddy_to_lover_loop
@@ -4850,7 +4850,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           }
                                                                         }
                                                                         if (((s as any).npc_weight_desc ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === '') {
-                                                                          (s as any).saveupdaterVars['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[$((s as any).saveupdaterVars ?? 0)?.['npcID']] / (((s as any).npc_height ?? 0)[$((s as any).saveupdaterVars ?? 0)?.['npcID']] * ((s as any).npc_height ?? 0)[$((s as any).saveupdaterVars ?? 0)?.['npcID']]);
+                                                                          (s as any).saveupdaterVars['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] / (((s as any).npc_height ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] * ((s as any).npc_height ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']]);
                                                                           if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
                                                                             if (((s as any).saveupdaterVars ?? 0)?.['bmi'] < 190) {
                                                                               // TODO-QSP: $npc_build_desc[$saveupdaterVars['npcID']] = 'thin'
@@ -4966,7 +4966,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                   } else {
                                                                                     (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
                                                                                   }
-                                                                                  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+                                                                                  if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length) {
                                                                                     // TODO-QSP: jump 'su_modlist_remove_loop'
                                                                                   }
                                                                                 }
@@ -5053,7 +5053,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                         // TODO-QSP: killvar 'tokens_made'
                                                                                       }
                                                                                     }
-                                                                                    if (((s as any).shared_apt ?? 0)?.['enabled'] === 1  &&  ((s as any).dothisonlyonce ?? 0) === 0) {
+                                                                                    if (((s as any).shared_apt ?? 0)?.['enabled'] === 1  &&  (!((s as any).dothisonlyonce ?? 0))) {
                                                                                       if (((s as any).daystart ?? 0) - ((s as any).shared_apt ?? 0)?.['intro_daystart'] > 6) {
                                                                                         (s as any).shared_apt['weekNum'] = (((s as any).daystart ?? 0) - ((s as any).shared_apt ?? 0)?.['intro_daystart']) / 7;
                                                                                       } else {
@@ -5121,7 +5121,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                     // TODO-QSP: jump 'fix_Aarray_loop_9043'
                                                                                                   }
                                                                                                 }
-                                                                                                if (((s as any).pcs_vball ?? 0) > 0  &&  ((s as any).pcs_vball_block ?? 0) === 0) {
+                                                                                                if (((s as any).pcs_vball ?? 0) > 0  &&  (!((s as any).pcs_vball_block ?? 0))) {
                                                                                                   qspCall(s, 'stat_sklattrib_lvlset', '');
                                                                                                 }
                                                                                                 if (((s as any).KGZHP ?? 0)      !== 0) {
@@ -5342,7 +5342,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                     (s as any).succappbonus = ((s as any).supnatvnesh ?? 0);
                                                                                                   }
                                                                                                 }
-                                                                                                if (((s as any).arrsize ?? 0)('SMSIdentifier') < ((s as any).arrsize ?? 0)('SMSContact')) {
+                                                                                                if (Object.keys((s as any).SMSIdentifier ?? {}).length < Object.keys((s as any).SMSContact ?? {}).length) {
                                                                                                   (s as any).saveupdaterVars['i'] = 0;
                                                                                                   (s as any).saveupdaterVars['max_i'] = 0;
                                                                                                   // TODO-QSP: :su_telefonID_update
@@ -5352,7 +5352,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                     // TODO-QSP: jump 'su_telefonID_update'
                                                                                                   }
                                                                                                 }
-                                                                                                if (((s as any).arrsize ?? 0)('SMSSendIdentifier') < ((s as any).arrsize ?? 0)('SMSSendContact')) {
+                                                                                                if (Object.keys((s as any).SMSSendIdentifier ?? {}).length < Object.keys((s as any).SMSSendContact ?? {}).length) {
                                                                                                   (s as any).saveupdaterVars['i'] = 0;
                                                                                                   (s as any).saveupdaterVars['max_i'] = 0;
                                                                                                   // TODO-QSP: :su_telefonID2_update
@@ -5378,7 +5378,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                     }
                                                                                                   }
                                                                                                   if (((s as any).NewspaperVars ?? 0)?.['gad_missing_age'] > 0  &&  ((s as any).NewspaperVars ?? 0)?.['gad_missing_name'] === '') {
-                                                                                                    if (Math.floor(Math.random() * 10) + 0 < 4) {
+                                                                                                    if ((Math.floor(Math.random() * 10) + 0) < 4) {
                                                                                                     }
                                                                                                     // TODO-QSP: $randname += ' ' + $func('npcrnamefile', 'rusSur')
                                                                                                     (s as any).NewspaperVars['gad_missing_name'] = ((s as any).randname ?? 0);
@@ -5415,7 +5415,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                   if (((s as any).petka ?? 0)?.['blackmail']  > 0) {
                                                                                                     (s as any).petkaQW['blackmail'] = ((s as any).petka ?? 0)?.['blackmail'];
                                                                                                   }
-                                                                                                  if (((s as any).arrsize ?? 0)('petka')    > 0) {
+                                                                                                  if (Object.keys((s as any).petka ?? {}).length    > 0) {
                                                                                                     // TODO-QSP: killvar 'petka'
                                                                                                   }
                                                                                                 }
@@ -5521,7 +5521,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                   if (((s as any).stat ?? 0)?.['biggest_cock_anal_desc'] === 'monster') {
                                                                                                     (s as any).stat['biggest_cock_anal_desc'] = 'monstrous';
                                                                                                   }
-                                                                                                  if (((s as any).arrpos ?? 0)('skl_name', 'vball_block') >= 0) {
+                                                                                                  if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf('vball_block') : -1) >= 0) {
                                                                                                     (s as any).vball_lvl = (((s as any).vball_block_lvl ?? 0) + ((s as any).vball_rec_lvl ?? 0) + ((s as any).vball_serve_lvl ?? 0) + ((s as any).vball_set_lvl ?? 0) + ((s as any).vball_spike_lvl ?? 0)) / 5;
                                                                                                     (s as any).vball_lvlst = (((s as any).vball_block_lvlst ?? 0) + ((s as any).vball_rec_lvlst ?? 0) + ((s as any).vball_serve_lvlst ?? 0) + ((s as any).vball_set_lvlst ?? 0) + ((s as any).vball_spike_lvlst ?? 0)) / 5;
                                                                                                     (s as any).vball_exp = (((s as any).vball_block_exp ?? 0) + ((s as any).vball_rec_exp ?? 0) + ((s as any).vball_serve_exp ?? 0) + ((s as any).vball_set_exp ?? 0) + ((s as any).vball_spike_exp ?? 0)) / 5;
@@ -5530,7 +5530,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                     qspCall(s, 'stat_sklattrib', '');
                                                                                                     qspCall(s, 'stat_sklattrib_lvlset', '');
                                                                                                   }
-                                                                                                  if (((s as any).arrsize ?? 0)('artskls') > 3) {
+                                                                                                  if (Object.keys((s as any).artskls ?? {}).length > 3) {
                                                                                                     qspCall(s, 'stat_sklattrib_lvlset', '');
                                                                                                   }
                                                                                                   qspCall(s, 'fetish', '');
@@ -5631,7 +5631,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                   qspCall(s, 'tattoo_management', 'count');
                                                                                                 }
                                                                                                 if (((s as any).temp_current_save_version ?? 0) < 90502) {
-                                                                                                  if (((s as any).arrsize ?? 0)('npcs_jerked') > 0) {
+                                                                                                  if (Object.keys((s as any).npcs_jerked ?? {}).length > 0) {
                                                                                                     (s as any).saveupdaterVars['i'] = 0;
                                                                                                     (s as any).saveupdaterVars['maxi'] = 0;
                                                                                                     // TODO-QSP: :npcs_jerked_loop
@@ -5641,7 +5641,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                       // TODO-QSP: jump 'npcs_jerked_loop'
                                                                                                     }
                                                                                                   }
-                                                                                                  if (((s as any).arrsize ?? 0)('npcs_blown') > 0) {
+                                                                                                  if (Object.keys((s as any).npcs_blown ?? {}).length > 0) {
                                                                                                     (s as any).saveupdaterVars['i'] = 0;
                                                                                                     (s as any).saveupdaterVars['maxi'] = 0;
                                                                                                     // TODO-QSP: :npcs_blown_loop
@@ -5651,7 +5651,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                       // TODO-QSP: jump 'npcs_blown_loop'
                                                                                                     }
                                                                                                   }
-                                                                                                  if (((s as any).arrsize ?? 0)('npcs_titfucked') > 0) {
+                                                                                                  if (Object.keys((s as any).npcs_titfucked ?? {}).length > 0) {
                                                                                                     (s as any).saveupdaterVars['i'] = 0;
                                                                                                     (s as any).saveupdaterVars['maxi'] = 0;
                                                                                                     // TODO-QSP: :npcs_titfucked_loop
@@ -5661,7 +5661,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                       // TODO-QSP: jump 'npcs_titfucked_loop'
                                                                                                     }
                                                                                                   }
-                                                                                                  if (((s as any).arrsize ?? 0)('npcs_fucked') > 0) {
+                                                                                                  if (Object.keys((s as any).npcs_fucked ?? {}).length > 0) {
                                                                                                     (s as any).saveupdaterVars['i'] = 0;
                                                                                                     (s as any).saveupdaterVars['maxi'] = 0;
                                                                                                     // TODO-QSP: :npcs_fucked_loop
@@ -5671,7 +5671,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                       // TODO-QSP: jump 'npcs_fucked_loop'
                                                                                                     }
                                                                                                   }
-                                                                                                  if (((s as any).arrsize ?? 0)('npcs_anal_fucked') > 0) {
+                                                                                                  if (Object.keys((s as any).npcs_anal_fucked ?? {}).length > 0) {
                                                                                                     (s as any).saveupdaterVars['i'] = 0;
                                                                                                     (s as any).saveupdaterVars['maxi'] = 0;
                                                                                                     // TODO-QSP: :npcs_anal_fucked_loop
@@ -5693,13 +5693,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                       (s as any).temp_carnum = ((s as any).car ?? 0);
                                                                                                       (s as any).temp_newcond = ((s as any).car ?? 0)?.['new_condition'];
                                                                                                       (s as any).temp_curcond = ((s as any).car ?? 0)?.['current_condition'];
-                                                                                                      (s as any).car['ID'] = temp_carnum;
-                                                                                                      (s as any).car['name'] = $temp_carname;
-                                                                                                      (s as any).car['fuel'] = benz;
+                                                                                                      (s as any).car['ID'] = ((s as any).temp_carnum ?? 0);
+                                                                                                      (s as any).car['name'] = ((s as any).temp_carname ?? 0);
+                                                                                                      (s as any).car['fuel'] = ((s as any).benz ?? 0);
                                                                                                       (s as any).car['tank'] = 50;
-                                                                                                      (s as any).car['new_condition'] = temp_newcond;
-                                                                                                      (s as any).car['current_condition'] = temp_curcond;
-                                                                                                      (s as any).car['wreck'] = wrek;
+                                                                                                      (s as any).car['new_condition'] = ((s as any).temp_newcond ?? 0);
+                                                                                                      (s as any).car['current_condition'] = ((s as any).temp_curcond ?? 0);
+                                                                                                      (s as any).car['wreck'] = ((s as any).wrek ?? 0);
                                                                                                       if (((s as any).cardrive ?? 0) === 1) {
                                                                                                         qspCall(s, 'car_funcs', 'setloc', 'city_residential', '', 'city');
                                                                                                       } else {
@@ -6038,19 +6038,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               (s as any).lastwornunderwear = ((s as any).underwear ?? 0)?.['lastworntype'];
                                                                                                                               qspCall(s, 'array', 'remove_element', 'underwear', 'lastworntype');
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_kissed') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_kissed ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_kissed_count', 'npc_kissed')
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_jerked') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_jerked ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_handstuff_count', 'npc_jerked')
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_blown') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_blown ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_oral_count', 'npc_blown')
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_titfucked') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_titfucked ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_titstuff_count', 'npc_titfucked')
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_sex') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_sex ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_had_sex', 'npc_sex')
                                                                                                                               (s as any).saveupdaterVars['maxi'] = 0;
                                                                                                                               if (((s as any).saveupdaterVars ?? 0)?.['maxi'] > 0) {
@@ -6063,7 +6063,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               }
                                                                                                                               // TODO-QSP: copyarr('npc_vaginal_count', 'npc_sex')
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_anal_fucked') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_anal_fucked ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_anal_count', 'npc_anal_fucked')
                                                                                                                             }
                                                                                                                             if (((s as any).sosedKnowWork ?? 0)  !== 0) {
@@ -6099,13 +6099,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               // TODO-QSP: killvar 'etoexhib'
                                                                                                                             }
                                                                                                                             if (((s as any).stolcigarettes ?? 0) !== 0) {
-                                                                                                                              (s as any).stolcigarettes[$temp_stol] = ((s as any).stolcigarettes ?? 0);
+                                                                                                                              (s as any).stolcigarettes[String((s as any).temp_stol ?? 0)] = ((s as any).stolcigarettes ?? 0);
                                                                                                                               (s as any).stolcigarettes = 0;
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('npc_last_sex') > 0) {
+                                                                                                                            if (Object.keys((s as any).npc_last_sex ?? {}).length > 0) {
                                                                                                                               // TODO-QSP: copyarr('npc_last_vaginal', 'npc_last_sex')
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('shared_apt') > 0  &&  ((s as any).shared_apt ?? 0)?.['Enabled'] === 0) {
+                                                                                                                            if (Object.keys((s as any).shared_apt ?? {}).length > 0  &&  ((s as any).shared_apt ?? 0)?.['Enabled'] === 0) {
                                                                                                                               (s as any).servitudelvl_bak = ((s as any).shared_apt ?? 0)?.['servitudeLvl'];
                                                                                                                               (s as any).shared_apt['seenAd'] = 1;
                                                                                                                               (s as any).shared_apt['previousTenant'] = 1;
@@ -6264,7 +6264,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                             }
                                                                                                                           }
                                                                                                                           if (((s as any).temp_current_save_version ?? 0) < 90700) {
-                                                                                                                            if (((s as any).pushup_record_reset_970 ?? 0) === 0) {
+                                                                                                                            if ((!((s as any).pushup_record_reset_970 ?? 0))) {
                                                                                                                               (s as any).pushup_record_reset_970 = 1;
                                                                                                                               (s as any).pushrecord = 0;
                                                                                                                             }
@@ -6308,7 +6308,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               (s as any).stat_imgh = ((s as any).set_statimgh ?? 0);
                                                                                                                               // TODO-QSP: killvar 'set_statimgh'
                                                                                                                             }
-                                                                                                                            if (((s as any).stat_imgh ?? 0) === 0  &&  ((s as any).set_statimgw ?? 0) === 0) {
+                                                                                                                            if (((s as any).stat_imgh ?? 0) === 0  &&  (!((s as any).set_statimgw ?? 0))) {
                                                                                                                               (s as any).set_statimgw = 220;
                                                                                                                             }
                                                                                                                             if (((s as any).phone_loc ?? 0) !== ''  &&  ((s as any).phone_loc ?? 0)?.['class'] === '') {
@@ -6339,7 +6339,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                             if (((s as any).npc_vag ?? 0)?.['A14'] > 0  &&  ((s as any).npc_vag ?? 0)?.['A14'] < 20) {
                                                                                                                               (s as any).npc_vag['A14'] = 20;
                                                                                                                             }
-                                                                                                                            if (((s as any).npcupdate09070 ?? 0) === 0) {
+                                                                                                                            if ((!((s as any).npcupdate09070 ?? 0))) {
                                                                                                                               (s as any).npcupdate09070 = 1;
                                                                                                                               (s as any).saveupdaterVars['i'] = 1;
                                                                                                                               // TODO-QSP: :anpc_update09070
@@ -6353,7 +6353,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               if (((s as any).saveupdaterVars ?? 0)?.['i'] <= ((s as any).aarraynumber ?? 0)) {
                                                                                                                                 // TODO-QSP: jump 'anpc_update09070'
                                                                                                                               }
-                                                                                                                              if (((s as any).arrsize ?? 0)('npc_index') > 0) {
+                                                                                                                              if (Object.keys((s as any).npc_index ?? {}).length > 0) {
                                                                                                                                 (s as any).saveupdaterVars['i'] = 0;
                                                                                                                                 // TODO-QSP: :bnpc_update09070
                                                                                                                                 (s as any).saveupdaterVars['ID'] = qspUntranslated(s, "npc_index[saveupdaterVars['i']]", { location: "saveupdater" });
@@ -6363,7 +6363,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                   // TODO-QSP: npc_spermvol[$saveupdaterVars['ID']] = -1
                                                                                                                                 }
                                                                                                                                 (s as any).saveupdaterVars['i'] = ((s as any).saveupdaterVars['i'] ?? 0) + (1);
-                                                                                                                                if (((s as any).saveupdaterVars ?? 0)?.['i'] < ((s as any).arrsize ?? 0)('npc_index')) {
+                                                                                                                                if (((s as any).saveupdaterVars ?? 0)?.['i'] < Object.keys((s as any).npc_index ?? {}).length) {
                                                                                                                                   // TODO-QSP: jump 'bnpc_update09070'
                                                                                                                                 }
                                                                                                                               }
@@ -6384,18 +6384,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                             if (((s as any).canceling ?? 0)  !== '') {
                                                                                                                               // TODO-QSP: killvar 'canceling'
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('weatherGrM') > 0) {
-                                                                                                                              if (((s as any).arrsize ?? 0)('weatherGrM') > 1) {
+                                                                                                                            if (Object.keys((s as any).weatherGrM ?? {}).length > 0) {
+                                                                                                                              if (Object.keys((s as any).weatherGrM ?? {}).length > 1) {
                                                                                                                                 // TODO-QSP: weatherTemper *= 10
                                                                                                                               }
                                                                                                                               qspCall(s, 'outdoors', 'set_weather_TempFall');
                                                                                                                               (s as any).sunWeather[1] = ((s as any).totminut ?? 0) + 60;
                                                                                                                             }
-                                                                                                                            if (((s as any).day_of_year ?? 0) === 0) {
+                                                                                                                            if ((!((s as any).day_of_year ?? 0))) {
                                                                                                                               qspCall(s, 'time', 'to_date', ((s as any).daystart ?? 0));
                                                                                                                               (s as any).day_of_year = ((s as any).dateVars ?? 0)?.['day_of_year'];
                                                                                                                             }
-                                                                                                                            if (((s as any).bankAccount ?? 0) === 1  &&  ((s as any).bankShortCutMoney ?? 0) === 0) {
+                                                                                                                            if (((s as any).bankAccount ?? 0) === 1  &&  (!((s as any).bankShortCutMoney ?? 0))) {
                                                                                                                               (s as any).bankShortCutMoney = 1000;
                                                                                                                             }
                                                                                                                             if (((s as any).suclezsex ?? 0) > ((s as any).stat ?? 0)?.['female_sexual_times']) {
@@ -6425,8 +6425,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               (s as any).calendar_show_night_hours = 0;
                                                                                                                               // TODO-QSP: killvar 'calendar_hide_night_hours'
                                                                                                                             }
-                                                                                                                            if (((s as any).arrsize ?? 0)('music_on') > 0) {
-                                                                                                                              if (((s as any).music_on ?? 0) === 0  &&  ((s as any).arrsize ?? 0)('sound_settings') === 0) {
+                                                                                                                            if (Object.keys((s as any).music_on ?? {}).length > 0) {
+                                                                                                                              if (((s as any).music_on ?? 0) === 0  &&  Object.keys((s as any).sound_settings ?? {}).length === 0) {
                                                                                                                                 (s as any).sound_settings['music_off'] = 1;
                                                                                                                               }
                                                                                                                             }
@@ -6500,7 +6500,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                               (s as any).AlbinaQW['voyeur'] = ((s as any).checkoutalbina ?? 0);
                                                                                                                               // TODO-QSP: killvar 'checkoutalbina'
                                                                                                                             }
-                                                                                                                            if (((s as any).calendar_temp_new_flag ?? 0) === 0) {
+                                                                                                                            if ((!((s as any).calendar_temp_new_flag ?? 0))) {
                                                                                                                               if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
                                                                                                                                 qspCall(s, 'calendar', 'add', 'volleyball_tournament');
                                                                                                                               }
@@ -6547,7 +6547,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                 (s as any).temp_cal_events_to_add['brothel_prostitute'] = 1;
                                                                                                                               }
                                                                                                                               (s as any).temp_index = ((s as any).temp_index ?? 0) + (1);
-                                                                                                                              if (((s as any).temp_index ?? 0) < ((s as any).arrsize ?? 0)('events_list')) {
+                                                                                                                              if (((s as any).temp_index ?? 0) < Object.keys((s as any).events_list ?? {}).length) {
                                                                                                                                 // TODO-QSP: jump 'calendar_update_loop_v098'
                                                                                                                               }
                                                                                                                               if (((s as any).temp_cal_events_to_add ?? 0)?.['school'] === 1) {
@@ -7142,23 +7142,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                       (s as any).virgin_stats['lost_cause'] = 'birth';
                                                                                                                                     }
                                                                                                                                     qspCall(s, 'setup_dynamics', '');
-                                                                                                                                    if (((s as any).arrsize ?? 0)('playerBets')  > 0) {
+                                                                                                                                    if (Object.keys((s as any).playerBets ?? {}).length  > 0) {
                                                                                                                                       // TODO-QSP: copyarr('temp_player_bets',    'playerBets')
                                                                                                                                       // TODO-QSP: killvar 'playerBets'
                                                                                                                                     }
-                                                                                                                                    if (((s as any).arrsize ?? 0)('playerHands')  > 0) {
+                                                                                                                                    if (Object.keys((s as any).playerHands ?? {}).length  > 0) {
                                                                                                                                       // TODO-QSP: copyarr('temp_player_hands',  'playerHands')
                                                                                                                                       // TODO-QSP: killvar 'playerHands'
                                                                                                                                     }
-                                                                                                                                    if (((s as any).arrsize ?? 0)('playerPoints')  > 0) {
+                                                                                                                                    if (Object.keys((s as any).playerPoints ?? {}).length  > 0) {
                                                                                                                                       // TODO-QSP: copyarr('temp_player_points',  'playerPoints')
                                                                                                                                       // TODO-QSP: killvar 'playerPoints'
                                                                                                                                     }
-                                                                                                                                    if (((s as any).arrsize ?? 0)('dealerHand')  > 0) {
+                                                                                                                                    if (Object.keys((s as any).dealerHand ?? {}).length  > 0) {
                                                                                                                                       // TODO-QSP: copyarr('temp_dealer_hand',    'dealerHand')
                                                                                                                                       // TODO-QSP: killvar 'dealerHand'
                                                                                                                                     }
-                                                                                                                                    if (((s as any).arrsize ?? 0)('gsc_grl')    > 0) {
+                                                                                                                                    if (Object.keys((s as any).gsc_grl ?? {}).length    > 0) {
                                                                                                                                       // TODO-QSP: copyarr('temp_gsc_grl',      'gsc_grl')
                                                                                                                                       // TODO-QSP: killvar 'gsc_grl'
                                                                                                                                     }
@@ -7371,7 +7371,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                         if (((s as any).saveupdaterVars ?? 0)?.['i'] <= 293) {
                                                                                                                                                                           // TODO-QSP: jump 'loopprice'
                                                                                                                                                                         }
-                                                                                                                                                                        if (((s as any).PCloMaxStrength ?? 0) === 0) {
+                                                                                                                                                                        if ((!((s as any).PCloMaxStrength ?? 0))) {
                                                                                                                                                                           qspCall(s, 'stat', '');
                                                                                                                                                                           qspCall(s, 'tailor', 'repair_all_cheat');
                                                                                                                                                                           qspCall(s, 'outfit', 'backup');
@@ -7407,7 +7407,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                           if (((s as any).stat_nums ?? 0)?.['enable_concise'] === 1) {
                                                                                                                                                                             (s as any).stat_cfg['newline_texts'] = 2;
                                                                                                                                                                           }
-                                                                                                                                                                          (s as any).stat_cfg['temp_scale'] = TempUnit;
+                                                                                                                                                                          (s as any).stat_cfg['temp_scale'] = ((s as any).TempUnit ?? 0);
                                                                                                                                                                           if (((s as any).disable_LoadSave ?? 0) === 2) {
                                                                                                                                                                             (s as any).stat_cfg['loadsave_mode'] = 1;
                                                                                                                                                                           }
@@ -7509,7 +7509,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                           (s as any).temp_saveupdater_guard['msg_sep_migrated'] = 1;
                                                                                                                                                                           if (((s as any).stat_cfg ?? 0)?.['newline_important_texts'] !== 0  ||  ((s as any).stat_cfg ?? 0)?.['newline_normal_texts'] !== 0) {
                                                                                                                                                                             if (((s as any).stat_cfg ?? 0)?.['newline_texts'] === 0) {
-                                                                                                                                                                              (s as any).stat_cfg['newline_texts'] = (((s as any).stat_cfg ?? 0)?.['newline_normal_texts'] !== 0) ? (((s as any).stat_cfg ?? 0)?.['newline_normal_texts']) : (((s as any).stat_cfg ?? 0)?.['newline_important_texts']);
+                                                                                                                                                                              (s as any).stat_cfg['newline_texts'] = ((((s as any).stat_cfg ?? 0)?.['newline_normal_texts'] !== 0) ? (((s as any).stat_cfg ?? 0)?.['newline_normal_texts']) : (((s as any).stat_cfg ?? 0)?.['newline_important_texts']));
                                                                                                                                                                             }
                                                                                                                                                                           }
                                                                                                                                                                           if (((s as any).stat_cfg ?? 0)?.['msg_separator'] === 1) {
@@ -7587,7 +7587,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                           // TODO-QSP: stat_collapse[$stat_order[temp_saveupdater_i]] = 1 - stat_expand[$stat_order[temp_saveupdater_i]]
                                                                                                                                                                         }
                                                                                                                                                                         (s as any).temp_saveupdater_i = ((s as any).temp_saveupdater_i ?? 0) + (1);
-                                                                                                                                                                        if (((s as any).temp_saveupdater_i ?? 0) < ((s as any).arrsize ?? 0)('stat_order')) {
+                                                                                                                                                                        if (((s as any).temp_saveupdater_i ?? 0) < Object.keys((s as any).stat_order ?? {}).length) {
                                                                                                                                                                           // TODO-QSP: jump 'saveupdater_stat_collapse_loop_1'
                                                                                                                                                                         }
                                                                                                                                                                         if (((s as any).temp_saveupdater_guard ?? 0)?.['traits_and_archetypes_migrated'] === 0) {
@@ -7601,16 +7601,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                             (s as any).trait_vars['cumeater_exp'] = ((s as any).temp_su_cumeater_known ?? 0);
                                                                                                                                                                           }
                                                                                                                                                                           (s as any).trait_vars['creampie_fetish'] = ((s as any).pcs_traits ?? 0)?.['creampie_fetish'];
-                                                                                                                                                                          (s as any).trait_vars['creampie_fetish_exp'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish'] >= 2) ? (200) : ((((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 1) ? (150) : (0));
-                                                                                                                                                                          (s as any).trait_vars['creampie_fetish_exp_risky'] = (((s as any).trait_vars ?? 0)?.['creampie_fetish'] >= 2) ? (100) : (0);
+                                                                                                                                                                          (s as any).trait_vars['creampie_fetish_exp'] = ((((s as any).trait_vars ?? 0)?.['creampie_fetish'] >= 2) ? (200) : (((((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 1) ? (150) : (0))));
+                                                                                                                                                                          (s as any).trait_vars['creampie_fetish_exp_risky'] = ((((s as any).trait_vars ?? 0)?.['creampie_fetish'] >= 2) ? (100) : (0));
                                                                                                                                                                           (s as any).trait_vars['creampie_fetish_exp_prev'] = ((s as any).stat ?? 0)?.['creampies_safe_known'] + (((s as any).stat ?? 0)?.['creampies_notsafe_known'] + ((s as any).stat ?? 0)?.['creampies_risky_known'] * 2) * 2;
                                                                                                                                                                           (s as any).trait_vars['creampie_fetish_exp_risky_prev'] = ((s as any).stat ?? 0)?.['creampies_notsafe_known'] + ((s as any).stat ?? 0)?.['creampies_risky_known'] * 2;
                                                                                                                                                                           (s as any).trait_vars['fertility'] = ((s as any).pcs_traits ?? 0)?.['hyper_fertile'];
                                                                                                                                                                           (s as any).trait_vars['sensitivity'] = qspUntranslated(s, "min(pcs_traits['easy_orgasms'], 1)", { location: "saveupdater" });
                                                                                                                                                                           (s as any).trait_vars['new_again_exp'] = ((s as any).pcs_traits ?? 0)?.['new_again'];
-                                                                                                                                                                          (s as any).trait_vars['new_again'] = (((s as any).trait_vars ?? 0)?.['new_again_exp'] > 0) ? (1) : (0);
+                                                                                                                                                                          (s as any).trait_vars['new_again'] = ((((s as any).trait_vars ?? 0)?.['new_again_exp'] > 0) ? (1) : (0));
                                                                                                                                                                           (s as any).trait_vars['addictive_personality'] = ((s as any).traits ?? 0)?.['addictive_personality'];
-                                                                                                                                                                          (s as any).trait_vars['addictive_personality_exp'] = (((s as any).trait_vars ?? 0)?.['addictive_personality'] >= 3) ? (4) : ((((s as any).trait_vars ?? 0)?.['addictive_personality'] === 2) ? (3) : ((((s as any).trait_vars ?? 0)?.['addictive_personality'] === 1) ? (2) : (0)));
+                                                                                                                                                                          (s as any).trait_vars['addictive_personality_exp'] = ((((s as any).trait_vars ?? 0)?.['addictive_personality'] >= 3) ? (4) : (((((s as any).trait_vars ?? 0)?.['addictive_personality'] === 2) ? (3) : (((((s as any).trait_vars ?? 0)?.['addictive_personality'] === 1) ? (2) : (0))))));
                                                                                                                                                                           (s as any).trait_vars['addictive_personality_prev'] = ((s as any).drugVars ?? 0)?.['cigarettes_exp'] + ((s as any).drugVars ?? 0)?.['weed_exp'] + ((s as any).drugVars ?? 0)?.['heroin_exp'] + ((s as any).drugVars ?? 0)?.['cocaine_exp'] + ((s as any).drugVars ?? 0)?.['alcohol_exp'] + ((s as any).drugVars ?? 0)?.['amphetamine_exp'] + ((s as any).drugVars ?? 0)?.['painkiller_exp'];
                                                                                                                                                                           (s as any).trait_vars['buttslut'] = ((s as any).pcs_traits ?? 0)?.['buttslut_lvl'];
                                                                                                                                                                           (s as any).trait_vars['buttslut_exp'] = ((s as any).pcs_traits ?? 0)?.['buttslut_exp'];
@@ -7637,7 +7637,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                             (s as any).trait_vars['academic_lessons'] = ((s as any).pcs_traits ?? 0)?.['nerd_lessons'];
                                                                                                                                                                             (s as any).trait_vars['nerd_learn_home'] = ((s as any).pcs_traits ?? 0)?.['nerd_lernHome'];
                                                                                                                                                                             (s as any).trait_vars['bookworm_exp'] = ((s as any).pcs_nerd ?? 0);
-                                                                                                                                                                            (s as any).trait_vars['bookworm'] = (((s as any).trait_vars ?? 0)?.['bookworm_exp'] >= 5) ? (1) : (0);
+                                                                                                                                                                            (s as any).trait_vars['bookworm'] = ((((s as any).trait_vars ?? 0)?.['bookworm_exp'] >= 5) ? (1) : (0));
                                                                                                                                                                             (s as any).trait_vars['doormat_exp'] = ((s as any).hypnoOutcast ?? 0);
                                                                                                                                                                             if (((s as any).pcs_traits ?? 0)?.['fitness_freak'] === 1) {
                                                                                                                                                                               (s as any).trait_vars['fitness_freak'] = 1;
@@ -7729,12 +7729,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                 if (((s as any).temp_saveupdater_guard ?? 0)?.['general_var_migrated'] === 0) {
                                                                                                                                                                                   (s as any).temp_saveupdater_guard['general_var_migrated'] = 1;
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'cheatVars', 'full_morning_rout');
-                                                                                                                                                                                  (s as any).arousalVars['pcs_vag_backup'] = sucvagorg;
-                                                                                                                                                                                  (s as any).arousalVars['pcs_ass_backup'] = sucanusorg;
-                                                                                                                                                                                  (s as any).arousalVars['pcs_throat_backup'] = sucthroorg;
+                                                                                                                                                                                  (s as any).arousalVars['pcs_vag_backup'] = ((s as any).sucvagorg ?? 0);
+                                                                                                                                                                                  (s as any).arousalVars['pcs_ass_backup'] = ((s as any).sucanusorg ?? 0);
+                                                                                                                                                                                  (s as any).arousalVars['pcs_throat_backup'] = ((s as any).sucthroorg ?? 0);
                                                                                                                                                                                   if (((s as any).food_loc ?? 0) !== '') {
                                                                                                                                                                                   }
-                                                                                                                                                                                  if (((s as any).fsize ?? 0) === 0) {
+                                                                                                                                                                                  if ((!((s as any).fsize ?? 0))) {
                                                                                                                                                                                     (s as any).fsize = 12;
                                                                                                                                                                                     (s as any).theme['fsize'] = 12;
                                                                                                                                                                                   }
@@ -7742,15 +7742,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'cheatmenu', 'DNAC');
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'cheatmenu', 'DNAF');
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'cheatmenu', 'DNAM');
-                                                                                                                                                                                  (s as any).cfg_vars['disable_autosave'] = disable_autosave;
-                                                                                                                                                                                  (s as any).cfg_vars['use_popups'] = usePopUps;
-                                                                                                                                                                                  (s as any).cfg_vars['imgw'] = imgw;
-                                                                                                                                                                                  (s as any).cfg_vars['imgh'] = imgh;
-                                                                                                                                                                                  (s as any).cfg_vars['tablemap'] = Enable_tablemap;
-                                                                                                                                                                                  (s as any).cfg_vars['debug'] = loadg_show_debug;
-                                                                                                                                                                                  (s as any).cfg_vars['faceturn'] = Enable_faceturn;
-                                                                                                                                                                                  (s as any).cfg_vars['themetype'] = themetype;
-                                                                                                                                                                                  (s as any).cfg_vars['theme_main_name'] = $theme_main_name;
+                                                                                                                                                                                  (s as any).cfg_vars['disable_autosave'] = ((s as any).disable_autosave ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['use_popups'] = ((s as any).usePopUps ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['imgw'] = ((s as any).imgw ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['imgh'] = ((s as any).imgh ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['tablemap'] = ((s as any).Enable_tablemap ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['debug'] = ((s as any).loadg_show_debug ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['faceturn'] = ((s as any).Enable_faceturn ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['themetype'] = ((s as any).themetype ?? 0);
+                                                                                                                                                                                  (s as any).cfg_vars['theme_main_name'] = ((s as any).theme_main_name ?? 0);
                                                                                                                                                                                   (s as any).cfg_vars['pay_opt'] = ((s as any).money_vars ?? 0)?.['pay_opt'];
                                                                                                                                                                                   (s as any).cfg_vars['pay_opt_backup'] = ((s as any).money_vars ?? 0)?.['pay_opt_backup'];
                                                                                                                                                                                   (s as any).cfg_vars['income_opt'] = ((s as any).money_vars ?? 0)?.['income_opt'];
@@ -7771,14 +7771,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'trait_vars', 'body_hair');
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'trait_vars', 'body_hair_exp');
                                                                                                                                                                                   qspCall(s, 'array', 'remove_element', 'trait_vars', 'sensitivity_exp');
-                                                                                                                                                                                  if (((s as any).arrpos ?? 0)('events_list', 'job_pav_tour_guide') >= 0) {
+                                                                                                                                                                                  if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf('job_pav_tour_guide') : -1) >= 0) {
                                                                                                                                                                                     (s as any).event_recur['job_pav_tour_guide'] = 'yearly-0601-0831';
                                                                                                                                                                                   }
                                                                                                                                                                                 }
                                                                                                                                                                                 if (((s as any).temp_saveupdater_guard ?? 0)?.['intro_templates_migrated'] === 0) {
                                                                                                                                                                                   (s as any).temp_saveupdater_guard['intro_templates_migrated'] = 1;
                                                                                                                                                                                   (s as any).uglyduck_flag = 1 - ((s as any).uglyduck_flag ?? 0);
-                                                                                                                                                                                  if (((s as any).uglyduck_flag ?? 0) === 0) {
+                                                                                                                                                                                  if ((!((s as any).uglyduck_flag ?? 0))) {
                                                                                                                                                                                     // TODO-QSP: killvar 'uglyduck_flag'
                                                                                                                                                                                   }
                                                                                                                                                                                 }
@@ -7798,13 +7798,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                 }
                                                                                                                                                                                 if (((s as any).workrin ?? 0) === 1  &&  ((s as any).job_status ?? 0)?.['city_market_saleswoman'] !== 'employed') {
                                                                                                                                                                                   qspCall(s, 'jobs', 'set_employed', 'city_market_saleswoman');
-                                                                                                                                                                                  if (((s as any).arturplan ?? 0) === 0) {
+                                                                                                                                                                                  if ((!((s as any).arturplan ?? 0))) {
                                                                                                                                                                                     (s as any).arturplan = 5000;
                                                                                                                                                                                   }
                                                                                                                                                                                 }
                                                                                                                                                                                 if (((s as any).teacher ?? 0)?.['job'] >= 3  &&  ((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] !== 'employed') {
                                                                                                                                                                                   qspCall(s, 'jobs', 'set_employed', 'pav_voc_school_teacher');
-                                                                                                                                                                                  qspCall(s, 'jobs', 'set_rank', 'pav_voc_school_teacher', (((s as any).teacher ?? 0)?.['job'] === 3) ? (1) : (2));
+                                                                                                                                                                                  qspCall(s, 'jobs', 'set_rank', 'pav_voc_school_teacher', ((((s as any).teacher ?? 0)?.['job'] === 3) ? (1) : (2)));
                                                                                                                                                                                 } else {
                                                                                                                                                                                   qspCall(s, 'jobs', 'set_employed', 'pav_voc_school_teacher');
                                                                                                                                                                                   qspCall(s, 'jobs', 'set_rank', 'pav_voc_school_teacher', 2);
@@ -7847,7 +7847,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                               (s as any).masseuse['salon_state'] = 'fired';
                                                                                                                                                                                               (s as any).masseuse['last_rank'] = 6;
                                                                                                                                                                                             } else {
-                                                                                                                                                                                              (s as any).masseuse['last_rank'] = (((s as any).masseuse ?? 0)?.['jobtype'] >= 0) ? (((s as any).masseuse ?? 0)?.['jobtype']) : (-((s as any).masseuse ?? 0)?.['jobtype']);
+                                                                                                                                                                                              (s as any).masseuse['last_rank'] = ((((s as any).masseuse ?? 0)?.['jobtype'] >= 0) ? (((s as any).masseuse ?? 0)?.['jobtype']) : (-((s as any).masseuse ?? 0)?.['jobtype']));
                                                                                                                                                                                               (s as any).masseuse['salon_state'] = 'resigned';
                                                                                                                                                                                               if (((s as any).masseuse ?? 0)?.['last_rank'] === 2) {
                                                                                                                                                                                                 (s as any).masseuse['hourly'] = 125;
@@ -7878,14 +7878,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                           }
                                                                                                                                                                                           if (((s as any).calendar_temp_new_flag ?? 0)?.['fixed_cal_tournament'] === 0) {
                                                                                                                                                                                             (s as any).calendar_temp_new_flag['fixed_cal_tournament'] = 1;
-                                                                                                                                                                                            if (((s as any).arrpos ?? 0)('events_list', 'volleyball_tournament') !== -1) {
+                                                                                                                                                                                            if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf('volleyball_tournament') : -1) !== -1) {
                                                                                                                                                                                               qspCall(s, 'calendar', 'remove', 'volleyball_tournament');
                                                                                                                                                                                               qspCall(s, 'calendar', 'add', 'volleyball_tournament');
                                                                                                                                                                                             }
                                                                                                                                                                                           }
                                                                                                                                                                                           if (((s as any).calendar_temp_new_flag ?? 0)?.['fixed_starlets_friday_anchor'] === 0) {
                                                                                                                                                                                             (s as any).calendar_temp_new_flag['fixed_starlets_friday_anchor'] = 1;
-                                                                                                                                                                                            if (((s as any).arrpos ?? 0)('events_list', 'starlets_practice_friday') !== -1) {
+                                                                                                                                                                                            if ((Array.isArray((s as any).events_list) ? ((s as any).events_list as any[]).indexOf('starlets_practice_friday') : -1) !== -1) {
                                                                                                                                                                                               qspCall(s, 'calendar', 'remove', 'starlets_practice_friday');
                                                                                                                                                                                               qspCall(s, 'calendar', 'add', 'starlets_practice_friday');
                                                                                                                                                                                             }
@@ -7899,7 +7899,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                             // TODO-QSP: killvar'hidden_slutty'
                                                                                                                                                                                           }
                                                                                                                                                                                           (s as any).stat_cfg['job_icon_themed'] = 1;
-                                                                                                                                                                                          (s as any).rand_events_last = event_vars['last_event'];
+                                                                                                                                                                                          (s as any).rand_events_last = ((s as any).event_vars ?? 0)?.['last_event'];
                                                                                                                                                                                           if (((s as any).postamountrand ?? 0) !== 0) {
                                                                                                                                                                                             (s as any).post_vars['load'] = ((s as any).postamountrand ?? 0);
                                                                                                                                                                                             // TODO-QSP: killvar 'postamountrand'
@@ -7974,7 +7974,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                           // TODO-QSP: $temp_mig_g[3] = 'beauty'  & $temp_mig_g[4] = 'artistic'  & $temp_mig_g[5] = 'job'
                                                                                                                                                                                           (s as any).temp_mig_gi = 0;
                                                                                                                                                                                           // TODO-QSP: :save0900_grpmig_skloop
-                                                                                                                                                                                          if (((s as any).temp_mig_gi ?? 0) < ((s as any).arrsize ?? 0)('temp_mig_g')) {
+                                                                                                                                                                                          if (((s as any).temp_mig_gi ?? 0) < Object.keys((s as any).temp_mig_g ?? {}).length) {
                                                                                                                                                                                             (s as any).temp_mig_j = 0;
                                                                                                                                                                                             // TODO-QSP: :save0900_grpmig_skmloop
                                                                                                                                                                                             if (((s as any).temp_mig_j ?? 0) < ((s as any).arrsize ?? 0)('$' + ((s as any).temp_mig_old ?? 0))) {
@@ -7990,7 +7990,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                           // TODO-QSP: $temp_mig_g[6] = 'pavlovsk'  & $temp_mig_g[7] = 'city'
                                                                                                                                                                                           (s as any).temp_mig_gi = 0;
                                                                                                                                                                                           // TODO-QSP: :save0900_grpmig_rlloop
-                                                                                                                                                                                          if (((s as any).temp_mig_gi ?? 0) < ((s as any).arrsize ?? 0)('temp_mig_g')) {
+                                                                                                                                                                                          if (((s as any).temp_mig_gi ?? 0) < Object.keys((s as any).temp_mig_g ?? {}).length) {
                                                                                                                                                                                             (s as any).temp_mig_j = 0;
                                                                                                                                                                                             // TODO-QSP: :save0900_grpmig_rlmloop
                                                                                                                                                                                             if (((s as any).temp_mig_j ?? 0) < ((s as any).arrsize ?? 0)('$' + ((s as any).temp_mig_old ?? 0))) {
@@ -8003,12 +8003,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                           }
                                                                                                                                                                                         }
                                                                                                                                                                                         if (((s as any).temp_current_save_version ?? 0) < 90901) {
-                                                                                                                                                                                          if (((s as any).arrsize ?? 0)('accessible_property_codes') === 0) {
+                                                                                                                                                                                          if (Object.keys((s as any).accessible_property_codes ?? {}).length === 0) {
                                                                                                                                                                                             (s as any).su0991_max = 0;
                                                                                                                                                                                             (s as any).su0991_i = 0;
                                                                                                                                                                                             if (((s as any).su0991_max ?? 0) > 0) {
                                                                                                                                                                                               // TODO-QSP: :su0991_accessible_property_migration_loop
-                                                                                                                                                                                              if (((s as any).su0991_code ?? 0) !== ''  &&  ((s as any).home_name ?? 0)?.[String((s as any).su0991_code ?? 0)] !== ''  &&  ((s as any).arrpos ?? 0)('accessible_property_codes', ((s as any).su0991_code ?? 0)) === -1) {
+                                                                                                                                                                                              if (((s as any).su0991_code ?? 0) !== ''  &&  ((s as any).home_name ?? 0)?.[String((s as any).su0991_code ?? 0)] !== ''  &&  (Array.isArray((s as any).accessible_property_codes) ? ((s as any).accessible_property_codes as any[]).indexOf(((s as any).su0991_code ?? 0)) : -1) === -1) {
                                                                                                                                                                                                 // TODO-QSP: $accessible_property_codes[] = $su0991_code
                                                                                                                                                                                               }
                                                                                                                                                                                               (s as any).su0991_i = ((s as any).su0991_i ?? 0) + (1);
@@ -8052,7 +8052,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                       }
                                                                                                                                                                                                       if (((s as any).npc_fidelity ?? 0)?.[String((s as any).su0991_npcID ?? 0)] === '') {
                                                                                                                                                                                                         if (((s as any).npc_fidelity ?? 0)?.[String((s as any).su0991_npcID ?? 0)] <= 4) {
-                                                                                                                                                                                                          (s as any).npc_fidelity_num[$su0991_npcID] = ((s as any).npc_fidelity ?? 0)?.[String((s as any).su0991_npcID ?? 0)];
+                                                                                                                                                                                                          (s as any).npc_fidelity_num[String((s as any).su0991_npcID ?? 0)] = ((s as any).npc_fidelity ?? 0)?.[String((s as any).su0991_npcID ?? 0)];
                                                                                                                                                                                                           // TODO-QSP: $npc_fidelity[$su0991_npcID] = 'cheater'
                                                                                                                                                                                                         } else {
                                                                                                                                                                                                           // TODO-QSP: $npc_fidelity[$su0991_npcID] = 'seduced'
@@ -8061,8 +8061,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                           } else {
                                                                                                                                                                                                             // TODO-QSP: $npc_fidelity[$su0991_npcID] = 'faithful'
                                                                                                                                                                                                           }
-                                                                                                                                                                                                          (s as any).npc_fidelity_num[$su0991_npcID] = ((s as any).npc_fidelity ?? 0)?.[String((s as any).su0991_npcID ?? 0)];
-                                                                                                                                                                                                          (s as any).npc_fidelity[$su0991_npcID] = 0;
+                                                                                                                                                                                                          (s as any).npc_fidelity_num[String((s as any).su0991_npcID ?? 0)] = ((s as any).npc_fidelity ?? 0)?.[String((s as any).su0991_npcID ?? 0)];
+                                                                                                                                                                                                          (s as any).npc_fidelity[String((s as any).su0991_npcID ?? 0)] = 0;
                                                                                                                                                                                                           if (((s as any).npc_fidelity_label ?? 0)?.[String((s as any).su0991_npcID ?? 0)] !== '') {
                                                                                                                                                                                                             // TODO-QSP: $npc_fidelity[$su0991_npcID] = $npc_fidelity_label[$su0991_npcID]
                                                                                                                                                                                                             // TODO-QSP: $npc_fidelity_label[$su0991_npcID] = ''

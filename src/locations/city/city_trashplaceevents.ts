@@ -41,14 +41,14 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 20, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['city_trashplaceevents', 'pos5'] }]);
     }
   } },
     { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['city_trashplaceevents', 'pos6'] }]);
     }

@@ -16,12 +16,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).slyQW ?? 0)?.['Chris_peek_daystart'] !== ((s as any).daystart ?? 0)) {
       (s as any).slyQW['Chris_peek_daystart'] = ((s as any).daystart ?? 0);
       if (((s as any).slyQW ?? 0)?.['Chris_caught'] < 5) {
-        if (Math.floor(Math.random() * 4) + 1 === 1) {
+        if ((Math.floor(Math.random() * 4) + 1) === 1) {
           (s as any).slyQW['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
           (s as any).slyQW['Chris_peeking'] = 1;
         }
       } else {
-        if (Math.floor(Math.random() * 2) + 1 === 1) {
+        if ((Math.floor(Math.random() * 2) + 1) === 1) {
           (s as any).slyQW['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
           (s as any).slyQW['Chris_peeking'] = 1;
         }

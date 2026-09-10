@@ -33,7 +33,7 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
 function enterMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).themes_menu_ret_loc ?? 0) === '') {
   }
-  if (((s as any).themes_menu_active ?? 0) === 0) {
+  if ((!((s as any).themes_menu_active ?? 0))) {
     (s as any).themes_menu_active = 1;
     (s as any).themes_menu_prev_settingmode = ((s as any).settingmode ?? 0);
     (s as any).settingmode = 1;
@@ -324,7 +324,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
         (s as any).theme_hex['hypno'] = '#fe640b';
         (s as any).theme_hex['header'] = '#d24b4b';
       } else {
-        if (((s as any).hour ?? 0) === 0) {
+        if ((!((s as any).hour ?? 0))) {
           (s as any).theme['bcolor'] = 0;
           (s as any).theme['fcolor'] = 0;
           (s as any).theme['lcolor'] = 0;
@@ -754,7 +754,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                 (s as any).theme_hex['hypno'] = '#ef9f76';
                                 (s as any).theme_hex['header'] = '#eebebe';
                               } else {
-                                if (((s as any).hour ?? 0) === 0) {
+                                if ((!((s as any).hour ?? 0))) {
                                   (s as any).theme['bcolor'] = 0;
                                   (s as any).theme['fcolor'] = 0;
                                   (s as any).theme['lcolor'] = 0;
@@ -1184,7 +1184,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).theme_hex['hypno'] = '#f5a97f';
                                                         (s as any).theme_hex['header'] = '#f0c6c6';
                                                       } else {
-                                                        if (((s as any).hour ?? 0) === 0) {
+                                                        if ((!((s as any).hour ?? 0))) {
                                                           (s as any).theme['bcolor'] = 0;
                                                           (s as any).theme['fcolor'] = 0;
                                                           (s as any).theme['lcolor'] = 0;
@@ -1614,7 +1614,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                 (s as any).theme_hex['hypno'] = '#fab387';
                                                                                 (s as any).theme_hex['header'] = '#f2cdcd';
                                                                               } else {
-                                                                                if (((s as any).hour ?? 0) === 0) {
+                                                                                if ((!((s as any).hour ?? 0))) {
                                                                                   (s as any).theme['bcolor'] = 0;
                                                                                   (s as any).theme['fcolor'] = 0;
                                                                                   (s as any).theme['lcolor'] = 0;
@@ -2044,7 +2044,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                         (s as any).theme_hex['hypno'] = '#d08770';
                                                                                                         (s as any).theme_hex['header'] = '#d0959b';
                                                                                                       } else {
-                                                                                                        if (((s as any).hour ?? 0) === 0) {
+                                                                                                        if ((!((s as any).hour ?? 0))) {
                                                                                                           (s as any).theme['bcolor'] = 0;
                                                                                                           (s as any).theme['fcolor'] = 0;
                                                                                                           (s as any).theme['lcolor'] = 0;
@@ -2474,7 +2474,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                 (s as any).theme_hex['hypno'] = '#b86a52';
                                                                                                                                 (s as any).theme_hex['header'] = '#af5a61';
                                                                                                                               } else {
-                                                                                                                                if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                if ((!((s as any).hour ?? 0))) {
                                                                                                                                   (s as any).theme['bcolor'] = 0;
                                                                                                                                   (s as any).theme['fcolor'] = 0;
                                                                                                                                   (s as any).theme['lcolor'] = 0;
@@ -2904,7 +2904,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                         (s as any).theme_hex['hypno'] = '#cb4b16';
                                                                                                                                                         (s as any).theme_hex['header'] = '#bf4a5d';
                                                                                                                                                       } else {
-                                                                                                                                                        if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                        if ((!((s as any).hour ?? 0))) {
                                                                                                                                                           (s as any).theme['bcolor'] = 0;
                                                                                                                                                           (s as any).theme['fcolor'] = 0;
                                                                                                                                                           (s as any).theme['lcolor'] = 0;
@@ -3334,7 +3334,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                 (s as any).theme_hex['hypno'] = '#cb4b16';
                                                                                                                                                                                 (s as any).theme_hex['header'] = '#bf4a5d';
                                                                                                                                                                               } else {
-                                                                                                                                                                                if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                                                if ((!((s as any).hour ?? 0))) {
                                                                                                                                                                                   (s as any).theme['bcolor'] = 0;
                                                                                                                                                                                   (s as any).theme['fcolor'] = 0;
                                                                                                                                                                                   (s as any).theme['lcolor'] = 0;
@@ -3764,7 +3764,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                         (s as any).theme_hex['hypno'] = '#ff9e64';
                                                                                                                                                                                                         (s as any).theme_hex['header'] = '#c1868d';
                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                        if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                                                                        if ((!((s as any).hour ?? 0))) {
                                                                                                                                                                                                           (s as any).theme['bcolor'] = 0;
                                                                                                                                                                                                           (s as any).theme['fcolor'] = 0;
                                                                                                                                                                                                           (s as any).theme['lcolor'] = 0;
@@ -4194,7 +4194,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                 (s as any).theme_hex['hypno'] = '#965027';
                                                                                                                                                                                                                                 (s as any).theme_hex['header'] = '#955b5b';
                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                                                                                                if ((!((s as any).hour ?? 0))) {
                                                                                                                                                                                                                                   (s as any).theme['bcolor'] = 0;
                                                                                                                                                                                                                                   (s as any).theme['fcolor'] = 0;
                                                                                                                                                                                                                                   (s as any).theme['lcolor'] = 0;
@@ -4624,7 +4624,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                         (s as any).theme_hex['hypno'] = '#f6c177';
                                                                                                                                                                                                                                                         (s as any).theme_hex['header'] = '#c6808c';
                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                        if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                                                                                                                        if ((!((s as any).hour ?? 0))) {
                                                                                                                                                                                                                                                           (s as any).theme['bcolor'] = 0;
                                                                                                                                                                                                                                                           (s as any).theme['fcolor'] = 0;
                                                                                                                                                                                                                                                           (s as any).theme['lcolor'] = 0;
@@ -5054,7 +5054,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                 (s as any).theme_hex['hypno'] = '#f6c177';
                                                                                                                                                                                                                                                                                 (s as any).theme_hex['header'] = '#c6808c';
                                                                                                                                                                                                                                                                               } else {
-                                                                                                                                                                                                                                                                                if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                                                                                                                                                if ((!((s as any).hour ?? 0))) {
                                                                                                                                                                                                                                                                                   (s as any).theme['bcolor'] = 0;
                                                                                                                                                                                                                                                                                   (s as any).theme['fcolor'] = 0;
                                                                                                                                                                                                                                                                                   (s as any).theme['lcolor'] = 0;
@@ -5484,7 +5484,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                                                                                                                                         (s as any).theme_hex['hypno'] = '#ea9d34';
                                                                                                                                                                                                                                                                                                         (s as any).theme_hex['header'] = '#9d5958';
                                                                                                                                                                                                                                                                                                       } else {
-                                                                                                                                                                                                                                                                                                        if (((s as any).hour ?? 0) === 0) {
+                                                                                                                                                                                                                                                                                                        if ((!((s as any).hour ?? 0))) {
                                                                                                                                                                                                                                                                                                           (s as any).theme['bcolor'] = 0;
                                                                                                                                                                                                                                                                                                           (s as any).theme['fcolor'] = 0;
                                                                                                                                                                                                                                                                                                           (s as any).theme['lcolor'] = 0;

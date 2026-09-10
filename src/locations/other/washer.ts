@@ -101,7 +101,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_washerVars['j'] = 0;
   // TODO-QSP: :core_loop_outer
-  (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? 0)?.['j']] + $((s as any).temp_washerVars ?? 0)?.['array_postfix'];
+  (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? 0)?.['j']] + ((s as any).temp_washerVars ?? 0)?.['array_postfix'];
   if (((s as any).temp_washerVars ?? 0)?.['type'] !== ((s as any).temp_washerVars ?? 0)?.['array_postfix']) {
     (s as any).temp_washerVars['total'] = 0;
     (s as any).temp_washerVars['number'] = 1;

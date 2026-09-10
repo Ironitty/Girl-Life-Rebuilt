@@ -9,8 +9,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('Captain Katalkin is currently handling some cases.');
-    if (((s as any).katalkinSexOnce ?? 0) === 0) {
-      if (((s as any).schtraf ?? 0) === 0) {
+    if ((!((s as any).katalkinSexOnce ?? 0))) {
+      if ((!((s as any).schtraf ?? 0))) {
         scene.text('Captain Katalkin looks at you with some interest before he smiles.');
         scene.text('"Hello miss, I was just about to have a break. Would you like to join me for a cup of tea?"');
         scene.actions([
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Accept his offer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -141,7 +141,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (((s as any).schtraf ?? 0) === 0) {
+      if ((!((s as any).schtraf ?? 0))) {
         // TODO-QSP: dynamic text: Captain Katalkin looks at you with some interest before he gives you a smile. "H...
         scene.text(`Captain Katalkin looks at you with some interest before he gives you a smile. "Hi there ${((s as any).pcs_nickname ?? 0)}, I was just about to have a break. Would you like to join me for a cup of tea?"`);
         scene.text('From your previous experience with him, you know he\'s probably not just talking about tea.');
@@ -169,7 +169,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Give him the money [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -213,7 +213,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           { label: 'Entertain him', goto: ['katalkinSex', 'sex'] },
         ]);
       }
-      if (((s as any).schtraf ?? 0) === 0) {
+      if ((!((s as any).schtraf ?? 0))) {
         scene.text('Captain Katalkin is sitting in his chair, working on some documents. He gives you a friendly nod but keeps working, indicating that he doesn\'t want to be disturbed right now.');
       } else {
         // TODO-QSP: dynamic text: Captain Katalkin pretends he's looking through some files before he rips up a pi...
@@ -238,7 +238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Captain Katalkin is sitting at a table with two of his colleagues. The table has a nice assortment of snacks and vodka. They look like they\'ve been drinking…');
     if (((s as any).katalkinSexOnce ?? 0) === 1) {
-      if (((s as any).katGangMeet ?? 0) === 0) {
+      if ((!((s as any).katGangMeet ?? 0))) {
         // TODO-QSP: dynamic text: When Katalkin sees you walk by, he drunkenly waves you over. "<<$pcs_nickname>>!...
         scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. "${((s as any).pcs_nickname ?? 0)}! Come here, let me fuckin' introduce you to my boys!"`);
         scene.actions([
@@ -280,7 +280,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (((s as any).schtraf ?? 0) === 0) {
+      if ((!((s as any).schtraf ?? 0))) {
         // TODO-QSP: dynamic text: When Katalkin sees you walk by, he drunkenly waves you over. <<$pcs_nickname>>! ...
         scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. ${((s as any).pcs_nickname ?? 0)}! Come over here and join me for a drink!"`);
         scene.actions([
@@ -295,7 +295,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -355,7 +355,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Accept his offer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -369,7 +369,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).katalkinNoexit ?? 0) === 0) {
+  if ((!((s as any).katalkinNoexit ?? 0))) {
     // TODO-QSP: act 'Leave his office': minut += 1
     scene.actions([{ label: 'Continue', goto: ['pav_station', 'station_inside'] }]);
   }

@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text(`The boys don't pay any attention to their surroundings, and pour out some vodka from a bottle into several cups they brought while they actively flirt with you and your friend. You soon forget about your surroundings as you're having fun with the guys, and undress alongside ${((s as any).ev_name ?? 0)}. The boys quickly clear an area of bottles and other debris, so you can lie down.`);
   (s as any).ciklkm = (((s as any).placerParameter ?? 0)?.['number_of_man'] / 2) + 1;
   (s as any).guy = ((s as any).guy ?? 0) + (((s as any).ciklkm ?? 0));
-  if (((s as any).goporgyeQW ?? 0) === 0) {
+  if ((!((s as any).goporgyeQW ?? 0))) {
     (s as any).goporgyeQW = 1;
   }
   if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14) {
@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You willingly spread your legs and hold <<$ev_name>>'s hand, squealing as the bo...
     scene.text(`You willingly spread your legs and hold ${((s as any).ev_name ?? 0)}'s hand, squealing as the both of you get fucked by the Gopniks.`);
     // TODO-QSP: :markgopgang
-    if (Math.floor(Math.random() * 3) + 0 < 2) {
+    if ((Math.floor(Math.random() * 3) + 0) < 2) {
       qspCall(s, 'dinsex', 'vaginal_sex', 10);
       qspCall(s, 'dinsex', 'sexcum');
       qspCall(s, 'arousal', 'vaginal', 15, 'group', 'sub');

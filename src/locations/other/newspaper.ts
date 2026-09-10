@@ -10,16 +10,16 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :newspaper_frontpage_loop
   (s as any).idx = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).np_front_pages ?? 0)') - 1);
-  (s as any).newspaperVars['page_' + String((s as any).i ?? '') + ''] = ((s as any).np_front_pages ?? 0)?.[String((s as any).idx ?? 0)];
+  (s as any).newspaperVars['page_' + String((s as any).i || '') + ''] = ((s as any).np_front_pages ?? 0)?.[String((s as any).idx ?? 0)];
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).arrsize ?? 0)('np_front_pages') > 0) {
+  if (Object.keys((s as any).np_front_pages ?? {}).length > 0) {
     // TODO-QSP: jump 'newspaper_frontpage_loop'
   }
   // TODO-QSP: :newspaper_shuffle_loop
   (s as any).idx = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('((s as any).np_pages ?? 0)') - 1);
-  (s as any).newspaperVars['page_' + String((s as any).i ?? '') + ''] = ((s as any).np_pages ?? 0)?.[String((s as any).idx ?? 0)];
+  (s as any).newspaperVars['page_' + String((s as any).i || '') + ''] = ((s as any).np_pages ?? 0)?.[String((s as any).idx ?? 0)];
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).arrsize ?? 0)('np_pages') > 0) {
+  if (Object.keys((s as any).np_pages ?? {}).length > 0) {
     // TODO-QSP: jump 'newspaper_shuffle_loop'
   }
   (s as any).newspaperVars['max_page_num'] = ((s as any).i ?? 0) - 1;

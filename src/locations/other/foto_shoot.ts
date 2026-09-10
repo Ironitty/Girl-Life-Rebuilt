@@ -51,7 +51,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'city', 'modelling', 'tiny');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     (s as any).modelpayfin = 450;
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/city/citycenter/photo/catalog/1.mp4');
       scene.text('You spend two hours modelling various tights with tops for the online catalogs of retail clothing stores. You change clothes probably 30 times over the shoot, but always wear the same expression. It\'s boring but it still gets you paid.');
     } else {

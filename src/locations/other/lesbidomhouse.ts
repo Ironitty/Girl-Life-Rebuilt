@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  if (Math.floor(Math.random() * 3) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 3) + 0))) {
     scene.text('You ring the doorbell several times, but no one comes to answer the door. When you try to look inside through the windows, you don\'t see any movement either.');
     scene.actions([
       { label: 'Leave', goto: ['city_residential', ''] },

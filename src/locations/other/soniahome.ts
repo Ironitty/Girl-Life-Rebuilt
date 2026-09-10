@@ -225,7 +225,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   { label: 'Enter', goto: ['soniahome', 'hallway'] },
                 ]);
               }
-              if (Math.floor(Math.random() * 4) + 1 === 1) {
+              if ((Math.floor(Math.random() * 4) + 1) === 1) {
                 scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
                 (s as any).SoniaLoc = 0;
                 if (((s as any).soniaQW ?? 0)?.['tkachenko'] === 0) {

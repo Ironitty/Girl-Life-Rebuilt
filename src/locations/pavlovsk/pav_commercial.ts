@@ -49,7 +49,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).hour ?? 0) < 4  &&  ((s as any).motherWorry ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).age ?? 0) < 18  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     (s as any).motherWorry = 1;
   }
-  if (Math.floor(Math.random() * 5) + 1 >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
+  if ((Math.floor(Math.random() * 5) + 1) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
     if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
       scene.text('<br>You catch people staring at you intently, as if they\'re supposed to know who you are but can\'t quite remember why. You sincerely hope they don\'t realize your promiscuous adventures are the reason why. The occasional person chuckling and pointing at you crushes those hopes, and you quickly keep walking before they get a chance to say anything.');
     } else {
@@ -86,7 +86,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <br>The rest of the street is filled with smaller locally owned businesses, most...
   scene.text(`<br>The rest of the street is filled with smaller locally owned businesses, most notable being ${((s as any).desc_txt1 ?? 0)}.`);
   if ((((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 17)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 17)  &&  ((s as any).lari_gm ?? 0) !== ((s as any).daystart ?? 0)) {
-    if (Math.floor(Math.random() * 5) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
       scene.text('You see <a href="exec: gt \'gschool_socialchg1\',\'lariska_gm_1\'">Lariska</a> going inside Coco Carmen.');
     }
   }

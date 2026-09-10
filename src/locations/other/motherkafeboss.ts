@@ -736,7 +736,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
 function enterSlavaDeal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
   scene.text('You follow Slava into the back room where he unzips his trousers and pulls out his cock expectantly.');
-  if (((s as any).slava_condom_ask ?? 0) === 0) {
+  if ((!((s as any).slava_condom_ask ?? 0))) {
     scene.actions([
       { label: '"Can we at least use a condom?"', handler: (st: GameState) => {
     (s as any).slava_condom_ask = 1;

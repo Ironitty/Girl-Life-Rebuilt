@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big7.jpg');
-  if (Math.floor(Math.random() * 6) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 6) + 0))) {
     scene.text('You see Lesco talking to Lera and, unsurprisingly, things look tense. Knowing how volatile the gopnik can be, you approach them carefully. They greet you and Lesco is the first to speak up. "Lera and I were talking about her needing to do her chores at home, but she doesn\'t want to listen…"');
     scene.text('An annoyed Lera is quick to snap back. "Why are you telling your little girlfriend my business? Trying to show off? Try that shit again and I\'ll tell her all your dirty… little… secrets…" she says while prodding him on the chest.');
     scene.text('Hearing this, you wonder what kind of secrets someone like Lesco could be hiding, but keep quiet as you don\'t really want to get involved. They continue bickering as you decide to leave them alone.');

@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).kafe_rand = Math.floor(Math.random() * 16) + 0;
-  if (((s as any).kafe_rand ?? 0) === 0) {
+  if ((!((s as any).kafe_rand ?? 0))) {
     scene.img('images/locations/city/residential/cafe/sex/arand.jpg');
     scene.text('On leaving the cafe, you see a large crowd of young people deciding where to go next. You also notice that one of the girls wasted no time and has started sucking her boyfriend\'s dick, completely undeterred by the crowd.');
     qspCall(s, 'city_kafeend', 'end_sex');

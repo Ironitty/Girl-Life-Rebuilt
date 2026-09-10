@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).birthday ?? 0) === 0) {
+  if ((!((s as any).birthday ?? 0))) {
     qspCall(s, 'intro_functions', 'set_default', 'birthday');
   }
   qspCall(s, 'time', 'init_monthnames');
@@ -37,7 +37,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     (s as any).birthmonth = qspFunc(s, 'math', 'int_clamp', ((s as any).birthmonth ?? 0), 1, 12);
     (s as any).birthday = qspFunc(s, 'math', 'int_clamp', ((s as any).birthday ?? 0), 1, ((s as any).monthdays ?? 0));
     // TODO-QSP: dynamic text: <center><<iif($start_type['magic'] = 'tg', 'Her', 'Your')>> birthday: <b><<$mont...
-    scene.text(`<center>${(((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your')} birthday: <b>${((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)]} ${((s as any).birthday ?? 0)}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? 0))}, ${((s as any).birthyear ?? 0)}</b></center>`);
+    scene.text(`<center>${((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your'))} birthday: <b>${((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)]} ${((s as any).birthday ?? 0)}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? 0))}, ${((s as any).birthyear ?? 0)}</b></center>`);
     // TODO-QSP: dynamic text: <center><a href="exec:birthday += 5 & gs 'intro_character_creation', 'core_birth...
     scene.text('<center><a href="exec:birthday += 5 & gs \'intro_character_creation\', \'core_birthday\'">+5 Days</a></center>');
     // TODO-QSP: dynamic text: <center><a href="exec:birthday += 1 & gs 'intro_character_creation', 'core_birth...
@@ -71,7 +71,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
 function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).currentpursetype ?? 0) !== ''  &&  ((s as any).currentpursetype ?? 0) !== 'none') {
   }
-  (s as any).tsg = (((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0);
+  (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
   qspCall(s, 'intro_functions', 'reset_all');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     qspCall(s, 'homes_properties', 'give_access', 'parents_home');
@@ -91,7 +91,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     qspCall(s, 'intro_character_templates', 'set_template', 'goodgirl');
   }
-  if (((s as any).birthday ?? 0) === 0) {
+  if ((!((s as any).birthday ?? 0))) {
     qspCall(s, 'intro_functions', 'set_default', 'birthday');
   }
   (s as any).daystart_start = qspFunc(s, 'intro_character_creation', 'get_random', 'daystart');
@@ -108,7 +108,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'daystart') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).temp_rand ?? 0) === 0) {
+      if ((!((s as any).temp_rand ?? 0))) {
         (s as any).result = 153;
       } else {
         (s as any).result = 183;

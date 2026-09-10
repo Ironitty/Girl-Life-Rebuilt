@@ -24,9 +24,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
         (s as any).npcgeneratecVars['name'] = 'A Male';
       } else {
-        (s as any).npcgeneratecVars['name'] = (((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman');
+        (s as any).npcgeneratecVars['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
         if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 2) {
-          (s as any).npcgeneratecVars['name'] = (((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman');
+          (s as any).npcgeneratecVars['name'] = ((((s as any).npcgeneratecVars ?? 0)?.['age'] <= 25) ? ('A Girl') : ('A Woman'));
         } else {
           (s as any).npcgeneratecVars['name'] = 'A Male';
         }
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       (s as any).npcgeneratecVars['anonymous'] = qspUntranslated(s, "ARGS[4]", { location: "npcgeneratec" });
-      if (((s as any).arrpos ?? 0)('ARGS', 'attracted') > 0  ||  ((s as any).arrpos ?? 0)('ARGS', 'like') > 0) {
+      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('attracted') : -1) > 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('like') : -1) > 0) {
         (s as any).npcgeneratecVars['attracted'] = 'like';
       } else {
         (s as any).npcgeneratecVars['attracted'] = 'dislike';

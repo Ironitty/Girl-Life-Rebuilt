@@ -37,7 +37,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec: gs \'larek\', \'buyfood2\' ">One serving of diet friendly food - 250 RUB</a>');
   if (((s as any).bottle ?? 0)===0  &&  ((s as any).bag ?? 0)>0) {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 50);
       (s as any).mc_inventory['food_water'] = 1;
@@ -55,7 +55,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     { label: 'Exit Department', goto: ['larek', 'start'] },
     { label: 'Buy tea biscuits [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300);
       (s as any).mc_inventory['food_biscuits'] = ((s as any).mc_inventory['food_biscuits'] ?? 0) + (10);

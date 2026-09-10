@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A174');
   (s as any).boyage = qspFunc(s, 'shortgs', 'dob_to_age', 'A174');
   if (((s as any).hunterVars ?? 0)?.['SergeiLove'] === 0  ||  (((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 10  &&  ((s as any).hunterVars ?? 0)?.['SergeiQw'] <= 50)) {
-    if (((s as any).hunterVars ?? 0)?.['SergeiLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['Sergeisex'] === 0  &&  Math.floor(Math.random() * 3) + 0 === 0) {
+    if (((s as any).hunterVars ?? 0)?.['SergeiLove'] > 0  &&  ((s as any).pcs_horny ?? 0) <= 60  &&  ((s as any).hunterVars ?? 0)?.['Sergeisex'] === 0  &&  (!(Math.floor(Math.random() * 3) + 0))) {
       scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
       scene.text('You go to Sergei to spend time together, but instead, he kisses you and playfully bites your lip.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want you," he whispers after the kiss.
@@ -154,7 +154,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                 ]);
               }
-              if (Math.floor(Math.random() * 7) + 0 === 0) {
+              if ((!(Math.floor(Math.random() * 7) + 0))) {
                 scene.actions([
                   { label: 'Break up with Sergei', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/brosila.jpg');

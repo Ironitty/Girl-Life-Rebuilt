@@ -60,7 +60,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
   qspCall(s, 'dinsex2', 'stamina_npc');
   (s as any).pos = 1;
-  if (((s as any).sxbj ?? 0) === 0) {
+  if ((!((s as any).sxbj ?? 0))) {
     if (((s as any).svidboysex ?? 0) === 1) {
       (s as any).bja = ((s as any).bja ?? 0) + (1);
     }

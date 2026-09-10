@@ -320,7 +320,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).property['bedroom'] = 'pushkin_ballet_res';
                     (s as any).property['bedroom_arg'] = 'bedroom';
                     (s as any).property['type'] = 'temporary_residence';
-                    if (((s as any).arrsize ?? 0)('home_property_attr_calls') > 0) {
+                    if (Object.keys((s as any).home_property_attr_calls ?? {}).length > 0) {
                       (s as any).i = 0;
                       // TODO-QSP: :mod_get_property_attr_calls_loop
                       (s as any).temp_app_loc = qspUntranslated(s, "instr(mid(home_property_attr_calls[i], 3), \"'\")", { location: "homes_properties_attr" });
@@ -328,7 +328,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         // TODO-QSP: dynamic "gs <<$home_property_attr_calls[i]>>"
                       }
                       (s as any).i = ((s as any).i ?? 0) + (1);
-                      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('home_property_attr_calls')  &&  ((s as any).property ?? 0)?.['code'] !== ((s as any).locArgs?.[1] ?? 0)) {
+                      if (((s as any).i ?? 0) < Object.keys((s as any).home_property_attr_calls ?? {}).length  &&  ((s as any).property ?? 0)?.['code'] !== ((s as any).locArgs?.[1] ?? 0)) {
                         // TODO-QSP: jump 'mod_get_property_attr_calls_loop'
                       }
                       if (((s as any).property ?? 0)?.['code'] !== ((s as any).locArgs?.[1] ?? 0)) {

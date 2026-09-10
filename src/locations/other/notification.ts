@@ -14,8 +14,8 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ARGS[1] = '<table><tr><td><<$ARGS[1]>></td></tr></table>'
-  if (((s as any).arrsize ?? 0)('ARGS') <= 2) {
-    if (((s as any).arrsize ?? 0)('notification_log') > 30) {
+  if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
+    if (Object.keys((s as any).notification_log ?? {}).length > 30) {
       // TODO-QSP: killvar 'notification_log', 0
     }
   }

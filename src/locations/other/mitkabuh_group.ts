@@ -78,7 +78,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'boyStat', 'A62', '2');
         }
         (s as any).temp_rand = Math.floor(Math.random() * 10) + 1;
-        if (((s as any).temp_rand ?? 0) <= 4  &&  ((s as any).mesec ?? 0) === 0) {
+        if (((s as any).temp_rand ?? 0) <= 4  &&  (!((s as any).mesec ?? 0))) {
           scene.actions([{ label: 'Continue', goto: ['mitkabuh_group', 'group_sex'] }]);
         } else {
           scene.actions([{ label: 'Continue', goto: ['mitkabuh_group', 'group_bj'] }]);
@@ -91,7 +91,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {

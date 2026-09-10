@@ -45,7 +45,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
     if (((s as any).camera_found ?? 0)?.[String((s as any).camera_event ?? 0)] !== 1) {
       scene.actions([
         { label: 'Photograph the <<$camera_description>>', handler: (st: GameState) => {
-    (s as any).camera_found[$camera_event] = 1;
+    (s as any).camera_found[String((s as any).camera_event ?? 0)] = 1;
     // TODO-QSP: gt 'camera', $camera_event
   } },
       ]);

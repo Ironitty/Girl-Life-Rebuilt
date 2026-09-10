@@ -17,7 +17,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_park', 'start'] },
     { label: 'Go to the movies [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['pav_cinema', 'watch_film'] }]);
     }
@@ -31,7 +31,7 @@ function enterWatchFilm(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 21) + 30);
   scene.img('images/locations/pavlovsk/park/theater/watchmovie.jpg');
-  if (((s as any).fame ?? 0)?.['pav_slut'] >= 100  &&  Math.floor(Math.random() * 3) + 0 > 0) {
+  if (((s as any).fame ?? 0)?.['pav_slut'] >= 100  &&  (Math.floor(Math.random() * 3) + 0) > 0) {
     scene.text('As you are watching the film a guy sits next to you and whispers in your ear, "Everyone knows you like to suck cock, I\'ll pay you if you have a go on this."');
     scene.text('It\'s dark, but you can just about see well enough to see that he is pointing at his dick.');
     return;
@@ -45,7 +45,7 @@ function enterWatchFilm(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree', goto: ['gevent', '2'] },
     ]);
   }
-  if (Math.floor(Math.random() * 100) + 0 < 90) {
+  if ((Math.floor(Math.random() * 100) + 0) < 90) {
     scene.text('You quietly watch the film.');
   } else {
     scene.text('You quietly watch the movie, but suddenly there is a strange sound behind you.');

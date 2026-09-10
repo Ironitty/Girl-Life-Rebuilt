@@ -91,7 +91,7 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big32.jpg');
     scene.text('She mumbles something when you ask your grandmother to tell you a story. Nevertheless, after a brief second or two, she decides on a story to share with you today and begins to talk slowly.');
     (s as any).temp = Math.floor(Math.random() * 8) + 0;
-    if (((s as any).temp ?? 0) === 0) {
+    if ((!((s as any).temp ?? 0))) {
       scene.text('"There was this one time my parents allowed me to stay at my friend\'s home for the night. During the night, a lot of snow fell… and we heard a soft knock on the door!" she says in an ominous voice.');
       scene.text('"We listened more closely but could only hear the wind whistling through the trees… so we decided to go back to sleep. Then we heard the knocking again!"');
       scene.text('""We dashed to the window but couldn\'t see anything other than snow. Finally, the knocking became more persistent, and the voice of a small girl begged us to open the door! My friend and I moved to the middle of the room, tightly hugging one another… we were terrified!"');

@@ -73,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Have a snack (0:15) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', 100 & gs 'food', 'snack'
     }
@@ -105,7 +105,7 @@ function enterSetPerformActs(s: GameState, scene: SceneBuilder): void {
     if (((s as any).strip_club ?? 0)?.['lapdance_chance'] === 2) {
       (s as any).stprive = ((s as any).stprive ?? 0) + (20);
     }
-    if (((s as any).stpriv ?? 0) > ((s as any).rand ?? 0) (0, 100)) {
+    if (((s as any).stpriv ?? 0) > (Math.floor(Math.random() * 101) + 0)) {
       scene.text('One of the bouncers walks up and tells you that a customer is waiting for you in one of the private rooms.');
       scene.actions([
         { label: 'Perform a private dance', handler: (st: GameState) => {
@@ -198,7 +198,7 @@ function enterSetShiftOverAct(s: GameState, scene: SceneBuilder): void {
         scene.text(`Viktor grins as you approach. "Looking fine, ${((s as any).pcs_strippername ?? 0)}!"`);
         scene.text('You sense him checking you out as you leave.');
       }
-      if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).fame ?? 0)?.['city_stripping'] >= 200) {
+      if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).fame ?? 0)?.['city_stripping'] >= 200) {
         scene.actions([
           { label: 'Leave', goto: ['stripclub', 'fan_approach'] },
         ]);
@@ -257,7 +257,7 @@ function enterStripClothing(s: GameState, scene: SceneBuilder): void {
 
 function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
   scene.text('You now have a chance to add up any tips you gained from your last show.');
-  if (Math.floor(Math.random() * 5) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 5) + 0))) {
     (s as any).strip_club['strip_tips'] = ((s as any).strip_club['strip_tips'] ?? 0) + (((s as any).stripKoef ?? 0));
   }
   if (((s as any).strip_club ?? 0)?.['strip_tips'] < 25) {
@@ -267,7 +267,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
     if (((s as any).strip_club ?? 0)?.['strip_tips'] < 55) {
       scene.text('A few people looked at you, but you didn\'t receive any tips.');
     } else {
-      if (Math.floor(Math.random() * 6) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 6) + 0))) {
         scene.text('The customers were pleased with your performance, but not enough to tip you.');
       } else {
         (s as any).paymoneyrand = Math.floor(Math.random() * 71) + 30;
@@ -278,7 +278,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
         scene.text(`The customers were pleased with your performance. They gave you ${qspFunc(s, 'money', 'string_profit', ((s as any).paymoneyrand ?? 0))} in tips.`);
       }
       if (((s as any).strip_club ?? 0)?.['strip_tips'] < 90) {
-        if (Math.floor(Math.random() * 11) + 0 === 0) {
+        if ((!(Math.floor(Math.random() * 11) + 0))) {
           scene.text('The customers followed your movements between their conversations. You deserved some tips, but luck was against you and you got nothing.');
         } else {
           (s as any).paymoneyrand = ((s as any).rand ?? 0)(100, 2 * ((s as any).strip_club ?? 0)?.['strip_tips']);

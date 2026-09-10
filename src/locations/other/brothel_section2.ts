@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).stage ?? 0) === 0) {
+  if ((!((s as any).stage ?? 0))) {
     (s as any).stage = ((s as any).stage ?? 0) + (1);
     scene.actions([{ label: 'Continue', goto: ['brothel_section2', 'section2_party_start'] }]);
   } else {

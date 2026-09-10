@@ -8,10 +8,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ARGS ?? 0)[1] !== 1  &&  ((s as any).pattest ?? 0) > 0) {
     (s as any).j = 0;
     // TODO-QSP: p ''
-    if (((s as any).kid ?? 0) > 0  &&  ((s as any).arrpos ?? 0)('surefather', '0') !== ((s as any).kid ?? 0)) {
+    if (((s as any).kid ?? 0) > 0  &&  (Array.isArray((s as any).surefather) ? ((s as any).surefather as any[]).indexOf('0') : -1) !== ((s as any).kid ?? 0)) {
       // TODO-QSP: pl '<br>Select the child you want to compare with <<$ARGS[0]>>:<br>'
       // TODO-QSP: :kiddieloop
-      (s as any).kidid[j] = ((s as any).j ?? 0);
+      (s as any).kidid[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
       (s as any).value = ((s as any).kidid ?? 0)?.[String((s as any).j ?? 0)];
       if (((s as any).surefather ?? 0)?.[String((s as any).j ?? 0)] === 0) {
         // TODO-QSP: pl '    <a href="exec:func(''pattest'', value, 1)
@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).j = 0;
   // TODO-QSP: :kloop
-  (s as any).kidid[j] = ((s as any).j ?? 0);
+  (s as any).kidid[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
   if (((s as any).patpack ?? 0)?.[String((s as any).j ?? 0)] === 1) {
     // TODO-QSP: '    <a href="exec: testresDay[kidid[j]] = daystart+rand(5,7)
     // TODO-QSP: patpack[kidid[j]] = 0
@@ -74,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).c2 = 0;
     // TODO-QSP: $SMS_msg[c2] = 'Result of testing: <br>'
     if (((s as any).testresRes ?? 0)?.[String((s as any).cyc ?? 0)] === 1) {
-      (s as any).SMS_msg[c2] = ((s as any).SMS_msg[c2] ?? 0) + ('matching DNA\' else $SMS_msg[c2] += \'no DNA match');
+      (s as any).SMS_msg[String((s as any).c2 ?? 0)] = ((s as any).SMS_msg[String((s as any).c2 ?? 0)] ?? 0) + ('matching DNA\' else $SMS_msg[c2] += \'no DNA match');
     }
     // TODO-QSP: $SMS_msg[c2] += '<br>between <<$testresPotfath[cyc]>> and <<$kidname[testresKid[cyc]]>>.'
     // TODO-QSP: $SMS_effect[c2] = {
@@ -86,7 +86,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $ChildThFath[testresKid[cyc]] = 'unknown'
       }
     }
-    (s as any).testresKid[cyc] = 0;
+    (s as any).testresKid[String((s as any).cyc ?? 0)] = 0;
   }
   if (((s as any).cyc ?? 0) < ((s as any).kid ?? 0)-1) {
     (s as any).cyc = ((s as any).cyc ?? 0) + (1);

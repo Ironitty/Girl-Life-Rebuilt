@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).spellSuccess = 0;
   (s as any).i = 1;
   // TODO-QSP: :ArgLoop
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('ARGS')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).ARGS ?? {}).length) {
     if (((s as any).ARGS ?? 0)?.[String((s as any).i ?? 0)] === '') {
       // TODO-QSP: $SpellArgs += ", <<ARGS[i]>>"
     } else {

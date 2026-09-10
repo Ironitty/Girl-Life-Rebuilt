@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Make an excuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lastlpp ?? 0) === ((s as any).lpp ?? 0)) {
       // TODO-QSP: jump 'ReCheck'
     }
-    if (((s as any).lpp ?? 0) === 0) {
+    if ((!((s as any).lpp ?? 0))) {
       scene.text('"Sorry, but I\'ve got a dentist appointment, my tooth hurts a lot!" you say as you rub your jaw, feigning pain.');
     } else {
       scene.text('"I can\'t, I have some sores in my mouth."');

@@ -13,7 +13,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
     (s as any).i2 = 0;
     // TODO-QSP: :beachcool_loop
     if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1) {
-      if (((s as any).i2 ?? 0) === 0) {
+      if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_beach += '<tr>'
       }
       (s as any).i2 = ((s as any).i2 ?? 0) + (1);
@@ -30,7 +30,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :beachjock_loop
     if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 2  &&  ((s as any).i ?? 0) !== 141) {
-      if (((s as any).i2 ?? 0) === 0) {
+      if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_beach += '<tr>'
       }
       (s as any).i2 = ((s as any).i2 ?? 0) + (1);
@@ -85,7 +85,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A149', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/lazar/beach_chat.jpg');
-  if (Math.floor(Math.random() * 4) + 1 === 1  &&  ((s as any).npc_had_sex ?? 0)?.['A149']) {
+  if ((Math.floor(Math.random() * 4) + 1) === 1  &&  ((s as any).npc_had_sex ?? 0)?.['A149']) {
     qspCall(s, 'fame', 'pav', 'sex', 'small');
     scene.text('Lazar smirks when he sees you. "Back for more? I know, it was amazing."');
     scene.text('You only let out a short "Mmhmm" as you roll your eyes.');

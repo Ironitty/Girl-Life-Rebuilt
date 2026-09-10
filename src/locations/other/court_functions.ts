@@ -10,7 +10,7 @@ function enterGetTotalArrests(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArrestFor(s: GameState, scene: SceneBuilder): void {
-  (s as any).policeQW['' + String((s as any).$ARGS[1] ?? '') + '_booked'] = ((s as any).policeQW['' + String((s as any).$ARGS[1] ?? '') + '_booked'] ?? 0) + (1);
+  (s as any).policeQW['' + String((s as any).$ARGS[1] || '') + '_booked'] = ((s as any).policeQW['' + String((s as any).$ARGS[1] || '') + '_booked'] ?? 0) + (1);
   (s as any).policeQW['crime_flag'] = ((s as any).locArgs?.[1] ?? 0);
   scene.build();
 }

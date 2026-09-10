@@ -83,7 +83,7 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
       scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
     } else {
       (s as any).tiprand = Math.floor(Math.random() * 4) + 0;
-      if (Math.floor(Math.random() * 4) + 0 < 3) {
+      if ((Math.floor(Math.random() * 4) + 0) < 3) {
         scene.img('images/shared/sex/handjob/hj.jpg');
         // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
         scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
@@ -152,7 +152,7 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Make excuses and go [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -535,7 +535,7 @@ function enterDima32(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Kick [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

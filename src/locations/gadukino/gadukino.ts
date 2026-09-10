@@ -91,7 +91,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).vladimirQW ?? 0)?.['day'] === ((s as any).daystart ?? 0)  &&  ((s as any).vladimirQW ?? 0)?.['stage'] === 40  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
                 scene.text('<a href="exec:gt \'vladimirQW_meet\',\'3\'">There\'s an Audi parked in the street, and standing beside it, you notice Vladimir</a>.');
               }
-              if (((s as any).arrsize ?? 0)('lover') > 0) {
+              if (Object.keys((s as any).lover ?? {}).length > 0) {
                 (s as any).temp_i = 0;
                 (s as any).temp_max_i = 0;
                 // TODO-QSP: :lover_pickup_loop
@@ -145,7 +145,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 { label: 'Walk around the village (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-    if (Math.floor(Math.random() * 2) + 0 === 0  &&  qspFunc(s, 'miroslava_schedule', 'is_here')) {
+    if ((Math.floor(Math.random() * 2) + 0) === 0  &&  qspFunc(s, 'miroslava_schedule', 'is_here')) {
       scene.actions([{ label: 'Continue', goto: ['gadukino', 'mira_events'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['gadukino', 'other_events'] }]);

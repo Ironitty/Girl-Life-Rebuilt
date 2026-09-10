@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/bar/martintalk.jpg');
-  if (((s as any).MartinTalkVar ?? 0) === 0) {
+  if ((!((s as any).MartinTalkVar ?? 0))) {
     (s as any).MartinTalkVar = 1;
     // TODO-QSP: dynamic text: "Sure, <<$pcs_firstname>>, coming right up", Martin says and pours you your drin...
     scene.text(`"Sure, ${((s as any).pcs_firstname ?? 0)}, coming right up", Martin says and pours you your drink.`);

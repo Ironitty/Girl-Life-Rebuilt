@@ -86,8 +86,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
             }
           }
           (s as any).fetish_mod = ((s as any).fetish_mod ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'creampie'));
-          (s as any).fetish_count = ((s as any).fetish_count ?? 0) + ((qspFunc(s, 'fetish', 'get_pref', 'pregnant') > 0) ? (1) : (0));
-          (s as any).fetish_count = ((s as any).fetish_count ?? 0) + ((qspFunc(s, 'fetish', 'get_pref', 'creampie') > 0) ? (1) : (0));
+          (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'pregnant') > 0) ? (1) : (0)));
+          (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'creampie') > 0) ? (1) : (0)));
           // TODO-QSP: fetish_mod /= fetish_count
           if (((s as any).locArgs?.[1] ?? 0) === 'self') {
             if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {

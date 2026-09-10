@@ -32,7 +32,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   (s as any).i2 = 0;
   // TODO-QSP: :discopop_loop
   if ((((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  ||  ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))] === 'Natasha')  &&  ((s as any).discoenable ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)?.['A' + String(((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-    if (((s as any).i2 ?? 0) === 0) {
+    if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $table_disco += '<tr>'
     }
     (s as any).i2 = ((s as any).i2 ?? 0) + (1);
@@ -54,7 +54,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   // TODO-QSP: :discojock_loop
   if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 2  &&  ((s as any).discoenable ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)?.['A' + String(((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-    if (((s as any).i2 ?? 0) === 0) {
+    if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $table_disco += '<tr>'
     }
     (s as any).i2 = ((s as any).i2 ?? 0) + (1);
@@ -97,7 +97,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 1;
     // TODO-QSP: :discogop_loop
     if (((s as any).npc_grupTipe ?? 0)?.['A' + String(((s as any).i ?? 0))] === 4  &&  ((s as any).discoenable ?? 0)?.['A' + String(((s as any).i ?? 0))] === 1  &&  ((s as any).discobloc ?? 0)?.['A' + String(((s as any).i ?? 0))] !== ((s as any).daystart ?? 0)) {
-      if (((s as any).i2 ?? 0) === 0) {
+      if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_disco += '<tr>'
       }
       (s as any).i2 = ((s as any).i2 ?? 0) + (1);
@@ -299,70 +299,70 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
 
 function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 2) + 1 !== 2) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 2) + 1) !== 2) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }
 
 function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 3) + 1 === 1) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 3) + 1) === 1) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }
 
 function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 4) + 1 !== 4) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 4) + 1) !== 4) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }
 
 function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 4) + 1 === 1) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 4) + 1) === 1) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }
 
 function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 5) + 1 === 1) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 5) + 1) === 1) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }
 
 function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 10) + 1 !== 10) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 10) + 1) !== 10) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }
 
 function enterAtdisco10i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
-  if (Math.floor(Math.random() * 10) + 1 === 1) {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 1;
+  if ((Math.floor(Math.random() * 10) + 1) === 1) {
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 1;
   } else {
-    (s as any).discoenable['A' + String((s as any).i ?? '') + ''] = 0;
+    (s as any).discoenable['A' + String((s as any).i || '') + ''] = 0;
   }
   scene.build();
 }

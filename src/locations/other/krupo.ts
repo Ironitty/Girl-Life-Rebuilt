@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend an hour learning different sewing techniques.');
   }
   if (((s as any).pcs_sewng ?? 0) >= 40) {
-    if (((s as any).tkanfirst ?? 0) === 0) {
+    if ((!((s as any).tkanfirst ?? 0))) {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
       scene.text('She has some spare fabric for you as it\'s the first time you need some, but she tells you to bring some next time.');
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
       qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
       scene.text('For an hour you learn more advanced techniques and practice cutting and sewing the fabric you purchased.');
-      if (((s as any).pcs_sewng ?? 0) >= 60  &&  ((s as any).poTalk ?? 0) === 0) {
+      if (((s as any).pcs_sewng ?? 0) >= 60  &&  (!((s as any).poTalk ?? 0))) {
         (s as any).poTalk = 1;
         scene.text('With a satisfied smile your teacher tells you, "Well done, now you can alter clothes to fit your size perfectly! However, this does not mean that any further studies would be useless. With further lessons I feel that I can teach you how to embroider splendid tapestries, which would be highly sought after, although very laborious to make."');
       }

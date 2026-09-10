@@ -10,7 +10,7 @@ function enterDjibrilRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A82');
   scene.img('images/locations/city/island/university/dorm/djibrilroom/room.jpg');
   scene.text('His room is bigger than you expected. There is a bed over by the windows, with a laptop sitting on the desk next to it. Closer to the door is a couch and a recliner, with a small TV and PlayStation across from them. It is clean and tastefully decorated.');
-  if (((s as any).DjibrilQW ?? 0)?.['african_gangbang'] >= 1  &&  Math.floor(Math.random() * 4) + 0 === 0  &&  ((s as any).DjibrilQW ?? 0)?.['gangbang'] !== ((s as any).daystart ?? 0)) {
+  if (((s as any).DjibrilQW ?? 0)?.['african_gangbang'] >= 1  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).DjibrilQW ?? 0)?.['gangbang'] !== ((s as any).daystart ?? 0)) {
     (s as any).DjibrilQW['gangbang'] = ((s as any).daystart ?? 0);
     scene.text('As you enter, he looks you over hungrily. "Would you like me to invite my friends over?"');
     if (((s as any).DjibrilQW ?? 0)?.['anya_inv'] + ((s as any).DjibrilQW ?? 0)?.['nush_inv'] + ((s as any).DjibrilQW ?? 0)?.['nat_inv'] > 0) {
@@ -227,7 +227,7 @@ function enterDjibrilChat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/djibriltalk.jpg');
-    if (((s as any).npc_had_sex ?? 0)?.['A82'] === 0  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  Math.floor(Math.random() * 4) + 0 === 0  &&  ((s as any).DjibrilQW ?? 0)?.['seduce'] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).npc_had_sex ?? 0)?.['A82'] === 0  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).DjibrilQW ?? 0)?.['seduce'] !== ((s as any).daystart ?? 0)) {
       (s as any).DjibrilQW['seduce'] = ((s as any).daystart ?? 0);
       scene.text('You talk about a wide range of topics. How he\'s enjoying school, any pretty girls that have caught his eye, things he\'s done recently and so on. He in turn asks you about about school, your friends and your home life. Overall, it\'s a pleasant conversation.');
       scene.text('He eventually gets up and pulls you up with him before he starts kissing you.');
@@ -460,7 +460,7 @@ function enterTextanya(s: GameState, scene: SceneBuilder): void {
 function enterTextnush(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/phone/text_indoor.jpg');
   scene.text('While the two of you are sitting on the couch, you pull out your phone and send Anushka a text. "Hey, what are you doing?"');
-  if (((s as any).hour ?? 0) < 8  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 14)  ||  ((s as any).week ?? 0) === 3  ||  ((s as any).week ?? 0) === 5  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 18)  ||  Math.floor(Math.random() * 4) + 0 >= 1) {
+  if (((s as any).hour ?? 0) < 8  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 14)  ||  ((s as any).week ?? 0) === 3  ||  ((s as any).week ?? 0) === 5  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 18)  ||  (Math.floor(Math.random() * 4) + 0) >= 1) {
     (s as any).DjibrilQW['nush_busy'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).DjibrilQW ?? 0)?.['nush_busy'] === ((s as any).daystart ?? 0)) {

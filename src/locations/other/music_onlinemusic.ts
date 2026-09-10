@@ -39,7 +39,7 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
     (s as any).ml_streamtime = Math.floor(Math.random() * 60) + 1;
     qspCall(s, 'music_onlinemusic', 'streaming_stats');
   }
-  if (((s as any).bankAccount ?? 0) === 0) {
+  if ((!((s as any).bankAccount ?? 0))) {
     // TODO-QSP: dynamic text: You have earned <b><<$func('money', 'string_profit', ml_streaming['unclaimed_ear...
     scene.text(`You have earned <b>${qspFunc(s, 'money', 'string_profit', ((s as any).ml_streaming ?? 0)?.['unclaimed_earnings'])}</b> so far, but you need to open a bank account before you can receive the money.`);
   } else {
@@ -93,7 +93,7 @@ function enterRecordSong(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'pay', 'self');
       scene.actions([
         { label: 'Upload music', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         { label: 'Upload music', handler: (st: GameState) => {
     // TODO-QSP: gt 'music_onlinemusic', 'uploadmusic', 'recording'

@@ -284,7 +284,7 @@ function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_observe4.jpg');
-    if (((s as any).pantyworntype ?? 0) !== 'naked'  ||  ((s as any).PCloDress ?? 0) === 0) {
+    if (((s as any).pantyworntype ?? 0) !== 'naked'  ||  (!((s as any).PCloDress ?? 0))) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, get rid of '+iif(PCloSkirt > 0, 'that skirt and your panties...
       scene.text(`"${((s as any).pcs_nickname ?? 0)}, get rid of '+iif(PCloSkirt > 0, 'that skirt and your panties', 'those '+iif(PCloPants > 0,'pants and panties', 'panties'))+' and be free like the rest of us," you hear from behind.`);
       // TODO-QSP: dynamic text: You turn and see <<$katja_first_orgy_temp['first_orgy_name_white_dress']>>, <<$k...
@@ -736,7 +736,7 @@ function enterFirstOrgyObserveDance2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

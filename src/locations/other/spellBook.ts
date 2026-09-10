@@ -100,7 +100,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).n = 0;
           // TODO-QSP: :RowCodeLoop96
-          if (((s as any).n ?? 0) < ((s as any).arrsize ?? 0)('pcs_health')) {
+          if (((s as any).n ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
             (s as any).spellBookVar['tmpName'] = 0;
             // TODO-QSP: $tmpHTMLCode += "
             // TODO-QSP: <a href=""EXEC: *clr & gs 'castSpell', '<<$ThisSpellName>>', 'pcs', <<n>>, 0 & <<$spellBookVar['Code...
@@ -110,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           (s as any).n = 0;
           // TODO-QSP: :RowCodeLoop97
-          if (((s as any).n ?? 0) < ((s as any).arrsize ?? 0)('opp_health')) {
+          if (((s as any).n ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
             (s as any).spellBookVar['tmpName'] = 0;
             // TODO-QSP: $tmpHTMLCode += "
             // TODO-QSP: <a href=""EXEC: *clr & gs 'castSpell', '<<$ThisSpellName>>', 'opp', <<n>>, 0 & <<$spellBookVar['Code...

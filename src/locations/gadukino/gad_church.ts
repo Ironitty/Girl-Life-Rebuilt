@@ -65,7 +65,7 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
   (s as any).churchday = ((s as any).daystart ?? 0);
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).temprand = Math.floor(Math.random() * 6) + 0;
-  if (Math.floor(Math.random() * 2) + 0 === 1) {
+  if ((Math.floor(Math.random() * 2) + 0) === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).temprand ?? 0));
   } else {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (((s as any).temprand ?? 0));
@@ -139,7 +139,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
     { label: 'Light a candle', goto: ['gad_church', 'candle'] },
     { label: 'Donate for a candle [+$func(\'money\', \'get_cost_string\', 10, \'c...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['gad_church', 'candle1'] }]);
     }

@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Stand and wait for customers (0:16)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (((s as any).rand ?? 0)(0, (((s as any).pcs_apprnc ?? 0)/4 + ((s as any).hour ?? 0)) * 2) < 20) {
+    if ((Math.floor(Math.random() * ((((s as any).pcs_apprnc ?? 0)/4 + ((s as any).hour ?? 0) - 0 + 1)) + (0)) * 2) < 20) {
       scene.text('You walk around for a while, trying to find a customer. Unfortunately, no one is interested in you right now.');
       scene.actions([
         { label: 'Continue', goto: ['prostitute', 'start'] },

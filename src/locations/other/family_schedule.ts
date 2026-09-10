@@ -251,7 +251,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               if (((s as any).hour ?? 0) === 7  ||  (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 30)) {
                                 if (((s as any).locat ?? 0)?.['Mother_clean1_daystart'] !== ((s as any).daystart ?? 0)) {
                                   (s as any).locat['Mother_clean1_daystart'] = ((s as any).daystart ?? 0);
-                                  if (Math.floor(Math.random() * 2) + 0 === 1) {
+                                  if ((Math.floor(Math.random() * 2) + 0) === 1) {
                                     (s as any).locat['Mother_clean1'] = 23;
                                   } else {
                                     (s as any).locat['Mother_clean1'] = 24;
@@ -287,7 +287,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         } else {
                                           if (((s as any).locat ?? 0)?.['Mother_clean2_daystart'] !== ((s as any).daystart ?? 0)) {
                                             (s as any).locat['Mother_clean2_daystart'] = ((s as any).daystart ?? 0);
-                                            if (Math.floor(Math.random() * 2) + 0 === 0) {
+                                            if ((!(Math.floor(Math.random() * 2) + 0))) {
                                               (s as any).locat['Mother_clean2'] = 23;
                                             } else {
                                               (s as any).locat['Mother_clean2'] = 25;
@@ -517,7 +517,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                             (s as any).locat['Kolka'] = 4;
                                                                             (s as any).locat['Kolka_athome'] = 0;
                                                                           } else {
-                                                                            if (((s as any).kanikuli ?? 0) === 0) {
+                                                                            if ((!((s as any).kanikuli ?? 0))) {
                                                                               (s as any).locat['Kolka'] = 5;
                                                                               (s as any).locat['Kolka_athome'] = 0;
                                                                             } else {

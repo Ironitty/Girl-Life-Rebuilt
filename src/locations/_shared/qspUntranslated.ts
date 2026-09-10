@@ -1,6 +1,6 @@
 import type { GameState } from '../../core/types';
 
-export function qspUntranslated(_s: GameState, raw: string, meta: { location: string; line?: number }): string {
+export function qspUntranslated(_s: GameState, raw: string, meta: { location: string; line?: number }): any {
   if (import.meta.env.MODE === 'test') {
     throw new Error(`[QSP UNTRANSLATED] ${meta.location}:${meta.line ?? '?'}: ${raw}`);
   }

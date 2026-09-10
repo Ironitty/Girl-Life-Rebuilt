@@ -14,7 +14,7 @@ function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   qspCall(s, 'stat', '');
-  if (qspFunc(s, 'jobs', 'has_booking_for_day', 'pav_leonid_slave', ((s as any).daystart ?? 0)) === 1  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).leonidVisit ?? 0) === 0) {
+  if (qspFunc(s, 'jobs', 'has_booking_for_day', 'pav_leonid_slave', ((s as any).daystart ?? 0)) === 1  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 10  &&  (!((s as any).leonidVisit ?? 0))) {
     scene.text('<center><b>Your phone is ringing</b></center>');
     qspCall(s, 'telefon', 'phone_ring');
     // TODO-QSP: pl '<center><a href="exec:gt ''leonid'', ''call''"><img src="images/system/phone/call_accept.png"></...
@@ -82,7 +82,7 @@ function enterDSalf(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs ''stat''
     // TODO-QSP: gs ''din_bad'', ''d_bag''"><b>Clean your clothing</b></a>'
   }
-  if (((s as any).pcs_makeup ?? 0) !== 1  &&  ((s as any).cosmetic_tattoo ?? 0) === 0) {
+  if (((s as any).pcs_makeup ?? 0) !== 1  &&  (!((s as any).cosmetic_tattoo ?? 0))) {
     // TODO-QSP: '<a href="exec:mc_inventory[''makeup_wipes''] -= 1
     (s as any).pcs_makeup = 1;
     (s as any).minut = ((s as any).minut ?? 0) + (5);
@@ -148,13 +148,13 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You have some portable makeup in your purse, but you need a compact mirror to apply it.');
   }
-  if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  ((s as any).deodorant_on ?? 0) === 0) {
+  if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
     // TODO-QSP: dynamic text: There's <a href="exec:hscrunchw = 0 & gs 'din_bad', 'p_deodorant'">deodorant</a>...
     scene.text(`There's <a href="exec:hscrunchw = 0 & gs 'din_bad', 'p_deodorant'">deodorant</a> in your purse. <b>${((s as any).mc_inventory ?? 0)?.['deodorant']}</b> uses remaining.`);
   } else {
     // TODO-QSP: dynamic text: You are already wearing deodorant. <b><<mc_inventory['deodorant']>></b> uses rem...
     scene.text(`You are already wearing deodorant. <b>${((s as any).mc_inventory ?? 0)?.['deodorant']}</b> uses remaining.`);
-    if (((s as any).mc_inventory ?? 0)?.['deodorant'] === 0  &&  ((s as any).deodorant_on ?? 0) === 0) {
+    if (((s as any).mc_inventory ?? 0)?.['deodorant'] === 0  &&  (!((s as any).deodorant_on ?? 0))) {
       // TODO-QSP: dynamic text: You are not wearing deodorant. <b><<mc_inventory['deodorant']>></b> uses remaini...
       scene.text(`You are not wearing deodorant. <b>${((s as any).mc_inventory ?? 0)?.['deodorant']}</b> uses remaining.`);
     } else {
@@ -162,14 +162,14 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
       scene.text(`You are already wearing deodorant. <b>${((s as any).mc_inventory ?? 0)?.['deodorant']}</b> uses remaining.`);
     }
     if (((s as any).mc_inventory ?? 0)?.['travel_mirror'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['comb'] === 1) {
-      if (((s as any).pcs_hairbsh ?? 0) === 0) {
+      if ((!((s as any).pcs_hairbsh ?? 0))) {
         // TODO-QSP: dynamic text: There's a hairbrush in your purse. <a href="exec: minut += min(15, max(1, pcs_ha...
         scene.text('There\'s a hairbrush in your purse. <a href="exec: minut += min(15, max(1, pcs_hairlng / 80)) & pcs_hairbsh = 1 & gs \'stat\' & gs \'din_bad\', \'d_bag\'">Brush your hair</a>');
       } else {
         scene.text('There\'s a hairbrush in your purse. Your hair doesn\'t need brushing right now.');
       }
     }
-    if (((s as any).pcs_hairbsh ?? 0) > 0  &&  ((s as any).pcs_hairlng ?? 0) > 80  &&  ((s as any).hbraids ?? 0) === 0) {
+    if (((s as any).pcs_hairbsh ?? 0) > 0  &&  ((s as any).pcs_hairlng ?? 0) > 80  &&  (!((s as any).hbraids ?? 0))) {
       if (((s as any).mc_inventory ?? 0)?.['scrunchies'] >= 1  &&  ((s as any).hscrunchw ?? 0) + ((s as any).hpingripw ?? 0) === 0) {
         // TODO-QSP: dynamic text: As you have a scrunchy, you can arrange your hair into a <a href="exec:hscrunchw...
         scene.text(`As you have a scrunchy, you can arrange your hair into a <a href="exec:hscrunchw = 1 & gs 'din_bad', 'd_bag'">ponytail</a>. You have ${((s as any).mc_inventory ?? 0)?.['scrunchies']} scrunchies left.`);
@@ -209,7 +209,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
       if (((s as any).preziktype ?? 0) === 2  ||  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
         // TODO-QSP: dynamic text: You have <b><<iif(preziktype = 2, mc_inventory['normal_condoms'], mc_inventory['...
-        scene.text(`You have <b>${(((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms']) : (((s as any).mc_inventory ?? 0)?.['normal_condoms']+((s as any).mc_inventory ?? 0)?.['equipped_condoms'])}</b> normal condoms left, and <b>${(((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'])}</b> sabotaged <a href="exec:gs 'din_bad', 'din_Switch_Condom_Menu'">condoms left in your purse.</a>`);
+        scene.text(`You have <b>${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms']) : (((s as any).mc_inventory ?? 0)?.['normal_condoms']+((s as any).mc_inventory ?? 0)?.['equipped_condoms']))}</b> normal condoms left, and <b>${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']))}</b> sabotaged <a href="exec:gs 'din_bad', 'din_Switch_Condom_Menu'">condoms left in your purse.</a>`);
       } else {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory['normal_condoms']+mc_inventory['equipped_condoms']>><...
         scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['normal_condoms']+((s as any).mc_inventory ?? 0)?.['equipped_condoms']}</b> <a href="exec:gs 'din_bad', 'din_Switch_Condom_Menu'">condoms left in your purse.</a>`);
@@ -220,12 +220,12 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
       // TODO-QSP: dynamic text: You have <b><<mc_inventory['lubricant']>></b> squirts of lubricant available
       scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['lubricant']}</b> squirts of lubricant available`);
-      if (((s as any).auto_anal_lube ?? 0) === 0) {
+      if ((!((s as any).auto_anal_lube ?? 0))) {
         scene.text('Automatically use for anal sex: <a href="exec:auto_anal_lube = 1 & gs \'stat\' & gs \'din_bad\', \'d_bag\'">No</a>');
       } else {
         scene.text('Automatically use for anal sex: <a href="exec:auto_anal_lube = 0 & gs \'stat\' & gs \'din_bad\', \'d_bag\'">Yes</a>');
       }
-      if (((s as any).auto_vag_lube ?? 0) === 0) {
+      if ((!((s as any).auto_vag_lube ?? 0))) {
         scene.text('Automatically use for vaginal sex: <a href="exec:auto_vag_lube = 1 & gs \'stat\' & gs \'din_bad\', \'d_bag\'">No</a>');
       } else {
         scene.text('Automatically use for vaginal sex: <a href="exec:auto_vag_lube = 0 & gs \'stat\' & gs \'din_bad\', \'d_bag\'">Yes</a>');
@@ -320,13 +320,13 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: gs ''stat''
             // TODO-QSP: gs ''din_bad'', ''d_bag''">Eat</a>'
           }
-          if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).strapNumber ?? 0) === 0) {
+          if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  (!((s as any).strapNumber ?? 0))) {
             // TODO-QSP: 'You have a strapon harness in your purse, but you don''t have a dildo attached to it'+iif(mc_invent...
           } else {
             // TODO-QSP: dynamic text: You have a strapon harness in your purse and a <<(strapNumber +1)*5>>cm attached...
             scene.text(`You have a strapon harness in your purse and a ${(((s as any).strapNumber ?? 0) +1)*5}cm attached to it.`);
           }
-          if (((s as any).mc_inventory ?? 0)?.['food_wine'] === 1  &&  ((s as any).alkowine ?? 0) === 0) {
+          if (((s as any).mc_inventory ?? 0)?.['food_wine'] === 1  &&  (!((s as any).alkowine ?? 0))) {
             scene.text('There\'s a bottle of <a href="exec:gs \'din_bad\', \'dinalkowin1\'">wine</a> in your purse.');
           }
           if (((s as any).mc_inventory ?? 0)?.['food_wine'] === 1  &&  ((s as any).alkowine ?? 0) === 1) {

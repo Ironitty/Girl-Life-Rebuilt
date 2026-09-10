@@ -379,7 +379,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_looop
-      if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+      if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''telling_marri...
         }
@@ -645,7 +645,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).i = 0;
   // TODO-QSP: :lover_looop
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('lover')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
       // TODO-QSP: dynamic 'act ''<<$npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''tell_about_generic_boyfrien...
     }

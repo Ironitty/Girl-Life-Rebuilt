@@ -210,7 +210,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('You climb up into the attic with your boyfriend.');
   } else {
     scene.text('<center><b>Bedroom</b></center>');
-    if (((s as any).rembedr ?? 0) === 0) {
+    if ((!((s as any).rembedr ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/apartment/bedr...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/residential/apartment/bedr.jpg"></center>`);
     }
@@ -242,7 +242,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       (s as any).sexrand = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).sexrand ?? 0) === 0) {
+      if ((!((s as any).sexrand ?? 0))) {
         // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I want you to suck my cock."
         scene.text(`"${((s as any).pcs_firstname ?? 0)}, I want you to suck my cock."`);
         scene.actions([
@@ -291,7 +291,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       (s as any).sexrand = Math.floor(Math.random() * 4) + 0;
-      if (((s as any).sexrand ?? 0) === 0) {
+      if ((!((s as any).sexrand ?? 0))) {
         scene.text('"Suck my big, fat dick."');
         scene.actions([
           { label: 'Give blowjob', handler: (st: GameState) => {

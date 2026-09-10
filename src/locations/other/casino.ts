@@ -256,7 +256,7 @@ function enterRouletteResult(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).x_rul = 100;
   (s as any).x_rul = Math.floor(Math.random() * 37) + 0;
-  if (((s as any).x_rul ?? 0) === 0) {
+  if ((!((s as any).x_rul ?? 0))) {
   } else {
     if (((s as any).x_rul ?? 0) === 1  ||  ((s as any).x_rul ?? 0) === 3  ||  ((s as any).x_rul ?? 0) === 5  ||  ((s as any).x_rul ?? 0) === 7  ||  ((s as any).x_rul ?? 0) === 9  ||  ((s as any).x_rul ?? 0) === 12  ||  ((s as any).x_rul ?? 0) === 14  ||  ((s as any).x_rul ?? 0) === 16  ||  ((s as any).x_rul ?? 0) === 18  ||  ((s as any).x_rul ?? 0) === 19  ||  ((s as any).x_rul ?? 0) === 21  ||  ((s as any).x_rul ?? 0) === 23  ||  ((s as any).x_rul ?? 0) === 25  ||  ((s as any).x_rul ?? 0) === 27  ||  ((s as any).x_rul ?? 0) === 30  ||  ((s as any).x_rul ?? 0) === 32  ||  ((s as any).x_rul ?? 0) === 34  ||  ((s as any).x_rul ?? 0) === 36) {
     }

@@ -96,7 +96,7 @@ function enterReceptionist(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Professional makeup [+$func(\'money\', \'get_cost_string\', salon_...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).salon_rate ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'salon', 'discount', 1000);
       qspCall(s, 'money', 'pay', ((s as any).salon_rate ?? 0));
@@ -667,7 +667,7 @@ function enterLeiWork(s: GameState, scene: SceneBuilder): void {
 
 function enterLeiWork2(s: GameState, scene: SceneBuilder): void {
   (s as any).masseuse['lei_peek'] = 1;
-  if (Math.floor(Math.random() * 2) + 0 === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     qspCall(s, 'arousal', 'voyeur', 1);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     scene.img(`images/locations/city/citycenter/mall/salon/work/lei/${Math.floor(Math.random() * 3) + 1}.mp4`);
@@ -764,7 +764,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'salon', 'discount', 5000);
   if (((s as any).lashextensionduration ?? 0) <= 0) {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).salon_rate ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'salon', 'discount', 5000);
       (s as any).lashextensionstyle = 4;

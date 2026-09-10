@@ -162,7 +162,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   } },
                         ]);
                       } else {
-                        if (Math.floor(Math.random() * 3) + 0 !== 0) {
+                        if ((Math.floor(Math.random() * 3) + 0) !== 0) {
                           scene.img('images/locations/shared/train/pussyflash\'+ rand(1, 2) +\'.jpg');
                         } else {
                           scene.img('images/locations/shared/train/pussyflash.mp4');

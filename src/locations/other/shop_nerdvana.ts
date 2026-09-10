@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterCounter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'counter');
-  if (((s as any).nerdvana_staff ?? 0) === 0) {
+  if ((!((s as any).nerdvana_staff ?? 0))) {
     qspCall(s, 'npcStat', 'A290');
   } else {
     qspCall(s, 'npcStat', 'A291');

@@ -10,16 +10,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'going_home_together'] }]);
   }
   if (((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
-    if (((s as any).katjaQW ?? 0)?.['horny'] >= Math.floor(Math.random() * 101) + 100) {
+    if (((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * 101) + 100)) {
       scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'home_work_ask_katja'] }]);
     }
-    if (Math.floor(Math.random() * 5) + 0 === 0  &&  Math.floor(Math.random() * 11) + 5 <= ((s as any).artemQW ?? 0)?.['confidence']) {
+    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  (Math.floor(Math.random() * 11) + 5) <= ((s as any).artemQW ?? 0)?.['confidence']) {
       scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'home_work_ask_artem'] }]);
     }
   }
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A2']} ${((s as any).npc_lastname ?? 0)?.['A2']}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
-  if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).artemVitokQW ?? 0) === 0) {
+  if (((s as any).kotovLoveQW ?? 0) > 0  &&  (!((s as any).artemVitokQW ?? 0))) {
     scene.text('You walk across the school courtyard to meet up with Artem. He gives you a friendly nod as you approach. "You ready to go?"');
     scene.text('Just as you\'re about to leave the courtyard with Artem, you run into Vitek, who doesn\'t look pleased.');
     // TODO-QSP: dynamic text: Vitek looks at Artem disdainfully. "Where are you going with this four-eyed lose...
@@ -33,7 +33,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Reassure Vitek [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -149,7 +149,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -180,7 +180,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -207,7 +207,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -241,7 +241,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -273,7 +273,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -301,7 +301,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -335,7 +335,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -375,7 +375,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: '"No way!" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {

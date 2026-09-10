@@ -75,7 +75,7 @@ function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
       (s as any).radomirQW['radislav_shower_sex'] = 2;
       scene.text('He grins. "Yeah, this is a well used cunt. Look how wet you are already. I bet your pussy is just aching to get fucked by a big cock, isn\'t it? Tough luck. I want to try that ass of yours this time," he says as he spins you around and bends you over the sink.');
       (s as any).temp = Math.floor(Math.random() * 2) + 0;
-      if (((s as any).temp ?? 0) === 0) {
+      if ((!((s as any).temp ?? 0))) {
         scene.text('He grins. "Damn, soaking wet already. I bet you\'re craving a big cock in your pussy, aren\'t you? It\'s your lucky day then as I feel like fucking you again," he says as he lifts you up and sits you on the sink.');
         scene.actions([
           { label: 'Get fucked', goto: ['radaptev1', 'shower_radislav1_vag'] },

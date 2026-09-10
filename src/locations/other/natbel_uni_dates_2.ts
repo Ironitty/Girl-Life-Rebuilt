@@ -59,7 +59,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).daystart ?? 0) >= ((s as any).natbelQW ?? 0)?.['tailor_visit_day'] + 30) {
       if (((s as any).week ?? 0) >= 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 16) {
         if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           scene.actions([{ label: 'Continue', goto: ['natbel_uni_dates_2', 'collect_tailor'] }]);
         }

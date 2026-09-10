@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
       qspCall(s, 'cards', 'section_open', 'Miroslava Maximova', 60);
-      if (((s as any).gad_meadow_found ?? 0) === 0) {
+      if ((!((s as any).gad_meadow_found ?? 0))) {
         scene.text('Mira seems like she could use a friend around here. I should explore the forest around Gadukino sometime, who knows what I might find.');
       } else {
         if (((s as any).MiraVars ?? 0)?.['meadow'] === 0  ||  ((s as any).MiraVars ?? 0)?.['meadow'] === 1) {
@@ -267,7 +267,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       } else {
                                                         scene.text('As much as I didn\'t enjoy the lecture about volleyball the last time I spoke with the coach, if I keep asking about it, maybe he will volunteer some information on his own about his past on the European Team. If all else fails, maybe I can straight up seduce him?');
                                                         if (((s as any).vballVars ?? 0)?.['coachsex'] === 4) {
-                                                          if (((s as any).voltrenerVoyeur ?? 0) === 0) {
+                                                          if ((!((s as any).voltrenerVoyeur ?? 0))) {
                                                             if (((s as any).vballVars ?? 0)?.['coach_lust'] >= 40) {
                                                               scene.text('I should take a shower at the sports center. I have driven the coach so crazy with lust, he is bound to come for me eventually.');
                                                             } else {
@@ -289,7 +289,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                               if (((s as any).npc_rel ?? 0)?.['A3'] < 80) {
                                                                 scene.text('I need something to make the coach jealous of me. Ivan spends a lot of time at the sports center, maybe I can use him to my advantage? I should put some effort into getting to know him better.');
                                                               } else {
-                                                                if (((s as any).kotovVSprohorov ?? 0) === 0) {
+                                                                if ((!((s as any).kotovVSprohorov ?? 0))) {
                                                                   // TODO-QSP: dynamic text: I want to use Ivan to somehow make the coach jealous. I should start by chatting...
                                                                   scene.text('I want to use Ivan to somehow make the coach jealous. I should start by chatting with him in the sports section when he shows up, usually around \'+func(\'time\', \'get_time_string\', 17, 0)+\'.');
                                                                 } else {
@@ -299,7 +299,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   } else {
                                                                     scene.text('I need to not chicken out the next time Ivan tries to join me in the sports center shower.');
                                                                     if (((s as any).IvanShowerQW ?? 0) === 11) {
-                                                                      if (((s as any).IvanShowerYes ?? 0) === 0) {
+                                                                      if ((!((s as any).IvanShowerYes ?? 0))) {
                                                                         scene.text('I should chat with Ivan at school again.');
                                                                       } else {
                                                                         if (((s as any).voltrenerVoyeur ?? 0) < 6) {
@@ -405,12 +405,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   if (((s as any).npc_rel ?? 0)?.['A3'] < 60) {
                                                                     scene.text('If I want to get to know Ivan better, I should spend some time chatting with him during school.');
                                                                   } else {
-                                                                    if (((s as any).kotovVSprohorov ?? 0) === 0) {
+                                                                    if ((!((s as any).kotovVSprohorov ?? 0))) {
                                                                       // TODO-QSP: dynamic text: I see Ivan at the sports center around '+func('time', 'get_time_string', 17, 0)+...
                                                                       scene.text('I see Ivan at the sports center around \'+func(\'time\', \'get_time_string\', 17, 0)+\' a lot. I should try and chat with him then.');
                                                                     } else {
                                                                       scene.text('I\'m feeling dirty. I should take a shower at the sports center.');
-                                                                      if (((s as any).IvanShowerQW ?? 0) === 0) {
+                                                                      if ((!((s as any).IvanShowerQW ?? 0))) {
                                                                         scene.text('I need to not chicken out the next time Ivan tries to join me in the sports center shower.');
                                                                       } else {
                                                                         scene.text('I should talk to Ivan about what happened in the sports center the next time I\'m at school.');
@@ -430,7 +430,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).NikoIntro ?? 0) === 1) {
                                                                     qspCall(s, 'cards', 'section_open', 'Niko Volkov', 189);
                                                                     if (((s as any).NikoVolkovQW ?? 0) === -1) {
-                                                                      if (((s as any).NikoPayback ?? 0) === 0) {
+                                                                      if ((!((s as any).NikoPayback ?? 0))) {
                                                                         scene.text('Niko and I are done. Whatever this was, it\'s over now.');
                                                                       } else {
                                                                         scene.text('I broke things off with Niko, but he isn\'t going to let it go quietly. I should watch myself around him at school.');
@@ -439,7 +439,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                         } else {
                                                                           scene.text('I got help dealing with Niko, and he\'s finally backed off for good.');
                                                                         }
-                                                                        if (((s as any).NikoVolkovQW ?? 0) === 0) {
+                                                                        if ((!((s as any).NikoVolkovQW ?? 0))) {
                                                                           if (((s as any).NikoLuv ?? 0) < 4) {
                                                                             scene.text('I\'ve met Niko. If I want to get closer to him, I should keep chatting with him during breaks at school.');
                                                                           } else {
@@ -927,7 +927,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                                                                         }
                                                                                                                                         if (((s as any).trfatherQW ?? 0) !== -1  &&  (((s as any).trfatherQW ?? 0) > 0  ||  ((s as any).npc_rel ?? 0)?.['A33'] >= 40)) {
                                                                                                                                           qspCall(s, 'cards', 'section_open', 'Mikhail Kuznetsov (Biological Father)', 35);
-                                                                                                                                          if (((s as any).trfatherQW ?? 0) === 0) {
+                                                                                                                                          if ((!((s as any).trfatherQW ?? 0))) {
                                                                                                                                             scene.text('I don\'t know anything about my biological father. I should ask my sister about him.');
                                                                                                                                           } else {
                                                                                                                                             scene.text('Anya said our father is a truck driver who might pass through Pavlovsk sometimes. I should try asking truckers out on the road about him.');

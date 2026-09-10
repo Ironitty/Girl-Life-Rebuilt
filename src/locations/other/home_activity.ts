@@ -28,12 +28,12 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
 
 function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
   if (((s as any).at_home_txt ?? 0) === 'city_apartment') {
-    if (((s as any).rembedr ?? 0) === 0) {
+    if ((!((s as any).rembedr ?? 0))) {
       (s as any).home_activity['vomit_bedroom'] = '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/bedr.jpg"></center>';
     } else {
       (s as any).home_activity['vomit_bedroom'] = '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/bedr2.jpg"></center>';
     }
-    if (((s as any).remvanr ?? 0) === 0) {
+    if ((!((s as any).remvanr ?? 0))) {
       (s as any).home_activity['vomit_bathroom'] = '<center><img <<$set_imgh>> src="images/locations/city/residential/apartment/vanr.jpg"></center>';
     } else {
       (s as any).home_activity['vomit_bathroom'] = '<center><img <<$set_imgh>> src="images/locations/shared/bathroom/vanr2.jpg"></center>';

@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Confront the strange man [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -74,7 +74,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You feel his hot breath against your ear as he continues to thrust into your body. "You know what they call me? Stallion. They call me that because when I ejaculate into a bitch, she ends up pregnant. I\'ve already knocked up eleven girls. You\'re gonna be number twelve."');
     (s as any).stallionQ = 5;
-    if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).broodcurse ?? 0) === 0) {
+    if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  (!((s as any).broodcurse ?? 0))) {
       (s as any).broodcurse = 1;
       if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
         scene.text('You feel a tingling in your body. You are pretty sure it is something Stallion has done to you.');
@@ -102,7 +102,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Beg for mercy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -110,7 +110,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Struggle [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
@@ -139,7 +139,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You beg and plead with him to not impregnate you, informing him that you are not ready to be a mother.');
       }
-      if (((s as any).broodcurse ?? 0) === 0) {
+      if ((!((s as any).broodcurse ?? 0))) {
         scene.text('Stallion smiles as you plead for him not to cum inside you.');
         scene.text('"I\'m sure you\'ll manage to bear my child just fine," he says as he continues to thrust into you.');
       } else {

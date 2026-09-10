@@ -45,7 +45,7 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).sleepVars['notathomesleep'] = 0;
   }
-  if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucwalkday ?? 0) <= ((s as any).daystart ?? 0)  &&  ((((s as any).succhungry ?? 0) > ((s as any).succublvl ?? 0)/2 + Math.floor(Math.random() * 3) + 1)  ||  ((s as any).pcs_willpwr ?? 0) < ((((s as any).succublvl ?? 0) * ((s as any).willpowermax ?? 0)) / 13)  ||  ((s as any).sucpowzeroed ?? 0) >= 3)) {
+  if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucwalkday ?? 0) <= ((s as any).daystart ?? 0)  &&  ((((s as any).succhungry ?? 0) > ((s as any).succublvl ?? 0)/2 + (Math.floor(Math.random() * 3) + 1))  ||  ((s as any).pcs_willpwr ?? 0) < ((((s as any).succublvl ?? 0) * ((s as any).willpowermax ?? 0)) / 13)  ||  ((s as any).sucpowzeroed ?? 0) >= 3)) {
     qspCall(s, 'succubus', 'sucwalkinginit');
   }
   if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).vibratorIN ?? 0) === 1) {
@@ -69,7 +69,7 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You decide to leave your butt plug and vibrator in.');
       }
-      if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).vibratorIN ?? 0) === 0) {
+      if (((s as any).analPlugIn ?? 0) === 1  &&  (!((s as any).vibratorIN ?? 0))) {
         if (((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
           (s as any).analPlugIn = 0;
           (s as any).analPlugOut = 0;

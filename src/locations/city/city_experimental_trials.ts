@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You report your experience in great detail, noting the various side effects that you\'ve noticed.');
       scene.text('"Thank you so much for your help! You\'ve helped us advance our research greatly!"');
-      if (Math.floor(Math.random() * 3) + 0 === 0) {
+      if ((!(Math.floor(Math.random() * 3) + 0))) {
         (s as any).temp_tip = 10 * (((s as any).pcs_intel ?? 0) * ((s as any).rand ?? 0)(1, 3) / 10);
         // TODO-QSP: dynamic text: "I think your dedication should be rewarded," she adds and hands you various not...
         scene.text(`"I think your dedication should be rewarded," she adds and hands you various notes adding up to ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_tip ?? 0))}.`);

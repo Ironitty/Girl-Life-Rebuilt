@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Tell them to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Pull your hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
@@ -140,7 +140,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           }
-          if (((s as any).evgenQW ?? 0) === 2  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+          if (((s as any).evgenQW ?? 0) === 2  &&  (!(Math.floor(Math.random() * 2) + 0))) {
             qspCall(s, 'stat', '');
             scene.img('images/locations/pavlovsk/school/grounds/seeporn/seeporn.jpg');
             // TODO-QSP: dynamic text: The boys intensely watch porn. You notice the bulges in their pants. Zhendos sud...
@@ -155,7 +155,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Pull your hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -177,7 +177,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A59', 'a');
     qspCall(s, 'arousal', 'hj', 10, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'hj', (-10), ((s as any).npcID1 ?? 0), 'group', 'sub');
-    if (((s as any).MihJenSex ?? 0) === 0) {
+    if ((!((s as any).MihJenSex ?? 0))) {
       (s as any).MihJenSex = 1;
     }
     (s as any).evgenQW = 3;
@@ -211,7 +211,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
                 { label: 'Pull his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
@@ -228,7 +228,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               ]);
             }
             return;
-            if (((s as any).evgenQW ?? 0) === 0  &&  Math.floor(Math.random() * 2) + 0 === 0) {
+            if (((s as any).evgenQW ?? 0) === 0  &&  (!(Math.floor(Math.random() * 2) + 0))) {
               qspCall(s, 'stat', '');
               scene.img('images/shared/home/tv/seeporn.mp4');
               scene.text('The boys intensely watch porn. You notice, their boners straining to get out of their pants.');
@@ -238,7 +238,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
                   { label: 'Tell him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
@@ -286,7 +286,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Jerk guys', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A58');
     qspCall(s, 'npcStat', 'A59', 'a');
-    if (((s as any).MihJenSex ?? 0) === 0) {
+    if ((!((s as any).MihJenSex ?? 0))) {
       (s as any).MihJenSex = 1;
     }
     qspCall(s, 'arousal', 'hj', 10, ((s as any).npcID ?? 0), 'group', 'sub');

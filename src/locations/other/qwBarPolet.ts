@@ -29,7 +29,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).PBB_BillDay = 0;
     }
   }
-  if (((s as any).knowMartin ?? 0) === 0  &&  ((s as any).RabotnikFirst ?? 0) === 0) {
+  if (((s as any).knowMartin ?? 0) === 0  &&  (!((s as any).RabotnikFirst ?? 0))) {
     (s as any).RabotnikFirst = 1;
   }
   scene.text('<center><b>Bar "Rabotnik"</b></center>');
@@ -64,7 +64,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('Your eyes wander towards the backroom with the billiard table.');
-  if (((s as any).bill_rand ?? 0) === 0  &&  ((s as any).Jaska_Ev ?? 0) === 0) {
+  if (((s as any).bill_rand ?? 0) === 0  &&  (!((s as any).Jaska_Ev ?? 0))) {
     scene.text('You notice some guys are playing billiards in the backroom. They seem know each other well and are playing for quite a bit of money, from what you can tell, so you don\'t want to interrupt right now.');
   } else {
     scene.text('You notice the guys Jaska played against are in the backroom with the billiard table, having a friendly match. Maybe you could play a round with them?');
@@ -94,7 +94,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
         if (((s as any).bill_rand ?? 0) > 2  ||  (((s as any).bill_rand ?? 0) === 0  &&  ((s as any).Jaska_Ev ?? 0) !== 0  &&  (((s as any).Jaska_Friend_Bill ?? 0) < 4  ||  ((s as any).temp ?? 0) !== 1))) {
           scene.actions([
             { label: 'Go play billiards', handler: (st: GameState) => {
-    if (((s as any).bill_rand ?? 0) === 0) {
+    if ((!((s as any).bill_rand ?? 0))) {
       (s as any).VicArt_BillDay = 1;
     }
   }, goto: ['qwBarBilliard', 'billiard_ev2'] },
@@ -120,7 +120,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
               scene.text('The hour may be getting late, but few of the people here seem concerned with going home anytime soon, enjoying the weekend the best way they can: With friends, at a bar, and well on their way to getting shitfaced, so it doesn\'t come as a surprise that the bar is one of the noisiest places on the block right now. A group of men playing billiards seems to be mainly responsible for the racket, but even in the main room, the men who are quietly drinking and talking among themselves are in the minority tonight.');
             }
             scene.text('The bartender, a tough-looking guy with a scarred face and more tattoos than you can count, greets most of the men by name as they come in and prepares their usual drinks before they have even reached the counter.');
-            if (((s as any).knowMartin ?? 0) === 0) {
+            if ((!((s as any).knowMartin ?? 0))) {
               scene.text('He, along with some of the regulars, shoot you a quick glance and you realize that young women are probably a rare sight around here. You spot a handful of women, spread out over all the occupied tables, but judging by how they are treated, most of the men they\'re with seem to see them as "one of the guys", and judging by the muscular build some of them have, you can see why.');
             }
           }
@@ -132,7 +132,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
-          if (((s as any).npc_rel ?? 0)?.['A216'] > 20  &&  (((s as any).hour ?? 0) < 16  ||  (((s as any).hour ?? 0) === 23  &&  ((s as any).minut ?? 0) >= 45))  &&  ((s as any).MartinTalkVar ?? 0) > 3  &&  ((s as any).MartinSexDay ?? 0) === 0) {
+          if (((s as any).npc_rel ?? 0)?.['A216'] > 20  &&  (((s as any).hour ?? 0) < 16  ||  (((s as any).hour ?? 0) === 23  &&  ((s as any).minut ?? 0) >= 45))  &&  ((s as any).MartinTalkVar ?? 0) > 3  &&  (!((s as any).MartinSexDay ?? 0))) {
             scene.img('images/locations/city/industrial/bar/emptybar.jpg');
             scene.text('With the bar closing, Martin is cleaning up, taking stock and doing whatever else he has to do to keep the place running smoothly. Since you are more or less alone with him, now might be the perfect time to talk to him in private…');
             if (((s as any).MartinSexTalk ?? 0) !== 1) {

@@ -68,7 +68,7 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
   (s as any).churchday = ((s as any).daystart ?? 0);
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).temprand = Math.floor(Math.random() * 6) + 0;
-  if (Math.floor(Math.random() * 2) + 0 === 1) {
+  if ((Math.floor(Math.random() * 2) + 0) === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).temprand ?? 0));
   } else {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (((s as any).temprand ?? 0));
@@ -154,7 +154,7 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'fame', 'church_reduction', 'city', 1);
   scene.img('images/locations/pavlovsk/church/ch_candle.jpg');
-  if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  ((s as any).owechurch ?? 0) === 0) {
+  if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  (!((s as any).owechurch ?? 0))) {
     qspCall(s, 'money', 'pay', 10, 'cash');
     // TODO-QSP: dynamic text: You approach the deacon and hand over the ' + $func('money', 'string_price', 10)...
     scene.text('You approach the deacon and hand over the \' + $func(\'money\', \'string_price\', 10) + \' for a candle.');

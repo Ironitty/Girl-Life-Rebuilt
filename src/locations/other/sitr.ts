@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Living room</b></center>');
-  if (((s as any).remsitr ?? 0) === 0) {
+  if ((!((s as any).remsitr ?? 0))) {
     if (((s as any).mc_inventory ?? 0)?.['tech_tv'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['plasma_tv'] === 0  ||  ((s as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
       scene.img('images/locations/city/residential/apartment/sitr.jpg');
     } else {
@@ -26,7 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['plasma_tv'] >= 1) {
   }
-  if (((s as any).divan_tier ?? 0) === 0) {
+  if ((!((s as any).divan_tier ?? 0))) {
   }
   if (((s as any).divan_tier ?? 0) === 1) {
   }

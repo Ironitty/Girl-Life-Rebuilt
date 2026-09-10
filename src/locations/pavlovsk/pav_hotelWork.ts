@@ -11,7 +11,7 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
         { label: 'Work as a maid', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/resep.girl0,3.jpg');
     qspCall(s, 'stat', '');
-    if (((s as any).pavHotelMaid ?? 0) === 0) {
+    if ((!((s as any).pavHotelMaid ?? 0))) {
       (s as any).pavHotelMaid = 1;
       scene.text('You report in for work at the front desk and the brunette manning the desk quickly makes sure no customers will need her before motioning for you to follow.');
       scene.text('"Come with me. I\'ll show you to the locker room," she says as she stands up and walks into a room behind the desk. "I didn\'t catch your name last time. I\'m Elisabet."');

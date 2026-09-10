@@ -19,7 +19,7 @@ function enterDjibrilgb(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Change your mind and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -71,7 +71,7 @@ function enterDjibrilgb(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change you mind and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -858,7 +858,7 @@ function enterDjibrilNush(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).DjibrilQW ?? 0)?.['nush_inv'] === 1) {
-        if (Math.floor(Math.random() * 3) + 1 === 1) {
+        if ((Math.floor(Math.random() * 3) + 1) === 1) {
           scene.text('You glance at Djibril, who seems happy with any of the options.');
           scene.text('She looks him over lustfully before glancing at you. "I want him all to myself. Is that okay with you?"');
           scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
@@ -883,7 +883,7 @@ function enterDjibrilNush(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       } else {
-        if (Math.floor(Math.random() * 4) + 1 === 1) {
+        if ((Math.floor(Math.random() * 4) + 1) === 1) {
           scene.text('She looks him over lustfully, then glances at you. "I want all the dick to myself. Is that okay with you?"');
           scene.text('You can\'t help but feel a little disappointed, but you nod in response. "Sure, of course."');
           scene.text('She grins at Djibril. "I want all the dicks. Call your friends," she says as she pats his thigh.');

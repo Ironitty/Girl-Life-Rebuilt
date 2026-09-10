@@ -73,11 +73,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Search for the shop on the card from Kseniya': gt 'shop_exhibitionist', 'start'
   }
   qspCall(s, 'lover', 'lover_events');
-  if (Math.floor(Math.random() * 51) + 0 === 0  &&  ((s as any).fame ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21) {
+  if ((Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).fame ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21) {
     qspCall(s, 'fame_events', 'select', 'pushkin');
   }
   if (((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
-    if (Math.floor(Math.random() * 2001) + 0 <= ((s as any).pcs_apprnc ?? 0)) {
+    if ((Math.floor(Math.random() * 2001) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
       qspCall(s, 'npcgeneratec', '', 0, '', 'like');
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You are approached by <<$npcheight_pref>>, <<$npcbuild>> guy with <<$npchair>> h...
@@ -99,7 +99,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  if (Math.floor(Math.random() * 100) + 0 < 5) {
+  if ((Math.floor(Math.random() * 100) + 0) < 5) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pushkin/liamhud1.jpg');
@@ -110,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'music_actions', 'start');
   if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 23) {
-    if (((s as any).tusa ?? 0) === 0) {
+    if ((!((s as any).tusa ?? 0))) {
       scene.actions([
         { label: 'Go to the local hangout', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -132,7 +132,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pushkin/photo.jpg');
     scene.text('The girls and boys at the local hangout happily greet you.');
-    if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).sttan ?? 0) === 0) {
+    if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).sttan ?? 0))) {
       // TODO-QSP: dynamic text: "Hey guys, <<$pcs_nickname>> is going commando," one of the boys says.
       scene.text(`"Hey guys, ${((s as any).pcs_nickname ?? 0)} is going commando," one of the boys says.`);
       scene.actions([
@@ -167,7 +167,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Hold it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

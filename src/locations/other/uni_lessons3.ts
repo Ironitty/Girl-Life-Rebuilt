@@ -11,7 +11,7 @@ function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
   scene.text('You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Kovalyov enters the classroom and closes the door.');
   scene.text('He then turns to the class and begins today\'s lecture.');
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -20,7 +20,7 @@ function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Kovalyov [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -224,7 +224,7 @@ function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
     { label: 'Play with your phone', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You take out your phone and start playing a game, hoping that the boring lesson will be over soon.');
-    if (Math.floor(Math.random() * 2) + 0 > 0) {
+    if ((Math.floor(Math.random() * 2) + 0) > 0) {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Professor Kovalyov\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev2', 'general_education'] },
@@ -235,7 +235,7 @@ function enterGeneralEducation_201(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -273,7 +273,7 @@ function enterAssessment_201(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
   scene.text('You walk into the classroom and see Professor Pasternak standing by his desk as the rest of your classmates walk in one by one under his watchful eye. Some get a friendly smile while others get a stern look.');
   scene.text('Not wasting any time, he launches straight into his lecture.');
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -282,7 +282,7 @@ function enterAssessment_201(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Pasternak [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -504,7 +504,7 @@ function enterAssessment_201(s: GameState, scene: SceneBuilder): void {
     { label: 'Play with your phone', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You take out your phone and start playing a game, hoping the boring lesson will be over soon.');
-    if (Math.floor(Math.random() * 2) + 0 > 0) {
+    if ((Math.floor(Math.random() * 2) + 0) > 0) {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Professor Pasternak\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev2', 'assessment'] },
@@ -515,7 +515,7 @@ function enterAssessment_201(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -551,7 +551,7 @@ function enterLearningTheories_201(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
   scene.text('You walk into the classroom and see Professor Kovalchuk sitting behind her desk. The rest of your classmates walk in one by one and she smiles at each one as they enter.');
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -560,7 +560,7 @@ function enterLearningTheories_201(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Kovalchuk [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -771,7 +771,7 @@ function enterLearningTheories_201(s: GameState, scene: SceneBuilder): void {
     { label: 'Play with your phone', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You take out your phone and start playing a game, hoping the boring lesson will be over soon.');
-    if (Math.floor(Math.random() * 4) + 0 > 0) {
+    if ((Math.floor(Math.random() * 4) + 0) > 0) {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Professor Kovalchuk\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev2', 'learning_theories'] },
@@ -782,7 +782,7 @@ function enterLearningTheories_201(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -819,7 +819,7 @@ function enterPatientCare_201(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
   scene.text('You walk into the classroom and see Professor Kudelina standing by her desk as the rest of your classmates walk in one by one under her watchful eye, all of them getting a stern look. Not wasting any time, she launches straight into her lecture.');
-  qspCall(s, 'willpower', 'chore', 'self', (((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')));
+  qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
   if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
     (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
   } else {
@@ -828,7 +828,7 @@ function enterPatientCare_201(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Listen attentively to Professor Kudelina [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -1000,7 +1000,7 @@ function enterPatientCare_201(s: GameState, scene: SceneBuilder): void {
       { label: 'Play with your phone', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/phone.jpg');
     scene.text('You take out your phone and start playing a game, hoping that the boring lesson will be over soon.');
-    if (Math.floor(Math.random() * 2) + 0 > 0) {
+    if ((Math.floor(Math.random() * 2) + 0) > 0) {
       scene.text('You play on your phone for the duration of class. You play a few games and text a few friends, all under Professor Kudelina\'s oblivious nose.');
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['uni_lessonsev2', 'patient_care'] },
@@ -1011,7 +1011,7 @@ function enterPatientCare_201(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {

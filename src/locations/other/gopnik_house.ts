@@ -65,7 +65,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
 
 function enterRapeEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (((s as any).rand ?? 0) (0, 1) === 0) {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.text('Finally the Gopniks are finished with you. They talk loudly about what a good fuck you were while they get dressed. When they realize you\'re too drunk to get dressed, they help you pull your clothes back on and sloppily button them up, before they drag you outside.');
     // TODO-QSP: dynamic text: After you walk for a few minutes, <<$boydesc>> slaps your ass and tells you: "Yo...
     scene.text(`After you walk for a few minutes, ${((s as any).boydesc ?? 0)} slaps your ass and tells you: "You should be able to find your way home from here. You were a good fuck, ${((s as any).pcs_nickname ?? 0)}. Come look us up in the park again if you want more where that came from."`);

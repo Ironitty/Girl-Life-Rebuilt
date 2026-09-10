@@ -562,7 +562,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add') {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[2], ARGS[3]
-    if (((s as any).CloQuality ?? 0) === 0) {
+    if ((!((s as any).CloQuality ?? 0))) {
       // TODO-QSP: exit
     }
     // TODO-QSP: gs 'shop_utils', 'sorted', 'add_to_number', $ARGS[2], ARGS[3], ARGS[4]
@@ -667,73 +667,73 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('<center><b>Choose to view all or select by shop</b></center>');
     qspCall(s, 'clothing_view', 'display_list_link', 'all');
-    if (((s as any).arrsize ?? 0)('gm_outfits') + ((s as any).arrsize ?? 0)('gm_dress') > 0) {
+    if (Object.keys((s as any).gm_outfits ?? {}).length + Object.keys((s as any).gm_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'gm');
     }
-    if (((s as any).arrsize ?? 0)('gm_school') > 0) {
+    if (Object.keys((s as any).gm_school ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'gm_school');
     }
-    if (((s as any).arrsize ?? 0)('gm_office') > 0) {
+    if (Object.keys((s as any).gm_office ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'gm_office');
     }
-    if (((s as any).arrsize ?? 0)('gm_maid') > 0) {
+    if (Object.keys((s as any).gm_maid ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'gm_maid');
     }
-    if (((s as any).arrsize ?? 0)('gm_server') > 0) {
+    if (Object.keys((s as any).gm_server ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'gm_server');
     }
-    if (((s as any).arrsize ?? 0)('misc_outfits') > 0) {
+    if (Object.keys((s as any).misc_outfits ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'misc');
     }
-    if (((s as any).arrsize ?? 0)('cats_outfits') + ((s as any).arrsize ?? 0)('cats_dress') > 0) {
+    if (Object.keys((s as any).cats_outfits ?? {}).length + Object.keys((s as any).cats_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'cats');
     }
-    if (((s as any).arrsize ?? 0)('flamingos_outfits') + ((s as any).arrsize ?? 0)('flamingos_dress') > 0) {
+    if (Object.keys((s as any).flamingos_outfits ?? {}).length + Object.keys((s as any).flamingos_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'flamingos');
     }
-    if (((s as any).arrsize ?? 0)('coco_outfits') + ((s as any).arrsize ?? 0)('coco_dress') > 0) {
+    if (Object.keys((s as any).coco_outfits ?? {}).length + Object.keys((s as any).coco_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'coco');
     }
-    if (((s as any).arrsize ?? 0)('fashionista_dress') + ((s as any).arrsize ?? 0)('fashionista_outfits') > 0) {
+    if (Object.keys((s as any).fashionista_dress ?? {}).length + Object.keys((s as any).fashionista_outfits ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'fashionista');
     }
-    if (((s as any).arrsize ?? 0)('moncheri_gown') + ((s as any).arrsize ?? 0)('moncheri_dress') > 0) {
+    if (Object.keys((s as any).moncheri_gown ?? {}).length + Object.keys((s as any).moncheri_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'moncheri');
     }
-    if (((s as any).arrsize ?? 0)('scandalicious_outfits') + ((s as any).arrsize ?? 0)('scandalicious_dress') > 0) {
+    if (Object.keys((s as any).scandalicious_outfits ?? {}).length + Object.keys((s as any).scandalicious_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'scandalicious');
     }
-    if (((s as any).arrsize ?? 0)('scandalicious_bikinis') + ((s as any).arrsize ?? 0)('scandalicious_swimsuit') > 0) {
+    if (Object.keys((s as any).scandalicious_bikinis ?? {}).length + Object.keys((s as any).scandalicious_swimsuit ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'scandalicious_swimwear');
     }
-    if (((s as any).arrsize ?? 0)('allure_bikinis') + ((s as any).arrsize ?? 0)('allure_swimsuit') > 0) {
+    if (Object.keys((s as any).allure_bikinis ?? {}).length + Object.keys((s as any).allure_swimsuit ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'allure');
     }
-    if (((s as any).arrsize ?? 0)('fancy_burlesque') > 0) {
+    if (Object.keys((s as any).fancy_burlesque ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'fancypancy');
     }
-    if (((s as any).arrsize ?? 0)('eroto_dress') + ((s as any).arrsize ?? 0)('eroto_outfits') + ((s as any).arrsize ?? 0)('eroto_strip') > 0) {
+    if (Object.keys((s as any).eroto_dress ?? {}).length + Object.keys((s as any).eroto_outfits ?? {}).length + Object.keys((s as any).eroto_strip ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'sexshop');
     }
-    if (((s as any).arrsize ?? 0)('salacious_outfits') + ((s as any).arrsize ?? 0)('salacious_dress') > 0) {
+    if (Object.keys((s as any).salacious_outfits ?? {}).length + Object.keys((s as any).salacious_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'exhibitshop');
     }
-    if (((s as any).arrsize ?? 0)('dolls_outfits') + ((s as any).arrsize ?? 0)('dolls_dress') > 0) {
+    if (Object.keys((s as any).dolls_outfits ?? {}).length + Object.keys((s as any).dolls_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'dolls');
     }
-    if (((s as any).arrsize ?? 0)('bomba_outfits') + ((s as any).arrsize ?? 0)('bomba_dress') > 0) {
+    if (Object.keys((s as any).bomba_outfits ?? {}).length + Object.keys((s as any).bomba_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'bomba');
     }
-    if (((s as any).arrsize ?? 0)('nerdvana_outfits') + ((s as any).arrsize ?? 0)('nerdvana_cosplay') + ((s as any).arrsize ?? 0)('nerdvana_bikinis') + ((s as any).arrsize ?? 0)('nerdvana_swimsuit') > 0) {
+    if (Object.keys((s as any).nerdvana_outfits ?? {}).length + Object.keys((s as any).nerdvana_cosplay ?? {}).length + Object.keys((s as any).nerdvana_bikinis ?? {}).length + Object.keys((s as any).nerdvana_swimsuit ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'nerdvana');
     }
-    if (((s as any).arrsize ?? 0)('danilovich_outfits') > 0) {
+    if (Object.keys((s as any).danilovich_outfits ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'danilovich');
     }
-    if (((s as any).arrsize ?? 0)('materinstvo_dress') > 0) {
+    if (Object.keys((s as any).materinstvo_dress ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'materinstvo');
     }
-    if (((s as any).arrsize ?? 0)('market_outfits') > 0) {
+    if (Object.keys((s as any).market_outfits ?? {}).length > 0) {
       qspCall(s, 'clothing_view', 'display_list_link', 'market');
     }
     return;

@@ -53,20 +53,20 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kidage ?? 0)?.[String((s as any).k ?? 0)] < 1) {
     if (((s as any).yearkid ?? 0)?.[String((s as any).k ?? 0)] === ((s as any).year ?? 0)) {
       if ((((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]) < 1  &&  (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)]) < 7) {
-        (s as any).kiddaycalc[k] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)];
+        (s as any).kiddaycalc[String((s as any).k ?? 0)] = ((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)];
         if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> day old'
         } else {
           // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> days old'
         }
       } else {
-        (s as any).kiddaycalc[k] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)]) / 7;
+        (s as any).kiddaycalc[String((s as any).k ?? 0)] = (((s as any).day ?? 0) - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)]) / 7;
         if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> week old'
         } else {
           // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> weeks old'
         }
-        (s as any).kidmonthcalc[k] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]);
+        (s as any).kidmonthcalc[String((s as any).k ?? 0)] = (((s as any).month ?? 0) - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)]);
         if (((s as any).kidmonthcalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
           // TODO-QSP: $kidagetext[k] = '<<kidmonthcalc[k]>> month old'
         } else {
@@ -76,14 +76,14 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).month ?? 0) === 1  &&  ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] === 12) {
         if (31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) < 7) {
-          (s as any).kiddaycalc[k] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0);
+          (s as any).kiddaycalc[String((s as any).k ?? 0)] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0);
           if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
             // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> day old'
           } else {
             // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> days old'
           }
         } else {
-          (s as any).kiddaycalc[k] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) / 7;
+          (s as any).kiddaycalc[String((s as any).k ?? 0)] = 31 - ((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).day ?? 0) / 7;
           if (((s as any).kiddaycalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
             // TODO-QSP: $kidagetext[k] = '<<kiddaycalc[k]>> week old'
           } else {
@@ -93,9 +93,9 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: $kidagetext[k] = '<<kidmonthcalc[k]>> month old'
           }
           if (((s as any).daykid ?? 0)?.[String((s as any).k ?? 0)] - ((s as any).day ?? 0) <= 0) {
-            (s as any).kidmonthcalc[k] = (12 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
+            (s as any).kidmonthcalc[String((s as any).k ?? 0)] = (12 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
           } else {
-            (s as any).kidmonthcalc[k] = (11 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
+            (s as any).kidmonthcalc[String((s as any).k ?? 0)] = (11 - ((s as any).monthkid ?? 0)?.[String((s as any).k ?? 0)] + ((s as any).month ?? 0));
           }
           if (((s as any).kidmonthcalc ?? 0)?.[String((s as any).k ?? 0)] === 1) {
             // TODO-QSP: $kidagetext[k] = '<<kidmonthcalc[k]>> month old'

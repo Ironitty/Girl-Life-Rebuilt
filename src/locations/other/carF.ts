@@ -110,19 +110,19 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
                           }
                           if (((s as any).car ?? 0)?.['fuel'] > 0  &&  ((s as any).car ?? 0)?.['wreck'] === 0  &&  ((s as any).license ?? 0)?.['drive'] > 0) {
                             if (((s as any).car ?? 0)?.['current_condition'] >= ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
-                              if (Math.floor(Math.random() * 1000) + 0 === 0) {
+                              if ((!(Math.floor(Math.random() * 1000) + 0))) {
                                 (s as any).car['wreck'] = 1;
                               }
                             } else {
-                              if (Math.floor(Math.random() * 100) + 0 === 0) {
+                              if ((!(Math.floor(Math.random() * 100) + 0))) {
                                 (s as any).car['wreck'] = 1;
                               }
                               if (((s as any).car ?? 0)?.['current_condition'] >= ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
-                                if (Math.floor(Math.random() * 5) + 0 === 0) {
+                                if ((!(Math.floor(Math.random() * 5) + 0))) {
                                   (s as any).car['wreck'] = 1;
                                 }
                               } else {
-                                if (Math.floor(Math.random() * 5) + 0 < 3) {
+                                if ((Math.floor(Math.random() * 5) + 0) < 3) {
                                   (s as any).car['wreck'] = 1;
                                 }
                               }
@@ -132,12 +132,12 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
                                   { label: 'Fuck', goto: ['carF', 'salon'] },
                                 ]);
                               } else {
-                                if (((s as any).alko ?? 0) > 0  &&  Math.floor(Math.random() * 100) + 0 < ((s as any).alko ?? 0)) {
+                                if (((s as any).alko ?? 0) > 0  &&  (Math.floor(Math.random() * 100) + 0) < ((s as any).alko ?? 0)) {
                                   scene.text('A police officer stops you. He looks at your condition and requests you breathe into a tube. You breathe and a red light brightens up on the instrument panel.');
                                   scene.text('The officer snorts and writes something down before he hands you a slip of paper with the number 50,000 on it.');
                                   scene.text('"Or I can write a report, but you\'ll get a permanent record for drunk driving."');
                                   if (qspFunc(s, 'money', 'can_afford', 50000, 'cash') === 0) {
-                                    s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+                                    s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
                                   } else {
                                     qspCall(s, 'money', 'pay', 50000, 'cash');
                                     scene.text('You pay and the officer warns you that you can not keep driving in your drunken state.');
@@ -149,7 +149,7 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
                                     { label: 'Bribe him [+$func(\'money\', \'get_cost_string\', 50000,...]' }, // TODO-QSP: empty action body
                                   ]);
                                 }
-                                if (((s as any).alko ?? 0) >= 10  &&  Math.floor(Math.random() * 100) + 0 < ((s as any).alko ?? 0) * 5) {
+                                if (((s as any).alko ?? 0) >= 10  &&  (Math.floor(Math.random() * 100) + 0) < ((s as any).alko ?? 0) * 5) {
                                   (s as any).car['current_condition'] = ((s as any).car ?? 0)?.['current_condition']/2;
                                   (s as any).car['wreck'] = 1;
                                   scene.text('Driving drunk, you crash into a tree and wreck your car.');

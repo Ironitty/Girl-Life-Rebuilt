@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0)('attributes_\'0\'_purses')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_purses', ARGS[1]
   }
-  if (((s as any).PurseQuality ?? 0) === 0) {
+  if ((!((s as any).PurseQuality ?? 0))) {
     // TODO-QSP: exit
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[0] ?? 0), qspUntranslated(s, "ARGS[1]", { location: "purse_attributes" }))) {

@@ -86,12 +86,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0)('attributes_\'0\'')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
   }
-  if (((s as any).BraQuality ?? 0) === 0  &&  ((s as any).PanQuality ?? 0) === 0) {
+  if (((s as any).BraQuality ?? 0) === 0  &&  (!((s as any).PanQuality ?? 0))) {
     // TODO-QSP: exit
   }
   (s as any).PanMaxStrength = ((s as any).PanStrength ?? 0);
   (s as any).BraMaxStrength = ((s as any).BraStrength ?? 0);
-  if (((s as any).dyneval ?? 0)('result === \'0\'[\'1\']') === 1) {
+  if ((0 as any) === 1) {
     // TODO-QSP: dynamic "
     (s as any).PanDirt = qspUntranslated(s, "((s as any).locArgs?.[0] ?? 0)_dirt[qspUntranslated(s, \"ARGS[1]\", { location: \"underwear_attributes\" })]", { location: "underwear_attributes" });
     (s as any).BraDirt = ((s as any).PanDirt ?? 0);

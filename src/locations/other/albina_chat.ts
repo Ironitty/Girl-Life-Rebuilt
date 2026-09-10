@@ -37,7 +37,7 @@ function enterSmallTalk(s: GameState, scene: SceneBuilder): void {
 function enterSmallTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('You chat about a variety of things, including school, music, clothes and what\'s been going on in Pavlovsk lately.');
-  if (Math.floor(Math.random() * 2) + 1 === 1) {
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'albina_chat', 'topic_menu');
   } else {
     (s as any).AlbinaQW['chat_rand'] = Math.floor(Math.random() * 3) + 1;

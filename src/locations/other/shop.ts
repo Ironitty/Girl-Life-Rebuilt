@@ -50,8 +50,8 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).loc_bak ?? 0) === 'city_residential') {
-    if (Math.floor(Math.random() * 20) + 1 === 20) {
-      if (((s as any).dimaQW ?? 0) === 0) {
+    if ((Math.floor(Math.random() * 20) + 1) === 20) {
+      if ((!((s as any).dimaQW ?? 0))) {
         scene.text('A man is standing by the entrance, looking at you appreciatively.');
         scene.actions([
           { label: 'Return the look', goto: ['event', 'dima'] },
@@ -68,7 +68,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -81,7 +81,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I deserve this', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 2) + 1 === 1) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.img('images/locations/city/residential/street/sex/gostdt2.jpg');
       scene.text('Dima takes you to his house and orders you to lie across the sofa. You get into position and he calls you a bitch before he starts fucking you in the mouth.');
       scene.text('Dima finally finishes in your mouth. You obediently swallow and lick the remnants of sperm off his cock.');
@@ -158,7 +158,7 @@ function enterATM(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>ATM</b></center>');
   scene.img('images/locations/shared/store/atm.jpg');
-  if (((s as any).bankAccount ?? 0) === 0) {
+  if ((!((s as any).bankAccount ?? 0))) {
     scene.text('You don\'t have a bank account yet!');
   } else {
     if (((s as any).karta ?? 0) >= ((s as any).bankDebtLimit ?? 0)) {

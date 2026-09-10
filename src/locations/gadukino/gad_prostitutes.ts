@@ -53,7 +53,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Make Mira your prostitute [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
@@ -154,7 +154,7 @@ function enterWatchMira(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 10);
   qspCall(s, 'stat', '');
   (s as any).temp_gadpro = Math.floor(Math.random() * 2) + 0;
-  if (((s as any).temp_gadpro ?? 0) === 0) {
+  if ((!((s as any).temp_gadpro ?? 0))) {
     scene.img('images/characters/gadukino/mira/sex/miraprost1.mp4');
     scene.text('You walk up and look into the car. You see Mira giving one hell of a blowjob to her customer. Her head is bobbing up and down on his cock.');
     scene.actions([
@@ -236,7 +236,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      (s as any).prostitute_names[$prostitution_location] = ((s as any).pcs_nickname ?? 0);
+      (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -259,7 +259,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {

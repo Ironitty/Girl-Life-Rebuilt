@@ -25,7 +25,7 @@ function enterGetMaxDeg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('att_name', ((s as any).locArgs?.[1] ?? 0)) < 0) {
+  if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     // TODO-QSP: $att_name[] = $ARGS[1]
   }
   if (((s as any).locArgs?.[2] ?? 0) !== '') {
@@ -36,7 +36,7 @@ function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('skl_name', ((s as any).locArgs?.[1] ?? 0)) < 0) {
+  if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     // TODO-QSP: $skl_name[] = $ARGS[1]
   }
   if (((s as any).locArgs?.[2] ?? 0) !== '') {
@@ -47,7 +47,7 @@ function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).arrpos ?? 0)('traitattskl', ((s as any).locArgs?.[1] ?? 0)) < 0) {
+  if ((Array.isArray((s as any).traitattskl) ? ((s as any).traitattskl as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     // TODO-QSP: $traitattskl[] = $ARGS[1]
   }
   return;

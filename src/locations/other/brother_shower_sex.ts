@@ -35,7 +35,7 @@ function enterBrotherShowerBj(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Keep sucking', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 5) + 1, 'incest');
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       qspCall(s, 'cum_call', 'mouth', 'A34', 1);
       (s as any).brotherbjcomment = Math.floor(Math.random() * 2) + 1;
       qspCall(s, 'stat', '');
@@ -256,7 +256,7 @@ function enterBrotherShowerFuckFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBrotherShowerFuckFirst2(s: GameState, scene: SceneBuilder): void {
-  (s as any).eff_contra = (((s as any).argc ?? 0) > 1) ? (qspUntranslated(s, "ARGS[1]", { location: "brother_shower_sex" })) : (((s as any).sexcontra ?? 0));
+  (s as any).eff_contra = ((((s as any).argc ?? 0) > 1) ? (qspUntranslated(s, "ARGS[1]", { location: "brother_shower_sex" })) : (((s as any).sexcontra ?? 0)));
   (s as any).tmp = qspFunc(s, 'pregriskeval', 'eff_contra');
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     scene.img('images/shared/home/bathroom/broshowervirgin.mp4');
@@ -292,7 +292,7 @@ function enterBrotherShowerFuckFirst2(s: GameState, scene: SceneBuilder): void {
       scene.text('As your orgasm winds down and your legs stop quivering, you lean forward against the shower wall, Kolka\'s cock slipping from between your legs. You start to think about how empty you feel without a cock inside you when you realize you feel something dripping out from your pussy.');
       scene.text('"Is… is that cum? Did you come inside me?!" you pant.');
       scene.text('"Y-yeah… I was trying to tell you that I was cumming but you didn\'t say anything so…"');
-      if (((s as any).succubusflag ?? 0) === 0) {
+      if ((!((s as any).succubusflag ?? 0))) {
         if (((s as any).birth_control ?? 0)?.['think_safe'] === 1  ||  ((s as any).tabletkishot ?? 0) >= 1) {
           // TODO-QSP: dynamic text: <i>Well,</i> you think to yourself, <i>It's a good thing '+iif(birth_control['im...
           scene.text('<i>Well,</i> you think to yourself, <i>It\'s a good thing \'+iif(birth_control[\'implant_status\'] > 1, \'I have a birth control implant.\', \'I\'m on birth control.\')+\'</i>');

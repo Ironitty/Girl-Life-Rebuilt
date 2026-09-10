@@ -150,7 +150,7 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
   (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (5);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
-  if (((s as any).pcs_horny ?? 0) >= 50  &&  Math.floor(Math.random() * 3) + 0 !== 0) {
+  if (((s as any).pcs_horny ?? 0) >= 50  &&  (Math.floor(Math.random() * 3) + 0) !== 0) {
     (s as any).you_orgasm = 1;
     scene.img('images/characters/gadukino/mira/sex/miralick_dog_cum.jpg');
   } else {
@@ -160,7 +160,7 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
   qspCall(s, 'stat', '');
-  if (((s as any).miraorgasm ?? 0) === 0  &&  ((s as any).you_orgasm ?? 0) === 0) {
+  if (((s as any).miraorgasm ?? 0) === 0  &&  (!((s as any).you_orgasm ?? 0))) {
     scene.actions([
       { label: 'Get on your knees', goto: ['mirasex', 'lickmira_mis2'] },
       { label: 'Continue', goto: ['mirasex', 'miralick_dog'] },

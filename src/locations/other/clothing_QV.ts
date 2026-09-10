@@ -87,7 +87,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('danilovich_outfits')) {
+  if (((s as any).i ?? 0) <= Object.keys((s as any).danilovich_outfits ?? {}).length) {
     // TODO-QSP: jump 'loopdanilovich2'
   }
   (s as any).clo_i = ((s as any).clo_i ?? 0) + (1);
@@ -130,7 +130,7 @@ function enterCloak(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
-  if (((s as any).i ?? 0) <= ((s as any).arrsize ?? 0)('coat')) {
+  if (((s as any).i ?? 0) <= Object.keys((s as any).coat ?? {}).length) {
     // TODO-QSP: jump 'loopcoat'
   }
   scene.build();
@@ -183,7 +183,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).CloPunk ?? 0) === 1) {
     // TODO-QSP: $temp_clo_text[] = 'punk'
   }
-  if (((s as any).arrsize ?? 0)('temp_clo_text') > 0) {
+  if (Object.keys((s as any).temp_clo_text ?? {}).length > 0) {
     // TODO-QSP: dynamic text: This item is considered <<func('string', 'enumerate_list', '$temp_clo_text')>> c...
     scene.text(`This item is considered ${qspFunc(s, 'string', 'enumerate_list', '$temp_clo_text')} clothing.`);
   }
@@ -212,7 +212,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     scene.text('You are wearing this outfit.');
   } else {
     scene.text('You don\'t feel confident enough to wear an outfit this revealing.');
-    if (((s as any).arrpos ?? 0)('CloLosTyp', ((s as any).locArgs?.[1] ?? 0)) >= 0  &&  ((s as any).arrpos ?? 0)('CloLosNum', ((s as any).ARGS ?? 0)[2]) >= 0) {
+    if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(((s as any).ARGS ?? 0)[2]) : -1) >= 0) {
       scene.text('You lost these clothes somewhere, maybe you can find them again?.');
     } else {
       if (((s as any).CloInhibit ?? 0) > 10) {
@@ -242,7 +242,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

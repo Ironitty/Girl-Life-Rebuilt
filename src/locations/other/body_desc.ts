@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'throat');
   qspCall(s, 'body_desc', 'pussy');
   qspCall(s, 'body_desc', 'anus');
-  if (((s as any).dounspell ?? 0) === 0) {
+  if ((!((s as any).dounspell ?? 0))) {
     qspCall(s, 'body_desc', 'butt');
     qspCall(s, 'body_desc', 'breasts');
     qspCall(s, 'body_desc', 'BMI');

@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).dick ?? 0) >= ((s as any).prinat ?? 0) * 2) {
         (s as any).orgazm = 0;
       } else {
-        if (((s as any).silavag ?? 0) === 0) {
+        if ((!((s as any).silavag ?? 0))) {
           if (((s as any).pcs_horny ?? 0) >= 100) {
             (s as any).orgazm = 2;
           }
@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).dick ?? 0) <= ((s as any).prinat ?? 0)  &&  ((s as any).dick ?? 0) >= ((s as any).pcs_vag ?? 0)) {
             (s as any).orgazm = 2;
           } else {
-            if (((s as any).silavag ?? 0) === 0) {
+            if ((!((s as any).silavag ?? 0))) {
               if (((s as any).pcs_horny ?? 0) >= 100) {
                 (s as any).orgazm = 2;
               }
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
-          if (((s as any).orgazm ?? 0) === 0) {
+          if ((!((s as any).orgazm ?? 0))) {
             if (((s as any).vgape ?? 0) < 2) {
               (s as any).vgape = 2;
             }
@@ -114,16 +114,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
           (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
           if (((s as any).protect ?? 0) < 2) {
-            if (Math.floor(Math.random() * 2) + 0 === 0  ||  ((s as any).pose ?? 0) === 3) {
+            if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).pose ?? 0) === 3) {
               qspCall(s, 'cum_manage', '');
               // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm fill your pussy.
               scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm fill your pussy.`);
-              if (((s as any).protect ?? 0) === 0) {
+              if ((!((s as any).protect ?? 0))) {
                 qspCall(s, 'mood', 'lower', 'medium');
                 qspCall(s, 'cuminsidereact', '');
               }
             } else {
-              if (((s as any).pose ?? 0) === 0) {
+              if ((!((s as any).pose ?? 0))) {
                 (s as any).spafinloc = 14;
                 qspCall(s, 'cum_manage', '');
                 // TODO-QSP: dynamic text: <<$boydesc>> groans and after pulling out his dick, he came on your stomach.

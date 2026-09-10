@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).ml_guitarlesson ?? 0)?.['nextlesson'] === ((s as any).daystart ?? 0))) {
       if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour']-1 === ((s as any).hour ?? 0))) {
         if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "pav_commclubs" })) === 0) {
-          s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+          s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
         } else {
           (s as any).minut = ((s as any).minut ?? 0) + ((60 - ((s as any).minut ?? 0)));
           scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] === ((s as any).hour ?? 0))) {
       if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "\u00000\u0000", { location: "pav_commclubs" })) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
       }

@@ -87,7 +87,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
           }
           if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
             (s as any).stat_texts['drug_cig_withdraw'] = ((s as any).stat_texts['drug_cig_withdraw'] ?? 0) + (' You have <<mc_inventory[\'cigarettes\']>> cigarettes.');
-            (s as any).stat_texts['drug_cig_withdraw_tooltip'] = $((s as any).stat_texts ?? 0)?.['drug_cig_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).smoke ?? 0).';
+            (s as any).stat_texts['drug_cig_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_cig_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).smoke ?? 0).';
             qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_cig_withdraw', 'v_neg', 'drugs/cig_crave', 2, 'gs \'drugs\', \'smoke\'');
           } else {
             (s as any).stat_texts['drug_cig_withdraw'] = ((s as any).stat_texts['drug_cig_withdraw'] ?? 0) + (' You have no cigarettes left.');
@@ -137,7 +137,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
               (s as any).stat_texts['drug_heroin_withdraw'] = 'You are starting to feel sick. Your body wants more heroin.';
             }
             (s as any).stat_texts['drug_heroin_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_heroin_withdraw'];
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_heroin_withdraw', (((s as any).drugVars ?? 0)?.['heroin_taper'] > 0) ? ('neg') : ('v_neg'), 'drugs/heroin_crave', 2);
+            qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_heroin_withdraw', ((((s as any).drugVars ?? 0)?.['heroin_taper'] > 0) ? ('neg') : ('v_neg')), 'drugs/heroin_crave', 2);
             if (((s as any).drugVars ?? 0)?.['heroin_used'] >= 3  &&  ((s as any).drugVars ?? 0)?.['heroin_high'] > 0) {
               if (((s as any).drugVars ?? 0)?.['heroin_high'] === 1) {
                 (s as any).stat_texts['drug_heroin_addict_tooltip'] = 'You are addicted to heroin. The high is almost gone — withdrawal will begin within the hour.';
@@ -179,7 +179,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
                   (s as any).stat_texts['drug_cocaine_withdraw'] = ((s as any).stat_texts['drug_cocaine_withdraw'] ?? 0) + (' You have <<mc_inventory[\'cocaine\']>> doses.');
-                  (s as any).stat_texts['drug_cocaine_withdraw_tooltip'] = $((s as any).stat_texts ?? 0)?.['drug_cocaine_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).use ?? 0).';
+                  (s as any).stat_texts['drug_cocaine_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_cocaine_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).use ?? 0).';
                   qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_cocaine_withdraw', 'v_neg', 'drugs/cocaine_crave', 2, 'gs \'drugs\', \'cocaine\'');
                 } else {
                   (s as any).stat_texts['drug_cocaine_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_cocaine_withdraw'];
@@ -211,7 +211,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                   }
                   if (((s as any).mc_inventory ?? 0)?.['amphetamine'] > 0) {
                     (s as any).stat_texts['drug_amphet_withdraw'] = ((s as any).stat_texts['drug_amphet_withdraw'] ?? 0) + (' You have <<mc_inventory[\'amphetamine\']>> pills.');
-                    (s as any).stat_texts['drug_amphet_withdraw_tooltip'] = $((s as any).stat_texts ?? 0)?.['drug_amphet_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).take ?? 0) ((s as any).one ?? 0).';
+                    (s as any).stat_texts['drug_amphet_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_amphet_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).take ?? 0) ((s as any).one ?? 0).';
                     qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_amphet_withdraw', 'v_neg', 'drugs/amphet_crave', 2, 'gs \'drugs\', \'amphetamine\'');
                   } else {
                     (s as any).stat_texts['drug_amphet_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_amphet_withdraw'];
@@ -253,7 +253,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
                   }
                   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0) {
                     (s as any).stat_texts['drug_pk_withdraw'] = ((s as any).stat_texts['drug_pk_withdraw'] ?? 0) + (' You have <<mc_inventory[\'painkillers\']>>.');
-                    (s as any).stat_texts['drug_pk_withdraw_tooltip'] = $((s as any).stat_texts ?? 0)?.['drug_pk_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).take ?? 0) ((s as any).one ?? 0).';
+                    (s as any).stat_texts['drug_pk_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_pk_withdraw'] + ' ((s as any).Click ?? 0) ((s as any).to ?? 0) ((s as any).take ?? 0) ((s as any).one ?? 0).';
                     qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_pk_withdraw', 'v_neg', 'drugs/painkiller_crave', 2, 'gs \'drugs\', \'painkiller\'');
                   } else {
                     (s as any).stat_texts['drug_pk_withdraw_tooltip'] = ((s as any).stat_texts ?? 0)?.['drug_pk_withdraw'];

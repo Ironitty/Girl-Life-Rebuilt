@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (((s as any).podvalrape ?? 0) === 0) {
+  if ((!((s as any).podvalrape ?? 0))) {
     scene.text('You try to focus your view, to see where you are. It looks like a basement… there are no windows anywhere, and the room is rather dark. The guys push you down onto a dirty mattress in the room. Other than a lot of empty bottles and the mattress you\'re on, the room is empty. You guess this is where they often take girls they meet in the park.');
     // TODO-QSP: dynamic text: The <<$placerStringParameter['text_someone']>> are discussing among themselves: ...
     scene.text(`The ${((s as any).placerStringParameter ?? 0)?.['text_someone']} are discussing among themselves: "Alright guys, we got the slut here. I'm surprised she came so readily. Anyway… who gets to go first this time?"`);
@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', 10);
     (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);
     (s as any).ciklkm = ((s as any).placerParameter ?? 0)?.['number_of_man'];
-    if (((s as any).podvalrapeQW ?? 0) === 0) {
+    if ((!((s as any).podvalrapeQW ?? 0))) {
       (s as any).podvalrapeQW = 1;
     }
     qspCall(s, 'arousal', 'bj', 10, 'group', 'sub');
@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (Math.floor(Math.random() * 2) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.img('images/locations/pavlovsk/park/gop/sex/gop/podval.jpg');
     } else {
       scene.img('images/locations/pavlovsk/park/gop/sex/gop/gopgang2.jpg');
@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['podval_rape', ''] },
       ]);
     } else {
-      if (((s as any).rand ?? 0) (0, 1) === 0) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/gop/sex/gop/podval_end.jpg');

@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
         scene.text('You continue to watch Albina dressing. She makes a point of wiggling her shapely ass as she slowly pulls her thong on. It\'s difficult to ignore her, but you manage to pull your gaze away and return your attention to getting dressed yourself. She gives you a friendly smile when she finishes dressing and walks out.');
       } else {
@@ -85,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A143'] <= 20) {
         (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
         scene.text('After watching her for a little longer, she eventually turns and looks at you. "What the fuck are you looking at? Keep your eyes to yourself, you fucking pervert!"');
@@ -130,7 +130,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnush2.jpg');
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
         scene.text('Perhaps sensing your gaze, Anushka suddenly turns her head over her shoulder and makes direct eye contact with you. You freeze, your eyes growing wide and your mouth going slack as you try to think of some kind of excuse.');
         scene.text('Before you can say anything, she puts her fingers up to her mouth in a V shape and sticks her tongue between them, the universal sign for eating pussy. She then goes back to pretending like nothing happened, so you turn back to your own locker, blushing a little as you finish getting dressed.');
@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A22'] >= 80) {
         scene.text('"If you like what you see, then you should really join me at the city gym sometime. The equipment there is worth the extra money. And no, I don\'t mean that \'equipment\'."');
         scene.text('You both giggle at her comment.');
@@ -225,7 +225,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).christinaQW ?? 0)?.['fight'] === 1  ||  ((s as any).christinaQW ?? 0)?.['blackmail'] === 2) {
         scene.text('You look a bit too long and she turns to face you, having seemingly realized that she\'s being watched. You give her a look and she reluctantly turns back to her locker, not saying anything.');
       } else {
@@ -274,7 +274,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A17'] >= 80) {
         scene.text('"I\'m really pretty, aren\'t I?" she asks with a grin and starts dancing while getting dressed.');
         scene.text('You blush as you turn away and finish dressing.');
@@ -324,7 +324,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A12'] >= 60) {
         scene.text('After watching her for a few minutes, she turns to look at you and starts blushing and smiling for a few seconds before she turns back and finishes getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
       } else {
@@ -367,7 +367,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
         scene.text('You\'re unable to pull your gaze away from her and keep watching her getting dressed until she turns and catches you staring at her. She parts her legs slightly, discreetly showing her pussy to you with a small smile before turning and giving you a barely noticeable wiggle of her ass. You smile back at her and you both finish dressing.');
       } else {
@@ -396,7 +396,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Katyusha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/katypeek.jpg');
     scene.text('You take a peek at Katyusha while she finishes drying herself off. She has a few small tattoos and is incredibly toned and muscled for a girl, giving her body an almost man-ish quality to it. Between her legs is an unsightly bush that matches the brown hair that hangs just past her shoulders. She\'s not an attractive-looking girl.');
-    if (((s as any).tits ?? 0) === 0) {
+    if ((!((s as any).tits ?? 0))) {
       scene.text('Upon inspection, you notice her breasts are the same size as your own, barely more than puffy nipples. The two of you have the smallest breasts in the entire class.');
     } else {
       scene.text('Upon inspection, you notice her breasts are very small, barely more than puffy nipples. She has the smallest breasts in the entire class.');
@@ -409,7 +409,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A145'] <= 20) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She storms across the locker room and gets right up in your face. "Keep your eyes to yourself, you fucking dyke!"');
         scene.text('Her comment causes other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away from her, she walks back to her locker and you turn back to your own locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
@@ -453,7 +453,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).LariskaQW ?? 0)?.['story'] >= 8) {
         scene.text('Feeling you watching her, she looks in your direction. Seeing you, she gives you a sweet smile and a wink before turning a little red. You wink back with your own smile.');
         scene.text('You think it\'s probably time to get dressed before somebody else notices the two of you silently flirting with each other.');
@@ -501,7 +501,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A20'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She gives you a knowing smirk, but it seems like she doesn\'t really care as she just turns back to her locker and keeps getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
       } else {
@@ -548,7 +548,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A21'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She gives you a knowing smile before spreading her legs slightly and indicating down with her eyes, inviting you to come over and eat her out. You quickly turn back to your locker, blushing as you finish getting dressed. No one else seemed to have noticed.');
       } else {
@@ -595,7 +595,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).avelinaQW ?? 0)?.['encourage'] >= 1) {
         scene.text('Feeling your eyes on her, she looks in your direction. Seeing you staring, she gives you a warm smile before going back to getting dressed.');
         scene.text('You should get back to getting dressed before others notice you staring.');
@@ -648,7 +648,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       qspCall(s, 'fame', 'pav', 'sex', 10);
       (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
       scene.text('She\'s constantly chatting with other girls walking past. Her mouth never seems to stop moving.');
@@ -709,7 +709,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).fame ?? 0)?.['pav_slut'] >= 175) {
         scene.text('After finishing her shower and returning to the changing room, she opens her locker and starts getting dressed when she seems to realize someone is looking at her and suddenly turns and looks in your direction.');
         scene.text('Seeing you looking at her, she gives you an icy glare and turns away while covering herself up as best she can. You\'re embarrassed that you got caught but are glad that she didn\'t say anything. You turn away and finish dressing yourself before leaving.');
@@ -757,7 +757,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 5) {
         scene.text('She\'s standing in front of her locker with the door open, apparently deciding on something. Seeing you staring, she smiles mischievously before pulling her socks out of her locker and proceeding to bend over and put them on. She\'s facing away from you, with her legs slightly spread and without any panties on, giving you a perfect view of her pussy.');
         scene.text('Straightening back up, she smiles at you again and continues to dress, her face bright red, but looking pleased.');
@@ -807,7 +807,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A24'] <= 20) {
         scene.text('After watching her for a few minutes, she turns and looks at you. "I don\'t like pussy dyke, so keep your eyes to your fucking self."');
         scene.text('Her comment causes other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away, she goes back to getting dressed and you turn back to your locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
@@ -851,7 +851,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A25'] >= 60) {
         if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
           scene.text('Letting your gaze linger, you are surprised when she suddenly looks in your direction. Seeing you staring, she gives you a smile and turns her body, giving you a better look.');
@@ -905,7 +905,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
       if (((s as any).npc_rel ?? 0)?.['A139'] >= 60) {
         scene.text('Noticing you checking her out, she asks you to stop.');
@@ -958,7 +958,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A141'] <= 20) {
         scene.text('You continue to watch Veronika dressing before she suddenly turns around and catches you staring. She silently glares at you while covering herself and you quickly turn back to your locker and finish getting dressed. When you glance back, you see her coldly staring at you as she finishes dressing before leaving.');
       } else {
@@ -1000,7 +1000,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A15'] <= 20  ||  ((s as any).grupTipe ?? 0) === 5) {
         scene.text('Letting your gaze linger, you\'re surprised when she suddenly looks in your direction. Seeing you staring, she gives you a dirty look and turns around, hiding her body.');
         scene.text('You should get dressed and leave before it gets more awkward.');
@@ -1044,7 +1044,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).rand ?? 0) (1, 4) === 1) {
+    if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A142'] >= 60) {
         scene.text('After watching her for a few minutes, she turns to look at you, blushes and quickly turns away from you to finish getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
       } else {

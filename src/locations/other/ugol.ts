@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/ugelm1.jpg');
-  if (Math.floor(Math.random() * 4) + 0 >= 0  &&  ((s as any).temper ?? 0) > 14  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).body_paint_day ?? 0) !== ((s as any).daystart ?? 0)) {
+  if ((Math.floor(Math.random() * 4) + 0) >= 0  &&  ((s as any).temper ?? 0) > 14  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).body_paint_day ?? 0) !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'dibodi', 'os1');
   } else {
     scene.text('Entering the passage, you discover a strange collection of shades of brown, the walls covered in streaks, cracks, and plaster and the floor dirty. It seems this area is not as well maintained as the outside.');

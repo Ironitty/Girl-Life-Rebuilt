@@ -267,7 +267,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha54.jpg');
     scene.text('You decide to use your boob to massage her pussy and slowly lower yourself down her body until you can feel Natasha\'s wetness.');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       scene.text('Slowly moving your body up and down you start edging her using your boob.');
       scene.text('It\'s not long before her hand appears between her leg gently brushing against your boob as she slowly massages her clit in rhythm with your actions.');
     } else {
@@ -291,7 +291,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     (s as any).NatbelQW['horny'] = 10000 + (((s as any).NatbelQW ?? 0)?.['horny'] / 10000) * 10000;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha55.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
-    if (((s as any).temp_rand ?? 0) === 0) {
+    if ((!((s as any).temp_rand ?? 0))) {
       scene.text('After you lie back and spread your legs for Natasha to lick you out. However, she smiles and shakes her head and instead climbs on top of you and slowly kisses your body as she gradually works her way down and begins licking you from above after kissing your pussy.');
       scene.text('Her own is directly above your face and you can see it glistening with arousal with the odd drip forming.');
       scene.text('It\'s just so tempting that you lick up her moistness then flick your tongue in and out of her pussy at which point Natasha groans.');
@@ -325,7 +325,7 @@ function enterSetSexActs2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).NatbelQW['horny'] = 0;
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha56.mp4');
-    if (Math.floor(Math.random() * 3) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 3) + 0))) {
       scene.text('Your excitement has been building a while but you managed to contain it and keep yourself on the edge, however, all of a sudden Natasha starts changing the pace and her tongue hits just the right spot!');
       scene.text('Unable to hold back any longer you groan loudly and squirt into her mouth as you grab her arse squeezing her buttocks together.');
       scene.text('You both lie next to each other catching your breath before considering what to do next.');

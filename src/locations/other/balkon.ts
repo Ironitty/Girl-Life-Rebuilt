@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       if (((s as any).sosedBalDay ?? 0) !== ((s as any).daystart ?? 0)) {
-        if (Math.floor(Math.random() * 4) + 1 === 4) {
+        if ((Math.floor(Math.random() * 4) + 1) === 4) {
           scene.text('A neighbor from the opposite building is out on his balcony and looking your way. He\'s noticed that you\'re naked…');
           scene.actions([
             { label: 'Look at the neighbor', goto: ['balkon2', 'sosed'] },

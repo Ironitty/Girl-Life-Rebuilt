@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterWatercooler(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_break', 'watercooler');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  if (Math.floor(Math.random() * 4) + 1 === 1) {
+  if ((Math.floor(Math.random() * 4) + 1) === 1) {
     scene.img('images/locations/pavlovsk/school/building/watercoolergossip.jpg');
     scene.text('You stop at the water cooler to get a drink. Several nearby students are gossiping with each other about a variety of topics.');
     qspCall(s, 'gschool_gossip', 'mixed');
@@ -49,7 +49,7 @@ function enterBoysRestroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/bathroom/boysbathroom.jpg');
   scene.text('The restroom is empty.');
   qspCall(s, 'gschool_break', 'restroom_actions');
-  if (Math.floor(Math.random() * 3) + 0 === 2) {
+  if ((Math.floor(Math.random() * 3) + 0) === 2) {
     scene.actions([{ label: 'Continue', goto: ['gschool_break', 'boys_restroom_events'] }]);
   }
   scene.build();
@@ -61,7 +61,7 @@ function enterGirlsRestroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/bathroom/girlsbathroom.jpg');
   scene.text('The restroom is empty.');
   qspCall(s, 'gschool_break', 'restroom_actions');
-  if (Math.floor(Math.random() * 3) + 0 === 2) {
+  if ((Math.floor(Math.random() * 3) + 0) === 2) {
     scene.actions([{ label: 'Continue', goto: ['gschool_break', 'girls_restroom_events'] }]);
   }
   scene.build();
@@ -72,7 +72,7 @@ function enterRestroomActions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
     scene.actions([
       { label: 'Smoke', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 5) + 0 === 0) {
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['gschool_break', 'smoke2'] }]);
     } else {
       scene.actions([{ label: 'Continue', goto: ['gschool_break', 'smoke1'] }]);
@@ -215,7 +215,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
                   { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
@@ -233,7 +233,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Make a run for it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -264,7 +264,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
                     { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                   ]);
                 } else {
@@ -282,7 +282,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Make a run for it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -338,7 +338,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
                       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {

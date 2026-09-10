@@ -51,29 +51,29 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'BDSMEV'] }]);
       }
       if (((s as any).MistressObedience ?? 0) === 1) {
-        if (100 - ((s as any).rand ?? 0) (0, 50) < ((s as any).MistressAdoration ?? 0)  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+        if (100 - (Math.floor(Math.random() * 51) + 0) < ((s as any).MistressAdoration ?? 0)  &&  (!(Math.floor(Math.random() * 3) + 0))) {
           (s as any).MistressObedience = 2;
         }
       } else {
-        if (((s as any).rand ?? 0) (0, 50) > ((s as any).MistressAdoration ?? 0)  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+        if ((Math.floor(Math.random() * 51) + 0) > ((s as any).MistressAdoration ?? 0)  &&  (!(Math.floor(Math.random() * 3) + 0))) {
           (s as any).MistressObedience = 1;
         } else {
           (s as any).MistressObedience = 3;
         }
         if (((s as any).MistressObedience ?? 0) === 3) {
-          if (((s as any).rand ?? 0) (0, 50) > ((s as any).MistressAdoration ?? 0)  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+          if ((Math.floor(Math.random() * 51) + 0) > ((s as any).MistressAdoration ?? 0)  &&  (!(Math.floor(Math.random() * 3) + 0))) {
             (s as any).MistressObedience = 2;
           } else {
             (s as any).MistressObedience = 4;
           }
         } else {
-          if (((s as any).rand ?? 0) (0, 50) > ((s as any).MistressAdoration ?? 0)  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+          if ((Math.floor(Math.random() * 51) + 0) > ((s as any).MistressAdoration ?? 0)  &&  (!(Math.floor(Math.random() * 3) + 0))) {
             (s as any).MistressObedience = 3;
           } else {
             (s as any).MistressObedience = 5;
           }
           if (((s as any).MistressObedience ?? 0) === 5) {
-            if (((s as any).rand ?? 0) (0, 50) > ((s as any).MistressAdoration ?? 0)  &&  ((s as any).rand ?? 0) (0, 2) === 0) {
+            if ((Math.floor(Math.random() * 51) + 0) > ((s as any).MistressAdoration ?? 0)  &&  (!(Math.floor(Math.random() * 3) + 0))) {
               (s as any).MistressObedience = 4;
             }
           }
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).mistsevere ?? 0)?.[String((s as any).i ?? 0)] === 1) {
               // TODO-QSP: jump 'mistsevere'
             }
-            (s as any).mistsevere[i] = 1;
+            (s as any).mistsevere[String((s as any).i ?? 0)] = 1;
             scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'severe_<<i>>'] }]);
           } else {
             // TODO-QSP: :mistpunish
@@ -91,7 +91,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).mistpunish ?? 0)?.[String((s as any).i ?? 0)] === 1) {
               // TODO-QSP: jump 'mistpunish'
             }
-            (s as any).mistpunish[i] = 1;
+            (s as any).mistpunish[String((s as any).i ?? 0)] = 1;
             scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'punish_<<i>>'] }]);
             if (((s as any).MistressObedience ?? 0) === 3) {
               // TODO-QSP: :mistneutral
@@ -99,7 +99,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).mistneutral ?? 0)?.[String((s as any).i ?? 0)] === 1) {
                 // TODO-QSP: jump 'mistneutral'
               }
-              (s as any).mistneutral[i] = 1;
+              (s as any).mistneutral[String((s as any).i ?? 0)] = 1;
               scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'neutral_<<i>>'] }]);
             } else {
               // TODO-QSP: :misttreat
@@ -107,7 +107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).misttreat ?? 0)?.[String((s as any).i ?? 0)] === 1) {
                 // TODO-QSP: jump 'misttreat'
               }
-              (s as any).misttreat[i] = 1;
+              (s as any).misttreat[String((s as any).i ?? 0)] = 1;
               scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'treat_<<i>>'] }]);
               if (((s as any).MistressObedience ?? 0) >= 5) {
                 // TODO-QSP: :mistamazing
@@ -115,7 +115,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).mistamazing ?? 0)?.[String((s as any).i ?? 0)] === 1) {
                   // TODO-QSP: jump 'mistamazing'
                 }
-                (s as any).mistamazing[i] = 1;
+                (s as any).mistamazing[String((s as any).i ?? 0)] = 1;
                 scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'amazing_<<i>>'] }]);
               }
             }

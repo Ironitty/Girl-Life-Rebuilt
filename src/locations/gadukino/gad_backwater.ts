@@ -14,7 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', goto: ['hunters', 'start'] },
     ]);
   } else {
-    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  Math.floor(Math.random() * 10) + 1 === 1) {
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  (Math.floor(Math.random() * 10) + 1) === 1) {
       // TODO-QSP: gt 'gad_backwater', 'hunter' else gt 'gad_backwater', 'alone'
     }
   }
@@ -134,7 +134,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).clothesAtLocation ?? 0) === 0) {
+  if ((!((s as any).clothesAtLocation ?? 0))) {
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).temper ?? 0) >= 15) {
       scene.actions([
         { label: 'Get undressed', handler: (st: GameState) => {

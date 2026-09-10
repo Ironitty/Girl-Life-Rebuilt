@@ -159,7 +159,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     // TODO-QSP: dynamic text: <<$nichChoreDesc>>
     scene.text(`${((s as any).nichChoreDesc ?? 0)}`);
-    if (((s as any).nichOutfitState ?? 0) === 0) {
+    if ((!((s as any).nichOutfitState ?? 0))) {
       scene.text('<b><font color = red>You have to change into an appropriate outfit before cleaning up.</font></b>');
     } else {
       if (((s as any).nichTimeDiligent ?? 0) > 0) {
@@ -178,7 +178,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).nichChoreMode ?? 0) === 0) {
+    if ((!((s as any).nichChoreMode ?? 0))) {
       scene.actions([
         { label: 'Don\'t clean', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -329,7 +329,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             }
                                             (s as any).nichRand = Math.floor(Math.random() * 100) + 1;
                                             (s as any).nichChoreResult = 0;
-                                            if (((s as any).nichChoreID ?? 0) === 0) {
+                                            if ((!((s as any).nichChoreID ?? 0))) {
                                               if (((s as any).ARGS ?? 0)[1] === 1) {
                                                 // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                                                 // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -482,9 +482,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligent ?? 0));
                                                         // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
                                                       }
-                                                      (s as any).nichChoreState[nichChoreID] = ((s as any).nichChoreResult ?? 0);
+                                                      (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = ((s as any).nichChoreResult ?? 0);
                                                       qspCall(s, 'stat', '');
-                                                      if (((s as any).nichChoreMode ?? 0) === 0) {
+                                                      if ((!((s as any).nichChoreMode ?? 0))) {
                                                         scene.actions([
                                                           { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -510,7 +510,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
                                                           ]);
                                                         }
-                                                        if (((s as any).nichChoreID ?? 0) === 0) {
+                                                        if ((!((s as any).nichChoreID ?? 0))) {
                                                           scene.actions([
                                                             { label: 'Continue to guest cloakroom', handler: (st: GameState) => {
     // TODO-QSP: gt 'nichChore', 'inspect', 'bathGuest', 1

@@ -15,7 +15,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       // TODO-QSP: 'The garage offers a towing service for damaged cars to bring them to this service center. The price...
       if (qspFunc(s, 'money', 'can_afford', 2500) === 0) {
-        s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+        s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
       } else {
         qspCall(s, 'money', 'pay', 2500);
         qspCall(s, 'car_funcs', 'setloc', 'autoservisF', 'start', 'city');
@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He quickly but thoroughly inspects it, murmuring all the while to take mental no...
     scene.text('He quickly but thoroughly inspects it, murmuring all the while to take mental notes on what needs to be done, and, when he returns to you, simply states that it would cost \' + $func(\'money\', \'string_price\', normrem) + \' to repair the damage.');
     if (qspFunc(s, 'money', 'can_afford', ((s as any).normrem ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
@@ -72,7 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay and wait while they repair the car [+$func(\'money\', \'get_cost_string\', normre...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).normrem ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));

@@ -1025,7 +1025,7 @@ function enterKGZvihod102(s: GameState, scene: SceneBuilder): void {
     (s as any).udarand = Math.floor(Math.random() * 101) + 0;
     if (((s as any).udarand ?? 0) >= 90) {
       (s as any).tiprand = Math.floor(Math.random() * 2) + 0;
-      if (((s as any).tiprand ?? 0) === 0) {
+      if ((!((s as any).tiprand ?? 0))) {
         (s as any).KGZVars['sup'] = ((s as any).KGZVars['sup'] ?? 0) + (1);
         scene.text('You find some food!');
       }

@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A149', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big149.jpg');
-  if (Math.floor(Math.random() * 4) + 1 === 1  &&  ((s as any).npc_had_sex ?? 0)?.['A149']) {
+  if ((Math.floor(Math.random() * 4) + 1) === 1  &&  ((s as any).npc_had_sex ?? 0)?.['A149']) {
     qspCall(s, 'fame', 'pav', 'sex', 'tiny');
     scene.text('Lazar smirks when he sees you. "Back for more? I know, it was amazing."');
     scene.text('You only let out a short "Mmhmm" as you roll your eyes.');

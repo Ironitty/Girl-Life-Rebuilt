@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250);
       (s as any).transportVars['trainpass_day'] = ((s as any).daystart ?? 0) + 1;
@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Buy a weekly pass (7 days) [+$func(\'money\', \'get_cost_string\', 1250)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1250) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 1250);
       (s as any).transportVars['trainpass_day'] = ((s as any).daystart ?? 0) + 7;
@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Buy a monthly pass (30 days) [+$func(\'money\', \'get_cost_string\', 3750)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3750) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 3750);
       (s as any).transportVars['trainpass_day'] = ((s as any).daystart ?? 0) + 30;
@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Buy a yearly pass (365 days) [+$func(\'money\', \'get_cost_string\', 32500)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 32500) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney ?? ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 32500);
       (s as any).transportVars['trainpass_day'] = ((s as any).daystart ?? 0) + 365;

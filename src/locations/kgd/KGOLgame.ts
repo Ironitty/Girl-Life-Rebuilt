@@ -96,7 +96,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Approach the NPC', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (((s as any).KGOLmqw ?? 0) === 0) {
+    if ((!((s as any).KGOLmqw ?? 0))) {
       (s as any).KGOLmqw = 1;
       // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill prey 5 predatory flowers."
       scene.text(`(NPC) - "${((s as any).KGOLname ?? 0)}, I need you to kill prey 5 predatory flowers."`);

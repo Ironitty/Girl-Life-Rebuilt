@@ -9,7 +9,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like', 1, 'pav_disco');
   qspCall(s, 'stat', '');
   qspCall(s, 'dinnpc', '');
-  if (Math.floor(Math.random() * 4) + 1 === 1) {
+  if ((Math.floor(Math.random() * 4) + 1) === 1) {
     scene.img('images/locations/pavlovsk/community/disco/school_kids/dimka_dance.jpg');
     scene.text('You see Dimka out on the dance floor. He is dressed very stylishly and dances very well. He\'s in the middle of a small crowd of of people, mostly girls.');
     scene.actions([
@@ -81,7 +81,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {

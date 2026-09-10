@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterAtm(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>ATM</b></center>');
   scene.img('images/locations/shared/store/atm.jpg');
-  if (((s as any).bankAccount ?? 0) === 0) {
+  if ((!((s as any).bankAccount ?? 0))) {
     scene.text('You don\'t have a bank account yet!');
   } else {
     if (((s as any).karta ?? 0) >= ((s as any).bankDebtLimit ?? 0)) {

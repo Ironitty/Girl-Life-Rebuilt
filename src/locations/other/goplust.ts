@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).VasanTut = 2;
   } else {
     (s as any).gopV = 1;
-    if (((s as any).VasanTut ?? 0) === 0) {
+    if ((!((s as any).VasanTut ?? 0))) {
       (s as any).gopV = 0;
     }
     (s as any).BerezaLust = Math.floor(Math.random() * 101) + 0;
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).BerezaTut = 2;
     } else {
       (s as any).gopB = 1;
-      if (((s as any).BerezaTut ?? 0) === 0) {
+      if ((!((s as any).BerezaTut ?? 0))) {
         (s as any).gopB = 0;
       }
       (s as any).VitekLust = Math.floor(Math.random() * 101) + 0;
@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).VitekTut = 2;
       } else {
         (s as any).gopVi = 1;
-        if (((s as any).VitekTut ?? 0) === 0) {
+        if ((!((s as any).VitekTut ?? 0))) {
           (s as any).gopVi = 0;
         }
         (s as any).KotilLust = Math.floor(Math.random() * 101) + 0;
@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).KostilTut = 2;
         } else {
           (s as any).gopK = 1;
-          if (((s as any).KostilTut ?? 0) === 0) {
+          if ((!((s as any).KostilTut ?? 0))) {
             (s as any).gopK = 0;
           }
           (s as any).UdmurtLust = Math.floor(Math.random() * 101) + 0;
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).UdmurtTut = 2;
           } else {
             (s as any).gopU = 1;
-            if (((s as any).UdmurtTut ?? 0) === 0) {
+            if ((!((s as any).UdmurtTut ?? 0))) {
               (s as any).gopU = 0;
             }
             (s as any).SeriLust = Math.floor(Math.random() * 101) + 0;
@@ -74,7 +74,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).SeriTut = 2;
             } else {
               (s as any).gopS = 1;
-              if (((s as any).SeriTut ?? 0) === 0) {
+              if ((!((s as any).SeriTut ?? 0))) {
                 (s as any).gopS = 0;
               }
               // TODO-QSP: $namgop[0] = ''

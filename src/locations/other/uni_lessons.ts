@@ -35,7 +35,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: :passed_exams_loop
               if (((s as any).class_list_institution ?? 0)?.[String((s as any).i ?? 0)] === 'uni_\'2\'_semester_\'3\'') {
                 (s as any).class_count = ((s as any).class_count ?? 0) + (1);
-                if (((s as any).dyneval ?? 0) ('RESULT === \'0\'') > 40  &&  ((s as any).dyneval ?? 0) ('RESULT === \'1\'') === 1) {
+                if ((0 as any) > 40  &&  (0 as any) === 1) {
                   (s as any).passed_count = ((s as any).passed_count ?? 0) + (1);
                 } else {
                   // TODO-QSP: dynamic 'class[''<<$class_list_institution[i]>>_<<$class_list_name[i]>>_grade''] = 0'
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 }
               }
               (s as any).i = ((s as any).i ?? 0) + (1);
-              if (((s as any).arrsize ?? 0)('class_list_institution') >= ((s as any).i ?? 0)) {
+              if (Object.keys((s as any).class_list_institution ?? {}).length >= ((s as any).i ?? 0)) {
                 // TODO-QSP: jump 'passed_exams_loop'
               }
               if (((s as any).passed_count ?? 0) === ((s as any).class_count ?? 0)) {

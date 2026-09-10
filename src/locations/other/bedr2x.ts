@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.img('images/locations/city/residential/apartment/bedr2.jpg');
-  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  ((s as any).tobiQW ?? 0) === 0) {
+  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
   }
   scene.text('A bright and beautiful bedroom, with modern and stylish furniture.');

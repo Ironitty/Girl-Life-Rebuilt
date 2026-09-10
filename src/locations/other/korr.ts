@@ -19,7 +19,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   scene.text('<center><b>Corridor</b></center>');
-  if (((s as any).remkorr ?? 0) === 0) {
+  if ((!((s as any).remkorr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/home/korr.jpg');
     scene.text('The wallpaper in the hallway has long since faded and is peeling from the walls. A <a href="exec:gt \'mirror\', \'start\'">mirror</a> hangs on the wall.');
   } else {
@@ -27,8 +27,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('A modern hall with stylish furniture, including a wall-mounted <a href="exec:gt \'mirror\', \'start\'">mirror</a>.');
   }
   qspCall(s, 'home_events', 'entry');
-  if (((s as any).lesbiday ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).lesbiQW ?? 0) >= 11  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).santehnikDolg ?? 0) === 0) {
-    if (Math.floor(Math.random() * 101) + 0 > 82  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
+  if (((s as any).lesbiday ?? 0) + 14 <= ((s as any).daystart ?? 0)  &&  ((s as any).lesbiQW ?? 0) >= 11  &&  ((s as any).hour ?? 0) >= 19  &&  (!((s as any).santehnikDolg ?? 0))) {
+    if ((Math.floor(Math.random() * 101) + 0) > 82  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
       scene.actions([{ label: 'Continue', goto: ['lesbimistress', 'mistvisit'] }]);
     } else {
       (s as any).lesbiday = ((s as any).lesbiday ?? 0) + (1);

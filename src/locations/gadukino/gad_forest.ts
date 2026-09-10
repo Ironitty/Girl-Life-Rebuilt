@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).mushroom_pickers = 0;
     scene.text('You don\'t see or hear anyone picking mushrooms or berries in the forest right now.');
   } else {
-    if (((s as any).mushroom_pickers ?? 0) === 0) {
+    if ((!((s as any).mushroom_pickers ?? 0))) {
       scene.text('You don\'t see or hear anyone picking mushrooms or berries in the forest right now.');
     } else {
       scene.text('At the forest\'s edge, you can see other people picking mushrooms and berries.');
@@ -67,7 +67,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Convince her to stay with you', handler: (st: GameState) => {
     (s as any).MiraVars['follower'] = 1;
-    (s as any).MiraVars['follow_time'] = (((s as any).minut ?? 0) > 30) ? (2) : (1);
+    (s as any).MiraVars['follow_time'] = ((((s as any).minut ?? 0) > 30) ? (2) : (1));
   }, goto: ['gad_forest', 'forest_edge'] },
         { label: 'Say goodbye', goto: ['gad_forest', 'forest_edge'] },
       ]);
@@ -89,7 +89,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).mushroom_pickers = 2;
         scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'mushroom_pickers2'] }]);
       }
-      if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 14  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).forestpicnic ?? 0) === 0) {
+      if (((s as any).foresteventrand ?? 0) === 5  &&  ((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 14  &&  ((s as any).temper ?? 0) >= 10  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).week ?? 0) > 5  &&  (!((s as any).forestpicnic ?? 0))) {
         (s as any).forestpicnic = 1;
         scene.actions([{ label: 'Continue', goto: ['gad_forest_events', 'picnic'] }]);
       }
@@ -105,7 +105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the woods (0:15)', handler: (st: GameState) => {
     if (((s as any).swamp_clothes ?? 0) === 1) {
       scene.text('You cannot leave the woods wearing your current clothing. Therefore, you should pick up your clothes and get dressed or risk leaving naked.');
-      if (((s as any).clothesAtLocation ?? 0) === 0) {
+      if ((!((s as any).clothesAtLocation ?? 0))) {
         scene.actions([
           { label: 'Leave in your makeshift clothing (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -119,7 +119,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'gad_swamp_clothes', 0);
     qspCall(s, 'outfit', 'recover_lost_outfit', 'forest_edge', 1);
     qspCall(s, 'stat', '');
-    if (((s as any).PCloSkirt ?? 0) === 0) {
+    if ((!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
@@ -142,13 +142,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.actions([{ label: 'Continue', goto: ['gad_road', 'start'] }]);
       if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 22) {
-        if (Math.floor(Math.random() * 11) + 0 > 5) {
+        if ((Math.floor(Math.random() * 11) + 0) > 5) {
           scene.img('images/locations/gadukino/forest/gadukino_nude.jpg');
         } else {
           scene.img('images/locations/gadukino/forest/gadukino_back.jpg');
         }
       } else {
-        if (Math.floor(Math.random() * 11) + 0 > 5) {
+        if ((Math.floor(Math.random() * 11) + 0) > 5) {
           scene.img('images/locations/gadukino/forest/gadukino_nude_night.jpg');
         } else {
           scene.img('images/locations/gadukino/forest/gadukino_back_night.jpg');
@@ -195,7 +195,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         qspCall(s, 'clothing', 'add_item', 'gm_outfits', 2);
         qspCall(s, 'clothing', 'wear', 'gm_outfits', 2);
-        if (((s as any).PCloSkirt ?? 0) === 0) {
+        if ((!((s as any).PCloSkirt ?? 0))) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
           scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
         }
@@ -224,7 +224,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'gad_swamp_clothes', 0);
     qspCall(s, 'outfit', 'recover_lost_outfit', 'forest_edge', 1);
     qspCall(s, 'stat', '');
-    if (((s as any).PCloSkirt ?? 0) === 0) {
+    if ((!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
       scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }

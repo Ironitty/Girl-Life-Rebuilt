@@ -91,10 +91,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Text Artem to come to the disco', goto: ['pav_disco', 'artem_disco'] },
           ]);
         }
-        if (((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 4  &&  ((s as any).dimadisco ?? 0) === 0) {
+        if (((s as any).dimaRevenge ?? 0) === 7  &&  ((s as any).dimaRevChoice ?? 0) === 4  &&  (!((s as any).dimadisco ?? 0))) {
           // TODO-QSP: gt 'dimaRevenge', 5, 'disco'
         }
-        if (Math.floor(Math.random() * 3) + 0 === 0  &&  ((s as any).soniaQW ?? 0)?.['slut'] < 1  &&  ((s as any).soniadisco_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).month ?? 0) > 9  &&  ((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['attendance_count'] > 0  &&  ((s as any).hour ?? 0) < 22) {
+        if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).soniaQW ?? 0)?.['slut'] < 1  &&  ((s as any).soniadisco_day ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).month ?? 0) > 9  &&  ((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['attendance_count'] > 0  &&  ((s as any).hour ?? 0) < 22) {
           scene.text('You notice Sonia talking to Vitek about something.');
           scene.actions([
             { label: 'Watch Sonia', handler: (st: GameState) => {

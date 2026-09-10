@@ -30,7 +30,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove her hands [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
@@ -85,7 +85,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/touch.jpg');
     scene.text('You touch Katja\'s tender breasts and she sighs deeply, biting her lip.');
-    if (((s as any).katjaQW ?? 0)?.['horny'] < Math.floor(Math.random() * 61) + 0) {
+    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 61) + 0)) {
       scene.text('You play with her breasts a little before she moves away from you.');
       // TODO-QSP: dynamic text: "I'm not in the mood right now, <<$pcs_nickname>>. Another time maybe?"
       scene.text(`"I'm not in the mood right now, ${((s as any).pcs_nickname ?? 0)}. Another time maybe?"`);
@@ -93,7 +93,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Grab her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
@@ -147,7 +147,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove her hands [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {

@@ -10,11 +10,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'music_actions', 'clear_restrictions');
-  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  ((s as any).tobiQW ?? 0) === 0) {
+  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['tobiQW', 'start'] }]);
   }
   scene.text('<center><b>Bedroom</b></center>');
-  if (((s as any).rembedr ?? 0) === 0) {
+  if ((!((s as any).rembedr ?? 0))) {
     scene.img('images/locations/city/residential/apartment/bedr.jpg');
     scene.text('A tight, little room with a <a href="exec:gt \'bed\', \'start\'">double bed</a>.');
     // TODO-QSP: func('alarmclock', 'base_alarmclock_text')

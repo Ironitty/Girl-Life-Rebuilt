@@ -27,7 +27,7 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_factory'] === 'employed'  &&  ((s as any).job_missed_total ?? 0)?.['pav_factory'] > ((s as any).job_miss_acknowledged ?? 0)?.['pav_factory']) {
     scene.actions([{ label: 'Continue', goto: ['pav_factory', 'scolding'] }]);
   }
-  if (((s as any).job_status ?? 0)?.['pav_factory'] === 'employed'  &&  ((s as any).age ?? 0) >= 18  &&  ((s as any).job_active_schedule ?? 0)?.['pav_factory'] === '0'  &&  ((s as any).pav_factory_schedule_change_pending ?? 0) === 0) {
+  if (((s as any).job_status ?? 0)?.['pav_factory'] === 'employed'  &&  ((s as any).age ?? 0) >= 18  &&  ((s as any).job_active_schedule ?? 0)?.['pav_factory'] === '0'  &&  (!((s as any).pav_factory_schedule_change_pending ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['pav_factory', 'schedule_change'] }]);
   }
   scene.text('<center><b>TEXTILE FACTORY, PARIS COMMUNE</b></center>');

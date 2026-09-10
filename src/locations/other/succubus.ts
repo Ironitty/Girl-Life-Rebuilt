@@ -335,7 +335,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTatianasex(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).suceatinit ?? 0) === 0) {
+  if ((!((s as any).suceatinit ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
   }
   (s as any).suceatinit = 0;
@@ -375,7 +375,7 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A176');
     (s as any).scfeed = 2 + ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
-    if (((s as any).tatianaSex ?? 0) === 0) {
+    if ((!((s as any).tatianaSex ?? 0))) {
       (s as any).tatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
@@ -394,7 +394,7 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['succubus', 'tatianaask'] }]);
     }
     (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
-    if (((s as any).tatisucsex ?? 0) === 0) {
+    if ((!((s as any).tatisucsex ?? 0))) {
       (s as any).tatisucsex = 1;
     }
     qspCall(s, 'stat', '');
@@ -423,7 +423,7 @@ function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
     { label: 'Finish', handler: (st: GameState) => {
     (s as any).sucskill = 3;
     qspCall(s, 'npcStat', 'A176');
-    if (((s as any).tatianaSex ?? 0) === 0) {
+    if ((!((s as any).tatianaSex ?? 0))) {
       (s as any).tatianaSex = 1;
     }
     // TODO-QSP: gs 'arousal', 'cuni', 15 * rand(1, 8), 'dom', 'lesbian'
@@ -431,7 +431,7 @@ function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
-    if (((s as any).tatisucsex ?? 0) === 0) {
+    if ((!((s as any).tatisucsex ?? 0))) {
       (s as any).tatisucsex = 1;
     }
     (s as any).pcs_willpwr = ((s as any).willpowermax ?? 0);

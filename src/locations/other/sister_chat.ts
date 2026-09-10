@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A33'] >= 80) {
         scene.text('You have a great relationship with your sister.');
       }
-      if (((s as any).npc_rel ?? 0)?.['A33'] > 65  &&  ((s as any).mesec ?? 0) > 0  &&  ((s as any).preg ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['tampons'] === 0  &&  ((s as any).narkossister ?? 0) === 0) {
+      if (((s as any).npc_rel ?? 0)?.['A33'] > 65  &&  ((s as any).mesec ?? 0) > 0  &&  ((s as any).preg ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['tampons'] === 0  &&  (!((s as any).narkossister ?? 0))) {
         scene.actions([
           { label: 'Ask for a tampon', handler: (st: GameState) => {
     scene.text('You tell your sister that you\'re menstruating and have no tampons. She looks at you knowingly, brings some of hers and recommends that you take care of this in advance next time.');
@@ -49,8 +49,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).drugVars ?? 0)?.['heroin_high'] === 0  &&  ((s as any).narkossister ?? 0) === 1) {
             (s as any).narkossister = 0;
           }
-          if (((s as any).drugVars ?? 0)?.['heroin_high'] > 20  &&  ((s as any).narkossister ?? 0) === 0) {
-            if (Math.floor(Math.random() * 100) + 1 >= 90) {
+          if (((s as any).drugVars ?? 0)?.['heroin_high'] > 20  &&  (!((s as any).narkossister ?? 0))) {
+            if ((Math.floor(Math.random() * 100) + 1) >= 90) {
               return;
             }
           }

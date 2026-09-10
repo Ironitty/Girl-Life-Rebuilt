@@ -27,7 +27,7 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
   scene.text('You decide to take a shower after all. You\'re already here, so you might as well do it. You undress, standing next to your locker, taking a last look around to make sure no one is there.');
   scene.actions([
     { label: 'Head to the shower', handler: (st: GameState) => {
-    if (Math.floor(Math.random() * 10) + 0 === 0  &&  ((s as any).pcs_horny ?? 0) >= 70) {
+    if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).pcs_horny ?? 0) >= 70) {
       scene.actions([{ label: 'Continue', goto: ['pav_voc_school_shower', 'shower_event'] }]);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -97,7 +97,7 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Suck their cocks', handler: (st: GameState) => {
-    if (((s as any).ptu_trenerssex ?? 0) === 0) {
+    if ((!((s as any).ptu_trenerssex ?? 0))) {
       (s as any).ptu_trenerssex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (2);
     }
