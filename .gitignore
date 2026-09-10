@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 GL QSP/
+debug-log.txt
+index.html
+opencode.json
 
 # Editor directories and files
 .vscode/*
