@@ -15,6 +15,9 @@ GL QSP/
 debug-log.txt
 index.html
 opencode.json
+assets/
+debug-launch.sh
+visual-inspect.ts
 
 # Editor directories and files
 .vscode/*
