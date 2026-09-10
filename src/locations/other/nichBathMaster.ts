@@ -1,0 +1,76 @@
+import { qspCall, qspFunc } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  if (((s as any).locArgs?.[0] ?? 0) === ''  ||  ((s as any).locArgs?.[0] ?? 0) === 'start'  ||  ((s as any).locArgs?.[0] ?? 0) === 'return') {
+    scene.text('<center><b>Nicholas\' Bathroom</b></center>');
+    scene.img('images/locations/city/citycenter/nichApartment/bathroomMaster.jpg');
+    scene.text('The bathroom is modern and well fitted, more than matching the display of wealth in the other rooms, from the elaborate decorations and spacious shower and tub to the underfloor heating.');
+    if (((s as any).nichWork ?? 0) === 2) {
+      scene.text('You have your own bathroom and should not use this one.');
+    }
+    (s as any).nichCleanAppropriate = 1;
+    (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBathroom');
+    (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBathroom');
+    (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBathroom');
+    if (((s as any).nichNichAct ?? 0) === 'bathMorning') {
+      scene.text('Nicholas is currently in here using the shower.');
+      (s as any).nichCleanAppropriate = 0;
+    } else {
+      scene.text('Nicholas is currently in here preparing himself to go out.');
+      (s as any).nichCleanAppropriate = 0;
+      if (((s as any).nichNichAct ?? 0) === 'bathEvening') {
+        scene.text('Nicholas is currently in here brushing his teeth.');
+        (s as any).nichCleanAppropriate = 0;
+      }
+      if (((s as any).nichGalaAct ?? 0) === 'bathMorning') {
+        scene.text('Gala is currently in here using the shower.');
+        (s as any).nichCleanAppropriate = 0;
+      } else {
+        scene.text('Gala is currently in here brushing her teeth.');
+        (s as any).nichCleanAppropriate = 0;
+      }
+      if (((s as any).nichTanyAct ?? 0) === 'bathMorning') {
+        scene.text('<a href="exec: gt \'nichTanya\', \'bathroom\'">Tanya</a> is currently in here using the shower.');
+        (s as any).nichCleanAppropriate = 0;
+      } else {
+        scene.text('Tanya is currently in here brushing her teeth.');
+        (s as any).nichCleanAppropriate = 0;
+        if (((s as any).nichTanyAct ?? 0) === 'prepareClub') {
+          scene.text('Tanya is currently in here doing her make-up.');
+          (s as any).nichCleanAppropriate = 0;
+        }
+        if (((s as any).nichWork ?? 0) === 2) {
+          if (((s as any).nichCleanAppropriate ?? 0) === 0) {
+            scene.text('It wouldn\'t be appropriate to clean this room now.');
+          } else {
+            qspCall(s, 'nichChore', 'inspect', 'masterbath');
+          }
+        }
+        scene.actions([
+          { label: 'Go to the master bedroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBedroomMaster', ''] },
+          { label: 'Go to Tanya\'s room', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBedroomTanja', ''] },
+        ]);
+      }
+    }
+  }
+  scene.build();
+}
+
+export const nichBathMaster: LocationDef = {
+  name: 'nichBathMaster',
+  title: 'Nicholas\' Bathroom',
+  region: 'other',
+  locationType: 'bathroom',
+  description: ['The bathroom is modern and well fitted, more than matching the display of wealth in the other rooms, from the elaborate decorations and spacious shower and tub to the underfloor heating.'],
+  enter: enter,
+};

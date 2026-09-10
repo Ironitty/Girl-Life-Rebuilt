@@ -1,0 +1,77 @@
+import { qspCall } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'intro_initialization', 'init');
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+    if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+    }
+  }
+  scene.img(`images/system/1_openings/${((s as any).temp_image ?? 0)}`);
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+    if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+      scene.text('Welcome to the Schoolgirl version! You will need to carry on with your school life, manage your relationships and deal with whatever else comes up along the way!');
+    } else {
+      // TODO-QSP: dynamic text: Welcome to the Cursed Schoolgirl version! Guide <<$pcs_nickname>> through her sc...
+      scene.text(`Welcome to the Cursed Schoolgirl version! Guide ${((s as any).pcs_nickname ?? 0)} through her school life, relationships and myriad of other issues that might pop up, all with the added spice of magic to keep things interesting!`);
+      // TODO-QSP: dynamic text: Welcome to the Transformation start! Although you've lost your masculinity and y...
+      scene.text(`Welcome to the Transformation start! Although you've lost your masculinity and your old life, new possibilities are opening up before your eyes! Guide ${((s as any).pcs_nickname ?? 0)} through her school life, relationships and the many other issues that might pop up.`);
+    }
+  } else {
+    if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+      scene.text('Welcome to Girl Life.');
+    } else {
+      scene.text('Welcome to the Cursed University Student version!');
+      scene.text('Welcome to the Transformation start! Although you\'ve lost your masculinity and your old life, new possibilities are opening up before your eyes, not least aided in your newfound knowledge of the magical nature of the world!');
+    }
+    // TODO-QSP: dynamic text: Guide <<$pcs_nickname>> through the many challenges of life at university. Manag...
+    scene.text(`Guide ${((s as any).pcs_nickname ?? 0)} through the many challenges of life at university. Manage coursework, a job, and relationships with the people you meet on your journey.`);
+    if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+      scene.text('Welcome to Girl Life. You are finally free of your parents and ready to face all the freedoms and challenges that entails. Your options are nearly unlimited and now it\'s time to go out and discover them all.');
+    } else {
+      // TODO-QSP: dynamic text: Welcome to the magical girl version of Girl Life! You are finally free of your p...
+      scene.text(`Welcome to the magical girl version of Girl Life! You are finally free of your parents and ready to face all the freedoms and challenges that entails. Guide ${((s as any).pcs_nickname ?? 0)} through her life, relationships and myriad of other issues that might pop up, all with the added spice of magic to keep things interesting!`);
+      scene.text('Welcome to the Transformation start! Although you\'ve lost your masculinity and your old life, new possibilities are opening up before your eyes, not least aided in your newfound knowledge of the magical nature of the world!');
+    }
+    scene.text('Don\'t forget to enroll at the university in August if that\'s a goal you wish to pursue.');
+  }
+  scene.actions([
+    { label: 'Start the game', handler: (st: GameState) => {
+    (s as any).music_loop = 0;
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+      if (((s as any).start_location ?? 0) === 0) {
+        scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_pavlovsk'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_gadukino'] }]);
+        if (((s as any).start_location ?? 0) === 2) {
+          scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_pushkin'] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['intro_sg', 'intro_sharing'] }]);
+        }
+        if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
+          scene.actions([{ label: 'Continue', goto: ['uni_grounds', ''] }]);
+        } else {
+          scene.actions([{ label: 'Continue', goto: ['korr', ''] }]);
+        }
+      }
+      // TODO-QSP: savegame 'autosave_newgame.sav'
+      scene.actions([
+        { label: 'Introduction to character stats and the stat display', goto: ['$menu_settings', 'explanation_start'] },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+export const intro_game_start: LocationDef = {
+  name: 'intro_game_start',
+  title: 'Welcome to the Schoolgirl version! You will need to carry on',
+  region: 'other',
+  description: ['Welcome to the Schoolgirl version! You will need to carry on with your school life, manage your relationships and deal with whatever else comes up along the way!'],
+  enter: enter,
+};

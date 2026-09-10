@@ -1,0 +1,37 @@
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).totminut ?? 0) - ((s as any).locat ?? 0)?.['A84_rand_time'] > 60) {
+    (s as any).locat['A84_rand_time'] = ((s as any).totminut ?? 0);
+    (s as any).locat['A84_rand'] = Math.floor(Math.random() * 10) + 0;
+  }
+  if (((s as any).hour ?? 0) < 9) {
+    (s as any).locat['A84_loc'] = 'uni_dorm';
+    (s as any).locat['A84_arg'] = 'asleep';
+  } else {
+    (s as any).locat['A84_loc'] = 'uni_lessons';
+    if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 5) {
+      (s as any).locat['A84_loc'] = 'uni_dorm';
+      (s as any).locat['A84_arg'] = 'eighth_floor';
+    } else {
+      (s as any).locat['A84_loc'] = 'uni_dorm';
+      (s as any).locat['A84_arg'] = 'eighth_floor';
+      if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).locat ?? 0)?.['A84_rand'] < 8) {
+        (s as any).locat['A84_loc'] = 'uni_dorm';
+        (s as any).locat['A84_arg'] = 'eighth_floor';
+      } else {
+        (s as any).locat['A84_loc'] = 'unknown';
+        (s as any).locat['A84_arg'] = 'unknown';
+      }
+    }
+  }
+  scene.build();
+}
+
+export const kendra_schedule: LocationDef = {
+  name: 'kendra_schedule',
+  region: 'other',
+  enter: enter,
+};

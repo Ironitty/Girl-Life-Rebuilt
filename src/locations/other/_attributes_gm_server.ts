@@ -1,0 +1,312 @@
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: 2026/05/13
+  // TODO-QSP: CloPrice ~ 3000 * (20 + CloQuality) / 20
+  // TODO-QSP: Rounded to 50
+  // TODO-QSP: 2: 3300
+  // TODO-QSP: 3: 3450
+  // TODO-QSP: 4: 3600
+  // TODO-QSP: 5: 3750
+  // TODO-QSP: CloQuality ranges from 2 to 5
+  if (((s as any).ARGS ?? 0)[0] === 1) {
+    (s as any).CloQuality = 2;
+    (s as any).CloStrength = 236250;
+    (s as any).CloThinness = 2;
+    (s as any).CloTopCut = 1;
+    (s as any).CloSkirtShortness = 3;
+    (s as any).CloDress = 1;
+    (s as any).CloStyle2 = 2;
+    (s as any).CloServer = 1;
+    (s as any).CloPrice = 3300;
+  } else {
+    (s as any).CloQuality = 2;
+    (s as any).CloStrength = 236250;
+    (s as any).CloThinness = 2;
+    (s as any).CloTopCut = 1;
+    (s as any).CloSkirtShortness = 3;
+    (s as any).CloDress = 1;
+    (s as any).CloStyle2 = 2;
+    (s as any).CloServer = 1;
+    (s as any).CloPrice = 3300;
+    if (((s as any).ARGS ?? 0)[0] === 3) {
+      (s as any).CloQuality = 3;
+      (s as any).CloStrength = 241875;
+      (s as any).CloThinness = 2;
+      (s as any).CloTopCut = 1;
+      (s as any).CloSkirtShortness = 2;
+      (s as any).CloStyle2 = 2;
+      (s as any).CloServer = 1;
+      (s as any).CloPrice = 3450;
+    } else {
+      (s as any).CloQuality = 2;
+      (s as any).CloStrength = 236250;
+      (s as any).CloThinness = 2;
+      (s as any).CloTopCut = 2;
+      (s as any).CloSkirtShortness = 4;
+      (s as any).CloDress = 1;
+      (s as any).CloStyle2 = 2;
+      (s as any).CloServer = 1;
+      (s as any).CloPrice = 3300;
+      if (((s as any).ARGS ?? 0)[0] === 5) {
+        (s as any).CloQuality = 3;
+        (s as any).CloStrength = 241875;
+        (s as any).CloThinness = 3;
+        (s as any).CloTopCut = 1;
+        (s as any).CloSkirtShortness = 4;
+        (s as any).CloStyle2 = 2;
+        (s as any).CloServer = 1;
+        (s as any).CloPrice = 3450;
+      } else {
+        (s as any).CloQuality = 3;
+        (s as any).CloStrength = 241875;
+        (s as any).CloThinness = 1;
+        (s as any).CloTopCut = 1;
+        (s as any).CloSkirtShortness = 4;
+        (s as any).CloStyle2 = 2;
+        (s as any).CloServer = 1;
+        (s as any).CloPrice = 3450;
+        if (((s as any).ARGS ?? 0)[0] === 7) {
+          (s as any).CloQuality = 2;
+          (s as any).CloStrength = 236250;
+          (s as any).CloThinness = 4;
+          (s as any).CloTopCut = 2;
+          (s as any).CloSkirtShortness = 4;
+          (s as any).CloDress = 1;
+          (s as any).CloStyle2 = 2;
+          (s as any).CloServer = 1;
+          (s as any).CloPrice = 3300;
+        } else {
+          (s as any).CloQuality = 2;
+          (s as any).CloStrength = 236250;
+          (s as any).CloThinness = 5;
+          (s as any).CloTopCut = 4;
+          (s as any).CloSkirtShortness = 4;
+          (s as any).CloStyle2 = 2;
+          (s as any).CloServer = 1;
+          (s as any).CloBimbo = 1;
+          (s as any).CloPrice = 3300;
+          if (((s as any).ARGS ?? 0)[0] === 9) {
+            (s as any).CloQuality = 2;
+            (s as any).CloStrength = 236250;
+            (s as any).CloThinness = 1;
+            (s as any).CloTopCut = 1;
+            (s as any).CloSkirtShortness = 2;
+            (s as any).CloStyle2 = 2;
+            (s as any).CloServer = 1;
+            (s as any).CloPrice = 3300;
+          } else {
+            (s as any).CloQuality = 2;
+            (s as any).CloStrength = 236250;
+            (s as any).CloThinness = 1;
+            (s as any).CloTopCut = 1;
+            (s as any).CloSkirtShortness = 2;
+            (s as any).CloStyle2 = 2;
+            (s as any).CloServer = 1;
+            (s as any).CloPrice = 3300;
+            if (((s as any).ARGS ?? 0)[0] === 11) {
+              (s as any).CloQuality = 5;
+              (s as any).CloStrength = 253125;
+              (s as any).CloThinness = 3;
+              (s as any).CloTopCut = 1;
+              (s as any).CloSkirtShortness = 3;
+              (s as any).CloStyle2 = 2;
+              (s as any).CloServer = 1;
+              (s as any).CloPrice = 3750;
+            } else {
+              (s as any).CloQuality = 2;
+              (s as any).CloStrength = 236250;
+              (s as any).CloThinness = 1;
+              (s as any).CloTopCut = 2;
+              (s as any).CloSkirtShortness = 2;
+              (s as any).CloStyle2 = 2;
+              (s as any).CloServer = 1;
+              (s as any).CloPrice = 3300;
+              if (((s as any).ARGS ?? 0)[0] === 13) {
+                (s as any).CloQuality = 2;
+                (s as any).CloStrength = 236250;
+                (s as any).CloThinness = 1;
+                (s as any).CloTopCut = 2;
+                (s as any).CloSkirtShortness = 2;
+                (s as any).CloStyle2 = 2;
+                (s as any).CloServer = 1;
+                (s as any).CloPrice = 3300;
+              } else {
+                (s as any).CloQuality = 2;
+                (s as any).CloStrength = 236250;
+                (s as any).CloThinness = 1;
+                (s as any).CloTopCut = 1;
+                (s as any).CloSkirtShortness = 2;
+                (s as any).CloStyle2 = 2;
+                (s as any).CloServer = 1;
+                (s as any).CloPrice = 3300;
+                if (((s as any).ARGS ?? 0)[0] === 15) {
+                  (s as any).CloQuality = 3;
+                  (s as any).CloStrength = 241875;
+                  (s as any).CloThinness = 3;
+                  (s as any).CloTopCut = 2;
+                  (s as any).CloSkirtShortness = 2;
+                  (s as any).CloStyle2 = 2;
+                  (s as any).CloServer = 1;
+                  (s as any).CloPrice = 3450;
+                } else {
+                  (s as any).CloQuality = 3;
+                  (s as any).CloStrength = 241875;
+                  (s as any).CloThinness = 2;
+                  (s as any).CloTopCut = 2;
+                  (s as any).CloSkirtShortness = 2;
+                  (s as any).CloStyle2 = 2;
+                  (s as any).CloServer = 1;
+                  (s as any).CloPrice = 3450;
+                  if (((s as any).ARGS ?? 0)[0] === 17) {
+                    (s as any).CloQuality = 3;
+                    (s as any).CloStrength = 241875;
+                    (s as any).CloThinness = 3;
+                    (s as any).CloTopCut = 1;
+                    (s as any).CloSkirtShortness = 2;
+                    (s as any).CloStyle2 = 2;
+                    (s as any).CloServer = 1;
+                    (s as any).CloPrice = 3450;
+                  } else {
+                    (s as any).CloQuality = 5;
+                    (s as any).CloStrength = 253125;
+                    (s as any).CloThinness = 4;
+                    (s as any).CloTopCut = 2;
+                    (s as any).CloSkirtShortness = 4;
+                    (s as any).CloStyle2 = 2;
+                    (s as any).CloServer = 1;
+                    (s as any).CloPrice = 3750;
+                    if (((s as any).ARGS ?? 0)[0] === 19) {
+                      (s as any).CloQuality = 3;
+                      (s as any).CloStrength = 241875;
+                      (s as any).CloThinness = 4;
+                      (s as any).CloTopCut = 3;
+                      (s as any).CloSkirtShortness = 5;
+                      (s as any).CloStyle2 = 2;
+                      (s as any).CloServer = 1;
+                      (s as any).CloPrice = 3450;
+                    } else {
+                      (s as any).CloQuality = 5;
+                      (s as any).CloStrength = 253125;
+                      (s as any).CloThinness = 5;
+                      (s as any).CloTopCut = 4;
+                      (s as any).CloSkirtShortness = 5;
+                      (s as any).CloStyle2 = 2;
+                      (s as any).CloServer = 1;
+                      (s as any).CloBimbo = 1;
+                      (s as any).CloPrice = 3750;
+                      if (((s as any).ARGS ?? 0)[0] === 21) {
+                        (s as any).CloQuality = 2;
+                        (s as any).CloStrength = 236250;
+                        (s as any).CloThinness = 3;
+                        (s as any).CloTopCut = 1;
+                        (s as any).CloPantsShortness = 1;
+                        (s as any).CloStyle2 = 2;
+                        (s as any).CloServer = 1;
+                        (s as any).CloPrice = 3300;
+                      } else {
+                        (s as any).CloQuality = 2;
+                        (s as any).CloStrength = 236250;
+                        (s as any).CloThinness = 3;
+                        (s as any).CloTopCut = 1;
+                        (s as any).CloPantsShortness = 1;
+                        (s as any).CloStyle2 = 2;
+                        (s as any).CloServer = 1;
+                        (s as any).CloPrice = 3300;
+                        if (((s as any).ARGS ?? 0)[0] === 23) {
+                          (s as any).CloQuality = 3;
+                          (s as any).CloStrength = 241875;
+                          (s as any).CloThinness = 3;
+                          (s as any).CloTopCut = 1;
+                          (s as any).CloPantsShortness = 1;
+                          (s as any).CloStyle2 = 2;
+                          (s as any).CloServer = 1;
+                          (s as any).CloPrice = 3450;
+                        } else {
+                          (s as any).CloQuality = 3;
+                          (s as any).CloStrength = 241875;
+                          (s as any).CloThinness = 2;
+                          (s as any).CloTopCut = 1;
+                          (s as any).CloPantsShortness = 1;
+                          (s as any).CloStyle2 = 2;
+                          (s as any).CloServer = 1;
+                          (s as any).CloPrice = 3450;
+                          if (((s as any).ARGS ?? 0)[0] === 25) {
+                            (s as any).CloQuality = 3;
+                            (s as any).CloStrength = 241875;
+                            (s as any).CloThinness = 2;
+                            (s as any).CloTopCut = 1;
+                            (s as any).CloPantsShortness = 1;
+                            (s as any).CloStyle2 = 2;
+                            (s as any).CloServer = 1;
+                            (s as any).CloPrice = 3450;
+                          } else {
+                            (s as any).CloQuality = 3;
+                            (s as any).CloStrength = 241875;
+                            (s as any).CloThinness = 2;
+                            (s as any).CloTopCut = 1;
+                            (s as any).CloPantsShortness = 1;
+                            (s as any).CloStyle2 = 2;
+                            (s as any).CloServer = 1;
+                            (s as any).CloPrice = 3450;
+                            if (((s as any).ARGS ?? 0)[0] === 27) {
+                              (s as any).CloQuality = 3;
+                              (s as any).CloStrength = 241875;
+                              (s as any).CloThinness = 2;
+                              (s as any).CloTopCut = 1;
+                              (s as any).CloPantsShortness = 1;
+                              (s as any).CloStyle2 = 2;
+                              (s as any).CloServer = 1;
+                              (s as any).CloPrice = 3450;
+                            } else {
+                              (s as any).CloQuality = 4;
+                              (s as any).CloStrength = 247500;
+                              (s as any).CloThinness = 2;
+                              (s as any).CloTopCut = 1;
+                              (s as any).CloPantsShortness = 1;
+                              (s as any).CloStyle2 = 2;
+                              (s as any).CloServer = 1;
+                              (s as any).CloPrice = 3600;
+                              if (((s as any).ARGS ?? 0)[0] === 29) {
+                                (s as any).CloQuality = 4;
+                                (s as any).CloStrength = 247500;
+                                (s as any).CloThinness = 2;
+                                (s as any).CloTopCut = 1;
+                                (s as any).CloPantsShortness = 1;
+                                (s as any).CloStyle2 = 2;
+                                (s as any).CloServer = 1;
+                                (s as any).CloPrice = 3600;
+                              } else {
+                                (s as any).CloQuality = 3;
+                                (s as any).CloStrength = 241875;
+                                (s as any).CloThinness = 2;
+                                (s as any).CloTopCut = 1;
+                                (s as any).CloPantsShortness = 1;
+                                (s as any).CloStyle2 = 2;
+                                (s as any).CloServer = 1;
+                                (s as any).CloPrice = 3450;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
+export const _attributes_gm_server: LocationDef = {
+  name: '_attributes_gm_server',
+  region: 'other',
+  enter: enter,
+};

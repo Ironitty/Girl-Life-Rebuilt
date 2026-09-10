@@ -1,0 +1,56 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).spellCompSize = 0;
+  (s as any).spellComplete[spellCompSize] = ((s as any).totminut ?? 0) + ((s as any).ARGS ?? 0)[2];
+  // TODO-QSP: $spellTimeName[spellCompSize] = $ARGS[1]
+  // TODO-QSP: $spellCompExec[spellCompSize] = $ARGS[3]
+  // TODO-QSP: $spellTickExec[spellCompSize] = $ARGS[4]
+  if (((s as any).ARGS ?? 0)[0] === 0) {
+    (s as any).BeforeTime = ((s as any).prevtotmin ?? 0);
+  } else {
+    (s as any).BeforeTime = qspUntranslated(s, "ARGS[0]", { location: "spellTimer" });
+  }
+  if (((s as any).ARGS ?? 0)[1] === 0) {
+    (s as any).AfterTime = ((s as any).totminut ?? 0);
+  } else {
+    (s as any).AfterTime = qspUntranslated(s, "ARGS[1]", { location: "spellTimer" });
+  }
+  (s as any).i = 0;
+  (s as any).SpellEnds = 0;
+  // TODO-QSP: :SpellTimerLoop
+  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)('spellComplete')) {
+    (s as any).NumTicks = ((s as any).AfterTime ?? 0) - ((s as any).BeforeTime ?? 0);
+    if (((s as any).spellComplete ?? 0)?.[String((s as any).i ?? 0)] <= ((s as any).AfterTime ?? 0)) {
+      (s as any).NumTicks = ((s as any).NumTicks ?? 0) - (((s as any).AfterTime ?? 0) - ((s as any).spellComplete ?? 0)?.[String((s as any).i ?? 0)]);
+      (s as any).SpellEnds = 1;
+    } else {
+      (s as any).SpellEnds = 0;
+    }
+    if (((s as any).NumTicks ?? 0) > 0  &&  ((s as any).spellTickExec ?? 0)?.[String((s as any).i ?? 0)] !== '') {
+      (s as any).j = 0;
+      // TODO-QSP: :SpellTickLoop
+      if (((s as any).j ?? 0) < ((s as any).NumTicks ?? 0)) {
+        (s as any).j = ((s as any).j ?? 0) + (1);
+        // TODO-QSP: jump 'SpellTickLoop'
+      }
+    }
+    if (((s as any).SpellEnds ?? 0) === 1) {
+      if (((s as any).spellCompExec ?? 0)?.[String((s as any).i ?? 0)] !== '') {
+      }
+    }
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    // TODO-QSP: jump 'SpellTimerLoop'
+  }
+  scene.build();
+}
+
+export const spellTimer: LocationDef = {
+  name: 'spellTimer',
+  region: 'other',
+  enter: enter,
+};

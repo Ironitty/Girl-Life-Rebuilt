@@ -1,0 +1,2061 @@
+import { qspCall } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  if (((s as any).anushkaQW ?? 0)?.['radspy'] === 0) {
+    (s as any).anushkaQW['radspy'] = 1;
+  }
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad1.jpg');
+  scene.text('Anushka gets on the bed on all fours in her underwear and wiggles her ass around. "Damn! You have one of the finest asses I\'ve ever seen, you know that Nush?" You can tell by the voice that it\'s Radomir. He gives her ass a good squeeze with his hand, then grabs her panties and pulls them down, roughly jerking them off and tossing them aside. He then starts playing with her bare ass and rubbing her pussy with his fingers.');
+  qspCall(s, 'arousal', 'voyeur', 5);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+    { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad2.jpg');
+    scene.text('"Fuck, I\'m so hard! Hurry up and suck my dick!" he says after giving her a slap hard enough to leave a red outline of his hand on her ass. She yelps a little, but turns around and starts sucking his dick. Before too long, he grabs her by the sides of the head and starts fucking her mouth, gagging her as he shoves his dick balls deep down her throat. He then forces his dick balls deep into her mouth and holds her there for several seconds, causing her to choke and gag before he pulls his dick out of her mouth, leaving her choking and gasping for breath.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5, 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad3.jpg');
+    scene.text('While she\'s catching her breath, he grabs her by the leg, spins her around and drags her towards him until her ass is almost hanging off the edge of the bed. He pushes her legs apart and shoves his dick into her pussy. She winces a little and bites her lower lip, obviously not as wet and ready as she would have liked. He doesn\'t seem to notice or doesn\'t care as he starts hammering away at her pussy, balls deep. Each thrust makes her grunt, but these slowly turn into moans of pleasure.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    if (((s as any).npc_had_sex ?? 0)?.['A144']) {
+      // TODO-QSP: act 'Walk in and join them': gt 'anushkaev2', 'rad3some'
+    }
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'boyStat', 'A154', 'a');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad4.jpg');
+    scene.text('Just as she\'s starting to moan in pleasure, he pulls out of her and flips her over, grabbing her ass and giving her cheek a hard squeeze, followed by another hard slap that leaves a red outline of his hand behind, causing her to yelp again. "Fuck, you have such a nice ass Nush." She apparently knows what that means, and she quickly grabs the bottle of lube out of her nightstand. Before she can use it, he grabs it from her. "Give me that, you always use too much." he growls before squirting just a little onto the head of his dick and rubbing it down the shaft. Once he\'s done, he briefly rubs his fingers between her cheeks.');
+    // TODO-QSP: dynamic text: He pushes her down until she's on her stomach and tosses the bottle aside before...
+    scene.text(`He pushes her down until she's on her stomach and tosses the bottle aside before he leans forward, pushing his dick between her cheeks as she struggles a little. "You didn't use enough lube!" she winces as he keeps struggling to penetrate her. "Shut up Nush, this feels better. You're so fucking tight!" he says and shoves his hips forward hard, which causes her to jump a little and cry out in pain. "Oh fuck that hurt! You need to use more lube!" she protests in a stressed voice, but he pushes her head against the mattress. You can see her wincing in pain and white-knuckling her grip on the bed sheets. "See? I knew you didn't need much lube." he says as he struggles to force his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick into her ass, moaning in pleasure as he does.`);
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    if (Math.floor(Math.random() * 5) + 0 === 0  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
+      scene.actions([{ label: 'Continue', goto: ['anushkaev2', 'watch_nushrad_maksim_blackmail'] }]);
+    }
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad5.jpg');
+    scene.text('He pulls his dick almost all the way out of her asshole before slamming it back in balls deep, moaning with pleasure as she cries out and winces in pain. She tries to pull away, but he roughly pulls her back. "Not so fucking hard!"');
+    scene.text('"Oh please! You bitches love getting pounded like the sluts you are! So just shut the fuck up and enjoy it!" he says and starts hammering her ass even harder. She grunts loudly in pain with the occasional moan of pleasure, but you don\'t think he can tell the difference, or just doesn\'t care.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad6.jpg');
+    scene.text('He grabs hold of her hips and pulls her up until she\'s on her knees. He then shoves her face down into the mattress and goes back to hammering away at her ass. She places a hand on his hip in an effort to slow him down a little, but he just roughly shoves her hand away and slaps her hard on the ass. She tries several more times to reach back and slow him down, but he roughly shoves her hands away each time. "Please Rad, slow down or use more lube!" she pleads. "Fucking take it bitch, take it!" he growls and just seems to fuck her ass even harder.');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad7.jpg');
+    scene.text('She starts pulling away, but he leans forward as she does, putting more weight on her. Her hips are slowly forced down until she\'s lying flat on her stomach again. He clamps his hands on her hips, pinning her in place between him and the mattress to keep her from pulling away more. Her bed sheets are tightly balled up in her clenched fists as she white knuckle grips the sheets. "Please Rad, just slow down a little. Please!" she pleads, but he continues to ignore her pleas and keeps hammering away at her ass. "Fuck yes! God damn, I\'m about to bust a nut!"');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Climax', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad8.jpg');
+    scene.text('He suddenly pulls his dick out of her asshole and starts cumming over her cheeks, moaning loudly as he does. She lets out a sigh as a relieved look washes over her face. When he finishes cumming, he lets go of her and steps away. "Fuck Nush, you\'re the best fucking slut I\'ve ever fucked. I\'ll never get tired of fucking your tight little ass."');
+    scene.text('Despite how he treated her, she looks back at him with a smile and seems to be basking in the praise he\'s now giving her. He barely even looks at her as he starts getting dressed and she wipes the cum from her ass before getting dressed as well. "Well I\'ve got to go, I\'ve got things to do." He pauses for a moment when he notices how gingerly she is moving. "You good?" She gives him a sarcastic gaze, followed by a fairly dirty look. "No, my fucking asshole is on fire!" He laughs loudly, apparently finding it pretty funny. "What can I say? Sucks to be a hoe! Aching holes is your lot in life." Without another glance or word, he strides for the door as she flips him off behind his back and mutters "Fucking asshole…"');
+    qspCall(s, 'arousal', 'voyeur_sex', 5);
+    qspCall(s, 'stat', '');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Wait for him to leave', goto: ['anushkaev2', 'wait_nushrad'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWatchNushradMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/caughtspying.jpg');
+  scene.text('As you\'re watching, you\'re so caught up in the action that you don\'t notice your hand slide down to your crotch, nor hear the footsteps heading your way.');
+  scene.text('"What are you doing?" You nearly jump out of your skin and blush when you look back and see Maksim, cursing to yourself for being so foolish as to let yourself be caught spying.');
+  scene.text('You feel your stomach really drop when you see the phone in his hand. He was recording you. "Uh… I… Nothing…" you sheepishly reply.');
+  scene.text('"Well this recording says otherwise. Maybe I should show Anushka and Rad what you were doing?" You reach for the phone, but he pulls it away and pushes a button. "There. I just uploaded it to the cloud. Maybe we can work something out?" His smug grin is huge.');
+  scene.text('You sigh in defeat. "What do you want?"');
+  scene.text('He grins even wider and looks even more smug. "Whatever I want."');
+  scene.text('You start to shake your head, but before you can tell him to get lost, he interrupts you. "Just small favors, like showing me your tits when I want, buying me a girly mag, stuff like that." You\'re about to tell him fuck off, but stop. You\'re sure Anushka wouldn\'t care, but Radomir… What if he told everyone in school? On the other hand, do you want Maksim to lord this over you for who knows how long?');
+  qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim.jpg');
+    scene.text('"Fuck off, you little shit!" you snarl and smirk at his surprised expression.');
+    scene.text('Anger washes over him. "Fine, bitch! I\'ll just go show her."');
+    scene.text('You smirk at him. "Go ahead, go in there while your sister is having sex. I\'m sure they won\'t mind. If you wait until they\'re finished, then I\'m sure your sister won\'t mind that you were trying to blackmail one of her friends. Who do you think she\'ll be more pissed at?"');
+    scene.text('He sneers at you and pauses before angrily walking away.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Wait for Rad to leave', goto: ['anushkaev2', 'wait_nushrad'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Agree', goto: ['anushkamaksim', 'maksim_blackmail'] },
+  ]);
+  scene.build();
+}
+
+function enterWaitNushrad(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  scene.img('images/characters/shared/headshots_main/big154.jpg');
+  if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    // TODO-QSP: dynamic text: You only take a few steps from the door when it opens and turn like you were jus...
+    scene.text(`You only take a few steps from the door when it opens and turn like you were just heading to the room. He gives you a knowing smirk. "Hey ${((s as any).pcs_nickname ?? 0)}, why don't you join us next time? I wouldn't mind giving you the fucking of your life. I'm sure Nush wouldn't mind either since her ass could use a break. She finds me a bit too big, but what can a guy do?" he asks rhetorically with a laugh.`);
+    scene.actions([
+      { label: 'Say nothing', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big154.jpg');
+    scene.text('Before you can think of a reply, he walks briskly past you and heads for the apartment door. You open Anushka\'s door and walk in, deciding not to say anything about what you just saw.');
+    scene.actions([
+      { label: 'Enter her room', goto: ['anush_bedroom', 'anushroom'] },
+    ]);
+  } },
+      { label: 'You don\'t have to be so rough', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    scene.img('images/characters/shared/headshots_main/big154.jpg');
+    scene.text('"Well you could try not being so rough with her," you tell him.');
+    scene.text('He snorts and shakes his head. "Please! She\'s just like all you bitches - she loves every minute of it. I could come back later and she would just roll over, spread those cheeks and let me fuck her ass again. No matter how much she whines and cries about it, she\'s always ready for another good ass-fucking."');
+    scene.text('You\'re not really sure what to say. If she didn\'t like it, why would she keep letting him do it? You don\'t get to find out since he already left while you were lost in your thoughts. You open Anushka\'s door and walk in, deciding not to say anything about what you just saw.');
+    scene.actions([
+      { label: 'Enter her room', goto: ['anush_bedroom', 'anushroom'] },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.text('You only take a few steps from the door when it opens and turn like you were just heading to the room. He gives you a slight frown of disgust. "You know if you took better care of yourself, I might give you the fucking of your life too. But I\'ve got standards, you know. Now Nush, that\'s a fine piece of ass right there," he says while hooking his thumb over his shoulder and pointing back towards her room.');
+    scene.actions([
+      { label: 'Say nothing', handler: (st: GameState) => {
+    scene.img('images/characters/shared/headshots_main/big154.jpg');
+    scene.text('Before you can think of a reply, he walks briskly past you and heads for the apartment door to leave. You open Anushka\'s door and walk in, deciding not to say anything about what you just saw.');
+    scene.actions([
+      { label: 'Enter her room', goto: ['anush_bedroom', 'anushroom'] },
+    ]);
+  } },
+      { label: 'You don\'t have to be so rough', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    scene.img('images/characters/shared/headshots_main/big154.jpg');
+    scene.text('"Well you don\'t have to be so rough with her," you tell him.');
+    scene.text('He snorts and shakes his head. "Please! She\'s like all you bitches - she loves every minute of it. I could come back later and she would just roll over, spread those cheeks and let me fuck her ass again. No matter how much she whines and cries about it, she is always ready for another good ass fucking." He then pauses and laughs. "Well you would understand if you ever found a guy willing to fuck you at least." he says as if the mere thought of it disgusts him.');
+    scene.text('You\'re not really sure what to say before he suddenly bursts out laughing. "Oh fuck. You were spying on us, weren\'t you?" You blush when he realizes what you were doing, which only makes him laugh harder. You can hear him laughing until he walks out of the apartment and closes the door.');
+    scene.actions([
+      { label: 'Enter her room', goto: ['anush_bedroom', 'anushroom'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterRad3some(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'npcStat', 'A154', 'a');
+  qspCall(s, 'stat', '');
+  if (((s as any).pcs_hotcat ?? 0) < 6) {
+    if (((s as any).pcs_mood ?? 0) > 20) {
+      qspCall(s, 'mood', 'lower', 'medium');
+    }
+    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin2.jpg');
+    // TODO-QSP: dynamic text: You walk in, confident you'll be joining them. Closing the door behind you, you ...
+    scene.text(`You walk in, confident you'll be joining them. Closing the door behind you, you manage to walk all the way over to the bed where Radomir is still hammering away at Anushka's pussy. After a few seconds, Anushka notices you and seems a little surprised to see you. "What the fuck?! ${((s as any).pcs_nickname ?? 0)}?" she asks through her grunts and moans as Radomir keeps hammering away. He finally stops when she speaks to you and he turns his head to you as well. He gives you a slight look of disgust. "What the fuck do you want? Can't you see we're busy here? Or are you just some loser pervert that likes to watch?" he asks in a mocking tone.`);
+    scene.text('Your smile falters at Radomir\'s comments. "It looked like you guys were having fun, so I thought I could join in as well…" you tell them.');
+    // TODO-QSP: dynamic text: Anushka hesitates for a moment. "<<$pcs_nickname>>, uh…"
+    scene.text(`Anushka hesitates for a moment. "${((s as any).pcs_nickname ?? 0)}, uh…"`);
+    // TODO-QSP: dynamic text: Before Anushka can finish what she was about to say, Radomir interrupts. "For fu...
+    scene.text(`Before Anushka can finish what she was about to say, Radomir interrupts. "For fucks sake ${((s as any).pcs_nickname ?? 0)}, can you get out of here! Your face is killing my boner!" he says in disgust.`);
+    scene.text('Anushka slaps him on the arm. "You don\'t have to be a dick about it, Rad." She then turns towards you. "This really isn\'t a good time. Maybe we can hang out sometime later, but can you, you know, take off?" she asks fairly pleasantly, but it is obvious she has no more desire to hook up with you than Radomir does. Feeling rejected, you nod and mumble an apology as you leave her room, shutting the door before leaving the apartment.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+    ]);
+  } else {
+    (s as any).radomirQW['had_sex'] = ((s as any).radomirQW['had_sex'] ?? 0) + (1);
+    if (((s as any).radomirQW ?? 0)?.['nush3some'] === 0) {
+      (s as any).radomirQW['nush3some'] = 1;
+    }
+    (s as any).npc_had_sex['A144'] = 1;
+    (s as any).npc_had_sex['A154'] = 1;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin1.jpg');
+    // TODO-QSP: dynamic text: You walk in, confident you'll be joining them. Closing the door behind you, you ...
+    scene.text(`You walk in, confident you'll be joining them. Closing the door behind you, you walk up to the bed where Radomir is still hammering away at Anushka's pussy. After a few seconds, Anushka notices you and gives you a grin. "Oh hey ${((s as any).pcs_nickname ?? 0)}, what's up?" she asks through grunts and moans as Radomir keeps hammering away. He only stops once she speaks to you, turning his head to give you a once-over from head to toe.`);
+    scene.text('You smile in return. "You look like you\'re having fun, so I thought I might as well join you."');
+    scene.text('Anushka glances at Radomir. "It\'s fine by me, Rad."');
+    // TODO-QSP: dynamic text: He grins as he rolls off Anushka and onto his back on the bed, his dick pointing...
+    scene.text(`He grins as he rolls off Anushka and onto his back on the bed, his dick pointing straight up. "Of course you did ${((s as any).pcs_nickname ?? 0)}, and who could blame you?" he says in a cocky tone. He then glances at Anshuka and back to you. "Don't worry, girls. There is enough of me to go around." he says with a laugh as he looks at you. Anushka rolls her eyes at his comment and sits at his side. "Well, come on ${((s as any).pcs_nickname ?? 0)}. Make that pretty mouth of yours useful," he says, indicating his cock.`);
+    qspCall(s, 'arousal', 'voyeur', 2);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck his dick', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs1.jpg');
+    scene.text('You drop to your knees at the edge of the bed and take his cock into your mouth. As you start to suck it, Anushka slides off the bed and kneels beside you, watching as you suck his cock. She pushes your head down every so often, forcing you to deepthroat him. She also starts stripping you and you soon find yourself naked. Radomir just lies back and moans in pleasure, but Anushka eventually releases your head and slaps you on the ass. "Come on and mount him already!"');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Ride him', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs2.jpg');
+    scene.text('Taking the slap to the ass as encouragement, you stand and crawl on top of Radomir, straddling him before slowly lowering yourself down, using one hand to guide his dick into your already wet pussy. He easily slides deep inside you and you begin to ride him, his dick filling your pussy.');
+    scene.text('He starts to suck on your nipples as you bounce on top of him while Anushka moves up to sit behind him, occasionally reaching over to play with your tits and nipples as well. You moan in pleasure as they stimulate your body. After a while, he abruptly grabs you by the hips, and without any warning, lifts you off and tosses you to the side on the bed. He climbs onto the floor, grabs your leg and drags you to the edge of the bed. "Lie on your back, slut." he commands.');
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group');
+    qspCall(s, 'arousal', 'foreplay', (-2), ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'foreplay', (-3), ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lie on your back', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs3.jpg');
+    scene.text('You roll over onto your back and spread your legs. He gives your ass a firm slap. "Yeah, this is a fine-looking little ass." Anushka gets the cue and grabs a bottle of lube from her nightstand. Radomir growls as he sees it, but grabs it anyway. "You girls are so fucking obsessed with lube. If it was up to you, you would use so much you couldn\'t feel anything." he complains as he grudgingly squirts just a little onto his fingertip and rubs it briefly against your asshole. There\'s barely any real lubrication beyond your own pussy juices on his dick.');
+    // TODO-QSP: dynamic text: He tosses the bottle aside, just as you realize he is planning to fuck your ass,...
+    scene.text(`He tosses the bottle aside, just as you realize he is planning to fuck your ass, just as he lines his dick up with your asshole. You feel the head pressing against your tight hole, the pressure builds up until the head painfully pops into your asshole, making you cry out a little in pain. There isn't enough lube, but once inside, he keeps shoving his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick deeper into your ass until he finally works it balls deep. He then starts painfully hammering away at your ass while Anushka starts licking your pussy, which helps ease the pain a little.`);
+    qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID ?? 0), 'group', 'lesbian', 'rough', 'lube');
+    qspCall(s, 'arousal', 'cuni', (-3), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Not so rough', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs3.jpg');
+    scene.text('Radomir doesn\'t seem to care whether this hurts or not. He just keeps hammering your backdoor without mercy. After a few minutes, it starts to hurt so much you can\'t take it anymore. "Slow down and don\'t be so rough! It hurts!" you whimper.');
+    scene.text('He just ignores you and keeps hammering at your ass. "STOP! It fucking hurts!" you plead as you try and scoot away from him.');
+    scene.text('He grabs you by the hips and drags you back, pausing to pull his dick almost completely out of you before hammering it back in balls deep. "Shut the fuck up and take it like the slut you are!" He pounds your hole even harder now.');
+    scene.text('Anushka speaks up. "Stop being such a fucking jerk and ease up, Rad." He ignores her as well and keeps fucking your ass.');
+    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group', 'lesbian', 'rough', 'lube');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'willpower', 'anal', 'resist');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Push him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Push him off', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A154', 'hate');
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/radnushleave.jpg');
+    scene.text('You put your feet against him and push while pulling his hands off your hips. You manage to slide away from him and finally feel the relief of his dick sliding out of your asshole. "I said to fucking stop!" you yell.');
+    // TODO-QSP: dynamic text: He stops trying to pull you back, confused. "What the fuck is your problem <<$pc...
+    scene.text(`He stops trying to pull you back, confused. "What the fuck is your problem ${((s as any).pcs_nickname ?? 0)}?" he angrily asks.`);
+    scene.text('"You were way too fucking rough is what my problem is!" you snarl as you slide off the bed, gather up your discarded clothes and get dressed.');
+    scene.text('He rolls his eyes. "Oh please, all you bitches like to be fucked hard and rough and you know it."');
+    scene.text('You just shake your head at him. "No means no and stop means stop, Rad!"');
+    scene.text('"Then get the fuck out! No one invited you anyway." he snarls.');
+    scene.text('Anushka, still kneeling on the bed next to where Radomir is standing, finally interjects. "Chill out and stop being an asshole, Rad."');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad6.jpg');
+    scene.text('You keep getting dressed while Radomir turns towards Anushka. "Stay out of this, Nush!" he says as he grabs her by the hair and forces her face down against the mattress before he looks at you. "Yeah, that\'s right bitch. Get the fuck out of here. No one wants you here!" he barks as he uses his other hand to guide his dick to Anushka\'s asshole. He struggles as he pushes against her asshole with his dick. "Use some fucking lube." she says before he shoves forward, popping the head of his dick into her ass and causing her to cry out and grimace in pain while he moans in pleasure.');
+    scene.text('"Shut up about the fucking lube already!" he growls as he grabs her hips and shoves himself balls deep into her ass. It makes her cry out more, and she white knuckles the bed sheets, obviously finding it just as painful as you did. However, she isn\'t telling him to stop, even though you don\'t think she is enjoying it. Not knowing what else to do, you finish getting dressed to the sounds of Anushka grunting in pain and Radomir moaning in pleasure. You leave the two of them alone and walk out of her bedroom, closing the door behind you and heading for the apartment door to leave.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Let him pound your ass', goto: ['anushkaev2', 'radnush_asspound'] },
+    ]);
+  } },
+      { label: 'Let him pound your ass', goto: ['anushkaev2', 'radnush_asspound'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterRadnushAsspound(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'npcStat', 'A154', 'a');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs4.jpg');
+  // TODO-QSP: dynamic text: He moans in pleasure as he hammers away. "Fuck yeah <<$pcs_nickname>>, your ass ...
+  scene.text(`He moans in pleasure as he hammers away. "Fuck yeah ${((s as any).pcs_nickname ?? 0)}, your ass is almost as tight as Nush's." He then grabs you by the ankles and spreads your legs apart and towards you. "Grab her legs, Nush." Anushka does as he asks and takes hold of your ankles, holding your legs apart and up towards your face as Radomir starts taking the longest strokes he can. "Fuck yeah, just like that!" he moans out, seeming to really be enjoying himself. You take several deep breaths, and try to relax and enjoy this as much as you can.`);
+  qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'maso', 'rough');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Anushka\'s turn', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs5.jpg');
+    // TODO-QSP: dynamic text: You almost can't take it anymore when he suddenly pulls out of you and pulls you...
+    scene.text(`You almost can't take it anymore when he suddenly pulls out of you and pulls you off the edge of the bed. You just catch yourself and come to a rest on your knees at the side of the bed. "Come here, Nush." he demands and she crawls over to him. He shoves her down and flips her over onto her back before pushing her legs apart. She then grabs you by the hair and forces your face into her pussy. You start to lick it, eliciting moans of pleasure from her, which quickly turn to groans of pain when Radomir shoves his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick into her ass, forcing himself balls deep and starting to hammer away at her asshole.`);
+    qspCall(s, 'arousal', 'cuni_give', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lie back and spread your legs', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs6.jpg');
+    scene.text('You know she isn\'t really enjoying the ass pounding she\'s getting from Radomir since her pussy isn\'t very wet other than from your tongue licking it. You feel him grab you by the hair and pull you away from her pussy before turning your head towards him. "Go lie on your back in front of Nush." Just as he says that, he pulls out of Anushka and slaps her on the ass. "Get on all fours like a good little bitch."');
+    // TODO-QSP: dynamic text: Anushka gets on all fours as you lie down in front of her. "Spread your legs <<$...
+    scene.text(`Anushka gets on all fours as you lie down in front of her. "Spread your legs ${((s as any).pcs_nickname ?? 0)}!" he commands, and as you do, he shoves Anushka's face into your crotch and she starts licking your pussy at once. He then stands up on the bed and lowers himself back inside her from behind until he moans in pleasure. "Fuck Nush, no matter how many times I tear your ass up, it is always so tight!" he says as he goes back to fucking her asshole. He grabs hold of her hips and starts pounding her as fast and hard as he can.`);
+    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get on your hands and knees', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs7.jpg');
+    // TODO-QSP: dynamic text: After several minutes, Radomir is starting to sweat as he pulls out of Anushka a...
+    scene.text(`After several minutes, Radomir is starting to sweat as he pulls out of Anushka and pushes her aside. "Come on ${((s as any).pcs_nickname ?? 0)}, get up here and take her place." Feeling a little better and getting some nice pleasure from Anushka eating you out, you figure you can go for round two. You get up, get on all fours and back up towards him. "Spread her ass for me, Nush." You feel Anushka's hand grab your ass cheeks and spread them apart, quickly followed by Radomir slamming his cock back up your asshole. Any time you start to pull away, he reaches down and pulls you back until he starts to grunt and you can tell he is about to blow his load.`);
+    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian', 'maso', 'rough');
+    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum sharing', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/rad/radnushs8.jpg');
+    scene.text('"Fuck, I\'m about to cum! Get on your knees!" he demands as he pulls out of your ass. You turn and slide off the bed onto your knees. Anushka is already on her knees beside you, waiting. Within moments, Radomir starts cumming on both your faces, switching which face his dick is pointing towards between spurts of cum. It doesn\'t take long until both your faces are covered. With the last spurt, he stumbles back and collapses on a chair to look at you both. "Fuck, that was amazing. We\'ve got to do this again sometime." he says with a laugh. Anushka ignores him and just leans over and gives you a kiss, swapping his cum between you.');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Clean up and get dressed', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).cumspclnt = 12;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/activities/phone/anushka/7.jpg');
+    scene.text('As you break the kiss, Anushka turns and sticks her tongue out. You notice that she is holding up her phone, and takes a selfie of the two of you covered in cum. She then gets up and starts to wipe the cum off her face with a tissue, offering one to you as well. At this point, Radomir is almost dressed. He slaps Anushka on the ass and heads for the door. "Later, bitches!" he quips as he walks out. "What a fucking asshole." she mutters once he\'s gone. You both finish getting dressed and she lies down on her bed.');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Say nothing and join her on the bed', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'about_rad'] },
+      { label: 'Ask about the selfie', goto: ['anushkaev2', 'rad_selfie'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterRadSelfie(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+  scene.text('"What are you going to do with that?" you ask, wondering why she took a selfie of you when you had cum splattered over your face.');
+  scene.text('She just shrugs. "Keep it as a memento, at least for a while. I often take selfies during or after sex as keepsakes. Why do you ask?"');
+  scene.text('"You\'re not going to show it to anyone, are you?"');
+  scene.text('She looks a little surprised you would ask that. "No, of course not." Then she grins. "Unless you want me to, that is…"');
+  scene.actions([
+    { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+    { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+    { label: 'Talk about what just happened', goto: ['anushkaev2', 'about_rad'] },
+    { label: 'Can I see it?', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/activities/phone/anushka/7.jpg');
+    scene.text('"Can I see it? The selfie that is."');
+    scene.text('"Sure, if you want." She reaches over and grabs her phone, takes a moment to pull up the image and then shows it to you. You take a moment to look at it. You have to admit it is kind of hot and it turns you on a little just looking at it. She then interrupts your thoughts. "I can send it to you if you want a copy of it."');
+    qspCall(s, 'arousal', 'voyeur_sex', 2);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'about_rad'] },
+      { label: 'Ask her to send it to you', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).anushkaphoto[7] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('You think about it and decide you would like a copy as well. "Yeah, send it to me."');
+    scene.text('She grins, obviously approving of your choice. You then get a notification on your phone and quickly add the selfie to your gallery.');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'about_rad'] },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAboutRad(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+  scene.text('Now that Radomir is gone, you decide to ask her about what just happened. "So what\'s up with Radomir being so rough? Is that normal for him?"');
+  scene.text('She just shrugs. "Sometimes… Yeah, okay most of the time. You would think he is allergic to lube or something." she says with a slight laugh.');
+  scene.text('You think to yourself that you don\'t see her letting other guys treat her so roughly. "Why do you let him treat you like that then? I know it hurts."');
+  scene.text('She gives you a somewhat sour look. "Why did you?"');
+  scene.text('You smile at her. "Because you were here and I figured it wouldn\'t be as bad for both of us. So why?" you press her.');
+  scene.text('She sighs. "It\'s complicated, okay?"');
+  scene.actions([
+    { label: 'Drop it', goto: ['anush_bedroom', 'bed'] },
+    { label: 'Explain', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('You nod. "Okay, I\'ve got time. How about you just tell me?"');
+    scene.text('She frowns at you, clearly getting annoyed at the questions. "Because… because when it\'s great, it\'s amazing and when it\'s not… Well, I deal with it."');
+    scene.text('You can tell she is holding something back.');
+    scene.actions([
+      { label: 'Let it drop', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Press her for more details', handler: (st: GameState) => {
+    if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
+      (s as any).anushkaQW['rad_date'] = 1;
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('"There is more to it than that. We\'re friends right? So why don\'t you tell me?" you say, continuing to prod her.');
+    scene.text('You can tell she is getting more and more annoyed. "For fuck\'s sake, you\'re like a dog with a bone about this! We used to date, okay? It makes things different. You happy now?"');
+    scene.text('"Thank you for telling me." you reply.');
+    scene.actions([
+      { label: 'Drop it', goto: ['anush_bedroom', 'bed'] },
+      { label: 'You guys use to date?', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('"So you guys use to date? I didn\'t know that. What happened?" you ask.');
+    scene.text('She frowns at you. "We fucking broke up, obviously. Will you fucking drop it already?" You can tell she is starting to get pissed at your prying.');
+    scene.actions([
+      { label: 'Let it drop', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Why did you break up?', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'loathe');
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('You need to know why they broke up, so you push on. "Why did you guys break up?" you ask.');
+    // TODO-QSP: dynamic text: She gets off the bed. "It's none of your fucking business <<$pcs_nickname>>! I t...
+    scene.text(`She gets off the bed. "It's none of your fucking business ${((s as any).pcs_nickname ?? 0)}! I think you need to leave now." she barks while pointing at the door.`);
+    scene.text('She\'s pretty pissed at you, so you get up and head for the door.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Apologize', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('You stop at the door. "I\'m sorry. I didn\'t mean to upset you."');
+    scene.text('She just shakes her head angrily, not willing to forgive you. "Whatever." she quips and again points to the door.');
+    scene.text('You just nod. "Okay, see you later I guess…" You leave before things get worse.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  if (((s as any).anushkaQW ?? 0)?.['valspy'] === 0) {
+    (s as any).anushkaQW['valspy'] = 1;
+  }
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval1.jpg');
+  scene.text('As you watch, Anushka leans forward and starts sucking on the hard dick and you hear the guy moaning in pleasure. "Fuck Nush, you suck cock better than anyone." You can tell by the voice that it\'s Valentin.');
+  scene.text('She keeps bobbing her head up and down on his dick while she flips him off as a reply to his comment, which just makes him laugh. She slowly strips her clothes as she continues sucking.');
+  qspCall(s, 'arousal', 'voyeur', 5);
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+    { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval2.jpg');
+    scene.text('Once she\'s naked, she turns around so they are 69ing each other and you push the door open just a little more so you can see all the action. Valentin is eagerly lapping at her pussy as she continues to give him head. You know you really shouldn\'t be spying and that you could be caught at any moment.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval3.jpg');
+    scene.text('"Get up, I want to fuck you." he says as he slaps her ass.');
+    scene.text('She turns around again, laughing. "Who said you\'re the one who\'s going to do the fucking?" she quips as she stands up and straddles him before slowly lowering herself down until his dick slides into her wet pussy. They both moan in pleasure and she slowly starts riding him reverse cowgirl style. She slowly picks up speed and starts fucking him harder and faster, but after a few minutes, she seems to be getting tired and starts slowing down.');
+    qspCall(s, 'arousal', 'voyeur', 8);
+    qspCall(s, 'stat', '');
+    if (((s as any).npc_had_sex ?? 0)?.['A144']) {
+      // TODO-QSP: act 'Walk in and join them': gt 'anushkaev2', 'val3some'
+    }
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    if (Math.floor(Math.random() * 5) + 0 === 0  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
+      scene.actions([{ label: 'Continue', goto: ['anushkaev2', 'watch_nushval_maksim_blackmail'] }]);
+    }
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval4.jpg');
+    scene.text('Once she slows down enough, he lifts her off him and tosses her to the side. She lets out a slight squeal when she lands on her side, slightly bouncing on the bed. He rolls up onto his knees and slaps her on the ass again. "Roll over onto your hands and knees."');
+    scene.text('She rolls over and he scoots up behind her and slips his dick back in her wet pussy. He starts fucking her doggy style, causing her to moan loudly - the louder she moans, the harder and faster he fucks her. She soon has an immense orgasm that rocks her whole body, leaving her bitting the sheets to stop herself from crying out too loudly.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'npcStat', 'A158', 'a');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval5.jpg');
+    // TODO-QSP: dynamic text: Once her orgasm has passed, he slaps her ass again and pulls his dick out of her...
+    scene.text(`Once her orgasm has passed, he slaps her ass again and pulls his dick out of her pussy. "Spread your ass for me baby." She grabs a bottle of lube out of her dresser, squirts some onto his dick and some on her ass before she reaches back with one hand, grabs one of her ass cheeks and spreads it wide. He pushes his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick gently into her ass, which elicits a loud moan of pain and pleasure from her.`);
+    scene.text('He is fairly slow and doesn\'t go too deep at first, but once she starts moaning loudly and exclaiming "Yes, yes! Fuck yes! Oh god yes!" he starts fucking her a lot harder and faster, finally slamming himself balls deep into her ass. She grips the sheets tightly, just as her body is rocked by another massive orgasm. She buries her face in her shoulder, partially muffling her cries of pleasure. You quickly glance around to make sure no one else heard that.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['pav_complex', 'start'] },
+      { label: 'Climax', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval6.jpg');
+    scene.text('"I\'m about to cum!" he groans and pulls his cock out of her ass, slides off the bed and starts jerking his dick. Anushka quickly slides off the bed and onto her knees in front of him. She leans her head back and opens her mouth just in time for his load of cum to explode across her face.');
+    scene.text('Most of it ends up on her forehead and nose, but some of it ends up in her open mouth. He milks the last few drops of cum out of his dick, letting them land on her tongue. "Fuck, that was amazing," he says as she swallows what was in her mouth. They both start getting dressed as she cleans his cum off her face. Once she\'s cleaned up, he kisses her on the forehead. "I need to get going babe. I need to see that guy about a part for my bike."');
+    scene.text('She sits on her bed and smirks at him. "Whatever, I got what I needed. You can go."');
+    scene.text('He laughs and bows slightly. "Why thank you, Your Majesty, I\'m glad I could be of service." They both laugh and he turns towards the door. You quickly close it before you\'re spotted.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Wait for him to leave', goto: ['anushkaev2', 'wait_nushval'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWatchNushvalMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/caughtspying.jpg');
+  scene.text('As you\'re watching, you\'re so caught up in the action that you don\'t notice your hand slide down to your crotch, nor hear the footsteps heading your way.');
+  scene.text('"What are you doing?" You nearly jump out of your skin and blush when you look back and see Maksim, cursing to yourself for being so foolish as to let yourself be caught spying.');
+  scene.text('You feel your stomach really drop when you see the phone in his hand. He was recording you. "Uh… I… Nothing…" you sheepishly reply.');
+  scene.text('"Well this recording says otherwise. Maybe I should show Anushka and Val what you were doing?" You reach for the phone, but he pulls it away and pushes a button. "There. I just uploaded it to the cloud. Maybe we can work something out?" His smug grin is huge.');
+  scene.text('You sigh in defeat. "What do you want?"');
+  scene.text('He grins even wider and looks even more smug. "Whatever I want."');
+  scene.text('You start to shake your head, but before you can tell him to get lost, he interrupts you. "Just small favors, like showing me your tits when I want, buying me a girly mag, stuff like that." You\'re about to tell him fuck off, but stop. You\'re sure Anushka wouldn\'t care, but Valentin… What if he told everyone in school? On the other hand, do you want Maksim to lord this over you for who knows how long?');
+  qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim.jpg');
+    scene.text('"Fuck off, you little shit!" you snarl and smirk at his surprised expression.');
+    scene.text('Anger washes over him. "Fine, bitch! I\'ll just go show her."');
+    scene.text('You smirk at him. "Go ahead, go in there while your sister is having sex. I\'m sure they won\'t mind. If you wait until they\'re finished, then I\'m sure your sister won\'t mind that you were trying to blackmail one of her friends. Who do you think she\'ll be more pissed at?"');
+    scene.text('He sneers at you and pauses before angrily walking away.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Wait for Val to leave', goto: ['anushkaev2', 'wait_nushval'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Agree', goto: ['anushkamaksim', 'maksim_blackmail'] },
+  ]);
+  scene.build();
+}
+
+function enterWaitNushval(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big158.jpg');
+  // TODO-QSP: dynamic text: You only take a few steps from the door when it opens and turn like you were jus...
+  scene.text(`You only take a few steps from the door when it opens and turn like you were just heading to the room. He looks a little surprised to see you but smiles. "Hey ${((s as any).pcs_nickname ?? 0)}, Anushka is in her room if you're looking for her. I need to get going, got to get this part for my bike…" he explains as he walks past you. "See you around." With that, he walks towards the front door and leaves. You open Anushka's door and walk in, deciding not to say anything about what you just saw.`);
+  scene.actions([
+    { label: 'Enter her room', goto: ['anush_bedroom', 'anushroom'] },
+  ]);
+  scene.build();
+}
+
+function enterVal3some(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  qspCall(s, 'stat', '');
+  if (((s as any).pcs_hotcat ?? 0) < 6) {
+    if (((s as any).pcs_mood ?? 0) > 10) {
+      qspCall(s, 'mood', 'lower', 'small');
+    }
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A155', 'dislike');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin2.jpg');
+    // TODO-QSP: dynamic text: You walk in, confident you'll be joining them, and close the door. As you do, Va...
+    scene.text(`You walk in, confident you'll be joining them, and close the door. As you do, Valentin grabs Anushka and flips them both over. She lets out a little squeal as he does and now he is on top of her, pumping away. You manage to walk all the way over to the bed before Anushka finally notices you, surprised as to why you're standing there. "What the fuck? What are you doing here?" she says in a confused tone. Valentin seems puzzled before he turns his head, seemingly surprised to see you. "Uh… hey ${((s as any).pcs_nickname ?? 0)}?" he says in a somewhat confused tone.`);
+    scene.text('Your smile falters at their reaction. "It looked like you guys were having fun, so I thought I could join in as well…"');
+    // TODO-QSP: dynamic text: Anushka hesitates for a moment. "<<$pcs_nickname>>, uh… No, I don't think so," s...
+    scene.text(`Anushka hesitates for a moment. "${((s as any).pcs_nickname ?? 0)}, uh… No, I don't think so," she says while shaking her head.`);
+    scene.text('You feel a little rejected. "Oh… sorry… I didn\'t mean to disturb you guys."');
+    scene.text('Valentin clears his throat and gives a pointed look to the door. Getting the hint, you walk to the door and walk out. Closing it behind you, you quickly leave the apartment.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+    ]);
+  } else {
+    (s as any).npc_had_sex['A144'] = 1;
+    (s as any).npc_had_sex['A158'] = 1;
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'npcStat', 'A158', 'a');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin1.jpg');
+    // TODO-QSP: dynamic text: You walk in, confident you'll be joining them, and close the door. As you do, Va...
+    scene.text(`You walk in, confident you'll be joining them, and close the door. As you do, Valentin grabs Anushka and flips them both over. She lets out a little squeal as he does and now he is on top of her, pumping away. You manage to walk all the way over to the bed before Anushka finally notices you and gives you a grin. "Hey ${((s as any).pcs_nickname ?? 0)}, what's up?" she says through her moans. Valentin seems puzzled before he turns his head, seemingly surprised to see you. "Uh… hey ${((s as any).pcs_nickname ?? 0)}?" he says in a somewhat confused tone.`);
+    scene.text('You smile in return. "You guys looked like you were having fun, so I thought I could join in as well?"');
+    scene.text('Anushka glances at Valentin and grins at him. "Works for me Val."');
+    scene.text('He grins at her. "Getting to fuck two smoking hot babes at the same time? Fuck yeah, I\'m down with that!" he says as he climbs off of Anushka. "Well? Let\'s party girls."');
+    scene.actions([
+      { label: 'Suck his cock', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs1.jpg');
+    scene.text('You strip off your clothes as Anushka gets down on her knees and starts sucking his dick. Once you come over to join them, she pulls his dick out of her mouth and offers it to you. You close your lips around his dick and start sucking it while she strokes it with her hand just in front of your lips. You swap his cock back and forth before she stops and crawls onto the bed, lies on her back and spreads her lips. She pulls him towards her and they start kissing while he pushes your head towards her crotch.');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat Anushka out', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs2.jpg');
+    scene.text('You lick and suck on her clit for a while, listening to her soft muffled moans. Before long, she reaches down and places her hand on the back of your head to pull your face tighter against her wet pussy. She is soaking wet, and your tongue easily slides inside her pussy, spreading her lips apart as it does. She starts to rock and rides against your face, smearing it with her wetness, but just before you think she\'s about to cum, you feel yourself pulled away from her crotch. Valentin pulls your head up and kisses you before pushing you down on your back.');
+    qspCall(s, 'arousal', 'cuni_give', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lie on your back', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs3.jpg');
+    scene.text('As you lie on your back, Valentin kisses you, then moves down to suck on your nipples while he reaches down with one hand, gripping your thigh. He pulls your legs apart and moments later, you feel a soft tongue licking your clit, and you glance down to see Anushka\'s head between your legs as she licks and sucks on your clit, followed quickly by one of her fingers sliding into your pussy. She starts fingerbanging you as she licks your clit and Valentin plays with your nipples. She soon adds a second finger, and then a third. Just as it really starts to feel good, Valentin rolls onto his back, pulling Anushka with him. She starts sucking his dick almost at once.');
+    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'vaginal_finger', (-5), ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Join in sucking his dick', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs4.jpg');
+    scene.text('You roll over onto your hands and knees and join Anushka in sucking his dick. You take turns, passing it back and forth between you as you do before Anushka stops and pushes you slightly to the side. She crawls on top of him and straddles him reverse cowgirl style.');
+    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Watch Anushka ride him', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs5.jpg');
+    scene.text('She lowers herself down on him until his cock slides into her pussy. They both moan in pleasure as she does and she starts riding him hard and fast. You grab hold of her hips and help pull her down so she takes all of him into her. He alternates between slapping and squeezing your ass while Anushka keeps riding him. After a few minutes, he lifts Anushka off him and turns to you. "Lie down and spread your legs" he says as he pushes you down.');
+    qspCall(s, 'arousal', 'voyeur', 5, 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs6.jpg');
+    // TODO-QSP: dynamic text: Anushka watches as he slides his <<dick1>>cm <<$dick_girth1>> dick into your wet...
+    scene.text(`Anushka watches as he slides his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick into your wet pussy and starts fucking you. Moments later, she crawls back on top of him and straddles his face and he eagerly starts eating her pussy as he keeps fucking you.`);
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fucked some more', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs7.jpg');
+    scene.text('A few minutes pass before he lifts Anushka up and sits up, causing his dick to slide out of your pussy. You start to get up to switch to whatever new position they want you to get in, but he gently pushes you back down. He slides up between your legs, slides his cock back in your pussy and starts fucking you again, a little harder and rougher than before. Anushka lies down on her side next to you and starts playing with your tits and you reach up and return the favor, squeezing her tits and gently pinching her nipples. As Valentin fucks you, he reaches over and slides his hand between Anushka\'s legs, finger banging her as he fucks you.');
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pussy eating', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs8.jpg');
+    scene.text('Just as it\'s starting to feel great again, he suddenly stops and pulls away, his dick sliding out of your pussy. He scoots back off the bed, drags Anushka towards him and gives her ass a good slap. "Roll over Nush." She rolls over onto her hands and knees, looking back at him with a smile, and he pushes her head between your legs again. She starts licking your wet slit at once while he starts licking her from behind. You\'re not sure if he\'s licking her pussy, her ass or both, but whatever he\'s doing is making her moan like crazy as she eats you.');
+    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Kiss Anushka', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs9.jpg');
+    scene.text('He stops eating her and slaps her on the ass a little harder this time. "Scoot forward Nush." She lifts her head from your crotch and looks back at him. "You\'re so demanding… Feeling like a real man today?" she says with a slight laugh. He snorts at her comment and slaps her ass again. "Do it bitch!" he says in a joking tone and she scoots forward until she is straddling you, her face above yours. She starts to kiss you and as your tongues intertwine, you can taste yourself on her tongue.');
+    scene.text('Valentin moves up behind her and starts fucking her, making her moan into your mouth with each of his thrusts. You place your hands on her hips to hold them in place and start making out with each other.');
+    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Roll over', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs10.jpg');
+    // TODO-QSP: dynamic text: He stops fucking Anshuka and says "Roll over <<$pcs_nickname>>." Anushka starts ...
+    scene.text(`He stops fucking Anshuka and says "Roll over ${((s as any).pcs_nickname ?? 0)}." Anushka starts to climb off you, but he stops her. "No, there Nush." She glances back at him, then looks back to you with a bemused look. You roll over underneath her, but can't get on all fours under her, so your stomach is flat almost against the bed. "Perfect Nush! Now pretend like you're fucking her." Valentin says and Anushka grabs you and starts banging her hips against your ass.`);
+    scene.text('"Yeah, that\'s it. Pretend like you\'re fucking her ass Nush!" he says.');
+    scene.text('Anushka grabs your hips a little harder. "Oh yeah, fucking take that bitch! You dirty little slut. You love getting fucked in the ass don\'t you?"');
+    scene.text('You play along and nod. "Yeah, fuck my ass!" She seems to be as amused as you are about this. As you play along at getting fucked by Anushka, Valentin grabs a bottle of lube out of the nightstand, squirts some lube on his dick and moves up behind Anushka.');
+    // TODO-QSP: dynamic text: She stops moving, then moans out in pleasure and pain. "Oh fuck! Yes, god yes!" ...
+    scene.text(`She stops moving, then moans out in pleasure and pain. "Oh fuck! Yes, god yes!" You feel her being banged against you and glance back to see Valentin fucking her from behind, each thrust forcing her hips to bounce against your ass. Several minutes of this go by. "Yes yes, fuck my ass Val! Harder!" she cries out before you feel the juices from her orgasm dripping onto your ass cheeks as she cums. "Okay, your ass is next ${((s as any).pcs_nickname ?? 0)}."`);
+    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'No anal', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs10.jpg');
+    scene.text('You shake your head as you support Anushka\'s weight as she recovers from her orgasm. "I don\'t want to do anal."');
+    scene.text('He shrugs at you and then looks at Anushka. "Your ass ready for round two then babe?" She bites your shoulder blade and looks back at him.');
+    scene.text('You can feel her hips bouncing against your ass as she bounces and wiggles her ass at him. "Yeah, I want you to fuck my ass. Fuck my ass like I\'m a dirty little slut!" she purrs.');
+    scene.text('He just grins. "Your wish is my command." He moves back up behind her and slams his dick back up her ass, causing her to cry out a little. He starts really hammering her ass this time and she seems to be loving it. She grips you tightly, occasionally nipping and biting at the back of your neck as she moans loudly in pleasure. It doesn\'t take long until she has another huge orgasm. "Fuck, I\'m about to cum!" he cries out.');
+    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Climax', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs12.jpg');
+    scene.text('He pulls out of her and pulls her off you. "Get on your backs." You both lie down on your backs side by side as he jerks himself off. You barely make it when his cock explodes and streams of thick cum start splattering across both of you, spurt after spurt landing on your tits. Once the last few drops fall from his dick onto Anushka, he falls back onto the bed with a loud sigh. "Fuck, that was amazing!" The three of you just lie there in silence, basking in the afterglow of sex.');
+    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'cum_call', 'breasts', ((s as any).npcID1 ?? 0));
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).cumspclnt = 12;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/activities/phone/anushka/8.jpg');
+    scene.text('After a few minutes, Valentin gets up. "I need to get going girls." He starts getting dressed, but as you also get up, Anushka pulls you in close. You follow her gaze just in time to see her holding her phone up and taking a selfie of both of you with your tits covered in cum.');
+    scene.text('She then grabs some tissues and hands you some before she starts wiping the cum off her tits. As the two of you clean up, he finishes getting dressed. You and Anushka then start to get dressed as well and once he finishes, he leans over and gives Anushka a kiss on the forehead. "See you around babe. This was a blast, we should do it again sometime." he says and points at both of you. He then heads out the door, leaving Anushka to roll her eyes at his comment as the two of you finish getting dressed.');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Say nothing and join her on the bed', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'talkaboutval'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Take it up the ass', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs11.jpg');
+    scene.text('You nod at his request. "Sure, you can fuck my ass." you tell him and Anushka rolls off of you as Valentin moves up behind you. He grabs you by the hips and pulls you up into a doggy position. As he does, Anushka moves around in front of you and lies on her back with her legs spread. She places her hand on the back of your head and pulls your face to her crotch.');
+    if (((s as any).analPlugIn ?? 0) === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 1;
+      // TODO-QSP: dynamic text: Valentin pulls out your butt plug without mercy, and it comes out with a loud po...
+      scene.text(`Valentin pulls out your butt plug without mercy, and it comes out with a loud pop. You doing some anal training ${((s as any).pcs_nickname ?? 0)}? Nice! No need to take it easy on you it seems.`);
+    }
+    scene.text('As you lower your head, you feel Valentin\'s cock pressing against your asshole, along with a squirt of lube. He rubs the tip of his dick against your asshole while you start to lick Anushka\'s sopping wet pussy.');
+    // TODO-QSP: dynamic text: You groan as Valentin's <<dick1>>cm <<$dick_girth1>> cock pops into your ass. He...
+    scene.text(`You groan as Valentin's ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} cock pops into your ass. He pauses to let you adjust before he slowly starts fucking your ass. The louder you moan the harder and rougher he gets. He seems to be really getting into it, making you think he is close when he cries out "Fuck, I'm about to cum!"`);
+    qspCall(s, 'arousal', 'cuni_give', 5, ((s as any).npcID ?? 0), 'group', 'lesbian', 'lube');
+    qspCall(s, 'arousal', 'anal', (-5), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Climax', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/val/valnushs12.jpg');
+    scene.text('He pulls out of you and pulls her off you. "Get on your backs." You both lie down on your backs side by side as he jerks himself off. You barely make it when his cock explodes and streams of thick cum start splattering across both of you, spurt after spurt landing on your tits. Once the last few drops fall from his dick onto Anushka, he falls back onto the bed with a loud sigh. "Fuck, that was amazing!" The three of you just lie there in silence, basking in the afterglow of sex.');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'cum_call', 'breasts', ((s as any).npcID1 ?? 0));
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).cumspclnt = 12;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/activities/phone/anushka/8.jpg');
+    scene.text('After a few minutes, Valentin gets up. "I need to get going girls." He starts getting dressed, but as you also get up, Anushka pulls you in close. You follow her gaze just in time to see her holding her phone up and taking a selfie of both of you with your tits covered in cum.');
+    scene.text('Anushka grabs some tissues and hands you some before she starts wiping the cum off her tits. As the two of you clean up, he finishes getting dressed. You and Anushka start to get dressed as well and once he finishes, he leans over and gives Anushka a kiss on the forehead. "See you around babe. This was a blast, we should do it again sometime." he says and points at both of you. He then heads out the door, leaving Anushka to roll her eyes at his comment as the two of you finish getting dressed.');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Say nothing and join her on the bed', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'talkaboutval'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterTalkaboutval(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+  scene.text('Now that Valentin is gone and it\'s just the two of you, you decide to ask her about what just happened. "So you and Val, huh?"');
+  scene.text('She smiles and shakes her head. "Shut up."');
+  scene.text('You shake your head slightly. "Oh I get it, Val is just the right amount of bad boy without being a complete asshole. Speaking of assholes, you\'re a bit of a butt slut, you know that?"');
+  scene.text('She laughs a little. "Fuck you… yeah whatever, I like being fucked in the ass. It <i>really</i> makes me cum."');
+  scene.text('You laugh as well. "So are you two…"');
+  scene.text('Before you can finish your sentence, she interrupts. "No, no we\'re just friends who occasionally fuck is all. It\'s fun and that\'s all it is."');
+  scene.text('You smile at her. "Just friends that fuck huh?"');
+  scene.text('She rolls her eyes slightly. "Yeah, just friends that fuck."');
+  if (((s as any).anushkaphoto ?? 0)[8] === 1) {
+    scene.actions([
+      { label: 'Ask about the selfie', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('"What are you going to do with that?" you ask, wondering why she took a selfie of you when you had cum splattered over your tits.');
+    scene.text('She just shrugs. "Keep it as a memento, at least for a while. I often take selfies during or after sex as keepsakes. Why do you ask?"');
+    scene.text('"You\'re not going to show it to anyone, are you?"');
+    scene.text('She looks a little surprised you would ask that. "No, of course not." Then she grins. "Unless you want me to, that is…"');
+    scene.actions([
+      { label: 'Hangout in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'about_rad'] },
+      { label: 'Can I see it?', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/activities/phone/anushka/8.jpg');
+    scene.text('"Can I see it? The selfie that is."');
+    scene.text('"Sure, if you want." She reaches over and grabs her phone, takes a moment to pull up the image and then shows it to you. You take a moment to look at it. You have to admit it is kind of hot and it turns you on a little just looking at it. She then interrupts your thoughts. "I can send it to you if you want a copy of it."');
+    qspCall(s, 'arousal', 'voyeur_sex', 2);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Ask her to send it to you', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).anushkaphoto[8] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('You think about it and decide you would like a copy as well. "Yeah, send it to me."');
+    scene.text('She grins, obviously approving of your choice. You then get a notification on your phone and quickly add the selfie to your gallery.');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+    { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+  ]);
+  scene.build();
+}
+
+function enterWatchNushmar(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  if (((s as any).anushkaQW ?? 0)?.['marspy'] === 0) {
+    (s as any).anushkaQW['marspy'] = 1;
+  }
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar1.jpg');
+  scene.text('You push the door open just a little to get a better look. You can tell that it\'s Marcus from school, his dick already rock-hard. She takes the head of his cock into her mouth and starts sucking on it, slowly working her lips further and further down his shaft. He starts really moaning and grabs her by the hair and starts to fuck her mouth. He\'s not too rough, but he takes control of the action.');
+  qspCall(s, 'arousal', 'voyeur', 5);
+  qspCall(s, 'stat', '');
+  if (((s as any).npc_had_sex ?? 0)?.['A144']) {
+    // TODO-QSP: act 'Walk in and join them': gt 'anushkaev2', 'mar3some'
+  }
+  scene.actions([
+    { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+    { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar2.jpg');
+    scene.text('She pulls away until his dick comes out of her mouth and looks up at him. "Please fuck me with your… big… black… dick…" she purrs, drawing out the last words with a breathy moan in accented English. He helps her up before half sitting and half tossing her onto the bed, causing her to giggle. She lies on her back with her legs spread wide and he moves up and slides his dick into her pussy, causing them both to moan. "Fuck. you\'re so tight…" he moans out as he starts fucking her. He\'s not too fast or hard, but he takes cues from her moans and body language, picking up the pace the more into it she gets.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'npcStat', 'A146', 'a');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar3.jpg');
+    scene.text('She starts breathing heavily and bites her lower lip, looking at him with pure lust in her eyes. "I want you to fuck my tight little white ass with your… big… black… cock…" she purrs. He doesn\'t have to be told twice. He lies down on the bed next to her while she grabs a bottle of lube out of her dresser, squirting some onto his dick and some onto her asshole. With them both lubed up, he lines his dick up against her asshole and presses against it until the head pops in, which elicits a squeal of pain and pleasure from her.');
+    // TODO-QSP: dynamic text: He waits while she adjusts to his dick in her ass and then slowly starts fucking...
+    scene.text(`He waits while she adjusts to his dick in her ass and then slowly starts fucking her ass with his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick. "Oh god yes, that feels so good. Fuck my little white ass!" she moans to him in English, apparently having paid attention in school. He picks up the pace a little, but is still fairly gentle with her. She seems to be really loving it and seems to really like the race play.`);
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    if (Math.floor(Math.random() * 5) + 1 === 1  &&  ((s as any).maksimQW ?? 0)?.['blackmail'] < 1) {
+      scene.actions([{ label: 'Continue', goto: ['anushkaev2', 'watch_nushmar_maksim_blackmail'] }]);
+    }
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar4.jpg');
+    scene.text('"Please I want more of your… big… black… cock… in my ass." You think she\'s playing up the accent while speaking English. He grabs hold of her and pulls her up onto her knees, giving him much better access to her ass. He starts fucking her again, but it takes a little prodding from her for him to start going deeper and faster. Once he is sure she is into it, he starts being less gentle about it and as the first hard orgasm hits her, he starts really fucking her.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Keep watching', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar5.jpg');
+    scene.text('He\'s really starting to hammer away at her ass, so she reaches between her legs and starts rubbing her clit, moaning louder and louder the harder he fucks her ass. A few minutes later, she has another massive orgasm, almost falling over from her body quivering so hard. He has to practically hold her up himself. He then suddenly pulls his dick out of her ass and slides off the bed. "I\'m going to cum."');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Climax', handler: (st: GameState) => {
+    (s as any).nushmarcus_selfie = 1;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar6.jpg');
+    scene.text('She slides off the bed and onto her knees in front of him. She tilts her head back and opens her mouth while taking a firm grip on his dick and jerking him off. It doesn\'t take long before he groans loudly and his cum starts raining down on her face. Some of it ends up on her face, but most of it manages to make it into her mouth. She gives his cock several more hard long strokes, milking out every last drop of cum from him and letting it fall onto her tongue. She doesn\'t stop until he is dry and wiggles her tongue around, showing the cum on it before swallowing it down, followed by her licking her lips clean. "God, I love Russian girls. You\'re just so amazing."');
+    scene.text('He bends over and gives her a kiss on the lips, then they both get up. He starts getting dressed while she pulls out her phone and takes a couple of naked selfies with his cum on her face. Once he is dressed and she is done taking selfies, she pats him on the chest with her hand. "That was amazing Marcus, I really needed that." Just the way she said it makes it clear she is done and is ready for him to leave. He seems to have picked up on the tone as well. "Oh yeah, anytime. Well, I guess I better get going… See you at school yeah?" She nods and grabs her panties off the floor and starts to put them on. "Yeah sure, see you at school." You can hear the dismissive nature in her tone, even if she doesn\'t say it. He seems to notice it too and he turns towards the door. You quickly step away from the door before you get seen, softly closing it.');
+    qspCall(s, 'arousal', 'voyeur', 5);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Wait for him to leave', goto: ['anushkaev2', 'wait_nushmar'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterWatchNushmarMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/caughtspying.jpg');
+  scene.text('As you\'re watching, you\'re so caught up in the action that you don\'t notice your hand slide down to your crotch, nor hear the footsteps heading your way.');
+  scene.text('"What are you doing?" You nearly jump out of your skin and blush when you look back and see Maksim, cursing to yourself for being so foolish as to let yourself be caught spying.');
+  scene.text('You feel your stomach really drop when you see the phone in his hand. He was recording you. "Uh… I… Nothing…" you sheepishly reply.');
+  scene.text('"Well this recording says otherwise. Maybe I should show Anushka and Marcus what you were doing?" You reach for the phone, but he pulls it away and pushes a button. "There. I just uploaded it to the cloud. Maybe we can work something out?" His smug grin is huge.');
+  scene.text('You sigh in defeat. "What do you want?"');
+  scene.text('He grins even wider and looks even more smug. "Whatever I want."');
+  scene.text('You start to shake your head, but before you can tell him to get lost, he interrupts you. "Just small favors, like showing me your tits when I want, buying me a girly mag, stuff like that." You\'re about to tell him fuck off, but stop. You\'re sure Anushka wouldn\'t care, but Marcus… What if he told everyone in school? On the other hand, do you want Maksim to lord this over you for who knows how long?');
+  qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Tell him to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower ?? ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Tell him to fuck off', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim.jpg');
+    scene.text('"Fuck off, you little shit!" you snarl and smirk at his surprised expression.');
+    scene.text('Anger washes over him. "Fine, bitch! I\'ll just go show her."');
+    scene.text('You smirk at him. "Go ahead, go in there while your sister is having sex. I\'m sure they won\'t mind. If you wait until they\'re finished, then I\'m sure your sister won\'t mind that you were trying to blackmail one of her friends. Who do you think she\'ll be more pissed at?"');
+    scene.text('He sneers at you and pauses before angrily walking away.');
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+      { label: 'Wait for Marcus to leave', goto: ['anushkaev2', 'wait_nushmar'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Agree', goto: ['anushkamaksim', 'maksim_blackmail'] },
+  ]);
+  scene.build();
+}
+
+function enterWaitNushmar(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big146.jpg');
+  // TODO-QSP: dynamic text: You only take a few steps from the door before it opens and you turn like you we...
+  scene.text(`You only take a few steps from the door before it opens and you turn like you were just heading to the room. He looks a little surprised to see you and blushes, obviously wondering if you heard. "Oh hey ${((s as any).pcs_nickname ?? 0)}… I was just… I mean we were just…" He trails off, obviously trying to think of a reasonable excuse as to why he's here.`);
+  scene.text('You can\'t help but smile at him trying to preserve Anushka\'s reputation. "I know what you guys were doing. Hope you had fun…" you tell him with a wink, which makes him blush even more.');
+  // TODO-QSP: dynamic text: "Um yeah, we did… I need to go… See you at school <<$pcs_nickname>>…" He quickly...
+  scene.text(`"Um yeah, we did… I need to go… See you at school ${((s as any).pcs_nickname ?? 0)}…" He quickly hurries past you and out of the apartment. You open Anushka's door and walk in to see that she is only half dressed with some of his cum still on her face.`);
+  scene.text('She glances over at you as you walk in and smiles. "Hey you."');
+  scene.text('You smile back at her and her casual response. "Hey, you back. So… you and Marcus, huh?"');
+  scene.text('She arches her brow as she finishes getting dressed. "Me and Marcus what?"');
+  scene.text('You point to your cheek, indicating the splatter of cum still on her face. It takes her a moment to realize before she looks in the mirror and cleans the rest of it off. "Oh… Shut up." she says, but you can tell by her tone that she\'s more amused than bothered by it.');
+  scene.actions([
+    { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+    { label: 'Say nothing and join her on the bed', goto: ['anush_bedroom', 'bed'] },
+    { label: 'Talk about what just happened', goto: ['anushkaev2', 'talk_about_marcus'] },
+  ]);
+  scene.build();
+}
+
+function enterMar3some(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'npcStat', 'A146', 'a');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin3.jpg');
+  if (((s as any).pcs_hotcat ?? 0) < 6) {
+    if (((s as any).pcs_mood ?? 0) > 10) {
+      qspCall(s, 'mood', 'lower', 'small');
+    }
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
+    scene.text('You walk in, confident in joining them, and close the door. You manage to walk all the way over to the bed before Anushka finally notices you and gives you a slight wave as she sucks Marcus\' dick. Perhaps hearing you or noticing her wave, Marcus turns his head and notices you, stepping away and using his hands to cover himself up. As he does, he backs into the bed and ends up falling onto it. He gives you and Anushka a very confused and awkward look. "I… Uh… I mean…" he stammers, not sure what to say.');
+    // TODO-QSP: dynamic text: Anushka laughs at Marcus's reaction before turning towards you and calmly asking...
+    scene.text(`Anushka laughs at Marcus's reaction before turning towards you and calmly asking "Do you mind ${((s as any).pcs_nickname ?? 0)}? We're kind of busy here."`);
+    scene.text('Your smile falters at her reaction. "It looked like you guys were having fun, so I thought I could join in…"');
+    // TODO-QSP: dynamic text: Anushka hesitates for a moment. "<<$pcs_nickname>>, uh… No, I don't think so," s...
+    scene.text(`Anushka hesitates for a moment. "${((s as any).pcs_nickname ?? 0)}, uh… No, I don't think so," she says while shaking her head.`);
+    scene.text('You feel a bit rejected. "Oh… sorry… I didn\'t mean to disturb you guys."');
+    // TODO-QSP: dynamic text: Marcus stands up while still trying to cover himself. "Uh, maybe I should go?" h...
+    scene.text(`Marcus stands up while still trying to cover himself. "Uh, maybe I should go?" he says, but Anushka pushes him back down on the bed and replies "No, I don't think so. I'm not done with you yet. Besides, ${((s as any).pcs_nickname ?? 0)} was just leaving." she says while giving you a pointed look. Getting the hint, you walk to the door and walk out. Closing it behind you, you quickly leave the apartment.`);
+    scene.actions([
+      { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
+    ]);
+  } else {
+    (s as any).npc_had_sex['A144'] = 1;
+    (s as any).npc_had_sex['A146'] = 1;
+    scene.text('You walk in, confident in joining them, and close the door. You manage to walk all the way over to the bed before Anushka finally notices you and gives you a slight wave as she keeps sucking Marcus\' dick. Perhaps hearing you or noticing her wave, Marcus turns his head and notices you, quickly stepping away and using his hands to cover himself up. As he does, he backs into the bed and ends up falling onto it. He gives you and Anushka a very confused and awkward look. "I… Uh… I mean…" he stammers, not sure what to say.');
+    // TODO-QSP: dynamic text: Anushka laughs at his reaction before turning towards you and calmly asking "So ...
+    scene.text(`Anushka laughs at his reaction before turning towards you and calmly asking "So what's up ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text('You smile in return. "It looked like you guys were having fun and I thought I could join in as well…"');
+    scene.text('Anushka grins at you and then at Marcus, who looks intrigued by the suggestion, but also still unsure of what to say or do. Anushka walks over to him and shoves him back so he is lying on his back and looks back at you. "Well don\'t just stand there. Get naked and sit on his face." she tells you before she starts sucking his dick again.');
+    scene.actions([
+      { label: 'Sit on his face', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A146', 'like');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs1.jpg');
+    scene.text('You waste no time in taking your clothes off while watching Anushka suck Marcus\'s dick. Once you\'re naked, you climb on the bed and straddle his face. He begins licking your pussy as Anushka keeps sucking his dick and you feel yourself getting wet as your arousal grows. Anushka tries to take the full length of his cock down her throat but can\'t, so she keeps gagging before she can get the whole thing in her mouth.');
+    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck his dick too', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs2.jpg');
+    scene.text('Marcus continues to lick your pussy and suck on your clit as Anushka pops his cock out of her mouth and offers it to you. You lean over and start sucking on his dick while she strokes his shaft with one hand, occasionally playing with his balls as well. "Switch with me. I need to get my pussy nice and wet. Why don\'t you jump on this black monster and ride it." she says as she wiggles his dick around in her hand.');
+    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Ride him', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs3.jpg');
+    // TODO-QSP: dynamic text: You and Anushka switch positions. She straddles his face while you straddle his ...
+    scene.text(`You and Anushka switch positions. She straddles his face while you straddle his hips and slowly lower yourself down onto his dick, moaning as you feel his ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick stretching your pussy and filling it up. You slowly start riding him, giving your body time to adjust to him, taking more and more of him into you as you ride his cock. Anushka pulls your face towards her breasts and you oblige her by sucking and licking her nipples.`);
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Watch Anushka get fucked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs4.jpg');
+    scene.text('Several minutes go by before Anushka climbs off his face and gets on all fours. "Okay, my turn. I want my little white pussy fucked by that big black cock." she says in accented English and Marcus glances at her and grins. He seems eager to fuck her, so you climb off of him and he gets up and moves behind her while you kneel next to her. He wastes no time in slipping his cock into her wet and eager pussy and she moans loudly as he starts to fuck her. You squeeze and slap her ass as you watch his cock sliding in and our of her wet pussy as he fucks her. After a while, he pulls his dick out of her pussy and slaps it on her ass near your face, indicating for you to suck his dick.');
+    qspCall(s, 'arousal', 'voyeur', 5, 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Don\'t suck his dick', goto: ['anushkaev2', 'eat_nush_fucked'] },
+      { label: 'Suck his dick', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs5.jpg');
+    // TODO-QSP: dynamic text: You open your mouth and feel his dick slide into it, tasting Anushka's juices on...
+    scene.text(`You open your mouth and feel his dick slide into it, tasting Anushka's juices on it. You mostly just stay still and let him fuck your mouth since he doesn't go too deep or too hard. You squeeze and spank Anushka's ass while Marcus fucks your mouth and a few minutes go by when Marcus says "Turn around ${((s as any).pcs_nickname ?? 0)}. I want to bang you some more."`);
+    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat Anushka while getting fucked', goto: ['anushkaev2', 'eat_nush_fucked'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.build();
+}
+
+function enterEatNushFucked(s: GameState, scene: SceneBuilder): void {
+  (s as any).AnushkaLoc = 2;
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs6.jpg');
+  scene.text('As you turn around, Anushka rolls over and lies on the bed in front of you with her legs spread and a grin on her face. You start licking her pussy just as Marcus slides his cock back inside your pussy, making you feel completely full. Before long, Anushka puts a hand on the back of your head and pulls your face against her crotch as she rotates her hips, grinding your face against her wet pussy. Marcus seems to be enjoying the show as he starts picking up the pace and fucking you a little harder.');
+  qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+  qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID ?? 0), 'group', 'lesbian');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Take a break', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs7.jpg');
+    scene.text('Marcus pulls his dick out of your pussy and slaps it against your ass a few times. Anushka notices this and practically climbs on your back so she can start sucking his dick.');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fucked some more', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs8.jpg');
+    scene.text('Glancing back and trying to watch the action, you see him pull out of her mouth. She grabs your asscheeks and gives them a hard squeeze, just as his big dick slides back in your wet pussy and he goes back to fucking you again. Several more minutes of pleasure pass before Anushka speaks in accented English again. "I want you to fuck my tight little white ass with your big black cock. I want you to pound it until I scream." She then turns and gets on all fours next to you, glancing back at him.');
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'On all fours', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs9.jpg');
+    scene.text('Not needing to be told twice, Marcus pulls out of you and moves in behind Anushka. A moment later, she hisses and screws her eyes shut while gripping the sheets tightly as Marcus penetrates her ass. She lets out a long slow breath and bites her lower lip. "Oh yes! That\'s it Marcus, fuck my ass!" she tells him in accented English. He starts very slowly, but starts to pick up a little speed the more into it she seems to get. He occasionally reaches over to squeeze your ass or rub your pussy as he fucks Anushka\'s backdoor.');
+    qspCall(s, 'arousal', 'voyeur', 5, 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Kiss Anushka', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs10.jpg');
+    // TODO-QSP: dynamic text: You occasionally share a kiss with Anshuka, although she is barely focused on yo...
+    scene.text(`You occasionally share a kiss with Anshuka, although she is barely focused on you as she gets off on Marcus fucking her ass. "Yes! Yes, fuck me harder! Harder!" She slips back into Russian as she starts to get overwhelmed with passion. Marcus abides by her request and starts fucking her a little harder and slapping her ass with one of his hands. Moments later, she cries out and her whole body shudders as she orgasms hard. She collapses and Marcus pulls out of her, close to climaxing as well. "Come over and open your mouth ${((s as any).pcs_nickname ?? 0)}." he moans as Anushka rolls over onto her back.`);
+    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Climax', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/mar/marnushs11.jpg');
+    scene.text('You crawl over and barely get your mouth open before his dick erupts with ropey streams of thick cum. Some of it lands on Anushka\'s leg, but the majority of the cum ends up in your mouth or on your face as Marcus moans loudly. When he finally finishes with a few small spurts, he backs off and takes a seat at her desk. "My god, you guys were amazing!" he says in a loving tone, full of respect and admiration.');
+    qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
+    qspCall(s, 'arousal', 'end');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get dressed', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).cumspclnt = 12;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/activities/phone/anushka/9.jpg');
+    scene.text('Anushka sits up next to you, and before you know it she is holding her phone up and taking a selfie of you and herself while your face is covered in cum. She then grabs some tissues and hands you some before she starts wiping his cum off her leg as he gets dressed. Once you finish cleaning yourself, you and Anushka then start to get dressed as well. "That was great Marcus! Maybe we can do it again sometime? We\'ve got some stuff to do right now, so see you around, okay?" Anushka says to him, politely hinting towards him leaving.');
+    scene.text('"Oh… Um, yeah okay. I should get going anyway…" he stammers as he quickly finishes dressing and heads out the door.');
+    scene.text('Now that Marcus is gone and it\'s just the two of you, you decide to ask her about what just happened. "So, you and Marcus huh?"');
+    scene.text('She smiles and shakes her head. "Shut up."');
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Say nothing and join her on the bed', goto: ['anush_bedroom', 'bed'] },
+      { label: 'Talk about what just happened', goto: ['anushkaev2', 'talk_about_marcus'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterTalkAboutMarcus(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).anushkaQW['marspyknow'] = 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+  scene.text('You give her a curious look. "I didn\'t even know you guys were friends, let alone hooking up."');
+  scene.text('She smiles and shakes her head. "We\'re not. Friends that is. He\'s okay, don\'t get me wrong, but I wouldn\'t say he was a friend."');
+  scene.text('You are a little confused. "Then why are you hooking up?"');
+  scene.text('She laughs. "Because it\'s taboo. You know how people are. He\'s black <i>and</i> American. Either would be enough for people to think it\'s wrong, but him being both just makes it doubly taboo and fucking hot. Not to mention he has a <i>huge</i> fucking dick."');
+  scene.text('You nod in agreement. "So it\'s just because he has a big black dick?"');
+  scene.text('She shrugs, then rolls onto her back. "Yeah, pretty much. I mean just thinking about getting plowed by his big black dick is making me horny again." she says with a laugh, but you can tell she really is starting to get aroused again.');
+  scene.text('You laugh. "Okay, okay I get it. Big black dicks make you horny."');
+  scene.text('She shakes her head slightly. "It\'s not just that, or I should say only that. It\'s about everyone saying it\'s wrong. It\'s the same reason I like fucking other chicks or getting naked. Breaking the rules and rubbing it in their narrow-minded faces is a huge turn-on. I mean fuck what society thinks or wants us to think or how to act. The more people tell me good girls shouldn\'t do this or that, the more I want to fucking do it. I say break all the fucking rules and live free."');
+  scene.text('You can only nod at that. You know Anushka is a bit of an anarchist at heart, so it\'s not a surprise that breaking social norms turns her on.');
+  if (((s as any).OluQW ?? 0)?.['sex'] === 1  &&  ((s as any).OluQW ?? 0)?.['tell'] === 0) {
+    scene.actions([
+      { label: 'Tell her about Olu', goto: ['anushkachat', 'tell_about_olu'] },
+    ]);
+  }
+  if (((s as any).npc_had_sex ?? 0)?.['A82']  &&  ((s as any).DjibrilQW ?? 0)?.['invite'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['tell'] === 0) {
+    scene.actions([
+      { label: 'Tell her about Djibril', goto: ['anushkachat', 'tell_about_djibril'] },
+    ]);
+  }
+  if (((s as any).anushkaphoto ?? 0)[9] === 1) {
+    scene.actions([
+      { label: 'Ask about the selfie', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    if (((s as any).nushmarcus_selfie ?? 0) === 1) {
+      scene.text('You\'re curious about the selfie she took. "Why did you take that selfie, you know… with his cum on your face?"');
+      scene.text('She cocks her head slightly and smiles. "How do you know I did that?"');
+      scene.text('"When he opened the door to leave, I\'ve seen you with your phone in your hand taking a selfie."');
+      scene.text('She gives you a slightly suspicious look and you\'re not sure if she believes you or not, but she seemingly doesn\'t care either way. "I often take selfies during or after sex as keepsakes. Why?"');
+      scene.text('You shake your head slightly. "I was just curious is all."');
+    } else {
+      scene.text('"What are you going to do with that?" you ask, wondering why she took a selfie of you when you had cum splattered over your face.');
+      scene.text('She just shrugs. "Keep it as a memento, at least for a while. I often take selfies during or after sex as keepsakes. Why do you ask?"');
+      scene.text('"You\'re not going to show it to anyone, are you?"');
+      scene.text('She looks a little surprised you would ask that. "No, of course not." Then she grins. "Unless you want me to, that is…"');
+    }
+    if (((s as any).OluQW ?? 0)?.['sex'] === 1  &&  ((s as any).OluQW ?? 0)?.['tell'] === 0) {
+      scene.actions([
+        { label: 'Tell her about Olu', goto: ['anushkachat', 'tell_about_olu'] },
+      ]);
+    }
+    if (((s as any).npc_had_sex ?? 0)?.['A82']  &&  ((s as any).DjibrilQW ?? 0)?.['invite'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['tell'] === 0) {
+      scene.actions([
+        { label: 'Tell her about Djibril', goto: ['anushkachat', 'tell_about_djibril'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Can I see it?', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    if (((s as any).nushmarcus_selfie ?? 0) === 1) {
+      scene.img('images/characters/pavlovsk/school/girl/anushka/sex/nushmarselfie.jpg');
+      scene.text('You bite your lower lip, curious about what the selfie she took looks like. "Can I see it? The selfie you took I mean."');
+      scene.text('She grins. "You\'re such a pervert," she says in a teasing tone, but grabs her phone and pulls up the image before handing the phone over. You take it and look at the image of Anushka covered in cum with Marcus\' dick in front of her face. After a minute or so, you hand her her phone back.');
+      qspCall(s, 'arousal', 'voyeur_sex', 2);
+      qspCall(s, 'arousal', 'end');
+      if (((s as any).OluQW ?? 0)?.['sex'] === 1  &&  ((s as any).OluQW ?? 0)?.['tell'] === 0) {
+        scene.actions([
+          { label: 'Tell her about Olu', goto: ['anushkachat', 'tell_about_olu'] },
+        ]);
+      }
+      if (((s as any).npc_had_sex ?? 0)?.['A82']  &&  ((s as any).DjibrilQW ?? 0)?.['invite'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['tell'] === 0) {
+        scene.actions([
+          { label: 'Tell her about Djibril', goto: ['anushkachat', 'tell_about_djibril'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+        { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+      ]);
+    } else {
+      scene.img('images/pc/activities/phone/anushka/9.jpg');
+      scene.text('"Can I see it? The selfie that is."');
+      scene.text('"Sure, if you want." She reaches over and grabs her phone, takes a moment to pull up the image and then shows it to you. You take a moment to look at it. You have to admit it is kind of hot and it turns you on a little just looking at it. She then interrupts your thoughts. "I can send it to you if you want a copy of it."');
+      qspCall(s, 'arousal', 'voyeur_sex', 2);
+      qspCall(s, 'arousal', 'end');
+      if (((s as any).OluQW ?? 0)?.['sex'] === 1  &&  ((s as any).OluQW ?? 0)?.['tell'] === 0) {
+        scene.actions([
+          { label: 'Tell her about Olu', goto: ['anushkachat', 'tell_about_olu'] },
+        ]);
+      }
+      if (((s as any).npc_had_sex ?? 0)?.['A82']  &&  ((s as any).DjibrilQW ?? 0)?.['invite'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['tell'] === 0) {
+        scene.actions([
+          { label: 'Tell her about Djibril', goto: ['anushkachat', 'tell_about_djibril'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Ask her to send it to you', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (s as any).anushkaphoto[9] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
+    scene.text('You think about it and decide you would like a copy as well. "Yeah, send it to me."');
+    scene.text('She grins, obviously approving of your choice. You then get a notification on your phone and quickly add the selfie to your gallery.');
+    if (((s as any).OluQW ?? 0)?.['sex'] === 1  &&  ((s as any).OluQW ?? 0)?.['tell'] === 0) {
+      scene.actions([
+        { label: 'Tell her about Olu', goto: ['anushkachat', 'tell_about_olu'] },
+      ]);
+    }
+    if (((s as any).npc_had_sex ?? 0)?.['A82']  &&  ((s as any).DjibrilQW ?? 0)?.['invite'] === 1  &&  ((s as any).DjibrilQW ?? 0)?.['tell'] === 0) {
+      scene.actions([
+        { label: 'Tell her about Djibril', goto: ['anushkachat', 'tell_about_djibril'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+      { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+    ]);
+  } },
+        { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+        { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
+    { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
+  ]);
+  scene.build();
+}
+
+function enterDiscoRestroom(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A144');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom1.jpg');
+  if (((s as any).pantyworntype ?? 0) === 'none') {
+    // TODO-QSP: dynamic text: The two of you make your way to the restroom on the other floor where you're unl...
+    scene.text(`The two of you make your way to the restroom on the other floor where you're unlikely to be disturbed. Once inside, she leads you over to the sinks and helps lift you up onto the counter. She starts pushing up your skirt until she exposes your pussy and tuts when she sees that you're not wearing panties. "What a dirty girl you are ${((s as any).pcs_nickname ?? 0)}."`);
+  } else {
+    scene.text('The two of you make your way to the restroom on the other floor where you\'re unlikely to be disturbed. Once inside, she leads you over to the sinks and helps lift you up onto the counter. She starts pushing up your skirt until she exposes your panties, then reaches up further and grabs your panties and pulls them down, sliding them down your legs and tosses them aside. "Those are just going to get in the way."');
+  }
+  scene.actions([
+    { label: 'Make out', handler: (st: GameState) => {
+    (s as any).npc_had_sex['A144'] = 1;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom2.jpg');
+    scene.text('With your skirt pushed up to your waist, leaving you naked from the waist down, she pulls you forward until you slide off the counter and the two of you start kissing and making out.');
+    qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Surprise', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom3.jpg');
+    scene.text('Without warning, she suddenly breaks the kiss and spins you around until you\'re facing the mirrors along the wall above the sink. She pushes you forward at the shoulders and bends you over the counter. She slaps your bare ass, causing you to yelp in surprise, which is followed by several more smacks as she spanks your ass until it\'s red.');
+    qspCall(s, 'arousal', 'foreplay', 1, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fingered', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom4.jpg');
+    scene.text('She slides a hand between your thighs and starts rubbing your clit, making you moan softly. As soon as your pussy is wet enough, she slides two fingers inside you and starts finger-banging you. "Oh you like this don\'t you, you dirty little slut?!"');
+    qspCall(s, 'arousal', 'vaginal_finger', 2, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Into the stall', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom5.jpg');
+    scene.text('She suddenly grabs you by the hair and drags you into the stall at the end of the row. Once inside, she strips away some of her clothes and the rest of yours before leaning against the wall and spreading her legs. She drags you over by your hair and pulls your face between her legs. You start to lick her pussy, which is already wet. After a few minutes of this, she pulls your face away from her. "Where\'s your strap-on?" she asks and you point to your purse.');
+    qspCall(s, 'arousal', 'cuni', 2, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Wait', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom6.jpg');
+    scene.text('She opens your purse and pulls out the strap-on harness before putting it on. You sit on the toilet while she finishes securing the harness in place before turning and looking down at you. "I\'m going to fuck you so hard, you\'re not going to walk right for a week!"');
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'D<<strapNumber>>');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom7.jpg');
+    // TODO-QSP: dynamic text: Pulling you up, she turns you around and bends you over. You feel the tip of the...
+    scene.text(`Pulling you up, she turns you around and bends you over. You feel the tip of the dildo sliding up and down against your slit before she slides the ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo into you. She starts fucking you slowly at first, but the more you moan the faster she starts fucking you.`);
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'arousal', 'vaginal_strap', 3, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get pounded', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom8.jpg');
+    scene.text('She starts really hammering away at your pussy, her hips loudly slapping against your ass with each thrust as she holds onto you with both hands so you can\'t pull away as she pounds away at you. After a few minutes, she starts to slow down and leans forward. "I\'m going to fuck your tight little ass next…"');
+    qspCall(s, 'arousal', 'vaginal_strap', 3, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Take charge', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom9.jpg');
+    scene.text('You shake your head. "Not tonight, tonight I want to ride you." You pull away from her and feel the dildo slide out of you. You turn around and manhandle her to sit on the toilet before you straddle her and slowly impale yourself onto the dildo again. You ride her like this until your legs start to get tired and she lifts you off her and unbuckles the harness, letting it fall to the ground before leaning against the wall and spreading her legs. "Finish me off."');
+    qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat her out again', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom13.jpg');
+    scene.text('You get down on your knees and start eating her out again. She\'s already soaking wet and it only takes a few minutes until she starts shaking and moaning loudly as she orgasms, drenching your face in her juices. For the next few minutes, you both just rest, panting and catching your breath as you recover.');
+    qspCall(s, 'arousal', 'cuni', 3, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Afterglow', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom14.jpg');
+    scene.text('Once she recovers, she grabs you by the face and gives you a long, passionate kiss for a few seconds before breaking it. "I had fun. We should do this again sometime." With that, she starts getting dressed after cleaning herself up. You follow suit as she heads out. "I\'m heading back to the disco to see what\'s going on. See you later." She walks out and you wait for a few minutes before leaving as well.');
+    qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Let her fuck your ass', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom10.jpg');
+    scene.text('She pulls the dildo out of your pussy and lubricates her fingers with your juices before rubbing them against your asshole. You then feel the tip of the dildo press against your asshole and the pressure build until the tip pops in. You hiss and in a mix of pleasure and pain as she starts slowly fucking your ass.');
+    qspCall(s, 'arousal', 'anal_strap', 3, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Balls deep', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom11.jpg');
+    scene.text('As you moan louder, she starts fucking you slightly harder and deeper until she finally works the dildo balls deep into your ass. You can hear the slapping of flesh echoing in the room as her hips slap against your ass with each thrust. Reaching between your legs, you start rubbing your clit to increase the pleasure.');
+    qspCall(s, 'arousal', 'anal_strap', 3, 'lesbian');
+    qspCall(s, 'arousal', 'clit_finger', (-3), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal pounding', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom12.jpg');
+    scene.text('She grabs hold of your hair and starts really hammering your ass hard and fast. She keeps up the jackhammer speed for several minutes before she starts breathing heavily and slows down until she stops and pulls the dildo out of your ass. Backing away, she unbuckles the harness and lets it fall to the ground before leaning against the wall and spreading her legs. "Finish me off."');
+    qspCall(s, 'arousal', 'anal_strap', 3, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat her out again', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom13.jpg');
+    scene.text('You get down on your knees and start eating her out again. She\'s already soaking wet and it only takes a few minutes until she starts shaking and moaning loudly as she orgasms, drenching your face in her juices. For the next few minutes, you both just rest, panting and catching your breath as you recover.');
+    qspCall(s, 'arousal', 'cuni', 3, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Afterglow', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom14.jpg');
+    scene.text('Once she recovers, she grabs you by the face and gives you a long, passionate kiss for a few seconds before breaking it. "I had fun. We should do this again sometime." With that, she starts getting dressed after cleaning herself up. You follow suit as she heads out. "I\'m heading back to the disco to see what\'s going on. See you later." She walks out and you wait for a few minutes before leaving as well.');
+    qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDiscoEmptyroom(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'stat', '');
+  if (((s as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
+    scene.img('images/pc/activities/misc/strapon_under_dress.jpg');
+    scene.text('You find an unlocked door and tell her to go inside. "Head in, I\'ll join you in a minute." You quickly walk to the women\'s restroom, enter one of the stalls and slide the strap-on harness on under your skirt so the dildo hangs between your legs. The strap-on in place, you head back to the room where you left Anushka.');
+    qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+    qspCall(s, 'stat', '');
+    if (((s as any).penisEnvyVariable ?? 0) === 0) {
+      scene.actions([
+        { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
+    qspCall(s, 'castSpell', 'penisenvy');
+    if (((s as any).spellSuccess ?? 0) > 0) {
+      scene.actions([
+        { label: 'Show her your magic strapon', goto: ['anushkaev2', 'disco_emptyroom_show_strapon_magic'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Show her the strapon as is', goto: ['anushkaev2', 'disco_emptyroom_show_strapon'] },
+      ]);
+    }
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Show her your magic strapon', goto: ['anushkaev2', 'disco_emptyroom_show_strapon_magic'] },
+      ]);
+    }
+  } else {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked1.jpg');
+    scene.text('You find an unlocked door and tell her to go inside. "Head in, I\'ll join you in a minute." You quickly walk to the women\'s restroom, enter one of the stalls and slide the strap-on harness on under your skirt so the dildo hangs between your legs. The strap-on in place, you head back to the room where you left Anushka. When you enter, you look around, unsure what the purpose of the room is before locking the door. Anushka is standing in a corner smoking a joint as you walk over and lean against the wall. She looks you over with a hungry lust-filled look in her eye and offers you a hit of the joint.');
+    scene.actions([
+      { label: 'Take a hit', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'drugs', 'joint', 1);
+    scene.text('You take the offered joint from her and take a hit of it before handing it back. You spend several minutes passing the joint back and forth until it\'s gone. Feeling nice and high, it\'s time to show her what you\'re already wearing.');
+    scene.actions([
+      { label: 'Show her the strapon', goto: ['anushkaev2', 'disco_emptyroom_show_strapon'] },
+    ]);
+  } },
+      { label: 'Show her the strapon instead', goto: ['anushkaev2', 'disco_emptyroom_show_strapon'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDiscoEmptyroomShowStrapon(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'stat', '');
+  if (((s as any).strapNumber ?? 0) >= 5) {
+    scene.img('images/characters/shared/headshots_main/big144.jpg');
+    scene.text('You grab the straps that loosely hold the harness in place and pull them tight. The dildo rises up like you\'re getting a hard-on, lifting your skirt as it does. Pulling your skirt up, you expose it to her to see her reaction. At first, she looks turned on, but when you reveal the full size of it, she starts shaking her head. "No way, that thing wouldn\'t fit in my ass. I thought you had… you know, a human-sized dildo, not some horse cock." You try to talk her into it, but she flat out refuses to let you stick something that big up her ass.');
+    scene.text('After a few minutes, she tells you she\'s going back to the disco, leaving you alone with your horse cock dildo.');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } else {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked2.jpg');
+    scene.text('You grab the straps that loosely hold the harness in place and pull them tight. The dildo rises up like you\'re getting a hard-on, lifting your skirt as it does. Pulling your skirt up, you expose it to her to see her reaction. At first, she looks turned on, but when you reveal the full size of it, she starts kissing you. "Am I making you hard, baby?" she asks in an aroused tone as she reaches over and starts stroking your fake cock.');
+    qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Make her suck your dick', goto: ['anushkaev2', 'disco_emptyroom_suck_strapon'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterDiscoEmptyroomSuckStrapon(s: GameState, scene: SceneBuilder): void {
+  (s as any).npc_had_sex['A144'] = 1;
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked4.jpg');
+  scene.text('"I want you to suck my dick like the dirty little slut you are." You tell her as you push her down until she\'s squatting on the floor in front of you. You start rubbing the tip of the dildo against her lips until she opens her mouth. As soon as she opens her mouth you slide your fake dick into her mouth, she starts to sucking your cock while stroking it with one hand.');
+  qspCall(s, 'arousal', 'foreplay_give', 2, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Watch her suck you off', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked3.jpg');
+    scene.text('She starts really getting into it, getting the dildo wet with her slobber as she bobs her head up and down on it while stroking it with one hand. The boys must love her blowjob skills. While it\'s fun to watch, you\'re getting bored, so you grab her and pull her back up before twirling her around with your hands. You push her forward until she\'s bent over and slide your hands down her sides to her hips before reaching up under her skirt and pulling her panties midway down her thighs. As you say. "I am going to pound your pretty little tight ass, with my fat cock."');
+    qspCall(s, 'arousal', 'foreplay_give', 10, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat her out', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked5.jpg');
+    scene.text('You squat down behind her and start licking her already wet pussy. She moans loudly and presses herself back against your face as you start lapping at her asshole, getting it wet with her pussy juices and your slobber. After a few minutes, you stop licking her and stand up behind her. "Make sure to use plenty of lube."');
+    if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+      scene.text('You open your purse, pull out the little bottle of lube you carry around and start lubing up your dildo until it\'s nice and slick before adding some to her asshole.');
+    } else {
+      scene.text('"Sorry, but I don\'t have any." you reply.');
+      scene.text('She shakes her head slightly. "There\'s a bottle in my purse." You open her purse and pull out the little bottle of lube she apparently carries around and start lubing up your dildo until it\'s nice and slick before adding some to her asshole.');
+    }
+    qspCall(s, 'arousal', 'cuni_give', 2, 'lesbian');
+    qspCall(s, 'arousal', 'rimming_give', 2, 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Stick your cock in her ass', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked6.jpg');
+    scene.text('With your fake cock and her ass lubed up, you start rubbing the tip of it against her asshole. You push against her until the tip pops into her ass, causing her to gasp slightly and moan loudly. You start slowly letting her get used to it and she moans softly.');
+    qspCall(s, 'arousal', 'anal_strap_give', 2, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck her ass', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'D<<strapNumber>>');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked7.jpg');
+    // TODO-QSP: dynamic text: When she seems ready, you grab her by the hips and shove the <<dick>>cm <<$dick_...
+    scene.text(`When she seems ready, you grab her by the hips and shove the ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo balls deep into her ass, causing her to moan even louder. You start fucking her ass in earnest and she seems to be loving every moment of it if her loud moans and body language is any indication. "Look at you being such a slut! My cock slides balls deep into you and all you do is moan like a whore!" you tell her, which causes her to glance back at you with an aroused smile. You can tell she's loving what you're doing.`);
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'arousal', 'anal_strap_give', 2, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Push her down on all fours', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked8.jpg');
+    scene.text('You push her panties the rest of the way down her legs and help her step out of them before pushing her down on all fours. You go down with her, keeping the dildo inside her the whole way. While kneeling on one knee, you smack her ass as you start fucking her a bit harder and pull nearly all the way out of her before shoving the shaft back inside her ass, taking long thrusts each time.');
+    qspCall(s, 'arousal', 'anal_strap_give', 2, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pound her balls deep', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked9.jpg');
+    scene.text('She starts moaning louder and louder as you slam the fake cock into her balls deep, causing her to cry out in pleasure. "That\'s right, cum for me you dirty little anal slut!" you tell her, which seems to do the trick as less than a minute later she starts shaking and cumming hard. You have to use your hands to keep her steady as you fuck her through her orgasm. Once it passes, she starts to get up, causing the dildo to slide out of her gaping ass.');
+    qspCall(s, 'arousal', 'anal_strap_give', 2, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked12.jpg');
+    scene.text('Now that she has came, you\'re about to stand up, but slip backward and land on your ass. You both giggle as she stands up to help pull you up. She cleans herself up while you clean up your dildo and put it away. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Assert dominance', handler: (st: GameState) => {
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
+    (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
+    qspCall(s, 'sweat', 'add', 3);
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked10.jpg');
+    scene.text('Before she can stand up, you grab her and pull her back down on one knee. She glances back at you with a puzzled stare, but you push her forward and bend her over. "I didn\'t say I was done with you, slut!" you tell her as you roughly shove your fake cock back in her ass, causing her to gasp and moan. You hold onto her hips with one hand so she can\'t pull away and start fucking her ass again.');
+    qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian', 'dom', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pound her ass', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked11.jpg');
+    scene.text('She glances back at you and bites her lower lip. You can tell she\'s starting to get a little sore, but you don\'t care. You start hammering her ass as hard and fast as you can. "Tell me whose ass this is!"');
+    scene.text('"OH… It\'s yours!" she cries out. Despite her attitude, you can tell she likes being dominated.');
+    scene.text('"That\'s right! And I can fuck it whenever and for as long as I want! Isn\'t that right, you dirty fucking slut?!" you tell her as you keep pounding her as hard and fast as you can. You can feel sweat running down your back as you grow tired.');
+    scene.text('"OH… Fuck!… Yes…" She seems to be caught in a mix of pleasure and pain and seems to be getting close again, so you pull out of her and shove it back in balls deep without warning. "Ow… Fuck!"');
+    scene.text('You pull out and stop, slapping her ass with your hand. "That\'s right and I get to decide if you enjoy it or not."');
+    qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian', 'dom', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked12.jpg');
+    scene.text('Now that you have established your dominance, you go to stand up, but slip backward and land on your ass. You both giggle as she stands up to help pull you up. She cleans herself up while you clean up your dildo and put it away. By the time you finish, she has her clothes back in place. "Fuck, my ass hurts now. Bitch!"');
+    scene.text('You laugh and give her a kiss. "We both know you loved it! You\'re such an anal slut."');
+    scene.text('She laughs and shakes her head a little. "You\'re a fucking bitch, you know that? But you\'re my bitch," she says before giving you a long passionate kiss. "I\'m going back to the disco now. See you later." With that, she leaves and heads back to the disco. You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDiscoEmptyroomShowStraponMagic(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A144');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked1.jpg');
+  scene.text('When you enter, you look around, unsure what the purpose of the room is before locking the door. Anushka is standing in a corner smoking a joint as you walk over and lean against the wall. She looks you over with a hungry lust-filled look in her eye and offers you a hit of the joint.');
+  scene.actions([
+    { label: 'Take a hit', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'drugs', 'joint', 1);
+    scene.text('You take the offered joint from her and take a hit of it before handing it back. You spend several minutes passing the joint back and forth until it\'s gone. Feeling nice and high, it\'s time to show her what you\'re already wearing.');
+    scene.actions([
+      { label: 'Show her the strapon', handler: (st: GameState) => {
+    if (((s as any).strapNumber ?? 0) >= 5) {
+      scene.img('images/characters/shared/headshots_main/big144.jpg');
+      scene.text('You grab the straps that loosely hold the harness in place and pull them tight. The dildo rises up like you\'re getting a hard-on, lifting your skirt as it does. Pulling your skirt up, you expose it to her to see her reaction. At first, she looks turned on, but when you reveal the full size of it, she starts shaking her head. "No way, that thing wouldn\'t fit in my ass. I thought you had… you know, a human-sized dildo, not some horse cock." You try to talk her into it, but she flat out refuses to let you stick something that big up her ass.');
+      scene.text('After a few minutes, she tells you she\'s going back to the disco, leaving you alone with your horse cock dildo.');
+      scene.actions([
+        { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+        { label: 'Leave', goto: ['pav_commcenter', ''] },
+      ]);
+    } else {
+      scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked2.jpg');
+      scene.text('You grab the straps that loosely hold the harness in place and pull them tight. The dildo rises up like you\'re getting a hard-on, lifting your skirt as it does. Pulling your skirt up, you expose it to her to see her reaction. At first, she looks turned on, but when you reveal the full size of it, she starts kissing you. "Am I making you hard, baby?" she asks in an aroused tone as she reaches over and starts stroking your fake cock. When her fingers wrap around the dildo you can feel them wrapping around it is if it was your own dick. When her hand starts to stroke the shaft you moan softly, as you feel a tingling in your loins from the connection your magic made with it.');
+      qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+      qspCall(s, 'stat', '');
+      scene.actions([
+        { label: 'Make her suck your dick', goto: ['anushkaev2', 'disco_emptyroom_suck_strapon_magic'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    { label: 'Show her the strapon instead', handler: (st: GameState) => {
+    if (((s as any).strapNumber ?? 0) >= 5) {
+      scene.img('images/characters/shared/headshots_main/big144.jpg');
+      scene.text('You grab the straps that loosely hold the harness in place and pull them tight. The dildo rises up like you\'re getting a hard-on, lifting your skirt as it does. Pulling your skirt up, you expose it to her to see her reaction. At first, she looks turned on, but when you reveal the full size of it, she starts shaking her head. "No way, that thing wouldn\'t fit in my ass. I thought you had… you know, a human-sized dildo, not some horse cock." You try to talk her into it, but she flat out refuses to let you stick something that big up her ass.');
+      scene.text('After a few minutes, she tells you she\'s going back to the disco, leaving you alone with your horse cock dildo.');
+      scene.actions([
+        { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+        { label: 'Leave', goto: ['pav_commcenter', ''] },
+      ]);
+    } else {
+      scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked2.jpg');
+      scene.text('You grab the straps that loosely hold the harness in place and pull them tight. The dildo rises up like you\'re getting a hard-on, lifting your skirt as it does. Pulling your skirt up, you expose it to her to see her reaction. At first, she looks turned on, but when you reveal the full size of it, she starts kissing you. "Am I making you hard, baby?" she asks in an aroused tone as she reaches over and starts stroking your fake cock. When her fingers wrap around the dildo you can feel them wrapping around it is if it was your own dick. When her hand starts to stroke the shaft you moan softly, as you feel a tingling in your loins from the connection your magic made with it.');
+      qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
+      qspCall(s, 'arousal', 'magicd_hj', (-1), 'lesbian');
+      qspCall(s, 'stat', '');
+      scene.actions([
+        { label: 'Make her suck your dick', goto: ['anushkaev2', 'disco_emptyroom_suck_strapon_magic'] },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDiscoEmptyroomSuckStraponMagic(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A144');
+  (s as any).npc_had_sex['A144'] = 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked4.jpg');
+  scene.text('"I want you to suck my dick like the dirty little slut you are." You tell her as you push her down until she\'s squatting on the floor in front of your. You start rubbing the tip of the dick against her lips, until she opens her mouth. As soon as she opens her mouth you slide your magical cock into her warm wet mouth, she wraps her lips tightly around the shaft of your cock, as she starts to bop her head, sucking your cock while stroking it with one hand. It feels amazing, she really knows how to suck a dick and make it feel wonderful, you moan softly as she sucks your dick.');
+  qspCall(s, 'arousal', 'magicd_bj', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Watch her suck you off', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked3.jpg');
+    scene.text('She starts really getting into it, getting your dick wet with her slobber as she bobs her head up and down on it while stroking it with one hand. With how amazing this feels, you know the boys must love her blowjob skills. As amazing as this feels, you desire more, you desperately want to fuck her, so you grab her and pull her back up before twirling her around with your hands. You push her forward until she\'s bent over and slide your hands down her sides to her hips before reaching up under her skirt and pulling her panties midway down her thighs. As you say. "I am going to pound your pretty little tight ass, with my fat cock."');
+    qspCall(s, 'arousal', 'magicd_bj', 5, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat her out', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked5.jpg');
+    scene.text('You squat down behind her and start licking her already wet pussy. She moans loudly and presses herself back against your face as you start lapping at her asshole, getting it wet with her pussy juices and your slobber. After a few minutes, you stop licking her and stand up behind her. "Make sure to use plenty of lube."');
+    if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
+      scene.text('You open your purse, pull out the little bottle of lube you carry around and start lubing up your magical dick until it\'s nice and slick before adding some to her asshole.');
+    } else {
+      scene.text('"Sorry, but I don\'t have any." you reply.');
+      scene.text('She shakes her head slightly. "There\'s a bottle in my purse." You open her purse and pull out the little bottle of lube she apparently carries around and start lubing up your magical dick until it\'s nice and slick before adding some to her asshole.');
+    }
+    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
+    qspCall(s, 'arousal', 'rimming_give', (-5), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Stick your cock in her ass', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked6.jpg');
+    scene.text('With your cock and her ass lubed up, you start rubbing the tip of it against her asshole. You push against her until the tip pops into her ass, causing her to gasp slightly and moan loudly. You start slowly letting her get used to it and she moans softly, you moan softly as well. Her asshole is gripped tightly around the shaft of your cock and it feels amazing.');
+    qspCall(s, 'arousal', 'magicd_anal', 5, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck her ass', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'D<<strapNumber>>');
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked7.jpg');
+    // TODO-QSP: dynamic text: When she seems ready, you grab her by the hips and shove the <<dick>>cm <<$dick_...
+    scene.text(`When she seems ready, you grab her by the hips and shove the ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magic dick balls deep into her ass, causing her to moan even louder, you feel your magic balls slap against her wet pussy. You start fucking her ass in earnest and she seems to be loving every moment of it, if her loud moans and body language is any indication. "Look at you being such a slut! My cock slides balls deep into you and all you do is moan like a whore!" you tell her, which causes her to glance back at you with an aroused smile. You can tell she's loving what you're doing. The sensation of taking long full strokes into her tight asshole with your dick is such an amazing feeling, topped off, by feeling those balls smack against her wet pussy, when you bury your cock balls deep in her ass.`);
+    qspCall(s, 'npcStat', 'A144');
+    qspCall(s, 'arousal', 'magicd_anal', 5, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Push her down on all fours', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked8.jpg');
+    scene.text('You push her panties the rest of the way down her legs and help her step out of them before pushing her down on all fours. You go down with her, keeping your dick inside her ass the whole way. While kneeling on one knee, you smack her ass as you start fucking her a bit harder and pull nearly all the way out of her before shoving the shaft back inside her ass, taking long thrusts each time. You feel her tight little asshole milking the shaft of your cock each time you pull out and then you feel your balls smack against her wet pussy each time you thrust balls deep back inside of her butt. No wonder boys like fucking girls up the butt, this feels amazing, you idly think as you fuck her ass.');
+    qspCall(s, 'arousal', 'magicd_anal', 5, 'lesbian', 'dom', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pound her balls deep', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked9.jpg');
+    scene.text('She starts moaning louder and louder as you slam your cock into her balls deep, causing her to cry out in pleasure. "That\'s right, cum for me you dirty little anal slut!" you tell her, which seems to do the trick as less than a minute later she starts shaking and cumming hard. You have to use your hands to keep her steady as you fuck her through her orgasm. Once it passes, she starts to get up, causing your dick to slide out of her gaping asshole, but you havn\'t cum yet and you already miss the tightness of her asshole around your cock. You could grab her, shove it back in, and fuck her until you cum.');
+    qspCall(s, 'arousal', 'magicd_anal', 5, 'lesbian', 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Stop her and jerk off', handler: (st: GameState) => {
+    scene.img('images/pc/magic/penis_envy/jerking_off.jpg');
+    scene.text('"Wait!" You tell her urgently. She pauses half way up as you start to furiously jerk off. She gives you a questioning look, obviously finding it weird you are jerking off a dildo. "I\'m about to cum!" You try and explain which makes her even more confused but so far she is still on her knees watching you, obviously curious as well as confused by your actions. You feel your balls start to tighten, you can tell you are about to cum, now you just have to decide where you will cum.');
+    qspCall(s, 'arousal', 'magicd_hj', 2, 'masturbate');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum on her tits', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/tits_cum1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 2, 'masturbate');
+    scene.text('Once you finish you look down at your handy work and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you and then at her cum splattered breasts. "Oh…" She obviously has never heard of such a thing but due to the power of the magic making people rationalize away magic, she takes it at face value. She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Cum on her face', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/facial_girl1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    scene.text('Once you finish you look down at your handy work and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you and then at her cum splattered breasts. "Oh…" She obviously has never heard of such a thing but due to the power of the magic making people rationalize away magic, she takes it at face value. She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Cum in her mouth', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/mouthful_girl1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    scene.text('Moments later you feel the sudden release and you can feel the cum spraying out of your dick. You moan loudly as the spurts of cum shoot into Anushka\'s mouth. The magic fuels your balls and you cum, shooting spurt after spurt into her mouth, coating her tongue and filling her mouth, until your cum is leaking out of her mouth and down her chin.');
+    scene.text('You look down and see her tongue is completely covered in your cum and her mouth is completely full. "Don\'t just kneel there with a mouthful of my cum, swallow bitch!" You tell her.');
+    scene.text('She does as you command and swallow your cum, she makes a bit of a face and looks even more confused now. "What was that? It even tasted like real cum, only a little sweeter."');
+    scene.text('You look down at her and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you. "Oh… and the taste? What is it?"');
+    scene.text('"Oh that, it is a little bit of yogurt and some other stuff. There are recipes online for it and this one works well and tastes pretty accurate." You explain, knowing this is true if she later looks it up.');
+    scene.text('She grins. "Wow ok, that was pretty fucking wild, I didn\'t know you could buy a dildo that did that or make fake cum taste near like the real thing. That was amazingly close to the real deal." She seems to have completely bought it. The magic making people rationalize away when they encounter magic helps of course.');
+    scene.text('She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Fuck her until you cum', handler: (st: GameState) => {
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
+    qspCall(s, 'sweat', 'add', 3);
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked10.jpg');
+    scene.text('Before she can stand up, you grab her and pull her back down on one knee. She glances back at you with a puzzled stare, but you push her forward and bend her over. "I didn\'t say I was done with you, slut!" you tell her as you roughly shove your cock back in her ass, causing her to gasp and moan. You hold onto her hips with one hand so she can\'t pull away and start fucking her ass again, hard long deep strokes, until your balls slap against her wet slit. "Fuck yeah, I could pound your tight little ass all night."');
+    qspCall(s, 'arousal', 'magicd_anal', 3, 'lesbian', 'dom', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Pound her ass', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked11.jpg');
+    scene.text('She glances back at you and bites her lower lip. You can tell she\'s starting to get a little sore, but you don\'t care, because you can feel you are starting to get close and this sensation is simple amazing. You start hammering her ass as hard and fast as you can. "Tell me whose ass this is!"');
+    scene.text('"OH… It\'s yours!" she cries out. Despite her attitude, you can tell she likes being dominated.');
+    scene.text('"That\'s right! And I can fuck it whenever and for as long as I want! Isn\'t that right, you dirty fucking slut?!" you tell her as you keep pounding her as hard and fast as you can. You can feel sweat running down your back as you grow tired.');
+    scene.text('"OH… Fuck!… Yes…" She seems to be caught in a mix of pleasure and pain and seems to be getting close again, so you pull out of her and shove it back in with balls deep without warning. "Ow… Fuck!"');
+    scene.text('You slap her ass with your hand as you go back to fucking her butt. "That\'s right and I get to decide if you enjoy it or not." You are on the edge, as her tight little asshole milks your cock with each stroke. You can tell you are about to cum any moment, you could just fill her ass with your cum, or pull out and cum on her somewhere.');
+    qspCall(s, 'arousal', 'magicd_anal', 3, 'lesbian', 'dom', 'rough');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum in her ass', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/creampie_anal_girl1.jpg');
+    qspCall(s, 'arousal', 'magicd_anal', 1, 'lesbian', 'dom', 'rough');
+    scene.text('She looks back at you confused, obviously able to feel the cum leaking out of her gaping asshole. "What the fuck is that?" She asks very confused.');
+    scene.text('"It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator." You explain to her.');
+    scene.text('She looks a little confused up at you, as she reaches back to wipe some of the cum off her butt with her fingers to look at it. "Oh…" She obviously has never heard of such a thing but due to the power of the magic making people rationalize away magic, she takes it at face value. She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "Fuck, my ass hurts now. Bitch!"');
+    scene.text('You laugh and give her a kiss. "We both know you loved it! You\'re such an anal slut."');
+    scene.text('She laughs and shakes her head a little. "You\'re a fucking bitch, you know that? But you\'re my bitch," she says before giving you a long passionate kiss. "I\'m going back to the disco now. See you later." With that, she leaves and heads back to the disco. You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Pull out and cum on her', handler: (st: GameState) => {
+    scene.img('images/pc/magic/penis_envy/jerking_off.jpg');
+    scene.text('You pull your cock out of her tight little butthole. "Don\'t move, I\'m about to cum!" She doesn\'t move other than to look back over her shoulder at you, obviously curious as well as confused by your actions. You feel your balls start to tighten, you can tell you are about to cum, now you just have to decide where you will cum, her butt cheeks make for an inviting target, or you could get her on her knee\'s.');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum on her butt cheeks', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/butt_cum_girl1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    scene.text('Once you finish you look down at your handy work and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you, as she reaches back to wipe some of the cum off her butt with her fingers to look at it. "Oh…" She obviously has never heard of such a thing but due to the power of the magic making people rationalize away magic, she takes it at face value. She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Cum on her tits', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/tits_cum1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    scene.text('Once you finish you look down at your handy work and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you and then at her cum splattered breasts. "Oh…" She obviously has never heard of such a thing but due to the power of the magic making people rationalize away magic, she takes it at face value. She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Cum on her face', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/facial_girl1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    scene.text('Once you finish you look down at your handy work and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you and then at her cum splattered breasts. "Oh…" She obviously has never heard of such a thing but due to the power of the magic making people rationalize away magic, she takes it at face value. She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+      { label: 'Cum in her mouth', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    scene.img('images/pc/magic/penis_envy/mouthful_girl1.jpg');
+    qspCall(s, 'arousal', 'magicd_hj', 1, 'masturbate');
+    scene.text('Moments later you feel the sudden release and you can feel the cum spraying out of your dick. You moan loudly as the spurts of cum shoot into Anushka\'s mouth. The magic fuels your balls and you cum, shooting spurt after spurt into her mouth, coating her tongue and filling her mouth, until your cum is leaking out of her mouth and down her chin.');
+    scene.text('You look down and see her tongue is completely covered in your cum and her mouth is completely full. "Don\'t just kneel there with a mouthful of my cum, swallow bitch!" You tell her.');
+    scene.text('She does as you command and swallow your cum, she makes a bit of a face and looks even more confused now. "What was that? It even tasted like real cum, only a little sweeter."');
+    scene.text('You look down at her and explain. "It is one of those dildo\'s with fake cum and a vibrator, I can trigger the cum to spurt out when I cum from the vibrator."');
+    scene.text('She looks a little confused up at you. "Oh… and the taste? What is it?"');
+    scene.text('"Oh that, it is a little bit of yogurt and some other stuff. There are recipes online for it and this one works well and tastes pretty accurate." You explain, knowing this is true, if she later looks it up.');
+    scene.text('She grins. "Wow ok, that was pretty fucking wild, I didn\'t know you could buy a dildo that did that or make fake cum taste near like the real thing. That was amazingly close to the real deal." She seems to have completely bought it. The magic making people rationalize away when they encounter magic helps of course.');
+    scene.text('She pulls some tissues out of her purse and starts cleaning herself up, while you clean up your dick, dismissing the spell, then taking the strapon harness off, you put away the now unmagical strapon back away in your purse. By the time you finish, she has her clothes back in place and gives you a quick kiss. "I had a blast, but I\'m going to go back to the disco now. See you later." With that, she leaves and heads back to the disco.');
+    scene.text('You could go back and see what might still be going on or just head home.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Go back to the disco', goto: ['pav_disco', ''] },
+      { label: 'Leave', goto: ['pav_commcenter', ''] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'watch_nushrad':
+      enterWatchNushrad(s, scene);
+      break;
+    case 'watch_nushrad_maksim_blackmail':
+      enterWatchNushradMaksimBlackmail(s, scene);
+      break;
+    case 'wait_nushrad':
+      enterWaitNushrad(s, scene);
+      break;
+    case 'rad3some':
+      enterRad3some(s, scene);
+      break;
+    case 'radnush_asspound':
+      enterRadnushAsspound(s, scene);
+      break;
+    case 'rad_selfie':
+      enterRadSelfie(s, scene);
+      break;
+    case 'about_rad':
+      enterAboutRad(s, scene);
+      break;
+    case 'watch_nushval':
+      enterWatchNushval(s, scene);
+      break;
+    case 'watch_nushval_maksim_blackmail':
+      enterWatchNushvalMaksimBlackmail(s, scene);
+      break;
+    case 'wait_nushval':
+      enterWaitNushval(s, scene);
+      break;
+    case 'val3some':
+      enterVal3some(s, scene);
+      break;
+    case 'talkaboutval':
+      enterTalkaboutval(s, scene);
+      break;
+    case 'watch_nushmar':
+      enterWatchNushmar(s, scene);
+      break;
+    case 'watch_nushmar_maksim_blackmail':
+      enterWatchNushmarMaksimBlackmail(s, scene);
+      break;
+    case 'wait_nushmar':
+      enterWaitNushmar(s, scene);
+      break;
+    case 'mar3some':
+      enterMar3some(s, scene);
+      break;
+    case 'eat_nush_fucked':
+      enterEatNushFucked(s, scene);
+      break;
+    case 'talk_about_marcus':
+      enterTalkAboutMarcus(s, scene);
+      break;
+    case 'disco_restroom':
+      enterDiscoRestroom(s, scene);
+      break;
+    case 'disco_emptyroom':
+      enterDiscoEmptyroom(s, scene);
+      break;
+    case 'disco_emptyroom_show_strapon':
+      enterDiscoEmptyroomShowStrapon(s, scene);
+      break;
+    case 'disco_emptyroom_suck_strapon':
+      enterDiscoEmptyroomSuckStrapon(s, scene);
+      break;
+    case 'disco_emptyroom_show_strapon_magic':
+      enterDiscoEmptyroomShowStraponMagic(s, scene);
+      break;
+    case 'disco_emptyroom_suck_strapon_magic':
+      enterDiscoEmptyroomSuckStraponMagic(s, scene);
+      break;
+    default:
+      enterWatchNushrad(s, scene);
+      break;
+  }
+}
+
+export const anushkaev2: LocationDef = {
+  name: 'anushkaev2',
+  title: 'Anushka gets on the bed on all fours in her underwear and wi',
+  region: 'other',
+  description: ['Anushka gets on the bed on all fours in her underwear and wiggles her ass around. "Damn! You have one of the finest asses I\'ve ever seen, you know that Nush?" You can tell by the voice that it\'s Radomir. He gives her ass a good squeeze with his hand, then grabs her panties and pulls them down, roughly jerking them off and tossing them aside. He then starts playing with her bare ass and rubbing her pussy with his fingers.'],
+  enter: enter,
+};

@@ -1,0 +1,35 @@
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><font color = green>1822</font></center>');
+  scene.text('<center>Knowing that he will need images to work with his game, Alex DeGross travels to France and works with Nicéphore Niépce to produce the first permanent photoetching image.</center>');
+  scene.text('<center><font color = green>1884</font></center>');
+  scene.text('<center>Alex funds Nikola Tesla to travel to the new world to discover electricity so he can run his computer. Unfortunately Nikola finds too much and goes crazy, but still this crazy and lovable scamp is not as popular as his nemesis Thomas Eddison who abuses his position as a copyrighter to steal other peoples IP.</center>');
+  scene.text('<center><font color = green>1936</font></center>');
+  scene.text('<center>With electricity now in steady supply he now needs a computer, so he asks Alan Turing to design one. He makes many leaps forward in this field and then wins the war.</center>');
+  scene.text('<center><font color = green>1984</font></center>');
+  scene.text('<center>Now that computers are readily available he needs games to make it big so he gets Russian game designer Alexey Pajitnov to invent Tetris and this is a massive success.</center>');
+  scene.text('<center><font color = green>1989</font></center>');
+  scene.text('<center>Now that games have overtaken all other forms of media it is necessary to find porn, so he asks Tim Berners-Lee at CERN if he could put all the existing stuff together and make some kind of global web. This does the trick.</center>');
+  scene.text('<center><font color = green>2004</font></center>');
+  scene.text('<center>The porn revolution brings about many stories of hardship but in a sexy way. The need now is for a platform for the game so Valery "Byte" Argunov was bribed with much vodka in to developing the open source QSP project.</center>');
+  scene.text('<center><font color = green>2013</font></center>');
+  scene.text('<center>Finally the magic happens with ЭТО. It then stops and EfimovRA, then etogame try and keep it going before DeGross gets involved again and eventually calls an end to it saying he doesn\'t care what people do with it. He was probably tired by this point so he has a rest.</center>');
+  scene.text('<center><font color = green>2014</font></center>');
+  scene.text('<center>While crwn157 starts to mod ЭТО, the game that was just an experiment based on Albedo and still in Russian is picked up by mjsmagalhaes on TFGS and run through a machine translation. The result is not good but with great vision a community is born to translate, fix and develop what becomes a new game called Girl Life.</center>');
+  scene.text('<center><font color = green>2016</font></center>');
+  scene.text('<center>Meanwhile in Asia, an ancient beast is awoken. ranceking, xiaomiza, rebya, icevapour, imvyzui, fin, doubi, 5864572, Pygon and Pudding work tirelessly in their labs to create a Full translated Chinese version. With this world domination is assured.</center>');
+  scene.actions([
+    { label: 'Return', goto: ['start', ''] },
+  ]);
+  scene.build();
+}
+
+export const history: LocationDef = {
+  name: 'history',
+  title: '<center><font color = green>1822</font></center>',
+  region: 'other',
+  enter: enter,
+};

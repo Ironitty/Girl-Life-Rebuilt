@@ -1,0 +1,206 @@
+import { qspCall } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enterInit(s: GameState, scene: SceneBuilder): void {
+  (s as any).setloc['imagepath'] = 'locations/city/mariinsky/';
+  scene.build();
+}
+
+function enterSetup(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).loc ?? 0) !== 'city_mariinsky') {
+    qspCall(s, 'city_mariinsky', 'init');
+  }
+  qspCall(s, 'core_library', 'setloc', 'city_mariinsky', ((s as any).locArgs?.[1] ?? 0));
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'shortgs', 'clothing_status');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'core_library', 'stage_title');
+  scene.build();
+}
+
+function enterExit(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['city_artisan_quarter', 'start'] }]);
+  scene.build();
+}
+
+function enterTickets(s: GameState, scene: SceneBuilder): void {
+  (s as any).setloc['StageTitle'] = 'Mariinsky Tickets';
+  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_tickets ?? 0)';
+  qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
+  scene.text('fluff text for purchasing tickets');
+  scene.build();
+}
+
+function enterMain(s: GameState, scene: SceneBuilder): void {
+  (s as any).setloc['StageTitle'] = 'Mariinsky Main Stage';
+  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).mariinsky_stage ?? 0)';
+  qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
+  scene.text('For over two centuries, the grand stage of St. Petersburgs\' has been the most prestigious of all Russia\'s ballet and opera theatres and, each year, hosts the Vaganova Ballet Academy\'s performances for their students. You gaze in wonder as you take your seat at the rich facade and feel the presence of all those illustrious performers who have tread those boards.');
+  scene.actions([
+    { label: 'Watch performance', goto: ['city_mariinsky', 'performance_evening'] },
+    { label: 'Leave', goto: ['city_mariinsky', 'hall'] },
+  ]);
+  scene.build();
+}
+
+function enterToiletsMen(s: GameState, scene: SceneBuilder): void {
+  (s as any).setloc['StageTitle'] = 'Men\'s Restroom';
+  qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
+  scene.text('WIP - no content. ');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'city_mariinsky', $marreturn
+  } },
+  ]);
+  scene.build();
+}
+
+function enterToiletsWomen(s: GameState, scene: SceneBuilder): void {
+  (s as any).setloc['StageTitle'] = 'Woman\'s Restroom';
+  qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: dynamic text: You walk into the opulent women's restroom. You see some sinks and <a href="exec...
+  scene.text('You walk into the opulent women\'s restroom. You see some sinks and <a href="exec:gt \'mirror\',\'start\'">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
+  qspCall(s, 'din_van', 'tampon');
+  qspCall(s, 'din_van', 'quickwash');
+  qspCall(s, 'din_van', 'basin');
+  qspCall(s, 'din_van', 'publicpan');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    // TODO-QSP: gt 'city_mariinsky', $marreturn
+  } },
+  ]);
+  scene.build();
+}
+
+function enterStageDoor(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).balletqw ?? 0)?.['rank'] >= 1) {
+    scene.actions([
+      { label: 'Enter', goto: ['city_mariinsky', 'changing_room'] },
+      { label: 'Leave', goto: ['city_mariinsky', 'changing_room'] },
+    ]);
+  } else {
+    scene.text('You do not have the permission to enter the theatre through the stage door.');
+    scene.actions([
+      { label: 'Leave', goto: ['city_mariinsky', 'foyer'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
+  (s as any).setloc['StageTitle'] = 'Changing Room';
+  (s as any).setloc['StageImage'] = $((s as any).setloc ?? 0)?.['imagepath'] + '((s as any).changing_room ?? 0)';
+  qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
+  if (((s as any).balletqw ?? 0)?.['rehearsals'] === 1) {
+    scene.text('You enter the changing room and see the other dancers getting for today\'s rehearsals. You quickly change into your dance outfit and head out onto the stage.');
+    scene.actions([
+      { label: 'Head to the stage', goto: ['city_mariinsky', 'rehearsals'] },
+    ]);
+  } else {
+    (s as any).balletqw['performance_night'] = ((s as any).balletqw['performance_night'] ?? 0) - (1);
+    scene.text('You enter the changing room and see the other dancers getting ready for the performance. You quickly change into your costume and prepare for the performance.');
+    scene.text('Null - no content. Please see a bug report.');
+    scene.actions([
+      { label: 'Head to the stage', goto: ['city_mariinsky', 'performance_evening'] },
+    ]);
+  }
+  qspCall(s, 'core_library', 'bathroom');
+  scene.actions([
+    { label: 'Leave Theatre', goto: ['city_mariinsky', 'city_artisans'] },
+  ]);
+  scene.build();
+}
+
+function enterProduction(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).balletqw ?? 0)?.['rank'] > 0) {
+    if (((s as any).balletqw ?? 0)?.['current_stage'] === 'rehearsals') {
+      qspCall(s, 'city_mariinsky_rehearsals', 'init');
+    } else {
+      qspCall(s, 'city_mariinsky_performances', 'init');
+    }
+  } else {
+    scene.text('Error - balletqw[rank] not set - Please send a bug report.');
+  }
+  scene.build();
+}
+
+function enterPerformanceEvening(s: GameState, scene: SceneBuilder): void {
+  (s as any).mariinskyqw['ticket'] = 0;
+  (s as any).mariinskyqw['performances_watched'] = ((s as any).mariinskyqw['performances_watched'] ?? 0) + (1);
+  scene.build();
+}
+
+function enterDateNights(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterEvents(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterHallowedGround(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'init':
+      enterInit(s, scene);
+      break;
+    case 'setup':
+      enterSetup(s, scene);
+      break;
+    case 'exit':
+      enterExit(s, scene);
+      break;
+    case 'tickets':
+      enterTickets(s, scene);
+      break;
+    case 'main':
+      enterMain(s, scene);
+      break;
+    case 'toilets_men':
+      enterToiletsMen(s, scene);
+      break;
+    case 'toilets_women':
+      enterToiletsWomen(s, scene);
+      break;
+    case 'stage_door':
+      enterStageDoor(s, scene);
+      break;
+    case 'changing_room':
+      enterChangingRoom(s, scene);
+      break;
+    case 'production':
+      enterProduction(s, scene);
+      break;
+    case 'performance_evening':
+      enterPerformanceEvening(s, scene);
+      break;
+    case 'date_nights':
+      enterDateNights(s, scene);
+      break;
+    case 'events':
+      enterEvents(s, scene);
+      break;
+    case 'hallowed_ground':
+      enterHallowedGround(s, scene);
+      break;
+    default:
+      enterInit(s, scene);
+      break;
+  }
+}
+
+export const city_mariinsky: LocationDef = {
+  name: 'city_mariinsky',
+  title: 'You enter the Mariinksy Theatre into the massive open hall w',
+  region: 'city',
+  locationType: 'private_shared',
+  locclass: 'restroom',
+  enter: enter,
+};

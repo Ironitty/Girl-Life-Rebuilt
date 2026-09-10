@@ -1,0 +1,875 @@
+import { qspCall, qspFunc } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enterUndressed1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcStat', 'A34');
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/kiss_2.mp4');
+  scene.text('You roll her onto her back and straddle her, while you pull off your shirt first before tugging hers off too. Giggling you both try to take the others bra off at the same time and only manage to tangle them together, before tossing them off to the side. You kiss her lips again before working your way down to her neck, planting more kisses as you go. Sliding your body lower, you slip off your own pants and panties, not pausing your kisses until you reach her breasts. Teasing her nipples with your tongue, your hands slide down to her waist and start unbuttoning her pants. Getting them loose, you pull both her pants and panties down until they slide off her feet, before kissing your way back up to her mouth.');
+  (s as any).lariskalove = ((s as any).lariskalove ?? 0) + (1);
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Continue', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterUndressed2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/kiss_3.mp4');
+  scene.text('Crawling on top of her, you push your tongue into her mouth in a frenzy of passion.');
+  scene.text('You consider what you want to do with Lariska now.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+  qspCall(s, 'stat', '');
+  if (((s as any).lariskalove ?? 0) >= 12) {
+    scene.actions([
+      { label: 'Play with dildos', goto: ['LariskaSex', 'dildo1'] },
+    ]);
+  }
+  if (((s as any).lariskalove ?? 0) >= 18  &&  ((s as any).mc_inventory ?? 0)?.['strapon'] > 0) {
+    scene.actions([
+      { label: 'Wear your Strap-On', goto: ['LariskaSex', 'bj_give_1'] },
+    ]);
+  }
+  if (((s as any).lariskalove ?? 0) >= 18  &&  ((s as any).mc_inventory ?? 0)?.['strapon'] > 0) {
+    scene.actions([
+      { label: 'Lariska wears the Strap-on', goto: ['LariskaSex', 'bj_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Lick her pussy', goto: ['LariskaSex', 'lick1'] },
+    { label: 'Get eaten out', goto: ['LariskaSex', 'lick2'] },
+    { label: 'Get dressed', handler: (st: GameState) => {
+    if (((s as any).analPlugOut ?? 0) === 1) {
+      qspCall(s, 'dinsex', 'after_anal');
+    }
+    if (((s as any).vibratorOUT ?? 0) === 1) {
+      (s as any).vibratorIN = 1;
+      (s as any).vibratorOUT = 0;
+    }
+    qspCall(s, 'arousal', 'end');
+  }, goto: ['LariskaHome', 'lariska_bedroom'] },
+  ]);
+  scene.build();
+}
+
+function enterLick1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/lick_2.mp4');
+  scene.text('You start by running your fingers along her outer lips, making her shudder and pant, before laying on your back and pulling her onto your face. You attack her pussy with your tongue, drawing circles around her clitoris, but carefully not touching it.');
+  scene.text('She starts grinding into your face as you start fucking her with your tongue, begging for you to keep going. She grabs your head with one hand and reaches behind her to grab one of your tits to keep herself stable, but the pleasure is too much for her to sit still for long.');
+  scene.text('As her juices begin to coat your face, you stop licking and just keep your tongue out, letting her decide her own pace. She humps your tongue in glee, loving it, as you reach between your own legs and start rubbing your wet pussy.');
+  scene.text('You decide to step it up and start licking her clit directly, before closing your lips around it and gently sucking. This sends her into a frenzy, moaning her way into pure bliss. As the orgasm breaks over her, her hips begin to jerk, her back arches, and her head swings around wildly.');
+  qspCall(s, 'arousal', 'clit_finger', (-5), 'lesbian');
+  qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
+  qspCall(s, 'stat', '');
+  scene.text('Spent she crawls off of you and you snuggle, exchanging passionate kisses as your bodies come down from the euphoria you both just experienced.');
+  scene.actions([
+    { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterLick2(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/lick_1.mp4');
+  scene.text('You lay on your back and spread your legs. Lariska crawls between them and rubs your outer lips for a moment before spreading them with her fingers. She gives you a few long, slow licks, up and down, before moving up to your clitoris and attacking it with her tongue.');
+  scene.text('You start moaning loudly, and grip your ankles to keep your legs in the air while you descend into bliss. She stays focused on your clit, alternating between licking it and sucking on it, making your mind go blank, all you can think is pleasure.');
+  scene.text('You feel your eyes start to roll back into your head, and know you are on the edge of a beautiful orgasm.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
+  qspCall(s, 'stat', '');
+  scene.text('Your legs collapse to the bed, as Lariska kisses her way up your body until she reaches your lips, kissing you deeply, obviously happy to have pleased you so well.');
+  scene.actions([
+    { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterDildo1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
+  scene.text('You kiss Lariska\'s lips softly, then shift to her neck, kissing your way down to her breasts. You stop there for a short time, sucking on her nipples, before continuing your way down. She stops you before you get there, rolling you onto your back and climbing on top in a 69 position.');
+  scene.text('You reach up and grab her ass, massaging it, as you bury your face in her snatch, rubbing with your nose and licking at the same time. You hear a few moans before she starts licking you back, dragging her tongue slowly across your outer lips before beginning to fuck your hole with that beautiful tongue.');
+  scene.text('You start squirming around, trying and failing to stay focused on pleasing her, but she stops for a moment. The next thing you see is a fairly large suction dildo being presented to you. Taking it, you suck on it for a moment to lube it up, before gently rubbing it around her folds, drawing a long moan out of her.');
+  scene.text('As you start slowly working the tip in, you hear a vibrator start buzzing. Swinging your head around her leg and looking down, you see Lariska lubing up a smaller, vibrating dildo, as she prepares it for you. She mimics your movements, first rubbing it all around the outside of your pussy, before peeling the folds back so she can start easing it in.');
+  if (((s as any).vibratorIN ?? 0) === 1) {
+    (s as any).vibratorIN = 0;
+    (s as any).vibratorOUT = 1;
+    scene.text('You spread your legs and take the vibrator out of your pussy, letting out a slight moan as you do so. You feel somewhat empty now.');
+  }
+  qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
+  qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    if (((s as any).LariskaQW ?? 0)?.['tellvirg'] === 0) {
+      scene.text('I\'m a virgin, you tell her softly.');
+      (s as any).LariskaQW['tellvirg'] = 1;
+    } else {
+      scene.text('I\'m still a virgin, you say softly.');
+    }
+    scene.actions([
+      { label: 'Let her pop your cherry', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
+    scene.text('You gasp as she works the dildo in, feeling something break inside you. You know you aren\'t a virgin anymore. Trying to push the pain aside, you focus on your own end as you work the tip deeper inside her honeypot. Before long the both of you are fucking each other with the dildos, the sounds of moans and gasps filling the air. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+    qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.text('As the roaring in your ears slowly subsides, Lariska pushes herself around and starts kissing you passionately, eager to show how happy you just made her.');
+    scene.actions([
+      { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
+    ]);
+  } },
+      { label: 'Stay a virgin', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
+    scene.text('She smiles sweetly and says "Don\'t worry, I won\'t take that from you." Instead of sliding it in, she rubs the tip around your labia while licking your clit gently. You work the tip deeper inside her honeypot trying hard to concentrate with the heavenly feeling she is producing between your legs. The sounds of moans and gasps fill the air as you grind against each other, lost in your passions. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+    qspCall(s, 'arousal', 'vaginal_vibe', 10, 'lesbian');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.text('As the roaring in your ears slowly subsides, Lariska pushes herself around and starts kissing you passionately, eager to show how happy you just made her.');
+    scene.actions([
+      { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.text('You gasp as she works the dildo in, then try to focus back on your own end as you work the tip deeper inside her honeypot. Before long the both of you are fucking each other with the dildos, the sounds of moans and gasps filling the air. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+    qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
+    qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.text('As the roaring in your ears slowly subsides, Lariska pushes herself around and starts kissing you passionately, eager to show how happy you just made her.');
+    scene.actions([
+      { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
+    ]);
+  }
+  scene.build();
+}
+
+function enterBjGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapblow_1.jpg');
+  scene.text('You put one hand on the back of her head and tell her to "Make it wet Lariska, or it will hurt when I fuck you with it." She obediantly starts slobbering all over it and before long both it and her chest are covered in her spit. You hold her head still as you start alternating between pushing it between her lips and pulling it out to drag across her face. ');
+  scene.text('You stop at one point and look at her, covered in spit and still looking up at you with those adoring eyes, trusting you to take care of her like she was meant to be. Finally tired of letting her play with it, you tell her to get ready and grip her hair while she takes a deep breath, before you shove it about halfway in. ');
+  scene.text('You start pumping it in and out, going a little deeper each time. Her eyes begin to get moist, but she never breaks eye contact with you, or even gags! Not wanting to become the next Christina in her life you ease up a bit, taking it a little slower, until you decide it\'s time to move on.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+  qspCall(s, 'arousal', 'foreplay', (-5), 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterMissGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_1.jpg');
+  scene.text('Lariska lays on her back, opens her legs, and spreads her lower lips, inviting you in. You line the wet dildo up and start pushing it in, making her moan with pleasure.');
+  // TODO-QSP: dynamic text: "Oh yes, <<$pcs_nickname>>, I sooo needed this!" You pull out to the tip and sta...
+  scene.text(`"Oh yes, ${((s as any).pcs_nickname ?? 0)}, I sooo needed this!" You pull out to the tip and start easing it back in, taking your time. With each thrust her moans get louder until she is pretty much screaming, so you attack her lips with your own, shoving your tongue into her mouth and effectively shutting her up.`);
+  scene.text('You slide your hands to her breasts and start massaging them in circular motions, stopping to lightly pinch her nipples every now and then. With each pinch, you draw a whimper from her, still muffled with your lips locked together.');
+  scene.text('She wraps her arms and legs around you, screaming into your mouth, when she starts to shudder. You don\'t slow down in the slightest, riding her orgasm out until she finally goes still underneath you. Pulling back from your long kiss, you lay your head on her chest until you both manage to catch your breath.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterCowGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_2.jpg');
+  scene.text('You lay on your back as she climbs on and lines herself up. Lowering herself onto your rubber pole, she groans in pleasure and starts moving her hips.');
+  scene.text('She starts moaning louder and louder as she rides you, so you reach up and start playing with her nipples, pinching softly and rolling them between your fingers.');
+  scene.text('You can tell she is starting to get close, so you pull her down, grab a nipple with your mouth and move your hands to her butt, and start speeding up up her thrusting.');
+  scene.text('All these extra sensations send her over the edge, making her throw her head back and shudder in pleasure. Holding her tight, you keep thrusting in from below while you ride her orgasm out.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.text('Eventually she collapses onto you, limp and unable to move. You both lay there panting for breath, as you regain enough energy to move again.');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterDogGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_3.jpg');
+  scene.text('You flip her over and pull her ass into the air and place the head of your strap-on against her lower lips. You push the wet dildo in, causing her to moan happily.');
+  scene.text('Finding a good rhythm, you pump the strap-on in and out, each thrust accompanied by a matching groan from Lariska. You grab her by the wrists and pull her up and back, which only seems to make her grunts louder until she starts begging you to keep pounding her like the slut she is.');
+  scene.text('Putting her wrists together behind her back, and holding them there with your left hand, you put your right hand on the back of her neck and push her face into the bed, pounding her as hard as you can. The sounds of her muffled squeals manage to escape the folds of the blanket her face is smashed into, as her back tries to arch and her legs shake.');
+  scene.text('You don\'t slow down though, pushing right through her orgasm and even past it. You slide your right hand up and grab her by the hair, pulling her back up and against your body as you twist her head around enough to give you access to her lips with yours. Her eyes are wide and glassy, and you can tell all she can think of right now is the bliss you are giving her.');
+  scene.text('Still not slowing, you pound her right into another orgasm, her eyes rolling back in her head. After letting her ride this one out, you let go, and she collapses face first into her bed. Pulling out, you roll her limp body over and snuggle with her, as she comes down from the euphoria.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnalMissGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_4.mp4');
+  scene.text('Lariska lays on her back, opens her legs, and spreads her cheeks, inviting you in. As you ease the dildo in, already wet from her mouth, she groans in both pain and pleasure, clearly enjoying it.');
+  scene.text('Pulling her legs over each of your shoulders you start thrusting into her ass as she cries out "Uhh, don\'t stop! Fuck my ass!" Needing no more encouragement you pick up your speed, pounding her with everything you have.');
+  scene.text('Her cries of pleasure and pain grow with each moment, until she starts orgasming, hard. You wrap your left arm around her legs to keep her from kicking you and start pinching her nipples with your right. She grips the bed sheets with both hands as her chest heaves and her eyes roll back in her head.');
+  scene.text('As her body starts to settle down, you pull out, drop her legs, and crawl up next to her to snuggle for a few minutes, until her breathing normalizes. She looks at you in adoration, and you cannot help but to plant a few soft kisses on her lips, happy just to be there with her.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnalCowGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_5.mp4');
+  scene.text('You lay on your back as she climbs on and lines her anus up with the head of your strap-on. As you ease the dildo in, already wet from her mouth, she groans in both pain and pleasure, clearly enjoying it.');
+  scene.text('She starts rolling her hips, groaning with each breath, while you reach up and start massaging her perky breasts. She is loving the stimulation and pushes her chest into your hands, as she slowly picks up speed.');
+  scene.text('You let go of her breast, pull her down, and start working her nipples with your tongue as she lets out deep moans, yearning for more. You know she is near the edge as her moans turn to grunts and gasps.');
+  scene.text('Satisfied she will stay like put, you slide your hands down until you can grab a butt cheek with each hand, and start pounding up into her while holding her in place.');
+  scene.text('That\'s all she needed to go off, and as her back arches and her legs start shaking, she throws her head back and starts screaming incoherently. You don\'t let up until her orgasm subsides, at which point she grabs you by the head and passionately kisses you.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+  qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnalDogGive_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_6.mp4');
+  scene.text('You flip her over and pull her ass into the air and place the head of your strap-on against her asshole. As you ease the dildo in, already wet from her mouth, she groans in pain and pleasure, clearly enjoying it.');
+  scene.text('She lets out deep moans with each thrust as her asshole stretches to accommodate the rubber dick. Satisfied she can take it, you lean over her and push down on her back with your left hand, and reach around with your right to rub her pussy.');
+  scene.text('Staying away from her sensitive clit for now, you give her long, deep strokes with the strap-on, letting her enjoy the double sensation for a while. Her hands grip the blankets of her bed as she moans and groans below you, loving every minute.');
+  scene.text('She stay down as you draw your left hand back and start lightly spanking her, alternating between each cheek, until there is a nice pink spot on each side. With every smack she squeals in pleasure, then begs you to do it again.');
+  scene.text('Reaching back up to her head, you grab a fistful of hair, focus your right hand onto her clit, and start pounding her ass as hard as you can. The screams she makes make you wonder if all of Pavlovsk can hear her, but you don\'t relent, forcing her closer and closer to an orgasm.');
+  scene.text('The multiple sensations of hair pulling, frigging her clit, and fucking her ass prove to be too much, and she lets out one long, loud scream as she starts shaking and flopping around. Keeping her pinned, you ride out the orgasm until she finally stops moving.');
+  // TODO-QSP: dynamic text: Pulling out and letting her hair go, you collapse on top of her, both of you str...
+  scene.text(`Pulling out and letting her hair go, you collapse on top of her, both of you struggling for breath, until she slide out from under you and latches her lips to yours. She only stops that long enough to say, "That was great, ${((s as any).pcs_nickname ?? 0)}!"`);
+  qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
+    { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
+    { label: 'Doggy', goto: ['LariskaSex', 'dog_give_1'] },
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_give_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_give_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_give_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterBj_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapblow_1.jpg');
+  scene.text('You start licking the tip, keeping your eyes locked on hers. You drag your tongue up and down the shaft, pretending it was the real thing, making her shiver in excitement.');
+  scene.text('Taking the tip inside your mouth, you slowly push your way down the rubber pole, until about halfway. Bobbing your head up and down, you pull it deeper and deeper into your mouth, until you finally reach the base.');
+  scene.text('Putting her hands on the back of your head, she starts face-fucking you in long, deep strokes. She pulls it out, smacks your cheeks and forehead with it, before pushing it back in.');
+  scene.text('Eventually she tires of this game, eager to put her rubber dick to use on your other holes.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+  qspCall(s, 'arousal', 'dildo_suck', (-5), 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterMiss_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strap_1.jpg');
+  if (((s as any).vibratorIN ?? 0) === 1) {
+    (s as any).vibratorIN = 0;
+    (s as any).vibratorOUT = 1;
+    scene.text('You spread your legs and take the vibrator out of your pussy, letting out a slight moan as you do so. You feel somewhat empty now.');
+  }
+  if (((s as any).vaginal_slip ?? 0) < 4) {
+    qspCall(s, 'arousal', 'auto_lube', 'vag');
+  }
+  scene.text('Pushing you onto your back, she lifts your legs up and starts teasing your pussy lips with the tip. You look her in the eyes, silently begging her to start fucking you. Getting the unspoken message, she eases her way in a few centimeters, before pulling back out and teasing you some more.');
+  // TODO-QSP: dynamic text: "Beg," she says in a somewhat commanding voice. "Please, Lariska, fuck me!" Smil...
+  scene.text(`"Beg," she says in a somewhat commanding voice. "Please, Lariska, fuck me!" Smiling she puts it back in, pushing it in a little more, before pulling back out again. "I can't hear you, ${((s as any).pcs_nickname ?? 0)}!" You scream out, "Please, Lariska, I'm begging you!"`);
+  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
+    scene.text('She pushes the strap-on back inside, and you feel something inside of you rip. You know it was your hymen, you are no longer a virgin.');
+  }
+  scene.text('She starts fucking you, hanging onto your ankles for leverage. In between grunts and moans, you keep begging her to screw your brains out. Tingles spread throughout your body with each thrust, so you grab your tits and start massaging them, magnifying those feelings. ');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  if (((s as any).pcs_horny ?? 0) >= 90) {
+    qspCall(s, 'mood', 'raise', 'small');
+  }
+  qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterCow_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strap_2.jpg');
+  if (((s as any).vibratorIN ?? 0) === 1) {
+    (s as any).vibratorIN = 0;
+    (s as any).vibratorOUT = 1;
+    scene.text('You spread your legs and take the vibrator out of your pussy, letting out a slight moan as you do so. You feel somewhat empty now.');
+  }
+  if (((s as any).vaginal_slip ?? 0) < 4) {
+    qspCall(s, 'arousal', 'auto_lube', 'vag');
+  }
+  scene.text('Lariska lays on her back and you climb on. Pulling the shaft against your folds, you start grinding against it, your outer lips partially wrapped around it. You line yourself up with her rubber dick and begin sliding down as she plays with your nipples.');
+  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
+    scene.text('She pushes the strap-on back inside, and you feel something inside of you rip. You know it was your hymen, you are no longer a virgin.');
+  }
+  scene.text('Grinding your hips back and forth, you work the shaft deeper until it\'s fully hilted. She wraps her hands around your ass and starts pulling you forward and pushing you back, letting you grind your butt down with each push.');
+  scene.text('Switching it up, you flip your body around, presenting your ass to her, so she lightly slaps it a few times before pulling you back to rest against her chest. She grabs a tit in one hand, your waist with the other, and puts the nipple she can reach in her mouth, as you work her rubber pole.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  if (((s as any).pcs_horny ?? 0) >= 90) {
+    qspCall(s, 'mood', 'raise', 'small');
+  }
+  qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterDog_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strap_3.jpg');
+  if (((s as any).vibratorIN ?? 0) === 1) {
+    (s as any).vibratorIN = 0;
+    (s as any).vibratorOUT = 1;
+    scene.text('You spread your legs and take the vibrator out of your pussy, letting out a slight moan as you do so. You feel somewhat empty now.');
+  }
+  if (((s as any).vaginal_slip ?? 0) < 4) {
+    qspCall(s, 'arousal', 'auto_lube', 'vag');
+  }
+  scene.text('Going down onto your hands and knees, you look over your shoulder at Lariska and wag your ass seductively. Smiling at you, Lariska starts by rubbing the tip along your slit, making you moan in anticipation. Done teasing, she lines herself up and starts pushing it in.');
+  if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
+    scene.text('She pushes the strap-on back inside, and you feel something inside of you rip. You know it was your hymen, you are no longer a virgin.');
+  }
+  scene.text('She starts pulling out and pushing back in, each pull leaving you feeling empty, and each thrust sparking small bolts of pleasure throughout your body. Grabbing your hips for leverage, she finds a steady pace that fills you with bliss.');
+  scene.text('Dropping your chest to the bed, you reach behind and grab her wrists while burying your head into the sheets to muffle the screams she is forcing out of your mouth.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  if (((s as any).pcs_horny ?? 0) >= 90) {
+    qspCall(s, 'mood', 'raise', 'small');
+  }
+  qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnalMiss_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strap_4.jpg');
+  if (((s as any).analPlugIn ?? 0) === 1) {
+    if (((s as any).pcs_ass ?? 0) < 16) {
+      scene.text('Lariska pulls the plug out of your narrow and tight ass.');
+      (s as any).analPlugOut = 1;
+      (s as any).analPlugIn = 0;
+    } else {
+      scene.text('Lariska pulls the plug out of your ass.');
+      (s as any).analPlugOut = 1;
+      (s as any).analPlugIn = 0;
+    }
+  }
+  if (((s as any).anal_slip ?? 0) < 4) {
+    qspCall(s, 'arousal', 'auto_lube', 'anal');
+  }
+  scene.text('Laying on your back, you spread your legs. Reaching down and spreading your asscheeks, you smile lewdly at Lariska. Taking the hint, she lines the strap-on up with your anus and gently pushes the tip in, causing you to gasp out.');
+  scene.text('Putting her hands on your thighs and pushing down, she starts fucking your ass. Softly at first, and only the tip, she slowly works her way deeper and deeper until you have taken the entire length.');
+  scene.text('She picks up the pace then, each long thrust drawing a gasp, each time she pulls out, a moan. The room soon fills with the sounds of slapping skin, punctuated by your cries.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  if (((s as any).pcs_horny ?? 0) >= 90) {
+    qspCall(s, 'mood', 'raise', 'small');
+  }
+  qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnalCow_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strap_5.jpg');
+  if (((s as any).analPlugIn ?? 0) === 1) {
+    if (((s as any).pcs_ass ?? 0) < 16) {
+      scene.text('Lariska pulls the plug out of your narrow and tight ass.');
+      (s as any).analPlugOut = 1;
+      (s as any).analPlugIn = 0;
+    } else {
+      scene.text('Lariska pulls the plug out of your ass.');
+      (s as any).analPlugOut = 1;
+      (s as any).analPlugIn = 0;
+    }
+  }
+  if (((s as any).anal_slip ?? 0) < 4) {
+    qspCall(s, 'arousal', 'auto_lube', 'anal');
+  }
+  scene.text('Pushing Lariska onto her back, you climb on and line the tip of her rubber dick up with your asshole, before letting yourself slowly slide down. Each centimeter it\'s pushed in draws a deeper moan from your mouth.');
+  scene.text('As you rock your hips back and forth, Lariska reaches up to massage your breasts and tweak your nipples, forcing gasps out of your mouth. As you pick up speed, the sensations threaten to overpower your awareness of your surroundings.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  if (((s as any).pcs_horny ?? 0) >= 90) {
+    qspCall(s, 'mood', 'raise', 'small');
+  }
+  qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strap_6.jpg');
+  if (((s as any).analPlugIn ?? 0) === 1) {
+    if (((s as any).pcs_ass ?? 0) < 16) {
+      scene.text('Lariska pulls the plug out of your narrow and tight ass.');
+      (s as any).analPlugOut = 1;
+      (s as any).analPlugIn = 0;
+    } else {
+      scene.text('Lariska pulls the plug out of your ass.');
+      (s as any).analPlugOut = 1;
+      (s as any).analPlugIn = 0;
+    }
+  }
+  if (((s as any).anal_slip ?? 0) < 4) {
+    qspCall(s, 'arousal', 'auto_lube', 'anal');
+  }
+  scene.text('Rolling onto your hands and knees, legs spread out, you look over your shoulder and tell Lariska, "Fuck me in the ass!" Smiling she spanks you lightly on each buttcheek a couple of times before setting herself and pushing in.');
+  scene.text('Even though it felt good, it hurt too, and the pain forced an "Unghhh" from deep inside you. Grabbing you by the waist, Lariska wastes no time in jamming her rubber pole deep inside you, and starts fucking you hard.');
+  scene.text('The sound of her hips striking your buttcheeks ring loudly in your ears. She reaches out with one hand to grab your hair, and reaches around with the other to start frigging your clit.');
+  scene.text('Pulling on your hair she forces your head back, prompting you to cry out, "Ohhh! Harder! Fuck me HAARRRDDEEEERRR! FUCK!" She really starts slamming you, making your brain go blank, just living for each thrust she gives you.');
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
+  if (((s as any).pcs_horny ?? 0) >= 90) {
+    qspCall(s, 'mood', 'raise', 'small');
+  }
+  qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub');
+  qspCall(s, 'stat', '');
+  if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    scene.actions([
+      { label: 'Get your cherry popped', handler: (st: GameState) => {
+    (s as any).temp = 0;
+    if (((s as any).temp ?? 0) === 1) {
+      scene.actions([
+        { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+        { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+      ]);
+    }
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
+      { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
+      { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
+    { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
+    { label: 'Anal Doggy', goto: ['LariskaSex', 'anal_dog_1'] },
+    { label: 'Put the strap-on away', goto: ['LariskaSex', 'undressed2'] },
+  ]);
+  scene.build();
+}
+
+function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npcgeneratec', '', 0, 'Lev', Math.floor(Math.random() * 2) + 17, 1);
+  // TODO-QSP: $npc_firstname[$npclastgenerated] = 'Lev'
+  // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Lev'
+  qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 0, 'normal');
+  qspCall(s, 'npcStat', 'A13', 'a');
+  scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_1.jpg');
+  scene.text('Lev showed up pretty quick, he must not live too far away. The three of you start kissing while stripping each other, unrushed but eager.');
+  scene.text('Once everybody is nude, both you and Lariska drop to your knees in front of him.');
+  qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Blowjob', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_2.jpg');
+    scene.text('The two of you start licking, pausing every now and then to kiss each other, before you start taking turns sucking and licking his balls.');
+    scene.text('Once his dick is glistening with your saliva, Lariska stands up and faces you.');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lariska Starts', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_3.jpg');
+    scene.text('Leaning into her, you start making out with Lariska as Lev slides his cock into her from behind. She moans into your mouth but doesn\'t break the kiss, thrusting her tongue into your mouth each time Lev thrusts into her pussy.');
+    scene.text('Reaching between her legs, you start rubbing her clit, drawing gasps from her as she easily reaches an orgasm. She throws her head back as her hips shake wildly.');
+    scene.text('After the shaking stops she slides off, giving you access.');
+    qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Your Turn', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_4.jpg');
+    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+      if (((s as any).analPlugIn ?? 0) === 1) {
+        if (((s as any).pcs_ass ?? 0) < 16) {
+          scene.text('Lariska slides the butt plug out of your narrow and tight ass, opening the way for Lev.');
+        } else {
+          scene.text('Lariska slides the butt plug out of your ass, opening the way for Lev.');
+        }
+        (s as any).analPlugOut = 1;
+        (s as any).analPlugIn = 0;
+      }
+      if (((s as any).anal_slip ?? 0) < 4) {
+        qspCall(s, 'arousal', 'auto_lube', 'anal');
+      }
+      scene.text('"I\'m a virgin," you say, reaching back and spreading your buttcheeks. Taking the hint, he lines his cock up with your anus and pushes his way in.');
+      scene.text('Thankfully, his dick was lubed enough that it slid right in. Lariska tries to distract you from any pain by tweaking your nipples and kissing them.');
+      scene.text('Lev starts thrusting in and out of your asshole, as the sounds of your buttcheeks slapping against his hips fills the room. He is barely able to contain his excitement as he watches you and Lariska continue to kiss.');
+      scene.text('The sensations of the pounding he is giving you and making out with Lariska is overwhelming your senses. She moves her hands between your legs, and returns the favor from earlier by rubbing your clit.');
+      qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(s, 'stat', '');
+    } else {
+      if (((s as any).vibratorIN ?? 0) === 1) {
+        (s as any).vibratorIN = 0;
+        (s as any).vibratorOUT = 1;
+        scene.text('Lariska slides the vibrator out of your pussy, Giving Lev access to your pussy. You feel somewhat empty now, though that\'s about to change.');
+      }
+      if (((s as any).vaginal_slip ?? 0) < 4) {
+        qspCall(s, 'arousal', 'auto_lube', 'vag');
+      }
+      scene.text('His dick, already lubed, slides right into your pussy, draws gasps from your mouth as Lariska starts tweaking your nipples and kissing them.');
+      scene.text('Lev starts thrusting in and out of your slit, as the sounds of your buttcheeks slapping against his hips fills the room. He is barely able to contain his excitement as he watches you and Lariska continue to kiss.');
+      scene.text('The sensations of the pounding he is giving you and making out with Lariska is overwhelming your senses. She moves her hands between your legs, and returns the favor from earlier by rubbing your clit.');
+      qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(s, 'stat', '');
+    }
+    scene.actions([
+      { label: 'Cowgirl', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_5.jpg');
+    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+      scene.text('Deciding to switch things up, or maybe because he was winded, Lev pulls out and sits down, stretching out and pulling you down on top. Feeling more in control now, you slide his dick back into your ass and start grinding your hips against his.');
+      scene.text('Lariska wastes no time and climbs onto his face, leaning in to keep rubbing your clitoris while Lev spreads her cheeks and licks her pussy. The sounds of moaning fills the room, and you know your going to cum soon from the dual sensations of Lev\'s cock in your butt and Lariska\'s rubbing.');
+      qspCall(s, 'mood', 'raise', 'small');
+      qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(s, 'stat', '');
+    } else {
+      scene.text('Deciding to switch things up, or maybe because he was winded, Lev pulls out and sits down, stretching out and pulling you down on top. Feeling more in control now, you slide his dick back into your pussy and start grinding your hips against his.');
+      scene.text('Lariska wastes no time and climbs onto his face, leaning in to keep rubbing your clitoris while Lev spreads her cheeks and licks her pussy. The sounds of moaning fills the room, and you know your going to cum soon from the dual sensations of Lev\'s cock inside you and Lariska\'s rubbing.');
+      qspCall(s, 'mood', 'raise', 'small');
+      qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(s, 'stat', '');
+    }
+    scene.actions([
+      { label: 'Lariska\'s Turn Again', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_6.jpg');
+    scene.text('Once you have caught your breath you climb off, making room for Lariska to mount him. His toungue already had her close to a second orgasm, so it doesn\'t take very long of her grinding against him to set her off again.');
+    scene.text('Burying her face into his chest, she rides the orgasm out as you watch.');
+    qspCall(s, 'arousal', 'erotic_nudity', 5, 'lesbian', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lariska Finishes Him', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_7.jpg');
+    scene.text('Eventually she climbs off and Lev stands up, facing the two of you. You both go back to where it started, taking turns sucking him and licking his balls, until Lariska, sensing he\'s about to cum, jams his cock down her throat as much as she can.');
+    scene.text('Lev tosses his head back and his hips start twitching as he shoots his cum into Lariska\'s throat. She gags a little, but gamely swallows, milking every drop from him until he is empty. She then leans into kiss you, and you can taste the saltiness of his cum on her tongue.');
+    scene.text('Exhausted, the three of you sit and collect your breath for a bit, until Lev stands back up and gets dressed again. Thanking you both for a good time, Lev kisses Lariska before heading home, as the two of you cuddle for a bit.');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Clean up', handler: (st: GameState) => {
+    if (((s as any).analPlugOut ?? 0) === 1) {
+      qspCall(s, 'dinsex', 'after_anal');
+    }
+    if (((s as any).vibratorOUT ?? 0) === 1) {
+      (s as any).vibratorIN = 1;
+      (s as any).vibratorOUT = 0;
+    }
+    qspCall(s, 'arousal', 'end');
+  }, goto: ['LariskaHome', 'lariska_bedroom'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'undressed1':
+      enterUndressed1(s, scene);
+      break;
+    case 'undressed2':
+      enterUndressed2(s, scene);
+      break;
+    case 'lick1':
+      enterLick1(s, scene);
+      break;
+    case 'lick2':
+      enterLick2(s, scene);
+      break;
+    case 'dildo1':
+      enterDildo1(s, scene);
+      break;
+    case 'bj_give_1':
+      enterBjGive_1(s, scene);
+      break;
+    case 'miss_give_1':
+      enterMissGive_1(s, scene);
+      break;
+    case 'cow_give_1':
+      enterCowGive_1(s, scene);
+      break;
+    case 'dog_give_1':
+      enterDogGive_1(s, scene);
+      break;
+    case 'anal_miss_give_1':
+      enterAnalMissGive_1(s, scene);
+      break;
+    case 'anal_cow_give_1':
+      enterAnalCowGive_1(s, scene);
+      break;
+    case 'anal_dog_give_1':
+      enterAnalDogGive_1(s, scene);
+      break;
+    case 'bj_1':
+      enterBj_1(s, scene);
+      break;
+    case 'miss_1':
+      enterMiss_1(s, scene);
+      break;
+    case 'cow_1':
+      enterCow_1(s, scene);
+      break;
+    case 'dog_1':
+      enterDog_1(s, scene);
+      break;
+    case 'anal_miss_1':
+      enterAnalMiss_1(s, scene);
+      break;
+    case 'anal_cow_1':
+      enterAnalCow_1(s, scene);
+      break;
+    case 'anal_dog_1':
+      enterAnalDog_1(s, scene);
+      break;
+    case 'boyfriend_sex':
+      enterBoyfriendSex(s, scene);
+      break;
+    default:
+      enterUndressed1(s, scene);
+      break;
+  }
+}
+
+export const LariskaSex: LocationDef = {
+  name: 'LariskaSex',
+  title: 'You roll her onto her back and straddle her, while you pull ',
+  region: 'other',
+  description: ['You roll her onto her back and straddle her, while you pull off your shirt first before tugging hers off too. Giggling you both try to take the others bra off at the same time and only manage to tangle them together, before tossing them off to the side. You kiss her lips again before working your way down to her neck, planting more kisses as you go. Sliding your body lower, you slip off your own pants and panties, not pausing your kisses until you reach her breasts. Teasing her nipples with your tongue, your hands slide down to her waist and start unbuttoning her pants. Getting them loose, you pull both her pants and panties down until they slide off her feet, before kissing your way back up to her mouth.'],
+  enter: enter,
+};

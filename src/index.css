@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --gl-bg: #1a1a2e;
+  --gl-fg: #e0e0e0;
+  --gl-accent: #4a9eff;
+  --gl-panel: #16213e;
+  --gl-border: #0f3460;
+  --gl-positive: #4ade80;
+  --gl-negative: #f87171;
+  --gl-warning: #fbbf24;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--gl-bg);
+  color: var(--gl-fg);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}

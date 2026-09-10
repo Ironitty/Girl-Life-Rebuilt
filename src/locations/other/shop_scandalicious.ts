@@ -1,0 +1,158 @@
+import { qspCall, qspFunc } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enterClothes(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'clothes');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Viewing Scandalicious outfits</b></center>');
+  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+    qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
+    qspCall(s, 'shop_utils', 'init', 'add_type', 'scandalicious_outfits');
+    qspCall(s, 'shop_utils', 'init', 'end');
+  }
+  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['shop_scandalicious', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterDresses(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'dresses');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Viewing Scandalicious dresses</b></center>');
+  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+    qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
+    qspCall(s, 'shop_utils', 'init', 'add_type', 'scandalicious_dress');
+    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 3, Clothingstock mod 3
+    qspCall(s, 'shop_utils', 'init', 'end');
+  }
+  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['shop_scandalicious', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterShoes(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'shoes');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Viewing Scandalicious shoes</b></center>');
+  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+    qspCall(s, 'shop_utils', 'init', 'start', 'shoes', 'shop');
+    qspCall(s, 'shop_utils', 'init', 'add_type', 'scandalicious');
+    qspCall(s, 'shop_utils', 'init', 'end');
+  }
+  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['shop_scandalicious', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterSwim(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'swim');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Viewing Scandalicious swimsuits - one size fits all</b></center>');
+  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+    qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
+    qspCall(s, 'shop_utils', 'init', 'add_type', 'scandalicious_swimsuit');
+    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 2, (Clothingstock / 4) mod 2
+    qspCall(s, 'shop_utils', 'init', 'end');
+  }
+  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['shop_scandalicious', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterBikinis(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'bikinis');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Viewing Scandalicious bikinis - one size fits all</b></center>');
+  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+    qspCall(s, 'shop_utils', 'init', 'start', 'clothing', 'shop');
+    qspCall(s, 'shop_utils', 'init', 'add_type', 'scandalicious_bikinis');
+    // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', 4, (Clothingstock / 2) mod 4
+    qspCall(s, 'shop_utils', 'init', 'end');
+  }
+  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['shop_scandalicious', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enterBodysuit(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_scandalicious', 'bodysuit');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Viewing Scandalicious bodysuits</b></center>');
+  if (qspFunc(s, 'shop_utils', 'is_init') === 0) {
+    qspCall(s, 'shop_utils', 'init', 'start', 'bodysuits', 'shop');
+    qspCall(s, 'shop_utils', 'init', 'add_type', 'scandalicious');
+    qspCall(s, 'shop_utils', 'init', 'end');
+  }
+  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  scene.actions([
+    { label: 'Return', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'shop_utils', 'cleanup');
+  }, goto: ['shop_scandalicious', 'start'] },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'clothes':
+      enterClothes(s, scene);
+      break;
+    case 'dresses':
+      enterDresses(s, scene);
+      break;
+    case 'shoes':
+      enterShoes(s, scene);
+      break;
+    case 'swim':
+      enterSwim(s, scene);
+      break;
+    case 'bikinis':
+      enterBikinis(s, scene);
+      break;
+    case 'bodysuit':
+      enterBodysuit(s, scene);
+      break;
+    default:
+      enterClothes(s, scene);
+      break;
+  }
+}
+
+export const shop_scandalicious: LocationDef = {
+  name: 'shop_scandalicious',
+  title: 'Scandalicious',
+  region: 'other',
+  locationType: 'public_indoors',
+  locclass: 'changingroom',
+  enter: enter,
+};

@@ -1,0 +1,296 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
+import { qspCall } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enterLOCA(s: GameState, scene: SceneBuilder): void {
+  (s as any).mod_warning = 1;
+  qspCall(s, 'mod_system', 'core_loop');
+  return;
+  scene.build();
+}
+
+function enterSleep(s: GameState, scene: SceneBuilder): void {
+  (s as any).mod_warning = 0;
+  // TODO-QSP: $modARGS[0] = $ARGS[1]
+  // TODO-QSP: $modARGS[1] = $ARGS[2]
+  qspCall(s, 'mod_system', 'core_loop');
+  return;
+  scene.build();
+}
+
+function enterStat(s: GameState, scene: SceneBuilder): void {
+  return;
+  (s as any).mod_warning = 0;
+  qspCall(s, 'mod_system', 'core_loop');
+  return;
+  scene.build();
+}
+
+function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
+  return;
+  (s as any).mod_warning = 0;
+  qspCall(s, 'mod_system', 'core_loop');
+  scene.build();
+}
+
+function enterFunc(s: GameState, scene: SceneBuilder): void {
+  return;
+  (s as any).mod_warning = 0;
+  qspCall(s, 'mod_system', 'core_loop');
+  return;
+  scene.build();
+}
+
+function enterArousal(s: GameState, scene: SceneBuilder): void {
+  return;
+  (s as any).mod_warning = 0;
+  qspCall(s, 'mod_system', 'core_loop');
+  return;
+  scene.build();
+}
+
+function enterOutfit(s: GameState, scene: SceneBuilder): void {
+  return;
+  // TODO-QSP: $modARGS[0] = $ARGS[2]
+  (s as any).modARGS[1] = qspUntranslated(s, "ARGS[3]", { location: "mod_system" });
+  qspCall(s, 'mod_system', 'core_loop');
+  return;
+  scene.build();
+}
+
+function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).arrsize ?? 0)('mod_name') <= 0) {
+    // TODO-QSP: exit
+  }
+  (s as any).mod_i = 0;
+  // TODO-QSP: :mod_exec
+  if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
+    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+      // TODO-QSP: gs $mod_su_name, iif(modARGS[0]=0, $modARGS[0], modARGS[0]), iif(modARGS[1]=0, $modARGS[1], modARGS[...
+    } else {
+      scene.text(`WARNING: ${((s as any).mod_su_name ?? 0)} is not found!`);
+    }
+  }
+  (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+    // TODO-QSP: jump 'mod_exec'
+  }
+  return;
+  scene.build();
+}
+
+function enterSaveupdater(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).arrsize ?? 0)('mod_name') <= 0) {
+    // TODO-QSP: exit
+  }
+  (s as any).mod_i = 0;
+  // TODO-QSP: :mod_data_updater
+  if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
+    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+      // TODO-QSP: gs $mod_su_name, 'saveupdater'
+    }
+    // TODO-QSP: $mod_name[mod_i]  = $mod_info[0]
+    // TODO-QSP: $mod_version[mod_i]  = $mod_info[1]
+    // TODO-QSP: $mod_author[mod_i]  = $mod_info[2]
+    // TODO-QSP: $mod_desc[mod_i]  = $mod_info[3]
+    // TODO-QSP: $mod_opt[mod_i]    = $mod_info[4]
+    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+      // TODO-QSP: gs $mod_su_name
+    }
+  }
+  (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+    // TODO-QSP: jump 'mod_data_updater'
+  }
+  scene.build();
+}
+
+function enterAddMod(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === '') {
+    // TODO-QSP: exit
+  }
+  if (((s as any).qspver ?? 0) < '5.8.0') {
+    // TODO-QSP: addqst 'mod/<<$ARGS[1]>>.qsp'
+  } else {
+    // TODO-QSP: inclib 'mod/<<$ARGS[1]>>.qsp'
+  }
+  if (((s as any).loc ?? 0)(((s as any).mod_temp ?? 0))) {
+    // TODO-QSP: gs $mod_temp
+  }
+  if (((s as any).mod_info ?? 0)[0] === '') {
+    return;
+  }
+  // TODO-QSP: $mod_name[] = $mod_info[0]
+  // TODO-QSP: $mod_version[] = $mod_info[1]
+  // TODO-QSP: $mod_author[] = $mod_info[2]
+  // TODO-QSP: $mod_desc[] = $mod_info[3]
+  // TODO-QSP: $mod_opt[] = $mod_info[4]
+  scene.build();
+}
+
+function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
+  (s as any).mod_removed_temp = qspUntranslated(s, "ARGS[1]", { location: "mod_system" });
+  (s as any).mod_i = 0;
+  // TODO-QSP: :mod_data_remover
+  if (((s as any).mod_i ?? 0) === ((s as any).mod_removed_temp ?? 0)) {
+    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+      // TODO-QSP: gs $mod_su_name
+    }
+  } else {
+    // TODO-QSP: $mod_name_temp[mod_i] = $mod_name[mod_i]
+    // TODO-QSP: $mod_version_temp[mod_i] = $mod_version[mod_i]
+    // TODO-QSP: $mod_author_temp[mod_i] = $mod_author[mod_i]
+    // TODO-QSP: $mod_desc_temp[mod_i] = $mod_desc[mod_i]
+    // TODO-QSP: $mod_opt_temp[mod_i] = $mod_opt[mod_i]
+  }
+  (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+    // TODO-QSP: jump 'mod_data_remover'
+  }
+  if (((s as any).qspver ?? 0) < '5.8.0') {
+    // TODO-QSP: killqst
+  } else {
+    // TODO-QSP: freelib
+  }
+  (s as any).mod_i = 0;
+  // TODO-QSP: :mod_data_restore
+  if (((s as any).mod_name_temp ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
+    if (((s as any).qspver ?? 0) < '5.8.0') {
+      // TODO-QSP: addqst 'mod/<<$mod_name_temp[mod_i]>>.qsp'
+    } else {
+      // TODO-QSP: inclib 'mod/<<$mod_name_temp[mod_i]>>.qsp'
+    }
+    // TODO-QSP: $mod_name[] = $mod_name_temp[mod_i]
+    // TODO-QSP: $mod_version[] = $mod_version_temp[mod_i]
+    // TODO-QSP: $mod_author[] = $mod_author_temp[mod_i]
+    // TODO-QSP: $mod_desc[] = $mod_desc_temp[mod_i]
+    // TODO-QSP: $mod_opt[] = $mod_opt_temp[mod_i]
+  }
+  (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name_temp')) {
+    // TODO-QSP: jump 'mod_data_restore'
+  }
+  scene.build();
+}
+
+function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
+  (s as any).mod_i = 0;
+  // TODO-QSP: :mod_data_saver
+  // TODO-QSP: $mod_name_temp[mod_i] = $mod_name[mod_i]
+  // TODO-QSP: $mod_version_temp[mod_i] = $mod_version[mod_i]
+  // TODO-QSP: $mod_author_temp[mod_i] = $mod_author[mod_i]
+  // TODO-QSP: $mod_desc_temp[mod_i] = $mod_desc[mod_i]
+  // TODO-QSP: $mod_opt_temp[mod_i] = $mod_opt[mod_i]
+  (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+    // TODO-QSP: jump 'mod_data_saver'
+  }
+  if (((s as any).qspver ?? 0) < '5.8.0') {
+    // TODO-QSP: killqst
+  } else {
+    // TODO-QSP: freelib
+  }
+  (s as any).mod_i = 0;
+  // TODO-QSP: :mod_data_restore_update
+  if (((s as any).mod_temp ?? 0) !== '') {
+    if (((s as any).qspver ?? 0) < '5.8.0') {
+      // TODO-QSP: addqst 'mod/<<$mod_temp>>.qsp'
+    } else {
+      // TODO-QSP: inclib 'mod/<<$mod_temp>>.qsp'
+    }
+    if (((s as any).loc ?? 0)(((s as any).mod_temp ?? 0))) {
+      // TODO-QSP: gs $mod_temp
+    }
+    // TODO-QSP: $mod_name[]    = $mod_info[0]
+    // TODO-QSP: $mod_version[]  = $mod_info[1]
+    // TODO-QSP: $mod_author[]  = $mod_info[2]
+    // TODO-QSP: $mod_desc[]    = $mod_info[3]
+    // TODO-QSP: $mod_opt[]    = $mod_info[4]
+  }
+  (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+  if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name_temp')) {
+    // TODO-QSP: jump 'mod_data_restore_update'
+  }
+  scene.build();
+}
+
+function enterDeleteAllMods(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).arrsize ?? 0)('mod_name') > 0) {
+    (s as any).mod_i = 0;
+    // TODO-QSP: :mod_data_remover_delall
+    if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
+      if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+        // TODO-QSP: gs $mod_su_name
+      }
+    }
+    (s as any).mod_i = ((s as any).mod_i ?? 0) + (1);
+    if (((s as any).mod_i ?? 0) < ((s as any).arrsize ?? 0)('mod_name')) {
+      // TODO-QSP: jump 'mod_data_remover_delall'
+    }
+  }
+  if (((s as any).qspver ?? 0) < '5.8.0') {
+    // TODO-QSP: killqst
+  } else {
+    // TODO-QSP: freelib
+  }
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'LOCA':
+      enterLOCA(s, scene);
+      break;
+    case 'sleep':
+      enterSleep(s, scene);
+      break;
+    case 'stat':
+      enterStat(s, scene);
+      break;
+    case 'stat_display':
+      enterStatDisplay(s, scene);
+      break;
+    case 'func':
+      enterFunc(s, scene);
+      break;
+    case 'arousal':
+      enterArousal(s, scene);
+      break;
+    case 'outfit':
+      enterOutfit(s, scene);
+      break;
+    case 'core_loop':
+      enterCoreLoop(s, scene);
+      break;
+    case 'saveupdater':
+      enterSaveupdater(s, scene);
+      break;
+    case 'add_mod':
+      enterAddMod(s, scene);
+      break;
+    case 'delete_mod':
+      enterDeleteMod(s, scene);
+      break;
+    case 'update_all_mods':
+      enterUpdateAllMods(s, scene);
+      break;
+    case 'delete_all_mods':
+      enterDeleteAllMods(s, scene);
+      break;
+    default:
+      enterLOCA(s, scene);
+      break;
+  }
+}
+
+export const mod_system: LocationDef = {
+  name: 'mod_system',
+  title: 'WARNING: <<$mod_su_name>> is not found!',
+  region: 'other',
+  enter: enter,
+};

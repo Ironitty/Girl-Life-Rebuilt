@@ -1,0 +1,100 @@
+import { qspCall } from '../_shared/qspBridge';
+
+// AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
+import type { GameState, ActionDef, LocationDef } from '../../core/types';
+import type { SceneBuilder } from '../../core/scene';
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).MartinTalkDaystart ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).MartinTalkDaystart = ((s as any).daystart ?? 0);
+    (s as any).MartinTalkDay = 0;
+  }
+  (s as any).temp = Math.floor(Math.random() * 11) + 1;
+  if (((s as any).temp ?? 0) <= 6) {
+    scene.text('<center><b>Bar "Rabotnik" - Toilet</b></center>');
+    scene.img('images/locations/shared/bathroom/publictoilet.jpg');
+    scene.text('You walk into the unisex toilet, bracing yourself for the absolute worst, but find it surprisingly clean, all things considered.');
+    scene.text('The smell of urine is noticeable, but not overwhelming, and both the stalls and the floor look relatively hygienic (so do the urinals, but you\'re not really in a position to make use of that insight).');
+    scene.text('The <a href="exec:gt \'mirror\', \'start\'">mirror</a> you see above the sinks has some cracks radiating from one of the corners, but other than that, it\'s perfectly usable.');
+    qspCall(s, 'din_van', 'basin');
+    qspCall(s, 'din_van', 'publicpan');
+    qspCall(s, 'din_van', 'quickwash');
+    scene.actions([
+      { label: 'Return to the main room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['qwBarPolet', ''] },
+    ]);
+  } else {
+    if (((s as any).pcs_horny ?? 0) < 90) {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+    }
+    scene.img('images/locations/city/industrial/bar/sex/bathroom/eventb1.mp4');
+    scene.text('You hear moaning as soon as you open the door to the restroom. Quietly stepping inside, you have little trouble making out the source of it in one of the stalls with no door on it: An almost naked man is sitting on the toilet with a half-undressed woman on his lap, her feet propped up against the stall frame as she rides him for all she is worth.');
+    scene.text('You do what you came in here to do, trying not to disturb them, but their moans and the continuous slapping of flesh prove very distracting to you. Once done, you quickly wash your hands and go back to the bar, with them still going at it.');
+    if (((s as any).temp ?? 0) === 8) {
+      if (((s as any).pcs_horny ?? 0) < 90) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      }
+      scene.img('images/locations/city/industrial/bar/sex/bathroom/eventb2.mp4');
+      scene.text('You go into the restroom and as soon as you open the door, you are greeted to the sight of a man with his pants down around his ankles, enjoying a vigorous blowjob from a middle-aged woman down on her knees. He has his hand on the back of her head, \'helping her along\' as she sucks his dick.');
+      scene.text('When he sees you rooted to spot, he gives you a grin and a wink before directing his attention back at his enthusiastic partner. You try your best to ignore them and do your business. Once finished, you leave and return to the bar, but not without giving them one last look.');
+      scene.actions([
+        { label: 'Return to the main room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['qwBarPolet', ''] },
+      ]);
+    } else {
+      if (((s as any).pcs_horny ?? 0) < 90) {
+        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      }
+      scene.img('images/locations/city/industrial/bar/sex/bathroom/eventb3.mp4');
+      scene.text('You go into the restroom and as soon as you open the door, you are greeted to the sight of an almost naked woman sitting on the sink, with her back against the mirror, while a man kneels in front of her, his face buried between her legs. She moans loudly in pleasure as he orally pleasures her.');
+      scene.text('You do your best to ignore and not disturb them while you take care of your business, but since the only other sink is right next to the one that are at, you have little choice but to use it. The man briefly glances up at you, but the woman never once opens her eyes - you don\'t even think she is aware you are there. Once done, you return to the bar, the image of the two of them occupying you for quite some time after.');
+      if (((s as any).temp ?? 0) === 10) {
+        if (((s as any).pcs_horny ?? 0) < 90) {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+        }
+        scene.img('images/locations/city/industrial/bar/sex/bathroom/eventb4.mp4');
+        scene.text('You go into the restroom and as soon as you open the door, you are greeted to the sight of two almost-naked women in one of the stalls, making out while one is finger-fucking the other. They seem completely obviously to your presence, or at the very least they don\'t care if anyone sees them.');
+        scene.text('You watch them for a few seconds before you remember why you went into the bathroom to begin with, so you take care of your business and then return to the bar.');
+        scene.actions([
+          { label: 'Return to the main room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['qwBarPolet', ''] },
+        ]);
+      } else {
+        if (((s as any).pcs_horny ?? 0) < 90) {
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+        }
+        scene.img('images/locations/city/industrial/bar/sex/bathroom/eventb5.mp4');
+        scene.text('As soon as you open the door to the restroom, you hear moaning and the slapping of flesh against flesh. The source is in plain sight: One of the stalls is wide-open and a naked woman is riding a man sitting on the toilet. She has thrown her head back and seems to be in a state of pure bliss - so much so that she doesn\'t even notice you. If the sound she makes are any indication, you could probably walk up to the stall and keep watching them, and she would be none the wiser.');
+        scene.text('Still, you decide not to do that, as arousing as the thought may be. As soon as you can bring yourself to look away, you do what you came to the restroom for and then return to the bar.');
+        scene.actions([
+          { label: 'Return to the main room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['qwBarPolet', ''] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Return to the main room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['qwBarPolet', ''] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Return to the main room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['qwBarPolet', ''] },
+    ]);
+  }
+  scene.build();
+}
+
+export const qwBarPoletToilet: LocationDef = {
+  name: 'qwBarPoletToilet',
+  title: 'Bar "Rabotnik" - Toilet',
+  region: 'other',
+  description: ['You walk into the unisex toilet, bracing yourself for the absolute worst, but find it surprisingly clean, all things considered.'],
+  enter: enter,
+};
