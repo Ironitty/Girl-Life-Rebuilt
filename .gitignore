@@ -18,6 +18,16 @@ opencode.json
 assets/
 debug-launch.sh
 visual-inspect.ts
+favicon.svg
+icons.svg
+MIGRATION_REPORT.md
+feedback.md
+feedback_deferred.md
+parserNotes.md
+plan-transpiler-fix.md
+prompts/
+state-access-report.md
+stubs.md
 
 # Editor directories and files
 .vscode/*
