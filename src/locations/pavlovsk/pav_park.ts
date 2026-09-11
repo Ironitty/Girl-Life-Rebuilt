@@ -41,7 +41,7 @@ function enterPavParkImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbFatherMeeting_1(s: GameState, scene: SceneBuilder): void {
-  (s as any).AlbinaQW['ParkRally'] = 1;
+  ((s as any).AlbinaQW ?? {})['ParkRally'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/meeting/meeting1.jpg');
@@ -56,7 +56,7 @@ function enterAlbFatherMeeting_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbFatherMeeting_2(s: GameState, scene: SceneBuilder): void {
-  (s as any).AlbinaQW['ParkRally'] = 2;
+  ((s as any).AlbinaQW ?? {})['ParkRally'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/meeting/meeting2.jpg');
@@ -71,7 +71,7 @@ function enterAlbFatherMeeting_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbFatherMeeting_3(s: GameState, scene: SceneBuilder): void {
-  (s as any).AlbinaQW['ParkRally'] = 3;
+  ((s as any).AlbinaQW ?? {})['ParkRally'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/meeting/meeting3.jpg');
@@ -216,7 +216,7 @@ function enterDeeperPark(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'radomir_popov_schedule', '');
     qspCall(s, 'valentin_bogdanov_schedule', '');
     if ((Math.floor(Math.random() * 3) + 0) === 0  ||  ((s as any).gopniksev ?? 0)?.['rand'] === 0) {
-      (s as any).gopniksev['rand'] = Math.floor(Math.random() * 4) + 1;
+      ((s as any).gopniksev ?? {})['rand'] = Math.floor(Math.random() * 4) + 1;
     }
     if (((s as any).gopniksev ?? 0)?.['rand'] === 1  &&  ((s as any).gopniksev ?? 0)?.['gopgirls'] !== ((s as any).daystart ?? 0)  &&  ((s as any).locat ?? 0)?.['A144'] === 23  &&  ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18)  ||  (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18))) {
       // TODO-QSP: dynamic text: You see your classmates <a href="exec:minut += 3 & gt 'pav_parkev', 'gopgirls'">...
@@ -234,7 +234,7 @@ function enterDeeperPark(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: You see your classmates <a href="exec:minut += 3 & gt 'gopskver'">Vitek, Dan and...
             scene.text('You see your classmates <a href="exec:minut += 3 & gt \'gopskver\'">Vitek, Dan and Vasily</a> sitting on a park bench, drinking beer.');
           } else {
-            (s as any).gopniksev['rand'] = Math.floor(Math.random() * 4) + 1;
+            ((s as any).gopniksev ?? {})['rand'] = Math.floor(Math.random() * 4) + 1;
             scene.text('You don\'t see any of the gopniks hanging out in the park.');
           }
         }

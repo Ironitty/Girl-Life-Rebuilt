@@ -13,7 +13,7 @@ function enterArt_101(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk into the classroom and see Professor Ilyushin standing by his desk as the rest of your classmates walk in one-by-one under his watchful eye. You notice his eyes linger a bit longer on some of the prettier girls that are dressed in revealing clothes.');
     scene.text('Once everyone is seated, he starts talking about art and what it means while being his usual friendly and overly chatty self. He seems very passionate about art and not only loves to draw and paint, but discuss what art means, as well as its effects and history in the world.');
   } else {
-    (s as any).university['first_visit_art_101'] = 1;
+    ((s as any).university ?? {})['first_visit_art_101'] = 1;
     scene.text('You walk into the classroom and see a middle aged, slightly pudgy looking man with an unattractive face and receding hairline standing by his desk as the rest of your classmates walk in one-by-one under his watchful eye. You notice his eyes linger a bit longer on some of the prettier girls that are dressed in revealing clothes.');
     scene.text('Once everyone is seated, he introduces himself. "I\'m Professor Ilyushin and I\'m going to take you on a wonder adventure in this class. I will be showing you the wonders, amazement and titillation that art can bring to the human soul, as well as how art can evoke some of your baser instincts and desires."');
     scene.text('With that over, he starts talking about art. He seems very passionate about the subject and not only loves to draw and paint, but discusses what art means, as well as its effects and history in the world.');
@@ -40,7 +40,7 @@ function enterArt_101Talk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ErmiasQW ?? 0)?.['meet'] === 0) {
     scene.actions([
       { label: 'The black guy', handler: (st: GameState) => {
-    (s as any).ErmiasQW['meet'] = 1;
+    ((s as any).ErmiasQW ?? {})['meet'] = 1;
   }, goto: ['uni_lessons_electives_art1', 'art_101_talk_ermias_1'] },
     ]);
   } else {
@@ -85,7 +85,7 @@ function enterArt_102Talk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ErmiasQW ?? 0)?.['meet'] === 0) {
     scene.actions([
       { label: 'The black guy', handler: (st: GameState) => {
-    (s as any).ErmiasQW['meet'] = 1;
+    ((s as any).ErmiasQW ?? {})['meet'] = 1;
   }, goto: ['uni_lessons_electives_art1', 'art_102_talk_ermias_1'] },
     ]);
   } else {
@@ -316,7 +316,7 @@ function enterArt_101TalkErmias_2(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).ErmiasQW['invite'] = 1;
+      ((s as any).ErmiasQW ?? {})['invite'] = 1;
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {
         // TODO-QSP: dynamic text: "You are a very cute girl, <<$pcs_nickname>>," he smiles.
@@ -396,7 +396,7 @@ function enterArt_102TalkErmias_2(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).ErmiasQW['invite'] = 1;
+      ((s as any).ErmiasQW ?? {})['invite'] = 1;
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {
         // TODO-QSP: dynamic text: "You are a very cute girl, <<$pcs_nickname>>," he smiles.
@@ -485,7 +485,7 @@ function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina1.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina stands on the platform and assumes a position where she pulls her leg up to the back of her head. Her muscular legs and toned ass are highlighted by her yoga pants, something that somewhat flusters Professor Ilyushin before he nods in approval and walks to the back of the class, where he tells everyone to start.');
@@ -557,7 +557,7 @@ function enterArt_101ModelIgor(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina1.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina stands on the platform and assumes a position where she pulls her leg up to the back of her head. Her muscular legs and toned ass are highlighted by her yoga pants, something that somewhat flusters Professor Ilyushin before he nods in approval and walks to the back of the class, where he tells everyone to start.');
@@ -630,7 +630,7 @@ function enterArt_101ModelFeofan(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina1.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina. "Holy shit…" you hear Feofan mutter before he seems to blush and look away, worried someone might have overheard him.');
               scene.text('"Today, we have one of your fellow students as a model," Professor Ilyushin continues. "Please take your position, Miss Barlovskaya."');
@@ -704,7 +704,7 @@ function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).temprand ?? 0) === 5) {
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina1.jpg');
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina stands on the platform and assumes a position where she pulls her leg up to the back of her head. Her muscular legs and toned ass are highlighted by her yoga pants, something that somewhat flusters Professor Ilyushin before he nods in approval and walks to the back of the class, where he tells everyone to start.');
               scene.text('He then walks around the class checking on each student, stopping to give pointers or answer questions as needed. As you\'re drawing Albina, you overhear a few of your male classmates talking about she\'s one of the hottest girls they\'ve ever drawn and how they hope she models next semester too.');
@@ -777,7 +777,7 @@ function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).temprand ?? 0) === 5) {
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina1.jpg');
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina stands on the platform and assumes a position where she pulls her leg up to the back of her head. Her muscular legs and toned ass are highlighted by her yoga pants, something that somewhat flusters Professor Ilyushin before he nods in approval and walks to the back of the class, where he tells everyone to start.');
               scene.text('He then walks around the class checking on each student, stopping to give pointers or answer questions as needed. As you\'re drawing Albina, you overhear a few of your male classmates talking about she\'s one of the hottest girls they\'ve ever drawn and how they hope she models next semester too. Ermias focuses on his drawing, but you notice more than a few times that his gaze does linger on her ass for a little longer than he intended.');
@@ -833,7 +833,7 @@ function enterArt_102Model(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina2.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin places a stool in the middle of the room as a familiar face walks into the classroom. It\'s Albina, who is wearing a set of black lingerie that gets more than a few people in the room talking. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina takes a seat on the stool and runs her hands through her hair, assuming a pose that causes Professor Ilyushin to nod in approval before he walks to the back of the class and tells everyone to start.');
@@ -883,7 +883,7 @@ function enterArt_102Model(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina3.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina, who is wearing a short robe. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina removes her robe to reveal that she\'s completely naked before she sits on the platform and assumes a tastefully artistic pose.');
@@ -940,7 +940,7 @@ function enterArt_102ModelIgor(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).temprand ?? 0) === 5) {
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina2.jpg');
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.text('After he finishes his lecture, Professor Ilyushin places a stool in the middle of the room as a familiar face walks into the classroom. It\'s Albina, who is wearing a set of black lingerie that gets more than a few people in the room talking. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina takes a seat on the stool and runs her hands through her hair, assuming an erotic pose that causes Professor Ilyushin to nod in approval before he walks to the back of the class and tells everyone to start.');
               scene.text('He then walks around the class checking on each student, stopping to give pointers or answer questions as needed. As you\'re drawing Albina, you overhear a few of your male classmates talking about how much they want to draw her naked. Igor, meanwhile, seems very intent on trying to properly detail the way she ruffles her hair');
@@ -986,7 +986,7 @@ function enterArt_102ModelIgor(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina3.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina, who is wearing a short robe. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina removes her robe to reveal that she\'s completely naked before she sits on the platform and assumes a tastefully artistic pose.');
@@ -1044,7 +1044,7 @@ function enterArt_102ModelFeofan(s: GameState, scene: SceneBuilder): void {
             scene.text('As you\'re drawing Anushka, you overhear a few of your male classmates talking about how they hope she models later in the semester too. The class goes by fairly quickly, but you do notice how Professor Ilyushin seems to spend more time than normal with Feofan.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina2.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin places a stool in the middle of the room as a familiar face walks into the classroom. It\'s Albina, who is wearing a set of black lingerie that gets more than a few people in the room talking. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina takes a seat on the stool and runs her hands through her hair, assuming an erotic pose that causes Professor Ilyushin to nod in approval before he walks to the back of the class and tells everyone to start.');
@@ -1088,7 +1088,7 @@ function enterArt_102ModelFeofan(s: GameState, scene: SceneBuilder): void {
             scene.text('Anushka gets on the platform and sits down, leaning to one side to support herself with one arm while tucking her legs back up under her as she smiles at the class. Professor Ilyushin walks to the back of the classroom and tells everyone to start. He then walks around the class checking on each student, stopping to give pointers or answer questions as needed.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina3.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina, who is wearing a short robe. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya." Albina removes her robe to reveal that she\'s completely naked before she sits on the platform and assumes a tastefully artistic pose.');
               scene.text('Feofan is sitting directly in front of her and has a view of everything she\'s showing off. You see him getting rather flustered and avoiding eye contact as he subtly tries to hide the obvious bulge in his pants, but Albina notices this and has to hide her smile so she doesn\'t ruin the shot for the other artists.');
@@ -1146,7 +1146,7 @@ function enterArt_102ModelNatasha(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina2.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin places a stool in the middle of the room as a familiar face walks into the classroom. It\'s Albina, who is wearing a set of black lingerie that gets more than a few people talking. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina takes a seat on the stool and runs her hands through her hair, assuming an erotic pose that causes Professor Ilyushin to nod in approval before he walks to the back of the class and tells everyone to start.');
@@ -1194,7 +1194,7 @@ function enterArt_102ModelNatasha(s: GameState, scene: SceneBuilder): void {
             scene.text('You glance over at Natasha and see that she\'s clearly uncomfortable with Anushka\'s lack of clothing. She blushes occasionally and clearly struggles to concentrate on her work until Professor Ilyushin comes over and talks to her, giving her come encouragement and guidance.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina3.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina, who is wearing a short robe. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya." Albina removes her robe to reveal that she\'s completely naked before she sits on the platform and assumes a tastefully artistic pose.');
               scene.text('Professor Ilyushin nods in approval before walking to the back of the class and telling everyone to start. He then walks around the class checking on each student, stopping to give pointers or answer questions as needed. As you\'re drawing Albina, you overhear a few of your male classmates talking about how they would love to bang her, with one claiming that he already has.');
@@ -1251,7 +1251,7 @@ function enterArt_102ModelErmias(s: GameState, scene: SceneBuilder): void {
             scene.text('The class goes by fairly quickly.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina2.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin places a stool in the middle of the room as a familiar face walks into the classroom. It\'s Albina, who is wearing a set of black lingerie that gets more than a few people talking. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya."');
               scene.text('Albina takes a seat on the stool and runs her hands through her hair, assuming an erotic pose that causes Professor Ilyushin to nod in approval before he walks to the back of the class and tells everyone to start.');
@@ -1297,7 +1297,7 @@ function enterArt_102ModelErmias(s: GameState, scene: SceneBuilder): void {
             scene.text('You glance over at Ermias and see him grinning at Anushka as he concentrates on sketching her various tattoos in very high detail.');
           } else {
             if (((s as any).temprand ?? 0) === 5) {
-              (s as any).university['alb_art_model'] = 1;
+              ((s as any).university ?? {})['alb_art_model'] = 1;
               scene.img('images/locations/city/island/university/classroom/electives/art/models/albina3.jpg');
               scene.text('After he finishes his lecture, Professor Ilyushin sets up a raised platform as a familiar face walks into the classroom. It\'s Albina, who is wearing a short robe. "Today, we have one of your fellow students as a model. Please take your position, Miss Barlovskaya." Albina removes her robe to reveal that she\'s completely naked before she sits on the platform and assumes a tastefully artistic pose.');
               scene.text('Professor Ilyushin nods in approval before walking to the back of the class and telling everyone to start. He then walks around the class checking on each student, stopping to give pointers or answer questions as needed. As you\'re drawing Albina, you overhear a few of your male classmates talking about how they would love to bang her, with one claiming that he already has.');
@@ -1327,7 +1327,7 @@ function enterArt_101Events(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
   (s as any).temprand = Math.floor(Math.random() * 10) + 1;
   if (((s as any).temprand ?? 0) === 1  &&  ((s as any).university ?? 0)?.['alb_art_model'] === 1  &&  ((s as any).year ?? 0) > 2017  ||  (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) > 9)) {
-    (s as any).university['alb_art_model'] = 0;
+    ((s as any).university ?? {})['alb_art_model'] = 0;
     scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
     scene.text('The class is pretty uneventful for the most part, but you notice that Albina seems to have her gaze fixed on one corner of the room, as if she were looking at someone.');
     scene.text('When the lesson ends, Professor Ilyushin informs the class that he can\'t stay and that if anyone needs him, then they should come and see him in his office later or wait for the next class.');

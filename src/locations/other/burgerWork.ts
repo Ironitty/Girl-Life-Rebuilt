@@ -20,26 +20,26 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'jobs', 'is_work_time', 'city_diner_secretary') === 1) {
     scene.actions([
       { label: 'Work until lunchtime', handler: (st: GameState) => {
-    (s as any).BurgerQW['WorkShift'] = 1;
+    ((s as any).BurgerQW ?? {})['WorkShift'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + (60 * 2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/diner/work.jpg');
     scene.text('You sit at the table and begin to prepare the agreement on the computer.');
     if (((s as any).BurgerQW ?? 0)?.['TerminalTask'] === 1) {
-      (s as any).BurgerQW['TerminalTask'] = 0;
+      ((s as any).BurgerQW ?? {})['TerminalTask'] = 0;
       scene.text('Anatoly Borisovich scolds you for not getting documents to the storage terminal, disrupting supplies.');
     } else {
       if (((s as any).BurgerQW ?? 0)?.['TerminalTask'] === 2) {
-        (s as any).BurgerQW['TerminalTask'] = 0;
+        ((s as any).BurgerQW ?? {})['TerminalTask'] = 0;
         scene.text('Anatoly Borisovich thanks you for delivering the documents to the storage terminal.');
       }
     }
     if (((s as any).BurgerQW ?? 0)?.['BankTask'] === 1) {
-      (s as any).BurgerQW['BankTask'] = 0;
+      ((s as any).BurgerQW ?? {})['BankTask'] = 0;
       scene.text('Anatoly Borisovich chastises you for not taking the documents to the bank.');
     } else {
       if (((s as any).BurgerQW ?? 0)?.['BankTask'] === 2) {
-        (s as any).BurgerQW['BankTask'] = 0;
+        ((s as any).BurgerQW ?? {})['BankTask'] = 0;
         scene.text('Anatoly Borisovich thanks you for delivering the documents to the bank.');
       }
     }
@@ -113,7 +113,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A76');
     qspCall(s, 'cum_call', 'mouth_swallow', 'A76', 1);
-    (s as any).BurgerQW['IlyQWBlackmail'] = ((s as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
+    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = (((s as any).BurgerQW ?? {})['IlyQWBlackmail'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybj.jpg');
     scene.text('Ilyushkin takes you around the corner to a dirty alley behind the bistro. It smells like urine. He pulls his member out of his pants. "Put it in your mouth and show me what you can do." You squat in front of Ilyushkin and take his penis in your mouth. It tastes salty and unwashed. You start to suck actively trying to make Ilyushkin finish as quickly as possible. Finally Ilyushkin lets out a moan starts to cum in your mouth. You quickly swallow while looking around, hoping no one saw you. Once you swallowed his cum, Ilyushkin puts his cleaned up dick in his pants "That was average. You can do better. Now get out of here!"');
@@ -146,7 +146,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A76');
     qspCall(s, 'cum_call', 'mouth_swallow', 'A76', 1);
-    (s as any).BurgerQW['IlyQWBlackmail'] = ((s as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
+    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = (((s as any).BurgerQW ?? {})['IlyQWBlackmail'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjcar.jpg');
     // TODO-QSP: dynamic text: Ilyushkin takes you to his car standing in the alley. He gets behind the wheel a...
@@ -178,7 +178,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
-    (s as any).BurgerQW['IlyQWBlackmail'] = ((s as any).BurgerQW['IlyQWBlackmail'] ?? 0) + (1);
+    ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = (((s as any).BurgerQW ?? {})['IlyQWBlackmail'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/car.jpg');
@@ -200,7 +200,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
-    (s as any).BurgerQW['IlyQWBJFilmed'] = ((s as any).BurgerQW['IlyQWBJFilmed'] ?? 0) + (1);
+    ((s as any).BurgerQW ?? {})['IlyQWBJFilmed'] = (((s as any).BurgerQW ?? {})['IlyQWBJFilmed'] ?? 0) + (1);
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm.jpg');
@@ -247,7 +247,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork3(s: GameState, scene: SceneBuilder): void {
-  (s as any).BurgerQW['WorkShift'] = 2;
+  ((s as any).BurgerQW ?? {})['WorkShift'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).minut = ((s as any).minut ?? 0) + (60 * 4);
   qspCall(s, 'stat', '');

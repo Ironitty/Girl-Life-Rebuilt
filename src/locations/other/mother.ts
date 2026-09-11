@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your mother is still quite young and attractive at only <<motherAge>> years old....
   scene.text(`Your mother is still quite young and attractive at only ${((s as any).motherAge ?? 0)} years old. She works at the station cafe.`);
   if ((((s as any).motherKnowWhore ?? 0) > 0  ||  ((s as any).motherKnowSpravka ?? 0) > 0)  &&  ((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-    (s as any).npc_QW['A29'] = 1;
+    ((s as any).npc_QW ?? {})['A29'] = 1;
   }
   if (((s as any).npc_QW ?? 0)?.['A29'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A29'] > 40) {
     qspCall(s, 'npc_relationship', 'set', 'A29', 40);
@@ -178,7 +178,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_tongue'] === 0  &&  ((s as any).motherQW ?? 0)?.['piercing_talkday'] !== ((s as any).daystart ?? 0)) {
-    (s as any).motherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
+    ((s as any).motherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 100) + 1) >= 75) {
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> sees the glimmer of metal in your mouth. "<<$pcs_n...
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} sees the glimmer of metal in your mouth. "${((s as any).pcs_nickname ?? 0)}, what's that in your mouth? I thought I saw something shiny…"`);
@@ -194,7 +194,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Show her your pierced tongue', handler: (st: GameState) => {
-    (s as any).motherQW['piercing_tongue'] = 1;
+    ((s as any).motherQW ?? {})['piercing_tongue'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/a${((s as any).pcs_piercings ?? 0)?.['tongue']}.jpg`);
@@ -211,12 +211,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_lip'] === 0  &&  ((s as any).motherQW ?? 0)?.['piercing_talkday'] !== ((s as any).daystart ?? 0)) {
-    (s as any).motherQW['piercing_talkday'] = ((s as any).daystart ?? 0);
+    ((s as any).motherQW ?? {})['piercing_talkday'] = ((s as any).daystart ?? 0);
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> notices your new lip piercing and doesn't seem ver...
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} notices your new lip piercing and doesn't seem very happy about it. "Why did you get such a thing?"`);
     scene.actions([
       { label: 'I think it looks pretty', handler: (st: GameState) => {
-    (s as any).motherQW['piercing_lip'] = 1;
+    ((s as any).motherQW ?? {})['piercing_lip'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img(`images/pc/body/piercings/b${((s as any).pcs_piercings ?? 0)?.['lip']}.jpg`);
@@ -231,12 +231,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_ears'] === 0) {
-    (s as any).motherQW['piercing_ears'] = 1;
+    ((s as any).motherQW ?? {})['piercing_ears'] = 1;
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> notices your new earrings and smiles. "I see you d...
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} notices your new earrings and smiles. "I see you decided to wear earrings? They're nice and look very cute on you."`);
   }
   if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_nose'] === 0) {
-    (s as any).motherQW['piercing_nose'] = 1;
+    ((s as any).motherQW ?? {})['piercing_nose'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> looks a bit shocked at your nose ring.
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} looks a bit shocked at your nose ring.`);
@@ -244,7 +244,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Jesus ${((s as any).pcs_nickname ?? 0)}, what is- why?! I understand putting a ring in a bull's nose to lead them by, but on a <i>person</i>? There's no reason to do that!"`);
   }
   if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0  &&  ((s as any).motherQW ?? 0)?.['piercing_brow'] === 0) {
-    (s as any).motherQW['piercing_brow'] = 1;
+    ((s as any).motherQW ?? {})['piercing_brow'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> shakes her head in exasperation when she sees your...
     scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} shakes her head in exasperation when she sees your eyebrow piercing.`);
@@ -254,7 +254,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A29'] > 65  &&  ((s as any).mesec ?? 0) > 0  &&  ((s as any).knowpreg ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['tampons'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 0) {
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    (s as any).mc_inventory['sanitary_pads'] = ((s as any).mc_inventory['sanitary_pads'] ?? 0) + (3);
+    ((s as any).mc_inventory ?? {})['sanitary_pads'] = (((s as any).mc_inventory ?? {})['sanitary_pads'] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-15));
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     // TODO-QSP: dynamic text: You tell your <<$npc_nickname['A29']>> you're menstruating and have ran out of t...
@@ -286,7 +286,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      (s as any).gschoolVars['school_diploma'] = 1;
+      ((s as any).gschoolVars ?? {})['school_diploma'] = 1;
       (s as any).grad_miss = 0;
       (s as any).kanikuli = 7;
       qspCall(s, 'stat', '');
@@ -1096,7 +1096,7 @@ function enterReferralFail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'set', 'A29', 0);
     (s as any).motherKnowSpravka = 1;
     if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-      (s as any).npc_QW['A29'] = 1;
+      ((s as any).npc_QW ?? {})['A29'] = 1;
     }
     if (((s as any).momslut ?? 0) < 2) {
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
@@ -1126,7 +1126,7 @@ function enterReferralFail(s: GameState, scene: SceneBuilder): void {
       (s as any).motherKnowSpravka = 1;
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
       if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-        (s as any).npc_QW['A29'] = 1;
+        ((s as any).npc_QW ?? {})['A29'] = 1;
       }
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> reads the referral and closes her eyes for a secon...
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} reads the referral and closes her eyes for a second, trying to suppress her anger. "To be honest, it's not even a surprise to me. Don't think that I haven't seen you sneaking around the house at weird times, and all the guys loitering near our apartment."`);
@@ -1155,7 +1155,7 @@ function enterReferralFail1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'set', 'A29', 0);
     (s as any).motherKnowSpravka = 1;
     if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-      (s as any).npc_QW['A29'] = 1;
+      ((s as any).npc_QW ?? {})['A29'] = 1;
     }
     if (((s as any).momslut ?? 0) < 2) {
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
@@ -1185,7 +1185,7 @@ function enterReferralFail1(s: GameState, scene: SceneBuilder): void {
       (s as any).motherKnowSpravka = 1;
       (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
       if (((s as any).npc_QW ?? 0)?.['A29'] === 0) {
-        (s as any).npc_QW['A29'] = 1;
+        ((s as any).npc_QW ?? {})['A29'] = 1;
       }
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> reads the referral and closes her eyes for a secon...
       scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} reads the referral and closes her eyes for a second, trying to suppress her anger. "To be honest, it's not even a surprise to me. Don't think that I haven't seen you sneaking around the house at weird times, and all the guys loitering near our apartment."`);
@@ -1289,7 +1289,7 @@ function enterHypnoPregReact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1353,7 +1353,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1385,7 +1385,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1449,7 +1449,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -1479,7 +1479,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-20));
     (s as any).pregTalkFamily = 1;
-    (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk ?? {})['A29'] = 1;
     (s as any).delin_beh = ((s as any).delin_beh ?? 0) + (1);
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
@@ -2015,7 +2015,7 @@ function enterAbortionTalkPreg(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-40));
     (s as any).pregTalkFamily = 1;
-    (s as any).npc_pregtalk['A29'] = 1;
+    ((s as any).npc_pregtalk ?? {})['A29'] = 1;
     if ((!((s as any).motherKnowSpravka ?? 0))) {
       (s as any).motherKnowSpravka = 1;
     }
@@ -2097,14 +2097,14 @@ function enterGetBelongings(s: GameState, scene: SceneBuilder): void {
     scene.text('Most importantly, you grab your hidden money from your drawer first.');
   }
   if (((s as any).stolcigarettes ?? 0)?.['bedrPar'] > 0) {
-    (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (((s as any).stolcigarettes ?? 0)?.['bedrPar']);
-    (s as any).stolcigarettes['bedrPar'] = 0;
+    ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) + (((s as any).stolcigarettes ?? 0)?.['bedrPar']);
+    ((s as any).stolcigarettes ?? {})['bedrPar'] = 0;
     scene.text('You take the hidden cigarettes from under your drawer.');
   }
   scene.text('Before you leave, you gather your clothes and other belongings.');
   if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  ((s as any).ml_guitar ?? 0)?.['location'] === 'bedrPar'  &&  ((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-    (s as any).ml_guitar['carried'] = 0;
-    (s as any).ml_guitar['location'] = 'carried';
+    ((s as any).ml_guitar ?? {})['carried'] = 0;
+    ((s as any).ml_guitar ?? {})['location'] = 'carried';
     scene.text('Finally, you take your guitar with you.');
   }
   scene.build();
@@ -2112,7 +2112,7 @@ function enterGetBelongings(s: GameState, scene: SceneBuilder): void {
 
 function enterMotherQW_2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).npc_QW['A29'] = 2;
+  ((s as any).npc_QW ?? {})['A29'] = 2;
   qspCall(s, 'npc_relationship', 'modify', 'A29', Math.floor(Math.random() * 6) + 5);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2216,7 +2216,7 @@ function enterMotherQW_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCloReact(s: GameState, scene: SceneBuilder): void {
-  (s as any).motherQW['clo_react'] = ((s as any).daystart ?? 0);
+  ((s as any).motherQW ?? {})['clo_react'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).locArgs?.[1] ?? 0) === 'apartment') {
@@ -2480,7 +2480,7 @@ function enterCloReact(s: GameState, scene: SceneBuilder): void {
 
 function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'hear') {
-    (s as any).motherQW['con_steal_hear'] = ((s as any).daystart ?? 0);
+    ((s as any).motherQW ?? {})['con_steal_hear'] = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2490,7 +2490,7 @@ function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
     scene.text('Not noticing you, she keeps rummaging as you quietly slip out, not wanting to bring attention to yourself.');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'talk') {
-      (s as any).motherQW['con_steal_talk'] = ((s as any).daystart ?? 0);
+      ((s as any).motherQW ?? {})['con_steal_talk'] = ((s as any).daystart ?? 0);
       (s as any).minut = ((s as any).minut ?? 0) + 3;
       qspCall(s, 'stat', '');
       scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2516,7 +2516,7 @@ function enterCondomSteal(s: GameState, scene: SceneBuilder): void {
 
 function enterCondomFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  (s as any).mom['condoms'] = 1;
+  ((s as any).mom ?? {})['condoms'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).motherKnowSpravka ?? 0) === 1  ||  ((s as any).motherKnowWhore ?? 0) === 1) {
@@ -2731,7 +2731,7 @@ function enterCondomFind(s: GameState, scene: SceneBuilder): void {
 
 function enterDildoFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  (s as any).motherQW['seen_dildos'] = 1;
+  ((s as any).motherQW ?? {})['seen_dildos'] = 1;
   (s as any).motherKnowDildo = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -2941,7 +2941,7 @@ function enterDildoFind(s: GameState, scene: SceneBuilder): void {
 
 function enterPlugFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  (s as any).motherQW['seen_plug'] = 1;
+  ((s as any).motherQW ?? {})['seen_plug'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A29', 'dislike');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -3014,7 +3014,7 @@ function enterAskMotherWorkout(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You wonder if your <<$npc_nickname['A29']>> would be interested in working out w...
   scene.text(`You wonder if your ${((s as any).npc_nickname ?? 0)?.['A29']} would be interested in working out with you, even if it was just to do a short yoga session or go for a run, so you ask her if it's something she would be interested in doing.`);
   if (((s as any).npc_rel ?? 0)?.['A29'] >= 60) {
-    (s as any).motherQW['workout'] = 1;
+    ((s as any).motherQW ?? {})['workout'] = 1;
     scene.text('"You know what? That sounds like it could be fun. Grab me whenever I\'m home or when we\'re visiting your grandparents; it\'d be nice to get out into the countryside. You\'d better be dressed and ready, though!"');
   } else {
     // TODO-QSP: dynamic text: "No thanks, <<$pcs_nickname>>. I'll leave all that to people younger than me."
@@ -3029,7 +3029,7 @@ function enterAskMotherWorkout(s: GameState, scene: SceneBuilder): void {
 
 function enterMotherWorkoutPav(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 1);
-  (s as any).motherQW['workout_day'] = ((s as any).daystart ?? 0);
+  ((s as any).motherQW ?? {})['workout_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   scene.text('"You ready to work out?" you ask.');
@@ -3046,7 +3046,7 @@ function enterMotherWorkoutPav(s: GameState, scene: SceneBuilder): void {
 
 function enterMotherWorkoutGad(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 1);
-  (s as any).motherQW['workout_day'] = ((s as any).daystart ?? 0);
+  ((s as any).motherQW ?? {})['workout_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   scene.text('"You ready to go work out?" you ask.');

@@ -67,7 +67,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               scene.actions([
                 { label: 'Agree', handler: (st: GameState) => {
-    (s as any).mey_vika['mey_vika_qw'] = 15;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 15;
   }, goto: ['mey_vika_events', 'cafe_qw'] },
               ]);
             } else {

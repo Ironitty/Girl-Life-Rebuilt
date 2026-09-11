@@ -189,7 +189,7 @@ function enterGoToDelParco(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Be flirty', handler: (st: GameState) => {
-    (s as any).NatbelQW['romance'] = ((s as any).NatbelQW['romance'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['romance'] = (((s as any).NatbelQW ?? {})['romance'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/Hands.jpg');
     scene.text('You reach over, place your hand on hers, and gently squeeze it, leaving your hand holding hers. "I know; I just wanted to treat you. You mean a lot to me. Maybe we can do more like this in the future if you like?"');
     scene.text('Natasha smiles, then after a moment, she looks around at the other people, after which she gently pulls her hand away. You can tell it made her uncomfortable, but she didn\'t seem to mind it too much. "There\'s nothing I\'d like more, but I simply can\'t afford it. Sometimes I kid myself, but that\'s when I\'ve borrowed money, and I need to stop doing that as it keeps getting on top of me."');
@@ -670,12 +670,12 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Enter the amateur fight', handler: (st: GameState) => {
-    (s as any).kickbox['amateur_fight_day'] = ((s as any).daystart ?? 0);
+    ((s as any).kickbox ?? {})['amateur_fight_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    (s as any).kickbox['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + (((s as any).rand ?? 0)(-2, 5) / 2);
-    (s as any).temp_kickboxVars['fight_type'] = 1;
+    ((s as any).kickbox ?? {})['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + (((s as any).rand ?? 0)(-2, 5) / 2);
+    ((s as any).temp_kickboxVars ?? {})['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
   }, goto: ['havana_kickboxing', 'match'] },
             ]);
@@ -739,7 +739,7 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -1101,7 +1101,7 @@ function enterShoppingDate1(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     if (((s as any).NatbelQW ?? 0)?.['shopping'] < 4) {
-      (s as any).NatbelQW['shopping'] = 4;
+      ((s as any).NatbelQW ?? {})['shopping'] = 4;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/friends/shop7.jpg');

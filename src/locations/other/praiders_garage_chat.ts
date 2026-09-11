@@ -12,7 +12,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hotcat ?? 0) >= 6) {
     scene.text('You take a seat next to Radomir as everyone spreads out. He gives you a sly smile as you sit next to him. "Great set wasn\'t it? We really nailed it." He says the last part with a suggestive tone.');
     scene.text('Before you can even respond, he continues talking about how well the set was and how awesome it is having groupies like you. He\'s clearly not very interested in what you have to say as he rarely gives you a chance to say anything, so you just listen. It\'s pleasant enough conversation though and he\'s pretty nice to you.');
-    (s as any).gopnikbandQW['radob'] = 0;
+    ((s as any).gopnikbandQW ?? {})['radob'] = 0;
     if (((s as any).gopnikbandQW ?? 0)?.['radob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('You notice the lewd grin on Radomir\'s face as he glances at you and indicates with his head for you to look. You turn your head to follow his gaze and see Anushka and Alyona sitting on the couch next to each other very closely, almost intimately you would say.');
       scene.text('"Have you heard the latest rumors?" he asks while looking at you seriously.');
@@ -196,7 +196,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     scene.text('He just nods. "Yeah yeah, got it. How about you go tell someone else?" he says as he pushes you out of the seat. A pretty looking girl then walks up with a smile and he grabs her and drags her in close. Getting the hint, you drift off.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['radomirblocked'] = 1;
+    ((s as any).gopnikbandQW ?? {})['radomirblocked'] = 1;
   }, goto: ['praiders_garage', 'hangout<<$ARGS[1]>>'] },
     ]);
   }
@@ -233,7 +233,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
     scene.text('"He\'s always taking her side, or telling me I should leave her alone!" he says with a snort. "He just doesn\'t get it. Nush and I have something special, an unbreakable bond. She\'ll always be my little fuck buddy because she loves me and can\'t help it," he says as he leans back looking proud of himself. "He only takes her side because he wants to impress her. I get it. though. Nush is a fine piece of ass."');
     scene.actions([
       { label: 'Valentin has the hots for Anushka?', handler: (st: GameState) => {
-    (s as any).valentin['love_nush'] = 1;
+    ((s as any).valentin ?? {})['love_nush'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
@@ -345,7 +345,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
       { label: 'So you guys hook up?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
@@ -392,7 +392,7 @@ function enterChatAnushka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('You take a seat next to Anushka as everyone spreads out. She\'s a little bit sweaty. "We were great, weren\'t we?!" she exclaims excitedly. You nod and start going back and forth as Anushka picks up a beer and opens it by using the table. The two of you chat for some time, talking about almost everything. You can sense that she\'s on an adrenaline high from playing.');
-  (s as any).gopnikbandQW['nushob'] = 0;
+  ((s as any).gopnikbandQW ?? {})['nushob'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['nushob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
     scene.text('"Fuck, I\'m glad to talk to someone that isn\'t Lena or Lera," she says as you sit next to her.');
     scene.text('You raise a brow and give her a small smile. "Something happen with them?"');
@@ -554,7 +554,7 @@ function enterChatValentin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big158.jpg');
   scene.text('You take a seat next to Valentin as everyone spreads out. He makes space as you sit next to him. "Oh man, that was so good! We finally managed to hit that hard part!" he gleams with satisfaction. You respond positively telling him that you\'re all doing great. He listens attentively and knows how to drive a conversation forward. The two of you chat for some time, enjoying each other\'s company.');
-  (s as any).gopnikbandQW['valob'] = 0;
+  ((s as any).gopnikbandQW ?? {})['valob'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['valob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
     scene.text('You notice Valentin shaking his head and glance over at what he\'s looking at. You see Alyona sitting alone, slamming down drink after drink, already looking fairly wasted.');
     scene.text('"I really feel bad about her home situation. It must suck living like that…" he sighs.');
@@ -610,7 +610,7 @@ function enterChatValentin(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Ask about Lera', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['val_lena_lera_3some'] = 1;
+    ((s as any).gopnikbandQW ?? {})['val_lena_lera_3some'] = 1;
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('"So why is Lera glaring over here?" you ask. "Jealousy? I heard she has it bad for Lena."');
     scene.text('He shakes his head with a grin. "No. Well, maybe a little. She\'s still pissed that I shot my load in her mouth."');
@@ -806,7 +806,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
       scene.text('He responds a bit too fast. "What?! No! I mean she\'s really cool and all and I like spending time with her is all. We seem to click, so I just don\'t understand how she can let Rad walk all over her. I know they used to date, but still…" He seems honestly perplexed by it.');
     } else {
       if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-        (s as any).anushkaQW['rad_date'] = 1;
+        ((s as any).anushkaQW ?? {})['rad_date'] = 1;
       }
       scene.text('"What? Who does Nush let walk all over her?" you ask.');
       scene.text('He stares at you dumbfounded. "Rad. Haven\'t you ever watched them together? I know they used to date, but honestly I just don\'t understand how she can let him walk all over her." He seems honestly perplexed by it. "She needs to stand up to him or find a guy that will treat her well."');
@@ -896,7 +896,7 @@ function enterChatArkadi(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big156.jpg');
   // TODO-QSP: dynamic text: You take a seat next to Arkadi as everyone spreads out. He seems pretty pumped a...
   scene.text(`You take a seat next to Arkadi as everyone spreads out. He seems pretty pumped as you sit next to him - you think he might be on drugs. "I'm fucking buzzing, ${((s as any).pcs_nickname ?? 0)}! I'm going to explode with energy!" He looks around as if he's looking for something or someone. Before you can initiate a conversation, he continues talking about how he needs to see a city friend that will hook him up with something. He's a little arrogant as you speak, rarely listening to what you have to say.`);
-  (s as any).gopnikbandQW['arkob'] = 0;
+  ((s as any).gopnikbandQW ?? {})['arkob'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['arkob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
     scene.text('"I notice you and Roman hanging out sometimes," you comment.');
     // TODO-QSP: dynamic text: "Yeah, he's my brother in arms. No one likes to fight as much as that kid. I'm t...
@@ -979,7 +979,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
-    (s as any).valentin['love_nush'] = 1;
+    ((s as any).valentin ?? {})['love_nush'] = 1;
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('"You and Valentin seem to get along pretty well," you comment.');
     scene.text('"Val is pretty fun in many ways. He reminds me of a friend from the city, so I like hanging out with him," Arkadi suddenly lets his guard down more than usual.');
@@ -1012,7 +1012,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'What\'s Radomir and Anushka\'s deal?', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('As you talk about the band, you think about how you\'ve seen Anushka and Radomir and how they sometimes act more like a couple than friends. "Nush and Rad are each other\'s throats fighting one day, then they\'re acting like friends or are being all lovey dovey. What\'s up with that?" you ask.');
@@ -1065,7 +1065,7 @@ function enterChatAlyona(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big143.jpg');
   scene.text('You take a seat next to Alyona as everyone spreads out. She scoots over as you sit next to her. "Hey…" she mumbles as a manner of greeting. Before you can respond, she picks up a beer and starts to guzzle it down, not really paying any attention to you. She then snaps back, laughing and asking what you were saying.');
-  (s as any).gopnikbandQW['alyob'] = 0;
+  ((s as any).gopnikbandQW ?? {})['alyob'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['alyob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
     scene.text('You notice Roman standing next to some girl with his crotch almost in her face. He moves when she does, keeping his crotch pretty much in her face until she stands up and leaves, which just makes Roman laugh.');
     scene.text('"What a douche!" Alyona says in an annoyed tone.');
@@ -1162,7 +1162,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     scene.img('images/characters/shared/headshots_main/big143.jpg');
     scene.text('"You and Anushka seem pretty close," you comment.');
@@ -1179,7 +1179,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
-    (s as any).valentin['love_nush'] = 1;
+    ((s as any).valentin ?? {})['love_nush'] = 1;
     scene.img('images/characters/shared/headshots_main/big143.jpg');
     scene.text('"What\'s the deal with you and Valentin?" you ask.');
     scene.text('"W-What do you mean?" she stutters, her cheeks flushing.');
@@ -1244,9 +1244,9 @@ function enterChatLenalera(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big20.jpg');
   scene.text('You take a seat next to Lena and Lera, who are really rowdy. They\'ve already had quite a lot to drink and you can see it on their faces that they would like the couch to themselves, but Lera sighs as she moves closer towards Lena. "I\'m so wet right now! The band got me going!" Lena yells out just as Lera is about to make a move.');
-  (s as any).gopnikbandQW['leleob'] = 0;
+  ((s as any).gopnikbandQW ?? {})['leleob'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['leleob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
-    (s as any).gopnikbandQW['lav_lena_know'] = 1;
+    ((s as any).gopnikbandQW ?? {})['lav_lena_know'] = 1;
     scene.text('Lena gets up and catches up to Lavrenti. He passes her something and gives her pat on the ass. You glance over and notice the sour look on Lera\'s face. If looks could kill, Lavrenti would be a dead man. Before you can say anything, Lena comes back over and shows Lera a small bag of pills. "Look what Lav hooked me up with." She seems really happy and even Lera brightens up a bit.');
     scene.text('You decide to ask about the little exchange. "You and Lav seemed pretty friendly…" you say in a teasing tone.');
     scene.text('Lena turns on you. "What the fuck is it to you?"');
@@ -1415,7 +1415,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).gopnikbandQW['val_lena_lera_3some'] = 1;
+      ((s as any).gopnikbandQW ?? {})['val_lena_lera_3some'] = 1;
       scene.text('Lera blushes a little before Lena gives you a pretty graphic and detailed recounting of their threesome.');
       scene.actions([
         { label: 'Hang out', handler: (st: GameState) => {
@@ -1589,7 +1589,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get over Rad?', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     scene.img('images/characters/shared/headshots_main/big155.jpg');
     scene.text('He gives you a questioning look. "Surely you know they used to date?"');
@@ -1683,7 +1683,7 @@ function enterChatRoman(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A157', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['roman_chat'] = 0;
+  ((s as any).gopnikbandQW ?? {})['roman_chat'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['roman_chat'] === 1) {
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     // TODO-QSP: dynamic text: Roman is ecstatic as you slide over to him. "You should've seen it, <<$pcs_nickn...
@@ -1851,9 +1851,9 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_1'] === 0) {
     scene.actions([
       { label: 'Ask about Radomir', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_1'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_1'] = 1;
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
     scene.text('"What are your thoughts on Radomir?" you ask, curious about the man behind the vocals ');
@@ -1915,7 +1915,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_2'] === 0) {
     scene.actions([
       { label: 'Ask about Valentin', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_2'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_2'] = 1;
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
     scene.text('"What do you know about Valentin?" you ask.');
     scene.text('"Plays in the band, but seems to consider himself a guardian of the girls here when he isn\'t gushing over Nush."');
@@ -1939,7 +1939,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_3'] === 0) {
     scene.actions([
       { label: 'Ask about Arkadi', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_3'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_3'] = 1;
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
     scene.text('Interested in learning more about Arkadi, you decide to ask Niko. "What are your thoughts on Arkadi?"');
     scene.text('"The guy can break someone\'s jaw with less effort then it would take him to count, but he always whines about how tough the city life is. I get it, the city is big, and it\'s easy for your life to get fucked up, but we aren\'t in the city, so I don\'t need to keep hearing about it."');
@@ -1956,7 +1956,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_4'] === 0) {
     scene.actions([
       { label: 'Ask about Anushka', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_4'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_4'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/4.jpg');
     scene.text('"What\'s the story with Anushka? She certainly seems popular around here," you ask.');
     scene.text('Niko shrugs. "She\'s a cocky little bitch. She plays with the band, on and off the stage. When she\'s not playing guitar, she\'s fucking one of the guys."');
@@ -1980,7 +1980,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_5'] === 0  &&  ((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
     scene.actions([
       { label: 'Ask about Alyona', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_5'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_5'] = 1;
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
     scene.text('Noticing Alyona slamming down multiple beers, you curiously decide to ask Niko his opinion. "What\'s her problem?"');
     scene.text('Niko shrugs. "She has some fucked up shit going on at home, and takes it out on anyone that gets in her way."');
@@ -2000,7 +2000,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_6'] === 0  &&  ((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
     scene.actions([
       { label: 'Ask about Lena', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_6'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_6'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile1.jpg');
     scene.text('"What are your thought on Lena?" you ask.');
     scene.text('"She\'s a fun girl, but sadly always has someone watching over her. It\'s so tricky to get her alone."');
@@ -2026,7 +2026,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_7'] === 0  &&  ((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
     scene.actions([
       { label: 'Ask about Lera', handler: (st: GameState) => {
-    (s as any).gopnikbandQW['niko_talk_7'] = 1;
+    ((s as any).gopnikbandQW ?? {})['niko_talk_7'] = 1;
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
     scene.text('"So what\'s going on with Lera?" you ask. "I saw her earlier and she looked pissed."');
     scene.text('He shakes his head with a grin. "Who knows? When she isn\'t gripping Lena\'s tits, then she\'s moping around, snapping at anyone that tries to talk to her."');

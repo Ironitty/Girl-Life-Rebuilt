@@ -283,7 +283,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 600);
-      (s as any).objects['dog_food'] = ((s as any).objects['dog_food'] ?? 0) + (20);
+      ((s as any).objects ?? {})['dog_food'] = (((s as any).objects ?? {})['dog_food'] ?? 0) + (20);
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
@@ -292,7 +292,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 1200);
-      (s as any).objects['dog_food'] = ((s as any).objects['dog_food'] ?? 0) + (40);
+      ((s as any).objects ?? {})['dog_food'] = (((s as any).objects ?? {})['dog_food'] ?? 0) + (40);
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
@@ -301,7 +301,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 2400);
-      (s as any).objects['dog_food'] = ((s as any).objects['dog_food'] ?? 0) + (80);
+      ((s as any).objects ?? {})['dog_food'] = (((s as any).objects ?? {})['dog_food'] ?? 0) + (80);
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
@@ -324,7 +324,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 900);
-      (s as any).objects['toys'] = 1;
+      ((s as any).objects ?? {})['toys'] = 1;
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
@@ -349,7 +349,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300);
-      (s as any).objects['treats'] = ((s as any).objects['treats'] ?? 0) + (20);
+      ((s as any).objects ?? {})['treats'] = (((s as any).objects ?? {})['treats'] ?? 0) + (20);
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
@@ -368,7 +368,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 800);
-      (s as any).objects['chew'] = ((s as any).objects['chew'] ?? 0) + (10);
+      ((s as any).objects ?? {})['chew'] = (((s as any).objects ?? {})['chew'] ?? 0) + (10);
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
@@ -468,7 +468,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 3000);
-      (s as any).mc_inventory['ice_skates'] = 1;
+      ((s as any).mc_inventory ?? {})['ice_skates'] = 1;
       scene.img('images/locations/pavlovsk/lake/konki_shop.jpg');
       scene.text('You buy a pair of ice skates.');
       scene.actions([
@@ -487,7 +487,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 4000);
-      (s as any).mc_inventory['ski'] = 1;
+      ((s as any).mc_inventory ?? {})['ski'] = 1;
       scene.img('images/pc/activities/ski_buy.jpg');
       scene.text('You buy a pair of skis and poles.');
       scene.actions([

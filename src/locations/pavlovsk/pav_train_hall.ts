@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You see your aunt's boyfriend <a href="exec:minut += 1 & gt 'olutaxi', 'station'...
         scene.text('You see your aunt\'s boyfriend <a href="exec:minut += 1 & gt \'olutaxi\', \'station\'">Olu</a> sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');
       } else {
-        (s as any).DjibrilQW['taxi'] = 1;
+        ((s as any).DjibrilQW ?? {})['taxi'] = 1;
         if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
           // TODO-QSP: dynamic text: You see your aunt's boyfriend <a href="exec:minut += 1 & gt 'olutaxi', 'station'...
           scene.text('You see your aunt\'s boyfriend <a href="exec:minut += 1 & gt \'olutaxi\', \'station\'">Olu</a> sitting on one of the benches. His nephew Djibril is sitting next to him. When people head for the exit, Olu quickly gets up and asks if they need a taxi, but it doesn\'t look like anyone is taking him up on his offer.');

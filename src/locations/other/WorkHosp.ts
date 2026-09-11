@@ -135,7 +135,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
         scene.text('While you and Kat are in full swing, two doctors enter the room. You are both so engrossed with each other that you don\'t even notice them until they start caressing you. You both spread your legs wider, inviting them to join the fun.');
         scene.actions([
           { label: 'Entertain them', handler: (st: GameState) => {
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     (s as any).picrand = 11;
     (s as any).sexpartkno = 1;
     qspCall(s, 'WorkHosp', 'randdoc');
@@ -147,7 +147,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :docloop
     qspCall(s, 'WorkHosp', 'randdoc');
     if (((s as any).boydesc ?? 0) === ((s as any).boydesc ?? 0)[1]) {
-      (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
+      ((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = (((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop'
     }
     if (((s as any).docfuck ?? 0)?.[String((s as any).randdoc ?? 0)] === 1) {
@@ -223,7 +223,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :docloop2
     qspCall(s, 'WorkHosp', 'randdoc');
     if (((s as any).boydesc ?? 0) === ((s as any).boydesc ?? 0)[1]) {
-      (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) - (1);
+      ((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = (((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] ?? 0) - (1);
       // TODO-QSP: jump 'docloop2'
     }
     if (((s as any).docfuck ?? 0)?.[String((s as any).randdoc ?? 0)] === 1) {
@@ -290,7 +290,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
     (s as any).picrand = 13;
     (s as any).sexpartkno = 1;
     qspCall(s, 'WorkHosp', 'randdoc');
@@ -453,7 +453,7 @@ function enterRanddoc(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'boyStat', '', ((s as any).npclastsaved ?? 0));
-  (s as any).docfuck[String((s as any).randdoc ?? 0)] = ((s as any).docfuck[String((s as any).randdoc ?? 0)] ?? 0) + (1);
+  ((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = (((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] ?? 0) + (1);
   scene.build();
 }
 

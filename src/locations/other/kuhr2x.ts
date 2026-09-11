@@ -14,7 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/apartment/kuhr2x.jpg');
   if ((Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).santehnikDolg ?? 0) === 0  &&  ((s as any).daystart ?? 0) > ((s as any).kransloman ?? 0)[1] + 90) {
     (s as any).kransloman = 1;
-    (s as any).kransloman[1] = ((s as any).daystart ?? 0);
+    ((s as any).kransloman ?? {})[1] = ((s as any).daystart ?? 0);
   }
   if (((s as any).kransloman ?? 0) === 1) {
     // TODO-QSP: xgt 'kuhr2x', 'leak'

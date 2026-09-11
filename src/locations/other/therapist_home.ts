@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-    (s as any).trait_vars['sensitivity_override'] = 0;
+    ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
   // TODO-QSP: gt $ARGS[1], $ARGS[2]
   scene.build();
@@ -152,7 +152,7 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPreSleep(s: GameState, scene: SceneBuilder): void {
-  (s as any).therapistQW['hotel_sleep_flag'] = 1;
+  ((s as any).therapistQW ?? {})['hotel_sleep_flag'] = 1;
   scene.actions([{ label: 'Continue', goto: ['therapist_home', 'pre_sleep2'] }]);
   if (((s as any).locArgs?.[0] ?? 0) === 'pre_sleep2') {
     if (((s as any).therapistQW ?? 0)?.['hotel_firstnight'] === 0) {
@@ -165,7 +165,7 @@ function enterPreSleep(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      (s as any).trait_vars['sensitivity_override'] = 0;
+      ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
     qspCall(s, 'pre_sleep_events', 'event_end');
   } },

@@ -705,8 +705,8 @@ function enterExitpool(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Jump into the water after him', handler: (st: GameState) => {
-    (s as any).pav_swimpool['boystole'] = 1;
-    (s as any).pav_swimpool['toplost'] = 1;
+    ((s as any).pav_swimpool ?? {})['boystole'] = 1;
+    ((s as any).pav_swimpool ?? {})['toplost'] = 1;
     scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
     scene.text('You jump bravely into the water after him. He swims off towards the other side of the pool and you attempt to follow, but the pool is full and many notice your lewdness. You suddenly realize, stop and cover yourself as a number of people stare at you.');
     scene.text('You could try to reach the edge of the pool, but you would have to get very close to other people. You could also wait and hope that the pool empties a little without calling attention to yourself.');
@@ -748,7 +748,7 @@ function enterLifeguardApply(s: GameState, scene: SceneBuilder): void {
   scene.text(`The woman smiles. "The obvious question. You'll get ${qspFunc(s, 'money', 'string_profit', 250)} a day, plus free entry to the pool and a discount at the cafeteria when you're not on shift. Still interested?"`);
   scene.actions([
     { label: 'Take the job', handler: (st: GameState) => {
-    (s as any).job_hiring_step['pav_pool_lifeguard'] = 1;
+    ((s as any).job_hiring_step ?? {})['pav_pool_lifeguard'] = 1;
     qspCall(s, 'stat', '');
     scene.text('You nod. "Sounds good. When do I start?"');
     scene.text('"I don\'t see you actually needing to do anything other than make sure the swimmers behave themselves, but I need you to come by next Saturday when we open at 8 so I can give you some training. It will take a few hours over the course of two days, but I\'m not authorised to pay you for it."');

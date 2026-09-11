@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get urgent treatment', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).clinic['docheal'] = ((s as any).daystart ?? 0);
+    ((s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
     qspCall(s, 'medical_din', 'healthTreatment');
     qspCall(s, 'stat', '');
     scene.text('The doctor guides you to a bed and tells you to lie down, after which she gives you a combined painkiller, steroid and vitamin shot.');
@@ -110,7 +110,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Read the job listing', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).job_hiring_step['pav_clinic_cleaner'] = 1;
+    ((s as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You notice a piece of paper on the wall near the entrance to the clinic - it's a...
     scene.text('You notice a piece of paper on the wall near the entrance to the clinic - it\'s a job listing which reads: "Cleaner wanted! One hour per day, any time between \'+func(\'time\', \'get_time_string\', 14, 0)+\' and \'+func(\'time\', \'get_time_string\', 21, 0)+\'. Payment: \'+$func(\'money\', \'string_profit\', 100)+\'."');
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Ask the head doctor about the job', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).job_hiring_step['pav_clinic_cleaner'] = 2;
+    ((s as any).job_hiring_step ?? {})['pav_clinic_cleaner'] = 2;
     qspCall(s, 'jobs', 'set_employed', 'pav_clinic_cleaner');
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/clinic/poli.jpg');

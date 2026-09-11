@@ -52,7 +52,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
 
 function enterEndGame(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).mey_vika['mey_vika_qw'] = 27;
+  ((s as any).mey_vika ?? {})['mey_vika_qw'] = 27;
   qspCall(s, 'stat', '');
   scene.text('Noticing you, Tamara leans over, rubbing against your breasts…');
   // TODO-QSP: dynamic text: "You can come over and visit us any time you want, <<$pcs_nickname>>. We can sit...
@@ -127,7 +127,7 @@ function enterPlayGame(s: GameState, scene: SceneBuilder): void {
 
 function enterPlayGameWish0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
-    (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
   }
   scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_game0.jpg');
   scene.text('"Vanya, you\'re the athlete here, come on show off your toned body! As if you were imitating a famous ancient discus thrower!"');
@@ -204,7 +204,7 @@ function enterPlayGameWish0(s: GameState, scene: SceneBuilder): void {
 
 function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
-    (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_vika_events" });
@@ -381,7 +381,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
 
 function enterPlayGameWish2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
-    (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/meynolds/vika_game_kiss2.jpg');
@@ -411,7 +411,7 @@ function enterPlayGameWish2(s: GameState, scene: SceneBuilder): void {
 
 function enterPlayGameWish3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
-    (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
   }
   scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_kiss.mp4');
   scene.text('"You Lost! You Lost!" sings Vicky. "Now let\'s see, what do I want? I want… I want… I want you to make out with Vanya! A real kiss, not a little pecker! And don\'t forget using your tongue!"');
@@ -429,15 +429,15 @@ function enterPlayGameWish3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPlayGameSub(s: GameState, scene: SceneBuilder): void {
-  (s as any).win[0] = Math.floor(Math.random() * 3) + 0;
+  ((s as any).win ?? {})[0] = Math.floor(Math.random() * 3) + 0;
   if (((s as any).win ?? 0)[0] === 0) {
-    (s as any).win[1] = Math.floor(Math.random() * 2) + 1;
+    ((s as any).win ?? {})[1] = Math.floor(Math.random() * 2) + 1;
   } else {
     if (((s as any).win ?? 0)[0] === 1) {
-      (s as any).win[1] = (((Math.floor(Math.random() * 11) + 0) > 5) ? (0) : (2));
+      ((s as any).win ?? {})[1] = (((Math.floor(Math.random() * 11) + 0) > 5) ? (0) : (2));
     } else {
       if (((s as any).win ?? 0)[0] === 2) {
-        (s as any).win[1] = Math.floor(Math.random() * 2) + 0;
+        ((s as any).win ?? {})[1] = Math.floor(Math.random() * 2) + 0;
       }
     }
   }
@@ -458,13 +458,13 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "There's not much to say, <<$pcs_nickname>>." Says Katja smiling.
         scene.text(`"There's not much to say, ${((s as any).pcs_nickname ?? 0)}." Says Katja smiling.`);
         scene.text('"As far as I know they go for a walk in the park. Though they walk on the off-beat tracks, attempting to stay hidden, away from all the prying eyes." Katja continues.');
-        (s as any).mey_vika['mey_vika_qw'] = 1;
+        ((s as any).mey_vika ?? {})['mey_vika_qw'] = 1;
         scene.actions([
           { label: 'Go to the Park', goto: ['pav_park', 'start'] },
         ]);
       } else {
         scene.text('"I don\'t really know what the two of them are doing." Katja answers shortly and starts walking away, not wanting to keep the conversation going.');
-        (s as any).mey_vika['mey_vika_qw'] = 2;
+        ((s as any).mey_vika ?? {})['mey_vika_qw'] = 2;
         scene.actions([
           { label: 'Stalk them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -485,7 +485,7 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
-            (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+            ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
             // TODO-QSP: dynamic text: "My mother was quite intrigued by you, <<$pcs_nickname>>… That friend of yours, ...
             scene.text(`"My mother was quite intrigued by you, ${((s as any).pcs_nickname ?? 0)}… That friend of yours, ${((s as any).pcs_nickname ?? 0)}? Why doesn't she visit us more often?"`);
             scene.text('You start feeling a bit ashamed because Vicky needed to remind you and you promise that you will definitely visit in the near future.');
@@ -494,9 +494,9 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 31) {
-              (s as any).mey_vika['mey_vika_qw'] = 32;
-              (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
-              (s as any).mey_vika['key'] = 1;
+              ((s as any).mey_vika ?? {})['mey_vika_qw'] = 32;
+              ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
+              ((s as any).mey_vika ?? {})['key'] = 1;
               // TODO-QSP: dynamic text: "My mother likes you very much, <<$pcs_nickname>>, and the three of us hit it of...
               scene.text(`"My mother likes you very much, ${((s as any).pcs_nickname ?? 0)}, and the three of us hit it off, so here's the key to our house. Don't worry about anything, our house is your house. Here you go, come visit any time you like!"`);
               scene.actions([
@@ -523,7 +523,7 @@ function enterBeachStalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`"There's not much to say, ${((s as any).pcs_nickname ?? 0)}." Says Katja smiling.`);
     scene.text('"As far as I know they go for a walk in the park. Though they walk on the off-beat tracks, attempting to stay hidden, away from all the prying eyes." Katja continues.');
     scene.text('You say your thanks and after a brief chat with Katja, you decide to follow the couple. She said they go to the park so you start heading there to see if you can find them.');
-    (s as any).mey_vika['mey_vika_qw'] = 1;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 1;
     scene.actions([
       { label: 'Go to the Park', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -531,7 +531,7 @@ function enterBeachStalk(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('"I don\'t really know what the two of them are doing." Katja answers shortly, lays back down and puts her eye protection back on, in dismissal.');
-    (s as any).mey_vika['mey_vika_qw'] = 2;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 2;
     scene.actions([
       { label: 'Stalk them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -590,7 +590,7 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish your walk', goto: ['pav_park', 'start'] },
     ]);
   } else {
-    (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
     if (((s as any).mey_vika ?? 0)?.['mey_vika_park_action'] === 0) {
       scene.text('<center><h2>Pavlovsk Park</h2></center>');
       scene.img('images/locations/pavlovsk/resident/meynolds/vika_park_walk.jpg');
@@ -711,7 +711,7 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
             if (qspFunc(s, 'money', 'can_afford', 300) === 1) {
               scene.actions([
                 { label: 'Visit the cafe', handler: (st: GameState) => {
-    (s as any).mey_vika['mey_vika_qw'] = 15;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 15;
   }, goto: ['mey_vika_events', 'cafe_qw'] },
                 { label: 'Decline', handler: (st: GameState) => {
     scene.text('You\'re in in a hurry, so you decide to thank Vicky for the invite but that you have something elsewhere that you need to attend.');
@@ -774,12 +774,12 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).mey_vika['mey_vika_park_action'] = ((s as any).mey_vika['mey_vika_park_action'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_park_action'] = (((s as any).mey_vika ?? {})['mey_vika_park_action'] ?? 0) + (1);
     if (((s as any).mey_vika ?? 0)?.['mey_vika_park_action'] > 2) {
-      (s as any).mey_vika['mey_vika_park_action'] = 0;
+      ((s as any).mey_vika ?? {})['mey_vika_park_action'] = 0;
     }
     if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 10) {
-      (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+      ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
     }
   }
   scene.build();
@@ -822,7 +822,7 @@ function enterCafeQw(s: GameState, scene: SceneBuilder): void {
       { label: 'Go outside', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).mey_vika['mey_vika_qw'] = 18;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 18;
     qspCall(s, 'stat', '');
   }, goto: ['cafe_parco', 'start'] },
     ]);
@@ -850,7 +850,7 @@ function enterCafeRepeatQw(s: GameState, scene: SceneBuilder): void {
     scene.text('You wonder why they act this way, but you don\'t dare to do anything…');
   }
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 18) {
-    (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
   }
   scene.actions([
     { label: 'Say goodbye and leave', goto: ['cafe_parco', 'inner'] },
@@ -892,7 +892,7 @@ function enterParkQw(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'mood', 'raise', 'tiny');
     if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 19) {
-      (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+      ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
   }, goto: ['pav_residential', ''] },
@@ -907,7 +907,7 @@ function enterParkQw(s: GameState, scene: SceneBuilder): void {
 function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A165', 'like');
-  (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+  ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npcStat', 'A165');
   qspCall(s, 'npcStat', 'A15', 'a');
   qspCall(s, 'stat', '');
@@ -1008,7 +1008,7 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Don't forget about it now, ${((s as any).pcs_nickname ?? 0)}!" Vicky presses on.`);
     scene.text('"Of course I won\'t, Vicky!" you sincerely reply.');
     qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
-    (s as any).mey_vika['mey_vika_qw'] = 20;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 20;
     qspCall(s, 'stat', '');
     qspCall(s, 'mey_vika_events', 'beach_ender');
   } },
@@ -1049,7 +1049,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach2.jpg');
     scene.text('Suddenly Vicky gets an idea…');
     scene.text('"What do you say we go to the remote beach instead? There is one near here! The water is cleaner and there aren\'t that many kids there." You agree with her, and the three of you start walking toward the remote beach.');
@@ -1185,7 +1185,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).mey_vika['mey_vika_qw'] = 20;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 20;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_beach11.jpg');
     if (((s as any).kanikuli ?? 0) > 0) {
@@ -1240,7 +1240,7 @@ function enterBeachEnder(s: GameState, scene: SceneBuilder): void {
 
 function enterBeachEvent1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+  ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
   scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach1.jpg');
   scene.text('Arriving at the beach, you start looking for Vicky and Vanya.');
   scene.text('They\'ve found a comfortable spot where they can sunbathe and drink the beer that they brought in a hefty bag. Noticing you, they wave you over.');
@@ -1401,7 +1401,7 @@ function enterCaseGift(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCaseGiftEnder(s: GameState, scene: SceneBuilder): void {
-  (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+  ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
   scene.actions([{ label: 'Continue', goto: ['mey_home', 'guest_bedroom'] }]);
   scene.build();
 }
@@ -1409,7 +1409,7 @@ function enterCaseGiftEnder(s: GameState, scene: SceneBuilder): void {
 function enterLearning0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).mey_vika['qw_day'] = ((s as any).daystart ?? 0);
+  ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/girl/vicky/sex/case_gift0.jpg');
   scene.text('You walk around the house, hearing the voices of aunt Tamara, Vanya and Vicky. They\'re whispering something, trying to explain how Vicky should carry herself. The door is closed but not locked.');
   scene.text('Your curiosity comes over you and you sneak up to the door wanting to eavesdrop.');
@@ -1449,7 +1449,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wipe your tears, girl, and come on down. You seem ready for this conversation."');
     scene.actions([
       { label: 'Go into the hall', handler: (st: GameState) => {
-    (s as any).mey_vika['mey_vika_qw'] = 35;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 35;
     qspCall(s, 'homes_properties', 'give_access', 'meynold_household');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning4.jpg');
     scene.text('You sniff and unassumingly, still wiping your wet eyes, you follow aunt Tamara, mentally preparing for the worst.');
@@ -1480,7 +1480,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Cry from shame and resentment', handler: (st: GameState) => {
-    (s as any).mey_vika['mey_vika_qw'] = 35;
+    ((s as any).mey_vika ?? {})['mey_vika_qw'] = 35;
     qspCall(s, 'homes_properties', 'give_access', 'meynold_household');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning4.jpg');
     scene.text('As Tamara gets up you break out in tears again.');
@@ -1517,7 +1517,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).mey_vika['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+      ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
       scene.actions([
         { label: 'Return to your room', goto: ['mey_home', 'guest_bedroom'] },
       ]);
@@ -1536,7 +1536,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
   scene.text('"I was just about to start. Come in, let\'s train together."');
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
-    (s as any).mey_vika['gym_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
     scene.text('"I\'m sorry, Vicky. I just came back from a run."Sure, no problem…" Vicky replies irritated, slamming the door.');
     scene.actions([
       { label: 'Continue on', goto: ['mey_home', 'start'] },
@@ -1591,7 +1591,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (30);
     qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'sweat', 'add', 3);
-    (s as any).mey_vika['gym_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym10.jpg');
     scene.text('Vicky makes you do a few yoga poses, as you\'re about to finish she says…');
     // TODO-QSP: dynamic text: "Time to hit the shower! Won't you join me, <<$pcs_nickname>>?"
@@ -1679,7 +1679,7 @@ function enterGym1(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 10);
     qspCall(s, 'stat', '');
-    (s as any).mey_vika['gym_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym26.jpg');
     scene.text('Vicky is almost done and is now finishing by doing some relaxation exercises. As soon as she\'s finished, she runs down, picks up her clothes, and quickly runs back to her room.');
     qspCall(s, 'arousal', 'voyeur', (-20), 'lesbian');
@@ -1716,8 +1716,8 @@ function enterBathQw0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
     scene.actions([
       { label: 'Take a bath', handler: (st: GameState) => {
-    (s as any).mey_vika['bath_qw'] = 1;
-    (s as any).mey_vika['bath_qw_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mey_vika ?? {})['bath_qw'] = 1;
+    ((s as any).mey_vika ?? {})['bath_qw_day'] = ((s as any).daystart ?? 0);
     // TODO-QSP: gt 'mey_vika_events', 'bath_common', 1
   } },
     ]);
@@ -1735,7 +1735,7 @@ function enterBathQw0(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBathQw1(s: GameState, scene: SceneBuilder): void {
-  (s as any).mey_vika['bath_qw_day'] = ((s as any).daystart ?? 0);
+  ((s as any).mey_vika ?? {})['bath_qw_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('Standing in the hallway in her shorts and a short top Vicky confronts you, pointing at the stairs.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! No excuses you're taking a bath now! Come with me!"
@@ -1904,11 +1904,11 @@ function enterBangKatya2(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 15);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 21) + 10);
-    (s as any).mey_vika['mey_vika_bang_qw'] = 1;
-    (s as any).katjaQW['horny'] = 0;
-    (s as any).Katjastat['vaginal'] = ((s as any).Katjastat['vaginal'] ?? 0) + (1);
+    ((s as any).mey_vika ?? {})['mey_vika_bang_qw'] = 1;
+    ((s as any).katjaQW ?? {})['horny'] = 0;
+    ((s as any).Katjastat ?? {})['vaginal'] = (((s as any).Katjastat ?? {})['vaginal'] ?? 0) + (1);
     if (((s as any).katjaQW ?? 0)?.['slut'] < 20) {
-      (s as any).katjaQW['slut'] = 0;
+      ((s as any).katjaQW ?? {})['slut'] = 0;
     }
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/home/bang_katya8.jpg');

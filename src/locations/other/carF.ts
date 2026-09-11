@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'] >= 5) {
       scene.actions([
         { label: 'Pour gasoline into the tank', handler: (st: GameState) => {
-    (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) + (5);
+    ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) + (5);
     (s as any).kanistra = ((s as any).kanistra ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.text('You empty the canister of gasoline into the tank.');
@@ -161,21 +161,21 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
   if (((s as any).car ?? 0)?.['fuel'] > 0  &&  ((s as any).car ?? 0)?.['wreck'] === 0  &&  ((s as any).license ?? 0)?.['drive'] > 0) {
     if (((s as any).car ?? 0)?.['current_condition'] >= ((s as any).car ?? 0)?.['new_condition'] * 75 / 100) {
       if ((!(Math.floor(Math.random() * 1000) + 0))) {
-        (s as any).car['wreck'] = 1;
+        ((s as any).car ?? {})['wreck'] = 1;
       }
     } else {
       if (((s as any).car ?? 0)?.['current_condition'] >= ((s as any).car ?? 0)?.['new_condition'] * 50 / 100) {
         if ((!(Math.floor(Math.random() * 100) + 0))) {
-          (s as any).car['wreck'] = 1;
+          ((s as any).car ?? {})['wreck'] = 1;
         }
       } else {
         if (((s as any).car ?? 0)?.['current_condition'] >= ((s as any).car ?? 0)?.['new_condition'] * 25 / 100) {
           if ((!(Math.floor(Math.random() * 5) + 0))) {
-            (s as any).car['wreck'] = 1;
+            ((s as any).car ?? {})['wreck'] = 1;
           }
         } else {
           if ((Math.floor(Math.random() * 5) + 0) < 3) {
-            (s as any).car['wreck'] = 1;
+            ((s as any).car ?? {})['wreck'] = 1;
           }
         }
       }
@@ -203,7 +203,7 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
     }
   } },
           { label: 'This is within the law', handler: (st: GameState) => {
-    (s as any).license['drive'] = 0;
+    ((s as any).license ?? {})['drive'] = 0;
     scene.text('"I can take your license for not driving sober."');
     scene.actions([
       { label: 'Continue', goto: ['carF', 'salon'] },
@@ -212,8 +212,8 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).alko ?? 0) >= 10  &&  (Math.floor(Math.random() * 100) + 0) < ((s as any).alko ?? 0) * 5) {
-          (s as any).car['current_condition'] = ((s as any).car ?? {})?.['current_condition']/2;
-          (s as any).car['wreck'] = 1;
+          ((s as any).car ?? {})['current_condition'] = ((s as any).car ?? {})?.['current_condition']/2;
+          ((s as any).car ?? {})['wreck'] = 1;
           scene.text('Driving drunk, you crash into a tree and wreck your car.');
           scene.actions([
             { label: 'Continue', goto: ['carF', 'salon'] },
@@ -228,7 +228,7 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
               { label: 'Go to the city (0:20)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     scene.text('You drive for more than an hour on the highway before you get to the city.');
-    (s as any).car['city_sup_region'] = '';
+    ((s as any).car ?? {})['city_sup_region'] = '';
     qspCall(s, 'carF', 'city');
   } },
               { label: 'Go to the Highway (0:05)', handler: (st: GameState) => {
@@ -246,29 +246,29 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
             if (((s as any).car ?? 0)?.['region'] === 'city') {
               (s as any).car_town = 1;
               if (((s as any).car ?? 0)?.['loc'] === 'city_center'  ||  ((s as any).car ?? 0)?.['loc'] === 'city_island') {
-                (s as any).car['city_sup_region'] = 'a';
+                ((s as any).car ?? {})['city_sup_region'] = 'a';
               } else {
                 if (((s as any).car ?? 0)?.['loc'] === 'city_residential'  ||  ((s as any).car ?? 0)?.['loc'] === 'city_park'  ||  ((s as any).car ?? 0)?.['loc'] === 'city_house_res_misc'  ||  ((s as any).car ?? 0)?.['loc'] === 'city_sauna') {
-                  (s as any).car['city_sup_region'] = 'b';
+                  ((s as any).car ?? {})['city_sup_region'] = 'b';
                 } else {
                   if (((s as any).car ?? 0)?.['loc'] === 'city_industrial'  ||  ((s as any).car ?? 0)?.['loc'] === 'fuelstation'  ||  ((s as any).car ?? 0)?.['loc'] === 'city_redlight'  ||  ((s as any).car ?? 0)?.['loc'] === 'autoservisF'  ||  ((s as any).car ?? 0)?.['loc'] === 'autotraidF') {
-                    (s as any).car['city_sup_region'] = 'c';
+                    ((s as any).car ?? {})['city_sup_region'] = 'c';
                   } else {
                     if (((s as any).car ?? 0)?.['loc'] === 'city_lake') {
-                      (s as any).car['city_sup_region'] = 'd';
+                      ((s as any).car ?? {})['city_sup_region'] = 'd';
                     } else {
-                      (s as any).car['city_sup_region'] = '';
+                      ((s as any).car ?? {})['city_sup_region'] = '';
                     }
                   }
                 }
               }
               if (((s as any).car ?? 0)?.['city_sup_region'] === 'a'  ||  ((s as any).car ?? 0)?.['city_sup_region'] === 'd') {
-                (s as any).temptime[0] = 10;
+                ((s as any).temptime ?? {})[0] = 10;
               } else {
                 if (((s as any).car ?? 0)?.['city_sup_region'] === 'b') {
-                  (s as any).temptime[0] = 5;
+                  ((s as any).temptime ?? {})[0] = 5;
                 } else {
-                  (s as any).temptime[0] = 0;
+                  ((s as any).temptime ?? {})[0] = 0;
                 }
               }
               // TODO-QSP: $temptime[1] = '(<<(temptime[0] + 20)/60>>:<<((temptime[0]  +20) mod 60)>>)'
@@ -359,23 +359,23 @@ function enterSalon(s: GameState, scene: SceneBuilder): void {
   } },
                   { label: 'Go to another destination', handler: (st: GameState) => {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_mansion_entrance', '') === 1  ||  qspFunc(s, 'car_funcs', 'is_here', 'city_suburbs', 'start') === 1) {
-      (s as any).temptime[0] = 5;
+      ((s as any).temptime ?? {})[0] = 5;
       (s as any).nroad = 1;
     } else {
       if (qspFunc(s, 'car_funcs', 'is_here', 'obekt', '') === 1) {
-        (s as any).temptime[0] = 5;
+        ((s as any).temptime ?? {})[0] = 5;
         (s as any).nroad = 16;
       } else {
         if (qspFunc(s, 'car_funcs', 'is_here', 'dachi', '') === 1) {
-          (s as any).temptime[0] = 5;
+          ((s as any).temptime ?? {})[0] = 5;
           (s as any).nroad = 5;
         } else {
           if (qspFunc(s, 'car_funcs', 'is_here', 'gadukino', '') === 1) {
-            (s as any).temptime[0] = 5;
+            ((s as any).temptime ?? {})[0] = 5;
             (s as any).nroad = 10;
           } else {
             if (qspFunc(s, 'car_funcs', 'is_here', 'gas_station_gp_117', 'outside') === 1) {
-              (s as any).temptime[0] = 5;
+              ((s as any).temptime ?? {})[0] = 5;
               (s as any).nroad = 12;
             }
           }

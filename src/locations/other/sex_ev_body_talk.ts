@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_like_hair_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_like_hair_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   // TODO-QSP: dynamic text: "I love your hair," <<$npc_usedname[$npcID]>> murmurs, running his fingers throu...
   scene.text(`"I love your hair," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} murmurs, running his fingers through your locks.`);

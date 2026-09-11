@@ -185,7 +185,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (<<mc_inventory[\'deodorant\']>> <<iif(mc_inventory[\'deodorant\'] = 1, \'application\', \'applications\')>> left)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
@@ -313,7 +313,7 @@ function enterVball1(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300);
-      (s as any).vballVars['lessons_remaining'] = 30;
+      ((s as any).vballVars ?? {})['lessons_remaining'] = 30;
       qspCall(s, 'stat', '');
       scene.text('You pay for 30 volleyball lessons.');
       scene.actions([
@@ -554,8 +554,8 @@ function enterShowerWithIvan(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
-    (s as any).npc_had_sex['A3'] = 1;
-    (s as any).ivanQW['sex'] = ((s as any).ivanQW['sex'] ?? 0) + (1);
+    ((s as any).npc_had_sex ?? {})['A3'] = 1;
+    ((s as any).ivanQW ?? {})['sex'] = (((s as any).ivanQW ?? {})['sex'] ?? 0) + (1);
     scene.img('images/shared/sex/blowjob/shover.jpg');
     // TODO-QSP: dynamic text: You slowly sink to your knees in front of Ivan and part your lips, letting his <...
     scene.text(`You slowly sink to your knees in front of Ivan and part your lips, letting his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock slide into your mouth.`);
@@ -799,24 +799,24 @@ function enterJocksAcceptance(s: GameState, scene: SceneBuilder): void {
   if (((s as any).jock_check ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).jock_check = ((s as any).daystart ?? 0);
     if (((s as any).PCloQuality ?? 0) >= 4) {
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
     }
     if (((s as any).PCloInhibit ?? 0) >= 35) {
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
     } else {
       if (((s as any).PCloInhibit ?? 0) >= 20) {
-        (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       } else {
         if (((s as any).PCloInhibit ?? 0) <= 10) {
-          (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+          ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
         }
       }
     }
     if (((s as any).PShoStyle2 ?? 0) !== 2) {
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
     } else {
       if (((s as any).PShoQuality ?? 0) > 5) {
-        (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+        ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       }
     }
   }

@@ -217,7 +217,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('A few minutes later you arrive at an apartment block, it isn\'t is great shape but Vadim leads you inside and up to a second floor apartment.');
       scene.text('The apartment is actually in decent shape. The minimal amount of furniture and decorations don\'t make it look very hospitable though, and you assume this might just be one of the places Vadim rented for business or pleasure, not for living in.');
       scene.text('Noticing you\'re spending too much time looking around and aren\'t following him swiftly enough, he grabs you by your hair and pulls your face to his, roughly shoving his tongue in your mouth. You can smell the tobacco on his breath, and do your best to ignore the taste as he kisses you.');
-      (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+      ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
       scene.actions([
         { label: 'Kiss him', goto: ['BelSex', 'sex'] },
       ]);

@@ -44,7 +44,7 @@ function enterNatbelGo(s: GameState, scene: SceneBuilder): void {
     { label: 'Go with Natasha', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 0) {
-      (s as any).NatbelQW['VisitedHome'] = 1;
+      ((s as any).NatbelQW ?? {})['VisitedHome'] = 1;
     }
     (s as any).NatashaLoc = 2;
     qspCall(s, 'stat', '');
@@ -79,9 +79,9 @@ function enterStudyTogether(s: GameState, scene: SceneBuilder): void {
   (s as any).lern = ((s as any).lern ?? 0) + (Math.floor(Math.random() * 4) + 3);
   qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1);
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 0) {
-    (s as any).NatbelQW['QWstage'] = 1;
+    ((s as any).NatbelQW ?? {})['QWstage'] = 1;
   }
-  (s as any).NatbelQW['homework'] = ((s as any).NatbelQW['homework'] ?? 0) + (1);
+  ((s as any).NatbelQW ?? {})['homework'] = (((s as any).NatbelQW ?? {})['homework'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/study.jpg');
   scene.text('"Let\'s do our homework." You tell Natasha as you start taking your things from your bag.');
@@ -188,34 +188,34 @@ function enterNatcumresponse(s: GameState, scene: SceneBuilder): void {
 
 function enterNatmomhome(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 23)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 23)) {
-    (s as any).NatbelQW['MotherHome'] = 1;
+    ((s as any).NatbelQW ?? {})['MotherHome'] = 1;
   } else {
-    (s as any).NatbelQW['MotherHome'] = 0;
+    ((s as any).NatbelQW ?? {})['MotherHome'] = 0;
   }
   scene.build();
 }
 
 function enterNatMotherState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 0) {
-    (s as any).NatbelQW['MotherState'] = Math.floor(Math.random() * 6) + 1;
+    ((s as any).NatbelQW ?? {})['MotherState'] = Math.floor(Math.random() * 6) + 1;
   }
   if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 1) {
-    (s as any).NatbelQW['MotherStateMsg'] = 'tired';
+    ((s as any).NatbelQW ?? {})['MotherStateMsg'] = 'tired';
   } else {
     if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 2) {
-      (s as any).NatbelQW['MotherStateMsg'] = 'happy';
+      ((s as any).NatbelQW ?? {})['MotherStateMsg'] = 'happy';
     } else {
       if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 3) {
-        (s as any).NatbelQW['MotherStateMsg'] = 'dressed to go out on a date';
+        ((s as any).NatbelQW ?? {})['MotherStateMsg'] = 'dressed to go out on a date';
       } else {
         if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 4) {
-          (s as any).NatbelQW['MotherStateMsg'] = 'drunk';
+          ((s as any).NatbelQW ?? {})['MotherStateMsg'] = 'drunk';
         } else {
           if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 5) {
-            (s as any).NatbelQW['MotherStateMsg'] = 'like something\'s bothering her';
+            ((s as any).NatbelQW ?? {})['MotherStateMsg'] = 'like something\'s bothering her';
           } else {
             if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 6) {
-              (s as any).NatbelQW['MotherStateMsg'] = 'angry';
+              ((s as any).NatbelQW ?? {})['MotherStateMsg'] = 'angry';
             }
           }
         }
@@ -301,7 +301,7 @@ function enterAskState(s: GameState, scene: SceneBuilder): void {
 
 function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 4) {
-    (s as any).NatbelQW['QWstage'] = 5;
+    ((s as any).NatbelQW ?? {})['QWstage'] = 5;
   }
   scene.img('images/characters/pavlovsk/school/girl/natasha/natgetreadyschool.jpg');
   scene.text('When you head over to Natasha\'s apartment to pick her up her mother opens the door and tells you she\'s in her room getting ready so you go there.');
@@ -358,7 +358,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     scene.text('Natasha obediently opens her legs for you. Showing off her pretty pussy. Not wasting any time you start playing with her, first rubbing her lips, then focussing more on her clit as you watch closely while Natasha\'s pussy gets wetter and wetter.');
     scene.actions([
       { label: 'Stuff her panties', handler: (st: GameState) => {
-    (s as any).NatbelQW['panty_stuff_day'] = ((s as any).daystart ?? 0);
+    ((s as any).NatbelQW ?? {})['panty_stuff_day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/stuffpanties.mp4');
     scene.text('You stop playing with her pussy and grab her panties, handing them over to her. "Put them inside your pussy."');
     scene.text('Natasha looks at you in confusion for a second but then starts to slowly push them into her pussy.');
@@ -391,7 +391,7 @@ function enterSchoolwalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
   }
   if (((s as any).NatbelQW ?? 0)?.['KolkaTease'] === 0) {
-    (s as any).NatbelQW['KolkaTease'] = 1;
+    ((s as any).NatbelQW ?? {})['KolkaTease'] = 1;
   }
   scene.img('images/characters/pavlovsk/school/girl/natasha/tease.jpg');
   scene.text('As you reach the bottom of the stairs, you notice Kolka coming down as well.');
@@ -434,9 +434,9 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
       { label: 'Make her play with a cucumber [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 10) {
-      (s as any).NatbelQW['QWstage'] = 11;
+      ((s as any).NatbelQW ?? {})['QWstage'] = 11;
     }
-    (s as any).NatbelQW['cucumber'] = 0;
+    ((s as any).NatbelQW ?? {})['cucumber'] = 0;
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natashacucumber01.jpg');
     scene.text('You move over and make her sit on top of it.');
     scene.text('"I thought we could have some fun in here. The noise from the washer should prevent anyone from hearing." You tell her as you hand her the cucumber.');

@@ -64,7 +64,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locat ?? 0)?.['katja'] === 53) {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
-      (s as any).katjaQW['disco_arrival'] = ((s as any).totminut ?? 0);
+      ((s as any).katjaQW ?? {})['disco_arrival'] = ((s as any).totminut ?? 0);
       qspCall(s, 'stat', '');
       qspCall(s, 'themes', 'indoors');
       scene.text('You exit the metro station and walk to the nightclub, where you get in line.');
@@ -113,7 +113,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).katjaQW ?? 0)?.['on_date'] === 1) {
-        (s as any).katjaQW['on_date'] = 0;
+        ((s as any).katjaQW ?? {})['on_date'] = 0;
         if (((s as any).katjaQW ?? 0)?.['drinks'] > (Math.floor(Math.random() * 5) + 8)) {
           (s as any).minut = ((s as any).minut ?? 0) + 30;
           qspCall(s, 'stat', '');
@@ -147,7 +147,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothesStart1(s: GameState, scene: SceneBuilder): void {
-  (s as any).katjaQW['shopping_day'] = ((s as any).daystart ?? 0);
+  ((s as any).katjaQW ?? {})['shopping_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
   if ((!(Math.floor(Math.random() * 5) + 1))) {
   } else {
@@ -178,7 +178,7 @@ function enterClothesStart2(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you leave, Katja stops you. "Do you want to try on some clothes with me?" she asks.');
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
-    (s as any).katjaQW['shopping_day'] = ((s as any).daystart ?? 0);
+    ((s as any).katjaQW ?? {})['shopping_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
     if ((!(Math.floor(Math.random() * 5) + 1))) {
     } else {
@@ -507,7 +507,7 @@ function enterPussyCatOutfit1(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyCatOutfit1Strip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic_nudity', 5);
-  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_4.jpg');
   scene.text('Katja starts by moving more sensually while slowly unbuttoning the shirt before letting it fall to the side, revealing her bare breast. She then unbuttons the pants and puts her hands on her sides.');
@@ -547,8 +547,8 @@ function enterPussyCatOutfit1Strip(s: GameState, scene: SceneBuilder): void {
 function enterPussyCatOutfit1Strip2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
-  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
-  (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+  ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (2);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_5a.jpg');
   scene.text('Katja slowly pulls her pants halfway down her thighs, then lets go of them and puts her arms in front of her in a way that pushes her breasts forward. "See something you like?" she asks in a seductive tone.');
@@ -567,14 +567,14 @@ function enterPussyCatOutfit1Strip2(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 3);
-  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_5b.jpg');
   scene.text('Katja stops pulling the pants down and places one hand on her breast and the other down the pants before she starts playing with herself. She seems to be really getting into it.');
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 3);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_6.jpg');
     scene.text('As she gets closer to cumming, she removes her hand from her breast and pulls down the pants so that her other hand has better access.');
@@ -604,10 +604,10 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch her insert the butt plug', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     if (((s as any).npc_ass ?? 0)?.['A14'] === 0) {
-      (s as any).npc_ass['A14'] = 1;
+      ((s as any).npc_ass ?? {})['A14'] = 1;
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_7a.jpg');
       scene.text('"I\'ve never put anything in my butt before!" she protests.');
       scene.text('"There\'s a first time for everything," you reply. "Lick it first to lubricate it."');
@@ -615,7 +615,7 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
       scene.text('She moves to the chair and guides the butt plug to her ass. She starts pushing it in, but clearly meets some resistance. "Take your time," you say, but she seems determined and after a short while she pushes the butt plug completely into her ass with a slight groan of pain.');
     } else {
       if (((s as any).npc_ass ?? 0)?.['A14'] < 5) {
-        (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+        ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
       }
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_7b.jpg');
       // TODO-QSP: 'Katja takes the butt plug and starts licking it. After a minute or so, she lies down in the chair a...
@@ -623,14 +623,14 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch her reaction', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 2);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_8.jpg');
     scene.text('Katja breathes in and out heavily and opens her eyes to look at you as she starts to gently play with her pussy.');
     scene.actions([
       { label: 'Give her the vibrator', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 2);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_9.jpg');
     // TODO-QSP: '"Here. Use this," you say as you turn on the vibrator and give it to her. '+iif(katjaQW['masturbate...
@@ -643,10 +643,10 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'clit_finger', (-3), 'masturbate');
     qspCall(s, 'arousal', 'end');
     if (((s as any).katjaQW ?? 0)?.['know_butt_plug'] === 0) {
-      (s as any).katjaQW['know_butt_plug'] = 1;
+      ((s as any).katjaQW ?? {})['know_butt_plug'] = 1;
     }
-    (s as any).katjaQW['horny'] = 0;
-    (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+    ((s as any).katjaQW ?? {})['horny'] = 0;
+    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
     qspCall(s, 'stat', '');
     scene.text('After she comes down, she says, "Wow, that was intense!"');
     scene.text('"It was a great show," you tell her.');
@@ -667,10 +667,10 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3);
     qspCall(s, 'arousal', 'end');
     if (((s as any).katjaQW ?? 0)?.['know_butt_plug'] === 0) {
-      (s as any).katjaQW['know_butt_plug'] = 1;
+      ((s as any).katjaQW ?? {})['know_butt_plug'] = 1;
     }
-    (s as any).katjaQW['horny'] = 0;
-    (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+    ((s as any).katjaQW ?? {})['horny'] = 0;
+    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
     qspCall(s, 'stat', '');
     scene.text('After she comes down, she says, "Wow, that was intense!"');
     scene.text('"It was a fantastic show," you tell her.');
@@ -740,7 +740,7 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
         scene.text('"See? My panties always match my bra," she says. "No need for them to match when you don\'t wear any."');
       } else {
         if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 4) {
-          (s as any).katjaQW['pantiesQWstage'] = ((s as any).katjaQW['pantiesQWstage'] ?? 0) + (1);
+          ((s as any).katjaQW ?? {})['pantiesQWstage'] = (((s as any).katjaQW ?? {})['pantiesQWstage'] ?? 0) + (1);
         }
         scene.text('It\'s clear from her reddening face that she\'s embarrassed by you seeing her without panties.');
         scene.text('"Don\'t say anything," she says. "It\'s just that all my panties are in the laundry," she says, not sounding very truthful. "I normally never go without panties."');
@@ -802,7 +802,7 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyCatOutfit2Strip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic_nudity', 5);
-  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_4.jpg');
   scene.text('Katja starts by moving more sensually while she slowly lets the shirt fall down, still holding up the skirt so you have a full view of her pussy.');
@@ -842,8 +842,8 @@ function enterPussyCatOutfit2Strip(s: GameState, scene: SceneBuilder): void {
 function enterPussyCatOutfit2Strip2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
-  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
-  (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
+  ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (2);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_5a.jpg');
   scene.text('Katja finally takes the shirt off and throws it over her shoulder, holding it in one hand while she lifts the skirt with the other while looking directly at you. "See something you like?" she asks in a seductive tone.');
@@ -862,7 +862,7 @@ function enterPussyCatOutfit2Strip2(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 3);
-  (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_5b.jpg');
   scene.text('Katja stops taking off the shirt and moves her hand to her pussy, slowly starting to play with it. She seems to getting really into it.');
@@ -892,32 +892,32 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Watch her insert the butt plug', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_6.jpg');
     if (((s as any).npc_ass ?? 0)?.['A14'] === 0) {
-      (s as any).npc_ass['A14'] = 1;
+      ((s as any).npc_ass ?? {})['A14'] = 1;
       scene.text('"I\'ve never put anything in my butt before!" she protests.');
       scene.text('"There\'s a first time for everything," you reply. "Lick it first to lubricate it."');
       scene.text('Katja does as you say and starts licking the butt plug. "I think it\'s wet enough for you to put it in," you say after a minute. "Lie down in the chair. It\'ll make it easier to put it in."');
       scene.text('She takes off the rest of the clothes except her bra and moves to the chair before guiding the butt plug to her ass. She starts pushing it in, but clearly meets some resistance. "Take your time," you say, but she seems determined and after a short while she pushes the butt plug completely into her ass with a slight groan of pain.');
     } else {
       if (((s as any).npc_ass ?? 0)?.['A14'] < 5) {
-        (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
+        ((s as any).npc_ass ?? {})['A14'] = (((s as any).npc_ass ?? {})['A14'] ?? 0) + (1);
       }
       // TODO-QSP: 'Katja takes the butt plug and starts licking it. After a minute or so, she takes off the rest of th...
     }
     scene.actions([
       { label: 'Watch her reaction', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 2);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_7.jpg');
     scene.text('She breathes in and out heavily and opens her eyes to look at you as she starts to gently play with her pussy.');
     scene.actions([
       { label: 'Give her the vibrator', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 2);
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_8.jpg');
     // TODO-QSP: '"Here. Use this," you say as you turn on the vibrator and give it to her. '+iif(katjaQW['masturbate...
@@ -930,10 +930,10 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'clit_finger', (-3), 'masturbate');
     qspCall(s, 'arousal', 'end');
     if (((s as any).katjaQW ?? 0)?.['know_butt_plug'] === 0) {
-      (s as any).katjaQW['know_butt_plug'] = 1;
+      ((s as any).katjaQW ?? {})['know_butt_plug'] = 1;
     }
-    (s as any).katjaQW['horny'] = 0;
-    (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+    ((s as any).katjaQW ?? {})['horny'] = 0;
+    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
     qspCall(s, 'stat', '');
     scene.text('After she comes down, she says, "Wow, that was intense!"');
     scene.text('"It was a fantastic show," you tell her.');
@@ -954,10 +954,10 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 3);
     qspCall(s, 'arousal', 'end');
     if (((s as any).katjaQW ?? 0)?.['know_butt_plug'] === 0) {
-      (s as any).katjaQW['know_butt_plug'] = 1;
+      ((s as any).katjaQW ?? {})['know_butt_plug'] = 1;
     }
-    (s as any).katjaQW['horny'] = 0;
-    (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (4);
+    ((s as any).katjaQW ?? {})['horny'] = 0;
+    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
     qspCall(s, 'stat', '');
     scene.text('After she comes down, she says, "Wow, that was intense!"');
     scene.text('"It was a fantastic show," you tell her.');

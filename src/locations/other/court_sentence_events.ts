@@ -176,11 +176,11 @@ function enterJudgeProstitution(s: GameState, scene: SceneBuilder): void {
 
 function enterPunishmentStart(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'shoplift') {
-    (s as any).policeQW['shoplift_counter'] = ((s as any).policeQW['shoplift_counter'] ?? 0) + (1);
+    ((s as any).policeQW ?? {})['shoplift_counter'] = (((s as any).policeQW ?? {})['shoplift_counter'] ?? 0) + (1);
     // TODO-QSP: gs 'court_sentence_events', 'punishment_shoplift', $mid($ARGS[1], 10)
   } else {
     if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'prostitution') {
-      (s as any).policeQW['prostitution_counter'] = ((s as any).policeQW['prostitution_counter'] ?? 0) + (1);
+      ((s as any).policeQW ?? {})['prostitution_counter'] = (((s as any).policeQW ?? {})['prostitution_counter'] ?? 0) + (1);
       // TODO-QSP: gs 'court_sentence_events', 'punishment_shoplift', $mid($ARGS[1], 14)
     } else {
       qspCall(s, 'LOCA', 'mod_sentenceevents', 'punishment', ((s as any).locArgs?.[1] ?? 0));

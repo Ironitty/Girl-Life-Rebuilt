@@ -1016,7 +1016,7 @@ function enterFedorVsDimka(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (10);
+    ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (10);
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/school/Events/Dimka/anal.mp4');

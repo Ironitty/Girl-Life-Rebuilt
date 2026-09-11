@@ -371,48 +371,48 @@ function enterAddEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterLoadNewEv(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
-    (s as any).new_ev['id'] = ((s as any).event_vars ?? 0)?.['id'];
-    (s as any).new_ev['title'] = ((s as any).event_vars ?? 0)?.['title'];
-    (s as any).new_ev['loc'] = ((s as any).event_vars ?? 0)?.['loc'];
-    (s as any).new_ev['desc'] = ((s as any).event_vars ?? 0)?.['desc'];
-    (s as any).new_ev['daystart'] = ((s as any).event_vars ?? 0)?.['daystart'];
-    (s as any).new_ev['all_day'] = ((s as any).event_vars ?? 0)?.['all_day'];
-    (s as any).new_ev['color'] = ((s as any).event_vars ?? 0)?.['color'];
-    (s as any).new_ev['blocking'] = ((s as any).event_vars ?? 0)?.['blocking'];
-    (s as any).new_ev['priority'] = ((s as any).event_vars ?? 0)?.['priority'];
-    (s as any).new_ev['recur'] = ((s as any).event_vars ?? 0)?.['recur'];
-    (s as any).new_ev['recur_end'] = ((s as any).event_vars ?? 0)?.['recur_end'];
-    (s as any).new_ev['holiday'] = ((s as any).event_vars ?? 0)?.['holiday'];
-    (s as any).new_ev['flex_type'] = ((s as any).event_vars ?? 0)?.['flex_type'];
-    (s as any).new_ev['exclude_prefix'] = ((s as any).event_vars ?? 0)?.['exclude_prefix'];
-    (s as any).new_ev['duration_ts'] = ((s as any).event_vars ?? 0)?.['duration_ts'];
+    ((s as any).new_ev ?? {})['id'] = ((s as any).event_vars ?? 0)?.['id'];
+    ((s as any).new_ev ?? {})['title'] = ((s as any).event_vars ?? 0)?.['title'];
+    ((s as any).new_ev ?? {})['loc'] = ((s as any).event_vars ?? 0)?.['loc'];
+    ((s as any).new_ev ?? {})['desc'] = ((s as any).event_vars ?? 0)?.['desc'];
+    ((s as any).new_ev ?? {})['daystart'] = ((s as any).event_vars ?? 0)?.['daystart'];
+    ((s as any).new_ev ?? {})['all_day'] = ((s as any).event_vars ?? 0)?.['all_day'];
+    ((s as any).new_ev ?? {})['color'] = ((s as any).event_vars ?? 0)?.['color'];
+    ((s as any).new_ev ?? {})['blocking'] = ((s as any).event_vars ?? 0)?.['blocking'];
+    ((s as any).new_ev ?? {})['priority'] = ((s as any).event_vars ?? 0)?.['priority'];
+    ((s as any).new_ev ?? {})['recur'] = ((s as any).event_vars ?? 0)?.['recur'];
+    ((s as any).new_ev ?? {})['recur_end'] = ((s as any).event_vars ?? 0)?.['recur_end'];
+    ((s as any).new_ev ?? {})['holiday'] = ((s as any).event_vars ?? 0)?.['holiday'];
+    ((s as any).new_ev ?? {})['flex_type'] = ((s as any).event_vars ?? 0)?.['flex_type'];
+    ((s as any).new_ev ?? {})['exclude_prefix'] = ((s as any).event_vars ?? 0)?.['exclude_prefix'];
+    ((s as any).new_ev ?? {})['duration_ts'] = ((s as any).event_vars ?? 0)?.['duration_ts'];
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
-      (s as any).new_ev['window_start_ts'] = ((s as any).event_vars ?? 0)?.['window_start_ts'];
-      (s as any).new_ev['window_end_ts'] = ((s as any).event_vars ?? 0)?.['window_end_ts'];
+      ((s as any).new_ev ?? {})['window_start_ts'] = ((s as any).event_vars ?? 0)?.['window_start_ts'];
+      ((s as any).new_ev ?? {})['window_end_ts'] = ((s as any).event_vars ?? 0)?.['window_end_ts'];
     } else {
-      (s as any).new_ev['start_ts'] = ((s as any).event_vars ?? 0)?.['start_ts'];
+      ((s as any).new_ev ?? {})['start_ts'] = ((s as any).event_vars ?? 0)?.['start_ts'];
     }
   } else {
-    (s as any).event_vars['id'] = ((s as any).new_ev ?? 0)?.['id'];
-    (s as any).event_vars['title'] = ((s as any).new_ev ?? 0)?.['title'];
-    (s as any).event_vars['loc'] = ((s as any).new_ev ?? 0)?.['loc'];
-    (s as any).event_vars['desc'] = ((s as any).new_ev ?? 0)?.['desc'];
-    (s as any).event_vars['daystart'] = ((s as any).new_ev ?? 0)?.['daystart'];
-    (s as any).event_vars['all_day'] = ((s as any).new_ev ?? 0)?.['all_day'];
-    (s as any).event_vars['color'] = ((s as any).new_ev ?? 0)?.['color'];
-    (s as any).event_vars['blocking'] = ((s as any).new_ev ?? 0)?.['blocking'];
-    (s as any).event_vars['priority'] = ((s as any).new_ev ?? 0)?.['priority'];
-    (s as any).event_vars['recur'] = ((s as any).new_ev ?? 0)?.['recur'];
-    (s as any).event_vars['recur_end'] = ((s as any).new_ev ?? 0)?.['recur_end'];
-    (s as any).event_vars['holiday'] = ((s as any).new_ev ?? 0)?.['holiday'];
-    (s as any).event_vars['flex_type'] = ((s as any).new_ev ?? 0)?.['flex_type'];
-    (s as any).event_vars['exclude_prefix'] = ((s as any).new_ev ?? 0)?.['exclude_prefix'];
-    (s as any).event_vars['duration_ts'] = ((s as any).new_ev ?? 0)?.['duration_ts'];
+    ((s as any).event_vars ?? {})['id'] = ((s as any).new_ev ?? 0)?.['id'];
+    ((s as any).event_vars ?? {})['title'] = ((s as any).new_ev ?? 0)?.['title'];
+    ((s as any).event_vars ?? {})['loc'] = ((s as any).new_ev ?? 0)?.['loc'];
+    ((s as any).event_vars ?? {})['desc'] = ((s as any).new_ev ?? 0)?.['desc'];
+    ((s as any).event_vars ?? {})['daystart'] = ((s as any).new_ev ?? 0)?.['daystart'];
+    ((s as any).event_vars ?? {})['all_day'] = ((s as any).new_ev ?? 0)?.['all_day'];
+    ((s as any).event_vars ?? {})['color'] = ((s as any).new_ev ?? 0)?.['color'];
+    ((s as any).event_vars ?? {})['blocking'] = ((s as any).new_ev ?? 0)?.['blocking'];
+    ((s as any).event_vars ?? {})['priority'] = ((s as any).new_ev ?? 0)?.['priority'];
+    ((s as any).event_vars ?? {})['recur'] = ((s as any).new_ev ?? 0)?.['recur'];
+    ((s as any).event_vars ?? {})['recur_end'] = ((s as any).new_ev ?? 0)?.['recur_end'];
+    ((s as any).event_vars ?? {})['holiday'] = ((s as any).new_ev ?? 0)?.['holiday'];
+    ((s as any).event_vars ?? {})['flex_type'] = ((s as any).new_ev ?? 0)?.['flex_type'];
+    ((s as any).event_vars ?? {})['exclude_prefix'] = ((s as any).new_ev ?? 0)?.['exclude_prefix'];
+    ((s as any).event_vars ?? {})['duration_ts'] = ((s as any).new_ev ?? 0)?.['duration_ts'];
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
-      (s as any).event_vars['window_start_ts'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
-      (s as any).event_vars['window_end_ts'] = ((s as any).new_ev ?? 0)?.['window_end_ts'];
+      ((s as any).event_vars ?? {})['window_start_ts'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
+      ((s as any).event_vars ?? {})['window_end_ts'] = ((s as any).new_ev ?? 0)?.['window_end_ts'];
     } else {
-      (s as any).event_vars['start_ts'] = ((s as any).new_ev ?? 0)?.['start_ts'];
+      ((s as any).event_vars ?? {})['start_ts'] = ((s as any).new_ev ?? 0)?.['start_ts'];
     }
   }
   return;
@@ -427,18 +427,18 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_events', 'get_blocking_event');
   qspCall(s, 'calendar_events', 'load_new_ev', 1);
   if (((s as any).new_ev ?? 0)?.['all_day'] === 1) {
-    (s as any).new_ev['start_span'] = 0;
-    (s as any).new_ev['len_span'] = 96;
+    ((s as any).new_ev ?? {})['start_span'] = 0;
+    ((s as any).new_ev ?? {})['len_span'] = 96;
   } else {
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
-      (s as any).new_ev['start_span'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
-      (s as any).new_ev['len_span'] = (((s as any).new_ev ?? {})?.['window_end_ts'] - ((s as any).new_ev ?? {})?.['window_start_ts']) + ((s as any).new_ev ?? {})?.['duration_ts'];
+      ((s as any).new_ev ?? {})['start_span'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
+      ((s as any).new_ev ?? {})['len_span'] = (((s as any).new_ev ?? {})?.['window_end_ts'] - ((s as any).new_ev ?? {})?.['window_start_ts']) + ((s as any).new_ev ?? {})?.['duration_ts'];
     } else {
-      (s as any).new_ev['start_span'] = ((s as any).new_ev ?? 0)?.['start_ts'];
-      (s as any).new_ev['len_span'] = qspUntranslated(s, "max(1, new_ev['duration_ts'])", { location: "calendar_events" });
+      ((s as any).new_ev ?? {})['start_span'] = ((s as any).new_ev ?? 0)?.['start_ts'];
+      ((s as any).new_ev ?? {})['len_span'] = qspUntranslated(s, "max(1, new_ev['duration_ts'])", { location: "calendar_events" });
     }
   }
-  (s as any).new_ev['end_span'] = ((s as any).new_ev ?? {})?.['start_span'] + ((s as any).new_ev ?? {})?.['len_span'] - 1;
+  ((s as any).new_ev ?? {})['end_span'] = ((s as any).new_ev ?? {})?.['start_span'] + ((s as any).new_ev ?? {})?.['len_span'] - 1;
   (s as any).new_occurrences = 0;
   (s as any).new_last = (-1);
   // TODO-QSP: :loop_new_occurrence
@@ -551,26 +551,26 @@ function enterRemoveEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetEvent(s: GameState, scene: SceneBuilder): void {
-  (s as any).event_vars['id'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).event_vars['title'] = ((s as any).event_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['loc'] = ((s as any).event_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['desc'] = ((s as any).event_desc ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['daystart'] = ((s as any).event_daystart ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['all_day'] = ((s as any).event_all_day ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['color'] = ((s as any).event_color ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['blocking'] = ((s as any).event_blocking ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['priority'] = ((s as any).event_priority ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['recur'] = ((s as any).event_recur ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['recur_end'] = ((s as any).event_recur_end ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['holiday'] = ((s as any).event_holiday ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-  (s as any).event_vars['flex_type'] = ((s as any).event_flex_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['id'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).event_vars ?? {})['title'] = ((s as any).event_title ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['loc'] = ((s as any).event_location ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['desc'] = ((s as any).event_desc ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['daystart'] = ((s as any).event_daystart ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['all_day'] = ((s as any).event_all_day ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['color'] = ((s as any).event_color ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['blocking'] = ((s as any).event_blocking ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['priority'] = ((s as any).event_priority ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['recur'] = ((s as any).event_recur ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['recur_end'] = ((s as any).event_recur_end ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['holiday'] = ((s as any).event_holiday ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).event_vars ?? {})['flex_type'] = ((s as any).event_flex_type ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).event_flex_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-    (s as any).event_vars['window_start_ts'] = ((s as any).event_window_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-    (s as any).event_vars['window_end_ts'] = ((s as any).event_window_end_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-    (s as any).event_vars['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars ?? {})['window_start_ts'] = ((s as any).event_window_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars ?? {})['window_end_ts'] = ((s as any).event_window_end_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars ?? {})['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   } else {
-    (s as any).event_vars['start_ts'] = ((s as any).event_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
-    (s as any).event_vars['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars ?? {})['start_ts'] = ((s as any).event_start_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).event_vars ?? {})['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   }
   return;
   scene.build();

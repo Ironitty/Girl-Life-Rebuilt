@@ -559,34 +559,34 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 
 function enterRename(s: GameState, scene: SceneBuilder): void {
   if (((s as any).excer_name ?? 0)[1] === '') {
-    (s as any).excer_name[1] = 'Default 1';
+    ((s as any).excer_name ?? {})[1] = 'Default 1';
   }
   if (((s as any).excer_name ?? 0)[2] === '') {
-    (s as any).excer_name[2] = 'Default 2';
+    ((s as any).excer_name ?? {})[2] = 'Default 2';
   }
   if (((s as any).excer_name ?? 0)[3] === '') {
-    (s as any).excer_name[3] = 'Default 3';
+    ((s as any).excer_name ?? {})[3] = 'Default 3';
   }
   if (((s as any).excer_name ?? 0)[4] === '') {
-    (s as any).excer_name[4] = 'Default 4';
+    ((s as any).excer_name ?? {})[4] = 'Default 4';
   }
   if (((s as any).excer_name ?? 0)[5] === '') {
-    (s as any).excer_name[5] = 'Default 5';
+    ((s as any).excer_name ?? {})[5] = 'Default 5';
   }
   scene.build();
 }
 
 function enterUpdateMatrix(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_tiers[0] = 3;
-  (s as any).temp_tiers[1] = 3;
-  (s as any).temp_tiers[2] = 3;
-  (s as any).temp_tiers[3] = 2;
-  (s as any).temp_tiers[4] = 2;
-  (s as any).temp_tiers[5] = 2;
+  ((s as any).temp_tiers ?? {})[0] = 3;
+  ((s as any).temp_tiers ?? {})[1] = 3;
+  ((s as any).temp_tiers ?? {})[2] = 3;
+  ((s as any).temp_tiers ?? {})[3] = 2;
+  ((s as any).temp_tiers ?? {})[4] = 2;
+  ((s as any).temp_tiers ?? {})[5] = 2;
   qspCall(s, 'exercise', 'get_sport_clothes_exercise_bonus');
   (s as any).temp_i = 1;
   // TODO-QSP: :matrix_update_loop
-  (s as any).exer_stam[String((s as any).temp_i ?? 0)] = 0;
+  ((s as any).exer_stam ?? {})[String((s as any).temp_i ?? 0)] = 0;
   (s as any).temp_j = 0;
   // TODO-QSP: :matrix_update_inner_loop
   if (((s as any).temp_tiers ?? 0)?.[String((s as any).temp_j ?? 0)] === 2) {
@@ -610,7 +610,7 @@ function enterUpdateMatrix(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMatrix(s: GameState, scene: SceneBuilder): void {
-  (s as any).exer_stam[String((s as any).stamindx ?? 0)] = ((s as any).exer_stam0 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam1 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam2 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam3 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam4 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam5 ?? 0)?.[String((s as any).stamindx ?? 0)];
+  ((s as any).exer_stam ?? {})[String((s as any).stamindx ?? 0)] = ((s as any).exer_stam0 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam1 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam2 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam3 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam4 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam5 ?? 0)?.[String((s as any).stamindx ?? 0)];
   qspCall(s, 'exercise', 'get_sport_clothes_exercise_bonus');
   scene.text('Choose your exercise options from the following table:');
   scene.text('<center><table border=0 cellspacing=0 cellpadding=10 width=1000><th>Exercise</th><th>None</th><th>5 mins</th><th>10 mins</th><th>15 mins</th><th>20 mins</th>');
@@ -724,7 +724,7 @@ function enterMatrixdata(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: *p '<td><a href="exec:dynamic ''exer_rout<<ARGS[1]>>[stamindx] = 4'' & gt ''exercise'', ''matrix''">...
   }
-  (s as any).exer_stam[String((s as any).stamindx ?? 0)] = ((s as any).exer_stam0 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam1 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam2 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam3 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam4 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam5 ?? 0)?.[String((s as any).stamindx ?? 0)];
+  ((s as any).exer_stam ?? {})[String((s as any).stamindx ?? 0)] = ((s as any).exer_stam0 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam1 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam2 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam3 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam4 ?? 0)?.[String((s as any).stamindx ?? 0)] + ((s as any).exer_stam5 ?? 0)?.[String((s as any).stamindx ?? 0)];
   scene.build();
 }
 
@@ -956,29 +956,29 @@ function enterPushupsInner(s: GameState, scene: SceneBuilder): void {
 function enterTier1(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).temp_exVars['mult'] = 3;
+    ((s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "exercise" }));
-      (s as any).temp_exVars['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
     } else {
-      (s as any).temp_exVars['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
     }
   }
   qspCall(s, 'exercise', 'get_sport_clothes_exercise_bonus');
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).fat = ((s as any).fat ?? 0) - (4);
   (s as any).lastexerciseexp = 0;
-  (s as any).temp_exVars['m'] = 0;
+  ((s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop1
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + (((s as any).rand ?? 0)(1, 6) / 6);
   if (((s as any).locArgs?.[3] ?? 0) === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), Math.floor(Math.random() * 2) + 0);
   } else {
-    (s as any).temp_exVars['i'] = 2;
+    ((s as any).temp_exVars ?? {})['i'] = 2;
     // TODO-QSP: :exploop1
     // TODO-QSP: gs 'exp_gain', $ARGS[temp_exVars['i']], rand(1, 6) / 6
-    (s as any).temp_exVars['i'] = ((s as any).temp_exVars['i'] ?? 0) + (1);
+    ((s as any).temp_exVars ?? {})['i'] = (((s as any).temp_exVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).ARGS ?? 0)[((s as any).temp_exVars ?? 0)?.['i']] !== '') {
       // TODO-QSP: jump 'exploop1'
     }
@@ -992,11 +992,11 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2 + ((s as any).rand ?? 0)(1, 2) / 2);
   }
-  (s as any).temp_exVars['m'] = ((s as any).temp_exVars['m'] ?? 0) + (1);
+  ((s as any).temp_exVars ?? {})['m'] = (((s as any).temp_exVars ?? {})['m'] ?? 0) + (1);
   if (((s as any).temp_exVars ?? 0)?.['m'] < ((s as any).temp_exVars ?? 0)?.['mult']) {
     // TODO-QSP: jump 'multloop1'
   }
-  (s as any).stat['last_workout_trig'] = 1;
+  ((s as any).stat ?? {})['last_workout_trig'] = 1;
   // TODO-QSP: gs 'traits', 'fitness_freak', 'workout', temp_exVars['mult']
   scene.build();
 }
@@ -1004,29 +1004,29 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
 function enterTier2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).temp_exVars['mult'] = 3;
+    ((s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "exercise" }));
-      (s as any).temp_exVars['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
     } else {
-      (s as any).temp_exVars['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
     }
   }
   qspCall(s, 'exercise', 'get_sport_clothes_exercise_bonus');
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).fat = ((s as any).fat ?? 0) - (3);
   (s as any).lastexerciseexp = 0;
-  (s as any).temp_exVars['m'] = 0;
+  ((s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop2
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + (Math.floor(Math.random() * 2) + 0);
   if (((s as any).locArgs?.[3] ?? 0) === '') {
     // TODO-QSP: gs 'exp_gain', $ARGS[2], rand(5, 10) / 6
   } else {
-    (s as any).temp_exVars['i'] = 2;
+    ((s as any).temp_exVars ?? {})['i'] = 2;
     // TODO-QSP: :exploop2
     // TODO-QSP: gs 'exp_gain', $ARGS[temp_exVars['i']], rand(1, 3) / 3
-    (s as any).temp_exVars['i'] = ((s as any).temp_exVars['i'] ?? 0) + (1);
+    ((s as any).temp_exVars ?? {})['i'] = (((s as any).temp_exVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).ARGS ?? 0)[((s as any).temp_exVars ?? 0)?.['i']] !== '') {
       // TODO-QSP: jump 'exploop2'
     }
@@ -1040,11 +1040,11 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5 + ((s as any).rand ?? 0)(1, 2) / 2);
   }
-  (s as any).temp_exVars['m'] = ((s as any).temp_exVars['m'] ?? 0) + (1);
+  ((s as any).temp_exVars ?? {})['m'] = (((s as any).temp_exVars ?? {})['m'] ?? 0) + (1);
   if (((s as any).temp_exVars ?? 0)?.['m'] < ((s as any).temp_exVars ?? 0)?.['mult']) {
     // TODO-QSP: jump 'multloop2'
   }
-  (s as any).stat['last_workout_trig'] = 1;
+  ((s as any).stat ?? {})['last_workout_trig'] = 1;
   // TODO-QSP: gs 'traits', 'fitness_freak', 'workout', temp_exVars['mult']
   scene.build();
 }
@@ -1052,29 +1052,29 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
 function enterTier3(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).temp_exVars['mult'] = 3;
+    ((s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "exercise" }));
-      (s as any).temp_exVars['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
     } else {
-      (s as any).temp_exVars['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
     }
   }
   qspCall(s, 'exercise', 'get_sport_clothes_exercise_bonus');
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).fat = ((s as any).fat ?? 0) - (2);
   (s as any).lastexerciseexp = 0;
-  (s as any).temp_exVars['m'] = 0;
+  ((s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop3
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + (Math.floor(Math.random() * 2) + 0);
   if (((s as any).locArgs?.[3] ?? 0) === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), Math.floor(Math.random() * 2) + 1);
   } else {
-    (s as any).temp_exVars['i'] = 2;
+    ((s as any).temp_exVars ?? {})['i'] = 2;
     // TODO-QSP: :exploop3
     // TODO-QSP: gs 'exp_gain', $ARGS[temp_exVars['i']], rand(0, 1)
-    (s as any).temp_exVars['i'] = ((s as any).temp_exVars['i'] ?? 0) + (1);
+    ((s as any).temp_exVars ?? {})['i'] = (((s as any).temp_exVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).ARGS ?? 0)[((s as any).temp_exVars ?? 0)?.['i']] !== '') {
       // TODO-QSP: jump 'exploop3'
     }
@@ -1088,11 +1088,11 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   }
-  (s as any).temp_exVars['m'] = ((s as any).temp_exVars['m'] ?? 0) + (1);
+  ((s as any).temp_exVars ?? {})['m'] = (((s as any).temp_exVars ?? {})['m'] ?? 0) + (1);
   if (((s as any).temp_exVars ?? 0)?.['m'] < ((s as any).temp_exVars ?? 0)?.['mult']) {
     // TODO-QSP: jump 'multloop3'
   }
-  (s as any).stat['last_workout_trig'] = 1;
+  ((s as any).stat ?? {})['last_workout_trig'] = 1;
   // TODO-QSP: gs 'traits', 'fitness_freak', 'workout', temp_exVars['mult']
   scene.build();
 }
@@ -1100,29 +1100,29 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
 function enterTier4(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).temp_exVars['mult'] = 3;
+    ((s as any).temp_exVars ?? {})['mult'] = 3;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "exercise" }));
-      (s as any).temp_exVars['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 + ((s as any).ARGS ?? 0)[1]) / 5;
     } else {
-      (s as any).temp_exVars['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
+      ((s as any).temp_exVars ?? {})['mult'] = (3 - ((s as any).ARGS ?? 0)[1]) / 5;
     }
   }
   qspCall(s, 'exercise', 'get_sport_clothes_exercise_bonus');
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   (s as any).lastexerciseexp = 0;
-  (s as any).temp_exVars['m'] = 0;
+  ((s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :timeexploop4
   (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + (Math.floor(Math.random() * 2) + 1);
   if (((s as any).locArgs?.[3] ?? 0) === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), Math.floor(Math.random() * 2) + 2);
   } else {
-    (s as any).temp_exVars['i'] = 2;
+    ((s as any).temp_exVars ?? {})['i'] = 2;
     // TODO-QSP: :exploop4
     // TODO-QSP: gs 'exp_gain', $ARGS[temp_exVars['i']], rand(1, 2)
-    (s as any).temp_exVars['i'] = ((s as any).temp_exVars['i'] ?? 0) + (1);
+    ((s as any).temp_exVars ?? {})['i'] = (((s as any).temp_exVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).ARGS ?? 0)[((s as any).temp_exVars ?? 0)?.['i']] !== '') {
       // TODO-QSP: jump 'exploop4'
     }
@@ -1136,11 +1136,11 @@ function enterTier4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   }
-  (s as any).temp_exVars['m'] = ((s as any).temp_exVars['m'] ?? 0) + (1);
+  ((s as any).temp_exVars ?? {})['m'] = (((s as any).temp_exVars ?? {})['m'] ?? 0) + (1);
   if (((s as any).temp_exVars ?? 0)?.['m'] < ((s as any).temp_exVars ?? 0)?.['mult']) {
     // TODO-QSP: jump 'timeexploop4'
   }
-  (s as any).stat['last_workout_trig'] = 1;
+  ((s as any).stat ?? {})['last_workout_trig'] = 1;
   // TODO-QSP: gs 'traits', 'fitness_freak', 'workout', temp_exVars['mult']
   scene.build();
 }

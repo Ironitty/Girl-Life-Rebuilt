@@ -440,7 +440,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'You keep asking for release.', handler: (st: GameState) => {
     (s as any).pcs_makeup = 0;
-    (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
     scene.img('images/characters/city/masha/sex/r21.jpg');
     scene.text('You don\'t move and shake your head. "Look this is a mistake, just please take these off me." He gives you a glare. "Oh, you unruly bitch. Now I\'ll teach you to obey, your master." With these words he grabs you and flings you onto the couch. You start to get up but he pushes you back down on all fours, he slips a blindfold on you. He brings the paddle down on your ass with a loud smack. Causing you to yelp and jump, but he holds onto leash keeping your from getting away.');
     scene.text('"Now I can beat you until you obey and then do what I want, or you can be a good little slave and do as your told. I am good either way." he says as he smacks your ass with the paddle again.');

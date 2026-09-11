@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).gopniksev['gopskver'] = ((s as any).daystart ?? 0);
+  ((s as any).gopniksev ?? {})['gopskver'] = ((s as any).daystart ?? 0);
   if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1 > 0) {
   }
   qspCall(s, 'stat', '');
@@ -295,11 +295,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).sgopgang ?? 0))) {
       (s as any).sgopgang = 1;
     }
-    (s as any).npc_had_sex['A9'] = 1;
-    (s as any).npc_had_sex['A10'] = 1;
-    (s as any).npc_had_sex['A11'] = 1;
-    (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (3);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).npc_had_sex ?? {})['A9'] = 1;
+    ((s as any).npc_had_sex ?? {})['A10'] = 1;
+    ((s as any).npc_had_sex ?? {})['A11'] = 1;
+    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (3);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 3);
     scene.img('images/locations/pavlovsk/park/gop/sex/gop/gopgang.jpg');
     scene.text('At some point, you pass out. When you wake up you\'re lying on your back, and you feel something moving inside your pussy. You carefully open your eyes, and between the blinking you see Vasily\'s contorted face, hammering his hips against yours. Is he fucking you!?');
@@ -812,7 +812,7 @@ function enterBjBeerAct(s: GameState, scene: SceneBuilder): void {
 
 function enterBjBeerPas(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
   (s as any).BjBeerActiv = 0;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/gop/bjbeer4.jpg');
@@ -941,7 +941,7 @@ function enterBjBeerFace(s: GameState, scene: SceneBuilder): void {
 
 function enterBjBeerPhone(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hairbsh = 0;
-  (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (2);
+  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (2);
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
@@ -989,11 +989,11 @@ function enterBjBeerPhone(s: GameState, scene: SceneBuilder): void {
 function enterBjBeerPalevo(s: GameState, scene: SceneBuilder): void {
   (s as any).evgenQW = 4;
   if (((s as any).brotherQW ?? 0)?.['know_slut'] < 2) {
-    (s as any).brotherQW['know_slut'] = 2;
+    ((s as any).brotherQW ?? {})['know_slut'] = 2;
   }
   (s as any).Doublerand = Math.floor(Math.random() * 2) + 14;
   (s as any).pcs_hairbsh = 0;
-  (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (2);
+  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (2);
   (s as any).pcs_throat = ((s as any).pcs_throat ?? 0) + 1;
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
@@ -1023,8 +1023,8 @@ function enterBjBeerPalevo(s: GameState, scene: SceneBuilder): void {
 
 function enterBjBeerVag(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  (s as any).stat['rape_count'] = ((s as any).stat ?? {})?.['rape_count'] + 1;
-  (s as any).stat['gangbang_count'] = ((s as any).stat ?? {})?.['gangbang_count'] + 1;
+  ((s as any).stat ?? {})['rape_count'] = ((s as any).stat ?? {})?.['rape_count'] + 1;
+  ((s as any).stat ?? {})['gangbang_count'] = ((s as any).stat ?? {})?.['gangbang_count'] + 1;
   (s as any).BjBeerQW = ((s as any).BjBeerQW ?? 0) + (1);
   (s as any).BjBeerDay = ((s as any).daystart ?? 0);
   qspCall(s, 'fame', 'pav', 'sex', 4);
@@ -1148,8 +1148,8 @@ function enterBjBeerVag(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjBeerAnal(s: GameState, scene: SceneBuilder): void {
-  (s as any).stat['rape_count'] = ((s as any).stat ?? {})?.['rape_count'] + 1;
-  (s as any).stat['gangbang_count'] = ((s as any).stat ?? {})?.['gangbang_count'] + 1;
+  ((s as any).stat ?? {})['rape_count'] = ((s as any).stat ?? {})?.['rape_count'] + 1;
+  ((s as any).stat ?? {})['gangbang_count'] = ((s as any).stat ?? {})?.['gangbang_count'] + 1;
   (s as any).BjBeerQW = ((s as any).BjBeerQW ?? 0) + (1);
   (s as any).BjBeerDay = ((s as any).daystart ?? 0);
   qspCall(s, 'fame', 'pav', 'sex', 4);
@@ -1283,7 +1283,7 @@ function enterDanBlowjob(s: GameState, scene: SceneBuilder): void {
     { label: 'Squat before Dan', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'npcStat', 'A10');
-    (s as any).npc_had_sex['A10'] = 1;
+    ((s as any).npc_had_sex ?? {})['A10'] = 1;
     if ((!((s as any).DansOralSlut ?? 0))) {
       (s as any).DansOralSlut = 1;
     }
@@ -1303,7 +1303,7 @@ function enterDanBlowjob(s: GameState, scene: SceneBuilder): void {
     { label: 'Bend over for Dan', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-    (s as any).npc_had_sex['A10'] = 1;
+    ((s as any).npc_had_sex ?? {})['A10'] = 1;
     qspCall(s, 'npcStat', 'A10');
     (s as any).pose = 1;
     scene.img('images/shared/sex/vag/doggy/kotovsex10.mp4');
@@ -1321,7 +1321,7 @@ function enterTripleBlow(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck Dan\'s cock', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 15);
     qspCall(s, 'npcStat', 'A10');
-    (s as any).npc_had_sex['A10'] = 1;
+    ((s as any).npc_had_sex ?? {})['A10'] = 1;
     scene.img('images/locations/pavlovsk/park/sex/gop/bjgop.jpg');
     qspCall(s, 'dinSex', 'bj_random');
     scene.text('Dan groans: "Go on, slut. You better not miss a drop."');
@@ -1332,7 +1332,7 @@ function enterTripleBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck Vasily\'s cock', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A10');
-    (s as any).npc_had_sex['A11'] = 1;
+    ((s as any).npc_had_sex ?? {})['A11'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/sex/gop/bjgop2.jpg');
     qspCall(s, 'dinSex', 'bj_random');
@@ -1340,7 +1340,7 @@ function enterTripleBlow(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck Vitek\'s cock', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A11');
-    (s as any).npc_had_sex['A9'] = 1;
+    ((s as any).npc_had_sex ?? {})['A9'] = 1;
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'stat', '');

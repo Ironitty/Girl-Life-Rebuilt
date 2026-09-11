@@ -21,7 +21,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Decide to give it a try', handler: (st: GameState) => {
-    (s as any).cheerleadingQW['quest_stage'] = 1;
+    ((s as any).cheerleadingQW ?? {})['quest_stage'] = 1;
     if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
       scene.text('"I\'m one of them. They would be mad to not at least consider me! Those nerds and their rumors are just jealous losers!" you think to yourself as you decide to attend the tryouts and show them that you deserve that spot.');
     } else {
@@ -31,8 +31,8 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gschool_events', 'leave_break_events');
   } },
     { label: 'This doesn\'t interest you', handler: (st: GameState) => {
-    (s as any).cheerleadingQW['reject'] = ((s as any).daystart ?? 0);
-    (s as any).cheerleadingQW['quest_stage'] = (-1);
+    ((s as any).cheerleadingQW ?? {})['reject'] = ((s as any).daystart ?? 0);
+    ((s as any).cheerleadingQW ?? {})['quest_stage'] = (-1);
     if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
       scene.text('Even though you\'re capable enough to try out, prancing around on the field to amuse people doesn\'t sound fun to you at all. You shake your head and continue on your way.');
     } else {
@@ -90,7 +90,7 @@ function enterPosterRepeat(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: act iif(cheerleadingQW['try_count'] > 0, 'Decide to try one more time', 'Decide to give it a try thi...
-  (s as any).cheerleadingQW['quest_stage'] = 1;
+  ((s as any).cheerleadingQW ?? {})['quest_stage'] = 1;
   if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
     scene.text('"I\'m one of them. They would be mad to not at least consider me! Those nerds and their rumors are just jealous losers!" you think to yourself as you decide to attend the tryouts and show them that you deserve that spot.');
   } else {

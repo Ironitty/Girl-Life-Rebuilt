@@ -66,14 +66,14 @@ function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).radomirQW ?? 0)?.['radislav_shower_sex'] === 0) {
-      (s as any).radomirQW['radislav_shower_sex'] = 1;
+      ((s as any).radomirQW ?? {})['radislav_shower_sex'] = 1;
       scene.text('He grins. "Yeah, this is a well used cunt. Look how wet you are already. I bet your pussy is just aching to get fucked by a big cock, isn\'t it?" he says as he lifts you up and sits you on the sink.');
       scene.actions([
         { label: 'Get fucked', goto: ['radaptev1', 'shower_radislav1_vag'] },
       ]);
     } else {
       if (((s as any).radomirQW ?? 0)?.['radislav_shower_sex'] === 1) {
-        (s as any).radomirQW['radislav_shower_sex'] = 2;
+        ((s as any).radomirQW ?? {})['radislav_shower_sex'] = 2;
         scene.text('He grins. "Yeah, this is a well used cunt. Look how wet you are already. I bet your pussy is just aching to get fucked by a big cock, isn\'t it? Tough luck. I want to try that ass of yours this time," he says as he spins you around and bends you over the sink.');
         scene.actions([
           { label: 'Get butt fucked', goto: ['radaptev1', 'shower_radislav1_anal'] },

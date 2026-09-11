@@ -242,7 +242,7 @@ function enterTitsFlash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to the gas station', handler: (st: GameState) => {
     if (((s as any).locArgs?.[1] ?? 0) === 'Paid') {
-      (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+      ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
     }
   }, goto: ['fuelstation', 'start'] },
     ]);
@@ -310,7 +310,7 @@ function enterAssFlash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to the gas station', handler: (st: GameState) => {
     if (((s as any).locArgs?.[1] ?? 0) === 'Paid') {
-      (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+      ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
     }
   }, goto: ['fuelstation', 'start'] },
     ]);
@@ -362,7 +362,7 @@ function enterPussyFlash(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to the gas station', handler: (st: GameState) => {
     if (((s as any).locArgs?.[1] ?? 0) === 'Paid') {
-      (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) + (1);
+      ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) + (1);
     }
   }, goto: ['fuelstation', 'start'] },
     ]);
@@ -683,7 +683,7 @@ function enterVaginaCum(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 4);
   }
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (4);
+  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (4);
   qspCall(s, 'cum_call', '', '');
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/carwash/sex/cumpussy${Math.floor(Math.random() * 5) + 1}.mp4`);
@@ -710,7 +710,7 @@ function enterAssCum(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-  (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (1);
+  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (1);
   qspCall(s, 'cum_call', 'anus');
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/carwash/sex/cumanal${Math.floor(Math.random() * 2) + 1}.mp4`);
@@ -860,10 +860,10 @@ function enterRunback(s: GameState, scene: SceneBuilder): void {
       { label: 'Escape', goto: ['fuelstation', 'start'] },
     ]);
   } else {
-    (s as any).pain['cheeks'] = ((s as any).pain['cheeks'] ?? 0) + (2);
-    (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (2);
-    (s as any).pain['mouth'] = ((s as any).pain['mouth'] ?? 0) + (2);
-    (s as any).pain['neck'] = ((s as any).pain['neck'] ?? 0) + (4);
+    ((s as any).pain ?? {})['cheeks'] = (((s as any).pain ?? {})['cheeks'] ?? 0) + (2);
+    ((s as any).pain ?? {})['head'] = (((s as any).pain ?? {})['head'] ?? 0) + (2);
+    ((s as any).pain ?? {})['mouth'] = (((s as any).pain ?? {})['mouth'] ?? 0) + (2);
+    ((s as any).pain ?? {})['neck'] = (((s as any).pain ?? {})['neck'] ?? 0) + (4);
     scene.img('images/locations/shared/carwash/sex/punishbeatface.mp4');
     scene.text('You aren\'t quick enough and he catches you. He pushes you down and starts to slap across the face.');
     qspCall(s, 'arousal', 'end');
@@ -915,7 +915,7 @@ function enterPunishSpank(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   qspCall(s, 'mood', 'lower', 'small');
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
-  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (5);
+  ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (5);
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/carwash/sex/punishspank.mp4');
   scene.text('The angry man drags you to a more secluded area, bends you over and starts to spank your ass very hard.');
@@ -929,7 +929,7 @@ function enterPunishSpank(s: GameState, scene: SceneBuilder): void {
 function enterPunishAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   qspCall(s, 'mood', 'lower', 'medium');
-  (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (6);
+  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (6);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 6) + 5);
   qspCall(s, 'cum_call', 'anus');
   qspCall(s, 'stat', '');
@@ -981,7 +981,7 @@ function enterPunishPussyQ(s: GameState, scene: SceneBuilder): void {
 
 function enterPunishPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
-  (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (4);
+  ((s as any).pain ?? {})['vaginal'] = (((s as any).pain ?? {})['vaginal'] ?? 0) + (4);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 6) + 5);
   qspCall(s, 'cum_call', '', '');
   qspCall(s, 'stat', '');

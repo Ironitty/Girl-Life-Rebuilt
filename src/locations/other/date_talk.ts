@@ -46,7 +46,7 @@ function enterPrevMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTalkMenu(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['prev_arg'] = 'talk_menu';
+  ((s as any).date_ev ?? {})['prev_arg'] = 'talk_menu';
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
     scene.actions([
       { label: 'Make small talk', handler: (st: GameState) => {
@@ -197,7 +197,7 @@ function enterTidyHome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBralessTell(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['braless_tell'] = 1;
+  ((s as any).date_ev ?? {})['braless_tell'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: "Hey, wanna hear a secret?" you ask <<$npcdesc>>.
   scene.text(`"Hey, wanna hear a secret?" you ask ${((s as any).npcdesc ?? 0)}.`);
@@ -293,7 +293,7 @@ function enterBralessTell(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFlirtArg(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['flirt_type'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).date_ev ?? {})['flirt_type'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).date_ev ?? 0)?.['flirt_type'] === 'romantically') {
     // TODO-QSP: dynamic text: Your voice diminishes to a hushed whisper, murmuring to <<$npcdesc>> in the quie...
     scene.text(`Your voice diminishes to a hushed whisper, murmuring to ${((s as any).npcdesc ?? 0)} in the quiet of the room as you stare into his eyes.`);
@@ -317,11 +317,11 @@ function enterFlirtArg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFunTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['fun_talk'] = 1;
+  ((s as any).date_ev ?? {})['fun_talk'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: You end up asking <<$npcdesc>>, "So what do you do for fun?"
   scene.text(`You end up asking ${((s as any).npcdesc ?? 0)}, "So what do you do for fun?"`);
-  (s as any).pc_know_hobby[String((s as any).npcID ?? 0)] = 1;
+  ((s as any).pc_know_hobby ?? {})[String((s as any).npcID ?? 0)] = 1;
   if (((s as any).npc_apt_sparetype ?? 0)?.[String((s as any).npcID ?? 0)] === 'gym'  ||  ((s as any).npc_gymrat ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     // TODO-QSP: xgt 'date_talk', 'workout_fun'
   } else {
@@ -767,7 +767,7 @@ function enterGamingFunDescribe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeenBefore(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['been_before'] = 0;
+  ((s as any).date_ev ?? {})['been_before'] = 0;
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: '"So, you''ve been here before?" you ask' + iif(stat['del_parco'] > 0, ', looking around the restaur...
   if ((Math.floor(Math.random() * 3) + 1) > 1) {
@@ -807,7 +807,7 @@ function enterBeenBefore(s: GameState, scene: SceneBuilder): void {
 function enterAwkwardStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_date_count ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     if (((s as any).locArgs?.[1] ?? 0) === 'casual_meal') {
-      (s as any).date_ev['talk_desc1'] = 'You adjust the fork on the napkin in front of you awkwardly as silence takes over.';
+      ((s as any).date_ev ?? {})['talk_desc1'] = 'You adjust the fork on the napkin in front of you awkwardly as silence takes over.';
     }
     scene.text('"So... uh... how\'s your day been?" you ask, not knowing what else to say.');
     scene.text('"Oh, you know... it\'s been... fine. Just the usual. How about you?"');
@@ -895,7 +895,7 @@ function enterAwkwardSilence(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchoolAwkward1(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['school_talk'] = 1;
+  ((s as any).date_ev ?? {})['school_talk'] = 1;
   scene.actions([
     { label: 'Yeah', handler: (st: GameState) => {
     scene.text('"Yeah," you nod.');
@@ -931,7 +931,7 @@ function enterAwkwardRelaxAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAwkwardRelax(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['talk_mood'] = 'relaxed';
+  ((s as any).date_ev ?? {})['talk_mood'] = 'relaxed';
   qspCall(s, 'date_funcs', 'date_rate', 'like');
   qspCall(s, 'date_talk', 'talk_img');
   scene.text('Not sure what happened but the tension starts to bleed away and that awkward feeling is lifted like a physical weight from your shoulders.');
@@ -968,7 +968,7 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gschoolVars ?? 0)?.['block'] === 0) {
       scene.actions([
         { label: 'Yeah', handler: (st: GameState) => {
-    (s as any).npc_know_school[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_school ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Mhmm," you nod.');
     scene.text('"Anything interesting happen recently?"');
     // TODO-QSP: xgt 'date_talk', 'school_talk2'
@@ -977,7 +977,7 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Tell him you got kicked out', handler: (st: GameState) => {
-    (s as any).npc_know_school[String((s as any).npcID ?? 0)] = (-1);
+    ((s as any).npc_know_school ?? {})[String((s as any).npcID ?? 0)] = (-1);
     scene.text('"Erm, actually... I got kicked out of school," you admit.');
     scene.text('"Bit of a bad girl, aren\'t you?" he smirks.');
     scene.text('"Too many absences," you smile back ruefully.');
@@ -988,7 +988,7 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Lie', handler: (st: GameState) => {
-    (s as any).npc_know_school[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_school ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Mhmm," you nod, decidedly avoiding talking about how you got kicked out.');
     scene.text('"Anything interesting happen recently?"');
     // TODO-QSP: xgt 'date_talk', 'school_talk2'
@@ -1132,7 +1132,7 @@ function enterBoobComment(s: GameState, scene: SceneBuilder): void {
 
 function enterBralessTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'loc_img');
-  (s as any).date_ev['braless_talk'] = 1;
+  ((s as any).date_ev ?? {})['braless_talk'] = 1;
   if (((s as any).npc_know_no_bra ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     if (((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       // TODO-QSP: dynamic text: "So, do you never wear a bra or you're just feeling daring today?" <<$npcdesc>> ...
@@ -1178,7 +1178,7 @@ function enterBralessTalk(s: GameState, scene: SceneBuilder): void {
 function enterBralessReplyMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get embarrassed', handler: (st: GameState) => {
-    (s as any).date_ev['temp_mood'] = 'embarrassed';
+    ((s as any).date_ev ?? {})['temp_mood'] = 'embarrassed';
     scene.text('You blush fiercely.');
     scene.text('"Is it really that noticeable?"');
     if (((s as any).stat_nipple_text ?? 0) !== '') {
@@ -1274,7 +1274,7 @@ function enterBralessReplyNeg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowTitsEv(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['show_tits_ev'] = 1;
+  ((s as any).date_ev ?? {})['show_tits_ev'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: <<$npcdesc>> leans close and whispers to you.
   scene.text(`${((s as any).npcdesc ?? 0)} leans close and whispers to you.`);
@@ -1485,7 +1485,7 @@ function enterPornWhatKind1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_dirty_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     if (((s as any).npc_sex_speed ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
       if (((s as any).npc_shy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-        (s as any).date_ev['porn_genre'] = 'rough';
+        ((s as any).date_ev ?? {})['porn_genre'] = 'rough';
         // TODO-QSP: dynamic text: <<$npcdesc>> grows even more embarrassed but answers your question anyways.
         scene.text(`${((s as any).npcdesc ?? 0)} grows even more embarrassed but answers your question anyways.`);
         scene.text('"I kinda like the rough stuff," he admits. "Uhm. Er. What about you? Do you watch porn?"');

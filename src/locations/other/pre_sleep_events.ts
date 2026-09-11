@@ -25,7 +25,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
+  ((s as any).sleepVars ?? {})['events_done'] = (((s as any).sleepVars ?? {})['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
   } else {
@@ -41,15 +41,15 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['events_done'] = 0;
-  (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['events_done'] = 0;
-  (s as any).sleepVars['stat_display'] = 0;
+  ((s as any).sleepVars ?? {})['events_done'] = 0;
+  ((s as any).sleepVars ?? {})['stat_display'] = 0;
   // TODO-QSP: xgt 'pre_sleep', 'pre_sleep2'
   scene.build();
 }
@@ -155,7 +155,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
   (s as any).succhungry = (-2);
   (s as any).sucwalkday = ((s as any).daystart ?? 0) + 2 + ((s as any).rand ?? 0)(0, 5);
   (s as any).pcs_horny = 0;
-  (s as any).sleepVars['slept_in'] = 0;
+  ((s as any).sleepVars ?? {})['slept_in'] = 0;
   (s as any).strip_here = 0;
   scene.img('images/pc/body/succubusself.jpg');
   scene.text('You feel the power flowing around your body for several minutes, leaking through your skin and making changes all throughout you, before fading to a presence deep in your core leaving you looking the same as before… but feeling so different! ');

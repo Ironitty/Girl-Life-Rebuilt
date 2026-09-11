@@ -314,7 +314,7 @@ function enterChat1(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['katja_chat', 'first_meet'] }]);
   }
   if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2  &&  ((s as any).katjaQW ?? 0)?.['knows_dorm_room_number'] === 0) {
-    (s as any).katjaQW['knows_dorm_room_number'] = 1;
+    ((s as any).katjaQW ?? {})['knows_dorm_room_number'] = 1;
     scene.text('Katja tells you where her dorm room is.');
   }
   qspCall(s, 'katja_procedural', 'face_color');
@@ -365,9 +365,9 @@ function enterChat1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
-  (s as any).katjaQW['know_katja_uni'] = 1;
+  ((s as any).katjaQW ?? {})['know_katja_uni'] = 1;
   if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
-    (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
+    ((s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
   }
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('"Are you studying at uni?" you ask.');
@@ -382,7 +382,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSofia1(s: GameState, scene: SceneBuilder): void {
-  (s as any).sofiaQW['QWstage'] = 1;
+  ((s as any).sofiaQW ?? {})['QWstage'] = 1;
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('"So, what do you think about my roommate?" Katja asks with a curious look on her face.');
   scene.text('"She seems nice," you answer. "But she sure does talk a lot."');
@@ -414,7 +414,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
-      (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
+      ((s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
       scene.text('You approach Katja, who seems to be studying while drinking coffee and having brunch.');
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she waves when she notices you. "So you've also discove...
       scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," she waves when she notices you. "So you've also discovered this breathing hole. Have a seat," she says and starts making space for you by removing her backpack from the chair and packing away some papers from the table.`);
@@ -499,8 +499,8 @@ function enterBrunch(s: GameState, scene: SceneBuilder): void {
 function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).anushkaQW ?? 0)?.['coffee_hole'] === 1  &&  ((s as any).locat ?? 0)?.['A144'] === 9  &&  ((s as any).katjaQW ?? 0)?.['brunch_bought'] === 1  &&  ((s as any).katjaQW ?? 0)?.['nush_coffee_hole_talk_day'] !== ((s as any).daystart ?? 0)) {
-    (s as any).katjaQW['brunch_bought'] = 0;
-    (s as any).katjaQW['nush_coffee_hole_talk_day'] = ((s as any).daystart ?? 0);
+    ((s as any).katjaQW ?? {})['brunch_bought'] = 0;
+    ((s as any).katjaQW ?? {})['nush_coffee_hole_talk_day'] = ((s as any).daystart ?? 0);
     scene.text('You and Katja spend a few minutes chatting about school, what you\'ve both been up to and gossiping about your old schoolmates while waiting for Anushka to return with the order. Minutes later, Anushka comes back with a tray carrying the order.');
     if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
       scene.text('She sets the tray on a nearby empty table before sitting down next to you. "What\'s up, bitches?"');
@@ -574,11 +574,11 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).katjaQW['brunch_bought'] = 0;
+    ((s as any).katjaQW ?? {})['brunch_bought'] = 0;
     if (((s as any).katjaQW ?? 0)?.['first_time_in_nightclub'] > 0  &&  ((s as any).npc_had_sex ?? 0)?.['A14'] === 0) {
       scene.actions([{ label: 'Continue', goto: ['katja_chat', 'nightclub_sex_follow_up'] }]);
     }
-    (s as any).katjaQW['coffee_hole_rand'] = Math.floor(Math.random() * 21) + 0;
+    ((s as any).katjaQW ?? {})['coffee_hole_rand'] = Math.floor(Math.random() * 21) + 0;
     if (((s as any).katjaQW ?? 0)?.['coffee_hole_rand'] === 1  &&  ((s as any).npc_rel ?? 0)?.['A16'] > 30  &&  ((s as any).npc_rel ?? 0)?.['A240'] > 30) {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole1.jpg');
       scene.text('While you are chatting with Katja she suddenly smiles and points to the door so you turn to have a look. You notice that both Natasha and Natalia are just entering.');
@@ -761,7 +761,7 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nerd_game ?? 0)?.['stage'] > 0) {
           scene.actions([
             { label: 'Tell Katja that you play with them', handler: (st: GameState) => {
-    (s as any).katjaQW['know_dandd'] = 1;
+    ((s as any).katjaQW ?? {})['know_dandd'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
     scene.text('"It\'s called \'Dungeons and Dragons\' the game we play" you tell Katja, who looks at you a little surprised. "I\'m part of their group, it\'s a lot of fun," you says.');
     scene.text('"I didn\'t know that. How does it work, Julia told me you are taking on roles like in a fantasy movie. Do you dress up? How is that even a game?" Katja asks, and you spend time trying to explain how the game works.');

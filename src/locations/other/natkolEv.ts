@@ -5,9 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterKolkabj(s: GameState, scene: SceneBuilder): void {
-  (s as any).NatbelQW['KolkaFuckDay'] = ((s as any).daystart ?? 0);
+  ((s as any).NatbelQW ?? {})['KolkaFuckDay'] = ((s as any).daystart ?? 0);
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 8) {
-    (s as any).NatbelQW['QWstage'] = 9;
+    ((s as any).NatbelQW ?? {})['QWstage'] = 9;
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natnudebed.jpg');
@@ -69,8 +69,8 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Make her blow Kolka', handler: (st: GameState) => {
-    (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
-    (s as any).NatbelQW['bj'] = ((s as any).NatbelQW['bj'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+    ((s as any).NatbelQW ?? {})['bj'] = (((s as any).NatbelQW ?? {})['bj'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natbj\' + rand(1, 3) + \'.mp4');
     scene.text('"You\'re going to use that mouth of yours to make Kolka feel good; you got it?" You hiss at Natasha, grabbing her jaw, and staring into her eyes.');
     scene.text('Natasha jerkily nods and motions him over to the side of her bed. She reaches up with trembling hands to unfasten Kolka\'s pants and pulls out his semi-hard dick. She tentatively begins to lick it, and after a moment takes the now fully erect shaft into her mouth.');
@@ -88,8 +88,8 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Make them 69', handler: (st: GameState) => {
-    (s as any).NatbelQW['Debt'] = ((s as any).NatbelQW['Debt'] ?? 0) - (500);
-    (s as any).NatbelQW['bj'] = ((s as any).NatbelQW['bj'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
+    ((s as any).NatbelQW ?? {})['bj'] = (((s as any).NatbelQW ?? {})['bj'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natbj4.mp4');
     scene.text('"Kolka, you need to learn how to pleasure a girl, if you want to keep one that is. I want you to eat Natasha\'s pussy while she sucks your dick. Now lie back on the bed" He eagerly lays in the bed on his back, pulling his clothes off as he does.');
     scene.text('"You\'re going to use that mouth of yours to make Kolka feel good, you understand?" You hiss at Natasha, grabbing her jaw and staring into her eyes. "Don\'t worry you\'re going to enjoy this too."');
@@ -132,7 +132,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Jerk him off onto your tits Natasha."');
     scene.text('Natasha leans over Kolka\'s cock and squeezes her tits together with one hand. With the other, she rapidly strokes his cock. With a grunt, Kolka shoots a huge load of cum onto Natasha\'s tits. By the time he\'s finished Natasha\'s chest is covered in cum.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    (s as any).NatbelQW['KolkaSex'] = ((s as any).NatbelQW['KolkaSex'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaSex'] = (((s as any).NatbelQW ?? {})['KolkaSex'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'natkolEv', 'cumeater', 'tits');
@@ -153,7 +153,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Shoot your load on her back bro."');
     scene.text('Kolka groans and shoots his cum onto Natasha\'s back. By the time he\'s done Natasha\'s back is covered in cum.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    (s as any).NatbelQW['KolkaSex'] = ((s as any).NatbelQW['KolkaSex'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaSex'] = (((s as any).NatbelQW ?? {})['KolkaSex'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -178,7 +178,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cum on her pussy Kolka." You tell him.');
     scene.text('Natasha pulls her legs up against her chest while Kolka holds his dick against her pussy with one hand as he keeps thrusting. With a grunt, Kolka shoots a huge load of his cum onto Natasha\'s wet pussy. By the time he\'s done her pussy is covered in his sperm.');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
-    (s as any).NatbelQW['KolkaSex'] = ((s as any).NatbelQW['KolkaSex'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaSex'] = (((s as any).NatbelQW ?? {})['KolkaSex'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'natkolEv', 'cumeater', 'labia');
@@ -193,7 +193,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     { label: 'Make her give him a footjob', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natfootjob.mp4');
     if (((s as any).NatbelQW ?? 0)?.['KolkaFootjob'] === 0) {
-      (s as any).NatbelQW['KolkaFootjob'] = 1;
+      ((s as any).NatbelQW ?? {})['KolkaFootjob'] = 1;
       scene.text('"Have you ever had a footjob, Kolka? I bet Natasha\'s feet feel great."');
       scene.text('"No, but you know I\'m open to trying new things." Kolka says with a grin.');
     }
@@ -208,7 +208,7 @@ function enterSoftsex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Pick up the pace Natasha." You tell her.');
     scene.text('Natasha wraps her toes around his cockhead, squeezing it and starting to move rapidly. With a grunt, Kolka shoots a huge load of cum between her toes, and onto his stomach. By the time he\'s done, his stomach and Natasha\'s feet are covered in sperm.');
     scene.text('"That\'s all for today Kolka. You can clean up and get dressed. I have a few things I want to discuss with Natasha."');
-    (s as any).NatbelQW['KolkaSex'] = ((s as any).NatbelQW['KolkaSex'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaSex'] = (((s as any).NatbelQW ?? {})['KolkaSex'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -233,7 +233,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Missionary', handler: (st: GameState) => {
-    (s as any).NatbelQW['vaginal'] = ((s as any).NatbelQW['vaginal'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['vaginal'] = (((s as any).NatbelQW ?? {})['vaginal'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natmissionary01.mp4');
     scene.text('"Then ask him, better yet, beg him to make your pussy feel good. Let him know how much you want it." You tell her as you push her down onto her back.');
     scene.text('Natasha immediately opens her legs, giving Kolka an inviting view of her soaking pussy. "P-Please fuck my pussy, Kolka… I-I need it. I want you inside me now."');
@@ -259,7 +259,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Let her ride him in Cowgirl', handler: (st: GameState) => {
-    (s as any).NatbelQW['vaginal'] = ((s as any).NatbelQW['vaginal'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['vaginal'] = (((s as any).NatbelQW ?? {})['vaginal'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natride01.mp4');
     scene.text('"Maybe I\'ll let you fuck him." You tell Natasha as you push Kolka down on the bed.');
     scene.text('"Grind your pussy on his cock Natasha. And you better start begging, or I won\'t let him put it inside."');
@@ -286,7 +286,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Let him fuck her in Doggystyle', handler: (st: GameState) => {
-    (s as any).NatbelQW['vaginal'] = ((s as any).NatbelQW['vaginal'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['vaginal'] = (((s as any).NatbelQW ?? {})['vaginal'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natonbelly.mp4');
     scene.text('"Then ask him, better yet, beg him to make your pussy feel good. Let him know how much you want it." You tell her as you push her down on her belly.');
     scene.text('Natasha immediately pushes her ass up, giving Kolka an inviting view of her soaking wet pussy. "P-Please fuck my pussy, Kolka… I-I need it. I want you inside me now."');
@@ -459,7 +459,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).NatbelQW['anal'] = ((s as any).NatbelQW['anal'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['anal'] = (((s as any).NatbelQW ?? {})['anal'] ?? 0) + (1);
   } },
     ]);
   } },
@@ -537,7 +537,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).NatbelQW['anal'] = ((s as any).NatbelQW['anal'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['anal'] = (((s as any).NatbelQW ?? {})['anal'] ?? 0) + (1);
   } },
     ]);
   } },
@@ -614,7 +614,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).NatbelQW['anal'] = ((s as any).NatbelQW['anal'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['anal'] = (((s as any).NatbelQW ?? {})['anal'] ?? 0) + (1);
   } },
     ]);
   } },
@@ -623,7 +623,7 @@ function enterNatkolkaanalsex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKolkacum(s: GameState, scene: SceneBuilder): void {
-  (s as any).NatbelQW['KolkaSex'] = ((s as any).NatbelQW['KolkaSex'] ?? 0) + (1);
+  ((s as any).NatbelQW ?? {})['KolkaSex'] = (((s as any).NatbelQW ?? {})['KolkaSex'] ?? 0) + (1);
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
   qspCall(s, 'arousal', 'end');
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
@@ -632,14 +632,14 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
       scene.actions([
         { label: 'Let him cum inside her', handler: (st: GameState) => {
-    (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampiemissionary.mp4');
     scene.text('"Cum in her pussy Kolka, I want you to paint her insides with your cum."');
     scene.text('With a grunt Kolka pushes himself deep in Natasha, shooting his load in her pussy. When he pulls out, you can see some of it dripping out of her full pussy.');
     scene.text('Natasha just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or if she enjoyed it. Maybe both at the same time?');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
     if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-      (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+      ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     scene.actions([
@@ -651,7 +651,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let him cum on her belly', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 10) + 0))) {
-      (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+      ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampiemissionary.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
       qspCall(s, 'natbelEv', 'natcumresponse');
@@ -660,7 +660,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('Natasha doesn\'t even listen to him, just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or enjoyed it. Maybe both at the same time?');
       scene.text('You quietly signal your brother to dress up and leave while you kiss her deeply. "I hope you enjoyed it, pet. We may repeat it."');
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-        (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+        ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
       }
       qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     } else {
@@ -678,7 +678,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Let him cum on her pussy', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 10) + 0))) {
-      (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+      ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampiemissionary.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
       qspCall(s, 'natbelEv', 'natcumresponse');
@@ -687,7 +687,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('Natasha doesn\'t even listen to him, just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or if she enjoyed it. Maybe both at the same time?');
       scene.text('You quietly signal your brother to dress up and leave while you kiss her deeply. "I hope you enjoyed it, pet. We may repeat it."');
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-        (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+        ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
       }
       qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     } else {
@@ -711,14 +711,14 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
       scene.actions([
         { label: 'Cum inside', handler: (st: GameState) => {
-    (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampieride.mp4');
     scene.text('"Cum in her pussy Kolka, I want you to paint her insides with your cum."');
     scene.text('As if on command Kolka starts shooting his load in her pussy. When he pulls out, you can see some of it dripping out of her full pussy.');
     scene.text('Natasha just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or if she enjoyed it. Maybe both at the same time?');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
     if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-      (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+      ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     scene.actions([
@@ -730,7 +730,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let him cum on her ass', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 10) + 0))) {
-      (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+      ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampieride.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
       qspCall(s, 'natbelEv', 'natcumresponse');
@@ -739,7 +739,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('Natasha doesn\'t even listen to him, just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or if she enjoyed it. Maybe both at the same time?');
       scene.text('You quietly signal your brother to dress up and leave while you kiss her deeply. "I hope you enjoyed it, pet. We may repeat it."');
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-        (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+        ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
       }
       qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     } else {
@@ -763,14 +763,14 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     if (((s as any).NatbelQW ?? 0)?.['KolkaCP'] > 0) {
       scene.actions([
         { label: 'Let him cum inside', handler: (st: GameState) => {
-    (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+    ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampiedoggy.mp4');
     scene.text('"Cum in her pussy Kolka, I want you to paint her insides with your cum."');
     scene.text('As if on command Kolka starts shooting his load in her pussy. When he pulls out, you can see some of it dripping out of her full pussy.');
     scene.text('Natasha just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or if she enjoyed it. Maybe both at the same time?');
     scene.text('"That\'s all for today Kolka. You can get dressed. I have a few things I want to discuss with Natasha."');
     if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-      (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+      ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
     }
     qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     scene.actions([
@@ -782,7 +782,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let him cum on her ass', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 10) + 0))) {
-      (s as any).NatbelQW['KolkaCP'] = ((s as any).NatbelQW['KolkaCP'] ?? 0) + (1);
+      ((s as any).NatbelQW ?? {})['KolkaCP'] = (((s as any).NatbelQW ?? {})['KolkaCP'] ?? 0) + (1);
       scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natcreampiedoggy.mp4');
       scene.text('After a few more minutes Kolka says "I\'m going to cum."');
       qspCall(s, 'natbelEv', 'natcumresponse');
@@ -791,7 +791,7 @@ function enterKolkacum(s: GameState, scene: SceneBuilder): void {
       scene.text('Natasha doesn\'t even listen to him, just looks at you with a strange expression on her face. You can\'t really decide whether she is scared that Kolka came in her pussy, or if she enjoyed it. Maybe both at the same time?');
       scene.text('You quietly signal your brother to dress up and leave while you kiss her deeply. "I hope you enjoyed it, pet. We may repeat it."');
       if ((Math.floor(Math.random() * 100) + 1) >= 95  &&  ((s as any).NatbelQW ?? 0)?.['pregday'] === 0) {
-        (s as any).NatbelQW['pregday'] = ((s as any).daystart ?? 0);
+        ((s as any).NatbelQW ?? {})['pregday'] = ((s as any).daystart ?? 0);
       }
       qspCall(s, 'natkolEv', 'cumeater', 'pussy');
     } else {

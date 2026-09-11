@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nerd_game ?? 0)?.['fixed_uni_day'] === ((s as any).week ?? 0)) {
-    (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0);
   }
   return;
   scene.build();
@@ -98,15 +98,15 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).nerd_game['lot'] = qspFunc(s, 'random', 'pick_from', 12, 13, 14, 23, 24, 34);
-    (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nerd_game ?? {})['lot'] = qspFunc(s, 'random', 'pick_from', 12, 13, 14, 23, 24, 34);
+    ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     // TODO-QSP: dynamic text: You stop by your locker and Feofan walks over to you and smiles. "Hey <<$pcs_nic...
     scene.text(`You stop by your locker and Feofan walks over to you and smiles. "Hey ${((s as any).pcs_nickname ?? 0)}, we do a weekly game night where we mostly play Dungeons and Dragons, but we sometimes play some board games. I was talking to the others and we were wondering if you'd like to join us on ${qspUntranslated(s, "weekName[val(mid(temp,1,1))]", { location: "nerd_game_night" })} or ${qspUntranslated(s, "weekName[val(mid(temp,2,1))]", { location: "nerd_game_night" })} if you're free then?"`);
     scene.actions([
       { label: 'Not interested <br> [+$func(\'wrap\', \'neg\', \'This will block th...]', handler: (st: GameState) => {
-    (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0) + 7305;
+    ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0) + 7305;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
@@ -137,7 +137,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '<<$weekName[val(mid(nerd_game[\'lot\'], 1, 1))]>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
+    ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     // TODO-QSP: dynamic text: "Sure, I can make it on <<$weekName[val(mid(nerd_game['lot'], 1, 1))]>>," you re...
@@ -148,7 +148,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '<<$weekName[val(mid(nerd_game[\'lot\'], 2, 1))]>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
+    ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     // TODO-QSP: dynamic text: "Sure, I can make it on <<$weekName[val(mid(nerd_game['lot'], 2, 1))]>>," you re...
@@ -164,9 +164,9 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight1(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 1;
+  ((s as any).nerd_game ?? {})['stage'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   if (((s as any).grupTipe ?? 0)?.['joined_nerds'] === 1) {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
     scene.text('Upon entering the room, everyone freezes and looks your way. You can feel the anxious gazes as you greet the group sitting around the table that has a large map spread across it, along with small figures, various papers and books, and lots and lots of dice.');
@@ -217,7 +217,7 @@ function enterGameNight1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'If that\'s what the group needs', handler: (st: GameState) => {
-    (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/rogue.jpg');
     scene.text('You take the folder he has made. You look inside and find a character sheet with a small background for your character, along with a full color printed image of what you can only guess is what your character is supposed to look like. You cringe at the revealing clothes your character is wearing and wonder if you could get less revealing armor at some point. "Okay, if that\'s what the group needs. I\'m just learning and want to help as much as I can."');
@@ -375,9 +375,9 @@ function enterKeepPlayingOn1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight2(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 2;
+  ((s as any).nerd_game ?? {})['stage'] = 2;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('You find the rest of your friends already present as you arrive. "Alright, settle down!" Feofan yells out as the group takes a seat around the game table. He has prepared the game table and the figurines are neatly placed over the board.');
@@ -392,7 +392,7 @@ function enterGameNight2(s: GameState, scene: SceneBuilder): void {
     { label: 'Grab all the loot', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A12', 'dislike');
-    (s as any).nerd_game['tookgold'] = 1;
+    ((s as any).nerd_game ?? {})['tookgold'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/treasure.jpg');
     scene.text('"Artem\'s right, let\'s take the gold. We can get a lot more gear and take on more powerful challenges. I vote that we grab all the loot and head towards the village." You\'re quite confident in your decision and the others abide by it.');
@@ -515,9 +515,9 @@ function enterKeepPlayingOn2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight3(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 3;
+  ((s as any).nerd_game ?? {})['stage'] = 3;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('Feofan has already set everything up as you walk in. There\'s a new map set on the table; it\'s of the village you\'re about to enter. Everyone runs over to see what\'s being set up.');
@@ -555,7 +555,7 @@ function enterGameNight3(s: GameState, scene: SceneBuilder): void {
     (s as any).temp = Math.floor(Math.random() * 21) + 10;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/rollingdice.jpg');
     if (((s as any).temp ?? 0) <= 18) {
-      (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (2);
+      ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (2);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'stat', '');
       scene.text('You roll the dice… and it\'s low. The group looks at you in disappointment.');
@@ -609,7 +609,7 @@ function enterGameNight3(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp ?? 0) > 18  &&  ((s as any).temp ?? 0) <= 26) {
-        (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+        ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
         qspCall(s, 'mood', 'raise', 'tiny');
         qspCall(s, 'stat', '');
         scene.text('You roll the dice and hit the first target number Feofan stated, but not the higher one he said you need for complete success.');
@@ -663,7 +663,7 @@ function enterGameNight3(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (5);
+        ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (5);
         qspCall(s, 'mood', 'raise', 'small');
         qspCall(s, 'stat', '');
         scene.text('You roll the dice and… jackpot! You\'ve managed to roll well above what you needed and look sneakily towards Feofan, clearing your throat before you start bargaining, charming the pants off the blacksmith. "Fine, fine! I\'ll let you buy all the equipment you need for the regular price with that damn gold!"');
@@ -812,9 +812,9 @@ function enterGameNight3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight4(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 4;
+  ((s as any).nerd_game ?? {})['stage'] = 4;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
@@ -849,8 +849,8 @@ function enterGameNight4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 5) {
       scene.actions([
         { label: 'Wait for your order', handler: (st: GameState) => {
-    (s as any).anushkaQW['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
-    (s as any).artemQW['dom_nush_dnd'] = ((s as any).artemQW['dom_nush_dnd'] ?? 0) + (1);
+    ((s as any).anushkaQW ?? {})['artem_dom'] = (((s as any).anushkaQW ?? {})['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['dom_nush_dnd'] = (((s as any).artemQW ?? {})['dom_nush_dnd'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/waiting_table.jpg');
     scene.text('Zinaida looks pretty shocked as Anushka leaves to prepare your order. "I can\'t believe she played along!"');
     scene.text('Gerasim clears his throat. "I\'ve been telling you guys she\'s not that bad once you get to know her."');
@@ -873,7 +873,7 @@ function enterGameNight4(s: GameState, scene: SceneBuilder): void {
     scene.text(`Zinaida shakes her head and looks very annoyed. "I can't believe you would do that in front of ${((s as any).pcs_nickname ?? 0)}. You know, your <i>girlfriend</i>!"`);
     scene.actions([
       { label: 'Tell her you don\'t mind', handler: (st: GameState) => {
-    (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big142.jpg');
     scene.text('You smile at her. "It\'s fine. We play around all the time. I know it doesn\'t mean anything."');
     scene.text('Most look thoughtful at your comment, while Zinaida frowns. "Well, if you\'re okay with it… I would <i>never</i> let <i>my</i> boyfriend do that…" she mutters so softly you can barely hear her as she looks at Feofan, who seems entirely oblivious.');
@@ -908,8 +908,8 @@ function enterGameNight4(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Artem you didn\'t like it', handler: (st: GameState) => {
-    (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) - (2);
-    (s as any).artemQW['dom_nush_dnd'] = (-1);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) - (2);
+    ((s as any).artemQW ?? {})['dom_nush_dnd'] = (-1);
     scene.img('images/characters/shared/headshots_main/big142.jpg');
     scene.text('You nod at her before looking at Artem. "I know we play around sometimes, but this is in public. You shouldn\'t do that."');
     scene.text('Everyone else decides now is a good time to look something up in a book or their character sheet to avoid the relationship discussion.');
@@ -1005,7 +1005,7 @@ function enterThreeQuestsActs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWoman(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['tavernwoman'] = 1;
+  ((s as any).nerd_game ?? {})['tavernwoman'] = 1;
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/tavernwoman.jpg');
   scene.text('You nod towards the woman dressed in black and start walking over to her. You can\'t make out anything but her pale skin and ruby red lips underneath her veil. "Can\'t you see I\'m mourning? I\'m in no mood to talk to anyone!"');
   scene.text('You\'re surprised by her bluntness. "Sorry, I don\'t want to be a bother…"');
@@ -1027,7 +1027,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
   scene.text('The man pulls out a pouch and throws it on the table. "See that? That\'s my share from the last treasure run we did. And believe me girl, we have plenty of treasure maps remaining."');
   scene.actions([
     { label: 'Decide', handler: (st: GameState) => {
-    (s as any).nerd_game['taverngroup'] = 1;
+    ((s as any).nerd_game ?? {})['taverngroup'] = 1;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/taverngroup.jpg');
     scene.text('"I need to talk to my friends first. I\'ll be right back."');
     scene.text('As you turn your back, the men start hollering. "Did you see her ass?! I wouldn\'t mind getting my hands on that. I bet I could make her scream all night long." The men continue to be rowdy as they order another round.');
@@ -1040,9 +1040,9 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
     scene.text(`Several players all chime in suggesting you should pay, only to have Feofan interrupt them. "Okay, enough! Your characters aren't there. You sent ${((s as any).pcs_nickname ?? 0)} up alone, so it's her choice." He then looks at you. "So what will it be?"`);
     scene.actions([
       { label: 'Pay up', handler: (st: GameState) => {
-    (s as any).nerd_game['acceptpay'] = 1;
+    ((s as any).nerd_game ?? {})['acceptpay'] = 1;
     qspCall(s, 'mood', 'raise', 'small');
-    (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/taverngroup.jpg');
     scene.text('You look up, trying to read your co-players, but they\'re keeping true to what\'s playing out. "Alright, you\'ve got a deal!"');
@@ -1051,7 +1051,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'nerd_game_night', 'three_quests_acts');
   } },
       { label: 'Decline', handler: (st: GameState) => {
-    (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (2);
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (2);
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/taverngroup.jpg');
     scene.text('You shake your head. "That\'s way too much!"');
     scene.text('"Too bad then… Leave us alone, we\'re done here!" You can clearly tell that he\'s annoyed.');
@@ -1065,7 +1065,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOldman(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['tavernman'] = 1;
+  ((s as any).nerd_game ?? {})['tavernman'] = 1;
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/tavernman.jpg');
   scene.text('You walk over to the old man and before you can even say a word, he turns to you. "Buy me a drink and I\'ll tell you a story."');
   scene.text('"Is that so?" You nod at the barkeep to pour another drink for the old man.');
@@ -1111,7 +1111,7 @@ function enterInformThem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVoteMansion(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['mansion_adventure'] = 1;
+  ((s as any).nerd_game ?? {})['mansion_adventure'] = 1;
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/party.jpg');
   scene.text('Everyone takes turns voting while Feofan writes down the results. "Great, it seems like slightly more of you want to go to the mansion! Now that the vote is decided, I suggest we call it for the day and pick up it next time."');
   scene.text('"But we want to continue playing! We already know what adventure we\'re going on!" Gerasim sighs.');
@@ -1122,9 +1122,9 @@ function enterVoteMansion(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight5(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 5;
+  ((s as any).nerd_game ?? {})['stage'] = 5;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated. The tension from last week seems to have dissolved and the group is ready for their next adventure.');
@@ -1139,9 +1139,9 @@ function enterGameNight5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight6(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 6;
+  ((s as any).nerd_game ?? {})['stage'] = 6;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
@@ -1154,9 +1154,9 @@ function enterGameNight6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight7(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 7;
+  ((s as any).nerd_game ?? {})['stage'] = 7;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
@@ -1169,9 +1169,9 @@ function enterGameNight7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight8(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 8;
+  ((s as any).nerd_game ?? {})['stage'] = 8;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('Feofan has already set everything up as you walk in, including the map of the town to which you\'re returning. Everyone compliments his work and excitedly discusses what might happen tonight.');
@@ -1212,8 +1212,8 @@ function enterGameNight8(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['artem_dom'] >= 5  &&  ((s as any).artemQW ?? 0)?.['dom_nush_dnd'] === 0) {
       scene.actions([
         { label: 'Wait for your order', handler: (st: GameState) => {
-    (s as any).anushkaQW['artem_dom'] = ((s as any).anushkaQW['artem_dom'] ?? 0) + (1);
-    (s as any).artemQW['dom_nush_dnd'] = ((s as any).artemQW['dom_nush_dnd'] ?? 0) + (1);
+    ((s as any).anushkaQW ?? {})['artem_dom'] = (((s as any).anushkaQW ?? {})['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['dom_nush_dnd'] = (((s as any).artemQW ?? {})['dom_nush_dnd'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/coffee_hole/waiting_table.jpg');
     scene.text('Zinaida shakes her head slightly. "I still can\'t believe she plays along!"');
     scene.text('Gerasim clears his throat. "Like I said…"');
@@ -1241,7 +1241,7 @@ function enterGameNight8(s: GameState, scene: SceneBuilder): void {
     scene.text(`Zinaida shakes her head and looks very annoyed. "I can't believe you would do that in front of ${((s as any).pcs_nickname ?? 0)}. You know, your <i>girlfriend</i>!"`);
     scene.actions([
       { label: 'Tell her you don\'t mind', handler: (st: GameState) => {
-    (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big142.jpg');
     scene.text('You smile at her. "It\'s fine. We play around all the time. I know it doesn\'t mean anything."');
     scene.text('Most look thoughtful at your comment, while Zinaida frowns. "Well, if you\'re okay with it… I would <i>never</i> let <i>my</i> boyfriend do that…" she mutters so softly you can barely hear her as she looks at Feofan, who seems entirely oblivious.');
@@ -1284,8 +1284,8 @@ function enterGameNight8(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Artem you didn\'t like it', handler: (st: GameState) => {
-    (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) - (2);
-    (s as any).artemQW['dom_nush_dnd'] = (-2);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) - (2);
+    ((s as any).artemQW ?? {})['dom_nush_dnd'] = (-2);
     scene.img('images/characters/shared/headshots_main/big142.jpg');
     scene.text('You nod at her before looking at Artem. "I know we play around sometimes, but this is in public. You shouldn\'t do that."');
     scene.text('Everyone else decides now is a good time to look something up in their character sheet to avoid the relationship discussion.');
@@ -1326,8 +1326,8 @@ function enterGameNight8(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yer a fine lass, wi\' a fine firm ass asweel!" he says in his terrible Scottish dwarven accent.');
     scene.actions([
       { label: 'Just watch', handler: (st: GameState) => {
-    (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
-    (s as any).artemQW['dom_nush_dnd'] = ((s as any).artemQW['dom_nush_dnd'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['dom_nush_dnd'] = (((s as any).artemQW ?? {})['dom_nush_dnd'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/coffee_hole/pose1.jpg');
     scene.text('The rest of the table watches in surprise as Anushka stays bent over, letting him feel her up while glancing back at him over her shoulder. Artem just gives her a smug look, like he\'s daring her to say something. Anushka glances at you before she smiles, apparently willing to play along. "Thank you My\'lord. Will there be anything else?"');
     scene.text('Artem gives her ass a gentle pat this time. "Yea, be a good lass and go on and serve me friend."');
@@ -1418,7 +1418,7 @@ function enterNextWeek(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVoteNecromancer(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['mansion_adventure'] = 1;
+  ((s as any).nerd_game ?? {})['mansion_adventure'] = 1;
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/party.jpg');
   scene.text('Everyone takes turns voting while Feofan writes down the results. "Great, it seems like slightly more of you want to go to deal with the Necromancer! Now that the vote is decided, I suggest we call it for the day and pick up it next time."');
   scene.text('"But we want to continue playing! We already know what adventure we\'re going on!" Gerasim sighs.');
@@ -1430,9 +1430,9 @@ function enterVoteNecromancer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight9(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 9;
+  ((s as any).nerd_game ?? {})['stage'] = 9;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated. The tension from last week seems to have dissolved and the group is ready for their next adventure.');
@@ -1447,9 +1447,9 @@ function enterGameNight9(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight10(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 10;
+  ((s as any).nerd_game ?? {})['stage'] = 10;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
@@ -1463,9 +1463,9 @@ function enterGameNight10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight11(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 11;
+  ((s as any).nerd_game ?? {})['stage'] = 11;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
@@ -1478,9 +1478,9 @@ function enterGameNight11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGameNight12(s: GameState, scene: SceneBuilder): void {
-  (s as any).nerd_game['stage'] = 12;
+  ((s as any).nerd_game ?? {})['stage'] = 12;
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/gamenight.jpg');
   scene.text('Feofan has already set everything up as you walk in, including the map of the town to which you\'re returning too again. Feofan says as everyone sits down. "Shall we get started?" You all quickly take a seat around the table as Feofan begins. "After you break camp and pack up, you make haste to the town. You enter the sleepy town around midday."');
@@ -1550,8 +1550,8 @@ function enterGameNight12(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yer a fine lass, wi\' a fine firm ass asweel!" he says in his terrible Scottish dwarven accent.');
     scene.actions([
       { label: 'Just watch', handler: (st: GameState) => {
-    (s as any).artemQW['artem_dom'] = ((s as any).artemQW['artem_dom'] ?? 0) + (1);
-    (s as any).artemQW['dom_nush_dnd'] = ((s as any).artemQW['dom_nush_dnd'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['dom_nush_dnd'] = (((s as any).artemQW ?? {})['dom_nush_dnd'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/coffee_hole/pose1.jpg');
     scene.text('The rest of the table watches in surprise as Anushka stays bent over, letting him feel her up while glancing back at him over her shoulder. Artem just gives her a smug look, like he\'s daring her to say something. Anushka glances at you before she smiles, apparently willing to play along. "Thank you My\'lord. Will there be anything else?"');
     scene.text('Artem gives her ass a gentle pat this time. "Yea, be a good lass and go on and serve me half-orc friend something special... if you know what I mean." Then he slaps her hard on the ass, cause her to slightly yelp and jump from it, which only makes Artem laugh.');
@@ -1672,7 +1672,7 @@ function enterNextWeek1(s: GameState, scene: SceneBuilder): void {
 
 function enterBoardGames(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/board1.jpg');
   if (((s as any).loc ?? 0) === 'city_coffee_hole') {
@@ -1723,7 +1723,7 @@ function enterBoardGames(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Finish up', handler: (st: GameState) => {
-    (s as any).nerd_game['boardgames'] = 1;
+    ((s as any).nerd_game ?? {})['boardgames'] = 1;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/board1.jpg');
     scene.text('You continue playing with even more laughter and before you know it the game is over for the night. You all praise Feofan for picking a really good game.');
     scene.text('Feofan responds as expected - haughty. "Ye, with little faith in me. Told you I would fix everything."');
@@ -1737,7 +1737,7 @@ function enterBoardGames(s: GameState, scene: SceneBuilder): void {
       scene.text('Once Feofan finishes explaining the rules and everyone is done asking questions, you start playing the game. Despite the occasional argument over rules, you all end up enjoying yourselves. As the game goes on, it remains close and there\'s no way to say who\'s going to win.');
       scene.actions([
         { label: 'Finish up', handler: (st: GameState) => {
-    (s as any).nerd_game['boardgames'] = 1;
+    ((s as any).nerd_game ?? {})['boardgames'] = 1;
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/board1.jpg');
     scene.text('You continue playing with even more laughter and before you know it the game is over for the night. You all praise Feofan for picking a really good game.');
     scene.text('Feofan responds as expected - haughty. "Ye, with little faith in me. Told you I would fix everything."');
@@ -1768,34 +1768,34 @@ function enterFirstText(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_pos ?? 0) === -1  ||  ((s as any).contactAnon ?? 0)?.[String((s as any).temp_pos ?? 0)] === 1) {
     qspCall(s, 'telefon', 'AddContact', 'A152', 'images/characters/shared/headshots_main/big152.jpg', 0);
   }
-  (s as any).nerd_game['first_SMS_received'] = 1;
+  ((s as any).nerd_game ?? {})['first_SMS_received'] = 1;
   scene.build();
 }
 
 function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'Add SMS') {
-    (s as any).nerd_game['lot'] = qspFunc(s, 'random', 'pick_from', 12, 13, 14, 23, 24, 34);
+    ((s as any).nerd_game ?? {})['lot'] = qspFunc(s, 'random', 'pick_from', 12, 13, 14, 23, 24, 34);
   }
   if (((s as any).nerd_game ?? 0)?.['first_SMS_received'] === 0) {
-    (s as any).SMSTree['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ' this is Feofan. We do a weekly game night, mostly playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[\'lot\'],1,1))]>> or <<$weekName[val(mid(nerd_game[\'lot\'],2,1))]>>.';
+    ((s as any).SMSTree ?? {})['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ' this is Feofan. We do a weekly game night, mostly playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[\'lot\'],1,1))]>> or <<$weekName[val(mid(nerd_game[\'lot\'],2,1))]>>.';
   } else {
-    (s as any).SMSTree['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ', would you like to join us for our weekly game night? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[\'lot\'],1,1))]>> or <<$weekName[val(mid(nerd_game[\'lot\'],2,1))]>>.';
+    ((s as any).SMSTree ?? {})['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ', would you like to join us for our weekly game night? We have a few nights free this week and were wondering which one works best for you. We can do it either on <<$weekName[val(mid(nerd_game[\'lot\'],1,1))]>> or <<$weekName[val(mid(nerd_game[\'lot\'],2,1))]>>.';
   }
-  (s as any).SMSTree['ca1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + '';
-  (s as any).SMSTree['a1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + '.';
-  (s as any).SMSTree['a2'] = ':-) Great! I\'ll see you on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
-  (s as any).SMSTree['cb1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]>", { location: "nerd_game_night" }) + '';
-  (s as any).SMSTree['b1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]>", { location: "nerd_game_night" }) + '.';
-  (s as any).SMSTree['b2'] = ':-) Great! I\'ll see you on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]>", { location: "nerd_game_night" }) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
-  (s as any).SMSTree['cc1'] = 'Not this week';
-  (s as any).SMSTree['c1'] = 'Sorry I don\'t have time this week, but next week I should be able too.';
-  (s as any).SMSTree['c2'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you next week.';
-  (s as any).SMSTree['cd1'] = 'Not interested';
-  (s as any).SMSTree['cd2'] = qspFunc(s, 'wrap', 'neg', 'This ends the D&D Campaign - Forever');
-  (s as any).SMSTree['d2'] = 'Sorry, but I\'m just not interested in stuff like that. Thanks for the invite though.';
-  (s as any).SMSTree['d3'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you around.';
+  ((s as any).SMSTree ?? {})['ca1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + '';
+  ((s as any).SMSTree ?? {})['a1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + '.';
+  ((s as any).SMSTree ?? {})['a2'] = ':-) Great! I\'ll see you on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],1,1))]>", { location: "nerd_game_night" }) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
+  ((s as any).SMSTree ?? {})['cb1'] = '' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]>", { location: "nerd_game_night" }) + '';
+  ((s as any).SMSTree ?? {})['b1'] = 'Sure, I can make it on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]>", { location: "nerd_game_night" }) + '.';
+  ((s as any).SMSTree ?? {})['b2'] = ':-) Great! I\'ll see you on ' + qspUntranslated(s, "weekName[val(mid(nerd_game['lot'],2,1))]>", { location: "nerd_game_night" }) + ' at \'+func(\'time\', \'get_time_string\', 20, 0)+\' in the library then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
+  ((s as any).SMSTree ?? {})['cc1'] = 'Not this week';
+  ((s as any).SMSTree ?? {})['c1'] = 'Sorry I don\'t have time this week, but next week I should be able too.';
+  ((s as any).SMSTree ?? {})['c2'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you next week.';
+  ((s as any).SMSTree ?? {})['cd1'] = 'Not interested';
+  ((s as any).SMSTree ?? {})['cd2'] = qspFunc(s, 'wrap', 'neg', 'This ends the D&D Campaign - Forever');
+  ((s as any).SMSTree ?? {})['d2'] = 'Sorry, but I\'m just not interested in stuff like that. Thanks for the invite though.';
+  ((s as any).SMSTree ?? {})['d3'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you around.';
   if (((s as any).locArgs?.[1] ?? 0) === 'Add SMS') {
-    (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'SMStext_builder', 'start');
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['ca1'], 'nerd_game_night', 'summer_invite_sms', 'Choice_...
@@ -1813,7 +1813,7 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'start');
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['a1']
     // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-    (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
+    ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a2']
     // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
     qspCall(s, 'SMStext_builder', 'end');
@@ -1822,7 +1822,7 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'SMStext_builder', 'start');
       // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['b1']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
+      ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b2']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
       qspCall(s, 'SMStext_builder', 'end');
@@ -1848,7 +1848,7 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'SMStext_builder', 'start');
             // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['d2']
             // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-            (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0) + 7305;
+            ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0) + 7305;
             // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['d3']
             // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
             qspCall(s, 'SMStext_builder', 'end');
@@ -1862,25 +1862,25 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
 
 function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nerd_game ?? 0)?.['first_SMS_received'] === 0) {
-    (s as any).SMSTree['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ' this is Feofan. We are doing our weekly game night at the Coffee Hole, coffee shop now. We will mostly be playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you were going to keep playing with us? We have a few nights free this week and were wondering which night works best for you. We can do it either on Tuesday or Thursday.';
+    ((s as any).SMSTree ?? {})['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ' this is Feofan. We are doing our weekly game night at the Coffee Hole, coffee shop now. We will mostly be playing Dungeons and Dragons and board games. I was talking to the others and we were wondering if you were going to keep playing with us? We have a few nights free this week and were wondering which night works best for you. We can do it either on Tuesday or Thursday.';
   } else {
-    (s as any).SMSTree['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ', would you like to join us for our weekly game night at the Coffee Hole? We have a few nights free this week and were wondering which night works best for you. We can do it either on Tuesday or Thursday.';
+    ((s as any).SMSTree ?? {})['0'] = 'Hey ' + qspUntranslated(s, "pcs_nickname>", { location: "nerd_game_night" }) + ', would you like to join us for our weekly game night at the Coffee Hole? We have a few nights free this week and were wondering which night works best for you. We can do it either on Tuesday or Thursday.';
   }
-  (s as any).SMSTree['ca1'] = 'Tuesday';
-  (s as any).SMSTree['a1'] = 'Sure, I can make it on Tuesday.';
-  (s as any).SMSTree['a2'] = ':-) Great! I\'ll see you on Tuesday at \'+func(\'time\', \'get_time_string\', 18, 0)+\' at the Coffee Hole then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
-  (s as any).SMSTree['cb1'] = 'Thursday';
-  (s as any).SMSTree['b1'] = 'Sure, I can make it on Thursday.';
-  (s as any).SMSTree['b2'] = ':-) Great! I\'ll see you on Thursday at \'+func(\'time\', \'get_time_string\', 18, 0)+\' at the Coffee Hole then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
-  (s as any).SMSTree['cc1'] = 'Not this week';
-  (s as any).SMSTree['c1'] = 'Sorry I don\'t have time this week, but next week I should be able too.';
-  (s as any).SMSTree['c2'] = ':-( Oh… Okay, yeah I get it. Guess we\'ll see you next week.';
-  (s as any).SMSTree['cd1'] = 'Not interested';
-  (s as any).SMSTree['cd2'] = qspFunc(s, 'wrap', 'neg', 'This ends the D&D Campaign - Forever');
-  (s as any).SMSTree['d2'] = 'Sorry, but I\'m just not interested in stuff like that. Thanks for the invite though.';
-  (s as any).SMSTree['d3'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you around.';
+  ((s as any).SMSTree ?? {})['ca1'] = 'Tuesday';
+  ((s as any).SMSTree ?? {})['a1'] = 'Sure, I can make it on Tuesday.';
+  ((s as any).SMSTree ?? {})['a2'] = ':-) Great! I\'ll see you on Tuesday at \'+func(\'time\', \'get_time_string\', 18, 0)+\' at the Coffee Hole then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
+  ((s as any).SMSTree ?? {})['cb1'] = 'Thursday';
+  ((s as any).SMSTree ?? {})['b1'] = 'Sure, I can make it on Thursday.';
+  ((s as any).SMSTree ?? {})['b2'] = ':-) Great! I\'ll see you on Thursday at \'+func(\'time\', \'get_time_string\', 18, 0)+\' at the Coffee Hole then! Be ready to get your nerd on, because we\'re going to rock it so hard!';
+  ((s as any).SMSTree ?? {})['cc1'] = 'Not this week';
+  ((s as any).SMSTree ?? {})['c1'] = 'Sorry I don\'t have time this week, but next week I should be able too.';
+  ((s as any).SMSTree ?? {})['c2'] = ':-( Oh… Okay, yeah I get it. Guess we\'ll see you next week.';
+  ((s as any).SMSTree ?? {})['cd1'] = 'Not interested';
+  ((s as any).SMSTree ?? {})['cd2'] = qspFunc(s, 'wrap', 'neg', 'This ends the D&D Campaign - Forever');
+  ((s as any).SMSTree ?? {})['d2'] = 'Sorry, but I\'m just not interested in stuff like that. Thanks for the invite though.';
+  ((s as any).SMSTree ?? {})['d3'] = ':-( Oh… okay yeah I get it. Guess we\'ll see you around.';
   if (((s as any).locArgs?.[1] ?? 0) === 'Add SMS') {
-    (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'SMStext_builder', 'start');
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['ca1'], 'nerd_game_night', 'summer2_invite_sms', 'Choice...
@@ -1898,7 +1898,7 @@ function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'start');
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['a1']
     // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-    (s as any).nerd_game['fixed_uni_day'] = 2;
+    ((s as any).nerd_game ?? {})['fixed_uni_day'] = 2;
     qspCall(s, 'calendar', 'remove', 'nerd_game_night_event');
     qspCall(s, 'calendar', 'add', 'nerd_game_night_event');
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a2']
@@ -1909,7 +1909,7 @@ function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'SMStext_builder', 'start');
       // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['b1']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      (s as any).nerd_game['fixed_uni_day'] = 4;
+      ((s as any).nerd_game ?? {})['fixed_uni_day'] = 4;
       qspCall(s, 'calendar', 'remove', 'nerd_game_night_event');
       qspCall(s, 'calendar', 'add', 'nerd_game_night_event');
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b2']
@@ -1937,7 +1937,7 @@ function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'SMStext_builder', 'start');
             // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['d2']
             // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-            (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0) + 7305;
+            ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0) + 7305;
             // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['d3']
             // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
             qspCall(s, 'SMStext_builder', 'end');
@@ -1958,14 +1958,14 @@ function enterInviteUni(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).temp = qspFunc(s, 'random', 'pick_from', 12, 13, 14, 23, 24, 34);
-    (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     // TODO-QSP: dynamic text: As you leave your last class of the day, Feofan walks over to you and smiles. "H...
     scene.text(`As you leave your last class of the day, Feofan walks over to you and smiles. "Hey ${((s as any).pcs_nickname ?? 0)}, we do a weekly game night where we mostly play Dungeons and Dragons, but we sometimes play some board games. I was talking to the others and we were wondering if you would like to join us? We have a few nights free this week and were wondering which one works best for you. We can do it either on Tuesday or Thursday evening."`);
     scene.actions([
       { label: 'Not interested <br> [+$func(\'wrap\', \'neg\', \'This will block th...]', handler: (st: GameState) => {
-    (s as any).nerd_game['invite_day'] = ((s as any).daystart ?? 0) + 7305;
+    ((s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0) + 7305;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
@@ -1993,7 +1993,7 @@ function enterInviteUni(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Tuesday', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).nerd_game['fixed_uni_day'] = 2;
+    ((s as any).nerd_game ?? {})['fixed_uni_day'] = 2;
     qspCall(s, 'calendar', 'remove', 'nerd_game_night_event');
     qspCall(s, 'calendar', 'add', 'nerd_game_night_event');
     qspCall(s, 'stat', '');
@@ -2005,7 +2005,7 @@ function enterInviteUni(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Thursday', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).nerd_game['fixed_uni_day'] = 4;
+    ((s as any).nerd_game ?? {})['fixed_uni_day'] = 4;
     qspCall(s, 'calendar', 'remove', 'nerd_game_night_event');
     qspCall(s, 'calendar', 'add', 'nerd_game_night_event');
     qspCall(s, 'stat', '');

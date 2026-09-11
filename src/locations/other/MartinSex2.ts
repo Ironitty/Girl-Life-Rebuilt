@@ -609,7 +609,7 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal_finger', 5, 'lube');
     qspCall(s, 'arousal', 'hj', (-3));
     qspCall(s, 'arousal', 'masturbate', (-5));
-    (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
   } else {
     qspCall(s, 'arousal', 'anal_finger', 5);
     qspCall(s, 'arousal', 'hj', (-3));

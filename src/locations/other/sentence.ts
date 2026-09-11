@@ -73,7 +73,7 @@ function enterPunishment(s: GameState, scene: SceneBuilder): void {
   scene.text('You tremble a little in fear as he continues. "With that said, I believe in a more soft approach and that you can improve yourself by learning from your mistakes."');
   scene.text('You meekly nod and feel a little relieved.');
   // TODO-QSP: gs 'court_sentence_events', 'punishment_start', $policeQW_courthearing_subjects[0]
-  (s as any).policeQW['fine_deadline'] = ((s as any).policeQW['fine_deadline'] ?? 0) + (14);
+  ((s as any).policeQW ?? {})['fine_deadline'] = (((s as any).policeQW ?? {})['fine_deadline'] ?? 0) + (14);
   scene.actions([
     { label: 'Leave the court', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_center', '', 'mom_check'
@@ -144,7 +144,7 @@ function enterPoliceArrest2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I have no excuse, your honor…" you meekly answer.');
   scene.text('Their eyes piercing through you, the judge clears their throat. "I see. You have thirty days to pay your fine. If you fail to do so, you will be arrested again and given a prison sentence."');
   scene.text('You silently nod that you understand.');
-  (s as any).policeQW['fine_deadline'] = Math.max(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
+  ((s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
   scene.actions([
     { label: 'Leave the court', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_center', '', 'mom_check'
@@ -163,7 +163,7 @@ function enterPoliceArrest3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'gameover', 'check', 14);
-    (s as any).policeQW['arrest_gameover_flag'] = 0;
+    ((s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
   ]);

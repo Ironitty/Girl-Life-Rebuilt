@@ -89,7 +89,7 @@ function enterStart0(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Squirm free and run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    (s as any).gopnew['ran'] = ((s as any).gopnew['ran'] ?? 0) + (1);
+    ((s as any).gopnew ?? {})['ran'] = (((s as any).gopnew ?? {})['ran'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You do your best to wrestle yourself free, but his grip is too tight. Deciding you need to get out of there at any cost, you knee him hard in the groin and run as he lets you go with a grunt of pain. His friends start after you, but weren\'t ready for it, and your fear gives you the speed you need to make it out of the alley and disappear into the crowd.');
@@ -790,7 +790,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
 
 function enterRapebj(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
   scene.img('images/locations/city/residential/street/sex/rapebj.jpg');
   scene.text('Vasan pulls his unwashed cock out of his pants, and waves it in front of your face. When he notices you\'re not opening your mouth quick enough, he growls: "Don\'t pretend you forgot what to do with these, whore! Start sucking!"');
   qspCall(s, 'willpower', 'bj', 'resist', 'hard');
@@ -842,7 +842,7 @@ function enterRapebj(s: GameState, scene: SceneBuilder): void {
       (s as any).vasansex = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
-    (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
     scene.img('images/locations/city/residential/street/sex/rapebj2.jpg');
     scene.text('You open your mouth but don\'t take his cock in your mouth. Instead you run your tongue up and down his shaft repeatedly, without much enthusiasm.');
     scene.text('"What is this garbage? Put some effort into it, slut! Or else…" he grunts.');
@@ -1552,7 +1552,7 @@ function enterChoice_1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flee [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    (s as any).gopnew['ran'] = ((s as any).gopnew['ran'] ?? 0) + (1);
+    ((s as any).gopnew ?? {})['ran'] = (((s as any).gopnew ?? {})['ran'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('desc');
@@ -1582,7 +1582,7 @@ function enterSuccubusOption(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'succubus', 'active', 5)) {
     scene.actions([
       { label: 'Feed off of them  [+$func(\'wrap\', \'neg\', \'(Succubus)\')]', handler: (st: GameState) => {
-    (s as any).gopnew['feed'] = 1;
+    ((s as any).gopnew ?? {})['feed'] = 1;
   }, goto: ['gopnew', 'succubus_1'] },
     ]);
   }
@@ -1630,7 +1630,7 @@ function enterCoward_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFightWin(s: GameState, scene: SceneBuilder): void {
-  (s as any).gopnew['fight'] = 1;
+  ((s as any).gopnew ?? {})['fight'] = 1;
   qspCall(s, 'money', 'earn', Math.floor(Math.random() * 51) + 50, 'cash');
   qspCall(s, 'stat', '');
   scene.text('The last one goes down, unable to stand up to you. With a shrug, you start going through their pockets, pocketing any money you find. Finished, you saunter out of the alley, feeling like nothing can stop you today!');
@@ -1641,7 +1641,7 @@ function enterFightWin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFightLost(s: GameState, scene: SceneBuilder): void {
-  (s as any).gopnew['fight'] = (-1);
+  ((s as any).gopnew ?? {})['fight'] = (-1);
   qspCall(s, 'stat', '');
   scene.text('You hit the ground hard, the guys stand over you looking down, and you know you\'re in trouble now! Carefully you get to your feet, clinging to the hope you can escape but knowing this won\'t end well.');
   scene.actions([

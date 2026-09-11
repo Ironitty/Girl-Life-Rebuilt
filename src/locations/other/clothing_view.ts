@@ -549,12 +549,12 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_shop_display_exceptions') {
-    (s as any).shop_display_exceptions['danilovich_outfits-161'] = 1;
-    (s as any).shop_display_exceptions['danilovich_outfits-162'] = 1;
-    (s as any).shop_display_exceptions['danilovich_swimsuit-4'] = 1;
-    (s as any).shop_display_exceptions['danilovich_swimsuit-31'] = 1;
-    (s as any).shop_display_exceptions['gm_school-6'] = 1;
-    (s as any).shop_display_exceptions['cats_dress-221'] = 1;
+    ((s as any).shop_display_exceptions ?? {})['danilovich_outfits-161'] = 1;
+    ((s as any).shop_display_exceptions ?? {})['danilovich_outfits-162'] = 1;
+    ((s as any).shop_display_exceptions ?? {})['danilovich_swimsuit-4'] = 1;
+    ((s as any).shop_display_exceptions ?? {})['danilovich_swimsuit-31'] = 1;
+    ((s as any).shop_display_exceptions ?? {})['gm_school-6'] = 1;
+    ((s as any).shop_display_exceptions ?? {})['cats_dress-221'] = 1;
     return;
   }
   return;
@@ -769,8 +769,8 @@ function enterViewList(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
     qspCall(s, 'shop_utils', 'init', 'end');
   }
-  (s as any).shop_display['hub_loc'] = 'view_lists_list';
-  (s as any).shop_display['hub_subloc'] = 'view_list';
+  ((s as any).shop_display ?? {})['hub_loc'] = 'view_lists_list';
+  ((s as any).shop_display ?? {})['hub_subloc'] = 'view_list';
   qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
   return;
   scene.actions([
@@ -866,8 +866,8 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
     qspCall(s, 'shop_utils', 'init', 'end');
   }
-  (s as any).shop_display['hub_loc'] = 'view_grids_list';
-  (s as any).shop_display['hub_subloc'] = 'view_grid';
+  ((s as any).shop_display ?? {})['hub_loc'] = 'view_grids_list';
+  ((s as any).shop_display ?? {})['hub_subloc'] = 'view_grid';
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
   scene.actions([
@@ -1014,7 +1014,7 @@ function enterListLineMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 
 function enterListLineResize(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+  ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
   // TODO-QSP: gs 'clothing', 'resize_clothes', $ARGS[1], ARGS[2]
   scene.text('You resize the outfit yourself.');
   // TODO-QSP: gt 'clothing_view', 'view_list', $ward_list_store
@@ -1026,14 +1026,14 @@ function enterListLineRepair(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).temp_rand = Math.floor(Math.random() * 100) + 0;
   if (((s as any).temp_rand ?? 0) < ((s as any).pcs_sewng ?? 0) / 4) {
-    (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
     // TODO-QSP: gs 'clothing', 'increase_strength', $ARGS[1], ARGS[2], CloMaxStrength / 3
   } else {
     if (((s as any).temp_rand ?? 0) < ((s as any).pcs_sewng ?? 0) / 2) {
-      (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+      ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
       // TODO-QSP: gs 'clothing', 'increase_strength', $ARGS[1], ARGS[2], CloMaxStrength / 6
     } else {
-      (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) + (3);
+      ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) + (3);
       // TODO-QSP: gs 'clothing', 'remove_item', $ARGS[1], ARGS[2]
     }
   }
@@ -1058,10 +1058,10 @@ function enterListLineTailorResize(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewItem(s: GameState, scene: SceneBuilder): void {
-  (s as any).shop_utils_view['link'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).shop_utils_view['type'] = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).shop_utils_view['number'] = qspUntranslated(s, "ARGS[3]", { location: "clothing_view" });
-  (s as any).shop_utils_view['discount'] = qspUntranslated(s, "ARGS[4]", { location: "clothing_view" });
+  ((s as any).shop_utils_view ?? {})['link'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).shop_utils_view ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).shop_utils_view ?? {})['number'] = qspUntranslated(s, "ARGS[3]", { location: "clothing_view" });
+  ((s as any).shop_utils_view ?? {})['discount'] = qspUntranslated(s, "ARGS[4]", { location: "clothing_view" });
   qspCall(s, 'stat', '');
   scene.img(`${qspFunc(s, '$clothing_image', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
   // TODO-QSP: gs 'clothing_attributes', $shop_utils_view['type'], shop_utils_view['number']
@@ -1163,14 +1163,14 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You already own this item.');
     return;
   }
-  (s as any).shop_utils_view['discount_total'] = ((s as any).shop_utils_view ?? {})?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']);
-  (s as any).shop_utils_view['base_price'] = ((s as any).CloPrice ?? 0);
-  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['base_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['discount_total']) / 100;
-  (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
+  ((s as any).shop_utils_view ?? {})['discount_total'] = ((s as any).shop_utils_view ?? {})?.['discount'] + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number']);
+  ((s as any).shop_utils_view ?? {})['base_price'] = ((s as any).CloPrice ?? 0);
+  ((s as any).shop_utils_view ?? {})['price'] = ((s as any).shop_utils_view ?? {})?.['base_price'] * Math.max(0, 100 - ((s as any).shop_utils_view ?? {})?.['discount_total']) / 100;
+  ((s as any).shop_utils_view ?? {})['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['base_price']) {
-    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
+    ((s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
   } else {
-    (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
+    ((s as any).shop_utils_view ?? {})['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']) + '</b>';
     // TODO-QSP: 'Now ' + shop_utils_view['discount_total'] + '% off' + iif(shop_utils_view['discount_total'] <= 10, ...
   }
   // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
@@ -1381,12 +1381,12 @@ function enterViewItemWearStrengthLow(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.img('images/pc/activities/sewing/fix\' + rand(1, 2) + \'.jpg');
     if ((Math.floor(Math.random() * 100) + 1) < 30) {
-      (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+      ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
       // TODO-QSP: gs 'clothing_attributes', $shop_utils_view['type'], shop_utils_view['number']
       // TODO-QSP: gs 'clothing', 'increase_strength', $shop_utils_view['type'], shop_utils_view['number'], CloMaxStren...
       scene.text('You spend 30 minutes fixing the outfit.');
     } else {
-      (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) + (3);
+      ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) + (3);
       // TODO-QSP: gs 'clothing', 'remove_item', $shop_utils_view['type'], shop_utils_view['number']
       scene.text('Despite your skill with a needle, this outfit has proved beyond repair. All that is left of it is only good for your cloth pile.');
     }
@@ -1418,7 +1418,7 @@ function enterViewItemWearSizeWrong(s: GameState, scene: SceneBuilder): void {
     scene.text('You can resize this thanks to your sewing skill.');
     scene.actions([
       { label: 'Resize item', handler: (st: GameState) => {
-    (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     // TODO-QSP: gs 'clothing', 'resize_clothes', $shop_utils_view['type'], shop_utils_view['number']
     scene.text('You spend 30 minutes resizing the outfit.');

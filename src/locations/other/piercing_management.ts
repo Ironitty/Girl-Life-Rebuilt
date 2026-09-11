@@ -114,7 +114,7 @@ function enterPierce(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'piercing_management', 'get_total', ((s as any).locArgs?.[1] ?? 0)) === 0) {
     // TODO-QSP: exit
   }
-  (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+  ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
   // TODO-QSP: pcs_piercings[$ARGS[1]] = -999
   return;
   scene.build();
@@ -128,7 +128,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   qspCall(s, 'piercing_management', 'pierce', ((s as any).locArgs?.[1] ?? 0));
-  (s as any).pcs_piercings['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).ARGS[2] || '') + '_owned'] = 1;
+  ((s as any).pcs_piercings ?? {})['' + String((s as any).$ARGS[1] || '') + '_' + String((s as any).ARGS[2] || '') + '_owned'] = 1;
   // TODO-QSP: gs 'piercing_management', 'wear', $ARGS[1], ARGS[2]
   if (((s as any).locArgs?.[1] ?? 0) === 'brow'  ||  ((s as any).locArgs?.[1] ?? 0) === 'nose'  ||  ((s as any).locArgs?.[1] ?? 0) === 'lip'  ||  ((s as any).locArgs?.[1] ?? 0) === 'tongue') {
     qspCall(s, 'archetypes', 'gain', 'punk', 'small', 'Facial piercing');
@@ -144,7 +144,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) < 0) {
-    (s as any).ARGS[2] = -((s as any).ARGS ?? 0)[2];
+    ((s as any).ARGS ?? {})[2] = -((s as any).ARGS ?? 0)[2];
   }
   if (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  (!((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: exit
@@ -153,7 +153,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] < 0) {
-    (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
   }
   // TODO-QSP: pcs_piercings[$ARGS[1]] = ARGS[2]
   return;
@@ -173,7 +173,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 0) {
     // TODO-QSP: exit
   }
-  (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) - (1);
+  ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) - (1);
   // TODO-QSP: pcs_piercings[$ARGS[1]] = -pcs_piercings[$ARGS[1]]
   return;
   scene.build();
@@ -189,54 +189,54 @@ function enterFullReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCount(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_piercings['total'] = 0;
-  (s as any).pcs_piercings['wearing'] = 0;
+  ((s as any).pcs_piercings ?? {})['total'] = 0;
+  ((s as any).pcs_piercings ?? {})['wearing'] = 0;
   if (((s as any).pcs_piercings ?? 0)?.['ears'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['ears'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['nose'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['nose'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['brow'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['brow'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['lip'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['lip'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['navel'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['navel'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['nipples'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['nipples'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   if (((s as any).pcs_piercings ?? 0)?.['pussy'] !== 0) {
-    (s as any).pcs_piercings['total'] = ((s as any).pcs_piercings['total'] ?? 0) + (1);
+    ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
     if (((s as any).pcs_piercings ?? 0)?.['pussy'] > 0) {
-      (s as any).pcs_piercings['wearing'] = ((s as any).pcs_piercings['wearing'] ?? 0) + (1);
+      ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) + (1);
     }
   }
   return;
@@ -257,7 +257,7 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length <= 3) {
-    (s as any).ARGS[3] = ((s as any).price ?? 0);
+    ((s as any).ARGS ?? {})[3] = ((s as any).price ?? 0);
   }
   if (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
     scene.img(`${0}_image', ARGS[2])>>`);
@@ -530,10 +530,10 @@ function enterEars(s: GameState, scene: SceneBuilder): void {
 
 function enterEarsImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['ears'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['ears'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -559,10 +559,10 @@ function enterNose(s: GameState, scene: SceneBuilder): void {
 
 function enterNoseImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['nose'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['nose'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -588,10 +588,10 @@ function enterBrow(s: GameState, scene: SceneBuilder): void {
 
 function enterBrowImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['brow'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['brow'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -617,10 +617,10 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
 
 function enterLipImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['lip'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['lip'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -646,10 +646,10 @@ function enterTongue(s: GameState, scene: SceneBuilder): void {
 
 function enterTongueImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['tongue'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['tongue'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -675,10 +675,10 @@ function enterNavel(s: GameState, scene: SceneBuilder): void {
 
 function enterNavelImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['navel'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['navel'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -704,10 +704,10 @@ function enterNipples(s: GameState, scene: SceneBuilder): void {
 
 function enterNipplesImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['nipples'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['nipples'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();
@@ -733,10 +733,10 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
 
 function enterPussyImage(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).ARGS[1] = ((s as any).pcs_piercings ?? 0)?.['pussy'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).pcs_piercings ?? 0)?.['pussy'];
   }
   if (((s as any).locArgs?.[1] ?? 0) < 0) {
-    (s as any).ARGS[1] = -((s as any).ARGS ?? 0)[1];
+    ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
   scene.build();

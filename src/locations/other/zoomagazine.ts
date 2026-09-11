@@ -47,13 +47,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'old_town_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'matryona_mansion') {
         (s as any).minut = ((s as any).minut ?? 0) + 10;
-        (s as any).rex['owned'] = 1;
+        ((s as any).rex ?? {})['owned'] = 1;
         qspCall(s, 'money', 'pay', 3000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/dog.jpg');
         scene.text('<center><b>You bought a dog.</b></center>');
-        (s as any).rex['name'] = 0;
+        ((s as any).rex ?? {})['name'] = 0;
         if (((s as any).rex ?? 0)?.['name'] === '') {
-          (s as any).rex['name'] = 'Rex';
+          ((s as any).rex ?? {})['name'] = 'Rex';
         }
       } else {
         scene.text('You need to have your own place before you can buy a dog.');
@@ -74,13 +74,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'old_town_apartment') {
         (s as any).minut = ((s as any).minut ?? 0) + 10;
-        (s as any).ParrotQW['Owned1'] = 1;
+        ((s as any).ParrotQW ?? {})['Owned1'] = 1;
         qspCall(s, 'money', 'pay', 3000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/parrot.jpg');
         scene.text('<center><b>You bought a parrot.</b></center>');
-        (s as any).ParrotQW['Name1'] = 0;
+        ((s as any).ParrotQW ?? {})['Name1'] = 0;
         if (((s as any).ParrotQW ?? 0)?.['Name1'] === '') {
-          (s as any).ParrotQW['Name1'] = 'Polly';
+          ((s as any).ParrotQW ?? {})['Name1'] = 'Polly';
         }
       } else {
         scene.text('You need to have your own place before you can buy a parrot.');
@@ -100,15 +100,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
-      (s as any).ParrotQW['Owned2'] = ((s as any).ParrotQW['Owned2'] ?? 0) + (1);
-      (s as any).ParrotQW['SisKeepParrot'] = 0;
-      (s as any).ParrotQW['BuyDate'] = ((s as any).daystart ?? 0);
+      ((s as any).ParrotQW ?? {})['Owned2'] = (((s as any).ParrotQW ?? {})['Owned2'] ?? 0) + (1);
+      ((s as any).ParrotQW ?? {})['SisKeepParrot'] = 0;
+      ((s as any).ParrotQW ?? {})['BuyDate'] = ((s as any).daystart ?? 0);
       qspCall(s, 'money', 'pay', 3000);
       scene.img('images/locations/city/citycenter/mall/pet shop/pets/parrot.jpg');
       scene.text('<center><b>You bought a parrot.</b></center>');
-      (s as any).ParrotQW['Name2'] = 0;
+      ((s as any).ParrotQW ?? {})['Name2'] = 0;
       if (((s as any).ParrotQW ?? 0)?.['Name2'] === '') {
-        (s as any).ParrotQW['Name2'] = 'Polly';
+        ((s as any).ParrotQW ?? {})['Name2'] = 'Polly';
       }
       scene.actions([
         { label: 'Move away from the counter', goto: ['zoomagazine', 'start'] },
@@ -152,7 +152,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You realize the owner is probably just an old pervert trying to get some, but this is your only chance to save your bird.');
     scene.actions([
       { label: 'Berate him for wasting your time and leave the store', handler: (st: GameState) => {
-    (s as any).ParrotQW['Failed'] = 1;
+    ((s as any).ParrotQW ?? {})['Failed'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 3;
   }, goto: ['city_mall', ''] },
       { label: 'Show your body', handler: (st: GameState) => {
@@ -203,7 +203,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Taking the potion, you place it in your pocket and leave the store.');
     qspCall(s, 'cum_call', 'face', ((s as any).npclastgenerated ?? 0));
     (s as any).guy = ((s as any).guy ?? 0) + (1);
-    (s as any).ParrotQW['Level'] = 2;
+    ((s as any).ParrotQW ?? {})['Level'] = 2;
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the store', handler: (st: GameState) => {

@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).BerezaLust ?? 0) >= 60  &&  ((s as any).BerezaTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     // TODO-QSP: $namgop[2] = 'Bereza'
-    (s as any).namgop_flag[2] = 1;
+    ((s as any).namgop_flag ?? {})[2] = 1;
     (s as any).gopB = 1;
     (s as any).BerezaTut = 2;
   } else {
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VitekLust ?? 0) >= 60  &&  ((s as any).VitekTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     // TODO-QSP: $namgop[3] = 'Konstantin'
-    (s as any).namgop_flag[3] = 1;
+    ((s as any).namgop_flag ?? {})[3] = 1;
     (s as any).gopVi = 1;
     (s as any).VitekTut = 2;
   } else {
@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KotilLust ?? 0) >= 70  &&  ((s as any).KostilTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     // TODO-QSP: $namgop[4] = 'Kostil'
-    (s as any).namgop_flag[4] = 1;
+    ((s as any).namgop_flag ?? {})[4] = 1;
     (s as any).gopK = 1;
     (s as any).KostilTut = 2;
   } else {
@@ -73,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).UdmurtLust ?? 0) >= 80  &&  ((s as any).UdmurtTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     // TODO-QSP: $namgop[5] = 'Udmurt'
-    (s as any).namgop_flag[5] = 1;
+    ((s as any).namgop_flag ?? {})[5] = 1;
     (s as any).gopU = 1;
     (s as any).UdmurtTut = 2;
   } else {
@@ -89,7 +89,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SeriLust ?? 0) >= 90  &&  ((s as any).SeriTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     // TODO-QSP: $namgop[6] = 'Gray'
-    (s as any).namgop_flag[6] = 1;
+    ((s as any).namgop_flag ?? {})[6] = 1;
     (s as any).gopS = 1;
     (s as any).SeriTut = 2;
   } else {
@@ -198,7 +198,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $gopnik += $gopS_msg
   }
   if (((s as any).namgop ?? 0)[6] !== '') {
-    (s as any).namgop[0] = ((s as any).namgop[0] ?? 0) + (qspUntranslated(s, "namgop[6]", { location: "goplust" }));
+    ((s as any).namgop ?? {})[0] = (((s as any).namgop ?? {})[0] ?? 0) + (qspUntranslated(s, "namgop[6]", { location: "goplust" }));
   }
   // TODO-QSP: $namgop[0] += ' strip off your clothes and get out their members'
   scene.build();

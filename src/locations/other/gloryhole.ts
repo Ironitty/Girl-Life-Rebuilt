@@ -152,7 +152,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
 function enterHole(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', Math.floor(Math.random() * 23) + 18);
   if (((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] < 6) {
-    (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 6;
+    ((s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 6;
   }
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -161,7 +161,7 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['gloryhole'] === 0  ||  (Math.floor(Math.random() * 5) + 1) === 5) {
     scene.actions([
       { label: 'Sign the wall', handler: (st: GameState) => {
-    (s as any).stat['know_glory'] = 1;
+    ((s as any).stat ?? {})['know_glory'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/ghstartled.mp4');
     scene.text('While looking through the hole you decided to write something on the wall just above it. While you were focused on writing, you didn\'t notice the dick poking through the hole until the tip of it nearly went into your mouth. Startled you jerk away from the offending penis.');
@@ -391,7 +391,7 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
 function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   (s as any).ghnow = ((s as any).ghnow ?? 0) + (1);
-  (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gloryhole'] = (((s as any).stat ?? {})['gloryhole'] ?? 0) + (1);
   (s as any).temp = Math.floor(Math.random() * 5) + 1;
   scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${Math.floor(Math.random() * 5) + 1}.mp4`);
   // TODO-QSP: dynamic text: You wrap your lips around his dick and take his <<npc_dick[$npclastgenerated]>>c...

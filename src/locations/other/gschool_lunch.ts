@@ -186,7 +186,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
         scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'events'] }]);
       }
       if (((s as any).soniaQW ?? 0)?.['slut'] === 2) {
-        (s as any).soniaQW['slut'] = 3;
+        ((s as any).soniaQW ?? {})['slut'] = 3;
         scene.text('During break, you\'re wandering through the school hallways killing time when you notice Sonia and Vitek talking about something. Sonia looks like she\'s about to cry, but eventually she gives a quiet nod as Vitek whispers something in her ear.');
       }
       scene.actions([
@@ -206,7 +206,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
         scene.actions([{ label: 'Continue', goto: ['gschool_events', 'break_events'] }]);
       }
       if (((s as any).soniaQW ?? 0)?.['slut'] === 2) {
-        (s as any).soniaQW['slut'] = 3;
+        ((s as any).soniaQW ?? {})['slut'] = 3;
         scene.text('During break, you\'re wandering through the school hallways killing time when you notice Sonia and Vitek talking about something. Sonia looks like she\'s about to cry, but eventually she gives a quiet nod as Vitek whispers something in her ear.');
       }
       scene.actions([
@@ -348,7 +348,7 @@ function enterMarcusEvent(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Help him out', handler: (st: GameState) => {
-    (s as any).npc_had_sex['A146'] = 1;
+    ((s as any).npc_had_sex ?? {})['A146'] = 1;
     qspCall(s, 'boyStat', 'A146');
     scene.img('images/characters/pavlovsk/school/boy/marcus/sex/school/marcl.jpg');
     // TODO-QSP: dynamic text: You purse your lips in thought before grabbing him by the hand. When no one is l...
@@ -422,12 +422,12 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Eat Katja out', handler: (st: GameState) => {
-    (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
     if (((s as any).katjaQW ?? 0)?.['school_sex'] === 0) {
-      (s as any).katjaQW['school_sex'] = 1;
+      ((s as any).katjaQW ?? {})['school_sex'] = 1;
     }
-    (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
-    (s as any).katjaQW['horny'] = 0;
+    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (1);
+    ((s as any).katjaQW ?? {})['horny'] = 0;
     qspCall(s, 'npcStat', 'A14');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/lesbian.jpg');
@@ -472,7 +472,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Go with it', handler: (st: GameState) => {
-    (s as any).anushkaQW['lunch'] = 2;
+    ((s as any).anushkaQW ?? {})['lunch'] = 2;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 2);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     scene.img('images/characters/pavlovsk/school/girl/anushka/makeout.mp4');
@@ -499,7 +499,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
             { label: 'Not today [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You think about it for a second, but decide that you have other things you need to do, so you shake your head. "Sorry Nush, but I\'ve got some stuff I need to do. Maybe some other time?"');
     scene.text('She just gives a little shrug. "Whatever," she quips before turning and walking off, leaving you wondering if you made the right decision.');
@@ -539,7 +539,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck Vitek\'s dick', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A9');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'end');

@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('As you approach the door, you hear a faint rustling behind you. You turn and see Gustav. He walks up to you and says, "This is Ilyushkin\'s apartment. Take this camera and film. Now we\'ll get him."');
       scene.actions([
         { label: 'Come on we\'ll get this monster', handler: (st: GameState) => {
-    (s as any).BurgerQW['IlyQWTatianaHelp'] = 0;
+    ((s as any).BurgerQW ?? {})['IlyQWTatianaHelp'] = 0;
     (s as any).poverKAR = 2;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
@@ -130,7 +130,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).TatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/aptmanagers/sex/threesome2.jpg');
     scene.text('Kneeling beside Tatiana, you happily share Ilyushkin\'s cock between you, one sucking his cock while the other tongues his balls, then changing positions, kissing each other in between.');
@@ -169,7 +169,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Interrogate Ilyushkin', handler: (st: GameState) => {
     (s as any).softKAR = 10;
-    (s as any).BurgerQW['IlyQWEvidence'] = 1;
+    ((s as any).BurgerQW ?? {})['IlyQWEvidence'] = 1;
     qspCall(s, 'exp_gain', 'photoskl', 2);
     (s as any).cumface = 0;
     qspCall(s, 'stat', '');
@@ -283,7 +283,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).TatianaSex = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/aptmanagers/sex/threesome2.jpg');
     scene.text('Kneeling beside Tanya, you happily share Ilyushkin\'s cock between you, one sucking his cock while the other tongues his balls, then changing positions, kissing each other in between.');
@@ -323,7 +323,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Interrogate Ilyushkin', handler: (st: GameState) => {
     (s as any).softKAR = 10;
-    (s as any).BurgerQW['IlyQWEvidence'] = 1;
+    ((s as any).BurgerQW ?? {})['IlyQWEvidence'] = 1;
     (s as any).cumface = 0;
     qspCall(s, 'stat', '');
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');

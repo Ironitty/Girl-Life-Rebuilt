@@ -14,19 +14,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).color_thresholds ?? 0) !== '') {
     (s as any).color_thr_pos = qspUntranslated(s, "instr(color_thr_work, ',')", { location: "progressbar" });
-    (s as any).color_thr[0] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
+    ((s as any).color_thr ?? {})[0] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
     (s as any).color_thr_pos = qspUntranslated(s, "instr(color_thr_work, ',')", { location: "progressbar" });
-    (s as any).color_thr[1] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
+    ((s as any).color_thr ?? {})[1] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
     (s as any).color_thr_pos = qspUntranslated(s, "instr(color_thr_work, ',')", { location: "progressbar" });
-    (s as any).color_thr[2] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
-    (s as any).color_thr[3] = qspUntranslated(s, "val(color_thr_work)", { location: "progressbar" });
+    ((s as any).color_thr ?? {})[2] = parseFloat(((((s as any).color_thr_work ?? 0)).slice((1)-1, ((1)-1)+(((s as any).color_thr_pos ?? 0) - 1))));
+    ((s as any).color_thr ?? {})[3] = qspUntranslated(s, "val(color_thr_work)", { location: "progressbar" });
     // TODO-QSP: killvar 'color_thr_work'
     // TODO-QSP: killvar 'color_thr_pos'
   } else {
-    (s as any).color_thr[0] = 15;
-    (s as any).color_thr[1] = 35;
-    (s as any).color_thr[2] = 65;
-    (s as any).color_thr[3] = 85;
+    ((s as any).color_thr ?? {})[0] = 15;
+    ((s as any).color_thr ?? {})[1] = 35;
+    ((s as any).color_thr ?? {})[2] = 65;
+    ((s as any).color_thr ?? {})[3] = 85;
   }
   if (((s as any).color_gradient ?? 0) === 'positive') {
     if (((s as any).color_value ?? 0) < ((s as any).color_thr ?? 0)[0]) {
@@ -86,11 +86,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: $color_stop_hex[2] = $theme_hex['neutral']
             // TODO-QSP: $color_stop_hex[3] = $theme_hex['pos']
             // TODO-QSP: $color_stop_hex[4] = $theme_hex['v_pos']
-            (s as any).color_stop_at[0] = 0;
-            (s as any).color_stop_at[1] = ((s as any).color_thr ?? 0)[0] + (((s as any).color_thr ?? 0)[1] - ((s as any).color_thr ?? 0)[0]) / 2;
-            (s as any).color_stop_at[2] = ((s as any).color_thr ?? 0)[1] + (((s as any).color_thr ?? 0)[2] - ((s as any).color_thr ?? 0)[1]) / 2;
-            (s as any).color_stop_at[3] = ((s as any).color_thr ?? 0)[2] + (((s as any).color_thr ?? 0)[3] - ((s as any).color_thr ?? 0)[2]) / 2;
-            (s as any).color_stop_at[4] = 100;
+            ((s as any).color_stop_at ?? {})[0] = 0;
+            ((s as any).color_stop_at ?? {})[1] = ((s as any).color_thr ?? 0)[0] + (((s as any).color_thr ?? 0)[1] - ((s as any).color_thr ?? 0)[0]) / 2;
+            ((s as any).color_stop_at ?? {})[2] = ((s as any).color_thr ?? 0)[1] + (((s as any).color_thr ?? 0)[2] - ((s as any).color_thr ?? 0)[1]) / 2;
+            ((s as any).color_stop_at ?? {})[3] = ((s as any).color_thr ?? 0)[2] + (((s as any).color_thr ?? 0)[3] - ((s as any).color_thr ?? 0)[2]) / 2;
+            ((s as any).color_stop_at ?? {})[4] = 100;
             if (((s as any).color_gradient ?? 0) === 'smooth_negative') {
               // TODO-QSP: $color_stop_hex[0] = $theme_hex['v_pos']
               // TODO-QSP: $color_stop_hex[1] = $theme_hex['pos']

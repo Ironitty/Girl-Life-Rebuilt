@@ -41,7 +41,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Beat it!', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A189'] > 25) {
-      (s as any).npc_rel['A189'] = 25;
+      ((s as any).npc_rel ?? {})['A189'] = 25;
     }
     (s as any).NikoLuv = ((s as any).NikoLuv ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -93,7 +93,7 @@ function enterLunchIntro(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Beat it!', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A189'] > 25) {
-      (s as any).npc_rel['A189'] = 25;
+      ((s as any).npc_rel ?? {})['A189'] = 25;
     }
     (s as any).NikoLuv = ((s as any).NikoLuv ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;

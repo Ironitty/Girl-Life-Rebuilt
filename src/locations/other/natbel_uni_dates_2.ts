@@ -30,7 +30,7 @@ function enterSetAct(s: GameState, scene: SceneBuilder): void {
     if (((s as any).natbelQW ?? 0)?.['uni_dates_sonia_event'] === 0) {
       scene.actions([
         { label: 'Search for Natasha to chat with her about the fashion blog', handler: (st: GameState) => {
-    (s as any).natbelQW['uni_dates_sonia_event'] = 1;
+    ((s as any).natbelQW ?? {})['uni_dates_sonia_event'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     scene.img('images/locations/city/island/university/dorm/dorm_room/room.jpg');
     scene.text('You have an idea about using the fashion blog you know Natasha works on so you try to call her but get no answer.');
@@ -212,7 +212,7 @@ function enterDiscussRelationshipStatus(s: GameState, scene: SceneBuilder): void
     scene.text('"OK <i>girlfriend</i> I guess I\'d better get going and leave you to your homework." With a parting kiss you exit her room.');
     scene.actions([
       { label: 'Leave Natasha\'s room', handler: (st: GameState) => {
-    (s as any).natbelQW['designs_unlock_day'] = ((s as any).daystart ?? 0);
+    ((s as any).natbelQW ?? {})['designs_unlock_day'] = ((s as any).daystart ?? 0);
   }, goto: ['uni_dorm', 'ninth_floor'] },
     ]);
   } },
@@ -226,7 +226,7 @@ function enterDiscussRelationshipStatus(s: GameState, scene: SceneBuilder): void
 
 function enterDesignsChat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).natbelQW['designs_chat_done'] = 1;
+  ((s as any).natbelQW ?? {})['designs_chat_done'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat1.jpg');
   scene.text('You spot Natasha sitting alone by the window and head over.');
@@ -419,7 +419,7 @@ function enterVisitAphrodite(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Discuss with Natasha', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).natbelQW['designs_aphrodite_done'] = 1;
+    ((s as any).natbelQW ?? {})['designs_aphrodite_done'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/uni/uninat32.jpg');
     scene.text('You take the metro back and go to the lounge where you spot Natasha relaxing on a settee.');
@@ -460,7 +460,7 @@ function enterVisitTailor(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Show him the designs', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).natbelQW['tailor_visit_day'] = ((s as any).daystart ?? 0);
+    ((s as any).natbelQW ?? {})['tailor_visit_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/market/tailor.jpg');
     scene.text('"Yes of course, please show me."');
@@ -495,7 +495,7 @@ function enterCollectTailor(s: GameState, scene: SceneBuilder): void {
   scene.text('"Wow! They\'re great. Thank you so much, Yasha." You can\'t resist giving him a hug.');
   scene.text('You pay the agreed 10,000 rubles as he wraps the dresses and outfits up for you.');
   qspCall(s, 'money', 'pay', 10000);
-  (s as any).natbelQW['tailor_collected'] = 1;
+  ((s as any).natbelQW ?? {})['tailor_collected'] = 1;
   return;
   scene.actions([
     { label: 'Show Natasha the tailor\'s work', handler: (st: GameState) => {
@@ -565,7 +565,7 @@ function enterCollectTailor(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'You get an idea', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).natbelQW['designs_complete'] = 1;
+    ((s as any).natbelQW ?? {})['designs_complete'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha16.jpg');
     scene.text('You turn to Natasha and give her a tender kiss. "Anyway, <i>girlfriend</i>, we\'ve got the outfits and the photos and a few ideas. Julia\'s suggestions are actually pretty good, but we\'ve come this far so are you alright if we place it all in pending for now?"');

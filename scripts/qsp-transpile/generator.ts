@@ -165,7 +165,19 @@ function generateSceneBody(
         const varName = node.var.replace(/^\$/, '');
         const lhs = translateAssignLhs(varName, stateReads);
         const val = translateValue(node.value, stateReads, todos);
-        if (node.op === '=') {
+        const bracketIdx = lhs.indexOf('[');
+        if (bracketIdx !== -1) {
+          const objName = lhs.slice(0, bracketIdx);
+          const rest = lhs.slice(bracketIdx);
+          const guarded = `((s as any).${objName} ?? {})${rest}`;
+          if (node.op === '=') {
+            out.push(`${guarded} = ${val};`);
+          } else if (node.op === '+=') {
+            out.push(`${guarded} = (${guarded} ?? 0) + (${val});`);
+          } else {
+            out.push(`${guarded} = (${guarded} ?? 0) - (${val});`);
+          }
+        } else if (node.op === '=') {
           out.push(`(s as any).${lhs} = ${val};`);
         } else if (node.op === '+=') {
           out.push(`(s as any).${lhs} = ((s as any).${lhs} ?? 0) + (${val});`);

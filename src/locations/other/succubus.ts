@@ -127,7 +127,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['std'] = 1;
+  ((s as any).cheatVars ?? {})['std'] = 1;
   qspCall(s, 'cheatmenu_din', 'std_cure');
   if (((s as any).sucxpsnapshot ?? 0) >= ((s as any).succubxp ?? 0)) {
     (s as any).succhungry = ((s as any).succhungry ?? 0) + (1);
@@ -242,11 +242,11 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).temp_ideal_body_mass = qspFunc(s, 'body', 'CalcOptBodyMass');
     if (((s as any).pcs_mass ?? 0)?.['body'] < ((s as any).temp_ideal_body_mass ?? 0) - 1) {
-      (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) + (2);
+      ((s as any).pcs_mass ?? {})['body'] = (((s as any).pcs_mass ?? {})['body'] ?? 0) + (2);
       (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (10);
     } else {
       if (((s as any).pcs_mass ?? 0)?.['body'] > ((s as any).temp_ideal_body_mass ?? 0) + 1) {
-        (s as any).pcs_mass['body'] = ((s as any).pcs_mass['body'] ?? 0) - (2);
+        ((s as any).pcs_mass ?? {})['body'] = (((s as any).pcs_mass ?? {})['body'] ?? 0) - (2);
         (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (10);
       }
     }
@@ -331,7 +331,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
       scene.text('');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    (s as any).succubusQW['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
+    ((s as any).succubusQW ?? {})['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
     (s as any).i = 0;
     // TODO-QSP: :sucfeeding_loop
     (s as any).i = ((s as any).i ?? 0) + (1);

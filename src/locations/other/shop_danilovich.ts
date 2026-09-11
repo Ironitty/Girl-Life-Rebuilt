@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterBuyRefillBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 1000);
-  (s as any).mc_inventory['refill_bottle'] = 1;
+  ((s as any).mc_inventory ?? {})['refill_bottle'] = 1;
   if (((s as any).intro_custom_shop_return ?? 0) === 1) {
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo'] }]);
   } else {

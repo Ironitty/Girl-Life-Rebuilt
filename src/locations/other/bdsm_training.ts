@@ -7,17 +7,17 @@ import type { SceneBuilder } from '../../core/scene';
 function enterSub(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 1, 'Elektra', 27);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 0) {
-    (s as any).bdsmclub['subtraining'] = 1;
+    ((s as any).bdsmclub ?? {})['subtraining'] = 1;
     scene.actions([{ label: 'Continue', goto: ['bdsm_training', 'sub_1'] }]);
   } else {
     if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 1) {
-      (s as any).bdsmclub['subtraining'] = 2;
+      ((s as any).bdsmclub ?? {})['subtraining'] = 2;
       scene.actions([{ label: 'Continue', goto: ['bdsm_training', 'sub_2'] }]);
     } else {
       if (((s as any).bdsmclub ?? 0)?.['subtraining'] === 2) {
-        (s as any).bdsmclub['subtraining'] = 3;
+        ((s as any).bdsmclub ?? {})['subtraining'] = 3;
         scene.actions([{ label: 'Continue', goto: ['bdsm_training', 'sub_3'] }]);
       }
     }
@@ -26,7 +26,7 @@ function enterSub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub_1(s: GameState, scene: SceneBuilder): void {
-  (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/r2_1.jpg');
@@ -200,7 +200,7 @@ function enterBDSMend(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub_2(s: GameState, scene: SceneBuilder): void {
-  (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
@@ -371,7 +371,7 @@ function enterSub_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSub_3(s: GameState, scene: SceneBuilder): void {
-  (s as any).bdsmclub['training_daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
@@ -489,7 +489,7 @@ function enterSub_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDom(s: GameState, scene: SceneBuilder): void {
-  (s as any).bdsmclub['domtraining'] = 1;
+  ((s as any).bdsmclub ?? {})['domtraining'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/r2_1.jpg');

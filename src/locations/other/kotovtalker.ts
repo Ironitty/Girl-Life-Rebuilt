@@ -195,7 +195,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Accuse him of sleeping around', handler: (st: GameState) => {
-    (s as any).npc_rel[String((s as any).static_num ?? 0)] = 0;
+    ((s as any).npc_rel ?? {})[String((s as any).static_num ?? 0)] = 0;
     (s as any).kotovLoveQW = (-1);
     qspCall(s, 'stat', '');
     scene.text('You started yelling at Vitek that he has fucked other girls. Vitek started yelling at you and suddenly, there is a ringing in your head, your vision is blurry. You find you\'re on the floor, with Vitek standing over you. Your cheek burns with pain, it takes you a few moments to understand what happened, it seems he slapped you, so hard it knocked you off your feet. "Stay away from me you fucking whore, it\'s over between us!"');

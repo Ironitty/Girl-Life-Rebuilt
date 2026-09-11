@@ -74,7 +74,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Lead the cows home (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
+    ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/cow_field.jpg');
@@ -127,8 +127,8 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 5);
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
     }
-    (s as any).grandpaQW['chore_herd_cattle_experience'] = 1;
-    (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    ((s as any).grandpaQW ?? {})['chore_herd_cattle_experience'] = 1;
+    ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/graze_cow\'+rand(1, 4)+\'.jpg');
@@ -149,7 +149,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
           qspCall(s, 'sweat', 'add', 5);
         }
-        (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (1);
+        ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (1);
         qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
         qspCall(s, 'stat', '');
         scene.img('images/locations/gadukino/village/cow_go.jpg');
@@ -195,8 +195,8 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 5);
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
     }
-    (s as any).grandpaQW['chore_herd_cattle_experience'] = 1;
-    (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    ((s as any).grandpaQW ?? {})['chore_herd_cattle_experience'] = 1;
+    ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/graze_cow\'+rand(1, 4)+\'.jpg');
@@ -217,7 +217,7 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'sweat', 'add', 5);
         (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
       }
-      (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
       qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
       qspCall(s, 'stat', '');
       scene.img('images/locations/gadukino/village/cow_go.jpg');
@@ -258,8 +258,8 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
       qspCall(s, 'sweat', 'add', 5);
     }
-    (s as any).grandpaQW['chore_herd_cattle_experience'] = 1;
-    (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    ((s as any).grandpaQW ?? {})['chore_herd_cattle_experience'] = 1;
+    ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/village/graze_cow\'+rand(1, 4)+\'.jpg');
@@ -280,12 +280,12 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
         qspCall(s, 'sweat', 'add', 5);
       }
-      (s as any).grandpaQW['chore_herd_cattle'] = 0;
-      (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) + (2);
+      ((s as any).grandpaQW ?? {})['chore_herd_cattle'] = 0;
+      ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (2);
       qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
       qspCall(s, 'stat', '');
-      (s as any).MiraVars['follower'] = 0;
-      (s as any).MiraVars['follow_time'] = 0;
+      ((s as any).MiraVars ?? {})['follower'] = 0;
+      ((s as any).MiraVars ?? {})['follow_time'] = 0;
       scene.img('images/locations/gadukino/village/cow_go_home.jpg');
       scene.text('As sunset approaches, Grandpa says that it is late and time to drive the herd home. So you hurry, gather the cows, and guide them back towards the village.');
       scene.actions([

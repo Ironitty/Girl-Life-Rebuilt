@@ -102,7 +102,7 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
 
 function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
   (s as any).exhibitionQW = 5;
-  (s as any).exhibitionQW['daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).exhibitionQW ?? {})['daystart'] = ((s as any).daystart ?? 0);
   qspCall(s, 'willpower', 'misc', 'force', 'hard');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
@@ -154,7 +154,7 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKsenyaChat(s: GameState, scene: SceneBuilder): void {
-  (s as any).exhibitionQW['daystart'] = ((s as any).daystart ?? 0);
+  ((s as any).exhibitionQW ?? {})['daystart'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A263', 1);
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');

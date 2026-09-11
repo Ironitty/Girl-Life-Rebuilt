@@ -365,7 +365,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse', goto: ['artem_events', 'finalrefuse'] },
       { label: 'Agree to strip', handler: (st: GameState) => {
-    (s as any).artemQW['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['stripsee'] = (((s as any).artemQW ?? {})['stripsee'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -384,7 +384,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Agree to strip', handler: (st: GameState) => {
-    (s as any).artemQW['stripsee'] = ((s as any).artemQW['stripsee'] ?? 0) + (1);
+    ((s as any).artemQW ?? {})['stripsee'] = (((s as any).artemQW ?? {})['stripsee'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/artem/strip1.jpg');
@@ -446,7 +446,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFinalrefuse(s: GameState, scene: SceneBuilder): void {
-  (s as any).artemQW['artemblok'] = 1;
+  ((s as any).artemQW ?? {})['artemblok'] = 1;
   scene.img('images/characters/pavlovsk/school/boy/artem/talk3.jpg');
   scene.text('You shake your head. "Fine, if that\'s the way you want it to be."');
   scene.text('You get up and grab your stuff before heading for the door. "I never want to see you again!" he says as you head out.');
@@ -495,7 +495,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
-  (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  ((s as any).artemQW ?? {})['dryhump'] = (((s as any).artemQW ?? {})['dryhump'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobc.jpg');
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks, and you can feel him hesitating for a second before he starts squeezing your ass and rubbing it with his hands. After a few minutes of this, he places one of his hands on your shoulder and pushes you forward, bending you over. He then grabs onto you and you feel something hard pressing between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock against your clothes.');
   qspCall(s, 'arousal', 'foreplay', 3);
@@ -520,7 +520,7 @@ function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
-  (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  ((s as any).artemQW ?? {})['dryhump'] = (((s as any).artemQW ?? {})['dryhump'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobp.jpg');
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re wearing only your panties from the waist down. You bend over for him and feel his hard cock pressed against your ass. When you glance back over your shoulder, you see him rubbing his erect cock against your panties.');
   qspCall(s, 'arousal', 'foreplay', 3);
@@ -545,7 +545,7 @@ function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemdryhump2(s: GameState, scene: SceneBuilder): void {
-  (s as any).artemQW['dryhump'] = ((s as any).artemQW['dryhump'] ?? 0) + (1);
+  ((s as any).artemQW ?? {})['dryhump'] = (((s as any).artemQW ?? {})['dryhump'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/assjobn.jpg');
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re naked from the waist down. You bend over for him and feel his hard cock pressed between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock between your ass cheeks as he pushes them together.');
   qspCall(s, 'arousal', 'foreplay', 3);

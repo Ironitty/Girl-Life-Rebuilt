@@ -9,7 +9,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Ermias\'s Dorm Room</b></center>');
   qspCall(s, 'npcStat', 'A243');
-  (s as any).ErmiasQW['first_visit'] = 1;
+  ((s as any).ErmiasQW ?? {})['first_visit'] = 1;
   scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
   scene.text('The room is pretty standard looking other than the numerous posters of naked or scantily dressed white women on the walls. Two beds are over by the windows with a large desk between, while a couch sits against the bottom of one of the beds across from the door.');
   scene.text('"I hope you are comfortable here when we... get down to business..." he grins.');
@@ -133,7 +133,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Missionary style', handler: (st: GameState) => {
-    (s as any).npc_had_sex['A243'] = 1;
+    ((s as any).npc_had_sex ?? {})['A243'] = 1;
     scene.img('images/shared/sex/vag/miss/africanmis1.mp4');
     scene.text('"Will you fuck me missionary style?" you ask.');
     scene.text('He grins before he pulls you to your feet and swiftly has you undressed.');
@@ -497,7 +497,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'Doggystyle', handler: (st: GameState) => {
-    (s as any).npc_had_sex['A243'] = 1;
+    ((s as any).npc_had_sex ?? {})['A243'] = 1;
     scene.img('images/shared/sex/vag/doggy/africandoggy3.mp4');
     scene.text('"Will you fuck me doggystyle?" you ask.');
     scene.text('He grins before he pulls you to your feet and swiftly has you undressed.');
@@ -865,7 +865,7 @@ function enterFirstTimeSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'You want to ride him', handler: (st: GameState) => {
-    (s as any).npc_had_sex['A243'] = 1;
+    ((s as any).npc_had_sex ?? {})['A243'] = 1;
     scene.img('images/shared/sex/vag/cowgirl/africancowgirl3.mp4');
     scene.text('You slyly smile at him. "I want to ride you."');
     scene.text('He grins before he pulls you to your feet and swiftly has you undressed.');
@@ -1797,7 +1797,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 2, 'sub');
     qspCall(s, 'arousal', 'hj', (-2), 'sub');
     qspCall(s, 'pain', '', 2, 'jaw', 'ache');
-    (s as any).ErmiasQW['dorm_bj'] = 1;
+    ((s as any).ErmiasQW ?? {})['dorm_bj'] = 1;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {
@@ -2040,7 +2040,7 @@ function enterThreesome(s: GameState, scene: SceneBuilder): void {
     scene.text('Ermias follows soon after; while some of it lands on your tongue, he plasters your face with spurt after spurt of thick cum, covering you entirely.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    (s as any).ErmiasQW['lebo_threesome'] = 1;
+    ((s as any).ErmiasQW ?? {})['lebo_threesome'] = 1;
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (10);
     (s as any).cumspclnt = 12;
     qspCall(s, 'cum_cleanup', '');
@@ -2368,8 +2368,8 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).agape = 3;
     qspCall(s, 'arousal', 'end');
-    (s as any).ErmiasQW['filmed'] = 1;
-    (s as any).ErmiasQW['filmed_anal'] = 1;
+    ((s as any).ErmiasQW ?? {})['filmed'] = 1;
+    ((s as any).ErmiasQW ?? {})['filmed_anal'] = 1;
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
@@ -2498,7 +2498,7 @@ function enterFilmedSex(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 12;
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'pain', '', 3, 'cervix', 'ache');
-    (s as any).ErmiasQW['filmed'] = 1;
+    ((s as any).ErmiasQW ?? {})['filmed'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You sit on your knees panting as thick blobs of cum drip from your chin and land on your breasts.');
@@ -2610,7 +2610,7 @@ function enterThroatFuck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('You feel a slight ache in your throat and jaw as you sit on your knees in front of Ermias, panting for breath with tears and snot running down your face and drool dripping from your chin as his equally drool covered cock hangs in front of you.');
     if (((s as any).ErmiasQW ?? 0)?.['throatfuck'] === 0) {
-      (s as any).ErmiasQW['throatfuck'] = 1;
+      ((s as any).ErmiasQW ?? {})['throatfuck'] = 1;
       scene.text('Ermias sighs loudly. "Oh god, that felt even better than I thought it would! I cannot wait to do it again, bunny!"');
       scene.text('You happily grin up at him as you wipe your chin. "I can\'t wait!"');
       scene.text('He smiles before offering you some wipes to clean your face. Once you\'re dressed, he walks you to the door and sends you on your way with a firm pat on the ass.');

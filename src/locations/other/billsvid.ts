@@ -121,7 +121,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
-    (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/mall/pool/sex/2.jpg');
     // TODO-QSP: dynamic text: You turn around and kiss her, in response <<$telsob>> quickly takes off her clot...
     scene.text(`You turn around and kiss her, in response ${((s as any).telsob ?? 0)} quickly takes off her clothes, helps you strip and throws you against the table, you jump on it, and continue to kiss.`);

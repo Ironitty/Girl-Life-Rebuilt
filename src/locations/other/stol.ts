@@ -47,8 +47,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cigIN ?? 0) <= 0  ||  ((s as any).cigIN ?? 0) > ((s as any).mc_inventory ?? 0)?.['cigarettes']) {
       scene.text('You can\'t put this amount into the drawer.');
     } else {
-      (s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] = ((s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] ?? 0) + (((s as any).cigIN ?? 0));
-      (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) - (((s as any).cigIN ?? 0));
+      ((s as any).stolcigarettes ?? {})['' + String((s as any).$loc || '') + ''] = (((s as any).stolcigarettes ?? {})['' + String((s as any).$loc || '') + ''] ?? 0) + (((s as any).cigIN ?? 0));
+      ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) - (((s as any).cigIN ?? 0));
     }
   }, goto: ['stol', 'start'] },
     ]);
@@ -60,8 +60,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cigOUT ?? 0) <= 0  ||  ((s as any).cigOUT ?? 0) > ((s as any).stolcigarettes ?? 0)[((s as any).loc ?? 0)]) {
       scene.text('You can\'t take this amount from your drawer.');
     } else {
-      (s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] = ((s as any).stolcigarettes['' + String((s as any).$loc || '') + ''] ?? 0) - (((s as any).cigOUT ?? 0));
-      (s as any).mc_inventory['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) + (((s as any).cigOUT ?? 0));
+      ((s as any).stolcigarettes ?? {})['' + String((s as any).$loc || '') + ''] = (((s as any).stolcigarettes ?? {})['' + String((s as any).$loc || '') + ''] ?? 0) - (((s as any).cigOUT ?? 0));
+      ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) + (((s as any).cigOUT ?? 0));
     }
   }, goto: ['stol', 'start'] },
     ]);

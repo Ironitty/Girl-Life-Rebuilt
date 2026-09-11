@@ -175,7 +175,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPhotoShoot(s: GameState, scene: SceneBuilder): void {
-  (s as any).anushkaQW['photoshoot'] = ((s as any).anushkaQW['photoshoot'] ?? 0) + (1);
+  ((s as any).anushkaQW ?? {})['photoshoot'] = (((s as any).anushkaQW ?? {})['photoshoot'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + (65 - ((s as any).minut ?? 0));
   qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'npc_relationship', 'modify', 'A144', 'like', 1, 'coffee_hole_photo');
@@ -301,7 +301,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
     scene.text('How he says it leaves no doubt about what he means by fun. Even moving to a new city won\'t let get away from your reputation as a slut. He tells you where they live before he heads outside and walks away.');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A149'] >= 60) {
-      (s as any).lazarQW['city_invite'] = 1;
+      ((s as any).lazarQW ?? {})['city_invite'] = 1;
       if (((s as any).pcs_hotcat ?? 0) >= 6) {
         scene.text('You notice Lazar sitting at a table. "What\'s up, hottie? You enjoying the city?" he asks as you approach. You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink. "Sorry, but I need to go. Marcus, Andrey and I are renting a place together. You should really come by sometime. We would love to have you over." He tells you where they live before he heads outside and walks away.');
       } else {
@@ -392,7 +392,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
   scene.img('images/characters/shared/headshots_main/big146.jpg');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 250) {
-    (s as any).marcusQW['city_invite'] = 1;
+    ((s as any).marcusQW ?? {})['city_invite'] = 1;
     scene.text('You notice Marcus sitting at a table.');
     scene.text('"Hey you," he smiles as you approach.');
     scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink.');
@@ -400,7 +400,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
     scene.text('How he says it leaves no doubt about what he means by fun. Seems that even moving to a new city can\'t get you away from your reputation as a slut. He tells you where they live before he heads outside and walks away.');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A146'] >= 50) {
-      (s as any).marcusQW['city_invite'] = 1;
+      ((s as any).marcusQW ?? {})['city_invite'] = 1;
       scene.text('You notice Marcus sitting at a table, who smiles as you approach.');
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, how have you been?"
       scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, how have you been?"`);
@@ -545,8 +545,8 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
 
 function enterDjibril(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).DjibrilQW['invite'] = 1;
-  (s as any).DjibrilQW['meet'] = 1;
+  ((s as any).DjibrilQW ?? {})['invite'] = 1;
+  ((s as any).DjibrilQW ?? {})['meet'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like', 1, 'coffee_hole', 1, 'coffee_hole');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
@@ -565,7 +565,7 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
       scene.text('He tells you which building it is and which room is his before he heads outside and walks away.');
     } else {
       if (((s as any).pcs_hotcat ?? 0) >= 5) {
-        (s as any).DjibrilQW['meet'] = 1;
+        ((s as any).DjibrilQW ?? {})['meet'] = 1;
         scene.text('As you approach him, the young African man sitting at the table introduces himself. "I am Djibril Maina. What\'s your name?"');
         // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people just ca...
         scene.text(`You smile at him. "${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, but most people just call me ${((s as any).pcs_nickname ?? 0)}."`);
@@ -596,7 +596,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['city_coffee_hole', 'inner'] },
       ]);
     } else {
-      (s as any).DjibrilQW['meet'] = 1;
+      ((s as any).DjibrilQW ?? {})['meet'] = 1;
       scene.text('A few young African men sitting at another table see you and start to talk among themselves. From the constant glances you receive, you\'re sure they\'re talking about you.');
       scene.text('Eventually, they get up and come over to your table before one of them introduces himself. "I am Djibril."');
       scene.text('As he speaks, he gestures to each of the others as he says their names; some smile, or wave, while others look at you with that hungry sexual look. "This is my dorm roommate, Farai, and the rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna and Arendse. What\'s your name?"');
@@ -616,7 +616,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A244', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A245', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A246', 'like');
-    (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/walktodorm.jpg');
     scene.text('You smile at them. "Sure that sounds like fun."');
@@ -645,7 +645,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Decline', handler: (st: GameState) => {
-    (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');
@@ -665,7 +665,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).npc_had_sex ?? 0)?.['A82'] === 0  &&  ((s as any).DjibrilQW ?? 0)?.['african_gangbang'] === 0) {
-      (s as any).DjibrilQW['invite'] = 1;
+      ((s as any).DjibrilQW ?? {})['invite'] = 1;
       if (((s as any).pcs_hotcat ?? 0) < 5) {
         scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
         scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start to talk amongst themselves.');
@@ -776,7 +776,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Accept', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
@@ -813,7 +813,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Decline', handler: (st: GameState) => {
-    (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/reply.jpg');
     scene.text('You shake your head as you get up from the table. "No thank you."');
@@ -834,7 +834,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Accept', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
@@ -869,7 +869,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Decline', handler: (st: GameState) => {
-    (s as any).DjibrilQW['invite'] = 1;
+    ((s as any).DjibrilQW ?? {})['invite'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A82', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A242', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A243', 'dislike');

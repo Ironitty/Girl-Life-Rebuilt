@@ -376,7 +376,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).nichChoreState ?? 0)[0] === -1) {
                   scene.text('<font color = green>I noticed that you applied a special polish in the hallway today. I like this show of extra effort.</font>');
                   (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (3);
-                  (s as any).nichChoreState[0] = 0;
+                  ((s as any).nichChoreState ?? {})[0] = 0;
                 } else {
                   if (((s as any).nichChoreState ?? 0)[0] === 0) {
                     if ((Math.floor(Math.random() * 10) + 1) <= 2) {
@@ -403,7 +403,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).nichChoreState ?? 0)[1] === -1) {
                   scene.text('<font color = green>I took a look at the guest cloakroom. You did an exceptional job there.</font>');
                   (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (3);
-                  (s as any).nichChoreState[1] = 0;
+                  ((s as any).nichChoreState ?? {})[1] = 0;
                 } else {
                   if (((s as any).nichChoreState ?? 0)[1] === 0) {
                   } else {
@@ -508,7 +508,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).nichChoreState ?? 0)[6] === -1) {
                   scene.text('<font color = green>You did an exceptional job cleaning the master bathroom. I really like the smell there. And you seem to have a talend of folding towels.</font>');
                   (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (3);
-                  (s as any).nichChoreState[6] = 0;
+                  ((s as any).nichChoreState ?? {})[6] = 0;
                 } else {
                   if (((s as any).nichChoreState ?? 0)[6] === 0) {
                     if ((Math.floor(Math.random() * 10) + 1) <= 3) {
@@ -552,7 +552,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).nichChoreState ?? 0)[8] === -1) {
                   scene.text('<font color = green>You did an exceptional job cleaning the living room.</font>');
                   (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (3);
-                  (s as any).nichChoreState[8] = 0;
+                  ((s as any).nichChoreState ?? {})[8] = 0;
                 } else {
                   if (((s as any).nichChoreState ?? 0)[8] === 0) {
                     if ((Math.floor(Math.random() * 10) + 1) <= 3) {
@@ -577,7 +577,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).nichChoreState ?? 0)[9] === -1) {
                   scene.text('<font color = green>I really like what you did with the silverware today.</font>');
                   (s as any).nichTempEval = ((s as any).nichTempEval ?? 0) + (3);
-                  (s as any).nichChoreState[9] = 0;
+                  ((s as any).nichChoreState ?? {})[9] = 0;
                 } else {
                   if (((s as any).nichChoreState ?? 0)[9] === 0) {
                     if ((Math.floor(Math.random() * 10) + 1) <= 1) {

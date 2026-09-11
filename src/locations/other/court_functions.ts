@@ -10,8 +10,8 @@ function enterGetTotalArrests(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArrestFor(s: GameState, scene: SceneBuilder): void {
-  (s as any).policeQW['' + String((s as any).$ARGS[1] || '') + '_booked'] = ((s as any).policeQW['' + String((s as any).$ARGS[1] || '') + '_booked'] ?? 0) + (1);
-  (s as any).policeQW['crime_flag'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).policeQW ?? {})['' + String((s as any).$ARGS[1] || '') + '_booked'] = (((s as any).policeQW ?? {})['' + String((s as any).$ARGS[1] || '') + '_booked'] ?? 0) + (1);
+  ((s as any).policeQW ?? {})['crime_flag'] = ((s as any).locArgs?.[1] ?? 0);
   scene.build();
 }
 
@@ -20,9 +20,9 @@ function enterAddFine(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_tot_missed = Math.max(0, ((s as any).policeQW ?? {})?.['tot_court_dates_missed'] + ((s as any).policeQW ?? {})?.['tot_fines_deadlines_missed']);
   (s as any).temp_current_missed = Math.max(0, ((s as any).policeQW ?? {})?.['missed_fine_deadlines'] + ((s as any).policeQW ?? {})?.['missed_court_dates'] - 1);
   if (((s as any).policeQW ?? 0)?.['fine_deadline'] === 0) {
-    (s as any).policeQW['fine_deadline'] = ((s as any).daystart ?? 0) + 28 - Math.min(14, ((s as any).temp_tot_missed ?? 0) / 4);
+    ((s as any).policeQW ?? {})['fine_deadline'] = ((s as any).daystart ?? 0) + 28 - Math.min(14, ((s as any).temp_tot_missed ?? 0) / 4);
   } else {
-    (s as any).policeQW['fine_deadline'] = Math.max(((s as any).daystart ?? 0), ((s as any).policeQW ?? 0)?.['fine_deadline']) + 14 - Math.min(7, 2 * ((s as any).temp_current_missed ?? 0) + ((s as any).temp_tot_missed ?? 0) / 4);
+    ((s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).daystart ?? 0), ((s as any).policeQW ?? 0)?.['fine_deadline']) + 14 - Math.min(7, 2 * ((s as any).temp_current_missed ?? 0) + ((s as any).temp_tot_missed ?? 0) / 4);
   }
   qspCall(s, 'calendar', 'add', 'fine_deadline');
   scene.build();

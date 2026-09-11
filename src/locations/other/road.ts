@@ -101,7 +101,7 @@ function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
     if (((s as any).prostitute ?? 0)?.['active'] === 1) {
       scene.text('Which you are, in all honesty, but it still caught you by surprise. However, this means that maybe you could work along the highway. You definitely saw some girls working but mostly near the entrance to Pavlovsk or St. Petersburg.');
       scene.text('You put the idea aside for now, but maybe you should check it at some point.');
-      (s as any).prostitute['highway_idea'] = 2;
+      ((s as any).prostitute ?? {})['highway_idea'] = 2;
       qspCall(s, 'prostitution_functions', 'set_highway_prostitute');
     } else {
       if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
@@ -109,7 +109,7 @@ function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You are still a bit shaken and wonder why did you even ask him to give you a ride, but then shrug it off. He thought you were a hooker. As if…');
       }
-      (s as any).prostitute['highway_idea'] = 2;
+      ((s as any).prostitute ?? {})['highway_idea'] = 2;
       qspCall(s, 'prostitution_functions', 'set_highway_prostitute');
     }
   }
@@ -155,7 +155,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('The man laughs and shifts a bit in his seat. He says, "You\'re a grown-up girl with a nice body! Surely you can think of something?"');
     scene.actions([
       { label: 'Offer a blowjob', handler: (st: GameState) => {
-    (s as any).drive_sex[1] = 1;
+    ((s as any).drive_sex ?? {})[1] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a blowjob be okay?"');
     scene.text('The guy grins greedily and says, "Excellent, I knew we would find a way to help each other out! Get in."');
     scene.actions([
@@ -163,7 +163,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Offer a handjob', handler: (st: GameState) => {
-    (s as any).drive_sex[2] = 1;
+    ((s as any).drive_sex ?? {})[2] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a handjob be okay?"');
     scene.text('The guy gives you a slightly disappointed look and frowns, "What? Only a handjob?"');
     scene.text('You really don\'t want to go further than that! Your cheeks turn a deep red and you begin to stumble, "I\'m sorry. I don\'t normally do this…"');
@@ -218,7 +218,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
       scene.text('The man laughs and shifts a bit in his seat. He says, "You\'re a grown-up girl with a nice body! Surely you can think of something?"');
       scene.actions([
         { label: 'Offer a blowjob', handler: (st: GameState) => {
-    (s as any).drive_sex[1] = 1;
+    ((s as any).drive_sex ?? {})[1] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a blowjob be okay?"');
     scene.text('The guy grins greedily and says, "Excellent, I knew we would find a way to help each other out! Get in."');
     scene.actions([
@@ -226,7 +226,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Offer a handjob', handler: (st: GameState) => {
-    (s as any).drive_sex[2] = 1;
+    ((s as any).drive_sex ?? {})[2] = 1;
     scene.text('You bite your lip for a second, quickly going through your options. Then you say, "I really do need this ride, sir! Would a handjob be okay?"');
     scene.text('The guy gives you a slightly disappointed look and says, "What? Only a handjob?"');
     scene.text('You really don\'t want to go further than that! Your cheeks turn a deep red and you begin to stumble, "I\'m sorry. I don\'t normally do this…"');
@@ -258,7 +258,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Offer him a blowjob instead', handler: (st: GameState) => {
-    (s as any).drive_sex[1] = 1;
+    ((s as any).drive_sex ?? {})[1] = 1;
     scene.text('You bite your lip, as if you are ashamed of what you\'re about to say next. In a weak voice, you offer, "I can\'t pay you money, sir. But… I could give you a blowjob? Would that be okay?"');
     scene.text('You lick your lips seductively and offer him a weak smile, hoping that maybe he\'ll feel bad for you and just take you with him for free.');
     scene.text('The man grins from ear to ear, and says, "You know what, girl? I was kinda hoping you\'d say that. Get in."');
@@ -278,8 +278,8 @@ function enterAutostopD(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).truck_drive = 0;
   (s as any).bandit_drive = 0;
-  (s as any).drive_sex[1] = 0;
-  (s as any).drive_sex[2] = 0;
+  ((s as any).drive_sex ?? {})[1] = 0;
+  ((s as any).drive_sex ?? {})[2] = 0;
   (s as any).textrand = Math.floor(Math.random() * 5) + 1;
   if (((s as any).textrand ?? 0) === 1) {
   }
@@ -415,7 +415,7 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
   if (((s as any).textrand ?? 0) === 5) {
   }
   if (((s as any).prostitute ?? 0)?.['road'] === 0) {
-    (s as any).prostitute['highway_idea'] = 1;
+    ((s as any).prostitute ?? {})['highway_idea'] = 1;
   }
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
   (s as any).picrand = Math.floor(Math.random() * 3) + 2;

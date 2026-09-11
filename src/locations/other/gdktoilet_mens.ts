@@ -302,7 +302,7 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (15);
-    (s as any).npc_had_sex['A1'] = 1;
+    ((s as any).npc_had_sex ?? {})['A1'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'cum_call', 'anus', 'A1', 1);
     qspCall(s, 'stat', '');
@@ -430,7 +430,7 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
     scene.text('You grab some toilet paper and clean off your now wet clit. You think to yourself, "I hope nobody heard that."');
     if ((Math.floor(Math.random() * 100) + 1) >= 75) {
       qspCall(s, 'npcgeneratec', '', 0, 'guy from the men\'s bathroom', Math.floor(Math.random() * 27) + 19);
-      (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = Math.floor(Math.random() * 15) + 10;
+      ((s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = Math.floor(Math.random() * 15) + 10;
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You look up and notice the stall door opens. Right then a man in an orange jumps...
       scene.text(`You look up and notice the stall door opens. Right then a man in an orange jumpsuit walks in. He tells you, "Do you know where you are?" Unable to respond after your intense orgasm the man unzips his jumpsuit and takes out his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]}cm dick and places it near your mouth.`);
@@ -538,7 +538,7 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
 function enterMensglory(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'guy from the men\'s bathroom', Math.floor(Math.random() * 27) + 19);
   // TODO-QSP: $npc_thdick[$npclastgenerated] = 'massive'
-  (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 20;
+  ((s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 20;
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/1kissing.jpg');

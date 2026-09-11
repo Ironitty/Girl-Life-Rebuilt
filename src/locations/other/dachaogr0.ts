@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 3000, 'cash');
-      (s as any).exhib['status'] = 16;
+      ((s as any).exhib ?? {})['status'] = 16;
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: You paid the workers ' + $func('money', 'string_price', 3000) + '.
       scene.text('You paid the workers \' + $func(\'money\', \'string_price\', 3000) + \'.');

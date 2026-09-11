@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
-  (s as any).spouseVars['sexday'] = ((s as any).spouseVars['sexday'] ?? 0) + (1);
+  ((s as any).spouseVars ?? {})['sexday'] = (((s as any).spouseVars ?? {})['sexday'] ?? 0) + (1);
   (s as any).suprdolg = ((s as any).suprdolg ?? 0) + (1);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -77,7 +77,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHusbDebtEvent(s: GameState, scene: SceneBuilder): void {
-  (s as any).spouseVars['husb_debt_event'] = 1;
+  ((s as any).spouseVars ?? {})['husb_debt_event'] = 1;
   scene.img('images/characters/city/husband/sex/d0.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> is about to enter you as he gets pulled back and you spot two other...
   scene.text(`${((s as any).npcdesc ?? 0)} is about to enter you as he gets pulled back and you spot two other men in the room. One is standing by the bed holding your husband's hair, the second one is holding a gun in his hand.`);
@@ -115,7 +115,7 @@ function enterHusbDebtEvent(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 100000);
-      (s as any).spouseVars['husb_debt_event'] = 2;
+      ((s as any).spouseVars ?? {})['husb_debt_event'] = 2;
       scene.text('"I have the money, I will pay his debt" you say.');
       scene.text('"Good for you, but there is still the matter of our expenses. And we have a different payment in mind." Says the grinning thug.');
       scene.actions([
@@ -188,7 +188,7 @@ function enterDolgend(s: GameState, scene: SceneBuilder): void {
   scene.text('When it\'s over, they take you to the bathroom and tell you to clean yourself up as they go back into the bedroom.');
   if (((s as any).pcs_apprnc ?? 0) >= 60) {
     if (((s as any).spouseVars ?? 0)?.['husb_debt_event'] === 1) {
-      (s as any).spouseVars['husb_debt_event'] = 2;
+      ((s as any).spouseVars ?? {})['husb_debt_event'] = 2;
       qspCall(s, 'money', 'debt_add', 'workDolg', 100000);
       scene.text('"What a beauty. You will come with us and we\'ll get your husband\'s debt sorted out." Grins one of the men.');
       return;
@@ -207,7 +207,7 @@ function enterDolgend(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).spouseVars ?? 0)?.['husb_debt_event'] === 2) {
-        (s as any).spouseVars['husb_debt_event'] = 3;
+        ((s as any).spouseVars ?? {})['husb_debt_event'] = 3;
         (s as any).saunaWorkWhore = 1;
         scene.text('"What a beauty. You did well. If you want you can come to the sauna, we have a job for you there." One man says grinning.');
         scene.actions([
@@ -393,7 +393,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You don't have an lubricants, so <<$npcdesc>> spits on his fingers and uses the ...
     scene.text(`You don't have an lubricants, so ${((s as any).npcdesc ?? 0)} spits on his fingers and uses the saliva to lubricate your ass.`);
   } else {
-    (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
     (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (8);
     scene.text('You get the lubricant out of a box and hand it to your husband. He puts a little on his palm and rubs your anus with it.');
   }
@@ -555,7 +555,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       if (((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-        (s as any).spouseVars['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
+        ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
         // TODO-QSP: dynamic text: "No, don't. This is enough" He says, and sits down on a chair watching you. You ...
         scene.text(`"No, don't. This is enough" He says, and sits down on a chair watching you. You continue to satisfy yourself rapidly, and soon finish in front of husband. ${((s as any).npcdesc ?? 0)} stands up and begins to applaud. "Bravo, can I have an encore?" He says laughing.`);
         // TODO-QSP: dynamic text: "For such a wonderful audience I will do anything, but only after the intermissi...
@@ -604,7 +604,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       if (((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-        (s as any).spouseVars['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
+        ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
         scene.text('"Well then, open your mouth." He says pulling his member out of his pants and roughly pushing it into your mouth. He grabs you by the hair and starts fucking your mouth telling you to not stop masturbating. Soon, he tires of your mouth. "Take that rubber thing out of your hole because I\'ll use it now."');
         qspCall(s, 'arousal', 'bj', 10, 'sub');
         qspCall(s, 'arousal', 'vaginal_dildo', (-10), 'sub');

@@ -49,7 +49,7 @@ function enterFirstTimeCuniGet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Grab her head', handler: (st: GameState) => {
-    (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (5);
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (5);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/first_time6.jpg');
     scene.text('It starts feeling really good, so you reach back and grab her head and pull it against you, grinding her face against your wet pussy as you push your hips backward. You start to take control and ride her face, using her mouth and tongue to give yourself maximum pleasure without a thought to her enjoyment. After a few minutes of this, you let go of her head and pull your dripping wet slit away from her face before you turn to face her, pulling her down on her back once more with her legs spread.');
     qspCall(s, 'arousal', 'cuni', 3, 'lesbian', 'dom');
@@ -80,7 +80,7 @@ function enterFirstTimeCuniGive(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A14');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/first_time8.jpg');
   scene.text('After a few minutes, you slip out all but one of your fingers, then dip your head down. You start licking, kissing and sucking at her clit while fingering her. Her moans are starting to get louder and you can feel her starting to tense up until she suddenly cries out as an orgasm rips through her body, leaving her shaking and breathing hard.');
-  (s as any).katjaQW['horny'] = 0;
+  ((s as any).katjaQW ?? {})['horny'] = 0;
   qspCall(s, 'arousal', 'cuni_give', 3, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-3), 'lesbian');
   qspCall(s, 'stat', '');

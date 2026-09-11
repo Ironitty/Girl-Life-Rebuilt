@@ -25,11 +25,11 @@ function enterNudeDebutPre(s: GameState, scene: SceneBuilder): void {
 
 function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_leghair ?? 0) > 3) {
-    (s as any).temp['model_shave'] = '"And your legs too."';
+    ((s as any).temp ?? {})['model_shave'] = '"And your legs too."';
   }
   if (((s as any).modelfoto ?? 0)?.['nude_shave_no'] === 1) {
     if (((s as any).pcs_pubes ?? 0) <= 3) {
-      (s as any).modelfoto['nude_shave_yes'] = 1;
+      ((s as any).modelfoto ?? {})['nude_shave_yes'] = 1;
       scene.text('"I see you came prepared this time," he says, eyeing the smooth clean-shaven skin over your pussy. "Let\'s get to work then."');
       scene.actions([
         { label: 'Continue', goto: ['foto_nude_debut', 'nude_debut1'] },
@@ -93,7 +93,7 @@ function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
 function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_shave_no'] = 1;
+    ((s as any).modelfoto ?? {})['nude_shave_no'] = 1;
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     scene.text('"If that\'s a requirement, then I\'m out," you say shaking your head.');
     scene.text('"Okay," he shrugs. "Come back if you change your mind. Did you want to do a different shoot today?"');
@@ -103,7 +103,7 @@ function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Okay', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_shave_yes'] = 1;
+    ((s as any).modelfoto ?? {})['nude_shave_yes'] = 1;
     scene.text('"Okay," you nod. "I\'ll get it done."');
     scene.text('"Go to the showers and do it now," he says. "We\'ll arrange the set in the meantime."');
     scene.actions([
@@ -111,7 +111,7 @@ function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Okay (hesitant)', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_shave_yes'] = 1;
+    ((s as any).modelfoto ?? {})['nude_shave_yes'] = 1;
     scene.text('"Okay…" you mumble. "I… I guess I could…"');
     scene.text('"Go to the showers and do it now," he says. "We\'ll arrange the set in the meantime."');
     scene.actions([
@@ -195,7 +195,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_inhib ?? 0) > 50  ||  ((s as any).modelfoto ?? 0)?.['shoots'] >= 50) {
       scene.actions([
         { label: 'Calm', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'calm';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'calm';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>calm</i>.');
     if (((s as any).modelfoto ?? 0)?.['shoots'] >= 50) {
@@ -209,7 +209,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Nervous (bad)', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'nervous_bad';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_bad';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>nervous</i>.');
     if (((s as any).modelfoto ?? 0)?.['shoots'] >= 100) {
@@ -225,14 +225,14 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_nude_debut', 'nude_debut3');
   } },
       { label: 'Nervous (good)', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'nervous_good';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_good';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>nervous</i>.');
     scene.text('But in a good way. Your stomach flutters and it\'s difficult to breathe steadily, but you\'re… excited? There\'s a "trembling" inside you that you can\'t shake, looking forward to stepping in front of the camera and hearing that first shutter click.');
     qspCall(s, 'foto_nude_debut', 'nude_debut3');
   } },
       { label: 'Nervous (aroused)', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'nervous_aroused';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_aroused';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>aroused</i>.');
     scene.text('Your skin goes hot and you feel heat flush through your hips. Uncomfortably aware of a gathering wetness inside you, you take a hard swallow, trying to keep your breathing steady. At the same time, there is an incessant fluttering in your stomach and your hands won\'t stop trembling.');
@@ -240,7 +240,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_nude_debut', 'nude_debut3');
   } },
       { label: 'Aroused', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'aroused';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'aroused';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>aroused</i>.');
     scene.text('Your skin goes hot and you feel heat flush through your hips. Deeply aware of a gathering wetness inside you, you take a hard swallow, trying to keep your breathing steady, trying not to pant as you feel your nipples swell.');
@@ -248,7 +248,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_nude_debut', 'nude_debut3');
   } },
       { label: 'Excited', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'excited';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'excited';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>excited</i>.');
     scene.text('You <i>tremble</i> with excitement, already eager to get in front of the camera and start posing. Every minute passes with agonizing slowness.');
@@ -256,7 +256,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_nude_debut', 'nude_debut3');
   } },
       { label: 'Scared', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'scared';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'scared';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>scared</i>.');
     scene.text('Already, you\'re beginning to regret your decision. A knot forms inside you, making you sick to your stomach. The cool air on your skin forms goosebumps of fear, suddenly making you startingly aware of your nakedness and you\'re not even on camera yet.');
@@ -264,7 +264,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_nude_debut', 'nude_debut3');
   } },
       { label: 'Numb', handler: (st: GameState) => {
-    (s as any).modelfoto['first_nude_pre'] = 'numb';
+    ((s as any).modelfoto ?? {})['first_nude_pre'] = 'numb';
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
     scene.text('You watch it all get set up feeling… <i>numb</i>.');
     scene.text('You don\'t feel anything. It\'s like you\'re having an out of body experience, looking at yourself from a bird\'s eye view, standing there naked as the crew positions the lighting around the camera.');
@@ -299,7 +299,7 @@ function enterNudeDebut3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSickDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'sick';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'sick';
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   if (((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'nervous_bad'  ||  ((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'scared') {
     scene.text('Your earlier jitters get worse the instant you hear the first shutter click.');
@@ -328,7 +328,7 @@ function enterSickDebut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArousedDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'aroused';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'aroused';
   qspCall(s, 'arousal', 'erotic', (-60), 'exhibitionism');
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   if (((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'nervous_bad'  ||  ((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'scared') {
@@ -362,7 +362,7 @@ function enterArousedDebut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHappyDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'happy';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'happy';
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   if (((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'nervous_bad'  ||  ((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'scared') {
     scene.text('Your earlier jitters disappear the instant you hear the first shutter click.');
@@ -391,7 +391,7 @@ function enterHappyDebut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCalmDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'calm';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'calm';
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   scene.text('The shutter goes <i>click</i>.');
   scene.text('The lights flash.');
@@ -422,7 +422,7 @@ function enterCalmDebut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNumbDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'numb';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'numb';
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   scene.text('The shutter goes <i>click</i>.');
   if (((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'nervous_bad'  ||  ((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'scared') {
@@ -451,7 +451,7 @@ function enterNumbDebut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDirtyDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'dirty';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'dirty';
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   scene.text('The shutter goes <i>click</i>.');
   scene.text('The lights flash.');
@@ -485,7 +485,7 @@ function enterDirtyDebut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHollowDebut(s: GameState, scene: SceneBuilder): void {
-  (s as any).modelfoto['first_nude_during'] = 'hollow';
+  ((s as any).modelfoto ?? {})['first_nude_during'] = 'hollow';
   scene.img('images/locations/city/citycenter/photo/nudepractice3.mp4');
   if (((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'nervous_bad'  ||  ((s as any).modelfoto ?? 0)?.['first_nude_pre'] === 'scared') {
     scene.text('The shutter goes <i>click</i> and your nerves vanish, replaced instead by an empty feeling in the pit of your stomach.');
@@ -562,27 +562,27 @@ function enterDebutAfterReaction(s: GameState, scene: SceneBuilder): void {
     scene.text('You stare over his shoulder as he scrolls through feeling…');
     scene.actions([
       { label: 'Amazed', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_after_reaction'] = 'amazed';
+    ((s as any).modelfoto ?? {})['nude_after_reaction'] = 'amazed';
     qspCall(s, 'foto_nude_debut', 'debut_after2');
   } },
       { label: 'Mortified', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_after_reaction'] = 'mortified';
+    ((s as any).modelfoto ?? {})['nude_after_reaction'] = 'mortified';
     qspCall(s, 'foto_nude_debut', 'debut_after2');
   } },
       { label: 'Proud', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_after_reaction'] = 'proud';
+    ((s as any).modelfoto ?? {})['nude_after_reaction'] = 'proud';
     qspCall(s, 'foto_nude_debut', 'debut_after2');
   } },
       { label: 'Empty', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_after_reaction'] = 'empty';
+    ((s as any).modelfoto ?? {})['nude_after_reaction'] = 'empty';
     qspCall(s, 'foto_nude_debut', 'debut_after2');
   } },
       { label: 'Regret', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_after_reaction'] = 'regret';
+    ((s as any).modelfoto ?? {})['nude_after_reaction'] = 'regret';
     qspCall(s, 'foto_nude_debut', 'debut_after2');
   } },
       { label: 'Aroused', handler: (st: GameState) => {
-    (s as any).modelfoto['nude_after_reaction'] = 'aroused';
+    ((s as any).modelfoto ?? {})['nude_after_reaction'] = 'aroused';
     qspCall(s, 'foto_nude_debut', 'debut_after2');
   } },
     ]);
@@ -844,12 +844,12 @@ function enterDebutAfterReaction(s: GameState, scene: SceneBuilder): void {
 function enterDebutEnding(s: GameState, scene: SceneBuilder): void {
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
   (s as any).modelpayfin = (600 + (((s as any).modelpay ?? 0) * 2) + (15*((s as any).rand ?? 0)(0, 5))) * 2;
-  (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
-  (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
-  (s as any).modelfoto['nip'] = ((s as any).modelfoto['nip'] ?? 0) + (1);
-  (s as any).modelfoto['pussy'] = ((s as any).modelfoto['pussy'] ?? 0) + (1);
-  (s as any).modelfoto['fullnude'] = ((s as any).modelfoto['fullnude'] ?? 0) + (1);
-  (s as any).modelfoto['nude_debut'] = 1;
+  ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
+  ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
+  ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
+  ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
+  ((s as any).modelfoto ?? {})['fullnude'] = (((s as any).modelfoto ?? {})['fullnude'] ?? 0) + (1);
+  ((s as any).modelfoto ?? {})['nude_debut'] = 1;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('All the pictures taken, the staff begin striking the set and a manager comes out with your pay.');
   // TODO-QSP: dynamic text: They hand you an envelope containing <<$func('money', 'string_profit', modelpayf...

@@ -6,8 +6,8 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).AlbinaQW['RideDaystart'] = 0;
-  (s as any).AlbinaQW['albride'] = 1;
+  ((s as any).AlbinaQW ?? {})['RideDaystart'] = 0;
+  ((s as any).AlbinaQW ?? {})['albride'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/bmw.jpg');
   scene.text('An expensive looking SUV pulls up to you and the front window rolls down. Albina is sitting in the driver\'s seat and smiles at you. "Let\'s go to my place. We need to talk."');

@@ -55,7 +55,7 @@ function enterFight(s: GameState, scene: SceneBuilder): void {
 
 function enterRape(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/vag/miss/vag.jpg');
-  (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.text('The man pushes you down, and you fall on your ass. He advances towards you, grabs a hold of your clothes and rips them open. He falls on top of you. You feel his hot breath against your face as he ruthlessly grabs your arms. You feel his penis poking you in the leg.');
   // TODO-QSP: dynamic text: "So you know what's coming next, don't you my little <<$pcs_nickname>>?"
@@ -212,20 +212,20 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
       scene.text('All your condoms are missing.');
-      (s as any).mc_inventory['equipped_condoms'] = 0;
-      (s as any).mc_inventory['normal_condoms'] = 0;
-      (s as any).mc_inventory['sabotaged_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['normal_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
     }
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
       scene.text('All your birth control pills are missing.');
-      (s as any).mc_inventory['contraceptive_pill'] = 0;
+      ((s as any).mc_inventory ?? {})['contraceptive_pill'] = 0;
       (s as any).tabletkioddk = 0;
     }
   }
   if ((!((s as any).broodcurse ?? 0))) {
   }
   if (((s as any).stallionQ ?? 0) === 4) {
-    (s as any).temp[1] = 'I am called Stallion, and you have become my victim. I am called Stallion because I impregnate those whom I target. Today, that was you. ';
+    ((s as any).temp ?? {})[1] = 'I am called Stallion, and you have become my victim. I am called Stallion because I impregnate those whom I target. Today, that was you. ';
     (s as any).stallionQ = 5;
   }
   // TODO-QSP: dynamic text: There is a note next to your clothing. '<<$temp[1]>>You were a pretty good fuck....

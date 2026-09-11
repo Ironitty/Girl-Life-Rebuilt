@@ -115,7 +115,7 @@ function enterCallDoctor2(s: GameState, scene: SceneBuilder): void {
       { label: 'Roll over and lay on your stomach', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).sick = ((s as any).sick ?? 0) - (2);
-    (s as any).mc_inventory['antibiotics'] = ((s as any).mc_inventory['antibiotics'] ?? 0) + (3);
+    ((s as any).mc_inventory ?? {})['antibiotics'] = (((s as any).mc_inventory ?? {})['antibiotics'] ?? 0) + (3);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/drpp5.jpg');
     scene.text('You whimper slightly as the doctor jabs a needle into your ass and injects the contents.');
@@ -312,7 +312,7 @@ function enterBurgerIly1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Open the door', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).BurgerQW['IlyQW'] = 2;
+    ((s as any).BurgerQW ?? {})['IlyQW'] = 2;
     qspCall(s, 'stat', '');
     scene.text('You open the door, wondering what they want from you. There are several men in uniform and others in civilian clothes. A lean and skinny man with with a weeks worth of stubble and a pistol in a holster slung under his armpit speaks to you. "Please take a seat while we search the apartment. This is a warrant for your arrest and this is a search warrant for your apartment. You can read them." The men start searching your apartment and a few minutes later, one of them reappears. "Here are the keys. According to the description, these look like the keys to the office and the safe where the money was stolen." The detective frowns at you and nods at the officer, who pulls your hands behind your back and snaps the handcuffs around your wrists.');
     scene.text('You\'re escorted out of the building in handcuffs and pushed into a police car. After the door slams shut, the car starts up and drives through the city streets until it stops outside the police station and you\'re pulled out and brought into an interview room where the dectective is waiting for you. He takes the handcuffs off you and offers you a seat. You sit in a hard and uncomfortable chair while the detective turns the TV on and inserts a video tape. On the screen is footage from a security camera in Bystroeshke showing you appear in the corridor and enter the office before exiting a few minutes later holding a thick envelope. The detective takes the tape out and inserts another one.');
@@ -344,7 +344,7 @@ function enterBurgerIly1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
-  (s as any).BurgerQW['IlyQW'] = 4;
+  ((s as any).BurgerQW ?? {})['IlyQW'] = 4;
   if (qspFunc(s, 'money', 'can_afford', 650000) === 1) {
     qspCall(s, 'money', 'pay', 650000);
     (s as any).minut = ((s as any).minut ?? 0) + 120;
@@ -370,7 +370,7 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
       { label: 'Serve your time', handler: (st: GameState) => {
     (s as any).srok_kolvo = 1;
     (s as any).srok_otsidki = ((s as any).srok_otsidki ?? 0) + (5);
-    (s as any).pcs_mass['body'] = 10;
+    ((s as any).pcs_mass ?? {})['body'] = 10;
     (s as any).fat = 10;
     if ((!((s as any).defcurly ?? 0))) {
       (s as any).curly = 0;
@@ -383,9 +383,9 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_tan = 0;
     (s as any).pcs_leghair = 12;
     (s as any).pcs_pubes = 30;
-    (s as any).drugVars['cocaine_addict'] = 0;
-    (s as any).drugVars['cocaine_system'] = 0;
-    (s as any).drugVars['heroin_need'] = 0;
+    ((s as any).drugVars ?? {})['cocaine_addict'] = 0;
+    ((s as any).drugVars ?? {})['cocaine_system'] = 0;
+    ((s as any).drugVars ?? {})['heroin_need'] = 0;
     (s as any).tanwork = 0;
     (s as any).preg = 0;
     qspCall(s, 'jobs', 'terminate_all_jobs');
@@ -431,7 +431,7 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Put <<$npc_usedname[\'A191\']>> to bed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).NatbelQW['Isabella'] = 1;
+    ((s as any).NatbelQW ?? {})['Isabella'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images\\locations\\pavlovsk\\resident\\apartment\\natbelapt/natmomsleep3.jpg');
     // TODO-QSP: dynamic text: When you get back you both sit <<$npc_usedname['A191']>> on her bed and get her ...
@@ -484,7 +484,7 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Put <<$npc_usedname[\'A191\']>> to bed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).NatbelQW['Isabella'] = 1;
+    ((s as any).NatbelQW ?? {})['Isabella'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images\\locations\\pavlovsk\\resident\\apartment\\natbelapt/natmomsleep3.jpg');
     // TODO-QSP: dynamic text: When you get back you both sit <<$npc_usedname['A191']>> on her bed and get her ...
@@ -532,7 +532,7 @@ function enterSetWashClothesAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wash clothes (<<wash_time / 60>>:<<$mid(100 + wash_time mod 60, 2, 2)>>)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).wash_time ?? 0));
-    (s as any).mc_inventory['laundry_soap'] = ((s as any).mc_inventory['laundry_soap'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['laundry_soap'] = (((s as any).mc_inventory ?? {})['laundry_soap'] ?? 0) - (1);
     qspCall(s, 'stat', '');
   }, goto: ['home_events', 'wash_clothes'] },
     ]);

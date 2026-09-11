@@ -20,7 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_love[String((s as any).npcID ?? 0)] = 1;
+  ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 1;
   // TODO-QSP: dynamic text: You start talking about living together. <<$npcdesc>> tells you that <<$xe>> is ...
   scene.text(`You start talking about living together. ${((s as any).npcdesc ?? 0)} tells you that ${((s as any).xe ?? 0)} is not against it, but first ${((s as any).xe ?? 0)} wants you to meet ${((s as any).xyr ?? 0)} parents.`);
   // TODO-QSP: dynamic text: <<$xec>> warns you that <<$xyr>> mother is very demanding and rigorous. <<$npcde...
@@ -58,34 +58,34 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m unemployed."');
   }
   if (((s as any).modelfoto ?? 0)?.['nude'] > 30) {
-    (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
     // TODO-QSP: dynamic text: She smiles and says with disgust, "Why are you not telling us about the photos y...
     scene.text(`She smiles and says with disgust, "Why are you not telling us about the photos you shot for these web sites?" She pulls out the nude photos of you and lies them out on the table. "My ${((s as any).temp_mother_relat ?? 0)}, your mother cares about you. This girl is not worthy of you."`);
     // TODO-QSP: dynamic text: <<$npcdesc>> blushes and screams, "<<$pcs_nickname>>, I loved you so, and you… y...
     scene.text(`${((s as any).npcdesc ?? 0)} blushes and screams, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
   } else {
     if (((s as any).kavslut ?? 0) > 0) {
-      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: She smiles and says with disgust, "<<$temp_mother_relatc>>, everyone knows that ...
       scene.text(`She smiles and says with disgust, "${((s as any).temp_mother_relatc ?? 0)}, everyone knows that this girl is a slut. ${((s as any).pcs_nickname ?? 0)} does not just wait tables, she lets every customer, even the Armenians who go there, tear up every hole she has. She doesn't deserve you!"`);
       // TODO-QSP: dynamic text: <<$npcdesc>> blushes and says, "<<$pcs_nickname>>, I loved you so, and you… you ...
       scene.text(`${((s as any).npcdesc ?? 0)} blushes and says, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
     } else {
       if (((s as any).frot ?? 0) > 3) {
-        (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+        ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
         // TODO-QSP: dynamic text: She smiles and says with disgust, "<<$temp_mother_relatc>>, this girl is a slut ...
         scene.text(`She smiles and says with disgust, "${((s as any).temp_mother_relatc ?? 0)}, this girl is a slut and lets every pervert who settles down next to her on the subway grope her. She is not worthy of you!"`);
         // TODO-QSP: dynamic text: <<$npcdesc>> blushes and says, "<<$pcs_nickname>>, I loved you so, and you… you ...
         scene.text(`${((s as any).npcdesc ?? 0)} blushes and says, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
       } else {
         if (((s as any).gloryhole ?? 0) > 30) {
-          (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+          ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
           // TODO-QSP: dynamic text: She smiles and says with disgust, "<<$temp_mother_relatc>>, your girlfriend moon...
           scene.text(`She smiles and says with disgust, "${((s as any).temp_mother_relatc ?? 0)}, your girlfriend moonlights at the sex shop, sucking the members of countless strangers. Do you want a wife like that? She is not worthy of you!"`);
           // TODO-QSP: dynamic text: <<$npcdesc>> blushes and says, "<<$pcs_nickname>>, I loved you so, and you… you ...
           scene.text(`${((s as any).npcdesc ?? 0)} blushes and says, "${((s as any).pcs_nickname ?? 0)}, I loved you so, and you… you turn out to be just another dirty whore! Get out!"`);
         } else {
-          (s as any).npc_love[String((s as any).npcID ?? 0)] = 2;
+          ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 2;
           // TODO-QSP: dynamic text: She looks at her <<$temp_mother_relat>> with tearful eyes and says, "Alright. We...
           scene.text(`She looks at her ${((s as any).temp_mother_relat ?? 0)} with tearful eyes and says, "Alright. Well ${((s as any).temp_mother_relat ?? 0)}, it's your choice. Who am I to interfere with your life? I just gave birth to you, nursed you and helped you grow up. But of course you are free to forget about your mother who loves you and only wishes the best for you. If you insist on keeping her, please do. I certainly don't forbid it. "`);
           // TODO-QSP: dynamic text: <<$npcdesc>> looks down, "Mother, what are you saying? Of course I love you, but...
@@ -107,7 +107,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_love[String((s as any).npcID ?? 0)] = 1;
+  ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 1;
   // TODO-QSP: dynamic text: You start talking about living together. <<$npcdesc>> tells you that <<$xe>> is ...
   scene.text(`You start talking about living together. ${((s as any).npcdesc ?? 0)} tells you that ${((s as any).xe ?? 0)} is not against it, but first ${((s as any).xe ?? 0)} wants you to meet ${((s as any).xyr ?? 0)} friends.`);
   // TODO-QSP: dynamic text: <<$Xec>> tells you that you have to look chic, wear a dress from a boutique, be ...
@@ -136,7 +136,7 @@ function enterFrends(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['love', 'frends2'] }]);
   } else {
     scene.text('(Further actions are available.)');
-    (s as any).npc_love[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.actions([
       { label: 'To invite', goto: ['lezbsex', 'startloverhome'] },
     ]);
@@ -159,7 +159,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_intel ?? 0) <= 30) {
       (s as any).guy = ((s as any).guy ?? 0) + (2);
       (s as any).picrand = 39;
-      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: "I don't care! Once everyone has seen you naked you are no better than a whore."...
       scene.text(`"I don't care! Once everyone has seen you naked you are no better than a whore." With these words he throws you on the sofa. You try to get up to leave, but ${((s as any).npcdesc ?? 0)} stops you, "Where are you going, slut? You think you can just mess around with me and then dump me? Well guys, lets pass this whore around." he says, sititng down on the sofa unbuttoning his pants. "Suck" he shouts while pushing your head down to his dick. Having decided that it is better to not argue with three drunken men you take his dick out of his pants and put it into your mouth. The two other guys join in, one sitting down on the couch next to ${((s as any).npcdesc ?? 0)}. He takes out his member and you grasp it with your hand starting to suck both cocks simultaneously. The second guy undresses you and kneels down using his tongue to lick your pussy. The guy sitting on the couch suddenly starts to hiccup as if he is about to vomit and ${((s as any).npcdesc ?? 0)} shouts at him, "Get out of here, before you make a mess." The guy gets up from the couch and rushes to the toilet, his hands covering his mouth.`);
       scene.actions([
@@ -186,7 +186,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_intel ?? 0) <= 50) {
       (s as any).guy = ((s as any).guy ?? 0) + (2);
       (s as any).picrand = 39;
-      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: "I don't care. Someone who says that she got raped several times clearly likes i...
       scene.text(`"I don't care. Someone who says that she got raped several times clearly likes it and invites these situations." With these words he throws you on the sofa. You try to get up to leave, but ${((s as any).npcdesc ?? 0)} stops you, "Where are you going, slut? You think you can just mess around with me and then dump me? Well guys, lets pass this whore around." he says, sititng down on the sofa unbuttoning his pants. "Suck" he shouts while pushing your head down to his dick. Having decided that it is better to not argue with three drunken men you take his dick out of his pants and put it into your mouth. The two other guys join in, one sitting down on the couch next to ${((s as any).npcdesc ?? 0)}. He takes out his member and you grasp it with your hand starting to suck both cocks simultaneously. The second guy undresses you and kneels down using his tongue to lick your pussy. The guy sitting on the couch suddenly starts to hiccup as if he is about to vomit and ${((s as any).npcdesc ?? 0)} shouts at him, "Get out of here, before you make a mess." The guy gets up from the couch and rushes to the toilet, his hands covering his mouth.`);
       scene.actions([
@@ -210,7 +210,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_intel ?? 0) <= 40) {
       (s as any).guy = ((s as any).guy ?? 0) + (2);
       (s as any).picrand = 39;
-      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: "Shout your mouth, you whore! I believe my friends, when they say they it was yo...
       scene.text(`"Shout your mouth, you whore! I believe my friends, when they say they it was you." With these words he throws you on the sofa. You try to get up to leave, but ${((s as any).npcdesc ?? 0)} stops you, "Where are you going, slut? You think you can just mess around with me and then dump me? Well guys, lets pass this whore around." he says, sititng down on the sofa unbuttoning his pants. "Suck" he shouts while pushing your head down to his dick. Having decided that it is better to not argue with three drunken men you take his dick out of his pants and put it into your mouth. The two other guys join in, one sitting down on the couch next to ${((s as any).npcdesc ?? 0)}. He takes out his member and you grasp it with your hand starting to suck both cocks simultaneously. The second guy undresses you and kneels down using his tongue to lick your pussy. The guy sitting on the couch suddenly starts to hiccup as if he is about to vomit and ${((s as any).npcdesc ?? 0)} shouts at him, "Get out of here, before you make a mess." The guy gets up from the couch and rushes to the toilet, his hands covering his mouth.`);
       scene.actions([
@@ -234,7 +234,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_intel ?? 0) <= 60) {
       (s as any).guy = ((s as any).guy ?? 0) + (2);
       (s as any).picrand = 39;
-      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: "Shut your mouth, you whore! If my friends say it was you I believe them." With ...
       scene.text(`"Shut your mouth, you whore! If my friends say it was you I believe them." With these words he throws you on the sofa. You try to get up to leave, but ${((s as any).npcdesc ?? 0)} stops you, "Where are you going, slut? You think you can just mess around with me and then dump me? Well guys, lets pass this whore around." he says, sititng down on the sofa unbuttoning his pants. "Suck" he shouts while pushing your head down to his dick. Having decided that it is better to not argue with three drunken men you take his dick out of his pants and put it into your mouth. The two other guys join in, one sitting down on the couch next to ${((s as any).npcdesc ?? 0)}. He takes out his member and you grasp it with your hand starting to suck both cocks simultaneously. The second guy undresses you and kneels down using his tongue to lick your pussy. The guy sitting on the couch suddenly starts to hiccup as if he is about to vomit and ${((s as any).npcdesc ?? 0)} shouts at him, "Get out of here, before you make a mess." The guy gets up from the couch and rushes to the toilet, his hands covering his mouth.`);
       scene.actions([
@@ -258,7 +258,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_intel ?? 0) <= 70  &&  ((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       (s as any).guy = ((s as any).guy ?? 0) + (2);
       (s as any).picrand = 39;
-      (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
       // TODO-QSP: dynamic text: "Shout your mouth! Doing porn clearly means you are just another whore." With th...
       scene.text(`"Shout your mouth! Doing porn clearly means you are just another whore." With these words he throws you on the sofa. You try to get up to leave, but ${((s as any).npcdesc ?? 0)} stops you, "Where are you going, slut? You think you can just mess around with me and then dump me? Well guys, lets pass this whore around." he says, sititng down on the sofa unbuttoning his pants. "Suck" he shouts while pushing your head down to his dick. Having decided that it is better to not argue with three drunken men you take his dick out of his pants and put it into your mouth. The two other guys join in, one sitting down on the couch next to ${((s as any).npcdesc ?? 0)}. He takes out his member and you grasp it with your hand starting to suck both cocks simultaneously. The second guy undresses you and kneels down using his tongue to lick your pussy. The guy sitting on the couch suddenly starts to hiccup as if he is about to vomit and ${((s as any).npcdesc ?? 0)} shouts at him, "Get out of here, before you make a mess." The guy gets up from the couch and rushes to the toilet, his hands covering his mouth.`);
       scene.actions([
@@ -274,7 +274,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
     }
     return;
   }
-  (s as any).npc_love[String((s as any).npcID ?? 0)] = 2;
+  ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 2;
   // TODO-QSP: dynamic text: "Okay, it's time to go, <<$pcs_nickname>>." says <<$npcdesc>>. You head for the ...
   scene.text(`"Okay, it's time to go, ${((s as any).pcs_nickname ?? 0)}." says ${((s as any).npcdesc ?? 0)}. You head for the exit.`);
   scene.actions([
@@ -285,7 +285,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
 
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.text('(Further actions are available.)');
-  (s as any).npc_love[String((s as any).npcID ?? 0)] = 2;
+  ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 2;
   scene.actions([
     { label: 'To invite', goto: ['sexm', 'room'] },
   ]);

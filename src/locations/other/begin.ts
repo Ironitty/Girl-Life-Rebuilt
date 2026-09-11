@@ -69,8 +69,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQuickStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).start_type['loc'] = qspFunc(s, 'begin', 'get_random', 'loc');
-  (s as any).start_type['magic'] = qspFunc(s, 'begin', 'get_random', 'magic');
+  ((s as any).start_type ?? {})['loc'] = qspFunc(s, 'begin', 'get_random', 'loc');
+  ((s as any).start_type ?? {})['magic'] = qspFunc(s, 'begin', 'get_random', 'magic');
   scene.actions([{ label: 'Continue', goto: ['intro_start', 'quick_start'] }]);
   scene.build();
 }
@@ -115,22 +115,22 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
   scene.text('</center>');
   scene.actions([
     { label: '<b>Use the dynamic profile system</b>', handler: (st: GameState) => {
-    (s as any).face_style['type'] = 0;
+    ((s as any).face_style ?? {})['type'] = 0;
   }, goto: ['intro_start', 'start'] },
     { label: '<b>Use a fixed profile image</b>', handler: (st: GameState) => {
-    (s as any).face_style['type'] = 1;
+    ((s as any).face_style ?? {})['type'] = 1;
   }, goto: ['begin', 'use_avatar_menu'] },
     { label: '<b>Use the rendered profile system</b>', handler: (st: GameState) => {
-    (s as any).face_style['type'] = 2;
+    ((s as any).face_style ?? {})['type'] = 2;
   }, goto: ['intro_start', 'start'] },
   ]);
   scene.build();
 }
 
 function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
-  (s as any).face_style['avatar_path'] = 0;
+  ((s as any).face_style ?? {})['avatar_path'] = 0;
   if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
-    (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
+    ((s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
   }
   // TODO-QSP: dynamic text: You have selected: <<$face_style['avatar_path']>>. Is this correct?
   scene.text(`You have selected: ${((s as any).face_style ?? 0)?.['avatar_path']}. Is this correct?`);

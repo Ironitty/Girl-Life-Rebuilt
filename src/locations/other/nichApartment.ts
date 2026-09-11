@@ -352,7 +352,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A218', (-5));
-    (s as any).nichTanya['FuckLast'] = ((s as any).daystart ?? 0);
+    ((s as any).nichTanya ?? {})['FuckLast'] = ((s as any).daystart ?? 0);
     scene.text('"I don\'t know about this, Tanya", you say carefully. "I mean, can you imagine me cleaning up and cooking, day in and day out? It doesn\'t sound like me."');
     scene.text('Her joyful expression falters and is quickly replaced with a cold, angry stare. "You just don\'t want to be around me."');
     scene.text('"No!", you exclaim, "No, of course I\'d love to be around yo-"');

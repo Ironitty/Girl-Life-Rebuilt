@@ -8,67 +8,67 @@ function enterSlyRandomSexActs(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A248');
-    (s as any).slyQW['sex_stam'] = ((s as any).slyQW['sex_stam'] ?? 0) + (1);
+    ((s as any).slyQW ?? {})['sex_stam'] = (((s as any).slyQW ?? {})['sex_stam'] ?? 0) + (1);
     (s as any).pursepantynumber = ((s as any).pantywornnumber ?? 0);
     (s as any).pursebranumber = ((s as any).brawornnumber ?? 0);
     qspCall(s, 'clothing', 'strip');
     qspCall(s, 'underwear', 'remove');
     if (((s as any).slyQW ?? 0)?.['Chris_peek_daystart'] !== ((s as any).daystart ?? 0)) {
-      (s as any).slyQW['Chris_peek_daystart'] = ((s as any).daystart ?? 0);
+      ((s as any).slyQW ?? {})['Chris_peek_daystart'] = ((s as any).daystart ?? 0);
       if (((s as any).slyQW ?? 0)?.['Chris_caught'] < 5) {
         if ((Math.floor(Math.random() * 4) + 1) === 1) {
-          (s as any).slyQW['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
-          (s as any).slyQW['Chris_peeking'] = 1;
+          ((s as any).slyQW ?? {})['Chris_caught'] = (((s as any).slyQW ?? {})['Chris_caught'] ?? 0) + (1);
+          ((s as any).slyQW ?? {})['Chris_peeking'] = 1;
         }
       } else {
         if (((s as any).slyQW ?? 0)?.['Chris_caught'] < 10  &&  ((s as any).christinaQW ?? 0)?.['subpath'] >= 6) {
           if ((Math.floor(Math.random() * 2) + 1) === 1) {
-            (s as any).slyQW['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
-            (s as any).slyQW['Chris_peeking'] = 1;
+            ((s as any).slyQW ?? {})['Chris_caught'] = (((s as any).slyQW ?? {})['Chris_caught'] ?? 0) + (1);
+            ((s as any).slyQW ?? {})['Chris_peeking'] = 1;
           }
         } else {
           if (((s as any).slyQW ?? 0)?.['Chris_caught'] === 10  &&  ((s as any).christinaQW ?? 0)?.['subpath'] >= 6) {
             if (((s as any).christinaQW ?? 0)?.['subpath'] === 6) {
-              (s as any).christinaQW['subpath'] = 7;
+              ((s as any).christinaQW ?? {})['subpath'] = 7;
             }
-            (s as any).slyQW['Chris_peeking'] = 1;
+            ((s as any).slyQW ?? {})['Chris_peeking'] = 1;
           }
         }
       }
     }
     if (((s as any).slyQW ?? 0)?.['sex_stam'] < 6) {
       // TODO-QSP: :sly_loop
-      (s as any).slyQW['sex_act'] = Math.floor(Math.random() * 8) + 1;
+      ((s as any).slyQW ?? {})['sex_act'] = Math.floor(Math.random() * 8) + 1;
       if (((s as any).slyQW ?? 0)?.['sex_act'] === 1  &&  ((s as any).slyQW ?? 0)?.['foreplay'] !== ((s as any).daystart ?? 0)) {
-        (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+        ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
         scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'hj_1'] }]);
       } else {
         if (((s as any).slyQW ?? 0)?.['sex_act'] === 2  &&  ((s as any).slyQW ?? 0)?.['foreplay'] !== ((s as any).daystart ?? 0)) {
-          (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+          ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
           scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'bj_1'] }]);
         } else {
           if (((s as any).slyQW ?? 0)?.['sex_act'] === 3  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
-            (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+            ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
             scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'vag_cow_1'] }]);
           } else {
             if (((s as any).slyQW ?? 0)?.['sex_act'] === 4  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
-              (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+              ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
               scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'vag_doggy_1'] }]);
             } else {
               if (((s as any).slyQW ?? 0)?.['sex_act'] === 5  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
-                (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+                ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
                 scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'vag_stomach_1'] }]);
               } else {
                 if (((s as any).slyQW ?? 0)?.['sex_act'] === 6) {
-                  (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+                  ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
                   scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'anal_doggy_1'] }]);
                 } else {
                   if (((s as any).slyQW ?? 0)?.['sex_act'] === 7) {
-                    (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+                    ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
                     scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'anal_stomach_1'] }]);
                   } else {
                     if (((s as any).slyQW ?? 0)?.['sex_act'] === 8) {
-                      (s as any).slyQW['foreplay'] = ((s as any).daystart ?? 0);
+                      ((s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
                       scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'anal_piledriver_1'] }]);
                     } else {
                       // TODO-QSP: jump 'sly_loop'
@@ -115,16 +115,16 @@ function enterSlyPlug(s: GameState, scene: SceneBuilder): void {
 function enterChristinaPeek(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slyQW ?? 0)?.['Chris_peeking'] === 1) {
     if (((s as any).slyQW ?? 0)?.['Chris_caught'] <= 5) {
-      (s as any).slyQW['Chris_peeking'] = 2;
+      ((s as any).slyQW ?? {})['Chris_peeking'] = 2;
       scene.text('You think you hear a moan that didn\'t come from you, but you\'re too busy to figure out where it\'s coming from.');
       scene.text('Sly doesn\'t seem to have heard anything and keeps thrusting into you.');
     } else {
       if (((s as any).slyQW ?? 0)?.['Chris_caught'] < 10) {
-        (s as any).slyQW['Chris_peeking'] = 2;
+        ((s as any).slyQW ?? {})['Chris_peeking'] = 2;
         scene.text('You hear a moan coming from the doorway and sneak a look in that direction. Christina is peeking around the corner, obviously masturbating to the sight of her brother fucking you.');
         scene.text('Sly seems surprised to see her, but neither him nor her slow down.');
       } else {
-        (s as any).slyQW['Chris_peeking'] = 2;
+        ((s as any).slyQW ?? {})['Chris_peeking'] = 2;
         scene.text('You hear a loud moan coming from the doorway again. Looking over, you see Christina boldly standing in the doorway naked and rubbing her clit, while watching the two of you fuck.');
         scene.text('Sly no longer seems to be surprised to see her watching and frequently looks in her direction to watch her masturbate.');
       }
@@ -165,10 +165,10 @@ function enterCumDecide(s: GameState, scene: SceneBuilder): void {
 function enterSexEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Clean up', handler: (st: GameState) => {
-    (s as any).slyQW['sex_act'] = 0;
-    (s as any).slyQW['sex_stam'] = 0;
-    (s as any).slyQW['trained'] = ((s as any).slyQW['trained'] ?? 0) + (1);
-    (s as any).slyQW['Chris_peeking'] = 0;
+    ((s as any).slyQW ?? {})['sex_act'] = 0;
+    ((s as any).slyQW ?? {})['sex_stam'] = 0;
+    ((s as any).slyQW ?? {})['trained'] = (((s as any).slyQW ?? {})['trained'] ?? 0) + (1);
+    ((s as any).slyQW ?? {})['Chris_peeking'] = 0;
     qspCall(s, 'panties', 'wear', ((s as any).pursepantytype ?? 0), ((s as any).pursepantynumber ?? 0));
     qspCall(s, 'bras', 'wear', ((s as any).pursebratype ?? 0), ((s as any).pursebranumber ?? 0));
     qspCall(s, 'clothing', 'wear_last_worn');
@@ -221,8 +221,8 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat', 'rough');
   qspCall(s, 'stat', '');
   if (((s as any).slyQW ?? 0)?.['trained'] === 0) {
-    (s as any).slyQW['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
-    (s as any).slyQW['Chris_peeking'] = 1;
+    ((s as any).slyQW ?? {})['Chris_caught'] = (((s as any).slyQW ?? {})['Chris_caught'] ?? 0) + (1);
+    ((s as any).slyQW ?? {})['Chris_peeking'] = 1;
     if (((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
       scene.actions([
         { label: 'Continue', goto: ['Zvereva_Sly_sex', 'vag_cow_1'] },
@@ -240,7 +240,7 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
 
 function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slyQW ?? 0)?.['virgin'] === 1) {
-    (s as any).slyQW['virgin'] = 3;
+    ((s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
   scene.img('images/shared/sex/vag/cowgirl/hard\'+rand(1, 4)+\'.mp4');
@@ -272,7 +272,7 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
 
 function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slyQW ?? 0)?.['virgin'] === 1) {
-    (s as any).slyQW['virgin'] = 3;
+    ((s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
   scene.img('images/shared/sex/vag/doggy/kotovsex\'+rand(10, 13)+\'.mp4');
@@ -302,7 +302,7 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
 
 function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slyQW ?? 0)?.['virgin'] === 1) {
-    (s as any).slyQW['virgin'] = 3;
+    ((s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
   scene.img('images/shared/sex/vag/facedown/kotovsex\'+rand(40, 45)+\'.mp4');

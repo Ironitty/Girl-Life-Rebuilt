@@ -9,7 +9,7 @@ function enterShowertalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['shower_talk'] > 0) {
     scene.actions([{ label: 'Continue', goto: ['brother_voyeur', 'showertalk2'] }]);
   }
-  (s as any).brotherQW['shower_talk'] = ((s as any).brotherQW['shower_talk'] ?? 0) + (1);
+  ((s as any).brotherQW ?? {})['shower_talk'] = (((s as any).brotherQW ?? {})['shower_talk'] ?? 0) + (1);
   scene.img('images/shared/home/bathroom/brothertalk1.jpg');
   scene.text('Through the crack in the door you make eye contact with your brother.');
   scene.text('"Hey Kolka!"');
@@ -30,9 +30,9 @@ function enterShowertalk1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: '"You can look at me you know"', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A34', 'love');
-    (s as any).brotherQW['shower_look'] = 1;
+    ((s as any).brotherQW ?? {})['shower_look'] = 1;
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 2) {
-      (s as any).brotherQW['Sex'] = 2;
+      ((s as any).brotherQW ?? {})['Sex'] = 2;
     }
     scene.img('images/shared/home/bathroom/brothertalk4.jpg');
     scene.text('"Kolka…" When you say this he starts to turn towards you a little bit but then stops himself and continues to stare at the wall. You sigh sympathetically. "It\'s okay to look at me you know."');
@@ -103,9 +103,9 @@ function enterShowertalk1(s: GameState, scene: SceneBuilder): void {
 
 function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A34'] <= 1) {
-    (s as any).npc_QW['A34'] = 2;
+    ((s as any).npc_QW ?? {})['A34'] = 2;
   }
-  (s as any).brotherQW['shower_talk'] = ((s as any).brotherQW['shower_talk'] ?? 0) + (1);
+  ((s as any).brotherQW ?? {})['shower_talk'] = (((s as any).brotherQW ?? {})['shower_talk'] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'modify', 'A34', 'like');
   if (((s as any).brotherQW ?? 0)?.['shower_look'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['brother_voyeur', 'brothershowerlook'] }]);
@@ -182,7 +182,7 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
     qspCall(s, 'mood', 'raise', 'small');
-    (s as any).brother_shower['mast_look'] = Math.floor(Math.random() * 3) + 1;
+    ((s as any).brother_shower ?? {})['mast_look'] = Math.floor(Math.random() * 3) + 1;
     scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
     if (((s as any).brother_shower ?? 0)?.['mast_look'] !== 1) {
       scene.text('After taking a few more seconds to calm down, you peek back out at your brother and he doesn\'t seem to have noticed anything was amiss. With a quiet sigh of relief, you decide to quickly finish washing up.');
@@ -208,9 +208,9 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: '"You can look at me you know"', handler: (st: GameState) => {
-    (s as any).brotherQW['shower_look'] = 1;
+    ((s as any).brotherQW ?? {})['shower_look'] = 1;
     if (((s as any).brotherQW ?? 0)?.['Sex'] < 2) {
-      (s as any).brotherQW['Sex'] = 2;
+      ((s as any).brotherQW ?? {})['Sex'] = 2;
     }
     qspCall(s, 'npc_relationship', 'modify', 'A34', 'love');
     (s as any).bro_ass_compliment = Math.floor(Math.random() * 3) + 1;
@@ -276,7 +276,7 @@ function enterShowertalk2(s: GameState, scene: SceneBuilder): void {
 
 function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/brothertalk3.jpg');
-  (s as any).brother_shower['look'] = ((s as any).daystart ?? 0);
+  ((s as any).brother_shower ?? {})['look'] = ((s as any).daystart ?? 0);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
   if (((s as any).npc_rel ?? 0)?.['A34'] <50  &&  ((s as any).brothershowerask ?? 0) !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'npc_relationship', 'modify', 'A34', 'like');
@@ -364,7 +364,7 @@ function enterBrothershowerlook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDayTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).brother_shower['talk'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).brother_shower ?? {})['talk'] = Math.floor(Math.random() * 3) + 1;
   if (((s as any).brother_shower ?? 0)?.['talk'] === 1) {
     scene.text('"… but, yeah. It was a pretty good day overall," he finishes, snapping you out of your idle thoughts and bringing you back to the room.');
     scene.text('"That\'s always good to hear!" you reply.');
@@ -398,7 +398,7 @@ function enterDayTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).brother_shower['talk'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).brother_shower ?? {})['talk'] = Math.floor(Math.random() * 3) + 1;
   if (((s as any).brother_shower ?? 0)?.['talk'] === 1) {
     scene.text('"I hate math so much!" he moans, snapping you out of your idle thoughts and bringing you back to the room. "I wish it could just go die in a hole!"');
     if (((s as any).class ?? 0)?.['school_math_grade'] >= 70) {
@@ -414,7 +414,7 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
       if (((s as any).brother_shower ?? 0)?.['talk'] === 3  &&  ((s as any).brotherQW ?? 0)?.['sex_ed'] < 1) {
         scene.text('"… so science class is alright," he says, snapping you out of your idle thoughts and bringing you back to the room. "I\'m really having trouble with my anatomy homework though. The diagrams in the book aren\'t very good, I don\'t understand it."');
         scene.text('"Hmm. Well maybe I could help you with it sometime? Do something to help you understand it better?"');
-        (s as any).brotherQW['anatomy_help'] = 1;
+        ((s as any).brotherQW ?? {})['anatomy_help'] = 1;
       } else {
         if (((s as any).brother_shower ?? 0)?.['talk'] === 3  &&  ((s as any).brotherQW ?? 0)?.['sex_ed'] >= 1) {
           scene.text('"… so I\'m enjoying science a lot more," he says, snapping you out of your idle thoughts and bringing you back to the room. "My grades have gotten better since you started helping me with my homework but I\'m still not sure I completely get it…" He hesitates. "Could you maybe… give me another anatomy lesson? Like you did before?" he says, looking at you meaningfully.');
@@ -427,7 +427,7 @@ function enterSchoolTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFriendTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).brother_shower['talk'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).brother_shower ?? {})['talk'] = Math.floor(Math.random() * 3) + 1;
   if (((s as any).brother_shower ?? 0)?.['talk'] === 1) {
     scene.text('… and then he sprayed milk all over his locker!" he says with a burst of laughter, snapping you out of your idle thoughts and bringing you back to the room. "It was <i>so</i> funny! Hey, are you listening?"');
     scene.text('"Uhmm, yeah! Of course!" you say, trying to maintain your poker face as best you can while he frowns at you suspiciously.');
@@ -549,9 +549,9 @@ function enterBrotherShowerTogetherFirst(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterBrotherShowerTogether(s: GameState, scene: SceneBuilder): void {
-  (s as any).brother_shower['grope'] = Math.floor(Math.random() * 2) + 0;
-  (s as any).brotherQW['shower_times'] = ((s as any).brotherQW['shower_times'] ?? 0) + (1);
-  (s as any).brother_shower['together'] = ((s as any).daystart ?? 0);
+  ((s as any).brother_shower ?? {})['grope'] = Math.floor(Math.random() * 2) + 0;
+  ((s as any).brotherQW ?? {})['shower_times'] = (((s as any).brotherQW ?? {})['shower_times'] ?? 0) + (1);
+  ((s as any).brother_shower ?? {})['together'] = ((s as any).daystart ?? 0);
   scene.img('images/shared/home/bathroom/brothershower.jpg');
   scene.text('Kolka clambers into the shower with you, doing his best to get under the water. The bath tub isn\'t very big and it\'s a tight squeeze for both of you to be in there.');
   if (((s as any).pcs_inhib ?? 0) >= 50  ||  ((s as any).npc_rel ?? 0)?.['A34'] >= 80) {
@@ -659,7 +659,7 @@ function enterBrotherShowerTogether(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).brotherQW ?? 0)?.['Sex'] >= 4  &&  ((s as any).brother_shower ?? 0)?.['grope'] === 1) {
-        (s as any).brother_shower['grope'] = 2;
+        ((s as any).brother_shower ?? {})['grope'] = 2;
         scene.text('"It\'s fine, but I\'ve been having a little trouble paying attention in class lately," he says, stepping behind you.');
         scene.text('"Why\'s that?"');
         scene.actions([
@@ -686,7 +686,7 @@ function enterBrotherShowerTogether(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).brotherQW ?? 0)?.['Sex'] >= 4  &&  ((s as any).brother_shower ?? 0)?.['grope'] === 1) {
-        (s as any).brother_shower['grope'] = 3;
+        ((s as any).brother_shower ?? {})['grope'] = 3;
         scene.text('"Who cares about them?" he says, stepping behind you.');
         scene.actions([
           { label: '"Eek-!"', goto: ['brother_voyeur', 'showerfun'] },
@@ -736,7 +736,7 @@ function enterBrotherWashFirst(s: GameState, scene: SceneBuilder): void {
 function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A34', 'love');
   if (((s as any).brotherQW ?? 0)?.['Sex'] < 4) {
-    (s as any).brotherQW['Sex'] = 4;
+    ((s as any).brotherQW ?? {})['Sex'] = 4;
   }
   (s as any).brotherwash = ((s as any).brotherwash ?? 0) + (1);
   scene.img('images/shared/home/bathroom/brotherwash.jpg');
@@ -767,7 +767,7 @@ function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['razor'] < Math.min(((((s as any).pcs_pubes ?? 0) > 3) ? (((s as any).razors_to_use ?? 0)?.['pussy']) : (3)), ((((s as any).pcs_leghair ?? 0) > 3) ? (((s as any).razors_to_use ?? 0)?.['legs']) : (3)))) {
       scene.actions([
         { label: '"I can\'t. I don\'t have enough razors"', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 2;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 2;
     scene.text('"I couldn\'t even if I wanted to," you say to him with a shrug. He looks at you in confusion. "I\'m out of razors. Can\'t shave without a razor kiddo."');
     scene.text('"Oh." He looks around at the contents of the shower to see that you really are out of razors. "You know, you should really be more responsible sis. You shouldn\'t let yourself run out of shaving supplies like that."');
     scene.text('You roll your eyes at his suggestions of responsibility, recognizing that they\'re obviously motivated by to his preference for clean-shaven girls.');
@@ -790,13 +790,13 @@ function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'I should shave', goto: ['brother_voyeur', 'brother_shower_shave'] },
           { label: 'Just for you', handler: (st: GameState) => {
-    (s as any).brother_shower['shave_ask1'] = ((s as any).daystart ?? 0);
+    ((s as any).brother_shower ?? {})['shave_ask1'] = ((s as any).daystart ?? 0);
   }, goto: ['brother_voyeur', 'brother_shower_shave'] },
         ]);
       }
       scene.actions([
         { label: 'Don\'t feel like it', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 2;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 2;
     scene.img('images/shared/home/bathroom/brotherwash.jpg');
     scene.text('"Nah," you say dismissively. "Don\'t feel like doing it right now."');
     scene.text('Kolka\'s mouth twists in disappointment. "You know, you really should. Nobody likes girls with hairy legs and a bush between them. You\'ll get bullied by other girls and never get a boyfriend if you don\'t shave."');
@@ -815,7 +815,7 @@ function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I like it this way', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 6;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 6;
     scene.img('images/shared/home/bathroom/brotherwash.jpg');
     scene.text('"No?" you say questioningly. "I like it this way!"');
     scene.text('Kolka\'s mouth twists in disappointment. "You know, you really should reconsider. Nobody likes girls with hairy legs and a bush between them. You\'ll get bullied by other girls and never get a boyfriend if you don\'t shave."');
@@ -839,7 +839,7 @@ function enterBrotherWash(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['Sex'] > 0  ||  ((s as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((s as any).brotherQW ?? 0)?.['anal'] > 0  ||  ((s as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((s as any).brotherwash ?? 0) > 5) {
     scene.actions([
       { label: 'Get frisky', handler: (st: GameState) => {
-    (s as any).brother_shower['grope'] = 4;
+    ((s as any).brother_shower ?? {})['grope'] = 4;
   }, goto: ['brother_voyeur', 'showerfun'] },
     ]);
   }
@@ -913,8 +913,8 @@ function enterShaveBoth(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_leghair = 0;
     (s as any).pcs_pubes = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).brotherQW['shave'] = ((s as any).brotherQW['shave'] ?? 0) + (1);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
+    ((s as any).brotherQW ?? {})['shave'] = (((s as any).brotherQW ?? {})['shave'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
     scene.img('images/shared/home/bathroom/shave.mp4');
     scene.text('"Yeah, sure. Why not?" you smile.');
     scene.text('You lather up your legs and crotch and then start carefully shaving them. Kolka stares at you and watches the process intently.');
@@ -963,7 +963,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_leghair = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave2.jpg');
     scene.text('You lather up your legs and then start carefully shaving them.');
@@ -988,7 +988,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
             { label: '"Nope! I\'m thinking of growing it out"', handler: (st: GameState) => {
     scene.text('"Nope! I\'m thinking about growing it out," you say cheerfully, smiling at him.');
     if (((s as any).brother_shower ?? 0)?.['shave_ask1'] === ((s as any).daystart ?? 0)) {
-      (s as any).brother_shower['shave_ask2'] = ((s as any).daystart ?? 0);
+      ((s as any).brother_shower ?? {})['shave_ask2'] = ((s as any).daystart ?? 0);
       scene.text('Kolka frowns. "I thought you said you were going to do what I asked?"');
       scene.actions([
         { label: 'Not going to change my mind', handler: (st: GameState) => {
@@ -1020,7 +1020,7 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
           { label: '"Nah, I don\'t feel like it right now"', handler: (st: GameState) => {
     scene.text('"Nah," you say. "I don\'t feel like doing it right now. Too much of a pain."');
     if (((s as any).brother_shower ?? 0)?.['shave_ask1'] === ((s as any).daystart ?? 0)) {
-      (s as any).brother_shower['shave_ask2'] = ((s as any).daystart ?? 0);
+      ((s as any).brother_shower ?? {})['shave_ask2'] = ((s as any).daystart ?? 0);
       scene.text('Kolka frowns. "I thought you said you were going to do what I asked?"');
       scene.actions([
         { label: 'That\'s not what I said', handler: (st: GameState) => {
@@ -1077,9 +1077,9 @@ function enterShaveLegs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A34', 'like');
     (s as any).pcs_pubes = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).brotherQW['shave'] = ((s as any).brotherQW['shave'] ?? 0) + (1);
+    ((s as any).brotherQW ?? {})['shave'] = (((s as any).brotherQW ?? {})['shave'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave.mp4');
     scene.text('"Hmm…" You think to yourself for a moment. "Maybe you\'re right after all," you say and start lathering up your crotch.');
@@ -1131,7 +1131,7 @@ function enterShavePussy(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_pubes = 0;
     }
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave3.jpg');
     if (((s as any).brother_shower ?? 0)?.['shave_ask2'] === ((s as any).daystart ?? 0)) {
@@ -1162,9 +1162,9 @@ function enterShavePussy(s: GameState, scene: SceneBuilder): void {
           { label: '"Hmm, maybe you\'re right" (0:05)', handler: (st: GameState) => {
     (s as any).pcs_leghair = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).brotherQW['shave'] = ((s as any).brotherQW['shave'] ?? 0) + (1);
+    ((s as any).brotherQW ?? {})['shave'] = (((s as any).brotherQW ?? {})['shave'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave2.jpg');
     scene.text('"Hmm…" You think to yourself for a moment. "Maybe you\'re right after all," you say and start lathering up your legs and begin carefully shaving them.');
@@ -1315,7 +1315,7 @@ function enterShowerfun(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherShowerEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A34', 'love');
-  (s as any).brotherQW['shower_times'] = ((s as any).brotherQW['shower_times'] ?? 0) + (1);
+  ((s as any).brotherQW ?? {})['shower_times'] = (((s as any).brotherQW ?? {})['shower_times'] ?? 0) + (1);
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0) {
     (s as any).cumspclnt = 1;
   } else {
@@ -1346,7 +1346,7 @@ function enterBrotherShowerEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'brother_shower_sex', 'brother_shower_finishdryoff');
   } },
       { label: 'Kiss him goodbye', handler: (st: GameState) => {
-    (s as any).brotherQW['kiss'] = ((s as any).brotherQW['kiss'] ?? 0) + (1);
+    ((s as any).brotherQW ?? {})['kiss'] = (((s as any).brotherQW ?? {})['kiss'] ?? 0) + (1);
     scene.text('You take a towel and wrap it around yourself before leaning in and giving your brother a quick kiss on the lips.');
     scene.text('"See you later."');
     scene.text('He\'s taken aback by the kiss, but smiles anyways, picking up his clothes before peeking into the hallway to make sure no one is there and slipping out the door.');
@@ -1440,7 +1440,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_pubes ?? 0) < 21) {
         scene.actions([
           { label: '"Nope! I\'m thinking of growing it out"', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 6;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 6;
     scene.text('"Nope! I\'m thinking about growing it out," you say cheerfully, smiling at him.');
     if (((s as any).pcs_pubes ?? 0) > 3  &&  ((s as any).pcs_pubes ?? 0) < 11) {
       scene.text('"Hmph. I still think you\'d look better if you just kept it smooth…" he mutters.');
@@ -1457,7 +1457,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: '"Nah, I\'m too lazy"', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 2;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 2;
     scene.text('"Nah," you say. "I\'m too lazy to do it. If I start shaving now, I\'ll have to keep shaving every few days. Too much trouble to maintain."');
     scene.text('"Hrmph. No wonder it\'s such a mess down there…" he mutters.');
     scene.text('You glare at him a little but he doesn\'t see it as he\'s already crossed his arms and looked away, still frowning.');
@@ -1470,7 +1470,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_pubes ?? 0) > 10) {
         scene.actions([
           { label: '"I like it like this!"', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 6;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 6;
     scene.text('"I like it like this! Nothing wrong with a girl wanting to have a bit of bush down there," you say cheerfully, smiling at him.');
     if (((s as any).pcs_pubes ?? 0) > 20) {
       scene.text('"Hrmph. More like a jungle…" he mutters. You glare at him a little but he doesn\'t see it as he\'s already crossed his arms and looked away, still frowning. "I still think you\'d look better if you shaved it off…"');
@@ -1493,8 +1493,8 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_leghair = 0;
     (s as any).pcs_pubes = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).brotherQW['shave'] = ((s as any).brotherQW['shave'] ?? 0) + (1);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
+    ((s as any).brotherQW ?? {})['shave'] = (((s as any).brotherQW ?? {})['shave'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave.mp4');
@@ -1518,7 +1518,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_leghair = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave2.jpg');
@@ -1594,9 +1594,9 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
           { label: '"Hmm, maybe you\'re right"', handler: (st: GameState) => {
     (s as any).pcs_pubes = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).brotherQW['shave'] = ((s as any).brotherQW['shave'] ?? 0) + (1);
+    ((s as any).brotherQW ?? {})['shave'] = (((s as any).brotherQW ?? {})['shave'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     scene.img('images/shared/home/bathroom/shave.mp4');
     if (((s as any).pcs_pubes ?? 0) < 11) {
       scene.text('<br>"Hmm…" You think to yourself for a moment. "Maybe you\'re right after all," you say and start lathering up your crotch.<br>Kolka stares at you intensely as you carefully remove the bits of stubble from around your pussy.');
@@ -1635,9 +1635,9 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_pubes = 0;
     }
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).brotherQW['shave'] = ((s as any).brotherQW['shave'] ?? 0) + (1);
+    ((s as any).brotherQW ?? {})['shave'] = (((s as any).brotherQW ?? {})['shave'] ?? 0) + (1);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave.mp4');
@@ -1697,7 +1697,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: '"Not with you watching!"', handler: (st: GameState) => {
-    (s as any).brotherQW['shave_day'] = ((s as any).daystart ?? 0) + 2;
+    ((s as any).brotherQW ?? {})['shave_day'] = ((s as any).daystart ?? 0) + 2;
     scene.img('images/shared/home/bathroom/brothertalk3.jpg');
     scene.text('"Not with you watching!" you laugh. "That\'s a bit intimate. Maybe I will when you\'re not around."');
     scene.text('"Hmm…" He seems disappointed.');
@@ -1732,7 +1732,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_pubes = 0;
     }
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave3.jpg');
     scene.text('You casually continue the conversation with your brother while lathering up your legs and crotch before starting to carefully shave them. You notice your brother make a few curious peeks but decide not to say anything and simply continue on with your business and the conversation.');
@@ -1749,7 +1749,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_leghair = 0;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['legs']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave2.jpg');
     scene.text('You casually continue the conversation with your brother while lathering up your legs before starting to carefully shave them. You notice your brother make a few curious peeks but decide not to say anything and simply continue on with your business and the conversation.');
@@ -1770,7 +1770,7 @@ function enterShave(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_pubes = 0;
     }
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
+    ((s as any).mc_inventory ?? {})['razor'] = (((s as any).mc_inventory ?? {})['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/bathroom/shave3.jpg');
     scene.text('You casually continue the conversation with your brother while lathering up the area between your legs before starting to carefully shave it. You notice your brother make a few curious peeks but you decide not to say anything and simply continue on with your business and the conversation.');
@@ -1810,7 +1810,7 @@ function enterShaveNotDone(s: GameState, scene: SceneBuilder): void {
       if (((s as any).brotherQW ?? 0)?.['Sex'] > 0  ||  ((s as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((s as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((s as any).brotherwash ?? 0) > 5) {
         scene.actions([
           { label: 'Get frisky', handler: (st: GameState) => {
-    (s as any).brother_shower['grope'] = 4;
+    ((s as any).brother_shower ?? {})['grope'] = 4;
   }, goto: ['brother_voyeur', 'showerfun'] },
         ]);
       }
@@ -1832,7 +1832,7 @@ function enterShaveNotDone(s: GameState, scene: SceneBuilder): void {
       if (((s as any).brotherQW ?? 0)?.['Sex'] > 0  ||  ((s as any).brotherQW ?? 0)?.['fuck'] > 0  ||  ((s as any).brotherQW ?? 0)?.['bj'] > 0  ||  ((s as any).brotherwash ?? 0) > 5) {
         scene.actions([
           { label: 'Get frisky', handler: (st: GameState) => {
-    (s as any).brother_shower['grope'] = 4;
+    ((s as any).brother_shower ?? {})['grope'] = 4;
   }, goto: ['brother_voyeur', 'showerfun'] },
         ]);
       }
@@ -1995,7 +1995,7 @@ function enterBrotherVoyeurEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A34', Math.floor(Math.random() * 2) + 1);
   }
   if (((s as any).npc_QW ?? 0)?.['A34'] < 1) {
-    (s as any).npc_QW['A34'] = 1;
+    ((s as any).npc_QW ?? {})['A34'] = 1;
   }
   scene.img(`images/characters/pavlovsk/resident/kolka/event/shower/b (${((s as any).picrand ?? 0)}).jpg`);
   scene.text('You continue to wash as if nothing has happened, glancing at your brother. You carefully wash your body, paying particular attention to your breasts and pussy, feeling the excitement grow in your abdomen.');
@@ -2039,7 +2039,7 @@ function enterBrotherVoyeurEv2(s: GameState, scene: SceneBuilder): void {
 function enterBrotherVoyeurEv3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).npc_QW ?? 0)?.['A34'] <= 1) {
-    (s as any).npc_QW['A34'] = 2;
+    ((s as any).npc_QW ?? {})['A34'] = 2;
   }
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 5);
   (s as any).picrand = Math.floor(Math.random() * 2) + 1;
@@ -2062,11 +2062,11 @@ function enterBrotherVoyeurEv3(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
   (s as any).brother = ((s as any).brother ?? 0) + (15);
-  (s as any).brotherQW['confidence'] = ((s as any).brotherQW['confidence'] ?? 0) + (5);
+  ((s as any).brotherQW ?? {})['confidence'] = (((s as any).brotherQW ?? {})['confidence'] ?? 0) + (5);
   if (((s as any).pcs_vag ?? 0) < ((s as any).npc_dick ?? 0)?.['A34']) {
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   }
-  (s as any).brotherQW['fuck'] = ((s as any).brotherQW['fuck'] ?? 0) + (1);
+  ((s as any).brotherQW ?? {})['fuck'] = (((s as any).brotherQW ?? {})['fuck'] ?? 0) + (1);
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'cum_call', '', '', 'A34', 1);
   qspCall(s, 'stat', '');
@@ -2077,12 +2077,12 @@ function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You turn your ass to Kolka as he strokes his hardening <<npc_dick['A34']>> cm lo...
     scene.text(`You turn your ass to Kolka as he strokes his hardening ${((s as any).npc_dick ?? 0)?.['A34']} cm long member, before guiding it into your waiting pussy.`);
   } else {
-    (s as any).brotherQW['know_not_virgin'] = 1;
+    ((s as any).brotherQW ?? {})['know_not_virgin'] = 1;
     scene.text('Kolka\'s voice goes low, you can barely hear him over the noise of the shower. "Are you, you know…"');
     scene.text('"A virgin?" you ask him smiling.');
     scene.text('"Yeah," he replies with a red face and embarrassed expression on his face.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-      (s as any).brotherQW['virgin_think_took'] = 1;
+      ((s as any).brotherQW ?? {})['virgin_think_took'] = 1;
       scene.text('"Yes, I am," you nod to him. "You will be my first, little brother."');
       scene.text('He takes a deep breath to sort himself before shedding his clothes and stepping into the shower.');
       // TODO-QSP: dynamic text: You turn your ass to Kolka as he strokes his hardening <<npc_dick['A34']>> cm lo...

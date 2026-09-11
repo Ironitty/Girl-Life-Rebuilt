@@ -13,7 +13,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('If you want, you can tell your clients a different name.');
     // TODO-QSP: $prostitute_names[$prostitution_location] = input("What name do you want to tell your clients? (Leav...
     if (((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] === '') {
-      (s as any).prostitute_names[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
+      ((s as any).prostitute_names ?? {})[String((s as any).prostitution_location ?? 0)] = ((s as any).pcs_nickname ?? 0);
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
@@ -51,7 +51,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
     (s as any).cumspclnt = 20;
     qspCall(s, 'cum_cleanup', '');
   }, goto: ['road_prostitution', 'work'] },

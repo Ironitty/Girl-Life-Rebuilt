@@ -389,7 +389,7 @@ function enterEv19(s: GameState, scene: SceneBuilder): void {
   scene.text('You get dressed and get ready to go home.');
   scene.text('The boys throw money at you, "Earned yourself a crumb."');
   (s as any).guy = ((s as any).guy ?? 0) + (1);
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'end');
   scene.actions([
     { label: 'Go home', goto: ['city_residential', ''] },
@@ -862,7 +862,7 @@ function enterEv40(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, ((s as any).npcID ?? 0), 'sub', 'group', 'rough');
   qspCall(s, 'arousal', 'vaginal', 15, ((s as any).npcID1 ?? 0), 'sub', 'group', 'rough');
   (s as any).guy = ((s as any).guy ?? 0) + (2);
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Get up and get dressed', goto: ['city_jorahouse', 'ev41'] },

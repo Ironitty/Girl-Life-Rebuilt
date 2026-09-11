@@ -41,13 +41,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).MiraFather ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).MiraFather = ((s as any).daystart ?? 0);
       if (((s as any).npc_QW ?? 0)?.['A64'] >= 16  &&  (((s as any).MiraVars ?? 0)?.['meadow'] === 3  ||  ((s as any).MiraVars ?? 0)?.['meadow'] === 4)) {
-        (s as any).MiraVars['meadow'] = 5;
+        ((s as any).MiraVars ?? {})['meadow'] = 5;
       }
       if (((s as any).npc_QW ?? 0)?.['A64'] < 5) {
         scene.actions([
           { label: 'Ask how he\'s doing', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 5) {
-      (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A64'] = (((s as any).npc_QW ?? {})['A64'] ?? 0) + (1);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -67,7 +67,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Chat with him', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 10) {
-      (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A64'] = (((s as any).npc_QW ?? {})['A64'] ?? 0) + (1);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Flirt with him', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 15) {
-      (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A64'] = (((s as any).npc_QW ?? {})['A64'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'foreplay', 10);
     qspCall(s, 'arousal', 'end');
@@ -98,7 +98,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_QW ?? 0)?.['A64'] === 15) {
               scene.actions([
                 { label: 'Seduce him', handler: (st: GameState) => {
-    (s as any).npc_QW['A64'] = 16;
+    ((s as any).npc_QW ?? {})['A64'] = 16;
     qspCall(s, 'arousal', 'foreplay', 10);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
@@ -138,7 +138,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 scene.actions([
                   { label: 'Wink at him', handler: (st: GameState) => {
     if (((s as any).npc_QW ?? 0)?.['A64'] < 20) {
-      (s as any).npc_QW['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A64'] = (((s as any).npc_QW ?? {})['A64'] ?? 0) + (1);
     }
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');

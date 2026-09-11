@@ -29,7 +29,7 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).birth_control['using_bc'] = 3;
+    ((s as any).birth_control ?? {})['using_bc'] = 3;
     (s as any).tabletkimm = (100 * (((s as any).pcs_willpwr ?? 0) / ((s as any).willpowermax ?? 0))) + ((s as any).pcs_mood ?? 0);
     if (((s as any).pcs_sleep ?? 0) < 10) {
       (s as any).tabletkimm = ((s as any).tabletkimm ?? 0) - ((100 - (((s as any).pcs_sleep ?? 0) * 10)));
@@ -118,11 +118,11 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
   if (((s as any).birth_control ?? 0)?.['using_bc'] > 0) {
     if (((s as any).pilldaychk ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).pilldays = ((s as any).pilldays ?? 0) + (1);
-      (s as any).birth_control['using_bc'] = 3;
+      ((s as any).birth_control ?? {})['using_bc'] = 3;
     } else {
       (s as any).pilldays = ((s as any).pilldays ?? 0) - (1);
       if (((s as any).placebopart ?? 0) <= 0) {
-        (s as any).birth_control['using_bc'] = ((s as any).birth_control['using_bc'] ?? 0) - (1);
+        ((s as any).birth_control ?? {})['using_bc'] = (((s as any).birth_control ?? {})['using_bc'] ?? 0) - (1);
       }
     }
   }
@@ -136,13 +136,13 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
     (s as any).pilldays = 0;
   }
   if (((s as any).tabletkiday ?? 0) < ((s as any).daystart ?? 0) - 5) {
-    (s as any).birth_control['using_bc'] = 0;
+    ((s as any).birth_control ?? {})['using_bc'] = 0;
   }
   if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
-    (s as any).stat['forgot_bc_pill'] = 0;
+    ((s as any).stat ?? {})['forgot_bc_pill'] = 0;
   } else {
     if (((s as any).pilldaychk ?? 0) < ((s as any).daystart ?? 0) - 1  &&  ((s as any).pilldaychk ?? 0) > ((s as any).daystart ?? 0) - 5  &&  ((s as any).pillcon2 ?? 0) > 0) {
-      (s as any).stat['forget_bc_count'] = ((s as any).stat['forget_bc_count'] ?? 0) + (1);
+      ((s as any).stat ?? {})['forget_bc_count'] = (((s as any).stat ?? {})['forget_bc_count'] ?? 0) + (1);
     }
   }
   qspCall(s, 'fertility', 'birth_control_status_update');
@@ -213,12 +213,12 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spellTarget ?? 0)?.['birth_control'] === 'self') {
     (s as any).pillcon = 40000;
     (s as any).pillcon2 = 40000;
-    (s as any).spellTime['birth_control'] = ((s as any).spellTime['birth_control'] ?? 0) - (1);
+    ((s as any).spellTime ?? {})['birth_control'] = (((s as any).spellTime ?? {})['birth_control'] ?? 0) - (1);
     if (((s as any).spellTime ?? 0)?.['birth_control'] > 0  &&  ((s as any).spellTime ?? 0)?.['birth_control'] < 30) {
-      (s as any).birth_control['implant_status'] = 2;
+      ((s as any).birth_control ?? {})['implant_status'] = 2;
     } else {
       if (((s as any).spellTime ?? 0)?.['birth_control'] < 1) {
-        (s as any).spellTarget['birth_control'] = '';
+        ((s as any).spellTarget ?? {})['birth_control'] = '';
         (s as any).pillcon = 0;
         (s as any).pillcon2 = 0;
       }
@@ -234,16 +234,16 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pillcon2 ?? 0) > 40000) {
         (s as any).pillcon2 = 40000;
       }
-      (s as any).birth_control['implant_timer'] = ((s as any).birth_control['implant_timer'] ?? 0) - (1);
+      ((s as any).birth_control ?? {})['implant_timer'] = (((s as any).birth_control ?? {})['implant_timer'] ?? 0) - (1);
       if ((((s as any).birth_control ?? 0)?.['implant_timer'] - 1090) > 0) {
         qspCall(s, 'pain', '', '' + (((s as any).birth_control ?? {})?.['implant_timer'] - 1090)*2> + '', 'armL', 'ache');
       } else {
         if (((s as any).birth_control ?? 0)?.['implant_timer'] > 0  &&  ((s as any).birth_control ?? 0)?.['implant_timer'] < 30) {
-          (s as any).birth_control['implant_status'] = 2;
+          ((s as any).birth_control ?? {})['implant_status'] = 2;
           // TODO-QSP: 'Your birth control implant is only good for <<birth_control[''implant_timer'']>> more' + iif(birth_...
         } else {
           if (((s as any).birth_control ?? 0)?.['implant_timer'] < 0) {
-            (s as any).birth_control['implant_status'] = 1;
+            ((s as any).birth_control ?? {})['implant_status'] = 1;
           }
         }
       }
@@ -261,28 +261,28 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBirthControlStatusUpdate(s: GameState, scene: SceneBuilder): void {
-  (s as any).birth_control['old_pillcon'] = ((s as any).pillcon ?? 0);
-  (s as any).birth_control['old_pillcon2'] = ((s as any).pillcon2 ?? 0);
+  ((s as any).birth_control ?? {})['old_pillcon'] = ((s as any).pillcon ?? 0);
+  ((s as any).birth_control ?? {})['old_pillcon2'] = ((s as any).pillcon2 ?? 0);
   if (((s as any).pillcon ?? 0) > 26000) {
-    (s as any).birth_control['safe'] = 1;
+    ((s as any).birth_control ?? {})['safe'] = 1;
   } else {
     if (((s as any).placebopart ?? 0) <= 0) {
-      (s as any).birth_control['safe'] = 0;
+      ((s as any).birth_control ?? {})['safe'] = 0;
     }
   }
   if (((s as any).pillcon2 ?? 0) > 26000) {
     if (((s as any).tabletkishot ?? 0) > 0  &&  ((s as any).birth_control ?? 0)?.['type'] !== 'shot') {
-      (s as any).birth_control['type'] = 'shot';
+      ((s as any).birth_control ?? {})['type'] = 'shot';
     } else {
       if (((s as any).birth_control ?? 0)?.['type'] !== 'pill') {
-        (s as any).birth_control['type'] = 'pill';
+        ((s as any).birth_control ?? {})['type'] = 'pill';
       }
     }
-    (s as any).birth_control['think_safe'] = 1;
+    ((s as any).birth_control ?? {})['think_safe'] = 1;
   } else {
     if (((s as any).placebopart ?? 0) <= 0) {
-      (s as any).birth_control['think_safe'] = 0;
-      (s as any).birth_control['type'] = 'none';
+      ((s as any).birth_control ?? {})['think_safe'] = 0;
+      ((s as any).birth_control ?? {})['type'] = 'none';
     }
   }
   scene.build();
@@ -694,19 +694,19 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).nextBaby = 0;
     (s as any).Temppolkid = Math.floor(Math.random() * 2) + 0;
-    (s as any).polkid[String((s as any).nextBaby ?? 0)] = ((s as any).Temppolkid ?? 0);
+    ((s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).Temppolkid ?? 0);
     // TODO-QSP: $kidname[nextBaby] = 'unborn'
-    (s as any).kidage[String((s as any).nextBaby ?? 0)] = 0;
-    (s as any).daykid[String((s as any).nextBaby ?? 0)] = 0;
-    (s as any).monthkid[String((s as any).nextBaby ?? 0)] = 0;
-    (s as any).yearkid[String((s as any).nextBaby ?? 0)] = 0;
-    (s as any).babyptype[String((s as any).nextBaby ?? 0)] = 0;
+    ((s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+    ((s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+    ((s as any).monthkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+    ((s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+    ((s as any).babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 0;
     // TODO-QSP: $ChildFath[nextBaby] = $fp_bio
     // TODO-QSP: $ChildThFath[nextBaby] = $fp_bel
-    (s as any).hairkid[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
-    (s as any).eyeskid[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
-    (s as any).ChildConType[String((s as any).nextBaby ?? 0)] = 0;
-    (s as any).babyptype[String((s as any).nextBaby ?? 0)] = 1;
+    ((s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
+    ((s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
+    ((s as any).ChildConType ?? {})[String((s as any).nextBaby ?? 0)] = 0;
+    ((s as any).babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 1;
   }
   qspCall(s, 'din_bad', 'd_cycreport_upduedate');
   scene.build();

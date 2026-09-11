@@ -80,10 +80,10 @@ function enterSumInner(s: GameState, scene: SceneBuilder): void {
 
 function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
@@ -109,10 +109,10 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
 
 function enterCanWear(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
@@ -124,10 +124,10 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = 0;
   return;
@@ -136,10 +136,10 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
 
 function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
@@ -151,10 +151,10 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterInStorage(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
@@ -166,10 +166,10 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
@@ -181,10 +181,10 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
 
 function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
@@ -214,10 +214,10 @@ function enterIsWearing(s: GameState, scene: SceneBuilder): void {
 
 function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  ((s as any).locArgs?.[2] ?? 0) === 1);
   return;
@@ -226,10 +226,10 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 
 function enterBraOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   (s as any).result = qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }));
   return;
@@ -264,10 +264,10 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
@@ -294,10 +294,10 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
-  (s as any).gm_bras[1] = 1;
-  (s as any).gm_brasS[1] = 0;
-  (s as any).gm_bras_dirt[1] = 1440;
-  (s as any).gm_bras_h[1] = 10;
+  ((s as any).gm_bras ?? {})[1] = 1;
+  ((s as any).gm_brasS ?? {})[1] = 0;
+  ((s as any).gm_bras_dirt ?? {})[1] = 1440;
+  ((s as any).gm_bras_h ?? {})[1] = 10;
   return;
   scene.build();
 }
@@ -314,10 +314,10 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 0"
@@ -328,10 +328,10 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 1"
@@ -342,10 +342,10 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_brasS[<<ARGS[2]>>] = 2"
@@ -394,7 +394,7 @@ function enterReset_BraVars(s: GameState, scene: SceneBuilder): void {
   (s as any).BraDirt = 0;
   (s as any).BraStrength = 0;
   (s as any).BraMaxStrength = 0;
-  (s as any).underwear['pair'] = 0;
+  ((s as any).underwear ?? {})['pair'] = 0;
   return;
   scene.build();
 }
@@ -423,7 +423,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: $ARGS[1] = $lastwornbratype
-    (s as any).ARGS[2] = ((s as any).lastwornbranumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).lastwornbranumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
@@ -450,7 +450,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).brawornnumber = qspUntranslated(s, "ARGS[2]", { location: "bras" });
-  (s as any).underwear['type'] = 0;
+  ((s as any).underwear ?? {})['type'] = 0;
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$braworntype>>_brasS[<<brawornnumber>>] = 0
   // TODO-QSP: "
@@ -496,13 +496,13 @@ function enterDecreaseCurDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: dynamic "
@@ -518,13 +518,13 @@ function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterDecreaseDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: dynamic "
@@ -555,13 +555,13 @@ function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
 
 function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: dynamic "
@@ -580,13 +580,13 @@ function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
 
 function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).braworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).braworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).brawornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).brawornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'bras', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "bras" }))) {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]

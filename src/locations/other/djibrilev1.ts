@@ -101,8 +101,8 @@ function enterDjibrilgb(s: GameState, scene: SceneBuilder): void {
       { label: 'Start stroking them', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A82', 1);
     qspCall(s, 'fame', 'city', 'sex', 3);
-    (s as any).npc_had_sex['A82'] = 1;
-    (s as any).DjibrilQW['african_gangbang'] = 1;
+    ((s as any).npc_had_sex ?? {})['A82'] = 1;
+    ((s as any).DjibrilQW ?? {})['african_gangbang'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/sex/dorm/gangbang/gangbang4.jpg');
     scene.text('You reach up, wrapping your fingers around the dick of the one that spoke up with your left hand while you reach over and grab Djibril\'s massive cock with your right hand. You start stroking them both while looking up at them.');
@@ -293,7 +293,7 @@ function enterGangbangCum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGangbangSelfie(s: GameState, scene: SceneBuilder): void {
-  (s as any).djibrilphoto[2] = 1;
+  ((s as any).djibrilphoto ?? {})[2] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/phone/djibril/2.jpg');
   scene.text('Once they\'re finished, they start getting cleaned up and dressed as you reach over to your purse, pull out your phone and hold it up to take a selfie of your cum covered face.');
@@ -305,7 +305,7 @@ function enterGangbangSelfie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGangbangDress(s: GameState, scene: SceneBuilder): void {
-  (s as any).DjibrilQW['invite'] = 1;
+  ((s as any).DjibrilQW ?? {})['invite'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/gangbang/gangbang_leave_cum.jpg');
@@ -335,7 +335,7 @@ function enterGangbangDress(s: GameState, scene: SceneBuilder): void {
 
 function enterSvetaSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A82');
-  (s as any).DjibrilQW['dorm_sex'] = 1;
+  ((s as any).DjibrilQW ?? {})['dorm_sex'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/sveta/anal_knees.jpg');
   // TODO-QSP: dynamic text: Once on your knees, you pull his sweatpants and underwear down and his <<dick>>c...
@@ -382,7 +382,7 @@ function enterSvetaSex1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSvetaSex1BjCum(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_had_sex['A82'] = 1;
+  ((s as any).npc_had_sex ?? {})['A82'] = 1;
   qspCall(s, 'npcStat', 'A82');
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/sveta/anal_bj3.jpg');
@@ -437,7 +437,7 @@ function enterSvetaSex1BjCum(s: GameState, scene: SceneBuilder): void {
 
 function enterSvetaSex1Anal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A82');
-  (s as any).npc_had_sex['A82'] = 1;
+  ((s as any).npc_had_sex ?? {})['A82'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/sveta/anal_undress.jpg');
   scene.text('You nod at him with a smile. "Okay, you can fuck my ass if you want."');
@@ -523,7 +523,7 @@ function enterDjibrilAnya(s: GameState, scene: SceneBuilder): void {
 function enterDjibrilSvetaAnya1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A82');
   qspCall(s, 'npcStat', 'A33', 'a');
-  (s as any).DjibrilQW['anya_count'] = ((s as any).DjibrilQW['anya_count'] ?? 0) + (1);
+  ((s as any).DjibrilQW ?? {})['anya_count'] = (((s as any).DjibrilQW ?? {})['anya_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/anya/djibril_anya1.jpg');
   scene.text('After the three of you talk for a few minutes, he reaches down and starts rubbing both of your thighs. Anya starts kissing him as he unbuttons and then pulls his pants off, freeing his large black dick.');
@@ -679,7 +679,7 @@ function enterDjibrilSvetaAnyaGangbang1(s: GameState, scene: SceneBuilder): void
   qspCall(s, 'npcStat', 'A244', 'b');
   qspCall(s, 'npcStat', 'A245', 'c');
   qspCall(s, 'npcStat', 'A246', 'd');
-  (s as any).DjibrilQW['anya_gangbang_count'] = ((s as any).DjibrilQW['anya_gangbang_count'] ?? 0) + (1);
+  ((s as any).DjibrilQW ?? {})['anya_gangbang_count'] = (((s as any).DjibrilQW ?? {})['anya_gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/anya/anya_gangbang1.jpg');
   scene.text('You grin at her before looking at Djibril. "Okay, call your friends."');
@@ -979,7 +979,7 @@ function enterDjibrilSvetaNush1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Push her head down further', handler: (st: GameState) => {
-    (s as any).DjibrilQW['sveta_nush'] = 1;
+    ((s as any).DjibrilQW ?? {})['sveta_nush'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_3some4.jpg');
     scene.text('"Don\'t tease him! Suck his dick, Nush!" you tell her as you push her head down onto his hard cock.');
@@ -1158,7 +1158,7 @@ function enterDjibrilNush1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Watch her suck his dick', handler: (st: GameState) => {
-    (s as any).DjibrilQW['sveta_nush'] = 1;
+    ((s as any).DjibrilQW ?? {})['sveta_nush'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_djibril2.jpg');
     scene.text('She turns as he pushes her down and gets on her knees in front of him, sucking his dick while using her hands to pull his pants and underwear off.');
@@ -1271,7 +1271,7 @@ function enterDjibrilSvetaNushGangbang1(s: GameState, scene: SceneBuilder): void
   qspCall(s, 'npcStat', 'A244', 'd');
   qspCall(s, 'npcStat', 'A245', 'e');
   qspCall(s, 'npcStat', 'A246', 'f');
-  (s as any).DjibrilQW['sveta_nush'] = 1;
+  ((s as any).DjibrilQW ?? {})['sveta_nush'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_sveta_gangbang1.jpg');
   scene.text('You think for a second before smiling at Djibril. "Call your friends."');
@@ -1394,7 +1394,7 @@ function enterDjibrilSvetaNushGangbang1(s: GameState, scene: SceneBuilder): void
 }
 
 function enterDjibrilNushGangbang1(s: GameState, scene: SceneBuilder): void {
-  (s as any).DjibrilQW['sveta_nush'] = 1;
+  ((s as any).DjibrilQW ?? {})['sveta_nush'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/boy/djibril/sex/dorm/anushka/nush_gangbang1.jpg');
   scene.text('Djibril pulls his phone out and sends a few texts. Within a few minutes, there\'s a knock on the door and two other black guys come in. You recognize both of them from your gangbang and make room for them by taking a seat on one of the beds.');

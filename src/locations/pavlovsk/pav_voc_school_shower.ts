@@ -19,7 +19,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUndress(s: GameState, scene: SceneBuilder): void {
-  (s as any).teacher['level'] = ((s as any).teacher['level'] ?? 0) - (1);
+  ((s as any).teacher ?? {})['level'] = (((s as any).teacher ?? {})['level'] ?? 0) - (1);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
   qspCall(s, 'stat', '');

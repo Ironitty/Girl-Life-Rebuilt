@@ -7,16 +7,16 @@ import type { SceneBuilder } from '../../core/scene';
 function enterGirlCum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['girl_orgasm'] === 1) {
     if (((s as any).sex_ev ?? 0)?.['speed'] === 3) {
-      (s as any).sex_ev['rough_cum'] = ((s as any).sex_ev['rough_cum'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['rough_cum'] = (((s as any).sex_ev ?? {})['rough_cum'] ?? 0) + (1);
     }
-    (s as any).sex_ev['consecutive_orgasm'] = ((s as any).sex_ev['consecutive_orgasm'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['consecutive_orgasm'] = (((s as any).sex_ev ?? {})['consecutive_orgasm'] ?? 0) + (1);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (((s as any).pcs_horny ?? 0)/3);
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
-    (s as any).sex_ev['orgasm_count'] = ((s as any).sex_ev['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
     if (((s as any).sex_ev ?? 0)?.['consecutive_orgasm'] > 1) {
-      (s as any).sex_ev['consecutive_orgasm_desc'] = 'Come again!';
+      ((s as any).sex_ev ?? {})['consecutive_orgasm_desc'] = 'Come again!';
     } else {
-      (s as any).sex_ev['consecutive_orgasm_desc'] = 'Come!';
+      ((s as any).sex_ev ?? {})['consecutive_orgasm_desc'] = 'Come!';
     }
     scene.actions([
       { label: '<<$sex_ev[\'consecutive_orgasm_desc\']>>', handler: (st: GameState) => {
@@ -41,7 +41,7 @@ function enterGirlCum(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['orgasm'] === ((s as any).orgasm ?? 0)  &&  ((s as any).sex_ev ?? 0)?.['cum_choice'] !== 'creampie_surprise'  &&  ((s as any).sex_ev ?? 0)?.['boy_cum'] < 1) {
       scene.actions([
         { label: 'Fake an orgasm', handler: (st: GameState) => {
-    (s as any).sex_ev['fake_orgasm_count'] = ((s as any).sex_ev['fake_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['fake_orgasm_count'] = (((s as any).sex_ev ?? {})['fake_orgasm_count'] ?? 0) + (1);
     (s as any).fake_orgasm = ((s as any).fake_orgasm ?? 0) + (1);
     qspCall(s, 'sex_ev_sex', 'fuck_arousal_code');
     qspCall(s, 'stat', '');
@@ -229,7 +229,7 @@ function enterDoggyCum(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).npc_spanker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-        (s as any).sex_ev['spank'] = ((s as any).sex_ev['spank'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['spank'] = (((s as any).sex_ev ?? {})['spank'] ?? 0) + (1);
         scene.img('images/shared/sex/vag/doggy/orgasm_spank1.mp4');
         scene.text('"<i>Ah~! Ah~!</i> I\'m-! I\'m gonna-!"');
         if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).sex_ev ?? 0)?.['magik'] < ((s as any).pcs_magik ?? 0)) {
@@ -390,13 +390,13 @@ function enterAnalDoggyCum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckCumRandom(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['his_choice'] = 0;
-  (s as any).sex_ev['cum_choice_int'] = Math.floor(Math.random() * 10) + 1;
-  (s as any).sex_ev['fuck_count'] = ((s as any).sex_ev['fuck_count'] ?? 0) + (1);
+  ((s as any).sex_ev ?? {})['his_choice'] = 0;
+  ((s as any).sex_ev ?? {})['cum_choice_int'] = Math.floor(Math.random() * 10) + 1;
+  ((s as any).sex_ev ?? {})['fuck_count'] = (((s as any).sex_ev ?? {})['fuck_count'] ?? 0) + (1);
   if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] > 0) {
     qspCall(s, 'sex_ev_cum', 'cum_decider');
   } else {
-    (s as any).sex_ev['his_choice'] = 1;
+    ((s as any).sex_ev ?? {})['his_choice'] = 1;
     if ((Math.floor(Math.random() * 10) + 1) >= 9) {
       qspCall(s, 'sex_ev_cum', 'cum_mouth');
     } else {
@@ -419,69 +419,69 @@ function enterFuckCumRandom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecider(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['cum_choice_int'] = Math.floor(Math.random() * 10) + 1;
+  ((s as any).sex_ev ?? {})['cum_choice_int'] = Math.floor(Math.random() * 10) + 1;
   if (((s as any).sex_ev ?? 0)?.['cycle_limit'] < ((s as any).sex_ev ?? 0)?.['sex_stamina']) {
-    (s as any).sex_ev['cum_choice_int'] = 10;
+    ((s as any).sex_ev ?? {})['cum_choice_int'] = 10;
   }
   if (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger'  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
-    (s as any).sex_ev['extra_caution'] = 0;
+    ((s as any).sex_ev ?? {})['extra_caution'] = 0;
   } else {
     if ((((s as any).sex_ev ?? 0)?.['preg_risk'] === 'danger'  ||  (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'pullout'))  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['position'] !== 'anal') {
-      (s as any).sex_ev['extra_caution'] = ((s as any).rand ?? 0)(0, (1+((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)]));
+      ((s as any).sex_ev ?? {})['extra_caution'] = ((s as any).rand ?? 0)(0, (1+((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)]));
     }
   }
   if (((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    (s as any).sex_ev['extra_caution'] = 0;
+    ((s as any).sex_ev ?? {})['extra_caution'] = 0;
   }
   if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] > 1  &&  ((s as any).sex_ev ?? 0)?.['cum_choice_int'] < 10) {
-    (s as any).sex_ev['cum_warn'] = 1;
+    ((s as any).sex_ev ?? {})['cum_warn'] = 1;
   }
   if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] === 10  ||  ((s as any).sex_ev ?? 0)?.['2pump'] === 1  ||  ((s as any).sex_ev ?? 0)?.['cant_hold_cum'] === 1) {
-    (s as any).sex_ev['cum_warn'] = 0;
+    ((s as any).sex_ev ?? {})['cum_warn'] = 0;
     if (((s as any).sex_ev ?? 0)?.['extra_caution'] > 0  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 1) {
-      (s as any).sex_ev['cum_choice'] = 'pullout';
+      ((s as any).sex_ev ?? {})['cum_choice'] = 'pullout';
     } else {
       if ((Math.floor(Math.random() * 2) + 0) === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1) {
-        (s as any).sex_ev['cum_choice'] = 'pullout';
+        ((s as any).sex_ev ?? {})['cum_choice'] = 'pullout';
       } else {
-        (s as any).sex_ev['cum_choice'] = 'creampie_surprise';
+        ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie_surprise';
       }
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['virgin_creampie_request'] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_count'] === 0  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 1) {
-      (s as any).sex_ev['cum_warn'] = 1;
-      (s as any).sex_ev['cum_where'] = 1;
+      ((s as any).sex_ev ?? {})['cum_warn'] = 1;
+      ((s as any).sex_ev ?? {})['cum_where'] = 1;
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] + ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] - ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] >= 7) {
-        (s as any).sex_ev['cum_warn'] = 1;
-        (s as any).sex_ev['cum_where'] = 1;
+        ((s as any).sex_ev ?? {})['cum_warn'] = 1;
+        ((s as any).sex_ev ?? {})['cum_where'] = 1;
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] >= 4) {
-          (s as any).sex_ev['cum_choice'] = ((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)];
+          ((s as any).sex_ev ?? {})['cum_choice'] = ((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)];
           if (((s as any).sex_ev ?? 0)?.['pullout_game'] === 1  &&  ((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie'  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] !== 1) {
-            (s as any).sex_ev['cum_choice'] = 'pullout';
+            ((s as any).sex_ev ?? {})['cum_choice'] = 'pullout';
           }
           if (((s as any).npc_know_love_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  (Math.floor(Math.random() * 150) + 1) < ((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((((s as any).sex_ev ?? 0)?.['promise_no_creampie'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] === 1)  &&  (((s as any).sex_ev ?? 0)?.['promise_no_creampie'] !== 1  &&  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1))) {
             if (((s as any).npc_ask_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-              (s as any).sex_ev['cum_warn'] = 0;
-              (s as any).sex_ev['cum_choice'] = 'creampie_surprise';
+              ((s as any).sex_ev ?? {})['cum_warn'] = 0;
+              ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie_surprise';
             } else {
-              (s as any).sex_ev['cum_warn'] = 1;
-              (s as any).sex_ev['cum_choice'] = 'creampie';
+              ((s as any).sex_ev ?? {})['cum_warn'] = 1;
+              ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie';
             }
           } else {
             if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie'  &&  ((((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'when_safe'  &&  (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'safe'  ||  ((s as any).sex_ev ?? 0)?.['preg_risk'] === 'prob_safe'))  ||  ((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'at_will'  ||  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] === 1)) {
               if (((s as any).npc_ask_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-                (s as any).sex_ev['cum_warn'] = 0;
-                (s as any).sex_ev['cum_choice'] = 'creampie_surprise';
+                ((s as any).sex_ev ?? {})['cum_warn'] = 0;
+                ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie_surprise';
               } else {
-                (s as any).sex_ev['cum_warn'] = 1;
-                (s as any).sex_ev['cum_choice'] = 'creampie';
+                ((s as any).sex_ev ?? {})['cum_warn'] = 1;
+                ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie';
               }
             } else {
               if (((s as any).sex_ev ?? 0)?.['no_condom'] !== 1  &&  ((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie') {
-                (s as any).sex_ev['cum_warn'] = 1;
-                (s as any).sex_ev['cum_choice'] = '';
+                ((s as any).sex_ev ?? {})['cum_warn'] = 1;
+                ((s as any).sex_ev ?? {})['cum_choice'] = '';
               }
             }
           }
@@ -489,32 +489,32 @@ function enterCumDecider(s: GameState, scene: SceneBuilder): void {
           if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] >= 1) {
             if ((Math.floor(Math.random() * 5) + 1) === 1  &&  (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
               if ((((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'when_safe'  &&  (((s as any).sex_ev ?? 0)?.['preg_risk'] === 'safe'  ||  ((s as any).sex_ev ?? 0)?.['preg_risk'] === 'prob_safe'))  ||  ((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'at_will'  ||  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] === 1) {
-                (s as any).sex_ev['cum_warn'] = 0;
-                (s as any).sex_ev['cum_choice'] = 'creampie_surprise';
+                ((s as any).sex_ev ?? {})['cum_warn'] = 0;
+                ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie_surprise';
               } else {
                 if (((s as any).sex_ev ?? 0)?.['no_condom'] === 1) {
-                  (s as any).sex_ev['cum_choice'] = 'creampie';
+                  ((s as any).sex_ev ?? {})['cum_choice'] = 'creampie';
                 } else {
-                  (s as any).sex_ev['cum_warn'] = 1;
+                  ((s as any).sex_ev ?? {})['cum_warn'] = 1;
                 }
               }
             } else {
               if ((Math.floor(Math.random() * 4) + 1) === 1) {
-                (s as any).sex_ev['cum_choice'] = 'mouth';
+                ((s as any).sex_ev ?? {})['cum_choice'] = 'mouth';
               } else {
                 if ((Math.floor(Math.random() * 3) + 1) === 1  &&  (((s as any).npc_know_hate_facials ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
-                  (s as any).sex_ev['cum_choice'] = 'facial';
+                  ((s as any).sex_ev ?? {})['cum_choice'] = 'facial';
                 } else {
                   if ((Math.floor(Math.random() * 2) + 1) === 1) {
-                    (s as any).sex_ev['cum_choice'] = 'tits';
+                    ((s as any).sex_ev ?? {})['cum_choice'] = 'tits';
                   } else {
-                    (s as any).sex_ev['cum_choice'] = 'pullout';
+                    ((s as any).sex_ev ?? {})['cum_choice'] = 'pullout';
                   }
                 }
               }
             }
           } else {
-            (s as any).sex_ev['cum_choice'] = 'pullout';
+            ((s as any).sex_ev ?? {})['cum_choice'] = 'pullout';
           }
         }
       }
@@ -522,16 +522,16 @@ function enterCumDecider(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
     if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie') {
-      (s as any).sex_ev['cum_choice'] = 'anal_creampie';
+      ((s as any).sex_ev ?? {})['cum_choice'] = 'anal_creampie';
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie_surprise') {
-        (s as any).sex_ev['cum_choice'] = 'anal_creampie_surprise';
+        ((s as any).sex_ev ?? {})['cum_choice'] = 'anal_creampie_surprise';
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'pullout') {
           if ((Math.floor(Math.random() * 2) + 1) === 1) {
-            (s as any).sex_ev['cum_choice'] = 'anal_creampie';
+            ((s as any).sex_ev ?? {})['cum_choice'] = 'anal_creampie';
           } else {
-            (s as any).sex_ev['cum_choice'] = 'anal_creampie_surprise';
+            ((s as any).sex_ev ?? {})['cum_choice'] = 'anal_creampie_surprise';
           }
         }
       }
@@ -541,20 +541,20 @@ function enterCumDecider(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['cum_check'] = ((s as any).totminut ?? 0);
+  ((s as any).sex_ev ?? {})['cum_check'] = ((s as any).totminut ?? 0);
   if ((Math.floor(Math.random() * 25) + 1) === ((s as any).sex_ev ?? 0)?.['sex_stamina']  &&  ((s as any).sex_ev ?? 0)?.['boy_cocaine'] === 0) {
-    (s as any).sex_ev['cant_hold_cum'] = 1;
-    (s as any).sex_ev['boy_cum'] = 1;
+    ((s as any).sex_ev ?? {})['cant_hold_cum'] = 1;
+    ((s as any).sex_ev ?? {})['boy_cum'] = 1;
   }
   if ((((s as any).sex_ev ?? 0)?.['cycle_limit'] + ((s as any).sex_ev ?? 0)?.['extra_stim'] > ((s as any).sex_ev ?? 0)?.['sex_stamina']  &&  ((s as any).sex_ev ?? 0)?.['boy_cocaine'] === 0  &&  (Math.floor(Math.random() * 10) + 1) <= ((s as any).sex_ev ?? 0)?.['sex_stamina'])  ||  (((s as any).sex_ev ?? 0)?.['boy_cocaine'] === 1  &&  ((s as any).sex_ev ?? 0)?.['cycle_limit'] + ((s as any).sex_ev ?? 0)?.['extra_stim'] === 10)) {
-    (s as any).sex_ev['boy_cum'] = 1;
+    ((s as any).sex_ev ?? {})['boy_cum'] = 1;
   }
   if (((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['2pump'] === 0) {
-    (s as any).sex_ev['2pump'] = 1;
-    (s as any).sex_ev['boy_cum'] = 1;
+    ((s as any).sex_ev ?? {})['2pump'] = 1;
+    ((s as any).sex_ev ?? {})['boy_cum'] = 1;
   }
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)  &&  ((s as any).sex_ev ?? 0)?.['stop_orgasm'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'enjoy') {
-    (s as any).sex_ev['girl_orgasm'] = 1;
+    ((s as any).sex_ev ?? {})['girl_orgasm'] = 1;
   }
   scene.build();
 }
@@ -569,30 +569,30 @@ function enterFuckCum(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_rough_arousal_code');
   }
   if (((s as any).sex_ev ?? 0)?.['morning_after'] === 1) {
-    (s as any).sex_ev['morning_fuck'] = 1;
+    ((s as any).sex_ev ?? {})['morning_fuck'] = 1;
   }
-  (s as any).sex_ev['fuck'] = 1;
-  (s as any).sex_ev['cock_inserted'] = 1;
-  (s as any).sex_ev['no_sex'] = 0;
-  (s as any).sex_ev['fuck_again'] = 0;
-  (s as any).sex_ev['must_fuck'] = 0;
+  ((s as any).sex_ev ?? {})['fuck'] = 1;
+  ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+  ((s as any).sex_ev ?? {})['no_sex'] = 0;
+  ((s as any).sex_ev ?? {})['fuck_again'] = 0;
+  ((s as any).sex_ev ?? {})['must_fuck'] = 0;
   if (((s as any).sex_ev ?? 0)?.['speed'] === 1) {
-    (s as any).sex_ev['gentle_fuck'] = 1;
+    ((s as any).sex_ev ?? {})['gentle_fuck'] = 1;
   }
   if (((s as any).sex_ev ?? 0)?.['speed'] === 2) {
-    (s as any).sex_ev['steady_fuck'] = 1;
+    ((s as any).sex_ev ?? {})['steady_fuck'] = 1;
   }
   if (((s as any).sex_ev ?? 0)?.['speed'] === 3) {
-    (s as any).sex_ev['rough_fuck'] = 1;
+    ((s as any).sex_ev ?? {})['rough_fuck'] = 1;
   }
   qspCall(s, 'sex_ev_sex', 'pain_tracking');
   if (((s as any).sex_ev ?? 0)?.['dirty_talk_count'] === 1) {
-    (s as any).sex_ev['dirty_talk_talk'] = 1;
+    ((s as any).sex_ev ?? {})['dirty_talk_talk'] = 1;
   }
-  (s as any).sex_ev['cycle_limit'] = ((s as any).sex_ev['cycle_limit'] ?? 0) + (1);
-  (s as any).sex_ev['total_cycles'] = ((s as any).sex_ev['total_cycles'] ?? 0) + (1);
+  ((s as any).sex_ev ?? {})['cycle_limit'] = (((s as any).sex_ev ?? {})['cycle_limit'] ?? 0) + (1);
+  ((s as any).sex_ev ?? {})['total_cycles'] = (((s as any).sex_ev ?? {})['total_cycles'] ?? 0) + (1);
   if (((s as any).sex_ev ?? 0)?.['boy_cum'] >= 1  &&  (((s as any).sex_ev ?? 0)?.['cycle_limit'] > 1  ||  ((s as any).sex_ev ?? 0)?.['2pump'] === 1)) {
-    (s as any).sex_ev['cum_count'] = ((s as any).sex_ev['cum_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['cum_count'] = (((s as any).sex_ev ?? {})['cum_count'] ?? 0) + (1);
     qspCall(s, 'sex_ev_cum', 'cum_decider');
   }
   if (((s as any).sex_ev ?? 0)?.['2pump'] === 1) {
@@ -604,8 +604,8 @@ function enterFuckCum(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sex_ev ?? 0)?.['boy_cum'] > 0) {
         // TODO-QSP: xgt 'sex_ev_cum', 'fuck_cum2'
       } else {
-        (s as any).sex_ev['consecutive_orgasm'] = 0;
-        (s as any).sex_ev['kiss'] = 0;
+        ((s as any).sex_ev ?? {})['consecutive_orgasm'] = 0;
+        ((s as any).sex_ev ?? {})['kiss'] = 0;
       }
     }
   }
@@ -639,8 +639,8 @@ function enterCumDialogue(s: GameState, scene: SceneBuilder): void {
       scene.text(`"What should I do?" ${((s as any).npcdesc ?? 0)} asks.`);
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie') {
-        (s as any).sex_ev['he_ask'] = 1;
-        (s as any).sex_ev['he_ask_creampie'] = 1;
+        ((s as any).sex_ev ?? {})['he_ask'] = 1;
+        ((s as any).sex_ev ?? {})['he_ask_creampie'] = 1;
         if (((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === 'when_safe'  &&  ((s as any).sex_ev ?? 0)?.['preg_risk'] === ''  &&  ((s as any).mesec ?? 0) <= 0  &&  ((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
           // TODO-QSP: dynamic text: "Can I come inside you? Is it safe today?" <<$npcdesc>> whimpers almost pleading...
           scene.text(`"Can I come inside you? Is it safe today?" ${((s as any).npcdesc ?? 0)} whimpers almost pleadingly.`);
@@ -660,8 +660,8 @@ function enterCumDialogue(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'anal_creampie') {
-          (s as any).sex_ev['he_ask'] = 1;
-          (s as any).sex_ev['he_ask_creampie'] = 1;
+          ((s as any).sex_ev ?? {})['he_ask'] = 1;
+          ((s as any).sex_ev ?? {})['he_ask_creampie'] = 1;
           if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
             // TODO-QSP: dynamic text: "Let's come together," <<$npcdesc>> moans.
             scene.text(`"Let's come together," ${((s as any).npcdesc ?? 0)} moans.`);
@@ -671,20 +671,20 @@ function enterCumDialogue(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'mouth') {
-            (s as any).sex_ev['he_ask'] = 1;
-            (s as any).sex_ev['he_ask_mouth'] = 1;
+            ((s as any).sex_ev ?? {})['he_ask'] = 1;
+            ((s as any).sex_ev ?? {})['he_ask_mouth'] = 1;
             // TODO-QSP: dynamic text: "Let me come in your mouth," <<$npcdesc>> says.
             scene.text(`"Let me come in your mouth," ${((s as any).npcdesc ?? 0)} says.`);
           } else {
             if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'facial') {
-              (s as any).sex_ev['he_ask'] = 1;
-              (s as any).sex_ev['he_ask_facial'] = 1;
+              ((s as any).sex_ev ?? {})['he_ask'] = 1;
+              ((s as any).sex_ev ?? {})['he_ask_facial'] = 1;
               // TODO-QSP: dynamic text: "Let me finish on your face," <<$npcdesc>> says. "I want to see you covered in i...
               scene.text(`"Let me finish on your face," ${((s as any).npcdesc ?? 0)} says. "I want to see you covered in it."`);
             } else {
               if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'tits') {
-                (s as any).sex_ev['he_ask'] = 1;
-                (s as any).sex_ev['he_ask_tits'] = 1;
+                ((s as any).sex_ev ?? {})['he_ask'] = 1;
+                ((s as any).sex_ev ?? {})['he_ask_tits'] = 1;
                 // TODO-QSP: dynamic text: "I wanna come on your tits," <<$npcdesc>> says.
                 scene.text(`"I wanna come on your tits," ${((s as any).npcdesc ?? 0)} says.`);
               }
@@ -710,7 +710,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'On my face!', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['cum_where'] === 1) {
-      (s as any).sex_ev['facial_ask'] = 1;
+      ((s as any).sex_ev ?? {})['facial_ask'] = 1;
     }
     qspCall(s, 'sex_ev_cum', 'cum_facial');
   } },
@@ -769,7 +769,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Come wherever you want', handler: (st: GameState) => {
-    (s as any).sex_ev['cum_wherever'] = 1;
+    ((s as any).sex_ev ?? {})['cum_wherever'] = 1;
     if (((s as any).sex_ev ?? 0)?.['he_ask'] !== 1  ||  ((s as any).sex_ev ?? 0)?.['cum_warn'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['virgin'] === 1  &&  ((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
         scene.text('"Come~! Wherever~! You~! Want~!" you whimper pathetically, squeaking in pain with every thrust.');
@@ -822,7 +822,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).sex_ev['his_choice'] = 2;
+      ((s as any).sex_ev ?? {})['his_choice'] = 2;
       qspCall(s, 'sex_ev_cum', 'cum_wherever');
     }
   } },
@@ -945,7 +945,7 @@ function enterCumHisChoice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumHisChoice2(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['his_choice'] = 2;
+  ((s as any).sex_ev ?? {})['his_choice'] = 2;
   qspCall(s, 'sex_ev_cum', 'cum_decider');
   if (((s as any).sex_ev ?? 0)?.['where'] === 1) {
     if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'creampie'  &&  (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {

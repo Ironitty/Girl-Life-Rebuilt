@@ -21,8 +21,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);
     (s as any).ciklkm = ((s as any).placerParameter ?? 0)?.['number_of_man'];
     qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'group');

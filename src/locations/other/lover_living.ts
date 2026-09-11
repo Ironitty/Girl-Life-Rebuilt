@@ -185,8 +185,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         { label: 'Cook a meal for your <<$npcRelat>> and yourself (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-    (s as any).mc_inventory['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (2);
-    (s as any).spouseVars['eat_day'] = ((s as any).daystart ?? 0);
+    ((s as any).mc_inventory ?? {})['food_basic'] = (((s as any).mc_inventory ?? {})['food_basic'] ?? 0) - (2);
+    ((s as any).spouseVars ?? {})['eat_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'stat', '');
     scene.img('images/shared/home/kitchen/cook.jpg');
@@ -234,9 +234,9 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
     scene.text(`<i>That pig</i>! you think when an idea springs to mind. <i>Maybe I should teach ${((s as any).xem ?? 0)} a lesson so ${((s as any).xe ?? 0)} won't get drunk again</i>.`);
     if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1) {
       // TODO-QSP: act iif(rand(0, 1) = 0, 'Insert an anal plug', 'Insert a butt plug in <<$xyr>> ass'):
-      (s as any).spouseVars['drunk_day'] = ((s as any).daystart ?? 0);
-      (s as any).spouseVars['drink'] = 11;
-      (s as any).spouseVars['hus_strapon'] = 1;
+      ((s as any).spouseVars ?? {})['drunk_day'] = ((s as any).daystart ?? 0);
+      ((s as any).spouseVars ?? {})['drink'] = 11;
+      ((s as any).spouseVars ?? {})['hus_strapon'] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       scene.img('images/characters/city/husband/sex/h0.jpg');
       if ((!((s as any).analPlugIn ?? 0))) {
@@ -257,7 +257,7 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).boydesc ?? 0)} moves, but he doesn't wake up.`);
       if (((s as any).mc_inventory ?? 0)?.['dildo_small'] > 0) {
         // TODO-QSP: act iif(rand(0, 1) = 0, 'Insert dildo', 'Insert a dildo into <<$xyr>> ass'):
-        (s as any).spouseVars['hus_strapon'] = 2;
+        ((s as any).spouseVars ?? {})['hus_strapon'] = 2;
         qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
         scene.img('images/characters/city/husband/sex/h1.jpg');
         if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -280,7 +280,7 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['strapon'] > 0) {
       // TODO-QSP: act iif(rand(0, 1) = 0, 'Use the strap-on', 'Wear strap-on'):
       (s as any).minut = ((s as any).minut ?? 0) + 20;
-      (s as any).spouseVars['hus_strapon'] = 3;
+      ((s as any).spouseVars ?? {})['hus_strapon'] = 3;
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
       scene.img('images/characters/city/husband/sex/h2.jpg');

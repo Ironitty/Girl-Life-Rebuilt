@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'sweat', 'add', 10);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   scene.actions([{ label: 'Continue', goto: ['paysex', 'var'] }]);

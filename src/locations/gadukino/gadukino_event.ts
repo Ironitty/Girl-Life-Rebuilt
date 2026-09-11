@@ -30,7 +30,7 @@ function enterMiraApologise(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).MiraVars['had_sex'] = 2;
+    ((s as any).MiraVars ?? {})['had_sex'] = 2;
     qspCall(s, 'stat', '');
     qspCall(s, 'miroslava', 'miraclothes');
     scene.text('You finally decide what to answer.');
@@ -43,7 +43,7 @@ function enterMiraApologise(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Refuse', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).MiraVars['had_sex'] = 3;
+    ((s as any).MiraVars ?? {})['had_sex'] = 3;
     qspCall(s, 'stat', '');
     qspCall(s, 'miroslava', 'miraclothes');
     scene.text('You finally decide what to answer.');
@@ -65,7 +65,7 @@ function enterMiraApologise(s: GameState, scene: SceneBuilder): void {
 function enterMitkaApologise(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).gadboyday = ((s as any).daystart ?? 0);
-  (s as any).GadBoy['river_gang'] = 4;
+  ((s as any).GadBoy ?? {})['river_gang'] = 4;
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/turn_back.jpg');
   scene.text('Walking through the village, you hear someone catching up to you. Turning around, you see Mitka running towards you. Knowing from experience that boys are faster runners, you stop and wait for him to catch up.');
@@ -153,7 +153,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).GadBoy['river_gang'] = 3;
+    ((s as any).GadBoy ?? {})['river_gang'] = 3;
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -175,7 +175,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Take the money', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).GadBoy['river_gang'] = 2;
+    ((s as any).GadBoy ?? {})['river_gang'] = 2;
     qspCall(s, 'prostitution_functions', 'set_gadukino_prostitute');
     qspCall(s, 'money', 'earn', 10000);
     qspCall(s, 'stat', '');
@@ -203,9 +203,9 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
 
 function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['river_gang'] = 1;
+  ((s as any).GadBoy ?? {})['river_gang'] = 1;
   (s as any).gadboyday = ((s as any).daystart ?? 0);
-  (s as any).npc_QW['A63'] = 21;
+  ((s as any).npc_QW ?? {})['A63'] = 21;
   if (((s as any).pcs_health ?? 0) <= 100) {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (100);
   }
@@ -325,7 +325,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog2.jpg');
     scene.text('The next man, wanting to outdo the man before, grabbed his cock, thrust it into your anus, and started to relentlessly slamming into your eager butt.');
     qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri');
@@ -336,7 +336,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Lie on your back', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A171');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_mis1.jpg');
     scene.text('You\'re on your back. You move your head, wanting to see who\'s about to ravage you next, and you see Stepan, the fisherman, the man you are close to and found of…');
     scene.text('You look into his eyes and ask him not to do this while Stepan readies his cock between your splayed legs… You only hear him say, "I\'ve been fantasizing about this for a long time."');
@@ -385,7 +385,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
 function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'boyStat', 'A62');
-  (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.img('images/locations/gadukino/sex/river/gadriver_gang_mis3.jpg');
   scene.text('You see another familiar face, this time, it\'s Vasyan.');
   scene.text('"Mitka and Kolyamba are also here somewhere, waiting for their turn", he says and smiles wickedly at you.');
@@ -512,7 +512,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Another one', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A172');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog9.jpg');
     if (((s as any).hunterVars ?? 0)?.['were_met'] === 0) {
       scene.text('You squint a little to see who\'s next in line while sucking someone\'s cock. But, instead, you see an unknown village man penetrating your ass.');
@@ -690,7 +690,7 @@ function enterGadriverGang5(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'cum_call', 'mouth', ((s as any).boy3 ?? 0), 1);
     qspCall(s, 'cum_call', 'face', ((s as any).boy4 ?? 0), 1);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_cum4.jpg');
     scene.text('The crowd began to disperse when the last men finally came, leaving you wrapped in a tattered blanket. You hear them sharing impressions of their drunken antics.');
@@ -718,7 +718,7 @@ function enterGadriverGang5(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Mitka Shkvoryen</b></center>');
   scene.img('images/characters/shared/headshots_main/big63.jpg');
@@ -756,7 +756,7 @@ function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kolyamba Pyut</b></center>');
   scene.img('images/characters/shared/headshots_main/big61.jpg');
@@ -792,7 +792,7 @@ function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
 
 function enterGadukinoVasyan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vasyan Paket</b></center>');
   scene.img('images/characters/shared/headshots_main/big62.jpg');
@@ -835,18 +835,18 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/village/2boys.2.jpg');
   }
   if (((s as any).locArgs?.[1] ?? 0) === '1') {
-    (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
-    (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+    ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
+    ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
     scene.text('Walking through the village, you meet Mitka and Kolyamba. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === '2') {
-      (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
-      (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
       scene.text('Walking through the village, you meet Mitka and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === '3') {
-        (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
-        (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
         scene.text('Walking through the village, you meet Kolyamba and Vasyan. Seeing you, they grin, grab you by the arms and drag you into the bushes.');
       }
     }
@@ -893,7 +893,7 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Mitka Shkvoryen</b></center>');
   scene.img('images/characters/shared/headshots_main/big63.jpg');
@@ -930,7 +930,7 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraKolyamba(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Kolyamba Pyut</b></center>');
   scene.img('images/characters/shared/headshots_main/big61.jpg');
@@ -966,7 +966,7 @@ function enterMiraKolyamba(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraVasyan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vasyan Paket</b></center>');
   scene.img('images/characters/shared/headshots_main/big62.jpg');
@@ -1009,18 +1009,18 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/village/2boys.2.jpg');
   }
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
-    (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
-    (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
+    ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
+    ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
     scene.text('Walking with Mira in the village, you meet Mitka and Kolyamba. Seeing you both, they smile at each other and drag you both into the bushes.');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
-      (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
-      (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
       scene.text('Walking with Mira in the village, you meet Mitka and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 3) {
-        (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
-        (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
         scene.text('Walking with Mira in the village, you meet Kolyamba and Vasyan. Seeing you both, they smile at each other and drag you both into the bushes.');
       }
     }
@@ -1069,9 +1069,9 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
 
 function enterMira_3boys(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
-  (s as any).GadBoy['kolyamba_day'] = ((s as any).daystart ?? 0);
-  (s as any).GadBoy['vasyan_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['kolyamba_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['vasyan_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 8) {
     scene.img('images/locations/gadukino/village/3boys.1.jpg');

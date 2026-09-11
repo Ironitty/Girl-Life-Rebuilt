@@ -168,7 +168,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                         (s as any).pcs_health = 100;
                       }
                       (s as any).fightEnding = 0;
-                      (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+                      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
                       if (((s as any).Loss ?? 0) < 0) {
                         (s as any).Loss = 0;
                       }
@@ -201,9 +201,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                             (s as any).pcs_health = 100;
                           }
                           (s as any).fightEnding = 0;
-                          (s as any).christinaQW['fight'] = (-1);
-                          (s as any).christinaQW['pre_fight'] = 0;
-                          (s as any).christinaQW['subpath'] = 2;
+                          ((s as any).christinaQW ?? {})['fight'] = (-1);
+                          ((s as any).christinaQW ?? {})['pre_fight'] = 0;
+                          ((s as any).christinaQW ?? {})['subpath'] = 2;
                           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                           (s as any).minut = ((s as any).minut ?? 0) + 10;
                           qspCall(s, 'stat', '');
@@ -256,7 +256,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                 }
                                 (s as any).fightEnding = 0;
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                (s as any).slyQW['fight'] = (-1);
+                                ((s as any).slyQW ?? {})['fight'] = (-1);
                                 qspCall(s, 'mood', 'lower', 'large');
                                 qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
                                 qspCall(s, 'stat', '');
@@ -272,9 +272,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                   }
                                   (s as any).fightEnding = 0;
                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                  (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-                                  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
-                                  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (5);
+                                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+                                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (5);
+                                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (5);
                                   qspCall(s, 'mood', 'lower', 'medium');
                                   scene.img('images/locations/shared/street/lostfight.jpg');
                                   scene.text('You groan on pain as the frozen ground reaches for you. Damm. That wasn\'t your best idea now that you see it, especially because the police have just arrived to break up the brawl turned riot.');
@@ -609,7 +609,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).fightEnding ?? 0) === 10) {
                   qspCall(s, 'money', 'earn', 10000);
                   (s as any).fightEnding = 0;
-                  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (3);
                   (s as any).Win = ((s as any).Win ?? 0) + (1);
                   scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/girlbeatsguy1.jpg');
                   scene.text('You kick Dimka a few more times as he lies on the ground. "Keep spreading shit about me and I\'ll beat your sorry ass even harder next time!"');
@@ -637,10 +637,10 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).fightEnding ?? 0) === 12) {
                       if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
-                        (s as any).LariskaQW['story'] = 4;
+                        ((s as any).LariskaQW ?? {})['story'] = 4;
                       }
-                      (s as any).christinaQW['fight'] = 1;
-                      (s as any).christinaQW['pre_fight'] = 0;
+                      ((s as any).christinaQW ?? {})['fight'] = 1;
+                      ((s as any).christinaQW ?? {})['pre_fight'] = 0;
                       (s as any).Win = ((s as any).Win ?? 0) + (1);
                       (s as any).fightEnding = 0;
                       scene.img('images/characters/pavlovsk/school/girl/christina/school/win.jpg');
@@ -677,7 +677,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).fightEnding ?? 0) === 15) {
                             (s as any).fightEnding = 0;
                             (s as any).Win = ((s as any).Win ?? 0) + (1);
-                            (s as any).slyQW['fight'] = 1;
+                            ((s as any).slyQW ?? {})['fight'] = 1;
                             qspCall(s, 'mood', 'raise', 'small');
                             scene.img('images/characters/shared/headshots_main/big248.jpg');
                             scene.text('Christina is a hell of a fighter. She is fast, hits harder than most boys and knows what she is doing. Yet despite all that she just isn\'t a match for you. You finally land a few hard blows and she goes down gasping for breath, holding up her hand in surrender. You smirk as she lies beaten at your feet. You reach down and pull her phone out of her pocket and then toss it as far as you can out into the lake where it plops into the water.');
@@ -689,9 +689,9 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                             if (((s as any).fightEnding ?? 0) === 16) {
                               (s as any).fightEnding = 0;
                               (s as any).Win = ((s as any).Win ?? 0) + (1);
-                              (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-                              (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (100);
-                              (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (50);
+                              ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+                              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (100);
+                              ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (50);
                               qspCall(s, 'npc_relationship', 'modify', 'A165', 5);
                               qspCall(s, 'npc_relationship', 'modify', 'A14', (-5));
                               qspCall(s, 'mood', 'raise', 'small');
@@ -1015,7 +1015,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).fightEnding ?? 0) === 10) {
                       (s as any).fightEnding = 0;
-                      (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
+                      ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
                       if (((s as any).Loss ?? 0) < 0) {
                         (s as any).Loss = 0;
                       }
@@ -1062,9 +1062,9 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).fightEnding ?? 0) === 12) {
                           (s as any).fightEnding = 0;
-                          (s as any).christinaQW['fight'] = (-1);
-                          (s as any).christinaQW['pre_fight'] = 0;
-                          (s as any).christinaQW['subpath'] = 2;
+                          ((s as any).christinaQW ?? {})['fight'] = (-1);
+                          ((s as any).christinaQW ?? {})['pre_fight'] = 0;
+                          ((s as any).christinaQW ?? {})['subpath'] = 2;
                           (s as any).Loss = ((s as any).Loss ?? 0) + (1);
                           (s as any).minut = ((s as any).minut ?? 0) + 10;
                           qspCall(s, 'stat', '');
@@ -1138,7 +1138,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                 }
                                 (s as any).fightEnding = 0;
                                 (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                (s as any).slyQW['fight'] = (-1);
+                                ((s as any).slyQW ?? {})['fight'] = (-1);
                                 qspCall(s, 'mood', 'lower', 'large');
                                 qspCall(s, 'pain', '', 5, 'cheeks', 'hit');
                                 qspCall(s, 'stat', '');
@@ -1154,9 +1154,9 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   }
                                   (s as any).fightEnding = 0;
                                   (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-                                  (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (10);
-                                  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (5);
-                                  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+                                  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (10);
+                                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (5);
+                                  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
                                   qspCall(s, 'mood', 'lower', 'medium');
                                   scene.img('images/locations/shared/street/girlgang.jpg');
                                   scene.text('Oh shit! This was obviously a bad idea, and the girls surrounding you with murder in their eyes are more than willing to show you your error, so… you retreat and lift your hands in defeat, waiting for some mercy…');

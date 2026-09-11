@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
-  (s as any).foto['documentary'] = 0;
+  ((s as any).foto ?? {})['documentary'] = 0;
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('You step out of the room and almost run head first into one of the managers.');
   scene.text('"Woah!" you say, jumping back. "What are you doing?"');
@@ -190,7 +190,7 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDocumentary_1(s: GameState, scene: SceneBuilder): void {
-  (s as any).foto['documentary_timer'] = ((s as any).modelfoto ?? {})?.['shoots'] + 10;
+  ((s as any).foto ?? {})['documentary_timer'] = ((s as any).modelfoto ?? {})?.['shoots'] + 10;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('You head over to where you were directed and see a group of people standing around several video cameras set up with lights shining on an empty set.');
   scene.text('Walking over to them you say, "Hi, I\'m one of the models who volunteered to be interviewed. Is this the right place?"');
@@ -198,7 +198,7 @@ function enterDocumentary_1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Stand on set', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 2);
-    (s as any).foto_documentary['question_1'] = ((s as any).model ?? 0)?.['type'];
+    ((s as any).foto_documentary ?? {})['question_1'] = ((s as any).model ?? 0)?.['type'];
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     scene.text('They put you in the middle of the set and spend a few minutes getting the lighting right and fiddling with camera settings. Then the woman who spoke to you before calls out to you.');
     scene.text('"Okay, we\'re all set. Ready?"');
@@ -240,7 +240,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 20  ||  ((s as any).studio_inhib ?? 0) > 0) {
     scene.actions([
       { label: 'To build confidence', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'build_confidence';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'build_confidence';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     if (((s as any).pcs_inhib ?? 0) < 20) {
       scene.text('"I wanted to build up my confidence," you explain shyly. "I\'m not very confident in my… my body… I hoped that modelling would make me more…"');
@@ -256,7 +256,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
     scene.actions([
       { label: 'It turns me on', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'exhibitionism';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'exhibitionism';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"Because it turns me on!"');
     scene.text('The interviewer pauses for a moment.');
@@ -269,7 +269,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'I thought it seemed fun', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'fun';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'fun';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I just thought it seemed like fun," you giggle. "You know, dressing up in clothes, striking poses, people taking pictures. It sounded interesting, so I thought I\'d give it a try."');
     scene.text('"No big special reason, just wanted to enjoy yourself?"');
@@ -277,7 +277,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_3');
   } },
     { label: 'I\'ve always wanted to be a model', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'career';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'career';
     scene.img('images/locations/city/citycenter/photo/special/interview/9.mp4');
     scene.text('"I think I actually always wanted to be a model," you say. "It seemed… glamorous. You see supermodels in the magazines you read when you\'re growing up and you see how beautiful they look and the clothes they\'re wearing and you just kinda naturally wish you were them. Then you grow up a little more and you see they\'re wealthy, and they\'re famous, and that they\'ve practically got it all! Who wouldn\'t want to be one?"');
     scene.text('"So you would say that this was sort of your dream job?"');
@@ -285,7 +285,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_3');
   } },
     { label: 'I just wanted some extra cash', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'extra_cash';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'extra_cash';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"To be honest, I\'m really just here to make some money," you say. "It doesn\'t take up too much time per week and the pay\'s pretty good, so it\'s a pretty easy way of getting some extra cash in your pocket."');
     scene.text('"Ahh, so you aren\'t that passionate about modelling, it\'s just something you do to get by, is that right?"');
@@ -294,7 +294,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_3');
   } },
     { label: 'I was desperate and needed money', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'desperation';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'desperation';
     scene.img('images/locations/city/citycenter/photo/special/interview/11.mp4');
     scene.text('"To be honest, I was really desperate and needed the money," you say. "I was seriously in need at the time so it didn\'t really matter what I did, I just needed fast cash. I heard about this place and that they paid well depending on the kind of work you did so I signed up."');
     scene.text('"Ahh, so you aren\'t that passionate about modelling, it\'s just something you do to get by, is that right?"');
@@ -302,7 +302,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_3');
   } },
     { label: 'I love attention', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_2'] = 'attention';
+    ((s as any).foto_documentary ?? {})['question_2'] = 'attention';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I love the attention!" you smile. "I like it when people notice me. Maybe I\'m a little narcissistic but it\'s thrilling for me to see my own face on the cover of a magazine or to hear people talking about me. I just like being seen."');
     scene.text('"So you became a model because you\'re an attention seeker?"');
@@ -319,20 +319,20 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
   scene.text('"So, would you say that this is something you\'re actively pursuing as a career? Why or why not?"');
   scene.actions([
     { label: 'This is just temporary', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3'] = 'temporary';
+    ((s as any).foto_documentary ?? {})['question_3'] = 'temporary';
     scene.img('images/locations/city/citycenter/photo/special/interview/11.mp4');
     scene.text('"I don\'t think so," you say. "It\'s been good working here but I don\'t think I could ever make a career out of it. It\'s just not what I want out of life, you know?"');
     scene.text('The interviewer nods understandingly.');
     qspCall(s, 'foto_model_documentary', 'documentary_4');
   } },
     { label: 'I want to be the number one model in the city', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3'] = 'number_one_model';
+    ((s as any).foto_documentary ?? {})['question_3'] = 'number_one_model';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I want to be the number one model in the city," you say confidently.');
     scene.text('"Wow! High reaching goals huh? Just about the prestige or is personal achievement?"');
     scene.actions([
       { label: 'Prestige', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3.2'] = 'prestige';
+    ((s as any).foto_documentary ?? {})['question_3.2'] = 'prestige';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Prestige. I want this to be the thing that I\'m known for decades from now."');
     scene.text('"You want your own Wankepidia page?" the interviewer smiles at you.');
@@ -340,7 +340,7 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_4');
   } },
       { label: 'Personal reasons', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3.2'] = 'personal_reasons';
+    ((s as any).foto_documentary ?? {})['question_3.2'] = 'personal_reasons';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"Personal I suppose. I guess I just want to prove it to myself that I can do it. If I can become the number one model in the city, maybe I can do anything."');
     scene.text('The interviewer nods understandingly.');
@@ -349,7 +349,7 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'No, I hate dieting', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3'] = 'hate_diet';
+    ((s as any).foto_documentary ?? {})['question_3'] = 'hate_diet';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"No," you say. "I hate dieting too much."');
     scene.text('The interviewer lets out a bark of laugher.');
@@ -363,21 +363,21 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'As long as it pays the bills', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3'] = 'pays_the_bills';
+    ((s as any).foto_documentary ?? {})['question_3'] = 'pays_the_bills';
     scene.img('images/locations/city/citycenter/photo/special/interview/7.mp4');
     scene.text('"I wouldn\'t say no I suppose. I\'ll keep working here as long as it keeps paying the bills or I find something better I guess."');
     scene.text('The interviewer nods understandingly.');
     qspCall(s, 'foto_model_documentary', 'documentary_4');
   } },
     { label: 'Yes! I love this job!', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3'] = 'love_modelling';
+    ((s as any).foto_documentary ?? {})['question_3'] = 'love_modelling';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"Yes!" you say. "I love this job! I could do this for the rest of my life! Or as long as I\'m young and pretty and they\'ll let me stay," you laugh.');
     scene.text('The interviewer smiles at your genuine excitement.');
     qspCall(s, 'foto_model_documentary', 'documentary_4');
   } },
     { label: 'I\'m not sure yet', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_3'] = 'not_sure';
+    ((s as any).foto_documentary ?? {})['question_3'] = 'not_sure';
     scene.img('images/locations/city/citycenter/photo/special/interview/2.mp4');
     scene.text('"I don\'t know…" you say, rubbing your chin. "It\'s not bad working here, but I don\'t know if it\'s something I want to keep doing for the rest of my life. I guess I\'m still thinking about it."');
     scene.text('The interviewer nods understandingly.');
@@ -394,7 +394,7 @@ function enterDocumentary_4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 40) {
     scene.actions([
       { label: 'I\'m actually really shy', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_4'] = 'shy';
+    ((s as any).foto_documentary ?? {})['question_4'] = 'shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/4.mp4');
     scene.text('"I\'m actually really quite shy," you say. "I get easily embarrassed by showing my body off."');
     scene.text('"But you\'re a model! You\'re talking to us completely naked without any problems."');
@@ -405,31 +405,31 @@ function enterDocumentary_4(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'It used to be worse but I\'m still a little shy', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_4'] = 'little_shy';
+    ((s as any).foto_documentary ?? {})['question_4'] = 'little_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"It used to be a lot worse," you start off. "I\'m definitely not as shy about my body as I used to be but it can still be embarrassing from time to time. Working here has certainly changed the way I think about myself though."');
     qspCall(s, 'foto_model_documentary', 'documentary_5');
   } },
     { label: 'I used to be shy but now I\'m not', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_4'] = 'formerly_shy';
+    ((s as any).foto_documentary ?? {})['question_4'] = 'formerly_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"I used to be shy, but I\'ve moved past that now," you smile to yourself. "At the beginning I would cringe when the camera came out. And the idea of anybody seeing my boobs was hard to deal with. I used to put my hands over them when I came out of the locker rooms. It\'s almost weird to think back on those times. I can\'t imagine being embarrassed by somebody looking at me now."');
     qspCall(s, 'foto_model_documentary', 'documentary_5');
   } },
     { label: 'I haven\'t been shy since I was little', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_4'] = 'childhood_shy';
+    ((s as any).foto_documentary ?? {})['question_4'] = 'childhood_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"It\'s been a long time since I was shy," you say, thinking back. "I don\'t think I\'ve been embarrassed about the way that I look since I was a little girl, way before I started working here. By the time I was a teenager I was already comfortable in my own skin. Working here hasn\'t really changed that."');
     qspCall(s, 'foto_model_documentary', 'documentary_5');
   } },
     { label: 'I\'ve never been shy', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_4'] = 'never_shy';
+    ((s as any).foto_documentary ?? {})['question_4'] = 'never_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I\'ve never been shy," you laugh. "Never really cared what anyone else thought of my body or the way I looked. I am who I\'ve always been and I love that about myself."');
     qspCall(s, 'foto_model_documentary', 'documentary_5');
   } },
     { label: 'I\'m fucking hot and I know it', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_4'] = 'fucking_hot';
+    ((s as any).foto_documentary ?? {})['question_4'] = 'fucking_hot';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"Look, I am fucking <i>hot</i> and I know it," you say. "I knew it before I was a model and I definitely know it now that I am one."');
     qspCall(s, 'foto_model_documentary', 'documentary_5');
@@ -445,13 +445,13 @@ function enterDocumentary_5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).studio_inhib ?? 0) > 0) {
     scene.actions([
       { label: 'I got used to it eventually', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'got_used_to_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'got_used_to_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I wasn\'t really comfortable with it when I first joined but I got used to it after a while," you say. "At this point it\'s just kind of automatic, I don\'t even really think about it anymore. I just come to work and get undressed."');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
   } },
       { label: 'I think it really helped me', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'helpful_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'helpful_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"I think it actually really helped," you say. "I was so shy when I started working here. I was embarrassed by the idea of people seeing my body, of being naked in front of others. But after a while, you\'re kind of forced to become accustomed to it. When I started to realize that people weren\'t staring and girls weren\'t judging me, my inhibitions began to fade away. And based on how the other models acted, I started to see that confidence was sexy. The dress code was a big part of that. Wear nothing but your own skin for hours on end and you\'ll be surprised how quickly you get comfortable with it."');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
@@ -460,37 +460,37 @@ function enterDocumentary_5(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'It sucks', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'dislike_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'dislike_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"It sucks!" you complain. "Having to be naked all the time is uncomfortable and weird. Why can\'t we just wear clothes like normal and change in and out of the stuff they want us to? I don\'t think it helps at all, just makes being around the studio more awkward."');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
   } },
     { label: 'It\'s really embarrassing', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'embarrassing_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'embarrassing_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"It\'s really embarrassing," you say. "As I said before, I can be kind of shy about my body, so having to be naked all the time except when you\'re doing a shoot is really uncomfortable for me. Everything is on display all the time and when people talk to me I just want to cover up."');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
   } },
     { label: 'I\'m not very comfortable with it', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'not_comfortable_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'not_comfortable_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"I\'m not very comfortable with it," you start. "First of all, everything is just on display all the time except when you\'re doing clothing shoots. So that by itself is a little discomforting. But also it\'s not physically very comfortable either. If you haven\'t noticed they keep it pretty cold in here. They said it has something to do with balancing temperature because of all the heat from the lights, but when I\'m just walking around the studio my nipples are always freezing."');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
   } },
     { label: 'I don\'t really mind it', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'dont_mind_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'dont_mind_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I don\'t really mind it," you say. "It is what it is. Other places have work uniforms, why not here?"');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
   } },
     { label: 'I love it!', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'love_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'love_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I love it! Society cares so much about being \'proper\' and not being \'indecent\', but I don\'t feel that way about myself. I like my body and I like being naked. So having that as a work uniform here is great!"');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
   } },
     { label: 'I think it promotes camaraderie', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_5'] = 'comrade_dresscode';
+    ((s as any).foto_documentary ?? {})['question_5'] = 'comrade_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I think it actually helps build camaraderie between the models," you say. "You know, whatever our background, wherever we came from, whatever reason we have for being here, we\'re all women at the end of the day. And being forced to be yourself—completely yourself without even a scrap of clothing to hide behind—really causes you to be genuine with each other. It\'s a sort of intimacy, but not like a sexual one. In some ways I feel like it created a sisterhood here. Like that one movie, except we would have a different name. \'The Sisterhood Without Pants,\' maybe," you laugh.');
     qspCall(s, 'foto_model_documentary', 'documentary_6');
@@ -505,13 +505,13 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, now for some questions about your life outside the studio. What\'s a hobby of yours?"');
   scene.actions([
     { label: 'Reading', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'reading';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'reading';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I like to read. There\'s nothing more relaxing to me than a good book."');
     qspCall(s, 'foto_model_documentary', 'documentary_7');
   } },
     { label: 'Sports', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'sports';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'sports';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I love sports!"');
     scene.text('"So you\'re an athletic girl?"');
@@ -519,19 +519,19 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_7');
   } },
     { label: 'Dancing', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'dancing';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'dancing';
     scene.img('images/locations/city/citycenter/photo/special/interview/5.mp4');
     scene.text('"I like to dance. It feels good when I let my body flow to music, whether choreographed or just on the spot."');
     qspCall(s, 'foto_model_documentary', 'documentary_7');
   } },
     { label: 'Martial arts', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'martial_arts';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'martial_arts';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I do some martial arts. Something about it calms me, gives me purpose. Plus, it\'s always good for a girl like me to be able to fight, if you know what I mean," you smile wryly.');
     qspCall(s, 'foto_model_documentary', 'documentary_7');
   } },
     { label: 'I\'m a foodie', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'foodie';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'foodie';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"It\'s a little embarrassing being a model and all… but I\'m a real foodie," you say. "I love trying new and different kinds of food, seeing what unexpected combinations work surprisingly well together. That\'s what makes life worth living.');
     if (((s as any).foto_documentary ?? 0)?.['question_3'] === 'hate_diet') {
@@ -541,13 +541,13 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_7');
   } },
     { label: 'Going clubbing', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'clubbing';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'clubbing';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I like going clubbing," you say. "Go out with the girls, maybe meet a guy, buy drinks and have good times! Best way to spend a Saturday night!"');
     qspCall(s, 'foto_model_documentary', 'documentary_7');
   } },
     { label: 'Having sex (clean answer)', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'sex_clean';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'sex_clean';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"Actually… one of my favorite things to do is have sex." The interviewer\'s mouth drops with a smile at the candid nature of your answer.');
     scene.text('You smile back. "It feels good, makes me feel sexy, and after a really good roll in the hay it leaves me with a spring my step. It\'s what I like the most in life, does that count as a hobby?"');
@@ -605,7 +605,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Having sex (slutty answer)', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'sex_slutty';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'sex_slutty';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"Fucking!" you giggle. The interviewer pauses a moment.');
     scene.text('"Excuse me?"');
@@ -667,7 +667,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Masturbating', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'masturbation_hobby';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'masturbation_hobby';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I actually really like masturbating," you giggle.');
     scene.text('"Sorry…?" The interviewer asks, eyes wide.');
@@ -713,7 +713,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Nothing in particular', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_6'] = 'no_hobbies';
+    ((s as any).foto_documentary ?? {})['question_6'] = 'no_hobbies';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I… I don\'t actually have any hobbies in particular."');
     scene.text('"Really? No hobbies at all?"');
@@ -730,37 +730,37 @@ function enterDocumentary_7(s: GameState, scene: SceneBuilder): void {
   scene.text('"What is your ideal date?"');
   scene.actions([
     { label: 'A quiet night in', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_7'] = 'quiet_night';
+    ((s as any).foto_documentary ?? {})['question_7'] = 'quiet_night';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"My ideal date is… a quiet night in. Nothing fancy, just a nice cooked meal or maybe some takeout, a bit of wine maybe, some cuddling on the couch, just time spent being comfortable and relaxed with another person. That kind of feeling, isn\'t that what romance is all about?"');
     qspCall(s, 'foto_model_documentary', 'documentary_8');
   } },
     { label: 'Something fun with lots of activities', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_7'] = 'activity_based';
+    ((s as any).foto_documentary ?? {})['question_7'] = 'activity_based';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"My ideal date is something with a lot of activities involved. I really like having fun and having stuff to do, so… like playing games at a carnival, or a day at the beach, or going through a haunted house or an escape room type of thing. That\'s the kind of stuff I\'d want to do if somebody asked me out on a date."');
     qspCall(s, 'foto_model_documentary', 'documentary_8');
   } },
     { label: 'Dinner and a movie', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_7'] = 'dinner_and_movie';
+    ((s as any).foto_documentary ?? {})['question_7'] = 'dinner_and_movie';
     scene.img('images/locations/city/citycenter/photo/special/interview/9.mp4');
     scene.text('"My ideal date is probably… dinner and a movie. It\'s a little cliche, but I like it. You know? A bit of time chatting and eating together and then some time to just hang out watching something, maybe holding hands during it. It gives us stuff to talk about too, you know?"');
     qspCall(s, 'foto_model_documentary', 'documentary_8');
   } },
     { label: 'A long walk with scenery', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_7'] = 'long_walk';
+    ((s as any).foto_documentary ?? {})['question_7'] = 'long_walk';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"My ideal date is basically just a long walk. Somewhere nice like the park or along a lake, just someplace peaceful with beautiful scenery. We could talk quietly, hold hands while we walk, just <i>be</i> with each other."');
     qspCall(s, 'foto_model_documentary', 'documentary_8');
   } },
     { label: 'Something thrilling', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_7'] = 'thrilling_date';
+    ((s as any).foto_documentary ?? {})['question_7'] = 'thrilling_date';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I would love to do something thrilling on a date. Like roller coaster rides at an amusement park or jetskiing on the lake or even skydiving out of a plane! I love experiencing that rush and being able to share that with another person only makes it that much more special."');
     qspCall(s, 'foto_model_documentary', 'documentary_8');
   } },
     { label: 'A romantic evening that ends in sex', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_7'] = 'romantic_sex';
+    ((s as any).foto_documentary ?? {})['question_7'] = 'romantic_sex';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I think for me, my ideal date is a romantic evening that ends with great sex. The sex is a big part of it, sure, but without the build up it\'s nothing. A fancy restaurant in expensive clothing, wine and chocolates, starring at each other and taking in how beautiful the other person looks. All of these things just building, building, building our desire. And at the end of the night, when we\'re at our limit, that\'s when we let our inhibitions go. Hands get handsy, tongues get invasive, and every touch becomes passionate and expressive. And after we\'re done we can bask in the afterglow of the evening and in each other\'s presence," you smile.');
     scene.text('"<i>Just</i> those things?" the interviewer smiles back.');
@@ -777,25 +777,25 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
   scene.text('"For our next question, do you have any guilty pleasures?"');
   scene.actions([
     { label: 'Eating things I shouldn\'t', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'junk_food';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'junk_food';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"My guilty pleasure is eating things that I really shouldn\'t be. Whether that be excessive amounts of chocolate or an extra scoop of ice cream or an entire bag of crisps, sometimes it\'s so tempting I can\'t help but give in. And I feel really bad about it after because I know I need to maintain my figure but it\'s <i>so</i> satisfying in the moment."');
     qspCall(s, 'foto_model_documentary', 'documentary_9');
   } },
     { label: 'Day drinking', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'day_drinking';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'day_drinking';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I have this bad habit where I like to drink during the day sometimes. Like, I know I shouldn\'t because it\'s probably messing up my liver and affecting the way I interact with people, but sometimes, I just need some alcohol to be able to kick back and relax. So I\'d say that\'s my guilty pleasure."');
     qspCall(s, 'foto_model_documentary', 'documentary_9');
   } },
     { label: 'Binge watching', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'binge_watching';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'binge_watching';
     scene.img('images/locations/city/citycenter/photo/special/interview/5.mp4');
     scene.text('"I\'d have to say my guilty pleasure is binge watching TV series. It\'s so bad because I\'ll just lose hours and hours of time but when that \'play next\' button is right there, I need to know what happens next! I lose whole weekends doing that!"');
     qspCall(s, 'foto_model_documentary', 'documentary_9');
   } },
     { label: 'Steamy romance novels', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'romance_novels';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'romance_novels';
     scene.actions([
       { label: 'Embarrassed', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/4.mp4');
@@ -810,19 +810,19 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Bad romcoms', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'bad_romcoms';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'bad_romcoms';
     scene.img('images/locations/city/citycenter/photo/special/interview/4.mp4');
     scene.text('"My guilty pleasure is bad romantic comedies. I know they\'re cheesy, I know that the problems could be solved if the characters just listened to each other, but I can\'t help myself. They\'re just so cute!"');
     qspCall(s, 'foto_model_documentary', 'documentary_9');
   } },
     { label: 'Social media', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'social_media';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'social_media';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My guilty pleasure has to be social media. One minute I\'m saying I\'m just going to take a quick scroll through Twatter, next thing I know I\'ve been reading the feeds for an hour. It\'s a huge time sink and a huge problem for productivity."');
     qspCall(s, 'foto_model_documentary', 'documentary_9');
   } },
     { label: 'Sleeping in', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_8'] = 'sleeping_in';
+    ((s as any).foto_documentary ?? {})['question_8'] = 'sleeping_in';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     // TODO-QSP: dynamic text: "I'd say that my guilty pleasure is having a lie in. There's so much that needs ...
     scene.text(`"I'd say that my guilty pleasure is having a lie in. There's so much that needs to get done during the day, but sometimes I can't help but whack the off button on my alarm clock and curl back up under my covers, wake up at noon instead of ${((s as any).alarmVars ?? 0)?.['timerH']}. It feels good to sleep in, but I always regret it when I realize how much stuff I could have gotten done if I had just gotten up when I was supposed to."`);
@@ -838,37 +838,37 @@ function enterDocumentary_9(s: GameState, scene: SceneBuilder): void {
   scene.text('"What do you wear to bed?"');
   scene.actions([
     { label: 'Underwear', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'underwear_bed';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'underwear_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"Just my usual underwear. Some panties and a bra. Maybe it\'s a little weird to wear a bra to bed, but it\'s just comfortable for me.');
     qspCall(s, 'foto_model_documentary', 'documentary_10');
   } },
     { label: 'Panties', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'panties_bed';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'panties_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Just a pair of panties. I get hot at night so I don\'t wear PJ\'s but keeping my panties on keeps anything leaking out during the night and staining the sheets."');
     qspCall(s, 'foto_model_documentary', 'documentary_10');
   } },
     { label: 'I sleep naked', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'naked_bed';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'naked_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I sleep naked," you say. "Au naturel. Is there any better way to sleep than just your skin and your covers?"');
     qspCall(s, 'foto_model_documentary', 'documentary_10');
   } },
     { label: 'Negligee', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'negligee_bed';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'negligee_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I wear a negligee when I sleep. It\'s sexy, it\'s classy, and if I need to get up for anything (or anyone) I\'m still presentable."');
     qspCall(s, 'foto_model_documentary', 'documentary_10');
   } },
     { label: 'A big t-shirt and panties', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'shirt_panties_bed';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'shirt_panties_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"Oh, just a big t-shirt and a pair of panties. My boobs have get cold so having an extra layer on under the covers is nice."');
     qspCall(s, 'foto_model_documentary', 'documentary_10');
   } },
     { label: 'Just a big t-shirt', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'big_shirt_bed';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'big_shirt_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Just an oversized t-shirt usually. I have a favorite night shirt that I wear, it\'s soft and roomy and it\'s comfortable to sleep in."');
     scene.text('"Just that?"');
@@ -876,7 +876,7 @@ function enterDocumentary_9(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_10');
   } },
     { label: 'Pajamas', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_9'] = 'pajamas';
+    ((s as any).foto_documentary ?? {})['question_9'] = 'pajamas';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Pajamas!" you say. "They\'re warm and cozy, I love cuddling up in my bed with PJ\'s on."');
     qspCall(s, 'foto_model_documentary', 'documentary_10');
@@ -891,13 +891,13 @@ function enterDocumentary_10(s: GameState, scene: SceneBuilder): void {
   scene.text('"What\'s your ideal morning?"');
   scene.actions([
     { label: 'Early morning with exercise', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'exercise_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'exercise_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"I like to get up early," you say. "There\'s just something motivating about getting an early start to the day. After that I do some exercises. Some yoga, some body weight exercises, maybe go for a run or something like that. Just something that starts off my day active and right. Then a nice hot shower and I\'m ready for the day."');
     qspCall(s, 'foto_model_documentary', 'documentary_11');
   } },
     { label: 'Early morning to do chores', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'chores_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'chores_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I like to get up early and do my chores."');
     scene.text('"Your ideal morning is doing chores?"');
@@ -905,33 +905,33 @@ function enterDocumentary_10(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'foto_model_documentary', 'documentary_11');
   } },
     { label: 'Early morning with a light breakfast', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'breakfast_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'breakfast_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Getting an early start is important to me. Making sure my body is ready for the day you know? So I like to get up early and have a light breakfast, some scrambled eggs or maybe a salad. Nothing too heavy that will weigh me down, just give me energy for the rest of morning."');
     qspCall(s, 'foto_model_documentary', 'documentary_11');
   } },
     { label: 'Anything involving coffee', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'coffee_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'coffee_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My ideal morning is anything that involves coffee. You give me a cup of coffee when I wake up, I will marry you."');
     scene.text('The interviewer smiles as she writes something down in her notes and you get the feeling she\'s a kindred spirit in this regard.');
     qspCall(s, 'foto_model_documentary', 'documentary_11');
   } },
     { label: 'Anything involving coffee (slightly crude/slutty)', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'crude_coffee_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'crude_coffee_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My ideal morning is anything that involves coffee. Seriously, I will suck you off if you bring me a cup of coffee in bed."');
     scene.text('The interviewer suppresses a smile as she writes something down with eyebrows upraised. You get the feeling she knows what you mean but is a bit surprised by your choice of words.');
     qspCall(s, 'foto_model_documentary', 'documentary_11');
   } },
     { label: 'Sleeping in followed by brunch', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'brunch_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'brunch_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"My ideal morning is one where I get to sleep in late, have a nice lazy morning, and then have brunch at the end of it. Like pancakes with jam or maybe an omelette or smoked salmon and cream cheese, oh! Or french toast and an egg quiche. If I could start every day like that I would be <i>sooooo</i> happy."');
     qspCall(s, 'foto_model_documentary', 'documentary_11');
   } },
     { label: 'Wakeup sex', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_10'] = 'wakeup_sex_morning';
+    ((s as any).foto_documentary ?? {})['question_10'] = 'wakeup_sex_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"My ideal morning starts with sex," you say. "Nothing to get your day going like a good orgasm right? If I wake up and somebody\'s balls deep in me, that day is already a good day."');
     scene.text('"Ahuh… Funny, someone else said something similar…" the interviewer says flipping back on her clipboard a few pages.');
@@ -946,7 +946,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Early morning with exercise', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 1;
+    ((s as any).foto_documentary ?? {})['question_11'] = 1;
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('');
     scene.actions([
@@ -954,7 +954,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Early morning to do chores', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 2;
+    ((s as any).foto_documentary ?? {})['question_11'] = 2;
     scene.img('images/locations/city/citycenter/photo/special/interview/7.mp4');
     scene.text('"');
     scene.actions([
@@ -962,7 +962,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Early morning with a light breakfast', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 3;
+    ((s as any).foto_documentary ?? {})['question_11'] = 3;
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('');
     scene.actions([
@@ -970,7 +970,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Anything involving coffee', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 4;
+    ((s as any).foto_documentary ?? {})['question_11'] = 4;
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('');
     scene.actions([
@@ -978,7 +978,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Anything involving coffee (slightly crude/slutty)', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 5;
+    ((s as any).foto_documentary ?? {})['question_11'] = 5;
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('');
     scene.actions([
@@ -986,7 +986,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Sleeping in followed by brunch', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 6;
+    ((s as any).foto_documentary ?? {})['question_11'] = 6;
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('');
     scene.actions([
@@ -994,7 +994,7 @@ function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: '', handler: (st: GameState) => {
-    (s as any).foto_documentary['question_11'] = 7;
+    ((s as any).foto_documentary ?? {})['question_11'] = 7;
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('');
     // TODO-QSP: end !}

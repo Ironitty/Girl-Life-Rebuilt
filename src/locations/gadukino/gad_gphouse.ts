@@ -17,9 +17,9 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prevloc ?? 0) !== 'gad_gphouse') {
     qspCall(s, 'gad_gphouse', 'init');
   }
-  (s as any).setloc['imagepath'] = 'locations/gadukino/gp_dacha/';
-  (s as any).setloc['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + ((s as any).setloc ?? {})?.['room_image'];
+  ((s as any).setloc ?? {})['imagepath'] = 'locations/gadukino/gp_dacha/';
+  ((s as any).setloc ?? {})['StageTitle'] = ((s as any).setloc ?? 0)?.['room_title'];
+  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + ((s as any).setloc ?? {})?.['room_image'];
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -49,8 +49,8 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['room_title'] = 'Your Grandparents\' Kitchenette';
-  (s as any).setloc['room_image'] = 'gp_kitchen.jpg';
+  ((s as any).setloc ?? {})['room_title'] = 'Your Grandparents\' Kitchenette';
+  ((s as any).setloc ?? {})['room_image'] = 'gp_kitchen.jpg';
   qspCall(s, 'gad_gphouse', 'setup', 'kitchen');
   scene.text('A small area separated from the rest of the dacha reserved for cooking and eating meals.');
   if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
@@ -83,14 +83,14 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 
 function enterFamilyTrip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) > 12  &&  ((s as any).locat ?? 0)?.['Fam_month_inGad'] !== ((s as any).month ?? 0)) {
-    (s as any).locat['Fam_inGad'] = 1;
+    ((s as any).locat ?? {})['Fam_inGad'] = 1;
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1) {
     scene.text('Your parents are relaxing inside.');
     qspCall(s, 'mother', 'check_workout');
     if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20) {
-      (s as any).locat['Fam_month_inGad'] = ((s as any).month ?? 0);
-      (s as any).locat['Fam_inGad'] = 0;
+      ((s as any).locat ?? {})['Fam_month_inGad'] = ((s as any).month ?? 0);
+      ((s as any).locat ?? {})['Fam_inGad'] = 0;
       if (((s as any).daystart ?? 0) > ((s as any).gadstay_day ?? 0)  &&  ((s as any).hour ?? 0) === 20  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
         if ((((s as any).kanikuli ?? 0) === 4  ||  ((s as any).kanikuli ?? 0) === 5)  &&  ((((s as any).month ?? 0) === 6  ||  ((s as any).month ?? 0) === 7)  ||  (((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) <= 25))) {
           scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'family_trip_ask_go_home'] }]);
@@ -123,7 +123,7 @@ function enterFamilyTripAskGoHome(s: GameState, scene: SceneBuilder): void {
 
 function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
   (s as any).gadstay = 0;
-  (s as any).locat['Fam_inGad'] = 0;
+  ((s as any).locat ?? {})['Fam_inGad'] = 0;
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 15);
   qspCall(s, 'stat', '');
   scene.text('<center><b>Your grandmother</b></center>');
@@ -133,7 +133,7 @@ function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: Before leaving, your grandma hugs you and gives you <<$func('money', 'string_pro...
     scene.text(`Before leaving, your grandma hugs you and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).grandmaQW ?? {})?.['help_amount']*25)} for your help with chores.`);
-    (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW ?? {})['help_amount'] = 0;
   } else {
     scene.text('Before leaving, your grandma gives you a big hug goodbye.');
   }
@@ -145,7 +145,7 @@ function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToGadukino(s: GameState, scene: SceneBuilder): void {
-  (s as any).locat['Fam_inGad'] = 1;
+  ((s as any).locat ?? {})['Fam_inGad'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 15);
   qspCall(s, 'stat', '');
   scene.text('You get into the Volga with the rest of your family, and before you know it, you\'ve arrived in Gadukino.');
@@ -214,52 +214,52 @@ function enterNormalEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterNudityTroubleLimit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'] === 0  ||  ((s as any).grandmaQW ?? 0)?.['nudity_trouble_limit'] === 0) {
-    (s as any).grandmaQW['nudity_trouble_base'] = 10;
-    (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
+    ((s as any).grandmaQW ?? {})['nudity_trouble_base'] = 10;
+    ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
   } else {
-    (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
+    ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = ((s as any).grandmaQW ?? 0)?.['nudity_trouble_base'];
   }
   if (((s as any).gschoolVars ?? 0)?.['block'] === 1) {
-    (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);
+    ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (5);
   }
   if (((s as any).momKnowsKolka ?? 0) === 1) {
-    (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (10);
+    ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (10);
   }
   if (((s as any).momKnowsVladimir ?? 0) === 1) {
-    (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (10);
+    ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (10);
   }
   if (((s as any).momslut ?? 0) < 2) {
     if (((s as any).motherKnowWhore ?? 0) > 0) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).motherKnowSpravka ?? 0) > 0) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   if (((s as any).brotherQW ?? 0)?.['Sex'] < 6) {
     if (((s as any).brotherQW ?? 0)?.['know_slut'] > 1) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).brotherQW ?? 0)?.['know_slut'] > 0) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   if (((s as any).sisterQW ?? 0)?.['roma3block'] === 1) {
     if (((s as any).sisterknowslut ?? 0) > 1  &&  ((s as any).sisboypartyQW ?? 0) > 1) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).sisterknowslut ?? 0) > 0) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   if (((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {
-    (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (5);
+    ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (5);
   } else {
     if (((s as any).npc_QW ?? 0)?.['A63'] >= 11) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (3);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (3);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 15) {
-      (s as any).grandmaQW['nudity_trouble_limit'] = ((s as any).grandmaQW['nudity_trouble_limit'] ?? 0) + (2);
+      ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
   scene.build();
@@ -280,7 +280,7 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Before leaving, your grandma hugs you and gives you <<$func('money', 'string_pro...
     scene.text(`Before leaving, your grandma hugs you and gives you ${qspFunc(s, 'money', 'string_profit', 25 * ((s as any).grandmaQW ?? {})?.['help_amount'])} for your help with chores.`);
     // TODO-QSP: gs 'money', 'earn', 25 * grandmaQW['help_amount'], 'cash'
-    (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW ?? {})['help_amount'] = 0;
     qspCall(s, 'stat', '');
   } else {
     scene.text('Before leaving, your grandma gives you a big hug goodbye.');
@@ -296,10 +296,10 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWasLostYesterday(s: GameState, scene: SceneBuilder): void {
-  (s as any).grandmaQW['disappointment'] = 0;
-  (s as any).grandpaQW['disappointment'] = 0;
-  (s as any).grandmaQW['last_day_helped'] = ((s as any).daystart ?? 0);
-  (s as any).grandpaQW['last_day_helped'] = ((s as any).daystart ?? 0);
+  ((s as any).grandmaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandpaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandmaQW ?? {})['last_day_helped'] = ((s as any).daystart ?? 0);
+  ((s as any).grandpaQW ?? {})['last_day_helped'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big32.jpg');
@@ -315,8 +315,8 @@ function enterWasLostYesterday(s: GameState, scene: SceneBuilder): void {
 
 function enterNudityTroubleKicked(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'grandparents_house');
-  (s as any).grandmaQW['help_amount'] = 0;
-  (s as any).grandmaQW['block'] = 1;
+  ((s as any).grandmaQW ?? {})['help_amount'] = 0;
+  ((s as any).grandmaQW ?? {})['block'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/grandparents/grandma.jpg');
@@ -333,12 +333,12 @@ function enterNudityTroubleKicked(s: GameState, scene: SceneBuilder): void {
 
 function enterNudityTrouble(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['nudity_trouble'] > ((s as any).grandmaQW ?? 0)?.['help_amount']) {
-    (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW ?? {})['help_amount'] = 0;
   } else {
-    (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW ?? {})?.['help_amount'] - ((s as any).grandmaQW ?? {})?.['nudity_trouble'];
+    ((s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW ?? {})?.['help_amount'] - ((s as any).grandmaQW ?? {})?.['nudity_trouble'];
   }
-  (s as any).grandmaQW['nudity_trouble'] = 0;
-  (s as any).grandmaQW['nudity_trouble_base'] = ((s as any).grandmaQW['nudity_trouble_base'] ?? 0) + (1);
+  ((s as any).grandmaQW ?? {})['nudity_trouble'] = 0;
+  ((s as any).grandmaQW ?? {})['nudity_trouble_base'] = (((s as any).grandmaQW ?? {})['nudity_trouble_base'] ?? 0) + (1);
   scene.img('images/characters/shared/headshots_main/big32.jpg');
   scene.text('Suddenly your grandmother approaches you with a disappointed look on her face. "I had higher expectations of you, young lady! You should be ashamed of yourself for running around outdoors without clothes. You have embarrassed your grandfather and me! Our friends have seen you around naked, as have your grandfather and I, so don\'t even try to hide it."');
   scene.text('"This will be reflected in your allowance, don\'t act surprised at the beginning of the month."');
@@ -350,8 +350,8 @@ function enterNudityTrouble(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGrandpaDisapointment(s: GameState, scene: SceneBuilder): void {
-  (s as any).grandpaQW['disappointment'] = 0;
-  (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
+  ((s as any).grandpaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) - (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'stat', '');
@@ -379,8 +379,8 @@ function enterGrandpaDisapointment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGrandmaDisapointment(s: GameState, scene: SceneBuilder): void {
-  (s as any).grandmaQW['disappointment'] = 0;
-  (s as any).grandmaQW['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
+  ((s as any).grandmaQW ?? {})['disappointment'] = 0;
+  ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) - (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'lower', 'tiny');
   qspCall(s, 'stat', '');
@@ -401,7 +401,7 @@ function enterGrandmaDisapointment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
-  (s as any).grandmaQW['first_visit'] = 1;
+  ((s as any).grandmaQW ?? {})['first_visit'] = 1;
   qspCall(s, 'money', 'earn', 3000, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -435,7 +435,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQuickStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).grandmaQW['first_visit'] = 1;
+  ((s as any).grandmaQW ?? {})['first_visit'] = 1;
   qspCall(s, 'money', 'earn', 3000, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'mood', 'raise', 'tiny');
@@ -448,7 +448,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChoresPay(s: GameState, scene: SceneBuilder): void {
-  (s as any).grandmaQW['last_month_paid'] = ((s as any).month ?? 0);
+  ((s as any).grandmaQW ?? {})['last_month_paid'] = ((s as any).month ?? 0);
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
     // TODO-QSP: gs 'money', 'earn', (grandmaQW['help_amount'] * 25), 'cash'
   }
@@ -460,7 +460,7 @@ function enterChoresPay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grandmaQW ?? 0)?.['help_amount'] > 0) {
     // TODO-QSP: dynamic text: "You were quite helpful over the last few weeks, so here's <<$func('money', 'str...
     scene.text(`"You were quite helpful over the last few weeks, so here's ${qspFunc(s, 'money', 'string_profit', ((s as any).grandmaQW ?? {})?.['help_amount'] * 25)}." She starts to hand you the money, then lifts it away with a stern look, "But you can always do more work, young lady!" she scolds gently then smiles as she gives you the money.`);
-    (s as any).grandmaQW['help_amount'] = 0;
+    ((s as any).grandmaQW ?? {})['help_amount'] = 0;
   } else {
     scene.text('"We really could have used your help last month," she says mournfully as she counts out some bills. "Maybe this month you\'ll do more to help us?" She looks at you sternly as she puts her purse away.');
   }
@@ -471,8 +471,8 @@ function enterChoresPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiraVisit(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['guestday'] = ((s as any).daystart ?? 0) + 1;
-  (s as any).MiraVars['guest'] = 1;
+  ((s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0) + 1;
+  ((s as any).MiraVars ?? {})['guest'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');

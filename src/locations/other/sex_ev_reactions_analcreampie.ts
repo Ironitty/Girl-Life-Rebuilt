@@ -28,7 +28,7 @@ function enterFirstCreampie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_acp_known ?? 0) === 1) {
     scene.actions([
       { label: 'First anal creampie', handler: (st: GameState) => {
-    (s as any).npc_first_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_first_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.actions([
       { label: 'Is that what it feels like?', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['accidental_creampie_count'] === 1) {
@@ -196,7 +196,7 @@ function enterCreampieCumTogetherReact(s: GameState, scene: SceneBuilder): void 
   if (((s as any).sex_ev ?? 0)?.['came_together'] !== 3  &&  (((s as any).sex_ev ?? 0)?.['came_together'] === 2  ||  ((s as any).sex_ev ?? 0)?.['surprise_cum_together'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['hypno_came_together'] !== 1) {
     scene.actions([
       { label: 'Did we come together?', handler: (st: GameState) => {
-    (s as any).sex_ev['came_together'] = 3;
+    ((s as any).sex_ev ?? {})['came_together'] = 3;
     if (((s as any).sex_ev ?? 0)?.['did_we_cum_together'] === 1) {
       scene.text('You nod hazily, mind still swimming from your orgasm.');
     } else {
@@ -265,7 +265,7 @@ function enterCreampieCumTogetherReact(s: GameState, scene: SceneBuilder): void 
         scene.text('"Did you...? did we...? together..?" you pant. He just nods back, breathing just as hard with a faint smile.');
       }
     }
-    (s as any).sex_ev['did_we_cum_together'] = 2;
+    ((s as any).sex_ev ?? {})['did_we_cum_together'] = 2;
     qspCall(s, 'sex_ev_reactions_analcreampie', 'creampie_react');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -360,8 +360,8 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_ask_anal_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       scene.actions([
         { label: '(Not mad)', handler: (st: GameState) => {
-    (s as any).npc_ask_anal_creampie[String((s as any).npcID ?? 0)] = 1;
-    (s as any).sex_ev['ask_next_time'] = 'not_mad';
+    ((s as any).npc_ask_anal_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev ?? {})['ask_next_time'] = 'not_mad';
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       scene.text('"Just... ask next time..." you pant, smiling tiredly at him.');
     } else {
@@ -374,7 +374,7 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: '(A little mad)', handler: (st: GameState) => {
-    (s as any).sex_ev['ask_next_time'] = 'little_mad';
+    ((s as any).sex_ev ?? {})['ask_next_time'] = 'little_mad';
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       scene.text('"If you\'re going to... come inside my ass..." you pant. "... you need to ask..."');
       scene.text('You try to give him a look of annoyance, but it\'s very difficult to produce angry vibes off the back of an orgasm.');
@@ -384,7 +384,7 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: "Sorry," <<$npcdesc>> mumbles, apparently exhausted from emptying his balls into...
     scene.text(`"Sorry," ${((s as any).npcdesc ?? 0)} mumbles, apparently exhausted from emptying his balls into your ass without permission.`);
-    (s as any).npc_ask_anal_creampie[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_ask_anal_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
       ]);
@@ -407,8 +407,8 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   } },
           { label: 'I thought I told you to ask (nice)', handler: (st: GameState) => {
-    (s as any).npc_ask_anal_creampie[String((s as any).npcID ?? 0)] = 1;
-    (s as any).sex_ev['ask_next_time'] = 'not_mad';
+    ((s as any).npc_ask_anal_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev ?? {})['ask_next_time'] = 'not_mad';
     scene.text('"I thought I told you to ask...?" you say.');
     if (((s as any).sex_ev ?? 0)?.['cum_wherever'] === 1) {
       scene.text('"You told me I could come wherever I wanted," he grins in return.');
@@ -429,8 +429,8 @@ function enterCreampieAskNextTime(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'I thought I told you to ask (annoyed)', handler: (st: GameState) => {
-    (s as any).npc_ask_anal_creampie[String((s as any).npcID ?? 0)] = 1;
-    (s as any).sex_ev['ask_next_time'] = 'annoyed';
+    ((s as any).npc_ask_anal_creampie ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev ?? {})['ask_next_time'] = 'annoyed';
     if (((s as any).sex_ev ?? 0)?.['came_together'] > 0) {
       // TODO-QSP: dynamic text: "What happened... to asking...?" you pant, glaring at <<$npcdesc>> through your ...
       scene.text(`"What happened... to asking...?" you pant, glaring at ${((s as any).npcdesc ?? 0)} through your post orgasm haze.`);

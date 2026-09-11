@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
     scene.text('"Hello, welcome to the Aurora Female Talent Agency! How may I help you?"');
     if (((s as any).casting ?? 0) === 3  &&  ((s as any).hour ?? 0) <= 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
-      (s as any).audition['room'] = 3;
+      ((s as any).audition ?? {})['room'] = 3;
       scene.text('"Oh? Are you here for the SMTV commercial? Please go to interview room 3. They\'re waiting for you inside.');
     } else {
       if (((s as any).casting ?? 0) === 3  &&  ((((s as any).hour ?? 0) > 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0))  ||  ((s as any).SMTV_commercial ?? 0) < ((s as any).daystart ?? 0))) {

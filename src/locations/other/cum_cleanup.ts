@@ -21,8 +21,8 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
         if (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 0) {
           (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 0) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0)));
           (s as any).cumsumass = ((s as any).cumsumass ?? 0) - (((((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === 3) ? (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]) : (0)));
-          (s as any).sparrvol[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
-          (s as any).sparrslc[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
+          ((s as any).sparrvol ?? {})[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
+          ((s as any).sparrslc ?? {})[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
         } else {
           qspCall(s, 'cum_cleanup', '', 15);
         }
@@ -95,57 +95,57 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFullExternal(s: GameState, scene: SceneBuilder): void {
-  (s as any).ARGS[1] = 1;
+  ((s as any).ARGS ?? {})[1] = 1;
   if (((s as any).locArgs?.[0] ?? 0) === 'teeth') {
-    (s as any).ARGS[0] = 2;
+    ((s as any).ARGS ?? {})[0] = 2;
   } else {
     if (((s as any).locArgs?.[0] ?? 0) === 'internal') {
-      (s as any).ARGS[0] = 3;
+      ((s as any).ARGS ?? {})[0] = 3;
     } else {
       if (((s as any).locArgs?.[0] ?? 0) === 'external') {
-        (s as any).ARGS[0] = 4;
+        ((s as any).ARGS ?? {})[0] = 4;
       } else {
         if (((s as any).locArgs?.[0] ?? 0) === 'hair') {
-          (s as any).ARGS[0] = 5;
+          ((s as any).ARGS ?? {})[0] = 5;
         } else {
           if (((s as any).locArgs?.[0] ?? 0) === 'clothes') {
-            (s as any).ARGS[0] = 6;
+            ((s as any).ARGS ?? {})[0] = 6;
           } else {
             if (((s as any).locArgs?.[0] ?? 0) === 'enema') {
-              (s as any).ARGS[0] = 7;
+              ((s as any).ARGS ?? {})[0] = 7;
             } else {
               if (((s as any).locArgs?.[0] ?? 0) === 'blank') {
-                (s as any).ARGS[0] = 8;
+                ((s as any).ARGS ?? {})[0] = 8;
               } else {
                 if (((s as any).locArgs?.[0] ?? 0) === 'hands') {
-                  (s as any).ARGS[0] = 9;
+                  ((s as any).ARGS ?? {})[0] = 9;
                 } else {
                   if (((s as any).locArgs?.[0] ?? 0) === 'face') {
-                    (s as any).ARGS[0] = 11;
+                    ((s as any).ARGS ?? {})[0] = 11;
                   } else {
                     if (((s as any).locArgs?.[0] ?? 0) === 'face  &&  hair'  ||  ((s as any).locArgs?.[0] ?? 0) === 'face_hair') {
-                      (s as any).ARGS[0] = 12;
+                      ((s as any).ARGS ?? {})[0] = 12;
                     } else {
                       if (((s as any).locArgs?.[0] ?? 0) === 'head') {
-                        (s as any).ARGS[0] = 13;
+                        ((s as any).ARGS ?? {})[0] = 13;
                       } else {
                         if (((s as any).locArgs?.[0] ?? 0) === 'belly') {
-                          (s as any).ARGS[0] = 14;
+                          ((s as any).ARGS ?? {})[0] = 14;
                         } else {
                           if (((s as any).locArgs?.[0] ?? 0) === 'ass'  ||  ((s as any).locArgs?.[0] ?? 0) === 'pussy') {
-                            (s as any).ARGS[0] = 15;
+                            ((s as any).ARGS ?? {})[0] = 15;
                           } else {
                             if (((s as any).locArgs?.[0] ?? 0) === 'breasts') {
-                              (s as any).ARGS[0] = 16;
+                              ((s as any).ARGS ?? {})[0] = 16;
                             } else {
                               if (((s as any).locArgs?.[0] ?? 0) === 'arms') {
-                                (s as any).ARGS[0] = 17;
+                                ((s as any).ARGS ?? {})[0] = 17;
                               } else {
                                 if (((s as any).locArgs?.[0] ?? 0) === 'therapist'  ||  ((s as any).locArgs?.[0] ?? 0) === 'hypno') {
-                                  (s as any).ARGS[0] = 18;
+                                  ((s as any).ARGS ?? {})[0] = 18;
                                 } else {
                                   if (((s as any).locArgs?.[0] ?? 0) === 'everything') {
-                                    (s as any).ARGS[0] = 20;
+                                    ((s as any).ARGS ?? {})[0] = 20;
                                   } else {
                                     if (((s as any).locArgs?.[0] ?? 0) !== '') {
                                       return;
@@ -168,11 +168,11 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).cumspclnt ?? 0) !== 0) {
-    (s as any).ARGS[0] = ((s as any).cumspclnt ?? 0);
+    ((s as any).ARGS ?? {})[0] = ((s as any).cumspclnt ?? 0);
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
     if (((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 10) {
-      (s as any).ARGS[0] = 18;
+      ((s as any).ARGS ?? {})[0] = 18;
     }
   }
   if (((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 10) {
@@ -392,16 +392,16 @@ function enterFullExternal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'cumcleanloop'
   }
   if (((s as any).cumsumvag ?? 0) > 0) {
-    (s as any).cum_vol['vagina'] = ((s as any).cumsumvag ?? 0);
-    (s as any).cumvol[0] = ((s as any).cumsumvag ?? 0);
-    (s as any).cum_loc['vagina'] = 1;
-    (s as any).cumloc[0] = 1;
+    ((s as any).cum_vol ?? {})['vagina'] = ((s as any).cumsumvag ?? 0);
+    ((s as any).cumvol ?? {})[0] = ((s as any).cumsumvag ?? 0);
+    ((s as any).cum_loc ?? {})['vagina'] = 1;
+    ((s as any).cumloc ?? {})[0] = 1;
   }
   if (((s as any).cumsumass ?? 0) > 0) {
-    (s as any).cum_vol['anus'] = ((s as any).cumsumass ?? 0);
-    (s as any).cumvol[3] = ((s as any).cumsumass ?? 0);
-    (s as any).cum_loc['anus'] = 1;
-    (s as any).cumloc[3] = 1;
+    ((s as any).cum_vol ?? {})['anus'] = ((s as any).cumsumass ?? 0);
+    ((s as any).cumvol ?? {})[3] = ((s as any).cumsumass ?? 0);
+    ((s as any).cum_loc ?? {})['anus'] = 1;
+    ((s as any).cumloc ?? {})[3] = 1;
   }
   scene.build();
 }

@@ -64,10 +64,10 @@ function enterSumInner(s: GameState, scene: SceneBuilder): void {
 
 function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]
@@ -93,10 +93,10 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
 
 function enterCanWear(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]
@@ -108,10 +108,10 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   (s as any).result = 0;
   return;
@@ -120,10 +120,10 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
 
 function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
@@ -135,10 +135,10 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterInStorage(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
@@ -150,10 +150,10 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
@@ -165,10 +165,10 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
 
 function enterIsStrengthLow(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
@@ -204,10 +204,10 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 
 function enterBodysuitOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   (s as any).result = qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }));
   return;
@@ -237,10 +237,10 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
@@ -278,10 +278,10 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_bodysuits_s[<<ARGS[2]>>] = 0"
@@ -292,10 +292,10 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_bodysuits_s[<<ARGS[2]>>] = 1"
@@ -306,10 +306,10 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_bodysuits_s[<<ARGS[2]>>] = 2"
@@ -342,7 +342,7 @@ function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).bodysuitwornnumber = 0;
   (s as any).pantywornnumber = 0;
   (s as any).brawornnumber = 0;
-  (s as any).underwear['type'] = 0;
+  ((s as any).underwear ?? {})['type'] = 0;
   (s as any).isprokp = 0;
   qspCall(s, 'underwear_bodysuits', 'reset_UndVars');
   qspCall(s, 'underwear_bodysuits', 'reset_PUndVars');
@@ -372,7 +372,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: $ARGS[1] = $lastwornbodysuittype
-    (s as any).ARGS[2] = ((s as any).lastwornbodysuitnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).lastwornbodysuitnumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
@@ -399,7 +399,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).bodysuitwornnumber = qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" });
-  (s as any).underwear['type'] = 2;
+  ((s as any).underwear ?? {})['type'] = 2;
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$bodysuitworntype>>_bodysuits_w[<<bodysuitwornnumber>>] = 1
   // TODO-QSP: <<$bodysuitworntype>>_bodysuits_s[<<bodysuitwornnumber>>] = 0
@@ -461,13 +461,13 @@ function enterDecreaseCurDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: dynamic "
@@ -484,13 +484,13 @@ function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterDecreaseDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: dynamic "
@@ -522,13 +522,13 @@ function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
 
 function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: dynamic "
@@ -548,13 +548,13 @@ function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
 
 function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).bodysuitworntype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).bodysuitworntype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).bodysuitwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).bodysuitwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).ARGS[3] = 1;
+    ((s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'underwear_bodysuits', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "underwear_bodysuits" }))) {
     // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]

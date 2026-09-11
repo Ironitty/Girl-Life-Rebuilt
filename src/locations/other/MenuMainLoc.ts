@@ -5,13 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter0(s: GameState, scene: SceneBuilder): void {
-  (s as any).stat_cfg['render_mode'] = 0;
+  ((s as any).stat_cfg ?? {})['render_mode'] = 0;
   qspCall(s, 'stat', '');
   scene.build();
 }
 
 function enter1(s: GameState, scene: SceneBuilder): void {
-  (s as any).stat_cfg['render_mode'] = 2;
+  ((s as any).stat_cfg ?? {})['render_mode'] = 2;
   qspCall(s, 'stat', '');
   scene.build();
 }

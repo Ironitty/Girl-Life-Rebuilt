@@ -499,7 +499,7 @@ function enterPavgenprosmf(s: GameState, scene: SceneBuilder): void {
   (s as any).customerrand = Math.floor(Math.random() * 10) + 0;
   if (((s as any).customerrand ?? 0) < 3) {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-      (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) - (1);
       // TODO-QSP: dynamic text: <<$npcdesc>> holds your head and pulls his dick out of your mouth. "Put one of t...
       scene.text(`${((s as any).npcdesc ?? 0)} holds your head and pulls his dick out of your mouth. "Put one of those condoms on me. It's time to test that pussy of yours."`);
       qspCall(s, 'dinsex', 'pc_puts_condom');
@@ -544,7 +544,7 @@ function enterPavgenprosmf(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).customerrand ?? 0) < 7) {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-        (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+        ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) - (1);
         scene.text('You pull his dick out of your mouth and tell him to put a condom on before he fucks you.');
         qspCall(s, 'dinsex', 'boy_puts_condom');
         scene.actions([
@@ -2016,7 +2016,7 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I can\'t do this', handler: (st: GameState) => {
-    (s as any).stat['prostitution_count'] = ((s as any).stat['prostitution_count'] ?? 0) - (1);
+    ((s as any).stat ?? {})['prostitution_count'] = (((s as any).stat ?? {})['prostitution_count'] ?? 0) - (1);
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'pain', '', 9, 'head', 'hit');
     qspCall(s, 'pain', '', 9, 'tummy', 'kick');
@@ -2119,13 +2119,13 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
     scene.text('<br>');
     scene.text('When you wake up hours later, the nurse hands you some painkillers and tells you that you\'re being discharged from the hospital.');
     scene.text('You slowly get dressed and leave the building. As you head back out into the streets, you feel numb; hollowed out inside like a long dead tree stump. You\'re utterly broken as you wander the streets aimlessly, hoping for a way to move on from all this.');
-    (s as any).mc_inventory['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (10);
+    ((s as any).mc_inventory ?? {})['painkillers'] = (((s as any).mc_inventory ?? {})['painkillers'] ?? 0) + (10);
     qspCall(s, 'mood', 'raise_trauma', 10);
     (s as any).Surgeryday = ((s as any).daystart ?? 0);
     (s as any).pcs_health = 50;
     (s as any).recuperation = 1;
     qspCall(s, 'stat', '');
-    (s as any).npc_rel['A217'] = (-1);
+    ((s as any).npc_rel ?? {})['A217'] = (-1);
     (s as any).PavlinQW = 9;
     scene.actions([
       { label: 'Leave', goto: ['pav_clinic', ''] },

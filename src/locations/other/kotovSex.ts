@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         { label: 'Keep Refusing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).kotovLoveQW = (-1);
-    (s as any).npc_rel[String((s as any).boy ?? 0)] = 0;
+    ((s as any).npc_rel ?? {})[String((s as any).boy ?? 0)] = 0;
     scene.text('When you keep refusing, he pushes you away and shouts: "Fine, go to your mother! Just leave me the fuck alone, we are done for! I\'m so fucking done with this!"');
     scene.text('Nothing you say can change his mind. Vitek feels like you\'ve been leading him on for too long, and now he wants nothing to do with you.');
     scene.actions([
@@ -118,7 +118,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).ekQW ?? 0)?.['piercing_tongue'] === 0) {
-      (s as any).ekQW['piercing_tongue'] = 1;
+      ((s as any).ekQW ?? {})['piercing_tongue'] = 1;
       scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice… aren\'t those supposed to make it feel better when you suck a dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, ${((s as any).pcs_nickname ?? 0)}. I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   } else {
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).i = Math.floor(Math.random() * 6) + 1;
     if (((s as any).i ?? 0) <= 2) {
       scene.img('images/shared/sex/sequence/kotovpre\'+rand(0, 4)+\'.mp4');
@@ -221,7 +221,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((s as any).ekQW ?? 0)?.['piercing_tongue'] === 0) {
-      (s as any).ekQW['piercing_tongue'] = 1;
+      ((s as any).ekQW ?? {})['piercing_tongue'] = 1;
       scene.text('Vitek notices a glimmer in your mouth when you talk, and asks: "Wait, what\'s that in your mouth?"');
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice! Aren\'t those supposed to make it feel better for the guy when you suck his dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');

@@ -7,31 +7,31 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
-  (s as any).locat['maya'] = '';
+  ((s as any).locat ?? {})['maya'] = '';
   if (((s as any).ballet_first_visit ?? 0) === 1) {
     if (((s as any).hour ?? 0) === 6) {
-      (s as any).maya['home'] = 1;
-      (s as any).locat['maya'] = 'bedroom';
+      ((s as any).maya ?? {})['home'] = 1;
+      ((s as any).locat ?? {})['maya'] = 'bedroom';
     } else {
       if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 16) {
-        (s as any).maya['home'] = 0;
+        ((s as any).maya ?? {})['home'] = 0;
         if (((s as any).hour ?? 0) === 12) {
-          (s as any).locat['maya'] = 'living_room';
+          ((s as any).locat ?? {})['maya'] = 'living_room';
         } else {
-          (s as any).locat['maya_room'] = 'shops';
+          ((s as any).locat ?? {})['maya_room'] = 'shops';
         }
       } else {
         if (((s as any).hour ?? 0)=== 17  &&  ((s as any).hour ?? 0) < 18) {
-          (s as any).locat['maya'] = 'kitchen';
+          ((s as any).locat ?? {})['maya'] = 'kitchen';
         } else {
           if (((s as any).hour ?? 0) === 18  &&  ((s as any).hour ?? 0) < 22) {
             (s as any).temp_locat_maya_roll = Math.floor(Math.random() * 2) + 1;
             if (((s as any).temp_locat_maya_roll ?? 0) === 1) {
-              (s as any).maya['home'] = 1;
-              (s as any).locat['maya'] = 'living_room';
+              ((s as any).maya ?? {})['home'] = 1;
+              ((s as any).locat ?? {})['maya'] = 'living_room';
             } else {
-              (s as any).maya['home'] = 0;
-              (s as any).locat['maya'] = 'dance_school';
+              ((s as any).maya ?? {})['home'] = 0;
+              ((s as any).locat ?? {})['maya'] = 'dance_school';
             }
           }
         }
@@ -66,8 +66,8 @@ function enterGrave(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['StageTitle'] = 'Pushkin Graveyard';
-  (s as any).setloc['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "npc_274_init" }) + 'ballet_events/graveyard.jpg';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Pushkin Graveyard';
+  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "npc_274_init" }) + 'ballet_events/graveyard.jpg';
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
@@ -96,7 +96,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Hug <<$npc_firstname[\'A274\']>>', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A274', 'like');
-    (s as any).npc_trust['A274'] = ((s as any).npc_trust['A274'] ?? 0) + (5);
+    ((s as any).npc_trust ?? {})['A274'] = (((s as any).npc_trust ?? {})['A274'] ?? 0) + (5);
     qspCall(s, 'stat', '');
     qspCall(s, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: You step in, pulling her close to you. You smell the soft, floral fragrance she ...

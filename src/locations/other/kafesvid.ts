@@ -329,7 +329,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Lick sperm', handler: (st: GameState) => {
-    (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
+    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
     scene.img('images/characters/city/boyfriend/sex/event/14.jpg');
     // TODO-QSP: dynamic text: You lean over the table, and lap up his sperm with your tongue. <<$telsob>> gent...
     scene.text(`You lean over the table, and lap up his sperm with your tongue. ${((s as any).telsob ?? 0)} gently strokes your hair, as you do.`);
@@ -338,7 +338,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Don\'t touch the sperm', handler: (st: GameState) => {
-    (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
+    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
     scene.img('images/characters/city/boyfriend/sex/event/15.jpg');
     // TODO-QSP: dynamic text: Seeing that you aren't moving, <<$telsob>> leans over the table to collect all h...
     scene.text(`Seeing that you aren't moving, ${((s as any).telsob ?? 0)} leans over the table to collect all his sperm in her mouth. Before you can think to react, she gives you a deep kiss, forcing most of his cum into your mouth. You swallow it without thinking. "Now tell me that wasn't a tasty treat," she finishes.`);

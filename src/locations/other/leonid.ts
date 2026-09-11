@@ -10,11 +10,11 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   (s as any).leonidInFavour = 0;
   qspCall(s, 'jobs', 'set_employed', 'pav_leonid_slave');
   // TODO-QSP: gs 'jobs', 'book_slot', 'pav_leonid_slave', daystart + 1, 0
-  (s as any).mc_inventory['painkillers'] = ((s as any).painkiller_bak ?? 0);
-  (s as any).mc_inventory['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
-  (s as any).mc_inventory['vitamins'] = ((s as any).vitamin_bak ?? 0);
-  (s as any).mc_inventory['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
-  (s as any).mc_inventory['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['painkillers'] = ((s as any).painkiller_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['vitamins'] = ((s as any).vitamin_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/leonid/office.jpg');
   // TODO-QSP: dynamic text: You are in the office. At the desk is a label which reads "<<$bName>> <<$bSurnam...
@@ -49,7 +49,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Do not care about the school. I will take care of it. As for your ${((s as any).npc_nickname ?? 0)?.['A29']}, if she asks, tell her you ran from home to a friend but reconsidered and went back."`);
     // TODO-QSP: dynamic text: "Yes Mister <<$bSurname>>."
     scene.text(`"Yes Mister ${((s as any).bSurname ?? 0)}."`);
-    (s as any).gschoolVars['absence_count'] = 0;
+    ((s as any).gschoolVars ?? {})['absence_count'] = 0;
     (s as any).abductionReturned = 2;
   }
   scene.text('He throws you your clothes which he must have got when he bought you, "Get dressed and leave."');
@@ -995,7 +995,7 @@ function enterOfficeLeonidPunishmentSpank(s: GameState, scene: SceneBuilder): vo
   scene.text(`${((s as any).bName ?? 0)} strips down your clothes and gives you a harsh spanking.`);
   (s as any).leoStress = ((s as any).leoStress ?? 0) - (50);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  (s as any).pain['asscheeks'] = ((s as any).pain['asscheeks'] ?? 0) + (10);
+  ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (10);
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'maso', 'humiliation');
   if (((s as any).leonidSecretary ?? 0) === 1) {

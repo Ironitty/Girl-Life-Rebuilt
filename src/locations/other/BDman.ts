@@ -11,8 +11,8 @@ function enterGivi(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 1;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -23,8 +23,8 @@ function enterAshot(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -35,8 +35,8 @@ function enterArthur(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -47,8 +47,8 @@ function enterAbdula(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -59,8 +59,8 @@ function enterHasan(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -71,8 +71,8 @@ function enterKamil(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -83,8 +83,8 @@ function enterAslan(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -95,8 +95,8 @@ function enterMuhtar(s: GameState, scene: SceneBuilder): void {
   (s as any).figurBoy = 2;
   (s as any).titBoy = 2;
   (s as any).hairBoy = 3;
-  (s as any).npc_rough[String((s as any).boy ?? 0)] = 1;
-  (s as any).npc_pervert[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_rough ?? {})[String((s as any).boy ?? 0)] = 1;
+  ((s as any).npc_pervert ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 

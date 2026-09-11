@@ -352,19 +352,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).danilovich_shoe ?? 0)[17] > 0  ||  ((s as any).danilovich_shoe ?? 0)[18] > 0  ||  ((s as any).danilovich_shoe ?? 0)[12] > 0) {
-    (s as any).danilovich_shoe[21] = 0;
+    ((s as any).danilovich_shoe ?? {})[21] = 0;
   }
   if (((s as any).gm_shoe ?? 0)[9] > 0  ||  ((s as any).gm_shoe ?? 0)[25] > 0) {
-    (s as any).gm_shoe[6] = 0;
+    ((s as any).gm_shoe ?? {})[6] = 0;
   }
   if (((s as any).danilovich_bras ?? 0)[3] > 0  ||  ((s as any).danilovich_bras ?? 0)[4] > 0) {
-    (s as any).danilovich_bras[1] = 0;
+    ((s as any).danilovich_bras ?? {})[1] = 0;
   }
   if (((s as any).danilovich_panties ?? 0)[3] > 0  ||  ((s as any).danilovich_panties ?? 0)[4] > 0) {
-    (s as any).danilovich_panties[1] = 0;
+    ((s as any).danilovich_panties ?? {})[1] = 0;
   }
   if (((s as any).dolls_coat ?? 0)[19] > 0  ||  ((s as any).cats_coat ?? 0)[16] > 0) {
-    (s as any).gm_coats[12] = 0;
+    ((s as any).gm_coats ?? {})[12] = 0;
   }
   scene.build();
 }

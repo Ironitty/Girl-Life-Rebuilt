@@ -23,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).boynumBlock = 0;
   qspCall(s, 'stat', '');
   if (((s as any).complx_rand ?? 0)[1] + (Math.floor(Math.random() * 6) + 5) < ((s as any).daystart ?? 0)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 50  &&  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
-    (s as any).complx_rand[1] = ((s as any).daystart ?? 0);
+    ((s as any).complx_rand ?? {})[1] = ((s as any).daystart ?? 0);
     if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 100) {
       // TODO-QSP: gt 'gossips', 'complex', 'girls_slutrep'
     } else {
@@ -243,7 +243,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed4.jpg');
         scene.text('As you\'re walking around the garages, you notice an open garage door. You see a tattooed man inside working on a motorcycle. He looks really rough and dangerous - he must be one of the bikers that live around the area. You have heard your mother warn you about them before.');
         scene.text('As you pass by, you can hear the man talking to someone else. You throw a quick glance towards them, and you see the man showing something off to a younger man sitting on a motorcycle. Looking closer, you realize that the younger man is Valentin. They seem really into it and you quickly move on before they can turn their attention to you.');
-        (s as any).anushkaQW['seen_ed'] = 1;
+        ((s as any).anushkaQW ?? {})['seen_ed'] = 1;
         (s as any).ed_event_day = ((s as any).daystart ?? 0);
       }
     } else {

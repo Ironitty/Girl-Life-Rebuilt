@@ -9,8 +9,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0));
-  (s as any).npc_meetday[String((s as any).npcID ?? 0)] = 0;
-  (s as any).npc_dates[String((s as any).npcID ?? 0)] = ((s as any).npc_dates[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  ((s as any).npc_meetday ?? {})[String((s as any).npcID ?? 0)] = 0;
+  ((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dates ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
   qspCall(s, 'lover_pref', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -585,11 +585,11 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'willpower', 'misc', 'self', ((s as any).loverResist ?? 0));
-    (s as any).lover_meet['ChangeActions'] = qspUntranslated(s, "{", { location: "lover_meet" });
+    ((s as any).lover_meet ?? {})['ChangeActions'] = qspUntranslated(s, "{", { location: "lover_meet" });
     // TODO-QSP: !$ARGS[0] = name of thing being changed
     // TODO-QSP: !$ARGS[1] = Parameter for lover_change procedure
-    (s as any).lover_meet['ChangeName'] = ((s as any).locArgs?.[0] ?? 0);
-    (s as any).lover_meet['ChangeParamName'] = ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).lover_meet ?? {})['ChangeName'] = ((s as any).locArgs?.[0] ?? 0);
+    ((s as any).lover_meet ?? {})['ChangeParamName'] = ((s as any).locArgs?.[1] ?? 0);
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'I like my <<$lover_meet["ChangeName"]>> just the way it is [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {

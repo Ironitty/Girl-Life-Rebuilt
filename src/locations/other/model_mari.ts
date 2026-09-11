@@ -6,9 +6,9 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterMariAge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 5  &&  ((s as any).day ?? 0) >= 20) {
-    (s as any).mari['age'] = ((s as any).year ?? 0) - 1999;
+    ((s as any).mari ?? {})['age'] = ((s as any).year ?? 0) - 1999;
   } else {
-    (s as any).mari['age'] = ((s as any).year ?? 0) - 1998;
+    ((s as any).mari ?? {})['age'] = ((s as any).year ?? 0) - 1998;
   }
   scene.build();
 }
@@ -146,7 +146,7 @@ function enterMari_1_2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She hurriedly gets up and starts double checking her clothing and hair before gi...
     scene.text(`She hurriedly gets up and starts double checking her clothing and hair before giving you a quick wave and smile, whispering to you, "It was nice to meet you ${((s as any).model ?? 0)?.['firstname']}! I hope we'll get to talk more later!"`);
     scene.text('You wave your farewells back and get off the set.');
-    (s as any).mari['status'] = 2;
+    ((s as any).mari ?? {})['status'] = 2;
     scene.actions([
       { label: 'Watch her work', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/meeting/5.jpg');
@@ -191,7 +191,7 @@ function enterMari_1_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/meeting/1.jpg');
     // TODO-QSP: dynamic text: You barely get to thank her for the advice before she's suddenly being called up...
     scene.text(`You barely get to thank her for the advice before she's suddenly being called up to get ready. She hurriedly gets up and starts double checking her clothing and hair before giving you a quick smile and whispering, "It was nice meeting you ${((s as any).model ?? 0)?.['firstname']}! I hope we can talk more later!"`);
-    (s as any).mari['status'] = 2;
+    ((s as any).mari ?? {})['status'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
       { label: 'Watch her work', handler: (st: GameState) => {
@@ -290,7 +290,7 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading13.jpg');
     scene.text('You walk away and she goes back to reading her book. She\'s still smiling, though you\'re not sure if it\'s from the conversation or if it\'s because she just read something funny.');
-    (s as any).mari['status'] = 3;
+    ((s as any).mari ?? {})['status'] = 3;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -318,10 +318,10 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
 function enterMari_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'model_mari', 'mari_age');
   if (((s as any).mari ?? 0)?.['used_firstname'] === '') {
-    (s as any).mari['used_firstname'] = ((s as any).model ?? 0)?.['firstname'];
-    (s as any).mari['used_nickname'] = ((s as any).model ?? 0)?.['nickname'];
+    ((s as any).mari ?? {})['used_firstname'] = ((s as any).model ?? 0)?.['firstname'];
+    ((s as any).mari ?? {})['used_nickname'] = ((s as any).model ?? 0)?.['nickname'];
   }
-  (s as any).mari['status'] = Math.floor(Math.random() * 2) + 3;
+  ((s as any).mari ?? {})['status'] = Math.floor(Math.random() * 2) + 3;
   scene.img('images/characters/city/models/mari/talking/reading1.jpg');
   scene.text('Looking for Mari, find her on break in her favorite set chair reading that same book as always.');
   scene.actions([
@@ -354,10 +354,10 @@ function enterMari_3(s: GameState, scene: SceneBuilder): void {
 
 function enterMari_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'model_mari', 'mari_age');
-  (s as any).mari['busy'] = Math.floor(Math.random() * 3) + 1;
-  (s as any).mari['status'] = Math.floor(Math.random() * 2) + 3;
-  (s as any).mari['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
-  (s as any).mari['busy_cooldown_day'] = ((s as any).daystart ?? 0);
+  ((s as any).mari ?? {})['busy'] = Math.floor(Math.random() * 3) + 1;
+  ((s as any).mari ?? {})['status'] = Math.floor(Math.random() * 2) + 3;
+  ((s as any).mari ?? {})['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
+  ((s as any).mari ?? {})['busy_cooldown_day'] = ((s as any).daystart ?? 0);
   if (((s as any).mari ?? 0)?.['busy'] === 1) {
     scene.img('images/characters/city/models/mari/talking/busy.jpg');
     scene.text('You\'re looking for Mari when you hear her name called out from a set.');
@@ -375,7 +375,7 @@ function enterMari_4(s: GameState, scene: SceneBuilder): void {
       scene.text('<i>*click* *click*</i>');
       scene.text('She\'s clearly being quite attentive and trying her best. But as you look closer you see her calves shaking, struggling to keep her on her toes.');
       if (((s as any).mari ?? 0)?.['farm_shoot'] === 0) {
-        (s as any).mari['farm_shoot'] = 1;
+        ((s as any).mari ?? {})['farm_shoot'] = 1;
         scene.text('<i>Huh, I didn\'t know we had a dedicated set just for shooting farm stuff. I thought they went out to Gadukino every time. Oh well, looks Mari\'s busy. I guess I\'ll have to find her some other time.</i> Eyeing her quivering toes one last time you think, <i>Hang in there girl!</i>');
         scene.actions([
           { label: 'Leave', goto: ['foto', 'studio'] },
@@ -393,7 +393,7 @@ function enterMari_4(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/city/models/mari/talking/busy3.jpg');
         scene.text('You\'re looking for Mari when you find her in the middle of a shoot.');
         if (((s as any).mari ?? 0)?.['cloth_shoot'] === 0) {
-          (s as any).mari['cloth_shoot'] = 1;
+          ((s as any).mari ?? {})['cloth_shoot'] = 1;
           scene.text('In more clothes than you\'ve ever seen her wearing before (though admittedly, you\'ve almost only ever seen her nude), she holds up her hair with an intense expression on her face and moving very intently. When the photographer gives commands she enacts them flawlessly. She seems to be in an incredible state of focus.');
           scene.text('<i>I guess even a cheerful girl like Mari gets serious sometimes… and someone as comfortable being naked does clothed shoots… I shouldn\'t be a distraction to her. I\'ll come find her again later.</i>');
           scene.actions([
@@ -439,12 +439,12 @@ function enterMariChat(s: GameState, scene: SceneBuilder): void {
 function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Discuss random topics', handler: (st: GameState) => {
-    (s as any).mari['convo'] = Math.floor(Math.random() * 7) + 1;
+    ((s as any).mari ?? {})['convo'] = Math.floor(Math.random() * 7) + 1;
     if (((s as any).mari ?? 0)?.['convo'] === 7  &&  ((s as any).mari ?? 0)?.['sex'] < 1) {
-      (s as any).mari['convo'] = Math.floor(Math.random() * 5) + 1;
+      ((s as any).mari ?? {})['convo'] = Math.floor(Math.random() * 5) + 1;
     } else {
       if (((s as any).mari ?? 0)?.['convo'] === 6  &&  ((s as any).mari ?? 0)?.['model_ask'] < 1) {
-        (s as any).mari['convo'] = Math.floor(Math.random() * 5) + 1;
+        ((s as any).mari ?? {})['convo'] = Math.floor(Math.random() * 5) + 1;
       }
     }
     if (((s as any).mari ?? 0)?.['convo'] === 1) {
@@ -465,7 +465,7 @@ function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'model_mari', 'mari_chat');
       } else {
         if (((s as any).mari ?? 0)?.['convo'] === 3) {
-          (s as any).mari['nudity'] = 1;
+          ((s as any).mari ?? {})['nudity'] = 1;
           scene.img('images/characters/city/models/mari/talking/reading15.jpg');
           scene.text('"So, have you always been this comfortable with nudity?"');
           scene.text('"Kind of? I guess? I\'ve never felt very shy about my body. I\'d go skinny dipping with all the other kids and be happy to jump in with them. I\'d even say hi to the fishermen sometimes."');
@@ -828,7 +828,7 @@ function enterMariModelAdvice(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mari ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask for modelling advice', handler: (st: GameState) => {
-    (s as any).mari['model_exp'] = ((s as any).daystart ?? 0);
+    ((s as any).mari ?? {})['model_exp'] = ((s as any).daystart ?? 0);
     qspCall(s, 'exp_gain', 'mdlng', 1);
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"Hmm… Basically what I told you before: Just be grateful for what you have and be happy, and it\'ll be alright. Keep a positive attitude and try not to take anything the photographers say personally. Remember, they\'re trying to help themselves as much as they\'re trying to help you."');
@@ -858,7 +858,7 @@ function enterMariModelAdvice(s: GameState, scene: SceneBuilder): void {
 function enterMariOrigin(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask her how she became a model', handler: (st: GameState) => {
-    (s as any).mari['model_ask'] = 1;
+    ((s as any).mari ?? {})['model_ask'] = 1;
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"How did you become a model here Mari? Did you get hired here right after moving from Gadukino?"');
     scene.text('"Well, no, not immediately. I tried a few other jobs out first. I tried being a clerk at Pussy Kats in the mall before I found this job."');
@@ -882,7 +882,7 @@ function enterMariOrigin(s: GameState, scene: SceneBuilder): void {
     scene.text('Mari looks down at her book smiling in a way that looks like she\'s slightly embarrassed. "I just… kind of… walked in… I saw some of the albums they have by the entrance, thought, \'Hey, maybe I can do this?\' and asked if I could get hired here."');
     scene.text('"And they hired you just like that?" you ask.');
     scene.text('"Well, I mean I had to do the same things you did. I asked, they asked me to strip down, I did what they said, you know how it was. There were a couple extra hoops I had to jump through too though. Don\'t tell anyone but I was 17 at the time so I had to buy a fake passport just to get started. But as you can see, it was well worth it!"');
-    (s as any).mari['fakepassport'] = 1;
+    ((s as any).mari ?? {})['fakepassport'] = 1;
     scene.actions([
       { label: 'Keep chatting', goto: ['model_mari', 'mari_modelling_chat'] },
     ]);
@@ -900,7 +900,7 @@ function enterMariOrigin(s: GameState, scene: SceneBuilder): void {
 function enterMariNametalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask about her real name', handler: (st: GameState) => {
-    (s as any).mari['name_chat'] = 1;
+    ((s as any).mari ?? {})['name_chat'] = 1;
     scene.img('images/characters/city/models/mari/talking/reading7.jpg');
     scene.text('"Hey Mari, I was wondering. You know how some models here use fake names?"');
     scene.text('"Yeah?"');
@@ -1056,9 +1056,9 @@ function enterMariNametalk5(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'I\'d like that', handler: (st: GameState) => {
-    (s as any).mari['used_firstname'] = ((s as any).pcs_firstname ?? 0);
-    (s as any).mari['used_nickname'] = ((s as any).pcs_nickname ?? 0);
-    (s as any).mari['used_lastname'] = ((s as any).pcs_lastname ?? 0);
+    ((s as any).mari ?? {})['used_firstname'] = ((s as any).pcs_firstname ?? 0);
+    ((s as any).mari ?? {})['used_nickname'] = ((s as any).pcs_nickname ?? 0);
+    ((s as any).mari ?? {})['used_lastname'] = ((s as any).pcs_lastname ?? 0);
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"I think I\'d like that," you say and Mari practically beams back at you.');
     scene.text('"Really?"');
@@ -1091,7 +1091,7 @@ function enterMariParents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mari ?? 0)?.['parent_ask'] < 1  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     scene.actions([
       { label: 'Ask about her parents', handler: (st: GameState) => {
-    (s as any).mari['parent_ask'] = 1;
+    ((s as any).mari ?? {})['parent_ask'] = 1;
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"Hey, this is kind of personal but… I was wondering. What do your parents think of all this? I\'m mostly asking since we kind of come from similar backgrounds and you know, your parents are from Gadukino and I\'m from Pavlovsky and we\'re in sort of similar situations and… you know…"');
     scene.text('You trail off at the end of your sentence, unsure of how to end such a personal request.');
@@ -1160,7 +1160,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).age ?? 0) < 18  &&  ((s as any).fakepassport ?? 0) === 1) {
       scene.actions([
         { label: '"Did you buy it from the print shop guy?"', handler: (st: GameState) => {
-    (s as any).mari['knows_underage'] = 1;
+    ((s as any).mari ?? {})['knows_underage'] = 1;
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"Hey, did you buy it from that guy in the red light district print shop?" you ask her.');
     scene.text('She perks up as you say this.');
@@ -1650,9 +1650,9 @@ function enterWeekendPlans(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask about her weekend plans', handler: (st: GameState) => {
     if (((s as any).mari ?? 0)?.['weekend_gone'] < ((s as any).daystart ?? 0)  &&  ((s as any).mari ?? 0)?.['weekend_stay'] < ((s as any).daystart ?? 0)) {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
-        (s as any).mari['weekend_gone'] = ((s as any).daystart ?? 0) + 2;
+        ((s as any).mari ?? {})['weekend_gone'] = ((s as any).daystart ?? 0) + 2;
       } else {
-        (s as any).mari['weekend_stay'] = ((s as any).daystart ?? 0) + 2;
+        ((s as any).mari ?? {})['weekend_stay'] = ((s as any).daystart ?? 0) + 2;
       }
     }
     if (((s as any).mari ?? 0)?.['weekend_gone'] > ((s as any).daystart ?? 0)) {
@@ -1678,7 +1678,7 @@ function enterWeekendPlans(s: GameState, scene: SceneBuilder): void {
         scene.text('"Not really," she says scratching her head. "I have a few shoots scheduled but I was hoping to spend the rest of the time relaxing. Do some reading, take a walk in the park maybe. I really need to go to the gym but I don\'t want to!" she laughs as well.');
       }
     }
-    (s as any).mari['weekend_ask'] = ((s as any).daystart ?? 0);
+    ((s as any).mari ?? {})['weekend_ask'] = ((s as any).daystart ?? 0);
     qspCall(s, 'model_mari', 'mari_chat');
   } },
     ]);
@@ -1690,7 +1690,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mari ?? 0)?.['sex'] === 0) {
     scene.actions([
       { label: 'Talk about sex', handler: (st: GameState) => {
-    (s as any).mari['sex'] = 1;
+    ((s as any).mari ?? {})['sex'] = 1;
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"Sex?? You want to talk about sex???" she says, seemingly surprised.');
     scene.text('"Yeah, just a bit of girl talk," you say with a conspirational smile.');

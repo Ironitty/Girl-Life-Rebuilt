@@ -646,7 +646,7 @@ function enterQW5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Thank her', handler: (st: GameState) => {
     (s as any).pcs_horny = 0;
-    (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     if (((s as any).analPlugIn ?? 0) === 1) {
       qspCall(s, 'boyStat', 'D4');
@@ -2026,7 +2026,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Refuse to sign', handler: (st: GameState) => {
     (s as any).lesbiQW = (-1);
-    (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub ?? {})['unlocked'] = 1;
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You quickly browse through the contract, and the decision is not hard to make: there\'s no way you\'re signing this.');
     scene.text('Mistress looks disappointed, but complacent. "I… was afraid you would say that. That\'s too bad."');
@@ -2097,7 +2097,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Decline', handler: (st: GameState) => {
     (s as any).lesbiQW = (-1);
-    (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub ?? {})['unlocked'] = 1;
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You shake your head. "I\'m sorry, Mistress. Six months is still too long. I don\'t think I can commit to this, it doesn\'t feel right."');
     // TODO-QSP: dynamic text: Mistress is clearly disappointed. "That's too bad, <<$pcs_nickname>>. I really t...
@@ -2114,7 +2114,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Refuse to sign', handler: (st: GameState) => {
     (s as any).lesbiQW = (-1);
-    (s as any).bdsmclub['unlocked'] = 1;
+    ((s as any).bdsmclub ?? {})['unlocked'] = 1;
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You\'ve given it enough thought; you wouldn\'t mind visiting her more, but you\'re not signing a contract for it.');
     // TODO-QSP: dynamic text: When you tell Mistress that, she's clearly disappointed. "That's too bad, <<$pcs...

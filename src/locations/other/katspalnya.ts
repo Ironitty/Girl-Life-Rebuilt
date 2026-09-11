@@ -69,7 +69,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
 
 function enterKatjobs(s: GameState, scene: SceneBuilder): void {
   (s as any).katjob = 1;
-  (s as any).job_hiring_step['city_hospital_nurse'] = 1;
+  ((s as any).job_hiring_step ?? {})['city_hospital_nurse'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.img('images/characters/city/katja/kat.jpg');
   scene.text('Kat talks about her job for a while, and then suggests: "By the way… if you want, I can put in a good word for you! Maybe you could work at the clinic as well!"');

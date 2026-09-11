@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_transportVars['rand'] = Math.floor(Math.random() * 100) + 1;
+  ((s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_transportVars ?? 0)?.['rand'] <= 15) {
     scene.actions([{ label: 'Continue', goto: ['train_events', 'oldman'] }]);
   } else {
@@ -481,7 +481,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.text('Before long, the two of them sneak off across the tracks and disappear, but come rushing back, clothes out of place and hair disheveled, when the train arrives. It isn\'t hard to guess what they were doing to kill the time.');
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
-    (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
+    ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/train/cityplat.jpg');
@@ -526,7 +526,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     scene.text('Before long, the two of them sneak off across the tracks and disappear, but come rushing back, clothes out of place and hair disheveled, when the train arrives. It isn\'t hard to guess what they were doing to kill the time. A part of you wishes you had taken him up on the offer.');
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
-    (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
+    ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/train/cityplat.jpg');
@@ -583,7 +583,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Board the train to the city', handler: (st: GameState) => {
-    (s as any).temp_transportVars['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
+    ((s as any).temp_transportVars ?? {})['timecost'] = qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', 'center');
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_transportVars ?? 0)?.['timecost']);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/train/ride.jpg');

@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['imagepath'] = 'locations/city/mariinsky/';
+  ((s as any).setloc ?? {})['imagepath'] = 'locations/city/mariinsky/';
   scene.build();
 }
 
@@ -27,16 +27,16 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTickets(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['StageTitle'] = 'Mariinsky Tickets';
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_tickets';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Tickets';
+  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_tickets';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('fluff text for purchasing tickets');
   scene.build();
 }
 
 function enterMain(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['StageTitle'] = 'Mariinsky Main Stage';
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_stage';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Main Stage';
+  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_stage';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('For over two centuries, the grand stage of St. Petersburgs\' has been the most prestigious of all Russia\'s ballet and opera theatres and, each year, hosts the Vaganova Ballet Academy\'s performances for their students. You gaze in wonder as you take your seat at the rich facade and feel the presence of all those illustrious performers who have tread those boards.');
   scene.actions([
@@ -47,7 +47,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToiletsMen(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['StageTitle'] = 'Men\'s Restroom';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Men\'s Restroom';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   scene.text('WIP - no content. ');
   scene.actions([
@@ -59,7 +59,7 @@ function enterToiletsMen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToiletsWomen(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['StageTitle'] = 'Woman\'s Restroom';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Woman\'s Restroom';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   // TODO-QSP: dynamic text: You walk into the opulent women's restroom. You see some sinks and <a href="exec...
   scene.text('You walk into the opulent women\'s restroom. You see some sinks and <a href="exec:gt \'mirror\',\'start\'">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
@@ -91,8 +91,8 @@ function enterStageDoor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['StageTitle'] = 'Changing Room';
-  (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'changing_room';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Changing Room';
+  ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + 'changing_room';
   qspCall(s, 'city_mariinsky', 'setup', ((s as any).locArgs?.[0] ?? 0));
   if (((s as any).balletqw ?? 0)?.['rehearsals'] === 1) {
     scene.text('You enter the changing room and see the other dancers getting for today\'s rehearsals. You quickly change into your dance outfit and head out onto the stage.');
@@ -101,7 +101,7 @@ function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).balletqw ?? 0)?.['performance_night'] >= 1) {
-      (s as any).balletqw['performance_night'] = ((s as any).balletqw['performance_night'] ?? 0) - (1);
+      ((s as any).balletqw ?? {})['performance_night'] = (((s as any).balletqw ?? {})['performance_night'] ?? 0) - (1);
       scene.text('You enter the changing room and see the other dancers getting ready for the performance. You quickly change into your costume and prepare for the performance.');
       scene.actions([
         { label: 'Head to the stage', goto: ['city_mariinsky', 'performance_evening'] },
@@ -133,8 +133,8 @@ function enterProduction(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPerformanceEvening(s: GameState, scene: SceneBuilder): void {
-  (s as any).mariinskyqw['ticket'] = 0;
-  (s as any).mariinskyqw['performances_watched'] = ((s as any).mariinskyqw['performances_watched'] ?? 0) + (1);
+  ((s as any).mariinskyqw ?? {})['ticket'] = 0;
+  ((s as any).mariinskyqw ?? {})['performances_watched'] = (((s as any).mariinskyqw ?? {})['performances_watched'] ?? 0) + (1);
   scene.build();
 }
 

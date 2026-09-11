@@ -49,8 +49,8 @@ function enterFindMeadow(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraPickingTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  (s as any).MiraVars['pickingtalk'] = 1;
-  (s as any).MiraVars['talkday'] = ((s as any).daystart ?? 0);
+  ((s as any).MiraVars ?? {})['pickingtalk'] = 1;
+  ((s as any).MiraVars ?? {})['talkday'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A60', 2);
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_edge');
   qspCall(s, 'stat', '');
@@ -69,8 +69,8 @@ function enterMiraPickingTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraNudeTalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  (s as any).MiraVars['nudetalk'] = 1;
-  (s as any).MiraVars['talkday'] = ((s as any).daystart ?? 0);
+  ((s as any).MiraVars ?? {})['nudetalk'] = 1;
+  ((s as any).MiraVars ?? {})['talkday'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A60', 2);
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_edge');
   qspCall(s, 'stat', '');
@@ -87,8 +87,8 @@ function enterMiraNudeTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  (s as any).MiraVars['nudetalk'] = 2;
-  (s as any).MiraVars['talkday'] = ((s as any).daystart ?? 0);
+  ((s as any).MiraVars ?? {})['nudetalk'] = 2;
+  ((s as any).MiraVars ?? {})['talkday'] = ((s as any).daystart ?? 0);
   qspCall(s, 'npc_relationship', 'modify', 'A60', 2);
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_edge');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -163,7 +163,7 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'npc_relationship', 'modify', 'A60', 5);
     qspCall(s, 'outfit', 'strip_all', 'forest_edge');
-    (s as any).MiraVars['strip_loc'] = 'forest_edge';
+    ((s as any).MiraVars ?? {})['strip_loc'] = 'forest_edge';
     qspCall(s, 'arousal', 'flash', 5);
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/gadukino/mira/miraforest5.jpg');
@@ -473,7 +473,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Keep walking', handler: (st: GameState) => {
-    (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (((s as any).pcs_apprnc ?? 0) / 12);
+    ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (((s as any).pcs_apprnc ?? 0) / 12);
     qspCall(s, 'arousal', 'flash', 5);
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/gadukino/forest/mitkanudeforest.jpg');
@@ -503,7 +503,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Approach the hunters', handler: (st: GameState) => {
     if (((s as any).hunterVars ?? 0)?.['were_met'] === 0) {
-      (s as any).hunterVars['were_met'] = 1;
+      ((s as any).hunterVars ?? {})['were_met'] = 1;
       qspCall(s, 'stat', '');
       scene.img('images/locations/gadukino/hunters/hanters.jpg');
       scene.text('You decide to approach the strangers and chat. You never know. Maybe they can show you some good places to find mushrooms and berries. After welcoming you, the whole company sat on the ground to rest and chat.');
@@ -533,7 +533,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 15;
-        (s as any).hunterVars['Rape'] = 1;
+        ((s as any).hunterVars ?? {})['Rape'] = 1;
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: "What are you doing so far from the village?" asks the older man, looking at you...
         scene.text(`"What are you doing so far from the village?" asks the older man, looking at you closely, "It's ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, the local whore."`);
@@ -605,7 +605,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_QW ?? 0)?.['A63'] === 0  ||  ((s as any).GadBoy ?? 0)?.['river_gang'] >= 3) {
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 2  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11) {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
-      (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
       qspCall(s, 'miroslava_schedule', 'force_change');
       qspCall(s, 'stat', '');
       scene.text('<center><b>Mitka Shkvoryen</b></center>');
@@ -636,9 +636,9 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue Watching', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['QW'] === 2) {
-      (s as any).MiraVars['QW'] = 3;
+      ((s as any).MiraVars ?? {})['QW'] = 3;
     }
-    (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
+    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur', 5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/mirameadowsex2.jpg');
@@ -672,7 +672,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue Watching', handler: (st: GameState) => {
-    (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
+    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur', 5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
@@ -690,7 +690,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).MiraVars ?? 0)?.['QW'] >= 11) {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
         qspCall(s, 'miroslava_schedule', 'force_change');
         qspCall(s, 'stat', '');
         scene.text('<center><b>Mitka Shkvoryen</b></center>');
@@ -713,7 +713,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue Watching', handler: (st: GameState) => {
-    (s as any).MiraVars['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
+    ((s as any).MiraVars ?? {})['Mitka_fucks'] = (((s as any).MiraVars ?? {})['Mitka_fucks'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur', 5);
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
@@ -727,7 +727,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 5;
-        (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
         qspCall(s, 'stat', '');
         scene.text('<center><b>Mitka Shkvoryen</b></center>');
         scene.img('images/characters/shared/headshots_main/big63.jpg');
@@ -739,7 +739,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+    ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'stat', '');
     scene.text('<center><b>Mitka Shkvoryen</b></center>');
     scene.img('images/characters/shared/headshots_main/big63.jpg');

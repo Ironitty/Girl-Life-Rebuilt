@@ -95,7 +95,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to your graduation', handler: (st: GameState) => {
     (s as any).hour = 10;
     (s as any).minut = 0;
-    (s as any).gschoolVars['school_diploma'] = 1;
+    ((s as any).gschoolVars ?? {})['school_diploma'] = 1;
     (s as any).kanikuli = 7;
     qspCall(s, 'stat', '');
     if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
@@ -150,7 +150,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get your diploma', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).gschoolVars['school_diploma'] = 1;
+    ((s as any).gschoolVars ?? {})['school_diploma'] = 1;
     (s as any).kanikuli = 7;
     qspCall(s, 'stat', '');
     if (((s as any).class ?? 0)?.['school_grade_average'] >= 70) {
@@ -619,7 +619,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
         scene.text(`"Skipping training <i>again</i>, ${((s as any).pcs_nickname ?? 0)}?! I thought I told you that you were to be there on time <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the squad or you're out. This is your final warning ${((s as any).pcs_nickname ?? 0)}, don't fucking test me!"`);
         scene.text('You don\'t have a chance to speak before she storms off. Maybe it\'s best for both of you if you stopped pissing her off?');
       } else {
-        (s as any).AlbinaQW['StarletsJoined'] = (-1);
+        ((s as any).AlbinaQW ?? {})['StarletsJoined'] = (-1);
         qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
         qspCall(s, 'npc_relationship', 'set', 'A23', 10);
         scene.text('You are walking down the hallway and freeze when you clock a furious Albina heading straight for you. You barely have time to react before she grabs your shirt and forcefully slams you into the lockers, silencing the hall as everyone looks at you.');
@@ -645,7 +645,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       (s as any).late = 1;
     }
     qspCall(s, 'stat', '');
-    (s as any).gschoolVars['attendance_count'] = ((s as any).gschoolVars['attendance_count'] ?? 0) + (1);
+    ((s as any).gschoolVars ?? {})['attendance_count'] = (((s as any).gschoolVars ?? {})['attendance_count'] ?? 0) + (1);
     qspCall(s, 'Zvereva_events', 'cikl');
     if (((s as any).christinaQW ?? 0)?.['set_bully'] === 0) {
       scene.actions([{ label: 'Continue', goto: ['Zvereva_events', 'christina_bu_1'] }]);
@@ -674,23 +674,23 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
   scene.text('You think you might be able to win and sign up to participate in the competition. After quickly changing into your running gear you return to the track. The guys are having their race first, and you watch them as you prepare. As expected, Ivan wins. When the guys have finished, it is the girls\' turn.');
   scene.actions([
     { label: 'Go to the start', handler: (st: GameState) => {
-    (s as any).runnerQW['pav_racetype'] = 0;
-    (s as any).runnerQW['races_ran'] = ((s as any).runnerQW['races_ran'] ?? 0) + (1);
+    ((s as any).runnerQW ?? {})['pav_racetype'] = 0;
+    ((s as any).runnerQW ?? {})['races_ran'] = (((s as any).runnerQW ?? {})['races_ran'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/begsor.jpg');
     scene.text('The 400m sprint event for girls is up next. You take off your jacket and go to the starting line, mentally preparing yourself for the race.');
     scene.text('On your marks…');
     scene.text('Get set…');
     scene.text('Go!');
-    (s as any).runnerQW['bmi_penalty'] = 0;
+    ((s as any).runnerQW ?? {})['bmi_penalty'] = 0;
     if (((s as any).pcs_bmi ?? 0) > 25) {
-      (s as any).runnerQW['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
+      ((s as any).runnerQW ?? {})['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
     } else {
       if (((s as any).pcs_bmi ?? 0) < 20) {
-        (s as any).runnerQW['bmi_penalty'] = ((20 - ((s as any).pcs_bmi ?? 0))*(20-((s as any).pcs_bmi ?? 0)));
+        ((s as any).runnerQW ?? {})['bmi_penalty'] = ((20 - ((s as any).pcs_bmi ?? 0))*(20-((s as any).pcs_bmi ?? 0)));
       }
     }
-    (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
+    ((s as any).runnerQW ?? {})['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
     qspCall(s, 'willpower', 'skill_base', 'run', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -701,7 +701,7 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Give it your best [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    (s as any).runnerQW['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
+    ((s as any).runnerQW ?? {})['result'] = (((s as any).runnerQW ?? {})['result'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'gschool_grounds', 'SchoolRun_result');
   } },
@@ -719,11 +719,11 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
   if (((s as any).runnerQW ?? 0)?.['result'] < 10) {
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
     scene.text('You barely manage to reach the finish line at all. There\'s no point in checking where you finished; you already know you were last by quite a large margin.');
   } else {
     if (((s as any).runnerQW ?? 0)?.['result'] < 15) {
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
       scene.text('You struggle to keep up with the other girls and finish in last place.');
     } else {
       if (((s as any).runnerQW ?? 0)?.['result'] < 20) {
@@ -733,23 +733,23 @@ function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
           scene.text('You run as fast as you can, but only manage to take 6th place.');
         } else {
           if (((s as any).runnerQW ?? 0)?.['result'] < 30) {
-            (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
             scene.text('You run as fast as you can, but only manage to take 5th place.');
           } else {
             if (((s as any).runnerQW ?? 0)?.['result'] < 35) {
-              (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
               scene.text('You run as fast as you can, but only manage to take 4th place.');
             } else {
               if (((s as any).runnerQW ?? 0)?.['result'] < 45) {
-                (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
                 scene.text('You run as fast as you can and manage to take 3rd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you.');
               } else {
                 if (((s as any).runnerQW ?? 0)?.['result'] < 50) {
-                  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (3);
                   scene.text('You run as fast as you can and manage to take 2nd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on your achievement.');
                 } else {
-                  (s as any).runnerQW['pav_wins1'] = ((s as any).runnerQW['pav_wins1'] ?? 0) + (1);
-                  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
+                  ((s as any).runnerQW ?? {})['pav_wins1'] = (((s as any).runnerQW ?? {})['pav_wins1'] ?? 0) + (1);
+                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (5);
                   scene.text('You run as fast as you can and manage to reach the finish line first. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on winning the competition as you walk around with your arms raised in triumph.');
                 }
               }
@@ -761,10 +761,10 @@ function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'exercise', 'tier2', 30, 'run');
   if (((s as any).runnerQW ?? 0)?.['pav_wins1'] === 3  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 0) {
-    (s as any).runnerQW['pav_stage'] = 1;
+    ((s as any).runnerQW ?? {})['pav_stage'] = 1;
     if (((s as any).runnerQW ?? 0)?.['prof_stage'] < 1) {
       scene.text('You have won the school running competition three times now and Mr. Pavlovich, the P.E. teacher at your school, announces that your success has not gone unnoticed. He smiles and awards you the third tier sports trophy in running, which you proudly accept and show to everyone.');
-      (s as any).runnerQW['prof_stage'] = 1;
+      ((s as any).runnerQW ?? {})['prof_stage'] = 1;
     } else {
       scene.text('You have won the school running competition three times now and Mr. Pavlovich, the P.E. teacher at your school, smiles and awards you a local competition trophy which you proudly accept and show to everyone.');
     }
@@ -824,23 +824,23 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Go to the start', handler: (st: GameState) => {
-    (s as any).runnerQW['races_ran'] = ((s as any).runnerQW['races_ran'] ?? 0) + (1);
-    (s as any).runnerQW['pav_racetype'] = 0;
+    ((s as any).runnerQW ?? {})['races_ran'] = (((s as any).runnerQW ?? {})['races_ran'] ?? 0) + (1);
+    ((s as any).runnerQW ?? {})['pav_racetype'] = 0;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/begsor.jpg');
     scene.text('The 400m sprint event for girls is up next. You take off your jacket and go the starting line, mentally preparing yourself for the race.');
     scene.text('On your marks…');
     scene.text('Get set…');
     scene.text('Go!');
-    (s as any).runnerQW['bmi_penalty'] = 0;
+    ((s as any).runnerQW ?? {})['bmi_penalty'] = 0;
     if (((s as any).pcs_bmi ?? 0) > 25) {
-      (s as any).runnerQW['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
+      ((s as any).runnerQW ?? {})['bmi_penalty'] = ((((s as any).pcs_bmi ?? 0) - 25)*4);
     } else {
       if (((s as any).pcs_bmi ?? 0) < 18) {
-        (s as any).runnerQW['bmi_penalty'] = ((25 - ((s as any).pcs_bmi ?? 0))*6);
+        ((s as any).runnerQW ?? {})['bmi_penalty'] = ((25 - ((s as any).pcs_bmi ?? 0))*6);
       }
     }
-    (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
+    ((s as any).runnerQW ?? {})['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
     qspCall(s, 'willpower', 'skill_base', 'run', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -851,7 +851,7 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Give it your best [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
-    (s as any).runnerQW['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
+    ((s as any).runnerQW ?? {})['result'] = (((s as any).runnerQW ?? {})['result'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'gschool_grounds', 'SchoolRun2_result');
   } },
@@ -869,11 +869,11 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
 
 function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
   if (((s as any).runnerQW ?? 0)?.['result'] < 10) {
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (2);
     scene.text('You barely manage to reach the finish line at all. There\'s no point in checking where you finished; you already know you were last by quite a large margin.');
   } else {
     if (((s as any).runnerQW ?? 0)?.['result'] < 15) {
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
       scene.text('You struggle to keep up with the other girls and finish in last place.');
     } else {
       if (((s as any).runnerQW ?? 0)?.['result'] < 20) {
@@ -883,23 +883,23 @@ function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
           scene.text('You run as fast as you can, but only manage to take 6th place.');
         } else {
           if (((s as any).runnerQW ?? 0)?.['result'] < 30) {
-            (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+            ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
             scene.text('You run as fast as you can, but only manage to take 5th place.');
           } else {
             if (((s as any).runnerQW ?? 0)?.['result'] < 35) {
-              (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+              ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
               scene.text('You run as fast as you can, but only manage to take 4th place.');
             } else {
               if (((s as any).runnerQW ?? 0)?.['result'] < 40) {
-                (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+                ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
                 scene.text('You run as fast as you can and manage to take 3rd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you.');
               } else {
                 if (((s as any).runnerQW ?? 0)?.['result'] < 50) {
-                  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (3);
+                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (3);
                   scene.text('You run as fast as you can and manage to take 2nd place. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on your achievement.');
                 } else {
-                  (s as any).runnerQW['pav_wins2'] = ((s as any).runnerQW['pav_wins2'] ?? 0) + (1);
-                  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (5);
+                  ((s as any).runnerQW ?? {})['pav_wins2'] = (((s as any).runnerQW ?? {})['pav_wins2'] ?? 0) + (1);
+                  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (5);
                   scene.text('You run as fast as you can and manage to reach the finish line first. Mr. Pavlovich, the P.E. teacher at your school, congratulates you on winning the competition yet again while you walk around with your arms raised in triumph.');
                 }
               }
@@ -911,10 +911,10 @@ function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'exercise', 'tier2', 30, 'run');
   if (((s as any).runnerQW ?? 0)?.['pav_wins2'] === 3  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 1) {
-    (s as any).runnerQW['pav_stage'] = 2;
+    ((s as any).runnerQW ?? {})['pav_stage'] = 2;
     if (((s as any).runnerQW ?? 0)?.['prof_stage'] < 2) {
       scene.text('You\'ve won the competition three more times and Mr. Pavlovich awards you the second-tier sports trophy in running.');
-      (s as any).runnerQW['prof_stage'] = 2;
+      ((s as any).runnerQW ?? {})['prof_stage'] = 2;
     } else {
       scene.text('You\'ve won the competition three more times and Mr. Pavlovich awards you another trophy.');
     }
@@ -1141,7 +1141,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/grounds/sveta_mum_restaurant.jpg');
     if (((s as any).npc_QW ?? 0)?.['A29'] > 0) {
       if (((s as any).npc_QW ?? 0)?.['A29'] === 1) {
-        (s as any).npc_QW['A29'] = 2;
+        ((s as any).npc_QW ?? {})['A29'] = 2;
       }
       scene.text('At the station cafe, your mother selects a corner spot away from the main area so you can keep your chat private.');
       scene.text('You both initially have some general small talk during which she again congratulates you on your win and explains that she wants the best for you and will help in any way she can, but you need to meet her halfway.');

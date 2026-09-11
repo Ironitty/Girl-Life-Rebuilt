@@ -26,7 +26,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temper ?? 0) >= 28) {
       scene.actions([
         { label: 'It\'s so hot', handler: (st: GameState) => {
-    (s as any).sex_ev['weather_pillow_talk'] = 1;
+    ((s as any).sex_ev ?? {})['weather_pillow_talk'] = 1;
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     scene.text('"It\'s so hot today," you pant. "I\'m sweating after that. And not just from the sex."');
     // TODO-QSP: dynamic text: "Yeah," <<$npcdesc>> nods. "I need a shower..."
@@ -38,7 +38,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temper ?? 0) <= 10) {
         scene.actions([
           { label: 'It\'s so cold', handler: (st: GameState) => {
-    (s as any).sex_ev['weather_pillow_talk'] = 1;
+    ((s as any).sex_ev ?? {})['weather_pillow_talk'] = 1;
     scene.img('images/shared/sex/after/pillow_talk1.jpg');
     // TODO-QSP: dynamic text: "Brrr," you shiver, cuddling up closer against <<$npcdesc>>'s body. "It's so chi...
     scene.text(`"Brrr," you shiver, cuddling up closer against ${((s as any).npcdesc ?? 0)}'s body. "It's so chilly today."`);
@@ -46,7 +46,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You get cold easily?" ${((s as any).npcdesc ?? 0)} asks, seemingly pleased by your naked body pressed up against his.`);
     scene.actions([
       { label: 'Not really', handler: (st: GameState) => {
-    (s as any).pc_gets_chilly[String((s as any).npcID ?? 0)] = (-1);
+    ((s as any).pc_gets_chilly ?? {})[String((s as any).npcID ?? 0)] = (-1);
     scene.text('"Not really," you shake your head. "I\'m usually pretty tolerant of the cold. Must be the contrast from how warm I was during the sex."');
     scene.actions([
       { label: 'Smile', handler: (st: GameState) => {
@@ -72,7 +72,7 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
   } },
       { label: 'I\'m always cold', handler: (st: GameState) => {
-    (s as any).pc_gets_chilly[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).pc_gets_chilly ?? {})[String((s as any).npcID ?? 0)] = 1;
     // TODO-QSP: dynamic text: "I'm always cold," you shiver, snuggling as far as you can into <<$npcdesc>>'s w...
     scene.text(`"I'm always cold," you shiver, snuggling as far as you can into ${((s as any).npcdesc ?? 0)}'s warmth. "I would wear a jacket in the summer."`);
     // TODO-QSP: xgt 'sex_ev_pillow_talk2', 'small_talk'
@@ -96,7 +96,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['body_talk'] === 0) {
     scene.actions([
       { label: 'What do you like about my body?', handler: (st: GameState) => {
-    (s as any).sex_ev['body_talk'] = 1;
+    ((s as any).sex_ev ?? {})['body_talk'] = 1;
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
     // TODO-QSP: dynamic text: "What do you find sexy about me?" you ask <<$npcdesc>>.
     scene.text(`"What do you find sexy about me?" you ask ${((s as any).npcdesc ?? 0)}.`);
@@ -257,7 +257,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('"That\'s not true," he smirks back. "I love eating it too."');
       if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-        (s as any).sex_ev['creampie_eat'] = ((s as any).sex_ev['creampie_eat'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['creampie_eat'] = (((s as any).sex_ev ?? {})['creampie_eat'] ?? 0) + (1);
         scene.text('He punctuates his reply by forcing a gasp from your lips as he drives his finger knuckle deep into your cum-filled pussy before drawing it back out to suck the cocktail of cum and your juices off his finger.');
       } else {
         scene.text('He punctuates his reply by forcing a gasp from your lips as he drives his finger knuckle deep into your pussy before drawing it back out to suck your juices off his finger.');
@@ -286,7 +286,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('"That\'s not true," he smirks back. "I love eating it too."');
       if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-        (s as any).sex_ev['creampie_eat'] = ((s as any).sex_ev['creampie_eat'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['creampie_eat'] = (((s as any).sex_ev ?? {})['creampie_eat'] ?? 0) + (1);
         scene.text('He punctuates his reply by forcing a gasp from your lips as he drives his finger knuckle deep into your cum-filled pussy before drawing it back out to suck the cocktail of cum and your juices off his finger.');
       } else {
         scene.text('He punctuates his reply by forcing a gasp from your lips as he drives his finger knuckle deep into your pussy before drawing it back out to suck your juices off his finger.');
@@ -311,7 +311,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('"Not just that," he smirks back. "I like the taste."');
       if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-        (s as any).sex_ev['creampie_eat'] = ((s as any).sex_ev['creampie_eat'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['creampie_eat'] = (((s as any).sex_ev ?? {})['creampie_eat'] ?? 0) + (1);
         scene.text('He punctuates his reply by forcing a gasp from your lips as he drives his finger knuckle deep into your cum-filled pussy before drawing it back out to suck the cocktail of cum and your juices off his finger.');
       } else {
         scene.text('He punctuates his reply by forcing a gasp from your lips as he drives his finger knuckle deep into your pussy before drawing it back out to suck your juices off his finger.');
@@ -392,7 +392,7 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fav_pos_talk'] === 0) {
     scene.actions([
       { label: 'Talk favorite positions', handler: (st: GameState) => {
-    (s as any).sex_ev['fav_pos_talk'] = 1;
+    ((s as any).sex_ev ?? {})['fav_pos_talk'] = 1;
     scene.img('images/shared/sex/after/pillow_talk4.jpg');
     scene.text('"I\'m curious. What\'s your favorite position?" you ask.');
     if (((s as any).npc_fav_pos ?? 0)?.[String((s as any).npcID ?? 0)] === 'miss') {
@@ -643,7 +643,7 @@ function enterDatingQuestion(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_wife ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       qspCall(s, 'sex_ev_stats', 'npc_is_married');
       if (((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'open') {
-        (s as any).npc_open_marriage[String((s as any).npcID ?? 0)] = 1;
+        ((s as any).npc_open_marriage ?? {})[String((s as any).npcID ?? 0)] = 1;
         // TODO-QSP: dynamic text: "Wife actually," <<$npcdesc>> replies. "But she knows I'm sticking it in other g...
         scene.text(`"Wife actually," ${((s as any).npcdesc ?? 0)} replies. "But she knows I'm sticking it in other girls. We're in an open marriage She's probably getting stuck by a few guys herself right now."`);
       } else {
@@ -657,7 +657,7 @@ function enterDatingQuestion(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'serious') {
               if (((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'open') {
-                (s as any).npc_open_marriage[String((s as any).npcID ?? 0)] = 1;
+                ((s as any).npc_open_marriage ?? {})[String((s as any).npcID ?? 0)] = 1;
                 // TODO-QSP: dynamic text: "Wife actually," <<$npcdesc>> replies. "But she knows I'm sticking it in other g...
                 scene.text(`"Wife actually," ${((s as any).npcdesc ?? 0)} replies. "But she knows I'm sticking it in other girls. She's probably getting stuck by a few guys herself right now."`);
               } else {

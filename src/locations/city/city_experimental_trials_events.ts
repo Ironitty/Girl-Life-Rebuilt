@@ -24,7 +24,7 @@ function enterNewspaperAd(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ve taken part in multiple trials now, and I haven\'t had any complaints! Best decision of my life!"');
   scene.text('Signup for a medical trial today, and help build a brighter future!');
   if (((s as any).experimentQW ?? 0)?.['discovered'] < 1) {
-    (s as any).experimentQW['discovered'] = 1;
+    ((s as any).experimentQW ?? {})['discovered'] = 1;
   }
   return;
   scene.build();
@@ -39,7 +39,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ve taken part in multiple trials now, and I haven\'t had any complaints! Best decision of my life!"');
   scene.text('Signup for a medical trial today at the St. Petersburg clinic, and help build a brighter future!');
   if (((s as any).experimentQW ?? 0)?.['discovered'] < 1) {
-    (s as any).experimentQW['discovered'] = 1;
+    ((s as any).experimentQW ?? {})['discovered'] = 1;
   }
   return;
   scene.build();

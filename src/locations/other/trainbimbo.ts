@@ -95,7 +95,7 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 9);
     qspCall(s, 'fame', 'pav', 'sex', 'tiny', 'local');
     qspCall(s, 'stat', '');
-    (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
     if (((s as any).bimbo_rand1 ?? 0) < 10) {
       scene.img('images/locations/pavlovsk/trainstation/sex/vokbimbo22.jpg');
     } else {
@@ -205,7 +205,7 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'rough', 'deepthroat');
   qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbation');
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0, 0, 1, 1);
-  (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (1);
+  ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/bimbo.strip\'+rand(0, 6)+\'.mp4');
   scene.text('You start rubbing your clit as the guy fucks your mouth and throat. After a bit, you are completely naked. He pulls you up and pushes you down on the floor where you sprawl before him, your clothes lying around you.');

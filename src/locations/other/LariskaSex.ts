@@ -104,7 +104,7 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     if (((s as any).LariskaQW ?? 0)?.['tellvirg'] === 0) {
       scene.text('I\'m a virgin, you tell her softly.');
-      (s as any).LariskaQW['tellvirg'] = 1;
+      ((s as any).LariskaQW ?? {})['tellvirg'] = 1;
     } else {
       scene.text('I\'m still a virgin, you say softly.');
     }

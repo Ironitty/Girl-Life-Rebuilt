@@ -549,33 +549,33 @@ function enterCards(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $suit[4] = 'Diamonds'
   // TODO-QSP: $symbol[4] = '♦'
   // TODO-QSP: $number[1] = 'Ace '
-  (s as any).points[1] = 11;
+  ((s as any).points ?? {})[1] = 11;
   // TODO-QSP: $number[2] = 'Deuce '
-  (s as any).points[2] = 2;
+  ((s as any).points ?? {})[2] = 2;
   // TODO-QSP: $number[3] = 'Three '
-  (s as any).points[3] = 3;
+  ((s as any).points ?? {})[3] = 3;
   // TODO-QSP: $number[4] = 'Four '
-  (s as any).points[4] = 4;
+  ((s as any).points ?? {})[4] = 4;
   // TODO-QSP: $number[5] = 'Five '
-  (s as any).points[5] = 5;
+  ((s as any).points ?? {})[5] = 5;
   // TODO-QSP: $number[6] = 'Six '
-  (s as any).points[6] = 6;
+  ((s as any).points ?? {})[6] = 6;
   // TODO-QSP: $number[7] = 'Seven '
-  (s as any).points[7] = 7;
+  ((s as any).points ?? {})[7] = 7;
   // TODO-QSP: $number[8] = 'Eight '
-  (s as any).points[8] = 8;
+  ((s as any).points ?? {})[8] = 8;
   // TODO-QSP: $number[9] = 'Nine '
-  (s as any).points[9] = 9;
+  ((s as any).points ?? {})[9] = 9;
   // TODO-QSP: $number[10] = 'Ten '
-  (s as any).points[10] = 10;
+  ((s as any).points ?? {})[10] = 10;
   // TODO-QSP: $number[11] = 'Jack '
-  (s as any).points[11] = 10;
+  ((s as any).points ?? {})[11] = 10;
   // TODO-QSP: $number[12] = 'Queen '
-  (s as any).points[12] = 10;
+  ((s as any).points ?? {})[12] = 10;
   // TODO-QSP: $number[13] = 'King '
-  (s as any).points[13] = 10;
+  ((s as any).points ?? {})[13] = 10;
   // TODO-QSP: $number[14] = 'Ace '
-  (s as any).points[14] = 11;
+  ((s as any).points ?? {})[14] = 11;
   scene.actions([
     { label: 'Go back to the foyer', goto: ['casino', 'foyer'] },
     { label: 'Play Blackjack', goto: ['casino', 'blackjack_play'] },
@@ -844,7 +844,7 @@ function enterRules(s: GameState, scene: SceneBuilder): void {
 
 function enterBet1(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>You currently have ${((s as any).casino_chips ?? 0)} chips.<br></b></center>`);
-  (s as any).temp_player_bets[0] = 0;
+  ((s as any).temp_player_bets ?? {})[0] = 0;
   if (((s as any).casino_chips ?? 0) < ((s as any).temp_player_bets ?? 0)[0]) {
     scene.actions([{ label: 'Continue', goto: ['casino', 'blackjack_play'] }]);
   } else {
@@ -977,7 +977,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: '<<$text>>Split', handler: (st: GameState) => {
     (s as any).betTotal = ((s as any).betTotal ?? 0) + (((s as any).temp_player_bets ?? 0)?.[String((s as any).currentHand ?? 0)]);
-    (s as any).temp_player_bets[String((s as any).numHands ?? 0)] = ((s as any).temp_player_bets ?? 0)?.[String((s as any).currentHand ?? 0)];
+    ((s as any).temp_player_bets ?? {})[String((s as any).numHands ?? 0)] = ((s as any).temp_player_bets ?? 0)?.[String((s as any).currentHand ?? 0)];
     (s as any).numHands = ((s as any).numHands ?? 0) + (1);
     (s as any).i = (((s as any).currentHand ?? 0) + 1) * 16;
     // TODO-QSP: :loop3
@@ -985,7 +985,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
       (s as any).i = ((s as any).i ?? 0) + (16);
       // TODO-QSP: jump 'loop3'
     }
-    (s as any).temp_player_hand[String((s as any).i ?? 0)] = ((s as any).temp_player_hand ?? 0)?.[((s as any).currentHand ?? 0) * 16 + 1];
+    ((s as any).temp_player_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).temp_player_hand ?? 0)?.[((s as any).currentHand ?? 0) * 16 + 1];
     // TODO-QSP: temp_player_hand[currentHand * 16 + 1] = cardsDealt
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
     // TODO-QSP: temp_player_hand[i + 1] = cardsDealt
@@ -997,14 +997,14 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
           { label: '<<$text>>Double', handler: (st: GameState) => {
     (s as any).doubleBet = 1;
     (s as any).betTotal = ((s as any).betTotal ?? 0) + (((s as any).temp_player_bets ?? 0)?.[String((s as any).currentHand ?? 0)]);
-    (s as any).temp_player_bets[String((s as any).currentHand ?? 0)] = ((s as any).temp_player_bets[String((s as any).currentHand ?? 0)] ?? 0) + (((s as any).temp_player_bets ?? 0)?.[String((s as any).currentHand ?? 0)]);
+    ((s as any).temp_player_bets ?? {})[String((s as any).currentHand ?? 0)] = (((s as any).temp_player_bets ?? {})[String((s as any).currentHand ?? 0)] ?? 0) + (((s as any).temp_player_bets ?? 0)?.[String((s as any).currentHand ?? 0)]);
     (s as any).i = ((s as any).currentHand ?? 0) * 16 + 2;
     // TODO-QSP: :loop2
     if (((s as any).temp_player_hand ?? 0)?.[String((s as any).i ?? 0)] !== 0) {
       (s as any).i = ((s as any).i ?? 0) + (1);
       // TODO-QSP: jump 'loop2'
     }
-    (s as any).temp_player_hand[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
+    ((s as any).temp_player_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
   }, goto: ['casino', 'player'] },
         ]);
@@ -1017,7 +1017,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
       (s as any).i = ((s as any).i ?? 0) + (1);
       // TODO-QSP: jump 'loop1'
     }
-    (s as any).temp_player_hand[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
+    ((s as any).temp_player_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
   }, goto: ['casino', 'player'] },
         { label: '<<$text>>Stay', handler: (st: GameState) => {
@@ -1046,7 +1046,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
       (s as any).i = ((s as any).i ?? 0) + (1);
       // TODO-QSP: jump 'loop4'
     }
-    (s as any).temp_dealer_hand[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
+    ((s as any).temp_dealer_hand ?? {})[String((s as any).i ?? 0)] = ((s as any).cardsDealt ?? 0);
     (s as any).cardsDealt = ((s as any).cardsDealt ?? 0) + (1);
   }, goto: ['casino', 'dealer'] },
     ]);
@@ -1157,7 +1157,7 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :loop9
   (s as any).numAces = 0;
-  (s as any).temp_player_points[String((s as any).i ?? 0)] = 0;
+  ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = 0;
   if (((s as any).numHands ?? 0) > 1) {
     // TODO-QSP: *pl 'Hand #<<i + 1>>:'
   }
@@ -1166,13 +1166,13 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)] !== 0) {
     // TODO-QSP: *p '<img <<$set_imgh>> src="<<$deckImg[temp_player_hand[i * 16 + j]]>>">'
     if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] === 1) {
-      (s as any).temp_player_points[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (11);
+      ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = (((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] ?? 0) + (11);
       (s as any).numAces = ((s as any).numAces ?? 0) + (1);
     } else {
       if (((s as any).deckFace ?? 0)[((s as any).temp_player_hand ?? 0)[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]] > 9) {
-        (s as any).temp_player_points[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (10);
+        ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = (((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] ?? 0) + (10);
       } else {
-        (s as any).temp_player_points[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) + (((s as any).deckFace ?? 0)?.[((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]]);
+        ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = (((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] ?? 0) + (((s as any).deckFace ?? 0)?.[((s as any).temp_player_hand ?? 0)?.[((s as any).i ?? 0) * 16 + ((s as any).j ?? 0)]]);
       }
     }
     (s as any).j = ((s as any).j ?? 0) + (1);
@@ -1180,7 +1180,7 @@ function enterBlackjackView(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: :loop11
   if (((s as any).temp_player_points ?? 0)?.[String((s as any).i ?? 0)] > 21  &&  ((s as any).numAces ?? 0) > 0) {
-    (s as any).temp_player_points[String((s as any).i ?? 0)] = ((s as any).temp_player_points[String((s as any).i ?? 0)] ?? 0) - (10);
+    ((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] = (((s as any).temp_player_points ?? {})[String((s as any).i ?? 0)] ?? 0) - (10);
     (s as any).numAces = ((s as any).numAces ?? 0) - (1);
     // TODO-QSP: jump 'loop11'
   }

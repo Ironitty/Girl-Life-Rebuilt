@@ -28,7 +28,7 @@ function enterBoyTopics(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhatDoYouLikeTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['what_do_you_like_talk'] = 1;
+  ((s as any).date_ev ?? {})['what_do_you_like_talk'] = 1;
   // TODO-QSP: dynamic text: "What do you like to do?" <<$npcdesc>> asks.
   scene.text(`"What do you like to do?" ${((s as any).npcdesc ?? 0)} asks.`);
   qspCall(s, 'date_boy_talk', 'what_do_you_like_menu');
@@ -100,7 +100,7 @@ function enterWhatDoYouLikeMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVideoGamesTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['video_games_talk'] = 1;
+  ((s as any).date_ev ?? {})['video_games_talk'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: "Do you play video games?" <<$npcdesc>> asks.
   scene.text(`"Do you play video games?" ${((s as any).npcdesc ?? 0)} asks.`);
@@ -240,7 +240,7 @@ function enterVideoGameSnob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhatsYourTypeTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['whats_your_type_talk'] = 1;
+  ((s as any).date_ev ?? {})['whats_your_type_talk'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   if (((((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';type_talk;'))) + 1 === 0) {
     // TODO-QSP: $npc_conversations[$npcID] += ';type_talk;'
@@ -284,7 +284,7 @@ function enterWhatsYourTypeMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoveHairTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['love_hair_talk'] = 1;
+  ((s as any).date_ev ?? {})['love_hair_talk'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] === 'hair_length_veryshort') {
     // TODO-QSP: dynamic text: "I love your hair," <<$npcdesc>> says. "Not many girls like to go so close cropp...
@@ -339,7 +339,7 @@ function enterLoveHairTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterWashingHandsTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_talk', 'talk_img');
-  (s as any).date_ev['washing_hands_talk'] = 1;
+  ((s as any).date_ev ?? {})['washing_hands_talk'] = 1;
   // TODO-QSP: dynamic text: <<$npcdesc>> takes a moment to use the restroom.
   scene.text(`${((s as any).npcdesc ?? 0)} takes a moment to use the restroom.`);
   scene.text('When he gets back, he says, "Man, don\'t you just hate it when you\'re about to leave the bathroom and somebody comes in so you have to actually wash your hands?"');
@@ -366,7 +366,7 @@ function enterWashingHandsTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['flashing_jogger'] = 1;
+  ((s as any).date_ev ?? {})['flashing_jogger'] = 1;
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: As you talk, you end up getting to the topic of exercise and <<$npcdesc>> starts...
   scene.text(`As you talk, you end up getting to the topic of exercise and ${((s as any).npcdesc ?? 0)} starts telling stories.`);

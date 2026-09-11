@@ -27,9 +27,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).gap_botmed_count = 0;
   }
   if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 18))  &&  ((s as any).week ?? 0) < 6) {
-    (s as any).LudaQW['work_hours'] = 1;
+    ((s as any).LudaQW ?? {})['work_hours'] = 1;
   } else {
-    (s as any).LudaQW['work_hours'] = 0;
+    ((s as any).LudaQW ?? {})['work_hours'] = 0;
   }
   scene.text('<center><b>Pharmacy</b></center>');
   if (((s as any).LudaQW ?? 0)?.['work_hours'] === 1) {
@@ -95,12 +95,12 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pharmacy_timers ?? 0)?.['condom_timer'] === ((s as any).daystart ?? 0)  ||  ((s as any).LudaQW ?? 0)?.['birth_control_timer'] === ((s as any).daystart ?? 0)) {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   } else {
-    (s as any).pharmacy_timers['condom_timer'] = ((s as any).daystart ?? 0);
+    ((s as any).pharmacy_timers ?? {})['condom_timer'] = ((s as any).daystart ?? 0);
   }
-  (s as any).ludaQW['pharm_purchase'] = 'condoms';
+  ((s as any).ludaQW ?? {})['pharm_purchase'] = 'condoms';
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   if (((s as any).LudaQW ?? 0)?.['KnowsSexActive'] < 10) {
-    (s as any).LudaQW['KnowsSexActive'] = ((s as any).LudaQW['KnowsSexActive'] ?? 0) + (1);
+    ((s as any).LudaQW ?? {})['KnowsSexActive'] = (((s as any).LudaQW ?? {})['KnowsSexActive'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
@@ -108,11 +108,11 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Meekly ask', handler: (st: GameState) => {
     if (((s as any).pharmacy ?? 0)?.['first_purchase'] === 0) {
-      (s as any).pharmacy['first_purchase'] = 1;
+      ((s as any).pharmacy ?? {})['first_purchase'] = 1;
       scene.text('You awkwardly avoid eye contact, letting your gaze "wander" the shelves behind her, pretending to be looking for anything <i>except</i> condoms. You gulp, feeling your cheeks redden.');
     }
     if (((s as any).pharmacy ?? 0)?.['morning_after'] > 0  &&  ((s as any).LudaQW ?? 0)?.['condom_scold'] < ((s as any).pharmacy ?? 0)?.['morning_after']) {
-      (s as any).LudaQW['condom_scold'] = ((s as any).pharmacy ?? 0)?.['morning_after'];
+      ((s as any).LudaQW ?? {})['condom_scold'] = ((s as any).pharmacy ?? 0)?.['morning_after'];
       scene.text('"I need some <i>stuff</i>, Aunt Luda," you say in a low voice, trying to be discreet.');
       if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>..."
@@ -130,8 +130,8 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pav_pharmacy', 'dont_tell');
     } else {
       if (((s as any).LudaQW ?? 0)?.['condoms'] === 0  &&  ((s as any).LudaQW ?? 0)?.['knows_sex'] !== 1) {
-        (s as any).LudaQW['condoms'] = 1;
-        (s as any).LudaQW['knows_sex'] = 1;
+        ((s as any).LudaQW ?? {})['condoms'] = 1;
+        ((s as any).LudaQW ?? {})['knows_sex'] = 1;
         scene.text('"I need some <i>stuff</i>, Aunt Luda," you say in a low voice, trying to be discreet.');
         if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
           if (((s as any).LudaQW ?? 0)?.['condom_give_day'] - ((s as any).daystart ?? 0) < 7) {
@@ -180,10 +180,10 @@ function enterBuyCondoms(s: GameState, scene: SceneBuilder): void {
     { label: 'Openly ask', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     if (((s as any).LudaQW ?? 0)?.['condoms'] === 0) {
-      (s as any).LudaQW['condoms'] = 1;
+      ((s as any).LudaQW ?? {})['condoms'] = 1;
       scene.text('"Hi Aunt Luda. Can I buy some condoms?"');
       if (((s as any).LudaQW ?? 0)?.['knows_sex'] === 0) {
-        (s as any).LudaQW['knows_sex'] = 1;
+        ((s as any).LudaQW ?? {})['knows_sex'] = 1;
         if (((s as any).LudaQW ?? 0)?.['condom_give_day'] - ((s as any).daystart ?? 0) < 7) {
           scene.text('"You\'ve used up my gift already?" Luda laughs in surprise. "Darling, it hasn\'t even been a week!"');
           scene.text('You casually shrug. "Turns out I really like having sex."');
@@ -294,20 +294,20 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pharmacy_timers ?? 0)?.['birth_control'] === ((s as any).daystart ?? 0)  ||  ((s as any).LudaQW ?? 0)?.['birth_control_timer'] === ((s as any).daystart ?? 0)) {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   } else {
-    (s as any).pharmacy_timers['birth_control'] = ((s as any).daystart ?? 0);
+    ((s as any).pharmacy_timers ?? {})['birth_control'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).LudaQW ?? 0)?.['birth_control_worry'] >= 2) {
     scene.actions([{ label: 'Continue', goto: ['pav_pharmacy', 'luda_birth_control_start_again_meek'] }]);
   }
   if (((s as any).LudaQW ?? 0)?.['birth_control_worry'] === 1) {
-    (s as any).LudaQW['birth_control_worry'] = 0;
+    ((s as any).LudaQW ?? {})['birth_control_worry'] = 0;
   }
-  (s as any).ludaQW['pharm_purchase'] = 'bc_pills';
+  ((s as any).ludaQW ?? {})['pharm_purchase'] = 'bc_pills';
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
   if (((s as any).pharmacy ?? 0)?.['first_purchase'] === 0) {
-    (s as any).pharmacy['first_purchase'] = 1;
+    ((s as any).pharmacy ?? {})['first_purchase'] = 1;
     scene.text('You awkwardly avoid eye contact, letting your gaze "wander" around the pharmacy, pretending you don\'t know what you\'re here for. Finally, you take a deep breath, feeling your cheeks redden.');
   }
   scene.actions([
@@ -343,7 +343,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
-          (s as any).LudaQW['knows_sex'] = 1;
+          ((s as any).LudaQW ?? {})['knows_sex'] = 1;
           scene.text('"Erm... yes aunt. I need some <i>stuff</i>," you say, looking to the side, avoiding eye contact.');
           // TODO-QSP: dynamic text: "What you mean is birth control pills so you can start having fun without fear,"...
           scene.text(`"What you mean is birth control pills so you can start having fun without fear," she says with a smile. You look at her in surprise. "I'm not deaf, ${((s as any).pcs_nickname ?? 0)}. I can hear just about everyone in Pavlovsk calling you a ${((s as any).gnikname ?? 0)}."`);
@@ -461,7 +461,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Ran out', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).LudaQW ?? 0)?.['condom_give_day'] - ((s as any).daystart ?? 0) < 7) {
       scene.text('"I ran out," you admit and Luda barks a loud laugh of surprise.');
@@ -482,7 +482,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Don\'t like condoms', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I don\'t like using condoms," you blush. "They don\'t feel good."');
     scene.text('"Maybe I should\'ve given you pills from the start," she chuckles, ringing up your purchase. "I know you don\'t like them, but can I interest you in some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
@@ -495,7 +495,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Want to try bareback', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I want to see what it feels like without a condom," you admit, blushing. "But I don\'t want to get pregnant either."');
     scene.text('"Oh, it\'s <i>wonderful</i> darling," Luda gushes and your blush deepens. "If you\'re anything like the other girls in our family, you\'ll love it. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
@@ -508,7 +508,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Prefer bareback', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"It\'s not the same with a condom," you admit.');
     scene.text('"I agree," she smirks and your blush deepens. "I started to suspect it runs in the family when your sister started the pill for the same reason. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
@@ -521,7 +521,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Being safe', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).age ?? 0) < 20) {
       scene.text('"I\'m still using condoms," you blush. "But the pill will provide an extra safety net. I\'d really like to avoid becoming a teen mom."');
@@ -622,7 +622,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Ran out', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I ran out," you admit. "Thank you for your gift by the way."');
     if (((s as any).LudaQW ?? 0)?.['condom_give_day'] - ((s as any).daystart ?? 0) < 7) {
@@ -642,7 +642,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Hate condoms', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I\'m sick of using condoms," you say, grimacing. "It\'s just too much of a hassle. I appreciate the gift, but maybe you should\'ve given me a box of pills instead."');
     scene.text('"I suppose that would have been a little easier," she chuckles, ringing up your purchase. "I know you don\'t like them, but can I interest you in some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
@@ -654,7 +654,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Want to try bareback', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"I want to see what it\'s like without a condom," you admit, smiling. "But I don\'t want the risk that comes with it. Not without birth control at least."');
     scene.text('"Oh, it\'s <i>wonderful</i> darling," Luda gushes. "If you\'re anything like the other girls in our family,  you\'ll love it. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
@@ -667,7 +667,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Prefer bareback', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     scene.text('"Bareback," you admit, smiling. "It\'s not the same with a condom. I can\'t <i>feel</i> him inside me. I appreciate the gift, but maybe you should\'ve given me a box of pills instead."');
     scene.text('"I probably should have," she chuckles. "I should have guessed it runs in the family when your sister started the pill for the same reason. Did you want some more condoms while you\'re here? It takes a few weeks for the pill to become effective."');
@@ -679,7 +679,7 @@ function enterBuyBirthControl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Being safe', handler: (st: GameState) => {
-    (s as any).LudaQW['knows_sex'] = 1;
+    ((s as any).LudaQW ?? {})['knows_sex'] = 1;
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).age ?? 0) < 20) {
       scene.text('"I\'m still using condoms," you shrug. "But the pill will provide an extra safety net. I\'d really like to avoid becoming a teen mom."');
@@ -722,12 +722,12 @@ function enterBuyPregTest(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pharmacy_timers ?? 0)?.['preg_test'] === ((s as any).daystart ?? 0)) {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   } else {
-    (s as any).pharmacy_timers['preg_test'] = ((s as any).daystart ?? 0);
+    ((s as any).pharmacy_timers ?? {})['preg_test'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).LudaQW ?? 0)?.['KnowsSexActive'] < 10) {
-    (s as any).LudaQW['KnowsSexActive'] = 10;
+    ((s as any).LudaQW ?? {})['KnowsSexActive'] = 10;
   }
-  (s as any).LudaQW['knows_sex'] = 1;
+  ((s as any).LudaQW ?? {})['knows_sex'] = 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
@@ -735,14 +735,14 @@ function enterBuyPregTest(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).pharmacyfirstpregtest ?? 0))) {
     (s as any).pharmacyfirstpregtest = 1;
     if ((!((s as any).preziktype ?? 0))) {
-      (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (5);
     } else {
       if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-        (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (5);
+        ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (5);
       }
     }
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (5);
+    ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (5);
     if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
       scene.text('"Aunt Luda... I need... I need a pregnancy test."');
       scene.text('You glance up expecting an explosive reaction of surprise, but are surprised when you see her looking at you with what appears to be disappointed resignation.');
@@ -761,7 +761,7 @@ function enterBuyPregTest(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Don\'t tell <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
-    (s as any).LudaQW['dont_tell'] = 1;
+    ((s as any).LudaQW ?? {})['dont_tell'] = 1;
     if (((s as any).momslut ?? 0) >= 1) {
       // TODO-QSP: dynamic text: "Please don't tell <<$npc_nickname['A29']>>. She wouldn't understand."
       scene.text(`"Please don't tell ${((s as any).npc_nickname ?? 0)?.['A29']}. She wouldn't understand."`);
@@ -773,7 +773,7 @@ function enterBuyPregTest(s: GameState, scene: SceneBuilder): void {
       scene.text('"You might be surprised dear," your aunt says with an odd smile. "But I promise this is our little secret. At least, if that test is negative. If it comes back positive, there\'s nothing that will stop her from noticing when your belly starts to grow. Either way, take these."');
     }
     scene.text('Luda pushes a box of condoms across the counter towards you. "I won\'t charge you for these, but <i>please</i> use them. Let\'s not let this happen again, shall we?"');
-    (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (10);
+    ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (10);
     scene.actions([
       { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -817,16 +817,16 @@ function enterBuyLube(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pharmacy_timers ?? 0)?.['lube'] === ((s as any).daystart ?? 0)) {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   } else {
-    (s as any).pharmacy_timers['lube'] = ((s as any).daystart ?? 0);
+    ((s as any).pharmacy_timers ?? {})['lube'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).LudaQW ?? 0)?.['KnowsSexActive'] < 10) {
-    (s as any).LudaQW['KnowsSexActive'] = ((s as any).LudaQW['KnowsSexActive'] ?? 0) + (1);
+    ((s as any).LudaQW ?? {})['KnowsSexActive'] = (((s as any).LudaQW ?? {})['KnowsSexActive'] ?? 0) + (1);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
   if (((s as any).pharmacy ?? 0)?.['first_purchase'] === 0) {
-    (s as any).pharmacy['first_purchase'] = 1;
+    ((s as any).pharmacy ?? {})['first_purchase'] = 1;
     scene.text('You awkwardly avoid eye contact, letting your gaze "wander" around the pharmacy, pretending you don\'t know what you\'re here for. Finally, you take a deep breath, feeling your cheeks redden.');
   }
   if ((!((s as any).pharmacyfirstlube ?? 0))) {
@@ -868,22 +868,22 @@ function enterBuyMorningAfter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pharmacy_timers ?? 0)?.['morning_after'] === ((s as any).daystart ?? 0)) {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   } else {
-    (s as any).pharmacy_timers['morning_after'] = ((s as any).daystart ?? 0);
+    ((s as any).pharmacy_timers ?? {})['morning_after'] = ((s as any).daystart ?? 0);
   }
   if (((s as any).LudaQW ?? 0)?.['KnowsSexActive'] < 10) {
-    (s as any).LudaQW['KnowsSexActive'] = ((s as any).LudaQW['KnowsSexActive'] ?? 0) + (2);
+    ((s as any).LudaQW ?? {})['KnowsSexActive'] = (((s as any).LudaQW ?? {})['KnowsSexActive'] ?? 0) + (2);
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
   if (((s as any).pharmacy ?? 0)?.['first_purchase'] === 0) {
-    (s as any).pharmacy['first_purchase'] = 1;
+    ((s as any).pharmacy ?? {})['first_purchase'] = 1;
     scene.text('You awkwardly avoid eye contact, letting your gaze "wander" around the pharmacy, pretending you don\'t know what you\'re here for.');
   }
   scene.actions([
     { label: 'Meekly ask', handler: (st: GameState) => {
     if (((s as any).pharmacy ?? 0)?.['morning_after'] === 0) {
-      (s as any).pharmacy['morning_after'] = ((s as any).pharmacy['morning_after'] ?? 0) + (1);
+      ((s as any).pharmacy ?? {})['morning_after'] = (((s as any).pharmacy ?? {})['morning_after'] ?? 0) + (1);
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       scene.text('"Aunt Luda..." You take a deep breath. "I need some Plan B..."');
       if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
@@ -927,7 +927,7 @@ function enterBuyMorningAfter(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Openly ask', handler: (st: GameState) => {
     if (((s as any).pharmacy ?? 0)?.['morning_after'] === 0) {
-      (s as any).pharmacy['morning_after'] = ((s as any).pharmacy['morning_after'] ?? 0) + (1);
+      ((s as any).pharmacy ?? {})['morning_after'] = (((s as any).pharmacy ?? {})['morning_after'] ?? 0) + (1);
       (s as any).minut = ((s as any).minut ?? 0) + 2;
       scene.text('"I need a Plan B pill, Aunt Luda," you say casually.');
       if (((s as any).fame ?? 0)?.['pav_slut'] > 150) {
@@ -995,7 +995,7 @@ function enterMorningAfterEmergencyEmbarrassed(s: GameState, scene: SceneBuilder
   scene.text('<center><b>Pharmacy</b></center>');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
   if (((s as any).pharmacy ?? 0)?.['morning_after'] > 1) {
-    (s as any).pharmacy['morning_after'] = ((s as any).pharmacy['morning_after'] ?? 0) - (1);
+    ((s as any).pharmacy ?? {})['morning_after'] = (((s as any).pharmacy ?? {})['morning_after'] ?? 0) - (1);
   }
   if ((!((s as any).pharmacyfirstbirthcontrol ?? 0))) {
     scene.text('"Nothing happened!" you say, quickly rushing to reassure her. "I- I uhmm... I just want it for emergencies... Just in case, you know?"');
@@ -1052,7 +1052,7 @@ function enterMorningAfterEmergencyOpen(s: GameState, scene: SceneBuilder): void
   scene.text('<center><b>Pharmacy</b></center>');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
   if (((s as any).pharmacy ?? 0)?.['morning_after'] > 1) {
-    (s as any).pharmacy['morning_after'] = ((s as any).pharmacy['morning_after'] ?? 0) - (1);
+    ((s as any).pharmacy ?? {})['morning_after'] = (((s as any).pharmacy ?? {})['morning_after'] ?? 0) - (1);
   }
   if ((!((s as any).pharmacyfirstbirthcontrol ?? 0))) {
     scene.text('"Nothing happened, Aunt Luda," you say with a relaxed smile. "I just want one for emergencies. In case a condom breaks or something."');
@@ -1180,7 +1180,7 @@ function enterBuyMorningAfterCondomBrokeMeek(s: GameState, scene: SceneBuilder):
       scene.text(`"This is just getting ridiculous," she huffs in exasperation as she adds the pill to your purchase. "Just start the bloody pill already, ${((s as any).pcs_firstname ?? 0)}!"`);
     }
   }
-  (s as any).LudaQW['broken_condoms'] = ((s as any).LudaQW['broken_condoms'] ?? 0) + (1);
+  ((s as any).LudaQW ?? {})['broken_condoms'] = (((s as any).LudaQW ?? {})['broken_condoms'] ?? 0) + (1);
   scene.actions([
     { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -1202,7 +1202,7 @@ function enterBuyMorningAfterCondomBrokeOpen(s: GameState, scene: SceneBuilder):
       scene.text(`"This is just getting ridiculous," she huffs in exasperation as she adds the pill to your purchase. "Just start the bloody pill already ${((s as any).pcs_firstname ?? 0)}!"`);
     }
   }
-  (s as any).LudaQW['broken_condoms'] = ((s as any).LudaQW['broken_condoms'] ?? 0) + (1);
+  ((s as any).LudaQW ?? {})['broken_condoms'] = (((s as any).LudaQW ?? {})['broken_condoms'] ?? 0) + (1);
   scene.actions([
     { label: 'Continue shopping', handler: (st: GameState) => {
     dynamicGoto(st, 'loc_s', 'args_s');
@@ -1252,7 +1252,7 @@ function enterBuyMorningAfterEnd(s: GameState, scene: SceneBuilder): void {
       scene.text('"It\'ll be our secret," she winks.');
     } else {
       if (((s as any).momslut ?? 0) >= 1) {
-        (s as any).LudaQW['momslut_know'] = 1;
+        ((s as any).LudaQW ?? {})['momslut_know'] = 1;
         // TODO-QSP: dynamic text: "Please don't tell <<$npc_nickname['A29']>>," you say.
         scene.text(`"Please don't tell ${((s as any).npc_nickname ?? 0)?.['A29']}," you say.`);
         scene.text('"You might be surprised dear," she says with a wry smile and you sigh tiredly.');
@@ -1293,7 +1293,7 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
         { label: 'I don\'t have the money', handler: (st: GameState) => {
     scene.text('"I would, Aunt Luda," you say. "I just don\'t have the money right now..."');
     if (((s as any).pharmacy ?? 0)?.['bc_pills_free'] === 0) {
-      (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) + (1);
+      ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) + (1);
       scene.text('Luda sighs deeply and pulls out a small box and slides it across the counter to you.');
       scene.text('"I guess I can give you some this one time..." she says. "But make sure you don\'t miss a single day or they might not work!" She wags her finger at you. "And you better buy some next month or you\'ll be in trouble!"');
     } else {
@@ -1305,8 +1305,8 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Buy birth control', handler: (st: GameState) => {
-    (s as any).LudaQW['birth_control_timer'] = ((s as any).daystart ?? 0);
-    (s as any).pharmacy_timers['birth_control'] = ((s as any).daystart ?? 0);
+    ((s as any).LudaQW ?? {})['birth_control_timer'] = ((s as any).daystart ?? 0);
+    ((s as any).pharmacy_timers ?? {})['birth_control'] = ((s as any).daystart ?? 0);
     (s as any).pharmacyfirstbirthcontrol = 1;
     // TODO-QSP: gs 'item_cart', 'simple_add', arrpos('$var_curr_aisle', 'contraceptive_pill') + 1
     scene.text('"You\'re right Aunt Luda," you nod apologetically. "I should stop being dumb and taking chances."');
@@ -1323,10 +1323,10 @@ function enterMorningAfterWarning(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'I prefer condoms', handler: (st: GameState) => {
     if ((!((s as any).preziktype ?? 0))) {
-      (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (5);
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (5);
     } else {
       if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-        (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (5);
+        ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (5);
       }
     }
     scene.text('"I actually prefer using condoms," you say.');
@@ -1346,7 +1346,7 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).pharmacy ?? 0)?.['morning_after_free'] < 10) {
-      (s as any).pharmacy['morning_after_free'] = ((s as any).pharmacy['morning_after_free'] ?? 0) + (1);
+      ((s as any).pharmacy ?? {})['morning_after_free'] = (((s as any).pharmacy ?? {})['morning_after_free'] ?? 0) + (1);
     }
   } },
       { label: 'Ask Luda for a morning-after pill (openly)', handler: (st: GameState) => {
@@ -1354,7 +1354,7 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).pharmacy ?? 0)?.['morning_after_free'] < 10) {
-      (s as any).pharmacy['morning_after_free'] = ((s as any).pharmacy['morning_after_free'] ?? 0) + (1);
+      ((s as any).pharmacy ?? {})['morning_after_free'] = (((s as any).pharmacy ?? {})['morning_after_free'] ?? 0) + (1);
     }
   } },
       { label: 'Ask Luda for a morning-after pill (meekly)', handler: (st: GameState) => {
@@ -1362,7 +1362,7 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).pharmacy ?? 0)?.['morning_after_free'] < 10) {
-      (s as any).pharmacy['morning_after_free'] = ((s as any).pharmacy['morning_after_free'] ?? 0) + (1);
+      ((s as any).pharmacy ?? {})['morning_after_free'] = (((s as any).pharmacy ?? {})['morning_after_free'] ?? 0) + (1);
     }
   } },
       { label: 'Ask Luda for a morning-after pill (openly)', handler: (st: GameState) => {
@@ -1370,7 +1370,7 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Pharmacy</b></center>');
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
     if (((s as any).pharmacy ?? 0)?.['morning_after_free'] < 10) {
-      (s as any).pharmacy['morning_after_free'] = ((s as any).pharmacy['morning_after_free'] ?? 0) + (1);
+      ((s as any).pharmacy ?? {})['morning_after_free'] = (((s as any).pharmacy ?? {})['morning_after_free'] ?? 0) + (1);
     }
     // TODO-QSP: end !}
   } },
@@ -1380,7 +1380,7 @@ function enterMorningAfterNoMoney(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask your Aunt for her present', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/pharmacy/apteka_aunt_1.jpg');
-    (s as any).LudaQW['free_condoms'] = 1;
+    ((s as any).LudaQW ?? {})['free_condoms'] = 1;
     scene.text('"Aunt Luda..." you say.');
     scene.text('"Yes, darling?"');
     scene.actions([

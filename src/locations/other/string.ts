@@ -11,7 +11,7 @@ function enterParseString(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[3] ?? 0) === '') {
-    (s as any).ARGS[3] = '|';
+    ((s as any).ARGS ?? {})[3] = '|';
   }
   if (((s as any).locArgs?.[2] ?? 0) === ''  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf((((s as any).locArgs?.[3] ?? 0)))) + 1 <= 0) {
     return;
@@ -39,35 +39,35 @@ function enterParseString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_stringVars['text'] = '';
-  (s as any).temp_stringVars['name'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).temp_stringVars ?? {})['text'] = '';
+  ((s as any).temp_stringVars ?? {})['name'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).locArgs?.[2] ?? 0) <= 0) {
-    (s as any).temp_stringVars['i'] = 0;
+    ((s as any).temp_stringVars ?? {})['i'] = 0;
   } else {
-    (s as any).temp_stringVars['i'] = qspUntranslated(s, "ARGS[2]", { location: "string" });
+    ((s as any).temp_stringVars ?? {})['i'] = qspUntranslated(s, "ARGS[2]", { location: "string" });
   }
   if (((s as any).locArgs?.[3] ?? 0) <= 0) {
-    (s as any).temp_stringVars['i_max'] = 0;
+    ((s as any).temp_stringVars ?? {})['i_max'] = 0;
   } else {
-    (s as any).temp_stringVars['i_max'] = ((s as any).temp_stringVars ?? {})?.['i'] + ((s as any).ARGS ?? 0)[3];
+    ((s as any).temp_stringVars ?? {})['i_max'] = ((s as any).temp_stringVars ?? {})?.['i'] + ((s as any).ARGS ?? 0)[3];
     if (((s as any).temp_stringVars ?? 0)?.['i_max'] > ((s as any).arrsize ?? 0)(((s as any).temp_stringVars ?? 0)?.['name'])) {
-      (s as any).temp_stringVars['i_max'] = 0;
+      ((s as any).temp_stringVars ?? {})['i_max'] = 0;
     }
   }
   if (((s as any).locArgs?.[4] ?? 0) === '') {
-    (s as any).temp_stringVars['small_sep'] = ', ';
+    ((s as any).temp_stringVars ?? {})['small_sep'] = ', ';
   } else {
-    (s as any).temp_stringVars['small_sep'] = ((s as any).locArgs?.[4] ?? 0);
+    ((s as any).temp_stringVars ?? {})['small_sep'] = ((s as any).locArgs?.[4] ?? 0);
   }
   if (((s as any).locArgs?.[5] ?? 0) === '') {
-    (s as any).temp_stringVars['duo_sep'] = ' and ';
+    ((s as any).temp_stringVars ?? {})['duo_sep'] = ' and ';
   } else {
-    (s as any).temp_stringVars['duo_sep'] = ((s as any).locArgs?.[5] ?? 0);
+    ((s as any).temp_stringVars ?? {})['duo_sep'] = ((s as any).locArgs?.[5] ?? 0);
   }
   if (((s as any).locArgs?.[6] ?? 0) === '') {
-    (s as any).temp_stringVars['final_sep'] = ', and ';
+    ((s as any).temp_stringVars ?? {})['final_sep'] = ', and ';
   } else {
-    (s as any).temp_stringVars['final_sep'] = ((s as any).locArgs?.[6] ?? 0);
+    ((s as any).temp_stringVars ?? {})['final_sep'] = ((s as any).locArgs?.[6] ?? 0);
   }
   if (((s as any).temp_stringVars ?? 0)?.['i_max'] === 0) {
   } else {
@@ -77,12 +77,12 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_stringVars ?? 0)?.['i_max'] === 2) {
         // TODO-QSP: dynamic "$temp_stringVars['text'] = <<$temp_stringVars['name']>>[0] + '<<$temp_stringVars['duo_sep']...
       } else {
-        (s as any).temp_stringVars['i'] = 0;
+        ((s as any).temp_stringVars ?? {})['i'] = 0;
         // TODO-QSP: :sgs_enum_list
         // TODO-QSP: dynamic "$temp_stringVars['text'] += <<$temp_stringVars['name']>>[<<temp_stringVars['i']>>]"
-        (s as any).temp_stringVars['i'] = ((s as any).temp_stringVars['i'] ?? 0) + (1);
+        ((s as any).temp_stringVars ?? {})['i'] = (((s as any).temp_stringVars ?? {})['i'] ?? 0) + (1);
         if (((s as any).temp_stringVars ?? 0)?.['i'] < ((s as any).temp_stringVars ?? 0)?.['i_max'] - 1) {
-          (s as any).temp_stringVars['text'] = ((s as any).temp_stringVars['text'] ?? 0) + (((s as any).temp_stringVars ?? 0)?.['small_sep']);
+          ((s as any).temp_stringVars ?? {})['text'] = (((s as any).temp_stringVars ?? {})['text'] ?? 0) + (((s as any).temp_stringVars ?? 0)?.['small_sep']);
           // TODO-QSP: jump 'sgs_enum_list'
         }
         // TODO-QSP: dynamic "$temp_stringVars['text'] += '<<$temp_stringVars['final_sep']>>' + <<$temp_stringVars['name'...
@@ -95,17 +95,17 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
 
 function enterParseNumber(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).temp_stringVars['num'] = qspUntranslated(s, "ARGS[1]", { location: "string" });
+    ((s as any).temp_stringVars ?? {})['num'] = qspUntranslated(s, "ARGS[1]", { location: "string" });
   } else {
     if (!isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') {
-      (s as any).temp_stringVars['num'] = qspUntranslated(s, "val(ARGS[1])", { location: "string" });
+      ((s as any).temp_stringVars ?? {})['num'] = qspUntranslated(s, "val(ARGS[1])", { location: "string" });
     } else {
       return;
     }
   }
-  (s as any).temp_stringVars['rank'] = (Object.keys((s as any).ARGS ?? {}).length > 2);
+  ((s as any).temp_stringVars ?? {})['rank'] = (Object.keys((s as any).ARGS ?? {}).length > 2);
   if (((s as any).temp_stringVars ?? 0)?.['num'] < 0) {
-    (s as any).temp_stringVars['num'] = -((s as any).temp_stringVars ?? {})?.['num'];
+    ((s as any).temp_stringVars ?? {})['num'] = -((s as any).temp_stringVars ?? {})?.['num'];
   }
   if (((s as any).temp_stringVars ?? 0)?.['num'] === 0) {
     if (((s as any).temp_stringVars ?? 0)?.['rank'] === 0) {
@@ -140,18 +140,18 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $teen[8] = 'eighteen'  & $teenr[8] = 'eighteenth'
   // TODO-QSP: $teen[9] = 'nineteen'  & $teenr[9] = 'nineteenth'
   if (((s as any).temp_stringVars ?? 0)?.['num'] >= 1000000000) {
-    (s as any).temp_stringVars['billions'] = ((s as any).temp_stringVars ?? {})?.['num'] / 1000000000;
-    (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? 0)?.['billions'];
+    ((s as any).temp_stringVars ?? {})['billions'] = ((s as any).temp_stringVars ?? {})?.['num'] / 1000000000;
+    ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? 0)?.['billions'];
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 100) {
-      (s as any).temp_stringVars['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
+      ((s as any).temp_stringVars ?? {})['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
       // TODO-QSP: $result += $o[temp_stringVars['hundreds_digit']] + ' hundred'
       if (((s as any).temp_stringVars ?? 0)?.['working'] % 100 > 0) {
         // TODO-QSP: $result += ' and '
       }
-      (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
+      ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
     }
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 20) {
-      (s as any).temp_stringVars['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
+      ((s as any).temp_stringVars ?? {})['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
       // TODO-QSP: $result += $t[temp_stringVars['tens_digit']]
       if (((s as any).temp_stringVars ?? 0)?.['working'] % 10 > 0) {
         // TODO-QSP: $result += '-' + $o[temp_stringVars['working'] mod 10]
@@ -170,24 +170,24 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: $result += ' billion'
-    (s as any).temp_stringVars['num'] = ((s as any).temp_stringVars ?? {})?.['num'] % 1000000000;
+    ((s as any).temp_stringVars ?? {})['num'] = ((s as any).temp_stringVars ?? {})?.['num'] % 1000000000;
     if (((s as any).temp_stringVars ?? 0)?.['num'] > 0) {
       // TODO-QSP: $result += ' '
     }
   }
   if (((s as any).temp_stringVars ?? 0)?.['num'] >= 1000000) {
-    (s as any).temp_stringVars['millions'] = ((s as any).temp_stringVars ?? {})?.['num'] / 1000000;
-    (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? 0)?.['millions'];
+    ((s as any).temp_stringVars ?? {})['millions'] = ((s as any).temp_stringVars ?? {})?.['num'] / 1000000;
+    ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? 0)?.['millions'];
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 100) {
-      (s as any).temp_stringVars['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
+      ((s as any).temp_stringVars ?? {})['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
       // TODO-QSP: $result += $o[temp_stringVars['hundreds_digit']] + ' hundred'
-      (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
+      ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
       if (((s as any).temp_stringVars ?? 0)?.['working'] > 0) {
         // TODO-QSP: $result += ' and '
       }
     }
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 20) {
-      (s as any).temp_stringVars['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
+      ((s as any).temp_stringVars ?? {})['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
       // TODO-QSP: $result += $t[temp_stringVars['tens_digit']]
       if (((s as any).temp_stringVars ?? 0)?.['working'] % 10 > 0) {
         // TODO-QSP: $result += '-' + $o[temp_stringVars['working'] mod 10]
@@ -206,24 +206,24 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: $result += ' million'
-    (s as any).temp_stringVars['num'] = ((s as any).temp_stringVars ?? {})?.['num'] % 1000000;
+    ((s as any).temp_stringVars ?? {})['num'] = ((s as any).temp_stringVars ?? {})?.['num'] % 1000000;
     if (((s as any).temp_stringVars ?? 0)?.['num'] > 0) {
       // TODO-QSP: $result += ' '
     }
   }
   if (((s as any).temp_stringVars ?? 0)?.['num'] >= 1000) {
-    (s as any).temp_stringVars['thousands'] = ((s as any).temp_stringVars ?? {})?.['num'] / 1000;
-    (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? 0)?.['thousands'];
+    ((s as any).temp_stringVars ?? {})['thousands'] = ((s as any).temp_stringVars ?? {})?.['num'] / 1000;
+    ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? 0)?.['thousands'];
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 100) {
-      (s as any).temp_stringVars['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
+      ((s as any).temp_stringVars ?? {})['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
       // TODO-QSP: $result += $o[temp_stringVars['hundreds_digit']] + ' hundred'
-      (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
+      ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
       if (((s as any).temp_stringVars ?? 0)?.['working'] > 0) {
         // TODO-QSP: $result += ' and '
       }
     }
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 20) {
-      (s as any).temp_stringVars['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
+      ((s as any).temp_stringVars ?? {})['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
       // TODO-QSP: $result += $t[temp_stringVars['tens_digit']]
       if (((s as any).temp_stringVars ?? 0)?.['working'] % 10 > 0) {
         // TODO-QSP: $result += '-' + $o[temp_stringVars['working'] mod 10]
@@ -242,24 +242,24 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: $result += ' thousand'
-    (s as any).temp_stringVars['num'] = ((s as any).temp_stringVars ?? {})?.['num'] % 1000;
+    ((s as any).temp_stringVars ?? {})['num'] = ((s as any).temp_stringVars ?? {})?.['num'] % 1000;
     if (((s as any).temp_stringVars ?? 0)?.['num'] > 0) {
       // TODO-QSP: $result += ' '
     }
   }
   if (((s as any).temp_stringVars ?? 0)?.['rank'] === 0) {
     if (((s as any).temp_stringVars ?? 0)?.['num'] > 0) {
-      (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? 0)?.['num'];
+      ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? 0)?.['num'];
       if (((s as any).temp_stringVars ?? 0)?.['working'] >= 100) {
-        (s as any).temp_stringVars['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
+        ((s as any).temp_stringVars ?? {})['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
         // TODO-QSP: $result += $o[temp_stringVars['hundreds_digit']] + ' hundred'
-        (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
+        ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
         if (((s as any).temp_stringVars ?? 0)?.['working'] > 0) {
           // TODO-QSP: $result += ' and '
         }
       }
       if (((s as any).temp_stringVars ?? 0)?.['working'] >= 20) {
-        (s as any).temp_stringVars['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
+        ((s as any).temp_stringVars ?? {})['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
         // TODO-QSP: $result += $t[temp_stringVars['tens_digit']]
         if (((s as any).temp_stringVars ?? 0)?.['working'] % 10 > 0) {
           // TODO-QSP: $result += '-' + $o[temp_stringVars['working'] mod 10]
@@ -279,17 +279,17 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? 0)?.['num'];
+    ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? 0)?.['num'];
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 100) {
-      (s as any).temp_stringVars['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
+      ((s as any).temp_stringVars ?? {})['hundreds_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 100;
       // TODO-QSP: $result += $o[temp_stringVars['hundreds_digit']] + ' hundred'
-      (s as any).temp_stringVars['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
+      ((s as any).temp_stringVars ?? {})['working'] = ((s as any).temp_stringVars ?? {})?.['working'] % 100;
       if (((s as any).temp_stringVars ?? 0)?.['working'] > 0) {
         // TODO-QSP: $result += ' and '
       }
     }
     if (((s as any).temp_stringVars ?? 0)?.['working'] >= 20) {
-      (s as any).temp_stringVars['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
+      ((s as any).temp_stringVars ?? {})['tens_digit'] = ((s as any).temp_stringVars ?? {})?.['working'] / 10;
       if (((s as any).temp_stringVars ?? 0)?.['working'] % 10 > 0) {
         // TODO-QSP: $result += $t[temp_stringVars['tens_digit']]
         // TODO-QSP: $result += '-' + $oth[temp_stringVars['working'] mod 10]
@@ -318,12 +318,12 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
 
 function enterHash(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  (s as any).temp_stringVars['index'] = 1;
-  (s as any).temp_stringVars['counter'] = 1;
+  ((s as any).temp_stringVars ?? {})['index'] = 1;
+  ((s as any).temp_stringVars ?? {})['counter'] = 1;
   // TODO-QSP: :hash_loop
   (s as any).result = ((s as any).result ?? 0) + (((s as any).temp_stringVars ?? {})?.['counter'] * qspFunc(s, 'string', 'to_ascii', qspUntranslated(s, "mid(\u00000\u0000, temp_stringVars['index'], 1)", { location: "string" })));
-  (s as any).temp_stringVars['counter'] = ((s as any).temp_stringVars['counter'] ?? 0) + ((1 + ((s as any).temp_stringVars ?? {})?.['index']) / 2);
-  (s as any).temp_stringVars['index'] = ((s as any).temp_stringVars['index'] ?? 0) + (1);
+  ((s as any).temp_stringVars ?? {})['counter'] = (((s as any).temp_stringVars ?? {})['counter'] ?? 0) + ((1 + ((s as any).temp_stringVars ?? {})?.['index']) / 2);
+  ((s as any).temp_stringVars ?? {})['index'] = (((s as any).temp_stringVars ?? {})['index'] ?? 0) + (1);
   if (((s as any).temp_stringVars ?? 0)?.['index'] <= ((((s as any).locArgs?.[1] ?? 0)).length)) {
     // TODO-QSP: jump 'hash_loop'
   }
@@ -344,29 +344,29 @@ function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
   if ((!((((s as any).locArgs?.[1] ?? 0)).length))) {
     return;
   }
-  (s as any).temp_stringVars['key-value-string'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).temp_stringVars['pair_sep'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (',') : (((s as any).locArgs?.[2] ?? 0)));
-  (s as any).temp_stringVars['kv_sep'] = ((((s as any).locArgs?.[3] ?? 0) === '') ? ('=') : (((s as any).locArgs?.[3] ?? 0)));
-  (s as any).temp_stringVars['keys_array'] = ((((s as any).locArgs?.[4] ?? 0) === '') ? ('string_keys') : (((s as any).locArgs?.[4] ?? 0)));
-  (s as any).temp_stringVars['values_array'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('string_values') : (((s as any).locArgs?.[5] ?? 0)));
-  (s as any).temp_stringVars['type_flag'] = 0;
+  ((s as any).temp_stringVars ?? {})['key-value-string'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).temp_stringVars ?? {})['pair_sep'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (',') : (((s as any).locArgs?.[2] ?? 0)));
+  ((s as any).temp_stringVars ?? {})['kv_sep'] = ((((s as any).locArgs?.[3] ?? 0) === '') ? ('=') : (((s as any).locArgs?.[3] ?? 0)));
+  ((s as any).temp_stringVars ?? {})['keys_array'] = ((((s as any).locArgs?.[4] ?? 0) === '') ? ('string_keys') : (((s as any).locArgs?.[4] ?? 0)));
+  ((s as any).temp_stringVars ?? {})['values_array'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('string_values') : (((s as any).locArgs?.[5] ?? 0)));
+  ((s as any).temp_stringVars ?? {})['type_flag'] = 0;
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(1) : -1) > 0) {
-    (s as any).temp_stringVars['type_flag'] = 1;
+    ((s as any).temp_stringVars ?? {})['type_flag'] = 1;
   }
-  (s as any).temp_stringVars['outer_jump'] = qspUntranslated(s, "len(temp_stringVars['pair_sep'])", { location: "string" });
-  (s as any).temp_stringVars['inner_jump'] = qspUntranslated(s, "len(temp_stringVars['kv_sep'])", { location: "string" });
+  ((s as any).temp_stringVars ?? {})['outer_jump'] = qspUntranslated(s, "len(temp_stringVars['pair_sep'])", { location: "string" });
+  ((s as any).temp_stringVars ?? {})['inner_jump'] = qspUntranslated(s, "len(temp_stringVars['kv_sep'])", { location: "string" });
   // TODO-QSP: :split_key_value_outer_loop
-  (s as any).temp_stringVars['outer_index'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).indexOf((((s as any).temp_stringVars ?? 0)?.['pair_sep']))) + 1;
+  ((s as any).temp_stringVars ?? {})['outer_index'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).indexOf((((s as any).temp_stringVars ?? 0)?.['pair_sep']))) + 1;
   if (((s as any).temp_stringVars ?? 0)?.['outer_index'] === 0) {
-    (s as any).temp_stringVars['outer_index'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) + 1;
+    ((s as any).temp_stringVars ?? {})['outer_index'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) + 1;
   }
-  (s as any).temp_stringVars['sub_string'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['outer_index'] - 1)));
-  (s as any).temp_stringVars['inner_index'] = qspUntranslated(s, "instr(temp_stringVars['sub_string'], temp_stringVars['kv_sep'])", { location: "string" });
+  ((s as any).temp_stringVars ?? {})['sub_string'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['outer_index'] - 1)));
+  ((s as any).temp_stringVars ?? {})['inner_index'] = qspUntranslated(s, "instr(temp_stringVars['sub_string'], temp_stringVars['kv_sep'])", { location: "string" });
   if (((s as any).temp_stringVars ?? 0)?.['inner_index'] === 0) {
     return;
   }
-  (s as any).temp_stringVars['key'] = ((((((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['inner_index'] - 1)))).trim());
-  (s as any).temp_stringVars['value'] = ((((((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((((s as any).temp_stringVars ?? {})?.['inner_index'] + ((s as any).temp_stringVars ?? {})?.['inner_jump'])-1))).trim());
+  ((s as any).temp_stringVars ?? {})['key'] = ((((((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['inner_index'] - 1)))).trim());
+  ((s as any).temp_stringVars ?? {})['value'] = ((((((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((((s as any).temp_stringVars ?? {})?.['inner_index'] + ((s as any).temp_stringVars ?? {})?.['inner_jump'])-1))).trim());
   // TODO-QSP: dynamic "
   // TODO-QSP: $<<$temp_stringVars['keys_array']>>[] = $temp_stringVars['key']
   // TODO-QSP: "
@@ -385,7 +385,7 @@ function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: "
     }
   }
-  (s as any).temp_stringVars['key-value-string'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((((s as any).temp_stringVars ?? {})?.['outer_index'] + ((s as any).temp_stringVars ?? {})?.['outer_jump'])-1));
+  ((s as any).temp_stringVars ?? {})['key-value-string'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((((s as any).temp_stringVars ?? {})?.['outer_index'] + ((s as any).temp_stringVars ?? {})?.['outer_jump'])-1));
   if (((((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) > 0) {
     // TODO-QSP: jump 'split_key_value_outer_loop'
   }

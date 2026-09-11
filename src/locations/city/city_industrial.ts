@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  (s as any).setloc['imagepath'] = 'locations/city/industrial';
+  ((s as any).setloc ?? {})['imagepath'] = 'locations/city/industrial';
   scene.build();
 }
 
@@ -26,15 +26,15 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/industw.jpg';
+      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/industw.jpg';
     } else {
-      (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/industwn.jpg';
+      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/industwn.jpg';
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/nord.jpg';
+      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/nord.jpg';
     } else {
-      (s as any).setloc['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/nord2.jpg';
+      ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/nord2.jpg';
     }
   }
   qspCall(s, 'core_library', 'stage_title');

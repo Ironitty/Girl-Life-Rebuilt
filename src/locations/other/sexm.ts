@@ -609,7 +609,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       scene.text(`You do not have any lubricant, so ${((s as any).npcdesc ?? 0)} spits on his fingers to lubricate your ass.`);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
-        (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+        ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
         (s as any).lubonus = 10;
         scene.text('You take out a tube of lubricant and hand it to the guy. He squeezes a little on the palm of his hand and rubs your anus.');
       }
@@ -915,7 +915,7 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'lover', 'remove_boyfriend', ((s as any).npcID ?? 0));
   }
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '', '', ((s as any).boy1 ?? 0));
@@ -1073,7 +1073,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Sure, come on," pipes up ${((s as any).npcdesc ?? 0)}. "Dear lie down on the bed."`);
           scene.actions([
             { label: 'Lie down', handler: (st: GameState) => {
-    (s as any).spouseVars['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
+    ((s as any).spouseVars ?? {})['houseslut'] = (((s as any).spouseVars ?? {})['houseslut'] ?? 0) + (1);
     scene.img('images/characters/city/husband/sex/p1.jpg');
     // TODO-QSP: dynamic text: You lie down on the bed, and <<$npcdesc>> enters your pussy while <<$npcdesc1>> ...
     scene.text(`You lie down on the bed, and ${((s as any).npcdesc ?? 0)} enters your pussy while ${((s as any).npcdesc1 ?? 0)} lies before you and moves his cock to your mouth. You diligently work your husband's cock while not forgetting your lover's cock in your mouth.`);
@@ -1107,7 +1107,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
           scene.text(`"Yeah, come to bed, see how I am going to love your ass," says ${((s as any).npcdesc ?? 0)}.`);
           scene.actions([
             { label: 'Lie down', handler: (st: GameState) => {
-    (s as any).spouseVars['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
+    ((s as any).spouseVars ?? {})['houseslut'] = (((s as any).spouseVars ?? {})['houseslut'] ?? 0) + (1);
     scene.img('images/characters/city/husband/sex/p2.jpg');
     // TODO-QSP: dynamic text: You lie down on the bed, and <<$npcdesc>> enters you in the anus, while <<$npcde...
     scene.text(`You lie down on the bed, and ${((s as any).npcdesc ?? 0)} enters you in the anus, while ${((s as any).npcdesc1 ?? 0)} lies before you, presenting his cock to your mouth. You diligently work your husband's cock in your ass while not forgetting your lover's cock in your mouth.`);
@@ -1146,7 +1146,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + 120;
         (s as any).stolmoney = 0;
         qspCall(s, 'money', 'set', 0);
-        (s as any).mc_inventory['tech_computer'] = 0;
+        ((s as any).mc_inventory ?? {})['tech_computer'] = 0;
         // TODO-QSP: dynamic text: While getting up, you can see in the corner of the room your husband giving blow...
         scene.text(`While getting up, you can see in the corner of the room your husband giving blow after blow to ${((s as any).npcdesc1 ?? 0)} as he tries hard to escape out the door. Finally, your lover succeeds, and he runs out of the apartment at a breakneck pace.`);
         // TODO-QSP: dynamic text: <<$npcdesc>> looks at you. "Here… you… whore… cock… and pussy… and ass… and in y...
@@ -1158,7 +1158,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         qspCall(s, 'lover', 'remove_boyfriend', ((s as any).npcID1 ?? 0));
-        (s as any).spouseVars['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
+        ((s as any).spouseVars ?? {})['houseslut'] = (((s as any).spouseVars ?? {})['houseslut'] ?? 0) + (1);
         // TODO-QSP: dynamic text: "Oh damn, she allowed you inside of her?" asks <<$npcdesc>>. "So now you will ne...
         scene.text(`"Oh damn, she allowed you inside of her?" asks ${((s as any).npcdesc ?? 0)}. "So now you will need to pay me for the pleasure of using her. This is my slut!" he adds, referring to you. "Once that is settled, we will fuck her together," he continues, lifting you off the floor and throwing you on the bed.`);
         if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID1 ?? 0)] === 1) {

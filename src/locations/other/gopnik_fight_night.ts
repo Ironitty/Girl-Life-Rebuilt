@@ -41,11 +41,11 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGym(s: GameState, scene: SceneBuilder): void {
-  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, 0, 1);
   qspCall(s, 'stat', '');
-  (s as any).gopnik_fight_nightQW['month'] = ((s as any).month ?? 0);
-  (s as any).gopnik_fight_nightQW['year'] = ((s as any).year ?? 0);
+  ((s as any).gopnik_fight_nightQW ?? {})['month'] = ((s as any).month ?? 0);
+  ((s as any).gopnik_fight_nightQW ?? {})['year'] = ((s as any).year ?? 0);
   scene.img('images/locations/pavlovsk/school/oldschool/gymnasium.jpg');
   if (((s as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
     scene.text('You focus your mind with determination and open the door. The gymnasium is surprisingly tidy, the floor fairly clean other than what looks a lot like dried blood stains near the center. Everyone is mostly just standing around in a circle with the middle wide open.');
@@ -59,7 +59,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     scene.text('"I know, I know. But we can\'t keep having repeats of what happened before. So I\'m going to go over the rules me and the boys came up with."');
     scene.actions([
       { label: 'Listen to the speech', handler: (st: GameState) => {
-    (s as any).gopnik_fight_nightQW['nights'] = 1;
+    ((s as any).gopnik_fight_nightQW ?? {})['nights'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/vitek/vitek.jpg');
     scene.text('He glances over at Lera. "One. Only two people to a fight."');
     scene.text('He gives a very pointed look at Roman. "Two. If someone says \'stop\', goes limp or taps out, then the fight is over."');
@@ -118,8 +118,8 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   scene.text('You had forgotten about rule eight when some girl from your brother\'s grade walks up to you and looks you over. "Come on, bitch. Let\'s dance."');
   scene.actions([
     { label: 'Fight!', handler: (st: GameState) => {
-    (s as any).gopnik_fight_nightQW['nights'] = ((s as any).gopnik_fight_nightQW['nights'] ?? 0) + (1);
-    (s as any).gopnik_fight_nightQW['fights'] = ((s as any).gopnik_fight_nightQW['fights'] ?? 0) + (1);
+    ((s as any).gopnik_fight_nightQW ?? {})['nights'] = (((s as any).gopnik_fight_nightQW ?? {})['nights'] ?? 0) + (1);
+    ((s as any).gopnik_fight_nightQW ?? {})['fights'] = (((s as any).gopnik_fight_nightQW ?? {})['fights'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
     scene.text('Her challenge made, she walks out and informs Vitek. The last two fighters clear out of the center of the ring as the two of you walk out, taking stances opposite each other.');
     scene.text('Vitek walks out to stand between both of you. "Okay, you guys know the rules. I would say have a clean fight, but fuck that. Beat the shit out of each other and may the best bitch win!"');
@@ -147,7 +147,7 @@ function enterStartFight(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBarelyWin(s: GameState, scene: SceneBuilder): void {
-  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (2);
+  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (2);
   qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, 0, 2);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/oldschool/fightnight/win_barely.jpg');
@@ -182,7 +182,7 @@ function enterBarelyWin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEasilyWin(s: GameState, scene: SceneBuilder): void {
-  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (3);
   qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, 0, 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/oldschool/fightnight/win_easily.jpg');
@@ -217,7 +217,7 @@ function enterEasilyWin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBarelyLose(s: GameState, scene: SceneBuilder): void {
-  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
   qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, 0, 1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/oldschool/fightnight/lose_barely.jpg');
@@ -251,7 +251,7 @@ function enterBarelyLose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSurrender(s: GameState, scene: SceneBuilder): void {
-  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (1);
   qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, 0, (-1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/oldschool/fightnight/lose_barely.jpg');

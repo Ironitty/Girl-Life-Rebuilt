@@ -91,8 +91,8 @@ function enterBirthControlImplant(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     (s as any).tabletkicheck = 0;
     (s as any).tabletkishot = 0;
-    (s as any).birth_control['implant_status'] = 3;
-    (s as any).birth_control['implant_timer'] = 1095;
+    ((s as any).birth_control ?? {})['implant_status'] = 3;
+    ((s as any).birth_control ?? {})['implant_timer'] = 1095;
     (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25) + 4000);
     (s as any).pillcon2 = ((s as any).pillcon2 ?? 0) + (((((s as any).pillcon2 ?? 0) + 15000) / 25) + 4000);
     scene.text('"Everything looks great," she says and gives you a reassuring smile. "Please lie down, the procedure won\'t take long."');
@@ -124,8 +124,8 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     (s as any).tabletkicheck = 0;
     (s as any).tabletkishot = 0;
-    (s as any).birth_control['implant_status'] = 3;
-    (s as any).birth_control['implant_timer'] = 1095;
+    ((s as any).birth_control ?? {})['implant_status'] = 3;
+    ((s as any).birth_control ?? {})['implant_timer'] = 1095;
     (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25) + 4000);
     (s as any).pillcon2 = ((s as any).pillcon2 ?? 0) + (((((s as any).pillcon2 ?? 0) + 15000) / 25) + 4000);
     scene.text('"Everything looks great," she says and gives you a reassuring smile. "Please lie down, the procedure won\'t take long."');
@@ -133,8 +133,8 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
     scene.text('"All done! You should be good to go for another three years."');
   } else {
     qspCall(s, 'money', 'pay', 1650);
-    (s as any).birth_control['implant_status'] = 0;
-    (s as any).birth_control['implant_timer'] = 0;
+    ((s as any).birth_control ?? {})['implant_status'] = 0;
+    ((s as any).birth_control ?? {})['implant_timer'] = 0;
     scene.text('"I\'m sorry, but we can\'t renew your implant because you\'re pregnant."');
     // TODO-QSP: dynamic text: After the initial shock subsides, you only have to pay ' + $func('money', 'strin...
     scene.text('After the initial shock subsides, you only have to pay \' + $func(\'money\', \'string_price\', 1650) + \' for the test and the removal of your old implant and leave.');
@@ -153,8 +153,8 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
 function enterBirthControlRemove(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'pay', 1000);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  (s as any).birth_control['implant_status'] = 0;
-  (s as any).birth_control['implant_timer'] = 0;
+  ((s as any).birth_control ?? {})['implant_status'] = 0;
+  ((s as any).birth_control ?? {})['implant_timer'] = 0;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/clinic/poli.jpg');
   scene.text('"Everything looks great," she says and gives you a reassuring smile. "Please lie down, the procedure won\'t take long."');
@@ -197,13 +197,13 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
     (s as any).pregtime = 0;
     (s as any).pregtalk = 0;
     (s as any).pcs_pregtalk = 0;
-    (s as any).npc_pregtalk['A16'] = 0;
-    (s as any).npc_pregtalk['A34'] = 0;
+    ((s as any).npc_pregtalk ?? {})['A16'] = 0;
+    ((s as any).npc_pregtalk ?? {})['A34'] = 0;
     (s as any).preg = 0;
     (s as any).thinkpreg = 0;
     (s as any).knowpreg = 0;
     (s as any).pregChem = 0;
-    (s as any).vomit['morning_sick'] = 0;
+    ((s as any).vomit ?? {})['morning_sick'] = 0;
     (s as any).cycle = 4;
     (s as any).RecovH = Math.floor(Math.random() * 201) + 375;
     (s as any).nextBaby = 0;

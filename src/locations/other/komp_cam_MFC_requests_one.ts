@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).camGirl['MFC_lastrequest'] = ((s as any).totminut ?? 0);
+  ((s as any).camGirl ?? {})['MFC_lastrequest'] = ((s as any).totminut ?? 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'komp_cam_functions', 'check_available_vaginal_dildo');
   if (((s as any).temp_camVars ?? 0)?.['vaginal_available']) {

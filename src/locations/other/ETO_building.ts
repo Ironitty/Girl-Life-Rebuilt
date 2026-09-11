@@ -44,7 +44,7 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     return;
     scene.actions([
       { label: 'Yes, I live in apartment 69', handler: (st: GameState) => {
-    (s as any).neighborQW['stage'] = 1;
+    ((s as any).neighborQW ?? {})['stage'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.text('You nod, confirming that you live in apartment 69. The guy looks visibly delighted and says, <font color="#1589FF">"Wonderful. I lived there before Petrovich. He tormented the whole building. By the way, I\'m Timofei, and you are?"</font> ');
@@ -62,7 +62,7 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).neighborQW ?? 0)?.['stage'] > 0  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).neighborQW ?? 0)?.['last_day'] !== ((s as any).daystart ?? 0)) {
-      (s as any).neighborQW['rand'] = Math.floor(Math.random() * 101) + 0;
+      ((s as any).neighborQW ?? {})['rand'] = Math.floor(Math.random() * 101) + 0;
       if (((s as any).neighborQW ?? 0)?.['rand'] >= 70) {
         scene.text('Your neighbor, Timofei, is in the hallway. He\'s smoking a cigarette, flicking the ashes into a jar.');
       }
@@ -153,7 +153,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       scene.text('You lie down to sunbathe.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+        ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
         (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
         scene.text('You apply sunblock to your body and lie down on the roof to sunbathe.');
       }

@@ -43,7 +43,7 @@ function enterSmallTalk2(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'albina_chat', 'topic_menu');
   } else {
-    (s as any).AlbinaQW['chat_rand'] = Math.floor(Math.random() * 3) + 1;
+    ((s as any).AlbinaQW ?? {})['chat_rand'] = Math.floor(Math.random() * 3) + 1;
     if (((s as any).AlbinaQW ?? 0)?.['chat_rand'] === 1) {
       qspCall(s, 'albina_chat', 'job_talk1');
     } else {
@@ -327,21 +327,21 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['porno'] > 0) {
     scene.actions([
       { label: 'Embarrassed', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_talk'] = 'embarrassed';
+    ((s as any).AlbinaQW ?? {})['porn_talk'] = 'embarrassed';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you mumble, a blush already heating up your face. "I\'ve been uhh… starring in some… <i>adult films</i>…?"');
     scene.text('She sighs. "I done that stupid fucking casting video, so I\'m not in a position to judge you, but that doesn\'t mean I have to agree with you doing it as an actual job."');
     qspCall(s, 'albina_chat', 'pornstar_talk4');
   } },
       { label: 'Casual', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_talk'] = 'casual';
+    ((s as any).AlbinaQW ?? {})['porn_talk'] = 'casual';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"I\'ve been starring in pornos," you say with a casual shrug of your shoulders.');
     scene.text('She sighs. "I done that stupid fucking casting video, so I\'m not in a position to judge you, but that doesn\'t mean I have to agree with you doing it as an actual job."');
     qspCall(s, 'albina_chat', 'pornstar_talk4');
   } },
       { label: 'Happy', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_talk'] = 'happy';
+    ((s as any).AlbinaQW ?? {})['porn_talk'] = 'happy';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you say, a smile tugging at the corners of your mouth. "I\'ve been shooting some porn."');
     scene.text('She sighs. "I done that stupid fucking casting video, so I\'m not in a position to judge you, but that doesn\'t mean I have to agree with you doing it as an actual job."');
@@ -352,14 +352,14 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pfname ?? 0) !== '') {
       scene.actions([
         { label: 'Embarrassed', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_talk'] = 'embarrassed';
+    ((s as any).AlbinaQW ?? {})['porn_talk'] = 'embarrassed';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you mumble, a blush already heating up your face. "I\'ve been uhh… starring in some… <i>adult films</i>…?"');
     scene.text('She grimaces at you in disgust. "Ew! You\'re doing porn?! Seriously?!"');
     qspCall(s, 'albina_chat', 'pornstar_talk2');
   } },
         { label: 'Casual', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_talk'] = 'casual';
+    ((s as any).AlbinaQW ?? {})['porn_talk'] = 'casual';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"I\'ve been starring in pornos," you say with a casual shrug of your shoulders.');
     scene.text('Her jaw drops and she gives you a look of utter revulsion.');
@@ -367,7 +367,7 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'albina_chat', 'pornstar_talk2');
   } },
         { label: 'Happy', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_talk'] = 'happy';
+    ((s as any).AlbinaQW ?? {})['porn_talk'] = 'happy';
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('"Actually I…" you say, a smile tugging at the corners of your mouth. "I\'ve been shooting some porn."');
     scene.text('Her jaw drops and she gives you a look of utter revulsion.');
@@ -515,7 +515,7 @@ function enterPornstarTalk3_1(s: GameState, scene: SceneBuilder): void {
 function enterPornstarTalk3_2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get mad', handler: (st: GameState) => {
-    (s as any).AlbinaQW['porn_fight'] = 1;
+    ((s as any).AlbinaQW ?? {})['porn_fight'] = 1;
     scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
     scene.text('"Well <i>so-rry</i> that I was born into a poor family that lives on an estate, barely scraping by week to week, instead of getting to live in a mansion with a pool, a walk-in closet, and a maid!" you snap back at her. "<i>Excuse me</i> if I have to resort to sex work because I don\'t have a credit card to just buy all the slutty thongs I want without a second thought and every single piece of clothing in my wardrobe has to be bought without a single fucking ruble of help!"');
     scene.text('Her eyes fill with rage and she opens her mouth like she\'s about to say something, but it dies in her throat and she looks away, seemingly ashamed. She chews on her lip for a few seconds while avoiding eye contact with you.');
@@ -634,7 +634,7 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['panty_preference'] === 3) {
     scene.actions([
       { label: 'I don\'t wear underwear', handler: (st: GameState) => {
-    (s as any).AlbinaQW['commando_know'] = 3;
+    ((s as any).AlbinaQW ?? {})['commando_know'] = 3;
     scene.actions([
       { label: 'Shy', handler: (st: GameState) => {
     scene.text('"Actually…" you start. "I stopped wearing panties."');
@@ -930,7 +930,7 @@ function enterPubeTalk(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She shivers with a grimace of disgust and annoyance. "Waxing takes care of the problem for weeks at a time. Which is great because shaving hurt my neck too!"');
       if ((Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_prcptn ?? 0)) {
-        (s as any).AlbinaQW['pube_hint'] = 1;
+        ((s as any).AlbinaQW ?? {})['pube_hint'] = 1;
         scene.text('She laughs and you start to laugh with her when it suddenly strikes you; Is it just you or does her laugh seem a little… forced?');
         scene.text('Whether or not it\'s your imagination, you don\'t get any time to think about it as she turns the question on you.');
       } else {
@@ -1173,7 +1173,7 @@ function enterMaidConversation(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She gives you a hard stare. "It's not funny, <<$pcs_nickname>>! She's already be...
     scene.text(`She gives you a hard stare. "It's not funny, ${((s as any).pcs_nickname ?? 0)}! She's already been disowned by her parents for coming out as a lesbian and she doesn't want anyone else, <i>especially</i> her boss, finding out. I shouldn't have even outed her like that, especially not behind her back."`);
     scene.text('You blush as you apologize before she changes the subject.');
-    (s as any).AlbinaQW['Maid'] = 1;
+    ((s as any).AlbinaQW ?? {})['Maid'] = 1;
     scene.actions([
       { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
       { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
@@ -1188,7 +1188,7 @@ function enterLazarConversation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['Lazar_Sex'] === 1) {
     scene.actions([
       { label: 'Ask her about Lazar', handler: (st: GameState) => {
-    (s as any).AlbinaQW['Lazar_Sex'] = 2;
+    ((s as any).AlbinaQW ?? {})['Lazar_Sex'] = 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     if (((s as any).AlbinaQW ?? 0)?.['Lazar_Threesome'] >= 1) {
       scene.text('"What\'s the deal with you and Lazar?" you ask.');
@@ -1457,7 +1457,7 @@ function enterLoverKolkaTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Kolka', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     if (((s as any).AlbinaQW ?? 0)?.['kolka_know'] === 0) {
-      (s as any).AlbinaQW['kolka_know'] = 1;
+      ((s as any).AlbinaQW ?? {})['kolka_know'] = 1;
       scene.text('"Well…" you say. "I\'ve been doing stuff with Kolka lately."');
       scene.text('"Kolka? Who\'s Kolk-" She stops mid-sentence and her eyes go wide. "Wait, you mean your <i>brother</i>?!"');
       if (((s as any).brotherQW ?? 0)?.['Sex'] >= 5) {
@@ -1556,7 +1556,7 @@ function enterZoyaConversation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['Mom_Future'] === 0) {
     scene.actions([
       { label: 'Ask about her mother', handler: (st: GameState) => {
-    (s as any).AlbinaQW['Mom_Future'] = 1;
+    ((s as any).AlbinaQW ?? {})['Mom_Future'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('You\'re not sure how you should ask this, but you\'re curious about her mother. "I don\'t mean to pry, but what\'s the story with your mother?"');
     scene.text('Albina glances at you, but relents. "I don\'t know why, but she wanted to become a psychiatrist to \'make a difference\' as she calls it, so she ended up doing modelling, a lot of it nude and erotic, to earn enough money to go to university."');
@@ -1799,7 +1799,7 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
 function enterNikoHelpTalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask for help with Niko', handler: (st: GameState) => {
-    (s as any).AlbinaQW['niko_help'] = 1;
+    ((s as any).AlbinaQW ?? {})['niko_help'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     // TODO-QSP: dynamic text: You feel her wrap an arm around you. "What's up, <<$pcs_nickname>>? You're looki...
@@ -1816,8 +1816,8 @@ function enterNikoHelpTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemThreesome(s: GameState, scene: SceneBuilder): void {
-  (s as any).artemQW['alb3some_ask'] = 2;
-  (s as any).AlbinaQW['artem_invite'] = 1;
+  ((s as any).artemQW ?? {})['alb3some_ask'] = 2;
+  ((s as any).AlbinaQW ?? {})['artem_invite'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Can I ask you something?" you say as you sit on her bed.');
@@ -1861,7 +1861,7 @@ function enterArtemThreesome(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArtemThreesome1(s: GameState, scene: SceneBuilder): void {
-  (s as any).artemQW['alb3some_again'] = 2;
+  ((s as any).artemQW ?? {})['alb3some_again'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"So how would you rate your experience with Artem?" you ask as you take a seat on her bed.');
@@ -1896,7 +1896,7 @@ function enterArtemThreesome1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlackGuy(s: GameState, scene: SceneBuilder): void {
-  (s as any).AlbinaQW['know_ermias_sex'] = 2;
+  ((s as any).AlbinaQW ?? {})['know_ermias_sex'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Do you happen to know anybody living up on the eighth floor?" you ask and she immediately shoots you a glance.');
@@ -1963,7 +1963,7 @@ function enterBlackGuy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClubBj(s: GameState, scene: SceneBuilder): void {
-  (s as any).AlbinaQW['saw_club_bj'] = 2;
+  ((s as any).AlbinaQW ?? {})['saw_club_bj'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"So…" you start. "About what I saw you doing at the club…"');

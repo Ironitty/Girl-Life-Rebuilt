@@ -12,16 +12,16 @@ function enterForced(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
-    (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 353) / 100;
+    ((s as any).sleepVars ?? {})['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 353) / 100;
   } else {
     if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
-      (s as any).sleepVars['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
+      ((s as any).sleepVars ?? {})['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
     } else {
-      (s as any).sleepVars['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
+      ((s as any).sleepVars ?? {})['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
     }
   }
-  (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + ((s as any).rand ?? 0)(0, 90));
-  (s as any).sleepVars['minutes_to_wakeup'] = qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" });
+  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + ((s as any).rand ?? 0)(0, 90));
+  ((s as any).sleepVars ?? {})['minutes_to_wakeup'] = qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" });
   qspCall(s, 'sleep_simple', 'loop');
   scene.build();
 }
@@ -39,16 +39,16 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).inSleep = 1;
   // TODO-QSP: :sleep_simple_loop
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).sleepVars['stime'] = ((s as any).sleepVars['stime'] ?? 0) + (1);
-  (s as any).sleepVars['time_now'] = ((s as any).sleepVars['time_now'] ?? 0) + (1);
-  (s as any).sleepVars['minutes_to_wakeup'] = ((s as any).sleepVars['minutes_to_wakeup'] ?? 0) - (1);
-  (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) - (1);
+  ((s as any).sleepVars ?? {})['stime'] = (((s as any).sleepVars ?? {})['stime'] ?? 0) + (1);
+  ((s as any).sleepVars ?? {})['time_now'] = (((s as any).sleepVars ?? {})['time_now'] ?? 0) + (1);
+  ((s as any).sleepVars ?? {})['minutes_to_wakeup'] = (((s as any).sleepVars ?? {})['minutes_to_wakeup'] ?? 0) - (1);
+  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) - (1);
   if (((s as any).recuperation ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['no_health'] === 1) {
-    (s as any).sleepVars['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
+    ((s as any).sleepVars ?? {})['health_stock'] = (((s as any).sleepVars ?? {})['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
   }
   if (((s as any).sleepVars ?? 0)?.['health_stock'] >= 960) {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).sleepVars ?? {})?.['health_stock'] / 960);
-    (s as any).sleepVars['health_stock'] = ((s as any).sleepVars ?? {})?.['health_stock'] % 960;
+    ((s as any).sleepVars ?? {})['health_stock'] = ((s as any).sleepVars ?? {})?.['health_stock'] % 960;
   }
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
@@ -72,7 +72,7 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sleepVars ?? 0)?.['stime'] >= 60) {
-    (s as any).sleepVars['stime'] = 0;
+    ((s as any).sleepVars ?? {})['stime'] = 0;
   }
   if (((s as any).minut ?? 0) === 60) {
     qspCall(s, 'stat', '');
@@ -81,8 +81,8 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0) {
     // TODO-QSP: jump 'sleep_simple_loop'
   }
-  (s as any).sleepVars['no_health'] = 0;
-  (s as any).sleepVars['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
+  ((s as any).sleepVars ?? {})['no_health'] = 0;
+  ((s as any).sleepVars ?? {})['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
   (s as any).inSleep = 0;
   qspCall(s, 'stat', '');
   scene.build();

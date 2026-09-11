@@ -14,8 +14,8 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You are in the changing rooms in Fashionista with several outfits available to try on.');
   }
   if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).week ?? 0) === 7  &&  ((s as any).rimma ?? 0)?.['photo'] === 0) {
-    (s as any).rimma['photo'] = 1;
-    (s as any).rimma['day'] = ((s as any).daystart ?? 0);
+    ((s as any).rimma ?? {})['photo'] = 1;
+    ((s as any).rimma ?? {})['day'] = ((s as any).daystart ?? 0);
     scene.img('images/characters/city/rimma/photo.jpg');
     scene.text('While in the changing room, you get a strange feeling, like you\'re being watched, but think nothing of it and start posing like a model.');
     scene.text('You\'re startled when you think you hear what sounds like a camera clicking, but you can\'t see anyone and you\'re not going to run out and check while naked.');
@@ -175,7 +175,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
       scene.text('You put the underwear aside for now so that you can take it to the register with you.');
       qspCall(s, 'money', 'pay', 750);
-      (s as any).NatbelQW['seethrough'] = 1;
+      ((s as any).NatbelQW ?? {})['seethrough'] = 1;
       scene.actions([
         { label: 'Stay in the changing room', goto: ['shop_fashionista', 'changingroom'] },
         { label: 'Get dressed and go back to the store', goto: ['shop_fashionista', 'changingend'] },
@@ -185,7 +185,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
     { label: 'Don\'t buy it', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     scene.text('Deciding against it, you look through the rest of the underwear for something that would fit you better.');
-    (s as any).NatbelQW['underwearShop'] = 1;
+    ((s as any).NatbelQW ?? {})['underwearShop'] = 1;
     scene.actions([
       { label: 'Stay in the changing room', goto: ['shop_fashionista', 'changingroom'] },
       { label: 'Get dressed and go back to the store', goto: ['shop_fashionista', 'changingend'] },

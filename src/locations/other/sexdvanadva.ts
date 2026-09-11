@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   (s as any).girl = ((s as any).girl ?? 0) + (1);
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'stat', '');

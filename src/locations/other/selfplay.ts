@@ -134,7 +134,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'selfplay', 'van_vtor');
   }
   if (((s as any).loc ?? 0) === 'gad_gpbarn') {
-    (s as any).npc_horny['A66'] = ((s as any).npc_horny['A66'] ?? 0) + (1);
+    ((s as any).npc_horny ?? {})['A66'] = (((s as any).npc_horny ?? {})['A66'] ?? 0) + (1);
     scene.text('Bandit the dog is watching you curiously.');
   }
   scene.actions([
@@ -1100,14 +1100,14 @@ function enterSuctionDildo(s: GameState, scene: SceneBuilder): void {
 function enterBathtubSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic '<<$loc>>_bathtub_dildo = 1'
   // TODO-QSP: dynamic '<<$loc>>_suction_dildo += 1'
-  (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) - (1);
+  ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) - (1);
   scene.build();
 }
 
 function enterBathtubSuctionDildoRemove(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic '<<$loc>>_bathtub_dildo = 0'
   // TODO-QSP: dynamic '<<$loc>>_suction_dildo -= 1'
-  (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
+  ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) + (1);
   scene.build();
 }
 
@@ -1120,7 +1120,7 @@ function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic '<<$loc>>_glass_shower_dildo = 1'
     }
   }
-  (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) - (1);
+  ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) - (1);
   scene.build();
 }
 
@@ -1133,7 +1133,7 @@ function enterShowerSuctionDildoRemove(s: GameState, scene: SceneBuilder): void 
       // TODO-QSP: dynamic '<<$loc>>_glass_shower_dildo = 0'
     }
   }
-  (s as any).mc_inventory['dildo_suction'] = ((s as any).mc_inventory['dildo_suction'] ?? 0) + (1);
+  ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) + (1);
   scene.build();
 }
 

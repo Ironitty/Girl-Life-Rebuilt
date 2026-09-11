@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).AlbinaQW['RideDaystart'] = ((s as any).daystart ?? 0) + ((s as any).rand ?? 0)(2, 5);
+  ((s as any).AlbinaQW ?? {})['RideDaystart'] = ((s as any).daystart ?? 0) + ((s as any).rand ?? 0)(2, 5);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
   scene.text('A car suddenly pulls up next to you and a man wearing a suit and hat steps out. "Captain Chernov, Federal Security Service," he says and pulls out his badge.');
@@ -61,7 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterGiveStatement(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).AlbinaQW['Chernov'] = 1;
+  ((s as any).AlbinaQW ?? {})['Chernov'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
   scene.text('You agree to write a statement and Chernov nods.');
@@ -78,8 +78,8 @@ function enterGiveStatement(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Call Albina', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).AlbinaQW['Friends'] = 1;
-    (s as any).AlbinaQW['StarletsShutDown'] = 1;
+    ((s as any).AlbinaQW ?? {})['Friends'] = 1;
+    ((s as any).AlbinaQW ?? {})['StarletsShutDown'] = 1;
     qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
     (s as any).starlets_missed = 0;
     qspCall(s, 'stat', '');
@@ -132,7 +132,7 @@ function enterRefuseStatement(s: GameState, scene: SceneBuilder): void {
 
 function enterRefuseStatement2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).AlbinaQW['Chernov'] = 2;
+  ((s as any).AlbinaQW ?? {})['Chernov'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
   scene.text('While a part of you wants to help, you don\'t trust him and refuse.');
@@ -141,8 +141,8 @@ function enterRefuseStatement2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Call Albina', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).AlbinaQW['Friends'] = 1;
-    (s as any).AlbinaQW['StarletsShutDown'] = 1;
+    ((s as any).AlbinaQW ?? {})['Friends'] = 1;
+    ((s as any).AlbinaQW ?? {})['StarletsShutDown'] = 1;
     qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
     (s as any).starlets_missed = 0;
     qspCall(s, 'stat', '');

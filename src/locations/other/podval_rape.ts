@@ -12,8 +12,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`The ${((s as any).placerStringParameter ?? 0)?.['text_someone']} are discussing among themselves: "Alright guys, we got the slut here. I'm surprised she came so readily. Anyway… who gets to go first this time?"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     (s as any).podvalrape = 1;
     qspCall(s, 'sweat', 'add', 10);
     (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);

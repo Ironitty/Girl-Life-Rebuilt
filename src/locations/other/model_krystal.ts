@@ -53,7 +53,7 @@ function enterKrystal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting/6.jpg');
     scene.text('You say your farewells and watch her work for a few more minutes. If nothing else, she certainly has no shame.');
-    (s as any).krystal['status'] = 2;
+    ((s as any).krystal ?? {})['status'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -73,7 +73,7 @@ function enterKrystal1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal2(s: GameState, scene: SceneBuilder): void {
-  (s as any).krystal['status'] = 3;
+  ((s as any).krystal ?? {})['status'] = 3;
   scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/meeting2/1.jpg');
   scene.text('As you walk through the studio, something catches your eye and you see that Krystal is waving you over. She\'s wearing a blue top and panties, so she must be getting ready for a shoot.');
   scene.text('"Hey beautiful! Long time no see. How\'re you doing?" she asks.');
@@ -323,8 +323,8 @@ function enterKrystal2Nothanks(s: GameState, scene: SceneBuilder): void {
 function enterKrystal2Sure1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Sure…?', handler: (st: GameState) => {
-    (s as any).krystal['porn_card_hour'] = ((s as any).hour ?? 0) + 2;
-    (s as any).krystal['porn_card_day'] = ((s as any).daystart ?? 0);
+    ((s as any).krystal ?? {})['porn_card_hour'] = ((s as any).hour ?? 0) + 2;
+    ((s as any).krystal ?? {})['porn_card_day'] = ((s as any).daystart ?? 0);
     scene.text('"Uhmm… sure…?"');
     scene.text('"Great! But my purse is in the locker room. I\'ll get you one after I\'m done here," she smiles. "Don\'t forget to stick around!"');
     // TODO-QSP: dynamic text: A photographer comes on set, saying, "Alright Katherine, it's time to start shoo...
@@ -342,8 +342,8 @@ function enterKrystal2Sure1(s: GameState, scene: SceneBuilder): void {
 function enterKrystal2Sure2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Sure!', handler: (st: GameState) => {
-    (s as any).krystal['porn_card_hour'] = ((s as any).hour ?? 0) + 2;
-    (s as any).krystal['porn_card_day'] = ((s as any).daystart ?? 0);
+    ((s as any).krystal ?? {})['porn_card_hour'] = ((s as any).hour ?? 0) + 2;
+    ((s as any).krystal ?? {})['porn_card_day'] = ((s as any).daystart ?? 0);
     scene.text('"Sure! What you described, it does sound pretty fun," you smile eagerly.');
     scene.text('"Great! But my purse is in the locker room. I\'ll get you one after I\'m done here," she smiles. "Don\'t forget to stick around!"');
     // TODO-QSP: dynamic text: A photographer comes on set, saying, "Alright Katherine, it's time to start shoo...
@@ -533,7 +533,7 @@ function enterKrystal3(s: GameState, scene: SceneBuilder): void {
     scene.text('"No… That\'s okay…" you say. "You haven\'t been with each other in… a little while… I don\'t want to deprive you of each other so I\'m just going to tip on out."');
     scene.text('"Alright," she says. The dress is starting to be pulled off both shoulders now. "Just thought I\'d ask. You never know!"');
     scene.text('As you walk away, you hear her moaning more and more. Just before you get out of earshot you hear her say, "We have to be careful this time Ben. Someone was angry when they found cum on the last set we used. I don\'t want to get in trouble if they catch us this time!"');
-    (s as any).krystal['status'] = 4;
+    ((s as any).krystal ?? {})['status'] = 4;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -543,7 +543,7 @@ function enterKrystal3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe another time," you smirk. "I got some work I need to do today."');
     scene.text('"Alrighty, catch you later then," she says with a wink as her dress starts to get pulled off.');
     scene.text('As you walk away, you hear her moaning more and more. Just before you get out of earshot you hear her say, "We have to be careful this time Ben. Someone was angry when they found cum on the last set we used. I don\'t want to get in trouble if they catch us this time!"');
-    (s as any).krystal['status'] = 4;
+    ((s as any).krystal ?? {})['status'] = 4;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -557,7 +557,7 @@ function enterKrystal3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal4(s: GameState, scene: SceneBuilder): void {
-  (s as any).krystal['status'] = Math.floor(Math.random() * 2) + 4;
+  ((s as any).krystal ?? {})['status'] = Math.floor(Math.random() * 2) + 4;
   scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/1.jpg');
   scene.text('"Hey babe!"');
   scene.text('While walking around the studio, you hear someone call out to you. When you turn around, you see Krystal sitting on a sofa looking expectantly at you.');
@@ -577,9 +577,9 @@ function enterKrystal4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKrystal5(s: GameState, scene: SceneBuilder): void {
-  (s as any).krystal['busy_cooldown_day'] = ((s as any).daystart ?? 0);
-  (s as any).krystal['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
-  (s as any).krystal['status'] = Math.floor(Math.random() * 2) + 4;
+  ((s as any).krystal ?? {})['busy_cooldown_day'] = ((s as any).daystart ?? 0);
+  ((s as any).krystal ?? {})['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
+  ((s as any).krystal ?? {})['status'] = Math.floor(Math.random() * 2) + 4;
   scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/busy.jpg');
   scene.text('You\'re looking for Krystal when you find her on set. She\'s holding her legs open and you are being treated with a very explicit view of her pussy and asshole.');
   scene.text('"Is this wide enough for you?" she calls over to the photographer who is changing settings on his camera.');
@@ -598,7 +598,7 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).krystal ?? 0)?.['model_exp'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask for modelling advice', handler: (st: GameState) => {
-    (s as any).krystal['model_exp'] = ((s as any).daystart ?? 0);
+    ((s as any).krystal ?? {})['model_exp'] = ((s as any).daystart ?? 0);
     qspCall(s, 'exp_gain', 'mdlng', 2);
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/10.jpg');
     scene.text('"You\'ve really got to emphasize your assets." She puts her hands up on her head, pulling some of her hair with them. "Right now, what do you notice most about me?"');
@@ -748,7 +748,7 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Talk about movies', handler: (st: GameState) => {
-    (s as any).krystal['movie'] = Math.floor(Math.random() * 4) + 1;
+    ((s as any).krystal ?? {})['movie'] = Math.floor(Math.random() * 4) + 1;
     if (((s as any).krystal ?? 0)?.['movie'] === 1) {
       scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/6.jpg');
       scene.text('"See any good movies lately Krystal?"');
@@ -817,7 +817,7 @@ function enterKrystalSextalk(s: GameState, scene: SceneBuilder): void {
   } },
     { label: '"What\'s your sex life at home like?"', handler: (st: GameState) => {
     if (((s as any).krystal ?? 0)?.['sex_life'] === 0) {
-      (s as any).krystal['sex_life'] = 1;
+      ((s as any).krystal ?? {})['sex_life'] = 1;
     }
     scene.img('images/locations/city/citycenter/photo/portraits/krystal_b/talking/12.jpg');
     scene.text('"Pretty good I\'d say. Ben and I probably do it at least, what, four or five times a day? In the morning Ben usually wakes me up with a good pounding. If we have a porn shoot then we\'ll fuck on camera. If not, sometimes he drops by the studio for a quickie. Then after work we\'ll fuck before dinner. After dinner we usually relax by watching a movie while I give him head. And then one more good night fuck in bed? Sometimes he wakes me up in the night to do it again but I wouldn\'t say we do that <i>too</i> often. Maybe twice a week. Oh shit. That\'s not five, that\'s six."');

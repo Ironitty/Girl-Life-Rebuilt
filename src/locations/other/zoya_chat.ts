@@ -919,7 +919,7 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "I believe we've had this conversation about looking at my breasts before, <<$pc...
       scene.text(`"I believe we've had this conversation about looking at my breasts before, ${((s as any).pcs_firstname ?? 0)}…"`);
     } else {
-      (s as any).AlbinaQW['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+      ((s as any).AlbinaQW ?? {})['check_out_zoya'] = (((s as any).AlbinaQW ?? {})['check_out_zoya'] ?? 0) + (1);
       // TODO-QSP: dynamic text: "I appreciate your attempt at a compliment <<$pcs_firstname>>, but it's rude to ...
       scene.text(`"I appreciate your attempt at a compliment ${((s as any).pcs_firstname ?? 0)}, but it's rude to look at a person's breasts like that, even if they are exposed."`);
     }
@@ -974,7 +974,7 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "I believe we've had this conversation about looking at my breasts before, <<$pc...
       scene.text(`"I believe we've had this conversation about looking at my breasts before, ${((s as any).pcs_firstname ?? 0)}…"`);
     } else {
-      (s as any).AlbinaQW['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+      ((s as any).AlbinaQW ?? {})['check_out_zoya'] = (((s as any).AlbinaQW ?? {})['check_out_zoya'] ?? 0) + (1);
       // TODO-QSP: dynamic text: "I appreciate your attempt at a compliment <<$pcs_firstname>>, but it's rude to ...
       scene.text(`"I appreciate your attempt at a compliment ${((s as any).pcs_firstname ?? 0)}, but it's rude to look at a person's breasts like that, even if they are exposed."`);
     }

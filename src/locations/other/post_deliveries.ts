@@ -8,7 +8,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'clock', 'pav_mailgirl');
   scene.text('He guides you to the back room, where a number of small packages and letters are packed into a shoulder bag.');
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 1;
-  (s as any).post_vars['load'] = ((((s as any).temp_rand ?? 0) === 1) ? (0) : (((((s as any).temp_rand ?? 0) <= 3) ? (1) : (2))));
+  ((s as any).post_vars ?? {})['load'] = ((((s as any).temp_rand ?? 0) === 1) ? (0) : (((((s as any).temp_rand ?? 0) <= 3) ? (1) : (2))));
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
@@ -29,7 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   return;
   scene.actions([
     { label: 'Start your round', handler: (st: GameState) => {
-    (s as any).post_vars['round'] = 0;
+    ((s as any).post_vars ?? {})['round'] = 0;
     scene.img('images/locations/shared/postoffice/postgirl.jpg');
     scene.text('The first half hour is easy as you work your way through the streets near the post office. As you get further away from the center, you take a look in your bag and ponder how you\'re going to handle your round today.');
     if (((s as any).post_vars ?? 0)?.['load'] === 0) {
@@ -60,7 +60,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Use the more dangerous shortcuts to save time [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    (s as any).post_vars['danger'] = 1;
+    ((s as any).post_vars ?? {})['danger'] = 1;
     scene.img('images/locations/shared/postoffice/postgirl.jpg');
     scene.text('You decide to use the streets the postmaster told you to avoid in order to finish faster. What\'s the worst that could happen?');
     if (((s as any).post_vars ?? 0)?.['load'] === 0) {
@@ -82,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Stick to the safe route', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-    (s as any).post_vars['danger'] = 0;
+    ((s as any).post_vars ?? {})['danger'] = 0;
     scene.img('images/locations/shared/postoffice/postgirl.jpg');
     scene.text('You decide to stick to the predetermined route, and continue delivering the mail you have in your bag.');
     if (((s as any).post_vars ?? 0)?.['load'] === 0) {
@@ -157,7 +157,7 @@ function enterResume(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the post office', goto: ['post_deliveries', 'finishround'] },
     ]);
   } else {
-    (s as any).post_vars['round'] = 1;
+    ((s as any).post_vars ?? {})['round'] = 1;
     scene.img('images/locations/shared/postoffice/postgirl.jpg');
     scene.text('You continue delivering mail on your round like before, and your bag is slowly getting lighter.');
     if (((s as any).post_vars ?? 0)?.['danger'] === 0) {
@@ -207,7 +207,7 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
     scene.text('The two men laugh. "Shut the fuck up. If you want to be left alone on our turf, you should\'ve stayed out of our sight!" He signs your sheet and gives you a cruel grin. "There, you have the signature you need. Now get lost... Unless you came to play?"');
     scene.actions([
       { label: 'Ask what they\'re talking about', handler: (st: GameState) => {
-    (s as any).post_vars['bandit'] = 1;
+    ((s as any).post_vars ?? {})['bandit'] = 1;
     scene.text('"What do you mean, \'play\'!? Let go of me!" you shout at him.');
     scene.text('The man tightens his grip on your shoulders. "Shut up and listen! We had a deal with the previous delivery girl. Eager little slut, she was! She even made a game out of it... If she used our streets during her round, she\'d do what we want if we caught her. Since you took her place, that goes for you too. We\'ll go easy on you this time, but now that you know the rules: if we see you again around here, you better be ready to put out if you want to keep your job. Understood?"');
     scene.text('He doesn\'t wait for an answer before he walks away with his friend, leaving you alone to collect your thoughts. What the hell did they make that girl do?!');
@@ -236,11 +236,11 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You replay in your head what the man said earlier: They only get to play with you if they catch you, so it\'s okay to run, right?');
     scene.text('You quickly snatch your bag and try to run away from them.');
-    (s as any).runnerQW['bmi_penalty'] = 0;
+    ((s as any).runnerQW ?? {})['bmi_penalty'] = 0;
     if (((s as any).pcs_mass ?? 0)?.['body'] > 30) {
-      (s as any).runnerQW['bmi_penalty'] = ((((s as any).pcs_mass ?? {})?.['body'] - 25)/5);
+      ((s as any).runnerQW ?? {})['bmi_penalty'] = ((((s as any).pcs_mass ?? {})?.['body'] - 25)/5);
     }
-    (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
+    ((s as any).runnerQW ?? {})['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
     (s as any).randrun = Math.floor(Math.random() * 6) + 1;
     if (((s as any).runnerQW ?? 0)?.['result'] >= 23  &&  ((s as any).randrun ?? 0) >= 3) {
       scene.text('"Hey, come back here!" the guy yells, but you running away clearly caught them by surprise.');
@@ -314,8 +314,8 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Agree [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).post_vars['bandit'] = 2;
-    (s as any).post_vars['exhib'] = ((s as any).post_vars['exhib'] ?? 0) + (1);
+    ((s as any).post_vars ?? {})['bandit'] = 2;
+    ((s as any).post_vars ?? {})['exhib'] = (((s as any).post_vars ?? {})['exhib'] ?? 0) + (1);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 4) + 0);
     scene.img('images/locations/shared/postoffice/events/postboobs1.jpg');
     scene.text('"No, wait!" you blurt out, quickly stopping him. "I\'ll do it..."');
@@ -334,7 +334,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Say nothing ', handler: (st: GameState) => {
-    (s as any).post_vars['burn'] = 1;
+    ((s as any).post_vars ?? {})['burn'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/postoffice/postburn.jpg');
@@ -353,10 +353,10 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
       scene.text('The first one claps his hands and grins. "Alright, girl. You know what we want."');
       scene.actions([
         { label: 'Show your breasts again', handler: (st: GameState) => {
-    (s as any).post_vars['exhib'] = ((s as any).post_vars['exhib'] ?? 0) + (1);
+    ((s as any).post_vars ?? {})['exhib'] = (((s as any).post_vars ?? {})['exhib'] ?? 0) + (1);
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     if (((s as any).post_vars ?? 0)?.['exhib'] >=4) {
-      (s as any).post_vars['bandit'] = 3;
+      ((s as any).post_vars ?? {})['bandit'] = 3;
     }
     (s as any).postboobsrand = Math.floor(Math.random() * 4) + 1;
     scene.img(`images/locations/shared/postoffice/events/postboobs${((s as any).postboobsrand ?? 0)}.jpg`);
@@ -379,7 +379,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
         scene.text('He doesn\'t find anything to his liking in your bag and looks at you intently.');
         scene.actions([
           { label: 'Strip for them', handler: (st: GameState) => {
-    (s as any).post_vars['bandit'] = 4;
+    ((s as any).post_vars ?? {})['bandit'] = 4;
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 6) + 1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/postoffice/events/poststrip.jpg');
@@ -422,8 +422,8 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Beg [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).post_vars['bandit'] = 5;
-    (s as any).post_vars['hj'] = ((s as any).post_vars['hj'] ?? 0) + (1);
+    ((s as any).post_vars ?? {})['bandit'] = 5;
+    ((s as any).post_vars ?? {})['hj'] = (((s as any).post_vars ?? {})['hj'] ?? 0) + (1);
     qspCall(s, 'boyStat', 'A104');
     scene.img('images/locations/shared/postoffice/sex/posthj1.jpg');
     scene.text('"Please, you can\'t make me do this! Please..." you beg, interrupting his counting. "Anything but this..."');
@@ -436,8 +436,8 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Find some tissues to clean yourself up', handler: (st: GameState) => {
-    (s as any).post_vars['bandit'] = 6;
-    (s as any).post_vars['bj'] = ((s as any).post_vars['bj'] ?? 0) + (1);
+    ((s as any).post_vars ?? {})['bandit'] = 6;
+    ((s as any).post_vars ?? {})['bj'] = (((s as any).post_vars ?? {})['bj'] ?? 0) + (1);
     qspCall(s, 'boyStat', 'A105');
     scene.img('images/locations/shared/postoffice/sex/postbj2.jpg');
     scene.text('"Why are you still here, girl?" the other guy laughs when he sees you loitering about the apartment naked, looking for tissues. "Are you looking for more cocks to suck?"');
@@ -473,7 +473,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Do what he wants', handler: (st: GameState) => {
-    (s as any).post_vars['bandit'] = 6;
+    ((s as any).post_vars ?? {})['bandit'] = 6;
     qspCall(s, 'boyStat', 'A104');
     scene.img('images/locations/shared/postoffice/sex/postbj1.jpg');
     scene.text('You kneel down before him and start sucking the head of his cock. Within a minute, you feel several jets of his bitter sperm landing in your mouth. He didn\'t give you any warning and you recoil from the sudden sharp taste in your mouth.');
@@ -521,9 +521,9 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).post_vars ?? 0)?.['bandit'] === 5) {
-            (s as any).post_vars['hj'] = ((s as any).post_vars['hj'] ?? 0) + (1);
+            ((s as any).post_vars ?? {})['hj'] = (((s as any).post_vars ?? {})['hj'] ?? 0) + (1);
             if (((s as any).post_vars ?? 0)?.['hj'] >= 5) {
-              (s as any).post_vars['bandit'] = 6;
+              ((s as any).post_vars ?? {})['bandit'] = 6;
             }
             (s as any).posthjrand = Math.floor(Math.random() * 5) + 1;
             qspCall(s, 'boyStat', 'A104');
@@ -543,7 +543,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
             ]);
           } else {
-            (s as any).post_vars['bj'] = ((s as any).post_vars['bj'] ?? 0) + (1);
+            ((s as any).post_vars ?? {})['bj'] = (((s as any).post_vars ?? {})['bj'] ?? 0) + (1);
             if (((s as any).post_vars ?? 0)?.['bj'] <= 4) {
               (s as any).postbjrand = Math.floor(Math.random() * 4) + 1;
             } else {
@@ -632,11 +632,11 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
     scene.text('He shakes his head angrily. "I warned you to avoid those streets! I knew this was going to happen... Damn it, you leave me no choice. You\'re fired!"');
   } else {
     if (((s as any).hour ?? 0) === 14  &&  ((s as any).minut ?? 0) <= 30) {
-      (s as any).post_vars['late'] = ((s as any).post_vars['late'] ?? 0) - (1);
+      ((s as any).post_vars ?? {})['late'] = (((s as any).post_vars ?? {})['late'] ?? 0) - (1);
       scene.text('"Wow, back already?" the postmaster asks when he sees you returning so early. "I don\'t know how you do it, but keep up the good work!"');
     } else {
       if (((s as any).hour ?? 0) === 15) {
-        (s as any).post_vars['late'] = ((s as any).post_vars['late'] ?? 0) + (3);
+        ((s as any).post_vars ?? {})['late'] = (((s as any).post_vars ?? {})['late'] ?? 0) + (3);
         if (((s as any).post_vars ?? 0)?.['late'] <= 3) {
           scene.text('"You\'re late. What happened?" the postmaster asks when you return to the post office.');
           scene.text('You shrug. "I got held up a little, but I managed to deliver everything. See?"');
@@ -661,7 +661,7 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).post_vars ?? 0)?.['late'] > 0) {
-          (s as any).post_vars['late'] = ((s as any).post_vars['late'] ?? 0) - (1);
+          ((s as any).post_vars ?? {})['late'] = (((s as any).post_vars ?? {})['late'] ?? 0) - (1);
         }
         scene.text('You return to the post office on time with an empty bag.');
         scene.text('The postmaster smiles when he sees you. "I assume everything went okay?"');
@@ -669,7 +669,7 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).post_vars ?? 0)?.['qw_4'] === 1) {
-    (s as any).post_vars['qw_4'] = 2;
+    ((s as any).post_vars ?? {})['qw_4'] = 2;
     scene.text('"One missing signatu- Oh never mind, it\'s him," the postmaster remarks dryly when he notices the missing signature of the pervert who tried to blackmail you. "No need to explain. I hope you didn\'t listen to him? He tries that with every girl we hire. I\'ve reported him to Captain Katalkin several times, but nothing ever happens."');
   }
   if (((s as any).job_status ?? 0)?.['pav_mailgirl'] === 'fired') {
@@ -726,7 +726,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   return;
   scene.actions([
     { label: 'Ask him what\'s in the parcel', handler: (st: GameState) => {
-    (s as any).post_vars['qw_1'] = 1;
+    ((s as any).post_vars ?? {})['qw_1'] = 1;
     scene.text('"I don\'t know... Maybe. What did you buy your wife?" you ask.');
     scene.text('He shrugs. "It\'s lingerie. A fancy gown of sorts. I don\'t know, I think she\'d like it."');
     scene.text('He sees the hesitant look on your face. "You can change in the bathroom, I wouldn\'t see anything inappropriate! The gown will cover you up! Please, I\'m a married man! I only want to make my wife happy!" he splutters out.');
@@ -753,7 +753,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Say you would, but you have a job to do', handler: (st: GameState) => {
-    (s as any).post_vars['qw_1'] = 2;
+    ((s as any).post_vars ?? {})['qw_1'] = 2;
     scene.text('"That... sounds interesting, but I really don\'t have time," you apologize. "I still have some mail to deliver."');
     scene.text('He ponders for a few seconds. "How about you come back after you finish your round? My wife won\'t be home for a few more hours. Please?"');
     scene.text('"I\'ll think about it, but I really have to go now!" you say before continuing your round.');
@@ -768,7 +768,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2(s: GameState, scene: SceneBuilder): void {
-  (s as any).post_vars['qw_2'] = 1;
+  ((s as any).post_vars ?? {})['qw_2'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/postoffice/events/postevent2-1.jpg');
@@ -810,7 +810,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ask if they can wait until you finish your round', handler: (st: GameState) => {
-    (s as any).post_vars['qw_2'] = 2;
+    ((s as any).post_vars ?? {})['qw_2'] = 2;
     scene.text('You point at your bag apologetically. "I can\'t right now. I still have some deliveries to do! Maybe I can come back when I\'m done with my round?"');
     scene.text('The girl looks at Arsen and smiles. "What do you think, babe? I can just give you a quick blowjob now and we\'ll play more when she\'s back? Please? I really like her!"');
     scene.text('Arsen looks you up and down again. He hates the idea of having to wait, but definitely wants you to join. He sits back down in his beanbag chair and shrugs. "Sure, I guess," he shrugs as he grabs the water pipe again. "Start sucking then."');
@@ -862,7 +862,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   return;
   scene.actions([
     { label: 'Ask what he wants', handler: (st: GameState) => {
-    (s as any).post_vars['qw_3'] = 1;
+    ((s as any).post_vars ?? {})['qw_3'] = 1;
     scene.text('"Uhh... Why?" you ask. "What do you want?"');
     scene.text('He casts a quick look down to the street to make sure no one\'s listening in. "You say you love clothes? I love cute little girls like you. You get whatever\'s in this box if you suck my dick. I can guarantee that you\'ll want what\'s in this box. And I want that mouth on my cock. Win-win. So... Interested?"');
     qspCall(s, 'willpower', 'prostitution', 'resist', 'easy');
@@ -888,7 +888,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ask if you can come back after your shift', handler: (st: GameState) => {
-    (s as any).post_vars['qw_3'] = 2;
+    ((s as any).post_vars ?? {})['qw_3'] = 2;
     scene.text('Something about the way he says it makes it sound tempting... You still have a job to do, though...');
     scene.text('"I still have some deliveries to make. Is it okay if I come back when I\'m done?" you ask.');
     scene.text('"You know what? Sure. That way I can take my time with you. But just so you know: once you enter my house, you do what I want. Unconditionally. I don\'t want to hear a \'no\' or \'maybe\' out of you," he says resolutely. "Do we have a deal?"');
@@ -966,7 +966,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
         { label: 'Stick to your guns and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    (s as any).post_vars['qw_4'] = 1;
+    ((s as any).post_vars ?? {})['qw_4'] = 1;
     scene.text('Not saying another word, you turn around and leave his apartment. Hopefully you\'re right about the postmaster believing you...');
     scene.actions([
       { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
@@ -993,7 +993,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'hj', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    (s as any).post_vars['qw_4'] = 1;
+    ((s as any).post_vars ?? {})['qw_4'] = 1;
     scene.text('You don\'t like where this is going at all! Deciding you\'re better off leaving his apartment while you still can, you bolt for the door and run away. You don\'t trust him one bit... Who knows what kind of other things he\'d make you do?!');
     scene.text('Once you\'re a few houses away, you look behind you, but realize there\'s no way he can follow you, not with the way he was dressed.');
     scene.text('You take a deep breath and look at your clipboard to see where you have to go next while you try to put the guy out of your head. One signature will be missing from your list today, but surely the postmaster will understand when you explain what happened?');
@@ -1022,7 +1022,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse and run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    (s as any).post_vars['qw_4'] = 1;
+    ((s as any).post_vars ?? {})['qw_4'] = 1;
     scene.text('As he slowly comes closer to you, you decide to quickly leave his apartment and run away while you still can. Who knows what else he\'d make you do!?');
     scene.text('Once you\'re a few houses away, you look back, but realize there\'s no way he can follow you the way he was dressed. You take a deep breath and look at your clipboard to see where you have to go next. One signature will be missing from your list today, but surely the postmaster will understand?');
     scene.actions([
@@ -1088,7 +1088,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     scene.text('One of the guys leaves the room before returning with a tray of beers. He offers you one too. "I know you have to get back to work, but one for the road?"');
     scene.actions([
       { label: 'Not while you\'re working', handler: (st: GameState) => {
-    (s as any).post_vars['qw_5'] = 1;
+    ((s as any).post_vars ?? {})['qw_5'] = 1;
     scene.text('If the postmaster had even the slightest suspicion you were drinking on the job, he\'d fire you for sure!');
     scene.text('"I really shouldn\'t. Thanks for the offer, though!" you reply, declining the beer.');
     scene.text('The guys chat with you for a few more minutes and you tell them about things they can do in Pavlovsk during their stay, but they don\'t seem particularly interested in any of your suggestions. One of them then very subtly shakes his head at the others. You were probably not supposed to see that...');

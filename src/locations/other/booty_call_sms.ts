@@ -32,41 +32,41 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStdFree_Tree(s: GameState, scene: SceneBuilder): void {
-  (s as any).SMSTree['0'] = 'hey ' + qspUntranslated(s, "pcs_nickname>", { location: "booty_call_sms" }) + '';
-  (s as any).SMSTree['1'] = 'hey ' + qspUntranslated(s, "npc_nickname[ARGS[1]]>", { location: "booty_call_sms" }) + '';
-  (s as any).SMSTree['2'] = 'got some good news';
-  (s as any).SMSTree['a3'] = 'oh?';
-  (s as any).SMSTree['a4'] = 'my std test came back clean. why dont we celebrate tog';
+  ((s as any).SMSTree ?? {})['0'] = 'hey ' + qspUntranslated(s, "pcs_nickname>", { location: "booty_call_sms" }) + '';
+  ((s as any).SMSTree ?? {})['1'] = 'hey ' + qspUntranslated(s, "npc_nickname[ARGS[1]]>", { location: "booty_call_sms" }) + '';
+  ((s as any).SMSTree ?? {})['2'] = 'got some good news';
+  ((s as any).SMSTree ?? {})['a3'] = 'oh?';
+  ((s as any).SMSTree ?? {})['a4'] = 'my std test came back clean. why dont we celebrate tog';
   if (((s as any).hour ?? 0) < 21) {
-    (s as any).SMSTree['aa5'] = 'sorry, I cant. I have stuff to do';
+    ((s as any).SMSTree ?? {})['aa5'] = 'sorry, I cant. I have stuff to do';
   } else {
-    (s as any).SMSTree['aa5'] = 'its late. text me sooner if you want me to come over.';
+    ((s as any).SMSTree ?? {})['aa5'] = 'its late. text me sooner if you want me to come over.';
   }
-  (s as any).SMSTree['aa6'] = 'shit, maybe next time then';
-  (s as any).SMSTree['ab5'] = 'ill come right now ;)';
+  ((s as any).SMSTree ?? {})['aa6'] = 'shit, maybe next time then';
+  ((s as any).SMSTree ?? {})['ab5'] = 'ill come right now ;)';
   if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'perverted'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      (s as any).SMSTree['ab6'] = 'in the street?? damn! keep it in your pants till you get here!';
+      ((s as any).SMSTree ?? {})['ab6'] = 'in the street?? damn! keep it in your pants till you get here!';
     } else {
-      (s as any).SMSTree['ab6'] = 'as long as you make me cum later';
+      ((s as any).SMSTree ?? {})['ab6'] = 'as long as you make me cum later';
     }
   } else {
     if (((s as any).npc_humor ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'intellectual'  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-      (s as any).SMSTree['ab6'] = 'phrasing';
+      ((s as any).SMSTree ?? {})['ab6'] = 'phrasing';
     } else {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        (s as any).SMSTree['ab6'] = 'im already hard';
+        ((s as any).SMSTree ?? {})['ab6'] = 'im already hard';
       } else {
-        (s as any).SMSTree['ab6'] = 'cant wait';
+        ((s as any).SMSTree ?? {})['ab6'] = 'cant wait';
       }
     }
   }
-  (s as any).SMSTree['b3'] = 'what is it?';
-  (s as any).SMSTree['b4'] = 'my std test came back clean';
-  (s as any).SMSTree['ba5'] = ((s as any).SMSTree ?? 0)?.['aa5'];
-  (s as any).SMSTree['ba6'] = ((s as any).SMSTree ?? 0)?.['aa6'];
-  (s as any).SMSTree['bb5'] = ((s as any).SMSTree ?? 0)?.['ab5'];
-  (s as any).SMSTree['bb6'] = ((s as any).SMSTree ?? 0)?.['ab6'];
+  ((s as any).SMSTree ?? {})['b3'] = 'what is it?';
+  ((s as any).SMSTree ?? {})['b4'] = 'my std test came back clean';
+  ((s as any).SMSTree ?? {})['ba5'] = ((s as any).SMSTree ?? 0)?.['aa5'];
+  ((s as any).SMSTree ?? {})['ba6'] = ((s as any).SMSTree ?? 0)?.['aa6'];
+  ((s as any).SMSTree ?? {})['bb5'] = ((s as any).SMSTree ?? 0)?.['ab5'];
+  ((s as any).SMSTree ?? {})['bb6'] = ((s as any).SMSTree ?? 0)?.['ab6'];
   scene.build();
 }
 

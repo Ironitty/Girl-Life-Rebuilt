@@ -9,26 +9,26 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('If you want to set your skills and attributes to a certain number, use the cheat menu to do it, the options to do it here were removed.');
   if (((s as any).start_type ?? 0)?.['group']  === '') {
-    (s as any).start_type['group'] = 'custom';
+    ((s as any).start_type ?? {})['group'] = 'custom';
   }
   if (((s as any).start_type ?? 0)?.['cat']  === '') {
-    (s as any).start_type['cat'] = 'custom';
+    ((s as any).start_type ?? {})['cat'] = 'custom';
   }
   if (((s as any).clothingworntype ?? 0) === '') {
     qspCall(s, 'outfit', 'clear_all');
   }
-  (s as any).intro_custom['money'] = (-1);
-  (s as any).intro_custom['loc'] = '';
-  (s as any).intro_custom['loc_arg'] = '';
-  (s as any).intro_custom['loc_s'] = '';
-  (s as any).intro_custom['args_s'] = '';
-  (s as any).intro_custom['menu_loc'] = '';
-  (s as any).intro_custom['menu_arg'] = '';
+  ((s as any).intro_custom ?? {})['money'] = (-1);
+  ((s as any).intro_custom ?? {})['loc'] = '';
+  ((s as any).intro_custom ?? {})['loc_arg'] = '';
+  ((s as any).intro_custom ?? {})['loc_s'] = '';
+  ((s as any).intro_custom ?? {})['args_s'] = '';
+  ((s as any).intro_custom ?? {})['menu_loc'] = '';
+  ((s as any).intro_custom ?? {})['menu_arg'] = '';
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
-    (s as any).pcs_mass['butt_gen'] = 22;
+    ((s as any).pcs_mass ?? {})['butt_gen'] = 22;
   }
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === 0) {
-    (s as any).pcs_mass['bust_gen'] = 22;
+    ((s as any).pcs_mass ?? {})['bust_gen'] = 22;
   }
   if (((s as any).soc_grup ?? 0) === '') {
     qspCall(s, 'intro_character_custom', 'none');
@@ -40,12 +40,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Confirm these options', handler: (st: GameState) => {
     // TODO-QSP: dynamic 'grupvalue[<<grupTipe>>] = 600'
     if (((s as any).soc_grup ?? 0) === 'nerd') {
-      (s as any).trait_vars['academic_exp'] = 350;
-      (s as any).trait_vars['academic'] = 2;
-      (s as any).trait_vars['nerd_learn_home'] = 5;
+      ((s as any).trait_vars ?? {})['academic_exp'] = 350;
+      ((s as any).trait_vars ?? {})['academic'] = 2;
+      ((s as any).trait_vars ?? {})['nerd_learn_home'] = 5;
     } else {
       if (((s as any).soc_grup ?? 0) === 'gopnik') {
-        (s as any).trait_vars['academic_exp'] = (-20);
+        ((s as any).trait_vars ?? {})['academic_exp'] = (-20);
       }
     }
     if (((s as any).pcs_inhib ?? 0) < 10) {
@@ -97,16 +97,16 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tattoo_management', 'count');
   qspCall(s, 'piercing_management', 'count');
   if (((s as any).intro_custom ?? 0)?.['money'] === -1) {
-    (s as any).intro_custom['money'] = ((s as any).money ?? 0);
+    ((s as any).intro_custom ?? {})['money'] = ((s as any).money ?? 0);
     (s as any).money = 999999999;
   }
   if (((s as any).intro_custom ?? 0)?.['loc'] === '') {
-    (s as any).intro_custom['loc'] = ((s as any).loc ?? 0);
-    (s as any).intro_custom['loc_arg'] = ((s as any).loc_arg ?? 0);
-    (s as any).intro_custom['loc_s'] = ((s as any).loc_s ?? 0);
-    (s as any).intro_custom['args_s'] = ((s as any).args_s ?? 0);
-    (s as any).intro_custom['menu_loc'] = ((s as any).menu_loc ?? 0);
-    (s as any).intro_custom['menu_arg'] = ((s as any).menu_arg ?? 0);
+    ((s as any).intro_custom ?? {})['loc'] = ((s as any).loc ?? 0);
+    ((s as any).intro_custom ?? {})['loc_arg'] = ((s as any).loc_arg ?? 0);
+    ((s as any).intro_custom ?? {})['loc_s'] = ((s as any).loc_s ?? 0);
+    ((s as any).intro_custom ?? {})['args_s'] = ((s as any).args_s ?? 0);
+    ((s as any).intro_custom ?? {})['menu_loc'] = ((s as any).menu_loc ?? 0);
+    ((s as any).intro_custom ?? {})['menu_arg'] = ((s as any).menu_arg ?? 0);
     (s as any).intro_custom_shop_return = 1;
     (s as any).intro_custom_step = 1;
   }
@@ -124,13 +124,13 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).money = ((s as any).intro_custom ?? 0)?.['money'];
-    (s as any).intro_custom['money'] = (-1);
-    (s as any).intro_custom['loc'] = '';
-    (s as any).intro_custom['loc_arg'] = '';
-    (s as any).intro_custom['menu_loc'] = '';
-    (s as any).intro_custom['menu_arg'] = '';
-    (s as any).intro_custom['loc_s'] = '';
-    (s as any).intro_custom['args_s'] = '';
+    ((s as any).intro_custom ?? {})['money'] = (-1);
+    ((s as any).intro_custom ?? {})['loc'] = '';
+    ((s as any).intro_custom ?? {})['loc_arg'] = '';
+    ((s as any).intro_custom ?? {})['menu_loc'] = '';
+    ((s as any).intro_custom ?? {})['menu_arg'] = '';
+    ((s as any).intro_custom ?? {})['loc_s'] = '';
+    ((s as any).intro_custom ?? {})['args_s'] = '';
     (s as any).intro_custom_shop_return = 0;
   }, goto: ['intro_character_custom', 'start'] },
     { label: 'Browse', goto: ['intro_character_custom', 'modclo'] },
@@ -846,7 +846,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
 
 function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shop_display ?? 0)?.['init'] === 0) {
-    (s as any).intro_custom_shop['slot'] = ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).intro_custom_shop ?? {})['slot'] = ((s as any).locArgs?.[1] ?? 0);
     qspCall(s, 'core_library', 'setloc', 'intro_character_custom', 'modclo_loop');
     if (((s as any).intro_custom_shop ?? 0)?.['slot'] === 'clothing') {
       qspCall(s, 'clothing', 'set_shop_display_exceptions', ((s as any).locArgs?.[2] ?? 0));
@@ -898,10 +898,10 @@ function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterModapp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === 0) {
-    (s as any).pcs_mass['bust_gen'] = 12;
+    ((s as any).pcs_mass ?? {})['bust_gen'] = 12;
   }
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === 0) {
-    (s as any).pcs_mass['butt_gen'] = 22;
+    ((s as any).pcs_mass ?? {})['butt_gen'] = 22;
   }
   scene.text('Your body weight may vary between characters as breast and butt size will be taken into account.');
   scene.text('Choose base genetic breast size: (this is the genetic disposition and not the actual size at game start)');
@@ -1027,9 +1027,9 @@ function enterModite(s: GameState, scene: SceneBuilder): void {
   }, goto: ['intro_character_custom', 'modite'] },
     { label: 'Computer (<<mc_inventory[\'tech_computer\']>>/1)', handler: (st: GameState) => {
     if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
-      (s as any).mc_inventory['tech_computer'] = 1;
+      ((s as any).mc_inventory ?? {})['tech_computer'] = 1;
     } else {
-      (s as any).mc_inventory['tech_computer'] = 0;
+      ((s as any).mc_inventory ?? {})['tech_computer'] = 0;
     }
   }, goto: ['intro_character_custom', 'modite'] },
     { label: 'Cosmetic items', goto: ['intro_character_custom', 'modite_cos'] },
@@ -1476,49 +1476,49 @@ function enterModgrup(s: GameState, scene: SceneBuilder): void {
   scene.text(`Your current social group is ${((s as any).soc_grup ?? 0)}.`);
   scene.actions([
     { label: 'Nerd', handler: (st: GameState) => {
-    (s as any).start_type['group'] = 'nerd';
+    ((s as any).start_type ?? {})['group'] = 'nerd';
     (s as any).grupTipe = 3;
-    (s as any).grupvalue[1] = 200;
-    (s as any).grupvalue[2] = 100;
-    (s as any).grupvalue[3] = 800;
-    (s as any).grupvalue[4] = 100;
-    (s as any).grupvalue[6] = 600;
+    ((s as any).grupvalue ?? {})[1] = 200;
+    ((s as any).grupvalue ?? {})[2] = 100;
+    ((s as any).grupvalue ?? {})[3] = 800;
+    ((s as any).grupvalue ?? {})[4] = 100;
+    ((s as any).grupvalue ?? {})[6] = 600;
   }, goto: ['intro_character_custom', 'modgrup'] },
     { label: 'Jock', handler: (st: GameState) => {
-    (s as any).start_type['group'] = 'jock';
+    ((s as any).start_type ?? {})['group'] = 'jock';
     (s as any).grupTipe = 2;
-    (s as any).grupvalue[1] = 400;
-    (s as any).grupvalue[2] = 800;
-    (s as any).grupvalue[3] = 100;
-    (s as any).grupvalue[4] = 200;
-    (s as any).grupvalue[6] = 400;
+    ((s as any).grupvalue ?? {})[1] = 400;
+    ((s as any).grupvalue ?? {})[2] = 800;
+    ((s as any).grupvalue ?? {})[3] = 100;
+    ((s as any).grupvalue ?? {})[4] = 200;
+    ((s as any).grupvalue ?? {})[6] = 400;
   }, goto: ['intro_character_custom', 'modgrup'] },
     { label: 'Popular', handler: (st: GameState) => {
-    (s as any).start_type['group'] = 'cool';
+    ((s as any).start_type ?? {})['group'] = 'cool';
     (s as any).grupTipe = 1;
-    (s as any).grupvalue[1] = 800;
-    (s as any).grupvalue[2] = 400;
-    (s as any).grupvalue[3] = 200;
-    (s as any).grupvalue[4] = 100;
-    (s as any).grupvalue[6] = 400;
+    ((s as any).grupvalue ?? {})[1] = 800;
+    ((s as any).grupvalue ?? {})[2] = 400;
+    ((s as any).grupvalue ?? {})[3] = 200;
+    ((s as any).grupvalue ?? {})[4] = 100;
+    ((s as any).grupvalue ?? {})[6] = 400;
   }, goto: ['intro_character_custom', 'modgrup'] },
     { label: 'Gopnik', handler: (st: GameState) => {
-    (s as any).start_type['group'] = 'gopnik';
+    ((s as any).start_type ?? {})['group'] = 'gopnik';
     (s as any).grupTipe = 4;
-    (s as any).grupvalue[1] = 200;
-    (s as any).grupvalue[2] = 300;
-    (s as any).grupvalue[3] = 100;
-    (s as any).grupvalue[4] = 800;
-    (s as any).grupvalue[6] = 100;
+    ((s as any).grupvalue ?? {})[1] = 200;
+    ((s as any).grupvalue ?? {})[2] = 300;
+    ((s as any).grupvalue ?? {})[3] = 100;
+    ((s as any).grupvalue ?? {})[4] = 800;
+    ((s as any).grupvalue ?? {})[6] = 100;
   }, goto: ['intro_character_custom', 'modgrup'] },
     { label: 'Outcast', handler: (st: GameState) => {
-    (s as any).start_type['group'] = 'outcast';
+    ((s as any).start_type ?? {})['group'] = 'outcast';
     (s as any).grupTipe = 5;
-    (s as any).grupvalue[1] = 200;
-    (s as any).grupvalue[2] = 200;
-    (s as any).grupvalue[3] = 200;
-    (s as any).grupvalue[4] = 200;
-    (s as any).grupvalue[6] = 200;
+    ((s as any).grupvalue ?? {})[1] = 200;
+    ((s as any).grupvalue ?? {})[2] = 200;
+    ((s as any).grupvalue ?? {})[3] = 200;
+    ((s as any).grupvalue ?? {})[4] = 200;
+    ((s as any).grupvalue ?? {})[6] = 200;
   }, goto: ['intro_character_custom', 'modgrup'] },
     { label: 'Return', goto: ['intro_character_custom', 'start'] },
   ]);
@@ -1548,28 +1548,28 @@ function enterModrel(s: GameState, scene: SceneBuilder): void {
 
 function enterModrelFam(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A28'] < 0) {
-    (s as any).npc_rel['A28'] = 0;
+    ((s as any).npc_rel ?? {})['A28'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A29'] < 0) {
-    (s as any).npc_rel['A29'] = 0;
+    ((s as any).npc_rel ?? {})['A29'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A33'] < 0) {
-    (s as any).npc_rel['A33'] = 0;
+    ((s as any).npc_rel ?? {})['A33'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A34'] < 0) {
-    (s as any).npc_rel['A34'] = 0;
+    ((s as any).npc_rel ?? {})['A34'] = 0;
   }
   if (((s as any).npc_rel ?? 0)?.['A28'] > 100) {
-    (s as any).npc_rel['A28'] = 100;
+    ((s as any).npc_rel ?? {})['A28'] = 100;
   }
   if (((s as any).npc_rel ?? 0)?.['A29'] > 100) {
-    (s as any).npc_rel['A29'] = 100;
+    ((s as any).npc_rel ?? {})['A29'] = 100;
   }
   if (((s as any).npc_rel ?? 0)?.['A33'] > 100) {
-    (s as any).npc_rel['A33'] = 100;
+    ((s as any).npc_rel ?? {})['A33'] = 100;
   }
   if (((s as any).npc_rel ?? 0)?.['A34'] > 100) {
-    (s as any).npc_rel['A34'] = 100;
+    ((s as any).npc_rel ?? {})['A34'] = 100;
   }
   scene.text('<center><b>Family relationship levels</b></center>');
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
@@ -1590,10 +1590,10 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
 
 function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] < 0) {
-    (s as any).npc_rel['' + String((s as any).$ARGS[1] || '') + ''] = 0;
+    ((s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 0;
   }
   if (((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 100) {
-    (s as any).npc_rel['' + String((s as any).$ARGS[1] || '') + ''] = 100;
+    ((s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 100;
   }
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$npc_firstname[''<<$ARGS[1]>>'']>> <<$...
   scene.build();
@@ -1751,7 +1751,7 @@ function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :pol_grup_set_loop
   if (((s as any).npc_gender ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).locArgs?.[2] ?? 0)) {
-    (s as any).npc_rel['A' + String((s as any).r || '') + ''] = qspUntranslated(s, "ARGS[3]", { location: "intro_character_custom" });
+    ((s as any).npc_rel ?? {})['A' + String((s as any).r || '') + ''] = qspUntranslated(s, "ARGS[3]", { location: "intro_character_custom" });
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {

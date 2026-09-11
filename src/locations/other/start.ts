@@ -49,14 +49,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
     scene.actions([
       { label: '<center>Mute music</center>', handler: (st: GameState) => {
-    (s as any).sound_settings['music_off'] = 1;
+    ((s as any).sound_settings ?? {})['music_off'] = 1;
     (s as any).music_loop = 0;
   }, goto: ['start', 'start'] },
     ]);
   } else {
     scene.actions([
       { label: '<center>Unmute music</center>', handler: (st: GameState) => {
-    (s as any).sound_settings['music_off'] = 0;
+    ((s as any).sound_settings ?? {})['music_off'] = 0;
     (s as any).music_loop = 1;
   }, goto: ['start', 'start'] },
     ]);

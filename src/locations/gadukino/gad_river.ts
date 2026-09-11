@@ -31,14 +31,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('Right next to the path leading to the river, you see <a href="exec: gt \'gad_river\', \'mirapunish\' ">Mira</a> naked, bound with ropes between two trees…');
   } else {
     if (((s as any).temp_rand ?? 0) === 4  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
-      (s as any).GadBoy['river_day'] = ((s as any).daystart ?? 0);
+      ((s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
       scene.text('While going to the river, you meet Kolyamba and Vasyan. They first invite you to join them, then insist you go with them.');
       scene.actions([
         { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex17.jpg');
     scene.text('The boys take you to Vasyan\'s house, where they rudely keep pushing you until you are bent over the kitchen table. They then take turns fucking you…');
     qspCall(s, 'boyStat', 'A61');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
     if ((!((s as any).mesec ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dinsex', 'analsex', 20, 'sub', 'gangbang');
     }
     qspCall(s, 'boyStat', 'A62');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     if ((!((s as any).mesec ?? 0))) {
       qspCall(s, 'dinsex', 'boy_puts_condom');
       qspCall(s, 'dinsex', 'vaginal_sex', 20, 'sub', 'gangbang');
@@ -68,7 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp_rand ?? 0) === 5  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
-        (s as any).GadBoy['river_day'] = ((s as any).daystart ?? 0);
+        ((s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
         scene.text('While walking towards the river, you meet the village boys you\'ve been drinking with recently. They ask you to go with them.');
         scene.actions([
           { label: 'Go with them', handler: (st: GameState) => {
@@ -81,13 +81,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 20, 'gangbang', 'sub');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'boyStat', 'A61');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'boyStat', 'A62');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 3);
     qspCall(s, 'stat', '');
@@ -98,12 +98,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).temp_rand ?? 0) === 6  &&  ((s as any).GadBoy ?? 0)?.['river_day'] !== ((s as any).daystart ?? 0)  &&  (! qspFunc(s, 'miroslava_schedule', 'is_here', 'river'))  &&  ((s as any).npc_QW ?? 0)?.['A63'] >= 13  &&  ((s as any).hour ?? 0) >= 5) {
-          (s as any).GadBoy['river_day'] = ((s as any).daystart ?? 0);
+          ((s as any).GadBoy ?? {})['river_day'] = ((s as any).daystart ?? 0);
           scene.text('On your way to the river, you meet Vasyan. But, unfortunately, he insists you follow him home…');
           scene.actions([
             { label: 'Go with him', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A62');
-    (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
+    ((s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
     (s as any).pose = 1;
     if ((!((s as any).mesec ?? 0))) {
       scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex20.jpg');

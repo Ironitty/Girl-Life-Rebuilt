@@ -15,7 +15,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['bookworm'] > 0) {
       (s as any).lastread = ((s as any).totminut ?? 0);
       (s as any).lastreadday = ((s as any).daystart ?? 0);
-      (s as any).trait_vars['bookworm_exp'] = ((s as any).trait_vars['bookworm_exp'] ?? 0) + (1);
+      ((s as any).trait_vars ?? {})['bookworm_exp'] = (((s as any).trait_vars ?? {})['bookworm_exp'] ?? 0) + (1);
     }
     if (((s as any).locArgs?.[1] ?? 0) !== '') {
       // TODO-QSP: dynamic "
@@ -66,19 +66,19 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
       { label: 'Return your loaned book', handler: (st: GameState) => {
     if ((!((s as any).lib_book_read ?? 0))) {
       if (((s as any).lib_book_loaned ?? 0) === 'an adventure novel') {
-        (s as any).mc_inventory['adventure_books'] = ((s as any).mc_inventory['adventure_books'] ?? 0) - (1);
+        ((s as any).mc_inventory ?? {})['adventure_books'] = (((s as any).mc_inventory ?? {})['adventure_books'] ?? 0) - (1);
       } else {
         if (((s as any).lib_book_loaned ?? 0) === 'a fantasy novel') {
-          (s as any).mc_inventory['fantasy_books'] = ((s as any).mc_inventory['fantasy_books'] ?? 0) - (1);
+          ((s as any).mc_inventory ?? {})['fantasy_books'] = (((s as any).mc_inventory ?? {})['fantasy_books'] ?? 0) - (1);
         } else {
           if (((s as any).lib_book_loaned ?? 0) === 'a romance novel') {
-            (s as any).mc_inventory['romance_books'] = ((s as any).mc_inventory['romance_books'] ?? 0) - (1);
+            ((s as any).mc_inventory ?? {})['romance_books'] = (((s as any).mc_inventory ?? {})['romance_books'] ?? 0) - (1);
           } else {
             if (((s as any).lib_book_loaned ?? 0) === 'a science book') {
-              (s as any).mc_inventory['science_books'] = ((s as any).mc_inventory['science_books'] ?? 0) - (1);
+              ((s as any).mc_inventory ?? {})['science_books'] = (((s as any).mc_inventory ?? {})['science_books'] ?? 0) - (1);
             } else {
               if (((s as any).lib_book_loaned ?? 0) === 'a science fiction novel') {
-                (s as any).mc_inventory['scifi_books'] = ((s as any).mc_inventory['scifi_books'] ?? 0) - (1);
+                ((s as any).mc_inventory ?? {})['scifi_books'] = (((s as any).mc_inventory ?? {})['scifi_books'] ?? 0) - (1);
               }
             }
           }
@@ -87,19 +87,19 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).lib_book_read ?? 0) === 1) {
         if (((s as any).lib_book_loaned ?? 0) === 'an adventure novel') {
-          (s as any).BookVars['adventure_pages'] = 0;
+          ((s as any).BookVars ?? {})['adventure_pages'] = 0;
         } else {
           if (((s as any).lib_book_loaned ?? 0) === 'a fantasy novel') {
-            (s as any).BookVars['fantasy_pages'] = 0;
+            ((s as any).BookVars ?? {})['fantasy_pages'] = 0;
           } else {
             if (((s as any).lib_book_loaned ?? 0) === 'a romance novel') {
-              (s as any).BookVars['romance_pages'] = 0;
+              ((s as any).BookVars ?? {})['romance_pages'] = 0;
             } else {
               if (((s as any).lib_book_loaned ?? 0) === 'a science book') {
-                (s as any).BookVars['science_pages'] = 0;
+                ((s as any).BookVars ?? {})['science_pages'] = 0;
               } else {
                 if (((s as any).lib_book_loaned ?? 0) === 'a science fiction novel') {
-                  (s as any).BookVars['scifi_pages'] = 0;
+                  ((s as any).BookVars ?? {})['scifi_pages'] = 0;
                 }
               }
             }
@@ -141,7 +141,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lib_book_loaned ?? 0) === ''  &&  (!((s as any).lib_debt ?? 0))) {
     scene.actions([
       { label: 'Borrow an adventure novel', handler: (st: GameState) => {
-    (s as any).mc_inventory['adventure_books'] = ((s as any).mc_inventory['adventure_books'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['adventure_books'] = (((s as any).mc_inventory ?? {})['adventure_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find an adventure novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -154,7 +154,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a fantasy novel', handler: (st: GameState) => {
-    (s as any).mc_inventory['fantasy_books'] = ((s as any).mc_inventory['fantasy_books'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['fantasy_books'] = (((s as any).mc_inventory ?? {})['fantasy_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a fantasy novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -167,7 +167,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a romance novel', handler: (st: GameState) => {
-    (s as any).mc_inventory['romance_books'] = ((s as any).mc_inventory['romance_books'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['romance_books'] = (((s as any).mc_inventory ?? {})['romance_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a fantasy novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -180,7 +180,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a science book', handler: (st: GameState) => {
-    (s as any).mc_inventory['science_books'] = ((s as any).mc_inventory['science_books'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['science_books'] = (((s as any).mc_inventory ?? {})['science_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a science book that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');
@@ -193,7 +193,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Borrow a science fiction novel', handler: (st: GameState) => {
-    (s as any).mc_inventory['scifi_books'] = ((s as any).mc_inventory['scifi_books'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['scifi_books'] = (((s as any).mc_inventory ?? {})['scifi_books'] ?? 0) + (1);
     (s as any).lib_book_read = 0;
     (s as any).lib_debt = (-700);
     scene.text('You find a science fiction novel that catches your interest and bring it to the librarian, who notes your name and the title of the book down before handing it to you.');

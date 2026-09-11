@@ -13,12 +13,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Shoot a scene with blowjob', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (2);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (2);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     scene.text('You purse your lips and start sucking on the first cock while vigorously pistoning the other shaft with your hand. You alternate sucking and pistoning each cock with gusto, going as far as trying to swallow both simultaneously all while making eye contact with the lens in the hope of enticing your viewers.');
     scene.actions([
       { label: 'Get into doggy-style', handler: (st: GameState) => {
-    (s as any).stat['anal'] = ((s as any).stat['anal'] ?? 0) + (1);
+    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (1);
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     scene.text('One of the actors bends on all fours and unceremoniously jams his rod up your ass. He then proceeds to pound your butt into submission while you continue sucking away on your 2nd costars juicy man meat…');
     scene.actions([
@@ -29,7 +29,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Your male costars exchange roles fucking your face and ass. You slather away unpreoccupied by the taste of your own ass.');
     scene.actions([
       { label: 'Prepare for double penetration', handler: (st: GameState) => {
-    (s as any).stat['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
+    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     scene.text('Your juicy pussy is being jackhammered to heaven when you feel something large probing your backdoor. Your ass tingles with arousal as it stretches to accommodate your new invader.-');
     scene.actions([
@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You let yourself be manhandled and stretched by the two brutes fucking you into pleasure numbing submission with their large pleasure rods. They roll you over and spread your legs farther apart giving the camera an excellent view of dripping quim and orgasming rosebud.');
     scene.actions([
       { label: 'Time to finish…', handler: (st: GameState) => {
-    (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
+    ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
     scene.text('Reaching their limits the men pull out of you in earnest. You quickly kneel and open your mouth licking your lips as you await your favorite tasty treat. The actors jackoff furiously as jets of hot cum start raining down on your face. You must have worked them pretty good as your face is rapidly drenched in cock juice that starts to drip down your chin and on to your chest!');
     scene.actions([
       { label: 'Get paid', handler: (st: GameState) => {

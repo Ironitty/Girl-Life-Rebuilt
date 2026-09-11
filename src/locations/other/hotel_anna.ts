@@ -169,7 +169,7 @@ function enter3b(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Choose a toy for a demonstration', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/ztoy.jpg');
     scene.text('Anna presents you some toys to choose from:');
@@ -239,7 +239,7 @@ function enter4a(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Choose something for a demonstration', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionhotel/zrestr.jpg');
     scene.text('A set of items stand in front of you');
@@ -413,7 +413,7 @@ function enterScanningPath(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act'Man':
     qspCall(s, 'stat', '');
     (s as any).IgorevnaBDSM_session_slaveM = 1;
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg');
     scene.text('<center><b>"…Man uh? Generally speaking they are much more difficult to control expecially at the beginning, but do not worry: once you keep them at the balls they are marvelous. Anyway, we\'ll play easy with a loyal servant, so you have nothing to be worried about. Oh! And before you ask: no sex allowed. I forbid my pet to have sex this month… so… well, i\'m sure you can deal with that."</b></center>');
     scene.actions([
@@ -425,7 +425,7 @@ function enterScanningPath(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: act'Woman':
   qspCall(s, 'stat', '');
   (s as any).IgorevnaBDSM_session_slaveF = 1;
-  (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+  ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/Annapract18.jpg');
   scene.text('<center><b>"…Woman uh? Generally speaking they are easier to control expecially at the beginning: but every rules have their own exception… hehehe. Anyway, we\'ll play easy with a loyal servant, so you have nothing to be worried about. Oh! And before you ask: no sex allowed. I forbid my pet to have sex this month… so… well, i\'m sure you can deal with that."</b></center>');
   scene.actions([

@@ -37,29 +37,29 @@ function enterRandomOpp(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: $opp_name[i] = 'Opponent 1'
   // TODO-QSP: $opp_image[i] = 'images/locations/shared/street/mugger.jpg'
-  (s as any).opp_def[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_run[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_wrstlng[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_kick[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_punch[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_jab[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_stren[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_agil[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_vital[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_health[String((s as any).i ?? 0)] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
-  (s as any).opp_react[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_willpwr[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  (s as any).opp_shoot[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_def ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_run ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_wrstlng ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_kick ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_punch ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_jab ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_stren ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_agil ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_vital ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_health ?? {})[String((s as any).i ?? 0)] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
+  ((s as any).opp_react ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_willpwr ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_shoot ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
   scene.build();
 }
 
 function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
-  (s as any).fightAppDam['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).fightAppDam['TargetNumber'] = qspUntranslated(s, "ARGS[2]", { location: "fight" });
-  (s as any).fightAppDam['Damage'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
-  (s as any).fightAppDam['TargetName'] = 0;
-  (s as any).fightAppDam['Shield'] = 0;
-  (s as any).fightAppDam['OverShieldDamage'] = 0;
+  ((s as any).fightAppDam ?? {})['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).fightAppDam ?? {})['TargetNumber'] = qspUntranslated(s, "ARGS[2]", { location: "fight" });
+  ((s as any).fightAppDam ?? {})['Damage'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
+  ((s as any).fightAppDam ?? {})['TargetName'] = 0;
+  ((s as any).fightAppDam ?? {})['Shield'] = 0;
+  ((s as any).fightAppDam ?? {})['OverShieldDamage'] = 0;
   // TODO-QSP: dynamic "
   if (((s as any).fightAppDam ?? 0)?.['TargetType']((s as any)._clone ?? 0)[((s as any).fightAppDam ?? 0)?.['TargetNumber']] > 0) {
     // TODO-QSP: <<$fightAppDam['TargetType']>>_clone[<<fightAppDam['TargetNumber']>>] -= 1
@@ -133,14 +133,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :PCSTimerInit
   if (((s as any).i ?? 0) < Object.keys((s as any).pcs_health ?? {}).length) {
-    (s as any).pcs_timer[String((s as any).i ?? 0)] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+    ((s as any).pcs_timer ?? {})[String((s as any).i ?? 0)] = 60 - (((s as any).pcs_react ?? 0)?.[String((s as any).i ?? 0)]/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'PCSTimerInit'
   }
   (s as any).i = 0;
   // TODO-QSP: :OppTimerInit
   if (((s as any).i ?? 0) < Object.keys((s as any).opp_health ?? {}).length) {
-    (s as any).opp_timer[String((s as any).i ?? 0)] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
+    ((s as any).opp_timer ?? {})[String((s as any).i ?? 0)] = 60 - (((s as any).opp_react ?? 0)?.[String((s as any).i ?? 0)]/2);
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'OppTimerInit'
   }
@@ -158,7 +158,7 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :LowTimerLoop1
   if (((s as any).i ?? 0) < Object.keys((s as any).pcs_timer ?? {}).length) {
     if (((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      (s as any).pcs_stun[String((s as any).i ?? 0)] = ((s as any).pcs_stun[String((s as any).i ?? 0)] ?? 0) - (1);
+      ((s as any).pcs_stun ?? {})[String((s as any).i ?? 0)] = (((s as any).pcs_stun ?? {})[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
       if (((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
         if (((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
@@ -174,7 +174,7 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :LowTimerLoop2
   if (((s as any).i ?? 0) < Object.keys((s as any).opp_timer ?? {}).length) {
     if (((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      (s as any).opp_stun[String((s as any).i ?? 0)] = ((s as any).opp_stun[String((s as any).i ?? 0)] ?? 0) - (1);
+      ((s as any).opp_stun ?? {})[String((s as any).i ?? 0)] = (((s as any).opp_stun ?? {})[String((s as any).i ?? 0)] ?? 0) - (1);
     } else {
       if (((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)] > 0) {
         if (((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)] < ((s as any).fightTimLow ?? 0)) {
@@ -193,10 +193,10 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fight_start ?? 0) === 1) {
     (s as any).fight_start = 0;
     if (((s as any).spellavtoklon ?? 0) === 1) {
-      (s as any).pcs_clone[0] = 3;
+      ((s as any).pcs_clone ?? {})[0] = 3;
     }
     if (((s as any).spellbefshild ?? 0) === 1) {
-      (s as any).pcs_shield[0] = 500;
+      ((s as any).pcs_shield ?? {})[0] = 500;
     }
   }
   qspCall(s, 'fight', 'result_check');
@@ -206,30 +206,30 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrintStats(s: GameState, scene: SceneBuilder): void {
-  (s as any).fightPStats['CharType'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).fightPStats ?? {})['CharType'] = ((s as any).locArgs?.[1] ?? 0);
   (s as any).i = qspUntranslated(s, "ARGS[2]", { location: "fight" });
   if (((s as any).fightPStats ?? 0)?.['CharType'] === 'opp') {
-    (s as any).fightPStats['Name'] = ((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Health'] = ((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Mana'] = ((s as any).opp_mana ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Willpower'] = ((s as any).opp_willpwr ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Shield'] = ((s as any).opp_shield ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Fog'] = ((s as any).opp_fog ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Clone'] = ((s as any).opp_clone ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Stun'] = ((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Timer'] = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Image'] = ((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Name'] = ((s as any).opp_name ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Health'] = ((s as any).opp_health ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Mana'] = ((s as any).opp_mana ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Willpower'] = ((s as any).opp_willpwr ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Shield'] = ((s as any).opp_shield ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Fog'] = ((s as any).opp_fog ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Clone'] = ((s as any).opp_clone ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Stun'] = ((s as any).opp_stun ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Timer'] = ((s as any).opp_timer ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Image'] = ((s as any).opp_image ?? 0)?.[String((s as any).i ?? 0)];
   } else {
-    (s as any).fightPStats['Name'] = ((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Health'] = ((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Mana'] = ((s as any).pcs_mana ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Willpower'] = ((s as any).pcs_willpwr ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Shield'] = ((s as any).pcs_shield ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Fog'] = ((s as any).pcs_fog ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Clone'] = ((s as any).pcs_clone ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Stun'] = ((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Timer'] = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
-    (s as any).fightPStats['Image'] = ((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Name'] = ((s as any).pcs_name ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Health'] = ((s as any).pcs_health ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Mana'] = ((s as any).pcs_mana ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Willpower'] = ((s as any).pcs_willpwr ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Shield'] = ((s as any).pcs_shield ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Fog'] = ((s as any).pcs_fog ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Clone'] = ((s as any).pcs_clone ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Stun'] = ((s as any).pcs_stun ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Timer'] = ((s as any).pcs_timer ?? 0)?.[String((s as any).i ?? 0)];
+    ((s as any).fightPStats ?? {})['Image'] = ((s as any).pcs_image ?? 0)?.[String((s as any).i ?? 0)];
   }
   // TODO-QSP: <tr>
   // TODO-QSP: <td rowspan=4 align=right valign=center>
@@ -319,25 +319,25 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   (s as any).fightAtk_TargetNumber = qspUntranslated(s, "ARGS[3]", { location: "fight" });
   (s as any).fightAtk_AttackerNumber = qspUntranslated(s, "ARGS[4]", { location: "fight" });
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
-    (s as any).fightAtk['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
-    (s as any).fightAtk['AttackerName'] = 'You';
+    ((s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+    ((s as any).fightAtk ?? {})['AttackerName'] = 'You';
     // TODO-QSP: gs 'exp_gain', $AttackSkill[fightAtk_Type], rand(1, 3)
     qspCall(s, 'exp_gain', 'def', Math.floor(Math.random() * 3) + 0);
   } else {
     if (((s as any).fightAtk_TargetType ?? 0) === 'opp') {
-      (s as any).fightAtk['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
-      (s as any).fightAtk['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      ((s as any).fightAtk ?? {})['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
+      ((s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
     } else {
-      (s as any).fightAtk['AttackerName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
-      (s as any).fightAtk['DefenderName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
+      ((s as any).fightAtk ?? {})['AttackerName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
+      ((s as any).fightAtk ?? {})['DefenderName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
     }
   }
-  (s as any).fightAtk['AttackerSkillValue'] = 0;
-  (s as any).fightAtk['TargetReactValue'] = 0;
-  (s as any).fightAtk['TargetAgilValue'] = 0;
-  (s as any).fightAtk['TargetHealthBefore'] = 0;
-  (s as any).fightAtk['MinDamage'] = ((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
-  (s as any).fightAtk['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  ((s as any).fightAtk ?? {})['AttackerSkillValue'] = 0;
+  ((s as any).fightAtk ?? {})['TargetReactValue'] = 0;
+  ((s as any).fightAtk ?? {})['TargetAgilValue'] = 0;
+  ((s as any).fightAtk ?? {})['TargetHealthBefore'] = 0;
+  ((s as any).fightAtk ?? {})['MinDamage'] = ((s as any).AttackMin ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
+  ((s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
     // TODO-QSP: dynamic text: You attempt to <<$fightAtk_Type_str>> <<$fightAtk["DefenderName"]>>!
     scene.text(`You attempt to ${((s as any).fightAtk_Type_str ?? 0)} ${((s as any).fightAtk ?? 0)?.['DefenderName']}!`);
@@ -348,11 +348,11 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   if ((0 as any) > 0) {
     (s as any).rand_fogRedDmgMax = ((s as any).rand ?? 0)(0, ((s as any).fightAtk ?? {})?.['MaxDamage']-((s as any).fightAtk ?? {})?.['MinDamage']) + ((s as any).fightAtk ?? {})?.['MinDamage'];
     (s as any).rand_fogRedDmgMin = qspUntranslated(s, "rand(0, fightAtk['MinDamage'])", { location: "fight" });
-    (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
-    (s as any).fightAtk['MinDamage'] = ((s as any).fightAtk['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
-    (s as any).fightAtk['Damage'] = qspUntranslated(s, "rand(fightAtk['MinDamage'], fightAtk['MaxDamage'])", { location: "fight" });
+    ((s as any).fightAtk ?? {})['MaxDamage'] = (((s as any).fightAtk ?? {})['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
+    ((s as any).fightAtk ?? {})['MinDamage'] = (((s as any).fightAtk ?? {})['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
+    ((s as any).fightAtk ?? {})['Damage'] = qspUntranslated(s, "rand(fightAtk['MinDamage'], fightAtk['MaxDamage'])", { location: "fight" });
     if (((s as any).fightAtk ?? 0)?.['MaxDamage'] < ((s as any).fightAtk ?? 0)?.['MinDamage']) {
-      (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk ?? 0)?.['MinDamage'];
+      ((s as any).fightAtk ?? {})['MaxDamage'] = ((s as any).fightAtk ?? 0)?.['MinDamage'];
     }
     // TODO-QSP: dynamic "<<$fightAtk_TargetType>>_fog[<<fightAtk_TargetNumber>>] -= rand(1, 5)"
   }
@@ -374,7 +374,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'fight', 'applyDamage', $fightAtk_TargetType, fightAtk_TargetNumber, fightAtk['Damage']
     }
   }
-  (s as any).fightAtk['TargetHealthLoss'] = 0;
+  ((s as any).fightAtk ?? {})['TargetHealthLoss'] = 0;
   if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss']*2 > ((s as any).fightAtk ?? 0)?.['TargetHealthBefore']) {
     qspCall(s, 'fight', 'devastating');
   } else {
@@ -886,12 +886,12 @@ function enterBuildCasterSpellList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpellCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).spellCheckVar['SpellName'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).spellCheckVar['TargetType'] = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).spellCheckVar['TargetNumber'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
-  (s as any).spellCheckVar['CasterType'] = ((s as any).locArgs?.[4] ?? 0);
-  (s as any).spellCheckVar['CasterNumber'] = qspUntranslated(s, "ARGS[5]", { location: "fight" });
-  (s as any).spellCheckVar['CasterMana'] = 0;
+  ((s as any).spellCheckVar ?? {})['SpellName'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).spellCheckVar ?? {})['TargetType'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).spellCheckVar ?? {})['TargetNumber'] = qspUntranslated(s, "ARGS[3]", { location: "fight" });
+  ((s as any).spellCheckVar ?? {})['CasterType'] = ((s as any).locArgs?.[4] ?? 0);
+  ((s as any).spellCheckVar ?? {})['CasterNumber'] = qspUntranslated(s, "ARGS[5]", { location: "fight" });
+  ((s as any).spellCheckVar ?? {})['CasterMana'] = 0;
   if ((Array.isArray((s as any).casterSpellList) ? ((s as any).casterSpellList as any[]).indexOf(((s as any).spellCheckVar ?? 0)?.['SpellName']) : -1)>=0  &&  ((s as any).spellCheckVar ?? 0)?.['CasterMana'] >= ((s as any).spellMana ?? 0)[((s as any).spellCheckVar ?? 0)?.['SpellName']]) {
     if (((s as any).spellTarget ?? 0)[((s as any).spellCheckVar ?? 0)?.['SpellName']] === 'self') {
       // TODO-QSP: gs 'castSpellNPC', $spellCheckVar['SpellName'], $spellCheckVar['CasterType'], spellCheckVar['CasterN...

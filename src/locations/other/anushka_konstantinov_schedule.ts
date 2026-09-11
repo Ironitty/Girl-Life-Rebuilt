@@ -4,43 +4,43 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterGetLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A144'] === 0) {
-    (s as any).npcLocation['A144'] = 'Anushka not home Fri and Sat \'+func(\'time\', \'get_time_string\', 20, 0)+\' for rest of night';
+    ((s as any).npcLocation ?? {})['A144'] = 'Anushka not home Fri and Sat \'+func(\'time\', \'get_time_string\', 20, 0)+\' for rest of night';
   } else {
     if (((s as any).locat ?? 0)?.['A144'] === 1) {
-      (s as any).npcLocation['A144'] = 'Anushka in the hallway at her city apartment';
+      ((s as any).npcLocation ?? {})['A144'] = 'Anushka in the hallway at her city apartment';
     } else {
       if (((s as any).locat ?? 0)?.['A144'] === 2) {
-        (s as any).npcLocation['A144'] = 'Anushka in her room at her city apartment';
+        ((s as any).npcLocation ?? {})['A144'] = 'Anushka in her room at her city apartment';
       } else {
         if (((s as any).locat ?? 0)?.['A144'] === 3) {
-          (s as any).npcLocation['A144'] = 'Anushka in Radomir\'s room at her city apartment';
+          ((s as any).npcLocation ?? {})['A144'] = 'Anushka in Radomir\'s room at her city apartment';
         } else {
           if (((s as any).locat ?? 0)?.['A144'] === 4) {
-            (s as any).npcLocation['A144'] = 'Anushka in the kitchen at her city apartment';
+            ((s as any).npcLocation ?? {})['A144'] = 'Anushka in the kitchen at her city apartment';
           } else {
             if (((s as any).locat ?? 0)?.['A144'] === 5) {
-              (s as any).npcLocation['A144'] = 'Anushka in the livingroom at her city apartment';
+              ((s as any).npcLocation ?? {})['A144'] = 'Anushka in the livingroom at her city apartment';
             } else {
               if (((s as any).locat ?? 0)?.['A144'] === 6) {
-                (s as any).npcLocation['A144'] = 'Anushka in Valentin and Arkadi\'s room';
+                ((s as any).npcLocation ?? {})['A144'] = 'Anushka in Valentin and Arkadi\'s room';
               } else {
                 if (((s as any).locat ?? 0)?.['A144'] === 7) {
-                  (s as any).npcLocation['A144'] = 'Anushka in the bathroom';
+                  ((s as any).npcLocation ?? {})['A144'] = 'Anushka in the bathroom';
                 } else {
                   if (((s as any).locat ?? 0)?.['A144'] === 8) {
-                    (s as any).npcLocation['A144'] = 'Anushka is in the garage with the band Wed \'+func(\'time\', \'get_time_string\', 18, 0)+\' - \'+func(\'time\', \'get_time_string\', 23, 0)+\'';
+                    ((s as any).npcLocation ?? {})['A144'] = 'Anushka is in the garage with the band Wed \'+func(\'time\', \'get_time_string\', 18, 0)+\' - \'+func(\'time\', \'get_time_string\', 23, 0)+\'';
                   } else {
                     if (((s as any).locat ?? 0)?.['A144'] === 9) {
-                      (s as any).npcLocation['A144'] = 'Anushka is at her job at the The Coffee Hole';
+                      ((s as any).npcLocation ?? {})['A144'] = 'Anushka is at her job at the The Coffee Hole';
                     } else {
                       if (((s as any).locat ?? 0)?.['A144'] === 10) {
-                        (s as any).npcLocation['A144'] = 'Anushka is at the University classes \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 15, 0)+\'';
+                        ((s as any).npcLocation ?? {})['A144'] = 'Anushka is at the University classes \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 15, 0)+\'';
                       } else {
                         if (((s as any).locat ?? 0)?.['A144'] === 11) {
-                          (s as any).npcLocation['A144'] = 'Anushka is at the modeling studio First Sat of each month \'+func(\'time\', \'get_time_string\', 8, 0)+\' to \'+func(\'time\', \'get_time_string\', 16, 0)+\'';
+                          ((s as any).npcLocation ?? {})['A144'] = 'Anushka is at the modeling studio First Sat of each month \'+func(\'time\', \'get_time_string\', 8, 0)+\' to \'+func(\'time\', \'get_time_string\', 16, 0)+\'';
                         } else {
                           if (((s as any).locat ?? 0)?.['A144'] === 12) {
-                            (s as any).npcLocation['A144'] = 'Anushka is at the University Library Mon and Wed from \'+func(\'time\', \'get_time_string\', 15, 0)+\' till \'+func(\'time\', \'get_time_string\', 18, 0)+\'';
+                            ((s as any).npcLocation ?? {})['A144'] = 'Anushka is at the University Library Mon and Wed from \'+func(\'time\', \'get_time_string\', 15, 0)+\' till \'+func(\'time\', \'get_time_string\', 18, 0)+\'';
                           }
                         }
                       }

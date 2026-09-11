@@ -24,7 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).masseuse ?? 0)?.['uniform'] !== 1) {
       if ((((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).daystart ?? 0)) + ', 0'] !== ''  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13  &&  ((s as any).masseuse ?? 0)['worked_' + ((s as any).daystart ?? 0) + '_1'] === 0)  ||  (((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).daystart ?? 0)) + ', 1'] !== ''  &&  ((s as any).hour ?? 0) >= 13  &&  ((s as any).hour ?? 0) < 17  &&  ((s as any).masseuse ?? 0)['worked_' + ((s as any).daystart ?? 0) + '_2'] === 0)  ||  (((s as any).job_booking ?? 0)['city_salon_masseuse, ' + String(((s as any).daystart ?? 0)) + ', 2'] !== ''  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).masseuse ?? 0)['worked_' + ((s as any).daystart ?? 0) + '_3'] === 0)) {
         if (((s as any).masseuse ?? 0)?.['late'] === 0) {
-          (s as any).masseuse['late'] = 1;
+          ((s as any).masseuse ?? {})['late'] = 1;
           scene.text('"Hey!" Xian yells at you from the front desk. "You\'re late! You\'re being docked an hour\'s pay for that! Now get changed and get in there!"');
         }
       }
@@ -318,8 +318,8 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     scene.text('"Okay, that all sounds fine."');
     scene.text('"Great!" she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 1;
-      (s as any).masseuse['hourly'] = 100;
+      ((s as any).masseuse ?? {})['pending_rank'] = 1;
+      ((s as any).masseuse ?? {})['hourly'] = 100;
       scene.text('"Yes, I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -340,7 +340,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhoreOffer(s: GameState, scene: SceneBuilder): void {
-  (s as any).masseuse['brothel_know'] = 1;
+  ((s as any).masseuse ?? {})['brothel_know'] = 1;
   scene.text('"In addition to giving normal massages, some of our masseuses offer more... intimate services. Namely, performing the massages while naked, performing handjobs, performing blowjobs, or having sex with the customer. What I mean to say is that we function as a salon, a massage parlor, and a brothel. If you would like to be paid more, we offer specialty positions for sex work. Are you interested in that kind of work?"');
   scene.actions([
     { label: 'Ew, not interested', handler: (st: GameState) => {
@@ -362,8 +362,8 @@ function enterWhoreOffer(s: GameState, scene: SceneBuilder): void {
     scene.text('"No way," you say. "I\'m not about selling my body like that. But I guess a normal masseuse job is fine."');
     scene.text('"Okay! We always need those." she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 1;
-      (s as any).masseuse['hourly'] = 100;
+      ((s as any).masseuse ?? {})['pending_rank'] = 1;
+      ((s as any).masseuse ?? {})['hourly'] = 100;
       scene.text('"Yes, I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist."');
@@ -420,8 +420,8 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I guess that\'s fine."');
     scene.text('"So, are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 1;
-      (s as any).masseuse['hourly'] = 100;
+      ((s as any).masseuse ?? {})['pending_rank'] = 1;
+      ((s as any).masseuse ?? {})['hourly'] = 100;
       scene.text('"Yes, I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -444,8 +444,8 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think I\'d rather just be a regular masseuse."');
     scene.text('"That\'s fine too! Always need those," she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 1;
-      (s as any).masseuse['hourly'] = 100;
+      ((s as any).masseuse ?? {})['pending_rank'] = 1;
+      ((s as any).masseuse ?? {})['hourly'] = 100;
       scene.text('"Yes I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -466,8 +466,8 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wouldn\'t mind being a naked masseuse," you say.');
     scene.text('"Alright, that\'s fine," she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 2;
-      (s as any).masseuse['hourly'] = 125;
+      ((s as any).masseuse ?? {})['pending_rank'] = 2;
+      ((s as any).masseuse ?? {})['hourly'] = 125;
       scene.text('"Yes I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -490,8 +490,8 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I wouldn\'t mind giving the occasional handjob," you say.');
     scene.text('"Alright, that\'s fine," she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 3;
-      (s as any).masseuse['hourly'] = 150;
+      ((s as any).masseuse ?? {})['pending_rank'] = 3;
+      ((s as any).masseuse ?? {})['hourly'] = 150;
       scene.text('"Yes, I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -514,8 +514,8 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I can give blowjobs," you say.');
     scene.text('"Great!" she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 4;
-      (s as any).masseuse['hourly'] = 175;
+      ((s as any).masseuse ?? {})['pending_rank'] = 4;
+      ((s as any).masseuse ?? {})['hourly'] = 175;
       scene.text('"Yes, I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -538,8 +538,8 @@ function enterWhoreOffer2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sure, I\'ll be your whore," you say. "Easy enough to fuck people for money."');
     scene.text('"Fantastic!" she says. "And are you a certified massage therapist?"');
     if (((s as any).license ?? 0)?.['masseuse'] === 1) {
-      (s as any).masseuse['pending_rank'] = 5;
-      (s as any).masseuse['hourly'] = 250;
+      ((s as any).masseuse ?? {})['pending_rank'] = 5;
+      ((s as any).masseuse ?? {})['hourly'] = 250;
       scene.text('"Yes I am."');
       scene.text('"Okay, can I see your certificate?"');
       scene.text('You pull out the paper that certifies you as a massage therapist.');
@@ -566,7 +566,7 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
   scene.text('"And were you looking to be a full timer or a part timer? As a reminder, full timers are expected to work 10 shifts a week, part timers work 5. Full timers also get priority on available shifts."');
   scene.actions([
     { label: 'Part time', handler: (st: GameState) => {
-    (s as any).masseuse['shifts_required'] = 5;
+    ((s as any).masseuse ?? {})['shifts_required'] = 5;
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Part time."');
     scene.text('"Okay," she prints out a piece of paper and pushes a pen towards you. "This is an employee contract for a part time masseuse. Just sign there at the bottom and I\'ll give you a quick orientation."');
@@ -581,7 +581,7 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Full time', handler: (st: GameState) => {
-    (s as any).masseuse['shifts_required'] = 10;
+    ((s as any).masseuse ?? {})['shifts_required'] = 10;
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Full time."');
     scene.text('"Okay," she prints out a piece of paper and pushes a pen towards you. "This is an employee contract for a full time masseuse. Just sign there at the bottom and I\'ll give you a quick orientation."');
@@ -600,11 +600,11 @@ function enterPartTimeFullTime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
-  (s as any).masseuse['hired_day'] = ((s as any).daystart ?? 0);
+  ((s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
   // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
-  (s as any).masseuse['salon_state'] = '';
-  (s as any).masseuse['pending_rank'] = 0;
+  ((s as any).masseuse ?? {})['salon_state'] = '';
+  ((s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
   scene.text('You scribble out a signature and she takes the paper back from you.');
   scene.text('"Thank you very much! So for future reference, I\'m Xian, one of the managers here. All your clients will come to me and will be able to request you based on whether you are available or not. Now if you\'ll quickly follow me."');
@@ -644,11 +644,11 @@ function enterMasseuseOrientation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhoreOrientation(s: GameState, scene: SceneBuilder): void {
-  (s as any).masseuse['hired_day'] = ((s as any).daystart ?? 0);
+  ((s as any).masseuse ?? {})['hired_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'jobs', 'set_employed', 'city_salon_masseuse');
   // TODO-QSP: gs 'jobs', 'set_rank', 'city_salon_masseuse', masseuse['pending_rank']
-  (s as any).masseuse['salon_state'] = '';
-  (s as any).masseuse['pending_rank'] = 0;
+  ((s as any).masseuse ?? {})['salon_state'] = '';
+  ((s as any).masseuse ?? {})['pending_rank'] = 0;
   scene.img('images/locations/city/citycenter/mall/salon/salon.jpg');
   scene.text('You scribble out a signature and she takes the paper back from you.');
   scene.text('"Thank you very much! So for future reference, I\'m Xian, one of the managers here. All your clients will come to me and will be able to request you based on whether you are available or not. Now if you\'ll quickly follow me."');
@@ -694,7 +694,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).masseuse ?? 0)?.['brothel_know'] === 1) {
       scene.actions([
         { label: 'Why did you tell me about the whoring?', handler: (st: GameState) => {
-    (s as any).masseuse['brothel_question'] = 1;
+    ((s as any).masseuse ?? {})['brothel_question'] = 1;
     qspCall(s, 'salon', 'questions');
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Uhhhh, yeah... Why did you tell me about all the whoring stuff? I thought we agreed I\'m just working as a normal masseuse?"');
@@ -704,7 +704,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Why did you tell me all that... other stuff?', handler: (st: GameState) => {
-    (s as any).masseuse['brothel_question'] = 1;
+    ((s as any).masseuse ?? {})['brothel_question'] = 1;
     qspCall(s, 'salon', 'questions');
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Uhhhh, yeah... Why did you tell me about all that... other stuff?"');
@@ -716,7 +716,7 @@ function enterQuestions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['brothel_question'] === 1) {
     scene.actions([
       { label: 'This is a brothel?!', handler: (st: GameState) => {
-    (s as any).masseuse['brothel_know'] = 1;
+    ((s as any).masseuse ?? {})['brothel_know'] = 1;
     qspCall(s, 'salon', 'questions');
     scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
     scene.text('"Wait, do you mean this is some kind of brothel?!"');
@@ -764,7 +764,7 @@ function enterLockers(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['uniform'] === 1) {
     scene.actions([
       { label: 'Put your normal clothes back on', handler: (st: GameState) => {
-    (s as any).masseuse['uniform'] = 0;
+    ((s as any).masseuse ?? {})['uniform'] = 0;
     (s as any).robe = 0;
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'outfit', 'dress', 'masseuseQW');
@@ -790,7 +790,7 @@ function enterLockers(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Get changed for work', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'undress', 'masseuseQW');
-    (s as any).masseuse['uniform'] = 1;
+    ((s as any).masseuse ?? {})['uniform'] = 1;
     (s as any).robe = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/salon/work/lockers.jpg');
@@ -822,7 +822,7 @@ function enterLeiWork(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeiWork2(s: GameState, scene: SceneBuilder): void {
-  (s as any).masseuse['lei_peek'] = 1;
+  ((s as any).masseuse ?? {})['lei_peek'] = 1;
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     qspCall(s, 'arousal', 'voyeur', 1);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -871,20 +871,20 @@ function enterResignation(s: GameState, scene: SceneBuilder): void {
   scene.text('"I actually wanted to resign my position here."');
   scene.text('"Oh," she says. "I\'m sorry to hear that."');
   if (((s as any).job_bonus_pay ?? 0)?.['city_salon_masseuse'] > 0) {
-    (s as any).masseuse['paycheck'] = qspFunc(s, 'jobs', 'paycheck', 'city_salon_masseuse', 'cash');
+    ((s as any).masseuse ?? {})['paycheck'] = qspFunc(s, 'jobs', 'paycheck', 'city_salon_masseuse', 'cash');
     scene.text('Reaching down below the desk, she shuffles around in a drawer and stuffs some money into an envelope. "Well, here\'s your pay for the shifts you worked earlier this week."');
   }
   scene.text('"If you ever want to come back, you just let us know," she smiles at you.');
   if (((s as any).masseuse ?? 0)?.['uniform'] === 1) {
-    (s as any).masseuse['uniform'] = 0;
+    ((s as any).masseuse ?? {})['uniform'] = 0;
     (s as any).robe = 0;
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'outfit', 'dress', 'masseuseQW');
   }
   scene.text('You retrieve your clothes from your locker and get dressed ready to leave.');
-  (s as any).masseuse['last_rank'] = ((s as any).job_rank ?? 0)?.['city_salon_masseuse'];
+  ((s as any).masseuse ?? {})['last_rank'] = ((s as any).job_rank ?? 0)?.['city_salon_masseuse'];
   qspCall(s, 'jobs', 'set_terminated', 'city_salon_masseuse');
-  (s as any).masseuse['salon_state'] = 'resigned';
+  ((s as any).masseuse ?? {})['salon_state'] = 'resigned';
   scene.actions([
     { label: 'Leave', goto: ['salon', 'start'] },
   ]);
@@ -892,14 +892,14 @@ function enterResignation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPayday(s: GameState, scene: SceneBuilder): void {
-  (s as any).masseuse['paycheck'] = qspFunc(s, 'jobs', 'paycheck', 'city_salon_masseuse', 'cash');
+  ((s as any).masseuse ?? {})['paycheck'] = qspFunc(s, 'jobs', 'paycheck', 'city_salon_masseuse', 'cash');
   scene.img('images/locations/city/citycenter/mall/salon/xian.jpg');
   scene.text('"I\'m here to pick up my pay for this week."');
   scene.text('"Okay!" She opens up a drawer and thumbs through a few different labels before reaching into one and picking up an envelope. She hands it over to you.');
   if (((s as any).masseuse ?? 0)?.['hired_day'] <= ((s as any).daystart ?? 0) - 7) {
   } else {
     if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] < ((s as any).masseuse ?? 0)?.['shifts_required']) {
-      (s as any).masseuse['warning'] = ((s as any).masseuse['warning'] ?? 0) - (1);
+      ((s as any).masseuse ?? {})['warning'] = (((s as any).masseuse ?? {})['warning'] ?? 0) - (1);
       // TODO-QSP: dynamic text: "Hey, you only worked <<job_shifts_this_period['city_salon_masseuse']>> this wee...
       scene.text(`"Hey, you only worked ${((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse']} this week. You were supposed to work ${((s as any).masseuse ?? 0)?.['shifts_required']}."`);
       scene.text('"Sorry," you say, reaching for the envelope. "Won\'t happen again."');
@@ -926,15 +926,15 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
 function enterPaydayEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Looking inside, you see it's stuffed with cash that counts out to <<$func('money...
   scene.text(`Looking inside, you see it's stuffed with cash that counts out to ${qspFunc(s, 'money', 'string_profit', ((s as any).masseuse ?? 0)?.['paycheck'])}.`);
-  (s as any).masseuse['money_earned'] = ((s as any).masseuse['money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+  ((s as any).masseuse ?? {})['money_earned'] = (((s as any).masseuse ?? {})['money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
   if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] === 2) {
-    (s as any).masseuse['nude_mass_money_earned'] = ((s as any).masseuse['nude_mass_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+    ((s as any).masseuse ?? {})['nude_mass_money_earned'] = (((s as any).masseuse ?? {})['nude_mass_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
   } else {
     if (((s as any).job_rank ?? 0)?.['city_salon_masseuse'] > 2) {
-      (s as any).masseuse['sex_money_earned'] = ((s as any).masseuse['sex_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
+      ((s as any).masseuse ?? {})['sex_money_earned'] = (((s as any).masseuse ?? {})['sex_money_earned'] ?? 0) + (((s as any).masseuse ?? 0)?.['paycheck']);
     }
   }
-  (s as any).masseuse['paycheck'] = 0;
+  ((s as any).masseuse ?? {})['paycheck'] = 0;
   scene.build();
 }
 

@@ -15,12 +15,12 @@ function enterKGDhire(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 6;
   }
   if (((s as any).KGD ?? 0)['sput_' + ((s as any).i ?? 0)] === 0) {
-    (s as any).KGD['name_' + String((s as any).i || '') + ''] = ((s as any).type ?? 0);
-    (s as any).KGD['lvl_' + String((s as any).i || '') + ''] = 1;
-    (s as any).KGD['HP_' + String((s as any).i || '') + ''] = ((s as any).baseHP ?? 0);
-    (s as any).KGD['damage_' + String((s as any).i || '') + ''] = ((s as any).baseDam ?? 0);
-    (s as any).KGD['sput_' + String((s as any).i || '') + ''] = 1;
-    (s as any).KGD['exp_' + String((s as any).i || '') + ''] = 0;
+    ((s as any).KGD ?? {})['name_' + String((s as any).i || '') + ''] = ((s as any).type ?? 0);
+    ((s as any).KGD ?? {})['lvl_' + String((s as any).i || '') + ''] = 1;
+    ((s as any).KGD ?? {})['HP_' + String((s as any).i || '') + ''] = ((s as any).baseHP ?? 0);
+    ((s as any).KGD ?? {})['damage_' + String((s as any).i || '') + ''] = ((s as any).baseDam ?? 0);
+    ((s as any).KGD ?? {})['sput_' + String((s as any).i || '') + ''] = 1;
+    ((s as any).KGD ?? {})['exp_' + String((s as any).i || '') + ''] = 0;
     (s as any).i = 6;
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
@@ -31,26 +31,26 @@ function enterKGDhire(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMngFarm(s: GameState, scene: SceneBuilder): void {
-  (s as any).KGD['table'] = '<center><table border="0">';
-  (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Farm Manager</td></tr>');
+  ((s as any).KGD ?? {})['table'] = '<center><table border="0">';
+  ((s as any).KGD ?? {})['table'] = (((s as any).KGD ?? {})['table'] ?? 0) + ('<tr><td colspan="2" align="center">Farm Manager</td></tr>');
   (s as any).i = 1;
   // TODO-QSP: :farmmanage_loop
   if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 0) {
     (s as any).i = 10;
   }
   if (((s as any).KGD ?? 0)['farm_' + ((s as any).i ?? 0)] === 1) {
-    (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td>farm ' + qspUntranslated(s, "i>", { location: "KGDgame" }) + '</td><td>Level: \'+KGD[\'farm_level_<<i>>\']+\'</td><td>Production: \'+KGD[\'farm_rate_<<i>>\']*KGD[\'farm_level_<<i>>\']+\' R/D</td></tr>');
+    ((s as any).KGD ?? {})['table'] = (((s as any).KGD ?? {})['table'] ?? 0) + ('<tr><td>farm ' + qspUntranslated(s, "i>", { location: "KGDgame" }) + '</td><td>Level: \'+KGD[\'farm_level_<<i>>\']+\'</td><td>Production: \'+KGD[\'farm_rate_<<i>>\']*KGD[\'farm_level_<<i>>\']+\' R/D</td></tr>');
     if (((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0)] < 5  &&  ((s as any).KGD ?? 0)?.['money'] >= 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0)]) {
-      (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2"><a href="exec:KGD[\'farm_level_' + qspUntranslated(s, "i>", { location: "KGDgame" }) + '\'] += 1 & KGD[\'farm_rate_<<i>>\'] += 2 & KGD[\'money\'] -= 100*KGD[\'farm_level_<<i>>\'] & gt \'KGDgame\', \'MngFarm\'">Upgrade farm (<<100*KGD[\'farm_level_<<i>>\']>> resources)</a></td></tr>');
+      ((s as any).KGD ?? {})['table'] = (((s as any).KGD ?? {})['table'] ?? 0) + ('<tr><td colspan="2"><a href="exec:KGD[\'farm_level_' + qspUntranslated(s, "i>", { location: "KGDgame" }) + '\'] += 1 & KGD[\'farm_rate_<<i>>\'] += 2 & KGD[\'money\'] -= 100*KGD[\'farm_level_<<i>>\'] & gt \'KGDgame\', \'MngFarm\'">Upgrade farm (<<100*KGD[\'farm_level_<<i>>\']>> resources)</a></td></tr>');
     } else {
-      (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2">\' + $func(\'wrap\', \'neg\', \'Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + '']> + ' resources)\') + \'</td></tr>');
+      ((s as any).KGD ?? {})['table'] = (((s as any).KGD ?? {})['table'] ?? 0) + ('<tr><td colspan="2">\' + $func(\'wrap\', \'neg\', \'Upgrade farm (' + 100*((s as any).KGD ?? 0)['farm_level_' + ((s as any).i ?? 0) + '']> + ' resources)\') + \'</td></tr>');
     }
   }
   if (((s as any).i ?? 0) < 10) {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'farmmanage_loop'
   }
-  (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('</table></center>');
+  ((s as any).KGD ?? {})['table'] = (((s as any).KGD ?? {})['table'] ?? 0) + ('</table></center>');
   // TODO-QSP: $KGD['table']
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {

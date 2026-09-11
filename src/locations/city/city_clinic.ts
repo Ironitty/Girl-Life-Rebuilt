@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'See a doctor now (urgent)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).clinic['docheal'] = ((s as any).daystart ?? 0);
+    ((s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
     qspCall(s, 'medical_din', 'healthTreatment');
     qspCall(s, 'stat', '');
     scene.text('The doctor guides you to a bed and tells you to lie down, after which he gives you a combined painkiller, steroid and vitamin shot.');

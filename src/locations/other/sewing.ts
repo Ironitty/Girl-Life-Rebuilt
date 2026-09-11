@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('You do not have any further storage space, you need to sell some trinkets to make room before sewing more of them.');
       } else {
         (s as any).sew_trinket_success = Math.floor(Math.random() * 240) + 1;
-        (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+        ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
         if (((s as any).pcs_sewng ?? 0) >= 40) {
           qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
         }
@@ -68,11 +68,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             scene.img('images/pc/activities/sewing/trinket.jpg');
             // TODO-QSP: *p 'You spend some time trying to sew something together. After a half hour, you find yourself rewar...
             if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
-              (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) + (1);
+              ((s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})['trinkets_home'] ?? 0) + (1);
               // TODO-QSP: 'Storing it away, you figure you ' + iif(mc_inventory['trinkets_home'] < 30, 'still have space for a...
               scene.text('You wonder if you can sell them somewhere.');
             } else {
-              (s as any).mc_inventory['trinkets_garage'] = ((s as any).mc_inventory['trinkets_garage'] ?? 0) + (1);
+              ((s as any).mc_inventory ?? {})['trinkets_garage'] = (((s as any).mc_inventory ?? {})['trinkets_garage'] ?? 0) + (1);
               // TODO-QSP: 'The storage space in your room is full, but you can still store it in your stepfather''s garage, ' ...
               scene.text('You wonder how many you can sell at the train station.');
             }
@@ -90,7 +90,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterTapestry(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).newgobelen ?? 0))) {
-    (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
     (s as any).newgobelen = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
@@ -113,7 +113,7 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
       scene.text(`You spend an hour working on your tapestry, which is now ${((s as any).newgobelen ?? 0)/10} percent finished.`);
     }
     if (((s as any).newgobelen ?? 0) >= 1000) {
-      (s as any).mc_inventory['tapestry'] = ((s as any).mc_inventory['tapestry'] ?? 0) + (1);
+      ((s as any).mc_inventory ?? {})['tapestry'] = (((s as any).mc_inventory ?? {})['tapestry'] ?? 0) + (1);
       scene.text('Your work on the tapestry is done.');
     }
     scene.actions([

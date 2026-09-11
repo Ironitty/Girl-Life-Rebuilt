@@ -24,7 +24,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk around back to try and figure out why the cafe is closed and hear voices through the wall. It sounds like a woman screaming! You quickly look around and notice a stack of old crates. If you stand on them, you could reach a small window and see what\'s happening.');
     scene.actions([
       { label: 'Peek through the window', handler: (st: GameState) => {
-    (s as any).mother['slava_fuck'] = 1;
+    ((s as any).mother ?? {})['slava_fuck'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/event/momslut.jpg');
@@ -39,7 +39,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).locat['Mom_cafe_sex'] = 0;
+    ((s as any).locat ?? {})['Mom_cafe_sex'] = 0;
     if (((s as any).slavatalk ?? 0) === 1  &&  ((s as any).pcafejob ?? 0) > 0) {
       (s as any).slavatalk = 2;
     }

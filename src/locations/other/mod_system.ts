@@ -56,7 +56,7 @@ function enterArousal(s: GameState, scene: SceneBuilder): void {
 function enterOutfit(s: GameState, scene: SceneBuilder): void {
   return;
   // TODO-QSP: $modARGS[0] = $ARGS[2]
-  (s as any).modARGS[1] = qspUntranslated(s, "ARGS[3]", { location: "mod_system" });
+  ((s as any).modARGS ?? {})[1] = qspUntranslated(s, "ARGS[3]", { location: "mod_system" });
   qspCall(s, 'mod_system', 'core_loop');
   return;
   scene.build();

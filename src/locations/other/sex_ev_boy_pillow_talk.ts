@@ -9,7 +9,7 @@ function enterChecker(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['boy_pillow_talk'] > 0) {
       qspCall(s, 'sex_ev_boy_pillow_talk', 'boy_talk');
     } else {
-      (s as any).sex_ev['boy_pillow_talk'] = ((s as any).sex_ev['boy_pillow_talk'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['boy_pillow_talk'] = (((s as any).sex_ev ?? {})['boy_pillow_talk'] ?? 0) + (1);
     }
   }
   scene.build();
@@ -62,12 +62,12 @@ function enterBoyTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['buy_virginity'] > 0  &&  ((s as any).sex_ev ?? 0)?.['deflowered'] > 0  &&  ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  ((s as any).sex_ev ?? 0)?.['virginity_paid_talk'] === 0) {
       // TODO-QSP: $sex_ev_boy_topics[] = "xgt 'sex_ev_sugardaddy_talk', 'virginity_paid_talk'"
     } else {
-      (s as any).sex_ev['sugar_baby_offer'] = (-1);
+      ((s as any).sex_ev ?? {})['sugar_baby_offer'] = (-1);
     }
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'hookup'  &&  ((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] >= 2  &&  ((s as any).sex_ev ?? 0)?.['sugar_baby_offer'] === 0  &&  (((Math.floor(Math.random() * (2 - -1 + 1)) + (-1)) - ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)]) > 0  ||  ((s as any).sex_ev ?? 0)?.['prostitution'] === 1  ||  ((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
       // TODO-QSP: $sex_ev_boy_topics[] = "xgt 'sex_ev_sugardaddy_talk', 'sugar_baby_offer'"
     } else {
-      (s as any).sex_ev['sugar_baby_offer'] = (-1);
+      ((s as any).sex_ev ?? {})['sugar_baby_offer'] = (-1);
     }
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
       if (((s as any).npc_wife ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['wife_problem_talk'] === 0) {
@@ -93,22 +93,22 @@ function enterBoyTalk(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $sex_ev_boy_topics[] = "xgt 'sex_ev_boy_pillow_talk', 'boy_nerdy_slut_talk1'"
     }
     if (Object.keys((s as any).sex_ev_boy_topics ?? {}).length > 0) {
-      (s as any).sex_ev['boy_pillow_talk'] = 0;
+      ((s as any).sex_ev ?? {})['boy_pillow_talk'] = 0;
     }
   }
   scene.build();
 }
 
 function enterTemplate(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['template'] = 1;
+  ((s as any).sex_ev ?? {})['template'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   scene.build();
 }
 
 function enterDontSwallowTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
-  (s as any).sex_ev['dont_swallow_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_topics'] = (((s as any).sex_ev ?? {})['boy_topics'] ?? 0) - (1);
+  ((s as any).sex_ev ?? {})['dont_swallow_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   // TODO-QSP: dynamic text: "So you don't swallow?" <<$npcdesc>> asks.
@@ -117,8 +117,8 @@ function enterDontSwallowTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLikeCumTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
-  (s as any).sex_ev['like_cum_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_topics'] = (((s as any).sex_ev ?? {})['boy_topics'] ?? 0) - (1);
+  ((s as any).sex_ev ?? {})['like_cum_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   if (((s as any).npc_know_like_cum ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -186,7 +186,7 @@ function enterLikeCumTalk2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_boy_pillow_talk', 'dont_have_to_swallow_talk');
   } },
     { label: 'Just say it is because it\'s hot', handler: (st: GameState) => {
-    (s as any).npc_know_like_cum[String((s as any).npcID ?? 0)] = (-1);
+    ((s as any).npc_know_like_cum ?? {})[String((s as any).npcID ?? 0)] = (-1);
     if (((s as any).sex_ev ?? 0)?.['tasty_cum'] === 1) {
       scene.text('"It\'s just something I say if I\'m being honest," you admit. "I really don\'t like the taste all that much. It\'s salty and bitter and I kind of have to force it down a little. But guys think it\'s sexy when you say it so..."');
       scene.text('You shrug, a slightly guilty smile on your face.');
@@ -246,7 +246,7 @@ function enterDontHaveToSwallowTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyDrinkOffer(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['drink_fluid'] = 1;
+  ((s as any).sex_ev ?? {})['drink_fluid'] = 1;
   // TODO-QSP: $sex_ev['bed_room']
   if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_generous ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     // TODO-QSP: dynamic text: <<$npcdesc>> gets up for a moment to pull a bottle of clear liquid off a nearby ...
@@ -305,8 +305,8 @@ function enterBoyDrinkOffer(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyBrokenCondom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['broken_condom_talk'] === 0  &&  ((s as any).sex_ev ?? 0)?.['broken_condom'] >= 1) {
-    (s as any).sex_ev['broken_condom_talk'] = 1;
-    (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
+    ((s as any).sex_ev ?? {})['broken_condom_talk'] = 1;
+    ((s as any).sex_ev ?? {})['boy_topics'] = (((s as any).sex_ev ?? {})['boy_topics'] ?? 0) - (1);
     qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
     if (((s as any).npc_pay_for_ma_pill ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       if (((s as any).sex_ev ?? 0)?.['ma_pill_money'] === 0) {
@@ -376,7 +376,7 @@ function enterBoyBrokenCondom(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'sex_ev_boy_pillow_talk', 'boy_take_pill_now');
             scene.actions([
               { label: 'I have a pill', handler: (st: GameState) => {
-    (s as any).sex_ev['ma_pill'] = 1;
+    ((s as any).sex_ev ?? {})['ma_pill'] = 1;
     scene.text('"It\'s okay," you smile. "I have a morning after pill. No big deal."');
     scene.text('He nods, smiling and seeming to relax a bit.');
     // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
@@ -394,7 +394,7 @@ function enterBoyTakePillNow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['ma_pill'] < 2  &&  ((s as any).mc_inventory ?? 0)?.['morning_after_pill'] > 0) {
     scene.actions([
       { label: 'Take your morning after pill (shy)', handler: (st: GameState) => {
-    (s as any).sex_ev['ma_pill'] = 2;
+    ((s as any).sex_ev ?? {})['ma_pill'] = 2;
     scene.text('"It\'s okay," you say. "In fact..."');
     // TODO-QSP: dynamic text: <<$npcdesc>> watches you reach into your purse and pull out your morning after p...
     scene.text(`${((s as any).npcdesc ?? 0)} watches you reach into your purse and pull out your morning after pill and you can't help but blush beneath his gaze.`);
@@ -407,7 +407,7 @@ function enterBoyTakePillNow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
   } },
       { label: 'Take your morning after pill (sexy)', handler: (st: GameState) => {
-    (s as any).sex_ev['ma_pill'] = 2;
+    ((s as any).sex_ev ?? {})['ma_pill'] = 2;
     scene.text('"It\'s fine," you say, smiling mischievously. "In fact..."');
     // TODO-QSP: dynamic text: As <<$npcdesc>> watches you pull your morning after pill from your purse, you gi...
     scene.text(`As ${((s as any).npcdesc ?? 0)} watches you pull your morning after pill from your purse, you give him a smouldering look. Sticking out your tongue at him, you pop the pill onto your mouth, swallowing with a wide grin.`);
@@ -440,7 +440,7 @@ function enterBoyMorningPillTalk1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) < 20) {
         scene.actions([
           { label: 'Right after this', handler: (st: GameState) => {
-    (s as any).sex_ev['ma_pill_tomorrow'] = 1;
+    ((s as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
     if (((s as any).hour ?? 0) < 19) {
       scene.text('"As soon as leave," you nod.');
     } else {
@@ -457,7 +457,7 @@ function enterBoyMorningPillTalk1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Tomorrow', handler: (st: GameState) => {
-    (s as any).sex_ev['ma_pill_tomorrow'] = 1;
+    ((s as any).sex_ev ?? {})['ma_pill_tomorrow'] = 1;
     scene.text('"First thing tomorrow," you nod. "As soon as the pharmacy opens up."');
     if (((s as any).sex_ev ?? 0)?.['cant_believe_creampie_talk'] === 0) {
       scene.text('He nods back, somehow looking worried and relieved at the same time.');
@@ -488,7 +488,7 @@ function enterBoyMorningPillTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I just don\'t want you to forget," he says frowning. "It\'s important to me that you don\'t get pregnant."');
     scene.text('"And it isn\'t to me?" you snap as you dig through your purse for the pill. "I wasn\'t going to forget!"');
     scene.text('You scowl at him, shoving the pill into your mouth and gulping with an angry swallow.');
-    (s as any).sex_ev['ma_pill'] = 2;
+    ((s as any).sex_ev ?? {})['ma_pill'] = 2;
     qspCall(s, 'medical_din', 'morning_after_pill_function');
     // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
   } },
@@ -536,7 +536,7 @@ function enterBoyAccidentalCreampieTalk2(s: GameState, scene: SceneBuilder): voi
     // TODO-QSP: xgt 'sex_ev_pillow_talk', 'topic_route'
   } else {
     qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
-    (s as any).sex_ev['cant_believe_creampie_talk'] = 1;
+    ((s as any).sex_ev ?? {})['cant_believe_creampie_talk'] = 1;
     scene.text('"I\'m so sorry I came inside you," he says.');
     if (((s as any).stat ?? 0)?.['preg_risk'] !== 'danger'  &&  ((s as any).birth_control ?? 0)?.['think_safe'] === 0) {
       scene.actions([
@@ -643,7 +643,7 @@ function enterBoyAccidentalCreampieTalk2(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_like_hair_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_like_hair_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   // TODO-QSP: dynamic text: "I love your hair," <<$npc_usedname[$npcID]>> murmurs, running his fingers throu...
   scene.text(`"I love your hair," ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} murmurs, running his fingers through your locks.`);
@@ -706,7 +706,7 @@ function enterBoyCondomRule(s: GameState, scene: SceneBuilder): void {
 function enterBoyTakeShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
   if (((s as any).pcs_sweat ?? 0) >= 20  ||  (Math.floor(Math.random() * 2) + 1) === 1) {
-    (s as any).sex_ev['join_shower_offer'] = 1;
+    ((s as any).sex_ev ?? {})['join_shower_offer'] = 1;
     if (((s as any).pcs_sweat ?? 0) >= 20) {
       // TODO-QSP: dynamic text: "I could really use a shower after that," <<$npcdesc>> says. "Want to join me?"
       scene.text(`"I could really use a shower after that," ${((s as any).npcdesc ?? 0)} says. "Want to join me?"`);
@@ -716,7 +716,7 @@ function enterBoyTakeShower(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
-    (s as any).sex_ev['boy_in_shower'] = 1;
+    ((s as any).sex_ev ?? {})['boy_in_shower'] = 1;
     scene.text('"That\'s okay, I think I\'m just going to keep chilling here for a while," you reply.');
     // TODO-QSP: dynamic text: "Suit yourself," <<$npcdesc>> shrugs and gets up, leaving you alone in the sheet...
     scene.text(`"Suit yourself," ${((s as any).npcdesc ?? 0)} shrugs and gets up, leaving you alone in the sheets.`);
@@ -740,7 +740,7 @@ function enterBoyTakeShower(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I think I'm gonna take a shower," ${((s as any).npcdesc ?? 0)} says.`);
     scene.actions([
       { label: 'Have fun', handler: (st: GameState) => {
-    (s as any).sex_ev['boy_in_shower'] = 1;
+    ((s as any).sex_ev ?? {})['boy_in_shower'] = 1;
     // TODO-QSP: dynamic text: "Okay. Have fun in there," you reply and <<$npcdesc>> gets up, leaving you alone...
     scene.text(`"Okay. Have fun in there," you reply and ${((s as any).npcdesc ?? 0)} gets up, leaving you alone in the sheets.`);
     scene.actions([
@@ -775,7 +775,7 @@ function enterBoyHatesCondomsStartDesc(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterBoyHatesCondoms(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['wish_no_condoms_talk'] = 1;
+  ((s as any).sex_ev ?? {})['wish_no_condoms_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
   qspCall(s, 'sex_ev_boy_pillow_talk', 'boy_hates_condoms_start_desc');
   scene.actions([
@@ -891,7 +891,7 @@ function enterBoyHatesCondoms(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).sex_ev['preg_risk'] = 'danger';
+      ((s as any).sex_ev ?? {})['preg_risk'] = 'danger';
       // TODO-QSP: dynamic text: "I know <<$npc_lovername[$npcID]>>. I wanted to go bareback too," you coo sympat...
       scene.text(`"I know ${((s as any).npc_lovername ?? 0)?.[String((s as any).npcID ?? 0)]}. I wanted to go bareback too," you coo sympathetically. "But it's a danger day for me. I could've gotten pregnant if we did it raw."`);
       if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -949,7 +949,7 @@ function enterBoyHatesCondoms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAgeAskTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['age_ask_talk'] = 1;
+  ((s as any).sex_ev ?? {})['age_ask_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   if (((s as any).vidage ?? 0) < 20) {
@@ -962,7 +962,7 @@ function enterAgeAskTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).age ?? 0) < 18) {
     scene.actions([
       { label: 'Lie', handler: (st: GameState) => {
-    (s as any).npc_thinkage[String((s as any).npcID ?? 0)] = 18;
+    ((s as any).npc_thinkage ?? {})[String((s as any).npcID ?? 0)] = 18;
     scene.text('"I\'m 18," you lie with a bright smile.');
     // TODO-QSP: xgt 'sex_ev_boy_pillow_talk', 'age_ask_respond'
   } },
@@ -970,7 +970,7 @@ function enterAgeAskTalk(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Tell him', handler: (st: GameState) => {
-    (s as any).npc_thinkage[String((s as any).npcID ?? 0)] = ((s as any).age ?? 0);
+    ((s as any).npc_thinkage ?? {})[String((s as any).npcID ?? 0)] = ((s as any).age ?? 0);
     if (((s as any).age ?? 0) < 18) {
       // TODO-QSP: dynamic text: "I'm <<age>>," you say. "Is that a problem?"
       scene.text(`"I'm ${((s as any).age ?? 0)}," you say. "Is that a problem?"`);
@@ -981,7 +981,7 @@ function enterAgeAskTalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'sex_ev_boy_pillow_talk', 'age_ask_respond'
   } },
     { label: 'Tease him (tell)', handler: (st: GameState) => {
-    (s as any).npc_thinkage[String((s as any).npcID ?? 0)] = ((s as any).age ?? 0);
+    ((s as any).npc_thinkage ?? {})[String((s as any).npcID ?? 0)] = ((s as any).age ?? 0);
     if (((s as any).age ?? 0) < 18) {
       // TODO-QSP: dynamic text: "I'm <<age>>," you smirk. "So it's legal for us to fuck as long as you don't pou...
       scene.text(`"I'm ${((s as any).age ?? 0)}," you smirk. "So it's legal for us to fuck as long as you don't pour me a drink."`);
@@ -1033,7 +1033,7 @@ function enterAgeAskRespond(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesSoftTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_pube_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_pube_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   // TODO-QSP: dynamic text: "Your bush is so soft," <<$npcdesc>> murmurs, running his fingers through the sm...
@@ -1063,7 +1063,7 @@ function enterPubesSoftTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterBodycountAsk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['bodycount_ask'] === 0) {
-    (s as any).sex_ev['bodycount_ask'] = 1;
+    ((s as any).sex_ev ?? {})['bodycount_ask'] = 1;
     // TODO-QSP: sex_ev[$ARGS[1]] = 1
     qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
@@ -1160,7 +1160,7 @@ function enterBodycountHonest(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodycountRecent(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['body_count_recent'] = qspFunc(s, 'shortgs', 'count_func', 'npc_last_sex', (((s as any).daystart ?? 0) - 30));
+  ((s as any).sex_ev ?? {})['body_count_recent'] = qspFunc(s, 'shortgs', 'count_func', 'npc_last_sex', (((s as any).daystart ?? 0) - 30));
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
   scene.text('"Just recently or you want the full count?" you ask smirking.');
   if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex') {
@@ -1237,7 +1237,7 @@ function enterBodycountSlut(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Wow. You\'re kind of a slut, aren\'t you?"');
   }
-  (s as any).npc_bodycount_know[String((s as any).npcID ?? 0)] = ((s as any).stat ?? 0)?.['men_fucked'];
+  ((s as any).npc_bodycount_know ?? {})[String((s as any).npcID ?? 0)] = ((s as any).stat ?? 0)?.['men_fucked'];
   // TODO-QSP: xgt 'sex_ev_boy_pillow_talk', 'bodycount_slut_responses'
   scene.build();
 }
@@ -1388,7 +1388,7 @@ function enterBodycountSerious(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHowManyFb(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['how_many_fb_talk'] = 1;
+  ((s as any).sex_ev ?? {})['how_many_fb_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   // TODO-QSP: dynamic text: "So how many fuckbuddies do you have?" <<$npcdesc>> asks.
@@ -1408,7 +1408,7 @@ function enterHowManyFb(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyfriendAsk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boyfriend_ask'] = 1;
+  ((s as any).sex_ev ?? {})['boyfriend_ask'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   // TODO-QSP: dynamic text: "So... You got a boyfriend?" <<$npcdesc>> asks.
   scene.text(`"So... You got a boyfriend?" ${((s as any).npcdesc ?? 0)} asks.`);
@@ -1435,7 +1435,7 @@ function enterBoyfriendAsk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'sex_ev_boy_pillow_talk', 'cheating_react1'
   } },
       { label: 'Feel guilt', handler: (st: GameState) => {
-    (s as any).sex_ev['cheating_admission'] = 'guilty';
+    ((s as any).sex_ev ?? {})['cheating_admission'] = 'guilty';
     scene.text('A pang of guilt shoots through your chest and you suddenly feel very ashamed.');
     scene.text('"Yes," you say softly.');
     // TODO-QSP: xgt 'sex_ev_boy_pillow_talk', 'cheating_react1'
@@ -1688,14 +1688,14 @@ function enterCheatingSlutReact1(s: GameState, scene: SceneBuilder): void {
 
 function enterGirlfriendReact1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
-    (s as any).npc_know_bi[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_bi ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"That\'s hot," he says, a dopey grin on his face.');
   }
   scene.build();
 }
 
 function enterBoyFirstDateFuck(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['first_date_fuck_talk'] = 1;
+  ((s as any).sex_ev ?? {})['first_date_fuck_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   if (((s as any).met_on_street ?? 0)  &&  (!((s as any).npc_date_count ?? 0))) {
     // TODO-QSP: dynamic text: "So, do you always fuck guys you meet on the street?" <<$npc_usedname[$npcID]>> ...
@@ -1738,7 +1738,7 @@ function enterBoyFirstDateFuck(s: GameState, scene: SceneBuilder): void {
       { label: 'Always', handler: (st: GameState) => {
     if (((s as any).npc_indiscreet ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       qspCall(s, 'fame', 'sex', ((s as any).region ?? 0), 5);
-      (s as any).trait_vars['first_date_fucker_exp'] = ((s as any).trait_vars['first_date_fucker_exp'] ?? 0) + (Math.floor(Math.random() * 5) + 1);
+      ((s as any).trait_vars ?? {})['first_date_fucker_exp'] = (((s as any).trait_vars ?? {})['first_date_fucker_exp'] ?? 0) + (Math.floor(Math.random() * 5) + 1);
     }
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 4);
     scene.text('"Always," you grin back.');
@@ -1800,7 +1800,7 @@ function enterBoyFirstDateFuck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyLesbianAsk1(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['lesbian_ask'] = 1;
+  ((s as any).sex_ev ?? {})['lesbian_ask'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   if (((s as any).npc_know_bi ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     // TODO-QSP: dynamic text: "I was wondering... have you ever done it with another girl before?" <<$npc_used...
@@ -1809,7 +1809,7 @@ function enterBoyLesbianAsk1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['women_fucked'] >= 15) {
         scene.actions([
           { label: 'Plenty', handler: (st: GameState) => {
-    (s as any).npc_know_bi[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_bi ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
     // TODO-QSP: dynamic text: "I was wondering... have you ever done it with another girl before?" <<$npc_used...
     scene.text(`"I was wondering... have you ever done it with another girl before?" ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} asks with a goofy smirk on his face.`);
@@ -1822,7 +1822,7 @@ function enterBoyLesbianAsk1(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Tell him you have', handler: (st: GameState) => {
-    (s as any).npc_know_bi[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_bi ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
     // TODO-QSP: dynamic text: "I was wondering... have you ever done it with another girl before?" <<$npc_used...
     scene.text(`"I was wondering... have you ever done it with another girl before?" ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} asks with a goofy smirk on his face.`);
@@ -1900,8 +1900,8 @@ function enterBoyLesbianAsk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyNerdySlutTalk1(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
-  (s as any).sex_ev['boy_nerdy_slut_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_topics'] = (((s as any).sex_ev ?? {})['boy_topics'] ?? 0) - (1);
+  ((s as any).sex_ev ?? {})['boy_nerdy_slut_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
   if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted') {
@@ -2042,8 +2042,8 @@ function enterBoyNerdySlutTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyNoKids(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['boy_topics'] = ((s as any).sex_ev['boy_topics'] ?? 0) - (1);
-  (s as any).sex_ev['no_kids_talk'] = 1;
+  ((s as any).sex_ev ?? {})['boy_topics'] = (((s as any).sex_ev ?? {})['boy_topics'] ?? 0) - (1);
+  ((s as any).sex_ev ?? {})['no_kids_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   // TODO-QSP: dynamic text: "So you don't want kids?" <<$npcdesc>> asks, looking over at you.
@@ -2052,7 +2052,7 @@ function enterBoyNoKids(s: GameState, scene: SceneBuilder): void {
     { label: 'Not right now', handler: (st: GameState) => {
     scene.text('"Not right now," you shake your head. "Maybe one day, but I\'m not ready to be a mother. What about you?"');
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      (s as any).pc_know_childfree[String((s as any).npcID ?? 0)] = 1;
+      ((s as any).pc_know_childfree ?? {})[String((s as any).npcID ?? 0)] = 1;
       scene.text('"I never want kids," he replies.');
       scene.actions([
         { label: 'Really?', handler: (st: GameState) => {
@@ -2080,7 +2080,7 @@ function enterBoyNoKids(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Never', handler: (st: GameState) => {
-    (s as any).npc_know_no_kids[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_no_kids ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Not now, not ever," you grimace. "Motherhood sounds... ugh."');
     if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       scene.text('"I feel the same way," he says, nodding. "I hate everything to do with kids. I never want children of any kind."');
@@ -2169,7 +2169,7 @@ function enterBunnyNickname2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
     scene.text('"Ugh, that\'s disgusting," you sigh. "Don\'t call me that."');
     if ((((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
-      (s as any).npc_dislikepcspetname[String((s as any).npcID ?? 0)] = 1;
+      ((s as any).npc_dislikepcspetname ?? {})[String((s as any).npcID ?? 0)] = 1;
       qspCall(s, 'sex_ev_stats', 'petname_add', '<i>Zaychyk</i>');
       // TODO-QSP: dynamic text: "But you're such a cute little <<$pcs_usedname[$npcID]>>," he smirks, running hi...
       scene.text(`"But you're such a cute little ${((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}," he smirks, running his thumb along your cheek, causing you to jerk away from him.`);
@@ -2276,7 +2276,7 @@ function enterBunnyNickname2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'annoyed');
     scene.text('"That\'s not cute, that\'s cringe," you huff, crossing your arms. "Don\'t call me that."');
     if ((((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
-      (s as any).npc_dislikepcspetname[String((s as any).npcID ?? 0)] = 1;
+      ((s as any).npc_dislikepcspetname ?? {})[String((s as any).npcID ?? 0)] = 1;
       qspCall(s, 'sex_ev_stats', 'petname_add', '<i>Zaychyk</i>');
       // TODO-QSP: dynamic text: "But you're such a cute little <<$pcs_usedname[$npcID]>>," he smirks, running hi...
       scene.text(`"But you're such a cute little ${((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}," he smirks, running his thumb along your cheek, causing you to jerk away from him.`);

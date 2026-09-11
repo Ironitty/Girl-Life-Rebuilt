@@ -168,7 +168,7 @@ function enterOldmanHouse(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'A Male', 65);
-    (s as any).npc_dick[String((s as any).npclastgenerated ?? 0)] = 2;
+    ((s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 2;
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/sex/old_man_camera3.jpg');
     scene.text('You take his fairly average-sized dick into your mouth and start sucking it. You glance over at the camera and see it pointing right at you as you tightly wrap your lips around the shaft of his cock and bop your head back and forth, sucking him off while listening to him moaning in pleasure.');
@@ -412,7 +412,7 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -438,7 +438,7 @@ function enterPressuredForBra(s: GameState, scene: SceneBuilder): void {
     { label: 'Expose your bra', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 1);
     (s as any).svetafall = ((s as any).svetafall ?? 0) + (1);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -490,7 +490,7 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -516,7 +516,7 @@ function enterPressuredForPanties(s: GameState, scene: SceneBuilder): void {
     { label: 'Expose your panties', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 2);
     (s as any).svetafall = ((s as any).svetafall ?? 0) + (1);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -568,7 +568,7 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -594,7 +594,7 @@ function enterPressuredForTits(s: GameState, scene: SceneBuilder): void {
     { label: 'Expose your tits', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 3);
     (s as any).svetafall = ((s as any).svetafall ?? 0) + (1);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -646,7 +646,7 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -672,7 +672,7 @@ function enterPressuredForPussy(s: GameState, scene: SceneBuilder): void {
     { label: 'Expose your pussy', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 4);
     (s as any).svetafall = ((s as any).svetafall ?? 0) + (1);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -727,7 +727,7 @@ function enterPressuredForBlowjob(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -750,7 +750,7 @@ function enterPressuredForBlowjob(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 10);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     (s as any).svetafall = ((s as any).svetafall ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
@@ -824,7 +824,7 @@ function enterPressuredForOralGb(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -850,7 +850,7 @@ function enterPressuredForOralGb(s: GameState, scene: SceneBuilder): void {
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 50);
     (s as any).svetafall = ((s as any).svetafall ?? 0) + (1);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
@@ -973,7 +973,7 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A9', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A10', (-1));
     qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
@@ -997,7 +997,7 @@ function enterPressuredForGangbang(s: GameState, scene: SceneBuilder): void {
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 100);
     (s as any).svetafall = 6;
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (1);
     qspCall(s, 'npc_relationship', 'modify', 'A9', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A10', 1);
     qspCall(s, 'npc_relationship', 'modify', 'A11', 1);

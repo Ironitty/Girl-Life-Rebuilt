@@ -826,8 +826,8 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuspended(s: GameState, scene: SceneBuilder): void {
-  (s as any).suspended['day'] = ((s as any).daystart ?? 0) + 7;
-  (s as any).suspended['on'] = 1;
+  ((s as any).suspended ?? {})['day'] = ((s as any).daystart ?? 0) + 7;
+  ((s as any).suspended ?? {})['on'] = 1;
   qspCall(s, 'archetypes', 'gain', 'punk', 'medium', 'Suspended from school', 30);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'npc_relationship', 'modify', 'A29', (-25));

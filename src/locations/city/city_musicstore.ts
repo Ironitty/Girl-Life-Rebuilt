@@ -40,7 +40,7 @@ function enterSetRadomirCounterText(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) !== ((s as any).radomirQW ?? 0)?.['store_chat_day']) {
     scene.actions([
       { label: 'Approach the counter', handler: (st: GameState) => {
-    (s as any).radomirQW['store_chat_day'] = ((s as any).daystart ?? 0);
+    ((s as any).radomirQW ?? {})['store_chat_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
@@ -209,7 +209,7 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
     scene.text('Jimmy takes your details and your home address after you pay to set up the delivery. "It should be there tomorrow."');
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).ml_guitar['carried'] = 1;
+    ((s as any).ml_guitar ?? {})['carried'] = 1;
     scene.text('Jimmy disappears into the back of the shop with your guitar before returning 10 minutes later. "That\'s it all set up, but if you need to tweak anything, just bring it in and we\'ll do it for you, free of charge."');
     // TODO-QSP: dynamic text: He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = ...
     scene.text(`He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = 1, 'its case', ') + ' and hands it to you. "All the best, ${((s as any).pcs_nickname ?? 0)}."`);
@@ -221,13 +221,13 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstSetup(s: GameState, scene: SceneBuilder): void {
-  (s as any).ml_guitars['jb-budget-acoustic'] = 1;
+  ((s as any).ml_guitars ?? {})['jb-budget-acoustic'] = 1;
   (s as any).ml_strings = 2;
-  (s as any).ml_guitar['chordbook'] = 1;
-  (s as any).ml_guitar['hasguitar'] = 1;
-  (s as any).ml_guitar['carried'] = 1;
-  (s as any).ml_performance['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
-  (s as any).ml_performance['performed_minutes'] = 0;
+  ((s as any).ml_guitar ?? {})['chordbook'] = 1;
+  ((s as any).ml_guitar ?? {})['hasguitar'] = 1;
+  ((s as any).ml_guitar ?? {})['carried'] = 1;
+  ((s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
+  ((s as any).ml_performance ?? {})['performed_minutes'] = 0;
   scene.build();
 }
 

@@ -7,10 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_drunk['A60'] = 0;
-  (s as any).GadBoy['drunk_event'] = 0;
-  (s as any).MiraVars['drunk_event'] = 0;
-  (s as any).GadBoy['drinkday'] = ((s as any).daystart ?? 0);
+  ((s as any).npc_drunk ?? {})['A60'] = 0;
+  ((s as any).GadBoy ?? {})['drunk_event'] = 0;
+  ((s as any).MiraVars ?? {})['drunk_event'] = 0;
+  ((s as any).GadBoy ?? {})['drinkday'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/mitka_old_trailer.jpg');
   scene.text('You follow the boys into the woods. Soon the familiar old trailer comes into view.');
@@ -39,7 +39,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
     (s as any).alko = 10;
   }
   if (((s as any).MiraVars ?? 0)?.['drunk_event'] === 1  &&  ((s as any).npc_drunk ?? 0)?.['A60'] < 10) {
-    (s as any).npc_drunk['A60'] = 10;
+    ((s as any).npc_drunk ?? {})['A60'] = 10;
   }
   if (((s as any).npc_drunk ?? 0)?.['A60'] >= 10  &&  ((s as any).alko ?? 0) >= 10  &&  ((s as any).GadBoy ?? 0)?.['drunk_event'] === 1  &&  ((s as any).MiraVars ?? 0)?.['drunk_event'] === 1) {
     scene.img('images/characters/gadukino/mira/girls_go.jpg');
@@ -52,8 +52,8 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).npc_drunk ?? 0)?.['A60'] >= 10  &&  ((s as any).alko ?? 0) >= 10  &&  ((s as any).GadBoy ?? 0)?.['drunk_event'] === 0  &&  ((s as any).MiraVars ?? 0)?.['drunk_event'] === 0) {
-      (s as any).GadBoy['drunk_event'] = 1;
-      (s as any).MiraVars['drunk_event'] = 1;
+      ((s as any).GadBoy ?? {})['drunk_event'] = 1;
+      ((s as any).MiraVars ?? {})['drunk_event'] = 1;
       (s as any).temp_rand = Math.floor(Math.random() * 6) + 1;
       if (((s as any).temp_rand ?? 0) === 1) {
         qspCall(s, 'boyStat', 'A61', '0');
@@ -136,7 +136,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
     scene.text('You and Mira have almost the same reaction to the moonshine. Your eyes widen and you coughs a little, sucking in your breath with a smile. You chat with the boys as they drink as well.');
     scene.text('Mitka looks at you approvingly, "Good shit, right?"');
     scene.text('"Just as good as the last batch you made!" you reply.');
-    (s as any).npc_drunk['A60'] = ((s as any).npc_drunk['A60'] ?? 0) + (5);
+    ((s as any).npc_drunk ?? {})['A60'] = (((s as any).npc_drunk ?? {})['A60'] ?? 0) + (5);
     qspCall(s, 'drugs', 'alcohol', 'moonshine', 1);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -161,14 +161,14 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[1], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 20) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] < 15) {
-      (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+      ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
     }
     // TODO-QSP: npc_had_sex[$boy[0]] = 1
     // TODO-QSP: npc_had_sex[$boy[1]] = 1
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'gangbang');
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
@@ -191,7 +191,7 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[2], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     // TODO-QSP: npc_had_sex[$boy[2]] = 1
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
     (s as any).mitkapicrand = Math.floor(Math.random() * 4) + 1;
@@ -274,14 +274,14 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[1], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 20) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] < 15) {
-      (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+      ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
     }
     // TODO-QSP: npc_had_sex[$boy[0]] = 1
     // TODO-QSP: npc_had_sex[$boy[1]] = 1
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'arousal', 'hj', 10, 'sub', 'gangbang');
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
@@ -321,7 +321,7 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[2], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     // TODO-QSP: npc_had_sex[$boy[2]] = 1
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
     (s as any).mitkapicrand = Math.floor(Math.random() * 4) + 1;
@@ -429,14 +429,14 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[2], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 20) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] < 15) {
-      (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+      ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
     }
     // TODO-QSP: npc_had_sex[$boy[1]] = 1
     // TODO-QSP: npc_had_sex[$boy[2]] = 1
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'arousal', 'hj', 10, 'sub', 'gangbang');
     qspCall(s, 'arousal', 'bj', 10, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
@@ -520,10 +520,10 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[2], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 20) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] < 15) {
-      (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+      ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
     (s as any).mitkapicrand = Math.floor(Math.random() * 4) + 0;
@@ -569,10 +569,10 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[2], 1
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 20) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] < 15) {
-      (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+      ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
     }
     qspCall(s, 'stat', '');
     if (((s as any).sunWeather ?? 0) === 1) {
@@ -695,10 +695,10 @@ function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
     { label: 'Let <<$boydesc[0]>> fuck your ass', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
     if (((s as any).npc_QW ?? 0)?.['A63'] < 20) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     if (((s as any).MiraVars ?? 0)?.['QW'] < 15) {
-      (s as any).MiraVars['QW'] = ((s as any).MiraVars['QW'] ?? 0) + (1);
+      ((s as any).MiraVars ?? {})['QW'] = (((s as any).MiraVars ?? {})['QW'] ?? 0) + (1);
     }
     // TODO-QSP: npc_had_sex[$boy[0]] = 1
     // TODO-QSP: gs 'cum_call', 'anus', $boy[0], 1

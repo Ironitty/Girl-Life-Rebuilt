@@ -109,13 +109,13 @@ function enterMaidGreet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) <= ((s as any).AlbinaQW ?? 0)?.['visiting']) {
     scene.actions([{ label: 'Continue', goto: ['albinahome', 'hallway'] }]);
   }
-  (s as any).AlbinaQW['visiting'] = ((s as any).daystart ?? 0);
+  ((s as any).AlbinaQW ?? {})['visiting'] = ((s as any).daystart ?? 0);
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
   if ((!((s as any).temp_rand ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'alb_yoga_start'] }]);
   } else {
     if (((s as any).temp_rand ?? 0) === 1  &&  ((s as any).daystart ?? 0) > ((s as any).AlbinaQW ?? 0)?.['daily_event']) {
-      (s as any).AlbinaQW['daily_event'] = ((s as any).daystart ?? 0);
+      ((s as any).AlbinaQW ?? {})['daily_event'] = ((s as any).daystart ?? 0);
       scene.actions([{ label: 'Continue', goto: ['albina_sex_scenes', 'lazar_start'] }]);
     } else {
       if (((s as any).temp_rand ?? 0) === 2  &&  ((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {

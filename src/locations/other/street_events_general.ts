@@ -197,7 +197,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 360;
   (s as any).fingal = ((s as any).fingal ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (4);
-  (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (2);
+  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (2);
   (s as any).shantpopala = ((s as any).shantpopala ?? 0) - (1);
   scene.img('images/locations/shared/street/kidnap.jpg');
   scene.text('As you walk down the sidewalk, you hear the screeching of tires. You quickly move to the far side of the sidewalk, afraid a car is about to hit you. As you turn your head to the noise, you see a black jeep sliding to a stop next to you. Before the jeep even comes to a complete stop, two large men jump out and start running towards you. You are stunned for a moment, unsure what\'s going on, then you turn to run, but before you make it five steps, one of them grabs you, calling out to the other man to help out as well. They quickly drag you over to the jeep and throw you in the back.');

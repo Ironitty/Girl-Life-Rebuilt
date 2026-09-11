@@ -52,7 +52,7 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: exit
   }
-  (s as any).temp_moneyVars['amount'] = qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'price');
+  ((s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'price');
   if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
     if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'cash')) {
       // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'pay'
@@ -84,7 +84,7 @@ function enterEarn(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: exit
   }
-  (s as any).temp_moneyVars['amount'] = qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'profit');
+  ((s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'profit');
   if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
     // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'earn'
   } else {
@@ -144,7 +144,7 @@ function enterCanAfford(s: GameState, scene: SceneBuilder): void {
 
 function enterGetCostString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    (s as any).ARGS[2] = 'both';
+    ((s as any).ARGS ?? {})[2] = 'both';
   }
   if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
   } else {
@@ -219,27 +219,27 @@ function enterFormat(s: GameState, scene: SceneBuilder): void {
 
 function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cash') {
-    (s as any).format_balance_temp['base'] = ((s as any).money ?? 0);
-    (s as any).format_balance_temp['overflow'] = ((s as any).money_overflow ?? 0);
+    ((s as any).format_balance_temp ?? {})['base'] = ((s as any).money ?? 0);
+    ((s as any).format_balance_temp ?? {})['overflow'] = ((s as any).money_overflow ?? 0);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'bank') {
-      (s as any).format_balance_temp['base'] = ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0);
-      (s as any).format_balance_temp['overflow'] = ((s as any).karta_overflow ?? 0);
+      ((s as any).format_balance_temp ?? {})['base'] = ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0);
+      ((s as any).format_balance_temp ?? {})['overflow'] = ((s as any).karta_overflow ?? 0);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'desk') {
-        (s as any).format_balance_temp['base'] = ((s as any).stolmoney ?? 0);
-        (s as any).format_balance_temp['overflow'] = ((s as any).stolmoney_overflow ?? 0);
+        ((s as any).format_balance_temp ?? {})['base'] = ((s as any).stolmoney ?? 0);
+        ((s as any).format_balance_temp ?? {})['overflow'] = ((s as any).stolmoney_overflow ?? 0);
       }
     }
   }
   if (((s as any).format_balance_temp ?? 0)?.['overflow'] > 0) {
-    (s as any).format_balance_temp['base_str'] = qspFunc(s, 'money', '_format_price_string', ((s as any).format_balance_temp ?? 0)?.['base']);
-    (s as any).format_balance_temp['pad'] = 9 - ((qspUntranslated(s, "str(format_balance_temp['base'])", { location: "money" })).length);
-    (s as any).format_balance_temp['padding'] = '';
+    ((s as any).format_balance_temp ?? {})['base_str'] = qspFunc(s, 'money', '_format_price_string', ((s as any).format_balance_temp ?? 0)?.['base']);
+    ((s as any).format_balance_temp ?? {})['pad'] = 9 - ((qspUntranslated(s, "str(format_balance_temp['base'])", { location: "money" })).length);
+    ((s as any).format_balance_temp ?? {})['padding'] = '';
     // TODO-QSP: :format_balance_pad_loop
     if (((s as any).format_balance_temp ?? 0)?.['pad'] > 0) {
-      (s as any).format_balance_temp['padding'] = ((s as any).format_balance_temp['padding'] ?? 0) + ('0');
-      (s as any).format_balance_temp['pad'] = ((s as any).format_balance_temp['pad'] ?? 0) - (1);
+      ((s as any).format_balance_temp ?? {})['padding'] = (((s as any).format_balance_temp ?? {})['padding'] ?? 0) + ('0');
+      ((s as any).format_balance_temp ?? {})['pad'] = (((s as any).format_balance_temp ?? {})['pad'] ?? 0) - (1);
       // TODO-QSP: jump 'format_balance_pad_loop'
     }
   }
@@ -258,12 +258,12 @@ function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFormatPriceString(s: GameState, scene: SceneBuilder): void {
-  (s as any).shortgsVars['num'] = qspUntranslated(s, "str(ARGS[1])", { location: "money" });
-  (s as any).shortgsVars['len'] = qspUntranslated(s, "len(shortgsVars['num'])", { location: "money" });
+  ((s as any).shortgsVars ?? {})['num'] = qspUntranslated(s, "str(ARGS[1])", { location: "money" });
+  ((s as any).shortgsVars ?? {})['len'] = qspUntranslated(s, "len(shortgsVars['num'])", { location: "money" });
   // TODO-QSP: :format_price_string_loop
   if (((s as any).shortgsVars ?? 0)?.['len'] > 3) {
-    (s as any).shortgsVars['num'] = ((((s as any).shortgsVars ?? 0)?.['num']).slice((1)-1, ((1)-1)+(((s as any).shortgsVars ?? {})?.['len']-3)));
-    (s as any).shortgsVars['len'] = ((s as any).shortgsVars['len'] ?? 0) - (3);
+    ((s as any).shortgsVars ?? {})['num'] = ((((s as any).shortgsVars ?? 0)?.['num']).slice((1)-1, ((1)-1)+(((s as any).shortgsVars ?? {})?.['len']-3)));
+    ((s as any).shortgsVars ?? {})['len'] = (((s as any).shortgsVars ?? {})['len'] ?? 0) - (3);
     // TODO-QSP: jump 'format_price_string_loop'
   } else {
     if (((s as any).shortgsVars ?? 0)?.['num'] === '-') {
@@ -285,9 +285,9 @@ function enterApplyModifiers(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveModifiers(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === 'price') {
-    (s as any).temp_moneyVars['fwd'] = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['neg_mult_opt'], 100, ((s as any).cfg_vars ?? 0)?.['neg_mult']);
+    ((s as any).temp_moneyVars ?? {})['fwd'] = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['neg_mult_opt'], 100, ((s as any).cfg_vars ?? 0)?.['neg_mult']);
   } else {
-    (s as any).temp_moneyVars['fwd'] = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['pos_mult_opt'], 100, ((s as any).cfg_vars ?? 0)?.['pos_mult']);
+    ((s as any).temp_moneyVars ?? {})['fwd'] = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['pos_mult_opt'], 100, ((s as any).cfg_vars ?? 0)?.['pos_mult']);
   }
   if (((s as any).temp_moneyVars ?? 0)?.['fwd'] !== 0) {
     (s as any).result = (((s as any).ARGS ?? 0)[1] * 100) / ((s as any).temp_moneyVars ?? {})?.['fwd'];
@@ -386,7 +386,7 @@ function enterDeskPayment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).money ?? 0) >= ((s as any).locArgs?.[1] ?? 0)) {
     // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'pay'
   } else {
-    (s as any).temp_moneyVars['cash_portion'] = ((s as any).money ?? 0);
+    ((s as any).temp_moneyVars ?? {})['cash_portion'] = ((s as any).money ?? 0);
     // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['cash_portion'], 'pay'
     (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).ARGS ?? 0)[1] - ((s as any).temp_moneyVars ?? {})?.['cash_portion']);
   }
@@ -413,46 +413,46 @@ function enterHybridPayment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
-  (s as any).cpm_temp_moneyVars['input_msg'] = 'How would you like to \' + iif($ARGS[2] = \'pay\', \'pay\', \'get paid\') + \'?<br>';
+  ((s as any).cpm_temp_moneyVars ?? {})['input_msg'] = 'How would you like to \' + iif($ARGS[2] = \'pay\', \'pay\', \'get paid\') + \'?<br>';
   if (((s as any).locArgs?.[2] ?? 0) === 'pay') {
     if (qspFunc(s, 'money', '_can_afford_inner', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'cash') === 1) {
-      (s as any).cpm_temp_moneyVars['cash'] = 1;
-      (s as any).cpm_temp_moneyVars['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Cash [Enter \'1\', Default]<br>');
+      ((s as any).cpm_temp_moneyVars ?? {})['cash'] = 1;
+      ((s as any).cpm_temp_moneyVars ?? {})['input_msg'] = (((s as any).cpm_temp_moneyVars ?? {})['input_msg'] ?? 0) + ('Cash [Enter \'1\', Default]<br>');
     } else {
       if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).ARGS ?? 0)[1] - ((s as any).money ?? 0), 'bank') === 1) {
-        (s as any).cpm_temp_moneyVars['both'] = 1;
-        (s as any).cpm_temp_moneyVars['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Hybrid Payment [Enter \'3\']<br>');
+        ((s as any).cpm_temp_moneyVars ?? {})['both'] = 1;
+        ((s as any).cpm_temp_moneyVars ?? {})['input_msg'] = (((s as any).cpm_temp_moneyVars ?? {})['input_msg'] ?? 0) + ('Hybrid Payment [Enter \'3\']<br>');
       }
     }
     if (qspFunc(s, 'money', '_can_afford_inner', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'bank') === 1) {
-      (s as any).cpm_temp_moneyVars['bank'] = 1;
-      (s as any).cpm_temp_moneyVars['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Bank [Enter \'2\']<br>');
+      ((s as any).cpm_temp_moneyVars ?? {})['bank'] = 1;
+      ((s as any).cpm_temp_moneyVars ?? {})['input_msg'] = (((s as any).cpm_temp_moneyVars ?? {})['input_msg'] ?? 0) + ('Bank [Enter \'2\']<br>');
     }
     if (((s as any).cpm_temp_moneyVars ?? 0)?.['cash'] !== 1  &&  ((s as any).cpm_temp_moneyVars ?? 0)?.['bank'] !== 1  &&  ((s as any).cpm_temp_moneyVars ?? 0)?.['both'] !== 1) {
     }
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 'earn') {
-      (s as any).cpm_temp_moneyVars['cash'] = 1;
-      (s as any).cpm_temp_moneyVars['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Cash [Enter \'1\', Default]<br>');
+      ((s as any).cpm_temp_moneyVars ?? {})['cash'] = 1;
+      ((s as any).cpm_temp_moneyVars ?? {})['input_msg'] = (((s as any).cpm_temp_moneyVars ?? {})['input_msg'] ?? 0) + ('Cash [Enter \'1\', Default]<br>');
       if (((s as any).bankAccount ?? 0) === 1) {
-        (s as any).cpm_temp_moneyVars['bank'] = 1;
-        (s as any).cpm_temp_moneyVars['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Bank [Enter \'2\']<br>');
+        ((s as any).cpm_temp_moneyVars ?? {})['bank'] = 1;
+        ((s as any).cpm_temp_moneyVars ?? {})['input_msg'] = (((s as any).cpm_temp_moneyVars ?? {})['input_msg'] ?? 0) + ('Bank [Enter \'2\']<br>');
       }
     }
   }
-  (s as any).cpm_temp_moneyVars['input_result'] = 0;
+  ((s as any).cpm_temp_moneyVars ?? {})['input_result'] = 0;
   if (((s as any).cpm_temp_moneyVars ?? 0)?.['input_result'] !== ''  &&  !isNaN(((s as any).cpm_temp_moneyVars ?? 0)?.['input_result']) && ((s as any).cpm_temp_moneyVars ?? 0)?.['input_result'] !== '') {
-    (s as any).cpm_temp_moneyVars['choice'] = qspUntranslated(s, "val(cpm_temp_moneyVars['input_result'])", { location: "money" });
+    ((s as any).cpm_temp_moneyVars ?? {})['choice'] = qspUntranslated(s, "val(cpm_temp_moneyVars['input_result'])", { location: "money" });
   }
   if (((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] < 1  ||  ((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] >= 4) {
     if (((s as any).cpm_temp_moneyVars ?? 0)?.['cash'] === 1  ||  ((s as any).locArgs?.[2] ?? 0) === 'earn') {
-      (s as any).cpm_temp_moneyVars['choice'] = 1;
+      ((s as any).cpm_temp_moneyVars ?? {})['choice'] = 1;
     } else {
       if (((s as any).cpm_temp_moneyVars ?? 0)?.['bank'] === 1) {
-        (s as any).cpm_temp_moneyVars['choice'] = 2;
+        ((s as any).cpm_temp_moneyVars ?? {})['choice'] = 2;
       } else {
         if (((s as any).cpm_temp_moneyVars ?? 0)?.['both'] === 1) {
-          (s as any).cpm_temp_moneyVars['choice'] = 3;
+          ((s as any).cpm_temp_moneyVars ?? {})['choice'] = 3;
         }
       }
     }
@@ -476,7 +476,7 @@ function enterDebtAdd(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: exit
   }
-  (s as any).temp_moneyVars['amount'] = qspFunc(s, 'money', 'price', qspUntranslated(s, "ARGS[2]", { location: "money" }));
+  ((s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', 'price', qspUntranslated(s, "ARGS[2]", { location: "money" }));
   // TODO-QSP: dynamic "<<$ARGS[1]>> += <<temp_moneyVars['amount']>>"
   return;
   scene.build();
@@ -489,36 +489,36 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[2] ?? 0) > 0) {
-    (s as any).temp_moneyVars['target'] = qspUntranslated(s, "min(ARGS[2], temp_moneyVars['debt'])", { location: "money" });
+    ((s as any).temp_moneyVars ?? {})['target'] = qspUntranslated(s, "min(ARGS[2], temp_moneyVars['debt'])", { location: "money" });
   } else {
-    (s as any).temp_moneyVars['target'] = ((s as any).temp_moneyVars ?? 0)?.['debt'];
+    ((s as any).temp_moneyVars ?? {})['target'] = ((s as any).temp_moneyVars ?? 0)?.['debt'];
   }
-  (s as any).temp_moneyVars['paid'] = 0;
+  ((s as any).temp_moneyVars ?? {})['paid'] = 0;
   if (((s as any).locArgs?.[3] ?? 0) === 'none') {
     // TODO-QSP: dynamic "<<$ARGS[1]>> -= <<temp_moneyVars['target']>>"
     (s as any).result = ((s as any).temp_moneyVars ?? 0)?.['target'];
     return;
   }
   if (((s as any).money ?? 0) > 0) {
-    (s as any).temp_moneyVars['from_cash'] = qspUntranslated(s, "min(money, temp_moneyVars['target'])", { location: "money" });
+    ((s as any).temp_moneyVars ?? {})['from_cash'] = qspUntranslated(s, "min(money, temp_moneyVars['target'])", { location: "money" });
     (s as any).money = ((s as any).money ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
-    (s as any).temp_moneyVars['paid'] = ((s as any).temp_moneyVars['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
-    (s as any).temp_moneyVars['target'] = ((s as any).temp_moneyVars['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
+    ((s as any).temp_moneyVars ?? {})['paid'] = (((s as any).temp_moneyVars ?? {})['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
+    ((s as any).temp_moneyVars ?? {})['target'] = (((s as any).temp_moneyVars ?? {})['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
   }
   if (((s as any).temp_moneyVars ?? 0)?.['target'] > 0  &&  (((s as any).locArgs?.[3] ?? 0) === 'desk'  ||  ((s as any).locArgs?.[3] ?? 0) === 'all')) {
     if (((s as any).stolmoney ?? 0) > 0) {
-      (s as any).temp_moneyVars['from_desk'] = qspUntranslated(s, "min(stolmoney, temp_moneyVars['target'])", { location: "money" });
+      ((s as any).temp_moneyVars ?? {})['from_desk'] = qspUntranslated(s, "min(stolmoney, temp_moneyVars['target'])", { location: "money" });
       (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
-      (s as any).temp_moneyVars['paid'] = ((s as any).temp_moneyVars['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
-      (s as any).temp_moneyVars['target'] = ((s as any).temp_moneyVars['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
+      ((s as any).temp_moneyVars ?? {})['paid'] = (((s as any).temp_moneyVars ?? {})['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
+      ((s as any).temp_moneyVars ?? {})['target'] = (((s as any).temp_moneyVars ?? {})['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
     }
   }
   if (((s as any).temp_moneyVars ?? 0)?.['target'] > 0  &&  (((s as any).locArgs?.[3] ?? 0) === 'all'  ||  ((s as any).locArgs?.[3] ?? 0) === '')) {
     if ((((s as any).karta ?? 0) > 0  &&  (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1)  ||  Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= ((s as any).temp_moneyVars ?? 0)?.['target'])) {
-      (s as any).temp_moneyVars['from_bank'] = qspUntranslated(s, "min(karta, temp_moneyVars['target'])", { location: "money" });
+      ((s as any).temp_moneyVars ?? {})['from_bank'] = qspUntranslated(s, "min(karta, temp_moneyVars['target'])", { location: "money" });
       (s as any).karta = ((s as any).karta ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_bank']);
-      (s as any).temp_moneyVars['paid'] = ((s as any).temp_moneyVars['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_bank']);
-      (s as any).temp_moneyVars['target'] = ((s as any).temp_moneyVars['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_bank']);
+      ((s as any).temp_moneyVars ?? {})['paid'] = (((s as any).temp_moneyVars ?? {})['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_bank']);
+      ((s as any).temp_moneyVars ?? {})['target'] = (((s as any).temp_moneyVars ?? {})['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_bank']);
     }
   }
   // TODO-QSP: dynamic "<<$ARGS[1]>> -= <<temp_moneyVars['paid']>>"

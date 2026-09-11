@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichAbdStage ?? 0))) {
     (s as any).inSleep = 0;
-    (s as any).stat_cfg['time_hidden'] = 1;
+    ((s as any).stat_cfg ?? {})['time_hidden'] = 1;
     qspCall(s, 'outfit', 'strip_all');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/taras/intro1.jpg');
@@ -199,7 +199,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Who are you?', handler: (st: GameState) => {
     (s as any).nichKatinkaTopics = ((s as any).nichKatinkaTopics ?? 0) + (1);
-    (s as any).nichKatinkaTopic[1] = 1;
+    ((s as any).nichKatinkaTopic ?? {})[1] = 1;
     scene.text('"Excuse me?"');
     scene.text('"Psssst. Please talk quietly. Master will be mad when he finds out you were talking to me." she looks and sounds terrified.');
     scene.text('"Who are you? Why are you here?"');

@@ -386,7 +386,7 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
     { label: 'Annoy him', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'African guy', Math.floor(Math.random() * 15) + 21);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    (s as any).npc_rel[String((s as any).npcID ?? 0)] = 0;
+    ((s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
     scene.img('images/characters/city/boyfriend/sex/event/sex_park8.jpg');
     scene.text('"And what if I do want to suck him off?" you snap back at him.');
     // TODO-QSP: dynamic text: "Oh hey, let me call him over then. Hey man, come here, free whore sucks just fo...

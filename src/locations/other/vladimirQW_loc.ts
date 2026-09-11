@@ -40,13 +40,13 @@ function enterQwvladdy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- qwladdy ---
   scene.actions([
     { label: 'Sorry, I\'m busy', handler: (st: GameState) => {
-    (s as any).vladimirQW['stage'] = 1;
+    ((s as any).vladimirQW ?? {})['stage'] = 1;
     scene.text('"Sorry, I\'m busy," you excuse yourself.');
     scene.text('Vladimir shakes his head to that. "Well, what are you busy with? I will not bite. I would just like to know the name of a beautiful, young lady."');
     qspCall(s, 'vladimirQW_loc', 'qwnamedy');
     scene.actions([
       { label: 'Leave anyway', handler: (st: GameState) => {
-    (s as any).vladimirQW['stage'] = 2;
+    ((s as any).vladimirQW ?? {})['stage'] = 2;
     scene.text('You turn away from the man with a roll of your eyes and leave.');
     scene.actions([
       { label: 'Leave', goto: ['city_park', 'luna'] },

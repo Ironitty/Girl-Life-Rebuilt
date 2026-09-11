@@ -190,7 +190,7 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Eat your lunch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).mc_inventory['food_sandwich'] = 0;
+    ((s as any).mc_inventory ?? {})['food_sandwich'] = 0;
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
     (s as any).cumspclnt = 2;
     qspCall(s, 'cum_cleanup', '');

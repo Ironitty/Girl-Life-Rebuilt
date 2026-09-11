@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).ml_performance ?? 0)?.['max_perform_minutes'] === 0) {
-    (s as any).ml_performance['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
+    ((s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
   }
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }

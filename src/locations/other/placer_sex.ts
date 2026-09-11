@@ -223,7 +223,7 @@ function enterSleepingParkAlcoRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, 'Rapist', Math.floor(Math.random() * 18) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     (s as any).cumprecheck = 1;
-    (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'clothing', 'strip');
     qspCall(s, 'underwear', 'remove');

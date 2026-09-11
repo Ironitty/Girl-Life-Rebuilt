@@ -36,8 +36,8 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Show him your tits', handler: (st: GameState) => {
-    (s as any).maksimQW['blackmail'] = 1;
-    (s as any).maksimQW['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
+    ((s as any).maksimQW ?? {})['blackmail'] = 1;
+    ((s as any).maksimQW ?? {})['blackmail_flash'] = (((s as any).maksimQW ?? {})['blackmail_flash'] ?? 0) + (1);
     qspCall(s, 'fame', 'pav', 'sex', 1);
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/hallflashtits.jpg');
@@ -80,7 +80,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'fame', 'pav', 'sex', 2);
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
-    (s as any).maksimQW['blackmail_flash_friends'] = ((s as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
+    ((s as any).maksimQW ?? {})['blackmail_flash_friends'] = (((s as any).maksimQW ?? {})['blackmail_flash_friends'] ?? 0) + (1);
     // TODO-QSP: $flash_text[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.'
     // TODO-QSP: $flash_text[0] += '<br>"Holy shit! She really did it!" They all look surprised, but Maksim just look...
     // TODO-QSP: $flash_text[0] += '<br>"See? I told you guys." One of them reaches for your bare breasts and you sta...
@@ -120,7 +120,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'fame', 'pav', 'sex', 2);
     qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
-    (s as any).maksimQW['blackmail_flash_friends'] = ((s as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
+    ((s as any).maksimQW ?? {})['blackmail_flash_friends'] = (((s as any).maksimQW ?? {})['blackmail_flash_friends'] ?? 0) + (1);
     // TODO-QSP: $flash_text[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.'
     // TODO-QSP: $flash_text[0] += '<br>"Holy shit! She really did it!" They all look surprised, but Maksim just look...
     // TODO-QSP: $flash_text[0] += '<br>"See? I told you guys." One of them reaches for your bare breasts and you sta...
@@ -148,7 +148,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
 
 function enterHallwayFlashTits(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
-  (s as any).maksimQW['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
+  ((s as any).maksimQW ?? {})['blackmail_flash'] = (((s as any).maksimQW ?? {})['blackmail_flash'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 1);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/hallflashtits.jpg');
@@ -165,7 +165,7 @@ function enterHallwayFlashTits(s: GameState, scene: SceneBuilder): void {
 
 function enterHallwayFlashPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
-  (s as any).maksimQW['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
+  ((s as any).maksimQW ?? {})['blackmail_flash'] = (((s as any).maksimQW ?? {})['blackmail_flash'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 1);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
   if (((s as any).PCLoSkirt ?? 0) > 0) {
@@ -189,7 +189,7 @@ function enterHallwayFlashPussy(s: GameState, scene: SceneBuilder): void {
 
 function enterMaksimRoomNaked(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
-  (s as any).maksimQW['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
+  ((s as any).maksimQW ?? {})['blackmail_flash'] = (((s as any).maksimQW ?? {})['blackmail_flash'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 1);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/strip_naked.jpg');

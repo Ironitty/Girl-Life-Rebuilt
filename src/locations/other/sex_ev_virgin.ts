@@ -9,7 +9,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask <<$npcdesc>> to take your virginity', handler: (st: GameState) => {
-    (s as any).sex_ev['virgin'] = 1;
+    ((s as any).sex_ev ?? {})['virgin'] = 1;
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: With a fast beating heart, you turn to look at <<$npcdesc>>.
     scene.text(`With a fast beating heart, you turn to look at ${((s as any).npcdesc ?? 0)}.`);
@@ -25,7 +25,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
 function enterStart2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Give <<$npcdesc>> your virginity', handler: (st: GameState) => {
-    (s as any).sex_ev['virgin'] = 1;
+    ((s as any).sex_ev ?? {})['virgin'] = 1;
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"Well..." You bite your lip, heart pounding inside your chest, mulling over what you\'re about to say. "What if... I let you fuck me?"');
     qspCall(s, 'sex_ev_virgin', 'start_flavor');
@@ -36,7 +36,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart3(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['virgin'] = 1;
+  ((s as any).sex_ev ?? {})['virgin'] = 1;
   // TODO-QSP: dynamic text: Your breath catches in your throat as <<$npcdesc>> moves closer and closer. Your...
   scene.text(`Your breath catches in your throat as ${((s as any).npcdesc ?? 0)} moves closer and closer. Your pussy feels like it's on fire. You want it so badly that it <i>hurts</i>.`);
   scene.text('"Okay," you whisper, spreading your legs, gasping when his fingers find your dripping lips. "You can have it. Take my virginity."');
@@ -46,7 +46,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart4(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['virgin'] = 1;
+  ((s as any).sex_ev ?? {})['virgin'] = 1;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
   // TODO-QSP: $sex_ev['bed_room']
   // TODO-QSP: dynamic text: Your breath catches in your throat as <<$npcdesc>> moves closer and closer. You ...
@@ -58,7 +58,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart5(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['virgin'] = 1;
+  ((s as any).sex_ev ?? {})['virgin'] = 1;
   // TODO-QSP: $sex_ev['bed_room']
   scene.text('"Enough of the foreplay," you say with a lusty growl. "It\'s time to fuck."');
   if (((s as any).know_virgin ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
@@ -113,8 +113,8 @@ function enterStartFlavor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStartOptions(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['orgasm_count'] = ((s as any).orgasm ?? 0);
-  (s as any).sex_ev['virgin_fuck'] = 1;
+  ((s as any).sex_ev ?? {})['orgasm_count'] = ((s as any).orgasm ?? 0);
+  ((s as any).sex_ev ?? {})['virgin_fuck'] = 1;
   if (((s as any).sex_ev ?? 0)?.['condom'] === 0  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0  &&  ((s as any).sex_ev ?? 0)?.['condom_setup'] !== 1) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -170,7 +170,7 @@ function enterStartWithoutCondom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStartOptions2(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['orgasm_count'] = ((s as any).orgasm ?? 0);
+  ((s as any).sex_ev ?? {})['orgasm_count'] = ((s as any).orgasm ?? 0);
   scene.text('"Did you want to decide how we do this?" he asks. "It\'s <i>your</i> first time after all."');
   scene.actions([
     { label: 'Let him take the lead', handler: (st: GameState) => {
@@ -196,7 +196,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
   if (((s as any).know_virgin ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     scene.text('"Knock it off," you shake your head. "You know I\'m saving my virginity."');
   } else {
-    (s as any).know_virgin[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).know_virgin ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"We can\'t do that," you shake your head. "I\'m saving my virginity."');
   }
   if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] !== 1  &&  ((s as any).npc_assertive ?? 0)?.[String((s as any).npcID ?? 0)] !== -1)  ||  ((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0)  &&  ((s as any).sex_ev ?? 0)?.['virgin_deny'] === 0) {
@@ -226,7 +226,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_virgin', 'change_mind');
   } },
         { label: 'Well...', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     scene.img('images/shared/sex/vag/miss/pussyhump.mp4');
     // TODO-QSP: dynamic text: <<$npcdesc>> doesn't wait for your permission and starts rubbing his cock agains...
     scene.text(`${((s as any).npcdesc ?? 0)} doesn't wait for your permission and starts rubbing his cock against your pussy lips.`);
@@ -253,7 +253,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).sex_ev['no_sex'] = 1;
+      ((s as any).sex_ev ?? {})['no_sex'] = 1;
       // TODO-QSP: dynamic text: "Oh," <<$npcdesc>> seems taken aback. "Sorry, I didn't realize. Did you want to ...
       scene.text(`"Oh," ${((s as any).npcdesc ?? 0)} seems taken aback. "Sorry, I didn't realize. Did you want to do something else then?"`);
       qspCall(s, 'sex_ev_foreplay', 'foreplay_choose');
@@ -263,7 +263,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHookupWait(s: GameState, scene: SceneBuilder): void {
-  (s as any).know_virgin[String((s as any).npcID ?? 0)] = 1;
+  ((s as any).know_virgin ?? {})[String((s as any).npcID ?? 0)] = 1;
   // TODO-QSP: $sex_ev['bed_room']
   if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
     // TODO-QSP: dynamic text: "Wait!" you yelp, closing up your legs halfway. <<$npcdesc>> freezes up, body ov...
@@ -328,7 +328,7 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_virgin', 'hookup_wait'] }]);
   }
   if (((s as any).WIP_enabled ?? 0) > 0  &&  (Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
-    (s as any).sex_ev['rape_ev'] = 1;
+    ((s as any).sex_ev ?? {})['rape_ev'] = 1;
     scene.img('images/shared/sex/vag/miss/3.jpg');
     if (((s as any).know_virgin ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
       scene.text('"Wait!" you yelp. "Knock it off! You know I\'m saving my virg-!"');
@@ -374,15 +374,15 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_virgin', 'anal_instead');
       scene.actions([
         { label: 'No way!', handler: (st: GameState) => {
-    (s as any).sex_ev['virgin_deny'] = ((s as any).sex_ev['virgin_deny'] ?? 0) + (1);
-    (s as any).sex_ev['no_sex'] = 1;
+    ((s as any).sex_ev ?? {})['virgin_deny'] = (((s as any).sex_ev ?? {})['virgin_deny'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['no_sex'] = 1;
     // TODO-QSP: $sex_ev['bed_room']
     scene.text('"No means no!" You snap your legs closed and turn your face away. "Take it for an answer already."');
     scene.text('He pulls back with a sigh.');
     qspCall(s, 'sex_ev_virgin', 'change_mind');
   } },
         { label: 'Well...', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     scene.img('images/shared/sex/vag/miss/pussyhump.mp4');
     scene.text('<i>Well...</i> You moan softly under his touch. It feels <i>so good.</i> What if... you just... let him...');
     // TODO-QSP: dynamic text: <<$npcdesc>> gently pushes your legs open and his hardon rubs up against your sn...
@@ -405,9 +405,9 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Hesitate', handler: (st: GameState) => {
     if (((s as any).pcs_horny ?? 0) >= 60) {
-      (s as any).sex_ev['hesitate_describe'] = 'You hesitate, heart pounding in your chest, unsure of whether you want him to do. The hardness of his cock caresses the folds of your pussy, rubbing up against your clit. And you can\'t deny how turned on you are right now. You can see your wetness glisten on his shaft, coating it in a viscous sheen. But is this how you want your first time to go? Like this? With ' + qspUntranslated(s, "npcdesc>", { location: "sex_ev_virgin" }) + '?';
+      ((s as any).sex_ev ?? {})['hesitate_describe'] = 'You hesitate, heart pounding in your chest, unsure of whether you want him to do. The hardness of his cock caresses the folds of your pussy, rubbing up against your clit. And you can\'t deny how turned on you are right now. You can see your wetness glisten on his shaft, coating it in a viscous sheen. But is this how you want your first time to go? Like this? With ' + qspUntranslated(s, "npcdesc>", { location: "sex_ev_virgin" }) + '?';
     } else {
-      (s as any).sex_ev['hesitate_describe'] = 'You hesitate, heart pounding in your chest, unsure of whether you want him to do. The hardness of his cock caresses the folds of your pussy, rubbing up against your clit. Is this how you want your first time to go? Like this? With ' + qspUntranslated(s, "npcdesc>", { location: "sex_ev_virgin" }) + '?';
+      ((s as any).sex_ev ?? {})['hesitate_describe'] = 'You hesitate, heart pounding in your chest, unsure of whether you want him to do. The hardness of his cock caresses the folds of your pussy, rubbing up against your clit. Is this how you want your first time to go? Like this? With ' + qspUntranslated(s, "npcdesc>", { location: "sex_ev_virgin" }) + '?';
     }
     if (((s as any).npc_pushy ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       scene.img('images/shared/sex/vag/miss/pussyhump.mp4');
@@ -432,7 +432,7 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_virgin', 'anal_instead');
   } },
         { label: '"Okay"', handler: (st: GameState) => {
-    (s as any).sex_ev['position'] = 'miss';
+    ((s as any).sex_ev ?? {})['position'] = 'miss';
     scene.text('"Okay," you say in a small voice, not even a whisper.');
     // TODO-QSP: dynamic text: "What?" <<$npcdesc>> looks down at you eagerly.
     scene.text(`"What?" ${((s as any).npcdesc ?? 0)} looks down at you eagerly.`);
@@ -456,7 +456,7 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "What?" <<$npcdesc>> looks down at you eagerly.
     scene.text(`"What?" ${((s as any).npcdesc ?? 0)} looks down at you eagerly.`);
     scene.text('"Okay," you say, heart pounding in your chest now with excitement, and spread your legs. "You convinced me. Put it in."');
-    (s as any).sex_ev['position'] = 'miss';
+    ((s as any).sex_ev ?? {})['position'] = 'miss';
     if (((s as any).npc_condom_conscious ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
       // TODO-QSP: dynamic text: <<$npcdesc>> grabs a condom off his nightstand.
       scene.text(`${((s as any).npcdesc ?? 0)} grabs a condom off his nightstand.`);
@@ -510,7 +510,7 @@ function enterNotReady(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'sex_ev_virgin', 'bj_instead');
         scene.actions([
           { label: 'If that\'s really okay', handler: (st: GameState) => {
-    (s as any).sex_ev['no_sex'] = 1;
+    ((s as any).sex_ev ?? {})['no_sex'] = 1;
     if (((s as any).sex_ev ?? 0)?.['cum_count'] > 0) {
       scene.text('"Are you sure?" you ask. "I feel kind of bad now... we got this far and all..."');
       scene.text('"Yeah of course. It\'s your body, your choice. I can\'t <i>make</i> you fuck me. Besides, you already got me off earlier. It\'s not like you\'d be blueballing me if we stopped now."');
@@ -644,7 +644,7 @@ function enterBjInstead(s: GameState, scene: SceneBuilder): void {
     }
   } },
           { label: 'Give in', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
       scene.img('images/shared/sex/foreplay/miss1.jpg');
       // TODO-QSP: dynamic text: Unable to summon the will to say no, you nod and spread your legs, allowing <<$n...
@@ -688,7 +688,7 @@ function enterBjInstead(s: GameState, scene: SceneBuilder): void {
 function enterAnalInstead(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'What about anal instead?', handler: (st: GameState) => {
-    (s as any).sex_ev['anal_allowed'] = 1;
+    ((s as any).sex_ev ?? {})['anal_allowed'] = 1;
     scene.text('"Well... how about anal instead?"');
     if (((s as any).npc_anal_times ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> pauses.
@@ -727,7 +727,7 @@ function enterVirginForceStop(s: GameState, scene: SceneBuilder): void {
       scene.text('"OUT!" he screams.');
       // TODO-QSP: xgt 'sex_ev_leave', 'scared_exit'
     } else {
-      (s as any).sex_ev['fuck_locked'] = 1;
+      ((s as any).sex_ev ?? {})['fuck_locked'] = 1;
       // TODO-QSP: dynamic text: "No, no, I'm sorry," <<$npcdesc>> says quickly, looking mollified. "It's my faul...
       scene.text(`"No, no, I'm sorry," ${((s as any).npcdesc ?? 0)} says quickly, looking mollified. "It's my fault, I was pushing too hard. I didn't mean to-"`);
       scene.actions([

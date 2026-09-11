@@ -10,7 +10,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   scene.text('Stepping closer to the poster, you see the hotel is looking to recruit cleaning staff.');
   scene.text('"<b>Maid Wanted!</b> The Pavlovsk Hotel is looking for a hardworking maid. No experience necessary. Flexible hours. Apply in person at the hotel reception."');
   scene.text('<i>It doesn\'t look like a glamorous job, but at least it\'s honest work.</i>');
-  (s as any).job_hiring_step['pav_hotel_maid'] = 1;
+  ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
   return;
   scene.actions([
     { label: 'Go back', goto: ['pav_hotel', ''] },

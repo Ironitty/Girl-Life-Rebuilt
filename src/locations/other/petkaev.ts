@@ -116,10 +116,10 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-    (s as any).petkaQW['threaten'] = 1;
-    (s as any).petkaQW['homework'] = 1;
-    (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (3);
+    ((s as any).petkaQW ?? {})['threaten'] = 1;
+    ((s as any).petkaQW ?? {})['homework'] = 1;
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (5);
+    ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
     qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
@@ -150,11 +150,11 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
-    (s as any).petkaQW['threaten'] = 1;
-    (s as any).petkaQW['homework'] = 1;
-    (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (10);
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (3);
+    ((s as any).petkaQW ?? {})['threaten'] = 1;
+    ((s as any).petkaQW ?? {})['homework'] = 1;
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (10);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
+    ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) + (3);
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
     qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
     qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
@@ -198,7 +198,7 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
             { label: 'Bribe him with sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).petkaQW['bribe'] = 1;
+    ((s as any).petkaQW ?? {})['bribe'] = 1;
   }, goto: ['petkaev', 'homework_sex_bribe'] },
           ]);
         }
@@ -218,12 +218,12 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
 
 function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-  (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (3);
-  (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-  (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (4);
+  ((s as any).grupvalue ?? {})[1] = (((s as any).grupvalue ?? {})[1] ?? 0) - (5);
+  ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (3);
+  ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) - (1);
+  ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (4);
   qspCall(s, 'npc_relationship', 'modify', 'A6', 'love');
-  (s as any).npc_had_sex['A6'] = 1;
+  ((s as any).npc_had_sex ?? {})['A6'] = 1;
   qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
   qspCall(s, 'fame', 'pav', 'sex', 5);
   qspCall(s, 'npcStat', 'A6');
@@ -403,8 +403,8 @@ function enterSchoolRestroomStrap(s: GameState, scene: SceneBuilder): void {
     { label: 'Get ready to fuck him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging1.jpg');
     scene.text('You check the straps to make sure they\'re good and tight.');
-    (s as any).petkaQW['restroom_strapon'] = ((s as any).petkaQW['restroom_strapon'] ?? 0) + (1);
-    (s as any).petkaQW['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
+    ((s as any).petkaQW ?? {})['restroom_strapon'] = (((s as any).petkaQW ?? {})['restroom_strapon'] ?? 0) + (1);
+    ((s as any).petkaQW ?? {})['pegged'] = (((s as any).petkaQW ?? {})['pegged'] ?? 0) + (1);
     if (((s as any).penisEnvyVariable ?? 0) === 1) {
       scene.actions([
         { label: 'Fuck him with your magic dick', goto: ['petkaev', 'school_restroom_pegging_magic'] },
@@ -439,7 +439,7 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use lube', handler: (st: GameState) => {
-    (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('You walk up behind him and lube up the dildo, then his ass as well. You slap the dildo against his ass before lining it up against his asshole.');
     if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
@@ -525,7 +525,7 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
-  (s as any).petkaQW['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
+  ((s as any).petkaQW ?? {})['sub'] = (((s as any).petkaQW ?? {})['sub'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'D<<strapNumber>>');
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging3.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
@@ -645,7 +645,7 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use lube', handler: (st: GameState) => {
-    (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['lubricant'] = (((s as any).mc_inventory ?? {})['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('Having cast the spell, you watch as the harness melds with your skin and feel the dildo twitching as it makes contact with your flesh. Once completed, you walk up to Petka and lube up your member and his asshole with your lubricant before you start pushing yourself into his rear entrance.');
     if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] === 0) {
@@ -731,7 +731,7 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
-  (s as any).petkaQW['sub'] = ((s as any).petkaQW['sub'] ?? 0) + (1);
+  ((s as any).petkaQW ?? {})['sub'] = (((s as any).petkaQW ?? {})['sub'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'D<<strapNumber>>');
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging3.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {

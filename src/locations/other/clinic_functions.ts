@@ -93,8 +93,8 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
   (s as any).same_day_offer_index = (-1);
   if (((s as any).same_day_window_end ?? 0) >= 0) {
     (s as any).same_day_offer_index = ((s as any).appointment_offer_count ?? 0);
-    (s as any).appointment_offer_day[String((s as any).same_day_offer_index ?? 0)] = ((s as any).daystart ?? 0);
-    (s as any).appointment_offer_window_end[String((s as any).same_day_offer_index ?? 0)] = ((s as any).same_day_window_end ?? 0);
+    ((s as any).appointment_offer_day ?? {})[String((s as any).same_day_offer_index ?? 0)] = ((s as any).daystart ?? 0);
+    ((s as any).appointment_offer_window_end ?? {})[String((s as any).same_day_offer_index ?? 0)] = ((s as any).same_day_window_end ?? 0);
   }
   (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
   if (((s as any).temp_rand ?? 0) === 1) {

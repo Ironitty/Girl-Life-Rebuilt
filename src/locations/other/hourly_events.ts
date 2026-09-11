@@ -48,40 +48,40 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).sleepVars['no_sleep_loss'] = 0;
+      ((s as any).sleepVars ?? {})['no_sleep_loss'] = 0;
     }
     if (((s as any).pcs_sleep ?? 0) <= 0  &&  (!((s as any).succublvl ?? 0))) {
-      (s as any).pcs_condition['lack_of_sleep'] = ((s as any).pcs_condition['lack_of_sleep'] ?? 0) + (2);
+      ((s as any).pcs_condition ?? {})['lack_of_sleep'] = (((s as any).pcs_condition ?? {})['lack_of_sleep'] ?? 0) + (2);
       if (((s as any).pcs_mood_effects ?? 0)?.['slpredcheck'] === 1) {
         qspCall(s, 'mood', 'lower', 'tiny');
       }
-      (s as any).pcs_mood_effects['slpredcheck'] = 1;
+      ((s as any).pcs_mood_effects ?? {})['slpredcheck'] = 1;
     } else {
-      (s as any).pcs_mood_effects['slpredcheck'] = 0;
+      ((s as any).pcs_mood_effects ?? {})['slpredcheck'] = 0;
     }
     if (((s as any).pcs_energy ?? 0) <= 0) {
       if (((s as any).pcs_mood_effects ?? 0)?.['nrgredcheck'] === 1) {
         qspCall(s, 'mood', 'lower', 'tiny');
       }
-      (s as any).pcs_mood_effects['nrgredcheck'] = 1;
+      ((s as any).pcs_mood_effects ?? {})['nrgredcheck'] = 1;
     } else {
-      (s as any).pcs_mood_effects['nrgredcheck'] = 0;
+      ((s as any).pcs_mood_effects ?? {})['nrgredcheck'] = 0;
     }
     if (((s as any).pcs_hydra ?? 0) <= 0) {
       if (((s as any).pcs_mood_effects ?? 0)?.['hydredcheck'] === 1) {
         qspCall(s, 'mood', 'lower', 'tiny');
       }
-      (s as any).pcs_mood_effects['hydredcheck'] = 1;
+      ((s as any).pcs_mood_effects ?? {})['hydredcheck'] = 1;
     } else {
-      (s as any).pcs_mood_effects['hydredcheck'] = 0;
+      ((s as any).pcs_mood_effects ?? {})['hydredcheck'] = 0;
     }
     if (((s as any).arch_vars ?? 0)?.['main_active'] === 'prude'  &&  ((s as any).pcs_faith ?? 0) <= 25) {
       if (((s as any).pcs_mood_effects ?? 0)?.['faithredcheck'] === 1) {
         qspCall(s, 'mood', 'lower', 'tiny');
       }
-      (s as any).pcs_mood_effects['faithredcheck'] = 1;
+      ((s as any).pcs_mood_effects ?? {})['faithredcheck'] = 1;
     } else {
-      (s as any).pcs_mood_effects['faithredcheck'] = 0;
+      ((s as any).pcs_mood_effects ?? {})['faithredcheck'] = 0;
     }
     if (((s as any).pcs_stam ?? 0) <= 0) {
       qspCall(s, 'mood', 'lower', Math.floor(Math.random() * 6) + 5);
@@ -134,13 +134,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).inSleep ?? 0) === 1) {
-    (s as any).pcs_period['period_warning'] = 0;
+    ((s as any).pcs_period ?? {})['period_warning'] = 0;
   } else {
     if (((s as any).pcs_period ?? 0)?.['period_warning'] === 0  &&  ((s as any).placebopart ?? 0) > 0  &&  ((s as any).lutH ?? 0) > 0  &&  (!((s as any).knowpreg ?? 0))) {
-      (s as any).pcs_period['period_warning'] = 1;
+      ((s as any).pcs_period ?? {})['period_warning'] = 1;
     } else {
       if (((s as any).pcs_period ?? 0)?.['period_warning'] === 1  &&  ((s as any).lutH_max ?? 0) - ((s as any).lutH ?? 0) <= 2) {
-        (s as any).pcs_period['period_warning'] = 2;
+        ((s as any).pcs_period ?? {})['period_warning'] = 2;
         if (((s as any).isprok ?? 0) === 1) {
         } else {
           if (((s as any).location_type ?? 0) === 'private'  &&  ((s as any).isprokp ?? 0) === 1) {
@@ -151,24 +151,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).mesec ?? 0) > 0) {
-          (s as any).pcs_period['period_warning'] = 0;
+          ((s as any).pcs_period ?? {})['period_warning'] = 0;
         }
       }
     }
   }
   if ((!((s as any).inSleep ?? 0))) {
-    (s as any).vomit['daily_check'] = 0;
+    ((s as any).vomit ?? {})['daily_check'] = 0;
   } else {
     if (((s as any).vomit ?? 0)?.['daily_check'] === 0) {
-      (s as any).vomit['daily_check'] = 1;
+      ((s as any).vomit ?? {})['daily_check'] = 1;
       if (((s as any).alko ?? 0) > 4) {
-        (s as any).vomit['hangover'] = 1;
+        ((s as any).vomit ?? {})['hangover'] = 1;
       } else {
         if (((s as any).pregChem ?? 0) > 600  &&  ((s as any).pregChem ?? 0) < 2160  &&  (Math.floor(Math.random() * 4) + 1) === 4) {
-          (s as any).vomit['morning_sick'] = 1;
+          ((s as any).vomit ?? {})['morning_sick'] = 1;
         } else {
           if ((Math.floor(Math.random() * 1000) + 1) === 1) {
-            (s as any).vomit['unlucky'] = 1;
+            ((s as any).vomit ?? {})['unlucky'] = 1;
           }
         }
       }
@@ -289,48 +289,48 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_hair_interval = ((((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] === 1) ? (720) : (((((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] === 0) ? (1440) : (1800))));
     if (((s as any).totminut ?? 0) > ((s as any).stat ?? 0)?.['leg_hair_growth_timer'] + ((s as any).temp_hair_interval ?? 0)) {
-      (s as any).stat['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
+      ((s as any).stat ?? {})['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
       (s as any).pcs_leghair = ((s as any).pcs_leghair ?? 0) + (1);
     }
     if (((s as any).totminut ?? 0) > ((s as any).stat ?? 0)?.['pube_growth_timer'] + ((s as any).temp_hair_interval ?? 0) * 2) {
-      (s as any).stat['pube_growth_timer'] = ((s as any).totminut ?? 0);
+      ((s as any).stat ?? {})['pube_growth_timer'] = ((s as any).totminut ?? 0);
       (s as any).pcs_pubes = ((s as any).pcs_pubes ?? 0) + (1);
     }
     qspCall(s, 'body_desc', 'pube_desc_update');
   }
   qspCall(s, 'komp_cam_functions', 'hourly_events');
   if (((s as any).hunterVars ?? 0)?.['Andreisex'] > 0) {
-    (s as any).hunterVars['Andreisex'] = ((s as any).hunterVars['Andreisex'] ?? 0) - (1);
+    ((s as any).hunterVars ?? {})['Andreisex'] = (((s as any).hunterVars ?? {})['Andreisex'] ?? 0) - (1);
   }
   if (((s as any).hunterVars ?? 0)?.['Sergeisex'] > 0) {
-    (s as any).hunterVars['Sergeisex'] = ((s as any).hunterVars['Sergeisex'] ?? 0) - (1);
+    ((s as any).hunterVars ?? {})['Sergeisex'] = (((s as any).hunterVars ?? {})['Sergeisex'] ?? 0) - (1);
   }
   if (((s as any).hunterVars ?? 0)?.['Igorsex'] > 0) {
-    (s as any).hunterVars['Igorsex'] = ((s as any).hunterVars['Igorsex'] ?? 0) - (1);
+    ((s as any).hunterVars ?? {})['Igorsex'] = (((s as any).hunterVars ?? {})['Igorsex'] ?? 0) - (1);
   }
   if (((s as any).huntslutsex ?? 0) > 0) {
     (s as any).huntslutsex = ((s as any).huntslutsex ?? 0) - (1);
   }
   if (((s as any).MiraVars ?? 0)?.['follow_time'] > 0) {
-    (s as any).MiraVars['follow_time'] = ((s as any).MiraVars['follow_time'] ?? 0) - (1);
+    ((s as any).MiraVars ?? {})['follow_time'] = (((s as any).MiraVars ?? {})['follow_time'] ?? 0) - (1);
   }
   if (((s as any).npc_drunk ?? 0)?.['A60'] > 0  &&  ((s as any).locat ?? 0)?.['A60_loc'] !== 'mitkabuh_group') {
-    (s as any).npc_drunk['A60'] = ((s as any).npc_drunk['A60'] ?? 0) - (1);
+    ((s as any).npc_drunk ?? {})['A60'] = (((s as any).npc_drunk ?? {})['A60'] ?? 0) - (1);
   }
   qspCall(s, 'katja_procedural', 'hourly');
   if (((s as any).HotelRoom ?? 0)?.['pav'] > 0) {
     if (((s as any).hotelRoomDays ?? 0)?.['pav'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 11) {
-      (s as any).HotelRoom['pav'] = 0;
+      ((s as any).HotelRoom ?? {})['pav'] = 0;
     }
   }
   if (((s as any).HotelRoom ?? 0)?.['city'] > 0) {
     if (((s as any).hotelRoomDays ?? 0)?.['city'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 11) {
-      (s as any).HotelRoom['city'] = 0;
+      ((s as any).HotelRoom ?? {})['city'] = 0;
     }
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 14  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['last_absence'] !== ((s as any).daystart ?? 0)) {
-    (s as any).gschoolVars['absence_count'] = ((s as any).gschoolVars['absence_count'] ?? 0) + (1);
-    (s as any).gschoolVars['last_absence'] = ((s as any).daystart ?? 0);
+    ((s as any).gschoolVars ?? {})['absence_count'] = (((s as any).gschoolVars ?? {})['absence_count'] ?? 0) + (1);
+    ((s as any).gschoolVars ?? {})['last_absence'] = ((s as any).daystart ?? 0);
   }
   scene.build();
 }

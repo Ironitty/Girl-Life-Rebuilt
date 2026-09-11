@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).KGZVars ?? 0)?.['dead'] <= 0) {
-    (s as any).KGZVars['batl'] = 1;
+    ((s as any).KGZVars ?? {})['batl'] = 1;
     qspCall(s, 'mood', 'raise', 'tiny');
     scene.text('You have defeated all of the zombies.');
     return;
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).KGZVars ?? 0)?.['dist'] < 0) {
-    (s as any).KGZVars['dist'] = 0;
+    ((s as any).KGZVars ?? {})['dist'] = 0;
   }
   // TODO-QSP: dynamic text: Health <<KGZVars['HP']>>. Day <<KGZVars['day']>>, h <<KGZVars['hour']>>.
   scene.text(`Health ${((s as any).KGZVars ?? 0)?.['HP']}. Day ${((s as any).KGZVars ?? 0)?.['day']}, h ${((s as any).KGZVars ?? 0)?.['hour']}.`);
@@ -44,7 +44,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<KGZVars['dead']>> zombies are making their way towards you. They are <<KGZVars...
   scene.text(`${((s as any).KGZVars ?? 0)?.['dead']} zombies are making their way towards you. They are ${((s as any).KGZVars ?? 0)?.['dist']} meters away.`);
   if (((s as any).KGZVars ?? 0)?.['dost'] === 1) {
-    (s as any).KGZVars['dead'] = ((s as any).KGZVars['dead'] ?? 0) - (1);
+    ((s as any).KGZVars ?? {})['dead'] = (((s as any).KGZVars ?? {})['dead'] ?? 0) - (1);
     scene.text('Vincent fires his rifle and a zombie falls to the ground with a hole in its head.');
     if (((s as any).KGZVars ?? 0)?.['dead'] <= 0) {
       // TODO-QSP: gt $curloc
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['gun'] > 0  &&  ((s as any).KGZVars ?? 0)?.['bullet'] > 0) {
     scene.actions([
       { label: 'Shoot your pistol', handler: (st: GameState) => {
-    (s as any).KGZVars['bullet'] = ((s as any).KGZVars['bullet'] ?? 0) - (1);
+    ((s as any).KGZVars ?? {})['bullet'] = (((s as any).KGZVars ?? {})['bullet'] ?? 0) - (1);
     qspCall(s, 'KGZdyn', 'KGZgunatk');
     qspCall(s, 'KGZdyn', 'KGZdeadmanatk');
     scene.actions([
@@ -67,7 +67,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['gun2'] > 0  &&  ((s as any).KGZVars ?? 0)?.['bullet2'] > 0) {
     scene.actions([
       { label: 'Fire your shotgun', handler: (st: GameState) => {
-    (s as any).KGZVars['bullet2'] = ((s as any).KGZVars['bullet2'] ?? 0) - (1);
+    ((s as any).KGZVars ?? {})['bullet2'] = (((s as any).KGZVars ?? {})['bullet2'] ?? 0) - (1);
     qspCall(s, 'KGZdyn', 'KGZgunatk2');
     qspCall(s, 'KGZdyn', 'KGZdeadmanatk');
     scene.actions([
@@ -82,8 +82,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).KGZVars ?? 0)?.['bullet3'] >= 3) {
       scene.actions([
         { label: 'Shoot machine gun (short burst)', handler: (st: GameState) => {
-    (s as any).KGZVars['bullet3'] = ((s as any).KGZVars['bullet3'] ?? 0) - (3);
-    (s as any).KGZVars['bulgun'] = 3;
+    ((s as any).KGZVars ?? {})['bullet3'] = (((s as any).KGZVars ?? {})['bullet3'] ?? 0) - (3);
+    ((s as any).KGZVars ?? {})['bulgun'] = 3;
     qspCall(s, 'KGZdyn', 'KGZgunatk4');
     qspCall(s, 'KGZdyn', 'KGZdeadmanatk');
     scene.actions([
@@ -97,8 +97,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).KGZVars ?? 0)?.['bullet3'] >= 10) {
       scene.actions([
         { label: 'Shoot machine gun (full auto)', handler: (st: GameState) => {
-    (s as any).KGZVars['bullet3'] = ((s as any).KGZVars['bullet3'] ?? 0) - (10);
-    (s as any).KGZVars['bulgun'] = 10;
+    ((s as any).KGZVars ?? {})['bullet3'] = (((s as any).KGZVars ?? {})['bullet3'] ?? 0) - (10);
+    ((s as any).KGZVars ?? {})['bulgun'] = 10;
     qspCall(s, 'KGZdyn', 'KGZgunatk5');
     qspCall(s, 'KGZdyn', 'KGZdeadmanatk');
     scene.actions([
@@ -111,7 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Shoot machine gun (single)', handler: (st: GameState) => {
-    (s as any).KGZVars['bullet3'] = ((s as any).KGZVars['bullet3'] ?? 0) - (1);
+    ((s as any).KGZVars ?? {})['bullet3'] = (((s as any).KGZVars ?? {})['bullet3'] ?? 0) - (1);
     qspCall(s, 'KGZdyn', 'KGZgunatk3');
     qspCall(s, 'KGZdyn', 'KGZdeadmanatk');
     scene.actions([
@@ -148,16 +148,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).KGZVars['dist'] = ((s as any).KGZVars['dist'] ?? 0) - (1);
+    ((s as any).KGZVars ?? {})['dist'] = (((s as any).KGZVars ?? {})['dist'] ?? 0) - (1);
     dynamicGoto(st, 'curloc');
   } },
       { label: 'Approach', handler: (st: GameState) => {
-    (s as any).KGZVars['dist'] = ((s as any).KGZVars['dist'] ?? 0) - (2);
+    ((s as any).KGZVars ?? {})['dist'] = (((s as any).KGZVars ?? {})['dist'] ?? 0) - (2);
     dynamicGoto(st, 'curloc');
   } },
       { label: 'Scoot', handler: (st: GameState) => {
     if (((s as any).KGZVars ?? 0)?.['dead'] >= 10) {
-      (s as any).KGZVars['dist'] = ((s as any).KGZVars['dist'] ?? 0) - (5);
+      ((s as any).KGZVars ?? {})['dist'] = (((s as any).KGZVars ?? {})['dist'] ?? 0) - (5);
       scene.text('The dead surround you. You cannot escape.');
       scene.actions([
         { label: 'Fuck!', handler: (st: GameState) => {
@@ -165,17 +165,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).KGZVars['dedrandrun'] = Math.floor(Math.random() * 2) + 0;
+      ((s as any).KGZVars ?? {})['dedrandrun'] = Math.floor(Math.random() * 2) + 0;
       if (((s as any).KGZVars ?? 0)?.['dedrandrun'] === 0) {
-        (s as any).KGZVars['batl'] = 1;
+        ((s as any).KGZVars ?? {})['batl'] = 1;
         scene.text('You manage to escape from the dead.');
         scene.actions([
           { label: 'Leave', goto: ['KGZgame', ''] },
         ]);
       } else {
         if (((s as any).KGZVars ?? 0)?.['dedrandrun'] === 1) {
-          (s as any).KGZVars['dist'] = ((s as any).KGZVars['dist'] ?? 0) - (5);
-          (s as any).KGZVars['dead'] = ((s as any).KGZVars['dead'] ?? 0) + (((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['dead'], ((s as any).KGZVars ?? {})?.['dead'] * 5));
+          ((s as any).KGZVars ?? {})['dist'] = (((s as any).KGZVars ?? {})['dist'] ?? 0) - (5);
+          ((s as any).KGZVars ?? {})['dead'] = (((s as any).KGZVars ?? {})['dead'] ?? 0) + (((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['dead'], ((s as any).KGZVars ?? {})?.['dead'] * 5));
           scene.text('You make a cautious approach, but manage to alert even more zombies.');
           scene.actions([
             { label: 'Fuck!', handler: (st: GameState) => {

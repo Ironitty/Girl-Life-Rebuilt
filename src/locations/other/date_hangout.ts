@@ -40,13 +40,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['init'] < ((s as any).totminut ?? 0) - 60) {
-    (s as any).date_ev['init'] = ((s as any).totminut ?? 0);
-    (s as any).date_ev['at_home'] = 1;
-    (s as any).date_ev['type'] = 'home_date';
-    (s as any).date_ev['loc'] = 'date_hangout';
-    (s as any).date_ev['loc_img'] = 'loc_img';
-    (s as any).date_ev['talk_img'] = 'talk_img';
-    (s as any).date_ev['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
+    ((s as any).date_ev ?? {})['init'] = ((s as any).totminut ?? 0);
+    ((s as any).date_ev ?? {})['at_home'] = 1;
+    ((s as any).date_ev ?? {})['type'] = 'home_date';
+    ((s as any).date_ev ?? {})['loc'] = 'date_hangout';
+    ((s as any).date_ev ?? {})['loc_img'] = 'loc_img';
+    ((s as any).date_ev ?? {})['talk_img'] = 'talk_img';
+    ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
   }
   // TODO-QSP: if
   // TODO-QSP: end}
@@ -91,7 +91,7 @@ function enterWatchingImage(s: GameState, scene: SceneBuilder): void {
 function enterSettleIn(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Sit on the couch', handler: (st: GameState) => {
-    (s as any).date_ev['hangout_loc'] = 'living_couch';
+    ((s as any).date_ev ?? {})['hangout_loc'] = 'living_couch';
     qspCall(s, 'date_hangout', 'loc_img');
     if (((s as any).coatworntype ?? 0) !== 'none') {
       if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {

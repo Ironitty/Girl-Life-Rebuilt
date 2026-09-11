@@ -5,7 +5,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
     if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
-      (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
+      ((s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
     }
   } else {
     if (((s as any).face_style ?? 0)?.['type'] === 2) {

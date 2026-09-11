@@ -41,7 +41,7 @@ function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"What are you going to do, ${((s as any).pcs_nickname ?? 0)}? Are you going to fuck the guys?" she asks.`);
   scene.actions([
     { label: 'Join in having sex with the guys', handler: (st: GameState) => {
-    (s as any).katjaQW['first_orgy'] = 'joining_in';
+    ((s as any).katjaQW ?? {})['first_orgy'] = 'joining_in';
     qspCall(s, 'npcgeneratec', '', 1, 'brown_dress', Math.floor(Math.random() * 5) + 19, 4);
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'e');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -169,7 +169,7 @@ function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Just continue watching', handler: (st: GameState) => {
-    (s as any).katjaQW['first_orgy'] = 'observing';
+    ((s as any).katjaQW ?? {})['first_orgy'] = 'observing';
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_observe1.jpg');
@@ -189,7 +189,7 @@ function enterFirstOrgyObserve1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'See where they take it', handler: (st: GameState) => {
-    (s as any).katjaQW['first_orgy'] = 'observing';
+    ((s as any).katjaQW ?? {})['first_orgy'] = 'observing';
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_observe2.jpg');
@@ -419,7 +419,7 @@ function enterFirstOrgyObserve3(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to watch', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (30);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (30);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja10\'+iif(katjaQW[\'horny\'] >= 100, \'b\', \'a\')+\'.jpg');
     scene.text('Anushka continues to sip her drink as you both continue watching Katja as if she was the star in a porn movie.');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_second3');
@@ -572,7 +572,7 @@ function enterFirstOrgyObserve6(s: GameState, scene: SceneBuilder): void {
     { label: 'Go back to watching Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 20);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja15\'+iif(katjaQW[\'horny\'] >= 80, \'a\', \'b\')+\'.jpg');
     scene.text('You decide to switch back to watching Katja.');
     scene.text('It\'s almost as if she and Anushka are competing about who can be the biggest slut tonight.');
@@ -672,7 +672,7 @@ function enterFirstOrgyObserve8(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to watch Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja23\'+iif(katjaQW[\'horny\'] >= 100, \'b\', \'a\')+\'.jpg');
     scene.text('You decide to continue watching for a while.');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_fifth3');
@@ -696,7 +696,7 @@ function enterFirstOrgyObserve8(s: GameState, scene: SceneBuilder): void {
       { label: 'Go talk with Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 2, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja25\'+iif(katjaQW[\'horny\'] + 10*katjaQW[\'orgsam_at_first_orgy_count\'] >= 70, \'b\', \'a\')+\'.jpg');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_sixt_talk1');
     scene.text('Hearing you friend still having fun, you get back to dancing.');
@@ -784,8 +784,8 @@ function enterFirstOrgyObserveDance2(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Get on the couch', handler: (st: GameState) => {
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
-    (s as any).katjaQW['first_orgy'] = 'observing+nush_lick';
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW ?? {})['first_orgy'] = 'observing+nush_lick';
     qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID4 ?? 0), 'lesbian', 'orgy');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_join14.jpg');
@@ -805,7 +805,7 @@ function enterFirstOrgyObserveDance2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Allow him to enter you', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID3 ?? 0), 'orgy');
-    (s as any).katjaQW['first_orgy'] = 'observing+dick';
+    ((s as any).katjaQW ?? {})['first_orgy'] = 'observing+dick';
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_observe8.jpg');
     scene.text('"Yes, stuff my pussy with your big cock!" you smile, deciding it\'s time for you to get some dick for yourself.');
@@ -940,7 +940,7 @@ function enterFirstOrgyJoin3(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to watch', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (30);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (30);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja10\'+iif(katjaQW[\'horny\'] >= 100, \'b\', \'a\')+\'.jpg');
     scene.text('Anushka continues to sip her drink as you watch the redhead as if she was the star in a porn movie.');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_second3');
@@ -1121,7 +1121,7 @@ function enterFirstOrgyJoin7(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal_finger_give', 3, ((s as any).npcID5 ?? 0), 'orgy', 'lesbian');
     qspCall(s, 'arousal', 'clit_finger_give', (-3), ((s as any).npcID5 ?? 0), 'orgy', 'lesbian');
     qspCall(s, 'arousal', 'foreplay_give', (-3), ((s as any).npcID4 ?? 0), 'orgy', 'lesbian');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 20);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja15\'+iif(katjaQW[\'horny\'] >= 80, \'a\', \'b\')+\'.jpg');
     // TODO-QSP: dynamic text: As you're fondling Anushka and <<$katja_first_orgy_temp['first_orgy_name_brown_d...
@@ -1272,7 +1272,7 @@ function enterFirstOrgyJoin10(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue to watch Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3);
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja23\'+iif(katjaQW[\'horny\'] >= 100, \'b\', \'a\')+\'.jpg');
     scene.text('YOu continue to watch the redhead as you move through the naked girls and start dancing again.');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_fifth3');
@@ -1299,7 +1299,7 @@ function enterFirstOrgyJoin10(s: GameState, scene: SceneBuilder): void {
     scene.text('"Stay like this, I\'ll be right back," she says and moves away.');
     scene.actions([
       { label: 'Wait to see what is happening', handler: (st: GameState) => {
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID4 ?? 0), 'lesbian', 'orgy');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_join14.jpg');
@@ -1339,7 +1339,7 @@ function enterFirstOrgyJoin10(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk with Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 2, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja25\'+iif(katjaQW[\'horny\'] + 10*katjaQW[\'orgsam_at_first_orgy_count\'] >= 70, \'b\', \'a\')+\'.jpg');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_sixt_talk1');
     scene.text('Hearing your friend still having fun, you notice how thirsty you are.');
@@ -1377,7 +1377,7 @@ function enterFirstOrgyJoin10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstOrgyPlayerTakesInitiative(s: GameState, scene: SceneBuilder): void {
-  (s as any).katjaQW['first_orgy'] = 'taking_initiative';
+  ((s as any).katjaQW ?? {})['first_orgy'] = 'taking_initiative';
   qspCall(s, 'npcgeneratec', '', 1, 'boob_window', Math.floor(Math.random() * 5) + 19, 4);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'e');
   qspCall(s, 'arousal', 'foreplay', 2, 'orgy');
@@ -1640,7 +1640,7 @@ function enterFirstOrgyInitiativeContinued3(s: GameState, scene: SceneBuilder): 
       { label: 'Continue to watch', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (30);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (30);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja10\'+iif(katjaQW[\'horny\'] >= 100, \'b\', \'a\')+\'.jpg');
     scene.text('Anushka continues to sip her drink as you both watch the redhead as if she was the star in a porn movie.');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_second3');
@@ -1784,7 +1784,7 @@ function enterFirstOrgyInitiativeContinued6(s: GameState, scene: SceneBuilder): 
     qspCall(s, 'arousal', 'vaginal_finger', 3, ((s as any).npcID5 ?? 0), 'orgy', 'lesbian');
     qspCall(s, 'arousal', 'clit_finger', (-3), ((s as any).npcID5 ?? 0), 'orgy', 'lesbian');
     qspCall(s, 'arousal', 'foreplay', (-3), ((s as any).npcID4 ?? 0), 'orgy', 'lesbian');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 20);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja15\'+iif(katjaQW[\'horny\'] >= 80, \'a\', \'b\')+\'.jpg');
     scene.text('You decide to look down at your redhead friend next to you.');
@@ -1892,7 +1892,7 @@ function enterFirstOrgyInitiativeContinuedDance2(s: GameState, scene: SceneBuild
     qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID6 ?? 0), 'lesbian');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja21.jpg');
     scene.text('As you\'re dancing around near one of the couches, Anushka suddenly grabs you and pulls you closer.');
     scene.text('As you turn towards her, she takes your breast into her mouth and starts sucking your nipple.');
@@ -1930,7 +1930,7 @@ function enterFirstOrgyInitiativeContinuedDance2(s: GameState, scene: SceneBuild
       { label: 'Continue to watch Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'hj', 2, ((s as any).npcID1 ?? 0), 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 21) + 20);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja23\'+iif(katjaQW[\'horny\'] >= 100, \'b\', \'a\')+\'.jpg');
     // TODO-QSP: dynamic text: As you're standing around, <<$katja_first_orgy_temp['first_orgy_name_tatoo_guy']...
     scene.text(`As you're standing around, ${((s as any).katja_first_orgy_temp ?? 0)?.['first_orgy_name_tatoo_guy']} comes up to you and smiles.'`);
@@ -2012,7 +2012,7 @@ function enterFirstOrgyInitiativeContinued9(s: GameState, scene: SceneBuilder): 
       { label: 'Talk with Katja', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 2, 'orgy');
     qspCall(s, 'stat', '');
-    (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/orgy/first_orgy_katja25\'+iif(katjaQW[\'horny\'] + 10*katjaQW[\'orgsam_at_first_orgy_count\'] >= 70, \'b\', \'a\')+\'.jpg');
     qspCall(s, 'katja_nightclub_first_orgy', 'first_orgy_katja_sixt_talk1');
     scene.text('Hearing your friend still having fun, you notice how thirsty you are.');

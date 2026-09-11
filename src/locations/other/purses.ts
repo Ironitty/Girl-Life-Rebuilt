@@ -58,10 +58,10 @@ function enterTotals(s: GameState, scene: SceneBuilder): void {
 
 function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'purse_attributes', $ARGS[1] + '_purses', ARGS[2]
@@ -81,10 +81,10 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
 
 function enterCanWear(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     // TODO-QSP: gs 'purse_attributes', $ARGS[1] + '_purses', ARGS[2]
@@ -96,10 +96,10 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
 
 function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   (s as any).result = 0;
   return;
@@ -108,10 +108,10 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
 
 function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }))) {
@@ -123,10 +123,10 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterInStorage(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }))) {
@@ -138,10 +138,10 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   (s as any).result = 0;
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }))) {
@@ -189,10 +189,10 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
@@ -222,10 +222,10 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 0"
@@ -236,10 +236,10 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 1"
@@ -250,10 +250,10 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).currentpursetype ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).ARGS[2] = ((s as any).currentpursenumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }))) {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 2"
@@ -309,7 +309,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
       (s as any).purselastwornnumber = 0;
     }
     // TODO-QSP: $ARGS[1] = $purselastworntype
-    (s as any).ARGS[2] = ((s as any).purselastwornnumber ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).purselastwornnumber ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit

@@ -587,7 +587,7 @@ function enterDima34(s: GameState, scene: SceneBuilder): void {
 
 function enterDima35(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  (s as any).stat['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
@@ -765,7 +765,7 @@ function enterDima46(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   qspCall(s, 'npcgeneratec', '', 0, 'gloryhole stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gloryhole'] = (((s as any).stat ?? {})['gloryhole'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/sex/15933_markdavisdonnaannika_447.jpg');
   scene.text('When you\'re downstairs, the girl moves you into a dark room with a round hole in one wall. Almost immediately, a cock appears from the hole.');
@@ -792,7 +792,7 @@ function enterDima47(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID ?? 0), 'sub', 'prostitution', 'unknown');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
-  (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gloryhole'] = (((s as any).stat ?? {})['gloryhole'] ?? 0) + (1);
   (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
   if (((s as any).dimagh_counter ?? 0) < 9) {
     // TODO-QSP: jump 'gloryhole1'
@@ -831,7 +831,7 @@ function enterDima48(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'rough', 'deepthroat');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-  (s as any).stat['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gloryhole'] = (((s as any).stat ?? {})['gloryhole'] ?? 0) + (1);
   (s as any).dimagh_counter = ((s as any).dimagh_counter ?? 0) + (1);
   if (((s as any).dimagh_counter ?? 0) < 9) {
     // TODO-QSP: jump 'gloryhole2'

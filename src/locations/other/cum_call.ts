@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('anal') : -1) >= 0) {
           (s as any).spafinloc = 3;
-          (s as any).stat['cum_anal_ml'] = ((s as any).stat['cum_anal_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
+          ((s as any).stat ?? {})['cum_anal_ml'] = (((s as any).stat ?? {})['cum_anal_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
         } else {
           if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('butt') : -1) >= 0) {
             (s as any).spafinloc = 4;
@@ -52,11 +52,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('mouth_swallow') : -1) >= 0) {
                                 (s as any).spafinloc = 12;
-                                (s as any).stat['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
+                                ((s as any).stat ?? {})['swallow'] = (((s as any).stat ?? {})['swallow'] ?? 0) + (1);
                                 if (((s as any).locArgs?.[2] ?? 0) === 2) {
-                                  (s as any).stat['swallow_unaware'] = ((s as any).stat['swallow_unaware'] ?? 0) + (1);
+                                  ((s as any).stat ?? {})['swallow_unaware'] = (((s as any).stat ?? {})['swallow_unaware'] ?? 0) + (1);
                                 }
-                                (s as any).stat['cum_swallowed_ml'] = ((s as any).stat['cum_swallowed_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
+                                ((s as any).stat ?? {})['cum_swallowed_ml'] = (((s as any).stat ?? {})['cum_swallowed_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
                               } else {
                                 if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('hands') : -1) >= 0) {
                                   (s as any).spafinloc = 13;

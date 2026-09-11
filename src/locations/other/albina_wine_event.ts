@@ -24,7 +24,7 @@ function enterWineInvite(s: GameState, scene: SceneBuilder): void {
         { label: 'Go and shower', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You wash up in one of the guest showers, scrubbing the chlorine off your skin before drying off and putting your clothes back on.');
-    (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['shampoo'] = (((s as any).mc_inventory ?? {})['shampoo'] ?? 0) + (1);
     qspCall(s, 'din_van', 'showerdin');
     scene.actions([
       { label: 'Head out', handler: (st: GameState) => {
@@ -49,7 +49,7 @@ function enterWineInvite(s: GameState, scene: SceneBuilder): void {
       { label: 'Go and shower', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You wash up in one of the guest showers, scrubbing the chlorine off your skin before drying off and putting your clothes back on.');
-    (s as any).mc_inventory['shampoo'] = ((s as any).mc_inventory['shampoo'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['shampoo'] = (((s as any).mc_inventory ?? {})['shampoo'] ?? 0) + (1);
     qspCall(s, 'din_van', 'showerdin');
     scene.actions([
       { label: 'Head out', handler: (st: GameState) => {
@@ -125,18 +125,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Drunkenly converse with Albina', goto: ['albina_wine_event', 'wine_chat1'] },
     ]);
   }
-  (s as any).AlbinaQW['wine'] = ((s as any).AlbinaQW['wine'] ?? 0) + (1);
+  ((s as any).AlbinaQW ?? {})['wine'] = (((s as any).AlbinaQW ?? {})['wine'] ?? 0) + (1);
   scene.build();
 }
 
 function enterWineChat1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
   if (((s as any).AlbinaQW ?? 0)?.['wine_date'] !== ((s as any).daystart ?? 0)) {
-    (s as any).AlbinaQW['wine_date'] = ((s as any).daystart ?? 0);
-    (s as any).AlbinaQW['wine_limit'] = Math.floor(Math.random() * 5) + 4;
+    ((s as any).AlbinaQW ?? {})['wine_date'] = ((s as any).daystart ?? 0);
+    ((s as any).AlbinaQW ?? {})['wine_limit'] = Math.floor(Math.random() * 5) + 4;
   }
-  (s as any).AlbinaQW['wine_convo'] = Math.floor(Math.random() * 8) + 1;
-  (s as any).AlbinaQW['wine_count'] = ((s as any).AlbinaQW['wine_count'] ?? 0) + (1);
+  ((s as any).AlbinaQW ?? {})['wine_convo'] = Math.floor(Math.random() * 8) + 1;
+  ((s as any).AlbinaQW ?? {})['wine_count'] = (((s as any).AlbinaQW ?? {})['wine_count'] ?? 0) + (1);
   if (((s as any).AlbinaQW ?? 0)?.['wine_count'] >= ((s as any).AlbinaQW ?? 0)?.['wine_limit']) {
     qspCall(s, 'albina_wine_event', 'end');
   } else {
@@ -145,7 +145,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).AlbinaQW ?? 0)?.['wine_convo_1'] === ((s as any).daystart ?? 0)) {
         scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
       } else {
-        (s as any).AlbinaQW['wine_convo_1'] = ((s as any).daystart ?? 0);
+        ((s as any).AlbinaQW ?? {})['wine_convo_1'] = ((s as any).daystart ?? 0);
       }
       qspCall(s, 'albina_wine_event', 'pussy_taste');
     } else {
@@ -153,7 +153,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
         if (((s as any).AlbinaQW ?? 0)?.['wine_convo_2'] === ((s as any).daystart ?? 0)) {
           scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
         } else {
-          (s as any).AlbinaQW['wine_convo_2'] = ((s as any).daystart ?? 0);
+          ((s as any).AlbinaQW ?? {})['wine_convo_2'] = ((s as any).daystart ?? 0);
         }
         qspCall(s, 'albina_wine_event', 'shave_talk');
       } else {
@@ -161,7 +161,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
           if (((s as any).AlbinaQW ?? 0)?.['wine_convo_3'] === ((s as any).daystart ?? 0)) {
             scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
           } else {
-            (s as any).AlbinaQW['wine_convo_3'] = ((s as any).daystart ?? 0);
+            ((s as any).AlbinaQW ?? {})['wine_convo_3'] = ((s as any).daystart ?? 0);
           }
           qspCall(s, 'albina_wine_event', 'dominate_albina');
         } else {
@@ -169,7 +169,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
             if (((s as any).AlbinaQW ?? 0)?.['wine_convo_4'] === ((s as any).daystart ?? 0)) {
               scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
             } else {
-              (s as any).AlbinaQW['wine_convo_4'] = ((s as any).daystart ?? 0);
+              ((s as any).AlbinaQW ?? {})['wine_convo_4'] = ((s as any).daystart ?? 0);
             }
             qspCall(s, 'albina_wine_event', 'masturbation_talk');
           } else {
@@ -177,7 +177,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
               if (((s as any).AlbinaQW ?? 0)?.['wine_convo_5'] === ((s as any).daystart ?? 0)) {
                 scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
               } else {
-                (s as any).AlbinaQW['wine_convo_5'] = ((s as any).daystart ?? 0);
+                ((s as any).AlbinaQW ?? {})['wine_convo_5'] = ((s as any).daystart ?? 0);
               }
               qspCall(s, 'albina_wine_event', 'porn_talk');
             } else {
@@ -185,7 +185,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).AlbinaQW ?? 0)?.['wine_convo_6'] === ((s as any).daystart ?? 0)) {
                   scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
                 } else {
-                  (s as any).AlbinaQW['wine_convo_6'] = ((s as any).daystart ?? 0);
+                  ((s as any).AlbinaQW ?? {})['wine_convo_6'] = ((s as any).daystart ?? 0);
                 }
                 qspCall(s, 'albina_wine_event', 'boob_size_talk');
               } else {
@@ -196,7 +196,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).AlbinaQW ?? 0)?.['wine_convo_7'] === ((s as any).daystart ?? 0)) {
                     scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
                   } else {
-                    (s as any).AlbinaQW['wine_convo_7'] = ((s as any).daystart ?? 0);
+                    ((s as any).AlbinaQW ?? {})['wine_convo_7'] = ((s as any).daystart ?? 0);
                   }
                   qspCall(s, 'albina_wine_event', 'commando_talk');
                 } else {
@@ -204,7 +204,7 @@ function enterWineChat1(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).AlbinaQW ?? 0)?.['wine_convo_8'] === ((s as any).daystart ?? 0)) {
                       scene.actions([{ label: 'Continue', goto: ['albina_wine_event', 'wine_chat1'] }]);
                     } else {
-                      (s as any).AlbinaQW['wine_convo_8'] = ((s as any).daystart ?? 0);
+                      ((s as any).AlbinaQW ?? {})['wine_convo_8'] = ((s as any).daystart ?? 0);
                     }
                     qspCall(s, 'albina_wine_event', 'stripper_talk');
                   }

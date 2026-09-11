@@ -7,39 +7,39 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterSetEvent(s: GameState, scene: SceneBuilder): void {
-  (s as any).evt_transient['type'] = qspUntranslated(s, "ARGS[1]", { location: "jobs_gigs" });
-  (s as any).evt_transient['subtype'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
-  (s as any).evt_transient['desc'] = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).evt_transient['journal'] = ((s as any).locArgs?.[4] ?? 0);
-  (s as any).evt_transient['verbose'] = qspUntranslated(s, "ARGS[5]", { location: "jobs_gigs" });
+  ((s as any).evt_transient ?? {})['type'] = qspUntranslated(s, "ARGS[1]", { location: "jobs_gigs" });
+  ((s as any).evt_transient ?? {})['subtype'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
+  ((s as any).evt_transient ?? {})['desc'] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).evt_transient ?? {})['journal'] = ((s as any).locArgs?.[4] ?? 0);
+  ((s as any).evt_transient ?? {})['verbose'] = qspUntranslated(s, "ARGS[5]", { location: "jobs_gigs" });
   scene.build();
 }
 
 function enterSetLocCode(s: GameState, scene: SceneBuilder): void {
-  (s as any).evt_transient['loc'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).evt_transient['arg'] = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).evt_transient['code'] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).evt_transient ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).evt_transient ?? {})['arg'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).evt_transient ?? {})['code'] = ((s as any).locArgs?.[3] ?? 0);
   scene.build();
 }
 
 function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).evt_transient['wage'] = 0;
+    ((s as any).evt_transient ?? {})['wage'] = 0;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
-      (s as any).evt_transient['wage'] = ((s as any).rand ?? 0)(2, 10) * 50;
+      ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(2, 10) * 50;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
-        (s as any).evt_transient['wage'] = ((s as any).rand ?? 0)(10, 20) * 50;
+        ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(10, 20) * 50;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
-          (s as any).evt_transient['wage'] = ((s as any).rand ?? 0)(20, 40) * 50;
+          ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(20, 40) * 50;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 4) {
-            (s as any).evt_transient['wage'] = ((s as any).rand ?? 0)(40, 80) * 50;
+            ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(40, 80) * 50;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 5) {
-              (s as any).evt_transient['wage'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
+              ((s as any).evt_transient ?? {})['wage'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });
             }
           }
         }
@@ -51,34 +51,34 @@ function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== '') {
-    (s as any).evt_transient['week_string'] = qspUntranslated(s, "ARGS[1]  else evt_transient['week_string']  = '1234567'", { location: "jobs_gigs" });
+    ((s as any).evt_transient ?? {})['week_string'] = qspUntranslated(s, "ARGS[1]  else evt_transient['week_string']  = '1234567'", { location: "jobs_gigs" });
   }
   if (((s as any).locArgs?.[2] ?? 0) > 0  &&  ((s as any).locArgs?.[2] ?? 0) < 1440) {
-    (s as any).evt_transient['duration'] = ((s as any).ARGS ?? 0)[2];
+    ((s as any).evt_transient ?? {})['duration'] = ((s as any).ARGS ?? 0)[2];
   }
   if (((s as any).locArgs?.[3] ?? 0) >= ((s as any).daystart ?? 0)) {
-    (s as any).evt_transient['search_day'] = ((s as any).ARGS ?? 0)[3];
+    ((s as any).evt_transient ?? {})['search_day'] = ((s as any).ARGS ?? 0)[3];
   }
   if (((s as any).locArgs?.[4] ?? 0) >= ((s as any).evt_transient ?? 0)?.['search_day']) {
-    (s as any).evt_transient['search_limit'] = ((s as any).ARGS ?? 0)[4];
+    ((s as any).evt_transient ?? {})['search_limit'] = ((s as any).ARGS ?? 0)[4];
   }
   if (((s as any).locArgs?.[5] ?? 0) > 0  &&  ((s as any).locArgs?.[5] ?? 0) < 1440) {
-    (s as any).evt_transient['start_time'] = ((s as any).ARGS ?? 0)[5];
+    ((s as any).evt_transient ?? {})['start_time'] = ((s as any).ARGS ?? 0)[5];
   }
-  (s as any).evt_transient['time_overshoot'] = ((s as any).evt_transient ?? {})?.['duration'] + ((s as any).evt_transient ?? {})?.['start_time'] - 1380;
+  ((s as any).evt_transient ?? {})['time_overshoot'] = ((s as any).evt_transient ?? {})?.['duration'] + ((s as any).evt_transient ?? {})?.['start_time'] - 1380;
   if (((s as any).evt_transient ?? 0)?.['time_overshoot'] > 0) {
-    (s as any).evt_transient['start_time'] = ((s as any).evt_transient['start_time'] ?? 0) - ((60 + ((s as any).evt_transient ?? {})?.['time_overshoot'] / 5 * 5));
+    ((s as any).evt_transient ?? {})['start_time'] = (((s as any).evt_transient ?? {})['start_time'] ?? 0) - ((60 + ((s as any).evt_transient ?? {})?.['time_overshoot'] / 5 * 5));
   }
   // TODO-QSP: :find_open_date_loop
   // TODO-QSP: gs 'time', 'to_date', evt_transient['search_day']
   if (((((s as any).evt_transient ?? 0)?.['week_string']).indexOf((((s as any).dateVars ?? 0)?.['week']))) + 1 <= 0) {
-    (s as any).evt_transient['search_day'] = ((s as any).evt_transient['search_day'] ?? 0) + (1);
+    ((s as any).evt_transient ?? {})['search_day'] = (((s as any).evt_transient ?? {})['search_day'] ?? 0) + (1);
     if (((s as any).evt_transient ?? 0)?.['search_day'] <= ((s as any).evt_transient ?? 0)?.['search_limit']) {
       // TODO-QSP: jump 'find_open_date_loop'
     }
   } else {
-    (s as any).evt_transient['event_daystart'] = ((s as any).evt_transient ?? 0)?.['search_day'];
-    (s as any).evt_transient['event_dow'] = ((s as any).dateVars ?? 0)?.['week'];
+    ((s as any).evt_transient ?? {})['event_daystart'] = ((s as any).evt_transient ?? 0)?.['search_day'];
+    ((s as any).evt_transient ?? {})['event_dow'] = ((s as any).dateVars ?? 0)?.['week'];
   }
   scene.build();
 }

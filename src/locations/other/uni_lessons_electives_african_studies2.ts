@@ -28,7 +28,7 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (1);
+    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
@@ -46,7 +46,7 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    (s as any).kendraQW['sub'] = (-1);
+    ((s as any).kendraQW ?? {})['sub'] = (-1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
@@ -106,7 +106,7 @@ function enterAfricanStudiesDjibrilNush(s: GameState, scene: SceneBuilder): void
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later." She puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
     } else {
-      (s as any).anushkaCityQW['first_visit'] = 1;
+      ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located and puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
@@ -127,7 +127,7 @@ function enterAfricanStudiesDjibrilNush(s: GameState, scene: SceneBuilder): void
       scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later."');
       scene.text('With that, she gathers her stuff and leaves.');
     } else {
-      (s as any).anushkaCityQW['first_visit'] = 1;
+      ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('The two of you walk over to the library and find a quiet spot to study. Anushka seems really intent on her studies and doesn\'t talk much while the two of you study.');
       scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located before she gathers her stuff and leaves.');
@@ -248,7 +248,7 @@ function enterAfricanStudiesDjibrilNush(s: GameState, scene: SceneBuilder): void
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later." She puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
     } else {
-      (s as any).anushkaCityQW['first_visit'] = 1;
+      ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located and puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
@@ -269,7 +269,7 @@ function enterAfricanStudiesDjibrilNush(s: GameState, scene: SceneBuilder): void
       scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later."');
       scene.text('With that, she gathers her stuff and leaves.');
     } else {
-      (s as any).anushkaCityQW['first_visit'] = 1;
+      ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('The two of you walk over to the library and find a quiet spot to study. Anushka seems really intent on her studies and doesn\'t talk much while the two of you study.');
       scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located before she gathers her stuff and leaves.');
@@ -496,7 +496,7 @@ function enterAfricanStudiesDjibrilNushCleanup(s: GameState, scene: SceneBuilder
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later."');
       scene.text('She puts some extra sway in her hips as she walks away, really rocking her ass. You smile and shake your head before turning to leave yourself.');
     } else {
-      (s as any).anushkaCityQW['first_visit'] = 1;
+      ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located and she puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
@@ -517,7 +517,7 @@ function enterAfricanStudiesDjibrilNushCleanup(s: GameState, scene: SceneBuilder
       scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later."');
       scene.text('With that, she gathers her stuff and leaves.');
     } else {
-      (s as any).anushkaCityQW['first_visit'] = 1;
+      ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('The two of you walk over to the library and find a quiet spot to study. Anushka seems really intent on her studies and doesn\'t talk much while the two of you study.');
       scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located before she gathers her stuff and leaves.');

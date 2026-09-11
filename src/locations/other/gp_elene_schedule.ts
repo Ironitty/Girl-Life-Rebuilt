@@ -8,10 +8,10 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).loc ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
   (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A31_loc'], ((s as any).locat ?? 0)?.['A31_arg']);
   return;
@@ -20,10 +20,10 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
 
 function enterWasHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).loc ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).loc_arg ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).loc_arg ?? 0);
   }
   (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A31_loc_prev'], ((s as any).locat ?? 0)?.['A31_arg_prev']);
   return;
@@ -37,14 +37,14 @@ function enterHereCore(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  (s as any).locat['A31_rand'] = Math.floor(Math.random() * 840) + 0;
+  ((s as any).locat ?? {})['A31_rand'] = Math.floor(Math.random() * 840) + 0;
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).locat['A31_loc_prev'] = ((s as any).locat ?? 0)?.['A31_loc'];
-  (s as any).locat['A31_arg_prev'] = ((s as any).locat ?? 0)?.['A31_arg'];
-  (s as any).locat['A31_arg1_prev'] = ((s as any).locat ?? 0)?.['A31_arg1'];
+  ((s as any).locat ?? {})['A31_loc_prev'] = ((s as any).locat ?? 0)?.['A31_loc'];
+  ((s as any).locat ?? {})['A31_arg_prev'] = ((s as any).locat ?? 0)?.['A31_arg'];
+  ((s as any).locat ?? {})['A31_arg1_prev'] = ((s as any).locat ?? 0)?.['A31_arg1'];
   qspCall(s, 'gp_elene_schedule', 'update_locat');
   scene.build();
 }
@@ -194,64 +194,64 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
 
 function enterSetLocats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 100) {
-    (s as any).locat['A31_loc'] = 'gad_gphouse';
-    (s as any).locat['A31_arg'] = 'gp_room';
-    (s as any).locat['A31_arg1'] = '';
+    ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+    ((s as any).locat ?? {})['A31_arg'] = 'gp_room';
+    ((s as any).locat ?? {})['A31_arg1'] = '';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 110) {
-      (s as any).locat['A31_loc'] = 'gad_gphouse';
-      (s as any).locat['A31_arg'] = 'main';
-      (s as any).locat['A31_arg1'] = '';
+      ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+      ((s as any).locat ?? {})['A31_arg'] = 'main';
+      ((s as any).locat ?? {})['A31_arg1'] = '';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 111) {
-        (s as any).locat['A31_loc'] = 'gad_gphouse';
-        (s as any).locat['A31_arg'] = 'main';
-        (s as any).locat['A31_arg1'] = 'reading';
+        ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+        ((s as any).locat ?? {})['A31_arg'] = 'main';
+        ((s as any).locat ?? {})['A31_arg1'] = 'reading';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 112) {
-          (s as any).locat['A31_loc'] = 'gad_gphouse';
-          (s as any).locat['A31_arg'] = 'main';
-          (s as any).locat['A31_arg1'] = 'watching_tv';
+          ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+          ((s as any).locat ?? {})['A31_arg'] = 'main';
+          ((s as any).locat ?? {})['A31_arg1'] = 'watching_tv';
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 113) {
-            (s as any).locat['A31_loc'] = 'gad_gphouse';
-            (s as any).locat['A31_arg'] = 'main';
-            (s as any).locat['A31_arg1'] = 'repearing_clothes';
+            ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+            ((s as any).locat ?? {})['A31_arg'] = 'main';
+            ((s as any).locat ?? {})['A31_arg1'] = 'repearing_clothes';
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 114) {
-              (s as any).locat['A31_loc'] = 'gad_gphouse';
-              (s as any).locat['A31_arg'] = 'main';
-              (s as any).locat['A31_arg1'] = 'knitting';
+              ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+              ((s as any).locat ?? {})['A31_arg'] = 'main';
+              ((s as any).locat ?? {})['A31_arg1'] = 'knitting';
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 120) {
-                (s as any).locat['A31_loc'] = 'gad_gphouse';
-                (s as any).locat['A31_arg'] = 'kitchen';
-                (s as any).locat['A31_arg1'] = 'cooking';
+                ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+                ((s as any).locat ?? {})['A31_arg'] = 'kitchen';
+                ((s as any).locat ?? {})['A31_arg1'] = 'cooking';
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 121) {
-                  (s as any).locat['A31_loc'] = 'gad_gphouse';
-                  (s as any).locat['A31_arg'] = 'kitchen';
-                  (s as any).locat['A31_arg1'] = 'reading';
+                  ((s as any).locat ?? {})['A31_loc'] = 'gad_gphouse';
+                  ((s as any).locat ?? {})['A31_arg'] = 'kitchen';
+                  ((s as any).locat ?? {})['A31_arg1'] = 'reading';
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 200) {
-                    (s as any).locat['A31_loc'] = 'gad_gpyard';
-                    (s as any).locat['A31_arg'] = 'garden';
-                    (s as any).locat['A31_arg1'] = '';
+                    ((s as any).locat ?? {})['A31_loc'] = 'gad_gpyard';
+                    ((s as any).locat ?? {})['A31_arg'] = 'garden';
+                    ((s as any).locat ?? {})['A31_arg1'] = '';
                   } else {
                     if (((s as any).locArgs?.[1] ?? 0) === 210) {
-                      (s as any).locat['A31_loc'] = 'gad_gpbath';
-                      (s as any).locat['A31_arg'] = 'start';
-                      (s as any).locat['A31_arg1'] = '';
+                      ((s as any).locat ?? {})['A31_loc'] = 'gad_gpbath';
+                      ((s as any).locat ?? {})['A31_arg'] = 'start';
+                      ((s as any).locat ?? {})['A31_arg1'] = '';
                     } else {
                       if (((s as any).locArgs?.[1] ?? 0) === 300) {
-                        (s as any).locat['A31_loc'] = 'gadukino';
-                        (s as any).locat['A31_arg'] = '';
-                        (s as any).locat['A31_arg1'] = '';
+                        ((s as any).locat ?? {})['A31_loc'] = 'gadukino';
+                        ((s as any).locat ?? {})['A31_arg'] = '';
+                        ((s as any).locat ?? {})['A31_arg1'] = '';
                       } else {
                         if (((s as any).locArgs?.[1] ?? 0) === 310) {
-                          (s as any).locat['A31_loc'] = 'gad_church';
-                          (s as any).locat['A31_arg'] = 'start';
-                          (s as any).locat['A31_arg1'] = '';
+                          ((s as any).locat ?? {})['A31_loc'] = 'gad_church';
+                          ((s as any).locat ?? {})['A31_arg'] = 'start';
+                          ((s as any).locat ?? {})['A31_arg1'] = '';
                         }
                       }
                     }
@@ -271,28 +271,28 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_elene_schedule', 'update_locat');
   if (((s as any).locat ?? 0)?.['A31_loc'] === 'gad_gphouse') {
     if (((s as any).locat ?? 0)?.['A31_arg'] === 'gp_room') {
-      (s as any).npcLocation['A31'] = 'Your grandmother is in her bedroom';
+      ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is in her bedroom';
     } else {
       if (((s as any).locat ?? 0)?.['A31_arg'] === 'main') {
-        (s as any).npcLocation['A31'] = 'Your grandmother is in her livingroom';
+        ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is in her livingroom';
       } else {
         if (((s as any).locat ?? 0)?.['A31_arg'] === 'kitchen') {
-          (s as any).npcLocation['A31'] = 'Your grandmother is in her kitchen';
+          ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is in her kitchen';
         }
       }
     }
   } else {
     if (((s as any).locat ?? 0)?.['A31_loc'] === 'gad_gpyard') {
-      (s as any).npcLocation['A31'] = 'Your grandmother is in her garden';
+      ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is in her garden';
     } else {
       if (((s as any).locat ?? 0)?.['A31_loc'] === 'gad_gpbath') {
-        (s as any).npcLocation['A31'] = 'Your grandmother is bathing in her sauna';
+        ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is bathing in her sauna';
       } else {
         if (((s as any).locat ?? 0)?.['A31_loc'] === 'gadukino') {
-          (s as any).npcLocation['A31'] = 'Your grandmother is out and about in Gadukino';
+          ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is out and about in Gadukino';
         } else {
           if (((s as any).locat ?? 0)?.['A31_loc'] === 'gad_church') {
-            (s as any).npcLocation['A31'] = 'Your grandmother is at her church';
+            ((s as any).npcLocation ?? {})['A31'] = 'Your grandmother is at her church';
           }
         }
       }

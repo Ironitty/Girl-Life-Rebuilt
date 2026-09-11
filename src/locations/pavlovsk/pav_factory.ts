@@ -67,9 +67,9 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'get_shift_for_day', 'pav_factory', ((s as any).daystart ?? 0));
     (s as any).temp_dock = ((s as any).result_duration ?? 0);
     if (((s as any).job_worked_count ?? 0)?.['pav_factory'] > ((s as any).temp_dock ?? 0)) {
-      (s as any).job_worked_count['pav_factory'] = ((s as any).job_worked_count['pav_factory'] ?? 0) - (((s as any).temp_dock ?? 0));
+      ((s as any).job_worked_count ?? {})['pav_factory'] = (((s as any).job_worked_count ?? {})['pav_factory'] ?? 0) - (((s as any).temp_dock ?? 0));
     } else {
-      (s as any).job_worked_count['pav_factory'] = 0;
+      ((s as any).job_worked_count ?? {})['pav_factory'] = 0;
     }
     qspCall(s, 'jobs', 'paycheck', 'pav_factory', 'bank');
     qspCall(s, 'jobs', 'set_terminated', 'pav_factory');
@@ -102,7 +102,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
       scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
     }
   }
-  (s as any).job_miss_acknowledged['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
+  ((s as any).job_miss_acknowledged ?? {})['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
   scene.actions([
     { label: 'Apologize', goto: ['pav_factory', 'enter'] },
   ]);

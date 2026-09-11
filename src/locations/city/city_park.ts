@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('"Either tell me how many you want to buy or get lost!"');
       } else {
         // TODO-QSP: gs 'money', 'pay', temp_doses * 360
-        (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (((s as any).temp_doses ?? 0));
+        ((s as any).mc_inventory ?? {})['cocaine'] = (((s as any).mc_inventory ?? {})['cocaine'] ?? 0) + (((s as any).temp_doses ?? 0));
         scene.text('You quickly pull your purse out and pay him, hoping nobody saw you giving him money, and he passes you the doses you\'ve paid for. You can safely sniff the stuff at home.');
       }
       scene.actions([

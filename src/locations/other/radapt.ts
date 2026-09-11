@@ -16,7 +16,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'radomir_popov_schedule', '');
   if (((s as any).radomirQW ?? 0)?.['home_day'] !== ((s as any).daystart ?? 0)) {
-    (s as any).radomirQW['home_day'] = ((s as any).daystart ?? 0);
+    ((s as any).radomirQW ?? {})['home_day'] = ((s as any).daystart ?? 0);
   }
   scene.img('images/locations/pavlovsk/resident/apartment/aptdoor.jpg');
   scene.text('You walk up to the front door and knock.');
@@ -79,7 +79,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).locat ?? 0)?.['A154'] === 24) {
-                (s as any).gopnikbandQW['practice_invite'] = 1;
+                ((s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
                 qspCall(s, 'calendar', 'add', 'band_practice_event');
                 scene.img('images/locations/pavlovsk/resident/apartment/radapt/anfisa.jpg');
                 scene.text('She gives you a friendly smile. "Yes, dear?"');
@@ -118,7 +118,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and Anushka walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      (s as any).radomirQW['nush_visit'] = 2;
+      ((s as any).radomirQW ?? {})['nush_visit'] = 2;
       qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
       scene.text('She pauses when she sees you, her eyes narrowing slightly before she picks up her pace and brushes past you, slightly bumping her shoulder into you as she does.');
       scene.text('Radomir steps out before you can say anything and call out to Anushka. "Later, babe!"');
@@ -147,13 +147,13 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                       } else {
                         scene.actions([
                           { label: 'Enter', handler: (st: GameState) => {
-    (s as any).radomirQW['nush_visit'] = 1;
+    ((s as any).radomirQW ?? {})['nush_visit'] = 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and Anushka walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      (s as any).radomirQW['nush_visit'] = 2;
+      ((s as any).radomirQW ?? {})['nush_visit'] = 2;
       qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
       // TODO-QSP: dynamic text: She pauses when she sees you and looks surprised to see you. "What are you doing...
       scene.text(`She pauses when she sees you and looks surprised to see you. "What are you doing here, ${((s as any).pcs_nickname ?? 0)}?"`);
@@ -798,7 +798,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You can\'t watch porn with radomir in the room!');
     qspCall(s, 'internet_mobile', 'add_limitation', 'nocamshow', 'You can\'t do a camshow with radomir in the room!');
     if (((s as any).radomirQW ?? 0)?.['computer_use'] === 0) {
-      (s as any).radomirQW['computer_use'] = 1;
+      ((s as any).radomirQW ?? {})['computer_use'] = 1;
       scene.text('<center><b>Radomir\'s Room</b></center>');
       scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/laptop.jpg');
       scene.text('You point towards his laptop. "You\'re so lucky to have your own computer."');
@@ -959,22 +959,22 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  (s as any).locat['A154'] = 20;
+  ((s as any).locat ?? {})['A154'] = 20;
   if (((s as any).hour ?? 0) < 16) {
-    (s as any).locat['154_rand1'] = ((s as any).daystart ?? 0);
-    (s as any).locat['154_save1'] = ((s as any).locat ?? 0)?.['154'];
+    ((s as any).locat ?? {})['154_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['154_save1'] = ((s as any).locat ?? 0)?.['154'];
   } else {
     if (((s as any).hour ?? 0) < 18) {
-      (s as any).locat['154_rand2'] = ((s as any).daystart ?? 0);
-      (s as any).locat['154_save2'] = ((s as any).locat ?? 0)?.['154'];
+      ((s as any).locat ?? {})['154_rand2'] = ((s as any).daystart ?? 0);
+      ((s as any).locat ?? {})['154_save2'] = ((s as any).locat ?? 0)?.['154'];
     } else {
       if (((s as any).hour ?? 0) < 20) {
-        (s as any).locat['154_rand3'] = ((s as any).daystart ?? 0);
-        (s as any).locat['154_save3'] = ((s as any).locat ?? 0)?.['154'];
+        ((s as any).locat ?? {})['154_rand3'] = ((s as any).daystart ?? 0);
+        ((s as any).locat ?? {})['154_save3'] = ((s as any).locat ?? 0)?.['154'];
       } else {
         if (((s as any).hour ?? 0) < 22) {
-          (s as any).locat['154_rand4'] = ((s as any).daystart ?? 0);
-          (s as any).locat['154_save4'] = ((s as any).locat ?? 0)?.['154'];
+          ((s as any).locat ?? {})['154_rand4'] = ((s as any).daystart ?? 0);
+          ((s as any).locat ?? {})['154_save4'] = ((s as any).locat ?? 0)?.['154'];
         }
       }
     }
@@ -1052,7 +1052,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('Radomir rolls his eyes while his brother just laughs even more. Now that you\'ve see them all together, it\'s obvious that Radomir takes after his mother a lot more than his father, while his brother looks just like a younger version of his father.');
     scene.actions([
       { label: 'Watch it play out', handler: (st: GameState) => {
-    (s as any).radomirQW['first_visit'] = 1;
+    ((s as any).radomirQW ?? {})['first_visit'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rostislav.jpg');

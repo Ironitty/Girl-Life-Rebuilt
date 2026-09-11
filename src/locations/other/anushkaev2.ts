@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   if (((s as any).anushkaQW ?? 0)?.['radspy'] === 0) {
-    (s as any).anushkaQW['radspy'] = 1;
+    ((s as any).anushkaQW ?? {})['radspy'] = 1;
   }
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyrad1.jpg');
   scene.text('Anushka gets on the bed on all fours in her underwear and wiggles her ass around. "Damn! You have one of the finest asses I\'ve ever seen, you know that Nush?" You can tell by the voice that it\'s Radomir. He gives her ass a good squeeze with his hand, then grabs her panties and pulls them down, roughly jerking them off and tossing them aside. He then starts playing with her bare ass and rubbing her pussy with his fingers.');
@@ -223,12 +223,12 @@ function enterRad3some(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
     ]);
   } else {
-    (s as any).radomirQW['had_sex'] = ((s as any).radomirQW['had_sex'] ?? 0) + (1);
+    ((s as any).radomirQW ?? {})['had_sex'] = (((s as any).radomirQW ?? {})['had_sex'] ?? 0) + (1);
     if (((s as any).radomirQW ?? 0)?.['nush3some'] === 0) {
-      (s as any).radomirQW['nush3some'] = 1;
+      ((s as any).radomirQW ?? {})['nush3some'] = 1;
     }
-    (s as any).npc_had_sex['A144'] = 1;
-    (s as any).npc_had_sex['A154'] = 1;
+    ((s as any).npc_had_sex ?? {})['A144'] = 1;
+    ((s as any).npc_had_sex ?? {})['A154'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin1.jpg');
     // TODO-QSP: dynamic text: You walk in, confident you'll be joining them. Closing the door behind you, you ...
     scene.text(`You walk in, confident you'll be joining them. Closing the door behind you, you walk up to the bed where Radomir is still hammering away at Anushka's pussy. After a few seconds, Anushka notices you and gives you a grin. "Oh hey ${((s as any).pcs_nickname ?? 0)}, what's up?" she asks through grunts and moans as Radomir keeps hammering away. He only stops once she speaks to you, turning his head to give you a once-over from head to toe.`);
@@ -422,7 +422,7 @@ function enterRadSelfie(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about what just happened', goto: ['anushkaev2', 'about_rad'] },
       { label: 'Ask her to send it to you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).anushkaphoto[7] = 1;
+    ((s as any).anushkaphoto ?? {})[7] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
     scene.text('You think about it and decide you would like a copy as well. "Yeah, send it to me."');
@@ -463,7 +463,7 @@ function enterAboutRad(s: GameState, scene: SceneBuilder): void {
       { label: 'Let it drop', goto: ['anush_bedroom', 'bed'] },
       { label: 'Press her for more details', handler: (st: GameState) => {
     if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      (s as any).anushkaQW['rad_date'] = 1;
+      ((s as any).anushkaQW ?? {})['rad_date'] = 1;
     }
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
@@ -520,7 +520,7 @@ function enterAboutRad(s: GameState, scene: SceneBuilder): void {
 function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   if (((s as any).anushkaQW ?? 0)?.['valspy'] === 0) {
-    (s as any).anushkaQW['valspy'] = 1;
+    ((s as any).anushkaQW ?? {})['valspy'] = 1;
   }
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spyval1.jpg');
   scene.text('As you watch, Anushka leans forward and starts sucking on the hard dick and you hear the guy moaning in pleasure. "Fuck Nush, you suck cock better than anyone." You can tell by the voice that it\'s Valentin.');
@@ -677,8 +677,8 @@ function enterVal3some(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
     ]);
   } else {
-    (s as any).npc_had_sex['A144'] = 1;
-    (s as any).npc_had_sex['A158'] = 1;
+    ((s as any).npc_had_sex ?? {})['A144'] = 1;
+    ((s as any).npc_had_sex ?? {})['A158'] = 1;
     qspCall(s, 'npcStat', 'A144');
     qspCall(s, 'npcStat', 'A158', 'a');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/join/walkin1.jpg');
@@ -913,7 +913,7 @@ function enterTalkaboutval(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about something else', goto: ['anush_bedroom', 'bed'] },
       { label: 'Ask her to send it to you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).anushkaphoto[8] = 1;
+    ((s as any).anushkaphoto ?? {})[8] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
     scene.text('You think about it and decide you would like a copy as well. "Yeah, send it to me."');
@@ -939,7 +939,7 @@ function enterTalkaboutval(s: GameState, scene: SceneBuilder): void {
 function enterWatchNushmar(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   if (((s as any).anushkaQW ?? 0)?.['marspy'] === 0) {
-    (s as any).anushkaQW['marspy'] = 1;
+    ((s as any).anushkaQW ?? {})['marspy'] = 1;
   }
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/spy/spymar1.jpg');
   scene.text('You push the door open just a little to get a better look. You can tell that it\'s Marcus from school, his dick already rock-hard. She takes the head of his cock into her mouth and starts sucking on it, slowly working her lips further and further down his shaft. He starts really moaning and grabs her by the hair and starts to fuck her mouth. He\'s not too rough, but he takes control of the action.');
@@ -1094,8 +1094,8 @@ function enterMar3some(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave apartment', goto: ['pav_complex', 'start'] },
     ]);
   } else {
-    (s as any).npc_had_sex['A144'] = 1;
-    (s as any).npc_had_sex['A146'] = 1;
+    ((s as any).npc_had_sex ?? {})['A144'] = 1;
+    ((s as any).npc_had_sex ?? {})['A146'] = 1;
     scene.text('You walk in, confident in joining them, and close the door. You manage to walk all the way over to the bed before Anushka finally notices you and gives you a slight wave as she keeps sucking Marcus\' dick. Perhaps hearing you or noticing her wave, Marcus turns his head and notices you, quickly stepping away and using his hands to cover himself up. As he does, he backs into the bed and ends up falling onto it. He gives you and Anushka a very confused and awkward look. "I… Uh… I mean…" he stammers, not sure what to say.');
     // TODO-QSP: dynamic text: Anushka laughs at his reaction before turning towards you and calmly asking "So ...
     scene.text(`Anushka laughs at his reaction before turning towards you and calmly asking "So what's up ${((s as any).pcs_nickname ?? 0)}?"`);
@@ -1228,7 +1228,7 @@ function enterEatNushFucked(s: GameState, scene: SceneBuilder): void {
 
 function enterTalkAboutMarcus(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).anushkaQW['marspyknow'] = 1;
+  ((s as any).anushkaQW ?? {})['marspyknow'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
   scene.text('You give her a curious look. "I didn\'t even know you guys were friends, let alone hooking up."');
@@ -1320,7 +1320,7 @@ function enterTalkAboutMarcus(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Ask her to send it to you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).anushkaphoto[9] = 1;
+    ((s as any).anushkaphoto ?? {})[9] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
     scene.text('You think about it and decide you would like a copy as well. "Yeah, send it to me."');
@@ -1367,7 +1367,7 @@ function enterDiscoRestroom(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Make out', handler: (st: GameState) => {
-    (s as any).npc_had_sex['A144'] = 1;
+    ((s as any).npc_had_sex ?? {})['A144'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/disco_restroom2.jpg');
     scene.text('With your skirt pushed up to your waist, leaving you naked from the waist down, she pulls you forward until you slide off the counter and the two of you start kissing and making out.');
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
@@ -1572,7 +1572,7 @@ function enterDiscoEmptyroomShowStrapon(s: GameState, scene: SceneBuilder): void
 }
 
 function enterDiscoEmptyroomSuckStrapon(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_had_sex['A144'] = 1;
+  ((s as any).npc_had_sex ?? {})['A144'] = 1;
   qspCall(s, 'npcStat', 'A144');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked4.jpg');
@@ -1639,7 +1639,7 @@ function enterDiscoEmptyroomSuckStrapon(s: GameState, scene: SceneBuilder): void
   } },
       { label: 'Assert dominance', handler: (st: GameState) => {
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (5);
-    (s as any).anushkaQW['dom_nush'] = ((s as any).anushkaQW['dom_nush'] ?? 0) + (1);
+    ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) + (1);
     qspCall(s, 'sweat', 'add', 3);
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked10.jpg');
     scene.text('Before she can stand up, you grab her and pull her back down on one knee. She glances back at you with a puzzled stare, but you push her forward and bend her over. "I didn\'t say I was done with you, slut!" you tell her as you roughly shove your fake cock back in her ass, causing her to gasp and moan. You hold onto her hips with one hand so she can\'t pull away and start fucking her ass again.');
@@ -1746,7 +1746,7 @@ function enterDiscoEmptyroomShowStraponMagic(s: GameState, scene: SceneBuilder):
 
 function enterDiscoEmptyroomSuckStraponMagic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A144');
-  (s as any).npc_had_sex['A144'] = 1;
+  ((s as any).npc_had_sex ?? {})['A144'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/disco/nush_getfucked4.jpg');
   scene.text('"I want you to suck my dick like the dirty little slut you are." You tell her as you push her down until she\'s squatting on the floor in front of your. You start rubbing the tip of the dick against her lips, until she opens her mouth. As soon as she opens her mouth you slide your magical cock into her warm wet mouth, she wraps her lips tightly around the shaft of your cock, as she starts to bop her head, sucking your cock while stroking it with one hand. It feels amazing, she really knows how to suck a dick and make it feel wonderful, you moan softly as she sucks your dick.');

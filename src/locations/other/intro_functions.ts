@@ -19,11 +19,11 @@ function enterResetAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResetTraits(s: GameState, scene: SceneBuilder): void {
-  (s as any).arch_vars['bimbo_points'] = 0;
-  (s as any).arch_vars['preppy_points'] = 0;
-  (s as any).arch_vars['prude_points'] = 0;
-  (s as any).arch_vars['punk_points'] = 0;
-  (s as any).arch_vars['goth_points'] = 0;
+  ((s as any).arch_vars ?? {})['bimbo_points'] = 0;
+  ((s as any).arch_vars ?? {})['preppy_points'] = 0;
+  ((s as any).arch_vars ?? {})['prude_points'] = 0;
+  ((s as any).arch_vars ?? {})['punk_points'] = 0;
+  ((s as any).arch_vars ?? {})['goth_points'] = 0;
   qspCall(s, 'traits', 'cheat', 'cumeater', (-99));
   qspCall(s, 'traits', 'cheat', 'creampie_fetish', (-99));
   qspCall(s, 'traits', 'cheat', 'fertility', (-99));
@@ -48,7 +48,7 @@ function enterResetTraits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'cheat', 'body_hair_attitude', (-99));
   qspCall(s, 'traits', 'cheat', 'hair_growth_rate', (-99));
   qspCall(s, 'traits', 'cheat', 'pain_tolerance', (-99));
-  (s as any).trait_vars['nerd_learn_home'] = 0;
+  ((s as any).trait_vars ?? {})['nerd_learn_home'] = 0;
   return;
   scene.build();
 }
@@ -56,9 +56,9 @@ function enterResetTraits(s: GameState, scene: SceneBuilder): void {
 function enterResetBody(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hgt = 165;
   (s as any).dick = 0;
-  (s as any).pcs_mass['bust_gen'] = 17;
-  (s as any).pcs_mass['butt_gen'] = 22;
-  (s as any).pcs_mass['body'] = 60;
+  ((s as any).pcs_mass ?? {})['bust_gen'] = 17;
+  ((s as any).pcs_mass ?? {})['butt_gen'] = 22;
+  ((s as any).pcs_mass ?? {})['body'] = 60;
   (s as any).pcs_skin = 500;
   (s as any).pcs_tan = 0;
   (s as any).pcs_haircol = 1;
@@ -103,21 +103,21 @@ function enterResetInventory(s: GameState, scene: SceneBuilder): void {
   (s as any).money = 2000;
   (s as any).fakepassport = 0;
   (s as any).school_diploma = 0;
-  (s as any).license['drive'] = 0;
-  (s as any).license['secretary'] = 0;
-  (s as any).license['masseuse'] = 0;
-  (s as any).mc_inventory['shampoo'] = 10;
+  ((s as any).license ?? {})['drive'] = 0;
+  ((s as any).license ?? {})['secretary'] = 0;
+  ((s as any).license ?? {})['masseuse'] = 0;
+  ((s as any).mc_inventory ?? {})['shampoo'] = 10;
   (s as any).internet = 0;
   (s as any).bag = 0;
-  (s as any).BookVars['fantasy_pages'] = 0;
+  ((s as any).BookVars ?? {})['fantasy_pages'] = 0;
   if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
-    (s as any).mc_inventory['shampoo'] = 20;
-    (s as any).mc_inventory['tampons'] = 15;
-    (s as any).mc_inventory['sanitary_pads'] = 10;
-    (s as any).mc_inventory['food_basic'] = 5;
-    (s as any).mc_inventory['dish_plates'] = 1;
-    (s as any).mc_inventory['dish_soap'] = 10;
-    (s as any).mc_inventory['laundry_soap'] = 5;
+    ((s as any).mc_inventory ?? {})['shampoo'] = 20;
+    ((s as any).mc_inventory ?? {})['tampons'] = 15;
+    ((s as any).mc_inventory ?? {})['sanitary_pads'] = 10;
+    ((s as any).mc_inventory ?? {})['food_basic'] = 5;
+    ((s as any).mc_inventory ?? {})['dish_plates'] = 1;
+    ((s as any).mc_inventory ?? {})['dish_soap'] = 10;
+    ((s as any).mc_inventory ?? {})['laundry_soap'] = 5;
     qspCall(s, 'purses', 'add_item', 'gm', 7);
     qspCall(s, 'purses', 'wear', 'gm', 7);
   }
@@ -133,8 +133,8 @@ function enterResetFame(s: GameState, scene: SceneBuilder): void {
 function enterResetOther(s: GameState, scene: SceneBuilder): void {
   (s as any).chessyear = 0;
   (s as any).chessmonth = 0;
-  (s as any).vballVars['lessons_remaining'] = 0;
-  (s as any).ballet['blocker'] = 0;
+  ((s as any).vballVars ?? {})['lessons_remaining'] = 0;
+  ((s as any).ballet ?? {})['blocker'] = 0;
   (s as any).gsAboDance = 0;
   (s as any).gsAboBeg = 0;
   (s as any).church_moral = 0;
@@ -148,14 +148,14 @@ function enterResetSex(s: GameState, scene: SceneBuilder): void {
   (s as any).motherKnowSpravka = 0;
   (s as any).motherKnowWhore = 0;
   (s as any).sisterknowslut = 0;
-  (s as any).brotherQW['know_slut'] = 0;
+  ((s as any).brotherQW ?? {})['know_slut'] = 0;
   (s as any).GspravkaT = 0;
   return;
   scene.build();
 }
 
 function enterResetSkills(s: GameState, scene: SceneBuilder): void {
-  (s as any).moodVars['disp_base'] = 50;
+  ((s as any).moodVars ?? {})['disp_base'] = 50;
   (s as any).pcs_stren = 35;
   (s as any).pcs_agil = 35;
   (s as any).pcs_vital = 35;
@@ -272,7 +272,7 @@ function enterResetSchool(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetUniTeacherCourse(s: GameState, scene: SceneBuilder): void {
-  (s as any).university['enrolled_in'] = 'teaching_studies';
+  ((s as any).university ?? {})['enrolled_in'] = 'teaching_studies';
   qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'general education 101', 3, 2, 'no', 'no', 1, 12);
   qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'teaching methods 101', 3, 2, 'no', 'no', 1, 12);
   qspCall(s, 'grades', 'createclass', 'uni_teaching_studies_semester_1', 'learning theories 101', 3, 2, 'no', 'no', 1, 12);
@@ -284,7 +284,7 @@ function enterSetUniTeacherCourse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetUniNursingCourse(s: GameState, scene: SceneBuilder): void {
-  (s as any).university['enrolled_in'] = 'nursing';
+  ((s as any).university ?? {})['enrolled_in'] = 'nursing';
   qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'patient care 101', 3, 2, 'no', 'no', 1, 12);
   qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'anatomy and physiology 101', 3, 2, 'no', 'no', 1, 12);
   qspCall(s, 'grades', 'createclass', 'uni_nursing_semester_1', 'examination and treatment 101', 3, 2, 'no', 'no', 1, 12);

@@ -60,61 +60,61 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
 
 function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_count = 0;
-  (s as any).temp_washerVars['array_postfix'] = '';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '';
   qspCall(s, 'washer', 'clothing_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_bras';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
   qspCall(s, 'washer', 'bras_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_panties';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_panties';
   qspCall(s, 'washer', 'panties_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   scene.build();
 }
 
 function enterCheckTotalCost(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_cost = 100;
-  (s as any).temp_washerVars['array_postfix'] = '';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '';
   qspCall(s, 'washer', 'clothing_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_bras';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
   qspCall(s, 'washer', 'bras_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_panties';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_panties';
   qspCall(s, 'washer', 'panties_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   scene.build();
 }
 
 function enterWashAll(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_washerVars['array_postfix'] = '';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '';
   qspCall(s, 'washer', 'clothing_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_bras';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bras';
   qspCall(s, 'washer', 'bras_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_panties';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_panties';
   qspCall(s, 'washer', 'panties_loop');
-  (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
+  ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   qspCall(s, 'stat', '');
   scene.build();
 }
 
 function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_washerVars['j_max'] = 0;
+  ((s as any).temp_washerVars ?? {})['j_max'] = 0;
   if (((s as any).temp_washerVars ?? 0)?.['j_max'] === 0) {
     return;
   }
-  (s as any).temp_washerVars['j'] = 0;
+  ((s as any).temp_washerVars ?? {})['j'] = 0;
   // TODO-QSP: :core_loop_outer
-  (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? {})?.['j']] + ((s as any).temp_washerVars ?? {})?.['array_postfix'];
+  ((s as any).temp_washerVars ?? {})['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? {})?.['j']] + ((s as any).temp_washerVars ?? {})?.['array_postfix'];
   if (((s as any).temp_washerVars ?? 0)?.['type'] !== ((s as any).temp_washerVars ?? 0)?.['array_postfix']) {
-    (s as any).temp_washerVars['total'] = 0;
-    (s as any).temp_washerVars['number'] = 1;
+    ((s as any).temp_washerVars ?? {})['total'] = 0;
+    ((s as any).temp_washerVars ?? {})['number'] = 1;
     // TODO-QSP: :core_loop_inner
-    (s as any).temp_washerVars['number'] = ((s as any).temp_washerVars['number'] ?? 0) + (1);
+    ((s as any).temp_washerVars ?? {})['number'] = (((s as any).temp_washerVars ?? {})['number'] ?? 0) + (1);
     if (((s as any).temp_washerVars ?? 0)?.['number'] < ((s as any).temp_washerVars ?? 0)?.['total']) {
       // TODO-QSP: jump 'core_loop_inner'
     }
   }
-  (s as any).temp_washerVars['j'] = ((s as any).temp_washerVars['j'] ?? 0) + (1);
+  ((s as any).temp_washerVars ?? {})['j'] = (((s as any).temp_washerVars ?? {})['j'] ?? 0) + (1);
   if (((s as any).temp_washerVars ?? 0)?.['j'] < ((s as any).temp_washerVars ?? 0)?.['j_max']) {
     // TODO-QSP: jump 'core_loop_outer'
   }

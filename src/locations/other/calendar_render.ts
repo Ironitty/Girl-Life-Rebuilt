@@ -406,7 +406,7 @@ function enterRenderDayCell(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_scan_colspan = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_scan_ts ?? 0)) + ', events=' + String(((s as any).temp_scan_e ?? 0)) + ', colspan'];
         (s as any).temp_c = ((s as any).temp_scan_col ?? 0);
         // TODO-QSP: :mark_continuing
-        (s as any).temp_column_filled[String((s as any).temp_c ?? 0)] = 1;
+        ((s as any).temp_column_filled ?? {})[String((s as any).temp_c ?? 0)] = 1;
         (s as any).temp_c = ((s as any).temp_c ?? 0) + (1);
         if (((s as any).temp_c ?? 0) < ((s as any).temp_scan_col ?? 0) + ((s as any).temp_scan_colspan ?? 0)) {
           // TODO-QSP: jump 'mark_continuing'
@@ -423,7 +423,7 @@ function enterRenderDayCell(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :done_scanning
   (s as any).temp_init_col = 0;
   // TODO-QSP: :init_event_index
-  (s as any).temp_column_event_index[String((s as any).temp_init_col ?? 0)] = (-1);
+  ((s as any).temp_column_event_index ?? {})[String((s as any).temp_init_col ?? 0)] = (-1);
   (s as any).temp_init_col = ((s as any).temp_init_col ?? 0) + (1);
   if (((s as any).temp_init_col ?? 0) < ((s as any).temp_max_cols ?? 0)) {
     // TODO-QSP: jump 'init_event_index'
@@ -435,10 +435,10 @@ function enterRenderDayCell(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).temp_is_hidden ?? 0))) {
       (s as any).temp_col = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', column'];
       (s as any).temp_colspan = ((s as any).week_schedule ?? 0)?.['days=' + String(((s as any).temp_d ?? 0)) + ', timeslots=' + String(((s as any).temp_t ?? 0)) + ', events=' + String(((s as any).temp_e ?? 0)) + ', colspan'];
-      (s as any).temp_column_event_index[String((s as any).temp_col ?? 0)] = ((s as any).temp_e ?? 0);
+      ((s as any).temp_column_event_index ?? {})[String((s as any).temp_col ?? 0)] = ((s as any).temp_e ?? 0);
       (s as any).temp_c = ((s as any).temp_col ?? 0);
       // TODO-QSP: :mark_columns
-      (s as any).temp_column_filled[String((s as any).temp_c ?? 0)] = 1;
+      ((s as any).temp_column_filled ?? {})[String((s as any).temp_c ?? 0)] = 1;
       (s as any).temp_c = ((s as any).temp_c ?? 0) + (1);
       if (((s as any).temp_c ?? 0) < ((s as any).temp_col ?? 0) + ((s as any).temp_colspan ?? 0)) {
         // TODO-QSP: jump 'mark_columns'

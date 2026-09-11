@@ -5,9 +5,9 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).GadBoy['mitka_day'] = ((s as any).daystart ?? 0);
+  ((s as any).GadBoy ?? {})['mitka_day'] = ((s as any).daystart ?? 0);
   if (((s as any).GadBoy ?? 0)?.['first_drink'] === 0) {
-    (s as any).GadBoy['first_drink'] = 1;
+    ((s as any).GadBoy ?? {})['first_drink'] = 1;
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Mitka Shkvoryen</b></center>');
@@ -157,9 +157,9 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Mitka takes you to \'+iif(GadBoy[\'first_drink\'] > 1, \'the familiar old trailer\', \'an old trailer\')+\' in the woods.');
     scene.text('Mitka sits down on a couch as you kneel in front of him. You take his cock out of his pants and start to suck…');
     qspCall(s, 'npc_relationship', 'modify', 'A63', 5);
-    (s as any).npc_QW['A63'] = 1;
+    ((s as any).npc_QW ?? {})['A63'] = 1;
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex['A63'] = 1;
+    ((s as any).npc_had_sex ?? {})['A63'] = 1;
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -269,10 +269,10 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Mitka doesn\'t bother to pull out and cums deep inside you. Breathing heavily, he gets off of you and says, "You\'re a good fuck! We should do it again sometime."');
     qspCall(s, 'npc_relationship', 'modify', 'A63', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 10) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex['A63'] = 1;
+    ((s as any).npc_had_sex ?? {})['A63'] = 1;
     qspCall(s, 'cum_call', '', '', 'A63', 1);
     qspCall(s, 'arousal', 'vaginal', 10, 'sub');
     qspCall(s, 'arousal', 'end');
@@ -317,10 +317,10 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Mitka sits down on a couch as you kneel in front of him. You take his cock out of his pants and start to suck…');
     qspCall(s, 'npc_relationship', 'modify', 'A63', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 10) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex['A63'] = 1;
+    ((s as any).npc_had_sex ?? {})['A63'] = 1;
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -432,10 +432,10 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Mitka doesn\'t bother to pull out and cums deep inside your ass. Breathing heavily, he gets off of you and says, "Still a good fuck, but I would prefer your pussy instead."');
     qspCall(s, 'npc_relationship', 'modify', 'A63', 1);
     if (((s as any).npc_QW ?? 0)?.['A63'] < 10) {
-      (s as any).npc_QW['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
+      ((s as any).npc_QW ?? {})['A63'] = (((s as any).npc_QW ?? {})['A63'] ?? 0) + (1);
     }
     qspCall(s, 'boyStat', 'A63');
-    (s as any).npc_had_sex['A63'] = 1;
+    ((s as any).npc_had_sex ?? {})['A63'] = 1;
     qspCall(s, 'cum_call', 'anus', 'A63', 1);
     qspCall(s, 'arousal', 'anal', 15, 'sub', 'rough');
     qspCall(s, 'arousal', 'end');

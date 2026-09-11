@@ -56,48 +56,48 @@ function enterInitCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInitBlackmail(s: GameState, scene: SceneBuilder): void {
-  (s as any).blackmailQW['day'] = ((s as any).daystart ?? 0);
-  (s as any).blackmailQW['stage'] = 1;
-  (s as any).blackmailQW['init_day'] = ((s as any).daystart ?? 0);
+  ((s as any).blackmailQW ?? {})['day'] = ((s as any).daystart ?? 0);
+  ((s as any).blackmailQW ?? {})['stage'] = 1;
+  ((s as any).blackmailQW ?? {})['init_day'] = ((s as any).daystart ?? 0);
   if (((s as any).locArgs?.[1] ?? 0) === 'panty') {
-    (s as any).blackmailQW['init_flashaction'] = 'panties';
+    ((s as any).blackmailQW ?? {})['init_flashaction'] = 'panties';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'pantyrear') {
-      (s as any).blackmailQW['init_flashaction'] = 'panty clad ass';
+      ((s as any).blackmailQW ?? {})['init_flashaction'] = 'panty clad ass';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'butt_plug') {
-        (s as any).blackmailQW['init_flashaction'] = 'butt plug';
+        ((s as any).blackmailQW ?? {})['init_flashaction'] = 'butt plug';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'full') {
-          (s as any).blackmailQW['init_flashaction'] = 'naked body';
+          ((s as any).blackmailQW ?? {})['init_flashaction'] = 'naked body';
         } else {
-          (s as any).blackmailQW['init_flashaction'] = ((s as any).locArgs?.[1] ?? 0);
+          ((s as any).blackmailQW ?? {})['init_flashaction'] = ((s as any).locArgs?.[1] ?? 0);
         }
       }
     }
   }
-  (s as any).blackmailQW['init_flashimage'] = ((s as any).flash_image ?? 0);
-  (s as any).blackmailQW['init_flashloc'] = ((s as any).loc ?? 0);
-  (s as any).blackmailQW['init_flashloc_arg'] = ((s as any).loc_arg ?? 0);
-  (s as any).blackmailQW['init_flashregion'] = ((s as any).region ?? 0);
-  (s as any).blackmailQW['total_material'] = 1;
+  ((s as any).blackmailQW ?? {})['init_flashimage'] = ((s as any).flash_image ?? 0);
+  ((s as any).blackmailQW ?? {})['init_flashloc'] = ((s as any).loc ?? 0);
+  ((s as any).blackmailQW ?? {})['init_flashloc_arg'] = ((s as any).loc_arg ?? 0);
+  ((s as any).blackmailQW ?? {})['init_flashregion'] = ((s as any).region ?? 0);
+  ((s as any).blackmailQW ?? {})['total_material'] = 1;
   if (((((s as any).loc ?? 0)).indexOf(('park'))) + 1 > 0) {
-    (s as any).blackmailQW['init_flashloc_desc'] = 'in a park';
+    ((s as any).blackmailQW ?? {})['init_flashloc_desc'] = 'in a park';
     scene.text('<b>A flash of light</b> briefly brightens the surrounding trees and you see a shadow darting between the trees. The light of the camera flash prickling on your exposed skin.');
   } else {
     if (((((s as any).loc ?? 0)).indexOf(('church'))) + 1 > 0) {
-      (s as any).blackmailQW['init_flashloc_desc'] = 'in a church';
+      ((s as any).blackmailQW ?? {})['init_flashloc_desc'] = 'in a church';
       scene.text('<b>The flash of a camera</b> illuminates the inside of the church, but the source eludes you.');
     } else {
       if (((((s as any).loc ?? 0)).indexOf(('fuelstation'))) + 1 > 0) {
-        (s as any).blackmailQW['init_flashloc_desc'] = 'while washing cars';
+        ((s as any).blackmailQW ?? {})['init_flashloc_desc'] = 'while washing cars';
         scene.text('You briefly think a <b>car turned on its headlights</b> before you realize it was the flash of a camera, the source of which is already gone.');
       } else {
         if (((s as any).loc ?? 0) === 'pav_aptcourtev'  ||  ((s as any).loc ?? 0) === 'anushapt') {
-          (s as any).blackmailQW['init_flashloc_desc'] = 'in front of Maxim';
+          ((s as any).blackmailQW ?? {})['init_flashloc_desc'] = 'in front of Maxim';
           scene.text('You think you notice the <b>flash of a camera</b> from the corner of your eye, but its source is already out of view.');
         } else {
-          (s as any).blackmailQW['init_flashloc_desc'] = '';
+          ((s as any).blackmailQW ?? {})['init_flashloc_desc'] = '';
           scene.text('You think you notice the <b>flash of a camera</b> from the corner of your eye, but its source is already out of view.');
         }
       }
@@ -112,7 +112,7 @@ function enterInitBlackmail(s: GameState, scene: SceneBuilder): void {
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['package_day'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).blackmailQW ?? 0)?.['package_day']  &&  ((s as any).blackmailQW ?? 0)?.['package'] > 0) {
-    (s as any).blackmailQW['package'] = 0;
+    ((s as any).blackmailQW ?? {})['package'] = 0;
     // TODO-QSP: gs 'post_office', 'remove_mail', "gs 'blackmailer', 'set_post_act'"
   }
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
@@ -151,18 +151,18 @@ function enterCiklSetFailure(s: GameState, scene: SceneBuilder): void {
 
 function enterCiklSetSmsday(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['stage'] === 3) {
-    (s as any).blackmailQW['smsday'] = ((s as any).blackmailQW ?? {})?.['dreamday'] + 4;
+    ((s as any).blackmailQW ?? {})['smsday'] = ((s as any).blackmailQW ?? {})?.['dreamday'] + 4;
     qspCall(s, 'telefon', 'AddContact', 'Blackmailer', 'icon_na', 1);
   } else {
     if (((s as any).blackmailQW ?? 0)?.['stage'] >= 5) {
-      (s as any).blackmailQW['smsday'] = ((s as any).daystart ?? 0) + 6;
+      ((s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 6;
       if (((s as any).blackmailQW ?? 0)?.['stage'] === 6) {
-        (s as any).blackmailQW['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + (4 - ((s as any).blackmailQW ?? {})?.['selfie_stage']);
+        ((s as any).blackmailQW ?? {})['smsday'] = (((s as any).blackmailQW ?? {})['smsday'] ?? 0) + (4 - ((s as any).blackmailQW ?? {})?.['selfie_stage']);
       }
       if (((s as any).blackmailQW ?? 0)?.['stage'] < 8) {
-        (s as any).blackmailQW['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + (Math.floor(Math.random() * 7) + 0);
+        ((s as any).blackmailQW ?? {})['smsday'] = (((s as any).blackmailQW ?? {})['smsday'] ?? 0) + (Math.floor(Math.random() * 7) + 0);
       } else {
-        (s as any).blackmailQW['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + (Math.floor(Math.random() * 5) + 0);
+        ((s as any).blackmailQW ?? {})['smsday'] = (((s as any).blackmailQW ?? {})['smsday'] ?? 0) + (Math.floor(Math.random() * 5) + 0);
       }
     }
   }
@@ -405,56 +405,56 @@ function enterPurgeAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNextPayment(s: GameState, scene: SceneBuilder): void {
-  (s as any).blackmailQW['next_payment'] = 10 * ((s as any).rand ?? 0)(50, 100);
-  (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (10 * ((400 * ((s as any).blackmailQW ?? {})?.['total_payment']) / (15000 + ((s as any).blackmailQW ?? {})?.['total_payment'])));
-  (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (10 * ((200 * ((s as any).blackmailQW ?? {})?.['alter_payment']) / (20000 + ((s as any).blackmailQW ?? {})?.['alter_payment'])));
+  ((s as any).blackmailQW ?? {})['next_payment'] = 10 * ((s as any).rand ?? 0)(50, 100);
+  ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) + (10 * ((400 * ((s as any).blackmailQW ?? {})?.['total_payment']) / (15000 + ((s as any).blackmailQW ?? {})?.['total_payment'])));
+  ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) + (10 * ((200 * ((s as any).blackmailQW ?? {})?.['alter_payment']) / (20000 + ((s as any).blackmailQW ?? {})?.['alter_payment'])));
   (s as any).temp_BM_material_send = ((s as any).blackmailQW ?? {})?.['total_material'] - 1;
-  (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (10 * ((250 * ((s as any).temp_BM_material_send ?? 0)) / (50 + ((s as any).temp_BM_material_send ?? 0))));
+  ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) + (10 * ((250 * ((s as any).temp_BM_material_send ?? 0)) / (50 + ((s as any).temp_BM_material_send ?? 0))));
   if (((s as any).blackmailQW ?? 0)?.['stage'] >= 8) {
-    (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) - (1000);
-    (s as any).blackmailQW['alter_payment'] = ((s as any).blackmailQW['alter_payment'] ?? 0) + (1000);
+    ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) - (1000);
+    ((s as any).blackmailQW ?? {})['alter_payment'] = (((s as any).blackmailQW ?? {})['alter_payment'] ?? 0) + (1000);
   }
   if (((s as any).blackmailQW ?? 0)?.['worn_costume'] === -1) {
-    (s as any).blackmailQW['costume_punishment'] = 100 * ((s as any).rand ?? 0)(20, 40);
+    ((s as any).blackmailQW ?? {})['costume_punishment'] = 100 * ((s as any).rand ?? 0)(20, 40);
   } else {
-    (s as any).blackmailQW['costume_punishment'] = 0;
+    ((s as any).blackmailQW ?? {})['costume_punishment'] = 0;
   }
-  (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (((s as any).blackmailQW ?? 0)?.['costume_punishment']);
+  ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) + (((s as any).blackmailQW ?? 0)?.['costume_punishment']);
   scene.build();
 }
 
 function enterMakePayment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
-    (s as any).ARGS[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
   }
   if (((s as any).locArgs?.[1] ?? 0) > ((s as any).blackmailQW ?? 0)?.['next_payment']) {
-    (s as any).ARGS[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
+    ((s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
   }
   if (((s as any).locArgs?.[2] ?? 0) === 'money') {
     // TODO-QSP: gs 'money', 'pay', ARGS[1], 'cash'
-    (s as any).blackmailQW['total_payment'] = ((s as any).blackmailQW['total_payment'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "blackmailer" }));
+    ((s as any).blackmailQW ?? {})['total_payment'] = (((s as any).blackmailQW ?? {})['total_payment'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "blackmailer" }));
   } else {
-    (s as any).blackmailQW['alter_payment'] = ((s as any).blackmailQW['alter_payment'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "blackmailer" }));
+    ((s as any).blackmailQW ?? {})['alter_payment'] = (((s as any).blackmailQW ?? {})['alter_payment'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "blackmailer" }));
   }
-  (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) - (qspUntranslated(s, "ARGS[1]", { location: "blackmailer" }));
+  ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) - (qspUntranslated(s, "ARGS[1]", { location: "blackmailer" }));
   if (((s as any).blackmailQW ?? 0)?.['stage'] >= 8) {
-    (s as any).blackmailQW['toy_fund'] = ((s as any).blackmailQW['toy_fund'] ?? 0) + (((s as any).ARGS ?? 0)[1] / 3);
+    ((s as any).blackmailQW ?? {})['toy_fund'] = (((s as any).blackmailQW ?? {})['toy_fund'] ?? 0) + (((s as any).ARGS ?? 0)[1] / 3);
   }
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] <= 0) {
-    (s as any).blackmailQW['partial_payment'] = 0;
+    ((s as any).blackmailQW ?? {})['partial_payment'] = 0;
     qspCall(s, 'calendar', 'remove', 'blackmail_payment_deadline');
   } else {
-    (s as any).blackmailQW['partial_payment'] = 1;
+    ((s as any).blackmailQW ?? {})['partial_payment'] = 1;
   }
   scene.build();
 }
 
 function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_i = 0;
-  (s as any).blackmailQW['unique_selfie_sent'] = 0;
+  ((s as any).blackmailQW ?? {})['unique_selfie_sent'] = 0;
   // TODO-QSP: :add_blackmail_loop
   if (((s as any).blackmailQW ?? 0)['selfie_image_' + ((s as any).temp_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
-    (s as any).blackmailQW['unique_selfie_sent'] = 1;
+    ((s as any).blackmailQW ?? {})['unique_selfie_sent'] = 1;
     return;
   } else {
     if (((s as any).blackmailQW ?? 0)['selfie_image_' + ((s as any).temp_i ?? 0)] !== '') {
@@ -465,12 +465,12 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_i = Math.floor(Math.random() * 10) + 0;
     }
   }
-  (s as any).blackmailQW['selfie_image_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).blackmailQW['selfie_location_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).blackmailQW['selfie_dress_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).blackmailQW['selfie_LocIndex_' + String((s as any).temp_i || '') + ''] = qspUntranslated(s, "ARGS[4]", { location: "blackmailer" });
-  (s as any).blackmailQW['selfie_number_' + String((s as any).temp_i || '') + ''] = qspUntranslated(s, "ARGS[5]", { location: "blackmailer" });
-  (s as any).blackmailQW['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
+  ((s as any).blackmailQW ?? {})['selfie_image_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).blackmailQW ?? {})['selfie_location_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).blackmailQW ?? {})['selfie_dress_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).blackmailQW ?? {})['selfie_LocIndex_' + String((s as any).temp_i || '') + ''] = qspUntranslated(s, "ARGS[4]", { location: "blackmailer" });
+  ((s as any).blackmailQW ?? {})['selfie_number_' + String((s as any).temp_i || '') + ''] = qspUntranslated(s, "ARGS[5]", { location: "blackmailer" });
+  ((s as any).blackmailQW ?? {})['total_material'] = (((s as any).blackmailQW ?? {})['total_material'] ?? 0) + (1);
   scene.build();
 }
 
@@ -518,30 +518,30 @@ function enterChoosePackage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_i2 ?? 0) < 100  &&  ((((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf((';' + ((100 + ((s as any).temp_i ?? 0)).slice((2)-1)) + ';'))) + 1 >= 0) {
     // TODO-QSP: jump 'package_loop'
   }
-  (s as any).blackmailQW['package'] = ((s as any).temp_i ?? 0);
+  ((s as any).blackmailQW ?? {})['package'] = ((s as any).temp_i ?? 0);
   scene.build();
 }
 
 function enterOpenPackage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['packages_opened'] === '') {
-    (s as any).blackmailQW['packages_opened'] = ';';
+    ((s as any).blackmailQW ?? {})['packages_opened'] = ';';
   }
   if (((((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf((';\' + \'2\' + \';'))) + 1 <= 0) {
-    (s as any).blackmailQW['packages_opened'] = ((s as any).blackmailQW['packages_opened'] ?? 0) + (((100 + ((s as any).blackmailQW ?? {})?.['inventory']).slice((2)-1)) + ';');
+    ((s as any).blackmailQW ?? {})['packages_opened'] = (((s as any).blackmailQW ?? {})['packages_opened'] ?? 0) + (((100 + ((s as any).blackmailQW ?? {})?.['inventory']).slice((2)-1)) + ';');
   }
   // TODO-QSP: gs 'blackmailer', 'get_package_content', blackmailQW['inventory']
   if (((s as any).temp_package ?? 0)?.['type'] === 'clothing') {
   }
-  (s as any).blackmailQW['inventory'] = 0;
+  ((s as any).blackmailQW ?? {})['inventory'] = 0;
   scene.build();
 }
 
 function enterDecreaseToyFund(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'blackmailer', 'get_package_content', ARGS[1]
   if (((s as any).temp_package ?? 0)?.['type'] === 'clothing') {
-    (s as any).blackmailQW['toy_fund'] = ((s as any).blackmailQW['toy_fund'] ?? 0) - (((s as any).CloPrice ?? 0));
+    ((s as any).blackmailQW ?? {})['toy_fund'] = (((s as any).blackmailQW ?? {})['toy_fund'] ?? 0) - (((s as any).CloPrice ?? 0));
   } else {
-    (s as any).blackmailQW['toy_fund'] = 0;
+    ((s as any).blackmailQW ?? {})['toy_fund'] = 0;
   }
   scene.build();
 }
@@ -550,10 +550,10 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_package = qspUntranslated(s, "ARGS[1]", { location: "blackmailer" });
   if (((s as any).temp_package ?? 0) >= 1  &&  ((s as any).temp_package ?? 0) < 21) {
     (s as any).bm_i = qspFunc(s, 'blackmailer', 'bmid_to_cosplaynumber', ((s as any).temp_package ?? 0));
-    (s as any).temp_package['type'] = 'clothing';
-    (s as any).temp_package['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'nerdvana_cosplay', <<bm_i>>\"", { location: "blackmailer" });
-    (s as any).temp_package['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'nerdvana_cosplay', <<bm_i>>\"", { location: "blackmailer" });
-    (s as any).temp_package['image'] = 'images/pc/items/nerdvana/cosplay/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
+    ((s as any).temp_package ?? {})['type'] = 'clothing';
+    ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'nerdvana_cosplay', <<bm_i>>\"", { location: "blackmailer" });
+    ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'nerdvana_cosplay', <<bm_i>>\"", { location: "blackmailer" });
+    ((s as any).temp_package ?? {})['image'] = 'images/pc/items/nerdvana/cosplay/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
   } else {
     if (((s as any).temp_package ?? 0) >= 21  &&  ((s as any).temp_package ?? 0) <= 25) {
       if (((s as any).temp_package ?? 0) === 21) {
@@ -573,10 +573,10 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      (s as any).temp_package['type'] = 'clothing';
-      (s as any).temp_package['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'salacious_outfits', <<bm_i>>\"", { location: "blackmailer" });
-      (s as any).temp_package['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'salacious_outfits', <<bm_i>>, 0\"", { location: "blackmailer" });
-      (s as any).temp_package['image'] = 'images/pc/items/salacious/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
+      ((s as any).temp_package ?? {})['type'] = 'clothing';
+      ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'salacious_outfits', <<bm_i>>\"", { location: "blackmailer" });
+      ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'salacious_outfits', <<bm_i>>, 0\"", { location: "blackmailer" });
+      ((s as any).temp_package ?? {})['image'] = 'images/pc/items/salacious/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
     } else {
       if (((s as any).temp_package ?? 0) >= 26  &&  ((s as any).temp_package ?? 0) <= 30) {
         if (((s as any).temp_package ?? 0) === 26) {
@@ -596,10 +596,10 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
-        (s as any).temp_package['type'] = 'clothing';
-        (s as any).temp_package['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'eroto_outfits', <<bm_i>>\"", { location: "blackmailer" });
-        (s as any).temp_package['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'eroto_outfits', <<bm_i>>\"", { location: "blackmailer" });
-        (s as any).temp_package['image'] = 'images/pc/items/eroto/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
+        ((s as any).temp_package ?? {})['type'] = 'clothing';
+        ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'eroto_outfits', <<bm_i>>\"", { location: "blackmailer" });
+        ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'eroto_outfits', <<bm_i>>\"", { location: "blackmailer" });
+        ((s as any).temp_package ?? {})['image'] = 'images/pc/items/eroto/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
       } else {
         if (((s as any).temp_package ?? 0) >= 31  &&  ((s as any).temp_package ?? 0) <= 35) {
           if (((s as any).temp_package ?? 0) === 31) {
@@ -619,10 +619,10 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
-          (s as any).temp_package['type'] = 'clothing';
-          (s as any).temp_package['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'scandalicious_outfits', <<bm_i>>\"", { location: "blackmailer" });
-          (s as any).temp_package['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'scandalicious_outfits', <<bm_i>>\"", { location: "blackmailer" });
-          (s as any).temp_package['image'] = 'images/pc/items/scandalicious/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
+          ((s as any).temp_package ?? {})['type'] = 'clothing';
+          ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'scandalicious_outfits', <<bm_i>>\"", { location: "blackmailer" });
+          ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'scandalicious_outfits', <<bm_i>>\"", { location: "blackmailer" });
+          ((s as any).temp_package ?? {})['image'] = 'images/pc/items/scandalicious/outfits/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
         } else {
           if (((s as any).temp_package ?? 0) === 36) {
             (s as any).bm_i = 34;
@@ -641,10 +641,10 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
               }
             }
           }
-          (s as any).temp_package['type'] = 'clothing';
-          (s as any).temp_package['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'scandalicious_dress', <<bm_i>>\"", { location: "blackmailer" });
-          (s as any).temp_package['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'scandalicious_dress', <<bm_i>>\"", { location: "blackmailer" });
-          (s as any).temp_package['image'] = 'images/pc/items/scandalicious/dress/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
+          ((s as any).temp_package ?? {})['type'] = 'clothing';
+          ((s as any).temp_package ?? {})['set_vars'] = qspUntranslated(s, "\"gs 'clothing_attributes', 'scandalicious_dress', <<bm_i>>\"", { location: "blackmailer" });
+          ((s as any).temp_package ?? {})['add_item'] = qspUntranslated(s, "\"gs 'clothing', 'add_item', 'scandalicious_dress', <<bm_i>>\"", { location: "blackmailer" });
+          ((s as any).temp_package ?? {})['image'] = 'images/pc/items/scandalicious/dress/' + qspUntranslated(s, "bm_i>", { location: "blackmailer" }) + '.jpg';
         }
       }
     }

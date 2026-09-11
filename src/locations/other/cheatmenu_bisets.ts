@@ -143,18 +143,18 @@ function enterGetDefaultBiTable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLockImgSet(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['fix_bodyimg'] = 1;
+  ((s as any).cheatVars ?? {})['fix_bodyimg'] = 1;
   if (((s as any).locArgs?.[1] ?? 0) < 10) {
-    (s as any).cheatVars['fix_bi_set'] = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
+    ((s as any).cheatVars ?? {})['fix_bi_set'] = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   } else {
-    (s as any).ARGS[1] = ((s as any).ARGS ?? 0)[1] % 100;
+    ((s as any).ARGS ?? {})[1] = ((s as any).ARGS ?? 0)[1] % 100;
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] < 10) {
-      (s as any).cheatVars['fix_bi_set'] = 199;
+      ((s as any).cheatVars ?? {})['fix_bi_set'] = 199;
     }
     if (((s as any).locArgs?.[1] ?? 0) % 10 !== 9) {
-      (s as any).cheatVars['fix_bi_set'] = (((s as any).cheatVars ?? {})?.['fix_bi_set'] / 10) * 10 + (((s as any).ARGS ?? 0)[1] % 10);
+      ((s as any).cheatVars ?? {})['fix_bi_set'] = (((s as any).cheatVars ?? {})?.['fix_bi_set'] / 10) * 10 + (((s as any).ARGS ?? 0)[1] % 10);
     } else {
-      (s as any).cheatVars['fix_bi_set'] = 100 + (((s as any).ARGS ?? 0)[1] / 10) * 10 + (((s as any).cheatVars ?? {})?.['fix_bi_set'] % 10);
+      ((s as any).cheatVars ?? {})['fix_bi_set'] = 100 + (((s as any).ARGS ?? 0)[1] / 10) * 10 + (((s as any).cheatVars ?? {})?.['fix_bi_set'] % 10);
     }
   }
   qspCall(s, 'body', 'UpdateBodyImage');
@@ -163,19 +163,19 @@ function enterLockImgSet(s: GameState, scene: SceneBuilder): void {
 
 function enterUnlockImgSet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] < 10) {
-    (s as any).cheatVars['fix_bodyimg'] = 0;
-    (s as any).cheatVars['fix_bi_set'] = 0;
+    ((s as any).cheatVars ?? {})['fix_bodyimg'] = 0;
+    ((s as any).cheatVars ?? {})['fix_bi_set'] = 0;
   } else {
-    (s as any).ARGS[1] = ((s as any).ARGS ?? 0)[1] % 100;
+    ((s as any).ARGS ?? {})[1] = ((s as any).ARGS ?? 0)[1] % 100;
     if (((s as any).locArgs?.[1] ?? 0) % 10 === 9) {
-      (s as any).cheatVars['fix_bi_set'] = 190 + (((s as any).cheatVars ?? {})?.['fix_bi_set'] % 10);
+      ((s as any).cheatVars ?? {})['fix_bi_set'] = 190 + (((s as any).cheatVars ?? {})?.['fix_bi_set'] % 10);
     }
     if (((s as any).locArgs?.[1] ?? 0) / 10 === 9) {
-      (s as any).cheatVars['fix_bi_set'] = (((s as any).cheatVars ?? {})?.['fix_bi_set'] / 10) * 10 + 9;
+      ((s as any).cheatVars ?? {})['fix_bi_set'] = (((s as any).cheatVars ?? {})?.['fix_bi_set'] / 10) * 10 + 9;
     }
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] === 199) {
-      (s as any).cheatVars['fix_bodyimg'] = 0;
-      (s as any).cheatVars['fix_bi_set'] = 0;
+      ((s as any).cheatVars ?? {})['fix_bodyimg'] = 0;
+      ((s as any).cheatVars ?? {})['fix_bi_set'] = 0;
     }
   }
   qspCall(s, 'body', 'UpdateBodyImage');
@@ -248,7 +248,7 @@ function enterCsExport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cheatmenu['table_start']
   // TODO-QSP: dynamic "
   // TODO-QSP: "
-  (s as any).fix_bod_set['folder'] = '' + qspUntranslated(s, "cheatVars['fix_biset_<<cmbs_exp_set>>_folder']>", { location: "cheatmenu_bisets" }) + '';
+  ((s as any).fix_bod_set ?? {})['folder'] = '' + qspUntranslated(s, "cheatVars['fix_biset_<<cmbs_exp_set>>_folder']>", { location: "cheatmenu_bisets" }) + '';
   // TODO-QSP: "
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cmbs_exp_set ?? 0) + '_name'] !== '') {
     // TODO-QSP: $temp_export_text += "$fix_bod_set['name'] = '<<$cheatVars['fix_biset_<<cmbs_exp_set>>_name']>>'
@@ -510,8 +510,8 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cheatmenu_bisets', 'cs_main', ((st as any).cmbs_set ?? 0));
   } },
     { label: 'Copy to other class', handler: (st: GameState) => {
-    (s as any).cmd_copy_class['set'] = ((s as any).cmbs_set ?? 0);
-    (s as any).cmd_copy_class['base'] = ((s as any).cmbs_class ?? 0);
+    ((s as any).cmd_copy_class ?? {})['set'] = ((s as any).cmbs_set ?? 0);
+    ((s as any).cmd_copy_class ?? {})['base'] = ((s as any).cmbs_class ?? 0);
     qspCall(s, 'cheatmenu_bisets', 'cs_copy_class_menu');
   } },
   ]);
@@ -550,7 +550,7 @@ function enterGetCustomBodyimgDescLinkAdvanced(s: GameState, scene: SceneBuilder
 
 function enterAddPregset(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
-  (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_pregsets'] = ((s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_pregsets'] ?? 0) + (1);
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_pregsets'] = (((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_pregsets'] ?? 0) + (1);
   qspCall(s, 'cheatmenu_bisets', 'cs_main', ((s as any).temp_set ?? 0));
   scene.build();
 }
@@ -651,7 +651,7 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_str_text[15]  = '171-180'
   // TODO-QSP: $temp_str_text[16]  = '181-190'
   // TODO-QSP: $temp_str_text[17]  = '191-200'
-  (s as any).cmd_copy_class['counter'] = 0;
+  ((s as any).cmd_copy_class ?? {})['counter'] = 0;
   (s as any).cmd_adv_str_i = 0;
   // TODO-QSP: :cs_copy_class_str_loop
   if (((s as any).cmd_adv_str_i ?? 0) !== 0) {
@@ -665,7 +665,7 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_table +=  '<td><<$cmbs_class_str>></td>'
   } else {
     if (((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
-      (s as any).cmd_copy_class['counter'] = ((s as any).cmd_copy_class['counter'] ?? 0) + (1);
+      ((s as any).cmd_copy_class ?? {})['counter'] = (((s as any).cmd_copy_class ?? {})['counter'] ?? 0) + (1);
       // TODO-QSP: $temp_table +=  '<td><i><a style="color:#00FF00" href="exec: cmd_copy_class[''<<$cmbs_class_str>>'']...
     } else {
       // TODO-QSP: $temp_table +=  '<td><a href="exec: cmd_copy_class[''<<$cmbs_class_str>>''] = 1 & gs ''cheatmenu_bis...
@@ -688,8 +688,8 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Reset', handler: (st: GameState) => {
     (s as any).temp_set = ((s as any).cmd_copy_class ?? 0)?.['set'];
     (s as any).temp_base = ((s as any).cmd_copy_class ?? 0)?.['base'];
-    (s as any).cmd_copy_class['set'] = ((s as any).temp_set ?? 0);
-    (s as any).cmd_copy_class['base'] = ((s as any).temp_base ?? 0);
+    ((s as any).cmd_copy_class ?? {})['set'] = ((s as any).temp_set ?? 0);
+    ((s as any).cmd_copy_class ?? {})['base'] = ((s as any).temp_base ?? 0);
     qspCall(s, 'cheatmenu_bisets', 'cs_copy_class_menu');
   } },
       { label: 'Overwrite', handler: (st: GameState) => {
@@ -706,32 +706,32 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCsCopyClassBmi(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_copyclass['bmi'] = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
-  (s as any).temp_copyclass['counter'] = 0;
-  (s as any).temp_copyclass['stren'] = 0;
+  ((s as any).temp_copyclass ?? {})['bmi'] = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
+  ((s as any).temp_copyclass ?? {})['counter'] = 0;
+  ((s as any).temp_copyclass ?? {})['stren'] = 0;
   // TODO-QSP: :cs_copy_class_stren_loop2
-  (s as any).temp_copyclass['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
-  (s as any).temp_copyclass['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
+  ((s as any).temp_copyclass ?? {})['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
+  ((s as any).temp_copyclass ?? {})['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
   if (((s as any).cmd_copy_class ?? 0)[((s as any).temp_copyclass ?? 0)?.['class_str']] === 1  ||  ((s as any).cmd_copy_class ?? 0)?.['base'] === ((s as any).temp_copyclass ?? 0)?.['class']) {
-    (s as any).temp_copyclass['counter'] = ((s as any).temp_copyclass['counter'] ?? 0) + (1);
+    ((s as any).temp_copyclass ?? {})['counter'] = (((s as any).temp_copyclass ?? {})['counter'] ?? 0) + (1);
   }
-  (s as any).temp_copyclass['stren'] = ((s as any).temp_copyclass['stren'] ?? 0) + (1);
+  ((s as any).temp_copyclass ?? {})['stren'] = (((s as any).temp_copyclass ?? {})['stren'] ?? 0) + (1);
   if (((s as any).temp_copyclass ?? 0)?.['stren'] < 18) {
     // TODO-QSP: jump 'cs_copy_class_stren_loop2'
   }
   if (((s as any).temp_copyclass ?? 0)?.['counter'] < 18) {
-    (s as any).temp_copyclass['result'] = 1;
+    ((s as any).temp_copyclass ?? {})['result'] = 1;
   } else {
-    (s as any).temp_copyclass['result'] = 0;
+    ((s as any).temp_copyclass ?? {})['result'] = 0;
   }
-  (s as any).temp_copyclass['stren'] = 0;
+  ((s as any).temp_copyclass ?? {})['stren'] = 0;
   // TODO-QSP: :cs_copy_class_stren_loop3
-  (s as any).temp_copyclass['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
-  (s as any).temp_copyclass['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
+  ((s as any).temp_copyclass ?? {})['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
+  ((s as any).temp_copyclass ?? {})['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
   if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).temp_copyclass ?? 0)?.['class']) {
     // TODO-QSP: cmd_copy_class[$temp_copyclass['class_str']] = temp_copyclass['result']
   }
-  (s as any).temp_copyclass['stren'] = ((s as any).temp_copyclass['stren'] ?? 0) + (1);
+  ((s as any).temp_copyclass ?? {})['stren'] = (((s as any).temp_copyclass ?? {})['stren'] ?? 0) + (1);
   if (((s as any).temp_copyclass ?? 0)?.['stren'] < 18) {
     // TODO-QSP: jump 'cs_copy_class_stren_loop3'
   }
@@ -740,32 +740,32 @@ function enterCsCopyClassBmi(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCsCopyClassStren(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_copyclass['stren'] = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
-  (s as any).temp_copyclass['counter'] = 0;
-  (s as any).temp_copyclass['bmi'] = 0;
+  ((s as any).temp_copyclass ?? {})['stren'] = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
+  ((s as any).temp_copyclass ?? {})['counter'] = 0;
+  ((s as any).temp_copyclass ?? {})['bmi'] = 0;
   // TODO-QSP: :cs_copy_class_bmi_loop2
-  (s as any).temp_copyclass['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
-  (s as any).temp_copyclass['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
+  ((s as any).temp_copyclass ?? {})['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
+  ((s as any).temp_copyclass ?? {})['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
   if (((s as any).cmd_copy_class ?? 0)[((s as any).temp_copyclass ?? 0)?.['class_str']] === 1  ||  ((s as any).cmd_copy_class ?? 0)?.['base'] === ((s as any).temp_copyclass ?? 0)?.['class']) {
-    (s as any).temp_copyclass['counter'] = ((s as any).temp_copyclass['counter'] ?? 0) + (1);
+    ((s as any).temp_copyclass ?? {})['counter'] = (((s as any).temp_copyclass ?? {})['counter'] ?? 0) + (1);
   }
-  (s as any).temp_copyclass['bmi'] = ((s as any).temp_copyclass['bmi'] ?? 0) + (1);
+  ((s as any).temp_copyclass ?? {})['bmi'] = (((s as any).temp_copyclass ?? {})['bmi'] ?? 0) + (1);
   if (((s as any).temp_copyclass ?? 0)?.['bmi'] < 9) {
     // TODO-QSP: jump 'cs_copy_class_bmi_loop2'
   }
   if (((s as any).temp_copyclass ?? 0)?.['counter'] < 9) {
-    (s as any).temp_copyclass['result'] = 1;
+    ((s as any).temp_copyclass ?? {})['result'] = 1;
   } else {
-    (s as any).temp_copyclass['result'] = 0;
+    ((s as any).temp_copyclass ?? {})['result'] = 0;
   }
-  (s as any).temp_copyclass['bmi'] = 0;
+  ((s as any).temp_copyclass ?? {})['bmi'] = 0;
   // TODO-QSP: :cs_copy_class_bmi_loop3
-  (s as any).temp_copyclass['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
-  (s as any).temp_copyclass['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
+  ((s as any).temp_copyclass ?? {})['class'] = ((s as any).temp_copyclass ?? {})?.['bmi'] * 100 + ((s as any).temp_copyclass ?? {})?.['stren'];
+  ((s as any).temp_copyclass ?? {})['class_str'] = ((10000 + ((s as any).temp_copyclass ?? {})?.['class']).slice((2)-1));
   if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).temp_copyclass ?? 0)?.['class']) {
     // TODO-QSP: cmd_copy_class[$temp_copyclass['class_str']] = temp_copyclass['result']
   }
-  (s as any).temp_copyclass['bmi'] = ((s as any).temp_copyclass['bmi'] ?? 0) + (1);
+  ((s as any).temp_copyclass ?? {})['bmi'] = (((s as any).temp_copyclass ?? {})['bmi'] ?? 0) + (1);
   if (((s as any).temp_copyclass ?? 0)?.['bmi'] < 9) {
     // TODO-QSP: jump 'cs_copy_class_bmi_loop3'
   }
@@ -774,31 +774,31 @@ function enterCsCopyClassStren(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCsOverwriteClassesBase(s: GameState, scene: SceneBuilder): void {
-  (s as any).cmd_copy_class['base_str'] = ((10000 + ((s as any).cmd_copy_class ?? {})?.['base']).slice((2)-1));
-  (s as any).cmd_copy_class['string'] = 'fix_biset_' + qspUntranslated(s, "cmd_copy_class['set']>", { location: "cheatmenu_bisets" }) + '_';
-  (s as any).cmd_copy_class['path'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? {})?.['string'] + 'path_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
-  (s as any).cmd_copy_class['desc'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? {})?.['string'] + 'desc_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
-  (s as any).cmd_copy_class['imgnums'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? {})?.['string'] + 'imgnums_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
-  (s as any).cmd_copy_class['i'] = 0;
+  ((s as any).cmd_copy_class ?? {})['base_str'] = ((10000 + ((s as any).cmd_copy_class ?? {})?.['base']).slice((2)-1));
+  ((s as any).cmd_copy_class ?? {})['string'] = 'fix_biset_' + qspUntranslated(s, "cmd_copy_class['set']>", { location: "cheatmenu_bisets" }) + '_';
+  ((s as any).cmd_copy_class ?? {})['path'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? {})?.['string'] + 'path_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
+  ((s as any).cmd_copy_class ?? {})['desc'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? {})?.['string'] + 'desc_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
+  ((s as any).cmd_copy_class ?? {})['imgnums'] = ((s as any).cheatVars ?? 0)?.[((s as any).cmd_copy_class ?? {})?.['string'] + 'imgnums_' + ((s as any).cmd_copy_class ?? 0)?.['base_str'] + ''];
+  ((s as any).cmd_copy_class ?? {})['i'] = 0;
   // TODO-QSP: :cs_overwrite_loop1
   // TODO-QSP: $cmd_copy_class['img_<<cmd_copy_class[''i'']>>'] = $cheatVars[$cmd_copy_class['string'] + 'img_<<$cm...
-  (s as any).cmd_copy_class['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
+  ((s as any).cmd_copy_class ?? {})['i'] = (((s as any).cmd_copy_class ?? {})['i'] ?? 0) + (1);
   if (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
     // TODO-QSP: jump 'cs_overwrite_loop1'
   }
-  (s as any).cmd_copy_class['str_i'] = 0;
+  ((s as any).cmd_copy_class ?? {})['str_i'] = 0;
   // TODO-QSP: :cs_overwrite_str_loop
-  (s as any).cmd_copy_class['bmi_i'] = 0;
+  ((s as any).cmd_copy_class ?? {})['bmi_i'] = 0;
   // TODO-QSP: :cs_overwrite_bmi_loop
   (s as any).cmbs_class = ((s as any).cmd_copy_class ?? {})?.['bmi_i'] * 100 + ((s as any).cmd_copy_class ?? {})?.['str_i'];
   if (((s as any).cmd_copy_class ?? 0)?.['base'] !== ((s as any).cmbs_class ?? 0)  &&  ((s as any).cmd_copy_class ?? 0)?.[String((s as any).cmbs_class_str ?? 0)] === 1) {
     qspCall(s, 'cheatmenu_bisets', 'cs_overwrite_class', ((s as any).cmbs_class_str ?? 0));
   }
-  (s as any).cmd_copy_class['bmi_i'] = ((s as any).cmd_copy_class['bmi_i'] ?? 0) + (1);
+  ((s as any).cmd_copy_class ?? {})['bmi_i'] = (((s as any).cmd_copy_class ?? {})['bmi_i'] ?? 0) + (1);
   if (((s as any).cmd_copy_class ?? 0)?.['bmi_i'] < 9) {
     // TODO-QSP: jump 'cs_overwrite_bmi_loop'
   }
-  (s as any).cmd_copy_class['str_i'] = ((s as any).cmd_copy_class['str_i'] ?? 0) + (1);
+  ((s as any).cmd_copy_class ?? {})['str_i'] = (((s as any).cmd_copy_class ?? {})['str_i'] ?? 0) + (1);
   if (((s as any).cmd_copy_class ?? 0)?.['str_i'] < 18) {
     // TODO-QSP: jump 'cs_overwrite_str_loop'
   }
@@ -809,18 +809,18 @@ function enterCsOverwriteClassesBase(s: GameState, scene: SceneBuilder): void {
 function enterCsOverwriteClass(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cheatVars[$cmd_copy_class['string'] + 'path_<<$ARGS[1]>>'] = $cmd_copy_class['path']
   // TODO-QSP: $cheatVars[$cmd_copy_class['string'] + 'desc_<<$ARGS[1]>>'] = $cmd_copy_class['desc']
-  (s as any).cmd_copy_class['i'] = 0;
+  ((s as any).cmd_copy_class ?? {})['i'] = 0;
   // TODO-QSP: :cs_overwrite_loop2
   // TODO-QSP: $cheatVars[$cmd_copy_class['string'] + 'img_<<$ARGS[1]>>_<<cmd_copy_class[''i'']>>'] = $cmd_copy_cla...
-  (s as any).cmd_copy_class['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
+  ((s as any).cmd_copy_class ?? {})['i'] = (((s as any).cmd_copy_class ?? {})['i'] ?? 0) + (1);
   if (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
     // TODO-QSP: jump 'cs_overwrite_loop2'
   }
   if (((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + ((s as any).locArgs?.[1] ?? 0)] > ((s as any).cmd_copy_class ?? 0)?.['imgnums']) {
-    (s as any).cmd_copy_class['i'] = ((s as any).cmd_copy_class ?? 0)?.['imgnums'];
+    ((s as any).cmd_copy_class ?? {})['i'] = ((s as any).cmd_copy_class ?? 0)?.['imgnums'];
     // TODO-QSP: :cs_overwrite_loop3
     // TODO-QSP: gs 'array', 'remove_element', '$cheatVars', $cmd_copy_class['string'] + 'img_<<$ARGS[1]>>_<<cmd_copy...
-    (s as any).cmd_copy_class['i'] = ((s as any).cmd_copy_class['i'] ?? 0) + (1);
+    ((s as any).cmd_copy_class ?? {})['i'] = (((s as any).cmd_copy_class ?? {})['i'] ?? 0) + (1);
     if (((s as any).cmd_copy_class ?? 0)?.['i'] < ((s as any).cheatVars ?? 0)[((s as any).cmd_copy_class ?? 0)?.['string'] + 'imgnums_' + ((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'cs_overwrite_loop3'
     }
@@ -860,7 +860,7 @@ function enterAddSet2(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((((s as any).cmd_temp_input ?? 0)).slice((qspUntranslated(s, "len(cmd_temp_input)", { location: "cheatmenu_bisets" }))-1)) === '/'  ||  ((((s as any).cmd_temp_input ?? 0)).slice((qspUntranslated(s, "len(cmd_temp_input)", { location: "cheatmenu_bisets" }))-1)) === '\\') {
     }
-    (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_folder'] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_folder'] = ((s as any).cmd_temp_input ?? 0);
     // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
   }
   scene.build();
@@ -1006,7 +1006,7 @@ function enterImportCustomSet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCsSetSimple(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_advanced'] = 0;
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_advanced'] = 0;
   // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
   scene.build();
 }
@@ -1015,7 +1015,7 @@ function enterCsSetAdvanced(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).locArgs?.[1] ?? 0) + '_imgnums_0000'] === 0) {
     // TODO-QSP: gs 'cheatmenu_bisets', 'cs_init_advanced', ARGS[1]
   }
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_advanced'] = 1;
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_advanced'] = 1;
   // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
   scene.build();
 }
@@ -1026,7 +1026,7 @@ function enterCsInitAdvanced(s: GameState, scene: SceneBuilder): void {
   (s as any).cmd_adv_str_i = 0;
   // TODO-QSP: :adv_init_str_loop
   (s as any).cmd_bs_class = ((s as any).cmd_adv_bmi_i ?? 0) * 100 + ((s as any).cmd_adv_str_i ?? 0);
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_imgnums_' + String((s as any).$cmd_bs_class_str || '') + ''] = 1;
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_imgnums_' + String((s as any).$cmd_bs_class_str || '') + ''] = 1;
   (s as any).cmd_adv_str_i = ((s as any).cmd_adv_str_i ?? 0) + (1);
   if (((s as any).cmd_adv_str_i ?? 0) < 18) {
     // TODO-QSP: jump 'adv_init_str_loop'
@@ -1041,7 +1041,7 @@ function enterCsInitAdvanced(s: GameState, scene: SceneBuilder): void {
 function enterCsChangeName(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_name'] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_name'] = ((s as any).cmd_temp_input ?? 0);
   }
   qspCall(s, 'cheatmenu_bisets', 'cs_main', ((s as any).temp_set ?? 0));
   scene.build();
@@ -1050,7 +1050,7 @@ function enterCsChangeName(s: GameState, scene: SceneBuilder): void {
 function enterCsChangeFolder(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_folder'] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_folder'] = ((s as any).cmd_temp_input ?? 0);
   }
   qspCall(s, 'cheatmenu_bisets', 'cs_main', ((s as any).temp_set ?? 0));
   scene.build();
@@ -1059,7 +1059,7 @@ function enterCsChangeFolder(s: GameState, scene: SceneBuilder): void {
 function enterCsChangePath(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_path'] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_path'] = ((s as any).cmd_temp_input ?? 0);
   }
   qspCall(s, 'cheatmenu_bisets', 'cs_main', ((s as any).temp_set ?? 0));
   scene.build();
@@ -1069,7 +1069,7 @@ function enterCsChangeDesc(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   (s as any).temp_class = qspUntranslated(s, "ARGS[2]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_desc_' + String((s as any).temp_class || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_desc_' + String((s as any).temp_class || '') + ''] = ((s as any).cmd_temp_input ?? 0);
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] === ((s as any).temp_set ?? 0)) {
       qspCall(s, 'body', 'UpdateBodyImage');
     }
@@ -1082,7 +1082,7 @@ function enterCsChangeDescAdv(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   (s as any).temp_class = qspUntranslated(s, "ARGS[2]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_desc_' + String((s as any).$temp_class_str || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_desc_' + String((s as any).$temp_class_str || '') + ''] = ((s as any).cmd_temp_input ?? 0);
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] === ((s as any).temp_set ?? 0)) {
       qspCall(s, 'body', 'UpdateBodyImage');
     }
@@ -1095,7 +1095,7 @@ function enterCsChangeSubpath(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   (s as any).temp_class = qspUntranslated(s, "ARGS[2]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_path_' + String((s as any).$temp_class_str || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_path_' + String((s as any).$temp_class_str || '') + ''] = ((s as any).cmd_temp_input ?? 0);
   }
   qspCall(s, 'cheatmenu_bisets', 'cs_main_advanced2', ((s as any).temp_set ?? 0), ((s as any).temp_class ?? 0));
   scene.build();
@@ -1105,7 +1105,7 @@ function enterCsChangePregSubpath(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_set = qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_bisets" });
   (s as any).preg_set = qspUntranslated(s, "ARGS[2]", { location: "cheatmenu_bisets" });
   if (((s as any).cmd_temp_input ?? 0) !== '') {
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_pregpath_' + String((s as any).preg_set || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_pregpath_' + String((s as any).preg_set || '') + ''] = ((s as any).cmd_temp_input ?? 0);
   }
   qspCall(s, 'cheatmenu_bisets', 'get_pregset_link', ((s as any).temp_set ?? 0), ((s as any).preg_set ?? 0));
   scene.build();
@@ -1117,7 +1117,7 @@ function enterCsChangeImg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cmd_temp_input ?? 0) !== '') {
     if (((((s as any).cmd_temp_input ?? 0)).slice((((((s as any).cmd_temp_input ?? 0)).length)-3)-1)) === '.jpg') {
     }
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).temp_class || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).temp_class || '') + ''] = ((s as any).cmd_temp_input ?? 0);
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] === ((s as any).temp_set ?? 0)) {
       qspCall(s, 'body', 'UpdateBodyImage');
     }
@@ -1133,7 +1133,7 @@ function enterCsChangeImgAdv(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cmd_temp_input ?? 0) !== '') {
     if (((((s as any).cmd_temp_input ?? 0)).slice((((((s as any).cmd_temp_input ?? 0)).length)-3)-1)) === '.jpg') {
     }
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).$temp_class_str || '') + '_' + String((s as any).temp_img_num || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).$temp_class_str || '') + '_' + String((s as any).temp_img_num || '') + ''] = ((s as any).cmd_temp_input ?? 0);
     if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] === ((s as any).temp_set ?? 0)) {
       qspCall(s, 'body', 'UpdateBodyImage');
     }
@@ -1148,8 +1148,8 @@ function enterCsAddImg(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).cmd_temp_input ?? 0)).slice((((((s as any).cmd_temp_input ?? 0)).length)-3)-1)) === '.jpg') {
   }
   (s as any).temp_new_img_index = ((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_imgnums_' + String(((s as any).temp_class_str ?? 0))];
-  (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] = ((s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] ?? 0) + (1);
-  (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).$temp_class_str || '') + '_' + String((s as any).temp_new_img_index || '') + ''] = ((s as any).cmd_temp_input ?? 0);
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] = (((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] ?? 0) + (1);
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).$temp_class_str || '') + '_' + String((s as any).temp_new_img_index || '') + ''] = ((s as any).cmd_temp_input ?? 0);
   if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] === ((s as any).temp_set ?? 0)) {
     qspCall(s, 'body', 'UpdateBodyImage');
   }
@@ -1165,37 +1165,37 @@ function enterCsRemoveImg(s: GameState, scene: SceneBuilder): void {
     (s as any).cmd_new_index = ((s as any).temp_img_num ?? 0);
     // TODO-QSP: :cs_remove_img_loop
     if (((s as any).cmd_new_index ?? 0) + 1 < ((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).temp_set ?? 0) + '_imgnums_' + ((s as any).temp_class_str ?? 0)]) {
-      (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).$temp_class_str || '') + '_' + String((s as any).cmd_new_index || '') + ''] = ((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_img_' + String(((s as any).temp_class_str ?? 0)) + '_' + String(((s as any).cmd_new_index ?? 0)+1)];
+      ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_img_' + String((s as any).$temp_class_str || '') + '_' + String((s as any).cmd_new_index || '') + ''] = ((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_img_' + String(((s as any).temp_class_str ?? 0)) + '_' + String(((s as any).cmd_new_index ?? 0)+1)];
       (s as any).cmd_new_index = ((s as any).cmd_new_index ?? 0) + (1);
       // TODO-QSP: jump 'cs_remove_img_loop'
     }
     qspCall(s, 'array', 'remove_element', '$cheatVars', 'fix_biset_' + qspUntranslated(s, "temp_set>", { location: "cheatmenu_bisets" }) + '_img_<<$temp_class_str>>_<<cmd_new_index>>');
-    (s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] = ((s as any).cheatVars['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] ?? 0) - (1);
+    ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] = (((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).temp_set || '') + '_imgnums_' + String((s as any).$temp_class_str || '') + ''] ?? 0) - (1);
   }
   qspCall(s, 'cheatmenu_bisets', 'cs_main_advanced2', ((s as any).temp_set ?? 0), ((s as any).temp_class ?? 0));
   scene.build();
 }
 
 function enterCsSetDefaultImg(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_img_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + ''] = '';
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_img_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + ''] = '';
   // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
   scene.build();
 }
 
 function enterCsSetDefaultImgAdv(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_img_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + '_' + String((s as any).ARGS[3] || '') + ''] = '';
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_img_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + '_' + String((s as any).ARGS[3] || '') + ''] = '';
   // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_advanced2', ARGS[1], ARGS[2]
   scene.build();
 }
 
 function enterCsSetDefaultDesc(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_desc_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + ''] = '';
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_desc_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + ''] = '';
   // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main', ARGS[1]
   scene.build();
 }
 
 function enterCsSetDefaultDescAdv(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatVars['fix_biset_' + String((s as any).ARGS[1] || '') + '_desc_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + ''] = '';
+  ((s as any).cheatVars ?? {})['fix_biset_' + String((s as any).ARGS[1] || '') + '_desc_' + String((s as any).$mid(10000 + ARGS[2], 2) || '') + ''] = '';
   // TODO-QSP: gs 'cheatmenu_bisets', 'cs_main_advanced2', ARGS[1], ARGS[2]
   scene.build();
 }
@@ -1212,8 +1212,8 @@ function enterCsDeleteSet(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).klsetask ?? 0) === 2) {
       if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1  &&  ((s as any).cheatVars ?? 0)?.['fix_bi_set'] === ((s as any).locArgs?.[1] ?? 0)) {
-        (s as any).cheatVars['fix_bodyimg'] = 0;
-        (s as any).cheatVars['fix_bi_set'] = 0;
+        ((s as any).cheatVars ?? {})['fix_bodyimg'] = 0;
+        ((s as any).cheatVars ?? {})['fix_bi_set'] = 0;
       }
       // TODO-QSP: gs 'cheatmenu_bisets', 'cs_delete_set2', ARGS[1]
       qspCall(s, 'cheatmenu_bisets', 'main');

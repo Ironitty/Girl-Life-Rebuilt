@@ -5,16 +5,16 @@ import type { SceneBuilder } from '../../core/scene';
 function enterA(s: GameState, scene: SceneBuilder): void {
   (s as any).boynum = ((s as any).boynum ?? 0) + (1);
   // TODO-QSP: $bmNane[boynum] = $npclastcalled
-  (s as any).bmTip[String((s as any).boynum ?? 0)] = ((s as any).bmtimeTipe ?? 0);
-  (s as any).bmHJ[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmBJ[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmSEX[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmANAL[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmGANG[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmGossip[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmFrend[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmKISS[String((s as any).boynum ?? 0)] = 0;
-  (s as any).bmTITS[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmTip ?? {})[String((s as any).boynum ?? 0)] = ((s as any).bmtimeTipe ?? 0);
+  ((s as any).bmHJ ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmBJ ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmSEX ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmANAL ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmGANG ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmGossip ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmFrend ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmKISS ?? {})[String((s as any).boynum ?? 0)] = 0;
+  ((s as any).bmTITS ?? {})[String((s as any).boynum ?? 0)] = 0;
   scene.build();
 }
 
@@ -25,7 +25,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boynumBlock ?? 0) > 0) {
     if (((s as any).bmHJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmBJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmANAL ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
       if (((s as any).bmTOTSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
-        (s as any).bmTOTSEX[String((s as any).Tboynum ?? 0)] = 1;
+        ((s as any).bmTOTSEX ?? {})[String((s as any).Tboynum ?? 0)] = 1;
       }
     }
     // TODO-QSP: gs 'boystat', $bmNane[Tboynum]

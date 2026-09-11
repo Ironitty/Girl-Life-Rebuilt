@@ -154,7 +154,7 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
     scene.text('You go to the beach and sunbathe.');
   } else {
-    (s as any).mc_inventory['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['suncream'] = (((s as any).mc_inventory ?? {})['suncream'] ?? 0) - (1);
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
     scene.text('You smear sunblock on your body and sunbathe.');
   }

@@ -155,69 +155,69 @@ function enterGetEventStartTimeslot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
-  (s as any).upc['max'] = ((((s as any).locArgs?.[1] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[1]", { location: "calendar_query" })) : (3));
-  (s as any).upc['today'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "calendar_query" })) : (((s as any).daystart ?? 0)));
-  (s as any).upc['cur_ts'] = qspUntranslated(s, "ARGS[3]", { location: "calendar_query" });
-  (s as any).upc['count'] = 0;
-  (s as any).upc['ei'] = 0;
-  (s as any).upc['emax'] = 0;
+  ((s as any).upc ?? {})['max'] = ((((s as any).locArgs?.[1] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[1]", { location: "calendar_query" })) : (3));
+  ((s as any).upc ?? {})['today'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[2]", { location: "calendar_query" })) : (((s as any).daystart ?? 0)));
+  ((s as any).upc ?? {})['cur_ts'] = qspUntranslated(s, "ARGS[3]", { location: "calendar_query" });
+  ((s as any).upc ?? {})['count'] = 0;
+  ((s as any).upc ?? {})['ei'] = 0;
+  ((s as any).upc ?? {})['emax'] = 0;
   // TODO-QSP: :upc_event_loop
   if (((s as any).upc ?? 0)?.['ei'] < ((s as any).upc ?? 0)?.['emax']) {
-    (s as any).upc['id'] = qspUntranslated(s, "events_list[upc['ei']]", { location: "calendar_query" });
+    ((s as any).upc ?? {})['id'] = qspUntranslated(s, "events_list[upc['ei']]", { location: "calendar_query" });
     if (((s as any).upc ?? 0)?.['id'] !== '') {
       // TODO-QSP: gs 'calendar_events', 'get_event', $upc['id']
       qspCall(s, 'calendar_events', 'load_new_ev', 1);
-      (s as any).upc['search_from'] = Math.max(((s as any).upc ?? {})?.['today'] - 1, ((s as any).event_vars ?? {})?.['daystart'] - 1);
+      ((s as any).upc ?? {})['search_from'] = Math.max(((s as any).upc ?? {})?.['today'] - 1, ((s as any).event_vars ?? {})?.['daystart'] - 1);
       if (((s as any).new_ev ?? 0)?.['recur'] === '') {
-        (s as any).upc['occ'] = ((((s as any).new_ev ?? 0)?.['daystart'] >= ((s as any).upc ?? 0)?.['search_from'] + 1) ? (((s as any).new_ev ?? 0)?.['daystart']) : ((-1)));
+        ((s as any).upc ?? {})['occ'] = ((((s as any).new_ev ?? 0)?.['daystart'] >= ((s as any).upc ?? 0)?.['search_from'] + 1) ? (((s as any).new_ev ?? 0)?.['daystart']) : ((-1)));
       } else {
-        (s as any).upc['occ'] = qspFunc(s, 'calendar_events', 'next_occurrence_daystart', ((s as any).upc ?? 0)?.['search_from']);
+        ((s as any).upc ?? {})['occ'] = qspFunc(s, 'calendar_events', 'next_occurrence_daystart', ((s as any).upc ?? 0)?.['search_from']);
       }
       if (((s as any).upc ?? 0)?.['occ'] === ((s as any).upc ?? 0)?.['today']  &&  ((s as any).event_vars ?? 0)?.['all_day'] === 0) {
-        (s as any).upc['ets'] = ((((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_start_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']));
+        ((s as any).upc ?? {})['ets'] = ((((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_start_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']));
         if (((s as any).upc ?? 0)?.['ets'] <= ((s as any).upc ?? 0)?.['cur_ts']) {
-          (s as any).upc['occ'] = qspFunc(s, 'calendar_events', 'next_occurrence_daystart', ((s as any).upc ?? 0)?.['occ']);
+          ((s as any).upc ?? {})['occ'] = qspFunc(s, 'calendar_events', 'next_occurrence_daystart', ((s as any).upc ?? 0)?.['occ']);
         }
       }
       if (((s as any).upc ?? 0)?.['occ'] >= 0) {
-        (s as any).upc['sort_ts'] = ((((s as any).event_vars ?? 0)?.['all_day'] === 1) ? (0) : (((((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_start_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']))));
-        (s as any).upc['do_insert'] = 0;
+        ((s as any).upc ?? {})['sort_ts'] = ((((s as any).event_vars ?? 0)?.['all_day'] === 1) ? (0) : (((((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_start_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']))));
+        ((s as any).upc ?? {})['do_insert'] = 0;
         if (((s as any).upc ?? 0)?.['count'] < ((s as any).upc ?? 0)?.['max']) {
-          (s as any).upc['ins'] = ((s as any).upc ?? 0)?.['count'];
-          (s as any).upc['count'] = ((s as any).upc['count'] ?? 0) + (1);
-          (s as any).upc['do_insert'] = 1;
+          ((s as any).upc ?? {})['ins'] = ((s as any).upc ?? 0)?.['count'];
+          ((s as any).upc ?? {})['count'] = (((s as any).upc ?? {})['count'] ?? 0) + (1);
+          ((s as any).upc ?? {})['do_insert'] = 1;
         } else {
           if (((s as any).upc ?? 0)?.['occ'] < ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['count'] - 1]  ||  (((s as any).upc ?? 0)?.['occ'] === ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['count'] - 1]  &&  ((s as any).upc ?? 0)?.['sort_ts'] < ((s as any).upcoming_ts ?? 0)[((s as any).upc ?? 0)?.['count'] - 1])) {
-            (s as any).upc['ins'] = ((s as any).upc ?? {})?.['count'] - 1;
-            (s as any).upc['do_insert'] = 1;
+            ((s as any).upc ?? {})['ins'] = ((s as any).upc ?? {})?.['count'] - 1;
+            ((s as any).upc ?? {})['do_insert'] = 1;
           }
         }
         if (((s as any).upc ?? 0)?.['do_insert'] === 1) {
           // TODO-QSP: $upcoming_ids[upc['ins']] = $upc['id']
           // TODO-QSP: upcoming_days[upc['ins']] = upc['occ']
           // TODO-QSP: upcoming_ts[upc['ins']] = upc['sort_ts']
-          (s as any).upc['bi'] = ((s as any).upc ?? 0)?.['ins'];
+          ((s as any).upc ?? {})['bi'] = ((s as any).upc ?? 0)?.['ins'];
           // TODO-QSP: :upc_bubble
           if (((s as any).upc ?? 0)?.['bi'] > 0) {
-            (s as any).upc['bj'] = ((s as any).upc ?? {})?.['bi'] - 1;
+            ((s as any).upc ?? {})['bj'] = ((s as any).upc ?? {})?.['bi'] - 1;
             if (((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bi']] < ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bj']]  ||  (((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bi']] === ((s as any).upcoming_days ?? 0)[((s as any).upc ?? 0)?.['bj']]  &&  ((s as any).upcoming_ts ?? 0)[((s as any).upc ?? 0)?.['bi']] < ((s as any).upcoming_ts ?? 0)[((s as any).upc ?? 0)?.['bj']])) {
-              (s as any).upc['tmp'] = qspUntranslated(s, "upcoming_ids[upc['bj']]", { location: "calendar_query" });
-              (s as any).upc['tmp_d'] = qspUntranslated(s, "upcoming_days[upc['bj']]", { location: "calendar_query" });
-              (s as any).upc['tmp_t'] = qspUntranslated(s, "upcoming_ts[upc['bj']]", { location: "calendar_query" });
+              ((s as any).upc ?? {})['tmp'] = qspUntranslated(s, "upcoming_ids[upc['bj']]", { location: "calendar_query" });
+              ((s as any).upc ?? {})['tmp_d'] = qspUntranslated(s, "upcoming_days[upc['bj']]", { location: "calendar_query" });
+              ((s as any).upc ?? {})['tmp_t'] = qspUntranslated(s, "upcoming_ts[upc['bj']]", { location: "calendar_query" });
               // TODO-QSP: $upcoming_ids[upc['bj']] = $upcoming_ids[upc['bi']]
               // TODO-QSP: upcoming_days[upc['bj']] = upcoming_days[upc['bi']]
               // TODO-QSP: upcoming_ts[upc['bj']] = upcoming_ts[upc['bi']]
               // TODO-QSP: $upcoming_ids[upc['bi']] = $upc['tmp']
               // TODO-QSP: upcoming_days[upc['bi']] = upc['tmp_d']
               // TODO-QSP: upcoming_ts[upc['bi']] = upc['tmp_t']
-              (s as any).upc['bi'] = ((s as any).upc['bi'] ?? 0) - (1);
+              ((s as any).upc ?? {})['bi'] = (((s as any).upc ?? {})['bi'] ?? 0) - (1);
               // TODO-QSP: jump 'upc_bubble'
             }
           }
         }
       }
     }
-    (s as any).upc['ei'] = ((s as any).upc['ei'] ?? 0) + (1);
+    ((s as any).upc ?? {})['ei'] = (((s as any).upc ?? {})['ei'] ?? 0) + (1);
     // TODO-QSP: jump 'upc_event_loop'
   }
   (s as any).upcoming_count = ((s as any).upc ?? 0)?.['count'];

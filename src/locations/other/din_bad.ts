@@ -73,7 +73,7 @@ function enterDMouthwash(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 2;
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_breath = 1;
-  (s as any).mc_inventory['mouthwash'] = ((s as any).mc_inventory['mouthwash'] ?? 0) - (1);
+  ((s as any).mc_inventory ?? {})['mouthwash'] = (((s as any).mc_inventory ?? {})['mouthwash'] ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.text('Your breath smells minty fresh.');
   scene.text('');
@@ -364,7 +364,7 @@ function enterDinalkowin1(s: GameState, scene: SceneBuilder): void {
 
 function enterDinalkowin2(s: GameState, scene: SceneBuilder): void {
   (s as any).alkowine = 0;
-  (s as any).mc_inventory['food_wine'] = 0;
+  ((s as any).mc_inventory ?? {})['food_wine'] = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'drugs', 'alcohol', 'wine');
   qspCall(s, 'stat', '');
@@ -471,23 +471,23 @@ function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
 
 function enterSetCondomUsed(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).preziktype ?? 0))) {
-    (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
+    ((s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
   }
   if (((s as any).preziktype ?? 0) === 2) {
-    (s as any).mc_inventory['sabotaged_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
+    ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = ((s as any).mc_inventory ?? 0)?.['equipped_condoms'];
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'normal') {
-    (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
-    (s as any).mc_inventory['normal_condoms'] = 0;
+    ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
+    ((s as any).mc_inventory ?? {})['normal_condoms'] = 0;
     (s as any).preziktype = 0;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'none') {
-      (s as any).mc_inventory['equipped_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
       (s as any).preziktype = 1;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'sabotaged') {
-        (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'];
-        (s as any).mc_inventory['sabotaged_condoms'] = 0;
+        ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'];
+        ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
         (s as any).preziktype = 2;
       }
     }
@@ -497,15 +497,15 @@ function enterSetCondomUsed(s: GameState, scene: SceneBuilder): void {
 
 function enterSabotageACondom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).preziktype ?? 0) !== 0  &&  ((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
-    (s as any).mc_inventory['sabotaged_condoms'] = ((s as any).mc_inventory['sabotaged_condoms'] ?? 0) + (1);
-    (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = (((s as any).mc_inventory ?? {})['sabotaged_condoms'] ?? 0) + (1);
+    ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) - (1);
     if (((s as any).locArgs?.[1] ?? 0) === '') {
       scene.text('You use a needle to punch holes in one of the condoms.');
     }
   } else {
     if (((s as any).preziktype ?? 0) === 0  &&  ((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-      (s as any).mc_inventory['sabotaged_condoms'] = ((s as any).mc_inventory['sabotaged_condoms'] ?? 0) + (1);
-      (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
+      ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = (((s as any).mc_inventory ?? {})['sabotaged_condoms'] ?? 0) + (1);
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) - (1);
       if (((s as any).locArgs?.[1] ?? 0) === '') {
         scene.text('You use a needle to punch holes in one of the condoms.');
       }
@@ -524,40 +524,40 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
   }
   if ((!((s as any).preziktype ?? 0))) {
     if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
-      (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['normal_condoms']);
-      (s as any).mc_inventory['normal_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['normal_condoms']);
+      ((s as any).mc_inventory ?? {})['normal_condoms'] = 0;
     }
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] <= 0) {
       scene.text('You are out of condoms.');
-      (s as any).mc_inventory['equipped_condoms'] = 0;
-      (s as any).mc_inventory['normal_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
+      ((s as any).mc_inventory ?? {})['normal_condoms'] = 0;
       (s as any).preziktype = 1;
     }
   } else {
     if (((s as any).preziktype ?? 0) === 1) {
       if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-        (s as any).mc_inventory['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['equipped_condoms']);
-        (s as any).mc_inventory['equipped_condoms'] = 0;
+        ((s as any).mc_inventory ?? {})['normal_condoms'] = (((s as any).mc_inventory ?? {})['normal_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['equipped_condoms']);
+        ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
       }
     } else {
       if (((s as any).preziktype ?? 0) === 2) {
         if (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
-          (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']);
-          (s as any).mc_inventory['sabotaged_condoms'] = 0;
+          ((s as any).mc_inventory ?? {})['equipped_condoms'] = (((s as any).mc_inventory ?? {})['equipped_condoms'] ?? 0) + (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']);
+          ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
         }
         if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] <= 0  &&  ((s as any).mc_inventory ?? 0)?.['normal_condoms'] <= 0) {
           if (((s as any).prezikmsg ?? 0) === 1) {
             (s as any).prezikmsg = 2;
           }
-          (s as any).mc_inventory['equipped_condoms'] = 0;
-          (s as any).mc_inventory['sabotaged_condoms'] = 0;
-          (s as any).mc_inventory['normal_condoms'] = 0;
+          ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
+          ((s as any).mc_inventory ?? {})['sabotaged_condoms'] = 0;
+          ((s as any).mc_inventory ?? {})['normal_condoms'] = 0;
           (s as any).preziktype = 1;
         } else {
           if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] <= 0  &&  ((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0) {
             scene.text('You have run out of sabotaged condoms so you will have to use normal condoms.');
-            (s as any).mc_inventory['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
-            (s as any).mc_inventory['normal_condoms'] = 0;
+            ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory ?? 0)?.['normal_condoms'];
+            ((s as any).mc_inventory ?? {})['normal_condoms'] = 0;
             (s as any).preziktype = 0;
           }
         }
@@ -732,7 +732,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
-      (s as any).birth_control['remind_hour'] = 0;
+      ((s as any).birth_control ?? {})['remind_hour'] = 0;
       qspCall(s, 'din_bad', 'set_auto_bc');
       scene.text('You will do your best to remember to take your birth control pills every day.');
       qspCall(s, 'stat', '');
@@ -782,7 +782,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
           if (((s as any).locArgs?.[1] ?? 0) === 5) {
             scene.text('You get rid of the strange pills.');
             (s as any).tabletkioddk = 0;
-            (s as any).pillsleft[String((s as any).ptype ?? 0)] = 0;
+            ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 0;
             (s as any).tabletkioddp = 0;
             qspCall(s, 'stat', '');
           }
@@ -808,7 +808,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
 
 function enterSetAutoBc(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :invalid_auto_bc_loop
-  (s as any).birth_control['auto_hour'] = 0;
+  ((s as any).birth_control ?? {})['auto_hour'] = 0;
   if (((s as any).birth_control ?? 0)?.['auto_hour'] < 1  ||  ((s as any).birth_control ?? 0)?.['auto_hour'] > 23) {
     // TODO-QSP: jump 'invalid_auto_bc_loop'
   } else {
@@ -824,7 +824,7 @@ function enterSetAutoBc(s: GameState, scene: SceneBuilder): void {
 
 function enterSetBcReminder(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :invalid_bc_reminder_loop
-  (s as any).birth_control['remind_hour'] = 0;
+  ((s as any).birth_control ?? {})['remind_hour'] = 0;
   if (((s as any).birth_control ?? 0)?.['remind_hour'] < 1  ||  ((s as any).birth_control ?? 0)?.['remind_hour'] > 22) {
     // TODO-QSP: jump 'invalid_bc_reminder_loop'
   } else {
@@ -838,7 +838,7 @@ function enterSetBcReminder(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTurnOffBcReminder(s: GameState, scene: SceneBuilder): void {
-  (s as any).birth_control['remind_hour'] = 0;
+  ((s as any).birth_control ?? {})['remind_hour'] = 0;
   if ((!((s as any).tabloc ?? 0))) {
     qspCall(s, 'din_bad', 'd_tabletkied');
   } else {
@@ -994,7 +994,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                 scene.text('<center><h1>Fertility Cycle</h1></center>');
                 scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
                 scene.text('<td width="500" cellspacing="0" cellpadding="0" valign="top">');
-                (s as any).potfather_temp[1] = 0;
+                ((s as any).potfather_temp ?? {})[1] = 0;
                 if (((s as any).potfather_temp ?? 0)[1] > 0) {
                   (s as any).potfather_counter = 0;
                   scene.text('List of potential fathers:');
@@ -1175,42 +1175,42 @@ function enterDPregmovement(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTakepill(s: GameState, scene: SceneBuilder): void {
-  (s as any).birth_control['using_bc'] = 3;
+  ((s as any).birth_control ?? {})['using_bc'] = 3;
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
     (s as any).tabletkirand = qspUntranslated(s, "rand(1, mc_inventory['contraceptive_pill'])", { location: "din_bad" });
     if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0)) {
-      (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
+      ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) - (1);
       (s as any).tabletkiold = ((s as any).tabletkiold ?? 0) - (1);
       (s as any).ptype = 1;
-      (s as any).pillsleft[String((s as any).ptype ?? 0)] = 28;
+      ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 28;
     } else {
       if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0) + ((s as any).tabletkifake ?? 0)) {
-        (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
+        ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) - (1);
         (s as any).tabletkifake = ((s as any).tabletkifake ?? 0) - (1);
         (s as any).ptype = 2;
-        (s as any).pillsleft[String((s as any).ptype ?? 0)] = 28;
+        ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 28;
       } else {
         if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0) + ((s as any).tabletkifake ?? 0) + ((s as any).tabletkirej ?? 0)) {
-          (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
+          ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) - (1);
           (s as any).tabletkirej = ((s as any).tabletkirej ?? 0) - (1);
           (s as any).ptype = 3;
-          (s as any).pillsleft[String((s as any).ptype ?? 0)] = 28;
+          ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 28;
         } else {
           if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0) + ((s as any).tabletkifake ?? 0) + ((s as any).tabletkirej ?? 0) + ((s as any).tabletkisug ?? 0)) {
-            (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
+            ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) - (1);
             (s as any).tabletkisug = ((s as any).tabletkisug ?? 0) - (1);
             (s as any).ptype = 4;
-            (s as any).pillsleft[String((s as any).ptype ?? 0)] = 28;
+            ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 28;
           } else {
             if (((s as any).tabletkirand ?? 0) <= ((s as any).tabletkiold ?? 0) + ((s as any).tabletkifake ?? 0) + ((s as any).tabletkirej ?? 0) + ((s as any).tabletkisug ?? 0) + ((s as any).tabletkifert ?? 0)) {
-              (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
+              ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) - (1);
               (s as any).tabletkifert = ((s as any).tabletkifert ?? 0) - (1);
               (s as any).ptype = 5;
-              (s as any).pillsleft[String((s as any).ptype ?? 0)] = 28;
+              ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 28;
             } else {
-              (s as any).mc_inventory['contraceptive_pill'] = ((s as any).mc_inventory['contraceptive_pill'] ?? 0) - (1);
+              ((s as any).mc_inventory ?? {})['contraceptive_pill'] = (((s as any).mc_inventory ?? {})['contraceptive_pill'] ?? 0) - (1);
               (s as any).ptype = 0;
-              (s as any).pillsleft[String((s as any).ptype ?? 0)] = 28;
+              ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = 28;
             }
           }
         }
@@ -1219,33 +1219,33 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).placebopart ?? 0) <= 0  ||  ((s as any).birth_control ?? 0)?.['placebo_skip'] === 1) {
     if ((!((s as any).ptype ?? 0))) {
-      (s as any).pillsleft[String((s as any).ptype ?? 0)] = ((s as any).pillsleft[String((s as any).ptype ?? 0)] ?? 0) - (1);
+      ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
       (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (1);
       (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25) + 4000);
     } else {
       if (((s as any).ptype ?? 0) === 1) {
-        (s as any).pillsleft[String((s as any).ptype ?? 0)] = ((s as any).pillsleft[String((s as any).ptype ?? 0)] ?? 0) - (1);
+        ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
         (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 2) + 0);
         (s as any).pillcon = ((s as any).pillcon ?? 0) + ((( ((s as any).pillcon ?? 0)+ 15000) / 25)+ ((s as any).rand ?? 0)(2000, 4000));
       } else {
         if (((s as any).ptype ?? 0) === 2) {
-          (s as any).pillsleft[String((s as any).ptype ?? 0)] = ((s as any).pillsleft[String((s as any).ptype ?? 0)] ?? 0) - (1);
+          ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
           (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 2) + 0);
           (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25)+ ((s as any).rand ?? 0)(500, 2000));
         } else {
           if (((s as any).ptype ?? 0) === 3) {
-            (s as any).pillsleft[String((s as any).ptype ?? 0)] = ((s as any).pillsleft[String((s as any).ptype ?? 0)] ?? 0) - (1);
+            ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
             (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 2) + 0);
             if ((!(Math.floor(Math.random() * 5) + 0))) {
-              (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+              ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
             }
             (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25)+ ((s as any).rand ?? 0)(2000, 6000));
           } else {
             if (((s as any).ptype ?? 0) === 4) {
-              (s as any).pillsleft[String((s as any).ptype ?? 0)] = ((s as any).pillsleft[String((s as any).ptype ?? 0)] ?? 0) - (1);
+              ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
             } else {
               if (((s as any).ptype ?? 0) === 5) {
-                (s as any).pillsleft[String((s as any).ptype ?? 0)] = ((s as any).pillsleft[String((s as any).ptype ?? 0)] ?? 0) - (1);
+                ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
                 (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (1);
                 if (((s as any).pillcon ?? 0) > 0) {
                   if (((s as any).pillcon ?? 0) > 5000) {
@@ -1258,7 +1258,7 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
                 } else {
                   (s as any).EggRH = ((s as any).EggRH ?? 0) + (((s as any).rand ?? 0)(((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'], ((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] + 30));
                   if (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] < 50) {
-                    (s as any).trait_vars['fertility_bc_conditioning'] = ((s as any).trait_vars['fertility_bc_conditioning'] ?? 0) + (1);
+                    ((s as any).trait_vars ?? {})['fertility_bc_conditioning'] = (((s as any).trait_vars ?? {})['fertility_bc_conditioning'] ?? 0) + (1);
                   }
                 }
               }
@@ -1300,7 +1300,7 @@ function enterQuickTakepill(s: GameState, scene: SceneBuilder): void {
 
 function enterPDeodorant(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+  ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
   qspCall(s, 'sweat', 'deo');
   qspCall(s, 'stat', '');
   qspCall(s, 'din_bad', 'd_bag');
@@ -1316,7 +1316,7 @@ function enterDMouthwashDo(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 2;
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_breath = 1;
-  (s as any).mc_inventory['mouthwash'] = ((s as any).mc_inventory['mouthwash'] ?? 0) - (1);
+  ((s as any).mc_inventory ?? {})['mouthwash'] = (((s as any).mc_inventory ?? {})['mouthwash'] ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.text('Your breath smells minty fresh.');
   scene.actions([
@@ -1345,14 +1345,14 @@ function enterQuickTakepillDo(s: GameState, scene: SceneBuilder): void {
 
 function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
   (s as any).bc_protected = 0;
-  (s as any).stat_texts['bc_status'] = '';
+  ((s as any).stat_texts ?? {})['bc_status'] = '';
   if (((s as any).birth_control ?? 0)?.['remind_icon'] === 1) {
     if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
-      (s as any).stat_texts['bc_status'] = 'You\'re out of birth control pills!';
+      ((s as any).stat_texts ?? {})['bc_status'] = 'You\'re out of birth control pills!';
       qspCall(s, 'stat_display_compute', 'queue_msg', 'bc_status', 'v_neg', 'status/cycle/bc_pills_reminder', 3);
       qspCall(s, 'stat_display_compute', 'queue_alert', 'You are out of birth control pills.', 'v_neg');
     } else {
-      (s as any).stat_texts['bc_status'] = 'It\'s time to take your birth control pill!';
+      ((s as any).stat_texts ?? {})['bc_status'] = 'It\'s time to take your birth control pill!';
       // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'bc_status', 'neg', 'status/cycle/bc_pills_reminder', 3, "gs...
       qspCall(s, 'stat_display_compute', 'queue_alert', 'Time to take your birth control pill.', 'neg');
     }
@@ -1362,72 +1362,72 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).tabletkishot ?? 0) > 0) {
-    (s as any).stat_texts['bc_status'] = 'You are currently protected by a birth control shot.';
+    ((s as any).stat_texts ?? {})['bc_status'] = 'You are currently protected by a birth control shot.';
     (s as any).bc_protected = 1;
   } else {
     if (((s as any).birth_control ?? 0)?.['implant_status'] >= 1) {
       if (((s as any).birth_control ?? 0)?.['implant_status'] === 1) {
-        (s as any).stat_texts['bc_status'] = 'Your implant has stopped working. You need a new one.';
+        ((s as any).stat_texts ?? {})['bc_status'] = 'Your implant has stopped working. You need a new one.';
       } else {
         if (((s as any).pillcon2 ?? 0) >= 30000) {
-          (s as any).stat_texts['bc_status'] = 'Your implant is protecting you from getting pregnant.';
+          ((s as any).stat_texts ?? {})['bc_status'] = 'Your implant is protecting you from getting pregnant.';
           (s as any).bc_protected = 1;
         } else {
-          (s as any).stat_texts['bc_status'] = 'Your implant is not yet effective.';
+          ((s as any).stat_texts ?? {})['bc_status'] = 'Your implant is not yet effective.';
         }
       }
     } else {
       if (((s as any).pillcon2 ?? 0) > 0) {
         if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
           if (((s as any).tabletkiday ?? 0) >= ((s as any).daystart ?? 0) - 1) {
-            (s as any).stat_texts['bc_status'] = 'You are currently on the birth control pill.';
+            ((s as any).stat_texts ?? {})['bc_status'] = 'You are currently on the birth control pill.';
             (s as any).bc_protected = 1;
           } else {
-            (s as any).stat_texts['bc_status'] = 'You have recently stopped taking the pill. You are still safe for now, but the protection will fade soon.';
+            ((s as any).stat_texts ?? {})['bc_status'] = 'You have recently stopped taking the pill. You are still safe for now, but the protection will fade soon.';
             (s as any).bc_protected = 1;
           }
         } else {
           if (((s as any).tabletkiday ?? 0) >= ((s as any).daystart ?? 0) - 1) {
-            (s as any).stat_texts['bc_status'] = 'You are taking the pill, but it is not yet effective.';
+            ((s as any).stat_texts ?? {})['bc_status'] = 'You are taking the pill, but it is not yet effective.';
           }
         }
       } else {
         if (((s as any).daystart ?? 0) === ((s as any).tabletkiday ?? 0)) {
-          (s as any).stat_texts['bc_status'] = 'You\'ve taken the pill today, but it will be a while before it is effective.';
+          ((s as any).stat_texts ?? {})['bc_status'] = 'You\'ve taken the pill today, but it will be a while before it is effective.';
         }
       }
     }
   }
   if ((!((s as any).bc_protected ?? 0))) {
     if (((s as any).stat_texts ?? 0)?.['bc_status'] !== '') {
-      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + (' ');
+      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + (' ');
     }
     if (((s as any).knowpreg ?? 0) === 1) {
       if (((s as any).bc_icon ?? 0) !== '') {
-        (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You are already pregnant.');
+        ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You are already pregnant.');
       }
     } else {
       if (((s as any).thinkpreg ?? 0) === 1) {
         if (((s as any).bc_icon ?? 0) !== '') {
-          (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you may already be pregnant.');
+          ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you may already be pregnant.');
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['fertility'] === -2) {
         } else {
           if (((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 35) {
             if (((s as any).bc_icon ?? 0) !== '') {
-              (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Your cycle is irregular right now. It\'s hard to say where you are on it.');
+              ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Your cycle is irregular right now. It\'s hard to say where you are on it.');
             }
           } else {
             if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
               if ((((s as any).focH ?? 0) > ((s as any).focH_max ?? 0) - 96)  ||  ((s as any).ovulate ?? 0) > 0) {
                 if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-                  (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You are in your fertile stage. Unprotected sex carries some risk, though your body is less likely to conceive than most.');
+                  ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You are in your fertile stage. Unprotected sex carries some risk, though your body is less likely to conceive than most.');
                 } else {
                   if (((s as any).trait_vars ?? 0)?.['fertility'] === 1) {
-                    (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You are in your fertile stage, and your body is hyperfertile!');
+                    ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You are in your fertile stage, and your body is hyperfertile!');
                   } else {
-                    (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You are in your fertile stage.');
+                    ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You are in your fertile stage.');
                   }
                 }
                 if (((s as any).bc_icon ?? 0) === '') {
@@ -1435,12 +1435,12 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
                   if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-                    (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today is a risky day for unprotected sex, though your body is less likely to conceive than most.');
+                    ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today is a risky day for unprotected sex, though your body is less likely to conceive than most.');
                   } else {
                     if (((s as any).trait_vars ?? 0)?.['fertility'] === 1) {
-                      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today is a dangerous day to have unprotected sex, and your body is hyperfertile!');
+                      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today is a dangerous day to have unprotected sex, and your body is hyperfertile!');
                     } else {
-                      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today is a dangerous day to have unprotected sex.');
+                      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today is a dangerous day to have unprotected sex.');
                     }
                   }
                   if (((s as any).bc_icon ?? 0) === '') {
@@ -1448,12 +1448,12 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
                     if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-                      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today is probably a safe day, and the risk is lower than usual given your fertility.');
+                      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today is probably a safe day, and the risk is lower than usual given your fertility.');
                     } else {
                       if (((s as any).trait_vars ?? 0)?.['fertility'] === 1) {
-                        (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today should probably be a safe day, but your body is hyperfertile!');
+                        ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today should probably be a safe day, but your body is hyperfertile!');
                       } else {
-                        (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today is probably a safe day to have unprotected sex.');
+                        ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today is probably a safe day to have unprotected sex.');
                       }
                     }
                     if (((s as any).bc_icon ?? 0) === '') {
@@ -1463,7 +1463,7 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
                       if (((s as any).bc_icon ?? 0) !== '') {
-                        (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('Today is a safe day to have unprotected sex.');
+                        ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('Today is a safe day to have unprotected sex.');
                       }
                     }
                   }
@@ -1472,12 +1472,12 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
                 if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-                  (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you might be in your fertile window. The risk is lower than usual given your fertility, but some remains.');
+                  ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you might be in your fertile window. The risk is lower than usual given your fertility, but some remains.');
                 } else {
                   if (((s as any).trait_vars ?? 0)?.['fertility'] === 1) {
-                    (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you might be in your fertile window, and your body is hyperfertile!');
+                    ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you might be in your fertile window, and your body is hyperfertile!');
                   } else {
-                    (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you might be in your fertile window.');
+                    ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you might be in your fertile window.');
                   }
                 }
                 if (((s as any).bc_icon ?? 0) === '') {
@@ -1485,12 +1485,12 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
                   if (((s as any).trait_vars ?? 0)?.['fertility'] === -1) {
-                    (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you\'re probably outside your fertile window, and the risk is lower than usual given your fertility.');
+                    ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you\'re probably outside your fertile window, and the risk is lower than usual given your fertility.');
                   } else {
                     if (((s as any).trait_vars ?? 0)?.['fertility'] === 1) {
-                      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you\'re probably outside your fertile window, but your body is hyperfertile.');
+                      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you\'re probably outside your fertile window, but your body is hyperfertile.');
                     } else {
-                      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think you\'re probably outside your fertile window, but you can\'t be certain.');
+                      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think you\'re probably outside your fertile window, but you can\'t be certain.');
                     }
                   }
                   if (((s as any).bc_icon ?? 0) === '') {
@@ -1500,7 +1500,7 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
                     if (((s as any).bc_icon ?? 0) !== '') {
-                      (s as any).stat_texts['bc_status'] = ((s as any).stat_texts['bc_status'] ?? 0) + ('You think it\'s a safe time in your cycle.');
+                      ((s as any).stat_texts ?? {})['bc_status'] = (((s as any).stat_texts ?? {})['bc_status'] ?? 0) + ('You think it\'s a safe time in your cycle.');
                     }
                   }
                 }
@@ -1522,7 +1522,7 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
-  (s as any).stat_texts['cycle_state'] = '';
+  ((s as any).stat_texts ?? {})['cycle_state'] = '';
   if (((s as any).succubusflag ?? 0) === 1  &&  (!((s as any).preg ?? 0))) {
     // TODO-QSP: exit
   }
@@ -1530,7 +1530,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).preg ?? 0) === 2) {
-    (s as any).stat_texts['cycle_state'] = 'Get to the hospital, ASAP! You\'re in labour!';
+    ((s as any).stat_texts ?? {})['cycle_state'] = 'Get to the hospital, ASAP! You\'re in labour!';
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/labour', 3, "gs 'din_b...
     qspCall(s, 'stat_display_compute', 'queue_alert', 'You are in labour! Get to a hospital, now!', 'v_neg');
     return;
@@ -1538,15 +1538,15 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).knowpreg ?? 0) === 1) {
     qspCall(s, 'din_bad', 'd_cycreport_upduedate');
     if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
-      (s as any).stat_texts['cycle_state'] = 'You are pregnant. Your due date is around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'You are pregnant. Your due date is around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
       if (((s as any).wombthfath ?? 0) !== 'unknown'  &&  ((s as any).wombthfath ?? 0) !== '') {
-        (s as any).stat_texts['cycle_state'] = ((s as any).stat_texts['cycle_state'] ?? 0) + (' You suspect the father is ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '.');
+        ((s as any).stat_texts ?? {})['cycle_state'] = (((s as any).stat_texts ?? {})['cycle_state'] ?? 0) + (' You suspect the father is ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '.');
       }
     } else {
       if (((s as any).wombthfath ?? 0) === 'unknown'  ||  ((s as any).wombthfath ?? 0) === '') {
-        (s as any).stat_texts['cycle_state'] = 'You are pregnant. Based on the last period you remember, your due date is probably around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You are pregnant. Based on the last period you remember, your due date is probably around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
       } else {
-        (s as any).stat_texts['cycle_state'] = 'You are pregnant with ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '\'s baby. Based on the last period you remember, your due date is probably around <<$pregduedate>>.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You are pregnant with ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '\'s baby. Based on the last period you remember, your due date is probably around <<$pregduedate>>.';
       }
     }
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/know_pregnant', 3, "gs 'din...
@@ -1555,12 +1555,12 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).thinkpreg ?? 0) === 1) {
     qspCall(s, 'din_bad', 'd_cycreport_upduedate');
     if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
-      (s as any).stat_texts['cycle_state'] = 'You think you might be pregnant, but aren\'t sure.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'You think you might be pregnant, but aren\'t sure.';
     } else {
       if (((s as any).wombthfath ?? 0) === 'unknown'  ||  ((s as any).wombthfath ?? 0) === '') {
-        (s as any).stat_texts['cycle_state'] = 'You think you might be pregnant. Based on the last period you remember, your due date would be around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You think you might be pregnant. Based on the last period you remember, your due date would be around ' + qspUntranslated(s, "pregduedate>", { location: "din_bad" }) + '.';
       } else {
-        (s as any).stat_texts['cycle_state'] = 'You think you might be pregnant with ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '\'s baby. Based on the last period you remember, your due date would be around <<$pregduedate>>.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You think you might be pregnant with ' + qspUntranslated(s, "wombthfath>", { location: "din_bad" }) + '\'s baby. Based on the last period you remember, your due date would be around <<$pregduedate>>.';
       }
     }
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/think_pregnant', 3, "gs 'di...
@@ -1568,52 +1568,52 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).denypreg ?? 0) === 1) {
     if (((s as any).pregChem ?? 0) < 525) {
-      (s as any).stat_texts['cycle_state'] = 'There is nothing wrong, your cycle is just irregular.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'There is nothing wrong, your cycle is just irregular.';
     } else {
       if (((s as any).pregChem ?? 0) < 1863) {
-        (s as any).stat_texts['cycle_state'] = 'You have a strange flu making you feel ill.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You have a strange flu making you feel ill.';
       } else {
         if (((s as any).pregChem ?? 0) < 4000) {
-          (s as any).stat_texts['cycle_state'] = 'Your strange flu still hasn\'t gone away. As soon as it does you plan to exercise and lose the excess fat you\'ve been building up.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'Your strange flu still hasn\'t gone away. As soon as it does you plan to exercise and lose the excess fat you\'ve been building up.';
         } else {
           if (((s as any).pregChem ?? 0) < 6000) {
-            (s as any).stat_texts['cycle_state'] = 'Your weight just won\'t come off…';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'Your weight just won\'t come off…';
           } else {
             if (((s as any).pregChem ?? 0) < 7500) {
-              (s as any).stat_texts['cycle_state'] = 'People are rude, constantly asking you when you are due. You are not pregnant!';
+              ((s as any).stat_texts ?? {})['cycle_state'] = 'People are rude, constantly asking you when you are due. You are not pregnant!';
             } else {
-              (s as any).stat_texts['cycle_state'] = 'Surely if you were pregnant, you\'d have had the baby by now, so you can\'t possibly be pregnant.';
+              ((s as any).stat_texts ?? {})['cycle_state'] = 'Surely if you were pregnant, you\'d have had the baby by now, so you can\'t possibly be pregnant.';
             }
           }
         }
       }
     }
-    (s as any).temp[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0);
+    ((s as any).temp ?? {})[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0);
     if (((s as any).temp ?? 0)[1] > 0  &&  ((s as any).temp ?? 0)[1] <= 35) {
-      (s as any).stat_texts['cycle_state'] = ((s as any).stat_texts['cycle_state'] ?? 0) + (' Your cycle seems a little off lately.');
+      ((s as any).stat_texts ?? {})['cycle_state'] = (((s as any).stat_texts ?? {})['cycle_state'] ?? 0) + (' Your cycle seems a little off lately.');
     } else {
       if (((s as any).temp ?? 0)[1] > 35) {
-        (s as any).stat_texts['cycle_state'] = ((s as any).stat_texts['cycle_state'] ?? 0) + (' You\'re not sure when you last had a period.');
+        ((s as any).stat_texts ?? {})['cycle_state'] = (((s as any).stat_texts ?? {})['cycle_state'] ?? 0) + (' You\'re not sure when you last had a period.');
       }
     }
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, "gs 'din_bad', 'd...
     return;
   }
   if (((s as any).menoage ?? 0) <= ((s as any).age ?? 0)  &&  ((s as any).cycle ?? 0) === 6) {
-    (s as any).stat_texts['cycle_state'] = 'You have gone through menopause.';
+    ((s as any).stat_texts ?? {})['cycle_state'] = 'You have gone through menopause.';
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/menopause', 3, "gs 'din_bad...
     return;
   }
   if (((s as any).mesec ?? 0) > 0) {
     if (((s as any).isprokp ?? 0) > 0) {
-      (s as any).stat_texts['cycle_state'] = 'You are on your period and using a pad.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'You are on your period and using a pad.';
       // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_pad', 3, "gs 'din_ba...
     } else {
       if (((s as any).isprok ?? 0) > 0) {
-        (s as any).stat_texts['cycle_state'] = 'You are on your period and using a tampon.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You are on your period and using a tampon.';
         // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_tampon', 3, "gs 'din...
       } else {
-        (s as any).stat_texts['cycle_state'] = 'You are on your period. You need to use your feminine hygiene products.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You are on your period. You need to use your feminine hygiene products.';
         // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/period_now', 3, "gs 'd...
       }
     }
@@ -1621,18 +1621,18 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).abortionbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 24) {
     if (((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 13) {
-      (s as any).stat_texts['cycle_state'] = 'You\'re still in your recovery period after your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + '. Nothing to worry about.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'You\'re still in your recovery period after your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + '. Nothing to worry about.';
       // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
     } else {
       if (((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 16) {
-        (s as any).stat_texts['cycle_state'] = 'You could still be in your recovery period after your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + ', but there might be a risk.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You could still be in your recovery period after your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + ', but there might be a risk.';
         // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
       } else {
         if (((s as any).daystart ?? 0) - ((s as any).abortionbirthdate ?? 0) <= 21) {
-          (s as any).stat_texts['cycle_state'] = 'You should have recovered from your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + ' by now, right?';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'You should have recovered from your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + ' by now, right?';
           // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'neg', 'status/cycle/stretch_marks', 3, "gs '...
         } else {
-          (s as any).stat_texts['cycle_state'] = 'You should have definitely recovered from your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + ' by now.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'You should have definitely recovered from your ' + qspUntranslated(s, "temp>", { location: "din_bad" }) + ' by now.';
           // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/stretch_marks', 3, "gs...
         }
       }
@@ -1641,22 +1641,22 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pregbirthdate ?? 0) !== 0  &&  ((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 73) {
     if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 41) {
-      (s as any).stat_texts['cycle_state'] = 'You\'re still in your recovery period after giving birth. Nothing to worry about.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'You\'re still in your recovery period after giving birth. Nothing to worry about.';
       // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
     } else {
       if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 48) {
-        (s as any).stat_texts['cycle_state'] = 'You\'re probably still in your recovery period after giving birth.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'You\'re probably still in your recovery period after giving birth.';
         // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
       } else {
         if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 55) {
-          (s as any).stat_texts['cycle_state'] = 'You could still be in your recovery period after giving birth, but there might be a risk.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'You could still be in your recovery period after giving birth, but there might be a risk.';
           // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/stretch_marks', 3, "gs 'din...
         } else {
           if (((s as any).daystart ?? 0) - ((s as any).pregbirthdate ?? 0) <= 70) {
-            (s as any).stat_texts['cycle_state'] = 'You should have recovered from giving birth by now, right?';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'You should have recovered from giving birth by now, right?';
             // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'neg', 'status/cycle/stretch_marks', 3, "gs '...
           } else {
-            (s as any).stat_texts['cycle_state'] = 'You should have definitely recovered from giving birth by now.';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'You should have definitely recovered from giving birth by now.';
             // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/stretch_marks', 3, "gs...
           }
         }
@@ -1665,25 +1665,25 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).placebopart ?? 0) > 0  &&  ((s as any).lutH ?? 0) > 0  &&  (!((s as any).knowpreg ?? 0))) {
-    (s as any).stat_texts['cycle_state'] = 'Your period is due to start soon.';
+    ((s as any).stat_texts ?? {})['cycle_state'] = 'Your period is due to start soon.';
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/period_soon', 3, "gs 'din_b...
     return;
   }
   if (((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).knowpreg ?? 0) === 0  &&  ((s as any).cycle ?? 0) !== 6  &&  ((s as any).pillcon2 ?? 0) <= 30000  &&  ((s as any).succubusflag ?? 0) !== 1  &&  ((s as any).cheatVars ?? 0)?.['no_periods'] === 0  &&  ((s as any).abortionbirthdate ?? 0) === 0  &&  ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 28) {
-    (s as any).temp[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) - 28;
+    ((s as any).temp ?? {})[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) - 28;
     if (((s as any).temp ?? 0)[1] <= 7) {
-      (s as any).stat_texts['cycle_state'] = 'Your period is ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' \' + iif(temp[1] = 1, \'day\', \'days\') + \' late.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'Your period is ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' \' + iif(temp[1] = 1, \'day\', \'days\') + \' late.';
     } else {
       if (((s as any).temp ?? 0)[1] <= 14) {
-        (s as any).stat_texts['cycle_state'] = 'Your period is over a week late.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'Your period is over a week late.';
       } else {
         if (((s as any).temp ?? 0)[1] <= 28) {
-          (s as any).stat_texts['cycle_state'] = 'Your period is over two weeks late.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'Your period is over two weeks late.';
         } else {
           if (((s as any).temp ?? 0)[1] <= 56) {
-            (s as any).stat_texts['cycle_state'] = 'Your period is a month or more late.';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'Your period is a month or more late.';
           } else {
-            (s as any).stat_texts['cycle_state'] = 'You haven\'t had a period in months.';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'You haven\'t had a period in months.';
           }
         }
       }
@@ -1691,30 +1691,30 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', 'v_neg', 'status/cycle/period_late', 3, "gs '...
     return;
   }
-  (s as any).temp[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0);
+  ((s as any).temp ?? {})[1] = ((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0);
   if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
-    (s as any).stat['cycphase_symptom_rand'] = Math.floor(Math.random() * 3) + 1;
+    ((s as any).stat ?? {})['cycphase_symptom_rand'] = Math.floor(Math.random() * 3) + 1;
     if (((s as any).bodyVars ?? 0)?.['bust_menst'] > 0) {
       if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
         qspCall(s, 'pain', '', 2, 'breasts', 'ache');
       }
-      (s as any).stat_texts['cycle_feel'] = ' Your breasts feel a little swollen today.';
+      ((s as any).stat_texts ?? {})['cycle_feel'] = ' Your breasts feel a little swollen today.';
     } else {
       if (((s as any).stat ?? 0)?.['cycle_phase'] === 'follicular') {
         if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 1) {
           if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
             (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (10);
           }
-          (s as any).stat_texts['cycle_feel'] = ' You\'re feeling pretty good today.';
+          ((s as any).stat_texts ?? {})['cycle_feel'] = ' You\'re feeling pretty good today.';
         } else {
           if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 2) {
             if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
               (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (10);
             }
-            (s as any).stat_texts['cycle_feel'] = ' You feel a little extra pep in your step.';
+            ((s as any).stat_texts ?? {})['cycle_feel'] = ' You feel a little extra pep in your step.';
           } else {
             if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 3) {
-              (s as any).stat_texts['cycle_feel'] = ' You feel focused.';
+              ((s as any).stat_texts ?? {})['cycle_feel'] = ' You feel focused.';
             }
           }
         }
@@ -1724,16 +1724,16 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
             if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
               qspCall(s, 'pain', '', 2, 'breasts', 'ache');
             }
-            (s as any).stat_texts['cycle_feel'] = ' Your breasts feel a little sore.';
+            ((s as any).stat_texts ?? {})['cycle_feel'] = ' Your breasts feel a little sore.';
           } else {
             if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 2) {
-              (s as any).stat_texts['cycle_feel'] = ' Your body feels a little warmer than usual today. ';
+              ((s as any).stat_texts ?? {})['cycle_feel'] = ' Your body feels a little warmer than usual today. ';
             } else {
               if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 3) {
                 if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
                   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
                 }
-                (s as any).stat_texts['cycle_feel'] = ' You\'re feeling easily aroused today.';
+                ((s as any).stat_texts ?? {})['cycle_feel'] = ' You\'re feeling easily aroused today.';
               }
             }
           }
@@ -1743,13 +1743,13 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
               if (((s as any).stat ?? 0)?.['cycphase_symptoms'] !== ((s as any).daystart ?? 0)) {
                 qspCall(s, 'pain', '', 2, 'breasts', 'ache');
               }
-              (s as any).stat_texts['cycle_feel'] = ' Your breasts feel tender today.';
+              ((s as any).stat_texts ?? {})['cycle_feel'] = ' Your breasts feel tender today.';
             } else {
               if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 2) {
-                (s as any).stat_texts['cycle_feel'] = ' You feel bloated today.';
+                ((s as any).stat_texts ?? {})['cycle_feel'] = ' You feel bloated today.';
               } else {
                 if (((s as any).stat ?? 0)?.['cycphase_symptom_rand'] === 3) {
-                  (s as any).stat_texts['cycle_feel'] = ' You\'re feeling irritable today.';
+                  ((s as any).stat_texts ?? {})['cycle_feel'] = ' You\'re feeling irritable today.';
                 }
               }
             }
@@ -1760,18 +1760,18 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cheatVars ?? 0)?.['track_period'] === 1) {
     if (((s as any).cycle ?? 0) === 2) {
-      (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are ovulating.';
+      ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are ovulating.';
     } else {
       if (((s as any).cycle ?? 0) === 1  &&  ((s as any).focH ?? 0) > ((s as any).focH_max ?? 0) - 96) {
-        (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are approaching ovulation.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are approaching ovulation.';
       } else {
         if (((s as any).cycle ?? 0) === 1) {
-          (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are in your follicular phase.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are in your follicular phase.';
         } else {
           if (((s as any).cycle ?? 0) === 3) {
-            (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are in your luteal phase.';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>> You are in your luteal phase.';
           } else {
-            (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>>';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since the start of your last period.<<$stat_texts[\'cycle_feel\']>>';
           }
         }
       }
@@ -1779,21 +1779,21 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_intel ?? 0) >= 50) {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe'  &&  ((s as any).temp ?? 0)[1] < 6) {
-        (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your follicular phase, early in your cycle.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your follicular phase, early in your cycle.';
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-          (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your luteal phase.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your luteal phase.';
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe'  &&  ((s as any).temp ?? 0)[1] < 8) {
-            (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are approaching your fertile window.';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are approaching your fertile window.';
           } else {
             if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-              (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are leaving your fertile window.';
+              ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are leaving your fertile window.';
             } else {
               if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-                (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your fertile window.';
+                ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your fertile window.';
               } else {
-                (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.';
+                ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.';
               }
             }
           }
@@ -1801,21 +1801,21 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).stat ?? 0)?.['preg_risk'] === 'safe') {
-        (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> It should be safe to have unprotected sex.';
+        ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> It should be safe to have unprotected sex.';
       } else {
         if (((s as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
-          (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> It might be a little risky to have unprotected sex.';
+          ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> It might be a little risky to have unprotected sex.';
         } else {
           if (((s as any).stat ?? 0)?.['preg_risk'] === 'danger') {
-            (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your fertile window.';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>> You think you are in your fertile window.';
           } else {
-            (s as any).stat_texts['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>>';
+            ((s as any).stat_texts ?? {})['cycle_state'] = 'It has been ' + qspUntranslated(s, "temp[1]>", { location: "din_bad" }) + ' days since you last remember having a period.<<$stat_texts[\'cycle_feel\']>>';
           }
         }
       }
     }
   }
-  (s as any).stat['cycphase_symptoms'] = ((s as any).daystart ?? 0);
+  ((s as any).stat ?? {})['cycphase_symptoms'] = ((s as any).daystart ?? 0);
   // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, "gs 'din_bad', 'd...
   scene.build();
 }

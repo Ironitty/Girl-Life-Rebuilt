@@ -20,7 +20,7 @@ function enterFirstHalf(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).rasputin['variety_ticket'] = 1;
+    ((s as any).rasputin ?? {})['variety_ticket'] = 1;
   }, goto: ['rasputin_walkway', ''] },
     { label: 'Wait until show starts', goto: ['rasputin_show_var', 'first_half_start'] },
     { label: 'Ask for a free champagne', handler: (st: GameState) => {
@@ -40,7 +40,7 @@ function enterFirstHalf(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstHalfStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-  (s as any).rasputin['variety_ticket'] = 2;
+  ((s as any).rasputin ?? {})['variety_ticket'] = 2;
   qspCall(s, 'stat', '');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
     (s as any).volume = 100;
@@ -97,7 +97,7 @@ function enterSecondHalf(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).rasputin['variety_ticket'] = 2;
+    ((s as any).rasputin ?? {})['variety_ticket'] = 2;
   }, goto: ['rasputin_walkway', ''] },
     { label: 'Wait until show starts', goto: ['rasputin_show_var', 'second_half_start'] },
     { label: 'Ask for a free champagne', handler: (st: GameState) => {
@@ -117,7 +117,7 @@ function enterSecondHalf(s: GameState, scene: SceneBuilder): void {
 
 function enterSecondHalfStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-  (s as any).rasputin['variety_ticket'] = 0;
+  ((s as any).rasputin ?? {})['variety_ticket'] = 0;
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
     (s as any).volume = 100;
     (s as any).music_loop = 1;

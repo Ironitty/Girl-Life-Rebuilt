@@ -8,7 +8,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   (s as any).cumnostd = 1;
   if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob'  ||  ((Math.floor(Math.random() * 3) + 0) < 2  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0)) {
-    (s as any).prostitute['blowjob_first'] = 1;
+    ((s as any).prostitute ?? {})['blowjob_first'] = 1;
     scene.actions([{ label: 'Continue', goto: ['prostitution_car_sex', 'Blowjob'] }]);
   } else {
     // TODO-QSP: gt 'prostitution_car_sex', $prostitute['client_scene']
@@ -57,7 +57,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Blowjob'  &&  ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0  &&  (Math.floor(Math.random() * 6) + 1) < 4)  ||  (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1  &&  (Math.floor(Math.random() * 6) + 1) < 3))  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) {
-      (s as any).prostitute['scene_repeat'] = ((s as any).prostitute['scene_repeat'] ?? 0) + (1);
+      ((s as any).prostitute ?? {})['scene_repeat'] = (((s as any).prostitute ?? {})['scene_repeat'] ?? 0) + (1);
       scene.actions([
         { label: 'Continue', goto: ['prostitution_car_sex', 'Blowjob'] },
       ]);
@@ -106,7 +106,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', ((((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) ? (6) : (12)), 'unknown', 'prostitution', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0  &&  (Math.floor(Math.random() * 6) + 1) < 4)  ||  (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1  &&  (Math.floor(Math.random() * 6) + 1) < 3))  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) {
-    (s as any).prostitute['scene_repeat'] = ((s as any).prostitute['scene_repeat'] ?? 0) + (1);
+    ((s as any).prostitute ?? {})['scene_repeat'] = (((s as any).prostitute ?? {})['scene_repeat'] ?? 0) + (1);
     scene.actions([
       { label: 'Continue', goto: ['prostitution_car_sex', 'Vaginal'] },
     ]);
@@ -156,7 +156,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', ((((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) ? (6) : (12)), 'unknown', 'prostitution', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0  &&  (Math.floor(Math.random() * 6) + 1) < 4)  ||  (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1  &&  (Math.floor(Math.random() * 6) + 1) < 3))  &&  ((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) {
-    (s as any).prostitute['scene_repeat'] = ((s as any).prostitute['scene_repeat'] ?? 0) + (1);
+    ((s as any).prostitute ?? {})['scene_repeat'] = (((s as any).prostitute ?? {})['scene_repeat'] ?? 0) + (1);
     scene.actions([
       { label: 'Continue', goto: ['prostitution_car_sex', 'Anal'] },
     ]);
@@ -180,8 +180,8 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterRimjobStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  (s as any).prostitute['rim_pity_counter'] = 0;
-  (s as any).prostitute['payment'] = 500 + ((s as any).pcs_hotcat ?? 0) * 5 + ((s as any).iif ?? 0)((((s as any).prostitute ?? 0)?.['piercing_tongue'] === ((s as any).pcs_piercings ?? 0)?.['tongue']  ||  ((s as any).prostitute ?? 0)?.['pirsA'] === ((s as any).pcs_piercings ?? 0)?.['tongue'])  &&  ((s as any).pcs_piercings ?? 0)?.['tongue'] > 0, ((s as any).pcs_piercings ?? 0)?.['tongue'] * 15, 0);
+  ((s as any).prostitute ?? {})['rim_pity_counter'] = 0;
+  ((s as any).prostitute ?? {})['payment'] = 500 + ((s as any).pcs_hotcat ?? 0) * 5 + ((s as any).iif ?? 0)((((s as any).prostitute ?? 0)?.['piercing_tongue'] === ((s as any).pcs_piercings ?? 0)?.['tongue']  ||  ((s as any).prostitute ?? 0)?.['pirsA'] === ((s as any).pcs_piercings ?? 0)?.['tongue'])  &&  ((s as any).pcs_piercings ?? 0)?.['tongue'] > 0, ((s as any).pcs_piercings ?? 0)?.['tongue'] * 15, 0);
   qspCall(s, 'stat', '');
   // TODO-QSP: iif(rand(0, 1) = 0 or $prostitute_fetish['rimjob'] = '', 'Even after ten more minutes he still doesn...
   if (((s as any).prostitute_fetish ?? 0)?.['rimjob'] === '') {
@@ -190,9 +190,9 @@ function enterRimjobStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'prostitution_car_sex', 'rimjob_decision');
     // TODO-QSP: act $func('wrap', 'neg', 'Block this type of content'):
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).prostitute['payment'] = 0;
-    (s as any).prostitute['client_rimjob'] = 0;
-    (s as any).prostitute_fetish['rimjob'] = 'blocked';
+    ((s as any).prostitute ?? {})['payment'] = 0;
+    ((s as any).prostitute ?? {})['client_rimjob'] = 0;
+    ((s as any).prostitute_fetish ?? {})['rimjob'] = 'blocked';
     qspCall(s, 'stat', '');
     scene.text('You shake your head, you will never fall so low to do something like this. "No, I don\'t do something like this." He looks disappointed, but doesn\'t say anything, before you resume what you did before this short intermezzo.');
     scene.actions([

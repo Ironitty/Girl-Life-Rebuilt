@@ -144,7 +144,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
     scene.text('He tells you where they live before he heads outside and walks away.');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A149'] >= 60) {
-      (s as any).lazarQW['city_invite'] = 1;
+      ((s as any).lazarQW ?? {})['city_invite'] = 1;
       if (((s as any).pcs_hotcat ?? 0) >= 6) {
         scene.text('You notice Lazar sitting at a table having lunch.');
         scene.text('"What\'s up, hottie? You enjoying the city?" he asks as you approach.');
@@ -243,7 +243,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>University Cafeteria</b></center>');
   scene.img('images/characters/shared/headshots_main/big146.jpg');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 250) {
-    (s as any).marcusQW['city_invite'] = 1;
+    ((s as any).marcusQW ?? {})['city_invite'] = 1;
     scene.text('You notice Marcus sitting at a table having lunch.');
     scene.text('"Hey you," he says as you approach.');
     scene.text('You sit and talk to him for a few minutes before his phone buzzes. He looks at it and then finishes his drink.');
@@ -252,7 +252,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
     scene.text('He tells you where they live before he heads outside and walks away.');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A146'] >= 50) {
-      (s as any).marcusQW['city_invite'] = 1;
+      ((s as any).marcusQW ?? {})['city_invite'] = 1;
       scene.text('You notice Marcus sitting at a table having lunch.');
       // TODO-QSP: dynamic text: He smiles as you approach. "Hey <<$pcs_nickname>>, how have you been?"
       scene.text(`He smiles as you approach. "Hey ${((s as any).pcs_nickname ?? 0)}, how have you been?"`);
@@ -293,7 +293,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
     scene.text('Seems that even moving to a new city can\'t get you away from your reputation as a slut…');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A146'] >= 50) {
-      (s as any).artemQW['knows_dorm_room_number'] = 1;
+      ((s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
       scene.text('You notice Artem sitting at a table having lunch.');
       // TODO-QSP: dynamic text: He smiles as you approach. "Hey <<$pcs_nickname>>, how have you been?"
       scene.text(`He smiles as you approach. "Hey ${((s as any).pcs_nickname ?? 0)}, how have you been?"`);
@@ -420,8 +420,8 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
 
 function enterDjibril(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).DjibrilQW['invite'] = 1;
-  (s as any).DjibrilQW['meet'] = 1;
+  ((s as any).DjibrilQW ?? {})['invite'] = 1;
+  ((s as any).DjibrilQW ?? {})['meet'] = 1;
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like', 1);
   qspCall(s, 'stat', '');
   scene.text('<center><b>University Cafeteria</b></center>');
@@ -443,7 +443,7 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
       scene.text('He tells you which room is his before he heads outside and walks away.');
     } else {
       if (((s as any).pcs_hotcat ?? 0) >= 5) {
-        (s as any).DjibrilQW['meet'] = 1;
+        ((s as any).DjibrilQW ?? {})['meet'] = 1;
         scene.text('As you approach him, the young African man sitting at the table introduces himself. "I am Djibril Maina. What\'s your name?"');
         // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people just ca...
         scene.text(`You smile at him. "${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, but most people just call me ${((s as any).pcs_nickname ?? 0)}."`);

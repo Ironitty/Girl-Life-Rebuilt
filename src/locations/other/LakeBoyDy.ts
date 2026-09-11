@@ -164,7 +164,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Offer him money', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).npc_QW['A113'] = 1;
+    ((s as any).npc_QW ?? {})['A113'] = 1;
     (s as any).daybelisex = ((s as any).daystart ?? 0);
     qspCall(s, 'money', 'debt_add', 'belgangPay', Math.max(((s as any).money ?? 0) * 5, 50000));
     qspCall(s, 'stat', '');

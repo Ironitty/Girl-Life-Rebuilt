@@ -325,7 +325,7 @@ function enterShopliftEasy(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      (s as any).policeQW['toldonguard'] = 1;
+      ((s as any).policeQW ?? {})['toldonguard'] = 1;
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/locations/shared/police/interrogation${((s as any).picrand ?? 0)}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
@@ -362,7 +362,7 @@ function enterShopliftNorm(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      (s as any).policeQW['toldonguard'] = 1;
+      ((s as any).policeQW ?? {})['toldonguard'] = 1;
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/locations/shared/police/interrogation${((s as any).picrand ?? 0)}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
@@ -400,7 +400,7 @@ function enterShopliftHard(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      (s as any).policeQW['toldonguard'] = 1;
+      ((s as any).policeQW ?? {})['toldonguard'] = 1;
       (s as any).picrand = Math.floor(Math.random() * 2) + 1;
       scene.img(`images/locations/shared/police/interrogation${((s as any).picrand ?? 0)}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');

@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDormFloor(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 100) + 0;
-  (s as any).uni_dorm['event_minut'] = ((s as any).totminut ?? 0) + 60;
+  ((s as any).uni_dorm ?? {})['event_minut'] = ((s as any).totminut ?? 0) + 60;
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/2girl_hump\' + rand(1, 2) + \'.jpg');
     scene.text('As you walk down the hall, you see two girls grinding and dancing provocatively against each other while another takes photos with her phone. Some boys are also watching them.');
@@ -778,7 +778,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_dorm['event_minut'] = ((s as any).totminut ?? 0) + 60;
+  ((s as any).uni_dorm ?? {})['event_minut'] = ((s as any).totminut ?? 0) + 60;
   (s as any).temp = Math.floor(Math.random() * 100) + 0;
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/cuffed_girl.jpg');
@@ -1492,7 +1492,7 @@ function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
                                                             } else {
                                                               if (((s as any).temp ?? 0) === 30) {
                                                                 scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set2/5wg1bm0.jpg');
-                                                                (s as any).harunaQW['meet'] = 1;
+                                                                ((s as any).harunaQW ?? {})['meet'] = 1;
                                                                 if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
                                                                   scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see five naked white girls bent over on a couch, their pussies on full display. They all turn and look at you as you realize whatever noise you had heard is now gone and the only sound was of the door creaking slightly as you opened it.');
                                                                   scene.text('You notice Haruna standing off to one side of the couch, his large and very thick black dick hanging half way to his knees. You remember seeing him hanging out with Djibril a lot. He turns to look at you as well and grins.');

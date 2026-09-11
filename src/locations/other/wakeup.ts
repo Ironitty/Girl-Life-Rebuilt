@@ -11,8 +11,8 @@ function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetOut(s: GameState, scene: SceneBuilder): void {
-  (s as any).droutine['woke_at_min'] = ((s as any).totminut ?? 0);
-  (s as any).sleepVars['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
+  ((s as any).droutine ?? {})['woke_at_min'] = ((s as any).totminut ?? 0);
+  ((s as any).sleepVars ?? {})['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
   if (((s as any).sleepVars ?? 0)?.['slept_in'] === 1) {
     // TODO-QSP: dynamic text: You wake up at <b><<func('time', 'get_time_string', hour, minut, cheatVars['time...
     scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), ((s as any).cheatVars ?? 0)?.['time_format'])}</b>, after sleeping-in a little longer than planned, but at least you've had plenty of sleep.`);
@@ -73,7 +73,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get out of bed (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).sleepVars['slept_in'] = 0;
+    ((s as any).sleepVars ?? {})['slept_in'] = 0;
     // TODO-QSP: xgt 'bed_get_out', 'start'
   } },
   ]);
@@ -83,7 +83,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
 function enterSnoozeAlarm(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: '"Snooze" a few minutes more…', handler: (st: GameState) => {
-    (s as any).sleepVars['slept_in'] = 1;
+    ((s as any).sleepVars ?? {})['slept_in'] = 1;
     qspCall(s, 'stat', '');
   }, goto: ['sleep', 'start'] },
   ]);

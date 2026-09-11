@@ -14,7 +14,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside the store, shelves and racks of alternative clothes are crammed into every available space - anybody setting out to find an inch of wall would have their work cut out for them.');
   scene.text('The checkout counter is near the entrance.');
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
-    (s as any).anushkaQW['discount'] = (-10);
+    ((s as any).anushkaQW ?? {})['discount'] = (-10);
   }
   scene.actions([
     { label: 'Return', goto: ['shop_dolls', 'start'] },
@@ -213,7 +213,7 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([
       { label: 'Anushka sent me', handler: (st: GameState) => {
-    (s as any).anushkaQW['dolls'] = 3;
+    ((s as any).anushkaQW ?? {})['dolls'] = 3;
     qspCall(s, 'npc_relationship', 'modify', 'A205', 5);
     scene.img('images/characters/shared/headshots_main/big205.jpg');
     scene.text('"Anushka, a friend of mine, sent me," you tell her with a smile.');

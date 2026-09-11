@@ -45,9 +45,9 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAge(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_npcVars['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
-  (s as any).temp_npcVars['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
-  (s as any).temp_npcVars['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
+  ((s as any).temp_npcVars ?? {})['day'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] % 100);
+  ((s as any).temp_npcVars ?? {})['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
+  ((s as any).temp_npcVars ?? {})['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
   (s as any).result = qspFunc(s, 'time', 'get_age', ((s as any).temp_timeVars ?? 0)?.['year'], ((s as any).temp_timeVars ?? 0)?.['month'], ((s as any).temp_timeVars ?? 0)?.['day']);
   scene.build();
 }
@@ -86,12 +86,12 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== '[') {
       // TODO-QSP: $ARGS[1] = "<<instr('abcdefghijklmnopqrstuvwxyz', $ARGS[1])>>"
       if (((s as any).locArgs?.[1] ?? 0) === "0") {
-        (s as any).ARGS[1] = '';
+        ((s as any).ARGS ?? {})[1] = '';
       }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = '[' + qspUntranslated(s, "ARGS[1]>", { location: "npc" }) + ']';
+    ((s as any).ARGS ?? {})[1] = '[' + qspUntranslated(s, "ARGS[1]>", { location: "npc" }) + ']';
   }
   if ((('abcdefghijklmnopqrstuvwxyz').indexOf((((s as any).locArgs?.[2] ?? 0)))) + 1) {
     // TODO-QSP: $ARGS[2] = "'<<$ARGS[2]>>'"
@@ -104,38 +104,38 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
 
 function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = 'npc_sexual';
+    ((s as any).ARGS ?? {})[1] = 'npc_sexual';
   }
   if (((s as any).locArgs?.[2] ?? 0) === '') {
-    (s as any).ARGS[2] = 'ABCM';
+    ((s as any).ARGS ?? {})[2] = 'ABCM';
   }
   if (((s as any).locArgs?.[3] ?? 0) === '') {
-    (s as any).ARGS[3] = '0123';
+    ((s as any).ARGS ?? {})[3] = '0123';
   }
-  (s as any).npc_results['guys'] = 0;
-  (s as any).npc_results['girls'] = 0;
-  (s as any).npc_results['herms'] = 0;
+  ((s as any).npc_results ?? {})['guys'] = 0;
+  ((s as any).npc_results ?? {})['girls'] = 0;
+  ((s as any).npc_results ?? {})['herms'] = 0;
   if (((s as any).arrsize ?? 0)(!(((s as any).locArgs?.[1] ?? 0)))) {
     // TODO-QSP: exit
   }
-  (s as any).temp_npcVars['outer_i'] = 0;
+  ((s as any).temp_npcVars ?? {})['outer_i'] = 0;
   // TODO-QSP: :loop_outer_npc_count
-  (s as any).temp_npcVars['char'] = 0;
-  (s as any).temp_npcVars['inner_i'] = 1;
+  ((s as any).temp_npcVars ?? {})['char'] = 0;
+  ((s as any).temp_npcVars ?? {})['inner_i'] = 1;
   // TODO-QSP: :loop_inner_npc_count
-  (s as any).temp_npcVars['npcID'] = ((s as any).temp_npcVars ?? {})?.['char'] + ((s as any).temp_npcVars ?? {})?.['inner_i'];
+  ((s as any).temp_npcVars ?? {})['npcID'] = ((s as any).temp_npcVars ?? {})?.['char'] + ((s as any).temp_npcVars ?? {})?.['inner_i'];
   if ((0 as any) > 0) {
     if (((s as any).npc_gender ?? 0)[((s as any).temp_npcVars ?? 0)?.['npcID']] === 0) {
-      (s as any).npc_results['guys'] = ((s as any).npc_results['guys'] ?? 0) + (1);
+      ((s as any).npc_results ?? {})['guys'] = (((s as any).npc_results ?? {})['guys'] ?? 0) + (1);
     } else {
       if (((s as any).npc_gender ?? 0)[((s as any).temp_npcVars ?? 0)?.['npcID']] === 1) {
-        (s as any).npc_results['girls'] = ((s as any).npc_results['girls'] ?? 0) + (1);
+        ((s as any).npc_results ?? {})['girls'] = (((s as any).npc_results ?? {})['girls'] ?? 0) + (1);
       } else {
-        (s as any).npc_results['herms'] = ((s as any).npc_results['herms'] ?? 0) + (1);
+        ((s as any).npc_results ?? {})['herms'] = (((s as any).npc_results ?? {})['herms'] ?? 0) + (1);
       }
     }
   }
-  (s as any).temp_npcVars['inner_i'] = ((s as any).temp_npcVars['inner_i'] ?? 0) + (1);
+  ((s as any).temp_npcVars ?? {})['inner_i'] = (((s as any).temp_npcVars ?? {})['inner_i'] ?? 0) + (1);
   if (((s as any).temp_npcVars ?? 0)?.['inner_i'] < (0 as any)) {
     // TODO-QSP: jump 'loop_inner_npc_count'
   }
@@ -151,14 +151,14 @@ function enterUpdateHotcat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).locArgs?.[3] ?? 0) === '') {
-    (s as any).ARGS[3] = '$result = $npc_index[ARGS[0]]';
+    ((s as any).ARGS ?? {})[3] = '$result = $npc_index[ARGS[0]]';
   }
-  (s as any).ciklVars['i'] = qspUntranslated(s, "ARGS[1]", { location: "npc" });
-  (s as any).ciklVars['max_i'] = qspUntranslated(s, "ARGS[2]", { location: "npc" });
+  ((s as any).ciklVars ?? {})['i'] = qspUntranslated(s, "ARGS[1]", { location: "npc" });
+  ((s as any).ciklVars ?? {})['max_i'] = qspUntranslated(s, "ARGS[2]", { location: "npc" });
   // TODO-QSP: :hotcat_calc_jump
-  (s as any).ciklVars['npcID'] = 0;
+  ((s as any).ciklVars ?? {})['npcID'] = 0;
   if (((s as any).npc_hotcat ?? 0)[((s as any).ciklVars ?? 0)?.['npcID']] > 0) {
-    (s as any).ciklVars['switch_rand'] = Math.floor(Math.random() * 100) + 0;
+    ((s as any).ciklVars ?? {})['switch_rand'] = Math.floor(Math.random() * 100) + 0;
     if (((s as any).hotcat_movement ?? 0)[((s as any).ciklVars ?? 0)?.['npcID']] === 0) {
       if (((s as any).ciklVars ?? 0)?.['switch_rand'] < 20) {
         // TODO-QSP: npc_hotcat[$ciklVars['npcID']] -= 1
@@ -176,7 +176,7 @@ function enterUpdateHotcat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).ciklVars['i'] = ((s as any).ciklVars['i'] ?? 0) + (1);
+  ((s as any).ciklVars ?? {})['i'] = (((s as any).ciklVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).ciklVars ?? 0)?.['i'] < ((s as any).ciklVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'hotcat_calc_jump'
   }

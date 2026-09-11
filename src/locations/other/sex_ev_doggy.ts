@@ -52,12 +52,12 @@ function enterDoggyGoto(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== ''  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
                 // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
               } else {
-                (s as any).sex_ev['position'] = 'doggy';
-                (s as any).sex_ev['cock_inserted'] = 1;
+                ((s as any).sex_ev ?? {})['position'] = 'doggy';
+                ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
                 if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
-                  (s as any).sex_ev['speed'] = Math.floor(Math.random() * 3) + 1;
+                  ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
                 }
-                (s as any).sex_ev['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
+                ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
                 scene.actions([
                   { label: 'Let <<$npcdesc>> fuck you', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_doggy', $sex_ev['pos_speed']
@@ -75,12 +75,12 @@ function enterDoggyGoto(s: GameState, scene: SceneBuilder): void {
 
 function enterDoggyGoto2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_count'] !== 0  ||  ((s as any).sex_ev ?? 0)?.['first_insertion'] === 1) {
-    (s as any).sex_ev['cock_inserted'] = 1;
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
     if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
-      (s as any).sex_ev['speed'] = Math.floor(Math.random() * 3) + 1;
+      ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
     }
-    (s as any).sex_ev['position'] = 'doggy';
-    (s as any).sex_ev['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
+    ((s as any).sex_ev ?? {})['position'] = 'doggy';
+    ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_doggy', 'doggy<<sex_ev[''speed'']>>.2'
@@ -299,7 +299,7 @@ function enterDoggyFirstInsertion(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggyVirginPre(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['position'] = 'doggy';
+  ((s as any).sex_ev ?? {})['position'] = 'doggy';
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pushes you down onto the bed on hands and knees and spreads your ch...
   scene.text(`${((s as any).npcdesc ?? 0)} pushes you down onto the bed on hands and knees and spreads your cheeks apart, preparing to fuck you from behind.`);
@@ -314,8 +314,8 @@ function enterDoggySwitch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['initiative'] === 'boy') {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_switch2'] }]);
   }
-  (s as any).sex_ev['cock_inserted'] = 1;
-  (s as any).sex_ev['change_pos'] = 0;
+  ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+  ((s as any).sex_ev ?? {})['change_pos'] = 0;
   scene.img('images/shared/sex/foreplay/doggy2.jpg');
   if (((s as any).sex_ev ?? 0)?.['last_position'] === 'miss') {
     // TODO-QSP: dynamic text: You push <<$npcdesc>> off of you, closing your legs and rolling onto your knees.
@@ -334,7 +334,7 @@ function enterDoggySwitch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['change_pos'] === 0) {
     // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
   } else {
-    (s as any).sex_ev['change_pos'] = 0;
+    ((s as any).sex_ev ?? {})['change_pos'] = 0;
     scene.actions([
       { label: 'Fuck in doggystyle', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_doggy', 'doggy<<sex_ev[''speed'']>>.2'
@@ -345,8 +345,8 @@ function enterDoggySwitch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggySwitch2(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['cock_inserted'] = 1;
-  (s as any).sex_ev['change_pos'] = 0;
+  ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+  ((s as any).sex_ev ?? {})['change_pos'] = 0;
   scene.img('images/shared/sex/foreplay/doggy2.jpg');
   if (((s as any).sex_ev ?? 0)?.['last_position'] === 'miss') {
     // TODO-QSP: dynamic text: <<$npcdesc>> pulls himself from between your thighs and rolls you onto your knee...
@@ -429,19 +429,19 @@ function enterDoggySpitLube(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['position'] = 'doggy';
+  ((s as any).sex_ev ?? {})['position'] = 'doggy';
   if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
     qspCall(s, 'sex_ev_sex', 'speed_select');
   }
-  (s as any).sex_ev['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
+  ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
   if (((s as any).sex_ev ?? 0)?.['first_insertion'] === 1) {
     // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_goto2'
   } else {
-    (s as any).sex_ev['cock_inserted'] = 1;
-    (s as any).sex_ev['first_insertion'] = 1;
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
+    ((s as any).sex_ev ?? {})['first_insertion'] = 1;
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-      (s as any).sex_ev['no_condom'] = 1;
+      ((s as any).sex_ev ?? {})['no_condom'] = 1;
     }
     qspCall(s, 'sex_ev_sex', 'insertion_arousal_code');
     qspCall(s, 'stat', '');
@@ -663,9 +663,9 @@ function enterDoggyInsertOrgasm(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sex_ev ?? 0)?.['orgasm'] === ((s as any).orgasm ?? 0)) {
       // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
     }
-    (s as any).sex_ev['insertion_orgasm'] = 1;
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
-    (s as any).sex_ev['orgasm_count'] = ((s as any).sex_ev['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['insertion_orgasm'] = 1;
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
     scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
     if (((s as any).trait_vars ?? 0)?.['sensitivity'] === 0) {
       scene.text('You\'re so turned on, just that one thrust is all it takes for you to come.');
@@ -730,8 +730,8 @@ function enterDoggyGirlOrgasmContinue(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('"I\'m not finished yet," he growls from behind you.');
-  (s as any).sex_ev['position'] = 'doggy';
-  (s as any).sex_ev['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
+  ((s as any).sex_ev ?? {})['position'] = 'doggy';
+  ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
   scene.build();
 }
@@ -744,7 +744,7 @@ function enterDoggyChangePosition(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I'm not really feeling doggy right now," you say, looking at ${((s as any).npcdesc ?? 0)} over your shoulder. "Could we try another position for now?"`);
     scene.text('He pauses with his cock fully inserted, hands on your ass.');
     scene.text('"What did you have in mind?"');
-    (s as any).sex_ev['change_pos'] = 1;
+    ((s as any).sex_ev ?? {})['change_pos'] = 1;
     qspCall(s, 'sex_ev_sex', 'position_change');
   } },
   ]);
@@ -755,8 +755,8 @@ function enterDoggyPain1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dick_desc ?? 0) === 'long'  ||  ((s as any).dick_desc ?? 0) === 'huge'  ||  ((s as any).dick_desc ?? 0) === 'enormous'  ||  ((s as any).dick_desc ?? 0) === 'lengthy'  ||  ((s as any).dick_desc ?? 0) === 'gigantic'  ||  ((s as any).dick_desc ?? 0) === 'monstrous') {
     scene.actions([
       { label: 'Dick is too big', handler: (st: GameState) => {
-    (s as any).sex_ev['dick_too_big'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['dick_too_big'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     // TODO-QSP: dynamic text: That first thrust of <<$npcdesc>>'s hips elicits a gasp of pain from your lips a...
     scene.text(`That first thrust of ${((s as any).npcdesc ?? 0)}'s hips elicits a gasp of pain from your lips and makes your knees want to buckle in agony. His cock is too much for your poor pussy and even just having it inside you is pure torture.`);
     qspCall(s, 'sex_ev_doggy', 'doggy_pain2');
@@ -765,7 +765,7 @@ function enterDoggyPain1(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Ouch!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('Lances of pain pierce through your vagina. Whether it\'s the angle or technique or just the shape of your pussy and the shape of his cock, you can\'t say for certain. The only thing you are sure of is that this <i>hurts!</i>');
     qspCall(s, 'sex_ev_doggy', 'doggy_pain2');
   } },
@@ -823,7 +823,7 @@ function enterDoggyPain3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Be irritated', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).npc_dislike[String((s as any).npcID ?? 0)] = ((s as any).npc_dislike[String((s as any).npcID ?? 0)] ?? 0) + (2);
+    ((s as any).npc_dislike ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_dislike ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (2);
     scene.img('images/shared/sex/vag/doggy/shock1.jpg');
     scene.text('"Who taught you how to fuck?" you scowl. "Your dick is stabbing into me in all the worst ways!"');
     if (((s as any).npc_argumentative ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -838,7 +838,7 @@ function enterDoggyPain3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"How's that?" ${((s as any).npcdesc ?? 0)} asks.`);
     scene.actions([
       { label: 'Fine I guess', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.text('"Fine I guess," you sigh. It doesn\'t really feel good, but at least it doesn\'t hurt anymore.');
     // TODO-QSP: dynamic text: <<$npcdesc>> takes your response as approval and starts moving again.
     scene.text(`${((s as any).npcdesc ?? 0)} takes your response as approval and starts moving again.`);
@@ -849,7 +849,7 @@ function enterDoggyPain3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Better', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text('"<i>Finally</i>," you sigh. "Yes, that feels better. Try to remember this next time."');
     // TODO-QSP: dynamic text: <<$npcdesc>> seems to be a little ticked off by your attitude but starts moving ...
     scene.text(`${((s as any).npcdesc ?? 0)} seems to be a little ticked off by your attitude but starts moving again anyways.`);
@@ -863,12 +863,12 @@ function enterDoggyPain3(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Laugh it off', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).npc_like[String((s as any).npcID ?? 0)] = ((s as any).npc_like[String((s as any).npcID ?? 0)] ?? 0) + (2);
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).npc_like ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_like ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (2);
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.img('images/shared/sex/vag/doggy/1.jpg');
     if (((s as any).sex_ev ?? 0)?.['dick_too_big'] === 1) {
-      (s as any).sex_ev['dick_too_big'] = 2;
-      (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+      ((s as any).sex_ev ?? {})['dick_too_big'] = 2;
+      ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
       (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
       scene.text('"Your dick is kind of big for me," you smile ruefully. "Can we just pause for a sec to let my poor pussy adjust?"');
       scene.text('"Oh. Yeah, sure."');
@@ -910,9 +910,9 @@ function enterDoggyVid(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggy1(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+  ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-    (s as any).sex_ev['no_condom'] = 1;
+    ((s as any).sex_ev ?? {})['no_condom'] = 1;
   }
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'doggy', 1);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -925,7 +925,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_doggy', 'doggy1_start_desc');
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: An uncontrollable gasp escapes your lips as <<$npcdesc>>'s hips press into your ...
       scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips press into your ass on the next thrust. You can feel how his movements react to yours, paying attention to your body's nonverbal signals, and making each thrust feeling better than the last. His dick may be small but <i>damn</i>, does he know how to use it.`);
@@ -949,14 +949,14 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Enjoy yourself', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text('Your eyes roll back in your head as your pussy eagerly slurps up his cock again and again.');
     scene.text('<i>This is so goooooood...</i>');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
       { label: 'But you\'re just not connecting', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.text('But... for all his skill, somehow just isn\'t doing it for you.');
     scene.text('The pleasure is there but... the emotional connection--the <i>intimacy</i>--isn\'t, and it leaves you feeling strangely hollow and unsatisfied. Your bodies are joined together, but it seems without the soul, all you feel are bits of flesh smacking each other...');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
@@ -969,15 +969,15 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
       scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips press into your ass on the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
       scene.actions([
         { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text('Still, that\'s good enough and you don\'t mind the awkward hit now and then. You clothes your eyes and smile to yourself, determined to enjoy fucking him today.');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: He's good, but not good enough for you. Whatever effort he puts in can only go s...
       scene.text('He\'s good, but not good enough for you. Whatever effort he puts in can only go so far with such a small dick. Beyond that, his movements just aren\'t syncing up with yours\' + iif(npc_fuck_times[$npcID] > 0, \' today \', \' \') + \'and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
@@ -1010,7 +1010,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
         scene.text(`In a word, ${((s as any).npcdesc ?? 0)} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? 0)} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
         scene.actions([
           { label: 'Coach him to do better', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling at him over your sh...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling at him over your shoulder. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your knees a little wider and let your ass slap back against <<$npcde...
@@ -1021,9 +1021,9 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1046,7 +1046,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1072,7 +1072,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
         scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips press into your ass in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? 0)} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
         scene.actions([
           { label: 'Coach him to do better', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling at him over your sh...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling at him over your shoulder. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your knees a little wider and let your ass slap back against <<$npcde...
@@ -1083,9 +1083,9 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1108,7 +1108,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1135,7 +1135,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
     scene.actions([
       { label: 'His dick is so small!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: It takes all of your willpower not to audibly sigh as you keep letting <<$npc_us...
@@ -1151,14 +1151,14 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_doggy', 'doggy_change_position');
   scene.actions([
     { label: 'This is too slow', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     // TODO-QSP: dynamic text: Closing your eyes, you try to focus on the sensations, <<$npcdesc>> on top of yo...
     scene.text(`Closing your eyes, you try to focus on the sensations, ${((s as any).npcdesc ?? 0)} on top of you, his cock stretching your pussy, going in and out... in and out... in and ou-`);
     scene.text('Your eyes snap open when you realize this isn\'t going to work and hold back a sigh. This is so slow! You don\'t want this dainty gentle lovemaking, you want him to <i>fuck</i> you!');
     scene.actions([
       { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
-    (s as any).sex_ev['bored'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['bored'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     qspCall(s, 'sex_ev_sex', 'fuck_no_cum_code');
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     // TODO-QSP: dynamic text: As much as you want <<$npcdesc>> to pick up the pace, you don't want to be a bit...
@@ -1214,8 +1214,8 @@ function enterDoggy1_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        (s as any).sex_ev['fuck_pain'] = 0;
-        (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps slowly fucking you from behind. Fina...
@@ -1238,8 +1238,8 @@ function enterDoggy1_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        (s as any).sex_ev['fuck_pain'] = 0;
-        (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps slowly fucking you from behind. Clos...
@@ -1262,21 +1262,21 @@ function enterDoggy1_2(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-      (s as any).sex_ev['cum_speed_up'] = 0;
+      ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
       // TODO-QSP: dynamic text: Nevertheless, you try to move your hips in time with his, throwing them back to ...
       scene.text(`Nevertheless, you try to move your hips in time with his, throwing them back to meet his thrusts and doing your best to make ${((s as any).npcdesc ?? 0)} feel good, hoping he'll come quickly.`);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-        (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk2');
         // TODO-QSP: dynamic text: Your breath hitches as <<$npcdesc>> continues to slowly thrust into your pussy f...
         scene.text(`Your breath hitches as ${((s as any).npcdesc ?? 0)} continues to slowly thrust into your pussy from behind. You aren't sure what changed, but it's like your body is waking up from a deep sleep. His cock stretches your walls, every thrust <i>fills</i> you in a way you didn't know you needed to be, and even now you can feel yourself get wetter and wetter, slicking up his cock and making it easier to reach the deepest parts of your pussy.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          (s as any).sex_ev['cum_speed_up'] = 0;
+          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
           qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk1');
           qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk2');
           // TODO-QSP: dynamic text: You focus on <<$npcdesc>>'s cock inside of you, clenching your abdomen and throw...
@@ -1309,7 +1309,7 @@ function enterDoggy1_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-        (s as any).sex_ev['cum_speed_up'] = 0;
+        ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
         scene.text('"<i>Hah~! Hahh~! Ahh~! Hahh~!</i>"');
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy1_boy_talk2');
@@ -1359,9 +1359,9 @@ function enterDoggy1_bored(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggy2(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+  ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-    (s as any).sex_ev['no_condom'] = 1;
+    ((s as any).sex_ev ?? {})['no_condom'] = 1;
   }
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'doggy', 2);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -1374,7 +1374,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_doggy', 'doggy2_start_desc');
   }
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 75) {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: An uncontrollable gasp escapes your lips as <<$npcdesc>>'s hips slap into your a...
       scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips slap into your ass in the next thrust. You can feel how his movements react to yours, paying attention to your body's nonverbal signals, and making each thrust feeling better than the last. His dick may be small but <i>damn</i>, does he know how to use it.`);
@@ -1404,16 +1404,16 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
       scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips slap into your ass in the next thrust. <i>That one felt pretty good!</i> And of course, right as you think that, the next one hits a little awkward inside you, rubbing the wrong way. He's still good for the most part, but about one in ten thrusts can't help but hit wrong.`);
       scene.actions([
         { label: 'You\'re going to enjoy this', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Still, that's good enough and you don't mind the awkward hit now and then. You s...
     scene.text(`Still, that's good enough and you don't mind the awkward hit now and then. You smile back at ${((s as any).npcdesc ?? 0)}, determined to enjoy fucking him today.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       // TODO-QSP: dynamic text: He's good, but not good enough for you. Whatever effort he puts in can only go s...
       scene.text('He\'s good, but not good enough for you. Whatever effort he puts in can only go so far with such a small dick. Beyond that, his movements just aren\'t syncing up with yours\' + iif(npc_fuck_times[$npcID] > 0, \' today \', \' \') + \'and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
@@ -1446,7 +1446,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
         scene.text(`In a word, ${((s as any).npcdesc ?? 0)} is... uncoordinated? Every few thrusts of his ${((s as any).dick_desc ?? 0)} dick inevitably result in an uncomfortable spot getting hit and a sharp prick of pain inside your pussy.`);
         scene.actions([
           { label: 'Coach him to do better', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling at him over your sh...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling at him over your shoulder. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your knees a little wider and let your ass slap back against <<$npcde...
@@ -1458,9 +1458,9 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/med2.mp4');
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1483,7 +1483,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1509,7 +1509,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
         scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips slap into your ass in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? 0)} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
         scene.actions([
           { label: 'Coach him to do better', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: "<i>Hnn~!</i> Not like that, <<$npcdesc>>," you coo, smiling at him over your sh...
     scene.text(`"<i>Hnn~!</i> Not like that, ${((s as any).npcdesc ?? 0)}," you coo, smiling at him over your shoulder. "Like <i>this</i>."`);
     // TODO-QSP: dynamic text: You spread your knees a little wider and let your ass slap back against <<$npcde...
@@ -1521,9 +1521,9 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/med2.mp4');
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1546,7 +1546,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1573,7 +1573,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
     scene.actions([
       { label: 'His dick is so small!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/bored1.mp4');
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: It takes all of your willpower not to audibly sigh as you keep letting <<$npc_us...
@@ -1589,12 +1589,12 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_doggy', 'doggy_change_position');
   scene.actions([
     { label: 'Pace is wrong', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     scene.img('images/shared/sex/vag/doggy/med2.mp4');
     scene.text('You groan softly, but not in pleasure. More like frustration. Even though he\'s fucking you at what would probably be considered to be a "normal" pace, it\'s not what you\'re in the mood for. It just feels... <i>wrong</i>.');
     scene.actions([
       { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.img('images/shared/sex/vag/doggy/med2.mp4');
     // TODO-QSP: dynamic text: You sigh internally, but decide not to ruin the mood. <<$npcdesc>> continues to ...
     scene.text(`You sigh internally, but decide not to ruin the mood. ${((s as any).npcdesc ?? 0)} continues to enthusiastically clap your cheeks and you let your expression lapse into boredom, grateful that at least you don't have to act like you're having a good time.`);
@@ -1622,7 +1622,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Boooooring', handler: (st: GameState) => {
-    (s as any).sex_ev['bored'] = 1;
+    ((s as any).sex_ev ?? {})['bored'] = 1;
     scene.img('images/shared/sex/vag/doggy/med2.mp4');
     // TODO-QSP: dynamic text: You sigh internally, but decide not to ruin the mood. <<$npcdesc>> continues to ...
     scene.text(`You sigh internally, but decide not to ruin the mood. ${((s as any).npcdesc ?? 0)} continues to enthusiastically clap your cheeks and you let your expression lapse into boredom, grateful that at least you don't have to act like you're having a good time.`);
@@ -1639,7 +1639,7 @@ function enterDoggy2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'doggy', 2);
   qspCall(s, 'sex_ev_doggy', 'doggy_vid');
   qspCall(s, 'sex_ev_doggy', 'doggy2.1_desc');
-  (s as any).sex_ev['pos_speed'] = 'doggy2';
+  ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy2';
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
   scene.build();
@@ -1651,8 +1651,8 @@ function enterDoggy2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        (s as any).sex_ev['fuck_pain'] = 0;
-        (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps steadily fucking you from behind. Fi...
@@ -1674,8 +1674,8 @@ function enterDoggy2_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        (s as any).sex_ev['fuck_pain'] = 0;
-        (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk2');
         // TODO-QSP: dynamic text: You take deep breaths as <<$npcdesc>> keeps slowly fucking you from behind. Clos...
@@ -1698,19 +1698,19 @@ function enterDoggy2_2(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-      (s as any).sex_ev['cum_speed_up'] = 0;
+      ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
       // TODO-QSP: dynamic text: Nevertheless, you try to move your hips in time with his, throwing them back to ...
       scene.text(`Nevertheless, you try to move your hips in time with his, throwing them back to meet ${((s as any).npcdesc ?? 0)}'s thrusts, hoping he'll come quickly.`);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-        (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
         // TODO-QSP: dynamic text: Your breath hitches as <<$npcdesc>> continues to steadily fuck you from behind. ...
         scene.text(`Your breath hitches as ${((s as any).npcdesc ?? 0)} continues to steadily fuck you from behind. You aren't sure what changed, but it's like your body is waking up from a deep sleep. His cock stretches your walls, every thrust <i>fills</i> you in a way you didn't know you needed to be, and even now you can feel yourself get wetter and wetter, slicking up his cock and making it slide in and out of you with much greater, and pleasurable, force.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          (s as any).sex_ev['cum_speed_up'] = 0;
+          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
           qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk1');
           qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk2');
           // TODO-QSP: dynamic text: You focus on <<$npcdesc>>'s cock inside of you, clenching your abdomen and throw...
@@ -1751,7 +1751,7 @@ function enterDoggy2_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-        (s as any).sex_ev['cum_speed_up'] = 0;
+        ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
         scene.text('"<i>Hah~! Hahh~! Ahh~! Hahh~!</i>"');
         qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy2_boy_talk2');
@@ -1797,8 +1797,8 @@ function enterDoggy2_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggy2_bored(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['doggy_fuck'] = 1;
-  (s as any).sex_ev['pos_speed'] = 'doggy2';
+  ((s as any).sex_ev ?? {})['doggy_fuck'] = 1;
+  ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy2';
   scene.img('images/shared/sex/vag/doggy/bored2.mp4');
   scene.text('He keeps fucking you at a medium pace. It\'s boring.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
@@ -1807,10 +1807,10 @@ function enterDoggy2_bored(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggy3(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['rough_check'] = 1;
-  (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+  ((s as any).sex_ev ?? {})['rough_check'] = 1;
+  ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
-    (s as any).sex_ev['no_condom'] = 1;
+    ((s as any).sex_ev ?? {})['no_condom'] = 1;
   }
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'doggy', 3);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -1828,7 +1828,7 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75) {
     scene.actions([
       { label: 'Enjoy it', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: An uncontrollable gasp escapes your lips as <<$npcdesc>>'s hips pound into your ...
     scene.text(`An uncontrollable gasp escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips pound into your ass over and over again. He's incessant, smashing into your pussy over.`);
     scene.text('<i>And it\'s amazing.</i>');
@@ -1857,16 +1857,16 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 50) {
       scene.actions([
         { label: 'Enjoy it', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Your eyes roll back in your head as <<$npcdesc>> incessantly pounds into you wit...
     scene.text(`Your eyes roll back in your head as ${((s as any).npcdesc ?? 0)} incessantly pounds into you with his ${((s as any).dick_desc ?? 0)} cock. Not every thrust is clean and every once in a while he bangs into you in a way that causes a sharp jab of pain inside you. But that's just part of going rough and you take it in stride, letting it fuel the rough-play mood.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
         { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     // TODO-QSP: dynamic text: <i>Do people really enjoy this?</i> you think to yourself as <<$npcdesc>> keeps ...
     scene.text(`<i>Do people really enjoy this?</i> you think to yourself as ${((s as any).npcdesc ?? 0)} keeps pounding himself into your pussy. But for all the effort he's putting in, it's not bringing any pleasure. It doesn't <i>hurt</i> exactly, but it's definitely not getting you off.`);
     scene.text('Oh well. Not everyone can be a winner. But there\'s no need to make him feel bad about it and start voicing moans of pleasure. You\'ll probably have to fake an orgasm for him later too...');
@@ -1878,16 +1878,16 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
         scene.actions([
           { label: 'Enjoy it', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: Your eyes roll back in your head as <<$npcdesc>> incessantly pounds into you wit...
     scene.text(`Your eyes roll back in your head as ${((s as any).npcdesc ?? 0)} incessantly pounds into you with his ${((s as any).dick_desc ?? 0)} cock. Not every thrust is clean and every once in a while he bangs into you in a way that causes a sharp jab of pain inside you. But that's just part of going rough and you take it in stride, letting it fuel the rough-play mood.`);
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     // TODO-QSP: dynamic text: <i>Do people really enjoy this?</i> you think to yourself as <<$npcdesc>> keeps ...
     scene.text(`<i>Do people really enjoy this?</i> you think to yourself as ${((s as any).npcdesc ?? 0)} keeps pounding himself into your pussy. But for all the effort he's putting in, it's not bringing any pleasure. He's not paying any attention to your body's response, just thrusting wildly as fast as he can.`);
     scene.text('Oh well. Not everyone can be a winner. But there\'s no need to make him feel bad about it and start voicing moans of pleasure. You\'ll probably have to fake an orgasm for him later too...');
@@ -1895,7 +1895,7 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Does he think this is good?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy, just thrusting wildly and smashing his tiny cock into you without any care or attention. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1924,9 +1924,9 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
         scene.text(`A stifled gasp of discomfort escapes your lips as ${((s as any).npcdesc ?? 0)}'s hips meet yours in clumsy thrust, sending a sharp jab of pain into your pussy. He keeps moving in weird ways, making nearly every pump of his ${((s as any).dick_desc ?? 0)} dick into your pussy inevitably result in an awkward spot getting hit and a sharp prick of pain. What on earth is he doing?!`);
         scene.actions([
           { label: 'Fake enjoyment', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['fake_enjoy'] = 1;
-    (s as any).sex_ev['moan'] = 2;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fake_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['moan'] = 2;
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('Well he certainly has enthusiasm. But that can only go so far with such a small dick. Beyond that, his movements aren\'t syncing up with yours and you find yourself stifling a sigh, feeling like your itch is not getting scratched with each new bounce on his cock. Maybe this would get another girl off, but certainly not you...');
     } else {
@@ -1949,7 +1949,7 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
           { label: 'This hurts!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('<i>Gah! What the fuck is wrong with him? Is it getting worse?!</i>');
     if (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short') {
       scene.text('You\'ve no idea how, but even with a dick as small as his, he\'s somehow managing to find every bad spot inside your pussy. Does he think your reactions of pain are pleasure? This is going to be the longest fuck of your life...');
@@ -1976,7 +1976,7 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sexskill ?? 0)?.[String((s as any).npcID ?? 0)] < 75  &&  (((s as any).npc_dick_class ?? 0)?.[String((s as any).npcID ?? 0)] === 'short'  ||  ((s as any).dick_desc ?? 0) === 'thin')) {
     scene.actions([
       { label: 'His dick is so small!', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
     scene.text('<i>Holy shit,</i> you think to yourself. <i>How\'s a girl supposed to get off with a dick this small?</i>');
     // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>>'s hips are smacking into your ass with an exceptional ...
     scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s hips are smacking into your ass with an exceptional amount of force but despite that, you can't feel <i>anything</i> inside you. You didn't even know it was possible for someone to fuck you this hard without pleasure or even pain to show for it.`);
@@ -1991,16 +1991,16 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['rough_enjoy'] !== 1) {
     scene.actions([
       { label: 'So rough!', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
     qspCall(s, 'sex_ev_doggy', 'doggy3_too_rough');
     if (((s as any).WIP_enabled ?? 0) > 0  &&  ((s as any).stat ?? 0)?.['rape_count'] > 0  &&  ((s as any).trait_vars ?? 0)?.['repressed_trait'] === 0) {
       scene.actions([
         { label: 'Rape flashbacks', handler: (st: GameState) => {
-    (s as any).sex_ev['rape_flashback'] = 1;
+    ((s as any).sex_ev ?? {})['rape_flashback'] = 1;
     scene.actions([
       { label: 'Hold it in', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/hard2.mp4');
-    (s as any).sex_ev['rough_hurt'] = 1;
+    ((s as any).sex_ev ?? {})['rough_hurt'] = 1;
     if (((s as any).stat ?? 0)?.['rape_count'] === 1) {
       scene.text('Your arms give out from underneath you as you break down in terror, the memory of your rape explodes like a missile inside your mind. The images and sensations come flooding back to you, memories of your body being violated flashing before your eyes like a montage you can\'t turn off. But you hide it, burying your face into the mattress and gritting your teeth as you bite down on the sheets, stifling the scream that wants to escape your lips.');
     } else {
@@ -2023,9 +2023,9 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/hard2.mp4');
     scene.text('"<i><b>NO!</b></i>" you shriek. "<i><b>STOP! STOP! STOP! STOP! STOP!</b></i>"');
     if (((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
-      (s as any).sex_ev['rough_hurt'] = 1;
-      (s as any).sex_ev['rape_hurt'] = 1;
-      (s as any).sex_ev['boy_cum'] = 2;
+      ((s as any).sex_ev ?? {})['rough_hurt'] = 1;
+      ((s as any).sex_ev ?? {})['rape_hurt'] = 1;
+      ((s as any).sex_ev ?? {})['boy_cum'] = 2;
       // TODO-QSP: dynamic text: But despite your desperate screams, <<$npcdesc>> doesn't even slow down, instead...
       scene.text(`But despite your desperate screams, ${((s as any).npcdesc ?? 0)} doesn't even slow down, instead continuing to pummel you from behind as you cry in terror.`);
       qspCall(s, 'sex_ev_cum', 'fuck_cum');
@@ -2044,9 +2044,9 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
-    (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
-    (s as any).sex_ev['bored'] = 1;
-    (s as any).sex_ev['boy_cum'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
+    ((s as any).sex_ev ?? {})['bored'] = 1;
+    ((s as any).sex_ev ?? {})['boy_cum'] = 1;
     qspCall(s, 'sex_ev_sex', 'fuck_rough_no_cum_code');
     scene.img('images/shared/sex/vag/doggy/hard2.mp4');
     // TODO-QSP: dynamic text: For whatever reason, you can't bring yourself to say anything, and simply endure...
@@ -2061,9 +2061,9 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Hurts fucking good doesn't it?" ${((s as any).npcdesc ?? 0)} grunts back, not even pausing for a single beat.`);
       scene.actions([
         { label: 'Please slow down!', handler: (st: GameState) => {
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
-    (s as any).sex_ev['rough_hurt'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['rough_hurt'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     scene.text('"Please!" you beg, tears welling up in your eyes. "Please slow down! I can\'t-! Take-!');
     // TODO-QSP: dynamic text: But <<$npcdesc>> is heedless of your cries. He keeps a firm hold on your hair an...
     scene.text(`But ${((s as any).npcdesc ?? 0)} is heedless of your cries. He keeps a firm hold on your hair and pulls hard with every thrust, forcing unceasing cries of pain from your lips.`);
@@ -2075,9 +2075,9 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'If you slow down I will kill you', handler: (st: GameState) => {
     qspCall(s, 'sweat', 'add', 1);
-    (s as any).sex_ev['orgasm'] = ((s as any).orgasm ?? 0);
-    (s as any).sex_ev['rough_enjoy'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
+    ((s as any).sex_ev ?? {})['rough_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     // TODO-QSP: dynamic text: You scream another cry of agonizing pleasure and grimace at <<$npcdesc>>.
     scene.text(`You scream another cry of agonizing pleasure and grimace at ${((s as any).npcdesc ?? 0)}.`);
     scene.text('"If you slow down I will <i>fucking</i> kill you," you snarl, throwing your hips forward to slam into his for more force.');
@@ -2100,9 +2100,9 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'No (enjoy)', handler: (st: GameState) => {
-    (s as any).npc_knows_pc_likes_rough[String((s as any).npcID ?? 0)] = 1;
-    (s as any).sex_ev['rough_enjoy'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).npc_knows_pc_likes_rough ?? {})[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).sex_ev ?? {})['rough_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     scene.text('"No," you smile back at him. "I want you to pound me."');
     // TODO-QSP: dynamic text: In response, <<$npcdesc>> yanks you back by the hair even harder than before, sl...
     scene.text(`In response, ${((s as any).npcdesc ?? 0)} yanks you back by the hair even harder than before, slamming his cock into you to fulfil your request.`);
@@ -2111,14 +2111,14 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Yes, gentle please', handler: (st: GameState) => {
-    (s as any).sex_ev['too_rough'] = 1;
+    ((s as any).sex_ev ?? {})['too_rough'] = 1;
     scene.text('"Yes please," you say, giving him a small smile. "A little more gently would be very nice..."');
     scene.actions([
       { label: 'Continue', goto: ['sex_ev_doggy', 'doggy1.1'] },
     ]);
   } },
         { label: 'Not <i>too</i> gentle', handler: (st: GameState) => {
-    (s as any).sex_ev['too_rough'] = 1;
+    ((s as any).sex_ev ?? {})['too_rough'] = 1;
     scene.text('"You don\'t have to be <i>too</i> gentle with me," you giggle. "I just don\'t want to feel like I\'m having sex with Vlad the Impaler here."');
     scene.text('You sigh in relief as he picks up his pace again, this time without leaving you feel like you\'re being battered to bits.');
     scene.actions([
@@ -2129,8 +2129,8 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'Fake an orgasm', handler: (st: GameState) => {
-    (s as any).sex_ev['fake_orgasm_count'] = ((s as any).sex_ev['fake_orgasm_count'] ?? 0) + (1);
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['fake_orgasm_count'] = (((s as any).sex_ev ?? {})['fake_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     (s as any).fake_orgasm = ((s as any).fake_orgasm ?? 0) + (1);
     qspCall(s, 'sex_ev_sex', 'fuck_rough_no_cum_code');
     scene.img('images/shared/sex/vag/doggy/hard3.mp4');
@@ -2170,7 +2170,7 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
 function enterDoggy3_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_stats', 'position_tracker', 'doggy', 3);
   if (((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-    (s as any).sex_ev['rough_fuck'] = 1;
+    ((s as any).sex_ev ?? {})['rough_fuck'] = 1;
     scene.img('images/shared/sex/vag/doggy/rough1.mp4');
     // TODO-QSP: dynamic text: <<$npcdesc>> suddenly grabs you by the hair, sending lances of pain through your...
     scene.text(`${((s as any).npcdesc ?? 0)} suddenly grabs you by the hair, sending lances of pain through your scalp. He pulls hard and you gasp as you're yanked backwards and slammed into his cock with the force of a nail being smashed by a hammer.`);
@@ -2178,15 +2178,15 @@ function enterDoggy3_1(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Yeah <i>bitch?!</i>" ${((s as any).npcdesc ?? 0)} snarls. "You want me to fuck you harder? Well, then take it you fucking slut!" and starts roughly fucking you in a way completely unlike his previous mannerisms.`);
     scene.actions([
       { label: 'Enjoy it', handler: (st: GameState) => {
-    (s as any).sex_ev['rough_enjoy'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+    ((s as any).sex_ev ?? {})['rough_enjoy'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
     qspCall(s, 'sex_ev_doggy', 'doggy3.1_desc');
     qspCall(s, 'sex_ev_cum', 'fuck_cum');
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   } },
       { label: 'Suffer', handler: (st: GameState) => {
-    (s as any).sex_ev['rough_hurt'] = 1;
-    (s as any).sex_ev['fuck_enjoyment'] = 'painful';
+    ((s as any).sex_ev ?? {})['rough_hurt'] = 1;
+    ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
     // TODO-QSP: dynamic text: Tears begin to well up in your eyes as he keeps fucking you roughly. It's all yo...
     scene.text(`Tears begin to well up in your eyes as he keeps fucking you roughly. It's all you can do not to sob, but ${((s as any).npcdesc ?? 0)} is unrelenting. He keeps a firm hold on your hair and pulls hard with every thrust, forcing cries of pain from your lips.`);
     scene.text('This isn\'t what you wanted...');
@@ -2214,8 +2214,8 @@ function enterDoggy3_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        (s as any).sex_ev['fuck_pain'] = 0;
-        (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk2');
         // TODO-QSP: dynamic text: You take gasping breaths as <<$npcdesc>> keeps pounding his cock into you from b...
@@ -2245,8 +2245,8 @@ function enterDoggy3_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === 1) {
-        (s as any).sex_ev['fuck_pain'] = 0;
-        (s as any).sex_ev['fuck_enjoyment'] = 'unsatisfying';
+        ((s as any).sex_ev ?? {})['fuck_pain'] = 0;
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'unsatisfying';
         qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk2');
         // TODO-QSP: dynamic text: You take gasping breaths as <<$npcdesc>> keeps pounding his cock into you from b...
@@ -2276,19 +2276,19 @@ function enterDoggy3_2(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-      (s as any).sex_ev['cum_speed_up'] = 0;
+      ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
       // TODO-QSP: dynamic text: Nevertheless, you move your hips in time with his, throwing them back to meet <<...
       scene.text(`Nevertheless, you move your hips in time with his, throwing them back to meet ${((s as any).npcdesc ?? 0)}'s demolishing thrusts and try to ride the wave, hoping he'll come quickly.`);
     }
   } else {
     if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
       if (((s as any).sex_ev ?? 0)?.['fuck_pain'] === -1) {
-        (s as any).sex_ev['fuck_enjoyment'] = 'enjoy';
+        ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
         // TODO-QSP: dynamic text: Your breath hitches as <<$npcdesc>> continues to pound your pussy from behind. Y...
         scene.text(`Your breath hitches as ${((s as any).npcdesc ?? 0)} continues to pound your pussy from behind. You aren't sure what changed, but it's like your body is coming alive. His cock stretches your walls, it's so <i>deep</i> inside you, and even now you can feel yourself get wetter and wetter, slicking up his cock and making it hammer you harder and harder with greater satisfaction every time.`);
       } else {
         if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-          (s as any).sex_ev['cum_speed_up'] = 0;
+          ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
           qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk1');
           qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk2');
           // TODO-QSP: dynamic text: You focus on <<$npcdesc>>'s cock as he pounds you, clenching your abdomen and th...
@@ -2321,7 +2321,7 @@ function enterDoggy3_2(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sex_ev ?? 0)?.['cum_speed_up'] === 1) {
-        (s as any).sex_ev['cum_speed_up'] = 0;
+        ((s as any).sex_ev ?? {})['cum_speed_up'] = 0;
         scene.text('"<i>Hah~! Hahh~! Ahh~! Hahh~!</i>"');
         qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk1');
         qspCall(s, 'sex_ev_doggy', 'doggy3_boy_talk2');
@@ -3430,10 +3430,10 @@ function enterDoggy2_1Desc(s: GameState, scene: SceneBuilder): void {
 
 function enterDoggy2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['moan'] === 1) {
-    (s as any).sex_ev['moan_describe'] = 'softly';
+    ((s as any).sex_ev ?? {})['moan_describe'] = 'softly';
   } else {
     if (((s as any).sex_ev ?? 0)?.['moan'] === 2) {
-      (s as any).sex_ev['moan_describe'] = 'loudly';
+      ((s as any).sex_ev ?? {})['moan_describe'] = 'loudly';
     }
   }
   if (((s as any).dick_desc ?? 0) === 'tiny'  ||  ((s as any).dick_desc ?? 0) === 'short') {

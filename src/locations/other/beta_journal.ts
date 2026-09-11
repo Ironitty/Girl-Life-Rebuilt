@@ -163,16 +163,16 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
 
 function enterFailure(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'id') {
-    (s as any).debug['journal'] = 'NPC ID not set, vcard not generated.';
+    ((s as any).debug ?? {})['journal'] = 'NPC ID not set, vcard not generated.';
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'quest_body') {
-      (s as any).debug['journal'] = 'Quest body not set, quests details was not set.';
+      ((s as any).debug ?? {})['journal'] = 'Quest body not set, quests details was not set.';
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
-        (s as any).debug['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
+        ((s as any).debug ?? {})['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'nav_back') {
-          (s as any).debug['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
+          ((s as any).debug ?? {})['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
         }
       }
     }

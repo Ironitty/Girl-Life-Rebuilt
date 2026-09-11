@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterInject(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).drugVars['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
+  ((s as any).drugVars ?? {})['heroin_whore'] = (((s as any).drugVars ?? {})['heroin_whore'] ?? 0) + (1);
   qspCall(s, 'drugs', 'heroin');
   if (((s as any).drugVars ?? 0)?.['cocaine_addict'] !== 0) {
   }
@@ -188,7 +188,7 @@ function enterPeeswallow4(s: GameState, scene: SceneBuilder): void {
 function enterPeewhore(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-  (s as any).drugVars['heroin_whore'] = ((s as any).drugVars['heroin_whore'] ?? 0) + (1);
+  ((s as any).drugVars ?? {})['heroin_whore'] = (((s as any).drugVars ?? {})['heroin_whore'] ?? 0) + (1);
   qspCall(s, 'drugs', 'heroin');
   scene.img('images/characters/city/bobka/sex/peewhore.jpg');
   scene.text('You don\'t even bother washing yourself as you quickly grab the syringe and inject yourself with it.');

@@ -548,7 +548,7 @@ function enterMission2B(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'PAIN!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pain['head'] = ((s as any).pain['head'] ?? 0) + (360);
+    ((s as any).pain ?? {})['head'] = (((s as any).pain ?? {})['head'] ?? 0) + (360);
     qspCall(s, 'stat', '');
     scene.text('<center><b>YOU!?</b></center>');
     scene.img(`images/locations/shared/${Math.floor(Math.random() * 30) + 31}.jpg`);
@@ -841,7 +841,7 @@ function enterMission2sex(s: GameState, scene: SceneBuilder): void {
     scene.text('She then grabs your head and pushes it towards her rising thighs, so you can drink from her orgasming cunt. As you feast, half-forgotten memories get clearer, your insight gets sharper, and a calming sensation melts away all your problems.');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Cuddles', handler: (st: GameState) => {
@@ -933,7 +933,7 @@ function enterMission2sex(s: GameState, scene: SceneBuilder): void {
       { label: 'She fingers you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
-    (s as any).stat['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/btatiana/Sex/MT8.jpg');
     scene.text('At some point, between your moans, calls to God and screaming her name, Tatiana has managed to turn you face down. She lies over you, kissing your back and whispering sweet-nothings at the same time as her finger penetrates your vulva.');

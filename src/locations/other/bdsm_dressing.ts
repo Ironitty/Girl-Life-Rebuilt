@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_dressing', '');
-  (s as any).bdsmclub['role'] = '';
+  ((s as any).bdsmclub ?? {})['role'] = '';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/dressingroom.jpg');
   scene.text('A huge dressing room. Mostly used by submissives to dress as staff and because of this, it is a safe space and games are not allowed.');
@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PMaid ?? 0) === 1  ||  ((s as any).PCloStyle3 ?? 0) === 2  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Enter the club\'s foyer (submissive role)', handler: (st: GameState) => {
-    (s as any).bdsmclub['role'] = 'sub';
+    ((s as any).bdsmclub ?? {})['role'] = 'sub';
   }, goto: ['bdsm_hallway', 'foyer'] },
     ]);
   }
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloQuality ?? 0) >= 5  &&  ((s as any).bdsmclub ?? 0)?.['domtraining'] === 1) {
       scene.actions([
         { label: 'Enter the club\'s foyer (dominant role)', handler: (st: GameState) => {
-    (s as any).bdsmclub['role'] = 'dom';
+    ((s as any).bdsmclub ?? {})['role'] = 'dom';
   }, goto: ['bdsm_hallway', 'foyer'] },
       ]);
     }

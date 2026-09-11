@@ -49,17 +49,17 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  (s as any).ARGS[2] = qspUntranslated(s, "min(cart_curr_quantity['<<ARGS[1]>>'], ARGS[2])", { location: "item_cart" });
+  ((s as any).ARGS ?? {})[2] = qspUntranslated(s, "min(cart_curr_quantity['<<ARGS[1]>>'], ARGS[2])", { location: "item_cart" });
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) - (((s as any).cost_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] * ((s as any).ARGS ?? 0)[2]);
-  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) - (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
+  ((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = (((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] ?? 0) - (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   scene.build();
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  (s as any).ARGS[2] = ((((s as any).max_curr_aisle ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 0) ? (Math.min(((s as any).max_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] - (((s as any).cart_curr_quantity ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + '']]), qspUntranslated(s, "ARGS[2]", { location: "item_cart" }))) : (qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
+  ((s as any).ARGS ?? {})[2] = ((((s as any).max_curr_aisle ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 0) ? (Math.min(((s as any).max_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] - (((s as any).cart_curr_quantity ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + '']]), qspUntranslated(s, "ARGS[2]", { location: "item_cart" }))) : (qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] * ((s as any).ARGS ?? 0)[2]);
-  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
+  ((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = (((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
   if (((s as any).event_curr_aisle ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
     // TODO-QSP: dynamic "<<$event_curr_aisle['<<ARGS[1]>>']>>"
   }
@@ -69,7 +69,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] * Math.max(1, qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
-  (s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (1 * Math.max(1, qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
+  ((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = (((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (1 * Math.max(1, qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
   scene.build();
 }
 

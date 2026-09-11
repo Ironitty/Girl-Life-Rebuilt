@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'korr2x', '');
-  (s as any).mc_inventory['plasma_tv'] = 1;
+  ((s as any).mc_inventory ?? {})['plasma_tv'] = 1;
   (s as any).popolaini = 0;
   (s as any).saunaYouRoom = 0;
   (s as any).boycherdaksex = 0;

@@ -33,7 +33,7 @@ function enterCheckIfSmsExistsFromId(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
-  (s as any).SMSBuilderVars['reset_flag'] = 1;
+  ((s as any).SMSBuilderVars ?? {})['reset_flag'] = 1;
   return;
   scene.build();
 }

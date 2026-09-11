@@ -691,7 +691,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-                  (s as any).npc_gentle[String((s as any).npcID ?? 0)] = 1;
+                  ((s as any).npc_gentle ?? {})[String((s as any).npcID ?? 0)] = 1;
                   (s as any).cumspclnt = 4;
                   qspCall(s, 'cum_cleanup', '');
                   // TODO-QSP: dynamic text: You wash quickly in shower and <<$npcdesc>> begins to hurry you out.

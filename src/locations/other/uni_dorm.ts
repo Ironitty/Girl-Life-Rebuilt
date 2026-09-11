@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === ''  ||  ((s as any).locArgs?.[0] ?? 0) === 'start') {
     qspCall(s, 'core_library', 'setloc', 'uni_dorm', '');
-    (s as any).uni_dorm['floor'] = '';
+    ((s as any).uni_dorm ?? {})['floor'] = '';
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     qspCall(s, 'themes', 'indoors');

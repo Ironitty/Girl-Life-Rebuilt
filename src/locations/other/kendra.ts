@@ -13,7 +13,7 @@ function enterKendraRoomStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'I should get going', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (1);
+    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big84.jpg');
     scene.text('You look over at the clock. "I should really get going. Sorry to have bothered you."');
@@ -24,7 +24,7 @@ function enterKendraRoomStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Submit to your mistress', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'like');
-    (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
+    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) + (1);
     qspCall(s, 'stat', '');
   }, goto: ['kendra', 'kendra_room_routing'] },
   ]);
@@ -53,7 +53,7 @@ function enterKendraRoomRouting(s: GameState, scene: SceneBuilder): void {
               if (((s as any).kendraQW ?? 0)?.['dom'] === 17) {
                 scene.actions([{ label: 'Continue', goto: ['kendra', 'kendra_gloryhole'] }]);
               } else {
-                (s as any).kendraQW['dom'] = Math.floor(Math.random() * 18) + 0;
+                ((s as any).kendraQW ?? {})['dom'] = Math.floor(Math.random() * 18) + 0;
                 scene.actions([{ label: 'Continue', goto: ['kendra', 'kendra_room_routing'] }]);
               }
             }
@@ -66,7 +66,7 @@ function enterKendraRoomRouting(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraRoom_0(s: GameState, scene: SceneBuilder): void {
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 45;
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom1.jpg');
@@ -90,7 +90,7 @@ function enterKendraRoom_0(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom2_\' + rand(1, 2) + \'.jpg');
   scene.text('She walks over and sits on the couch. "Come here and clean my boots, slave." You walk over and kneel next to the couch before grabbing some tissue to clean her boots, but she stops you. "No! Use your tongue."');
   scene.text('You nod. "Yes, mistress." You start licking her boots clean as she smacks you on the head and points out any spots you\'ve missed.');
@@ -106,7 +106,7 @@ function enterKendraRoom_1(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom3.jpg');
   scene.text('She grabs a bowl of water before she sits on the couch. "Come here and clean my feet, slave." You walk over and kneel next to the couch, adding soap to the water before using the cloth to clean her feet.');
   scene.text('She mostly ignores you and reads a magazine. Once you\'ve finished, she looks them over. "Kiss them."');
@@ -122,7 +122,7 @@ function enterKendraRoom_2(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom4.jpg');
   scene.text('She walks over and sits on the couch. "Come here and clean my feet, slave." You go to grab the bowl of water when she snaps her fingers. "No! Use your tongue."');
   scene.text('You nod. "Yes, mistress." You walk over and kneel next to the couch before removing her boots and licking her feet. You then start sucking on her toes while continuing to lick her feet and legs.');
@@ -138,7 +138,7 @@ function enterKendraRoom_3(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom5.jpg');
   scene.text('Once inside, she leads you over to her bed where she opens the night stand and pulls out a collar which she promptly and tightly buckles around your neck, making it a little hard for you to breathe. With the collar firmly in place, she pulls out a leash and attaches it to the collar before pushing you down. "Get on all fours like a good slave."');
   scene.text('You get down on your hands and knees and she leads you around the room for a few minutes before she takes you out into the hall. She leads you down to the communal kitchen area and then into the lounge, where she gets some snacks and drinks for herself. Several people notice the two of you; some laugh, some ignore it and others give you or sometimes both of you disgusted looks.');
@@ -154,7 +154,7 @@ function enterKendraRoom_4(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom6.jpg');
   scene.text('She walks over and pulls her chair away from her desk before sitting on it. "Come over here slave." You walk over and stand next to her before she suddenly grabs you and pulls you across her lap. Before you even know what\'s happening, she starts spanking you.');
   scene.text('"You\'re such a worthless slave!" she says as she keeps spanking you.');
@@ -173,7 +173,7 @@ function enterKendraRoom_5(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom7.jpg');
   scene.text('She walks over and pulls her chair away from her desk before she grabs a paddle that was sitting on her desk before sitting on the chair. "Come over here slave." You walk over and lay yourself across her lap. You already know what she plans to do.');
   scene.text('"You\'re such a worthless slave!" she says as she starts paddling your ass.');
@@ -192,7 +192,7 @@ function enterKendraRoom_6(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom8.jpg');
   scene.text('She walks over and sits on the couch. "Come here." You walk over to her. "Strip!" she commands.');
   scene.text('"Yes, mistress." You nod and start removing your clothes.');
@@ -210,7 +210,7 @@ function enterKendraRoom_7(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom9.jpg');
   scene.text('She walks over and sits on the couch. "Come here and strip." You walk over and strip naked while standing next to her. Once you\'re fully naked, she smiles. "Now lick my shoes clean."');
   scene.text('"Yes, mistress." You kneel down and start licking her shoes and feet clean as she smacks you on the head and points out any spots you\'ve missed.');
@@ -226,7 +226,7 @@ function enterKendraRoom_8(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom10.jpg');
   scene.text('Once inside, she leads you over to her bed and commands you to strip.');
   scene.text('"Yes, mistress." You start stripping as she opens the night stand and pulls out a collar that she tightly buckles it around your neck, making it a little hard for you to breathe. With the collar firmly in place, she pulls out a leash and attaches it to the collar before pushing you down. "Get down on all fours like a good slave."');
@@ -243,7 +243,7 @@ function enterKendraRoom_9(s: GameState, scene: SceneBuilder): void {
 
 function enterKendraRoom_10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A84');
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom11.jpg');
   scene.text('She walks over and sits on the couch. "Come here slave." You walk over and stand next to her. "Now strip!"');
   scene.text('"Yes, mistress." Once you\'re naked, she pulls you over her lap and starts spanking your bare ass with her hand.');
@@ -261,7 +261,7 @@ function enterKendraRoom_10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraRoom_11(s: GameState, scene: SceneBuilder): void {
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'A84');
   scene.img('images/characters/city/university/girl/kendra/femdom/femdom12.jpg');
   scene.text('As you enter, you notice another African girl sitting on the couch as well. You assume she\'s another student or just a friend of Kendra\'s. Kendra walks over and sits on the table. "Come here, slave." You walk over and stand next to her. "Now strip!"');
@@ -303,7 +303,7 @@ function enterKendraRoom_11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraCouch(s: GameState, scene: SceneBuilder): void {
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'A84');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/lezdom1.jpg');
   scene.text('She walks over and sits on the couch. "Come here, slave." You walk over and stand next to her. "Now sit!"');
@@ -369,7 +369,7 @@ function enterKendraCouch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraBed(s: GameState, scene: SceneBuilder): void {
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   qspCall(s, 'npcStat', 'A84');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/massage1.jpg');
   scene.text('She walks over and sits on the bed. "Come over here and give me a massage, slave." You walk over and sit on the bed behind her and start massaging her shoulders and upper back. Sometime later, you\'ve finished your massage. "My shoulder still hurts. I think I pulled something, kiss it and make it better." You do as you\'re told and start kissing her shoulder, her soft moans causing you to slowly work your way over to kissing her neck as well.');
@@ -438,7 +438,7 @@ function enterKendraBed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraCouchStrap(s: GameState, scene: SceneBuilder): void {
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npcStat', 'A84');
   qspCall(s, 'stat', '');
@@ -558,7 +558,7 @@ function enterKendraCouchStrapAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKendraBedStrap(s: GameState, scene: SceneBuilder): void {
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npcStat', 'A84');
   qspCall(s, 'stat', '');
@@ -716,7 +716,7 @@ function enterKendraGloryhole(s: GameState, scene: SceneBuilder): void {
 function enterKendraGloryholeSuck1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory5.jpg');
   scene.text('You open your mouth and start sucking the stranger\'s dick. You can hear soft moans from the other side and feel Kendra\'s hands on the sides of your head pushing you to take the dick deeper.');
@@ -826,7 +826,7 @@ function enterKendraGloryholeSuck1a(s: GameState, scene: SceneBuilder): void {
 function enterKendraGloryholeSuck2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'Unknown gloryhole guy', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  (s as any).kendraQW['dom'] = ((s as any).kendraQW['dom'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['dom'] = (((s as any).kendraQW ?? {})['dom'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/sex/gloryhole/first_glory5.jpg');
   scene.text('You know the drill at this point and get down on your knees to start sucking the stranger\'s dick right away. You can hear soft moans from the other side and feel Kendra\'s hands on the sides of your head pushing you to take the dick deeper.');
   qspCall(s, 'arousal', 'bj', 3, 'sub');
@@ -1259,7 +1259,7 @@ function enterKendraPetka1(s: GameState, scene: SceneBuilder): void {
         scene.text('Once his dick is locked away in the chastity device again, she glances over to you. "Very well you may go now." You know she is dismissing you and not wanting to get on her bad side, you get up and walk over to the door. You glance back, but she is not paying attention to you and he still won\'t meet your gaze, so you open the door and leave.');
       }
     }
-    (s as any).petkaQW['pegged_kendra'] = ((s as any).petkaQW['pegged_kendra'] ?? 0) + (1);
+    ((s as any).petkaQW ?? {})['pegged_kendra'] = (((s as any).petkaQW ?? {})['pegged_kendra'] ?? 0) + (1);
     qspCall(s, 'arousal', 'voyeur_sex', 2);
     qspCall(s, 'arousal', 'voyeur', 3);
     qspCall(s, 'arousal', 'end');

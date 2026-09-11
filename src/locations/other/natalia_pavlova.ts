@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterFirstChat(s: GameState, scene: SceneBuilder): void {
-  (s as any).nataliaQW['introduction'] = 1;
+  ((s as any).nataliaQW ?? {})['introduction'] = 1;
   if (((s as any).grupTipe ?? 0) === 1) {
     scene.text('You see Natalia sitting with the nerds, reading a book. When she notices you, she glances up and smiles.');
     // TODO-QSP: dynamic text: You smile back at her. "Hey Natalia. I thought I'd come and say hello. I'm <<$pc...
@@ -119,7 +119,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well… we could help each other? Nothing serious though, as my studies come first. I can\'t afford the distraction of a serious relationship."');
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
-    (s as any).nataliaQW['sex_agree'] = (-1);
+    ((s as any).nataliaQW ?? {})['sex_agree'] = (-1);
     scene.text('"I\'m sorry, but you\'re my friend and I value that. This isn\'t something I\'d want to get into now. Maybe another time."');
     // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, no problem. If you change your mind, just let me know....
     scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, no problem. If you change your mind, just let me know. Sorry if I embarrassed you."`);
@@ -131,7 +131,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Yes', handler: (st: GameState) => {
-    (s as any).nataliaQW['sex_agree'] = 1;
+    ((s as any).nataliaQW ?? {})['sex_agree'] = 1;
     scene.text('"You know what, that would be great. I know that must have been difficult to ask, so thanks for confiding in me," you smile at her before leaving.');
     scene.actions([
       { label: 'Go back to the library', handler: (st: GameState) => {
@@ -150,7 +150,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nataliaQW ?? 0)?.['sex_agree'] === -1) {
           scene.actions([
             { label: 'Tell her that you\'re ready for a sexual relationship', handler: (st: GameState) => {
-    (s as any).nataliaQW['sex_agree'] = 1;
+    ((s as any).nataliaQW ?? {})['sex_agree'] = 1;
     scene.text('After your friendly catch up, you prod Natalia in the arm to get her attention.');
     scene.text('When she turns to you, you lean in very close to her. "Erm… I\'ve been thinking about your earlier suggestion…" You pause to gather yourself as you realize your face is getting redder and redder. You nervously clear your throat and continue. "Well I\'ve thought about it, and yes that would be great. Although I\'d understand if…"');
     // TODO-QSP: dynamic text: Clearly realizing you're finding this difficult, she cuts you off to save you fu...
@@ -188,7 +188,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Yes', handler: (st: GameState) => {
-    (s as any).nataliaQW['library_sex_day'] = ((s as any).daystart ?? 0);
+    ((s as any).nataliaQW ?? {})['library_sex_day'] = ((s as any).daystart ?? 0);
     qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
     scene.img('images/characters/pavlovsk/school/girl/natalia/love/kiss1.mp4');
     // TODO-QSP: dynamic text: You silently nod before Natalia looks around. "Come on, <<$pcs_nickname>>, follo...

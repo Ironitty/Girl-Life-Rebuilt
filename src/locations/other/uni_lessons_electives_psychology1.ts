@@ -12,7 +12,7 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['first_visit_psychology_101']) {
     scene.text('You walk into the classroom and take a seat at one of the tables. The rest of your classmates walk in one-by-one before Professor Kucherov enters the classroom and closes the door. He turns to the class and begins today\'s lecture.');
   } else {
-    (s as any).university['first_visit_psychology_101'] = 1;
+    ((s as any).university ?? {})['first_visit_psychology_101'] = 1;
     scene.text('You walk into the classroom and take a seat. The rest of your classmates walk in one-by-one before a decent looking young man, likely in his mid or late twenties walks in, who appears to be in good shape enters the classroom and closes the door. He stops at the front of the class. "My name is Dmitriy Kucherov, but you may call me, Professor Kucherov. I am going to teach you how the human mind works in this class, or at least the basics understanding of how people think and more importantly why they think the way they do." With that he begins today\'s lecture.');
   }
   qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4  &&  ((s as any).trait_vars ?? 0)?.['academic'] === 0) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
@@ -48,7 +48,7 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_101Listen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
-  (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+  ((s as any).trait_vars ?? {})['academic_lessons'] = (((s as any).trait_vars ?? {})['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Kucherov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -137,7 +137,7 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_102Listen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
-  (s as any).trait_vars['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
+  ((s as any).trait_vars ?? {})['academic_lessons'] = (((s as any).trait_vars ?? {})['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Kucherov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
@@ -630,7 +630,7 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (1);
+    ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) - (1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
@@ -648,7 +648,7 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
         { label: 'Refuse again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    (s as any).kendraQW['sub'] = (-1);
+    ((s as any).kendraQW ?? {})['sub'] = (-1);
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');

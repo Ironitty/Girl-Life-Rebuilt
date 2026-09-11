@@ -9,9 +9,9 @@ function enterBandGarage(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  (s as any).gopnikbandQW['radomirblocked'] = 0;
+  ((s as any).gopnikbandQW ?? {})['radomirblocked'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['beer_daystart'] < ((s as any).daystart ?? 0)) {
-    (s as any).gopnikbandQW['beer_count'] = 0;
+    ((s as any).gopnikbandQW ?? {})['beer_count'] = 0;
   }
   qspCall(s, 'anushka_konstantinov_schedule', '');
   qspCall(s, 'arkadi_fyodorov_schedule', '');
@@ -32,8 +32,8 @@ function enterBandGarage(s: GameState, scene: SceneBuilder): void {
     scene.text('You reach into the ice-cold cooler and pull out a chilled bottle of beer. The glass sweats in your hand as you pop it open and take a sip. It\'s not great, but it gets the job done.');
     qspCall(s, 'drugs', 'alcohol', 'beer');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).gopnikbandQW['beer_daystart'] = ((s as any).daystart ?? 0);
-    (s as any).gopnikbandQW['beer_count'] = ((s as any).gopnikbandQW['beer_count'] ?? 0) + (1);
+    ((s as any).gopnikbandQW ?? {})['beer_daystart'] = ((s as any).daystart ?? 0);
+    ((s as any).gopnikbandQW ?? {})['beer_count'] = (((s as any).gopnikbandQW ?? {})['beer_count'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'go back', goto: ['praiders_garage', 'band_garage'] },
@@ -432,11 +432,11 @@ function enterHangout(s: GameState, scene: SceneBuilder): void {
 function enterHangout1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 1;
-  (s as any).gopnikbandQW['lena_lara_present'] = 0;
-  (s as any).gopnikbandQW['lavrenti_present'] = 0;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -479,11 +479,11 @@ function enterHangout1(s: GameState, scene: SceneBuilder): void {
 function enterHangout2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 0;
-  (s as any).gopnikbandQW['lena_lara_present'] = 1;
-  (s as any).gopnikbandQW['lavrenti_present'] = 0;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -526,11 +526,11 @@ function enterHangout2(s: GameState, scene: SceneBuilder): void {
 function enterHangout3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 0;
-  (s as any).gopnikbandQW['lena_lara_present'] = 0;
-  (s as any).gopnikbandQW['lavrenti_present'] = 1;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -573,11 +573,11 @@ function enterHangout3(s: GameState, scene: SceneBuilder): void {
 function enterHangout4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 0;
-  (s as any).gopnikbandQW['lena_lara_present'] = 1;
-  (s as any).gopnikbandQW['lavrenti_present'] = 1;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lavrenti, Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -621,11 +621,11 @@ function enterHangout4(s: GameState, scene: SceneBuilder): void {
 function enterHangout5(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 1;
-  (s as any).gopnikbandQW['lena_lara_present'] = 1;
-  (s as any).gopnikbandQW['lavrenti_present'] = 0;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 0;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -669,11 +669,11 @@ function enterHangout5(s: GameState, scene: SceneBuilder): void {
 function enterHangout6(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 1;
-  (s as any).gopnikbandQW['lena_lara_present'] = 0;
-  (s as any).gopnikbandQW['lavrenti_present'] = 1;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona and Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -718,11 +718,11 @@ function enterHangout6(s: GameState, scene: SceneBuilder): void {
 function enterHangout7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 1;
-  (s as any).gopnikbandQW['lena_lara_present'] = 0;
-  (s as any).gopnikbandQW['lavrenti_present'] = 0;
-  (s as any).gopnikbandQW['roman_present'] = 1;
-  (s as any).gopnikbandQW['niko_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -767,11 +767,11 @@ function enterHangout7(s: GameState, scene: SceneBuilder): void {
 function enterHangout8(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 1;
-  (s as any).gopnikbandQW['lena_lara_present'] = 1;
-  (s as any).gopnikbandQW['lavrenti_present'] = 1;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera and Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -817,11 +817,11 @@ function enterHangout8(s: GameState, scene: SceneBuilder): void {
 function enterHangout9(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 1;
-  (s as any).gopnikbandQW['lena_lara_present'] = 1;
-  (s as any).gopnikbandQW['lavrenti_present'] = 1;
-  (s as any).gopnikbandQW['roman_present'] = 1;
-  (s as any).gopnikbandQW['niko_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera, Lavrenti and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
@@ -868,11 +868,11 @@ function enterHangout9(s: GameState, scene: SceneBuilder): void {
 function enterHangout10(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
-  (s as any).gopnikbandQW['alyona_present'] = 0;
-  (s as any).gopnikbandQW['lena_lara_present'] = 0;
-  (s as any).gopnikbandQW['lavrenti_present'] = 0;
-  (s as any).gopnikbandQW['roman_present'] = 0;
-  (s as any).gopnikbandQW['niko_present'] = 1;
+  ((s as any).gopnikbandQW ?? {})['alyona_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lena_lara_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['roman_present'] = 0;
+  ((s as any).gopnikbandQW ?? {})['niko_present'] = 1;
   scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera, Lavrenti and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {

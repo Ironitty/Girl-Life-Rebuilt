@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -16,7 +16,7 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_teaching_studies_semester_1');
-    (s as any).class['uni_teaching_studies_semester_1_general education 101_exam_done'] = 1;
+    ((s as any).class ?? {})['uni_teaching_studies_semester_1_general education 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade']}.`);
@@ -45,7 +45,7 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -56,7 +56,7 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_teaching_studies_semester_1');
-    (s as any).class['uni_teaching_studies_semester_1_teaching methods 101_exam_done'] = 1;
+    ((s as any).class ?? {})['uni_teaching_studies_semester_1_teaching methods 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade']}.`);
@@ -85,7 +85,7 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -96,7 +96,7 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_teaching_studies_semester_1');
-    (s as any).class['uni_teaching_studies_semester_1_learning theories 101_exam_done'] = 1;
+    ((s as any).class ?? {})['uni_teaching_studies_semester_1_learning theories 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade']}.`);
@@ -125,7 +125,7 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -136,7 +136,7 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_nursing_semester_1');
-    (s as any).class['uni_nursing_semester_1_patient care 101_exam_done'] = 1;
+    ((s as any).class ?? {})['uni_nursing_semester_1_patient care 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade']}.`);
@@ -165,7 +165,7 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnatomyAndPhysiology_101(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -176,7 +176,7 @@ function enterAnatomyAndPhysiology_101(s: GameState, scene: SceneBuilder): void 
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_nursing_semester_1');
-    (s as any).class['uni_nursing_semester_1_anatomy and physiology 101_exam_done'] = 1;
+    ((s as any).class ?? {})['uni_nursing_semester_1_anatomy and physiology 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade']}.`);
@@ -205,7 +205,7 @@ function enterAnatomyAndPhysiology_101(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterExaminationAndTreatment_101(s: GameState, scene: SceneBuilder): void {
-  (s as any).uni_period['exam'] = ((s as any).daystart ?? 0);
+  ((s as any).uni_period ?? {})['exam'] = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -216,7 +216,7 @@ function enterExaminationAndTreatment_101(s: GameState, scene: SceneBuilder): vo
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
     qspCall(s, 'grades', 'assign_grade_description', 'uni_nursing_semester_1');
-    (s as any).class['uni_nursing_semester_1_examination and treatment 101_exam_done'] = 1;
+    ((s as any).class ?? {})['uni_nursing_semester_1_examination and treatment 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_1_examination  &&  treatment 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
       scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade']}.`);

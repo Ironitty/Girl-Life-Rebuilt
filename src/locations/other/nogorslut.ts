@@ -128,7 +128,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     if (((s as any).numnpc ?? 0) === 14) {
                                       scene.text('');
                                       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-                                        (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+                                        ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
                                         scene.text('Katja blushes slightly and tries to avoid your gaze, looking away every time you look at her.');
                                       }
                                     } else {

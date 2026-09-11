@@ -85,7 +85,7 @@ function enterFatherbend_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim1.jpg');
   // TODO-QSP: dynamic text: Your stepfather quietly mutters something to himself when he sees the butt plug ...
   scene.text(`Your stepfather quietly mutters something to himself when he sees the butt plug in your ass: "Oh ${((s as any).pcs_nickname ?? 0)}, you're such a good little slut." His fingers grasp the plug's base, and you can feel him shifting it around in your body, often tugging at it but not quite hard enough to make it come out. Besides: it would be difficult to relax your ass enough to take it out anyway, in your current position. You look back at him and say: "I know what you like, Daddy. I figured I would get myself ready for you."`);
-  (s as any).npc_had_sex['A28'] = 1;
+  ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'anal_dildo', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
   scene.actions([
@@ -100,7 +100,7 @@ function enterFatherbend_2(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim2.jpg');
   scene.text('Your stepfather chuckles appreciatively when you bend over and pull down your panties in one swift movement, providing him with a wonderful view of your bare ass. Not needing any more encouragement he reaches out for you immediately, going straight for your puckered sphincter. The rough callouses on his hand scratch your skin a bit as he begins rub his finger against your ass in earnest, but in a way it actually feels kind of nice.');
-  (s as any).npc_had_sex['A28'] = 1;
+  ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
   scene.actions([
@@ -117,7 +117,7 @@ function enterFatherbend_3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your stepfather chuckles appreciatively when you bend over and pull up your skir...
   scene.text(`Your stepfather chuckles appreciatively when you bend over and pull up your skirt, revealing your bare ass. "Wow ${((s as any).pcs_nickname ?? 0)}, you're not wearing any panties?"`);
   scene.text('Not needing any more encouragement he reaches out for you immediately, going straight for your puckered sphincter. The rough callouses on his hand scratch your skin a bit as he begins to rub his finger against your ass in earnest, but in a way it actually feels kind of nice.');
-  (s as any).npc_had_sex['A28'] = 1;
+  ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
   scene.actions([

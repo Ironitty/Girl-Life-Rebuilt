@@ -24,10 +24,10 @@ function enterWithBoyStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['at_home'] = 1;
-  (s as any).date_ev['type'] = 'home_date';
+  ((s as any).date_ev ?? {})['at_home'] = 1;
+  ((s as any).date_ev ?? {})['type'] = 'home_date';
   // TODO-QSP: $date_ev[''] = 'home_date'
-  (s as any).date_ev['activity_count'] = ((s as any).date_ev['activity_count'] ?? 0) + (1);
+  ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
   qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
   scene.build();
 }
@@ -157,7 +157,7 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrinkMenuEnd(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['grab_drinks'] = 1;
+  ((s as any).date_ev ?? {})['grab_drinks'] = 1;
   if (((s as any).date_ev ?? 0)?.['his_drink'] === 0) {
     scene.actions([
       { label: 'Ask if he wants something', handler: (st: GameState) => {
@@ -212,7 +212,7 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterSnackMenuEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  (s as any).date_ev['grab_snacks'] = 1;
+  ((s as any).date_ev ?? {})['grab_snacks'] = 1;
   qspCall(s, 'stat', '');
   // TODO-QSP: xgt 'date_chill', 'get_ready2'
   scene.build();
@@ -331,7 +331,7 @@ function enterIntermission1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Wait until later', handler: (st: GameState) => {
-    (s as any).date_ev['bj_later'] = 1;
+    ((s as any).date_ev ?? {})['bj_later'] = 1;
     qspCall(s, 'date_funcs', 'date_rate', 'dislike');
     scene.text('"Can this wait until later?" you say distractedly, still watching what\'s on the screen.');
     scene.actions([
@@ -396,7 +396,7 @@ function enterUnzipPants(s: GameState, scene: SceneBuilder): void {
 function enterChillHj1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Seriously jerk him', handler: (st: GameState) => {
-    (s as any).date_ev['sex_pos'] = 'handjob';
+    ((s as any).date_ev ?? {})['sex_pos'] = 'handjob';
     qspCall(s, 'arousal', 'hj', 10);
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
@@ -414,7 +414,7 @@ function enterChillHj1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['sex_pos'] = 'handjob';
+  ((s as any).date_ev ?? {})['sex_pos'] = 'handjob';
   qspCall(s, 'arousal', 'hj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/handjob/television1.mp4');
@@ -435,7 +435,7 @@ function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChillBj1(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['sex_pos'] = 'blowjob';
+  ((s as any).date_ev ?? {})['sex_pos'] = 'blowjob';
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/bj45.mp4');
@@ -453,7 +453,7 @@ function enterChillBj1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChillBjWatch1(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['sex_pos'] = 'blowjob';
+  ((s as any).date_ev ?? {})['sex_pos'] = 'blowjob';
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/blowjob/television1.jpg');
@@ -688,7 +688,7 @@ function enterFinishWatch(s: GameState, scene: SceneBuilder): void {
 function enterGoToSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   scene.text('Oh forget it. You just need to have sex already.');
-  (s as any).date_ev['npc_home_sex'] = 1;
+  ((s as any).date_ev ?? {})['npc_home_sex'] = 1;
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_start', 'initiate_pre', $npcID, 'npc_home'
@@ -698,7 +698,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_count_chill[String((s as any).npcID ?? 0)] = ((s as any).date_count_chill[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  ((s as any).date_count_chill ?? {})[String((s as any).npcID ?? 0)] = (((s as any).date_count_chill ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
   scene.build();
 }
 

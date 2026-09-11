@@ -5,8 +5,8 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).sisterQW['partycount'] = ((s as any).sisterQW['partycount'] ?? 0) + (1);
-  (s as any).sisterQW['party'] = 2;
+  ((s as any).sisterQW ?? {})['partycount'] = (((s as any).sisterQW ?? {})['partycount'] ?? 0) + (1);
+  ((s as any).sisterQW ?? {})['party'] = 2;
   (s as any).sisboyparty = 1;
   (s as any).sisboypartyQW = ((s as any).sisboypartyQW ?? 0) + (1);
   (s as any).alkoParty = 0;

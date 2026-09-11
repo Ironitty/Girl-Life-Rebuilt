@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterVirginityPaidTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['virginity_paid_talk'] = 1;
+  ((s as any).sex_ev ?? {})['virginity_paid_talk'] = 1;
   // TODO-QSP: gs 'sex_ev_stats', 'prostitution_init', sex_ev['buy_virginity'] * 1000
   scene.img('images/shared/misc/money.jpg');
   // TODO-QSP: dynamic text: "By the way, here," <<$npcdesc>> says, suddenly turning away from you and diggin...
@@ -55,8 +55,8 @@ function enterVirginityPaidTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSugarBabyOffer(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['sugar_daddy_offer'] = Math.floor(Math.random() * 11) + 10;
-  (s as any).sex_ev['sugar_baby_offer'] = 1;
+  ((s as any).sex_ev ?? {})['sugar_daddy_offer'] = Math.floor(Math.random() * 11) + 10;
+  ((s as any).sex_ev ?? {})['sugar_baby_offer'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 4);
   // TODO-QSP: dynamic text: "I really enjoyed this," <<$npcdesc>> says.
   scene.text(`"I really enjoyed this," ${((s as any).npcdesc ?? 0)} says.`);
@@ -121,7 +121,7 @@ function enterSugarBabyOffer3(s: GameState, scene: SceneBuilder): void {
 function enterSugarBabyRefuse(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Refuse him', handler: (st: GameState) => {
-    (s as any).sex_ev['sugar_baby_offer'] = (-1);
+    ((s as any).sex_ev ?? {})['sugar_baby_offer'] = (-1);
     scene.actions([
       { label: 'Nice try but no', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
@@ -167,9 +167,9 @@ function enterSugarBabyOfferHowMuch(s: GameState, scene: SceneBuilder): void {
 
 function enterJustAHookup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 9) {
-    (s as any).sex_ev['just_a'] = 'one night stand';
+    ((s as any).sex_ev ?? {})['just_a'] = 'one night stand';
   } else {
-    (s as any).sex_ev['just_a'] = 'random hookup';
+    ((s as any).sex_ev ?? {})['just_a'] = 'random hookup';
   }
   scene.actions([
     { label: 'This was a <<$sex_ev[\'just_a\']>>', handler: (st: GameState) => {
@@ -188,7 +188,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
     scene.actions([
       { label: 'I have a boyfriend', handler: (st: GameState) => {
-    (s as any).npc_know_boyfriend[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_boyfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
     // TODO-QSP: dynamic text: "I have a boyfriend," you say, giving him a look as you're <<$sex_ev['dress_desc...
     scene.text(`"I have a boyfriend," you say, giving him a look as you're ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
@@ -251,7 +251,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_girlfriends ?? 0) > 0) {
     scene.actions([
       { label: 'I have a girlfriend', handler: (st: GameState) => {
-    (s as any).npc_know_girlfriend[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_know_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'sex_ev_leave', 'dress_loop');
     // TODO-QSP: dynamic text: "I have a girlfriend," you say, giving him a look as you're <<$sex_ev['dress_des...
     scene.text(`"I have a girlfriend," you say, giving him a look as you're ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
@@ -330,7 +330,7 @@ function enterSugarBabyOfferHaggle(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Haggle', handler: (st: GameState) => {
     // TODO-QSP: :invalid_counter_offer
-    (s as any).sex_ev['sugar_daddy_counteroffer'] = 0;
+    ((s as any).sex_ev ?? {})['sugar_daddy_counteroffer'] = 0;
     if (((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] > 50  ||  ((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] < 10) {
       // TODO-QSP: jump 'invalid_counter_offer'
     } else {
@@ -343,12 +343,12 @@ function enterSugarBabyOfferHaggle(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarBabyOfferHaggle2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
-  (s as any).sex_ev['haggle_limit'] = qspFunc(s, 'sex_ev_stats', 'sugar_daddy_haggle_limit');
+  ((s as any).sex_ev ?? {})['haggle_limit'] = qspFunc(s, 'sex_ev_stats', 'sugar_daddy_haggle_limit');
   if (((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] === ((s as any).sex_ev ?? 0)?.['sugar_daddy_offer']) {
     qspCall(s, 'sex_ev_sugardaddy_talk', 'sugar_baby_offer_accept');
   } else {
     if (((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] < ((s as any).sex_ev ?? 0)?.['sugar_daddy_offer']) {
-      (s as any).sex_ev['sugar_daddy_offer'] = ((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'];
+      ((s as any).sex_ev ?? {})['sugar_daddy_offer'] = ((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'];
       qspCall(s, 'sex_ev_stats', 'sugar_daddy_add');
       qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
       // TODO-QSP: dynamic text: "Why don't we say <<sex_ev['sugar_daddy_counteroffer'] * 100>>? I'd feel bad if ...
@@ -367,12 +367,12 @@ function enterSugarBabyOfferHaggle2(s: GameState, scene: SceneBuilder): void {
           scene.text(`"How about ${((s as any).sex_ev ?? {})?.['sugar_daddy_counteroffer'] * 100}?" you smirk.`);
           // TODO-QSP: dynamic text: "You greedy bitch," <<$npcdesc>> snickers back. "You're not worth that much. Com...
           scene.text(`"You greedy bitch," ${((s as any).npcdesc ?? 0)} snickers back. "You're not worth that much. Come on, try again."`);
-          (s as any).sex_ev['haggle_fail'] = 1;
+          ((s as any).sex_ev ?? {})['haggle_fail'] = 1;
           // TODO-QSP: xgt 'sex_ev_sugardaddy_talk', 'sugar_baby_offer_haggle'
         }
       } else {
         if ((Math.floor(Math.random() * (((s as any).pcs_persuas ?? 0) - 1 + 1)) + (1)) > ((s as any).npc_willpower ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] < ((s as any).sex_ev ?? 0)?.['sugar_daddy_offer'] + 2) {
-          (s as any).sex_ev['sugar_daddy_offer'] = ((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'];
+          ((s as any).sex_ev ?? {})['sugar_daddy_offer'] = ((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'];
           qspCall(s, 'sex_ev_stats', 'sugar_daddy_add');
           qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 4);
           // TODO-QSP: dynamic text: "Why don't we say... <<sex_ev['sugar_daddy_counteroffer'] * 100>>?" you smirk, <...
@@ -386,7 +386,7 @@ function enterSugarBabyOfferHaggle2(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: xgt 'sex_ev_sugardaddy_talk', 'sugar_baby_offer_haggle_fail'
           } else {
             qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
-            (s as any).sex_ev['sugar_daddy_offer'] = ((s as any).sex_ev['sugar_daddy_offer'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
+            ((s as any).sex_ev ?? {})['sugar_daddy_offer'] = (((s as any).sex_ev ?? {})['sugar_daddy_offer'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
             // TODO-QSP: dynamic text: "How about... <<sex_ev['sugar_daddy_counteroffer'] * 100>>?" you ask, <<$sex_ev[...
             scene.text(`"How about... ${((s as any).sex_ev ?? {})?.['sugar_daddy_counteroffer'] * 100}?" you ask, ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
             // TODO-QSP: dynamic text: "Seems a little steep," <<$npcdesc>> frowns. "Why don't we try <<sex_ev['sugar_d...
@@ -402,8 +402,8 @@ function enterSugarBabyOfferHaggle2(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarBabyOfferHaggleFail(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 1);
-  (s as any).sex_ev['sugar_baby_offer'] = (-1);
-  (s as any).sex_ev['haggle_limit'] = qspFunc(s, 'sex_ev_stats', 'sugar_daddy_haggle_limit');
+  ((s as any).sex_ev ?? {})['sugar_baby_offer'] = (-1);
+  ((s as any).sex_ev ?? {})['haggle_limit'] = qspFunc(s, 'sex_ev_stats', 'sugar_daddy_haggle_limit');
   // TODO-QSP: dynamic text: "How about <<sex_ev['sugar_daddy_counteroffer'] * 100>>?" you try again, <<$sex_...
   scene.text(`"How about ${((s as any).sex_ev ?? {})?.['sugar_daddy_counteroffer'] * 100}?" you try again, ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
   if (((s as any).sex_ev ?? 0)?.['sugar_daddy_counteroffer'] > ((s as any).sex_ev ?? 0)?.['haggle_limit']) {
@@ -419,7 +419,7 @@ function enterSugarBabyOfferHaggleFail(s: GameState, scene: SceneBuilder): void 
 
 function enterWifeProblems(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_wife ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['wife_problem_talk'] === 0) {
-    (s as any).sex_ev['wife_problem_talk'] = 1;
+    ((s as any).sex_ev ?? {})['wife_problem_talk'] = 1;
     qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add', 5);
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
     if (((s as any).npc_argumentative ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {

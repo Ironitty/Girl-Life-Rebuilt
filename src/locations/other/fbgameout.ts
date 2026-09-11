@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/football/watching.jpg');
     scene.text('You take a seat on the ground near the field and watch the jocks play football. Most of them are pretty competitive and are really pushing it to try and win. There are some occasional arguments about a foul, but for the most part they get along and have fun. You have to admit it looks pretty fun, and think that you should ask to join them one day.');
@@ -24,7 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Ask to join', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (2);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/football/asking.jpg');
     scene.text('You walk over and greet them. "Hey guys, what are you doing?"');
@@ -35,7 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/football/watching.jpg');
     scene.text('You take a seat on the ground near the field and watch them play. Most of them are pretty competitive and are really pushing it to try and win. There are some occasional arguments about a foul, but for the most part they get along and have fun. You have to admit it looks pretty fun, and think that you should ask to join them again one day.');
@@ -105,7 +105,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'exp_gain', 'ftbll', Math.floor(Math.random() * 3) + 0);
     qspCall(s, 'exp_gain', 'stren', 1);
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
     qspCall(s, 'npc_relationship', 'modify', 'A18', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A19', 'dislike');
     qspCall(s, 'stat', '');
@@ -160,7 +160,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 20);
       qspCall(s, 'exp_gain', 'vital', 1);
       qspCall(s, 'exp_gain', 'ftbll', 1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/pickupgames/football/pass.jpg');
       scene.text('You decide to pass the ball to Svyatoslav. You can clearly see him waving his hands, yelling that he\'s free.');
@@ -198,7 +198,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 20);
       qspCall(s, 'exp_gain', 'vital', 1);
       qspCall(s, 'exp_gain', 'ftbll', 1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/pickupgames/football/shoot.jpg');
       scene.text('You take aim and kick the ball. It gets the perfect arch and sails above Lariska\'s head into the net.');
@@ -236,7 +236,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 20);
       qspCall(s, 'exp_gain', 'vital', 1);
       qspCall(s, 'exp_gain', 'ftbll', 1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/pickupgames/football/dribble.jpg');
       scene.text('With Christina closing in you take a step to the right, making her follow you. As soon as she catches up, you quickly jump to the left and dribble past her.');
@@ -277,7 +277,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'exp_gain', 'ftbll', Math.floor(Math.random() * 2) + 0);
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/football/fail.jpg');
     scene.text('There are too many options and you hesitate, not sure what to do. In a matter of seconds, you\'re swarmed by the other team. They easily steal the ball from you and go on the offensive.');
@@ -356,7 +356,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 20);
       qspCall(s, 'exp_gain', 'vital', 1);
       qspCall(s, 'exp_gain', 'ftbll', 1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/pickupgames/football/pass.jpg');
       scene.text('You decide to pass the ball to Svyatoslav. You can clearly see him waving his hands, yelling that he\'s free.');
@@ -394,8 +394,8 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 20);
       qspCall(s, 'exp_gain', 'vital', 1);
       qspCall(s, 'exp_gain', 'ftbll', 1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/pickupgames/football/shoot.jpg');
       scene.text('You take aim and kick the ball. It gets the perfect arch and sails above Lariska\'s head into the net.');
@@ -433,7 +433,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sweat', 'add', 20);
       qspCall(s, 'exp_gain', 'vital', 1);
       qspCall(s, 'exp_gain', 'ftbll', 1);
-      (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+      ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) + (1);
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/school/pickupgames/football/dribble.jpg');
       scene.text('With Christina closing in you take a step to the right, making her follow you. As soon as she catches up, you quickly jump to the left and dribble past her…');
@@ -474,7 +474,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'sweat', 'add', 20);
     qspCall(s, 'exp_gain', 'ftbll', Math.floor(Math.random() * 2) + 0);
-    (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    ((s as any).grupvalue ?? {})[2] = (((s as any).grupvalue ?? {})[2] ?? 0) - (1);
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/football/fail.jpg');
     scene.text('There are too many options and you hesitate, not sure what to do. In a matter of seconds, you\'re swarmed by the other team. They easily steal the ball and go on the offensive.');

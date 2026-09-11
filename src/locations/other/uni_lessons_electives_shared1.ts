@@ -16,7 +16,7 @@ function enterAnushkaStudy(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later."');
     scene.text('With that, she gathers her stuff and leaves.');
   } else {
-    (s as any).anushkaCityQW['first_visit'] = 1;
+    ((s as any).anushkaCityQW ?? {})['first_visit'] = 1;
     scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later, but you should stop by my place sometime."');
     scene.text('She tells you where the apartment she shares with the boys from the band is located before she gathers her stuff and leaves.');
   }
@@ -33,7 +33,7 @@ function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', 'set_dick', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcStat', 'A84', 'a');
-  (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) + (1);
+  ((s as any).kendraQW ?? {})['sub'] = (((s as any).kendraQW ?? {})['sub'] ?? 0) + (1);
   scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_kneel.jpg');
   scene.text('You walk over and the young man stands up and turns to face you. He looks a little surprised at what\'s happening, but licks his lip. His eyes follow you as you drop down on your knees in front of him and he grins before glancing over at Kendra. "God damn, I can\'t believe it. This bitch will do anything you say!" His voice is filled with surprise and what sounds like admiration.');
   scene.text('You can hear the amusement in her tone as Kendra replies to him. "Told you. I have a lot of white slaves at this place who love being owned by an ebony goddess. Isn\'t that right, slave?"');
@@ -51,7 +51,7 @@ function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Suck his cock', handler: (st: GameState) => {
-    (s as any).kendraQW['classroom_sex'] = ((s as any).kendraQW['classroom_sex'] ?? 0) + (0);
+    ((s as any).kendraQW ?? {})['classroom_sex'] = (((s as any).kendraQW ?? {})['classroom_sex'] ?? 0) + (0);
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra2.jpg');
     // TODO-QSP: dynamic text: You open your mouth while grabbing his <<dick>>cm <<$dick_girth>> dick with your...
     scene.text(`You open your mouth while grabbing his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick with your hand and guiding it into your mouth. You stroke the shaft of his cock with one hand while you close your lips around and start sucking on it. You can hear him softly moan as you do.`);

@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterMirakiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A64');
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (10);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   scene.img('images/characters/gadukino/mira/mirakiss\'+rand(1, 4)+\'.jpg');
   (s as any).temp = Math.floor(Math.random() * 4) + 1;
@@ -77,7 +77,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp ?? 0) === 3) {
       scene.text('Mira fondles your breasts, gently squeezing them in her hands. Then, she kisses and teases your nipples with her tongue.');
     }
-    (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
+    ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (10);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
     qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
     qspCall(s, 'stat', '');
@@ -102,7 +102,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHornyTalk(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (5);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (5);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/horny_talk.jpg');
@@ -131,7 +131,7 @@ function enterHornyTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMirafinger(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (5);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (5);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/mirafinger_dog\'+rand(1, 4)+\'.jpg');
@@ -147,7 +147,7 @@ function enterMirafinger(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (5);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (5);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 50  &&  (Math.floor(Math.random() * 3) + 0) !== 0) {
@@ -192,10 +192,10 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
 
 function enterLickmiraStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).MiraVars ?? 0)?.['had_sex'] === 0) {
-    (s as any).MiraVars['had_sex'] = 1;
+    ((s as any).MiraVars ?? {})['had_sex'] = 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
   }
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (10);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/lickmira_start.jpg');
@@ -214,7 +214,7 @@ function enterLickmiraStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (10);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
   if (((s as any).MiraVars ?? 0)?.['arousal'] >= 50  &&  (Math.floor(Math.random() * 3) + 0) !== 0) {
@@ -269,7 +269,7 @@ function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiralickStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['cuni_given'] = ((s as any).MiraVars['cuni_given'] ?? 0) + (1);
+  ((s as any).MiraVars ?? {})['cuni_given'] = (((s as any).MiraVars ?? {})['cuni_given'] ?? 0) + (1);
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     scene.img('images/characters/gadukino/mira/sex/mira_start_tanga1.jpg');
     scene.text('Mira pulls down your panties with a smile while looking you in the eyes. You lean against the tree, close your eyes, and wait for her to continue…');
@@ -293,11 +293,11 @@ function enterMiralickOrgasm(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter69_1(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (10);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   if (((s as any).MiraVars ?? 0)?.['arousal'] >= 50  &&  ((s as any).pcs_horny ?? 0) >= 50  &&  (Math.floor(Math.random() * 3) + 0) !== 0) {
     (s as any).miraorgasm = 1;
-    (s as any).MiraVars['arousal'] = 0;
+    ((s as any).MiraVars ?? {})['arousal'] = 0;
     scene.img('images/characters/gadukino/mira/sex/lickmira_69_cum\'+rand(1, 2)+\'.jpg');
     // TODO-QSP: $text69[4]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emotions[iif(p...
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -316,7 +316,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).MiraVars ?? 0)?.['arousal'] >= 50  &&  ((s as any).pcs_horny ?? 0) < 50  &&  (Math.floor(Math.random() * 3) + 0) !== 0) {
         (s as any).miraorgasm = 1;
-        (s as any).MiraVars['arousal'] = 0;
+        ((s as any).MiraVars ?? {})['arousal'] = 0;
         scene.img('images/characters/gadukino/mira/sex/lickmira_69_cum2.jpg');
         // TODO-QSP: $text69[4]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emotions[iif(p...
         scene.text('After a while, Mira cums, her juices covering your face. For a minute, she rides the wave of pleasure before she turns her attention to you…');
@@ -366,7 +366,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
 
 function enterMiralickStand2(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (5);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (5);
   if (((s as any).pcs_horny ?? 0) >= 50) {
     (s as any).you_orgasm = 1;
     scene.img('images/characters/gadukino/mira/sex/miralick_stand_cum.jpg');
@@ -418,9 +418,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiralickFirst(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['cuni_given'] = ((s as any).MiraVars['cuni_given'] ?? 0) + (1);
+  ((s as any).MiraVars ?? {})['cuni_given'] = (((s as any).MiraVars ?? {})['cuni_given'] ?? 0) + (1);
   if (((s as any).MiraVars ?? 0)?.['had_sex'] === 0) {
-    (s as any).MiraVars['had_sex'] = 1;
+    ((s as any).MiraVars ?? {})['had_sex'] = 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
   }
   if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -439,7 +439,7 @@ function enterMiralickFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiralickStand1(s: GameState, scene: SceneBuilder): void {
-  (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+  ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
   (s as any).mira_counter = ((s as any).mira_counter ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).mira_counter ?? 0) < (Math.floor(Math.random() * 3) + 3)) {
@@ -469,7 +469,7 @@ function enterMiralickStand1(s: GameState, scene: SceneBuilder): void {
 
 function enterLickmiraFirst(s: GameState, scene: SceneBuilder): void {
   if (((s as any).MiraVars ?? 0)?.['had_sex'] === 0) {
-    (s as any).MiraVars['had_sex'] = 1;
+    ((s as any).MiraVars ?? {})['had_sex'] = 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
   }
   scene.img('images/characters/gadukino/mira/sex/lickmira_start.jpg');
@@ -490,7 +490,7 @@ function enterLickmiraFirst(s: GameState, scene: SceneBuilder): void {
 function enterLickmiraMis1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).MiraVars ?? 0)?.['arousal'] < 50  &&  (!(Math.floor(Math.random() * 2) + 0))) {
-    (s as any).MiraVars['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (20);
+    ((s as any).MiraVars ?? {})['arousal'] = (((s as any).MiraVars ?? {})['arousal'] ?? 0) + (20);
     scene.img('images/characters/gadukino/mira/sex/lickmira_mis\'+rand(1, 3)+\'.jpg');
     // TODO-QSP: $textmis[rand(1, 3)]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emot...
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -501,7 +501,7 @@ function enterLickmiraMis1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     (s as any).miraorgasm = 1;
-    (s as any).MiraVars['arousal'] = 0;
+    ((s as any).MiraVars ?? {})['arousal'] = 0;
     scene.img('images/characters/gadukino/mira/sex/lickmira_mis_cum.jpg');
     // TODO-QSP: $textmis[rand(1, 3)]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emot...
     qspCall(s, 'mirasex', 'miralick_orgasm');

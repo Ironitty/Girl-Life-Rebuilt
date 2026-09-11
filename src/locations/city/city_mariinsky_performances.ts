@@ -4,7 +4,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['performances'] === 0) {
-    (s as any).balletqw['performances'] = 1;
+    ((s as any).balletqw ?? {})['performances'] = 1;
     scene.actions([{ label: 'Continue', goto: ['city_mariinsky_performances', 'first_performance'] }]);
   } else {
     scene.actions([{ label: 'Continue', goto: ['city_mariinsky_performances', 'performances'] }]);

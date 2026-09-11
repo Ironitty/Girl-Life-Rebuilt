@@ -25,7 +25,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
+  ((s as any).sleepVars ?? {})['events_done'] = (((s as any).sleepVars ?? {})['events_done'] ?? 0) + (1);
   if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
   } else {
@@ -44,14 +44,14 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['events_done'] = 0;
+  ((s as any).sleepVars ?? {})['events_done'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['events_done'] = 0;
+  ((s as any).sleepVars ?? {})['events_done'] = 0;
   // TODO-QSP: xgt 'wakeup', 'get_out'
   scene.build();
 }
@@ -83,9 +83,9 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  (s as any).vomit['morning_sick'] = 0;
-  (s as any).vomit['hangover'] = 0;
-  (s as any).vomit['unlucky'] = 0;
+  ((s as any).vomit ?? {})['morning_sick'] = 0;
+  ((s as any).vomit ?? {})['hangover'] = 0;
+  ((s as any).vomit ?? {})['unlucky'] = 0;
   scene.build();
 }
 
@@ -118,7 +118,7 @@ function enterMarishaEvMorning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   // TODO-QSP: dynamic text: You wake up feeling relaxed then look over to see Marisha already up. She gives ...
   scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname ?? 0)}. See you later." She then leaves as you continue getting up.`);
-  (s as any).MarishaQW['marisha_sleepover'] = 0;
+  ((s as any).MarishaQW ?? {})['marisha_sleepover'] = 0;
   qspCall(s, 'wakeup_events', 'event_end');
   scene.build();
 }

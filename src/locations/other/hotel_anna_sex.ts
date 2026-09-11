@@ -32,7 +32,7 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract08a.jpg');
     scene.text('You were told not to interact in the session but Anna directly asked you a question so you have to say something.');
     scene.text('You decide to play along and not upset the session so you meekly agree.');
@@ -95,7 +95,7 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Suggest a stronger punishment', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract08c.jpg');
     scene.text('You were told not to interact in the session but Anna directly asked you a question so you have to say something.');
     scene.text('"Oh Sweetie you are naughty, but I agree this slut needs a good caning so that she might learn her place"');
@@ -146,8 +146,8 @@ function enterLesSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: '"Pass me the baton"', handler: (st: GameState) => {
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpractice/annapract09aa.mp4');
     scene.text('You walk over to Anna and take the vibrator off her. She unties the woman\'s hands and goes and sits in the chair you were just sitting in leaving you to do as you please while still being observed. You think she might be testing or assessing you so you make a show of each action.');
@@ -186,7 +186,7 @@ function enterLesSex2(s: GameState, scene: SceneBuilder): void {
 
 function enterSlaveM(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+  ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem0.jpg');
   // TODO-QSP: dynamic text: You look good <<$pcs_nickname>>"
   scene.text(`You look good ${((s as any).pcs_nickname ?? 0)}"`);
@@ -199,7 +199,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Before the presentation ${((s as any).pcs_nickname ?? 0)}." She continues ignoring the man completely, "Is there anything you would like to ask? Something you may want to improve or a last minute tip?"`);
   scene.actions([
     { label: '"Control"', handler: (st: GameState) => {
-    (s as any).AnnaQW['switch'] = ((s as any).AnnaQW['switch'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem1a.jpg');
     // TODO-QSP: dynamic text: Anna stretches her leg towards the man, and puts her heel on his crotch. "This i...
@@ -239,7 +239,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: '"Obedience"', handler: (st: GameState) => {
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem1b.jpg');
     // TODO-QSP: dynamic text: Anna stretches her leg towards the man, and puts her heel on his crotch. "This i...
@@ -258,7 +258,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: '"Punishment"', handler: (st: GameState) => {
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem1c.jpg');
     scene.text('"Oh Sweetie that is a good thing to understand. Punishment is not something you do just because you enjoy it (although you might well do so) it is a tool"');
@@ -611,7 +611,7 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Wait Anna…(penitent)', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
     scene.text(' "…You… you\'ve done nothing wrong. It\'s my fault, I trust you but doing a session was a bit of a shock for me…"');
     scene.actions([
@@ -681,8 +681,8 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
 
 function enterLibrarian(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
-  (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+  ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
+  ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
   (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
   (s as any).Anna_librarian_brat = 0;
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian0.jpg');
@@ -739,7 +739,7 @@ function enterLibrarian1(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Better be careful…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian3a.jpg');
     if (((s as any).Anna_librarian_brat ?? 0) === 1) {
       scene.text('<center><b>"Leave them on the desk and go sit and study or read or whatever… I don\'t need you right now."</b></center>');
@@ -782,7 +782,7 @@ function enterLibrarian2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: '…\'…Well… it doesn\'t hurt…\'…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian5.jpg');
     // TODO-QSP: 'You spend some time doing some math exercise…' + $func('wrap', 'accent', ' "…<<$pcs_nickname>>! Com...
     scene.actions([
@@ -832,7 +832,7 @@ function enterLibrarian3(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'I\'m a good girl.', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian7.jpg');
     // TODO-QSP: 'You sit on the floor bounded with ropes trying to find a comfortable position; it''s not easy but y...
     if ((!((s as any).Anna_librarian_brat ?? 0))) {
@@ -927,7 +927,7 @@ function enterLibrarian5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: '…Sorry Ma\'am…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['sub'] = ((s as any).AnnaQW['sub'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['sub'] = (((s as any).AnnaQW ?? {})['sub'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8b.jpg');
     // TODO-QSP: 'You do your best to not disappoint Anna and eagerly clean her boots till they are shiny…' + $func('...
     scene.actions([
@@ -959,7 +959,7 @@ function enterLibrarian5(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian8a.jpg');
     scene.text('<center><b> "I see. You are ready, come with me." </b></center>');
     scene.actions([
@@ -1222,8 +1222,8 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterAnnaDomSession(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
-  (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+  ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
+  ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
   (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom0.jpg');
   // TODO-QSP: 'You follow Anna to her room, and she quickly change into a "normal" dress… if you exclude that now ...
@@ -1436,7 +1436,7 @@ function enterAnnaDomSession3(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Take this!', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['dom'] = ((s as any).AnnaQW['dom'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom7b.jpg');
     scene.text('<center><b> "…"</b></center>');
     scene.actions([
@@ -1461,7 +1461,7 @@ function enterAnnaDomSession4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Listen to Anna\'s words…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    (s as any).AnnaQW['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
+    ((s as any).AnnaQW ?? {})['trust'] = (((s as any).AnnaQW ?? {})['trust'] ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch1a.jpg');
     // TODO-QSP: 'You wonder what could be happened if you didn''t followed Anna''s advice, but you think it could be...
     scene.actions([

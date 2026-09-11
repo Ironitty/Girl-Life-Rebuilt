@@ -131,7 +131,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You show Roman your tapestries, and he gives you '+$func('money', 'string_profit...
     scene.text('You show Roman your tapestries, and he gives you \'+$func(\'money\', \'string_profit\', mc_inventory[\'tapestry\'] * 1000)+\'. You take the money and give him the tapestries.');
     // TODO-QSP: gs 'money', 'earn', mc_inventory['tapestry'] * 1000
-    (s as any).mc_inventory['tapestry'] = 0;
+    ((s as any).mc_inventory ?? {})['tapestry'] = 0;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
@@ -142,7 +142,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
       { label: 'Show your tapestry', handler: (st: GameState) => {
-    (s as any).mc_inventory['tapestry'] = ((s as any).mc_inventory['tapestry'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['tapestry'] = (((s as any).mc_inventory ?? {})['tapestry'] ?? 0) - (1);
     qspCall(s, 'money', 'earn', 1000);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You show your tapestry to Roman, and he gives you '+$func('money', 'string_profi...

@@ -39,7 +39,7 @@ function enterSetSuccubusHuntAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMeetMishaStreetEvents(s: GameState, scene: SceneBuilder): void {
-  (s as any).npcdaycheck[54] = ((s as any).daystart ?? 0);
+  ((s as any).npcdaycheck ?? {})[54] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 21) {

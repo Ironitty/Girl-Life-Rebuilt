@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_time_left = ((s as any).ml_performance ?? {})?.['max_perform_minutes']-((s as any).ml_performance ?? {})?.['performed_minutes'];
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  &&  (((s as any).ml_guitar ?? 0)?.['hasguitar']  ||  ((s as any).vokal_lvl ?? 0) > 5)) {
-    (s as any).ml_activities['enabled'] = 1;
+    ((s as any).ml_activities ?? {})['enabled'] = 1;
   }
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  ||  ((s as any).ml_no_music ?? 0) !== 0) {
     // TODO-QSP: exit
@@ -102,8 +102,8 @@ function enterPutDownPickUp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_guitar ?? 0)?.['carried'] === 1) {
     scene.actions([
       { label: 'Place the guitar next to your desk', handler: (st: GameState) => {
-    (s as any).ml_guitar['carried'] = 0;
-    (s as any).ml_guitar['location'] = ((s as any).loc ?? 0);
+    ((s as any).ml_guitar ?? {})['carried'] = 0;
+    ((s as any).ml_guitar ?? {})['location'] = ((s as any).loc ?? 0);
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     ]);
@@ -111,8 +111,8 @@ function enterPutDownPickUp(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
       scene.actions([
         { label: 'Pick up the guitar', handler: (st: GameState) => {
-    (s as any).ml_guitar['carried'] = 1;
-    (s as any).ml_guitar['location'] = 'carried';
+    ((s as any).ml_guitar ?? {})['carried'] = 1;
+    ((s as any).ml_guitar ?? {})['location'] = 'carried';
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
       ]);

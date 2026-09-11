@@ -863,7 +863,7 @@ function enterTrinkets(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).tovpay = ((s as any).tovarand ?? 0) * 300;
   qspCall(s, 'money', 'earn', ((s as any).tovpay ?? 0), 'cash');
-  (s as any).mc_inventory['trinkets_home'] = ((s as any).mc_inventory['trinkets_home'] ?? 0) - (((s as any).tovarand ?? 0));
+  ((s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})['trinkets_home'] ?? 0) - (((s as any).tovarand ?? 0));
   qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
   (s as any).TorgVokzalTimes = ((s as any).TorgVokzalTimes ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -952,7 +952,7 @@ function enterTrinkets(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Admit you have no permit', handler: (st: GameState) => {
     qspCall(s, 'money', 'set', 0, 'cash');
-    (s as any).mc_inventory['trinkets_home'] = 0;
+    ((s as any).mc_inventory ?? {})['trinkets_home'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     qspCall(s, 'mood', 'lower', 'huge');
     qspCall(s, 'stat', '');

@@ -7,33 +7,33 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterCalculateRentablePropertyCount(s: GameState, scene: SceneBuilder): void {
-  (s as any).accessible_property['rentable_home_count'] = 0;
-  (s as any).accessible_property['rentable_business_count'] = 0;
-  (s as any).accessible_property['rentable_other_count'] = 0;
-  (s as any).temp_hpVars['max_i'] = 0;
+  ((s as any).accessible_property ?? {})['rentable_home_count'] = 0;
+  ((s as any).accessible_property ?? {})['rentable_business_count'] = 0;
+  ((s as any).accessible_property ?? {})['rentable_other_count'] = 0;
+  ((s as any).temp_hpVars ?? {})['max_i'] = 0;
   if (((s as any).temp_hpVars ?? 0)?.['max_i'] <= 0) {
     return;
   }
-  (s as any).temp_hpVars['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
   // TODO-QSP: :get_rentable_property_count_loop
   // TODO-QSP: gs 'homes_properties_attr', 'get_property_attr', $homes[temp_hpVars['i']]
   if (((s as any).property ?? 0)?.['rental']) {
     if (((((s as any).property ?? 0)?.['type']).indexOf(('residence'))) + 1 > 0) {
-      (s as any).accessible_property['rentable_home_count'] = ((s as any).accessible_property['rentable_home_count'] ?? 0) + (1);
+      ((s as any).accessible_property ?? {})['rentable_home_count'] = (((s as any).accessible_property ?? {})['rentable_home_count'] ?? 0) + (1);
     } else {
       if (((((s as any).property ?? 0)?.['type']).indexOf(('business'))) + 1 > 0) {
-        (s as any).accessible_property['rentable_business_count'] = ((s as any).accessible_property['rentable_business_count'] ?? 0) + (1);
+        ((s as any).accessible_property ?? {})['rentable_business_count'] = (((s as any).accessible_property ?? {})['rentable_business_count'] ?? 0) + (1);
       } else {
-        (s as any).accessible_property['rentable_other_count'] = ((s as any).accessible_property['rentable_other_count'] ?? 0) + (1);
+        ((s as any).accessible_property ?? {})['rentable_other_count'] = (((s as any).accessible_property ?? {})['rentable_other_count'] ?? 0) + (1);
       }
     }
   }
-  (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+  ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'get_rentable_property_count_loop'
   }
-  (s as any).accessible_property['available_for_rent_home_count'] = ((s as any).accessible_property ?? 0)?.['rentable_home_count'];
-  (s as any).accessible_property['available_for_rent_business_count'] = ((s as any).accessible_property ?? 0)?.['rentable_business_count'];
+  ((s as any).accessible_property ?? {})['available_for_rent_home_count'] = ((s as any).accessible_property ?? 0)?.['rentable_home_count'];
+  ((s as any).accessible_property ?? {})['available_for_rent_business_count'] = ((s as any).accessible_property ?? 0)?.['rentable_business_count'];
   return;
   scene.build();
 }
@@ -43,7 +43,7 @@ function enterSetHome(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).temp_homepropcode ?? 0));
     if (((((s as any).property ?? 0)?.['type']).indexOf(('residence'))) + 1 > 0) {
       // TODO-QSP: copyarr 'home', 'property'
-      (s as any).home['current'] = ((s as any).property ?? 0)?.['code'];
+      ((s as any).home ?? {})['current'] = ((s as any).property ?? 0)?.['code'];
       if (((s as any).accessible_property ?? 0)[((s as any).home ?? 0)?.['current']] === 0) {
         // TODO-QSP: gs 'homes_properties', 'set_access', $home['current'], 1
       }
@@ -67,40 +67,40 @@ function enterSetAccess(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $accessible_property[$_name] = $property['name']
       // TODO-QSP: $accessible_property[$_type] = $property['type']
       if (((s as any).property ?? 0)?.['construction_needed'] === 1) {
-        (s as any).accessible_property[String((s as any)._construction_state ?? 0)] = qspUntranslated(s, "ARGS[3]", { location: "homes_properties" });
+        ((s as any).accessible_property ?? {})[String((s as any)._construction_state ?? 0)] = qspUntranslated(s, "ARGS[3]", { location: "homes_properties" });
         // TODO-QSP: $accessible_property[$_display] = $property['display_<<ARGS[3]>>']
       } else {
-        (s as any).accessible_property[String((s as any)._construction_state ?? 0)] = 2;
+        ((s as any).accessible_property ?? {})[String((s as any)._construction_state ?? 0)] = 2;
         // TODO-QSP: $accessible_property[$_display] = $property['display']
       }
       if (((((s as any).property ?? 0)?.['type']).indexOf(('residence'))) + 1 > 0) {
-        (s as any).accessible_property[String((s as any)._is_home ?? 0)] = 1;
+        ((s as any).accessible_property ?? {})[String((s as any)._is_home ?? 0)] = 1;
       }
-      (s as any).accessible_property[String((s as any)._is_rental ?? 0)] = ((s as any).property ?? 0)?.['rental'];
-      (s as any).accessible_property[String((s as any)._renovated ?? 0)] = qspUntranslated(s, "ARGS[4]", { location: "homes_properties" });
-      (s as any).accessible_property[String((s as any)._sales_price ?? 0)] = ((s as any).property ?? 0)?.['price'];
-      (s as any).accessible_property[String((s as any)._rent ?? 0)] = ((s as any).property ?? 0)?.['rent'];
+      ((s as any).accessible_property ?? {})[String((s as any)._is_rental ?? 0)] = ((s as any).property ?? 0)?.['rental'];
+      ((s as any).accessible_property ?? {})[String((s as any)._renovated ?? 0)] = qspUntranslated(s, "ARGS[4]", { location: "homes_properties" });
+      ((s as any).accessible_property ?? {})[String((s as any)._sales_price ?? 0)] = ((s as any).property ?? 0)?.['price'];
+      ((s as any).accessible_property ?? {})[String((s as any)._rent ?? 0)] = ((s as any).property ?? 0)?.['rent'];
     }
     if (((s as any).new_access_code ?? 0) === ((s as any).ACCESSIBLE ?? 0)  &&  ((s as any).property ?? 0)?.['rental'] === 1) {
       (s as any).new_access_code = ((s as any).RENTED ?? 0);
     }
-    (s as any).accessible_property[String((s as any).property_code ?? 0)] = ((s as any).new_access_code ?? 0);
+    ((s as any).accessible_property ?? {})[String((s as any).property_code ?? 0)] = ((s as any).new_access_code ?? 0);
     if (((s as any).accessible_property ?? 0)?.[String((s as any).property_code ?? 0)] === ((s as any).NO_ACCESS ?? 0)) {
       if (((s as any).home ?? 0)?.['current'] === ((s as any).property_code ?? 0)) {
         // TODO-QSP: killvar 'home'
       }
       if (((s as any).accessible_property ?? 0)?.[String((s as any)._is_home ?? 0)] === 1) {
         if (((s as any).original_access_code ?? 0) === ((s as any).RENTED ?? 0)) {
-          (s as any).accessible_property['rental_home_count'] = ((s as any).accessible_property['rental_home_count'] ?? 0) - (1);
-          (s as any).accessible_property['available_for_rent_home_count'] = ((s as any).accessible_property['available_for_rent_home_count'] ?? 0) + (1);
+          ((s as any).accessible_property ?? {})['rental_home_count'] = (((s as any).accessible_property ?? {})['rental_home_count'] ?? 0) - (1);
+          ((s as any).accessible_property ?? {})['available_for_rent_home_count'] = (((s as any).accessible_property ?? {})['available_for_rent_home_count'] ?? 0) + (1);
         }
         if (((s as any).original_access_code ?? 0) === ((s as any).OWNED ?? 0)) {
-          (s as any).accessible_property['owned_home_count'] = ((s as any).accessible_property['owned_home_count'] ?? 0) - (1);
+          ((s as any).accessible_property ?? {})['owned_home_count'] = (((s as any).accessible_property ?? {})['owned_home_count'] ?? 0) - (1);
         }
         if (((s as any).accessible_property ?? 0)?.[String((s as any)._construction_state ?? 0)] === 2) {
-          (s as any).accessible_property['furnishable_home_count'] = ((s as any).accessible_property['furnishable_home_count'] ?? 0) - (1);
+          ((s as any).accessible_property ?? {})['furnishable_home_count'] = (((s as any).accessible_property ?? {})['furnishable_home_count'] ?? 0) - (1);
         }
-        (s as any).accessible_property['accessible_home_count'] = ((s as any).accessible_property['accessible_home_count'] ?? 0) - (1);
+        ((s as any).accessible_property ?? {})['accessible_home_count'] = (((s as any).accessible_property ?? {})['accessible_home_count'] ?? 0) - (1);
       }
       if (((s as any).accessible_property ?? 0)?.['accessible_home_count'] === 1) {
         qspCall(s, 'homes_properties', 'get_accessible_properties', 'home');
@@ -112,34 +112,34 @@ function enterSetAccess(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).accessible_property ?? 0)?.[String((s as any).property_code ?? 0)] === ((s as any).RENTED ?? 0)) {
         if (((s as any).accessible_property ?? 0)?.[String((s as any)._is_home ?? 0)] === 1) {
-          (s as any).accessible_property['rental_home_count'] = ((s as any).accessible_property['rental_home_count'] ?? 0) + (1);
-          (s as any).accessible_property['accessible_home_count'] = ((s as any).accessible_property['accessible_home_count'] ?? 0) + (1);
-          (s as any).accessible_property['available_for_rent_home_count'] = ((s as any).accessible_property['available_for_rent_home_count'] ?? 0) - (1);
+          ((s as any).accessible_property ?? {})['rental_home_count'] = (((s as any).accessible_property ?? {})['rental_home_count'] ?? 0) + (1);
+          ((s as any).accessible_property ?? {})['accessible_home_count'] = (((s as any).accessible_property ?? {})['accessible_home_count'] ?? 0) + (1);
+          ((s as any).accessible_property ?? {})['available_for_rent_home_count'] = (((s as any).accessible_property ?? {})['available_for_rent_home_count'] ?? 0) - (1);
           if (((s as any).accessible_property ?? 0)?.[String((s as any)._construction_state ?? 0)] === 2) {
-            (s as any).accessible_property['furnishable_home_count'] = ((s as any).accessible_property['furnishable_home_count'] ?? 0) + (1);
+            ((s as any).accessible_property ?? {})['furnishable_home_count'] = (((s as any).accessible_property ?? {})['furnishable_home_count'] ?? 0) + (1);
           }
         }
       } else {
         if (((s as any).accessible_property ?? 0)?.[String((s as any).property_code ?? 0)] === ((s as any).OWNED ?? 0)) {
           if (((s as any).accessible_property ?? 0)?.[String((s as any)._is_home ?? 0)] === 1) {
             if ((!((s as any).original_access_code ?? 0))) {
-              (s as any).accessible_property['accessible_home_count'] = ((s as any).accessible_property['accessible_home_count'] ?? 0) + (1);
+              ((s as any).accessible_property ?? {})['accessible_home_count'] = (((s as any).accessible_property ?? {})['accessible_home_count'] ?? 0) + (1);
             } else {
               if (((s as any).original_access_code ?? 0) === ((s as any).RENTED ?? 0)) {
-                (s as any).accessible_property['rental_home_count'] = ((s as any).accessible_property['rental_home_count'] ?? 0) - (1);
-                (s as any).accessible_property['available_for_rent_home_count'] = ((s as any).accessible_property['available_for_rent_home_count'] ?? 0) + (1);
+                ((s as any).accessible_property ?? {})['rental_home_count'] = (((s as any).accessible_property ?? {})['rental_home_count'] ?? 0) - (1);
+                ((s as any).accessible_property ?? {})['available_for_rent_home_count'] = (((s as any).accessible_property ?? {})['available_for_rent_home_count'] ?? 0) + (1);
               } else {
                 if (((s as any).original_access_code ?? 0) === ((s as any).TENANTS ?? 0)) {
-                  (s as any).accessible_property['tenant_home_count'] = ((s as any).accessible_property['tenant_home_count'] ?? 0) - (1);
-                  (s as any).accessible_property[String((s as any)._tenant_day ?? 0)] = (-1);
-                  (s as any).accessible_property[String((s as any)._tenant_month ?? 0)] = (-1);
+                  ((s as any).accessible_property ?? {})['tenant_home_count'] = (((s as any).accessible_property ?? {})['tenant_home_count'] ?? 0) - (1);
+                  ((s as any).accessible_property ?? {})[String((s as any)._tenant_day ?? 0)] = (-1);
+                  ((s as any).accessible_property ?? {})[String((s as any)._tenant_month ?? 0)] = (-1);
                 }
               }
             }
             if (((s as any).accessible_property ?? 0)?.[String((s as any)._construction_state ?? 0)] === 2  &&  ((s as any).original_access_code ?? 0) !== 1) {
-              (s as any).accessible_property['furnishable_home_count'] = ((s as any).accessible_property['furnishable_home_count'] ?? 0) + (1);
+              ((s as any).accessible_property ?? {})['furnishable_home_count'] = (((s as any).accessible_property ?? {})['furnishable_home_count'] ?? 0) + (1);
             }
-            (s as any).accessible_property['owned_home_count'] = ((s as any).accessible_property['owned_home_count'] ?? 0) + (1);
+            ((s as any).accessible_property ?? {})['owned_home_count'] = (((s as any).accessible_property ?? {})['owned_home_count'] ?? 0) + (1);
           }
         } else {
           if (((s as any).accessible_property ?? 0)?.[String((s as any).property_code ?? 0)] === ((s as any).TENANTS ?? 0)) {
@@ -147,17 +147,17 @@ function enterSetAccess(s: GameState, scene: SceneBuilder): void {
               if (((s as any).home ?? 0)?.['current'] === ((s as any).property_code ?? 0)) {
                 // TODO-QSP: killvar 'home'
               }
-              (s as any).accessible_property['tenant_home_count'] = ((s as any).accessible_property['tenant_home_count'] ?? 0) + (1);
-              (s as any).accessible_property['owned_home_count'] = ((s as any).accessible_property['owned_home_count'] ?? 0) - (1);
-              (s as any).accessible_property['accessible_home_count'] = ((s as any).accessible_property['accessible_home_count'] ?? 0) - (1);
+              ((s as any).accessible_property ?? {})['tenant_home_count'] = (((s as any).accessible_property ?? {})['tenant_home_count'] ?? 0) + (1);
+              ((s as any).accessible_property ?? {})['owned_home_count'] = (((s as any).accessible_property ?? {})['owned_home_count'] ?? 0) - (1);
+              ((s as any).accessible_property ?? {})['accessible_home_count'] = (((s as any).accessible_property ?? {})['accessible_home_count'] ?? 0) - (1);
               if (((s as any).accessible_property ?? 0)?.[String((s as any)._construction_state ?? 0)] === 2) {
-                (s as any).accessible_property['furnishable_home_count'] = ((s as any).accessible_property['furnishable_home_count'] ?? 0) - (1);
+                ((s as any).accessible_property ?? {})['furnishable_home_count'] = (((s as any).accessible_property ?? {})['furnishable_home_count'] ?? 0) - (1);
               }
             }
           } else {
             if (((s as any).accessible_property ?? 0)?.[String((s as any).property_code ?? 0)] === ((s as any).ACCESSIBLE ?? 0)) {
               if (((s as any).accessible_property ?? 0)?.[String((s as any)._is_home ?? 0)] === 1) {
-                (s as any).accessible_property['accessible_home_count'] = ((s as any).accessible_property['accessible_home_count'] ?? 0) + (1);
+                ((s as any).accessible_property ?? {})['accessible_home_count'] = (((s as any).accessible_property ?? {})['accessible_home_count'] ?? 0) + (1);
               }
             }
           }
@@ -302,13 +302,13 @@ function enterGetFurnishablePropertyCount(s: GameState, scene: SceneBuilder): vo
 
 function enterGetRentedProperties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'clean_up_property_data');
-  (s as any).remp_hpVars['type'] = ((((s as any).locArgs?.[1] ?? 0) === '') ? ('all') : (((s as any).locArgs?.[1] ?? 0)));
-  (s as any).temp_hpVars['i'] = 0;
-  (s as any).temp_hpVars['j'] = 0;
-  (s as any).temp_hpVars['i_max'] = 0;
+  ((s as any).remp_hpVars ?? {})['type'] = ((((s as any).locArgs?.[1] ?? 0) === '') ? ('all') : (((s as any).locArgs?.[1] ?? 0)));
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['j'] = 0;
+  ((s as any).temp_hpVars ?? {})['i_max'] = 0;
   if (((s as any).temp_hpVars ?? 0)?.['i_max'] > 0) {
     // TODO-QSP: :get_rented_properties_loop
-    (s as any).temp_hpVars['code'] = qspUntranslated(s, "accessible_property_codes[temp_hpVars['i']]", { location: "homes_properties" });
+    ((s as any).temp_hpVars ?? {})['code'] = qspUntranslated(s, "accessible_property_codes[temp_hpVars['i']]", { location: "homes_properties" });
     if (((s as any).home_name ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] !== ''  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 1) {
       if ((((s as any).remp_hpVars ?? 0)?.['type'] !== 'home'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-is-home'] === 0)  ||  (((s as any).remp_hpVars ?? 0)?.['type'] !== 'business'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-is-home'])) {
         // TODO-QSP: $property_code[temp_hpVars['j']] = $temp_hpVars['code']
@@ -318,10 +318,10 @@ function enterGetRentedProperties(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: property_days[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-days-left']
           // TODO-QSP: property_rent[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-rent']
         }
-        (s as any).temp_hpVars['j'] = ((s as any).temp_hpVars['j'] ?? 0) + (1);
+        ((s as any).temp_hpVars ?? {})['j'] = (((s as any).temp_hpVars ?? {})['j'] ?? 0) + (1);
       }
     }
-    (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+    ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['i_max']) {
       // TODO-QSP: jump 'get_rented_properties_loop'
     }
@@ -331,13 +331,13 @@ function enterGetRentedProperties(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetOwnedProperties(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_hpVars['i'] = 0;
-  (s as any).temp_hpVars['j'] = 0;
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['j'] = 0;
   qspCall(s, 'homes_properties', 'clean_up_property_data');
-  (s as any).temp_hpVars['i_max'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (0) : (1));
+  ((s as any).temp_hpVars ?? {})['i_max'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (0) : (1));
   if (((s as any).temp_hpVars ?? 0)?.['i_max'] > 0) {
     // TODO-QSP: :get_owned_properties_loop
-    (s as any).temp_hpVars['code'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (qspUntranslated(s, "accessible_property_codes[temp_hpVars['i']]", { location: "homes_properties" })) : (((s as any).locArgs?.[2] ?? 0)));
+    ((s as any).temp_hpVars ?? {})['code'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (qspUntranslated(s, "accessible_property_codes[temp_hpVars['i']]", { location: "homes_properties" })) : (((s as any).locArgs?.[2] ?? 0)));
     if (((s as any).home_name ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] !== ''  &&  ((((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === ((s as any).OWNED ?? 0))  ||  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === ((s as any).TENANTS ?? 0))) {
       if ((((s as any).type ?? 0) !== 'home'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-is-home'] === 0)  ||  (((s as any).type ?? 0) !== 'business'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-is-home'] === 1)) {
         // TODO-QSP: $property_code[temp_hpVars['j']] = $temp_hpVars['code']
@@ -362,10 +362,10 @@ function enterGetOwnedProperties(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: property_is_renovated[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-renovated'...
         // TODO-QSP: property_sales_price[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-sales-price...
         // TODO-QSP: property_renovation_value[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-renova...
-        (s as any).temp_hpVars['j'] = ((s as any).temp_hpVars['j'] ?? 0) + (1);
+        ((s as any).temp_hpVars ?? {})['j'] = (((s as any).temp_hpVars ?? {})['j'] ?? 0) + (1);
       }
     }
-    (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+    ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['i_max']) {
       // TODO-QSP: jump 'get_owned_properties_loop'
     }
@@ -376,12 +376,12 @@ function enterGetOwnedProperties(s: GameState, scene: SceneBuilder): void {
 
 function enterGetAccessibleProperties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'clean_up_property_data');
-  (s as any).temp_hpVars['i'] = 0;
-  (s as any).temp_hpVars['j'] = 0;
-  (s as any).temp_hpVars['i_max'] = 0;
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['j'] = 0;
+  ((s as any).temp_hpVars ?? {})['i_max'] = 0;
   if (((s as any).temp_hpVars ?? 0)?.['i_max'] > 0) {
     // TODO-QSP: :get_accessible_properties_loop
-    (s as any).temp_hpVars['code'] = qspUntranslated(s, "accessible_property_codes[temp_hpVars['i']]", { location: "homes_properties" });
+    ((s as any).temp_hpVars ?? {})['code'] = qspUntranslated(s, "accessible_property_codes[temp_hpVars['i']]", { location: "homes_properties" });
     if (((s as any).home_name ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] !== ''  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] > 0) {
       if ((((s as any).locArgs?.[1] ?? 0) !== 'home'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-is-home'] === 0)  ||  (((s as any).locArgs?.[1] ?? 0) !== 'business'  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-is-home'] === 1)) {
         // TODO-QSP: $property_code[temp_hpVars['j']] = $temp_hpVars['code']
@@ -408,10 +408,10 @@ function enterGetAccessibleProperties(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: property_construction_status[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-con...
         // TODO-QSP: property_is_renovated[temp_hpVars['j']] = accessible_property['<<$temp_hpVars[''code'']>>-renovated'...
         // TODO-QSP: $property_type[temp_hpVars['j']] = $accessible_property['<<$temp_hpVars[''code'']>>-type']
-        (s as any).temp_hpVars['j'] = ((s as any).temp_hpVars['j'] ?? 0) + (1);
+        ((s as any).temp_hpVars ?? {})['j'] = (((s as any).temp_hpVars ?? {})['j'] ?? 0) + (1);
       }
     }
-    (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+    ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
     if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['i_max']) {
       // TODO-QSP: jump 'get_accessible_properties_loop'
     }
@@ -421,25 +421,25 @@ function enterGetAccessibleProperties(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPropertiesForSale(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'clean_up_property_data');
-  (s as any).temp_hpVars['max_i'] = 0;
+  ((s as any).temp_hpVars ?? {})['max_i'] = 0;
   if (((s as any).temp_hpVars ?? 0)?.['max_i'] <= 0) {
     return;
   }
-  (s as any).temp_hpVars['i'] = 0;
-  (s as any).temp_hpVars['j'] = 0;
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['j'] = 0;
   // TODO-QSP: :get_properties_for_sale_loop
-  (s as any).temp_hpVars['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
+  ((s as any).temp_hpVars ?? {})['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
   if (((s as any).temp_hpVars ?? 0)?.['code'] !== ''  &&  ((s as any).checked_homes ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] < 2) {
     // TODO-QSP: checked_homes[$temp_hpVars['code']] = 1
     if (((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') {
       // TODO-QSP: gs 'homes_properties_attr', 'get_property_attr', $temp_hpVars['code']
     }
     if (((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') {
-      (s as any).temp_hpVars['is_home'] = qspUntranslated(s, "instr(property['type'], 'residence') > 0", { location: "homes_properties" });
+      ((s as any).temp_hpVars ?? {})['is_home'] = qspUntranslated(s, "instr(property['type'], 'residence') > 0", { location: "homes_properties" });
     } else {
-      (s as any).temp_hpVars['is_home'] = ((((s as any).accessible_property ?? 0)?.['' + qspUntranslated(s, "temp_hpVars['code']>", { location: "homes_properties" }) + '-type']).indexOf(('residence'))) + 1 > 0;
+      ((s as any).temp_hpVars ?? {})['is_home'] = ((((s as any).accessible_property ?? 0)?.['' + qspUntranslated(s, "temp_hpVars['code']>", { location: "homes_properties" }) + '-type']).indexOf(('residence'))) + 1 > 0;
     }
-    (s as any).temp_hpVars['price'] = ((((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') ? (qspUntranslated(s, "property['price'] > 0", { location: "homes_properties" })) : (((s as any).accessible_property ?? 0)['' + ((s as any).temp_hpVars ?? 0)?.['code'] + '-sales-price'] > 0));
+    ((s as any).temp_hpVars ?? {})['price'] = ((((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') ? (qspUntranslated(s, "property['price'] > 0", { location: "homes_properties" })) : (((s as any).accessible_property ?? 0)['' + ((s as any).temp_hpVars ?? 0)?.['code'] + '-sales-price'] > 0));
     if (((((s as any).locArgs?.[1] ?? 0) !== 'home'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home'] === 0)  ||  (((s as any).locArgs?.[1] ?? 0) !== 'business'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home']))  &&  ((s as any).temp_hpVars ?? 0)?.['price']) {
       // TODO-QSP: $property_code[temp_hpVars['j']] = $temp_hpVars['code']
       // TODO-QSP: $property_name[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>>-name'] = '',...
@@ -453,10 +453,10 @@ function enterGetPropertiesForSale(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: property_construction_status[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>...
       // TODO-QSP: property_is_renovated[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>>-name'...
       // TODO-QSP: property_sales_price[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>>-name']...
-      (s as any).temp_hpVars['j'] = ((s as any).temp_hpVars['j'] ?? 0) + (1);
+      ((s as any).temp_hpVars ?? {})['j'] = (((s as any).temp_hpVars ?? {})['j'] ?? 0) + (1);
     }
   }
-  (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+  ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'get_properties_for_sale_loop'
   }
@@ -465,25 +465,25 @@ function enterGetPropertiesForSale(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPropertiesForRent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'clean_up_property_data');
-  (s as any).temp_hpVars['max_i'] = 0;
+  ((s as any).temp_hpVars ?? {})['max_i'] = 0;
   if (((s as any).temp_hpVars ?? 0)?.['max_i'] <= 0) {
     return;
   }
-  (s as any).temp_hpVars['i'] = 0;
-  (s as any).temp_hpVars['j'] = 0;
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['j'] = 0;
   // TODO-QSP: :get_properties_for_rent_loop
-  (s as any).temp_hpVars['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
+  ((s as any).temp_hpVars ?? {})['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
   if (((s as any).temp_hpVars ?? 0)?.['code'] !== ''  &&  ((s as any).checked_homes ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0  &&  ((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0) {
     // TODO-QSP: checked_homes[$temp_hpVars['code']] = 1
     if (((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') {
       // TODO-QSP: gs 'homes_properties_attr', 'get_property_attr', $temp_hpVars['code']
     }
     if (((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') {
-      (s as any).temp_hpVars['is_home'] = qspUntranslated(s, "instr(property['type'], 'residence') > 1", { location: "homes_properties" });
+      ((s as any).temp_hpVars ?? {})['is_home'] = qspUntranslated(s, "instr(property['type'], 'residence') > 1", { location: "homes_properties" });
     } else {
-      (s as any).temp_hpVars['is_home'] = ((((s as any).accessible_property ?? 0)?.['' + qspUntranslated(s, "temp_hpVars['code']>", { location: "homes_properties" }) + '-type']).indexOf(('residence'))) + 1 > 1;
+      ((s as any).temp_hpVars ?? {})['is_home'] = ((((s as any).accessible_property ?? 0)?.['' + qspUntranslated(s, "temp_hpVars['code']>", { location: "homes_properties" }) + '-type']).indexOf(('residence'))) + 1 > 1;
     }
-    (s as any).temp_hpVars['is_rental'] = ((((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') ? (qspUntranslated(s, "property['rental'] = 1", { location: "homes_properties" })) : (((s as any).accessible_property ?? 0)['' + ((s as any).temp_hpVars ?? 0)?.['code'] + '-rental'] = 1));
+    ((s as any).temp_hpVars ?? {})['is_rental'] = ((((s as any).accessible_property ?? 0)[((s as any).temp_hpVars ?? 0)?.['code'] + '-name'] === '') ? (qspUntranslated(s, "property['rental'] = 1", { location: "homes_properties" })) : (((s as any).accessible_property ?? 0)['' + ((s as any).temp_hpVars ?? 0)?.['code'] + '-rental'] = 1));
     if (((((s as any).locArgs?.[1] ?? 0) !== 'home'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home'] === 0)  ||  (((s as any).locArgs?.[1] ?? 0) !== 'business'  &&  ((s as any).temp_hpVars ?? 0)?.['is_home']))  &&  ((s as any).temp_hpVars ?? 0)?.['is_rental']) {
       // TODO-QSP: $property_code[temp_hpVars['j']] = $temp_hpVars['code']
       // TODO-QSP: $property_name[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>>-name'] = '',...
@@ -494,10 +494,10 @@ function enterGetPropertiesForRent(s: GameState, scene: SceneBuilder): void {
       }
       // TODO-QSP: property_days[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>>-name'] = '', ...
       // TODO-QSP: property_rent[temp_hpVars['j']] = iif($accessible_property['<<$temp_hpVars[''code'']>>-name'] = '', ...
-      (s as any).temp_hpVars['j'] = ((s as any).temp_hpVars['j'] ?? 0) + (1);
+      ((s as any).temp_hpVars ?? {})['j'] = (((s as any).temp_hpVars ?? {})['j'] ?? 0) + (1);
     }
   }
-  (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+  ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'get_properties_for_rent_loop'
   }
@@ -510,14 +510,14 @@ function enterGetInternetEnabledProperties(s: GameState, scene: SceneBuilder): v
   (s as any).hp_i = 0;
   (s as any).hp_j = 0;
   (s as any).count = 0;
-  (s as any).temp_hpVars['max_i'] = 0;
+  ((s as any).temp_hpVars ?? {})['max_i'] = 0;
   if (((s as any).temp_hpVars ?? 0)?.['max_i'] <= 0) {
     return;
   }
-  (s as any).temp_hpVars['i'] = 0;
-  (s as any).temp_hpVars['j'] = 0;
+  ((s as any).temp_hpVars ?? {})['i'] = 0;
+  ((s as any).temp_hpVars ?? {})['j'] = 0;
   // TODO-QSP: :get_internet_enabled_properties_loop
-  (s as any).temp_hpVars['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
+  ((s as any).temp_hpVars ?? {})['code'] = qspUntranslated(s, "homes[temp_hpVars['i']]", { location: "homes_properties" });
   if (((s as any).checked_homes ?? 0)[((s as any).temp_hpVars ?? 0)?.['code']] === 0) {
     // TODO-QSP: checked_homes[$temp_hpVars['code']] = 1
     // TODO-QSP: gs 'homes_properties_attr', 'get_property_attr', $temp_hpVars['code']
@@ -542,12 +542,12 @@ function enterGetInternetEnabledProperties(s: GameState, scene: SceneBuilder): v
             }
           }
           // TODO-QSP: property__is_current_home[temp_hpVars['j']] = $home['current'] = $temp_hpVars['code']
-          (s as any).temp_hpVars['j'] = ((s as any).temp_hpVars['j'] ?? 0) + (1);
+          ((s as any).temp_hpVars ?? {})['j'] = (((s as any).temp_hpVars ?? {})['j'] ?? 0) + (1);
         }
       }
     }
   }
-  (s as any).temp_hpVars['i'] = ((s as any).temp_hpVars['i'] ?? 0) + (1);
+  ((s as any).temp_hpVars ?? {})['i'] = (((s as any).temp_hpVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'get_internet_enabled_properties_loop'
   }
@@ -561,7 +561,7 @@ function enterCleanUpPropertyData(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHomeless(s: GameState, scene: SceneBuilder): void {
-  (s as any).home['current'] = 'homeless';
+  ((s as any).home ?? {})['current'] = 'homeless';
   return;
   scene.build();
 }
@@ -594,7 +594,7 @@ function enterBlockAccess(s: GameState, scene: SceneBuilder): void {
 
 function enterHasAccess(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).ARGS[1] = ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)];
+    ((s as any).ARGS ?? {})[1] = ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)];
   }
   (s as any).result = ((s as any).accessible_property ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== ((s as any).NO_ACCESS ?? 0)  &&  ((s as any).accessible_property ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== ((s as any).TENANTS ?? 0);
   return;
@@ -614,22 +614,22 @@ function enterGetPropertySalesInfo(s: GameState, scene: SceneBuilder): void {
 
 function enterBuyProperty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_access', ((s as any).locArgs?.[1] ?? 0), ((s as any).OWNED ?? 0));
-  (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-sales-price'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
+  ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-sales-price'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   return;
   scene.build();
 }
 
 function enterSellProperty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_access', ((s as any).locArgs?.[1] ?? 0), ((s as any).NO_ACCESS ?? 0));
-  (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-sales-price'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
+  ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-sales-price'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   return;
   scene.build();
 }
 
 function enterTenantsMoveIn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_access', ((s as any).locArgs?.[1] ?? 0), ((s as any).TENANTS ?? 0));
-  (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-tenant-day'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
-  (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-tenant-month'] = qspUntranslated(s, "ARGS[3]", { location: "homes_properties" });
+  ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-tenant-day'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
+  ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-tenant-month'] = qspUntranslated(s, "ARGS[3]", { location: "homes_properties" });
   if ((((s as any).home ?? 0)?.['current'] === ''  ||  qspFunc(s, 'homes_properties', 'is_homeless'))  &&  ((s as any).accessible_property ?? 0)?.['accessible_home_count'] === 1) {
     qspCall(s, 'homes_properties', 'get_accessible_properties', 'home');
     if (((s as any).accessible_property ?? 0)[((s as any).property_code ?? 0) + '-is-home']) {
@@ -726,9 +726,9 @@ function enterPayRent(s: GameState, scene: SceneBuilder): void {
 
 function enterAddRentDays(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-days-left'] = ((s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-days-left'] ?? 0) + (qspFunc(s, 'homes_properties', 'days_in_month'));
+    ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] = (((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] ?? 0) + (qspFunc(s, 'homes_properties', 'days_in_month'));
   } else {
-    (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-days-left'] = ((s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-days-left'] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "homes_properties" }));
+    ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] = (((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "homes_properties" }));
   }
   return;
   scene.build();
@@ -736,9 +736,9 @@ function enterAddRentDays(s: GameState, scene: SceneBuilder): void {
 
 function enterSetRentDays(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-days-left'] = qspFunc(s, 'homes_properties', 'days_in_month');
+    ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] = qspFunc(s, 'homes_properties', 'days_in_month');
   } else {
-    (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-days-left'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
+    ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   }
   return;
   scene.build();
@@ -746,7 +746,7 @@ function enterSetRentDays(s: GameState, scene: SceneBuilder): void {
 
 function enterSetRentAmount(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-rental']  &&  ((s as any).locArgs?.[2] ?? 0) >= 0) {
-    (s as any).accessible_property['' + String((s as any).$ARGS[1] || '') + '-rent'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
+    ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-rent'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   }
   return;
   scene.build();
@@ -802,7 +802,7 @@ function enterGetPropertyConstructionStatus(s: GameState, scene: SceneBuilder): 
 
 function enterProgressConstructionStatus(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)[((s as any).constrstatpropcode ?? 0) + '-construction-status'] < 2) {
-    (s as any).accessible_property['' + String((s as any).$constrstatpropcode || '') + '-construction-status'] = ((s as any).accessible_property['' + String((s as any).$constrstatpropcode || '') + '-construction-status'] ?? 0) + (1);
+    ((s as any).accessible_property ?? {})['' + String((s as any).$constrstatpropcode || '') + '-construction-status'] = (((s as any).accessible_property ?? {})['' + String((s as any).$constrstatpropcode || '') + '-construction-status'] ?? 0) + (1);
   }
   return;
   scene.build();
@@ -815,10 +815,10 @@ function enterIsPropertyRenovated(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRenovateProperty(s: GameState, scene: SceneBuilder): void {
-  (s as any).accessible_property['' + String((s as any).$renovatepropcode || '') + '-renovated'] = 1;
-  (s as any).accessible_property['' + String((s as any).$renovatepropcode || '') + '-renovation-value'] = ((s as any).accessible_property['' + String((s as any).$renovatepropcode || '') + '-renovation-value'] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "homes_properties" }));
+  ((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovated'] = 1;
+  ((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovation-value'] = (((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovation-value'] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "homes_properties" }));
   if (((s as any).locArgs?.[3] ?? 0) !== '') {
-    (s as any).accessible_property['' + String((s as any).$renovatepropcode || '') + '-renovations'] = ((s as any).accessible_property['' + String((s as any).$renovatepropcode || '') + '-renovations'] ?? 0) + (';' + qspUntranslated(s, "ARGS[3]>", { location: "homes_properties" }) + '');
+    ((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovations'] = (((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovations'] ?? 0) + (';' + qspUntranslated(s, "ARGS[3]>", { location: "homes_properties" }) + '');
   }
   return;
   scene.build();

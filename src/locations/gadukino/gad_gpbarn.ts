@@ -93,7 +93,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).mc_inventory ?? 0)?.['vintage_card'] === 0  &&  ((s as any).vcard_trash ?? 0) === 0  &&  (Math.floor(Math.random() * 11) + 0) >= 8) {
-        (s as any).mc_inventory['vintage_card'] = 1;
+        ((s as any).mc_inventory ?? {})['vintage_card'] = 1;
         qspCall(s, 'exp_gain', 'observ', 3);
         qspCall(s, 'stat', '');
         scene.img('images/locations/gadukino/village/vcards.jpg');
@@ -187,8 +187,8 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'miroslava_schedule', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
-  (s as any).setloc['StageTitle'] = 'Guest Room';
-  (s as any).setloc['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "gad_gpbarn" }) + '/gp_dacha/gad_room.jpg';
+  ((s as any).setloc ?? {})['StageTitle'] = 'Guest Room';
+  ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "gad_gpbarn" }) + '/gp_dacha/gad_room.jpg';
   qspCall(s, 'core_library', 'stage_title');
   scene.text('A small rustic loft space converted from your grandparents barn. A pair of sleeping pallets of dubious comfort is laid out for guests. The room walls are whitewashed with some clothes lines to dry your clothes with some farming tools. It\'s not much to look at but it\'s somewhere you can call home and have some privacy.');
   qspCall(s, 'library_functions', 'set_home_read_acts');

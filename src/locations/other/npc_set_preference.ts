@@ -12,16 +12,16 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_nsprefVars['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
+  ((s as any).temp_nsprefVars ?? {})['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
   // TODO-QSP: "
-  (s as any).temp_nsprefVars['i'] = 0;
-  (s as any).temp_nsprefVars['max_i'] = 0;
+  ((s as any).temp_nsprefVars ?? {})['i'] = 0;
+  ((s as any).temp_nsprefVars ?? {})['max_i'] = 0;
   // TODO-QSP: :rebuild_preferences_loop
-  (s as any).temp_nsprefVars['trait'] = qspUntranslated(s, "npc_nsp_pref_traits[temp_nsprefVars['i']]", { location: "npc_set_preference" });
-  (s as any).temp_nsprefVars['pref_string'] = ((s as any).temp_nsprefVars['pref_string'] ?? 0) + (qspUntranslated(s, "\"npc_pref_traits[] = '<<temp_nsprefVars['trait']>>'", { location: "npc_set_preference" }));
+  ((s as any).temp_nsprefVars ?? {})['trait'] = qspUntranslated(s, "npc_nsp_pref_traits[temp_nsprefVars['i']]", { location: "npc_set_preference" });
+  ((s as any).temp_nsprefVars ?? {})['pref_string'] = (((s as any).temp_nsprefVars ?? {})['pref_string'] ?? 0) + (qspUntranslated(s, "\"npc_pref_traits[] = '<<temp_nsprefVars['trait']>>'", { location: "npc_set_preference" }));
   // TODO-QSP: npc_pref_values['<<$temp_nsprefVars['trait']>>'] = <<npc_nsp_pref_values[temp_nsprefVars['i']]>>
   // TODO-QSP: "
-  (s as any).temp_nsprefVars['i'] = ((s as any).temp_nsprefVars['i'] ?? 0) + (1);
+  ((s as any).temp_nsprefVars ?? {})['i'] = (((s as any).temp_nsprefVars ?? {})['i'] ?? 0) + (1);
   if (((s as any).temp_nsprefVars ?? 0)?.['i'] < ((s as any).temp_nsprefVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'rebuild_preferences_loop'
   }
@@ -33,7 +33,7 @@ function enterRemovePreference(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  (s as any).temp_nsprefVars['index'] = qspUntranslated(s, "arrpos('npc_nsp_pref_traits', ARGS[2])", { location: "npc_set_preference" });
+  ((s as any).temp_nsprefVars ?? {})['index'] = qspUntranslated(s, "arrpos('npc_nsp_pref_traits', ARGS[2])", { location: "npc_set_preference" });
   if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
     qspCall(s, 'array', 'remove_element', 'npc_nsp_pref_values', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'npc_set_preference', 'rebuild_preferences', ((s as any).locArgs?.[1] ?? 0));
@@ -42,76 +42,76 @@ function enterRemovePreference(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetValue(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_pref_values['love'] = 20;
-  (s as any).temp_pref_values['like'] = 10;
-  (s as any).temp_pref_values['approve'] = 5;
-  (s as any).temp_pref_values['neutral'] = 0;
-  (s as any).temp_pref_values['disapprove'] = (-5);
-  (s as any).temp_pref_values['dislike'] = (-10);
-  (s as any).temp_pref_values['hate'] = (-20);
+  ((s as any).temp_pref_values ?? {})['love'] = 20;
+  ((s as any).temp_pref_values ?? {})['like'] = 10;
+  ((s as any).temp_pref_values ?? {})['approve'] = 5;
+  ((s as any).temp_pref_values ?? {})['neutral'] = 0;
+  ((s as any).temp_pref_values ?? {})['disapprove'] = (-5);
+  ((s as any).temp_pref_values ?? {})['dislike'] = (-10);
+  ((s as any).temp_pref_values ?? {})['hate'] = (-20);
   if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_starving') {
-    (s as any).temp_pref_values['love'] = 60;
-    (s as any).temp_pref_values['like'] = 40;
-    (s as any).temp_pref_values['approve'] = 20;
-    (s as any).temp_pref_values['disapprove'] = (-3);
-    (s as any).temp_pref_values['dislike'] = (-5);
-    (s as any).temp_pref_values['hate'] = (-10);
+    ((s as any).temp_pref_values ?? {})['love'] = 60;
+    ((s as any).temp_pref_values ?? {})['like'] = 40;
+    ((s as any).temp_pref_values ?? {})['approve'] = 20;
+    ((s as any).temp_pref_values ?? {})['disapprove'] = (-3);
+    ((s as any).temp_pref_values ?? {})['dislike'] = (-5);
+    ((s as any).temp_pref_values ?? {})['hate'] = (-10);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_underweight') {
-      (s as any).temp_pref_values['love'] = 10;
-      (s as any).temp_pref_values['like'] = 5;
-      (s as any).temp_pref_values['approve'] = 3;
-      (s as any).temp_pref_values['disapprove'] = (-10);
-      (s as any).temp_pref_values['dislike'] = (-25);
-      (s as any).temp_pref_values['hate'] = (-35);
+      ((s as any).temp_pref_values ?? {})['love'] = 10;
+      ((s as any).temp_pref_values ?? {})['like'] = 5;
+      ((s as any).temp_pref_values ?? {})['approve'] = 3;
+      ((s as any).temp_pref_values ?? {})['disapprove'] = (-10);
+      ((s as any).temp_pref_values ?? {})['dislike'] = (-25);
+      ((s as any).temp_pref_values ?? {})['hate'] = (-35);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_normal') {
-        (s as any).temp_pref_values['love'] = 5;
-        (s as any).temp_pref_values['like'] = 2;
-        (s as any).temp_pref_values['approve'] = 1;
-        (s as any).temp_pref_values['disapprove'] = (-25);
-        (s as any).temp_pref_values['dislike'] = (-50);
-        (s as any).temp_pref_values['hate'] = (-70);
+        ((s as any).temp_pref_values ?? {})['love'] = 5;
+        ((s as any).temp_pref_values ?? {})['like'] = 2;
+        ((s as any).temp_pref_values ?? {})['approve'] = 1;
+        ((s as any).temp_pref_values ?? {})['disapprove'] = (-25);
+        ((s as any).temp_pref_values ?? {})['dislike'] = (-50);
+        ((s as any).temp_pref_values ?? {})['hate'] = (-70);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_overweight') {
-          (s as any).temp_pref_values['love'] = 10;
-          (s as any).temp_pref_values['like'] = 5;
-          (s as any).temp_pref_values['approve'] = 3;
-          (s as any).temp_pref_values['disapprove'] = (-15);
-          (s as any).temp_pref_values['dislike'] = (-25);
-          (s as any).temp_pref_values['hate'] = (-35);
+          ((s as any).temp_pref_values ?? {})['love'] = 10;
+          ((s as any).temp_pref_values ?? {})['like'] = 5;
+          ((s as any).temp_pref_values ?? {})['approve'] = 3;
+          ((s as any).temp_pref_values ?? {})['disapprove'] = (-15);
+          ((s as any).temp_pref_values ?? {})['dislike'] = (-25);
+          ((s as any).temp_pref_values ?? {})['hate'] = (-35);
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_obese') {
-            (s as any).temp_pref_values['love'] = 60;
-            (s as any).temp_pref_values['like'] = 40;
-            (s as any).temp_pref_values['approve'] = 20;
-            (s as any).temp_pref_values['disapprove'] = (-3);
-            (s as any).temp_pref_values['dislike'] = (-5);
-            (s as any).temp_pref_values['hate'] = (-10);
+            ((s as any).temp_pref_values ?? {})['love'] = 60;
+            ((s as any).temp_pref_values ?? {})['like'] = 40;
+            ((s as any).temp_pref_values ?? {})['approve'] = 20;
+            ((s as any).temp_pref_values ?? {})['disapprove'] = (-3);
+            ((s as any).temp_pref_values ?? {})['dislike'] = (-5);
+            ((s as any).temp_pref_values ?? {})['hate'] = (-10);
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'body_skin_bad') {
-              (s as any).temp_pref_values['love'] = 3;
-              (s as any).temp_pref_values['like'] = 2;
-              (s as any).temp_pref_values['approve'] = 1;
-              (s as any).temp_pref_values['disapprove'] = (-1);
-              (s as any).temp_pref_values['dislike'] = (-2);
-              (s as any).temp_pref_values['hate'] = (-3);
+              ((s as any).temp_pref_values ?? {})['love'] = 3;
+              ((s as any).temp_pref_values ?? {})['like'] = 2;
+              ((s as any).temp_pref_values ?? {})['approve'] = 1;
+              ((s as any).temp_pref_values ?? {})['disapprove'] = (-1);
+              ((s as any).temp_pref_values ?? {})['dislike'] = (-2);
+              ((s as any).temp_pref_values ?? {})['hate'] = (-3);
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 'body_skin_normal') {
-                (s as any).temp_pref_values['love'] = 3;
-                (s as any).temp_pref_values['like'] = 2;
-                (s as any).temp_pref_values['approve'] = 1;
-                (s as any).temp_pref_values['disapprove'] = (-1);
-                (s as any).temp_pref_values['dislike'] = (-2);
-                (s as any).temp_pref_values['hate'] = (-3);
+                ((s as any).temp_pref_values ?? {})['love'] = 3;
+                ((s as any).temp_pref_values ?? {})['like'] = 2;
+                ((s as any).temp_pref_values ?? {})['approve'] = 1;
+                ((s as any).temp_pref_values ?? {})['disapprove'] = (-1);
+                ((s as any).temp_pref_values ?? {})['dislike'] = (-2);
+                ((s as any).temp_pref_values ?? {})['hate'] = (-3);
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 'body_skin_good') {
-                  (s as any).temp_pref_values['love'] = 3;
-                  (s as any).temp_pref_values['like'] = 2;
-                  (s as any).temp_pref_values['approve'] = 1;
-                  (s as any).temp_pref_values['disapprove'] = (-1);
-                  (s as any).temp_pref_values['dislike'] = (-2);
-                  (s as any).temp_pref_values['hate'] = (-3);
+                  ((s as any).temp_pref_values ?? {})['love'] = 3;
+                  ((s as any).temp_pref_values ?? {})['like'] = 2;
+                  ((s as any).temp_pref_values ?? {})['approve'] = 1;
+                  ((s as any).temp_pref_values ?? {})['disapprove'] = (-1);
+                  ((s as any).temp_pref_values ?? {})['dislike'] = (-2);
+                  ((s as any).temp_pref_values ?? {})['hate'] = (-3);
                 }
               }
             }

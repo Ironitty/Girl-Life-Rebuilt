@@ -57,15 +57,15 @@ function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
   (s as any).shampoo_bak = ((s as any).mc_inventory ?? 0)?.['shampoo'];
   (s as any).stanok_bak = ((s as any).mc_inventory ?? 0)?.['razor'];
   (s as any).deodorant_bak = ((s as any).mc_inventory ?? 0)?.['deodorant'];
-  (s as any).mc_inventory['painkillers'] = 0;
-  (s as any).mc_inventory['equipped_condoms'] = 0;
-  (s as any).mc_inventory['vitamins'] = 0;
-  (s as any).mc_inventory['cosmetics'] = 0;
-  (s as any).mc_inventory['lipbalm'] = 0;
-  (s as any).mc_inventory['tampons'] = 0;
-  (s as any).mc_inventory['shampoo'] = 0;
-  (s as any).mc_inventory['razor'] = 0;
-  (s as any).mc_inventory['deodorant'] = 0;
+  ((s as any).mc_inventory ?? {})['painkillers'] = 0;
+  ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
+  ((s as any).mc_inventory ?? {})['vitamins'] = 0;
+  ((s as any).mc_inventory ?? {})['cosmetics'] = 0;
+  ((s as any).mc_inventory ?? {})['lipbalm'] = 0;
+  ((s as any).mc_inventory ?? {})['tampons'] = 0;
+  ((s as any).mc_inventory ?? {})['shampoo'] = 0;
+  ((s as any).mc_inventory ?? {})['razor'] = 0;
+  ((s as any).mc_inventory ?? {})['deodorant'] = 0;
   if (((s as any).bag ?? 0) === 1) {
     (s as any).bag = 0;
     (s as any).bagtaken = 1;
@@ -301,7 +301,7 @@ function enterAbdBrokenGiveTools(s: GameState, scene: SceneBuilder): void {
   scene.text('He puts them down next to your bed and leaves without saying another word.');
   if (((s as any).lactation ?? 0)?.['active'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] === 0) {
-      (s as any).mc_inventory['breast_pump'] = 1;
+      ((s as any).mc_inventory ?? {})['breast_pump'] = 1;
     }
     scene.text('In the bottom of the box, under the various dildos, you also find a working breast pump.');
     if (((s as any).lact_engorgement ?? 0) > 3) {
@@ -399,7 +399,7 @@ function enterAbdBrokenGivePainkillerYes(s: GameState, scene: SceneBuilder): voi
   (s as any).painkillerGive = Math.floor(Math.random() * 100) + 1;
   if (((s as any).painkillerGive ?? 0) > 20  &&  ((s as any).broken ?? 0) >= 10) {
     scene.text('Your master nods in approval and hands you a small pack of painkillers.');
-    (s as any).mc_inventory['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (6);
+    ((s as any).mc_inventory ?? {})['painkillers'] = (((s as any).mc_inventory ?? {})['painkillers'] ?? 0) + (6);
   }
   scene.actions([
     { label: 'How can I thank you, Master?', goto: ['abduction', 'abdBrokenAsk'] },
@@ -417,9 +417,9 @@ function enterAbdBrokenGivePainkillerNo(s: GameState, scene: SceneBuilder): void
   scene.text('You have been forced to swallow the pill, but your master still looks very angry.');
   qspCall(s, 'drugs', 'painkiller', 'gift');
   (s as any).broken = ((s as any).broken ?? 0) - (5);
-  (s as any).pain['tongue'] = ((s as any).pain['tongue'] ?? 0) + (5);
-  (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (5);
-  (s as any).pain['nose'] = ((s as any).pain['nose'] ?? 0) + (5);
+  ((s as any).pain ?? {})['tongue'] = (((s as any).pain ?? {})['tongue'] ?? 0) + (5);
+  ((s as any).pain ?? {})['throat'] = (((s as any).pain ?? {})['throat'] ?? 0) + (5);
+  ((s as any).pain ?? {})['nose'] = (((s as any).pain ?? {})['nose'] ?? 0) + (5);
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Continue', goto: ['abduction', 'abdTorture'] },
@@ -501,7 +501,7 @@ function enterAbdBreak2FuckB1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdBreak2FuckB2(s: GameState, scene: SceneBuilder): void {
-  (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (1);
+  ((s as any).pain ?? {})['asshole'] = (((s as any).pain ?? {})['asshole'] ?? 0) + (1);
   scene.img('images/locations/shared/abduction/sex/brokenb2.jpg');
   scene.text('Surprisingly, his dick is not wearing out. He moves behind you and starts to penetrate your ass.');
   scene.text('You relax your anus as much as you can, so he enters you quite easily. Just a small hint of pain pulses through you.');
@@ -621,15 +621,15 @@ function enterAbdEscapeWindow3(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (50);
   }
   qspCall(s, 'stat', '');
-  (s as any).mc_inventory['painkillers'] = ((s as any).painkiller_bak ?? 0);
-  (s as any).mc_inventory['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
-  (s as any).mc_inventory['vitamins'] = ((s as any).vitamin_bak ?? 0);
-  (s as any).mc_inventory['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
-  (s as any).mc_inventory['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
-  (s as any).mc_inventory['tampons'] = ((s as any).tampon_bak ?? 0);
-  (s as any).mc_inventory['shampoo'] = ((s as any).shampoo_bak ?? 0);
-  (s as any).mc_inventory['razor'] = ((s as any).stanok_bak ?? 0);
-  (s as any).mc_inventory['deodorant'] = ((s as any).deodorant_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['painkillers'] = ((s as any).painkiller_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).prezik_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['vitamins'] = ((s as any).vitamin_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).kosmetica_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).lipbalm_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['tampons'] = ((s as any).tampon_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['shampoo'] = ((s as any).shampoo_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['razor'] = ((s as any).stanok_bak ?? 0);
+  ((s as any).mc_inventory ?? {})['deodorant'] = ((s as any).deodorant_bak ?? 0);
   scene.actions([
     { label: 'Turn and run the opposite direction', goto: ['road', '12'] },
     { label: 'Run left', goto: ['city_industrial', ''] },

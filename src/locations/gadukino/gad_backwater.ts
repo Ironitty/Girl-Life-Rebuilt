@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['Rape'] === 2) {
     scene.img('images/locations/gadukino/sex/hunter/backwaterrelax.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).hunterVars['Rape'] = 3;
+    ((s as any).hunterVars ?? {})['Rape'] = 3;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Further', goto: ['hunters', 'start'] },
@@ -48,7 +48,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      (s as any).hunterVars['Rape'] = 2;
+      ((s as any).hunterVars ?? {})['Rape'] = 2;
     }
     if (((s as any).deodorant_on ?? 0) === 1) {
       qspCall(s, 'sweat', 'remove_deo');
@@ -74,7 +74,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      (s as any).hunterVars['Rape'] = 2;
+      ((s as any).hunterVars ?? {})['Rape'] = 2;
     }
     qspCall(s, 'stat', '');
     scene.actions([
@@ -105,7 +105,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      (s as any).hunterVars['Rape'] = 2;
+      ((s as any).hunterVars ?? {})['Rape'] = 2;
     }
     qspCall(s, 'stat', '');
     scene.actions([
@@ -125,7 +125,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      (s as any).hunterVars['Rape'] = 2;
+      ((s as any).hunterVars ?? {})['Rape'] = 2;
     }
     qspCall(s, 'stat', '');
     scene.actions([
@@ -143,7 +143,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
       scene.text('You do not hesitate to get undressed, not caring if anyone is watching.');
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-        (s as any).hunterVars['Rape'] = 2;
+        ((s as any).hunterVars ?? {})['Rape'] = 2;
       }
       qspCall(s, 'outfit', 'strip_all', 'gad_backwater');
       scene.actions([
@@ -182,7 +182,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go back to the hut', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).hunterVars['refuse'] = 0;
+    ((s as any).hunterVars ?? {})['refuse'] = 0;
   }, goto: ['gad_swamp_yard', 'start'] },
   ]);
   scene.build();
@@ -222,8 +222,8 @@ function enterHunter(s: GameState, scene: SceneBuilder): void {
     { label: 'Stay naked', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/swampbackwaternude3.jpg');
     scene.text('You decide that you have nothing to be afraid of and continue on completely nude. The hunter looks at you for a minute or so, and suddenly, you hear a "Hmph", him turning around and going away.');
-    (s as any).hunterVars['slut'] = ((s as any).hunterVars['slut'] ?? 0) + (1);
-    (s as any).hunterVars['knowday'] = ((s as any).day ?? 0);
+    ((s as any).hunterVars ?? {})['slut'] = (((s as any).hunterVars ?? {})['slut'] ?? 0) + (1);
+    ((s as any).hunterVars ?? {})['knowday'] = ((s as any).day ?? 0);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Further', goto: ['gad_backwater', ''] },

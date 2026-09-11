@@ -142,7 +142,7 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (((s as any).bodyModMana ?? 0));
     qspCall(s, 'arousal', 'flash', (-30));
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).bodyModTime ?? 0));
-    (s as any).pain[String((s as any).bodyModPain ?? 0)] = 100;
+    ((s as any).pain ?? {})[String((s as any).bodyModPain ?? 0)] = 100;
     qspCall(s, 'body', 'UpdateBodyMeasurement');
     qspCall(s, 'AppearanceSystem', 'UpdateBaseAppearance');
     qspCall(s, 'body', 'Update_Appearance');
@@ -157,120 +157,120 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'hair_color') {
     (s as any).bodyModMana = 500;
     (s as any).bodyModTime = 60;
-    (s as any).bodyModDesc[0] = 'black';
-    (s as any).bodymodValue[0] = 0;
-    (s as any).bodyModDesc[1] = 'brown';
-    (s as any).bodymodValue[1] = 1;
-    (s as any).bodyModDesc[2] = 'red';
-    (s as any).bodymodValue[2] = 2;
-    (s as any).bodyModDesc[3] = 'blonde';
-    (s as any).bodymodValue[3] = 3;
+    ((s as any).bodyModDesc ?? {})[0] = 'black';
+    ((s as any).bodymodValue ?? {})[0] = 0;
+    ((s as any).bodyModDesc ?? {})[1] = 'brown';
+    ((s as any).bodymodValue ?? {})[1] = 1;
+    ((s as any).bodyModDesc ?? {})[2] = 'red';
+    ((s as any).bodymodValue ?? {})[2] = 2;
+    ((s as any).bodyModDesc ?? {})[3] = 'blonde';
+    ((s as any).bodymodValue ?? {})[3] = 3;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'hair_length') {
       (s as any).bodyModMana = 200;
       (s as any).bodyModTime = 120;
-      (s as any).bodyModDesc[0] = 'extremely short';
-      (s as any).bodymodValue[0] = 5;
-      (s as any).bodyModDesc[1] = 'pixie-cut';
-      (s as any).bodymodValue[1] = 31;
-      (s as any).bodyModDesc[2] = 'medium';
-      (s as any).bodymodValue[2] = 81;
-      (s as any).bodyModDesc[3] = 'shoulder-length';
-      (s as any).bodymodValue[3] = 161;
-      (s as any).bodyModDesc[4] = 'long';
-      (s as any).bodymodValue[4] = 261;
-      (s as any).bodyModDesc[5] = 'very long';
-      (s as any).bodymodValue[5] = 401;
-      (s as any).bodyModDesc[6] = 'extremely long';
-      (s as any).bodymodValue[6] = 601;
+      ((s as any).bodyModDesc ?? {})[0] = 'extremely short';
+      ((s as any).bodymodValue ?? {})[0] = 5;
+      ((s as any).bodyModDesc ?? {})[1] = 'pixie-cut';
+      ((s as any).bodymodValue ?? {})[1] = 31;
+      ((s as any).bodyModDesc ?? {})[2] = 'medium';
+      ((s as any).bodymodValue ?? {})[2] = 81;
+      ((s as any).bodyModDesc ?? {})[3] = 'shoulder-length';
+      ((s as any).bodymodValue ?? {})[3] = 161;
+      ((s as any).bodyModDesc ?? {})[4] = 'long';
+      ((s as any).bodymodValue ?? {})[4] = 261;
+      ((s as any).bodyModDesc ?? {})[5] = 'very long';
+      ((s as any).bodymodValue ?? {})[5] = 401;
+      ((s as any).bodyModDesc ?? {})[6] = 'extremely long';
+      ((s as any).bodymodValue ?? {})[6] = 601;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'eye_color') {
         (s as any).bodyModMana = 300;
         (s as any).bodyModTime = 120;
-        (s as any).bodyModDesc[0] = 'brown';
-        (s as any).bodymodValue[0] = 0;
-        (s as any).bodyModDesc[1] = 'grey';
-        (s as any).bodymodValue[1] = 1;
-        (s as any).bodyModDesc[2] = 'green';
-        (s as any).bodymodValue[2] = 2;
-        (s as any).bodyModDesc[3] = 'blue';
-        (s as any).bodymodValue[3] = 3;
+        ((s as any).bodyModDesc ?? {})[0] = 'brown';
+        ((s as any).bodymodValue ?? {})[0] = 0;
+        ((s as any).bodyModDesc ?? {})[1] = 'grey';
+        ((s as any).bodymodValue ?? {})[1] = 1;
+        ((s as any).bodyModDesc ?? {})[2] = 'green';
+        ((s as any).bodymodValue ?? {})[2] = 2;
+        ((s as any).bodyModDesc ?? {})[3] = 'blue';
+        ((s as any).bodymodValue ?? {})[3] = 3;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'eye_lashes') {
           (s as any).bodyModMana = 100;
           (s as any).bodyModTime = 30;
-          (s as any).bodyModDesc[0] = 'short';
-          (s as any).bodymodValue[0] = 0;
-          (s as any).bodyModDesc[1] = 'average';
-          (s as any).bodymodValue[1] = 1;
-          (s as any).bodyModDesc[2] = 'long';
-          (s as any).bodymodValue[2] = 2;
-          (s as any).bodyModDesc[3] = 'lavish';
-          (s as any).bodymodValue[3] = 3;
-          (s as any).bodyModDesc[4] = 'show-stealing';
-          (s as any).bodymodValue[4] = 4;
-          (s as any).bodyModDesc[5] = 'long, jewel-dusted';
-          (s as any).bodymodValue[5] = 5;
+          ((s as any).bodyModDesc ?? {})[0] = 'short';
+          ((s as any).bodymodValue ?? {})[0] = 0;
+          ((s as any).bodyModDesc ?? {})[1] = 'average';
+          ((s as any).bodymodValue ?? {})[1] = 1;
+          ((s as any).bodyModDesc ?? {})[2] = 'long';
+          ((s as any).bodymodValue ?? {})[2] = 2;
+          ((s as any).bodyModDesc ?? {})[3] = 'lavish';
+          ((s as any).bodymodValue ?? {})[3] = 3;
+          ((s as any).bodyModDesc ?? {})[4] = 'show-stealing';
+          ((s as any).bodymodValue ?? {})[4] = 4;
+          ((s as any).bodyModDesc ?? {})[5] = 'long, jewel-dusted';
+          ((s as any).bodymodValue ?? {})[5] = 5;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'lip_size') {
             (s as any).bodyModMana = 300;
             (s as any).bodyModTime = 120;
-            (s as any).bodyModDesc[0] = 'thin';
-            (s as any).bodymodValue[0] = 0;
-            (s as any).bodyModDesc[1] = 'normal';
-            (s as any).bodymodValue[1] = 1;
-            (s as any).bodyModDesc[2] = 'plump';
-            (s as any).bodymodValue[2] = 2;
-            (s as any).bodyModDesc[3] = 'pouty';
-            (s as any).bodymodValue[3] = 3;
-            (s as any).bodyModDesc[4] = 'pillowy';
-            (s as any).bodymodValue[4] = 4;
+            ((s as any).bodyModDesc ?? {})[0] = 'thin';
+            ((s as any).bodymodValue ?? {})[0] = 0;
+            ((s as any).bodyModDesc ?? {})[1] = 'normal';
+            ((s as any).bodymodValue ?? {})[1] = 1;
+            ((s as any).bodyModDesc ?? {})[2] = 'plump';
+            ((s as any).bodymodValue ?? {})[2] = 2;
+            ((s as any).bodyModDesc ?? {})[3] = 'pouty';
+            ((s as any).bodymodValue ?? {})[3] = 3;
+            ((s as any).bodyModDesc ?? {})[4] = 'pillowy';
+            ((s as any).bodymodValue ?? {})[4] = 4;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'breast_size') {
               (s as any).bodyModMana = 1000;
               (s as any).bodyModTime = 240;
-              (s as any).bodyModDesc[0] = 'AA';
-              (s as any).bodymodValue[0] = 3 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[1] = 'A';
-              (s as any).bodymodValue[1] = 8 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[2] = 'B';
-              (s as any).bodymodValue[2] = 13 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[3] = 'C';
-              (s as any).bodymodValue[3] = 18 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[4] = 'D';
-              (s as any).bodymodValue[4] = 23 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[5] = 'E';
-              (s as any).bodymodValue[5] = 28 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[6] = 'F';
-              (s as any).bodymodValue[6] = 33 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[7] = 'G';
-              (s as any).bodymodValue[7] = 38 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[8] = 'H';
-              (s as any).bodymodValue[8] = 43 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[9] = 'I';
-              (s as any).bodymodValue[9] = 48 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[10] = 'J';
-              (s as any).bodymodValue[10] = 53 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
-              (s as any).bodyModDesc[11] = 'K';
-              (s as any).bodymodValue[11] = 58 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[0] = 'AA';
+              ((s as any).bodymodValue ?? {})[0] = 3 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[1] = 'A';
+              ((s as any).bodymodValue ?? {})[1] = 8 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[2] = 'B';
+              ((s as any).bodymodValue ?? {})[2] = 13 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[3] = 'C';
+              ((s as any).bodymodValue ?? {})[3] = 18 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[4] = 'D';
+              ((s as any).bodymodValue ?? {})[4] = 23 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[5] = 'E';
+              ((s as any).bodymodValue ?? {})[5] = 28 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[6] = 'F';
+              ((s as any).bodymodValue ?? {})[6] = 33 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[7] = 'G';
+              ((s as any).bodymodValue ?? {})[7] = 38 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[8] = 'H';
+              ((s as any).bodymodValue ?? {})[8] = 43 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[9] = 'I';
+              ((s as any).bodymodValue ?? {})[9] = 48 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[10] = 'J';
+              ((s as any).bodymodValue ?? {})[10] = 53 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
+              ((s as any).bodyModDesc ?? {})[11] = 'K';
+              ((s as any).bodymodValue ?? {})[11] = 58 - (((s as any).pcs_cupsize ?? 0) - ((s as any).bodyVars ?? {})?.['bust_magic']);
             } else {
               if (((s as any).locArgs?.[1] ?? 0) === 'skin') {
                 (s as any).bodyModMana = 1000;
                 (s as any).bodyModTime = 240;
-                (s as any).bodyModDesc[0] = 'clear';
-                (s as any).bodymodValue[0] = 1000;
+                ((s as any).bodyModDesc ?? {})[0] = 'clear';
+                ((s as any).bodymodValue ?? {})[0] = 1000;
               } else {
                 if (((s as any).locArgs?.[1] ?? 0) === 'virgin') {
                   (s as any).bodyModMana = 1000;
                   (s as any).bodyModTime = 120;
-                  (s as any).bodyModDesc[0] = 'renewed';
-                  (s as any).bodymodValue[0] = 20;
+                  ((s as any).bodyModDesc ?? {})[0] = 'renewed';
+                  ((s as any).bodymodValue ?? {})[0] = 20;
                 } else {
                   if (((s as any).locArgs?.[1] ?? 0) === 'silicone') {
                     (s as any).bodyModMana = 1000;
                     (s as any).bodyModTime = 240;
-                    (s as any).bodyModDesc[0] = 'natural again';
-                    (s as any).bodymodValue[0] = 0;
+                    ((s as any).bodyModDesc ?? {})[0] = 'natural again';
+                    ((s as any).bodymodValue ?? {})[0] = 0;
                   }
                 }
               }
@@ -1683,12 +1683,12 @@ function enterSMSConditions(s: GameState, scene: SceneBuilder): void {
 
 function enterAddSMS(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'A176');
-  (s as any).SMSTree['0'] = 'It\'s Tatiana, I need you to swing by the lab';
-  (s as any).SMSTree['a1'] = 'There is a spell I think you would want to learn';
-  (s as any).SMSTree['a2'] = 'There are some spells I think you would want to learn';
-  (s as any).SMSTree['b'] = 'We should talk about your succubus issue';
-  (s as any).SMSTree['c'] = 'I have a mission for you';
-  (s as any).SMSTree['q'] = 'Add Tatiana to your contacts';
+  ((s as any).SMSTree ?? {})['0'] = 'It\'s Tatiana, I need you to swing by the lab';
+  ((s as any).SMSTree ?? {})['a1'] = 'There is a spell I think you would want to learn';
+  ((s as any).SMSTree ?? {})['a2'] = 'There are some spells I think you would want to learn';
+  ((s as any).SMSTree ?? {})['b'] = 'We should talk about your succubus issue';
+  ((s as any).SMSTree ?? {})['c'] = 'I have a mission for you';
+  ((s as any).SMSTree ?? {})['q'] = 'Add Tatiana to your contacts';
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
   if (((s as any).locArgs?.[1] ?? 0) % 10 === 3) {

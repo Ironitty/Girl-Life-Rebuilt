@@ -468,7 +468,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('Nadia finishes her cake and chats with you.');
     if (((s as any).job_hiring_step ?? 0)?.['city_office_cleaner'] === 0) {
-      (s as any).job_hiring_step['city_office_cleaner'] = 1;
+      ((s as any).job_hiring_step ?? {})['city_office_cleaner'] = 1;
       scene.text('Nadia tells you about an office building not too far away that is looking for a cleaner.');
     }
     scene.actions([
@@ -566,7 +566,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).talkrand ?? 0))) {
       scene.text('Anna tells you that her friend used to clean an office building not far from here and that they are looking for a new cleaner if you need to make some extra cash.');
       if (((s as any).job_hiring_step ?? 0)?.['city_office_cleaner'] === 0) {
-        (s as any).job_hiring_step['city_office_cleaner'] = 1;
+        ((s as any).job_hiring_step ?? {})['city_office_cleaner'] = 1;
       }
     } else {
       if (((s as any).talkrand ?? 0) === 1) {

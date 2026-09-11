@@ -70,7 +70,7 @@ function enterPornactor(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-      (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
+      ((s as any).aksex ?? {})[String((s as any).akrand ?? 0)] = 1;
       (s as any).guy = ((s as any).guy ?? 0) + (1);
     }
     (s as any).num = ((s as any).num ?? 0) - (1);
@@ -128,7 +128,7 @@ function enterPornactress(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).aksex ?? 0)?.[String((s as any).akrand ?? 0)] === 0) {
-      (s as any).aksex[String((s as any).akrand ?? 0)] = 1;
+      ((s as any).aksex ?? {})[String((s as any).akrand ?? 0)] = 1;
       (s as any).girl = ((s as any).girl ?? 0) + (1);
     }
     (s as any).num = ((s as any).num ?? 0) - (1);
@@ -505,7 +505,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -598,7 +598,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 0;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]
   // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
@@ -775,7 +775,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   (s as any).pfType = 1;
   qspCall(s, 'fame', 'city', 'porn', 25);
   (s as any).minut = ((s as any).minut ?? 0) + 180;
-  (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   (s as any).porngang = ((s as any).porngang ?? 0) + (1);
   qspCall(s, 'stat', '');
   // TODO-QSP: gs 'npcStat', $pactorID[1]

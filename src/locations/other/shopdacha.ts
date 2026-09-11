@@ -164,7 +164,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 500000, 'card');
-      (s as any).ymanrem[3] = 1;
+      ((s as any).ymanrem ?? {})[3] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for the construction of the mansion\'s internal walls.');
@@ -221,7 +221,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[3] = 2;
+      ((s as any).ymanrem ?? {})[3] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for hallways to be built.');
@@ -239,7 +239,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 150000, 'card');
-      (s as any).ymanrem[3] = 3;
+      ((s as any).ymanrem ?? {})[3] = 3;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy lounge furniture.');
@@ -258,7 +258,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[4] = 1;
+      ((s as any).ymanrem ?? {})[4] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for the main bedroom to be built.');
@@ -276,7 +276,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 300000, 'card');
-      (s as any).ymanrem[4] = 2;
+      ((s as any).ymanrem ?? {})[4] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy bedroom furniture.');
@@ -295,7 +295,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[5] = 1;
+      ((s as any).ymanrem ?? {})[5] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for the bathroom to be built.');
@@ -313,7 +313,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[5] = 2;
+      ((s as any).ymanrem ?? {})[5] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You purchase the bathroom suite.');
@@ -332,7 +332,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[6] = 1;
+      ((s as any).ymanrem ?? {})[6] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for the kitchen installation.');
@@ -350,7 +350,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[6] = 2;
+      ((s as any).ymanrem ?? {})[6] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You purchase the kitchen units.');
@@ -369,7 +369,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[7] = 1;
+      ((s as any).ymanrem ?? {})[7] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for your living room.');
@@ -387,7 +387,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[7] = 2;
+      ((s as any).ymanrem ?? {})[7] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy furniture for your living room.');
@@ -406,7 +406,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[8] = 1;
+      ((s as any).ymanrem ?? {})[8] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for your lounge.');
@@ -424,7 +424,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[8] = 2;
+      ((s as any).ymanrem ?? {})[8] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You purchase furniture for your lounge.');
@@ -443,7 +443,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[9] = 1;
+      ((s as any).ymanrem ?? {})[9] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for a children\'s room.');
@@ -461,7 +461,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[9] = 2;
+      ((s as any).ymanrem ?? {})[9] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay furniture for the nursery.');
@@ -480,7 +480,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[10] = 1;
+      ((s as any).ymanrem ?? {})[10] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for a library.');
@@ -498,7 +498,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[10] = 2;
+      ((s as any).ymanrem ?? {})[10] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy furniture for the library.');
@@ -517,7 +517,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[11] = 1;
+      ((s as any).ymanrem ?? {})[11] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy a gym.');
@@ -535,7 +535,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[11] = 2;
+      ((s as any).ymanrem ?? {})[11] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy gym equipment.');
@@ -554,7 +554,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[12] = 1;
+      ((s as any).ymanrem ?? {})[12] = 1;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You pay for an office to be built.');
@@ -572,7 +572,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 250000, 'card');
-      (s as any).ymanrem[12] = 2;
+      ((s as any).ymanrem ?? {})[12] = 2;
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
       scene.text('You buy office furniture.');

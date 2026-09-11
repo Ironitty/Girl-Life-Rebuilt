@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('“Whatever I decided, and whenever I decide. That is all you need to know.”');
   } },
     { label: 'Buy time to think', handler: (st: GameState) => {
-    (s as any).rudolphqw['counter'] = ((s as any).daystart ?? 0) + 7;
+    ((s as any).rudolphqw ?? {})['counter'] = ((s as any).daystart ?? 0) + 7;
     scene.text('“Can I have some time to think on this?”, Rudolph glares at you for a moment and then his expression changes to being more fatherly, “Despite my best judgement I will give you seven days to decide. You will report back to me here to give your choice otherwise I will assume you have chosen to disregard my generous offer. ”');
     scene.text('You can\'t help but notice that his fatherly smile and expression fail to reach his eyes leaving you with an uneasy feeling.');
     scene.actions([
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept his offer', handler: (st: GameState) => {
-    (s as any).rudolphqw['path'] = 1;
+    ((s as any).rudolphqw ?? {})['path'] = 1;
     scene.text('You pause for a moment before replying, “I will not prostitute myself to be a ballerina if that\'s what you are asking.”');
     // TODO-QSP: dynamic text: Rudolph glares at you for a moment and then his expression changes to being more...
     scene.text(`Rudolph glares at you for a moment and then his expression changes to being more fatherly, “Do not worry ${((s as any).pcs_nickname ?? 0)}, I will not lay a finger on you. I do not rape my pupils, and all my relationships have been consensual. However I still get to decide what you owe me and how you pay me back. Understand?” Something in his voice feels slightly threatening but you can't see what that could be.`);

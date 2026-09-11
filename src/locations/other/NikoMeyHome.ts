@@ -626,7 +626,7 @@ function enterLeaving(s: GameState, scene: SceneBuilder): void {
 function enterVickyGoodbye(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 0;
   if (((s as any).npc_grupTipe ?? 0)?.['A189'] === 4) {
-    (s as any).npc_grupTipe['A189'] = 600;
+    ((s as any).npc_grupTipe ?? {})['A189'] = 600;
   }
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/vicky/vicky2.jpg');

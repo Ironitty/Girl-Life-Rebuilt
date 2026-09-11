@@ -222,16 +222,16 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
 
 function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
-    (s as any).ARGS[1] = ((s as any).will_cost ?? 0);
+    ((s as any).ARGS ?? {})[1] = ((s as any).will_cost ?? 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
-    (s as any).ARGS[2] = ((s as any).pcs_willpwr ?? 0);
+    ((s as any).ARGS ?? {})[2] = ((s as any).pcs_willpwr ?? 0);
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
-    (s as any).ARGS[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
+    ((s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
   }
   if (((s as any).locArgs?.[3] ?? 0) === 1) {
   } else {

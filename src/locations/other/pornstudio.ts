@@ -59,49 +59,49 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).porn_fame ?? 0) >= 20) {
-      (s as any).ftypecount[0] = ((s as any).pornvag ?? 0);
-      (s as any).ftypecount_text[0] = 'vaginal';
-      (s as any).ftypecount[1] = ((s as any).pornanal ?? 0);
-      (s as any).ftypecount_text[1] = 'anal';
-      (s as any).ftypecount[2] = ((s as any).porngasm ?? 0);
-      (s as any).ftypecount_text[2] = 'orgasm';
-      (s as any).ftypecount[3] = ((s as any).porngang ?? 0);
-      (s as any).ftypecount_text[3] = 'group sex';
-      (s as any).ftypecount[4] = ((s as any).porncream ?? 0);
-      (s as any).ftypecount_text[4] = 'creampie';
-      (s as any).ftypecount[5] = ((s as any).pornhole ?? 0);
-      (s as any).ftypecount_text[5] = 'gloryhole';
-      (s as any).ftypecount[6] = ((s as any).pornbdsm ?? 0);
-      (s as any).ftypecount_text[6] = 'bdsm';
-      (s as any).ftypecount[7] = ((s as any).pornlesbo ?? 0);
-      (s as any).ftypecount_text[7] = 'lesbian';
-      (s as any).ftypecount[8] = ((s as any).pornpreg ?? 0);
-      (s as any).ftypecount_text[8] = 'pregnant';
-      (s as any).ftypecount[9] = ((s as any).pornexhib ?? 0);
-      (s as any).ftypecount_text[9] = 'public';
-      (s as any).ftypecount[10] = ((s as any).pornmast ?? 0);
-      (s as any).ftypecount_text[10] = 'masturbation';
-      (s as any).ftypecount[11] = ((s as any).pornbukk ?? 0);
-      (s as any).ftypecount_text[11] = 'cumshot';
-      (s as any).ftypecount[12] = ((s as any).pornbj ?? 0);
-      (s as any).ftypecount_text[12] = 'blowjob';
-      (s as any).ftypecount[13] = ((s as any).pornhj ?? 0);
-      (s as any).ftypecount_text[13] = 'handjob';
-      (s as any).ftypecount[14] = ((s as any).pornswall ?? 0);
-      (s as any).ftypecount_text[14] = 'cum swallowing';
-      (s as any).temp['max0'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
-      (s as any).temp['pos0'] = qspUntranslated(s, "arrpos('ftypecount', temp['max0'])", { location: "pornstudio" });
-      (s as any).temp['type0'] = qspUntranslated(s, "ftypecount_text[temp['pos0']]", { location: "pornstudio" });
-      (s as any).temp['max1'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
-      (s as any).temp['pos1'] = qspUntranslated(s, "arrpos('ftypecount', temp['max1'])", { location: "pornstudio" });
-      (s as any).temp['type1'] = qspUntranslated(s, "ftypecount_text[temp['pos1']]", { location: "pornstudio" });
+      ((s as any).ftypecount ?? {})[0] = ((s as any).pornvag ?? 0);
+      ((s as any).ftypecount_text ?? {})[0] = 'vaginal';
+      ((s as any).ftypecount ?? {})[1] = ((s as any).pornanal ?? 0);
+      ((s as any).ftypecount_text ?? {})[1] = 'anal';
+      ((s as any).ftypecount ?? {})[2] = ((s as any).porngasm ?? 0);
+      ((s as any).ftypecount_text ?? {})[2] = 'orgasm';
+      ((s as any).ftypecount ?? {})[3] = ((s as any).porngang ?? 0);
+      ((s as any).ftypecount_text ?? {})[3] = 'group sex';
+      ((s as any).ftypecount ?? {})[4] = ((s as any).porncream ?? 0);
+      ((s as any).ftypecount_text ?? {})[4] = 'creampie';
+      ((s as any).ftypecount ?? {})[5] = ((s as any).pornhole ?? 0);
+      ((s as any).ftypecount_text ?? {})[5] = 'gloryhole';
+      ((s as any).ftypecount ?? {})[6] = ((s as any).pornbdsm ?? 0);
+      ((s as any).ftypecount_text ?? {})[6] = 'bdsm';
+      ((s as any).ftypecount ?? {})[7] = ((s as any).pornlesbo ?? 0);
+      ((s as any).ftypecount_text ?? {})[7] = 'lesbian';
+      ((s as any).ftypecount ?? {})[8] = ((s as any).pornpreg ?? 0);
+      ((s as any).ftypecount_text ?? {})[8] = 'pregnant';
+      ((s as any).ftypecount ?? {})[9] = ((s as any).pornexhib ?? 0);
+      ((s as any).ftypecount_text ?? {})[9] = 'public';
+      ((s as any).ftypecount ?? {})[10] = ((s as any).pornmast ?? 0);
+      ((s as any).ftypecount_text ?? {})[10] = 'masturbation';
+      ((s as any).ftypecount ?? {})[11] = ((s as any).pornbukk ?? 0);
+      ((s as any).ftypecount_text ?? {})[11] = 'cumshot';
+      ((s as any).ftypecount ?? {})[12] = ((s as any).pornbj ?? 0);
+      ((s as any).ftypecount_text ?? {})[12] = 'blowjob';
+      ((s as any).ftypecount ?? {})[13] = ((s as any).pornhj ?? 0);
+      ((s as any).ftypecount_text ?? {})[13] = 'handjob';
+      ((s as any).ftypecount ?? {})[14] = ((s as any).pornswall ?? 0);
+      ((s as any).ftypecount_text ?? {})[14] = 'cum swallowing';
+      ((s as any).temp ?? {})['max0'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
+      ((s as any).temp ?? {})['pos0'] = qspUntranslated(s, "arrpos('ftypecount', temp['max0'])", { location: "pornstudio" });
+      ((s as any).temp ?? {})['type0'] = qspUntranslated(s, "ftypecount_text[temp['pos0']]", { location: "pornstudio" });
+      ((s as any).temp ?? {})['max1'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
+      ((s as any).temp ?? {})['pos1'] = qspUntranslated(s, "arrpos('ftypecount', temp['max1'])", { location: "pornstudio" });
+      ((s as any).temp ?? {})['type1'] = qspUntranslated(s, "ftypecount_text[temp['pos1']]", { location: "pornstudio" });
       if (10 * ((s as any).temp ?? 0)?.['max1'] < 9 * ((s as any).temp ?? 0)?.['max0']) {
         // TODO-QSP: dynamic text: You're known for your <<$temp['type0']>> scenes.
         scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0']} scenes.`);
       } else {
-        (s as any).temp['max2'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
-        (s as any).temp['pos2'] = qspUntranslated(s, "arrpos('ftypecount', temp['max2'])", { location: "pornstudio" });
-        (s as any).temp['type2'] = qspUntranslated(s, "ftypecount_text[temp['pos2']]", { location: "pornstudio" });
+        ((s as any).temp ?? {})['max2'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
+        ((s as any).temp ?? {})['pos2'] = qspUntranslated(s, "arrpos('ftypecount', temp['max2'])", { location: "pornstudio" });
+        ((s as any).temp ?? {})['type2'] = qspUntranslated(s, "ftypecount_text[temp['pos2']]", { location: "pornstudio" });
         if (10 * ((s as any).temp ?? 0)?.['max2'] < 9 * ((s as any).temp ?? 0)?.['max0']) {
           // TODO-QSP: dynamic text: You're known for your <<$temp['type0']>> and <<$temp['type1']>> scenes.
           scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0']} and ${((s as any).temp ?? 0)?.['type1']} scenes.`);
@@ -129,10 +129,10 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'money', 'pay', ((s as any).films_stop_payment ?? 0));
       (s as any).pfilmSTOP = 1;
-      (s as any).job_termination_reason['city_pornstudio_actress'] = 'retired';
+      ((s as any).job_termination_reason ?? {})['city_pornstudio_actress'] = 'retired';
       qspCall(s, 'jobs', 'set_terminated', 'city_pornstudio_actress');
-      (s as any).job_booking_debt['city_pornstudio_actress'] = 0;
-      (s as any).job_last_miss_cost['city_pornstudio_actress'] = 0;
+      ((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
+      ((s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
       (s as any).film = 0;
       qspCall(s, 'stat', '');
       scene.text('"We never met. Have a nice day, and don\'t come back."');
@@ -224,7 +224,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).mc_inventory['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
+    ((s as any).mc_inventory ?? {})['deodorant'] = (((s as any).mc_inventory ?? {})['deodorant'] ?? 0) - (1);
     qspCall(s, 'sweat', 'deo');
     qspCall(s, 'stat', '');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
@@ -283,17 +283,17 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
           scene.text('He manages to cool off a little with the venting of his frustration, and after a deep breath, he continues more calmly.');
           if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).daystart ?? 0) + 1) === 0) {
             (s as any).missday = Math.floor(Math.random() * 4) + 0;
-            (s as any).porntaken['1,' + String((s as any).missday || '') + ''] = 0;
+            ((s as any).porntaken ?? {})['1,' + String((s as any).missday || '') + ''] = 0;
             scene.text('"I\'ll give you a chance to make it right. Another actress has gotten sick and cancelled her shoot. If you jump in for her, your debt is cancelled. And no, I don\'t remember what she was going to shoot. This day has been anything but easy due to you! You can also work it off, but that will take longer, or just pay it back if you have the money."');
             scene.actions([
               { label: 'Jump in tomorrow', handler: (st: GameState) => {
-    (s as any).job_booking_debt['city_pornstudio_actress'] = ((s as any).job_booking_debt['city_pornstudio_actress'] ?? 0) - (((s as any).job_last_miss_cost ?? 0)?.['city_pornstudio_actress']);
+    ((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = (((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] ?? 0) - (((s as any).job_last_miss_cost ?? 0)?.['city_pornstudio_actress']);
     if (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] < 0) {
-      (s as any).job_booking_debt['city_pornstudio_actress'] = 0;
+      ((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
     }
-    (s as any).job_last_miss_cost['city_pornstudio_actress'] = 0;
+    ((s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
     (s as any).pfilmNOPAY = 1;
-    (s as any).porntaken['1,' + String((s as any).missday || '') + ''] = 2;
+    ((s as any).porntaken ?? {})['1,' + String((s as any).missday || '') + ''] = 2;
     // TODO-QSP: gs 'jobs', 'book_slot', 'city_pornstudio_actress', daystart + 1, missday, $str(pornplan['1,<<missday...
   }, goto: ['pornstudio', ''] },
             ]);
@@ -313,10 +313,10 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.text('"Fuck this shit, I quit!" you yell before storming out of his office.');
     (s as any).pfilmNO = 1;
-    (s as any).job_termination_reason['city_pornstudio_actress'] = 'quit';
+    ((s as any).job_termination_reason ?? {})['city_pornstudio_actress'] = 'quit';
     qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_actress');
-    (s as any).job_booking_debt['city_pornstudio_actress'] = 0;
-    (s as any).job_last_miss_cost['city_pornstudio_actress'] = 0;
+    ((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
+    ((s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
   }, goto: ['pornstudio', ''] },
             ]);
           }
@@ -327,10 +327,10 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).job_booking_debt ?? 0)?.['city_pornstudio_actress'] > ((s as any).job_penalty_max_debt ?? 0)?.['city_pornstudio_actress']  &&  ((s as any).pornmiss ?? 0) === 1) {
             (s as any).pfilmNO = 1;
-            (s as any).job_termination_reason['city_pornstudio_actress'] = 'blacklisted';
+            ((s as any).job_termination_reason ?? {})['city_pornstudio_actress'] = 'blacklisted';
             qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_actress');
-            (s as any).job_booking_debt['city_pornstudio_actress'] = 0;
-            (s as any).job_last_miss_cost['city_pornstudio_actress'] = 0;
+            ((s as any).job_booking_debt ?? {})['city_pornstudio_actress'] = 0;
+            ((s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
             scene.text('"You didn\'t come to the shoot! You fucked me over once again when you already owed me a lot of money! You took the second chance I gave you and threw it back in my face! I don\'t want to work with you anymore, so get out! You\'re blacklisted!"');
           } else {
             if (qspFunc(s, 'jobs', 'is_arrival_time', 'city_pornstudio_actress') === 1) {
@@ -723,7 +723,7 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
       (s as any).pfilmNO = 1;
       (s as any).pfilmNoVenera = 1;
       qspCall(s, 'jobs', 'suspend_job', 'city_pornstudio_actress');
-      (s as any).job_last_miss_cost['city_pornstudio_actress'] = 0;
+      ((s as any).job_last_miss_cost ?? {})['city_pornstudio_actress'] = 0;
       scene.text('"Your analysis shows you have an STD," the doctor tells you as he calls Dimitri to the office.');
       scene.text('Once he arrives, Dimitri looks at the test results. "Sorry, but as long as you have an STD, you can\'t make films."');
       scene.actions([
@@ -771,7 +771,7 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
 function enterPostvideo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 21) + 20);
   (s as any).pf = qspUntranslated(s, "val(func('jobs', 'get_booking_data_for_day', 'city_pornstudio_actress', daystart))", { location: "pornstudio" });
-  (s as any).job_clocked_in['city_pornstudio_actress'] = 0;
+  ((s as any).job_clocked_in ?? {})['city_pornstudio_actress'] = 0;
   (s as any).temp_pv_slot = 0;
   // TODO-QSP: :pv_clear_slot_loop
   if (((s as any).temp_pv_slot ?? 0) < 4) {
@@ -834,18 +834,18 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
     (s as any).pfilmNOPAY = 0;
     (s as any).pfcash = 0;
     scene.text('You have fulfilled your obligation and made the film for free.');
-    (s as any).job_worked_count['city_pornstudio_actress'] = 0;
+    ((s as any).job_worked_count ?? {})['city_pornstudio_actress'] = 0;
   }
-  (s as any).pornfilmYear[String((s as any).film ?? 0)] = ((s as any).year ?? 0);
-  (s as any).pornfilmMonth[String((s as any).film ?? 0)] = ((s as any).month ?? 0);
-  (s as any).pornfilmDay[String((s as any).film ?? 0)] = ((s as any).day ?? 0);
-  (s as any).porndaystart[String((s as any).film ?? 0)] = ((s as any).daystart ?? 0);
-  (s as any).pornfilmType[String((s as any).film ?? 0)] = ((s as any).pf ?? 0);
-  (s as any).pornfilmCash[String((s as any).film ?? 0)] = ((s as any).pfcash ?? 0);
-  (s as any).pornfilmActAge[String((s as any).film ?? 0)] = ((s as any).age ?? 0);
-  (s as any).pornfilmAppAge[String((s as any).film ?? 0)] = ((s as any).vidage ?? 0);
-  (s as any).pornfilmpregchem[String((s as any).film ?? 0)] = ((s as any).pregChem ?? 0);
-  (s as any).pornfilmacting[String((s as any).film ?? 0)] = ((s as any).cumulativeactbonus ?? 0) + ((s as any).orgasmbonus ?? 0) + ((s as any).pcs_intel ?? 0) / 10;
+  ((s as any).pornfilmYear ?? {})[String((s as any).film ?? 0)] = ((s as any).year ?? 0);
+  ((s as any).pornfilmMonth ?? {})[String((s as any).film ?? 0)] = ((s as any).month ?? 0);
+  ((s as any).pornfilmDay ?? {})[String((s as any).film ?? 0)] = ((s as any).day ?? 0);
+  ((s as any).porndaystart ?? {})[String((s as any).film ?? 0)] = ((s as any).daystart ?? 0);
+  ((s as any).pornfilmType ?? {})[String((s as any).film ?? 0)] = ((s as any).pf ?? 0);
+  ((s as any).pornfilmCash ?? {})[String((s as any).film ?? 0)] = ((s as any).pfcash ?? 0);
+  ((s as any).pornfilmActAge ?? {})[String((s as any).film ?? 0)] = ((s as any).age ?? 0);
+  ((s as any).pornfilmAppAge ?? {})[String((s as any).film ?? 0)] = ((s as any).vidage ?? 0);
+  ((s as any).pornfilmpregchem ?? {})[String((s as any).film ?? 0)] = ((s as any).pregChem ?? 0);
+  ((s as any).pornfilmacting ?? {})[String((s as any).film ?? 0)] = ((s as any).cumulativeactbonus ?? 0) + ((s as any).orgasmbonus ?? 0) + ((s as any).pcs_intel ?? 0) / 10;
   if (((s as any).pornfilmacting ?? 0)?.[String((s as any).film ?? 0)] >= 90) {
     (s as any).porn_fame = ((s as any).porn_fame ?? 0) + (3);
   } else {
@@ -868,7 +868,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).pornfilmvnesh[String((s as any).film ?? 0)] = ((s as any).pcs_hotcat ?? 0);
+  ((s as any).pornfilmvnesh ?? {})[String((s as any).film ?? 0)] = ((s as any).pcs_hotcat ?? 0);
   (s as any).cumulativeactbonus = ((s as any).cumulativeactbonus ?? 0) + (((s as any).actbonus ?? 0));
   if (((s as any).pfType ?? 0) !== 0) {
     (s as any).unprotfilm = (-1);
@@ -879,7 +879,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).tmp ?? 0)} you think to yourself as you smirk in satisfaction.`);
     } else {
       if (((s as any).knowpreg ?? 0) === 0  &&  ((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) < 1000) {
-        (s as any).pornDanger[String((s as any).film ?? 0)] = 1;
+        ((s as any).pornDanger ?? {})[String((s as any).film ?? 0)] = 1;
         if ((!((s as any).ppreg ?? 0))) {
           if (((s as any).pfcash ?? 0) > 0) {
           }

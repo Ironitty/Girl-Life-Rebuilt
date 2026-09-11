@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).sex_ev['morning_after'] = 1;
+  ((s as any).sex_ev ?? {})['morning_after'] = 1;
   if (((s as any).sex_ev ?? 0)?.['lover_left'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wake_alone'] }]);
   }
@@ -213,17 +213,17 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'Wake me up next time', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Wake me up next time," you say. "Maybe I want to get some too."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'That\'s fine', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.text('"That\'s fine," you say. "A guy\'s gotta take care of his needs, doesn\'t he?"');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.text('"Feel free to do it again," you grin. "I have the best orgasms when I\'m sleeping."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -245,7 +245,7 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.text('"I love it when you fuck me in my sleep," you grin. "I have the best orgasms."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -270,17 +270,17 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah. Got horny while you were asleep. Is that okay?"');
       scene.actions([
         { label: 'Ask next time', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 1;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 1;
     scene.text('"Just ask next time," you smirk.');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'That\'s fine', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.text('"That\'s fine," you smirk. "A guy\'s gotta take care of his needs, doesn\'t he?"');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
         { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.text('"Feel free to do it again," you grin. "I have the best orgasms when I\'m sleeping."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -305,7 +305,7 @@ function enterSleepFuckWake(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
           { label: 'Sleep orgasms are the best', handler: (st: GameState) => {
-    (s as any).npc_sleep_sex_okay[String((s as any).npcID ?? 0)] = 2;
+    ((s as any).npc_sleep_sex_okay ?? {})[String((s as any).npcID ?? 0)] = 2;
     scene.text('"Feel free to do it again," you grin. "I have the best orgasms when I\'m sleeping."');
     qspCall(s, 'sex_ev_morning', 'morning_menu1');
   } },
@@ -465,7 +465,7 @@ function enterThrowUp(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/home/bathroom/vomit_after.jpg');
   scene.text('After several minutes of retching, your stomach finally seems to be empty, and you just lay there, panting over the toilet bowl.');
   if (((s as any).npc_latesleeper ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    (s as any).sex_ev['boy_in_shower'] = 0;
+    ((s as any).sex_ev ?? {})['boy_in_shower'] = 0;
     // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> peeks his head in through the door.
     scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} peeks his head in through the door.`);
     scene.text('"Hey, you okay?"');

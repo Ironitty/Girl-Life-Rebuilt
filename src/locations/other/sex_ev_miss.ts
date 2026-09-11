@@ -50,12 +50,12 @@ function enterMissGoto(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== ''  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0) {
                 scene.actions([{ label: 'Continue', goto: ['sex_ev_miss', 'miss_goto2'] }]);
               } else {
-                (s as any).sex_ev['position'] = 'miss';
-                (s as any).sex_ev['cock_inserted'] = 1;
+                ((s as any).sex_ev ?? {})['position'] = 'miss';
+                ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
                 if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
-                  (s as any).sex_ev['speed'] = Math.floor(Math.random() * 3) + 1;
+                  ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
                 }
-                (s as any).sex_ev['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
+                ((s as any).sex_ev ?? {})['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
                 if (((s as any).sex_ev ?? 0)?.['mood_type'] === 'romantic'  &&  ((s as any).sex_ev ?? 0)?.['speed'] < 3) {
                   scene.actions([
                     { label: 'Make love to <<$npcdesc>>', handler: (st: GameState) => {
@@ -81,12 +81,12 @@ function enterMissGoto(s: GameState, scene: SceneBuilder): void {
 
 function enterMissGoto2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_count'] !== 0  ||  ((s as any).sex_ev ?? 0)?.['first_insertion'] === 1) {
-    (s as any).sex_ev['cock_inserted'] = 1;
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
     if (((s as any).sex_ev ?? 0)?.['speed'] === 0) {
-      (s as any).sex_ev['speed'] = Math.floor(Math.random() * 3) + 1;
+      ((s as any).sex_ev ?? {})['speed'] = Math.floor(Math.random() * 3) + 1;
     }
-    (s as any).sex_ev['position'] = 'miss';
-    (s as any).sex_ev['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
+    ((s as any).sex_ev ?? {})['position'] = 'miss';
+    ((s as any).sex_ev ?? {})['pos_speed'] = 'miss' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_miss" }) + '';
     if (((s as any).sex_ev ?? 0)?.['mood_type'] === 'romantic'  &&  ((s as any).sex_ev ?? 0)?.['speed'] < 3) {
       scene.actions([
         { label: 'Make love to <<$npcdesc>>', handler: (st: GameState) => {
@@ -168,7 +168,7 @@ function enterMissionaryStart(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Spread your legs', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['condom'] === 0) {
-      (s as any).sex_ev['no_condom'] = 1;
+      ((s as any).sex_ev ?? {})['no_condom'] = 1;
     }
     scene.img('images/shared/sex/foreplay/miss2.jpg');
     if (((s as any).sex_ev ?? 0)?.['fuck_count'] === 0) {
@@ -201,7 +201,7 @@ function enterMissionaryStart(s: GameState, scene: SceneBuilder): void {
 
 function enterMissFirstInsertion(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_sex', 'speed_select');
-  (s as any).sex_ev['first_insertion'] = 1;
+  ((s as any).sex_ev ?? {})['first_insertion'] = 1;
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pushes you down onto the bed and puts his hands on your knees and s...
   scene.text(`${((s as any).npcdesc ?? 0)} pushes you down onto the bed and puts his hands on your knees and spreads your legs apart, placing his ${((s as any).dick_desc ?? 0)} cock right on top of your pussy as he prepares to fuck you.`);

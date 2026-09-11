@@ -789,7 +789,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 scene.text('Once she is finally done you doubt that you will ever be able to sit without extreme pain again.');
                                 scene.text('"Don\'t forget this lesson, slave."');
                                 scene.text('She unties you and then leaves you alone. You have quite some troubles putting your clothes back on, since even the softest touch feels like molten metal.');
-                                (s as any).pain['asscheeks'] = 100;
+                                ((s as any).pain ?? {})['asscheeks'] = 100;
                                 (s as any).nichGalaImplantCount = 0;
                                 (s as any).nichGalaImplantDay = ((s as any).daystart ?? 0);
                                 (s as any).minut = ((s as any).minut ?? 0) + 120;

@@ -5,24 +5,24 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  (s as any).mc_inventory['newspaper'] = 0;
+  ((s as any).mc_inventory ?? {})['newspaper'] = 0;
   qspCall(s, 'newspaper_pages', 'init');
   (s as any).i = 0;
   // TODO-QSP: :newspaper_frontpage_loop
   (s as any).idx = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('np_front_pages') - 1);
-  (s as any).newspaperVars['page_' + String((s as any).i || '') + ''] = ((s as any).np_front_pages ?? 0)?.[String((s as any).idx ?? 0)];
+  ((s as any).newspaperVars ?? {})['page_' + String((s as any).i || '') + ''] = ((s as any).np_front_pages ?? 0)?.[String((s as any).idx ?? 0)];
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (Object.keys((s as any).np_front_pages ?? {}).length > 0) {
     // TODO-QSP: jump 'newspaper_frontpage_loop'
   }
   // TODO-QSP: :newspaper_shuffle_loop
   (s as any).idx = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('np_pages') - 1);
-  (s as any).newspaperVars['page_' + String((s as any).i || '') + ''] = ((s as any).np_pages ?? 0)?.[String((s as any).idx ?? 0)];
+  ((s as any).newspaperVars ?? {})['page_' + String((s as any).i || '') + ''] = ((s as any).np_pages ?? 0)?.[String((s as any).idx ?? 0)];
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (Object.keys((s as any).np_pages ?? {}).length > 0) {
     // TODO-QSP: jump 'newspaper_shuffle_loop'
   }
-  (s as any).newspaperVars['max_page_num'] = ((s as any).i ?? 0) - 1;
+  ((s as any).newspaperVars ?? {})['max_page_num'] = ((s as any).i ?? 0) - 1;
   scene.build();
 }
 
@@ -56,7 +56,7 @@ function enterView(s: GameState, scene: SceneBuilder): void {
     if (((s as any).newspaperVars ?? 0)?.['dbag'] === 0) {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_loc', 'menu_arg'); } }]);
     } else {
-      (s as any).newspaperVars['dbag'] = 0;
+      ((s as any).newspaperVars ?? {})['dbag'] = 0;
       qspCall(s, 'din_bad', 'd_bag');
     }
   } },

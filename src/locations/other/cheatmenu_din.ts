@@ -314,7 +314,7 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIndex(s: GameState, scene: SceneBuilder): void {
-  (s as any).cheatmenu['this_menu'] = 'index';
+  ((s as any).cheatmenu ?? {})['this_menu'] = 'index';
   (s as any).currhour = (((s as any).daystart ?? 0)-1) * 24 + ((s as any).hour ?? 0);
   (s as any).currday = ((s as any).daystart ?? 0);
   (s as any).temp_daystart = ((s as any).daystart ?? 0);
@@ -345,25 +345,25 @@ function enterIndex(s: GameState, scene: SceneBuilder): void {
 
 function enterAddict(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 1) {
-    (s as any).cheatVars['drugs_immune'] = 0;
+    ((s as any).cheatVars ?? {})['drugs_immune'] = 0;
   } else {
-    (s as any).cheatVars['drugs_immune'] = 1;
-    (s as any).drugVars['cigarettes_used'] = 0;
-    (s as any).drugVars['cigarettes_need'] = 0;
-    (s as any).drugVars['weed_used'] = 0;
-    (s as any).drugVars['alcohol_used'] = 0;
-    (s as any).drugVars['cocaine_used'] = 0;
-    (s as any).drugVars['amphetamine_used'] = 0;
-    (s as any).drugVars['heroin_used'] = 0;
+    ((s as any).cheatVars ?? {})['drugs_immune'] = 1;
+    ((s as any).drugVars ?? {})['cigarettes_used'] = 0;
+    ((s as any).drugVars ?? {})['cigarettes_need'] = 0;
+    ((s as any).drugVars ?? {})['weed_used'] = 0;
+    ((s as any).drugVars ?? {})['alcohol_used'] = 0;
+    ((s as any).drugVars ?? {})['cocaine_used'] = 0;
+    ((s as any).drugVars ?? {})['amphetamine_used'] = 0;
+    ((s as any).drugVars ?? {})['heroin_used'] = 0;
   }
   scene.build();
 }
 
 function enterClothesDirt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['clothes_dirt'] === 1) {
-    (s as any).cheatVars['clothes_dirt'] = 0;
+    ((s as any).cheatVars ?? {})['clothes_dirt'] = 0;
   } else {
-    (s as any).cheatVars['clothes_dirt'] = 1;
+    ((s as any).cheatVars ?? {})['clothes_dirt'] = 1;
     qspCall(s, 'washer', 'wash_all');
   }
   scene.build();
@@ -371,25 +371,25 @@ function enterClothesDirt(s: GameState, scene: SceneBuilder): void {
 
 function enterVibrator(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['sleep_vib'] === 1) {
-    (s as any).cheatVars['sleep_vib'] = 0;
-    (s as any).sleepVars['bedVibrator'] = 0;
+    ((s as any).cheatVars ?? {})['sleep_vib'] = 0;
+    ((s as any).sleepVars ?? {})['bedVibrator'] = 0;
   } else {
-    (s as any).cheatVars['sleep_vib'] = 1;
-    (s as any).sleepVars['bedVibrator'] = 1;
+    ((s as any).cheatVars ?? {})['sleep_vib'] = 1;
+    ((s as any).sleepVars ?? {})['bedVibrator'] = 1;
   }
   scene.build();
 }
 
 function enterBimboCloth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['bimbo'] === 1) {
-    (s as any).cheatVars['bimbo'] = 0;
+    ((s as any).cheatVars ?? {})['bimbo'] = 0;
   } else {
-    (s as any).cheatVars['bimbo'] = 1;
-    (s as any).arch_vars['bimbo_points'] = 0;
-    (s as any).arch_vars['preppy_points'] = 0;
-    (s as any).arch_vars['prude_points'] = 0;
-    (s as any).arch_vars['punk_points'] = 0;
-    (s as any).arch_vars['goth_points'] = 0;
+    ((s as any).cheatVars ?? {})['bimbo'] = 1;
+    ((s as any).arch_vars ?? {})['bimbo_points'] = 0;
+    ((s as any).arch_vars ?? {})['preppy_points'] = 0;
+    ((s as any).arch_vars ?? {})['prude_points'] = 0;
+    ((s as any).arch_vars ?? {})['punk_points'] = 0;
+    ((s as any).arch_vars ?? {})['goth_points'] = 0;
     qspCall(s, 'archetypes', 'set_active');
     qspCall(s, 'archetypes', 'seed_snapshots');
   }
@@ -398,28 +398,28 @@ function enterBimboCloth(s: GameState, scene: SceneBuilder): void {
 
 function enterSmartBimbo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['smart_bimbo'] === 1) {
-    (s as any).cheatVars['smart_bimbo'] = 0;
+    ((s as any).cheatVars ?? {})['smart_bimbo'] = 0;
   } else {
-    (s as any).cheatVars['smart_bimbo'] = 1;
+    ((s as any).cheatVars ?? {})['smart_bimbo'] = 1;
   }
   scene.build();
 }
 
 function enterSuccuBimbo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['suc_bimbo'] === 1) {
-    (s as any).cheatVars['suc_bimbo'] = 0;
+    ((s as any).cheatVars ?? {})['suc_bimbo'] = 0;
   } else {
-    (s as any).cheatVars['suc_bimbo'] = 1;
+    ((s as any).cheatVars ?? {})['suc_bimbo'] = 1;
   }
   scene.build();
 }
 
 function enterSlutshot(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)?.['no_periods'] === 1) {
-    (s as any).cheatVars['no_periods'] = 0;
+    ((s as any).cheatVars ?? {})['no_periods'] = 0;
     (s as any).cycle = 0;
   } else {
-    (s as any).cheatVars['no_periods'] = 1;
+    ((s as any).cheatVars ?? {})['no_periods'] = 1;
     (s as any).cycle = 6;
   }
   scene.build();
@@ -428,7 +428,7 @@ function enterSlutshot(s: GameState, scene: SceneBuilder): void {
 function enterPermanent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'cheatmenu_din', 'cheattabs', 'Recurrent');
-  (s as any).cheatmenu['this_menu'] = 'permanent';
+  ((s as any).cheatmenu ?? {})['this_menu'] = 'permanent';
   scene.text('<center><h1>Cheat Menu - Recurrent Cheats</h1></center>');
   scene.text('<center><b>WARNING!</b></center>');
   // TODO-QSP: $cheatmenu['table_start']
@@ -620,7 +620,7 @@ function enterState(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: The milk production is <a href="exec: lactation['milkprod_type'] = 1 & gt 'cheat...
         scene.text(`The milk production is <a href="exec: lactation['milkprod_type'] = 1 & gt 'cheatmenu_din', 'state'">permanent</a>. ${((s as any).pcs_firstname ?? 0)} will produce breast milk disregarding her condition.`);
       } else {
-        (s as any).lactation['milkprod_type'] = 1;
+        ((s as any).lactation ?? {})['milkprod_type'] = 1;
       }
     }
     if (((s as any).lactation ?? 0)?.['lactaterate'] <= 0) {
@@ -669,7 +669,7 @@ function enterSetPregBody(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBodyClass(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_mass['body'] = qspFunc(s, 'body', 'CalcOptBodyMass', qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
+  ((s as any).pcs_mass ?? {})['body'] = qspFunc(s, 'body', 'CalcOptBodyMass', qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
   qspCall(s, 'body', 'softreset');
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'bodyMod'] }]);
@@ -805,7 +805,7 @@ function enterVisualage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAvatarHairSet(s: GameState, scene: SceneBuilder): void {
-  (s as any).face_style['avatar_hair'] = 0;
+  ((s as any).face_style ?? {})['avatar_hair'] = 0;
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
   scene.build();
 }
@@ -1163,9 +1163,9 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangeAvatarPath(s: GameState, scene: SceneBuilder): void {
-  (s as any).face_style['avatar_path'] = 0;
+  ((s as any).face_style ?? {})['avatar_path'] = 0;
   if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
-    (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
+    ((s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
   scene.build();
@@ -1178,29 +1178,29 @@ function enterChangePcsMassBody(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChangePcsMassBust(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_mass['bust'] = ((s as any).pcs_mass['bust'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
-  (s as any).pcs_mass['bust_gen'] = ((s as any).pcs_mass['bust_gen'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
+  ((s as any).pcs_mass ?? {})['bust'] = (((s as any).pcs_mass ?? {})['bust'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
+  ((s as any).pcs_mass ?? {})['bust_gen'] = (((s as any).pcs_mass ?? {})['bust_gen'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
   if (((s as any).pcs_mass ?? 0)?.['bust'] < 2) {
-    (s as any).pcs_mass['bust'] = 2;
+    ((s as any).pcs_mass ?? {})['bust'] = 2;
   }
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] < 2) {
-    (s as any).pcs_mass['bust_gen'] = 2;
+    ((s as any).pcs_mass ?? {})['bust_gen'] = 2;
   }
-  (s as any).pcs_mass['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
+  ((s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
   scene.build();
 }
 
 function enterChangePcsMassButt(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_mass['butt'] = ((s as any).pcs_mass['butt'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
-  (s as any).pcs_mass['butt_gen'] = ((s as any).pcs_mass['butt_gen'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
+  ((s as any).pcs_mass ?? {})['butt'] = (((s as any).pcs_mass ?? {})['butt'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
+  ((s as any).pcs_mass ?? {})['butt_gen'] = (((s as any).pcs_mass ?? {})['butt_gen'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "cheatmenu_din" }));
   if (((s as any).pcs_mass ?? 0)?.['butt'] < 2) {
-    (s as any).pcs_mass['butt'] = 2;
+    ((s as any).pcs_mass ?? {})['butt'] = 2;
   }
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] < 2) {
-    (s as any).pcs_mass['butt_gen'] = 2;
+    ((s as any).pcs_mass ?? {})['butt_gen'] = 2;
   }
-  (s as any).pcs_mass['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
+  ((s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
   scene.build();
 }
@@ -1971,13 +1971,13 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loverrelationshiploop'
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] < 0) {
-      (s as any).npc_rel[String((s as any).cmd_temp_npcid ?? 0)] = 0;
+      ((s as any).npc_rel ?? {})[String((s as any).cmd_temp_npcid ?? 0)] = 0;
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] > 100) {
-      (s as any).npc_rel[String((s as any).cmd_temp_npcid ?? 0)] = 100;
+      ((s as any).npc_rel ?? {})[String((s as any).cmd_temp_npcid ?? 0)] = 100;
     }
     if (((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] < 0) {
-      (s as any).npc_dates[String((s as any).cmd_temp_npcid ?? 0)] = 0;
+      ((s as any).npc_dates ?? {})[String((s as any).cmd_temp_npcid ?? 0)] = 0;
     }
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'girlfriend') {
       // TODO-QSP: dynamic text: You are dating <<$npc_usedname[$cmd_temp_npcid]>>.
@@ -2292,112 +2292,112 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
 
 function enterPain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pain ?? 0)?.['head'] < 0) {
-    (s as any).pain['head'] = 0;
+    ((s as any).pain ?? {})['head'] = 0;
   }
   if (((s as any).pain ?? 0)?.['hair'] < 0) {
-    (s as any).pain['hair'] = 0;
+    ((s as any).pain ?? {})['hair'] = 0;
   }
   if (((s as any).pain ?? 0)?.['ears'] < 0) {
-    (s as any).pain['ears'] = 0;
+    ((s as any).pain ?? {})['ears'] = 0;
   }
   if (((s as any).pain ?? 0)?.['eyebrows'] < 0) {
-    (s as any).pain['eyebrows'] = 0;
+    ((s as any).pain ?? {})['eyebrows'] = 0;
   }
   if (((s as any).pain ?? 0)?.['eyes'] < 0) {
-    (s as any).pain['eyes'] = 0;
+    ((s as any).pain ?? {})['eyes'] = 0;
   }
   if (((s as any).pain ?? 0)?.['cheeks'] < 0) {
-    (s as any).pain['cheeks'] = 0;
+    ((s as any).pain ?? {})['cheeks'] = 0;
   }
   if (((s as any).pain ?? 0)?.['nose'] < 0) {
-    (s as any).pain['nose'] = 0;
+    ((s as any).pain ?? {})['nose'] = 0;
   }
   if (((s as any).pain ?? 0)?.['mouth'] < 0) {
-    (s as any).pain['mouth'] = 0;
+    ((s as any).pain ?? {})['mouth'] = 0;
   }
   if (((s as any).pain ?? 0)?.['lips'] < 0) {
-    (s as any).pain['lips'] = 0;
+    ((s as any).pain ?? {})['lips'] = 0;
   }
   if (((s as any).pain ?? 0)?.['tongue'] < 0) {
-    (s as any).pain['tongue'] = 0;
+    ((s as any).pain ?? {})['tongue'] = 0;
   }
   if (((s as any).pain ?? 0)?.['throat'] < 0) {
-    (s as any).pain['throat'] = 0;
+    ((s as any).pain ?? {})['throat'] = 0;
   }
   if (((s as any).pain ?? 0)?.['neck'] < 0) {
-    (s as any).pain['neck'] = 0;
+    ((s as any).pain ?? {})['neck'] = 0;
   }
   if (((s as any).pain ?? 0)?.['back'] < 0) {
-    (s as any).pain['back'] = 0;
+    ((s as any).pain ?? {})['back'] = 0;
   }
   if (((s as any).pain ?? 0)?.['asscheeks'] < 0) {
-    (s as any).pain['asscheeks'] = 0;
+    ((s as any).pain ?? {})['asscheeks'] = 0;
   }
   if (((s as any).pain ?? 0)?.['asshole'] < 0) {
-    (s as any).pain['asshole'] = 0;
+    ((s as any).pain ?? {})['asshole'] = 0;
   }
   if (((s as any).pain ?? 0)?.['hips'] < 0) {
-    (s as any).pain['hips'] = 0;
+    ((s as any).pain ?? {})['hips'] = 0;
   }
   if (((s as any).pain ?? 0)?.['thighs'] < 0) {
-    (s as any).pain['thighs'] = 0;
+    ((s as any).pain ?? {})['thighs'] = 0;
   }
   if (((s as any).pain ?? 0)?.['legL'] < 0) {
-    (s as any).pain['legL'] = 0;
+    ((s as any).pain ?? {})['legL'] = 0;
   }
   if (((s as any).pain ?? 0)?.['legR'] < 0) {
-    (s as any).pain['legR'] = 0;
+    ((s as any).pain ?? {})['legR'] = 0;
   }
   if (((s as any).pain ?? 0)?.['feet'] < 0) {
-    (s as any).pain['feet'] = 0;
+    ((s as any).pain ?? {})['feet'] = 0;
   }
   if (((s as any).pain ?? 0)?.['toes'] < 0) {
-    (s as any).pain['toes'] = 0;
+    ((s as any).pain ?? {})['toes'] = 0;
   }
   if (((s as any).pain ?? 0)?.['shoulders'] < 0) {
-    (s as any).pain['shoulders'] = 0;
+    ((s as any).pain ?? {})['shoulders'] = 0;
   }
   if (((s as any).pain ?? 0)?.['armL'] < 0) {
-    (s as any).pain['armL'] = 0;
+    ((s as any).pain ?? {})['armL'] = 0;
   }
   if (((s as any).pain ?? 0)?.['armR'] < 0) {
-    (s as any).pain['armR'] = 0;
+    ((s as any).pain ?? {})['armR'] = 0;
   }
   if (((s as any).pain ?? 0)?.['hands'] < 0) {
-    (s as any).pain['hands'] = 0;
+    ((s as any).pain ?? {})['hands'] = 0;
   }
   if (((s as any).pain ?? 0)?.['fingers'] < 0) {
-    (s as any).pain['fingers'] = 0;
+    ((s as any).pain ?? {})['fingers'] = 0;
   }
   if (((s as any).pain ?? 0)?.['chest'] < 0) {
-    (s as any).pain['chest'] = 0;
+    ((s as any).pain ?? {})['chest'] = 0;
   }
   if (((s as any).pain ?? 0)?.['breasts'] < 0) {
-    (s as any).pain['breasts'] = 0;
+    ((s as any).pain ?? {})['breasts'] = 0;
   }
   if (((s as any).pain ?? 0)?.['nipples'] < 0) {
-    (s as any).pain['nipples'] = 0;
+    ((s as any).pain ?? {})['nipples'] = 0;
   }
   if (((s as any).pain ?? 0)?.['ribs'] < 0) {
-    (s as any).pain['ribs'] = 0;
+    ((s as any).pain ?? {})['ribs'] = 0;
   }
   if (((s as any).pain ?? 0)?.['tummy'] < 0) {
-    (s as any).pain['tummy'] = 0;
+    ((s as any).pain ?? {})['tummy'] = 0;
   }
   if (((s as any).pain ?? 0)?.['pubic'] < 0) {
-    (s as any).pain['pubic'] = 0;
+    ((s as any).pain ?? {})['pubic'] = 0;
   }
   if (((s as any).pain ?? 0)?.['vaginal'] < 0) {
-    (s as any).pain['vaginal'] = 0;
+    ((s as any).pain ?? {})['vaginal'] = 0;
   }
   if (((s as any).pain ?? 0)?.['clitoris'] < 0) {
-    (s as any).pain['clitoris'] = 0;
+    ((s as any).pain ?? {})['clitoris'] = 0;
   }
   if (((s as any).pain ?? 0)?.['urethra'] < 0) {
-    (s as any).pain['urethra'] = 0;
+    ((s as any).pain ?? {})['urethra'] = 0;
   }
   if (((s as any).pain ?? 0)?.['cervix'] < 0) {
-    (s as any).pain['cervix'] = 0;
+    ((s as any).pain ?? {})['cervix'] = 0;
   }
   qspCall(s, 'pain', 'calc');
   qspCall(s, 'stat', '');
@@ -2457,9 +2457,9 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
 function enterFame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheattabs', 'Fame');
   scene.text('<center><h1>Cheat Menu - Fame</h1></center>');
-  (s as any).table['fame'] = '<center><table width="90%" cellspacing="0" cellpadding="5" valign="top" border="1">';
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<th colspan="5"><b>Fame</b></th><tr>');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<th></th><th>Pavlovsk</th><th>City</th><th>Pushkin</th><th>Gadukino</th><tr>');
+  ((s as any).table ?? {})['fame'] = '<center><table width="90%" cellspacing="0" cellpadding="5" valign="top" border="1">';
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<th colspan="5"><b>Fame</b></th><tr>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<th></th><th>Pavlovsk</th><th>City</th><th>Pushkin</th><th>Gadukino</th><tr>');
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'acting', 'Actor');
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'dance', 'Dancer');
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'modelling', 'Glamour model');
@@ -2476,7 +2476,7 @@ function enterFame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'chess', 'Chess player');
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'teaching', 'Teacher');
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'media', 'Social media');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('</table></center>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('</table></center>');
   // TODO-QSP: $table['fame']
   scene.build();
 }
@@ -2648,12 +2648,12 @@ function enterCheatPainRow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheatFameRow(s: GameState, scene: SceneBuilder): void {
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "ARGS[2]>", { location: "cheatmenu_din" }) + '</td>');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['pav_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['city_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['pushkin_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['village_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
-  (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<tr>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "ARGS[2]>", { location: "cheatmenu_din" }) + '</td>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['pav_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'pav\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['city_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'city\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['pushkin_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'pushkin\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<td>' + qspUntranslated(s, "fame['village_<<ARGS[1]>>']>", { location: "cheatmenu_din" }) + '   <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', 10 & gt \'cheatmenu_din\', \'fame\'">+10</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', 100 & gt \'cheatmenu_din\', \'fame\'">+100</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', -10 & gt \'cheatmenu_din\', \'fame\'">-10</a> <a href="exec:gs \'fame\', \'village\', \'<<$ARGS[1]>>\', -100 & gt \'cheatmenu_din\', \'fame\'">-100</a> </td>');
+  ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<tr>');
   scene.build();
 }
 
@@ -2713,7 +2713,7 @@ function enterCheatVarRow(s: GameState, scene: SceneBuilder): void {
 function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'cheatmenu_din', 'cheattabs', 'traits');
-  (s as any).cheatmenu['this_menu'] = 'traits_cheats';
+  ((s as any).cheatmenu ?? {})['this_menu'] = 'traits_cheats';
   scene.text('<center><h1>Cheat Menu - Traits & Archetypes</h1></center>');
   // TODO-QSP: $cheatmenu['table_start']
   scene.text('<center><h3>Archetype Settings</h3></center>');

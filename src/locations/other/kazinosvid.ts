@@ -124,7 +124,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
           { label: 'Console the losers', handler: (st: GameState) => {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     // TODO-QSP: xgt 'sexdvanadva', 'var'
   } },
         ]);
@@ -139,7 +139,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
           { label: 'Pay them', handler: (st: GameState) => {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     // TODO-QSP: xgt 'sexdvanadva', 'var'
   } },
         ]);
@@ -167,7 +167,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
               { label: 'Use an alternative form of payment [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     (s as any).kazsexdva = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (2);
-    (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
+    ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     // TODO-QSP: xgt 'sexdvanadva', 'var'

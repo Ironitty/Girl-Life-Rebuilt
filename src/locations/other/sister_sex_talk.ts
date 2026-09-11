@@ -219,7 +219,7 @@ function enterSexTalkContinue(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
-  (s as any).sisterQW['ask_virgin'] = ((s as any).daystart ?? 0);
+  ((s as any).sisterQW ?? {})['ask_virgin'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   // TODO-QSP: dynamic text: "What about you, <<$pcs_nickname>>? Have you popped your cherry yet?"
   scene.text(`"What about you, ${((s as any).pcs_nickname ?? 0)}? Have you popped your cherry yet?"`);
@@ -229,7 +229,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).sisterknowslut ?? 0))) {
       (s as any).sisterknowslut = 1;
     }
-    (s as any).sisterQW['virgin_chat'] = 1;
+    ((s as any).sisterQW ?? {})['virgin_chat'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_05.jpg');
     scene.text('You\'re excited about finally losing your virginity and jump on your sister\'s bed.');
@@ -270,7 +270,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).sisterknowslut ?? 0))) {
       (s as any).sisterknowslut = 1;
     }
-    (s as any).sisterQW['virgin_chat'] = 1;
+    ((s as any).sisterQW ?? {})['virgin_chat'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_05.jpg');
     scene.text('You\'re excited about finally losing your virginity and jump on your sister\'s bed.');
@@ -340,7 +340,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
         if ((!((s as any).sisterknowslut ?? 0))) {
           (s as any).sisterknowslut = 1;
         }
-        (s as any).sisterQW['virgin_chat'] = 1;
+        ((s as any).sisterQW ?? {})['virgin_chat'] = 1;
         scene.actions([
           { label: 'Yes (embarrassed)', handler: (st: GameState) => {
     scene.text('You hesitate for a moment, but that\'s all it takes for your sister to catch on.');
@@ -585,7 +585,7 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).OluQW ?? 0)?.['anya_inv'] === 0) {
       scene.actions([
         { label: 'Ask if she wants to join', handler: (st: GameState) => {
-    (s as any).OluQW['anya_inv'] = 1;
+    ((s as any).OluQW ?? {})['anya_inv'] = 1;
     scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
     scene.text('"Would you like to come up with me next time I visit him?" you ask.');
     scene.text('She thinks about it for a moment, then grins and nods. "Yes, I think I would. You know, just to try it…" she says while blushing.');
@@ -605,7 +605,7 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sister_sex_talk', 'sex_talk_continue');
     scene.actions([
       { label: 'Ask if she wants to join you', handler: (st: GameState) => {
-    (s as any).DjibrilQW['anya_inv'] = 1;
+    ((s as any).DjibrilQW ?? {})['anya_inv'] = 1;
     scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
     scene.text('"Would you like to come up with me next time I go?" you ask.');
     scene.text('She thinks about it for a moment, then grins and nods. "Yes, I think I would. You know, just to try it…" she says while blushing.');
@@ -624,7 +624,7 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sister_sex_talk', 'sex_talk_continue');
     scene.actions([
       { label: 'Ask if she wants to join you', handler: (st: GameState) => {
-    (s as any).DjibrilQW['anya_inv'] = 2;
+    ((s as any).DjibrilQW ?? {})['anya_inv'] = 2;
     scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
     scene.text('"Would you like to come up with me next time I go?" you ask.');
     scene.text('She thinks about it for a moment, then grins and nods. "Yes, I think I would. You know, just to try it…" she says while blushing.');
@@ -670,7 +670,7 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStylePreference(s: GameState, scene: SceneBuilder): void {
-  (s as any).sisterQW['sexstyletalk'] = 1;
+  ((s as any).sisterQW ?? {})['sexstyletalk'] = 1;
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   scene.text('"Do you prefer rough sex or gentle sex?" Anya asks.');
   scene.actions([
@@ -691,7 +691,7 @@ function enterStylePreference(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
-  (s as any).sisterQW['spitswallowtalk'] = 1;
+  ((s as any).sisterQW ?? {})['spitswallowtalk'] = 1;
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   scene.text('"When you blow a guy, do you spit or swallow?" Anya asks.');
   scene.actions([

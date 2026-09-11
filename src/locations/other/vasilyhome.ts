@@ -464,7 +464,7 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
 function enterDrunkenSexYes(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  (s as any).vasily['drunk_sex'] = ((s as any).vasily['drunk_sex'] ?? 0) + (1);
+  ((s as any).vasily ?? {})['drunk_sex'] = (((s as any).vasily ?? {})['drunk_sex'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/yes\' + rand(1, 6) + \'.jpg');
   scene.text('It\'s time to show these boys that you know how to have a good time. The guys urge you on, calling out various lewd suggestions.');
@@ -492,7 +492,7 @@ function enterDrunkenSexNo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrunkenSleep(s: GameState, scene: SceneBuilder): void {
-  (s as any).sleepVars['no_health'] = 1;
+  ((s as any).sleepVars ?? {})['no_health'] = 1;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (((s as any).healthmax ?? 0) / 10);
   qspCall(s, 'mood', 'lower', 'large');
   qspCall(s, 'sleep_simple', 'forced', 180);
@@ -1242,7 +1242,7 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
         if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).strapNumber ?? 0) > 0  &&  ((s as any).vasily ?? 0)?.['drunk_sex'] > 0  &&  ((s as any).PCLoSkirt ?? 0) > 0) {
           scene.actions([
             { label: 'Pretend to take a swig', handler: (st: GameState) => {
-    (s as any).vasily['day_drunk'] = ((s as any).vasily['day_drunk'] ?? 0) + (1);
+    ((s as any).vasily ?? {})['day_drunk'] = (((s as any).vasily ?? {})['day_drunk'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/revenge/vodka3.jpg');
     scene.text('You and Vasily talk about a variety of things as you pretend to take a swig of vodka and swallow very little of it before you pass it back to him. As he quickly takes the bottle and takes another swig, you remember how the bastard made you give him a blowjob when you got drunk with him last time. Maybe you should pay him back after he gets drunk?');

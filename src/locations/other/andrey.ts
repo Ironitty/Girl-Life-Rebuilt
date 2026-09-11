@@ -112,7 +112,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "You have missed work <<job_booking_debt['city_pussycats_clerk']>> '+iif(job_boo...
         scene.text(`"You have missed work ${((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk']} '+iif(job_booking_debt['city_pussycats_clerk'] = 1, 'time', 'times')+'," he reminds you. "Don't make a habit out of it. If you miss work 3 times, I will fire you.`);
       } else {
-        (s as any).job_miss_acknowledged['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
+        ((s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
         scene.text('He gives you a hard look when he see\'s it\'s you. "You missed work. Do you remember what I said about missing work?"');
         scene.text('You nod. "I remember. I\'m sorry."');
         scene.text('He snorts slightly and shakes his head. "You better not forget about it the next time. Here\'s your pay." He beckons you closer, and you oblige. He digs around in his desk drawer for your money. As you wait, you catch a glimpse of his computer screen and see an image of a naked woman. He must think you can\'t see the screen from where you are. "Here you go," Mr. Sobulyagin says as he holds out a white envelope with your money inside.');
@@ -450,8 +450,8 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'boyStat', 'A101');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
-  (s as any).job_booking_debt['city_pussycats_clerk'] = 0;
-  (s as any).job_miss_acknowledged['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
+  ((s as any).job_booking_debt ?? {})['city_pussycats_clerk'] = 0;
+  ((s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
   qspCall(s, 'jobs', 'bonus_pay', 'city_pussycats_clerk', 410);
   scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
   scene.text('You swallow hard and nod your head. "If this means keeping my job… I\'ll do it."');
@@ -507,8 +507,8 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFired2(s: GameState, scene: SceneBuilder): void {
-  (s as any).job_booking_debt['city_pussycats_clerk'] = 0;
-  (s as any).job_miss_acknowledged['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
+  ((s as any).job_booking_debt ?? {})['city_pussycats_clerk'] = 0;
+  ((s as any).job_miss_acknowledged ?? {})['city_pussycats_clerk'] = ((s as any).job_missed_total ?? 0)?.['city_pussycats_clerk'];
   (s as any).sexpartkno = 1;
   (s as any).spafinloc = 3;
   qspCall(s, 'cum_manage', '');

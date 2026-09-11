@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterGetMeIndex(s: GameState, scene: SceneBuilder): void {
   (s as any).testas0 = 0;
   if (((((s as any).test ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
-    (s as any).temp_arrayVars['backup'] = 0;
+    ((s as any).temp_arrayVars ?? {})['backup'] = 0;
     // TODO-QSP: dynamic "<<$test>> = 'SearchTag'"
     (s as any).testas1 = 0;
     if (((s as any).testas0 ?? 0) === ((s as any).testas1 ?? 0)) {
@@ -17,7 +17,7 @@ function enterGetMeIndex(s: GameState, scene: SceneBuilder): void {
       (s as any).result = (-1);
     }
   } else {
-    (s as any).temp_arrayVars['backup'] = 0;
+    ((s as any).temp_arrayVars ?? {})['backup'] = 0;
     // TODO-QSP: dynamic '<<$test>> = -2147483647'
     (s as any).testas1 = 0;
     if (((s as any).testas0 ?? 0) === ((s as any).testas1 ?? 0)) {
@@ -39,8 +39,8 @@ function enterRemoveElement(s: GameState, scene: SceneBuilder): void {
 function enterCoupledSort(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :coupled_sort_loop_start
   if (((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0)) > 0) {
-    (s as any).temp_arrayVars['pos'] = 0;
-    (s as any).temp_arrayVars['i'] = 1;
+    ((s as any).temp_arrayVars ?? {})['pos'] = 0;
+    ((s as any).temp_arrayVars ?? {})['i'] = 1;
     // TODO-QSP: :coupled_sort_inner_start
     if (((s as any).ARGS ?? 0)[((s as any).temp_arrayVars ?? 0)?.['i']] !== '') {
       if (((s as any).arrsize ?? 0)(((s as any).ARGS ?? 0)[((s as any).temp_arrayVars ?? 0)?.['i']]) > 0) {
@@ -49,19 +49,19 @@ function enterCoupledSort(s: GameState, scene: SceneBuilder): void {
         } else {
           // TODO-QSP: dynamic "temp_array_coupled_sort<<temp_arrayVars['i']>>[] = <<$ARGS[temp_arrayVars['i']]>>[temp_arra...
         }
-        (s as any).temp_arrayVars['i'] = ((s as any).temp_arrayVars['i'] ?? 0) + (1);
+        ((s as any).temp_arrayVars ?? {})['i'] = (((s as any).temp_arrayVars ?? {})['i'] ?? 0) + (1);
         // TODO-QSP: jump 'coupled_sort_inner_start'
       }
     }
     // TODO-QSP: jump 'coupled_sort_loop_start'
   }
-  (s as any).temp_arrayVars['i_max'] = ((s as any).temp_arrayVars ?? 0)?.['i'];
-  (s as any).temp_arrayVars['i'] = 1;
+  ((s as any).temp_arrayVars ?? {})['i_max'] = ((s as any).temp_arrayVars ?? 0)?.['i'];
+  ((s as any).temp_arrayVars ?? {})['i'] = 1;
   // TODO-QSP: :coupled_sort_outer_start
   if (((s as any).temp_arrayVars ?? 0)?.['i'] < ((s as any).temp_arrayVars ?? 0)?.['i_max']) {
     // TODO-QSP: dynamic "copyarr('<<$ARGS[temp_arrayVars['i']]>>', 'temp_array_coupled_sort<<temp_arrayVars['i']>>')...
     // TODO-QSP: dynamic "killvar 'temp_array_coupled_sort<<temp_arrayVars['i']>>'"
-    (s as any).temp_arrayVars['i'] = ((s as any).temp_arrayVars['i'] ?? 0) + (1);
+    ((s as any).temp_arrayVars ?? {})['i'] = (((s as any).temp_arrayVars ?? {})['i'] ?? 0) + (1);
     // TODO-QSP: jump 'coupled_sort_outer_start'
   }
   return;

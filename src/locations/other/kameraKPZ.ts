@@ -48,8 +48,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go with Anatoly', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).BurgerQW['IlyQWPoliceDayCount'] = 1;
-    (s as any).BurgerQW['IlyQWTatianaHelp'] = 1;
+    ((s as any).BurgerQW ?? {})['IlyQWPoliceDayCount'] = 1;
+    ((s as any).BurgerQW ?? {})['IlyQWTatianaHelp'] = 1;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/car.jpg');
     scene.text('You got into the car and drove off. Anatoly said. "Now I\'ll take you to your house. I think you need some rest. Ilyushkin lives in the city industrial region, act like you know. But remember, if it is what mischief again, I\'m not going to pull out. And remember girl. You have to court where it month. During this time, you should either give me back my money, or prove me guilty of Ilyushkin, or you sit. I\'ll make sure that your term would not have been suspended. Otpravishsya six years quilted stitching in some sort of wilderness surrounded by old prostitutes drug addicts, cheats and other charges. And by the court you will transfer the money to me until you have paid the entire amount. If anything, find me in bystroezhke. " You came to your house and said goodbye with Anatoly.');

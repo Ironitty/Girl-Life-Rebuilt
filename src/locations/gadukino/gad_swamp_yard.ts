@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gad_swamp_yard', 'start');
-  (s as any).hunterVars['cabin'] = 1;
+  ((s as any).hunterVars ?? {})['cabin'] = 1;
   qspCall(s, 'gadukino_event', 'sound');
   qspCall(s, 'stat', '');
   if (((s as any).lost_girl ?? 0) === 1) {
@@ -85,7 +85,7 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
         { label: 'Ask for some survival tips (0:10)', handler: (st: GameState) => {
     (s as any).hunter_lessons = ((s as any).hunter_lessons ?? 0) + (1);
     if (((s as any).hunterVars ?? 0)?.['collective_opinion'] > 25  &&  ((s as any).hunter_lessons ?? 0) <= 10) {
-      (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (1);
+      ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) - (1);
       qspCall(s, 'exp_gain', 'bushcraft', 1);
       (s as any).minut = ((s as any).minut ?? 0) + 10;
       scene.text('The hunters talk to you about some of their experiences when they first started out.');
@@ -245,7 +245,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Take the bet', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/\'+iif($clothingworntype <> \'nude\', \'shooting.jpg\', \'shooting_nude.jpg\')+\'');
-    (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) + (6);
+    ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) + (6);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Pull the trigger', goto: ['hunter_interactions', 'shooting_bet'] },
@@ -253,7 +253,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Refuse', handler: (st: GameState) => {
     scene.text('Not liking the odds of likely spending the day naked or worse, "Maybe some other time," you respond before walking away.');
-    (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (2);
+    ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) - (2);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Further', goto: ['gad_swamp_yard', 'start'] },
@@ -306,7 +306,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/shooting_tit_flash.jpg');
     scene.text('You lift your top and expose your tits to Andrei for a minute. You then cover up and ask, "Enough payment for a lesson?"');
     scene.text('"I\'d appreciate a more extended look, but I will take it," responds Andrei');
-    (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (3);
+    ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (3);
     qspCall(s, 'arousal', 'flashlite', 3);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -324,7 +324,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/shooting_pussy_flash.jpg');
     scene.text('You lift your bottom and expose your pussy to Andrei for a minute. You then cover up and ask, "Enough payment for a lesson?"');
     scene.text('"I\'d appreciate a longer look, but I will take it," responds Andrei');
-    (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (5);
+    ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (5);
     qspCall(s, 'arousal', 'flashlite', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -342,7 +342,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly take off your clothes one by one until you are completely naked in front of Andrei.');
     scene.text('You look at the ground and blush as he stares at your exposed tits, ass and pussy. You cannot help but feel your pussy moisten.');
     scene.text('"This naked look suits you better, do you know that?" says Andrei. He ogles your body for a few more minutes before handing you the rifle.');
-    (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
+    ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (7);
     qspCall(s, 'outfit', 'strip_all', 'gad_swamphouse');
     qspCall(s, 'arousal', 'flash', 10, 'exhibitionism');
     qspCall(s, 'arousal', 'end');
@@ -361,7 +361,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/shooting_bj.jpg');
     scene.text('You kneel down obediently and start sucking his dick until you feel him cumming down your throat. You make sure to catch every drop.');
     scene.text('"Now that\'s a good girl. Good girls get to shoot the rifle," says Andrei.');
-    (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (8);
+    ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (8);
     qspCall(s, 'boyStat', 'A172');
     qspCall(s, 'arousal', 'bj', 15, 'sub', 'exhibitionism');
     qspCall(s, 'cum_call', 'mouth_swallow', 'A172', 1);

@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', goto: ['dina', 'brodila'] },
     { label: 'Open a window and release your parrot', handler: (st: GameState) => {
-    (s as any).ParrotQW['Owned1'] = 0;
+    ((s as any).ParrotQW ?? {})['Owned1'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 10;
   }, goto: ['dina', 'brodila'] },
   ]);
@@ -39,7 +39,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: dynamic text: You say goodbye to <<$ParrotQW['Name2']>> and release him
       scene.text(`You say goodbye to ${((s as any).ParrotQW ?? 0)?.['Name2']} and release him`);
-      (s as any).ParrotQW['Owned2'] = 0;
+      ((s as any).ParrotQW ?? {})['Owned2'] = 0;
       (s as any).minut = ((s as any).minut ?? 0) + 10;
     }
   } },

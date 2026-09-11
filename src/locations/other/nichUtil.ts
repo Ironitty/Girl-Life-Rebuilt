@@ -28,9 +28,9 @@ function enterHired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichMaidLivingItems = 0;
   (s as any).nichMaidLivingWindows = 0;
   (s as any).nichLastInspepection = (-1);
-  (s as any).nichChoreState[0] = 0;
+  ((s as any).nichChoreState ?? {})[0] = 0;
   (s as any).nichSalaryBase = 10000;
-  (s as any).npc_nickname['A52'] = 'Master '+((s as any).npc_firstname ?? {})?.['A52'];
+  ((s as any).npc_nickname ?? {})['A52'] = 'Master '+((s as any).npc_firstname ?? {})?.['A52'];
   scene.build();
 }
 
@@ -56,7 +56,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichMaidLivingItems = 0;
   (s as any).nichMaidLivingWindows = 0;
   (s as any).nichLastInspepection = (-1);
-  (s as any).nichChoreState[0] = 0;
+  ((s as any).nichChoreState ?? {})[0] = 0;
   (s as any).nichSalaryBase = 10000;
   scene.build();
 }
@@ -79,7 +79,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
         { label: '(<<nichtTimeQuick>> minutes) Clean quickly', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
-    (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
+    ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
     qspCall(s, 'stat', '');
     scene.actions([
@@ -91,7 +91,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
         { label: '(<<nichTimeNormal>> minutes) Clean normally', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
-    (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
+    ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -102,7 +102,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
         { label: '(<<nichTimeDiligently>> minutes) Clean diligently', handler: (st: GameState) => {
     scene.img(`${((s as any).nichTempPic ?? 0)}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligently ?? 0));
-    (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
+    ((s as any).nichChoreState ?? {})[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {

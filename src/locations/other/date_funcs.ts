@@ -7,22 +7,22 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDateRate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'love') {
     qspCall(s, 'date_funcs', 'date_mood', 'improve');
-    (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) + (2);
+    ((s as any).date_ev ?? {})['date_rating'] = (((s as any).date_ev ?? {})['date_rating'] ?? 0) + (2);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'love');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'like') {
       qspCall(s, 'date_funcs', 'date_mood', 'improve');
-      (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) + (1);
+      ((s as any).date_ev ?? {})['date_rating'] = (((s as any).date_ev ?? {})['date_rating'] ?? 0) + (1);
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'dislike') {
         qspCall(s, 'date_funcs', 'date_mood', 'worsen');
-        (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) - (1);
+        ((s as any).date_ev ?? {})['date_rating'] = (((s as any).date_ev ?? {})['date_rating'] ?? 0) - (1);
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'hate') {
           qspCall(s, 'date_funcs', 'date_mood', 'worsen');
-          (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) - (3);
+          ((s as any).date_ev ?? {})['date_rating'] = (((s as any).date_ev ?? {})['date_rating'] ?? 0) - (3);
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'hate');
         }
       }
@@ -34,33 +34,33 @@ function enterDateRate(s: GameState, scene: SceneBuilder): void {
 function enterDateMood(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'improve') {
     if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'awkward') {
-      (s as any).date_ev['talk_mood'] = 'good';
+      ((s as any).date_ev ?? {})['talk_mood'] = 'good';
     } else {
       if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'good') {
-        (s as any).date_ev['talk_mood'] = 'great';
+        ((s as any).date_ev ?? {})['talk_mood'] = 'great';
       } else {
         if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'great') {
-          (s as any).date_ev['talk_mood'] = 'amazing';
+          ((s as any).date_ev ?? {})['talk_mood'] = 'amazing';
         } else {
-          (s as any).date_ev['talk_mood'] = 'good';
+          ((s as any).date_ev ?? {})['talk_mood'] = 'good';
         }
       }
     }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'worsen') {
       if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'awkward') {
-        (s as any).date_ev['talk_mood'] = 'bad';
+        ((s as any).date_ev ?? {})['talk_mood'] = 'bad';
       } else {
         if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'good') {
-          (s as any).date_ev['talk_mood'] = 'awkward';
+          ((s as any).date_ev ?? {})['talk_mood'] = 'awkward';
         } else {
           if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'great') {
-            (s as any).date_ev['talk_mood'] = 'good';
+            ((s as any).date_ev ?? {})['talk_mood'] = 'good';
           } else {
             if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'amazing') {
-              (s as any).date_ev['talk_mood'] = 'great';
+              ((s as any).date_ev ?? {})['talk_mood'] = 'great';
             } else {
-              (s as any).date_ev['talk_mood'] = 'bad';
+              ((s as any).date_ev ?? {})['talk_mood'] = 'bad';
             }
           }
         }
@@ -88,19 +88,19 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
 
 function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
-  (s as any).npc_no_booty_call[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+  ((s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
   scene.build();
 }
 
 function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_sugar_daddy', ((s as any).npcID ?? 0));
-  (s as any).npc_sugar_daddy_price[String((s as any).npcID ?? 0)] = ((s as any).date_ev ?? {})?.['sugar_daddy_offer'] * 100;
+  ((s as any).npc_sugar_daddy_price ?? {})[String((s as any).npcID ?? 0)] = ((s as any).date_ev ?? {})?.['sugar_daddy_offer'] * 100;
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
-    (s as any).date_ev['sugar_daddy_count'] = ((s as any).date_ev['sugar_daddy_count'] ?? 0) + (1);
+    ((s as any).date_ev ?? {})['sugar_daddy_count'] = (((s as any).date_ev ?? {})['sugar_daddy_count'] ?? 0) + (1);
   }
-  (s as any).date_ev['sugar_daddy_paid'] = 1;
-  (s as any).date_ev['prostitution_paid'] = 1;
+  ((s as any).date_ev ?? {})['sugar_daddy_paid'] = 1;
+  ((s as any).date_ev ?? {})['prostitution_paid'] = 1;
   scene.build();
 }
 
@@ -111,14 +111,14 @@ function enterLoverAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';" + $ARGS[1] + ";'))) + 1 <= 0) {
-    (s as any).date_ev['first_time'] = 1;
+    ((s as any).date_ev ?? {})['first_time'] = 1;
   }
   scene.build();
 }
 
 function enterDateTracker(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['tracker'] !== ((s as any).locArgs?.[1] ?? 0)) {
-    (s as any).date_ev['loc'] = ((s as any).locArgs?.[1] ?? 0);
+    ((s as any).date_ev ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: stat[$ARGS[1]] += 1
     if (((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';" + $ARGS[1] + ";'))) + 1 <= 0) {
       // TODO-QSP: $npc_date_locs[$npcID] += $ARGS[1] + ";"
@@ -128,13 +128,13 @@ function enterDateTracker(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetContinue(s: GameState, scene: SceneBuilder): void {
-  (s as any).date_ev['cont_loc'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).date_ev['cont_arg'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).date_ev ?? {})['cont_loc'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).date_ev ?? {})['cont_arg'] = ((s as any).locArgs?.[2] ?? 0);
   scene.build();
 }
 
 function enterFlashStats(s: GameState, scene: SceneBuilder): void {
-  (s as any).npc_date_flash[String((s as any).npcID ?? 0)] = ((s as any).npc_date_flash[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  ((s as any).npc_date_flash ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_date_flash ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
   qspCall(s, 'arousal_oneline', 'flash', 1);
   scene.build();
 }

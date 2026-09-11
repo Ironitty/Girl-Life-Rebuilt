@@ -22,7 +22,7 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).sisterbfspy ?? 0) >= 4) {
-        (s as any).sisterQW['lesbDay'] = ((s as any).daystart ?? 0);
+        ((s as any).sisterQW ?? {})['lesbDay'] = ((s as any).daystart ?? 0);
         if ((!((s as any).sisterLesb ?? 0))) {
           qspCall(s, 'willpower', 'foreplay', 'self');
         } else {
@@ -459,7 +459,7 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck her dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap3.jpg');
     if (((s as any).sisterQW ?? 0)?.['strapon'] === 0) {
-      (s as any).sisterQW['strapon'] = 1;
+      ((s as any).sisterQW ?? {})['strapon'] = 1;
       scene.text('Anya monitors your actions and talks you through how to suck a cock. You lick the shaft from the base upwards and then suck the head. It isn\'t too big, maybe a bit above average size. Anya then grabs you by the hair and abruptly shoves the dildo down your throat, causing you to choke and thrash your arms in panic. She quickly pulls it out of you, ropes of your drool sticking to the shaft from your mouth as your eyes water.');
       scene.text('You cough and splutter. "What… What are you doing? You could have… killed me!"');
       // TODO-QSP: dynamic text: "Don't be so dramatic, <<$pcs_nickname>>! I would never hurt you. You see guys l...
@@ -487,7 +487,7 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).sisterQW ?? 0)?.['knownotvirgin'] === 0) {
-        (s as any).sisterQW['knownotvirgin'] = 1;
+        ((s as any).sisterQW ?? {})['knownotvirgin'] = 1;
         scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside of your vagina. "Oh, you\'re no longer a virgin. Mom won\'t be happy!" she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
         qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
         qspCall(s, 'stat', '');
