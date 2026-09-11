@@ -168,7 +168,7 @@ function extractQspDefaultScene(qspSrc: string): string | null {
   let endIdx = -1;
   for (let i = startIdx + 1; i < lines.length; i++) {
     const trimmed = lines[i].trim();
-    if (/^(if|elseif)\s/.test(trimmed)) {
+    if (/^if\s/.test(trimmed)) {
       const colonIdx = trimmed.indexOf(':');
       if (colonIdx === -1 || trimmed.slice(colonIdx + 1).trim().length === 0) {
         depth++;
@@ -244,16 +244,16 @@ function main() {
 
   const total = results.length;
   const noDefault = results.filter(r => !r.hasDefaultScene);
-  const tsMissingActions = results.filter(r => r.hasDefaultScene && r.qspHasActions && !r.hasUnconditionalActions);
+  const tsMissingActions = results.filter(r => r.hasDefaultScene && r.qspHasActions && r.actionCount === 0);
   const tsMissingImage = results.filter(r => r.hasDefaultScene && r.qspHasImage && !r.hasImage);
-  const tsMissingBoth = results.filter(r => r.hasDefaultScene && r.qspHasActions && r.qspHasImage && !r.hasUnconditionalActions && !r.hasImage);
+  const tsMissingBoth = results.filter(r => r.hasDefaultScene && r.qspHasActions && r.qspHasImage && r.actionCount === 0 && !r.hasImage);
 
   console.log('=== LOCATION AUDIT (QSP cross-reference) ===\n');
   console.log(`Total locations: ${total}`);
   console.log(`With default scene: ${total - noDefault.length}`);
   console.log(`No default scene: ${noDefault.length}`);
   console.log('');
-  console.log(`QSP has actions but TS missing unconditional actions: ${tsMissingActions.length}`);
+  console.log(`QSP has actions but TS has zero actions: ${tsMissingActions.length}`);
   console.log(`QSP has image but TS missing image: ${tsMissingImage.length}`);
   console.log(`QSP has both but TS missing both: ${tsMissingBoth.length}`);
 
@@ -265,7 +265,7 @@ function main() {
   const actionsOnly = tsMissingActions.filter(r => !tsMissingBoth.includes(r));
   if (actionsOnly.length > 0) {
     console.log(`\n--- MISSING ACTIONS ONLY (${actionsOnly.length}) ---`);
-    for (const r of actionsOnly) console.log(`  ${r.file} [TS actions: ${r.actionCount}, image: ${r.hasImage ? 'yes' : 'no'}]`);
+    for (const r of actionsOnly) console.log(`  ${r.file} [image: ${r.hasImage ? 'yes' : 'no'}]`);
   }
 
   const imageOnly = tsMissingImage.filter(r => !tsMissingBoth.includes(r));

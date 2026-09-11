@@ -4,33 +4,13 @@ Total locations: 1406
 With default scene: 1033
 No default scene: 373
 
-QSP has actions but TS missing unconditional actions: 20
-QSP has image but TS missing image: 2
+QSP has actions but TS has zero actions: 1
+QSP has image but TS missing image: 3
 QSP has both but TS missing both: 1
 
 --- MISSING BOTH (QSP has, TS doesn't) (1) ---
-  src/locations/other/MagEncounterFairy.ts
+  src/locations/other/nichUtil.ts
 
---- MISSING ACTIONS ONLY (19) ---
-  src/locations/gadukino/gad_backwater.ts [TS actions: 1, image: yes]
-  src/locations/gadukino/gadukino.ts [TS actions: 19, image: yes]
-  src/locations/other/FedorEv.ts [TS actions: 10, image: yes]
-  src/locations/other/MartinSex.ts [TS actions: 30, image: yes]
-  src/locations/other/MartinTalk.ts [TS actions: 61, image: yes]
-  src/locations/other/Nudelake.ts [TS actions: 12, image: yes]
-  src/locations/other/andrey.ts [TS actions: 1, image: yes]
-  src/locations/other/gopskver.ts [TS actions: 63, image: yes]
-  src/locations/other/komp_cam_MFC_requests_one.ts [TS actions: 14, image: yes]
-  src/locations/other/lover_love.ts [TS actions: 10, image: no]
-  src/locations/other/mitka.ts [TS actions: 2, image: yes]
-  src/locations/other/mitkabuh.ts [TS actions: 6, image: yes]
-  src/locations/other/mitkabuh_group.ts [TS actions: 2, image: yes]
-  src/locations/other/road.ts [TS actions: 34, image: yes]
-  src/locations/other/therapist_reminder.ts [TS actions: 9, image: yes]
-  src/locations/other/trFatherMisha.ts [TS actions: 27, image: yes]
-  src/locations/other/vanrPar.ts [TS actions: 3, image: yes]
-  src/locations/other/vladimirQW_loc.ts [TS actions: 2, image: yes]
-  src/locations/pavlovsk/pav_clinic.ts [TS actions: 13, image: yes]
-
---- MISSING IMAGE ONLY (1) ---
+--- MISSING IMAGE ONLY (2) ---
+  src/locations/other/_menu_character.ts [TS actions: 0]
   src/locations/other/intro_overview.ts [TS actions: 2]
