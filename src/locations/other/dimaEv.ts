@@ -4,10 +4,6 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimarudorient ?? 0) === 1) {
     scene.actions([{ label: 'Continue', goto: ['dimaHome', 'dimkaroom'] }]);
@@ -736,7 +732,7 @@ function enterDimkaabuse10(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina0'] }]);
   scene.build();
 }
@@ -861,5 +857,6 @@ export const dimaEv: LocationDef = {
   name: 'dimaEv',
   title: '<<$npc_firstname[\'A1\']>> <<$npc_lastname[\'A1\']>>',
   region: 'other',
+  description: ['Dimka seeing you, walks up and says quietly, "Come here slut, we\'re going to go have some fun at my place." Your cheeks redden at the gross nickname'],
   enter: enter,
 };

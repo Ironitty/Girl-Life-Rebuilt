@@ -4,10 +4,6 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterPavParkImage(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Pavlovsk Park</h2></center>');
   if (((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 4  ||  ((s as any).month ?? 0) === 5) {
@@ -44,7 +40,7 @@ function enterPavParkImage(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_park', 'start');
   qspCall(s, 'stat', '');
   qspCall(s, 'vicky_meynold_schedule', '');

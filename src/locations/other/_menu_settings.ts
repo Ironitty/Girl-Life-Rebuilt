@@ -6,14 +6,6 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
-  qspCall(s, 'themes', 'indoors');
-  scene.build();
-}
-
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
   scene.build();
@@ -400,7 +392,11 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
+  qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   if (((s as any).theme ?? 0)?.['name'] === 'Custom') {
     qspCall(s, 'themes', 'check_custom_vars');

@@ -6,10 +6,6 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterSetXpprvXpnxt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$ARGS[1]>>_xpprv = func('stat_funcs', 'get_xpprv', <<$ARGS[1]>>_lvl)
@@ -37,7 +33,7 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_sklattrib', 'init');
   qspCall(s, 'stat_sklattrib', 'advancement_loop', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat_sklattrib_lvlset', '');

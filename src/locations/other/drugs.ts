@@ -6,11 +6,6 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.text(`<br><br>Error: The drug given: ${((s as any).locArgs?.[0] ?? 0)}, does not exist or is missing. Please report this and a small part of the text of the current scene as a bug.<br>`);
-  scene.build();
-}
-
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'cocaine_cikl');
   qspCall(s, 'drugs', 'mentats_cikl');
@@ -590,7 +585,8 @@ function enterCaffeineStat(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.text(`<br><br>Error: The drug given: ${((s as any).locArgs?.[0] ?? 0)}, does not exist or is missing. Please report this and a small part of the text of the current scene as a bug.<br>`);
   if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
@@ -664,7 +660,7 @@ function enterCigaretteHourlyEvents(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault3(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory ?? {})['joints'] = (((s as any).mc_inventory ?? {})['joints'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {

@@ -6,10 +6,6 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS ?? {})[1] = ((s as any).loc ?? 0);
@@ -45,7 +41,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['A31_loc_prev'] = ((s as any).locat ?? 0)?.['A31_loc'];
   ((s as any).locat ?? {})['A31_arg_prev'] = ((s as any).locat ?? 0)?.['A31_arg'];
   ((s as any).locat ?? {})['A31_arg1_prev'] = ((s as any).locat ?? 0)?.['A31_arg1'];

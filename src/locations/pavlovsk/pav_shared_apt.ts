@@ -4,10 +4,6 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterUpdate(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt ?? {})['rentWeekly'] = 2000;
   if (((s as any).shared_apt ?? 0)?.['rentLeft'] <= 0) {
@@ -130,7 +126,7 @@ function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'themes', 'indoors');
   if (((s as any).shared_apt ?? 0)?.['introDone'] === 0) {

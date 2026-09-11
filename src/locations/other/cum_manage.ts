@@ -6,10 +6,6 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cum_names[0] = 'vagina'
   // TODO-QSP: $cum_names[1] = 'labia'
@@ -33,7 +29,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat ?? {})['cum_count'] = (((s as any).stat ?? {})['cum_count'] ?? 0) + (1);
   (s as any).condom_break = 0;
   if (((((s as any).npcID ?? 0)).length) > 1  &&  (('ABM').indexOf((((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN(((((s as any).npcID ?? 0)).slice((2)-1))) && ((((s as any).npcID ?? 0)).slice((2)-1)) !== '') {

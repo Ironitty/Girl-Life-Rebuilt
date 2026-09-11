@@ -4,10 +4,6 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterIsHome(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((((s as any).locat ?? 0)?.['A2']).slice((1)-1, ((1)-1)+(4))) === 'home');
   return;
@@ -59,7 +55,7 @@ function enterForce(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['A2'] = '';
   (s as any).artemLoc = 0;
   qspCall(s, 'artem_chebotarev_schedule', 'set_schedule');

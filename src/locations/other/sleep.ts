@@ -4,10 +4,6 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterFull(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'start'] }]);
   scene.build();
@@ -33,7 +29,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'start'] }]);
   scene.build();
 }

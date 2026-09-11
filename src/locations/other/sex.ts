@@ -6,10 +6,6 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).sexstart = 1;
   (s as any).sexvar = Math.floor(Math.random() * 4) + 3;
@@ -136,7 +132,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).sexstart ?? 0))) {
     (s as any).sexstart = 1;
     (s as any).sexvar = Math.floor(Math.random() * 5) + 3;
@@ -326,5 +322,6 @@ export const sex: LocationDef = {
   name: 'sex',
   title: 'You kiss for a while. It feels nice, but you want more!',
   region: 'other',
+  description: ['You kiss for a while. It feels nice, but you want more!'],
   enter: enter,
 };
