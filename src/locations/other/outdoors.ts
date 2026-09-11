@@ -99,8 +99,8 @@ function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
 function enterWeather(s: GameState, scene: SceneBuilder): void {
   if (((s as any).weatherDay ?? 0) !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'outdoors', 'set_weather_TempFall', ((s as any).month ?? 0));
-    (s as any).weatherTemper = ((s as any).weatherMeanTemp ?? 0) + (((s as any).rand ?? 0)(-((s as any).weatherTempDelta ?? 0), ((s as any).weatherTempDelta ?? 0)) + ((s as any).rand ?? 0)(-((s as any).weatherTempDelta ?? 0), ((s as any).weatherTempDelta ?? 0))) / 2;
-    (s as any).weatherFall = ((s as any).weatherFallM ?? 0) + ((s as any).rand ?? 0)(-((s as any).weatherFallDelta ?? 0), ((s as any).weatherFallDelta ?? 0));
+    (s as any).weatherTemper = ((s as any).weatherMeanTemp ?? 0) + ((Math.floor(Math.random() * (weatherTempDelta - -weatherTempDelta + 1)) + (-weatherTempDelta)) + (Math.floor(Math.random() * (weatherTempDelta - -weatherTempDelta + 1)) + (-weatherTempDelta))) / 2;
+    (s as any).weatherFall = ((s as any).weatherFallM ?? 0) + (Math.floor(Math.random() * (weatherFallDelta - -weatherFallDelta + 1)) + (-weatherFallDelta));
   }
   (s as any).weatherDay = ((s as any).daystart ?? 0);
   if (((s as any).totminut ?? 0) < ((s as any).sunWeather ?? 0)[1]-240) {
@@ -108,7 +108,7 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: !! Time cheat
   }
   if (((s as any).totminut ?? 0) > ((s as any).sunWeather ?? 0)[1]) {
-    ((s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0) + ((s as any).rand ?? 0)(30, 150);
+    ((s as any).sunWeather ?? {})[1] = ((s as any).totminut ?? 0) + (Math.floor(Math.random() * 121) + 30);
     (s as any).sunWeather = (((Math.floor(Math.random() * 100) + 0) < ((s as any).weatherFall ?? 0)) ? (0) : (1));
   }
   (s as any).temper = (((s as any).totminut ?? 0) % 1440);

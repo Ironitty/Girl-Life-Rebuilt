@@ -1226,12 +1226,12 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
       if (((s as any).ptype ?? 0) === 1) {
         ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
         (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 2) + 0);
-        (s as any).pillcon = ((s as any).pillcon ?? 0) + ((( ((s as any).pillcon ?? 0)+ 15000) / 25)+ ((s as any).rand ?? 0)(2000, 4000));
+        (s as any).pillcon = ((s as any).pillcon ?? 0) + ((( ((s as any).pillcon ?? 0)+ 15000) / 25)+ (Math.floor(Math.random() * 2001) + 2000));
       } else {
         if (((s as any).ptype ?? 0) === 2) {
           ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
           (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 2) + 0);
-          (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25)+ ((s as any).rand ?? 0)(500, 2000));
+          (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25)+ (Math.floor(Math.random() * 1501) + 500));
         } else {
           if (((s as any).ptype ?? 0) === 3) {
             ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
@@ -1239,7 +1239,7 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
             if ((!(Math.floor(Math.random() * 5) + 0))) {
               ((s as any).pain ?? {})['tummy'] = (((s as any).pain ?? {})['tummy'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
             }
-            (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25)+ ((s as any).rand ?? 0)(2000, 6000));
+            (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25)+ (Math.floor(Math.random() * 4001) + 2000));
           } else {
             if (((s as any).ptype ?? 0) === 4) {
               ((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] = (((s as any).pillsleft ?? {})[String((s as any).ptype ?? 0)] ?? 0) - (1);
@@ -1256,7 +1256,7 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 } else {
-                  (s as any).EggRH = ((s as any).EggRH ?? 0) + (((s as any).rand ?? 0)(((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'], ((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] + 30));
+                  (s as any).EggRH = ((s as any).EggRH ?? 0) + ((Math.floor(Math.random() * (((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] + 30 - ((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'] + 1)) + (((s as any).trait_vars ?? {})?.['fertility_bc_conditioning'])));
                   if (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] < 50) {
                     ((s as any).trait_vars ?? {})['fertility_bc_conditioning'] = (((s as any).trait_vars ?? {})['fertility_bc_conditioning'] ?? 0) + (1);
                   }

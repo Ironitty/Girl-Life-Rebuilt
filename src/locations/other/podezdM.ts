@@ -17,7 +17,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
       } else {
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
       }
     }
     scene.img('images/characters/city/boyfriend/boygo.jpg');
@@ -31,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
       } else {
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
       }
     }
     scene.img('images/characters/city/boyfriend/boygo1.jpg');
@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['podezdM', 'kiosk'] },
     { label: 'Go', handler: (st: GameState) => {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -125,7 +125,7 @@ function enterKiosk1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['podezdM', 'kiosk2'] },
     { label: 'Smile', goto: ['podezdM', 'kiosk2'] },
     { label: 'Not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), ((st as any).rand ?? 0)(-1, 0));
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['podezdM', 'kiosk2'] },
   ]);
   scene.build();
@@ -168,7 +168,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Break away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     qspCall(s, 'stat', '');
     scene.text('You push against him, hard, and finally manage to push him off you, making him stumble back a step. He seems confused that you pushed him away. "What the fuck?! Don\'t think you can treat me like you please, I\'m not as easy as you think!" With that, you turn and walk away.');
     scene.actions([
@@ -228,7 +228,7 @@ function enterGrup(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
       } else {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
       }
@@ -254,7 +254,7 @@ function enterGrup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'alcohol', 'beer');
     qspCall(s, 'stat', '');
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);

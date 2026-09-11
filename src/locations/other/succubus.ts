@@ -318,7 +318,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).scrand ?? 0) < ((s as any).succublvl ?? 0)) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       if (((s as any).scfeed ?? 0) === 2) {
       }
       scene.text('You quickly drag him out of sight, then rip off his pants and expose your now hungry pussy.');
@@ -390,7 +390,7 @@ function enterPavResfeed(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Warm him up', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', Math.floor(Math.random() * 251) + 250, 'cash');
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).i = 0;
     // TODO-QSP: :sucfeeding_loop2
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -455,7 +455,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).sucpcinfo = 4;
-  (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + ((s as any).rand ?? 0)(0, 7);
+  (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
   return;
   scene.actions([
     { label: 'Get dressed', goto: ['succubus', 'tatianaask'] },

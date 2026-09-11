@@ -4,6 +4,43 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'start');
+  ((s as any).NatbelQW ?? {})['underwearShop'] = 0;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'outfit', 'backup', 'fashionista');
+  scene.text('<center><b>Fashionista</b></center>');
+  scene.img('images/locations/city/citycenter/mall/fashionista/fashionista.jpg');
+  scene.text('This store features many big name brands and designer clothing. Even their bags look cool.');
+  scene.text('You can try on outfits via the changing room.');
+  if (((s as any).pantyworntype ?? 0) !== 'none') {
+    scene.actions([
+      { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'shop_fashionista', 'changingroom', 1);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    qspCall(s, 'outfit', 'remove_backup', 'fashionista');
+  }, goto: ['city_mall', ''] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_fashionista', 'purses'] },
+    { label: 'Enter changing room (strip naked)', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'underwear', 'strip');
+    qspCall(s, 'shop_fashionista', 'changingroom', 1);
+  } },
+  ]);
+  scene.build();
+}
+
 function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fashionista', 'changingroom');
   qspCall(s, 'stat', '');
@@ -395,7 +432,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRima(s, scene);
       break;
     default:
-      enterChangingroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -406,6 +443,6 @@ export const shop_fashionista: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'changingroom',
-  description: ['As you walk through the store, you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you look at some clothes and grab several items to try on before heading into one of the changing rooms.'],
+  description: ['This store features many big name brands and designer clothing. Even their bags look cool.'],
   enter: enter,
 };

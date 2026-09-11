@@ -1,8 +1,120 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pav_market', '');
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
+      if (((s as any).hour ?? 0) >= 8) {
+      }
+    } else {
+      if (((s as any).hour ?? 0) >= 8) {
+      }
+    }
+  }
+  qspCall(s, 'stat', '');
+  scene.text('<center><h2>Pavlovsk\'s Market Square</h2></center>');
+  if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) < 4) {
+    if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 17) {
+      scene.img('images/locations/pavlovsk/pav_market_winter_day.jpg');
+    } else {
+      scene.img('images/locations/pavlovsk/pav_market_winter_night.jpg');
+    }
+  } else {
+    if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 19) {
+      scene.img('images/locations/pavlovsk/pav_market_day.jpg');
+    } else {
+      scene.img('images/locations/pavlovsk/pav_market_night.jpg');
+    }
+  }
+  // TODO-QSP: dynamic text: Pavlovsk's modest train station is situated near the Pavlovsk Market Square. You...
+  scene.text('Pavlovsk\'s modest train station is situated near the Pavlovsk Market Square. You can enter the central hall of the <a href="exec:minut += 3 & gt \'pav_train_hall\'">train station</a> from here. Down the street from the train station is the <a href="exec:minut += 5 & gt \'gkafe\'">Borislav\'s cafe</a>\' + iif($start_type[\'loc\'] = \'sg\', \' where your mother works\', \') + \'. Next to the train station is the <a href="exec:minut += 5 & gt \'pav_station\', \'station_outside\'">Pavlovsk police station</a>, where you can find Pavlovsk\'s finest.');
+  // TODO-QSP: dynamic text: On the other side of the train station is a large square where you can find a <a...
+  scene.text('On the other side of the train station is a large square where you can find a <a href="exec:minut += 1 & gt \'pav_train_market\', \'start\'">market</a> on most days.');
+  // TODO-QSP: dynamic text: A rather run-down <a href="exec: minut += 1 & gt 'pav_hotel'">hotel</a> is just ...
+  scene.text(`A rather run-down <a href="exec: minut += 1 & gt 'pav_hotel'">hotel</a> is just across the square${((((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] > 0) ? ('; the manager is always looking for maids among the local young girls') : (''))}. Due to its frequent use by local prostitutes, most people prefer to stay at the middle-class hotel by the main road.`);
+  if (qspFunc(s, 'car_funcs', 'is_here')) {
+    // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked in the par...
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked in the parking lot in front of the train station.`);
+  }
+  if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
+    qspCall(s, 'mother_chats', 'reconciliation_talk');
+    return;
+  }
+  if (((s as any).prostitute ?? 0)?.['wl_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['full_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['gas_station'] === 1) {
+    if (qspFunc(s, 'money', 'can_afford', 75) === 1) {
+      // TODO-QSP: dynamic text: A bus terminal is situated next to the train station. Here you can catch the bus...
+      scene.text('A bus terminal is situated next to the train station. Here you can catch the bus that will take you to <a href="exec:minut += 87 & gs \'money\', \'pay\', 75 & gt \'gas_station_gp_117\', \'outside\'">the gas station on the M11</a>.');
+    } else {
+      scene.text('A bus terminal is situated next to the train station. Here you can catch the bus that would take you to the gas station on the M11. Unfortunately, you don\'t have enough money for the ticket.');
+    }
+  }
+  qspCall(s, 'lover', 'lover_events');
+  if (((s as any).dimaRevChoice ?? 0) === 5  &&  ((s as any).dimaRevenge ?? 0) === 4  &&  (!((s as any).dimaTrain ?? 0))) {
+    // TODO-QSP: gt 'dimaRevenge', dimaRevenge
+  }
+  if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).monthKidalo ?? 0) !== ((s as any).month ?? 0)) {
+    if ((!((s as any).kidaloa ?? 0))) {
+      if ((Math.floor(Math.random() * 6) + 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 5000) === 1) {
+        scene.actions([{ label: 'Continue', goto: ['pav_market', 'kidaloa'] }]);
+      }
+    }
+    if ((!((s as any).kidalob ?? 0))) {
+      if ((Math.floor(Math.random() * 6) + 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1  &&  (((s as any).clothingworntype ?? 0) === 'moncheri_dress'  ||  ((s as any).clothingworntype ?? 0) === 'moncheri_gown'  ||  ((s as any).clothingworntype ?? 0) === 'fashionista_dress')) {
+        scene.actions([{ label: 'Continue', goto: ['pav_market', 'kidalob'] }]);
+      }
+    }
+  }
+  if (((s as any).job_status ?? 0)?.['pav_hotel_maid'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'pav_hotel_maid')) {
+    scene.actions([
+      { label: '<b>Start your maid job</b>', goto: ['pav_hotel', ''] },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Enter the hotel', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pav_hotel', ''] },
+    ]);
+  }
+  if (((s as any).transportVars ?? 0)?.['trainpass_day'] > ((s as any).daystart ?? 0)) {
+    // TODO-QSP: func('transport_functions', 'display_trainpass_time')
+    scene.actions([
+      { label: 'Go directly to the train station platforms', goto: ['pav_train_hall', 'platform'] },
+    ]);
+  }
+  qspCall(s, 'camera', 'check_location');
+  qspCall(s, 'prostitution_functions', 'check_solicitation_event');
+  scene.actions([
+    { label: 'Enter the train station (0:03)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pav_train_hall', ''] },
+    { label: 'Walk to the bus station (0:04)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 4;
+  }, goto: ['bus', 'pavstation'] },
+    { label: 'Walk to the Commercial area (0:10)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+  }, goto: ['pav_commercial', ''] },
+    { label: 'Walk to the Residential area (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['pav_residential', ''] },
+    { label: 'Walk to the Industrial region (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['pav_industrial', ''] },
+    { label: 'Walk to the Five Eight estate (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['pav_complex', 'start'] },
+    { label: 'Walk to the highway (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['road', '20'] },
+    { label: 'Walk to Pushkin (0:20)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+  }, goto: ['pushkin', ''] },
+  ]);
+  scene.build();
+}
 
 function enterKidaloa(s: GameState, scene: SceneBuilder): void {
   (s as any).monthKidalo = ((s as any).month ?? 0);
@@ -237,7 +349,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKidalob(s, scene);
       break;
     default:
-      enterKidaloa(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -247,6 +359,5 @@ export const pav_market: LocationDef = {
   title: '<center><h2>Pavlovsk\'s Market Square</h2></center>',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['When you arrive at the Market Square, it\'s impossible not to notice a girl holding a microphone as a man follows her with a large camera. They\'re coming straight towards you. The girl beckons you to come closer and glances over at the man holding the camera, who gives her a subtle nod.'],
   enter: enter,
 };

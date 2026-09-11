@@ -4,6 +4,12 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sleepVars ?? {})['slept_in'] = 0;
+  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'start'] }]);
+  scene.build();
+}
+
 function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   if (((s as any).clo_flag ?? 0)?.['bed'] === 0) {
@@ -178,7 +184,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterPreSleep2(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

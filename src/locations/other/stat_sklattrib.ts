@@ -33,6 +33,14 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat_sklattrib', 'init');
+  qspCall(s, 'stat_sklattrib', 'advancement_loop', ((s as any).locArgs?.[0] ?? 0));
+  qspCall(s, 'stat_sklattrib_lvlset', '');
+  return;
+  scene.build();
+}
+
 function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_sklattrib ?? {})['stat_type'] = 'attribute';
   // TODO-QSP: :degloop_outer
@@ -313,7 +321,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterInitVars(s, scene);
       break;
     default:
-      enterSetXpprvXpnxt(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

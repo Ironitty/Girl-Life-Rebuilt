@@ -22,13 +22,13 @@ function enterModify(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 1);
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 'dislike') {
-            (s as any).npcRelSetVal = 0-((s as any).rand ?? 0)(1, 2);
+            (s as any).npcRelSetVal = 0-(Math.floor(Math.random() * 2) + 1);
           } else {
             if (((s as any).locArgs?.[2] ?? 0) === 'hate') {
-              (s as any).npcRelSetVal = 0-((s as any).rand ?? 0)(3, 4);
+              (s as any).npcRelSetVal = 0-(Math.floor(Math.random() * 2) + 3);
             } else {
               if (((s as any).locArgs?.[2] ?? 0) === 'loathe') {
-                (s as any).npcRelSetVal = 0-((s as any).rand ?? 0)(5, 6);
+                (s as any).npcRelSetVal = 0-(Math.floor(Math.random() * 2) + 5);
               } else {
                 (s as any).npcRelSetVal = 0;
               }

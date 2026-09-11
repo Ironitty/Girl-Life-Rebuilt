@@ -58,7 +58,7 @@ function enterAddEventPages(s: GameState, scene: SceneBuilder): void {
       ((s as any).NewspaperVars ?? {})['gad_missing_counter'] = ((s as any).daystart ?? 0) / 35;
     }
     ((s as any).NewspaperVars ?? {})['gad_missing_counter'] = (((s as any).NewspaperVars ?? {})['gad_missing_counter'] ?? 0) + (1);
-    ((s as any).NewspaperVars ?? {})['gad_missing_day'] = ((s as any).daystart ?? 0) + 15 + ((s as any).rand ?? 0)(0, ((s as any).NewspaperVars ?? {})?.['gad_missing_counter'] / 2);
+    ((s as any).NewspaperVars ?? {})['gad_missing_day'] = ((s as any).daystart ?? 0) + 15 + (Math.floor(Math.random() * (((s as any).NewspaperVars ?? {})?.['gad_missing_counter'] / 2 - 0 + 1)) + (0));
     // TODO-QSP: $np_pages[] = "gs 'newspaper_pages', 'gad_missing'"
   }
   scene.build();

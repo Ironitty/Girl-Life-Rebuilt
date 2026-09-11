@@ -1552,12 +1552,12 @@ function enterDrinkingGame(s: GameState, scene: SceneBuilder): void {
   (s as any).lena_time = Math.floor(Math.random() * 51) + 49;
   (s as any).alyona_time = Math.floor(Math.random() * 41) + 59;
   if (((s as any).trait_vars ?? 0)?.['drinking'] === 1) {
-    (s as any).player_time = ((s as any).rand ?? 0)(((s as any).pcs_health ?? 0) / 40 + 29, 99);
+    (s as any).player_time = (Math.floor(Math.random() * (99 - pcs_health / 40 + 29 + 1)) + (pcs_health / 40 + 29));
   } else {
     if (((s as any).trait_vars ?? 0)?.['drinking'] === 0) {
-      (s as any).player_time = ((s as any).rand ?? 0)(((s as any).pcs_health ?? 0) / 40, 85);
+      (s as any).player_time = (Math.floor(Math.random() * (85 - pcs_health / 40 + 1)) + (pcs_health / 40));
     } else {
-      (s as any).player_time = ((s as any).rand ?? 0)(((s as any).pcs_health ?? 0) / 40 - 29, 70);
+      (s as any).player_time = (Math.floor(Math.random() * (70 - pcs_health / 40 - 29 + 1)) + (pcs_health / 40 - 29));
     }
   }
   (s as any).highest = ((s as any).player_time ?? 0);

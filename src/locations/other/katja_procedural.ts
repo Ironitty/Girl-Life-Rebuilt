@@ -42,7 +42,7 @@ function enterHourly(s: GameState, scene: SceneBuilder): void {
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
     if (((s as any).katjaQW ?? 0)?.['horny'] >= 0) {
-      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + ((((s as any).katjaQW ?? {})?.['slut'] - ((s as any).rand ?? 0)(1, 50))/10);
+      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + ((((s as any).katjaQW ?? {})?.['slut'] - (Math.floor(Math.random() * 50) + 1))/10);
     }
     if (((s as any).katjaQW ?? 0)?.['horny'] < 0) {
       ((s as any).katjaQW ?? {})['horny'] = 0;
@@ -136,7 +136,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).katjaQW ?? 0)?.['liberated'] === 1  ||  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1)  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0) {
     if (((s as any).locat ?? 0)?.['katja_save2'] === 53  &&  (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)  ||  ((s as any).katjaQW ?? 0)?.['disco_met'] + 600 < ((s as any).totminut ?? 0))) {
       if (((Math.floor(Math.random() * 15) + 1) <= (Math.min(qspFunc(s, 'katja_procedural', 'willing_to_be_naughty'), 100) - 50)/10  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 1  &&  ((s as any).katjaQW ?? 0)?.['faithful'] === 0)  ||  (((s as any).katjaQW ?? 0)?.['relationship_talk'] === 0  &&  ((s as any).katjaQW ?? 0)?.['liberated']  &&  (Math.floor(Math.random() * 4) + 0) === 0)) {
-        qspCall(s, 'katja_procedural', 'sex_set', ((s as any).rand ?? 0)(0, ((s as any).katjaQW ?? {})?.['simultanous_boys'] + 1), ((s as any).rand ?? 0)(0, ((s as any).katjaQW ?? {})?.['simultanous_girls']+1));
+        qspCall(s, 'katja_procedural', 'sex_set', (Math.floor(Math.random() * (((s as any).katjaQW ?? {})?.['simultanous_boys'] + 1 - 0 + 1)) + (0)), (Math.floor(Math.random() * (((s as any).katjaQW ?? {})?.['simultanous_girls']+1 - 0 + 1)) + (0)));
       }
     }
   }
@@ -512,7 +512,7 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
             ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
           }
         }
-        ((s as any).katjaQW ?? {})['simultanous_boys'] = (((s as any).katjaQW ?? {})['simultanous_boys'] ?? 0) + (Math.max(0, ((s as any).rand ?? 0)(0, ((s as any).ARGS ?? 0)[1] - ((s as any).katjaQW ?? {})?.['simultanous_boys'])));
+        ((s as any).katjaQW ?? {})['simultanous_boys'] = (((s as any).katjaQW ?? {})['simultanous_boys'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (ARGS[1] - ((s as any).katjaQW ?? {})?.['simultanous_boys'] - 0 + 1)) + (0))));
         ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_boys'], qspUntranslated(s, "ARGS[1]", { location: "katja_procedural" }))*3);
       }
     }
@@ -567,7 +567,7 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
             ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
           }
         }
-        ((s as any).katjaQW ?? {})['simultanous_girls'] = (((s as any).katjaQW ?? {})['simultanous_girls'] ?? 0) + (Math.max(0, ((s as any).rand ?? 0)(0, ((s as any).ARGS ?? 0)[2] - ((s as any).katjaQW ?? {})?.['simultanous_girls'])));
+        ((s as any).katjaQW ?? {})['simultanous_girls'] = (((s as any).katjaQW ?? {})['simultanous_girls'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (ARGS[2] - ((s as any).katjaQW ?? {})?.['simultanous_girls'] - 0 + 1)) + (0))));
         ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_gitls'], qspUntranslated(s, "ARGS[2]", { location: "katja_procedural" }))*2);
       }
     }

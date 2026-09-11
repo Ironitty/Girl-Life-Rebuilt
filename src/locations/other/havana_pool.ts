@@ -31,7 +31,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 10;
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     if (((s as any).pcs_inhib ?? 0) < 50) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     }

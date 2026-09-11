@@ -132,6 +132,50 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).sexstart ?? 0))) {
+    (s as any).sexstart = 1;
+    (s as any).sexvar = Math.floor(Math.random() * 5) + 3;
+  }
+  (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
+  qspCall(s, 'dinsex2', 'stamina_npc');
+  (s as any).pos = 3;
+  if ((!((s as any).sxsex ?? 0))) {
+    if (((s as any).svidboysex ?? 0) === 1) {
+      (s as any).sexa = ((s as any).sexa ?? 0) + (1);
+    }
+    (s as any).sxsex = 1;
+  }
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? 0)}${((s as any).picrand ?? 0)}.jpg`);
+  if (((s as any).textrand ?? 0) === 1) {
+    scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
+  } else {
+    if (((s as any).textrand ?? 0) === 2) {
+      scene.text('His hard cock slides inside your wet cunt easily, and you feel the engorged head slowly part your insides when it goes deeper and deeper. You can\'t help but rub your clit, while you encourage him to fuck you harder.');
+    } else {
+      if (((s as any).textrand ?? 0) === 3) {
+        scene.text('He doesn\'t stop until his cock bottoms out in you and then proceeds to fuck you with the entire length of his impressive shaft. His thrusts become more and more intense, and soon, the sound of his skin slapping against yours fills the room.');
+      } else {
+        scene.text('Your wet pussy eagerly takes his cock in, and you hear some embarrassing sopping sounds when he proceeds to fuck your pussy enthusiastically. You must\'ve wanted him pretty badly if you got this wet…');
+      }
+    }
+  }
+  qspCall(s, 'arousal', 'vaginal', 10);
+  qspCall(s, 'stat', '');
+  if (((s as any).sexvar ?? 0) <= 0) {
+    (s as any).sexvar = 0;
+    scene.actions([{ label: 'Continue', goto: ['sex', 'end'] }]);
+  } else {
+    if (((s as any).sexvar ?? 0) === 1) {
+      scene.text('<br>The man groans that he will cum soon.');
+    }
+  }
+  (s as any).cumprecheck = 1;
+  qspCall(s, 'cum_manage', '');
+  scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  scene.build();
+}
+
 function enterAnal(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).sexstart ?? 0))) {
     (s as any).sexstart = 1;
@@ -269,7 +313,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

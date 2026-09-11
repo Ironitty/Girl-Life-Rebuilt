@@ -585,7 +585,7 @@ function enterGang(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
   (s as any).vagmembergang = Math.floor(Math.random() * 4) + 113;
-  (s as any).analmembergang = 113 + ((s as any).rand ?? 0)(0, 2);
+  (s as any).analmembergang = 113 + (Math.floor(Math.random() * 3) + 0);
   if (((s as any).vagmembergang ?? 0) === ((s as any).analmembergang ?? 0)) {
     (s as any).analmembergang = 116;
   }

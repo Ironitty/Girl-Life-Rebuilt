@@ -4,7 +4,96 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Bowling</b></center>');
+  scene.img('images/locations/city/citycenter/mall/bowling/boul.jpg');
+  if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
+    scene.actions([
+      { label: 'Play (1:00) [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 60;
+      qspCall(s, 'money', 'pay', 300);
+      (s as any).boulvar = 0;
+      (s as any).boulingnav = ((s as any).boulingnav ?? 0) + (Math.floor(Math.random() * 4) + 0);
+      (s as any).boulrand = Math.floor(Math.random() * 10) + 0;
+      qspCall(s, 'npcgeneratec', '', 0, 'Bowling Player', Math.floor(Math.random() * 23) + 18);
+      // TODO-QSP: $boy[0] = $npclastgenerated
+      // TODO-QSP: $boydesc[0] = $npc_usedname[$npclastgenerated]
+      qspCall(s, 'npcgeneratec', '', 0, 'Bowling Player', Math.floor(Math.random() * 23) + 18);
+      // TODO-QSP: $boy[1] = $npclastgenerated
+      // TODO-QSP: $boydesc[1] = $npc_usedname[$npclastgenerated]
+      qspCall(s, 'stat', '');
+      if ((!((s as any).boulrand ?? 0))) {
+        scene.text('You see two guys and they challenge you to a game.');
+        qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['bouling', 'randwin'] },
+          ]);
+        }
+        scene.actions([
+          { label: 'Gamble ( [+$func(\'money\', \'string_price\', 2000) + \'...]', handler: (st: GameState) => {
+    (st as any).boulvar = 1;
+  }, goto: ['bouling', 'randwin'] },
+        ]);
+      } else {
+        if (((s as any).boulrand ?? 0) === 1) {
+          // TODO-QSP: dynamic text: You meet two girls, and they suggest challenging two guys to a game: Prize ' + $...
+          scene.text('You meet two girls, and they suggest challenging two guys to a game: Prize \' + $func(\'money\', \'string_price\', 5000) + \', lose and they have sex with you.');
+          qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+  }, goto: ['bouling', 'randwin'] },
+            ]);
+          }
+          scene.actions([
+            { label: 'Play', handler: (st: GameState) => {
+    (st as any).boulvar = 2;
+  }, goto: ['bouling', 'randwin'] },
+          ]);
+        } else {
+          if (((s as any).boulrand ?? 0) > 1) {
+            scene.actions([{ label: 'Continue', goto: ['bouling', 'randwin'] }]);
+          }
+        }
+      }
+      scene.actions([
+        { label: 'Leave', goto: ['bouling', ''] },
+      ]);
+    }
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['city_mall', ''] },
+  ]);
+  scene.build();
+}
+
+function enterRandwin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boulingnav ?? 0) < 10) {
     (s as any).boulwin = Math.floor(Math.random() * 11) + 0;
   } else {
@@ -124,6 +213,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'randwin':
+      enterRandwin(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const bouling: LocationDef = {

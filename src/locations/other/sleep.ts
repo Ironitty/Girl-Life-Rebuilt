@@ -44,7 +44,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ((s as any).sleepVars ?? {})['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
     }
   }
-  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + ((s as any).rand ?? 0)(0, 90));
+  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'start'] }]);
   scene.build();
 }

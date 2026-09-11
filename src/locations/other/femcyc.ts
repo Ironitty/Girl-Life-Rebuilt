@@ -26,7 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).cumpdrop = ((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] / (144 - ((s as any).cumarrage ?? 0)?.[String((s as any).cumarr_idx ?? 0)]);
       if (((s as any).cycle ?? 0) !== 2) {
-        (s as any).cumpdrop = ((s as any).cumpdrop ?? 0) + (((s as any).cumpdrop ?? 0) * ((s as any).rand ?? 0)(0, 2));
+        (s as any).cumpdrop = ((s as any).cumpdrop ?? 0) + (((s as any).cumpdrop ?? 0) * (Math.floor(Math.random() * 3) + 0));
       }
       ((s as any).cumarrcpt ?? {})[String((s as any).cumarr_idx ?? 0)] = (((s as any).cumarrcpt ?? {})[String((s as any).cumarr_idx ?? 0)] ?? 0) - (((s as any).cumpdrop ?? 0));
       if (((s as any).cumarrcpt ?? 0)?.[String((s as any).cumarr_idx ?? 0)] <= 0) {
@@ -212,7 +212,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] > 48) {
           (s as any).cumcondslip_aware = 1;
           if (((s as any).pcs_health ?? 0) > 100) {
-            (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (((s as any).rand ?? 0)(3, ((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] - 45));
+            (s as any).pcs_health = ((s as any).pcs_health ?? 0) - ((Math.floor(Math.random() * (((s as any).sparrage ?? 0)?.[String((s as any).cumarrtemp ?? 0)] - 45 - 3 + 1)) + (3)));
           }
           scene.text('<center><b><br>You feel nauseous.</b></center>');
         }
@@ -323,7 +323,7 @@ function enterCyc1(s: GameState, scene: SceneBuilder): void {
       (s as any).EggRH = ((s as any).EggRH ?? 0) + (1);
     }
     (s as any).focH = ((s as any).focH ?? 0) + (1);
-    (s as any).temprand = ((s as any).rand ?? 0)(0, 9) - ((s as any).sterileov ?? 0) + ((s as any).tempovbonus ?? 0);
+    (s as any).temprand = (Math.floor(Math.random() * 10) + 0) - ((s as any).sterileov ?? 0) + ((s as any).tempovbonus ?? 0);
     if (((s as any).temprand ?? 0) < 0) {
       (s as any).EggRH = ((s as any).EggRH ?? 0) - (1);
     } else {
@@ -347,7 +347,7 @@ function enterCyc1(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).focH = 0;
     (s as any).lastovulation = ((s as any).daystart ?? 0);
-    (s as any).ovulate = 24 + ((s as any).rand ?? 0)(0, 20);
+    (s as any).ovulate = 24 + (Math.floor(Math.random() * 21) + 0);
     (s as any).cycle = 2;
     (s as any).ferteggage = 0;
   }
@@ -439,7 +439,7 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: fert_thresh *= 2
       }
       if (((s as any).fert_thresh ?? 0) <= ((s as any).cum_total ?? 0)  &&  ((s as any).trait_vars ?? 0)?.['fertility'] !== -2) {
-        (s as any).lotto_idx = ((s as any).rand ?? 0)(0, ((s as any).cfl_sz ?? 0) - 1);
+        (s as any).lotto_idx = (Math.floor(Math.random() * (cfl_sz - 1 - 0 + 1)) + (0));
         (s as any).UnfertEgg = ((s as any).UnfertEgg ?? 0) - (1);
         (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
         (s as any).nextBaby = 0;
@@ -689,7 +689,7 @@ function enterPreg(s: GameState, scene: SceneBuilder): void {
   (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
   (s as any).pregChem = ((s as any).pregChem ?? 0) + (((s as any).pregChemFrac ?? 0) / 100);
   (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) % 100;
-  (s as any).temprand = ((s as any).rand ?? 0)(-400, 800);
+  (s as any).temprand = (Math.floor(Math.random() * (800 - -400 + 1)) + (-400));
   (s as any).temprand = ((s as any).temprand ?? 0) - ((((s as any).babyembryo ?? 0) - 1) * 588);
   if (((s as any).pregChem ?? 0) > 6573 + ((s as any).temprand ?? 0)  &&  ((s as any).preg ?? 0) !== 2) {
     scene.text('A sharp pain pierces your abdomen, and you feel something flow down your legs. Your water has broken!');

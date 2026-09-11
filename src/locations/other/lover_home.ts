@@ -101,10 +101,10 @@ function enterNeighborhoodImage(s: GameState, scene: SceneBuilder): void {
 function enterDailyInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lover_home_init ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).daystart ?? 0)) {
     ((s as any).lover_home_init ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = ((s as any).rand ?? 0)(0, 1) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
-    ((s as any).lover_home_dirty_dishes ?? {})[String((s as any).npcID ?? 0)] = ((s as any).rand ?? 0)(0, 1) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
-    ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = ((s as any).rand ?? 0)(0, 1) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
-    ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = ((s as any).rand ?? 0)(0, 1) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
+    ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
+    ((s as any).lover_home_dirty_dishes ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
+    ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
+    ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
   }
   scene.build();
 }

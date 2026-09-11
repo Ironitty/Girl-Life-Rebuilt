@@ -602,7 +602,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     ((s as any).KGZVars ?? {})['place'] = 13;
     ((s as any).KGZVars ?? {})['batl'] = 0;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 20, ((s as any).KGZVars ?? {})?.['day'] * 30);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 30 - ((s as any).KGZVars ?? {})?.['day'] * 20 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 20));
     qspCall(s, 'stat', '');
     scene.text('You run to the warehouse while surrounded on all sides by the dead.');
     scene.actions([
@@ -616,7 +616,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     ((s as any).KGZVars ?? {})['place'] = 14;
     ((s as any).KGZVars ?? {})['batl'] = 0;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 20, ((s as any).KGZVars ?? {})?.['day'] * 30);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 30 - ((s as any).KGZVars ?? {})?.['day'] * 20 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 20));
     qspCall(s, 'stat', '');
     scene.text('You run to the infirmary while surrounded on all sides by zombies.');
     scene.actions([
@@ -630,7 +630,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     ((s as any).KGZVars ?? {})['place'] = 15;
     ((s as any).KGZVars ?? {})['batl'] = 0;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 20, ((s as any).KGZVars ?? {})?.['day'] * 30);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 30 - ((s as any).KGZVars ?? {})?.['day'] * 20 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 20));
     qspCall(s, 'stat', '');
     scene.text('You run to the armory while surrounded on all sides by zombies.');
     scene.actions([
@@ -644,7 +644,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     ((s as any).KGZVars ?? {})['place'] = 16;
     ((s as any).KGZVars ?? {})['batl'] = 0;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 20, ((s as any).KGZVars ?? {})?.['day'] * 30);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 30 - ((s as any).KGZVars ?? {})?.['day'] * 20 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 20));
     qspCall(s, 'stat', '');
     scene.text('You run to the garage while surrounded on all sides by zombies.');
     scene.actions([
@@ -678,7 +678,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).KGZVars ?? {})['place'] = 12;
     ((s as any).KGZVars ?? {})['batl'] = 0;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 20, ((s as any).KGZVars ?? {})?.['day'] * 30);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 30 - ((s as any).KGZVars ?? {})?.['day'] * 20 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 20));
     qspCall(s, 'stat', '');
     scene.text('You head for the roof while surrounded on all sides by zombies.');
     scene.actions([
@@ -720,7 +720,7 @@ function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have found enough provisions to last ${((s as any).KGZVars ?? 0)?.['suprand']} day(s).`);
     } else {
       if ((!((s as any).udacharand ?? 0))) {
-        ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 5, ((s as any).KGZVars ?? {})?.['day'] * 10);
+        ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 10 - ((s as any).KGZVars ?? {})?.['day'] * 5 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 5));
         scene.text('Stuck in the dark, you struggle to read what\'s written on a box when you suddenly hear the dead screeching and moaning as they rush towards you.');
         return;
         scene.actions([
@@ -767,7 +767,7 @@ function enterKGZvihod14(s: GameState, scene: SceneBuilder): void {
       scene.text('You have found a first aid kit!');
     } else {
       if ((!((s as any).udacharand ?? 0))) {
-        ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 5, ((s as any).KGZVars ?? {})?.['day'] * 10);
+        ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 10 - ((s as any).KGZVars ?? {})?.['day'] * 5 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 5));
         scene.text('Stuck in the dark, you struggle to read what\'s written on a box when you suddenly hear the dead screeching and moaning as they rush towards you.');
         return;
         scene.actions([
@@ -850,7 +850,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars ?? {})['gruzovik'] = 3;
     ((s as any).KGZVars ?? {})['place'] = 10;
     ((s as any).KGZVars ?? {})['placeA'] = 7;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 50, ((s as any).KGZVars ?? {})?.['day'] * 100);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 100 - ((s as any).KGZVars ?? {})?.['day'] * 50 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 50));
     scene.text('You floor it along the road, dodging abandoned cars littering the area until the truck slides on the slippery road and overturns as it crashes into a ditch. You\'re soon surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
@@ -862,7 +862,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars ?? {})['gruzovik'] = 1;
     ((s as any).KGZVars ?? {})['place'] = 10;
     ((s as any).KGZVars ?? {})['placeA'] = 9;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 50, ((s as any).KGZVars ?? {})?.['day'] * 100);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 100 - ((s as any).KGZVars ?? {})?.['day'] * 50 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 50));
     scene.text('You make good progress until you reach a group of cars you can\'t pass. You try going offroad to get around them, but end up getting stuck. You\'re soon surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
@@ -874,7 +874,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars ?? {})['gruzovik'] = 2;
     ((s as any).KGZVars ?? {})['place'] = 10;
     ((s as any).KGZVars ?? {})['placeA'] = 11;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 50, ((s as any).KGZVars ?? {})?.['day'] * 100);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 100 - ((s as any).KGZVars ?? {})?.['day'] * 50 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 50));
     scene.text('You take your time driving along the road, but soon come to a group of cars you can\'t pass and climb out of the truck to investigate. As you try to figure out what to do, you\'re quickly surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
@@ -886,7 +886,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars ?? {})['gruzovik'] = 4;
     ((s as any).KGZVars ?? {})['place'] = 10;
     ((s as any).KGZVars ?? {})['placeA'] = 13;
-    ((s as any).KGZVars ?? {})['dead'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['day'] * 50, ((s as any).KGZVars ?? {})?.['day'] * 100);
+    ((s as any).KGZVars ?? {})['dead'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['day'] * 100 - ((s as any).KGZVars ?? {})?.['day'] * 50 + 1)) + (((s as any).KGZVars ?? {})?.['day'] * 50));
     scene.text('You drive slowly along the road, weaving around the various cars littering the area before you suddenly collide with something and are forced to stop. You climb out of the truck to investigate, but are quickly surrounded by a group of zombies and have no choice but to fight your way out.');
     scene.actions([
       { label: 'Defend yourself', handler: (st: GameState) => {
@@ -1172,7 +1172,7 @@ function enterKGZfizatk(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).KGZVars ?? 0)?.['dead'] > 0) {
-    ((s as any).KGZVars ?? {})['uron'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['dead'] * 2, ((s as any).KGZVars ?? {})?.['dead'] * 5);
+    ((s as any).KGZVars ?? {})['uron'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['dead'] * 5 - ((s as any).KGZVars ?? {})?.['dead'] * 2 + 1)) + (((s as any).KGZVars ?? {})?.['dead'] * 2));
     ((s as any).KGZVars ?? {})['HP'] = (((s as any).KGZVars ?? {})['HP'] ?? 0) - (((s as any).KGZVars ?? 0)?.['uron']);
     // TODO-QSP: dynamic text: <<KGZVars['dead']>> zombie(s) swipe(s) at you while trying to bite.
     scene.text(`${((s as any).KGZVars ?? 0)?.['dead']} zombie(s) swipe(s) at you while trying to bite.`);
@@ -1345,7 +1345,7 @@ function enterKGZdeadmanatk(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars ?? {})['dist'] = (((s as any).KGZVars ?? {})['dist'] ?? 0) - (1);
   }
   if (((s as any).KGZVars ?? 0)?.['dead'] > 0  &&  ((s as any).KGZVars ?? 0)?.['dist'] <= 2) {
-    ((s as any).KGZVars ?? {})['uron'] = ((s as any).rand ?? 0)(((s as any).KGZVars ?? {})?.['dead'] * 2, ((s as any).KGZVars ?? {})?.['dead'] * 5);
+    ((s as any).KGZVars ?? {})['uron'] = (Math.floor(Math.random() * (((s as any).KGZVars ?? {})?.['dead'] * 5 - ((s as any).KGZVars ?? {})?.['dead'] * 2 + 1)) + (((s as any).KGZVars ?? {})?.['dead'] * 2));
     ((s as any).KGZVars ?? {})['HP'] = (((s as any).KGZVars ?? {})['HP'] ?? 0) - (((s as any).KGZVars ?? 0)?.['uron']);
     // TODO-QSP: dynamic text: <<KGZVars['dead']>> zombie(s) swipe(s) at you while trying to bite.
     scene.text(`${((s as any).KGZVars ?? 0)?.['dead']} zombie(s) swipe(s) at you while trying to bite.`);

@@ -1363,7 +1363,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).modifier = 0;
-  (s as any).study_mod = Math.max(0, (((s as any).rand ?? 0)(30 + ((s as any).study_mod ?? 0), ((s as any).modifier ?? 0) + ((s as any).study_mod ?? 0)) + 10)/33);
+  (s as any).study_mod = Math.max(0, ((Math.floor(Math.random() * (modifier + study_mod - 30 + study_mod + 1)) + (30 + study_mod)) + 10)/33);
   if (((s as any).no_study ?? 0) === 1) {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     scene.text('You follow Katja\'s advice and pack your stuff. You\'re in no condition to study right now.');

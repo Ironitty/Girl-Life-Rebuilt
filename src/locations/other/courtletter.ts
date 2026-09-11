@@ -95,7 +95,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           scene.text('Going through the letter you read that you\'ve a week to pay your fine in full, which you already did.');
           scene.text('Happy that you\'ve managed to avoid this worry, you put the letter away.');
         } else {
-          (s as any).temp_fine = 250 * ((s as any).rand ?? 0)(5, 10);
+          (s as any).temp_fine = 250 * (Math.floor(Math.random() * 6) + 5);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
           if (((s as any).week ?? 0) < 6) {
             // TODO-QSP: dynamic text: Going through the letter you read that you've failed to pay your fine. The court...
@@ -113,7 +113,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           scene.text('As you come home you see the familiar envelope from the court. You already know the gist of it, <i>failed to pay your fine, failure to pay your fine will have dire consequences,</i> yadda yadda…');
           scene.text('You already paid off your fines and as you finish you throw it to the side and continue further on inside your apartment…');
         } else {
-          (s as any).temp_fine = 250 * ((s as any).rand ?? 0)(10, 20);
+          (s as any).temp_fine = 250 * (Math.floor(Math.random() * 11) + 10);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
           // TODO-QSP: dynamic text: As you come home you see the familiar envelope from the court. You already know ...
           scene.text('As you come home you see the familiar envelope from the court. You already know the gist of it, <i>failed to pay your fine, additional \' + $func(\'money\', \'string_price\', temp_fine) + \' fine, failure to pay your fine will have dire consequences,</i> yadda yadda…');
@@ -159,7 +159,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'mood', 'lower', 'huge');
           qspCall(s, 'stat', '');
           scene.text('As you enter your home you notice an envelope from the court. You anxiously look at it and take a deep breath before opening the envelope.');
-          (s as any).temp_fine = 500 * ((s as any).rand ?? 0)(5, 10);
+          (s as any).temp_fine = 500 * (Math.floor(Math.random() * 6) + 5);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
           if (((s as any).week ?? 0) < 6) {
             // TODO-QSP: dynamic text: Going through the letter you read that you've missed your court hearing. A new c...
@@ -173,7 +173,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           scene.text('<i>The court is located in the city center. You should arrive at \'+func(\'time\', \'get_time_string\', 9, 0)+\' as there are a lot of cases and we can\'t say when your turn might come up.</i>');
           scene.text('You put the letter back in the envelope and let out a loud sigh…');
         } else {
-          (s as any).temp_fine = 500 * ((s as any).rand ?? 0)(10, 20);
+          (s as any).temp_fine = 500 * (Math.floor(Math.random() * 11) + 10);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
           // TODO-QSP: dynamic text: As you come home you see the familiar envelope from the court. You already know ...
           scene.text('As you come home you see the familiar envelope from the court. You already know the gist of it, <i>missed court, \' + $func(\'money\', \'string_price\', temp_fine) + \' fine, failure to show up will have dire consequences,</i> yadda yadda…');

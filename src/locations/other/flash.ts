@@ -214,6 +214,20 @@ function enterPantyrear(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'flash', 'exhibitionism', 2, $ARGS[1], ARGS[2]
+  ((s as any).flashVars ?? {})['text_before'] = 'You glance around to see who is in the area, then you pull \' + iif(PCloSkirt > 0, \'up the back of your skirt\', \'down the back of your pants\') + \' to show off your butt. Most people don\'t notice but a few do, some smile, others frown or shake their head in disgust.';
+  ((s as any).flashVars ?? {})['text_after'] = 'You \' + iif(PCloSkirt > 0, \'lower the skirt back in place\', \'pull your pants back up\') + \', feeling the thrill of excitement running down your spine.';
+  if (((s as any).analPlugIn ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 'butt_plug') {
+    qspCall(s, 'flash', 'get_image', 'butt_plug', ((s as any).locArgs?.[1] ?? 0));
+    // TODO-QSP: gs 'flash', 'generate_output', 'butt_plug', $ARGS[1], 'flash', ARGS[2], ARGS[3]
+  } else {
+    qspCall(s, 'flash', 'get_image', 'butt', ((s as any).locArgs?.[1] ?? 0));
+    // TODO-QSP: gs 'flash', 'generate_output', 'butt', $ARGS[1], 'flash', ARGS[2], ARGS[3]
+  }
+  scene.build();
+}
+
 function enterPussy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'flash', 'exhibitionism', 3, $ARGS[1], ARGS[2]
   ((s as any).flashVars ?? {})['text_before'] = 'You glance around to see who is in the area, then you pull \' + iif(PCloSkirt > 0, \'up the front of your skirt\', \'down the front of your pants\') + \' to show off your pussy. Most people don\'t notice but a few do, some smile, others frown or shake their head in disgust.';
@@ -254,7 +268,7 @@ function enterExhibitionism(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[3] = 1;
   }
   ((s as any).temp_rand ?? {})[1] = 1 + ((((s as any).ARGS ?? 0)[3] - 1) / 5);
-  (s as any).temp_rand = ((s as any).rand ?? 0)(0, 59) / ((s as any).temp_rand ?? 0)[1];
+  (s as any).temp_rand = (Math.floor(Math.random() * 60) + 0) / ((s as any).temp_rand ?? 0)[1];
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     ((s as any).trait_vars ?? {})['exhibitionist_exp'] = (((s as any).trait_vars ?? {})['exhibitionist_exp'] ?? 0) + (1);
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
@@ -433,7 +447,7 @@ function enterParkDoFlash(s: GameState, scene: SceneBuilder): void {
   }
   if ((Math.floor(Math.random() * 100) + 1) < ((s as any).flash_heat ?? 0)) {
     (s as any).flash_heat_long = Math.min(100, ((s as any).flash_heat_long ?? 0) + 10);
-    (s as any).temp_rand = (((s as any).rand ?? 0)(1, 100) + ((s as any).flash_heat_long ?? 0)) / 2;
+    (s as any).temp_rand = ((Math.floor(Math.random() * 100) + 1) + ((s as any).flash_heat_long ?? 0)) / 2;
     if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) < 6) {
       if (((s as any).temp_rand ?? 0) <= 30) {
         (s as any).flash_heat_long = Math.min(100, ((s as any).flash_heat_long ?? 0) + 5);
@@ -619,7 +633,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterQuickParkFlash(s, scene);
       break;
     default:
-      enterCanFlash(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

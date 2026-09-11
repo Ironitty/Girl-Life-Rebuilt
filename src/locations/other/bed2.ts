@@ -4,6 +4,16 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).clo_flag ?? 0)?.['bed'] === 1) {
+    ((s as any).clo_flag ?? {})['bed'] = 0;
+    qspCall(s, 'outfit', 'restore', 'bed');
+  }
+  qspCall(s, 'stat', '');
+  scene.actions([{ label: 'Continue', goto: ['bed2', 'mod_sleeptriggers'] }]);
+  scene.build();
+}
+
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed2', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['bed2', 'main'] }]);
@@ -138,7 +148,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFin(s, scene);
       break;
     default:
-      enterModSleeptriggers(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

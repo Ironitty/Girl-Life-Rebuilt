@@ -121,7 +121,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 4;
     qspCall(s, 'cum_cleanup', '');
     if (((s as any).pcs_sweat ?? 0) < 30) {
-      (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+      (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {

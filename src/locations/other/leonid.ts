@@ -270,7 +270,7 @@ function enterDoPunish(s: GameState, scene: SceneBuilder): void {
 
 function enterDoPaperwork(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + (((s as any).rand ?? 0) (5 * ((s as any).mult ?? 0), 20 * ((s as any).mult ?? 0)));
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + ((Math.floor(Math.random() * (20 * mult - 5 * mult + 1)) + (5 * mult)));
   (s as any).leoStress = ((s as any).leoStress ?? 0) + (0);
   (s as any).leoCoffee = ((s as any).leoCoffee ?? 0) + (0);
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) + (0);
@@ -289,7 +289,7 @@ function enterDoPaperwork(s: GameState, scene: SceneBuilder): void {
 
 function enterDoLazy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + (((s as any).rand ?? 0) (5 * ((s as any).mult ?? 0), 20 * ((s as any).mult ?? 0)));
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + ((Math.floor(Math.random() * (20 * mult - 5 * mult + 1)) + (5 * mult)));
   (s as any).leoStress = ((s as any).leoStress ?? 0) + (0);
   (s as any).leoCoffee = ((s as any).leoCoffee ?? 0) + (0);
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) + (0);
@@ -352,7 +352,7 @@ function enterOfficeKitchenBringCoffeeNaked(s: GameState, scene: SceneBuilder): 
   scene.img('images/characters/pavlovsk/resident/leonid/bringcoffeenaked.jpg');
   // TODO-QSP: dynamic text: You strip down even your panties and take the coffee. Slowly you walk through th...
   scene.text(`You strip down even your panties and take the coffee. Slowly you walk through the door inside ${((s as any).bName ?? 0)}'s office, trying to look as arousing as possible.`);
-  (s as any).fuckCh = ((s as any).rand ?? 0)(1, 100) + ((s as any).leoHorny ?? 0);
+  (s as any).fuckCh = (Math.floor(Math.random() * 100) + 1) + ((s as any).leoHorny ?? 0);
   if (((s as any).fuckCh ?? 0) >= 70) {
     // TODO-QSP: dynamic text: <<$bName>> looks up to you and sees that you are naked.
     scene.text(`${((s as any).bName ?? 0)} looks up to you and sees that you are naked.`);
@@ -898,7 +898,7 @@ function enterMassageEroticFuckFinish(s: GameState, scene: SceneBuilder): void {
 
 function enterOfficeLeonidHasTime(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  (s as any).serveType = ((s as any).rand ?? 0)(1, 50) + ((s as any).leoStress ?? 0);
+  (s as any).serveType = (Math.floor(Math.random() * 50) + 1) + ((s as any).leoStress ?? 0);
   if (((s as any).serveType ?? 0) > 70) {
     // TODO-QSP: dynamic text: I said I'm working, <<$slaveTitle>>. Do you want to be punished for causing trou...
     scene.text(`I said I'm working, ${((s as any).slaveTitle ?? 0)}. Do you want to be punished for causing trouble?`);
@@ -923,7 +923,7 @@ function enterOfficeLeonidHasTime(s: GameState, scene: SceneBuilder): void {
 
 function enterOfficeLeonidVoluntaryServeGate(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  (s as any).serveType = ((s as any).rand ?? 0)(1, 50) + ((s as any).leoHorny ?? 0);
+  (s as any).serveType = (Math.floor(Math.random() * 50) + 1) + ((s as any).leoHorny ?? 0);
   if (((s as any).serveType ?? 0) <= 70) {
     (s as any).taskCoffee = 1;
     scene.text('Go and make me a coffee.');

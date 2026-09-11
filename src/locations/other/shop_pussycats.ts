@@ -6,6 +6,95 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_pussycats', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<b><center><font size="4">Pussy-Cats</font></center></b>');
+  scene.img('images/locations/city/citycenter/mall/cats/young_shop.jpg');
+  scene.text('The latest chart topping pop single is playing throughout the small store. The interior is decorated in bright colors and bold designs, and the floor is packed with stands and tables displaying clothes with a more daring style.');
+  scene.text('Looking around at all the advertisements with attractive yet emaciated models, you\'ll either leave here seduced into buying something or with lower self-esteem.');
+  if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed'  &&  ((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] >= 3  &&  qspFunc(s, 'jobs', 'is_work_time', 'city_pussycats_clerk') === 1) {
+    scene.actions([{ label: 'Continue', goto: ['andrey', ''] }]);
+  }
+  if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === '') {
+    // TODO-QSP: dynamic text: As you enter, you notice a for hire sign with a note scribbled on it that reads:...
+    scene.text('As you enter, you notice a for hire sign with a note scribbled on it that reads: "<b>The Manager Mr. Sobulyagin works weekdays from \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 20, 0)+\', weekends \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 15, 0)+\'; Applicants should speak to him weekdays BEFORE \'+func(\'time\', \'get_time_string\', 14, 30)+\'!</b>"');
+    if (((s as any).hour ?? 0) >= 9  &&  (((s as any).hour ?? 0) < 15  ||  (((s as any).hour ?? 0) === 14  &&  ((s as any).minut ?? 0) <= 30))  &&  ((s as any).week ?? 0) < 6) {
+      scene.actions([
+        { label: 'Talk to the manager', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['andrey', ''] },
+      ]);
+    }
+  }
+  if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_pussycats_clerk') === 1) {
+    scene.actions([
+      { label: 'Go to work', handler: (st: GameState) => {
+    qspCall(s, 'jobs', 'clock', 'city_pussycats_clerk');
+    qspCall(s, 'jobs', 'get_shift_for_day', 'city_pussycats_clerk', ((s as any).daystart ?? 0));
+    if (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) < ((s as any).result_start ?? 0)) {
+      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).result_start ?? 0) - (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)));
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).result_duration ?? 0));
+    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).result_duration ?? 0) / 10);
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((s as any).result_duration ?? 0) / 5);
+    qspCall(s, 'stat', '');
+    if (((s as any).result_duration ?? 0) <= 240) {
+      scene.text('You spend 4 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
+    } else {
+      scene.text('You spend 6 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
+    }
+    qspCall(s, 'shop_pussycats', 'events');
+  } },
+    ]);
+  }
+  if ((((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'terminated'  ||  ((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'fired')  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6) {
+    scene.actions([
+      { label: 'Talk to the manager again', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['andrey', ''] },
+    ]);
+  }
+  if (((s as any).hour ?? 0) > 21  ||  ((s as any).hour ?? 0) < 8) {
+    scene.text('A security guard approaches you. "Sorry, but the store is closed. You\'ll have to leave."');
+    scene.text('<center><b>The store is closed.</b></center>');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_mall', ''] },
+    ]);
+  }
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave the shop', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_mall', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'dress'] },
+    { label: 'View other outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'clothes'] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'bras'] },
+    { label: 'View shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'shoes'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'purses'] },
+    { label: 'View coats', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'coats'] },
+  ]);
+  scene.build();
+}
+
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_pussycats', 'dress');
   qspCall(s, 'stat', '');
@@ -735,7 +824,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEndwork(s, scene);
       break;
     default:
-      enterDress(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -745,5 +834,6 @@ export const shop_pussycats: LocationDef = {
   title: 'The store is closed.',
   region: 'other',
   locclass: 'changingroom',
+  description: ['The latest chart topping pop single is playing throughout the small store. The interior is decorated in bright colors and bold designs, and the floor is packed with stands and tables displaying clothes with a more daring style.'],
   enter: enter,
 };

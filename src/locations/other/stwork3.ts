@@ -978,12 +978,12 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTips(s: GameState, scene: SceneBuilder): void {
-  ((s as any).strip_club ?? {})['tips_total'] = (((s as any).rand ?? 0)(1, 125) + ((s as any).rand ?? 0)(1, 125) + ((s as any).rand ?? 0)(1, 125) + ((s as any).rand ?? 0)(1, 125)) + ((s as any).strip_club ?? {})?.['tips_roll'] + ((s as any).pcs_apprnc ?? 0) - 100 + ((s as any).pcs_servng ?? 0);
+  ((s as any).strip_club ?? {})['tips_total'] = ((Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1)) + ((s as any).strip_club ?? {})?.['tips_roll'] + ((s as any).pcs_apprnc ?? 0) - 100 + ((s as any).pcs_servng ?? 0);
   if (((s as any).strip_club ?? 0)?.['tips_total'] < 100) {
-    ((s as any).strip_club ?? {})['tips_total'] = 110 - ((s as any).rand ?? 0)(0, 20);
+    ((s as any).strip_club ?? {})['tips_total'] = 110 - (Math.floor(Math.random() * 21) + 0);
   }
   if (((s as any).strip_club ?? 0)?.['tips_total'] > 500) {
-    ((s as any).strip_club ?? {})['tips_total'] = 510 - ((s as any).rand ?? 0)(0, 20);
+    ((s as any).strip_club ?? {})['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
   }
   // TODO-QSP: gs 'money', 'earn', strip_club['tips_total']
   ((s as any).strip_club ?? {})['tips_roll'] = 0;

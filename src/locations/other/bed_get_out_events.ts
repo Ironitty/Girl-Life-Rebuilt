@@ -4,6 +4,19 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sleepVars ?? {})['stat_display'] = 1;
+  if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
+    ((s as any).sleepVars ?? {})['events_done'] = 0;
+    if (((s as any).vomit ?? 0)?.['morning_sick'] === 1  ||  ((s as any).vomit ?? 0)?.['hangover'] === 1  ||  ((s as any).vomit ?? 0)?.['unlucky'] === 1) {
+      // TODO-QSP: $sleep_events[] = 'gs ''bed_get_out_events'', ''vomit'' '
+    }
+    scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'mod_sleepevents'] }]);
+  }
+  scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'continue'] }]);
+  scene.build();
+}
+
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler'] }]);
@@ -85,7 +98,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterVomit(s, scene);
       break;
     default:
-      enterModSleepevents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

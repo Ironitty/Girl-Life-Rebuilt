@@ -48,6 +48,76 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc ?? {})['room_title'] = 'Your Grandparents\' Cottage';
+  ((s as any).setloc ?? {})['room_image'] = 'izba.jpg';
+  qspCall(s, 'gad_gphouse', 'setup', 'main');
+  scene.text('A fairly simple cottage in the village of Gadukino which your grandparents call home. In the main room there is a huge <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a>. You share this with your grandparents to store anything that won\'t fit in your chest.');
+  scene.text('There is an old <a href="exec:gt \'TV\',\'gad\'">television</a> in the living room. It\'s positioned next to a body length <a href="exec:gt \'mirror\', \'start\'">mirror</a>.');
+  scene.text('Your grandfather\'s <a href="exec: newspaperVars[\'dbag\'] = 0 & gs \'newspaper\', \'start\'">newspaper</a> is lying to the side.');
+  qspCall(s, 'gad_gphouse', 'villagecat_string');
+  if (((s as any).locat ?? 0)?.['A31_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A31_arg'] === ((s as any).loc_arg ?? 0)) {
+    if (((s as any).locat ?? 0)?.['A31_arg1'] === 'reading') {
+      scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> relaxing on the couch reading a book.');
+    } else {
+      if (((s as any).locat ?? 0)?.['A31_arg1'] === 'watching_tv') {
+        scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> relaxing on the couch watching TV.');
+      } else {
+        if (((s as any).locat ?? 0)?.['A31_arg1'] === 'repearing_clothes') {
+          scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> sittinng on the couch repairing some clothes.');
+        } else {
+          if (((s as any).locat ?? 0)?.['A31_arg1'] === 'knitting') {
+            scene.text('You see your <a href="exec: gt \'gp_elene\', \'talk\' ">grandmother</a> sitting on the couch knitting.');
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).locat ?? 0)?.['A32_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A32_arg'] === ((s as any).loc_arg ?? 0)) {
+    if (((s as any).locat ?? 0)?.['A32_arg1'] === 'reading') {
+      scene.text('You see your <a href="exec: gt \'gp_zlatek\', \'talk\' ">grandfather</a> relaxing on the couch reading a book.');
+    } else {
+      if (((s as any).locat ?? 0)?.['A32_arg1'] === 'watching_tv') {
+        scene.text('You see your <a href="exec: gt \'gp_zlatek\', \'talk\' ">grandfather</a> relaxing on the couch watching TV.');
+      }
+    }
+  }
+  qspCall(s, 'gad_gphouse', 'family_trip');
+  if (((s as any).locat ?? 0)?.['A60_loc'] === ((s as any).loc ?? 0)  &&  ((s as any).locat ?? 0)?.['A60_arg'] === ((s as any).loc_arg ?? 0)) {
+    if (((s as any).MiraVars ?? 0)?.['guest'] === 0) {
+      if (((s as any).MiraVars ?? 0)?.['follow_time'] < 1) {
+        ((s as any).MiraVars ?? {})['follow_time'] = 1;
+      }
+      scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+    } else {
+      ((s as any).MiraVars ?? {})['follow_time'] = 0;
+      scene.text('<a href="exec: gt \'miroslava\', \'start\'">Mira</a> is sitting next to you.');
+    }
+  }
+  if ((Math.floor(Math.random() * 3) + 0) !== 0) {
+    qspCall(s, 'din_bad', 'mobile_check');
+  }
+  qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
+  if (((s as any).clothingworntype ?? 0) !== 'nude') {
+    scene.actions([
+      { label: 'Go outside', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'gad_gphouse', 'exit', 'gad_gpyard', 'start');
+  } },
+    ]);
+  }
+  qspCall(s, 'gp_elene', 'check_for_chores', 'livingroom');
+  scene.actions([
+    { label: 'Go to your room', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+  }, goto: ['gad_gpbarn', 'barn_room'] },
+    { label: 'Go to the kitchen', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['gad_gphouse', 'kitchen'] },
+  ]);
+  scene.build();
+}
+
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['room_title'] = 'Your Grandparents\' Kitchenette';
   ((s as any).setloc ?? {})['room_image'] = 'gp_kitchen.jpg';
@@ -710,7 +780,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterGrandpaLeaveEvent(s, scene);
       break;
     default:
-      enterInit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

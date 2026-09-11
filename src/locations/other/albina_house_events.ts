@@ -531,7 +531,7 @@ function enterTekkenBet(s: GameState, scene: SceneBuilder): void {
   scene.text('She starts the game, and you both fall silent, your focus only on winning.');
   scene.actions([
     { label: 'Play until someone wins', handler: (st: GameState) => {
-    (s as any).gameresult = ((s as any).rand ?? 0)(1, 100) + ((s as any).pcs_gaming ?? 0);
+    (s as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_gaming ?? 0);
     if (((s as any).gameresult ?? 0) >= 150) {
       (s as any).albplay = 3;
     } else {

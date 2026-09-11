@@ -46,6 +46,154 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_page = 0;
+  qspCall(s, '$menu_character', 'charactertabs', 'Character');
+  qspCall(s, 'AppearanceSystem', '');
+  qspCall(s, 'body_desc', '');
+  scene.text('<center><h1>Character Description</h1></center>');
+  // TODO-QSP: $settings['table_start']
+  // TODO-QSP: dynamic text: Your name is <<$pcs_firstname>> <<$pcs_lastname>>.
+  scene.text(`Your name is ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}.`);
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+    // TODO-QSP: dynamic text: Your friends and family call you <<$pcs_nickname>>.
+    scene.text(`Your friends and family call you ${((s as any).pcs_nickname ?? 0)}.`);
+  } else {
+    // TODO-QSP: dynamic text: Your friends call you <<$pcs_nickname>>.
+    scene.text(`Your friends call you ${((s as any).pcs_nickname ?? 0)}.`);
+  }
+  if (((s as any).start_type ?? 0)?.['cat'] === 'goodgirl') {
+    scene.text('Your start background is: Good Girl');
+  } else {
+    if (((s as any).start_type ?? 0)?.['cat'] === 'uglyduckling') {
+      scene.text('Your start background is: Ugly Duckling');
+    } else {
+      if (((s as any).start_type ?? 0)?.['cat'] === 'gopnikstart') {
+        scene.text('Your start background is: Gopnik Start');
+      } else {
+        if (((s as any).start_type ?? 0)?.['cat'] === 'vitekgf') {
+          scene.text('Your start background is: Vitek\'s Girlfriend');
+        } else {
+          if (((s as any).start_type ?? 0)?.['cat'] === 'nerdqueen') {
+            scene.text('Your start background is: Nerd Queen');
+          } else {
+            if (((s as any).start_type ?? 0)?.['cat'] === 'goodstudent') {
+              scene.text('Your start background is: Good Student');
+            } else {
+              if (((s as any).start_type ?? 0)?.['cat'] === 'computergeek') {
+                scene.text('Your start background is: Computer Geek');
+              } else {
+                if (((s as any).start_type ?? 0)?.['cat'] === 'chessplayer') {
+                  scene.text('Your start background is: Chess Player');
+                } else {
+                  // TODO-QSP: 'Your start background is: ' + $ucase($mid($start_type['cat'], 1, 1)) + $mid($start_type['cat'], 2)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (qspFunc(s, 'homes_properties', 'get_accessible_property_count') === 0) {
+    scene.text('You have nowhere to live, if this is an error, you can set your current home <a href="exec:gs \'$menu_character\', \'current_home\'">here</a>.');
+  } else {
+    if (((s as any).home ?? 0)?.['current'] === '') {
+      scene.text('You don\'t have a current home set. If this is an error, you can set your current home <a href="exec:gs \'$menu_character\', \'current_home\'">here</a>.');
+    } else {
+      // TODO-QSP: dynamic text: Your current home is <a href="exec:gs '$menu_character', 'current_home'"><<$home...
+      scene.text(`Your current home is <a href="exec:gs '$menu_character', 'current_home'">${((s as any).home ?? 0)?.['name']}</a>.`);
+    }
+  }
+  if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucpcinfo ?? 0) >= 4) {
+    scene.text('You are a Succubus.');
+    // TODO-QSP: dynamic text: Succubus Level: <<succublvl>>
+    scene.text(`Succubus Level: ${((s as any).succublvl ?? 0)}`);
+  }
+  if (((s as any).age ?? 0) === ((s as any).vidage ?? 0)) {
+    // TODO-QSP: dynamic text: You are <<age>> years old.
+    scene.text(`You are ${((s as any).age ?? 0)} years old.`);
+  } else {
+    // TODO-QSP: dynamic text: You are <<age>> years old, but you appear to be <<vidage>>.
+    scene.text(`You are ${((s as any).age ?? 0)} years old, but you appear to be ${((s as any).vidage ?? 0)}.`);
+  }
+  if (((s as any).birthday ?? 0) <= 9  &&  ((s as any).birthmonth ?? 0) <= 9) {
+  } else {
+    if (((s as any).birthday ?? 0) > 9  &&  ((s as any).birthmonth ?? 0) <= 9) {
+    } else {
+      if (((s as any).birthday ?? 0) > 9  &&  ((s as any).birthmonth ?? 0) > 9) {
+      }
+    }
+  }
+  // TODO-QSP: dynamic text: Your date of birth is <<$birthdayD>>
+  scene.text(`Your date of birth is ${((s as any).birthdayD ?? 0)}`);
+  // TODO-QSP: dynamic text: You are <<pcs_hgt>>cm tall and <a href="exec:view $func('$body_image', 'body')">...
+  scene.text(`You are ${((s as any).pcs_hgt ?? 0)}cm tall and <a href="exec:view $func('$body_image', 'body')">${((s as any).bodyVars ?? 0)?.['desc']}</a>.`);
+  // TODO-QSP: dynamic text: Your breasts would be considered an EU <a href="exec:view $func('$body_image', '...
+  scene.text(`Your breasts would be considered an EU <a href="exec:view $func('$body_image', 'tits')">${((s as any).titsize ?? 0)}</a>.`);
+  if (((s as any).preg ?? 0) === 1) {
+    if (((s as any).denypreg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) > 2688) {
+      scene.text('You seem to be putting on a bit of weight, your belly is definitely bigger.');
+    } else {
+      if (((s as any).pregChem ?? 0) > 4704) {
+        scene.text('You\'re rapidly approaching the finish line and have entered the third trimester. Your belly is so big now that you can barely remember what your toes look like. Your back hurts most of the time and it is a struggle to get to your feet if you sit down. The baby seems to think that your bladder makes a nice punching bag.');
+      } else {
+        if (((s as any).pregChem ?? 0) > 3696) {
+          scene.text('Your belly is quite swollen now and shows under even the loosest of clothes. You find yourself constantly caressing your belly without realizing it.');
+        } else {
+          if (((s as any).pregChem ?? 0) > 3192  &&  ((s as any).knowpreg ?? 0) === 1) {
+            scene.text('You are showing for sure now. Your tummy is starting to become rounder as it grows larger each day, although you can still wear baggy clothes to hide it. At least the morning sickness and nausea seem to have gone away for the most part.');
+          } else {
+            if (((s as any).pregChem ?? 0) > 3192  &&  (!((s as any).knowpreg ?? 0))) {
+              scene.text('You can\'t seem to stop gaining weight and your belly looks like it is getting bigger everyday, although you can still wear baggy clothes to hide it. At least the flu you\'ve been fighting lately seems to have finally gone away for the most part.');
+            } else {
+              if (((s as any).pregChem ?? 0) > 1800  &&  ((s as any).knowpreg ?? 0) === 1) {
+                // TODO-QSP: iif(lactation['growthsoreness_on']>0, 'Your breasts look and feel swollen and tingle at the slightes...
+              } else {
+                if (((s as any).pregChem ?? 0) > 1800  &&  (!((s as any).knowpreg ?? 0))) {
+                  // TODO-QSP: iif(lactation['growthsoreness_on']>0, 'Your breasts look and feel swollen and tingle at the slightes...
+                } else {
+                  if (((s as any).pregChem ?? 0) > 1200  &&  ((s as any).lactation ?? 0)?.['preggrowth'] > 0) {
+                    scene.text('You\'ve noticed that your breasts seem firmer lately and your nipples seem to be sticking out more.');
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
+    // TODO-QSP: dynamic text: Your hair: <<$face_style['avatar_hair']>>.
+    scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair']}.`);
+  } else {
+    // TODO-QSP: dynamic text: <<$hair>>
+    scene.text(`${((s as any).hair ?? 0)}`);
+  }
+  if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
+    // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
+    scene.text(`Your curls are good for another ${((s as any).curly ?? 0)} days.`);
+  }
+  if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
+    // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
+    scene.text(`Your hair should be straight for another ${((s as any).straight ?? 0)} days.`);
+  }
+  if (((s as any).pcs_mass ?? 0)?.['body'] < 10  &&  ((s as any).strenbuf ?? 0) > 0  &&  (!((s as any).dounspell ?? 0))) {
+    // TODO-QSP: $func('wrap', 'neg b', 'You are showing signs of malnourishment. You should probably eat more and mo...
+  }
+  if (((s as any).pcs_mass ?? 0)?.['body'] < 10  &&  ((s as any).strenbuf ?? 0) === 0  &&  (!((s as any).dounspell ?? 0))) {
+    // TODO-QSP: $func('wrap', 'v_neg b', 'You are dangerously malnourished, which has led to a loss in muscle mass. ...
+  }
+  if (((s as any).pcs_brace ?? 0) === 1) {
+    qspCall(s, 'time', 'to_date', ((s as any).dentistday ?? 0));
+    // TODO-QSP: dynamic text: You are wearing a brace on your <a href="exec:gs 'obj_din', 'show_teeth'">teeth<...
+    scene.text(`You are wearing a brace on your <a href="exec:gs 'obj_din', 'show_teeth'">teeth</a>, you can remove them on or after the ${((s as any).dateVars ?? 0)?.['day']}${((s as any).dateVars ?? 0)?.['suffix']} of ${qspUntranslated(s, "monthName[dateVars['month']]", { location: "_menu_character" })}, ${((s as any).dateVars ?? 0)?.['year']}.`);
+  }
+  // TODO-QSP: $settings['table_end']
+  scene.build();
+}
+
 function enterCurrentHome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><h1><<$pcs_firstname>>'s Home Location</h1></center>
   scene.text(`<center><h1>${((s as any).pcs_firstname ?? 0)}'s Home Location</h1></center>`);
@@ -2376,7 +2524,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMagic(s, scene);
       break;
     default:
-      enterMenuExit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

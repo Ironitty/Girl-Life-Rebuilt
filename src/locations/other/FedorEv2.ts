@@ -1,10 +1,32 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/walk.jpg');
+  scene.text('As you arrive at the park Fedor reaches out for your hand and leads you down the main path. You turn to him to see a gentle smile on his face which you are quite surprised to see. Usually Fedor is pretty crude when he is hanging out with the other jocks but there may be a softer side to him you think to yourself as Fedor leads you through the park. During your walk you both hear some people loudly laughing nearby, Fedor turns to you "Sounds like someone is having fun, wanna check it out?"');
+  scene.actions([
+    { label: 'Check it out', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text(`<center><b>${'Vasily [Shulga] Shulgin'}</b></center>`);
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/gopnikdance\'+rand(1, 2)+\'.mp4');
+    // TODO-QSP: dynamic text: You and Fedor follow the laughing to find a clearly drunk Vasily dancing in fron...
+    scene.text(`You and Fedor follow the laughing to find a clearly drunk Vasily dancing in front of Vitek and Dan as they cheer him on. Dan shouts "Keep going and remember if you fall over then you owe us ${qspFunc(s, 'money', 'format', 300)} " as he records Shulgin's drunken dance on his phone. Fedor laughs "It seems like they are having fun. We should probably go before they notice us because I'm sure that having you by my side will only make those poor guys jealous" you lower your head and feel yourself getting flushed as you reply, "I'm sure you say that to all the girls" he then responds, "Only if they were as beautiful as you ${((s as any).pcs_firstname ?? 0)}" after a few moments of silence Fedor chuckles as he takes you by the hand and leads you back down the main path.`);
+    scene.actions([
+      { label: 'Continue walking', goto: ['FedorEv2', 'Park Walk'] },
+    ]);
+  } },
+    { label: 'Ignore it and Continue walking', goto: ['FedorEv2', 'Park Walk'] },
+  ]);
+  scene.build();
+}
 
 function enterParkWalk(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1157,7 +1179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterFedorBreakup(s, scene);
       break;
     default:
-      enterParkWalk(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1167,5 +1189,6 @@ export const FedorEv2: LocationDef = {
   title: '<<"Vasily [Shulga] Shulgin">>',
   region: 'other',
   locationType: 'public_indoors',
+  description: ['As you arrive at the park Fedor reaches out for your hand and leads you down the main path. You turn to him to see a gentle smile on his face which you are quite surprised to see. Usually Fedor is pretty crude when he is hanging out with the other jocks but there may be a softer side to him you think to yourself as Fedor leads you through the park. During your walk you both hear some people loudly laughing nearby, Fedor turns to you "Sounds like someone is having fun, wanna check it out?"'],
   enter: enter,
 };

@@ -322,7 +322,7 @@ function enterStreamingStats(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).ml_streamtime ?? 0));
   // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], ml_streamtime
   (s as any).ml_maxsuperchats = ( ((s as any).fame ?? {})?.['pav_music'] + (((s as any).fame ?? {})?.['city_music'] * 2) + ((s as any).fame ?? {})?.['pushkin_music'] + ((s as any).fame ?? {})?.['village_music'] + ((s as any).pcs_apprnc ?? 0) );
-  (s as any).ml_superchats = (((s as any).rand ?? 0)( 0, ((s as any).ml_maxsuperchats ?? 0)) * ((s as any).ml_streamtime ?? 0)) / 60;
+  (s as any).ml_superchats = ((Math.floor(Math.random() * (ml_maxsuperchats - 0 + 1)) + (0)) * ((s as any).ml_streamtime ?? 0)) / 60;
   if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  (((s as any).ml_guitar ?? 0)?.['carried'] === 1  ||  ((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0))) {
     (s as any).ml_famebase = ( ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ( (((s as any).pcs_hotcat ?? 0)-5) * 20 ) ) / 20;
     qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);

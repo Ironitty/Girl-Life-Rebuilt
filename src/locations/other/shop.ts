@@ -12,6 +12,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  if (((s as any).loc ?? 0) !== 'shop') {
+  }
+  qspCall(s, 'core_library', 'setloc', 'shop', 'start');
+  qspCall(s, 'stat', '');
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  scene.actions([{ label: 'Continue', goto: ['shop', 'main'] }]);
+  scene.build();
+}
+
 function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) !== 'shop') {
   }

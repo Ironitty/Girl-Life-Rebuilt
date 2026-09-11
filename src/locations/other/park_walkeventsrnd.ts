@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).suchunt ?? 0) === 1) {
-    (s as any).minut = ((s as any).minut ?? 0) + (40 + ((s as any).rand ?? 0)(0, 20) - 5 * ((s as any).succublvl ?? 0));
+    (s as any).minut = ((s as any).minut ?? 0) + (40 + (Math.floor(Math.random() * 21) + 0) - 5 * ((s as any).succublvl ?? 0));
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
   }

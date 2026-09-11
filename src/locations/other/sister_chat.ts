@@ -488,7 +488,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
         scene.text('"We want to repeat our game tomorrow evening, if you\'d like?"');
         scene.actions([
           { label: 'Another time', handler: (st: GameState) => {
-    (s as any).sistrioday = ((s as any).daystart ?? 0) + ((s as any).rand ?? 0)(7, 14);
+    (s as any).sistrioday = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 8) + 7);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/anya/sex/sisboyqw_36.jpg');
     scene.text('"I\'d love to, but could we do it some other day?" you ask.');
@@ -578,7 +578,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Another time', handler: (st: GameState) => {
-    (s as any).sistrioday = ((s as any).daystart ?? 0) + ((s as any).rand ?? 0)(7, 14);
+    (s as any).sistrioday = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 8) + 7);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/anya/sex/sisboyqw_36.jpg');
     scene.text('"I\'d love to, but could we do it some other day?" you ask.');

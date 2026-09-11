@@ -92,7 +92,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['cardgame_durak', 'card_game_won'] }]);
     } else {
       (s as any).temp_alko = 0;
-      (s as any).temp_durak_trying = ((s as any).ARGS ?? 0)[1] * ((s as any).rand ?? 0)(10, 20);
+      (s as any).temp_durak_trying = ((s as any).ARGS ?? 0)[1] * (Math.floor(Math.random() * 11) + 10);
       (s as any).temp_durak_win_chance = 50 - 2 * ((s as any).temp_alko ?? 0) + ((s as any).temp_durak_trying ?? 0);
       (s as any).temp_durak_not_lose_chance = ((s as any).temp_durak_win_chance ?? 0) + 20 - ((s as any).temp_alko ?? 0);
       (s as any).temp_durak_result = Math.floor(Math.random() * 100) + 1;

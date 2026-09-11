@@ -198,7 +198,7 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Soak in the bath (0:30)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).pcs_sweat = 7 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 7 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'mood', 'raise', 'small');
     if (((s as any).frost ?? 0) > 0) {
       (s as any).frost = 0;

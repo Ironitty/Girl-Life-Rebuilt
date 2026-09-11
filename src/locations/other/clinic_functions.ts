@@ -73,7 +73,7 @@ function enterRequestAppointment(s: GameState, scene: SceneBuilder): void {
   (s as any).tmp_doc_range_min = 27;
   (s as any).appointment_offer_duration = ((s as any).tmp_doc_duration ?? 0);
   (s as any).appointment_offer_buffer = 2;
-  (s as any).temp_lucky_end = (((s as any).totminut ?? 0) % 1440) / 15 + ((s as any).rand ?? 0)(1, 3);
+  (s as any).temp_lucky_end = (((s as any).totminut ?? 0) % 1440) / 15 + (Math.floor(Math.random() * 3) + 1);
   if (((s as any).temp_lucky_end ?? 0) >= ((s as any).tmp_doc_range_min ?? 0)  &&  ((s as any).temp_lucky_end ?? 0) <= 82  &&  qspFunc(s, 'appointments', 'check_conflict', ((s as any).daystart ?? 0), ((s as any).temp_lucky_end ?? 0)) === 0) {
     (s as any).same_day_window_end = ((s as any).temp_lucky_end ?? 0);
     (s as any).same_day_free = (((Math.floor(Math.random() * 100) + 0) < 15) ? (1) : (0));

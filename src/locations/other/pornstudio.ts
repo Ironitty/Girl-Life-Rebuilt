@@ -6,6 +6,125 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pornstudio', '');
+  qspCall(s, 'pornhist', 'short');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/redlight/studio_porn/studia_0.jpg');
+  if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 22) {
+    // TODO-QSP: dynamic text: The porn studio is currently closed. It is open between '+func('time', 'get_time...
+    scene.text('The porn studio is currently closed. It is open between \'+func(\'time\', \'get_time_string\', 9, 0)+\' and \'+func(\'time\', \'get_time_string\', 22, 0)+\'.');
+    return;
+  }
+  scene.text('You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.');
+  if (((s as any).job_status ?? 0)?.['city_pornstudio_delivery'] === 'employed'  &&  ((s as any).week ?? 0) === 4  &&  (!((s as any).workDisk ?? 0))) {
+    // TODO-QSP: act 'Arrive for work': gt 'pornstudio', 'delivery'
+  }
+  if (((s as any).job_hiring_step ?? 0)?.['city_pornstudio_delivery'] === 1  &&  (((s as any).age ?? 0) >= 18  ||  ((s as any).fakepassport ?? 0) === 1)) {
+    scene.actions([
+      { label: 'Show Dimitri your passport', handler: (st: GameState) => {
+    (s as any).bomzQW = 1;
+    qspCall(s, 'jobs', 'set_employed', 'city_pornstudio_delivery');
+    ((s as any).job_hiring_step ?? {})['city_pornstudio_delivery'] = 0;
+    if (((s as any).week ?? 0) === 4) {
+      scene.text('"Alright, everything seems to be in order. Since you\'re here on time, we can get started right away."');
+      scene.actions([
+        { label: 'Continue', goto: ['pornstudio', 'delivery'] },
+      ]);
+    } else {
+      scene.text('"Alright, everything seems to be in order. Remember to come back on Thursday for the details."');
+    }
+    scene.actions([
+      { label: 'Leave', goto: ['pornstudio', ''] },
+    ]);
+  } },
+    ]);
+  }
+  if ((!((s as any).workDolg ?? 0))) {
+    if (((s as any).workDisk ?? 0) === 1  &&  ((s as any).week ?? 0) === 5) {
+      scene.actions([
+        { label: 'Take the disk', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).workDisk = 2;
+    qspCall(s, 'stat', '');
+    scene.text('You\'re given a thumb drive and asked if you remember all the instructions. You quietly nod and leave.');
+    scene.text('As you leave the studio, you hear someone exit a nearby building and start following you, but you reassure yourself and carry on.');
+    scene.actions([
+      { label: 'Leave', goto: ['city_redlight', 'start'] },
+    ]);
+  } },
+      ]);
+    } else {
+      if (((s as any).workDisk ?? 0) === 3  &&  ((s as any).week ?? 0) === 5) {
+        scene.actions([
+          { label: 'Hand over the envelope', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).workDisk = 4;
+    qspCall(s, 'stat', '');
+    if ((!((s as any).konvert ?? 0))) {
+      qspCall(s, 'money', 'debt_add', 'workDolg', 200000);
+      (s as any).workDolgDay = 7;
+      ((s as any).job_termination_reason ?? {})['city_pornstudio_delivery'] = 'blacklisted';
+      qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_delivery');
+      scene.text('Digging through your things, you start to panic. No envelope. You search again, but to your despair, you can\'t find it. You stand there, unable to speak.');
+      scene.text('The manager grabs his phone and makes a call. You can\'t hear exactly what he\'s saying because your heart is beating so loud, but he soon hangs up.');
+      // TODO-QSP: dynamic text: "You're very lucky the boss is in a good mood. He's given you one week to recove...
+      scene.text('"You\'re very lucky the boss is in a good mood. He\'s given you one week to recover his losses, so you have until next Friday evening to bring me \' + $func(\'money\', \'string_debt_addition\', 200000) + \'. Do this and we\'re done, you\'ll never work for us again. Fail, and bad things will happen to you…" he says with a stern look on his face.');
+    } else {
+      (s as any).konvert = 0;
+      qspCall(s, 'money', 'earn', 5000, 'cash');
+      // TODO-QSP: dynamic text: You give the envelope to the manager and he gives you ' + $func('money', 'string...
+      scene.text('You give the envelope to the manager and he gives you \' + $func(\'money\', \'string_profit\', 5000) + \'.');
+    }
+    scene.actions([
+      { label: 'Leave', goto: ['city_redlight', 'start'] },
+    ]);
+  } },
+        ]);
+      }
+    }
+  } else {
+    scene.actions([
+      { label: 'Repay your debt [+$func(\'money\', \'get_debt_cost_string\', w...]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).workDolg ?? 0)) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      (s as any).workDisk = 0;
+      qspCall(s, 'money', 'debt_pay', 'workDolg');
+      qspCall(s, 'stat', '');
+      scene.text('You give the money that you owe to the studio.');
+      scene.actions([
+        { label: 'Leave', goto: ['pornstudio', ''] },
+      ]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).pfilmNO ?? 0) === 1  &&  ((s as any).pfilmNoVenera ?? 0) === 1  &&  (!((s as any).Venera ?? 0))) {
+    scene.actions([
+      { label: 'Show your medical certificate', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).pfilmNoVenera = 0;
+    (s as any).pfilmNO = 0;
+    qspCall(s, 'jobs', 'resume_job', 'city_pornstudio_actress');
+    qspCall(s, 'stat', '');
+    scene.text('You hand over your medical certificate showing that you\'re STD free and they promise to consider your reinstatement.');
+    scene.actions([
+      { label: 'Leave', goto: ['pornstudio', ''] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['city_redlight', 'start'] },
+    { label: 'Go to the manager', goto: ['pornstudio', 'manager'] },
+    { label: 'Visit the manager\'s PA', goto: ['pornstudio', 'pa'] },
+  ]);
+  scene.build();
+}
+
 function enterPa(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -1081,7 +1200,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPregreact(s, scene);
       break;
     default:
-      enterPa(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1091,6 +1210,6 @@ export const pornstudio: LocationDef = {
   title: 'You enter the studio and are greeted by a busy scene of acto',
   region: 'other',
   locationType: 'bathroom',
-  description: ['Inside the small office is a young man sitting at a computer, tapping away at the keyboard.'],
+  description: ['You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.'],
   enter: enter,
 };

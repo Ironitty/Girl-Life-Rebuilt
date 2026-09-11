@@ -28,6 +28,31 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hour ?? 0) < 8) {
+    scene.text('The museum is not open yet so it is too early to enjoy any of the collections now.');
+  } else {
+    if (((s as any).hour ?? 0) > 17) {
+      scene.text('The museum is closed, you have to leave.');
+    } else {
+      if (((s as any).hour ?? 0) === 17) {
+        scene.text('The museum is closing so it is too late to enjoy any of the collections now.');
+      } else {
+        scene.actions([
+          { label: 'View The Golden Peacock (90 mins)', goto: ['city_hermitage', 'peacock'] },
+          { label: 'View Catherine The Great\'s art collection (90 mins)', goto: ['city_hermitage', 'art'] },
+          { label: 'View some of it\'s highlights starting with the State Gala Staircase (90 mins)', goto: ['city_hermitage', 'highlights'] },
+          { label: 'View the red rooms (90 mins)', goto: ['city_hermitage', 'red_rooms'] },
+        ]);
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Return city center', goto: ['city_center', ''] },
+  ]);
+  scene.build();
+}
+
 function enterPeacock(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'exp_gain', 'intel', 5);
@@ -198,7 +223,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRedRooms(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

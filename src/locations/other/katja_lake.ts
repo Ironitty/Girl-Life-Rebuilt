@@ -807,7 +807,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_makeup = 1;
   (s as any).cumspclnt = 4;
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   qspCall(s, 'exercise', 'tier1', 30, 'stren', 'vital');
   (s as any).fat = ((s as any).fat ?? 0) - (1);
@@ -1231,7 +1231,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'cum_call', 'mouth', 'A3', 1);
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }
@@ -1351,7 +1351,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth', 'A3', 1);
     qspCall(s, 'cum_call', 'breasts', 'A3', 1);
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }
@@ -1714,7 +1714,7 @@ function enterSaunaSex2(s: GameState, scene: SceneBuilder): void {
     { label: 'Catch your breath', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }

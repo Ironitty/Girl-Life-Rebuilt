@@ -117,7 +117,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       (s as any).srodrand = Math.floor(Math.random() * 5) + 1;
     }
     scene.text('You concentrate energy in the sheet of paper. You feel that you are spending a huge amount of mana for this action.');
-    (s as any).srodstvo = ((s as any).srodstvo ?? 0) + (((s as any).rand ?? 0)(9 - 2 * ((s as any).cheatVars ?? {})?.['skill_gain'], 10));
+    (s as any).srodstvo = ((s as any).srodstvo ?? 0) + ((Math.floor(Math.random() * (10 - 9 - 2 * ((s as any).cheatVars ?? {})?.['skill_gain'] + 1)) + (9 - 2 * ((s as any).cheatVars ?? {})?.['skill_gain'])));
     if (((s as any).srodstvo ?? 0) < 100) {
       scene.text('You get tired and sweat like a horse, but your effort was not enough.');
       scene.actions([

@@ -4,6 +4,67 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'start');
+  qspCall(s, 'schedule', 'A23');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'outfit', 'backup', 'moncheri');
+  scene.text('<center><b>Mon Chéri</b></center>');
+  scene.img('images/locations/city/citycenter/mall/boutique/butik.jpg');
+  scene.text('You\'re only inside the boutique only a few seconds before a tall, slender brunette saunters up to you. Everything about her is poised and perfect, from the beautiful silver dress she\'s wearing to her unblemished skin and pearly white teeth.');
+  scene.text('"Welcome to Mon Chéri, darling! We sell only the most beautifully luxurious items here. Come and take a look! You won\'t be disappointed!" she smiles as she ushers you further inside with a small flourish.');
+  scene.text('A vast range of designer coats, formal clothing, beautiful shoes and exquisite handbags are all on display for those with the money to afford them.');
+  scene.text('Everything here is extremely high-end and definitely not for the average shopper.');
+  if (((s as any).RimmaSex ?? 0) > 0) {
+    if (((s as any).rimmaday ?? 0) !== ((s as any).daystart ?? 0)) {
+      scene.text('<a href="exec:gt \'RimmaSexQW\'">Rima</a> bites her lip and looks longingly in your direction when she sees you.');
+    } else {
+      scene.text('Rima smiles at you and continues to do her business.');
+    }
+  }
+  if (((s as any).locat ?? 0)?.['A23'] === 32  &&  ((s as any).AlbinaQW ?? 0)?.['boutique'] < ((s as any).daystart ?? 0)) {
+    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] <> 'sg' an...
+    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] <> \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="exec:gt \'albina_events\', \'moncheri\'">Albina</a>\')+\' browsing through the various clothes that the store has to offer.');
+  }
+  if (((s as any).pantyworntype ?? 0) !== 'none') {
+    scene.actions([
+      { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'shop_moncheri', 'changingroom', 1);
+  } },
+    ]);
+  }
+  if ((Math.floor(Math.random() * 100) + 1) >= 80  &&  ((s as any).pcs_skin ?? 0) >= 600  &&  (!((s as any).lesbiQW ?? 0))) {
+    scene.text('In the boutique you see a stylish and slender woman, about forty years old.');
+    scene.actions([
+      { label: 'Stare at the woman', goto: ['event', 'lesbi'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave the boutique', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_mall', ''] },
+    { label: 'View shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_moncheri', 'shoes'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_moncheri', 'purses'] },
+    { label: 'View coats', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_moncheri', 'coats'] },
+    { label: 'Enter changing room (strip naked)', handler: (st: GameState) => {
+    scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
+    qspCall(s, 'clothing', 'strip');
+    qspCall(s, 'underwear', 'strip');
+    qspCall(s, 'shop_moncheri', 'changingroom', 1);
+  } },
+  ]);
+  scene.build();
+}
+
 function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_moncheri', 'changingroom');
   qspCall(s, 'stat', '');
@@ -195,7 +256,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoats(s, scene);
       break;
     default:
-      enterChangingroom(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -206,6 +267,6 @@ export const shop_moncheri: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
-  description: ['As you walk through the store you notice that there\'s nobody in the changing rooms. Feeling a bit bored, you go look at some clothes and grab several items to try on before heading into one of the changing rooms.'],
+  description: ['You\'re only inside the boutique only a few seconds before a tall, slender brunette saunters up to you. Everything about her is poised and perfect, from the beautiful silver dress she\'s wearing to her unblemished skin and pearly white teeth.'],
   enter: enter,
 };

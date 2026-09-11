@@ -42,7 +42,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_gr_ind = 1;
   // TODO-QSP: :generate_random_loop
   if (((s as any).temp_gr_ind ?? 0) <= ((s as any).locArgs?.[1] ?? 0)) {
-    ((s as any).temp_rand ?? {})[String((s as any).temp_gr_ind ?? 0)] = ((s as any).rand ?? 0)(-2, 2);
+    ((s as any).temp_rand ?? {})[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - -2 + 1)) + (-2));
     (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)]);
     (s as any).temp_gr_ind = ((s as any).temp_gr_ind ?? 0) + (1);
     // TODO-QSP: jump 'generate_random_loop'
@@ -324,7 +324,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).cycle = 2;
       (s as any).unfertegg = 1;
       (s as any).ferteggage = Math.floor(Math.random() * 45) + 0;
-      (s as any).Ovulate = (((s as any).rand ?? 0)(24, 44) - ((s as any).ferteggage ?? 0));
+      (s as any).Ovulate = ((Math.floor(Math.random() * 21) + 24) - ((s as any).ferteggage ?? 0));
       if (((s as any).Ovulate ?? 0) <= 0) {
         (s as any).Ovulate = 1;
       }

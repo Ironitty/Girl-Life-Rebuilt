@@ -87,7 +87,7 @@ function enterChampagne1_2(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_makeup = 5;
   (s as any).pcs_lipbalm = ((s as any).pcs_lipbalm ?? 0) + (8);
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
-  (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*((s as any).rand ?? 0)(0, 5));
+  (s as any).modelpayfin = 600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0));
   ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
   ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
   ((s as any).modelfoto ?? {})['fullnude'] = (((s as any).modelfoto ?? {})['fullnude'] ?? 0) + (1);
@@ -144,7 +144,7 @@ function enterKickboxingDocumentary(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fitness/KD1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).modelpayfin = 900 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7)) + ((((s as any).fame ?? {})?.['city_kickboxing'] + ((s as any).pcs_apprnc ?? 0))/2)*2;
+    (s as any).modelpayfin = 900 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0)) + ((((s as any).fame ?? {})?.['city_kickboxing'] + ((s as any).pcs_apprnc ?? 0))/2)*2;
     ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 1);
@@ -226,7 +226,7 @@ function enterTrack__FieldDocumentary(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/TD1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7)) + ((((s as any).fame ?? {})?.['city_running'] + ((s as any).pcs_apprnc ?? 0))/2)*2;
+    (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0)) + ((((s as any).fame ?? {})?.['city_running'] + ((s as any).pcs_apprnc ?? 0))/2)*2;
     ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 1);

@@ -53,8 +53,8 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :pain_manage_loop
   ((s as any).temppain ?? {})['loc'] = qspUntranslated(s, "painParts[temppain['i']]", { location: "pain" });
   if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['loc']] > 0) {
-    ((s as any).temppain ?? {})['tmp_1'] = ((s as any).rand ?? 0)(((s as any).temppain ?? {})?.['tmp_0'] / 3, ((s as any).temppain ?? {})?.['tmp_0']);
-    ((s as any).temppain ?? {})['tmp_2'] = ((s as any).rand ?? 0)(((s as any).temppain ?? {})?.['tmp_0'] / 2, ((s as any).temppain ?? {})?.['tmp_0']);
+    ((s as any).temppain ?? {})['tmp_1'] = (Math.floor(Math.random() * (((s as any).temppain ?? {})?.['tmp_0'] - ((s as any).temppain ?? {})?.['tmp_0'] / 3 + 1)) + (((s as any).temppain ?? {})?.['tmp_0'] / 3));
+    ((s as any).temppain ?? {})['tmp_2'] = (Math.floor(Math.random() * (((s as any).temppain ?? {})?.['tmp_0'] - ((s as any).temppain ?? {})?.['tmp_0'] / 2 + 1)) + (((s as any).temppain ?? {})?.['tmp_0'] / 2));
     ((s as any).temppain ?? {})['tmp_3'] = ((((s as any).inSleep ?? 0)) ? (qspUntranslated(s, "rand(0, pain[temppain['loc']])", { location: "pain" })) : (0));
     // TODO-QSP: pain[$temppain['loc']] -= max(temppain['tmp_1'], temppain['tmp_2'] + temppain['tmp_3'])
   }

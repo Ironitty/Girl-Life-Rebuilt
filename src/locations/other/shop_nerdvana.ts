@@ -4,6 +4,29 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Nerdvana</b></center>');
+  scene.img('images/locations/city/island/nerdvana/shop.jpg');
+  scene.text('If you\'re happy to push through the tourists, then Nerdvana has everything a young adult might like to wear. It\'s only a minor step up from G&M, but unless you can afford the boutiques in Old Town, you\'ll be buying your outfits here.');
+  if (((s as any).nerdvana_staff_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).nerdvana_staff = Math.floor(Math.random() * 2) + 0;
+    (s as any).nerdvana_staff_day = ((s as any).daystart ?? 0);
+  }
+  scene.actions([
+    { label: 'Leave Nerdvana', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_island', ''] },
+    { label: 'Go to the counter', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['shop_nerdvana', 'counter'] },
+    { label: 'Browse clothing', goto: ['shop_nerdvana', 'browse'] },
+  ]);
+  scene.build();
+}
+
 function enterCounter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_nerdvana', 'counter');
   if ((!((s as any).nerdvana_staff ?? 0))) {
@@ -173,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPurses(s, scene);
       break;
     default:
-      enterCounter(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -184,5 +207,6 @@ export const shop_nerdvana: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['If you\'re happy to push through the tourists, then Nerdvana has everything a young adult might like to wear. It\'s only a minor step up from G&M, but unless you can afford the boutiques in Old Town, you\'ll be buying your outfits here.'],
   enter: enter,
 };

@@ -2195,7 +2195,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Glad you ditched the sorry loser', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 6;
-    ((s as any).katjaQW ?? {})['horny'] = -((s as any).rand ?? 0)(20, 30);
+    ((s as any).katjaQW ?? {})['horny'] = -(Math.floor(Math.random() * 11) + 20);
     if (((s as any).katjaQW ?? 0)?.['marcus_pussy'] > 0) {
       ((s as any).katjaQW ?? {})['Marcus_day'] = ((s as any).daystart ?? 0);
     }

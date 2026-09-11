@@ -4,6 +4,16 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).inSleep = 0;
+  ((s as any).sleepVars ?? {})['stat_display'] = 0;
+  ((s as any).sleepVars ?? {})['slept_in'] = 0;
+  (s as any).strip_here = 0;
+  (s as any).SleepHorny = 0;
+  scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'mod_sleeptriggers'] }]);
+  scene.build();
+}
+
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'start'] }]);
@@ -34,7 +44,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterEnd(s, scene);
       break;
     default:
-      enterModSleeptriggers(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

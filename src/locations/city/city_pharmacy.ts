@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_residential', ''] },
       { label: 'Wait in line', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).rand ?? 0)(1, 4) * ((s as any).people ?? 0));
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 4) + 1) * ((s as any).people ?? 0));
     (s as any).people = 0;
     qspCall(s, 'stat', '');
   }, goto: ['city_pharmacy', 'shop'] },
@@ -26,6 +26,36 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
   }
+  scene.build();
+}
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Pharmacy</b></center>');
+  if (((s as any).pharma_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).pharma_day = ((s as any).daystart ?? 0);
+    (s as any).pharma_picrand = Math.floor(Math.random() * 4) + 1;
+  }
+  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_\'+pharma_picrand+\'.jpg');
+  scene.text('A young woman in a white coat stands behind the counter. She smiles as you approach. "Hello, what can I help you with?"');
+  if (((s as any).KandidNapr ?? 0) === 1) {
+    scene.actions([
+      { label: 'Buy Antifungal medication [+$func(\'money\', \'get_cost_string\', 1050)]', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1050) === 0) {
+      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'buy_antifungal'] }]);
+    }
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Buy something', goto: ['city_pharmacy', 'cart'] },
+    { label: 'Leave the pharmacy', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'item_cart', 'shopping_var_clear');
+  }, goto: ['city_residential', ''] },
+  ]);
   scene.build();
 }
 
@@ -75,7 +105,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCart(s, scene);
       break;
     default:
-      enterStart(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -6,6 +6,51 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hotelRoomDays ?? 0)?.['city'] - ((s as any).daystart ?? 0) === 0  &&  ((s as any).hour ?? 0) > 11) {
+    ((s as any).HotelRoom ?? {})['city'] = 0;
+  }
+  if (((s as any).hotelRoomDays ?? 0)?.['city'] - ((s as any).daystart ?? 0) < 0) {
+    ((s as any).HotelRoom ?? {})['city'] = 0;
+  }
+  ((s as any).nom_o ?? {})[1] = 100;
+  ((s as any).nom_o ?? {})[2] = 1000;
+  ((s as any).nom_o ?? {})[3] = 10000;
+  ((s as any).nom_o ?? {})[4] = 100000;
+  qspCall(s, 'core_library', 'setloc', 'city_hotel', '');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/citycenter/hotel/lobby.jpg');
+  scene.text('You enter the hotel lobby, but all you can see is a bored looking girl standing at the reception desk.');
+  if (((s as any).HotelRoom ?? 0)?.['city'] !== 0) {
+    scene.actions([
+      { label: 'Go to your room', handler: (st: GameState) => {
+    if (((s as any).HotelRoom ?? 0)?.['city'] === 1) {
+      scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'normal'] }]);
+    }
+    if (((s as any).HotelRoom ?? 0)?.['city'] === 2) {
+      scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'better'] }]);
+    }
+    if (((s as any).HotelRoom ?? 0)?.['city'] === 3) {
+      scene.actions([{ label: 'Continue', goto: ['HotelRoom', 'best'] }]);
+    }
+  } },
+    ]);
+  }
+  if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) === 14  &&  ((s as any).strip_club ?? 0)?.['porn_scout_pickup'] === 1) {
+    scene.actions([
+      { label: 'Go to the talent scout\'s room', goto: ['pickup_porn', 'talent_scout_meet'] },
+    ]);
+  }
+  qspCall(s, 'lover', 'lover_events');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_center', ''] },
+    { label: 'Go to the reception desk', goto: ['city_hotel', 'reception'] },
+  ]);
+  scene.build();
+}
+
 function enterReception(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -158,7 +203,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterRentARoom(s, scene);
       break;
     default:
-      enterReception(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -167,6 +212,6 @@ export const city_hotel: LocationDef = {
   name: 'city_hotel',
   title: 'You enter the hotel lobby, but all you can see is a bored lo',
   region: 'city',
-  description: ['You walk up to the reception desk and are greeted by a smiling young woman behind the counter.'],
+  description: ['You enter the hotel lobby, but all you can see is a bored looking girl standing at the reception desk.'],
   enter: enter,
 };

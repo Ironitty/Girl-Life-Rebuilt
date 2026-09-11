@@ -1552,7 +1552,7 @@ function enterVideoGamingStart(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/${Math.floor(Math.random() * 3) + 1}.jpg`);
   qspCall(s, 'stat', '');
   if ((!((s as any).locArgs?.[1] ?? 0))) {
-    (s as any).temp_winchance = ((s as any).rand ?? 0)(-2, 10);
+    (s as any).temp_winchance = (Math.floor(Math.random() * (10 - -2 + 1)) + (-2));
     scene.text('In it for the fun and taking it easy on Kolka.');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {

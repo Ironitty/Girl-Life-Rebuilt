@@ -27,16 +27,16 @@ function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
     ((s as any).evt_transient ?? {})['wage'] = 0;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
-      ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(2, 10) * 50;
+      ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 9) + 2) * 50;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {
-        ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(10, 20) * 50;
+        ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 11) + 10) * 50;
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 3) {
-          ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(20, 40) * 50;
+          ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 21) + 20) * 50;
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 4) {
-            ((s as any).evt_transient ?? {})['wage'] = ((s as any).rand ?? 0)(40, 80) * 50;
+            ((s as any).evt_transient ?? {})['wage'] = (Math.floor(Math.random() * 41) + 40) * 50;
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 5) {
               ((s as any).evt_transient ?? {})['wage'] = qspUntranslated(s, "ARGS[2]", { location: "jobs_gigs" });

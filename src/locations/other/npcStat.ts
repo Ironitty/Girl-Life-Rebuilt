@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((((s as any).locArgs?.[0] ?? 0)).length) > 1  &&  !isNaN(((((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
       ((s as any).npcStatVars ?? {})['tempID'] = qspUntranslated(s, "ucase(ARGS[0])", { location: "npcStat" });
     } else {
-      ((s as any).npcStatVars ?? {})['tempID'] = 'D' + ((s as any).rand ?? 0)(0, 7);
+      ((s as any).npcStatVars ?? {})['tempID'] = 'D' + (Math.floor(Math.random() * 8) + 0);
     }
   }
   (s as any).npclastcalledn = qspUntranslated(s, "val(mid(npcStatVars['tempID'], 2))", { location: "npcStat" });
@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).npcStatVars ?? {})['occupation'] = '';
     ((s as any).npcStatVars ?? {})['relation'] = 'stranger';
     ((s as any).npcStatVars ?? {})['age'] = Math.floor(Math.random() * 18) + 18;
-    ((s as any).npcStatVars ?? {})['apprnc'] = ((s as any).rand ?? 0)(0, 100) + ((s as any).rand ?? 0)(0, 100);
+    ((s as any).npcStatVars ?? {})['apprnc'] = (Math.floor(Math.random() * 101) + 0) + (Math.floor(Math.random() * 101) + 0);
     ((s as any).npcStatVars ?? {})['hotcat'] = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).npcStatVars ?? 0)?.['apprnc']);
     ((s as any).npcStatVars ?? {})['attraction'] = ((s as any).pcs_apprnc ?? 0);
     ((s as any).npcStatVars ?? {})['rel_hotcat'] = ((s as any).pcs_hotcat ?? 0);

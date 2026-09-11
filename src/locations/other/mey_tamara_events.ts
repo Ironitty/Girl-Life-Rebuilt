@@ -177,7 +177,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_energy = 20;
         (s as any).pcs_hydra = 40;
         qspCall(s, 'mood', 'raise', 'small');
-        (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, 60 * (22 - ((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + ((s as any).rand ?? 0)(0, 59));
+        (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, 60 * (22 - ((s as any).hour ?? 0)) - ((s as any).minut ?? 0)) + (Math.floor(Math.random() * 60) + 0));
         qspCall(s, 'stat', '');
         scene.text('"I\'m sorry, Aunt Tamara, I must go home or else I\'ll get some stern scolding…"');
         // TODO-QSP: dynamic text: "Well, I can't say I'm not disappointed <<$pcs_nickname>>. Don't stop anywhere o...

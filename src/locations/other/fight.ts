@@ -37,19 +37,19 @@ function enterRandomOpp(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: $opp_name[i] = 'Opponent 1'
   // TODO-QSP: $opp_image[i] = 'images/locations/shared/street/mugger.jpg'
-  ((s as any).opp_def ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_run ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_wrstlng ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_kick ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_punch ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_jab ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_stren ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_agil ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_vital ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_def ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_run ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_wrstlng ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_kick ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_punch ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_jab ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_stren ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_agil ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_vital ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
   ((s as any).opp_health ?? {})[String((s as any).i ?? 0)] = (((s as any).opp_vital ?? 0) * 10 + ((s as any).opp_stren ?? 0) * 5);
-  ((s as any).opp_react ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_willpwr ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
-  ((s as any).opp_shoot ?? {})[String((s as any).i ?? 0)] = ((s as any).rand ?? 0)(1, 50) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_react ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_willpwr ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  ((s as any).opp_shoot ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
   scene.build();
 }
 
@@ -346,7 +346,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).fightAtk ?? 0)?.['AttackerName']} attempts to ${((s as any).fightAtk_Type_str ?? 0)} ${((s as any).fightAtk ?? 0)?.['DefenderName']}!`);
   }
   if ((0 as any) > 0) {
-    (s as any).rand_fogRedDmgMax = ((s as any).rand ?? 0)(0, ((s as any).fightAtk ?? {})?.['MaxDamage']-((s as any).fightAtk ?? {})?.['MinDamage']) + ((s as any).fightAtk ?? {})?.['MinDamage'];
+    (s as any).rand_fogRedDmgMax = (Math.floor(Math.random() * (((s as any).fightAtk ?? {})?.['MaxDamage']-((s as any).fightAtk ?? {})?.['MinDamage'] - 0 + 1)) + (0)) + ((s as any).fightAtk ?? {})?.['MinDamage'];
     (s as any).rand_fogRedDmgMin = qspUntranslated(s, "rand(0, fightAtk['MinDamage'])", { location: "fight" });
     ((s as any).fightAtk ?? {})['MaxDamage'] = (((s as any).fightAtk ?? {})['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
     ((s as any).fightAtk ?? {})['MinDamage'] = (((s as any).fightAtk ?? {})['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));

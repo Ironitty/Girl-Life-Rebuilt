@@ -397,7 +397,7 @@ function enterBreastEngorment(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).lactation ?? 0)?.['engorgement'] > 0  &&  ((s as any).pain ?? 0)?.['breasts'] < Math.max(5, ((s as any).lactation ?? 0)?.['breastmm']/10000)) {
-    (s as any).tmp = Math.max(0, ((s as any).rand ?? 0)(0, 6 - ((s as any).lactation ?? {})?.['lactmess']));
+    (s as any).tmp = Math.max(0, (Math.floor(Math.random() * (6 - ((s as any).lactation ?? {})?.['lactmess'] - 0 + 1)) + (0)));
     ((s as any).pain ?? {})['breasts'] = (((s as any).pain ?? {})['breasts'] ?? 0) + (((s as any).tmp ?? 0));
     ((s as any).lactation ?? {})['engorgement_pain'] = (((s as any).lactation ?? {})['engorgement_pain'] ?? 0) + (((s as any).tmp ?? 0));
   } else {
@@ -569,7 +569,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
           if ((((s as any).lactation ?? 0)?.['breastmm'] / ((s as any).lactation ?? 0)?.['lactaterate']) !== ((s as any).lactation ?? 0)?.['caplactaterate']) {
             ((s as any).lactation ?? {})['lactaterate'] = Math.max(0, ((s as any).lactation ?? {})?.['lactaterate'] - (((s as any).lactation ?? {})?.['lactaterate']/2) + (((s as any).lactation ?? {})?.['lactaterate']/5) - (((s as any).lactation ?? {})?.['lactaterate']/8));
             if (((s as any).lactation ?? 0)?.['nipgrowth'] > ((s as any).lactation ?? 0)?.['useable_cupsize']*3/2) {
-              (s as any).tmp = Math.max(0, ((s as any).rand ?? 0)(-5, ((s as any).lactation ?? {})?.['breastmm']/100000));
+              (s as any).tmp = Math.max(0, (Math.floor(Math.random() * (((s as any).lactation ?? {})?.['breastmm']/100000 - -5 + 1)) + (-5)));
               (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) - (((s as any).tmp ?? 0));
               ((s as any).lactation ?? {})['nipgrowth'] = (((s as any).lactation ?? {})['nipgrowth'] ?? 0) - (((s as any).tmp ?? 0));
             }
@@ -606,7 +606,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lactation ?? 0)?.['breastmv'] < ((s as any).lactation ?? 0)?.['breastmm']  &&  ((s as any).lactation ?? 0)?.['lactaterate'] >= 500  &&  ((s as any).lactation ?? 0)?.['milkprod_type'] === 1) {
       ((s as any).lactation ?? {})['breastmv'] = (((s as any).lactation ?? {})['breastmv'] ?? 0) + (qspFunc(s, 'lact_lib', 'prod_milk', ((s as any).lactation ?? 0)?.['lactaterate']));
       if (((s as any).lactation ?? 0)?.['nipgrowth'] < ((s as any).lactation ?? 0)?.['useable_cupsize']*2) {
-        (s as any).tmp = Math.max(0, ((s as any).rand ?? 0)(-10, ((s as any).lactation ?? {})?.['breastmm']/100000));
+        (s as any).tmp = Math.max(0, (Math.floor(Math.random() * (((s as any).lactation ?? {})?.['breastmm']/100000 - -10 + 1)) + (-10)));
         (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + (((s as any).tmp ?? 0));
         ((s as any).lactation ?? {})['nipgrowth'] = (((s as any).lactation ?? {})['nipgrowth'] ?? 0) + (((s as any).tmp ?? 0));
       }

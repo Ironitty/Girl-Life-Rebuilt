@@ -4,6 +4,30 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Coco Carmen</b></center>');
+  scene.img('images/locations/pavlovsk/coco/shop.jpg');
+  scene.text('If you\'re happy to push through the tourists, then Coco has everything a young adult might like to wear. It\'s a step up from G&M and unless you can afford the boutiques in Old Town, you\'ll be spending some time buying outfits here.');
+  scene.actions([
+    { label: 'Leave the coco', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pav_commercial', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_coco_carmen', 'dress'] },
+    { label: 'View other outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_coco_carmen', 'outfits'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_coco_carmen', 'purses'] },
+  ]);
+  scene.build();
+}
+
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'dress');
   qspCall(s, 'stat', '');
@@ -77,7 +101,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPurses(s, scene);
       break;
     default:
-      enterDress(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -88,5 +112,6 @@ export const shop_coco_carmen: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['If you\'re happy to push through the tourists, then Coco has everything a young adult might like to wear. It\'s a step up from G&M and unless you can afford the boutiques in Old Town, you\'ll be spending some time buying outfits here.'],
   enter: enter,
 };

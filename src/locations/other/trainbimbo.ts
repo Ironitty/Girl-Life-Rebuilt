@@ -331,7 +331,7 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'drunk guy in the train station toilet', Math.floor(Math.random() * 29) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).svol = Math.floor(Math.random() * 21) + 30;
-  (s as any).spot = 500*((s as any).rand ?? 0)(16, 24);
+  (s as any).spot = 500*(Math.floor(Math.random() * 9) + 16);
   (s as any).tiprand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).tiprand ?? 0))) {
     qspCall(s, 'arousal', 'vaginal', 4, 'gangbang', 'humiliation', 'rough');

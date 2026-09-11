@@ -1616,7 +1616,7 @@ function enterTwoGuysAnalSex1(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: You take the'+iif(katjaQW['anal_quest'] < 3, ' almost frightened, but also ', ' ...
   scene.text('You take the\'+iif(katjaQW[\'anal_quest\'] < 3, \' almost frightened, but also \', \' very \')+\'excited looking Katja\'s mouth into yours and start playing with her tongue.');
-  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (((s as any).katjaQW ?? {})?.['anal_quest']* 10 -((s as any).rand ?? 0)(0, 25));
+  ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (((s as any).katjaQW ?? {})?.['anal_quest']* 10 -(Math.floor(Math.random() * 26) + 0));
   qspCall(s, 'arousal', 'kiss', 3, ((s as any).npcID3 ?? 0), 'group', 'lesbian');
   qspCall(s, 'stat', '');
   scene.actions([

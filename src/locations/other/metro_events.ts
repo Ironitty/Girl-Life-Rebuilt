@@ -32,7 +32,7 @@ function enterFrot(s: GameState, scene: SceneBuilder): void {
 
 function enterA(s: GameState, scene: SceneBuilder): void {
   (s as any).svol = Math.floor(Math.random() * 21) + 30;
-  (s as any).spot = 500 * ((s as any).rand ?? 0)(16, 24);
+  (s as any).spot = 500 * (Math.floor(Math.random() * 9) + 16);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/metro/sex/grop/frot.jpg');
   scene.text('You feel something solid pressing against your ass. A few seconds pass by before you realize what the hardness you feel pressing against you is - it\'s someone\'s rock-hard cock!');
@@ -116,7 +116,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
 
 function enterB(s: GameState, scene: SceneBuilder): void {
   (s as any).svol = Math.floor(Math.random() * 21) + 30;
-  (s as any).spot = 500 * ((s as any).rand ?? 0)(16, 24);
+  (s as any).spot = 500 * (Math.floor(Math.random() * 9) + 16);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/metro/sex/grop/frotd2.jpg');
   scene.text('There is a man standing behind you who starts playing with your skirt.');
@@ -291,7 +291,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
 
 function enterC(s: GameState, scene: SceneBuilder): void {
   (s as any).svol = Math.floor(Math.random() * 21) + 30;
-  (s as any).spot = 500 * ((s as any).rand ?? 0)(16, 24);
+  (s as any).spot = 500 * (Math.floor(Math.random() * 9) + 16);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/metro/sex/grop/frotp.jpg');
   scene.text('An unknown man approaches you from behind and, without any hesitation, shoves his hand down the back of your pants.');

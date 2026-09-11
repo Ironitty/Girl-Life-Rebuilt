@@ -268,7 +268,7 @@ function enterCanBath(s: GameState, scene: SceneBuilder): void {
 
 function enterBathDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  (s as any).pcs_sweat = 7 + ((s as any).rand ?? 0)(0, 4);
+  (s as any).pcs_sweat = 7 + (Math.floor(Math.random() * 5) + 0);
   qspCall(s, 'mood', 'raise', 'small');
   if (((s as any).loc ?? 0) === 'vanrPar'  ||  ((s as any).loc ?? 0) === 'tanvanr'  ||  ((s as any).loc ?? 0) === 'LariskaHome'  ||  ((s as any).hotelmc_inventory ?? 0)?.['shampoo'] === 1) {
     (s as any).noshampoo = 1;
@@ -658,9 +658,9 @@ function enterQuickwashDo(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 4;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/bathroom/wash5.jpg');

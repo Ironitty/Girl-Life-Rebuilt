@@ -1788,7 +1788,7 @@ function enterAmazing_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Go swimming', handler: (st: GameState) => {
     (s as any).cumspclnt = 4;
     qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'mood', 'raise', 'tiny');
     (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (1);
     if (((s as any).pcs_stren ?? 0) < 30) {

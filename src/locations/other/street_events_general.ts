@@ -65,7 +65,7 @@ function enterRandomRobbery(s: GameState, scene: SceneBuilder): void {
   (s as any).streetev_day = ((s as any).daystart ?? 0);
   qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'stat', '');
-  (s as any).temp = ((s as any).rand ?? 0)(1, 100) + ((s as any).pcs_observ ?? 0);
+  (s as any).temp = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_observ ?? 0);
   // TODO-QSP: $streetev_title
   scene.img('images/locations/shared/street/mugger.jpg');
   if (((s as any).temp ?? 0) >= 100) {

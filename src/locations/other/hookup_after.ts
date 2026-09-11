@@ -1718,7 +1718,7 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
     ((s as any).hookup ?? {})['fun'] = 'fun';
   }
   if (((s as any).hookup ?? 0)?.['continuation'] === 0) {
-    ((s as any).hookup ?? {})['continuation'] = ((s as any).rand ?? 0)(-1, 1);
+    ((s as any).hookup ?? {})['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
   }
   scene.actions([
     { label: 'I should go', handler: (st: GameState) => {

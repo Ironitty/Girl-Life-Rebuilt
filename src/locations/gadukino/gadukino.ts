@@ -266,7 +266,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuccubusHunt(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + (40 + ((s as any).rand ?? 0)(0, 20) - 5 * ((s as any).succublvl ?? 0));
+  (s as any).minut = ((s as any).minut ?? 0) + (40 + (Math.floor(Math.random() * 21) + 0) - 5 * ((s as any).succublvl ?? 0));
   qspCall(s, 'stat', '');
   scene.text('At this hour of the night, the village is only illuminated by the light of the moon. You know this will be to your advantage. No one will be able to see you coming… That is if there were anyone out at night. You prowl the village looking for prey, but as the minutes pass, your frustration grows.');
   if ((Math.floor(Math.random() * 8) + 0) - ((s as any).succublvl ?? 0) < 2) {
@@ -301,7 +301,7 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Feed on him', handler: (st: GameState) => {
     (s as any).scrand = Math.floor(Math.random() * 4) + 0;
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     if (((s as any).scfeed ?? 0) === 2) {
     }
     (s as any).i = 0;

@@ -712,7 +712,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
     (s as any).church_moral = ((s as any).church_moral ?? 0) - (3);
     (s as any).Kirill = ((s as any).Kirill ?? 0) - (2);
     (s as any).Churchbad = ((s as any).Churchbad ?? 0) + (1);
-    (s as any).Churchbadtime = ((s as any).daystart ?? 0) + ((s as any).rand ?? 0)(1, 7);
+    (s as any).Churchbadtime = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 7) + 1);
     scene.img('images/locations/pavlovsk/church/confession.jpg');
     scene.text('You stare at the priest defiantly, daring him to do something.');
     scene.text('"You should leave," the priest says sternly. "Leave and think long and hard about your path in life."');

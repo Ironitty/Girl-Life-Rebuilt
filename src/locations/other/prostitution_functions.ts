@@ -651,7 +651,7 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  ((s as any).prostitute ?? {})['client_chance'] = ((s as any).pcs_hotcat ?? 0) * 10 + ((s as any).prostitute ?? {})?.['regular_chance'] * 5 + ((s as any).rand ?? 0)(1, 100) + ((s as any).prostitute ?? {})?.['pity_counter'];
+  ((s as any).prostitute ?? {})['client_chance'] = ((s as any).pcs_hotcat ?? 0) * 10 + ((s as any).prostitute ?? {})?.['regular_chance'] * 5 + (Math.floor(Math.random() * 100) + 1) + ((s as any).prostitute ?? {})?.['pity_counter'];
   if (((s as any).pantyworntype ?? 0) === 'eroto'  &&  ((s as any).PCloSkirt ?? 0) > 4) {
     ((s as any).prostitute ?? {})['client_chance'] = (((s as any).prostitute ?? {})['client_chance'] ?? 0) + (10);
   }

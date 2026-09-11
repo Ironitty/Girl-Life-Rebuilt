@@ -798,7 +798,7 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).shared_apt ?? 0)?.['step'] === 1) {
-      (s as any).orgB = ((s as any).orgB ?? 0) + (((s as any).rand ?? 0)(1, 20) / ((s as any).Oleg ?? {})?.['mood']);
+      (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 20) + 1) / ((s as any).Oleg ?? {})?.['mood']);
       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjtablekisstip.mp4');
       // TODO-QSP: dynamic text: You take <<$npc_firstname[$boy]>> cock in your hand, pointing the tip in front o...
       scene.text(`You take ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)]} cock in your hand, pointing the tip in front of your mouth.`);

@@ -4,6 +4,47 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_danilovich', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Danilovich sporting goods</b></center>');
+  scene.img('images/locations/city/citycenter/mall/sportshop/sportshop.jpg');
+  scene.text('As soon as you enter, a high energy song with a thumping baseline fills your eardrums, making you feel pumped and awake. The store is sleek and professional, the walls and floors advertising all different kinds of sporting equipment and attire.');
+  scene.text('The room is filled with beautifully fit people shopping, their bodies varying from big and muscular to lean and trim. If they don\'t inspire you to want to work out, the posters advertising past and present famous athletes are just as motivating.');
+  scene.text('A tall muscular man stands next to the counter, showing a perfect smile. "Welcome, do you need any assistance in selecting equipment or tips how to improve your workout?"');
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'item_cart', 'shopping_aisle', 'sports');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_mall', ''] },
+    { label: 'View sports clothing', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'clo'] },
+    { label: 'View sports bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'bras'] },
+    { label: 'View sports panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'panties'] },
+    { label: 'View exercise shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'shoes'] },
+    { label: 'View swimwear', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'swim'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'purses'] },
+    { label: 'View coats', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_danilovich', 'coats'] },
+  ]);
+  scene.build();
+}
+
 function enterBuyRefillBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 1000);
@@ -181,7 +222,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoats(s, scene);
       break;
     default:
-      enterBuyRefillBottle(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -192,5 +233,6 @@ export const shop_danilovich: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['As soon as you enter, a high energy song with a thumping baseline fills your eardrums, making you feel pumped and awake. The store is sleek and professional, the walls and floors advertising all different kinds of sporting equipment and attire.'],
   enter: enter,
 };

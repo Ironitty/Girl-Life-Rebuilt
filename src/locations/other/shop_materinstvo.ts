@@ -4,6 +4,23 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'shop_materinstvo', 'config');
+  scene.text('<center><b>Mommy Style</b></center>');
+  scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
+  scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');
+  scene.actions([
+    { label: 'Leave the Shop', goto: ['city_mall', ''] },
+    { label: 'View clothes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_materinstvo', 'clothes'] },
+  ]);
+  scene.build();
+}
+
 function enterItems(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'items');
   qspCall(s, 'stat', '');
@@ -45,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterClothes(s, scene);
       break;
     default:
-      enterItems(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -56,5 +73,6 @@ export const shop_materinstvo: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.'],
   enter: enter,
 };

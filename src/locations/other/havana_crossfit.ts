@@ -57,7 +57,7 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'havana_crossfit_funcs', '', ((s as any).todays_crossfit_wod ?? 0));
       qspCall(s, 'exercise', 'tier4', 20, 'stren', 'vital', 'agil');
       scene.img(`images/locations/city/citycenter/gym/crossfit/${((s as any).wod_video ?? 0)?.[String((s as any).todays_crossfit_wod ?? 0)]}.mp4`);
-      (s as any).current_wod_score = Math.max(1, (100 - ((100 * ((s as any).pcs_health ?? 0) * (((s as any).rand ?? 0)(40, 100) + ((s as any).pcs_sleep ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0)))/ (((s as any).healthmax ?? 0) * 500))));
+      (s as any).current_wod_score = Math.max(1, (100 - ((100 * ((s as any).pcs_health ?? 0) * ((Math.floor(Math.random() * 61) + 40) + ((s as any).pcs_sleep ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0)))/ (((s as any).healthmax ?? 0) * 500))));
       scene.actions([
         { label: 'Check your score', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You successfully finish the workout <<$pcs_nickname>> in <<$resultstring>>

@@ -4,6 +4,30 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) >= 23) {
+    scene.text('The store is currently closed.');
+    return;
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['city_island', ''] },
+    ]);
+  }
+  scene.text('In the store is an <a href="exec: gt \'uni_shop\', \'atm\'">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
+  scene.actions([
+    { label: 'Browse the aisles', goto: ['uni_shop', 'cart'] },
+    { label: 'Leave the store', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['city_island', ''] },
+  ]);
+  scene.build();
+}
+
 function enterAtm(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>ATM</b></center>');
   scene.img('images/locations/shared/store/atm.jpg');
@@ -90,7 +114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCart(s, scene);
       break;
     default:
-      enterAtm(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -100,6 +124,6 @@ export const uni_shop: LocationDef = {
   title: 'ATM',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['You don\'t have a bank account yet!'],
+  description: ['The store is currently closed.'],
   enter: enter,
 };

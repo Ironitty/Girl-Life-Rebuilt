@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'parkM', 'a'
   } },
     { label: 'Not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), ((st as any).rand ?? 0)(-1, 0));
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     // TODO-QSP: xgt 'parkM', 'a'
   } },
   ]);
@@ -71,7 +71,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Kiss', goto: ['parkM', 'kiss'] },
         { label: 'Step back', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     // TODO-QSP: dynamic text: <<$npcdesc>> does not look happy as you pull away from his kiss, "Okay, <<$pcs_n...
     scene.text(`${((s as any).npcdesc ?? 0)} does not look happy as you pull away from his kiss, "Okay, ${((s as any).pcs_nickname ?? 0)}, lets keep on trekking."`);
     scene.actions([
@@ -92,7 +92,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Stop it', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     // TODO-QSP: dynamic text: <<$npcdesc>> does not look happy as you push his hand away, "Okay, <<$pcs_nickna...
     scene.text(`${((s as any).npcdesc ?? 0)} does not look happy as you push his hand away, "Okay, ${((s as any).pcs_nickname ?? 0)}, Let's keep on going."`);
     scene.actions([
@@ -115,7 +115,7 @@ function enterSexrand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'Stop it', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     // TODO-QSP: dynamic text: You sidestep and cover your chest, <<$npcdesc>> looks annoyed, "Okay, <<$pcs_nic...
     scene.text(`You sidestep and cover your chest, ${((s as any).npcdesc ?? 0)} looks annoyed, "Okay, ${((s as any).pcs_nickname ?? 0)}, Let's go."`);
     scene.actions([
@@ -137,7 +137,7 @@ function enterSexrand1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([
     { label: 'We can not do that here', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     // TODO-QSP: dynamic text: You backed away from him and began to dress, <<$npcdesc>> does not look happy, "...
     scene.text(`You backed away from him and began to dress, ${((s as any).npcdesc ?? 0)} does not look happy, "Okay, ${((s as any).pcs_nickname ?? 0)}, Let's go."`);
     scene.actions([
@@ -249,7 +249,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
       { label: 'Reject his request', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <center><<$npcdesc>> looks rather disappointed as you continue your walk through...
     scene.text(`<center>${((s as any).npcdesc ?? 0)} looks rather disappointed as you continue your walk through the park.</center>`);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     scene.actions([
       { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
     ]);
@@ -274,7 +274,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
         { label: 'Pull away', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <center><<$npcdesc>> looks rather disappointed as you continue your walk through...
     scene.text(`<center>${((s as any).npcdesc ?? 0)} looks rather disappointed as you continue your walk through the park.</center>`);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     scene.actions([
       { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
     ]);
@@ -301,7 +301,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/rejectedkiss.jpg');
     // TODO-QSP: dynamic text: <center><<$npcdesc>> looks rather disappointed as you continue your walk through...
     scene.text(`<center>${((s as any).npcdesc ?? 0)} looks rather disappointed as you continue your walk through the park.</center>`);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     scene.actions([
       { label: '<<$npcdesc>> takes you home…', goto: ['sexm', 'start'] },
     ]);

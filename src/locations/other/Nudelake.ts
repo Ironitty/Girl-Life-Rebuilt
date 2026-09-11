@@ -198,7 +198,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
   }
-  (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+  (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   scene.img(`images/pc/activities/swim/lake/swim_nude_${Math.floor(Math.random() * 11) + 0}.jpg`);
   scene.text('You go for a swim.');
   if (((s as any).deodorant_on ?? 0) === 1) {

@@ -621,13 +621,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel your stomach revolting and press your lips together. Barfing would only make matters way worse right now.');
       scene.text('Just as you are about to finish drinking you realize, that you can\'t drop your head safely yet. You are only halfway done.');
       (s as any).nichTarasSessionStage = 201;
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + ((s as any).rand ?? 0) (80, 100);
+      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (Math.floor(Math.random() * 21) + 80);
       qspCall(s, 'stat', '');
     } else {
       if (((s as any).nichTarasSessionStage ?? 0) === 201) {
         scene.text('Again you convince yourself to drink the liquid. It didn\'t become easier since last time and your stomach already feels like bursting from all the liquid you forced into it.');
         (s as any).nichTarasSessionStage = 202;
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + ((s as any).rand ?? 0) (80, 100);
+        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (Math.floor(Math.random() * 21) + 80);
         qspCall(s, 'stat', '');
       } else {
         scene.text('There is no reason to drink any more liquid.');

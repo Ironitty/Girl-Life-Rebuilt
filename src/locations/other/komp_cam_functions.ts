@@ -44,7 +44,7 @@ function enterMFCHourlyEvents(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_camVars ?? {})['N'] = ((s as any).camConst ?? 0)?.['MFC_N'];
     qspCall(s, 'komp_cam_functions', 'MFC_views');
     ((s as any).temp_camVars ?? {})['days_not_online'] = Math.max(0, ((s as any).daystart ?? 0) - ((s as any).camGirl ?? {})?.['MFC_last_online'] - 1);
-    ((s as any).temp_camVars ?? {})['PO_g'] = ((s as any).rand ?? 0)(0, ((s as any).temp_camVars ?? {})?.['days_not_online'] * ((s as any).temp_camVars ?? {})?.['days_not_online'] / 2) * ((s as any).cam_viewsVars ?? {})?.['PO_g'];
+    ((s as any).temp_camVars ?? {})['PO_g'] = (Math.floor(Math.random() * (((s as any).temp_camVars ?? {})?.['days_not_online'] * ((s as any).temp_camVars ?? {})?.['days_not_online'] / 2 - 0 + 1)) + (0)) * ((s as any).cam_viewsVars ?? {})?.['PO_g'];
     ((s as any).temp_camVars ?? {})['v1'] = qspFunc(s, 'math', 'long_mult', ((s as any).temp_camVars ?? 0)?.['PO_g'], ((s as any).temp_camVars ?? 0)?.['X']);
     ((s as any).temp_camVars ?? {})['v2'] = qspFunc(s, 'math', 'long_div', ((s as any).temp_camVars ?? 0)?.['v1'], ((s as any).temp_camVars ?? 0)?.['N']);
     ((s as any).temp_camVars ?? {})['r_PO'] = qspUntranslated(s, "val(temp_camVars['v2'])", { location: "komp_cam_functions" });
@@ -282,16 +282,16 @@ function enterMFC_UpdateStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).totminut ?? 0) >= ((s as any).camGirl ?? 0)?.['next_stat_update']) {
     ((s as any).camGirl ?? {})['next_stat_update'] = ((s as any).totminut ?? 0) + 30;
     if (((s as any).perform_lvl ?? 0)  < 30) {
-      qspCall(s, 'exp_gain', 'perform', Math.min(((s as any).rand ?? 0)(0, ((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6), 1));
+      qspCall(s, 'exp_gain', 'perform', Math.min((Math.floor(Math.random() * (((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6 - 0 + 1)) + (0)), 1));
     }
     if (((s as any).compskl_lvl ?? 0)  < 30) {
-      qspCall(s, 'exp_gain', 'compskl', Math.min(((s as any).rand ?? 0)(0, ((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6), 1));
+      qspCall(s, 'exp_gain', 'compskl', Math.min((Math.floor(Math.random() * (((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6 - 0 + 1)) + (0)), 1));
     }
     if (((s as any).inhib_lvl ?? 0)  < 50) {
-      qspCall(s, 'exp_gain', 'inhib', Math.min(((s as any).rand ?? 0)(0, ((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6), 1));
+      qspCall(s, 'exp_gain', 'inhib', Math.min((Math.floor(Math.random() * (((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6 - 0 + 1)) + (0)), 1));
     }
-    qspCall(s, 'fame', 'city', 'media', ((s as any).rand ?? 0)(0, ((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6));
-    qspCall(s, 'fame', 'city', 'porn', ((s as any).rand ?? 0)(0, ((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6));
+    qspCall(s, 'fame', 'city', 'media', (Math.floor(Math.random() * (((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6 - 0 + 1)) + (0)));
+    qspCall(s, 'fame', 'city', 'porn', (Math.floor(Math.random() * (((s as any).camGirl ?? {})?.['MFC_FameInc'] / 6 - 0 + 1)) + (0)));
     ((s as any).camGirl ?? {})['MFC_FameInc'] = 0;
   }
   ((s as any).camGirl ?? {})['MFC_fame'] = Math.min((((s as any).fame ?? {})?.['city_sexind'] + ((s as any).fame ?? {})?.['city_social'] + ((s as any).camGirl ?? {})?.['MFC_Followers'] / 50) / 5, 400);
@@ -400,12 +400,12 @@ function enterViewsCore(s: GameState, scene: SceneBuilder): void {
   ((s as any).cam_viewsVars ?? {})['r_LO'] = qspUntranslated(s, "max(0, cam_viewsVars['r_LO'])", { location: "komp_cam_functions" });
   ((s as any).cam_viewsVars ?? {})['r_AP'] = qspUntranslated(s, "max(0, cam_viewsVars['r_AP'])", { location: "komp_cam_functions" });
   ((s as any).cam_viewsVars ?? {})['r_PA'] = qspUntranslated(s, "max(0, cam_viewsVars['r_PA'])", { location: "komp_cam_functions" });
-  ((s as any).cam_viewsVars ?? {})['rand_LOL'] = ((s as any).rand ?? 0)(-((s as any).cam_viewsVars ?? {})?.['r_LO'], ((s as any).cam_viewsVars ?? {})?.['r_OL']);
-  ((s as any).cam_viewsVars ?? {})['rand_APA'] = ((s as any).rand ?? 0)(-((s as any).cam_viewsVars ?? {})?.['r_AP'], ((s as any).cam_viewsVars ?? {})?.['r_PA']);
+  ((s as any).cam_viewsVars ?? {})['rand_LOL'] = (Math.floor(Math.random() * (((s as any).cam_viewsVars ?? {})?.['r_OL'] - -((s as any).cam_viewsVars ?? {})?.['r_LO'] + 1)) + (-((s as any).cam_viewsVars ?? {})?.['r_LO']));
+  ((s as any).cam_viewsVars ?? {})['rand_APA'] = (Math.floor(Math.random() * (((s as any).cam_viewsVars ?? {})?.['r_PA'] - -((s as any).cam_viewsVars ?? {})?.['r_AP'] + 1)) + (-((s as any).cam_viewsVars ?? {})?.['r_AP']));
   ((s as any).cam_viewsVars ?? {})['d_LOL'] = Math.max(-(((s as any).cam_viewsVars ?? {})?.['Lt'] / 2), Math.min(((s as any).cam_viewsVars ?? 0)?.['rand_LOL'], ((s as any).cam_viewsVars ?? {})?.['Ot'] / 2));
-  ((s as any).cam_viewsVars ?? {})['d_LA'] = ((s as any).rand ?? 0)(0, Math.min(8, Math.max(0, ((s as any).cam_viewsVars ?? 0)?.['Lt']), Math.max(1, 3 * ((s as any).cam_viewsVars ?? {})?.['r_LA']))) / 3;
+  ((s as any).cam_viewsVars ?? {})['d_LA'] = (Math.floor(Math.random() * (Math.min(8, Math.max(0, ((s as any).cam_viewsVars ?? 0)?.['Lt']), Math.max(1, 3 * ((s as any).cam_viewsVars ?? {})?.['r_LA'])) - 0 + 1)) + (0)) / 3;
   ((s as any).cam_viewsVars ?? {})['d_APA'] = Math.max(-(((s as any).cam_viewsVars ?? {})?.['At'] / 2), Math.min(((s as any).cam_viewsVars ?? 0)?.['rand_APA'], ((s as any).cam_viewsVars ?? {})?.['Pt'] / 2));
-  ((s as any).cam_viewsVars ?? {})['d_PO'] = ((s as any).rand ?? 0)(0, Math.max(0, Math.min(((s as any).cam_viewsVars ?? {})?.['Pt'] / 3, ((s as any).cam_viewsVars ?? 0)?.['r_PO'])));
+  ((s as any).cam_viewsVars ?? {})['d_PO'] = (Math.floor(Math.random() * (Math.max(0, Math.min(((s as any).cam_viewsVars ?? {})?.['Pt'] / 3, ((s as any).cam_viewsVars ?? 0)?.['r_PO'])) - 0 + 1)) + (0));
   if (((s as any).camGirl ?? 0)?.['debug'] === 1) {
     // TODO-QSP: "
     (s as any).r_OL = ((s as any).cam_viewsVars ?? 0)?.['r_OL'];

@@ -1329,7 +1329,7 @@ function enterHighFashion(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/special1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 1);
@@ -1535,7 +1535,7 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'Alexander', 27);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).dick = 34;
-  (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+  (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
   ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
   ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
   ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
@@ -1693,7 +1693,7 @@ function enterModernArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/art2.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 90;
-    (s as any).modelpayfin = 2000 + (50+((s as any).rand ?? 0)(1, 9)*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 2000 + (50+(Math.floor(Math.random() * 9) + 1)*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
@@ -1784,7 +1784,7 @@ function enterIndependentArt(s: GameState, scene: SceneBuilder): void {
     (s as any).hpingripw = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 120;
     qspCall(s, 'stat', '');
-    (s as any).modelpayfin = 1600 + (((s as any).modelpay ?? 0)) + (35*((s as any).rand ?? 0)(0, 5));
+    (s as any).modelpayfin = 1600 + (((s as any).modelpay ?? 0)) + (35*(Math.floor(Math.random() * 6) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
@@ -1822,7 +1822,7 @@ function enterDesignerWedding(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'stat', '');
-    (s as any).modelpayfin = 1200 + (((s as any).modelpay ?? 0)) + (35*((s as any).rand ?? 0)(0, 5));
+    (s as any).modelpayfin = 1200 + (((s as any).modelpay ?? 0)) + (35*(Math.floor(Math.random() * 6) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
@@ -1988,7 +1988,7 @@ function enterTopless1_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Like this!" you laugh as you move your shoulders back and forth and make your breasts jiggle again.');
     scene.actions([
       { label: 'Finish up and go back', handler: (st: GameState) => {
-    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'outfit', 'restore', 'foto');
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
@@ -2117,7 +2117,7 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 180;
-    (s as any).modelpayfin = 3000 + ((s as any).modelpay ?? 0) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 3000 + ((s as any).modelpay ?? 0) + (50*(Math.floor(Math.random() * 8) + 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
@@ -2254,7 +2254,7 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
@@ -2346,7 +2346,7 @@ function enterTopless2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (35*((s as any).rand ?? 0)(0, 5));
+    (s as any).modelpayfin = 2000 + (((s as any).modelpay ?? 0) * 2) + (35*(Math.floor(Math.random() * 6) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -2447,7 +2447,7 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     // TODO-QSP: gs 'money', 'earn', modelpayfin + 1000
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0) + 1000);
     ((s as any).modelfoto ?? {})['topless'] = (((s as any).modelfoto ?? {})['topless'] ?? 0) + (1);
@@ -2537,7 +2537,7 @@ function enterPool2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 2500 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     ((s as any).modelfoto ?? {})['earnings'] = (((s as any).modelfoto ?? {})['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     qspCall(s, 'fame', 'city', 'modelling', 'medium');
@@ -2670,7 +2670,7 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).hour = ((s as any).hour ?? 0) + (1);
-    (s as any).modelpayfin = 500 + (((s as any).fame ?? {})?.['city_modelling'] * 10) + (((s as any).modelpay ?? 0) * 3) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 500 + (((s as any).fame ?? {})?.['city_modelling'] * 10) + (((s as any).modelpay ?? 0) * 3) + (50*(Math.floor(Math.random() * 8) + 0));
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
     } else {
@@ -2814,7 +2814,7 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/wet/wet1.jpg');
-    (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);
@@ -2886,7 +2886,7 @@ function enterWet2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/wet/wet1.jpg');
-    (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (50*((s as any).rand ?? 0)(0, 7));
+    (s as any).modelpayfin = 1000 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0));
     ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);
     ((s as any).modelfoto ?? {})['pussy'] = (((s as any).modelfoto ?? {})['pussy'] ?? 0) + (1);

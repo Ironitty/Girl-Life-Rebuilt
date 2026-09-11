@@ -437,7 +437,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).tipelakeboyrand ?? 0) < 80) {
-        qspCall(s, 'npcgeneratec', '', 0, 'Guy', ((s as any).rand ?? 0)(Math.max(((s as any).age ?? 0) - 5, 16), ((s as any).age ?? 0) + 5));
+        qspCall(s, 'npcgeneratec', '', 0, 'Guy', (Math.floor(Math.random() * (age + 5 - Math.max(((s as any).age ?? 0) - 5, 16) + 1)) + (Math.max(((s as any).age ?? 0) - 5, 16))));
         qspCall(s, 'npcStat', '', ((s as any).lbz_npc ?? 0));
         scene.text('A rather cute looking guy sits down next to you as you sunbathe.');
         // TODO-QSP: dynamic text: "Hey there beautiful, I'm <<$boydesc>>. What's your name?" he asks in an attempt...
@@ -530,7 +530,7 @@ function enterSwimming(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'exercise', 'tier1', 30, 'stren', 'vital');
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   qspCall(s, 'mood', 'raise', 'tiny');
   if (((s as any).clothingworntype ?? 0) === 'nude') {

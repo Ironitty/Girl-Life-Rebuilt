@@ -237,7 +237,7 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
     ((s as any).unisemestrstats ?? {})['assignment_progress'] = ((((s as any).locArgs?.[2] ?? 0) <= 100) ? (qspUntranslated(s, "ARGS[2]", { location: "uniutil" })) : (100));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'update') {
-    qspCall(s, 'uniutil', 'assignment_progress', 'set', qspFunc(s, 'uniutil', 'assignment_progress', 'get') + ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0) / 20, ((s as any).pcs_intel ?? 0) / 10));
+    qspCall(s, 'uniutil', 'assignment_progress', 'set', qspFunc(s, 'uniutil', 'assignment_progress', 'get') + (Math.floor(Math.random() * (pcs_intel / 10 - pcs_intel / 20 + 1)) + (pcs_intel / 20)));
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'reset') {
     qspCall(s, 'uniutil', 'assignment_progress', 'set', 0);

@@ -133,6 +133,124 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Reception</b></center>');
+  scene.img('images/locations/pavlovsk/altschool/ptu_holl.jpg');
+  scene.text('The Lyceum entrance hall. It\'s clean and quiet. There is a desk and office for the personnel department. A timetable hangs on the wall.');
+  if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed'  &&  ((s as any).teacher ?? 0)?.['on_notice'] === 1) {
+    qspCall(s, 'mood', 'lower', 'huge');
+    qspCall(s, 'jobs', 'set_fired', 'pav_voc_school_teacher');
+    ((s as any).teacher ?? {})['level'] = 0;
+    ((s as any).teacher ?? {})['on_notice'] = 0;
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Principal\'s Office</b></center>');
+    scene.img('images/locations/pavlovsk/altschool/ptu_angdir.jpg');
+    // TODO-QSP: dynamic text: "What a shame, <<$pcs_nickname>>! You are a disgrace to the honorable profession...
+    scene.text(`"What a shame, ${((s as any).pcs_nickname ?? 0)}! You are a disgrace to the honorable profession of teaching! You have no place in our ranks! Take your documents and leave—you are fired!"`);
+    return;
+    scene.actions([
+      { label: 'Next', goto: ['pav_voc_school', 'outside'] },
+    ]);
+  }
+  if (((s as any).teacher ?? 0)?.['level'] === 0) {
+    scene.text('You could not teach your way out of a paper bag—you are embarrassingly terrible at teaching.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 1  &&  ((s as any).teacher ?? 0)?.['level'] < 10) {
+    scene.text('You do not deserve to be a teacher.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 10  &&  ((s as any).teacher ?? 0)?.['level'] < 20) {
+    scene.text('You are only as good as a young, inexperienced intern.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 20  &&  ((s as any).teacher ?? 0)?.['level'] < 30) {
+    scene.text('You have already established a certain reputation.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 30  &&  ((s as any).teacher ?? 0)?.['level'] < 50) {
+    scene.text('You are a respectable teacher.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 50  &&  ((s as any).teacher ?? 0)?.['level'] < 70) {
+    scene.text('Other teachers turn to you for advice.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 70  &&  ((s as any).teacher ?? 0)?.['level'] < 90) {
+    scene.text('Your experience and knowledge are known outside the Lyceum.');
+  }
+  if (((s as any).teacher ?? 0)?.['level'] >= 90) {
+    scene.text('You are the personification of education.');
+  }
+  if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
+    scene.actions([
+      { label: 'Go to the corridor on this floor', goto: ['pav_voc_school', 'first_floor'] },
+      { label: 'Go to the second floor corridor', goto: ['pav_voc_school', 'second_floor'] },
+      { label: 'Go to the third floor corridor', goto: ['pav_voc_school', 'third_floor'] },
+    ]);
+  } else {
+    if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] !== 'fired') {
+      scene.actions([
+        { label: 'Visit the personnel department', handler: (st: GameState) => {
+    if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      qspCall(s, 'stat', '');
+      scene.text('<center><b>Personnel Department</b></center>');
+      scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
+      scene.actions([
+        { label: 'Resign', handler: (st: GameState) => {
+    qspCall(s, 'jobs', 'set_terminated', 'pav_voc_school_teacher');
+    scene.text('You have resigned and no longer work here.');
+    scene.actions([
+      { label: 'Leave the personnel department', goto: ['pav_voc_school', 'reception'] },
+    ]);
+  } },
+        { label: 'Leave the personnel department', goto: ['pav_voc_school', 'reception'] },
+      ]);
+    } else {
+      if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === '') {
+        (s as any).minut = ((s as any).minut ?? 0) + 15;
+        qspCall(s, 'stat', '');
+        scene.text('<center><b>Personnel Department</b></center>');
+        scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
+        // TODO-QSP: dynamic text: "Hello!" The Human Resources employee welcomes you. She tells you that they need...
+        scene.text('"Hello!" The Human Resources employee welcomes you. She tells you that they need a certified teacher. Working days are Monday to Saturday from \'+func(\'time\', \'get_time_string\', 14, 0)+\' to \'+func(\'time\', \'get_time_string\', 16, 0)+\'. The pay is \'+$func(\'money\', \'string_profit\', 300)+\' per day, plus a room in a hostel. The contract terms state that, since they pay a full salary, there are currently no free meals. There is a strict dress code: business attire is required. Also, it is not recommended for women to wear bright makeup or strong perfume.');
+        if (((s as any).university ?? 0)?.['diploma'] === 1  ||  ((s as any).university ?? 0)?.['fakediplom'] === 1) {
+          scene.actions([
+            { label: 'Pass an interview for the job', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    qspCall(s, 'stat', '');
+    scene.text('<center><b>Human Resources Department</b></center>');
+    scene.img('images/locations/pavlovsk/altschool/ptu_cadr.jpg');
+    // TODO-QSP: dynamic text: After passing the oral interview, you leave a copy of your '+iif(university['dip...
+    scene.text('After passing the oral interview, you leave a copy of your \'+iif(university[\'diploma\'] > 0, \', \'forged \')+\'diploma and other documents with the personnel department, who tell you that you can start working.');
+    scene.actions([
+      { label: 'Become a teacher', handler: (st: GameState) => {
+    qspCall(s, 'jobs', 'set_employed', 'pav_voc_school_teacher');
+    qspCall(s, 'jobs', 'set_rank', 'pav_voc_school_teacher', 1);
+    ((s as any).teacher ?? {})['level'] = 16;
+    scene.text('You bring your work book and say that you can start work the next business day.');
+    scene.actions([
+      { label: 'Exit to Hall', goto: ['pav_voc_school', 'reception'] },
+    ]);
+  } },
+    ]);
+  } },
+          ]);
+        } else {
+          scene.text('You are told that you cannot take the job without a diploma from an institute of higher education.');
+          ((s as any).university ?? {})['fakediplom'] = 2;
+        }
+        scene.actions([
+          { label: 'Exit to Hall', goto: ['pav_voc_school', 'reception'] },
+        ]);
+      }
+    }
+  } },
+      ]);
+    }
+  }
+  scene.actions([
+    { label: 'Go outside', goto: ['pav_voc_school', 'outside'] },
+  ]);
+  scene.build();
+}
+
 function enterOutside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>High School</b></center>');
@@ -918,7 +1036,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDatingProfile(s, scene);
       break;
     default:
-      enterCommunityCenter(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

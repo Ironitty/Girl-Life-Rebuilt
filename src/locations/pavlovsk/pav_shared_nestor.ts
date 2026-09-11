@@ -691,7 +691,7 @@ function enterNestorHandjobSlow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Nestor ?? 0)?.['mood'] === 0) {
     (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 20) + 1);
   } else {
-    (s as any).orgB = ((s as any).orgB ?? 0) + (((s as any).rand ?? 0)(1, 30) /((s as any).Nestor ?? {})?.['mood']);
+    (s as any).orgB = ((s as any).orgB ?? 0) + ((Math.floor(Math.random() * 30) + 1) /((s as any).Nestor ?? {})?.['mood']);
   }
   scene.img('images/shared/sex/handjob/handjob2.mp4');
   // TODO-QSP: dynamic text: You grab <<$npc_firstname[$boy]>>'s cock in your hand, jerking it slowly, changi...
@@ -1580,7 +1580,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
                   (s as any).minut = ((s as any).minut ?? 0) + 5;
-                  ((s as any).Nestor ?? {})['Dick_enlarged'] = ((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] + (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] * ((s as any).rand ?? 0)(2, 4) / 10);
+                  ((s as any).Nestor ?? {})['Dick_enlarged'] = ((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] + (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] * (Math.floor(Math.random() * 3) + 2) / 10);
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vacuumpumppenis.jpg');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes a vacuum dick enlarger device from his closet, pu...
                   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)]} takes a vacuum dick enlarger device from his closet, putting it on his already ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)]} cm long dick.`);
@@ -2186,7 +2186,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).shared_apt ?? 0)?.['subStep'] === 0) {
                   (s as any).minut = ((s as any).minut ?? 0) + 5;
-                  ((s as any).Nestor ?? {})['Dick_enlarged'] = ((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] + (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] * ((s as any).rand ?? 0)(20, 44) / 100);
+                  ((s as any).Nestor ?? {})['Dick_enlarged'] = ((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] + (((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] * (Math.floor(Math.random() * 25) + 20) / 100);
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/gp/vacuumpumppenis.jpg');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> takes a vacuum dick enlarger device from his closet, pu...
                   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)]} takes a vacuum dick enlarger device from his closet, putting it on his already ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)]} cm long dick.`);

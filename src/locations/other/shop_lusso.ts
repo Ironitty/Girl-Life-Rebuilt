@@ -4,6 +4,29 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_lusso', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Lusso Intimo</b></center>');
+  scene.img('images/locations/city/citycenter/mall/lusso/lusso.jpg');
+  scene.text('The décor is bright and modern, the flowers are real and the dressers are made with expensive woods.');
+  scene.text('This is clearly a high end underwear shop. Just knowing you\'re wearing these will boost your confidence to the point that you\'ll never want to go back to wearing cheap, ill fitting underwear again. That is of course assuming you can afford the prices here.');
+  scene.actions([
+    { label: 'Leave', goto: ['city_mall', ''] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_lusso', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_lusso', 'bras'] },
+    { label: 'View bodysuits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_lusso', 'bodysuit'] },
+  ]);
+  scene.build();
+}
+
 function enterPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_lusso', 'panties');
   qspCall(s, 'stat', '');
@@ -74,7 +97,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBodysuit(s, scene);
       break;
     default:
-      enterPanties(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -85,5 +108,6 @@ export const shop_lusso: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['The décor is bright and modern, the flowers are real and the dressers are made with expensive woods.'],
   enter: enter,
 };

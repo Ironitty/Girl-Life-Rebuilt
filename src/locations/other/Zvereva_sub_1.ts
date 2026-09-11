@@ -252,6 +252,101 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
+  scene.text('After your gym class you go to the locker room with the rest of the girls. Christina theatrically moves over to you, and the eyes of all the girls in the locker room are on you now.');
+  if (((s as any).christinaQW ?? 0)?.['subpath'] === 2) {
+    if (((s as any).christinaQW ?? 0)?.['submit'] === 1) {
+      scene.text('She leans in close and hisses into your ear: "Time to see if you can keep your promise. Either that or every boy in school is going to see those pictures."');
+      scene.text('"B-But what about the girls here?"');
+      scene.text('Reaching for her phone, she says "They\'ll do as I say."');
+      scene.text('You quickly lay a hand on her arm. "O-Ok," is all you can manage to get out.');
+    } else {
+      scene.text('"You shouldn\'t have challenged me, bitch," she hisses at you under her breath. "If I were you, I would get used to this treatment, I own your ass now."');
+      scene.text('"B-But…"');
+      scene.text('Getting right in your face she says, "Want me to fuck you up again? Do as you\'re told from now on, or else!"');
+      scene.text('You quickly lay a hand on her arm. "O-Ok," is all you can manage to get out.');
+    }
+    ((s as any).christinaQW ?? {})['subpath'] = 3;
+  }
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
+      if ((!((s as any).zverhumiliation ?? 0))) {
+        scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '0'] }]);
+      } else {
+        if (((s as any).zverhumiliation ?? 0) === 1) {
+          scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '1'] }]);
+        } else {
+          if (((s as any).zverhumiliation ?? 0) === 2) {
+            scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '2'] }]);
+          } else {
+            if (((s as any).zverhumiliation ?? 0) === 3) {
+              scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '3'] }]);
+            } else {
+              if (((s as any).zverhumiliation ?? 0) === 4) {
+                scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '4'] }]);
+              } else {
+                if (((s as any).zverhumiliation ?? 0) === 5) {
+                  scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '5'] }]);
+                } else {
+                  if (((s as any).zverhumiliation ?? 0) === 6) {
+                    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '6'] }]);
+                  } else {
+                    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', 'default'] }]);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } else {
+      if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+        (s as any).gKristinaZvtemp = Math.floor(Math.random() * 2) + 14;
+      } else {
+        (s as any).gKristinaZvtemp = Math.floor(Math.random() * 9) + 7;
+      }
+      if (((s as any).gKristinaZvtemp ?? 0) === 7  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+        scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '7'] }]);
+      } else {
+        if (((s as any).gKristinaZvtemp ?? 0) === 8  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+          scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '8'] }]);
+        } else {
+          if (((s as any).gKristinaZvtemp ?? 0) === 9  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+            scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '9'] }]);
+          } else {
+            if (((s as any).gKristinaZvtemp ?? 0) === 10  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+              scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '10'] }]);
+            } else {
+              if (((s as any).gKristinaZvtemp ?? 0) === 11  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+                scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '11'] }]);
+              } else {
+                if (((s as any).gKristinaZvtemp ?? 0) === 12  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+                  scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '12'] }]);
+                } else {
+                  if (((s as any).gKristinaZvtemp ?? 0) === 13  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+                    scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '13'] }]);
+                  } else {
+                    if (((s as any).gKristinaZvtemp ?? 0) === 14) {
+                      scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', '14'] }]);
+                    } else {
+                      scene.actions([{ label: 'Continue', goto: ['Zvereva_sub_1', 'default'] }]);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } },
+  ]);
+  scene.build();
+}
+
 function enter0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
@@ -654,7 +749,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
     ((s as any).christinaQW ?? {})['subpath'] = 4;
@@ -753,7 +848,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enter14(s, scene);
       break;
     case 'default':
-      enterDefault(s, scene);
+      enterDefault2(s, scene);
       break;
     case 'finished':
       enterFinished(s, scene);
@@ -762,7 +857,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterWs_1(s, scene);
       break;
     default:
-      enterChrisSub(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

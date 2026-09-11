@@ -128,7 +128,7 @@ function enterSuccubusNutrition(s: GameState, scene: SceneBuilder): void {
       (s as any).suctemploc = ((s as any).sparrloc ?? 0)?.[String((s as any).suctempi ?? 0)];
       if ((((s as any).suctemploc ?? 0) <= 1  ||  ((s as any).suctemploc ?? 0) === 3  ||  ((s as any).suctemploc ?? 0) === 4  ||  ((s as any).suctemploc ?? 0) >= 8)) {
         (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) - (((s as any).sparrvol ?? 0)?.[String((s as any).suctempi ?? 0)]);
-        (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+        (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
         (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
         (s as any).succubxp = ((s as any).succubxp ?? 0) + (5);
         (s as any).sucabscum = 1;

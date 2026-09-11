@@ -774,7 +774,7 @@ function enterTellprice(s: GameState, scene: SceneBuilder): void {
     if (((s as any).prodpay ?? 0) < 1000) {
       (s as any).prodpay = ((s as any).prodpayum ?? 0);
     }
-    (s as any).poknorand = ((s as any).rand ?? 0)(1, 100 + ((s as any).pcs_apprnc ?? 0)/4);
+    (s as any).poknorand = (Math.floor(Math.random() * (100 + pcs_apprnc/4 - 1 + 1)) + (1));
     // TODO-QSP: dynamic text: "<<$func('money', 'string_profit', prodpay)>>." you tell them.
     scene.text(`"${qspFunc(s, 'money', 'string_profit', ((s as any).prodpay ?? 0))}." you tell them.`);
     if (((s as any).prodpay ?? 0) <= ((s as any).pokpay ?? 0)) {
@@ -823,7 +823,7 @@ function enterHaggling(s: GameState, scene: SceneBuilder): void {
       { label: 'Reduce the price by <<$func(\'money\', \'string_profit\', 100)>>', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You have reduced the price by <<$func('money', 'string_profit', 100)>>.
     scene.text(`You have reduced the price by ${qspFunc(s, 'money', 'string_profit', 100)}.`);
-    (s as any).poknorand = ((s as any).rand ?? 0)(1, 100 + ((s as any).pcs_apprnc ?? 0)/4);
+    (s as any).poknorand = (Math.floor(Math.random() * (100 + pcs_apprnc/4 - 1 + 1)) + (1));
     if (((s as any).poknorand ?? 0) >= 10) {
       (s as any).rinmon = ((s as any).rinmon ?? 0) + (((s as any).prodpay ?? 0) - 100);
       (s as any).rinvesh = ((s as any).rinvesh ?? 0) + (1);
@@ -843,7 +843,7 @@ function enterHaggling(s: GameState, scene: SceneBuilder): void {
         { label: 'Reduce the price by <<$func(\'money\', \'string_profit\', 50)>>', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You have reduced the price by <<$func('money', 'string_profit', 50)>>.
     scene.text(`You have reduced the price by ${qspFunc(s, 'money', 'string_profit', 50)}.`);
-    (s as any).poknorand = ((s as any).rand ?? 0)(1, 100 + ((s as any).pcs_apprnc ?? 0)/4);
+    (s as any).poknorand = (Math.floor(Math.random() * (100 + pcs_apprnc/4 - 1 + 1)) + (1));
     if (((s as any).poknorand ?? 0) >= 30) {
       (s as any).rinmon = ((s as any).rinmon ?? 0) + (((s as any).prodpay ?? 0) - 50);
       (s as any).rinvesh = ((s as any).rinvesh ?? 0) + (1);

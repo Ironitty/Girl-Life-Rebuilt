@@ -405,7 +405,7 @@ function enterPurgeAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNextPayment(s: GameState, scene: SceneBuilder): void {
-  ((s as any).blackmailQW ?? {})['next_payment'] = 10 * ((s as any).rand ?? 0)(50, 100);
+  ((s as any).blackmailQW ?? {})['next_payment'] = 10 * (Math.floor(Math.random() * 51) + 50);
   ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) + (10 * ((400 * ((s as any).blackmailQW ?? {})?.['total_payment']) / (15000 + ((s as any).blackmailQW ?? {})?.['total_payment'])));
   ((s as any).blackmailQW ?? {})['next_payment'] = (((s as any).blackmailQW ?? {})['next_payment'] ?? 0) + (10 * ((200 * ((s as any).blackmailQW ?? {})?.['alter_payment']) / (20000 + ((s as any).blackmailQW ?? {})?.['alter_payment'])));
   (s as any).temp_BM_material_send = ((s as any).blackmailQW ?? {})?.['total_material'] - 1;
@@ -415,7 +415,7 @@ function enterSetNextPayment(s: GameState, scene: SceneBuilder): void {
     ((s as any).blackmailQW ?? {})['alter_payment'] = (((s as any).blackmailQW ?? {})['alter_payment'] ?? 0) + (1000);
   }
   if (((s as any).blackmailQW ?? 0)?.['worn_costume'] === -1) {
-    ((s as any).blackmailQW ?? {})['costume_punishment'] = 100 * ((s as any).rand ?? 0)(20, 40);
+    ((s as any).blackmailQW ?? {})['costume_punishment'] = 100 * (Math.floor(Math.random() * 21) + 20);
   } else {
     ((s as any).blackmailQW ?? {})['costume_punishment'] = 0;
   }

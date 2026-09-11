@@ -292,7 +292,7 @@ function enterDiscoDate2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 20) {
     (s as any).minut = ((s as any).minut ?? 0) + ((60 * (20 - ((s as any).hour ?? 0)) - ((s as any).minut ?? 0)));
   }
-  (s as any).minut = ((s as any).minut ?? 0) + (120 + ((s as any).rand ?? 0)(0, 30) + ((s as any).rand ?? 0)(0, 30) + ((s as any).rand ?? 0)(0, 30) + ((s as any).rand ?? 0)(0, 30));
+  (s as any).minut = ((s as any).minut ?? 0) + (120 + (Math.floor(Math.random() * 31) + 0) + (Math.floor(Math.random() * 31) + 0) + (Math.floor(Math.random() * 31) + 0) + (Math.floor(Math.random() * 31) + 0));
   qspCall(s, 'money', 'pay', 25);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/school_kids/natasha_sveta_dance.jpg');
@@ -674,7 +674,7 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    ((s as any).kickbox ?? {})['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + (((s as any).rand ?? 0)(-2, 5) / 2);
+    ((s as any).kickbox ?? {})['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - -2 + 1)) + (-2)) / 2);
     ((s as any).temp_kickboxVars ?? {})['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
   }, goto: ['havana_kickboxing', 'match'] },

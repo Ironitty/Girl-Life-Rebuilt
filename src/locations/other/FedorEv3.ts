@@ -4,6 +4,39 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/couple.jpg');
+  scene.text('As you and Fedor arrive at the cinema, Fedor presented the tickets at the entrance then brought you to the concession stand.');
+  scene.text('Fedor then asks, "What can I treat my beautiful girlfriend to today?"');
+  scene.actions([
+    { label: 'Small popcorn and medium drink', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/caress.mp4');
+    scene.text('As you both wait for the food to arrive, you feel Fedor\'s hand on your ass and you turn to Fedor, immediately grabbing the back of his head and giving him a passionate kiss.');
+    // TODO-QSP: dynamic text: You can feel one of his hands rise up to your chest and he starts lightly squeez...
+    scene.text(`You can feel one of his hands rise up to your chest and he starts lightly squeezing your ${((s as any).titsize ?? 0)} breasts while caressing your ass with his other hand.`);
+    scene.text('The food arrives causing both of you to pull away from one another. Fedor pays for the food and then holds everything for you as he leads you both to the theater.');
+    scene.actions([
+      { label: 'Follow Fedor\'s lead', goto: ['FedorEv3', 'Food'] },
+    ]);
+  } },
+    { label: 'Large popcorn, snacks and a large drink', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/caress.mp4');
+    scene.text('As you both wait for the food to arrive, you feel Fedor\'s hand on your ass and you turn to Fedor, immediately grabbing the back of his head and giving him a passionate kiss.');
+    // TODO-QSP: dynamic text: You can feel one of his hands rise up to your chest and he starts lightly squeez...
+    scene.text(`You can feel one of his hands rise up to your chest and he starts lightly squeezing your ${((s as any).titsize ?? 0)} breasts while caressing your ass with his other hand.`);
+    scene.text('The food arrives causing both of you to pull away from one another. Fedor pays for the food and then holds everything for you as he leads you both to the theater.');
+    scene.actions([
+      { label: 'Follow Fedor\'s lead', goto: ['FedorEv3', 'Food 2'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
 function enterFood(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
@@ -1135,9 +1168,9 @@ function enterRestroomRescue(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 1;
     qspCall(s, 'cum_cleanup', '');
     if (((s as any).pcs_sweat ?? 0) < 30) {
-      (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+      (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
     } else {
-      (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+      (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
     }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -1171,9 +1204,9 @@ function enterRestroomWash(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   (s as any).pcs_hairbsh = 0;
   qspCall(s, 'stat', '');
@@ -1204,9 +1237,9 @@ function enterRestroomWash2(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   (s as any).pcs_hairbsh = 0;
   qspCall(s, 'stat', '');
@@ -1236,9 +1269,9 @@ function enterRestroomWash3(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   (s as any).pcs_hairbsh = 0;
   qspCall(s, 'stat', '');
@@ -1368,7 +1401,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMovies3(s, scene);
       break;
     default:
-      enterFood(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1379,6 +1412,6 @@ export const FedorEv3: LocationDef = {
   region: 'other',
   locationType: 'bathroom',
   locclass: 'restroom',
-  description: ['Upon entering the theater you notice plenty of empty seats, a few seats in the front next to the big screen,'],
+  description: ['As you and Fedor arrive at the cinema, Fedor presented the tickets at the entrance then brought you to the concession stand.'],
   enter: enter,
 };

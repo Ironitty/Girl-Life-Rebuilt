@@ -4,6 +4,154 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'start');
+  (s as any).ghnow = 0;
+  qspCall(s, 'schedule', 'A84');
+  qspCall(s, 'schedule', 'A23');
+  qspCall(s, 'stat', '');
+  if (((s as any).locat ?? 0)?.['A84_loc'] === 'unknown'  &&  (Math.floor(Math.random() * 2) + 0) === 0  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).kendrano ?? 0) !== 1  &&  ((s as any).kendra ?? 0)[1] < ((s as any).daystart ?? 0)) {
+    scene.actions([{ label: 'Continue', goto: ['shop_erotomaniac', 'kendra'] }]);
+  }
+  if (((s as any).locat ?? 0)?.['A23'] === 33  &&  ((s as any).AlbinaQW ?? 0)?.['sex_shop'] < ((s as any).daystart ?? 0)) {
+    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="exec:gt \'shop_erotomaniac\', \'albina\'">Albina</a>\')+\' browsing through the underwear that the store has to offer.');
+  }
+  if (((s as any).pantyworntype ?? 0) === 'none'  &&  (Math.floor(Math.random() * 10) + 1) === 10) {
+    scene.actions([{ label: 'Continue', goto: ['shop_erotomaniac', 'shprod'] }]);
+  }
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>The Erotomaniac</b></center>');
+  scene.img('images/locations/city/redlight/erotomaniac/sexshop.jpg');
+  scene.text('The main counter displays various sex toys and other related items:');
+  // TODO-QSP: dynamic text: Lubricant - <<$func('money', 'string_price', 145)>>
+  scene.text(`Lubricant - ${qspFunc(s, 'money', 'string_price', 145)}`);
+  // TODO-QSP: dynamic text: Vibrator - <<$func('money', 'string_price', 800)>>
+  scene.text(`Vibrator - ${qspFunc(s, 'money', 'string_price', 800)}`);
+  // TODO-QSP: dynamic text: Butt plug - <<$func('money', 'string_price', 800)>>
+  scene.text(`Butt plug - ${qspFunc(s, 'money', 'string_price', 800)}`);
+  // TODO-QSP: dynamic text: Strap-on harness - <<$func('money', 'string_price', 500)>>
+  scene.text(`Strap-on harness - ${qspFunc(s, 'money', 'string_price', 500)}`);
+  // TODO-QSP: dynamic text: Dildos - starting at <<$func('money', 'string_price', 800)>>
+  scene.text(`Dildos - starting at ${qspFunc(s, 'money', 'string_price', 800)}`);
+  // TODO-QSP: dynamic text: Private booths are available in the basement for viewing porn. (<<$func('money',...
+  scene.text(`Private booths are available in the basement for viewing porn. (${qspFunc(s, 'money', 'string_price', 50)} for 15 minutes)`);
+  if (((s as any).mc_inventory ?? 0)?.['buttplug'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['dildo_small'] + ((s as any).mc_inventory ?? 0)?.['dildo_normal'] + ((s as any).mc_inventory ?? 0)?.['dildo_big'] + ((s as any).mc_inventory ?? 0)?.['dildo_large'] + ((s as any).mc_inventory ?? 0)?.['dildo_huge'] + ((s as any).mc_inventory ?? 0)?.['dildo_enormous'] + ((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] > 1  &&  ((s as any).pcs_hotcat ?? 0) >= 5  &&  (!((s as any).Peter ?? 0))) {
+    if ((Math.floor(Math.random() * 2) + 0) === 1) {
+      scene.text('You see an interesting looking middle-aged man, the apparent owner of the store.');
+      scene.actions([
+        { label: 'Introduce yourself', handler: (st: GameState) => {
+    scene.img('images/characters/city/peter/peter.jpg');
+    // TODO-QSP: dynamic text: You approach the counter and introduce yourself. "Hey there, I'm <<$pcs_nickname...
+    scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text('"I\'m Peter," he replies. "I\'ve been watching you for a while and I find you rather… interesting. Do you want to come back to my place for some \'fun\'?"');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_redlight', 'start'] },
+      { label: 'Go with him', goto: ['Peterroom', 'start'] },
+    ]);
+  } },
+      ]);
+    }
+  }
+  if (((s as any).ghnow ?? 0)?.['sexshop_total'] >= 20  &&  (!((s as any).pornstudio ?? 0))) {
+    scene.text('You notice a shady looking man trying to get your attention.');
+    scene.actions([
+      { label: 'Approach him', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).pornstudio = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/redlight/studio_porn/pierre.jpg');
+    scene.text('"You give a great blowjob girl, so why not put that mouth to better use and work as a porn actress?"');
+    qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(s, 'stat', '');
+    scene.text('You shake your head and quickly move away from the man, feeling his gaze on the back of your head the entire time.');
+    scene.actions([
+      { label: 'Leave', goto: ['shop_erotomaniac', 'start'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Agree', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.text('You nod your head. "Okay, where do I sign up?"');
+    scene.text('The man smiles and hands you a business card. "Just come to this location and ask for Dimitri. He\'ll tell you everything you need to know and do. I do hope I\'ll see you working there soon," he says before returning to his business.');
+    scene.text('You look over the card and see that the porn studio apparently operates out of the city\'s industrial district. You then pocket the card and return to what you were doing.');
+    scene.actions([
+      { label: 'Continue', goto: ['shop_erotomaniac', 'start'] },
+    ]);
+  } },
+    ]);
+  } },
+      { label: 'Ignore him', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'stat', '');
+    scene.text('You ignore the man and quickly move away from him, feeling his gaze on the back of your head the entire time.');
+    scene.actions([
+      { label: 'Leave', goto: ['shop_erotomaniac', 'start'] },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['city_redlight', 'start'] },
+    { label: 'Adult toys & items', goto: ['shop_erotomaniac', 'sexshop_menu'] },
+    { label: 'Go to the basement', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'basement'] },
+    { label: 'Look through the fetish dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'dress'] },
+    { label: 'Look through the fetish outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'outfits'] },
+    { label: 'Look through the stripper clothing', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'strip'] },
+    { label: 'Look through the panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'panties'] },
+    { label: 'Look through the bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'bras'] },
+    { label: 'Look through the fetish shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_erotomaniac', 'shoes'] },
+  ]);
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'item_cart', 'shopping_aisle', 'sexshop');
+  qspCall(s, 'stat', '');
+  if (((s as any).intro_custom_shop_return ?? 0) === 1) {
+    scene.actions([
+      { label: 'Return', goto: ['intro_character_custom', 'modclo'] },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Stop browsing', goto: ['shop_erotomaniac', 'start'] },
+    ]);
+  }
+  scene.build();
+}
+
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_erotomaniac', 'dress');
   qspCall(s, 'stat', '');
@@ -857,7 +1005,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShprod(s, scene);
       break;
     default:
-      enterDress(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -868,5 +1016,6 @@ export const shop_erotomaniac: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'changingroom',
+  description: ['The main counter displays various sex toys and other related items:'],
   enter: enter,
 };

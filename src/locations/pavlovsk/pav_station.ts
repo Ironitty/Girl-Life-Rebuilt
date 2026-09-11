@@ -1059,7 +1059,7 @@ function enterBookingAnal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHoldingcell(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + (5 * ((s as any).rand ?? 0)(6, 12));
+  (s as any).minut = ((s as any).minut ?? 0) + (5 * (Math.floor(Math.random() * 7) + 6));
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
   }
   qspCall(s, 'stat', '');

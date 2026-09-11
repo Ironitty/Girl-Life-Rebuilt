@@ -39,6 +39,19 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((((s as any).clothingworntype ?? 0)).indexOf(('swimsuit'))) + 1 <= 0  &&  ((((s as any).clothingworntype ?? 0)).indexOf(('bikinis'))) + 1 <= 0) {
+    if (((s as any).underwear ?? 0)?.['type'] === 2) {
+      qspCall(s, 'underwear_bodysuits', 'strip');
+    } else {
+      qspCall(s, 'panties', 'strip');
+      qspCall(s, 'bras', 'strip');
+    }
+  }
+  return;
+  scene.build();
+}
+
 function enterRestore(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornunderwear ?? 0)?.['backup'] === 2) {
     // TODO-QSP: gs 'underwear_bodysuits', 'wear', $lastwornbodysuittype['backup'], lastwornbodysuitnumber['backup']
@@ -98,7 +111,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDresser(s, scene);
       break;
     default:
-      enterDispose(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

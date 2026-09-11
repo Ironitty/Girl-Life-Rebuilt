@@ -329,7 +329,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sucpcinfo ?? 0) === 4  &&  ((s as any).succublvl ?? 0) >= 2) {
         scene.text('"I heard from one of my mage contacts, in Sydney, Australia of all places, and he passed on some more details."');
         (s as any).sucpcinfo = 5;
-        (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + ((s as any).rand ?? 0)(0, 7);
+        (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
         return;
         scene.actions([
           { label: 'Ask her to tell you', handler: (st: GameState) => {
@@ -340,7 +340,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
         if (((s as any).sucpcinfo ?? 0) === 5) {
           scene.text('"I heard from an old friend of mine who is now living in Morocco and also has a Succubus for a lover. She said that after they had been together for some time, they discovered that with her help, her Succubus lover learned something new."');
           (s as any).sucpcinfo = 6;
-          (s as any).sucinfoday = ((s as any).daystart ?? 0) + 17 + ((s as any).rand ?? 0)(0, 7);
+          (s as any).sucinfoday = ((s as any).daystart ?? 0) + 17 + (Math.floor(Math.random() * 8) + 0);
           return;
           scene.actions([
             { label: 'Ask her to tell you', handler: (st: GameState) => {
@@ -1269,7 +1269,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
         scene.text('"Actually, I have gotten some more information about Succubae."');
         scene.text('"I heard from one of my mage contacts, in Sydney, Australia of all places, and he passed on some more details."');
         (s as any).sucpcinfo = 5;
-        (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + ((s as any).rand ?? 0)(0, 7);
+        (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
         scene.actions([
           { label: 'Ask her to tell you', handler: (st: GameState) => {
     // TODO-QSP: gt 'succubus', 'tatianaask', 1
@@ -1280,7 +1280,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
           scene.text('"Actually, I have gotten some more information about Succubae."');
           scene.text('"I heard from an old friend of mine who is now living in Morocco and actually has a Succubus for a lover. She said that after they had been together for some time, they discovered that, with her help, her Succubus lover learned something new."');
           (s as any).sucpcinfo = 6;
-          (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + ((s as any).rand ?? 0)(0, 7);
+          (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
           scene.actions([
             { label: 'Ask her to tell you', handler: (st: GameState) => {
     // TODO-QSP: gt 'succubus', 'tatianaask', 2

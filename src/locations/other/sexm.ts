@@ -54,7 +54,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('"If your husband is in the apartment, maybe you can climb a little higher, perhaps up to the attic?" he says with a sly grin.');
         scene.actions([
           { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['homes_properties', 'go_straight_home'] },
           { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -77,7 +77,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$npcdesc>> kisses you goodbye on the lips and gently hugs your waist.
           scene.text(`${((s as any).npcdesc ?? 0)} kisses you goodbye on the lips and gently hugs your waist.`);
         } else {
-          qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+          qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
           // TODO-QSP: dynamic text: <<$npcdesc>> kisses you goodbye on the lips and breaks away from the kiss lookin...
           scene.text(`${((s as any).npcdesc ?? 0)} kisses you goodbye on the lips and breaks away from the kiss looking at you with sad eyes.`);
         }
@@ -111,14 +111,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$npcdesc>> kisses you goodbye on the lips and gently hugs your waist.
           scene.text(`${((s as any).npcdesc ?? 0)} kisses you goodbye on the lips and gently hugs your waist.`);
         } else {
-          qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+          qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
           // TODO-QSP: dynamic text: <<$npcdesc>> kisses you goodbye on the lips and breaks away from the kiss lookin...
           scene.text(`${((s as any).npcdesc ?? 0)} kisses you goodbye on the lips and breaks away from the kiss looking at you with sad eyes.`);
         }
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] < 10) {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
             // TODO-QSP: dynamic text: <<$npcdesc>> kisses you goodbye on the lips, hugging your waist.
             scene.text(`${((s as any).npcdesc ?? 0)} kisses you goodbye on the lips, hugging your waist.`);
           } else {
@@ -132,7 +132,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: <<$npcdesc>> kisses you goodbye on the lips while squeezing your ass with both h...
             scene.text(`${((s as any).npcdesc ?? 0)} kisses you goodbye on the lips while squeezing your ass with both hands.`);
           } else {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-2, -1));
+            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-1 - -2 + 1)) + (-2)));
             // TODO-QSP: dynamic text: <<$npcdesc>> kisses you on the lips, then pulls away from the kiss muttering in ...
             scene.text(`${((s as any).npcdesc ?? 0)} kisses you on the lips, then pulls away from the kiss muttering in exasperation, "No sex today, huh?"`);
           }
@@ -153,7 +153,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: <<$npcdesc>> waves goodbye with a smile.
           scene.text(`${((s as any).npcdesc ?? 0)} waves goodbye with a smile.`);
         } else {
-          qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+          qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
           // TODO-QSP: dynamic text: <<$npcdesc>> waves goodbye, looking a bit sad.
           scene.text(`${((s as any).npcdesc ?? 0)} waves goodbye, looking a bit sad.`);
         }
@@ -170,11 +170,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] < 3) {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
             // TODO-QSP: dynamic text: <<$npcdesc>> seems slightly annoyed. "What are you, a holy virgin?"
             scene.text(`${((s as any).npcdesc ?? 0)} seems slightly annoyed. "What are you, a holy virgin?"`);
           } else {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-2, -1));
+            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-1 - -2 + 1)) + (-2)));
             // TODO-QSP: dynamic text: <<$npcdesc>> seems irritated. "So you do not even want to kiss? Oh well."
             scene.text(`${((s as any).npcdesc ?? 0)} seems irritated. "So you do not even want to kiss? Oh well."`);
           }
@@ -194,11 +194,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] < 10) {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
             // TODO-QSP: dynamic text: <<$npcdesc>> waves and walks out of the house.
             scene.text(`${((s as any).npcdesc ?? 0)} waves and walks out of the house.`);
           } else {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-2, -1));
+            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-1 - -2 + 1)) + (-2)));
             // TODO-QSP: dynamic text: <<$npcdesc>> irritably waves goodbye and walks quickly out of the house.
             scene.text(`${((s as any).npcdesc ?? 0)} irritably waves goodbye and walks quickly out of the house.`);
           }
@@ -372,7 +372,7 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
   }
   if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }
   scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
   // TODO-QSP: dynamic text: <<$npcdesc>> looks at you and waits for you to say something.
@@ -497,10 +497,10 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
   scene.text(`You take his ${((s as any).dick_desc ?? 0)} penis and begin to caress it gently, moving the skin on the purple head back and forth.`);
   scene.text('Soon, your skillful movements make the guy cum in your hands, covering them with warm and sticky sperm.');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   } else {
     if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-3, -2));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-2 - -3 + 1)) + (-3)));
     } else {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-5));
     }
@@ -521,10 +521,10 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> lies down between your legs and begins to work his tongue on your p...
   scene.text(`${((s as any).npcdesc ?? 0)} lies down between your legs and begins to work his tongue on your pussy.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   } else {
     if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-3, -2));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-2 - -3 + 1)) + (-3)));
     } else {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-5));
     }
@@ -875,10 +875,10 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     scene.text(`You take his ${((s as any).dick_desc ?? 0)} penis in your hands and begin to caress it gently.`);
     scene.text('Soon, your skillful movements make the guy cum in your hands, covering them with warm and sticky sperm.');
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-3, -2));
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-2 - -3 + 1)) + (-3)));
       } else {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-5));
       }
@@ -1038,7 +1038,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
           scene.text(`"This is a surprise, but oh well that clown ran away, and I am once again ready. Let's continue and let this wimp go" says ${((s as any).npcdesc1 ?? 0)}, clearly intending to continue the evening.`);
           scene.actions([
             { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['homes_properties', 'go_straight_home'] },
             { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
@@ -1218,7 +1218,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
             scene.text(`"Well this is a surprise, but oh well it looks like your hubby dumped you, and I am once again ready, let's continue. Let this cuckold run away like a little bitch," says ${((s as any).npcdesc1 ?? 0)}, clearly intending to continue the evening.`);
             scene.actions([
               { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['homes_properties', 'go_straight_home'] },
               { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);

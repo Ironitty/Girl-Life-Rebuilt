@@ -127,7 +127,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_inhib ?? 0) < 50) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     if ((Math.floor(Math.random() * 11) + 0) < 5  &&  qspFunc(s, 'miroslava_schedule', 'is_here')) {
       if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) <= 6) {
         scene.img('images/characters/gadukino/mira/rivertwogirls.jpg');
@@ -212,7 +212,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 4;
     qspCall(s, 'cum_cleanup', '');
     (s as any).minut = ((s as any).minut ?? 0) + 20;
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'mood', 'raise', 'tiny');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     if (((s as any).pcs_stren ?? 0) < 30) {
@@ -494,7 +494,7 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
     (s as any).cumspclnt = 4;
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     qspCall(s, 'exercise', 'tier1', 10, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get out of the water', handler: (st: GameState) => {
@@ -544,7 +544,7 @@ function enterGetChanged(s: GameState, scene: SceneBuilder): void {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     }
     qspCall(s, 'exercise', 'tier1', 5, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get out of the water', handler: (st: GameState) => {

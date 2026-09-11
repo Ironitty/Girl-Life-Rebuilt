@@ -52,7 +52,7 @@ function enterYpool(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
     qspCall(s, 'mood', 'raise', 'large');
     if (((s as any).pcs_sweat ?? 0) > 10) {
-      (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+      (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     }
     qspCall(s, 'stat', '');
     if (qspFunc(s, 'body_din', 'pregnancyVisibility') === 0) {

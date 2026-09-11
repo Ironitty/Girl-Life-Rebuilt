@@ -732,6 +732,11 @@ function enterDimkaabuse10(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina0'] }]);
+  scene.build();
+}
+
 function enterDimkaWarning(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).DimaBeHomeOnce ?? 0))) {
     (s as any).DimaBeHomeOnce = 1;
@@ -843,7 +848,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDimkaWarning(s, scene);
       break;
     default:
-      enterAfterSchool(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

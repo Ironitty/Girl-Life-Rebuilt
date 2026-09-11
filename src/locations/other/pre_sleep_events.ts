@@ -4,6 +4,35 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sleepVars ?? {})['stat_display'] = 1;
+  if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
+    ((s as any).sleepVars ?? {})['events_done'] = 0;
+    if (((s as any).succubusQW ?? 0) === 2) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''suc_event'' '
+    }
+    if (((s as any).magf2bdo ?? 0) === 2) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''magb_event'' '
+    }
+    if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''nichServentSleepEvents_handler'', 2 '
+    } else {
+      if (((s as any).nichGalaContractTaras ?? 0) === 1  &&  ((s as any).daystart ?? 0) >= ((s as any).nichGalaContractTarasLast ?? 0) + (Math.floor(Math.random() * 8) + 3)  &&  (((s as any).nichWork ?? 0) === 1  ||  ((s as any).nichWork ?? 0) === 2)) {
+        // TODO-QSP: $sleep_events_priority[] = 'gs ''pre_sleep_events'', ''nichServentSleepEvents_handler'', 1 '
+      }
+    }
+    if (((s as any).loc ?? 0) === 'HotelRoom'  &&  ((s as any).loc_arg ?? 0) === 'therapist'  &&  ((s as any).locat ?? 0)?.['A186'] === 2) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''therapist_home'', ''pre_sleep'' '
+    }
+    if (((s as any).daystart ?? 0) > ((s as any).sleepVars ?? 0)?.['sleep_reflection_day']) {
+      qspCall(s, 'sleep_reflections', 'event_check');
+    }
+    scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'mod_sleepevents'] }]);
+  }
+  scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'continue'] }]);
+  scene.build();
+}
+
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler'] }]);
@@ -153,7 +182,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
   (s as any).succublvl = 1;
   (s as any).suclezsnapshot = ((s as any).stat ?? 0)?.['lesbian_count'];
   (s as any).succhungry = (-2);
-  (s as any).sucwalkday = ((s as any).daystart ?? 0) + 2 + ((s as any).rand ?? 0)(0, 5);
+  (s as any).sucwalkday = ((s as any).daystart ?? 0) + 2 + (Math.floor(Math.random() * 6) + 0);
   (s as any).pcs_horny = 0;
   ((s as any).sleepVars ?? {})['slept_in'] = 0;
   (s as any).strip_here = 0;
@@ -237,7 +266,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMagbstchoice(s, scene);
       break;
     default:
-      enterModSleepevents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

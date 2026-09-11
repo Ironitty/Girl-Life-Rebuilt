@@ -108,7 +108,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).obekt ?? 0)?.['openstateDM1'] === 0) {
         // TODO-QSP: :markanotherrand
-        ((s as any).obekt ?? {})['DMN'] = '' + ((String(10000 + ((s as any).rand ?? 0)(0, 9999))).slice((2)-1, ((2)-1)+(4)))> + '';
+        ((s as any).obekt ?? {})['DMN'] = '' + ((String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4)))> + '';
         if (((s as any).obekt ?? 0)?.['DMN'] === ((((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + ((((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
           // TODO-QSP: jump 'markanotherrand'
         }

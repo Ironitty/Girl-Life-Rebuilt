@@ -50,7 +50,7 @@ function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to bed', handler: (st: GameState) => {
     scene.img(`images/locations/shared/apartment/event/sick/sick${Math.floor(Math.random() * 7) + 21}.jpg`);
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).rand ?? 0)(1, 6) * 30);
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 6) + 1) * 30);
     scene.text('You lie in bed, shivering while wrapped in a blanket. Time drags by painfully slow and you can\'t say how much time passes before the doorbell rings.');
     scene.actions([
       { label: 'Answer the door', handler: (st: GameState) => {

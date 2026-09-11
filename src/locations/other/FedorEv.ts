@@ -4,6 +4,51 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).numnpc = 5;
+  qspCall(s, 'stat', '');
+  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A5']} ${((s as any).npc_lastname ?? 0)?.['A5']}</b></center>`);
+  scene.img('images/characters/shared/headshots_main/big5.jpg');
+  if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).kotovVSkozlov ?? 0) === 0  &&  ((s as any).fedorKozlovQW ?? 0) >= 10) {
+    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Vitek Vs Fedor'] }]);
+  } else {
+    if (((s as any).kotovVSkozlov ?? 0) === 1) {
+      scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Strela Chat'] }]);
+    } else {
+      if (((s as any).FedorvsDimka ?? 0) === 2) {
+        scene.actions([{ label: 'Continue', goto: ['FedorEv4', 'Dimka Aftermath'] }]);
+      } else {
+        if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250  &&  ((s as any).fedorkoztalk ?? 0) === 0  &&  (!((s as any).FedorLove ?? 0))) {
+          scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Gorslut'] }]);
+        } else {
+          if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 250  &&  (!((s as any).FedorLove ?? 0))) {
+            scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Gorslut 2'] }]);
+          } else {
+            if (((s as any).fedorKozlovQW ?? 0) === 10  &&  ((s as any).FedorLuv ?? 0) < -5) {
+              scene.actions([{ label: 'Continue', goto: ['FedorEv2', 'Fedor Breakup'] }]);
+            } else {
+              if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).FedorvsDimka ?? 0) === 1) {
+                scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Vs Dimka'] }]);
+              } else {
+                if (((s as any).fedorKozlovQW ?? 0) >= 20  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
+                  if ((!(Math.floor(Math.random() * 2) + 0))) {
+                    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date 2'] }]);
+                  } else {
+                    scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date 3'] }]);
+                  }
+                } else {
+                  scene.actions([{ label: 'Continue', goto: ['FedorEv', 'Fedor Date'] }]);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterVitekVsFedor(s: GameState, scene: SceneBuilder): void {
   (s as any).kotovVSkozlov = 1;
   qspCall(s, 'stat', '');
@@ -521,7 +566,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNoDate(s, scene);
       break;
     default:
-      enterVitekVsFedor(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

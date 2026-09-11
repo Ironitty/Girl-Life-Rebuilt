@@ -19,10 +19,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'ArgLoop'
   }
   if (((s as any).spellKnown ?? 0)?.[String((s as any).SpellID ?? 0)] === 1) {
-    (s as any).spellRoll = ((s as any).pcs_splcstng ?? 0) - ((s as any).spellDiff ?? 0)?.[String((s as any).SpellID ?? 0)] - (((s as any).pcs_horny ?? 0)/5) + ((s as any).rand ?? 0)(1, 100);
+    (s as any).spellRoll = ((s as any).pcs_splcstng ?? 0) - ((s as any).spellDiff ?? 0)?.[String((s as any).SpellID ?? 0)] - (((s as any).pcs_horny ?? 0)/5) + (Math.floor(Math.random() * 100) + 1);
     if (((s as any).spellRoll ?? 0) > 50) {
       (s as any).spellSuccess = 2;
-      qspCall(s, 'exp_gain', 'splcstng', ((s as any).rand ?? 0)(1, ((s as any).spellDiff ?? 0)?.[String((s as any).SpellID ?? 0)]) + ((s as any).rand ?? 0)(0, 5));
+      qspCall(s, 'exp_gain', 'splcstng', (Math.floor(Math.random() * (((s as any).spellDiff ?? 0)?.[String((s as any).SpellID ?? 0)] - 1 + 1)) + (1)) + (Math.floor(Math.random() * 6) + 0));
     } else {
       if (((s as any).spellRoll ?? 0) > 10) {
         (s as any).spellSuccess = 1;

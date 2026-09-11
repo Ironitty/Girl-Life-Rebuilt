@@ -845,7 +845,7 @@ function enterVaginalmf(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 30, 'prostitution', 'sub', 'rough');
     qspCall(s, 'arousal', 'end');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }
@@ -873,7 +873,7 @@ function enterVaginalmf(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 30, 'prostitution', 'sub', 'rough');
     qspCall(s, 'arousal', 'end');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }
@@ -950,7 +950,7 @@ function enterAnalmf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'clit_finger', (-30), 'prostitution', 'sub');
   qspCall(s, 'arousal', 'end');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
   }
@@ -1143,7 +1143,7 @@ function enterSexmmf(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'anal', 5, $npcID[0], 'prostitution', 'sub', 'group'
     // TODO-QSP: gs 'cum_call', 'anus', $npcID[0], 1
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }
@@ -1297,7 +1297,7 @@ function enterPavgenprosff(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni_give', 5, 'prostitution');
     qspCall(s, 'arousal', 'end');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
     }

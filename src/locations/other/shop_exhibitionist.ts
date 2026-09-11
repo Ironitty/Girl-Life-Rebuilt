@@ -4,6 +4,64 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'start');
+  if (((s as any).exhibitionQW ?? 0) === 3) {
+    (s as any).exhibitionQW = 4;
+  }
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Simply Salacious</b></center>');
+  scene.img('images/locations/pushkin/exhibitshop/shop.jpg');
+  scene.text('A modern looking store where the clothing is all very revealing and not nearly as classy as the store itself.');
+  if (((s as any).hypnoClothes ?? 0) === 1  &&  ((s as any).exhibitionQW ?? 0) === 4) {
+    scene.actions([
+      { label: 'Look for Ksenya', goto: ['shop_exhibitionist', 'ksenya_intro'] },
+    ]);
+  }
+  if (((s as any).exhibitionQW ?? 0) === 5  &&  ((s as any).daystart ?? 0) >= ((s as any).exhibitionQW ?? 0)?.['daystart'] + 3  &&  ((s as any).KsenyaQW ?? 0) >= 3) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
+      scene.actions([{ label: 'Continue', goto: ['shop_exhibitionist', 'ksenya_date'] }]);
+    }
+  }
+  if (((s as any).exhibitionQW ?? 0) === 5  &&  ((s as any).exhibitionQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).KsenyaQW ?? 0) === 2) {
+      scene.actions([
+        { label: 'Ask to see Ksenya', goto: ['shop_exhibitionist', 'ksenya_shop'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Talk to Ksenya', goto: ['shop_exhibitionist', 'ksenya_chat'] },
+      ]);
+    }
+  }
+  if (((s as any).hour ?? 0) >= 18) {
+    scene.text('The shop is closing and you have to leave.');
+    return;
+  }
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'outfits'] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'dresses'] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'bras'] },
+    { label: 'View bodysuits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'bodysuit'] },
+  ]);
+  scene.build();
+}
+
 function enterOutfits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'outfits');
   qspCall(s, 'stat', '');
@@ -333,7 +391,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterKsenyaShop(s, scene);
       break;
     default:
-      enterOutfits(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -344,5 +402,6 @@ export const shop_exhibitionist: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['A modern looking store where the clothing is all very revealing and not nearly as classy as the store itself.'],
   enter: enter,
 };

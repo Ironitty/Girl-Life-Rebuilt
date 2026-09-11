@@ -843,7 +843,7 @@ function enterDebutAfterReaction(s: GameState, scene: SceneBuilder): void {
 
 function enterDebutEnding(s: GameState, scene: SceneBuilder): void {
   (s as any).modelpay = (((s as any).pcs_mdlng ?? 0)/2 * 10) + Math.min(((s as any).fame ?? 0)?.['city_modelling'], 700) + ((s as any).pcs_apprnc ?? 0);
-  (s as any).modelpayfin = (600 + (((s as any).modelpay ?? 0) * 2) + (15*((s as any).rand ?? 0)(0, 5))) * 2;
+  (s as any).modelpayfin = (600 + (((s as any).modelpay ?? 0) * 2) + (15*(Math.floor(Math.random() * 6) + 0))) * 2;
   ((s as any).modelfoto ?? {})['shoots'] = (((s as any).modelfoto ?? {})['shoots'] ?? 0) + (1);
   ((s as any).modelfoto ?? {})['nude'] = (((s as any).modelfoto ?? {})['nude'] ?? 0) + (1);
   ((s as any).modelfoto ?? {})['nip'] = (((s as any).modelfoto ?? {})['nip'] ?? 0) + (1);

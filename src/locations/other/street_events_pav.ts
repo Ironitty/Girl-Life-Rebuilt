@@ -39,13 +39,13 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $streetev_title
     scene.img('images/locations/shared/street/town/nakedmarket.jpg');
     scene.text('You walk over and look over several of the items she has for sale.');
-    (s as any).tovpay1 = ((s as any).rand ?? 0)(3, 8) * 100;
+    (s as any).tovpay1 = (Math.floor(Math.random() * 6) + 3) * 100;
     // TODO-QSP: dynamic text: She has some cosmetics for ' + $func('money', 'string_price', tovpay1) + '.
     scene.text('She has some cosmetics for \' + $func(\'money\', \'string_price\', tovpay1) + \'.');
-    (s as any).tovpay2 = ((s as any).rand ?? 0)(3, 9) * 10;
+    (s as any).tovpay2 = (Math.floor(Math.random() * 7) + 3) * 10;
     // TODO-QSP: dynamic text: She has lip balm for ' + $func('money', 'string_price', tovpay2) + '.
     scene.text('She has lip balm for \' + $func(\'money\', \'string_price\', tovpay2) + \'.');
-    (s as any).tovpay3 = ((s as any).rand ?? 0)(2, 5) * 100;
+    (s as any).tovpay3 = (Math.floor(Math.random() * 4) + 2) * 100;
     // TODO-QSP: dynamic text: She has some vitamins for ' + $func('money', 'string_price', tovpay3) + '.
     scene.text('She has some vitamins for \' + $func(\'money\', \'string_price\', tovpay3) + \'.');
     // TODO-QSP: dynamic text: She has a romance novel (' + $func('money', 'string_price', 300) + ')
@@ -108,13 +108,13 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $streetev_title
     scene.img('images/locations/shared/street/town/nakedmarket.jpg');
     scene.text('You walk over and look over several of the items they have for sale.');
-    (s as any).tovpay1 = ((s as any).rand ?? 0)(3, 8) * 100;
+    (s as any).tovpay1 = (Math.floor(Math.random() * 6) + 3) * 100;
     // TODO-QSP: dynamic text: They have some cosmetics for ' + $func('money', 'string_price', tovpay1) + '.
     scene.text('They have some cosmetics for \' + $func(\'money\', \'string_price\', tovpay1) + \'.');
-    (s as any).tovpay2 = ((s as any).rand ?? 0)(3, 9) * 10;
+    (s as any).tovpay2 = (Math.floor(Math.random() * 7) + 3) * 10;
     // TODO-QSP: dynamic text: They have lip balm for ' + $func('money', 'string_price', tovpay2) + '.
     scene.text('They have lip balm for \' + $func(\'money\', \'string_price\', tovpay2) + \'.');
-    (s as any).tovpay3 = ((s as any).rand ?? 0)(2, 5) * 100;
+    (s as any).tovpay3 = (Math.floor(Math.random() * 4) + 2) * 100;
     // TODO-QSP: dynamic text: They have some vitamins for ' + $func('money', 'string_price', tovpay3) + '.
     scene.text('They have some vitamins for \' + $func(\'money\', \'string_price\', tovpay3) + \'.');
     // TODO-QSP: dynamic text: They have a romance novel (' + $func('money', 'string_price', 300) + ')

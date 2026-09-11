@@ -1596,9 +1596,9 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');

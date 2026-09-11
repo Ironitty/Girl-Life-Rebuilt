@@ -42,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'kafeM', 'a'
   } },
     { label: 'Not funny', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), ((st as any).rand ?? 0)(-1, 0));
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     // TODO-QSP: xgt 'kafeM', 'a'
   } },
   ]);
@@ -83,7 +83,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
       { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['kafeM', 'end'] },
     ]);
   }
@@ -135,7 +135,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
           { label: 'Finish the dance [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['kafeM', 'end'] },
         ]);
       }

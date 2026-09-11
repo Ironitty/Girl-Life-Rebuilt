@@ -290,7 +290,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
             if ((!(Math.floor(Math.random() * 11) + 0))) {
               scene.text('The customers followed your movements between their conversations. You deserved some tips, but luck was against you and you got nothing.');
             } else {
-              (s as any).paymoneyrand = ((s as any).rand ?? 0)(100, 2 * ((s as any).strip_club ?? {})?.['strip_tips']);
+              (s as any).paymoneyrand = (Math.floor(Math.random() * (2 * ((s as any).strip_club ?? {})?.['strip_tips'] - 100 + 1)) + (100));
               qspCall(s, 'money', 'earn', ((s as any).paymoneyrand ?? 0));
               qspCall(s, 'mood', 'raise', 'tiny');
               qspCall(s, 'stat', '');
@@ -298,7 +298,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
               scene.text(`The customers followed your movements between their conversations. After counting out your tips, it amounts to ${qspFunc(s, 'money', 'string_profit', ((s as any).paymoneyrand ?? 0))}.`);
             }
           } else {
-            (s as any).paymoneyrand = ((s as any).rand ?? 0)(((s as any).strip_club ?? {})?.['strip_tips'], 3 * ((s as any).strip_club ?? {})?.['strip_tips']);
+            (s as any).paymoneyrand = (Math.floor(Math.random() * (3 * ((s as any).strip_club ?? {})?.['strip_tips'] - ((s as any).strip_club ?? {})?.['strip_tips'] + 1)) + (((s as any).strip_club ?? {})?.['strip_tips']));
             (s as any).paymoneyrand = 0;
             qspCall(s, 'money', 'earn', ((s as any).paymoneyrand ?? 0));
             qspCall(s, 'mood', 'raise', 'small');

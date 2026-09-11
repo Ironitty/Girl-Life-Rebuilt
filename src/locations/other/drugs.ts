@@ -510,7 +510,7 @@ function enterCaffeine(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['caffeine_used'] = (((s as any).drugVars ?? {})['caffeine_used'] ?? 0) + (1);
     ((s as any).drugVars ?? {})['caffeine_system'] = (((s as any).drugVars ?? {})['caffeine_system'] ?? 0) + (((s as any).ARGS ?? 0)[1] * ((s as any).drugVars ?? {})?.['caffeine_dose']);
   }
-  ((s as any).drugVars ?? {})['caffeine_minut'] = ((s as any).totminut ?? 0) + (((s as any).ARGS ?? 0)[1] - 1) * 60 + ((s as any).rand ?? 0)(0, 30) + ((s as any).rand ?? 0)(0, 30) + ((s as any).rand ?? 0)(0, 30) + ((s as any).rand ?? 0)(0, 30);
+  ((s as any).drugVars ?? {})['caffeine_minut'] = ((s as any).totminut ?? 0) + (((s as any).ARGS ?? 0)[1] - 1) * 60 + (Math.floor(Math.random() * 31) + 0) + (Math.floor(Math.random() * 31) + 0) + (Math.floor(Math.random() * 31) + 0) + (Math.floor(Math.random() * 31) + 0);
   ((s as any).drugVars ?? {})['sleep_actual'] = ((s as any).pcs_sleep ?? 0);
   if (((s as any).drugVars ?? 0)?.['caffeine_addict'] === 0) {
     ((s as any).drugVars ?? {})['sleep_displayed'] = (101 * ((s as any).drugVars ?? {})?.['caffeine_dose'] + ((s as any).pcs_sleep ?? 0)) / (1 + ((s as any).drugVars ?? {})?.['caffeine_dose']);
@@ -552,7 +552,7 @@ function enterCaffeineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
   }
   if (((s as any).drugVars ?? 0)?.['caffeine_dose'] > 0) {
-    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (Math.max(0, Math.min(((s as any).rand ?? 0)(-1, ((s as any).drugVars ?? {})?.['caffeine_dose']), 1)));
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (Math.max(0, Math.min((Math.floor(Math.random() * (((s as any).drugVars ?? {})?.['caffeine_dose'] - -1 + 1)) + (-1)), 1)));
   }
   if (((s as any).drugVars ?? 0)?.['caffeine_addict'] > 0) {
     (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (Math.floor(Math.random() * 2) + 0);
@@ -581,6 +581,44 @@ function enterCaffeineStat(s: GameState, scene: SceneBuilder): void {
       ((s as any).drugVars ?? {})['caffeine_dose'] = 0;
     }
   }
+  return;
+  scene.build();
+}
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+    ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) - (1);
+    if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
+      ((s as any).mc_inventory ?? {})['cigarettes'] = 0;
+      // TODO-QSP: msg 'That was your last cigarette.'
+    }
+  }
+  if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 0) {
+    ((s as any).drugVars ?? {})['cigarettes_used'] = (((s as any).drugVars ?? {})['cigarettes_used'] ?? 0) + (1);
+    ((s as any).drugVars ?? {})['cigarettes_ever'] = (((s as any).drugVars ?? {})['cigarettes_ever'] ?? 0) + (1);
+    if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 20  &&  ((s as any).drugVars ?? 0)?.['cigarettes_exp'] === 0) {
+      ((s as any).drugVars ?? {})['cigarettes_exp'] = 1;
+    }
+  }
+  ((s as any).stat ?? {})['cigarettes_smoked'] = (((s as any).stat ?? {})['cigarettes_smoked'] ?? 0) + (1);
+  ((s as any).drugVars ?? {})['cigarettes_minute'] = ((s as any).totminut ?? 0) + 3;
+  ((s as any).drugVars ?? {})['cigarettes_need'] = 0;
+  ((s as any).teeth ?? {})['smoked'] = (((s as any).teeth ?? {})['smoked'] ?? 0) + (1);
+  (s as any).pcs_breath = 0;
+  qspCall(s, 'mood', 'raise', 'medium');
+  qspCall(s, 'mood', 'hold', 15);
+  if (((s as any).pcs_hydra ?? 0) >= 100) {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
+  } else {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
+  }
+  if (((s as any).pcs_energy ?? 0) < 80) {
+    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (4);
+  }
+  (s as any).cumspclnt = 2;
+  qspCall(s, 'cum_cleanup', '');
+  qspCall(s, 'body', 'SkinLoss', 'Smoke');
+  qspCall(s, 'stat', '');
   return;
   scene.build();
 }
@@ -617,6 +655,45 @@ function enterCigaretteHourlyEvents(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['cigarettes_need'] = 0;
     ((s as any).drugVars ?? {})['cigarettes_used'] = 0;
   }
+  return;
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+    ((s as any).mc_inventory ?? {})['joints'] = (((s as any).mc_inventory ?? {})['joints'] ?? 0) - (1);
+    if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {
+      ((s as any).mc_inventory ?? {})['joints'] = 0;
+      // TODO-QSP: msg 'That was your last joint.'
+    }
+  }
+  if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 0) {
+    ((s as any).drugVars ?? {})['weed_used'] = (((s as any).drugVars ?? {})['weed_used'] ?? 0) + (1);
+    if (((s as any).drugVars ?? 0)?.['weed_used'] > 5  &&  ((s as any).drugVars ?? 0)?.['weed_exp'] === 0) {
+      ((s as any).drugVars ?? {})['weed_exp'] = 1;
+    }
+  }
+  if (((s as any).minut ?? 0) > 30) {
+    ((s as any).drugVars ?? {})['weed_high'] = 2;
+  } else {
+    ((s as any).drugVars ?? {})['weed_high'] = 1;
+  }
+  ((s as any).drugVars ?? {})['weed_day'] = ((s as any).daystart ?? 0);
+  ((s as any).drugVars ?? {})['weed_hour'] = ((s as any).hour ?? 0);
+  ((s as any).drugVars ?? {})['weed_minute'] = ((s as any).totminut ?? 0) + 2;
+  (s as any).pcs_breath = 0;
+  qspCall(s, 'mood', 'raise', 'large');
+  qspCall(s, 'archetypes', 'gain', 'punk', 'tiny', 'Smoking weed');
+  qspCall(s, 'mood', 'hold', 15);
+  if (((s as any).pcs_hydra ?? 0) >= 100) {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
+  } else {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
+  }
+  (s as any).pcs_energy = Math.max(0, ((s as any).pcs_energy ?? 0) - 20);
+  (s as any).cumspclnt = 2;
+  qspCall(s, 'cum_cleanup', '');
+  qspCall(s, 'stat', '');
   return;
   scene.build();
 }
@@ -1164,7 +1241,7 @@ function enterMentats(s: GameState, scene: SceneBuilder): void {
 
 function enterMentatsCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['mentats_expgain'] > 0) {
-    (s as any).intel_exp = ((s as any).intel_exp ?? 0) + (((s as any).rand ?? 0)(0, ((s as any).drugVars ?? {})?.['mentats_expgain'] / 2));
+    (s as any).intel_exp = ((s as any).intel_exp ?? 0) + ((Math.floor(Math.random() * (((s as any).drugVars ?? {})?.['mentats_expgain'] / 2 - 0 + 1)) + (0)));
     ((s as any).drugVars ?? {})['mentats_expgain'] = 0;
   }
   if (((s as any).drugVars ?? 0)?.['mentats_dose'] === 1) {
@@ -1202,11 +1279,11 @@ function enterSteroids(s: GameState, scene: SceneBuilder): void {
 
 function enterSteroidsCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['steroids_stren_expgain'] > 0) {
-    (s as any).stren_exp = ((s as any).stren_exp ?? 0) + (((s as any).rand ?? 0)(0, ((s as any).drugVars ?? {})?.['steroids_stren_expgain'] / 2));
+    (s as any).stren_exp = ((s as any).stren_exp ?? 0) + ((Math.floor(Math.random() * (((s as any).drugVars ?? {})?.['steroids_stren_expgain'] / 2 - 0 + 1)) + (0)));
     ((s as any).drugVars ?? {})['steroids_stren_expgain'] = 0;
   }
   if (((s as any).drugVars ?? 0)?.['steroids_vital_expgain'] > 0) {
-    (s as any).vital_exp = ((s as any).vital_exp ?? 0) + (((s as any).rand ?? 0)(0, ((s as any).drugVars ?? {})?.['steroids_vital_expgain'] / 2));
+    (s as any).vital_exp = ((s as any).vital_exp ?? 0) + ((Math.floor(Math.random() * (((s as any).drugVars ?? {})?.['steroids_vital_expgain'] / 2 - 0 + 1)) + (0)));
     ((s as any).drugVars ?? {})['steroids_vital_expgain'] = 0;
   }
   if (((s as any).drugVars ?? 0)?.['steroids_dose'] >= 1) {
@@ -1259,7 +1336,7 @@ function enterBreastcreamCikl(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).drugVars ?? {})['breastcream_dose'] = 0;
   (s as any).temp_bust_diff = ((s as any).pcs_mass ?? {})?.['bust'] - ((s as any).pcs_mass ?? {})?.['bust_gen'];
-  (s as any).temp_bust_diff = ((s as any).rand ?? 0)(0, 10 + Math.max(0, ((s as any).temp_bust_diff ?? 0))) / Math.max(1, ((s as any).temp_bust_diff ?? 0));
+  (s as any).temp_bust_diff = (Math.floor(Math.random() * (10 + Math.max(0, ((s as any).temp_bust_diff ?? 0)) - 0 + 1)) + (0)) / Math.max(1, ((s as any).temp_bust_diff ?? 0));
   if (((s as any).temp_bust_diff ?? 0) > 0) {
     ((s as any).bodyVars ?? {})['bust_other'] = (((s as any).bodyVars ?? {})['bust_other'] ?? 0) + (1);
     scene.text('Feels like your breasts have grown slightly.');
@@ -1329,7 +1406,7 @@ function enterButtInjectionCikl(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).drugVars ?? {})['butt_injection_dose'] = 0;
   (s as any).temp = ((s as any).pcs_mass ?? {})?.['butt'] - ((s as any).pcs_mass ?? {})?.['butt_gen'];
-  (s as any).temp = ((s as any).rand ?? 0)(0, 10 + Math.max(0, ((s as any).temp ?? 0))) / Math.max(1, ((s as any).temp ?? 0));
+  (s as any).temp = (Math.floor(Math.random() * (10 + Math.max(0, ((s as any).temp ?? 0)) - 0 + 1)) + (0)) / Math.max(1, ((s as any).temp ?? 0));
   if (((s as any).temp ?? 0) > 0) {
     ((s as any).bodyVars ?? {})['butt_other'] = (((s as any).bodyVars ?? {})['butt_other'] ?? 0) + (1);
     scene.text('Feels like your butt has grown slightly.');
@@ -1474,7 +1551,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterButtInjectionCikl(s, scene);
       break;
     default:
-      enterCikl(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

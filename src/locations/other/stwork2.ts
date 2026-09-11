@@ -257,7 +257,7 @@ function enterDanceClothed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 5);
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancero ?? 0), 5 * ((s as any).pcs_dancero ?? 0)) / 10);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 10);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You dance seductively around the pole at the center of the stage.');
@@ -276,7 +276,7 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancero ?? 0), 5 * ((s as any).pcs_dancero ?? 0)) / 7);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 7);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You start moving seductively around the pole at the center of the stage.');
@@ -327,7 +327,7 @@ function enterStripBra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancero ?? 0), 5 * ((s as any).pcs_dancero ?? 0)) / 5);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 5);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show1.jpg');
   scene.text('You start moving seductively around the pole in the center of the stage wearing just your underwear.');
@@ -362,7 +362,7 @@ function enterStripPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancero ?? 0), 5 * ((s as any).pcs_dancero ?? 0)) / 5);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 5);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show3.jpg');
   scene.text('You dance seductively in just your panties, teasing the crowd.');
@@ -395,7 +395,7 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancero ?? 0), 5 * ((s as any).pcs_dancero ?? 0)) / 3);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancero - pcs_dancero + 1)) + (pcs_dancero)) / 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show5.jpg');
   qspCall(s, 'stwork2', 'set_customer_mood');
@@ -441,7 +441,7 @@ function enterPoleUnderwear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancpol', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancpol ?? 0), 5 * ((s as any).pcs_dancpol ?? 0)) / 3);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancpol - pcs_dancpol + 1)) + (pcs_dancpol)) / 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/pole_panties.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your underwear.');
@@ -461,7 +461,7 @@ function enterPolePanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancpol', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'fame', 'city', 'stripping', Math.floor(Math.random() * 2) + 1);
-  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + (((s as any).rand ?? 0)(((s as any).pcs_dancpol ?? 0), 5 * ((s as any).pcs_dancpol ?? 0)) / 3);
+  ((s as any).strip_club ?? {})['strip_tips'] = (((s as any).strip_club ?? {})['strip_tips'] ?? 0) + ((Math.floor(Math.random() * (5 * pcs_dancpol - pcs_dancpol + 1)) + (pcs_dancpol)) / 3);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/pole_topless.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your panties.');

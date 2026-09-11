@@ -68,7 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     if (((s as any).pcs_inhib ?? 0) < 40) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     }
@@ -1427,7 +1427,7 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).minut = ((s as any).minut ?? 0) + 25;
     qspCall(s, 'exercise', 'tier1', 5, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/andrey1/andrey1.jpg');
     scene.text('"I see the lady agrees…" Andrew says with a wide grin. "Then let\'s go for a swim!" He takes you in his arms, laughing at your ineffective attempts to stop him uncovering your chest. Moving your hand aside, his lips gently pinch your right nipple. You sigh and a warm wave of excitement rushes through you.');

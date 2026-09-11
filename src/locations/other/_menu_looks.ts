@@ -38,6 +38,42 @@ function enterLookstabs(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).menu_page = 0;
+  qspCall(s, '$menu_looks', 'lookstabs', 'Looks');
+  scene.text('<center><h1>Looks</h1></center>');
+  // TODO-QSP: $settings['table_start']
+  scene.img(`${((s as any).img_temp ?? 0)}`);
+  if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
+    // TODO-QSP: dynamic text: Your hair: <<$face_style['avatar_hair']>>.
+    scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair']}.`);
+  } else {
+    // TODO-QSP: dynamic text: <<$hair>>
+    scene.text(`${((s as any).hair ?? 0)}`);
+  }
+  if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
+    // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
+    scene.text(`Your curls are good for another ${((s as any).curly ?? 0)} days.`);
+  }
+  if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
+    // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
+    scene.text(`Your hair should be straight for another ${((s as any).straight ?? 0)} days.`);
+  }
+  // TODO-QSP: dynamic text: <<$pc_descFull['lip']>>
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['lip']}`);
+  // TODO-QSP: $pcs_teeth_txt
+  // TODO-QSP: dynamic text: <<$pc_descFull['throat']>>
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['throat']}`);
+  // TODO-QSP: dynamic text: <<$pc_descFull['skin']>>
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['skin']}`);
+  // TODO-QSP: dynamic text: <<$pc_descFull['eyes']>>
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['eyes']}`);
+  // TODO-QSP: dynamic text: <<$pc_descFull['makeup']>>.
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['makeup']}.`);
+  // TODO-QSP: $settings['table_end']
+  scene.build();
+}
+
 function enterBody(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', 'Body');
   scene.text('<center><h1>Body</h1></center>');
@@ -577,7 +613,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPiercingPussy(s, scene);
       break;
     default:
-      enterMenuExit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

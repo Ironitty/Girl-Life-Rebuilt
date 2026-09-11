@@ -283,7 +283,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Have a bath (0:30)', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).pcs_sweat = 7 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 7 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'mood', 'raise', 'small');
     (s as any).noshampoo = 1;
     qspCall(s, 'din_van', 'showerdin');

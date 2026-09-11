@@ -205,7 +205,7 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'mood', 'raise', 'tiny');
     if (((s as any).pcs_sweat ?? 0) > 10) {
-      (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+      (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     }
     if (((s as any).pcs_stren ?? 0) < 30) {
       qspCall(s, 'exp_gain', 'stren', 1);

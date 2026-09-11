@@ -154,7 +154,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: If succubusQW = 14 and suchuntday ! daystart:
     scene.actions([
       { label: 'Go hunting (this can take a lot of time)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (40 + ((s as any).rand ?? 0)(0, 20) - 5 * ((s as any).succublvl ?? 0));
+    (s as any).minut = ((s as any).minut ?? 0) + (40 + (Math.floor(Math.random() * 21) + 0) - 5 * ((s as any).succublvl ?? 0));
     qspCall(s, 'stat', '');
     if ((Math.floor(Math.random() * 8) + 0) - ((s as any).succublvl ?? 0) < 2) {
       (s as any).suchunt = 1;

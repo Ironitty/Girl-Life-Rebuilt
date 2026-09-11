@@ -857,7 +857,7 @@ function enterTrinkets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prodskill ?? 0) < 100) {
     (s as any).minimumtov = 1;
   }
-  (s as any).tovarand = ((s as any).rand ?? 0)(((s as any).minimumtov ?? 0), ((s as any).prodskill ?? 0) / 10);
+  (s as any).tovarand = (Math.floor(Math.random() * (prodskill / 10 - minimumtov + 1)) + (minimumtov));
   if (((s as any).tovarand ?? 0) > ((s as any).mc_inventory ?? 0)?.['trinkets_home']) {
     (s as any).tovarand = ((s as any).mc_inventory ?? 0)?.['trinkets_home'];
   }

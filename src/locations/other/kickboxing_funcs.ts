@@ -134,8 +134,8 @@ function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
 function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_kickboxVars ?? {})['pcs_init'] = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0);
   ((s as any).temp_kickboxVars ?? {})['npc_init'] = ((s as any).temp_kickboxVars ?? {})?.['npc_speed'] + ((s as any).temp_kickboxVars ?? {})?.['npc_react'];
-  ((s as any).temp_kickboxVars ?? {})['pcs_init_true'] = ((s as any).rand ?? 0)(((s as any).temp_kickboxVars ?? {})?.['pcs_init'] - ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] / 5, ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] + ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] / 5);
-  ((s as any).temp_kickboxVars ?? {})['npc_init_true'] = ((s as any).rand ?? 0)(((s as any).temp_kickboxVars ?? {})?.['npc_init'] - ((s as any).temp_kickboxVars ?? {})?.['npc_init'] / 5, ((s as any).temp_kickboxVars ?? {})?.['npc_init'] + ((s as any).temp_kickboxVars ?? {})?.['npc_init'] / 5);
+  ((s as any).temp_kickboxVars ?? {})['pcs_init_true'] = (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['pcs_init'] + ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] / 5 - ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] - ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] / 5 + 1)) + (((s as any).temp_kickboxVars ?? {})?.['pcs_init'] - ((s as any).temp_kickboxVars ?? {})?.['pcs_init'] / 5));
+  ((s as any).temp_kickboxVars ?? {})['npc_init_true'] = (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['npc_init'] + ((s as any).temp_kickboxVars ?? {})?.['npc_init'] / 5 - ((s as any).temp_kickboxVars ?? {})?.['npc_init'] - ((s as any).temp_kickboxVars ?? {})?.['npc_init'] / 5 + 1)) + (((s as any).temp_kickboxVars ?? {})?.['npc_init'] - ((s as any).temp_kickboxVars ?? {})?.['npc_init'] / 5));
   if (((s as any).temp_kickboxVars ?? 0)?.['set_init'] === 0) {
     ((s as any).temp_kickboxVars ?? {})['set_init'] = 1;
     if (((s as any).temp_kickboxVars ?? 0)?.['pcs_init_true'] > ((s as any).temp_kickboxVars ?? 0)?.['npc_init_true']  &&  ((s as any).temp_kickboxVars ?? 0)?.['pcs_inittime'] < 3  ||  ((s as any).temp_kickboxVars ?? 0)?.['npc_inittime'] >= 3) {
@@ -170,11 +170,11 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
 function enterAttack(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'player') {
     if (((s as any).locArgs?.[2] ?? 0) === 'jab') {
-      ((s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).rand ?? 0)(((s as any).pcs_stren ?? 0) / 12, ((s as any).pcs_stren ?? 0) / 8);
+      ((s as any).temp_kickboxVars ?? {})['damage'] = (Math.floor(Math.random() * (pcs_stren / 8 - pcs_stren / 12 + 1)) + (pcs_stren / 12));
       ((s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_jab ?? 0)) * 2;
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'punch') {
-        ((s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).pcs_stren ?? 0) + ((s as any).rand ?? 0)(-((s as any).pcs_stren ?? 0) / 5, ((s as any).pcs_stren ?? 0) / 5);
+        ((s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).pcs_stren ?? 0) + (Math.floor(Math.random() * (pcs_stren / 5 - -pcs_stren / 5 + 1)) + (-pcs_stren / 5));
         ((s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_punch ?? 0));
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'kick') {
@@ -183,12 +183,12 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).temp_kickboxVars ?? {})['hit_chance'] = ((s as any).temp_kickboxVars ?? {})?.['hit_mod'] + ((s as any).rand ?? 0)(-((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5, ((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5);
+    ((s as any).temp_kickboxVars ?? {})['hit_chance'] = ((s as any).temp_kickboxVars ?? {})?.['hit_mod'] + (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5 - -((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5 + 1)) + (-((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5));
     if (((s as any).temp_kickboxVars ?? 0)?.['damage'] <= 0) {
       ((s as any).temp_kickboxVars ?? {})['damage'] = 1;
     }
     ((s as any).temp_kickboxVars ?? {})['base_def'] = ((s as any).temp_kickboxVars ?? {})?.['npc_agil'] + ((s as any).temp_kickboxVars ?? {})?.['npc_react'] + ((s as any).temp_kickboxVars ?? {})?.['npc_def'];
-    ((s as any).temp_kickboxVars ?? {})['defence'] = ((s as any).temp_kickboxVars ?? {})?.['base_def'] + ((s as any).rand ?? 0)(-((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5, ((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5);
+    ((s as any).temp_kickboxVars ?? {})['defence'] = ((s as any).temp_kickboxVars ?? {})?.['base_def'] + (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5 - -((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5 + 1)) + (-((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5));
     if (((s as any).temp_kickboxVars ?? 0)?.['hit_chance'] < ((s as any).temp_kickboxVars ?? 0)?.['defence']) {
       scene.text('You\'ve missed.');
     } else {
@@ -213,11 +213,11 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'enemy') {
     if (((s as any).locArgs?.[2] ?? 0) === 'jab') {
-      ((s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).rand ?? 0)(((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 12, ((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 8);
+      ((s as any).temp_kickboxVars ?? {})['damage'] = (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 8 - ((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 12 + 1)) + (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 12));
       ((s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).temp_kickboxVars ?? {})?.['npc_speed'] + ((s as any).temp_kickboxVars ?? {})?.['npc_react'] + ((s as any).temp_kickboxVars ?? {})?.['npc_jab']) * 2;
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'punch') {
-        ((s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).temp_kickboxVars ?? {})?.['npc_stren'] + ((s as any).rand ?? 0)(-((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 5, ((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 5);
+        ((s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).temp_kickboxVars ?? {})?.['npc_stren'] + (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 5 - -((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 5 + 1)) + (-((s as any).temp_kickboxVars ?? {})?.['npc_stren'] / 5));
         ((s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).temp_kickboxVars ?? {})?.['npc_speed'] + ((s as any).temp_kickboxVars ?? {})?.['npc_react'] + ((s as any).temp_kickboxVars ?? {})?.['npc_punch']);
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'kick') {
@@ -226,12 +226,12 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).temp_kickboxVars ?? {})['hit_chance'] = ((s as any).temp_kickboxVars ?? {})?.['hit_mod'] + ((s as any).rand ?? 0)(-((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5, ((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5);
+    ((s as any).temp_kickboxVars ?? {})['hit_chance'] = ((s as any).temp_kickboxVars ?? {})?.['hit_mod'] + (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5 - -((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5 + 1)) + (-((s as any).temp_kickboxVars ?? {})?.['hit_mod'] / 5));
     if (((s as any).temp_kickboxVars ?? 0)?.['damage'] <= 0) {
       ((s as any).temp_kickboxVars ?? {})['damage'] = 1;
     }
     ((s as any).temp_kickboxVars ?? {})['base_def'] = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_def ?? 0);
-    ((s as any).temp_kickboxVars ?? {})['defence'] = ((s as any).temp_kickboxVars ?? {})?.['base_def'] + ((s as any).rand ?? 0)(-((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5, ((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5);
+    ((s as any).temp_kickboxVars ?? {})['defence'] = ((s as any).temp_kickboxVars ?? {})?.['base_def'] + (Math.floor(Math.random() * (((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5 - -((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5 + 1)) + (-((s as any).temp_kickboxVars ?? {})?.['base_def'] / 5));
     if (((s as any).temp_kickboxVars ?? 0)?.['hit_chance'] < ((s as any).temp_kickboxVars ?? 0)?.['defence']) {
       scene.text('Missed');
     } else {

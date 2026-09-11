@@ -77,7 +77,7 @@ function enterNice1(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_breath = 1;
     (s as any).girl = ((s as any).girl ?? 0) + (1);
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -192,7 +192,7 @@ function enterGrumpy1(s: GameState, scene: SceneBuilder): void {
     ((s as any).pain ?? {})['ankles'] = (((s as any).pain ?? {})['ankles'] ?? 0) + (5);
     (s as any).girl = ((s as any).girl ?? 0) + (1);
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -347,7 +347,7 @@ function enterNs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -382,7 +382,7 @@ function enterNs2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -416,7 +416,7 @@ function enterNs3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -457,7 +457,7 @@ function enterGs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -501,7 +501,7 @@ function enterGs2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -542,7 +542,7 @@ function enterGs3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -595,7 +595,7 @@ function enterNL1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -665,7 +665,7 @@ function enterGL1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -757,7 +757,7 @@ function enterNice2(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = 0;
     (s as any).pcs_breath = 1;
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -885,7 +885,7 @@ function enterGrumpy2(s: GameState, scene: SceneBuilder): void {
     ((s as any).pain ?? {})['wrists'] = (((s as any).pain ?? {})['wrists'] ?? 0) + (5);
     ((s as any).pain ?? {})['ankles'] = (((s as any).pain ?? {})['ankles'] ?? 0) + (5);
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -952,7 +952,7 @@ function enterNL2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1016,7 +1016,7 @@ function enterGL2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1053,7 +1053,7 @@ function enterNs4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1087,7 +1087,7 @@ function enterNs5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1120,7 +1120,7 @@ function enterNs6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (100 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1156,7 +1156,7 @@ function enterGs4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1193,7 +1193,7 @@ function enterGs5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
@@ -1232,7 +1232,7 @@ function enterGs6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
     (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);

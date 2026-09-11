@@ -4,6 +4,22 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', '');
+  scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
+  scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
+  scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
+  // TODO-QSP: dynamic text: Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('t...
+  scene.text('Opening hours are \' + $func(\'time\', \'get_time_string\', 7, 0) + \' to \' + $func(\'time\', \'get_time_string\', 23, 0) + \'.');
+  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
+    // TODO-QSP: act 'Enter the cafe': gt 'city_coffee_hole', 'inner'
+  }
+  scene.actions([
+    { label: 'Return to the city', goto: ['city_island', ''] },
+  ]);
+  scene.build();
+}
+
 function enterInner(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'inner');
   qspCall(s, 'schedule', 'A14', 'A23', 'A144');
@@ -931,7 +947,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBlacks(s, scene);
       break;
     default:
-      enterInner(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -941,6 +957,6 @@ export const city_coffee_hole: LocationDef = {
   title: 'Cafe "Coffee Hole"',
   region: 'city',
   locationType: 'public_indoors',
-  description: ['The cafe looks like it was once some type of industrial building, with tall ceilings, exposed pipes, ductwork and lights. The counter is in the far corner, while the middle of the room contains several tables and chairs.'],
+  description: ['Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.'],
   enter: enter,
 };

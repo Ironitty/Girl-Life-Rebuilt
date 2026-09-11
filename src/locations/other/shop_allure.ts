@@ -4,6 +4,37 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_allure', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>shop_allure</b></center>');
+  if (((s as any).region ?? 0) === 'pav') {
+    scene.img('images/locations/city/residential/lake/allure/shop.jpg');
+  } else {
+    scene.img('images/locations/city/residential/lake/allure/shop.jpg');
+  }
+  scene.text('This shop has the feel of a summer at the beach, which you\'d expect seeing as it sells swimwear.');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    if (((s as any).region ?? 0) === 'pav') {
+      (s as any).minut = ((s as any).minut ?? 0) + 6;
+      scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 3;
+      scene.actions([{ label: 'Continue', goto: ['city_lake', 'start'] }]);
+    }
+  } },
+    { label: 'View swimsuits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_allure', 'swim'] },
+    { label: 'View bikinis', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_allure', 'bikinis'] },
+  ]);
+  scene.build();
+}
+
 function enterSwim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_allure', 'swim');
   qspCall(s, 'stat', '');
@@ -54,7 +85,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBikinis(s, scene);
       break;
     default:
-      enterSwim(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -65,5 +96,6 @@ export const shop_allure: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['This shop has the feel of a summer at the beach, which you\'d expect seeing as it sells swimwear.'],
   enter: enter,
 };

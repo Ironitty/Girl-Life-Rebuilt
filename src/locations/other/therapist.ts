@@ -346,7 +346,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/therapist/therapy1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 31) + 20);
-    qspCall(s, 'mood', 'raise_disposition', Math.max(0, ((s as any).rand ?? 0)(-2, 1)));
+    qspCall(s, 'mood', 'raise_disposition', Math.max(0, (Math.floor(Math.random() * (1 - -2 + 1)) + (-2))));
     qspCall(s, 'stat', '');
     scene.text('You talk about your sleeping troubles, although you omit the parts about how you keep having dreams about sex and the one where he was fucking you. He makes some suggestions, but tells you that he won\'t be able to help further without hypnotherapy.');
     scene.text('You have a nagging feeling that something is wrong, but you agree with Dr. Pavlov. He is such a nice man and his sessions have helped you in the past, so you have no reason not to trust him.');
@@ -442,7 +442,7 @@ function enterTherapyMethod(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     if (((s as any).therapy ?? 0) === 'mood') {
       qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 31) + 20);
-      qspCall(s, 'mood', 'raise_disposition', Math.max(0, ((s as any).rand ?? 0)(-1, 1)));
+      qspCall(s, 'mood', 'raise_disposition', Math.max(0, (Math.floor(Math.random() * (1 - -1 + 1)) + (-1))));
     } else {
       if (((s as any).therapy ?? 0) === 'confidence'  ||  ((s as any).therapy ?? 0) === 'school troubles') {
         if (((s as any).willpowermax ?? 0) < 150) {
@@ -521,7 +521,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + (((s as any).rand ?? 0)(((s as any).var1 ?? 0), 10) + 3);
+      (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - var1 + 1)) + (var1)) + 3);
       if (((s as any).hypnoTime ?? 0) < 15) {
         if (((s as any).hypnoStrength ?? 0) >= 20) {
           (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) - (20);
@@ -591,7 +591,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).therapy ?? 0) === 'mood') {
               qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 31) + 20);
-              qspCall(s, 'mood', 'raise_disposition', Math.max(0, ((s as any).rand ?? 0)(-1, 1)));
+              qspCall(s, 'mood', 'raise_disposition', Math.max(0, (Math.floor(Math.random() * (1 - -1 + 1)) + (-1))));
             }
           }
         }
@@ -1230,7 +1230,7 @@ function enterSleepProblems(s: GameState, scene: SceneBuilder): void {
         (s as any).var1 = 9;
       }
     }
-    (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + (((s as any).rand ?? 0)(((s as any).var1 ?? 0), 10) + 3);
+    (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - var1 + 1)) + (var1)) + 3);
     if (((s as any).hypnoTime ?? 0) < 15) {
       if (((s as any).hypnoStrength ?? 0) >= 20) {
         (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) - (20);
@@ -1520,7 +1520,7 @@ function enterFuck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + (((s as any).rand ?? 0)(((s as any).var1 ?? 0), 10) + 3);
+  (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) + ((Math.floor(Math.random() * (10 - var1 + 1)) + (var1)) + 3);
   if (((s as any).hypnoTime ?? 0) < 15) {
     if (((s as any).hypnoStrength ?? 0) >= 20) {
       (s as any).hypnoStrength = ((s as any).hypnoStrength ?? 0) - (20);
@@ -2708,7 +2708,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).hypnoProstRubles ?? 0)[2] > 100) {
-              ((s as any).hypnoProstRubles ?? {})[2] = (((s as any).hypnoProstRubles ?? {})[2] ?? 0) - (((s as any).rand ?? 0)(1, 9) * 10);
+              ((s as any).hypnoProstRubles ?? {})[2] = (((s as any).hypnoProstRubles ?? {})[2] ?? 0) - ((Math.floor(Math.random() * 9) + 1) * 10);
             }
             if (((s as any).hypnoProstRubles ?? 0)[2] < 100) {
               ((s as any).hypnoProstRubles ?? {})[2] = 100;
@@ -2801,7 +2801,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).hypnoProstRubles ?? 0)[2] > 100) {
-                ((s as any).hypnoProstRubles ?? {})[2] = (((s as any).hypnoProstRubles ?? {})[2] ?? 0) - (((s as any).rand ?? 0)(1, 9) * 10);
+                ((s as any).hypnoProstRubles ?? {})[2] = (((s as any).hypnoProstRubles ?? {})[2] ?? 0) - ((Math.floor(Math.random() * 9) + 1) * 10);
               }
               if (((s as any).hypnoProstRubles ?? 0)[2] < 100) {
                 ((s as any).hypnoProstRubles ?? {})[2] = 100;

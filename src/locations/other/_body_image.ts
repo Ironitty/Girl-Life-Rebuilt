@@ -12,6 +12,144 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) !== 0) {
+    (s as any).temp_pubes = 0;
+  }
+  if (((s as any).locArgs?.[2] ?? 0) !== 0) {
+    (s as any).temp_pubecol = 0;
+  }
+  if (((s as any).locArgs?.[3] ?? 0) !== 0) {
+    (s as any).temp_pubestyle = 0;
+  }
+  if ((!((s as any).temp_pubecol ?? 0))) {
+  } else {
+    if (((s as any).temp_pubecol ?? 0) === 1) {
+    } else {
+      if (((s as any).temp_pubecol ?? 0) === 2) {
+      } else {
+        if (((s as any).temp_pubecol ?? 0) === 3) {
+        } else {
+          if (((s as any).temp_pubecol ?? 0) === 4) {
+          } else {
+            if (((s as any).temp_pubecol ?? 0) === 5) {
+            } else {
+              if (((s as any).temp_pubecol ?? 0) === 6) {
+              } else {
+                if (((s as any).temp_pubecol ?? 0) === 7) {
+                } else {
+                  if (((s as any).temp_pubecol ?? 0) === 8) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).temp_pubes ?? 0) !== 0) {
+    if (((s as any).temp_pubes ?? 0) <= 3) {
+      // TODO-QSP: $result += 'hair/pussy'
+    } else {
+      if (((s as any).temp_pubes ?? 0) <= 10) {
+        // TODO-QSP: $result += 'hair/stubble'
+      } else {
+        if (((s as any).temp_pubes ?? 0) <= 15) {
+          // TODO-QSP: $result += 'hair/very_short'
+        } else {
+          if (((s as any).temp_pubes ?? 0) <= 25) {
+            if (((s as any).temp_pubestyle ?? 0) === 2) {
+              // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_v'
+            } else {
+              if (((s as any).temp_pubestyle ?? 0) === 3) {
+                // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_triangle'
+              } else {
+                if (((s as any).temp_pubestyle ?? 0) === 4) {
+                  // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_landing'
+                } else {
+                  if (((s as any).temp_pubestyle ?? 0) === 5) {
+                    // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_heart'
+                  } else {
+                    if (((s as any).temp_pubestyle ?? 0) === 6) {
+                      // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_flame'
+                    } else {
+                      if (((s as any).temp_pubestyle ?? 0) === 7) {
+                        // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_cross'
+                      } else {
+                        if (((s as any).temp_pubestyle ?? 0) === 8) {
+                          // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_trimmed'
+                        } else {
+                          if (((s as any).temp_pubestyle ?? 0) === 12) {
+                            // TODO-QSP: $result += 'shave/<<$temp_pubecolor>>_mini'
+                          } else {
+                            // TODO-QSP: $result += 'hair/<<$temp_pubecolor>>_small'
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          } else {
+            if (((s as any).temp_pubes ?? 0) <= 35) {
+              // TODO-QSP: $result += 'hair/<<$temp_pubecolor>>_mid'
+            } else {
+              // TODO-QSP: $result += 'hair/<<$temp_pubecolor>>_full'
+            }
+          }
+        }
+      }
+    }
+  } else {
+    // TODO-QSP: $result += 'hair/pussy'
+  }
+  // TODO-QSP: $result += '.jpg'
+  scene.build();
+}
+
+function enterDefault2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).bodyVars ?? 0)?.['butt_silicone'] > 0) {
+    // TODO-QSP: $result += '9s.jpg'
+  } else {
+    if (((s as any).pcs_buttsize ?? 0) <= 7) {
+      // TODO-QSP: $result += '1.jpg'
+    } else {
+      if (((s as any).pcs_buttsize ?? 0) <= 14) {
+        // TODO-QSP: $result += '2.jpg'
+      } else {
+        if (((s as any).pcs_buttsize ?? 0) <= 21) {
+          // TODO-QSP: $result += '3.jpg'
+        } else {
+          if (((s as any).pcs_buttsize ?? 0) <= 29) {
+            // TODO-QSP: $result += '4.jpg'
+          } else {
+            if (((s as any).pcs_buttsize ?? 0) <= 36) {
+              // TODO-QSP: $result += '5.jpg'
+            } else {
+              if (((s as any).pcs_buttsize ?? 0) <= 44) {
+                // TODO-QSP: $result += '6.jpg'
+              } else {
+                if (((s as any).pcs_buttsize ?? 0) <= 51) {
+                  // TODO-QSP: $result += '7.jpg'
+                } else {
+                  if (((s as any).pcs_buttsize ?? 0) <= 59) {
+                    // TODO-QSP: $result += '8.jpg'
+                  } else {
+                    // TODO-QSP: $result += '9.jpg'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.build();
+}
+
 function enterCoat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).coatworntype ?? 0) === 'none') {
     // TODO-QSP: $body_image_msg += '<br>Your health will suffer if you don''t wear a coat in the winter.'
@@ -135,7 +273,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShoes(s, scene);
       break;
     default:
-      enterBody(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

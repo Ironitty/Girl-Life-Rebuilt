@@ -4,6 +4,31 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_flamingos', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Flamingo\'s</b></center>');
+  scene.img('images/locations/city/island/flamingos/shop.jpg');
+  scene.text('Flamingos is trendy and modern while still keeping the prices low enough for the large student population on the Island.');
+  scene.text('It mimics the latest fashions for young adults, but cuts costs on material and manufacturing. This suits the clients, who are likely to grow bored of an outfit before it falls apart.');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_flamingos', 'dresses'] },
+    { label: 'View other clothing', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_flamingos', 'clothes'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_flamingos', 'purses'] },
+  ]);
+  scene.build();
+}
+
 function enterDresses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_flamingos', 'dresses');
   qspCall(s, 'stat', '');
@@ -76,7 +101,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPurses(s, scene);
       break;
     default:
-      enterDresses(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -87,5 +112,6 @@ export const shop_flamingos: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['Flamingos is trendy and modern while still keeping the prices low enough for the large student population on the Island.'],
   enter: enter,
 };

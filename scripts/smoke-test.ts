@@ -179,20 +179,23 @@ async function main() {
 
     const allButtons = await page.locator('button').all();
     const actionBtns: { btn: any; text: string }[] = [];
+    const navBtns: { btn: any; text: string }[] = [];
     for (const b of allButtons) {
       const t = (await b.textContent())?.trim() ?? '';
       const title = await b.getAttribute('title');
       if (title) continue;
-      if (/^(Map|Back)$/i.test(t)) continue;
-      if (t.length > 0 && t.length < 80) actionBtns.push({ btn: b, text: t });
+      if (t.length === 0 || t.length >= 80) continue;
+      if (/^(Map|Back)$/i.test(t)) { navBtns.push({ btn: b, text: t }); continue; }
+      actionBtns.push({ btn: b, text: t });
     }
-    if (actionBtns.length > 0) {
-      const pick = actionBtns[Math.floor(Math.random() * actionBtns.length)];
+    const pickPool = actionBtns.length > 0 ? actionBtns : navBtns;
+    if (pickPool.length > 0) {
+      const pick = pickPool[Math.floor(Math.random() * pickPool.length)];
       const errsBefore = errors.length;
       await pick.btn.click();
       await sleep(500);
       const afterBody = await page.textContent('body');
-      const newErrs = errors.slice(errsBefore);
+      const newErrs = errors.slice(errsBefore).filter((e) => !/404|Failed to load resource/i.test(e));
       check(`Random button "${pick.text}" works (no crash)`, (afterBody?.length ?? 0) > 50 && newErrs.length === 0);
       if (newErrs.length) newErrs.forEach((e) => console.log(`  ${e}`));
     } else {

@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  ((s as any).AlbinaQW ?? {})['RideDaystart'] = ((s as any).daystart ?? 0) + ((s as any).rand ?? 0)(2, 5);
+  ((s as any).AlbinaQW ?? {})['RideDaystart'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 4) + 2);
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
   scene.text('A car suddenly pulls up next to you and a man wearing a suit and hat steps out. "Captain Chernov, Federal Security Service," he says and pulls out his badge.');

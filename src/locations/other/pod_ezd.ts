@@ -49,6 +49,36 @@ function enterLeaveBuilding(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_1');
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Ground floor of the apartment building</b></center>');
+  scene.img('images/locations/pavlovsk/resident/apartment/podezd2.jpg');
+  scene.text('<center>A dirty and poorly maintained stairwell, the same as any other in your town.</center>');
+  if (((s as any).shared_apt ?? 0)?.['seenAd'] === 0) {
+    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'advertNo30'] }]);
+  }
+  scene.text('There\'s a <a href="exec: gt \'pod_ezd\', \'occupants\'">list</a> of the people who live here on the wall.');
+  scene.text('Someone put up some <a href="exec:gt \'pod_ezd\',\'pod_objava\'">advertisements</a> on the wall, near the entrance.');
+  if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
+    // TODO-QSP: act 'Apartment 2: Artem Chebotarev': gt 'artemhome', 'home'
+  }
+  scene.actions([
+    { label: 'Leave the building', handler: (st: GameState) => {
+    qspCall(st, 'pod_ezd', 'leave_building');
+  } },
+    { label: 'Go up to the second floor', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  }, goto: ['pod_ezd', 'etaj_2'] },
+    { label: 'Take the elevator', handler: (st: GameState) => {
+    // TODO-QSP: gt 'pod_ezd', 'lift', 'etaj_1'
+  } },
+  ]);
+  scene.build();
+}
+
 function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 3) + 0) === 0  &&  (((s as any).totminut ?? 0) > ((s as any).floor2_event_time ?? 0) + 60)  ||  (((s as any).totminut ?? 0) < ((s as any).floor2_event_time ?? 0) - 1440)) {
     (s as any).floor2_event_time = ((s as any).totminut ?? 0);
@@ -2828,7 +2858,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterSexEv3(s, scene);
       break;
     default:
-      enterOccupants(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

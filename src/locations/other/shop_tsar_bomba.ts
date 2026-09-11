@@ -4,6 +4,37 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Tsar Bomba</b></center>');
+  scene.img('images/locations/pushkin/bomba/shop.jpg');
+  scene.text('Tsar Bomba, a small clothing store in the Okhlopkov Square. It\'s fairly unique and used to be very cool with punk fashion, but is much more generic these days and could easily be mistaken for an alternative fashion chain store.');
+  scene.text('Simply put, this place is very cool and most of the clothes are strange, yet wonderful.');
+  scene.actions([
+    { label: 'Leave the bomba', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+  }, goto: ['shop_tsar_bomba', 'dresses'] },
+    { label: 'View outfits', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+  }, goto: ['shop_tsar_bomba', 'clothes'] },
+    { label: 'View shoes', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+  }, goto: ['shop_tsar_bomba', 'shoes'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+  }, goto: ['shop_tsar_bomba', 'purses'] },
+    { label: 'View coats', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+  }, goto: ['shop_tsar_bomba', 'coats'] },
+  ]);
+  scene.build();
+}
+
 function enterDresses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'dresses');
   qspCall(s, 'stat', '');
@@ -125,7 +156,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterCoats(s, scene);
       break;
     default:
-      enterDresses(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -136,5 +167,6 @@ export const shop_tsar_bomba: LocationDef = {
   region: 'other',
   locationType: 'public_indoors',
   locclass: 'changingroom',
+  description: ['Tsar Bomba, a small clothing store in the Okhlopkov Square. It\'s fairly unique and used to be very cool with punk fashion, but is much more generic these days and could easily be mistaken for an alternative fashion chain store.'],
   enter: enter,
 };

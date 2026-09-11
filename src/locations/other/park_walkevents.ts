@@ -910,7 +910,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   return;
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), ((st as any).rand ?? 0)(-1, 0));
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
   }, goto: ['city_park', 'start'] },
   ]);
   scene.build();

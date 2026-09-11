@@ -94,7 +94,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
   } else {
     if (((s as any).pcs_skin ?? 0) < 40) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-1, 0));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
     } else {
       if (((s as any).pcs_skin ?? 0) < 60) {
       } else {
@@ -511,12 +511,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Maybe you had a bad day, maybe you don't want a kiss, you rudely push <<$Xyr>> f...
     scene.text(`Maybe you had a bad day, maybe you don't want a kiss, you rudely push ${((s as any).Xyr ?? 0)} face away, and by the looks of it, hurting ${((s as any).Xyr ?? 0)} feelings in the process.`);
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-4, -3));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-3 - -4 + 1)) + (-4)));
       // TODO-QSP: dynamic text: <<$Xec>> stands there slightly embarrassed, and you can tell this hurt your rela...
       scene.text(`${((s as any).Xec ?? 0)} stands there slightly embarrassed, and you can tell this hurt your relationship a good amount.`);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-3, -2));
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-2 - -3 + 1)) + (-3)));
         // TODO-QSP: dynamic text: <<$Xec>> looks at you slightly concerned, but backs off and gives you your space...
         scene.text(`${((s as any).Xec ?? 0)} looks at you slightly concerned, but backs off and gives you your space.`);
       } else {
@@ -601,7 +601,7 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
         { label: 'I like my <<$lover_meet["ChangeName"]>> just the way it is [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), ((s as any).rand ?? 0)(-2, -1));
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (-1 - -2 + 1)) + (-2)));
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
     // TODO-QSP: dynamic text: <<$npcdesc>> realizes you will not give in this situation, and walks away mumbli...
     scene.text(`${((s as any).npcdesc ?? 0)} realizes you will not give in this situation, and walks away mumbling to ${((s as any).Xemself ?? 0)}.`);

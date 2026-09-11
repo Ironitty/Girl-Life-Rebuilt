@@ -1202,7 +1202,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('While working on your computer assignment, you get a message from someone, but no name is listed. It just has a school ID. You look around to see who might have sent it, but no one seems to be paying attention to you. All the message says is "Where do you rate?" with a link to a web page.');
     scene.actions([
       { label: 'Ignore it and focus on your school work.', handler: (st: GameState) => {
-    (st as any).fuckornot_day = ((st as any).daystart ?? 0) + ((st as any).rand ?? 0)(0, 2);
+    (st as any).fuckornot_day = ((st as any).daystart ?? 0) + (Math.floor(Math.random() * 3) + 0);
   }, goto: ['gschool_lessons', 'short_break'] },
       { label: 'Click on the link', handler: (st: GameState) => {
     // TODO-QSP: $view_location = 'school'
@@ -1214,7 +1214,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       scene.text('While working on your computer assignment, you get a message from someone, but no name is listed. It just has a school ID. You look around to see who might have sent it, but no one seems to be paying attention to you. All the message says is "Where do you rate?" with a link to a web page.');
       scene.actions([
         { label: 'Ignore it and focus on your school work.', handler: (st: GameState) => {
-    (st as any).fuckornot_day = ((st as any).daystart ?? 0) + ((st as any).rand ?? 0)(0, 2);
+    (st as any).fuckornot_day = ((st as any).daystart ?? 0) + (Math.floor(Math.random() * 3) + 0);
   }, goto: ['gschool_lessons', 'short_break'] },
         { label: 'Click on the link', handler: (st: GameState) => {
     // TODO-QSP: $view_location = 'school'
@@ -1870,7 +1870,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
                                       scene.text('While working on your computer assignment, you get a message from someone, but no name is listed. It just has a school ID. You look around to see who might have sent it, but no one seems to be paying attention to you. All the message says is "Did you check your rating lately?"');
                                       scene.actions([
                                         { label: 'Ignore it and focus on your school work.', handler: (st: GameState) => {
-    (st as any).fuckornot_day = ((st as any).daystart ?? 0) + ((st as any).rand ?? 0)(0, 2);
+    (st as any).fuckornot_day = ((st as any).daystart ?? 0) + (Math.floor(Math.random() * 3) + 0);
   }, goto: ['gschool_lessons', 'short_break'] },
                                         { label: 'Visit the \'Fuckable or not\' site', handler: (st: GameState) => {
     // TODO-QSP: $view_location = 'school'

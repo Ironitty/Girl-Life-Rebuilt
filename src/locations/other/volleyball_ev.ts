@@ -527,8 +527,8 @@ function enterBlockPractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'volleyball_ev', 'level_up');
   scene.img(`images/pc/activities/volleyball/team_practice/${Math.floor(Math.random() * 3) + 3}.jpg`);
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
-    ((s as any).vballVars ?? {})['attack_exp'] = (((s as any).vballVars ?? {})['attack_exp'] ?? 0) + (((s as any).rand ?? 0)(0, 2) / 2);
-    ((s as any).vballVars ?? {})['defense_exp'] = (((s as any).vballVars ?? {})['defense_exp'] ?? 0) + (((s as any).rand ?? 0)(0, 2) / 2);
+    ((s as any).vballVars ?? {})['attack_exp'] = (((s as any).vballVars ?? {})['attack_exp'] ?? 0) + ((Math.floor(Math.random() * 3) + 0) / 2);
+    ((s as any).vballVars ?? {})['defense_exp'] = (((s as any).vballVars ?? {})['defense_exp'] ?? 0) + ((Math.floor(Math.random() * 3) + 0) / 2);
     scene.text('You spend your free time practicing various maneuvres with the team.');
   } else {
     scene.text('You practice various maneuvres with some of the other girls around the community centre.');

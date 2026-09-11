@@ -11,6 +11,28 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pirsingsalon', 'start');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Black Dragon Tattoo & Piercing Parlor</b></center>');
+  scene.img('images/locations/city/industrial/salon/pirsingstudia.jpg');
+  scene.text('A small tattoo and piercing studio, with a single female artist doing both the tattoos and the piercings.');
+  scene.text('Various pictures showing off examples of tattoos and piercings adorn the walls.');
+  if (((s as any).hour ?? 0) >= 20) {
+    scene.text('The parlor is closing and you are asked to leave.');
+    return;
+  }
+  qspCall(s, 'pirsingsalon', 'shop_menu');
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'pirsingsalon', 'count');
+  }, goto: ['city_industrial', ''] },
+  ]);
+  scene.build();
+}
+
 function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p  '<center><table border=1>'
   // TODO-QSP: *p    '<tr>'
@@ -817,7 +839,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterTattooWrist(s, scene);
       break;
     default:
-      enterCount(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -126,6 +126,117 @@ function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', ((s as any).locArgs?.[0] ?? 0));
+  qspCall(s, 'themes', 'indoors');
+  if (((s as any).shared_apt ?? 0)?.['introDone'] === 0) {
+    scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'intro'] }]);
+  }
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'courtletter', '');
+  qspCall(s, 'pav_shared_apt', 'weeklyReset');
+  if (((s as any).daystart ?? 0) >= ((s as any).tomorrow ?? 0)) {
+    (s as any).tomorrow = ((s as any).daystart ?? 0) + 1;
+    ((s as any).Oleg ?? {})['mood'] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).Oleg ?? {})['cleaned'] = 0;
+    ((s as any).Nestor ?? {})['mood'] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).Nestor ?? {})['cleaned'] = 0;
+    ((s as any).Yakov ?? {})['mood'] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).Yakov ?? {})['cleaned'] = 0;
+  }
+  qspCall(s, 'pav_shared_apt', 'update');
+  scene.text('<center><h3>Hallway</h3></center>');
+  scene.img('images/locations/pavlovsk/resident/sharedapt/hallway.jpg');
+  // TODO-QSP: dynamic text: It's been <<shared_apt['weekNum']>> weeks since you moved in.
+  scene.text(`It's been ${((s as any).shared_apt ?? 0)?.['weekNum']} weeks since you moved in.`);
+  if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 4  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 7  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  (((s as any).PSchool ?? 0) === 1  ||  ((s as any).cheatVars ?? 0)?.['school_clothing'] === 1)) {
+    scene.actions([
+      { label: 'Go pick up Natasha before school', goto: ['natbelEv', 'carrybooks'] },
+    ]);
+  }
+  // TODO-QSP: dynamic text: A large apartment currently serves as shared living. As well as the normal livin...
+  scene.text(`A large apartment currently serves as shared living. As well as the normal living spaces, there are four bedrooms, one rented by you and three occupied by <a href="exec: gt 'pav_shared_oleg', 'oleg_dick'"><font color=#${((s as any).Oleg ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A266']}</font></a>, <a href="exec: gt 'pav_shared_nestor', 'nestor_dick'"><font color=#${((s as any).Nestor ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A265']}</font></a>, <a href="exec: gt 'pav_shared_yakov', 'yakov_dick'"><font color=#${((s as any).Yakov ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A264']}</font></a>.`);
+  scene.text('You stand in the hallway.');
+  if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
+    // TODO-QSP: dynamic text: From the hallway, several doors lead to <a href="exec:gt 'pav_shared_apt', 'Oleg...
+    scene.text(`From the hallway, several doors lead to <a href="exec:gt 'pav_shared_apt', 'Oleg_Room'">${((s as any).npc_firstname ?? 0)?.['A266']}'s</a>, <a href="exec:gt 'pav_shared_apt', 'Nestor_Room'">${((s as any).npc_firstname ?? 0)?.['A265']}'s</a>, and <a href="exec:gt 'pav_shared_apt', 'Yakov_Room'">${((s as any).npc_firstname ?? 0)?.['A264']}'s</a> rooms.`);
+    scene.text('The last doors lead to the <a href="exec:gt \'pav_shared_apt\', \'pcsRoom\'">room</a> you have rented.');
+  }
+  if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
+    scene.text('Your bedroom doesn\'t have any cupboards, but there are several hallway <a href="exec:gt \'wardrobe\', \'start\'">closets</a> you can use to store your clothes. One of them has a large, tall <a href="exec:gt \'mirror\', \'start\'">mirror</a> attached.');
+  }
+  if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
+    if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] >= 1) {
+      scene.text('A computer-printed <a href="exec:gt \'pav_shared_apt\', \'list\'">list</a> hangs on the exit door.');
+    }
+    scene.actions([
+      { label: 'Go to your room', goto: ['pav_shared_apt', 'pcsRoom'] },
+      { label: 'Go to the bathroom', goto: ['pav_shared_apt', 'bathroom'] },
+      { label: 'Go to the kitchen', goto: ['pav_shared_apt', 'kitchen'] },
+      { label: '<font color=#<<$Oleg[\'font\']>>><<$npc_firstname[\'A266\']>>\'s room</font>', goto: ['pav_shared_apt', 'Oleg_Room'] },
+      { label: '<font color=#<<$Nestor[\'font\']>>><<$npc_firstname[\'A265\']>>\'s room</font>', goto: ['pav_shared_apt', 'Nestor_Room'] },
+      { label: '<font color=#<<$Yakov[\'font\']>>><<$npc_firstname[\'A264\']>>\'s room</font>', goto: ['pav_shared_apt', 'Yakov_Room'] },
+    ]);
+  }
+  qspCall(s, 'wardrobe', 'default_clothing_options');
+  if (((s as any).shared_apt ?? 0)?.['rentPaid'] === 1) {
+    if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
+      scene.actions([
+        { label: 'Set this apartment as your main home', handler: (st: GameState) => {
+    qspCall(st, 'homes_properties', 'set_home');
+  }, goto: ['pav_shared_apt', 'start'] },
+      ]);
+    }
+  }
+  if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  ((s as any).kid ?? 0) > 0) {
+    if (((s as any).shared_apt ?? 0)?.['childWarning'] === 0) {
+      ((s as any).shared_apt ?? {})['childWarning'] = 1;
+      ((s as any).shared_apt ?? {})['childWarningDay'] = ((s as any).daystart ?? 0);
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
+      scene.text('The guys call you for a house meeting. They look uncomfortable.');
+      // TODO-QSP: dynamic text: <font color=#<<$Oleg['font']>>>"<<$pcs_firstname>>, we need to talk about your c...
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font']}>"${((s as any).pcs_firstname ?? 0)}, we need to talk about your child situation. Our agreement was very clear about no children in the apartment."</font>`);
+      // TODO-QSP: dynamic text: <font color=#<<$Nestor['font']>>>"You have one week to make other arrangements, ...
+      scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font']}>"You have one week to make other arrangements, or we'll have to ask you to leave."</font>`);
+      scene.actions([
+        { label: 'Understand', goto: ['pav_shared_apt', 'start'] },
+      ]);
+    } else {
+      if (((s as any).daystart ?? 0) >= ((s as any).shared_apt ?? 0)?.['childWarningDay'] + 7) {
+        ((s as any).shared_apt ?? {})['pavIntroStep'] = 0;
+        ((s as any).shared_apt ?? {})['introDone'] = 0;
+        (s as any).minut = ((s as any).minut ?? 0) + 5;
+        scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/crying.jpg');
+        scene.text('You\'ve been asked to leave the apartment due to having children against the house rules.');
+        qspCall(s, 'pav_shared_apt', 'block_apt', 1);
+        scene.actions([
+          { label: 'Leave', goto: ['pav_complex', 'start'] },
+        ]);
+      }
+    }
+  } else {
+    ((s as any).shared_apt ?? {})['childWarning'] = 0;
+    ((s as any).shared_apt ?? {})['childWarningDay'] = 0;
+  }
+  if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).shared_apt ?? 0)?.['enabled'] === 0) {
+    qspCall(s, 'outfit', 'wear_last_worn');
+    qspCall(s, 'stat', '');
+  }
+  scene.actions([
+    { label: '<b>Leave and go outside</b>', handler: (st: GameState) => {
+    if (((s as any).clothingworntype ?? 0) !== 'nude') {
+      scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'start'] }]);
+    }
+  } },
+    { label: '<font color=red>End your rental agreement and move out</font>', goto: ['pav_shared_apt', 'eoleg_agreement'] },
+  ]);
+  scene.build();
+}
+
 function enterList(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_shared_apt', ((s as any).locArgs?.[0] ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1368,7 +1479,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterDebug(s, scene);
       break;
     default:
-      enterUpdate(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

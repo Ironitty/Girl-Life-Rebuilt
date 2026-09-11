@@ -670,7 +670,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? 0) * ((s as any).hcount_util ?? 0))} for utilities has been automatically deducted from your bank account.</b></center>`);
         (s as any).electroday = 1;
         if (((s as any).elektro ?? 0) >= 2000) {
-          (s as any).elektro = 2000 + ((s as any).rand ?? 0)(0, 100);
+          (s as any).elektro = 2000 + (Math.floor(Math.random() * 101) + 0);
           // TODO-QSP: gs 'money', 'pay', elektro * hcount_util, 'bank'
         }
       } else {
@@ -678,7 +678,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
           scene.text(`<center><b>You currently do not have a bank account set up for automatic utilities payments. ${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? 0) * ((s as any).hcount_util ?? 0))} has been deducted from your cash holdings.</b></center>`);
           (s as any).electroday = 1;
           if (((s as any).elektro ?? 0) >= 2000) {
-            (s as any).elektro = 2000 + ((s as any).rand ?? 0)(0, 100);
+            (s as any).elektro = 2000 + (Math.floor(Math.random() * 101) + 0);
             // TODO-QSP: gs 'money', 'pay', elektro * hcount_util, 'cash'
           }
         } else {

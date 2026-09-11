@@ -45,17 +45,19 @@ export function generateTs(loc: QspLocation): GenResult {
     lines.push(`}`);
   } else {
     const usedNames = new Set<string>();
-    const nameMap = new Map<string, string>();
-    for (const scene of sceneList) {
+    const nameMap = new Map<number, string>();
+    for (let si = 0; si < sceneList.length; si++) {
+      const scene = sceneList[si];
       const base = scene.arg === '' ? 'enterDefault' : `enter${toPascalCase(scene.arg)}`;
       let fn = base;
       let n = 2;
       while (usedNames.has(fn)) { fn = `${base}${n}`; n++; }
       usedNames.add(fn);
-      nameMap.set(scene.arg, fn);
+      nameMap.set(si, fn);
     }
-    for (const scene of sceneList) {
-      const funcName = nameMap.get(scene.arg)!;
+    for (let si = 0; si < sceneList.length; si++) {
+      const scene = sceneList[si];
+      const funcName = nameMap.get(si)!;
       const body = generateSceneBody(scene.body, todos, unsupported, stateWrites, stateReads, gsCalls, targets);
       lines.push(`function ${funcName}(s: GameState, scene: SceneBuilder): void {`);
       for (const bl of body) lines.push(`  ${bl}`);
@@ -67,16 +69,17 @@ export function generateTs(loc: QspLocation): GenResult {
     lines.push(`function enter(s: GameState, scene: SceneBuilder): void {`);
     lines.push(`  const arg = s.locArg;`);
     lines.push(`  switch (arg) {`);
-    for (const scene of sceneList) {
+    for (let si = 0; si < sceneList.length; si++) {
+      const scene = sceneList[si];
       if (scene.arg === '') continue;
-      const funcName = nameMap.get(scene.arg)!;
+      const funcName = nameMap.get(si)!;
       lines.push(`    case '${scene.arg}':`);
       lines.push(`      ${funcName}(s, scene);`);
       lines.push(`      break;`);
     }
     lines.push(`    default:`);
-    const defaultScene = sceneList.find(s => s.arg === '') || sceneList[0];
-    const defaultFunc = nameMap.get(defaultScene.arg)!;
+    const defaultIdx = sceneList.findIndex(s => s.arg === '');
+    const defaultFunc = nameMap.get(defaultIdx >= 0 ? defaultIdx : 0)!;
     lines.push(`      ${defaultFunc}(s, scene);`);
     lines.push(`      break;`);
     lines.push(`  }`);
@@ -1211,6 +1214,36 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     // Strip $ prefix from remaining QSP variable names
     v = v.replace(/\$([a-zA-Z_]\w*)/g, '$1');
     v = v.replace(/\bmod\b/g, '%');
+    // QSP rand/random calls (handle nested by looping until no more matches)
+    let prevV = '';
+    while (prevV !== v && /\b(?:rand|random)\s*\(/i.test(v)) {
+      prevV = v;
+      // Two-arg: rand(a, b)
+      v = v.replace(/\b(?:rand|random)\s*\(([^,()]+),\s*([^()]+)\)/gi, (_, a, b) => {
+        const ph = `\u0000${phs.length}\u0000`;
+        const aStr = a.trim();
+        const bStr = b.trim();
+        if (/^\d+$/.test(aStr) && /^\d+$/.test(bStr)) {
+          const ai = parseInt(aStr);
+          const bi = parseInt(bStr);
+          phs.push([ph, `(Math.floor(Math.random() * ${bi - ai + 1}) + ${ai})`]);
+        } else {
+          phs.push([ph, `(Math.floor(Math.random() * (${bStr} - ${aStr} + 1)) + (${aStr}))`]);
+        }
+        return ph;
+      });
+      // Single-arg: rand(n)
+      v = v.replace(/\b(?:rand|random)\s*\(([^()]+)\)/gi, (_, a) => {
+        const ph = `\u0000${phs.length}\u0000`;
+        const aStr = a.trim();
+        if (/^\d+$/.test(aStr)) {
+          phs.push([ph, `(Math.floor(Math.random() * ${parseInt(aStr) + 1}))`]);
+        } else {
+          phs.push([ph, `(Math.floor(Math.random() * (${aStr} + 1)))`]);
+        }
+        return ph;
+      });
+    }
     // String-aware identifier replacement (handles '' as escaped quote → \')
     {
       let out = '';

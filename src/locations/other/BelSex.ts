@@ -4,6 +4,44 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'boyStat', 'A113');
+  if ((!((s as any).sashaBeliSex ?? 0))) {
+    (s as any).sashaBeliSex = 1;
+    (s as any).guy = ((s as any).guy ?? 0) + (1);
+  }
+  (s as any).belact = Math.floor(Math.random() * 3) + 1;
+  // TODO-QSP: dynamic text: You suck <<$boydesc>>'s tongue as he kisses you, doing your best to please him i...
+  scene.text(`You suck ${((s as any).boydesc ?? 0)}'s tongue as he kisses you, doing your best to please him in any way you can… because who knows what he'll do if you don't. He crudely kneads your butt and upper thighs, grabbing your ass cheeks and slapping them, making your ass cheeks jiggle.`);
+  qspCall(s, 'arousal', 'kiss', 5, 'sub', 'prostitution');
+  qspCall(s, 'arousal', 'foreplay', (-5), 'sub', 'prostitution');
+  qspCall(s, 'stat', '');
+  (s as any).belybj = Math.floor(Math.random() * 3) + 0;
+  if ((!((s as any).belybj ?? 0))) {
+    // TODO-QSP: dynamic text: <<$boydesc>> puts his large hands on your shoulders and forces you downwards. Ev...
+    scene.text(`${((s as any).boydesc ?? 0)} puts his large hands on your shoulders and forces you downwards. Even though you're trying to cooperate and drop to your knees as soon as you realize what he wants, he's still kind of rough with you. "Start sucking, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.actions([
+      { label: 'On your knees', goto: ['BelSex', 'bj1'] },
+    ]);
+  } else {
+    if (((s as any).belybj ?? 0) === 1) {
+      // TODO-QSP: dynamic text: <<$boydesc>> tugs at your clothes, letting you know that he wants you naked. You...
+      scene.text(`${((s as any).boydesc ?? 0)} tugs at your clothes, letting you know that he wants you naked. You quickly obey and assist him in taking your clothes off. He nods approvingly, definitely liking what he sees. "Very nice, girl… but you'd look even better with my cock in you."`);
+      scene.actions([
+        { label: 'Drop down on your knees', goto: ['BelSex', 'bj2'] },
+      ]);
+    } else {
+      // TODO-QSP: dynamic text: <<$boydesc>> is staring intently into your eyes, pawing between your legs while ...
+      scene.text(`${((s as any).boydesc ?? 0)} is staring intently into your eyes, pawing between your legs while you unbutton his pants, grabbing hold, and pulling them down to his knees. His cock is hanging freely, twitching from excitement…`);
+      scene.actions([
+        { label: 'What now?', goto: ['BelSex', 'bj3'] },
+      ]);
+    }
+  }
+  scene.build();
+}
+
 function enterBj1(s: GameState, scene: SceneBuilder): void {
   (s as any).belact = ((s as any).belact ?? 0) - (1);
   (s as any).picrand = Math.floor(Math.random() * 13) + 0;
@@ -573,7 +611,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterShower(s, scene);
       break;
     default:
-      enterBj1(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -582,6 +620,5 @@ export const BelSex: LocationDef = {
   name: 'BelSex',
   title: 'Not daring to make him more upset, you make sure your teeth ',
   region: 'other',
-  description: ['Not daring to make him more upset, you make sure your teeth don\'t get in the way and open your mouth even wider.'],
   enter: enter,
 };

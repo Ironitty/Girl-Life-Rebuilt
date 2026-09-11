@@ -4,6 +4,49 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
+  if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
+    ((s as any).anushkaQW ?? {})['dolls'] = 1;
+  }
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Patch Work Dolls</b></center>');
+  scene.img('images/locations/city/island/dolls/dolls.jpg');
+  scene.text('');
+  scene.text('The store has a small front on a side street, but one glance is all you need to tell this is not your average clothing store.');
+  scene.text('Inside the store, shelves and racks of gothic and punk clothes are crammed into every available space - anybody setting out to find an inch of wall would have their work cut out for them.');
+  scene.text('The checkout counter is near the entrance.');
+  if (((s as any).doll_staff_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).doll_staff = Math.floor(Math.random() * 2) + 0;
+    (s as any).doll_staff_day = ((s as any).daystart ?? 0);
+  }
+  if ((!((s as any).doll_staff ?? 0))) {
+    if (((s as any).know_Savva ?? 0) === 1) {
+      // TODO-QSP: dynamic text: As you walk in, Savva waves at you and smiles. "Hi <<$pcs_nickname>>, great to s...
+      scene.text(`As you walk in, Savva waves at you and smiles. "Hi ${((s as any).pcs_nickname ?? 0)}, great to see you again! Let me know if I can help you with anything."`);
+    }
+    scene.actions([
+      { label: 'Go to the counter', goto: ['shop_dolls', 'savva'] },
+    ]);
+  } else {
+    if (((s as any).know_Viola ?? 0) === 1) {
+      scene.text('As you walk in, Viola winks at you.');
+    }
+    scene.actions([
+      { label: 'Go to the counter', goto: ['shop_dolls', 'viola'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Browse clothing', goto: ['shop_dolls', 'browse'] },
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['city_island', ''] },
+  ]);
+  scene.build();
+}
+
 function enterBrowse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'browse');
   qspCall(s, 'stat', '');
@@ -288,7 +331,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterViola(s, scene);
       break;
     default:
-      enterBrowse(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -216,7 +216,7 @@ function enterKickedOutMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['type'] === 'hookup') {
-    ((s as any).sex_ev ?? {})['continuation'] = ((s as any).rand ?? 0)(-1, 1);
+    ((s as any).sex_ev ?? {})['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
     if ((Math.floor(Math.random() * 10) + 1) > 5  &&  (((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 4)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 0  &&  ((s as any).sex_ev ?? 0)?.['cant_stay'] === 0  &&  ((s as any).sex_ev ?? 0)?.['sleepover'] !== 1) {
       // TODO-QSP: dynamic text: "You know, it's kinda late." <<$npcdesc>> sits up in bed. "You don't have to go ...
       scene.text(`"You know, it's kinda late." ${((s as any).npcdesc ?? 0)} sits up in bed. "You don't have to go right now. Did you want to maybe... spend the night?"`);
@@ -267,7 +267,7 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    ((s as any).sex_ev ?? {})['continuation'] = ((s as any).rand ?? 0)(-1, 1);
+    ((s as any).sex_ev ?? {})['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
     if (((s as any).sex_ev ?? 0)?.['continuation'] > 0  &&  ((s as any).sex_ev ?? 0)?.['mad'] < 1  &&  ((s as any).sex_ev ?? 0)?.['angry_after'] < 1) {
       if (((s as any).npc_rel_type ?? 0) !== 'sugar_daddy'  &&  ((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 2  &&  ((Math.floor(Math.random() * (2 - -1 + 1)) + (-1)) - ((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).sex_ev ?? 0)?.['prostitution'] === 1  ||  ((s as any).npc_womanizer ?? 0)?.[String((s as any).npcID ?? 0)] === 1)) {
         scene.actions([{ label: 'Continue', goto: ['sex_ev_hookup_leave', 'npc_sugar_daddy_offer'] }]);

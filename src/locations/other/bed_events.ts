@@ -4,6 +4,21 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
+    ((s as any).sleepVars ?? {})['events_done'] = 0;
+    if ((((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 3)  &&  (Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).houserab ?? 0) === 1  &&  ((s as any).houserabday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).pcs_sleep ?? 0) < 50  &&  ((s as any).loc ?? 0) === 'nichBedroomServant') {
+      // TODO-QSP: $sleep_events[] = 'gs ''bed_events'', ''rab'' '
+    }
+    if ((((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 3)  &&  (Math.floor(Math.random() * 201) + 0) === 0  &&  (('bedr;bedr2x;korr;korr2x').indexOf((((s as any).loc ?? 0)))) + 1 > 0  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
+      // TODO-QSP: $sleep_events[] = 'gs ''bed_events'', ''vor'' '
+    }
+    scene.actions([{ label: 'Continue', goto: ['bed_events', 'mod_sleepevents'] }]);
+  }
+  scene.actions([{ label: 'Continue', goto: ['bed_events', 'continue'] }]);
+  scene.build();
+}
+
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_handler'] }]);
@@ -540,7 +555,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterMast2(s, scene);
       break;
     default:
-      enterModSleepevents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

@@ -379,7 +379,7 @@ function enterShowerLate(s: GameState, scene: SceneBuilder): void {
 function enterRelaxedswim(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   scene.img('images/locations/pavlovsk/community/swim/relaxedswim2.jpg');
   if (((s as any).hour ?? 0) < 10) {
@@ -460,7 +460,7 @@ function enterRelaxedswim(s: GameState, scene: SceneBuilder): void {
 
 function enterExerciseswim(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   scene.img('images/locations/pavlovsk/community/swim/exerciseswim.jpg');
   if (((s as any).hour ?? 0) < 10) {
@@ -534,7 +534,7 @@ function enterExerciseswim(s: GameState, scene: SceneBuilder): void {
 function enterDive(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   scene.img('images/locations/pavlovsk/community/swim/dive.jpg');
   if (((s as any).hour ?? 0) < 10) {
@@ -581,7 +581,7 @@ function enterDive(s: GameState, scene: SceneBuilder): void {
 function enterEdgepool(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/edgepool4.jpg');
@@ -621,7 +621,7 @@ function enterEdgepool(s: GameState, scene: SceneBuilder): void {
 function enterRelaxedwater(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   if (((s as any).pcs_sweat ?? 0) > 10) {
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
   }
   scene.img('images/locations/pavlovsk/community/swim/relaxedwater1.jpg');
   if (((s as any).hour ?? 0) < 10) {

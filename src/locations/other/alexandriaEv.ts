@@ -873,7 +873,7 @@ function enterAnachase4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_health = ((s as any).pcs_health ?? 0)/((s as any).rand ?? 0)(2, 10);
+  (s as any).pcs_health = ((s as any).pcs_health ?? 0)/(Math.floor(Math.random() * 9) + 2);
   ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (0);
   ((s as any).pain ?? {})['feet'] = (((s as any).pain ?? {})['feet'] ?? 0) + (0);
   ((s as any).pain ?? {})['shoulders'] = (((s as any).pain ?? {})['shoulders'] ?? 0) + (0);
@@ -1274,7 +1274,7 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).dummy ?? 0) >= 90  &&  ((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).pcs_stren ?? 0) >= 50  &&  ((s as any).pcs_agil ?? 0) >= 50  &&  ((s as any).pcs_vital ?? 0) >= 50  &&  ((s as any).pcs_react ?? 0) >=50) {
-      (s as any).pcs_health = ((s as any).pcs_health ?? 0)/((s as any).rand ?? 0)(2, 10);
+      (s as any).pcs_health = ((s as any).pcs_health ?? 0)/(Math.floor(Math.random() * 9) + 2);
       ((s as any).pain ?? {})['asscheeks'] = (((s as any).pain ?? {})['asscheeks'] ?? 0) + (0);
       ((s as any).pain ?? {})['feet'] = (((s as any).pain ?? {})['feet'] ?? 0) + (0);
       ((s as any).pain ?? {})['shoulders'] = (((s as any).pain ?? {})['shoulders'] ?? 0) + (0);
@@ -1684,7 +1684,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'trib', 10);
     qspCall(s, 'arousal', 'end');
     if (((s as any).succubusflag ?? 0) === 1) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
       (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (50 * ((s as any).scfeed ?? 0));
       (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
       (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);

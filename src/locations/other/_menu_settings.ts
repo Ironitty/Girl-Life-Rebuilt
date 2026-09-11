@@ -392,6 +392,58 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  if (((s as any).theme ?? 0)?.['name'] === 'Custom') {
+    qspCall(s, 'themes', 'check_custom_vars');
+    qspCall(s, 'themes', 'set_theme', 'Custom', 'static');
+    qspCall(s, '$menu_obnovit', '');
+  }
+  (s as any).menu_page = 0;
+  qspCall(s, '$menu_settings', 'settingtabs', 'Gameplay');
+  scene.text('<center><h2>General Settings</h2></center>');
+  // TODO-QSP: $settings['table_start']
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['disable_autosave']", 'AutoSave', 'Enabled'...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['music_off']", 'Music', 'Enabled', 'Dis...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['environment_off']", 'Environment sound...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['menu_off']", 'Menu/Phone sounds', 'Ena...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt']", 'Default payment method', 'Cas...
+  if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 0) {
+    // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+  } else {
+    if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1) {
+      // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+    }
+  }
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['income_opt']", 'Income method', 'Cash', 'C...
+  if (((s as any).bankAccount ?? 0) === 0  &&  (((s as any).cfg_vars ?? 0)?.['income_opt'] === 1  ||  ((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1)) {
+    scene.text('<center><b>Warning: You\'ve selected the card payment option, but you don\'t have a bank account yet!</b></center>');
+  }
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['allow_overdraft']", 'Allow paying with ove...
+  scene.text('<font color="grey">Hybrid payment will first use up your cash, then pay the remainder with your card.</font>');
+  qspCall(s, '$menu_settings', 'print_life_sim_cheat');
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['auto_brush']", 'Auto brush hair on mirror...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'setting', "cheatVars['enema']", 'Enema realism', 'Enabled',...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['pee']", 'Peeing', 'Enabled', 'Disabled' &...
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "droutine_settings['disabled']", 'Quick morning and e...
+  if (((s as any).droutine_settings ?? 0)?.['disabled'] === 0) {
+    scene.text('<a href="exec:gs \'$menu_settings\', \'menu_exit\' & gt \'daily_routine\', \'manage\', $menu_loc, $menu_arg">Set up your daily routine</a>');
+  }
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['rename_porn']", 'Renaming porn movies you...
+  scene.text('<b>Calendar Events</b>');
+  qspCall(s, '$menu_settings', 'show_hide_calendar', 'disco_party', 'Disco Party');
+  qspCall(s, '$menu_settings', 'show_hide_calendar', 'church', 'Church Service', 'pack');
+  qspCall(s, '$menu_settings', 'show_hide_calendar', 'intercity_trains', 'Intercity Trains', 'pack');
+  scene.text('<b>Cycle Calendar Events</b>');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 0, 'Menstrual Phase');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 1, 'Follicular Phase');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 2, 'Fertile Phase');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 3, 'Luteal Phase');
+  // TODO-QSP: $settings['table_end']
+  scene.build();
+}
+
 function enterDifficulty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingtabs', 'Difficulty');
   qspCall(s, 'archetypes', 'init');
@@ -1824,7 +1876,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterExplanationBuildArchetypes(s, scene);
       break;
     default:
-      enterMenuExit(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

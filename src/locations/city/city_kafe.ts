@@ -644,12 +644,12 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PServer ?? 0) === 1) {
     ((s as any).workKafe ?? {})['tips_roll'] = (((s as any).workKafe ?? {})['tips_roll'] ?? 0) + (50);
   }
-  ((s as any).workKafe ?? {})['tips_total'] = (((s as any).rand ?? 0)(1, 125) + ((s as any).rand ?? 0)(1, 125) + ((s as any).rand ?? 0)(1, 125) + ((s as any).rand ?? 0)(1, 125)) + ((s as any).workKafe ?? {})?.['tips_roll'] + ((s as any).pcs_apprnc ?? 0) - 100 + ((s as any).pcs_servng ?? 0);
+  ((s as any).workKafe ?? {})['tips_total'] = ((Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1) + (Math.floor(Math.random() * 125) + 1)) + ((s as any).workKafe ?? {})?.['tips_roll'] + ((s as any).pcs_apprnc ?? 0) - 100 + ((s as any).pcs_servng ?? 0);
   if (((s as any).workKafe ?? 0)?.['tips_total'] < 100) {
-    ((s as any).workKafe ?? {})['tips_total'] = 110 - ((s as any).rand ?? 0)(0, 20);
+    ((s as any).workKafe ?? {})['tips_total'] = 110 - (Math.floor(Math.random() * 21) + 0);
   }
   if (((s as any).workKafe ?? 0)?.['tips_total'] > 500) {
-    ((s as any).workKafe ?? {})['tips_total'] = 510 - ((s as any).rand ?? 0)(0, 20);
+    ((s as any).workKafe ?? {})['tips_total'] = 510 - (Math.floor(Math.random() * 21) + 0);
   }
   // TODO-QSP: gs 'money', 'earn', workKafe['tips_total']
   ((s as any).workKafe ?? {})['tips_roll'] = 0;

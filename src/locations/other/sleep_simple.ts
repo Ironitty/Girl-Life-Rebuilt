@@ -6,6 +6,22 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
+    ((s as any).sleepVars ?? {})['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 353) / 100;
+  } else {
+    if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === -1) {
+      ((s as any).sleepVars ?? {})['time_to_full'] = ((100 - ((s as any).pcs_sleep ?? 0)) * 636) / 100;
+    } else {
+      ((s as any).sleepVars ?? {})['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
+    }
+  }
+  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
+  qspCall(s, 'sleep', 'calc_minutes_to_wakeup');
+  qspCall(s, 'sleep_simple', 'loop');
+  scene.build();
+}
+
 function enterForced(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
     qspCall(s, 'sleep_simple', 'simple');
@@ -20,7 +36,7 @@ function enterForced(s: GameState, scene: SceneBuilder): void {
       ((s as any).sleepVars ?? {})['time_to_full'] = (100 - ((s as any).pcs_sleep ?? 0)) * 5;
     }
   }
-  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + ((s as any).rand ?? 0)(0, 90));
+  ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   ((s as any).sleepVars ?? {})['minutes_to_wakeup'] = qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" });
   qspCall(s, 'sleep_simple', 'loop');
   scene.build();
@@ -180,7 +196,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterNapBase(s, scene);
       break;
     default:
-      enterForced(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

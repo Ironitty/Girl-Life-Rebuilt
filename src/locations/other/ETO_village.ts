@@ -412,7 +412,7 @@ function enterLakeArea(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     scene.img(`images/pc/activities/swim/lake/swim_bikini_${Math.floor(Math.random() * 9) + 0}.jpg`);
     scene.text('You swim in the lake. The water refreshes and invigorates you.');
     if (((s as any).deodorant_on ?? 0) === 1) {
@@ -432,7 +432,7 @@ function enterLakeArea(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '');
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (3);
     qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     qspCall(s, 'arousal', 'foreplay', (-60), 'exhibition');
     qspCall(s, 'arousal', 'end');
     scene.img(`images/pc/activities/swim/lake/swim_nude_${Math.floor(Math.random() * 11) + 0}.jpg`);

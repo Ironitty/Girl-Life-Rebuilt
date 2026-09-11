@@ -544,7 +544,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_outfitVars ?? {})['cum_penal'] = (((s as any).temp_outfitVars ?? {})['cum_penal'] ?? 0) + (Math.max(0, 6 - Math.max(((s as any).PCloSkirt ?? 0), ((s as any).PCloPants ?? 0))) * ((s as any).sparrvol ?? 0)[9] / 6);
             // TODO-QSP: temp_outfitVars['cum_penal'] /= 2
             ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-            ((s as any).temp_outfitVars ?? {})['dirty2'] = ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']);
+            ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
             if ((!((s as any).PCloBorrowed ?? 0))) {
               // TODO-QSP: gs 'clothing', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
             } else {
@@ -576,7 +576,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
             ((s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).sparrvol ?? 0)[2] + ((s as any).sparrvol ?? 0)[5] + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4] + ((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14] + ((s as any).sparrvol ?? 0)[15]) / 2;
             ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-            ((s as any).temp_outfitVars ?? {})['dirty2'] = ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']);
+            ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
             if ((!((s as any).PPanBorrowed ?? 0))) {
               // TODO-QSP: gs 'underwear_bodysuits', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
             } else {
@@ -606,7 +606,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
               }
               ((s as any).temp_outfitVars ?? {})['cum_penal'] = qspUntranslated(s, "sparrvol[14]", { location: "outfit" });
               ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-              ((s as any).temp_outfitVars ?? {})['dirty2'] = ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']);
+              ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
               if ((!((s as any).PBraBorrowed ?? 0))) {
                 // TODO-QSP: gs 'bras', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
               } else {
@@ -636,7 +636,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
               ((s as any).temp_outfitVars ?? {})['sweat_penal'] = (((s as any).temp_outfitVars ?? {})['sweat_penal'] ?? 0) + (Math.max(0, ((s as any).pcs_horny ?? 0) - 100) / 2);
               ((s as any).temp_outfitVars ?? {})['cum_penal'] = ((s as any).sparrvol ?? 0)[2] + ((s as any).sparrvol ?? 0)[5] + (((s as any).sparrvol ?? 0)[1] + ((s as any).sparrvol ?? 0)[4]) / 2;
               ((s as any).temp_outfitVars ?? {})['dirty'] = ((s as any).temp_outfitVars ?? {})?.['time_diff'] * Math.min(((s as any).temp_outfitVars ?? {})?.['sweat_penal'] + ((s as any).temp_outfitVars ?? {})?.['cum_penal'], 200) / 100;
-              ((s as any).temp_outfitVars ?? {})['dirty2'] = ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']) + ((s as any).rand ?? 0)(0, ((s as any).temp_outfitVars ?? {})?.['dirty']);
+              ((s as any).temp_outfitVars ?? {})['dirty2'] = (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0)) + (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['dirty'] - 0 + 1)) + (0));
               if ((!((s as any).PPanBorrowed ?? 0))) {
                 // TODO-QSP: gs 'panties', 'increase_cur_dirt', temp_outfitVars['dirty2'] / 2
               } else {
@@ -865,25 +865,25 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).PShoHeels ?? 0) <= 1) {
-    qspCall(s, 'exp_deg', 'heels', ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15));
+    qspCall(s, 'exp_deg', 'heels', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30)));
   }
   (s as any).temp_dep_pain = 0;
   if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 3) {
     if (((s as any).PShoHeels ?? 0) <= 1) {
       if (((s as any).pain ?? 0)?.['feet'] < 80) {
-        qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).heelstime ?? 0) / 7, ((s as any).heelstime ?? 0) / 2), 'feet', 'ache');
+        qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 2 - heelstime / 7 + 1)) + (heelstime / 7)), 'feet', 'ache');
       }
       (s as any).temp_dep_pain = 1;
     } else {
       if (((s as any).PShoHeels ?? 0) === 2) {
         if (((s as any).pain ?? 0)?.['feet'] < 60) {
-          qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).heelstime ?? 0) / 15, ((s as any).heelstime ?? 0) / 5), 'feet', 'ache');
+          qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 5 - heelstime / 15 + 1)) + (heelstime / 15)), 'feet', 'ache');
         }
         (s as any).temp_dep_pain = 1;
       } else {
         if (((s as any).PShoHeels ?? 0) === 3) {
           if (((s as any).pain ?? 0)?.['feet'] < 40) {
-            qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).heelstime ?? 0) / 30, ((s as any).heelstime ?? 0) / 10), 'feet', 'ache');
+            qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 10 - heelstime / 30 + 1)) + (heelstime / 30)), 'feet', 'ache');
           }
           (s as any).temp_dep_pain = 1;
         }
@@ -893,13 +893,13 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 2) {
       if (((s as any).PShoHeels ?? 0) <= 1) {
         if (((s as any).pain ?? 0)?.['feet'] < 60) {
-          qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).heelstime ?? 0) / 15, ((s as any).heelstime ?? 0) / 5), 'feet', 'ache');
+          qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 5 - heelstime / 15 + 1)) + (heelstime / 15)), 'feet', 'ache');
         }
         (s as any).temp_dep_pain = 1;
       } else {
         if (((s as any).PShoHeels ?? 0) === 2) {
           if (((s as any).pain ?? 0)?.['feet'] < 40) {
-            qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).heelstime ?? 0) / 30, ((s as any).heelstime ?? 0) / 10), 'feet', 'ache');
+            qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 10 - heelstime / 30 + 1)) + (heelstime / 30)), 'feet', 'ache');
           }
           (s as any).temp_dep_pain = 1;
         }
@@ -908,7 +908,7 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
       if (((s as any).trait_vars ?? 0)?.['heel_preference'] === 1) {
         if (((s as any).PShoHeels ?? 0) <= 1) {
           if (((s as any).pain ?? 0)?.['feet'] < 40) {
-            qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).heelstime ?? 0) / 30, ((s as any).heelstime ?? 0) / 10), 'feet', 'ache');
+            qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 10 - heelstime / 30 + 1)) + (heelstime / 30)), 'feet', 'ache');
           }
           (s as any).temp_dep_pain = 1;
         }
@@ -938,30 +938,30 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_vars ?? {})['heel_preference_daily_limit'] = Math.max(0, ((s as any).trait_vars ?? {})?.['heel_preference_daily_limit'] - ((s as any).temp_time ?? 0));
   }
   if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['severe']) {
-    ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(5, ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10)), 10);
+    ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(5, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 10);
     if (((s as any).pain ?? 0)?.['feet'] < 80) {
-      qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 2), 'feet', 'ache');
+      qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 2 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5)), 'feet', 'ache');
     }
   } else {
     if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['medium']) {
-      ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(7, ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 8)), 12);
+      ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(7, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 8 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15))), 12);
       if (((s as any).pain ?? 0)?.['feet'] < 60) {
-        qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5), 'feet', 'ache');
+        qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10)), 'feet', 'ache');
       }
     } else {
       if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild']) {
-        ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(3, ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15)), 6);
+        ((s as any).temp_outfitVars ?? {})['heels_time'] = Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 6);
         if (((s as any).pain ?? 0)?.['feet'] < 40) {
-          qspCall(s, 'pain', '', ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10), 'feet', 'ache');
+          qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20)), 'feet', 'ache');
         }
       } else {
         if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild'] + 10) {
-          ((s as any).temp_outfitVars ?? {})['heels_time'] = ((s as any).rand ?? 0)(-3, 0) + Math.min(Math.max(6, ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5)), 9);
+          ((s as any).temp_outfitVars ?? {})['heels_time'] = (Math.floor(Math.random() * (0 - -3 + 1)) + (-3)) + Math.min(Math.max(6, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10))), 9);
         } else {
           if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild'] + 20) {
-            ((s as any).temp_outfitVars ?? {})['heels_time'] = ((s as any).rand ?? 0)(-5, 0) + Math.min(Math.max(4, ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15)), 6);
+            ((s as any).temp_outfitVars ?? {})['heels_time'] = (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)) + Math.min(Math.max(4, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 6);
           } else {
-            ((s as any).temp_outfitVars ?? {})['heels_time'] = ((s as any).rand ?? 0)(-7, 0) + Math.min(Math.max(3, ((s as any).rand ?? 0)(((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30, ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20)), 4);
+            ((s as any).temp_outfitVars ?? {})['heels_time'] = (Math.floor(Math.random() * (0 - -7 + 1)) + (-7)) + Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 4);
           }
         }
       }

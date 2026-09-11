@@ -98,7 +98,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).chai1 = ((s as any).rand ?? 0)(0, 100 - (((s as any).job_rank ?? {})?.['pav_hotel_maid'] / 2));
   if (((s as any).chai1 ?? 0) < 25) {
-    (s as any).chai = 20 + ((s as any).rand ?? 0)(0, 40) + ((s as any).rand ?? 0)(0, ((s as any).job_rank ?? {})?.['pav_hotel_maid']);
+    (s as any).chai = 20 + (Math.floor(Math.random() * 41) + 0) + (Math.floor(Math.random() * (((s as any).job_rank ?? {})?.['pav_hotel_maid'] - 0 + 1)) + (0));
   }
   if (((s as any).maidrand ?? 0) <= 10) {
     scene.actions([{ label: 'Continue', goto: ['pav_hotelWork', 'work0'] }]);

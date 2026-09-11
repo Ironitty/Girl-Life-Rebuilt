@@ -48,20 +48,20 @@ function enterDiseasePicker(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tipvenerarand ?? 0) < 5) {
     if ((Math.floor(Math.random() * 100) + 1) > 85  &&  (!((s as any).KandidozOnce ?? 0))) {
       (s as any).KandidozOnce = 1;
-      (s as any).Kandidoz = ((s as any).rand ?? 0)(-12, -6);
+      (s as any).Kandidoz = (Math.floor(Math.random() * (-6 - -12 + 1)) + (-12));
     }
   } else {
     if (((s as any).tipvenerarand ?? 0) < 7) {
       if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).TriperOnce ?? 0))) {
         (s as any).TriperOnce = 1;
-        (s as any).Triper = ((s as any).rand ?? 0)(-11, -6);
+        (s as any).Triper = (Math.floor(Math.random() * (-6 - -11 + 1)) + (-11));
         (s as any).Venera = ((s as any).Venera ?? 0) + (1);
       }
     } else {
       if (((s as any).tipvenerarand ?? 0) === 7) {
         if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).SifacOnce ?? 0))) {
           (s as any).SifacOnce = 1;
-          (s as any).Sifilis = ((s as any).rand ?? 0)(-9, -5);
+          (s as any).Sifilis = (Math.floor(Math.random() * (-5 - -9 + 1)) + (-9));
           (s as any).Venera = ((s as any).Venera ?? 0) + (1);
         }
       } else {
@@ -69,7 +69,7 @@ function enterDiseasePicker(s: GameState, scene: SceneBuilder): void {
           if ((Math.floor(Math.random() * 100) + 1) > 90  &&  (!((s as any).GerpesOnce ?? 0))) {
             (s as any).GerpesOnce = 1;
             (s as any).Venera = ((s as any).Venera ?? 0) + (1);
-            (s as any).Gerpes = ((s as any).rand ?? 0)(-10, -6);
+            (s as any).Gerpes = (Math.floor(Math.random() * (-6 - -10 + 1)) + (-10));
             (s as any).GenHerpes = 1;
           }
         }
@@ -123,7 +123,7 @@ function enterDiseasePickerOral(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tipvenerarand ?? 0) >= 5  &&  ((s as any).tipvenerarand ?? 0) < 7) {
     if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).TriperOnce ?? 0))) {
       (s as any).TriperOnce = 1;
-      (s as any).TriperOral = ((s as any).rand ?? 0)(-15, -9);
+      (s as any).TriperOral = (Math.floor(Math.random() * (-9 - -15 + 1)) + (-15));
       (s as any).Venera = ((s as any).Venera ?? 0) + (1);
       if ((Math.floor(Math.random() * 101) + 0) < 15) {
         (s as any).TriperOralSigns = 1;
@@ -134,7 +134,7 @@ function enterDiseasePickerOral(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).SifacOnce ?? 0))) {
           (s as any).SifacOnce = 1;
-          (s as any).Sifilis = ((s as any).rand ?? 0)(-13, -8);
+          (s as any).Sifilis = (Math.floor(Math.random() * (-8 - -13 + 1)) + (-13));
           (s as any).Venera = ((s as any).Venera ?? 0) + (1);
         }
       }
@@ -142,14 +142,14 @@ function enterDiseasePickerOral(s: GameState, scene: SceneBuilder): void {
       if (((s as any).tipvenerarand ?? 0) < 5) {
         if ((Math.floor(Math.random() * 100) + 1) > 85  &&  (!((s as any).KandidozOnce ?? 0))) {
           (s as any).KandidozOnce = 1;
-          (s as any).Kandidoz = ((s as any).rand ?? 0)(-21, -14);
+          (s as any).Kandidoz = (Math.floor(Math.random() * (-14 - -21 + 1)) + (-21));
         }
       } else {
         if (((s as any).tipvenerarand ?? 0) === 8) {
           if ((Math.floor(Math.random() * 100) + 1) > 90  &&  (!((s as any).GerpesOnce ?? 0))) {
             (s as any).GerpesOnce = 1;
             (s as any).Venera = ((s as any).Venera ?? 0) + (1);
-            (s as any).Gerpes = ((s as any).rand ?? 0)(-16, -11);
+            (s as any).Gerpes = (Math.floor(Math.random() * (-11 - -16 + 1)) + (-16));
             (s as any).OrHerpes = 1;
           }
         }

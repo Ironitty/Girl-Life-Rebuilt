@@ -939,7 +939,7 @@ function enterKatnatsex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur', 5, 'lesbian');
   ((s as any).NatbelQW ?? {})['Debt'] = (((s as any).NatbelQW ?? {})['Debt'] ?? 0) - (500);
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
   }
@@ -973,7 +973,7 @@ function enterKatnatsex3(s: GameState, scene: SceneBuilder): void {
   ((s as any).NatbelQW ?? {})['Debt'] = 0;
   qspCall(s, 'npc_relationship', 'modify', 'A14', (-5));
   if (((s as any).succubusflag ?? 0) === 1) {
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + ((s as any).rand ?? 0)(1, 4);
+    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
     (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
   }

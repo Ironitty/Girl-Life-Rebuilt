@@ -6,6 +6,107 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).FedorHomeDate = 1;
+  (s as any).WithFedor = 1;
+  qspCall(s, 'boyStat', 'A5');
+  scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/kiss2.mp4');
+  scene.text('As you arrive at Fedor\'s house and he opens the door for you then gives you a pat on the ass with a playful smile on his face as you walk in. You respond by pushing him against the wall while grabbing the back of his head and passionately kissing his lips as you rub on his crotch.');
+  qspCall(s, 'arousal', 'foreplay', 5, 'sub');
+  qspCall(s, 'arousal', 'kiss', (-5), 'dom');
+  qspCall(s, 'stat', '');
+  scene.actions([
+    { label: 'Head to the livingroom', goto: ['FedorEv4', 'Home 2'] },
+    { label: 'Get down on your knees', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall1.mp4');
+    scene.text('You unzip then drop Fedor\'s pants as you continue kissing him while stroking his cock. After a few seconds, you drop to your knees and start sucking his dick without ever breaking eye contact. Fedor moans a bit. "You know just what I like." You respond with "What kind of girlfriend would I be if I didn\'t know how to please my man."');
+    qspCall(s, 'arousal', 'bj', (-5), 'dom');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/shared/sex/blowjob/blowjob2.mp4');
+    scene.text('Fedor says, "Let\'s see how much you can take." as he grabs you by the back of your head and begins pushing his cock further down you throat. You do your best not to gag as Fedor begin fucking your throat. The sensation is unpleasant but you do your best to please Fedor, letting him fuck your throat deeper and rougher while trying to hold back the tears streaming down your face. After a few seconds Fedor notices your discomfort and releases you. Fedor then kneels down front of you and kisses you gently. "Since you did that for me, I\'m going to give you a reward."');
+    qspCall(s, 'arousal', 'bj', (-5), 'sub', 'deepthroat');
+    qspCall(s, 'stat', '');
+    (s as any).VK = Math.floor(Math.random() * 4) + 1;
+    if (((s as any).VK ?? 0) === 4  &&  ((s as any).fedorKozlovQW ?? 0) > -10) {
+      scene.actions([
+        { label: 'See what he does', goto: ['FedorEv4_sex', '3Way'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'See what he does', goto: ['FedorEv4_sex', 'Hall Sex'] },
+        { label: 'Put your feet in his face', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall6.jpg');
+    scene.text('You lean back and lift your feet to his face. "Good, Kiss my feet." Fedor is surprised at first but then starts slowly rubbing your ankles with his hands as he begins gently kissing your feet. Fedor begins kissing each of your toes one at a time then starts to suck on them as you watch him in excitement of how much he is willing to do for you and how much he enjoys pleasing you.');
+    qspCall(s, 'arousal', 'foreplay_give', (-10), 'dom', 'feet');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Give him a footjob', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall7.jpg');
+    // TODO-QSP: dynamic text: You pull your foot away from Fedor's mouth then place it on his chest lightly pu...
+    scene.text(`You pull your foot away from Fedor's mouth then place it on his chest lightly pushing him on his back as you wrap both your feet around his dick and begin to stroking his cock while staring into his eyes, enjoying the very adoring look he is giving you. Fedor remarks. "Wow ${((s as any).pcs_nickname ?? 0)}, Your feet are so soft."`);
+    scene.text('You respond, "And so is your dick. I want to ride it." as you withdraw your feet then crawl on top of Fedor, burying his dick in your pussy while forcing your tongue in Fedor\'s mouth as he caresses it with his.');
+    qspCall(s, 'arousal', 'footjob', (-10), 'dom', 'feet');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Ride Fedor', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall8.jpg');
+    scene.text('You ride Fedor\'s cock slowly at first but then begin picking up the pace as you see him begin to squirm. You can see that he is trying to keep himself from cumming.');
+    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(s, 'stat', '');
+    if (((s as any).FedorLoveTalk ?? 0) === 1) {
+      scene.actions([
+        { label: 'Make him cum inside you', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
+    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor's eyes, feeling both t...
+    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You start thrusting rapidly, ready to take his load inside you and after the fourth thrust Fedor groans and you can feel his cum filling you with its warmth. You continue riding him, doing your best to milk his dick dry, feeling him filling your womb almost completely. Fedor take a few seconds to catch his breath. "${((s as any).pcs_firstname ?? 0)} you're so damn good at that."`);
+    scene.text('You respond, "I will always do my best to please you Fyodor." Fedor gives you a warm smile then begins getting dressed as he replies, "That\'s my girl. Shall we go and watch a movie together?" You reply, "Sure but I need to wash up first.');
+    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Clean up', goto: ['FedorEv4', 'Bathroom Wash'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Make him cum', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum7.mp4');
+    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor's eyes, feeling both t...
+    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You give him 3 more thrust then pull Fedor's dick out of you and begin rubbing it with your hands as he cums on your feet. You do your best to milk him dry while staring into his eyes as he cums for you. Fedor takes a few seconds to catch his breath. "Damn ${((s as any).pcs_firstname ?? 0)}, I love it when you take control."`);
+    scene.text('You respond, "What can I say? I know what my man needs." Fedor begins dressed as he replies, "You certainly do… So are you still up for a good movie?" You reply, "Sure but I need to wash up first."');
+    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(s, 'cum_call', 'hands', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'cum_call', 'legs', ((s as any).boy ?? 0), 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Go wash up', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['FedorEv4', 'Bathroom Wash'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
 function enterHome2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -249,9 +350,9 @@ function enterBathroomWash(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
@@ -270,9 +371,9 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 1;
   qspCall(s, 'cum_cleanup', '');
   if (((s as any).pcs_sweat ?? 0) < 30) {
-    (s as any).pcs_sweat = 15 + ((s as any).rand ?? 0)(0, 4);
+    (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
   } else {
-    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + ((s as any).rand ?? 0)(0, 4));
+    (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (10 + (Math.floor(Math.random() * 5) + 0));
   }
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
@@ -1675,7 +1776,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterHomeEntrance3(s, scene);
       break;
     default:
-      enterHome2(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -1686,5 +1787,6 @@ export const FedorEv4: LocationDef = {
   region: 'other',
   locationType: 'private',
   locclass: 'bedr',
+  description: ['As you arrive at Fedor\'s house and he opens the door for you then gives you a pat on the ass with a playful smile on his face as you walk in. You respond by pushing him against the wall while grabbing the back of his head and passionately kissing his lips as you rub on his crotch.'],
   enter: enter,
 };

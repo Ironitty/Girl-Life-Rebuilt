@@ -6,6 +6,41 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Assbook</b></center>');
+  if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
+    scene.img('images/pc/items/accessories/computer/eror.jpg');
+    // TODO-QSP: 'You have no internet access, ' + iif(access['metered'], ' you have to buy more minutes.', ' maybe y...
+    scene.actions([
+      { label: '<b>Close the browser</b>', goto: ['komp', 'start'] },
+    ]);
+  } else {
+    scene.img('images/system/image_needed.png');
+    scene.text('You\'re currently on Russia\'s biggest social network site, "Assbook". Almost everyone has an account here');
+    if (((s as any).assbook ?? 0)?.['account_name'] === '') {
+      scene.text('Click here to log in or <a href="exec:gt \'komp_assbook\', \'signup\' ">sign up</a>');
+    } else {
+      scene.text('Click here to <a href="exec:gt \'komp_assbook\', \'login\' ">log in</a> or signup');
+      scene.actions([
+        { label: 'Go to your page', goto: ['komp_assbook', 'login'] },
+      ]);
+    }
+    if (((s as any).shantfoto ?? 0) > 0) {
+      // TODO-QSP: act 'Find the girl you took photos of in the park': gt 'komp_assbook', 'blackmail'
+    }
+    scene.actions([
+      { label: 'Browse assbook (0:20)', goto: ['komp_assbook', 'browse'] },
+      { label: 'Look through your friends\' feeds', goto: ['komp_assbook', 'friends'] },
+      { label: 'Read more about Assbook', goto: ['komp_assbook', 'mission_statements'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Close Assbook', goto: ['komp', 'browse'] },
+  ]);
+  scene.build();
+}
+
 function enterSignup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Assbook</b></center>');
   scene.img('images/system/image_needed.png');
@@ -361,7 +396,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterBlackmail(s, scene);
       break;
     default:
-      enterSignup(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }
@@ -370,6 +405,5 @@ export const komp_assbook: LocationDef = {
   name: 'komp_assbook',
   title: 'This content is WIP.',
   region: 'other',
-  description: ['You consider which name you\'d like to register under.'],
   enter: enter,
 };

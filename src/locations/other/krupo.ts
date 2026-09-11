@@ -11,14 +11,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Sewing circle</b></center>');
   scene.img('images/locations/pavlovsk/community/sew/sewing_lesson.jpg');
   if (((s as any).pcs_sewng ?? 0) < 40) {
-    qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
+    qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/10 - pcs_intel/20 + 1)) + (pcs_intel/20)));
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     scene.text('You spend an hour learning different sewing techniques.');
   }
   if (((s as any).pcs_sewng ?? 0) >= 40) {
     if ((!((s as any).tkanfirst ?? 0))) {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
-      qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
+      qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/10 - pcs_intel/20 + 1)) + (pcs_intel/20)));
       scene.text('She has some spare fabric for you as it\'s the first time you need some, but she tells you to bring some next time.');
       (s as any).tkanfirst = 1;
     } else {
@@ -27,7 +27,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 60;
         ((s as any).mc_inventory ?? {})['sewing_fabric'] = (((s as any).mc_inventory ?? {})['sewing_fabric'] ?? 0) - (1);
-        qspCall(s, 'exp_gain', 'sewng', ((s as any).rand ?? 0)(((s as any).pcs_intel ?? 0)/20, ((s as any).pcs_intel ?? 0)/10));
+        qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/10 - pcs_intel/20 + 1)) + (pcs_intel/20)));
         scene.text('For an hour you learn more advanced techniques and practice cutting and sewing the fabric you purchased.');
         if (((s as any).pcs_sewng ?? 0) >= 60  &&  (!((s as any).poTalk ?? 0))) {
           (s as any).poTalk = 1;

@@ -4,6 +4,38 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sleepVars ?? 0)?.['dreams_active'] === 1) {
+    ((s as any).sleepVars ?? {})['events_done'] = 0;
+    if (((s as any).stepdadQW ?? 0) === 3) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''stepdad_dream'' '
+    }
+    if (((s as any).canBraidHair ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).pcs_hairlng ?? 0) > 80) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''braid_hair_dream'' '
+    }
+    if (((s as any).succubusQW ?? 0) === 1  ||  ((s as any).succubusQW ?? 0) === 2) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''succubus_dream'' '
+    }
+    if ((Math.floor(Math.random() * 100) + 1) <= ((s as any).cheatVars ?? 0)?.['no_dream_chance']) {
+      // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''no_dream'' '
+    } else {
+      if (((s as any).pcs_horny ?? 0) <= 50) {
+        // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''d_dreams'' '
+      } else {
+        if ((Math.floor(Math.random() * 4) + 0) < ((s as any).hypnoTime ?? 0)) {
+          // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''hypno_dreams'' '
+        } else {
+          // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''erotic_dream_switch'' '
+        }
+      }
+      qspCall(s, 'blackmailer', 'blackmail_dream_events');
+    }
+    scene.actions([{ label: 'Continue', goto: ['dream_events', 'mod_sleepevents'] }]);
+  }
+  scene.actions([{ label: 'Continue', goto: ['dream_events', 'continue'] }]);
+  scene.build();
+}
+
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'dream_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler'] }]);
@@ -108,7 +140,7 @@ function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).pcs_ass ?? 0) === 0  &&  (!(((s as any).stat ?? 0)?.['anal'] + ((s as any).stat ?? 0)?.['bj'] + ((s as any).stat ?? 0)?.['hj'] + ((s as any).stat ?? 0)?.['cuni']+ ((s as any).stat ?? 0)?.['female_sexual_partners'] + ((s as any).stat ?? 0)?.['male_sexual_partners'] + ((s as any).stat ?? 0)?.['herm_sexual_partners']))) {
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 1;
   } else {
-    (s as any).temp_rand = ((s as any).rand ?? 0)(1, 7 + ((s as any).succublvl ?? 0));
+    (s as any).temp_rand = (Math.floor(Math.random() * (7 + succublvl - 1 + 1)) + (1));
   }
   if (((s as any).temp_rand ?? 0) <= 1) {
     qspCall(s, 'dream_events', 'd_dreams');
@@ -684,7 +716,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       enterPregDreams(s, scene);
       break;
     default:
-      enterModSleepevents(s, scene);
+      enterDefault(s, scene);
       break;
   }
 }

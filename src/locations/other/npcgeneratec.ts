@@ -50,7 +50,7 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
 function enterAssignDob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'time', 'to_daystart', year - npcgeneratecVars['age'] - 1, month, day
   ((s as any).npcgeneratecVars ?? {})['min_daystart'] = ((s as any).dateVars ?? {})?.['daystart'] + 1;
-  ((s as any).npcgeneratecVars ?? {})['birth_daystart'] = ((s as any).rand ?? 0)(((s as any).npcgeneratecVars ?? {})?.['min_daystart'], ((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 364);
+  ((s as any).npcgeneratecVars ?? {})['birth_daystart'] = (Math.floor(Math.random() * (((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 364 - ((s as any).npcgeneratecVars ?? {})?.['min_daystart'] + 1)) + (((s as any).npcgeneratecVars ?? {})?.['min_daystart']));
   // TODO-QSP: gs 'time', 'to_date', npcgeneratecVars['birth_daystart']
   // TODO-QSP: npc_dob[$ARGS[1]] = dateVars['year'] * 10000
   // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['month'] * 100
@@ -239,7 +239,7 @@ function enterGenDick(s: GameState, scene: SceneBuilder): void {
                           ((s as any).npcgeneratecVars ?? {})['dick_length'] = 22;
                           ((s as any).npcgeneratecVars ?? {})['dick_girth'] = 15;
                         } else {
-                          ((s as any).npcgeneratecVars ?? {})['dick_length'] = 1 + ((s as any).rand ?? 0)(1, 4) + ((s as any).rand ?? 0)(1, 4) + ((s as any).rand ?? 0)(1, 4) + ((s as any).rand ?? 0)(1, 4);
+                          ((s as any).npcgeneratecVars ?? {})['dick_length'] = 1 + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1) + (Math.floor(Math.random() * 4) + 1);
                           if ((!(Math.floor(Math.random() * 7) + 0))) {
                             ((s as any).npcgeneratecVars ?? {})['dick_length'] = (((s as any).npcgeneratecVars ?? {})['dick_length'] ?? 0) + (Math.floor(Math.random() * 8) + 1);
                           }
@@ -1061,7 +1061,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_neat[$ARGS[1]] = 0
     }
   }
-  ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).rand ?? 0)(0, 2) - ((s as any).npc_neat ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+  ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 3) + 0) - ((s as any).npc_neat ?? 0)[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 1) {
     // TODO-QSP: $npc_pubes[$ARGS[1]] = 'shaved'
   } else {
@@ -1539,7 +1539,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids ?? {})['clothes_cleavage_large'] = 4;
   ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).rand ?? 0)(0, 5) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
       ((s as any).npcgeneratecVars ?? {})['CloTopPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
@@ -1576,7 +1576,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids ?? {})['clothes_skirt_short'] = 3;
   ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).rand ?? 0)(0, 5) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
       ((s as any).npcgeneratecVars ?? {})['PanShorPref'] = 1;
     } else {
@@ -1614,7 +1614,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids ?? {})['clothes_thin_high'] = 3;
   ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).rand ?? 0)(0, 5) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2) {
       ((s as any).npcgeneratecVars ?? {})['CloThinPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
@@ -1648,7 +1648,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids ?? {})['shoes_heels_fetish'] = 4;
   ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).rand ?? 0)(0, 5) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2  &&  ((s as any).npcgeneratecVars ?? 0)?.['CloTypePref'] !== 4) {
       ((s as any).npcgeneratecVars ?? {})['ShoHeelPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
@@ -1688,7 +1688,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids ?? {})['cosmetics_piercings_lot'] = 3;
   ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['pierPref'] = Math.min(3, ((s as any).rand ?? 0)(1, 3) + ((s as any).npcgeneratecVars ?? {})?.['slutconstant']);
+    ((s as any).npcgeneratecVars ?? {})['pierPref'] = Math.min(3, (Math.floor(Math.random() * 3) + 1) + ((s as any).npcgeneratecVars ?? {})?.['slutconstant']);
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['attracted'] !== '') {
     if ((Math.floor(Math.random() * 10) + 0) < 3) {
@@ -1768,7 +1768,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).pref_ids ?? {})['cosmetics_makeup_heavy'] = 3;
   ((s as any).npcgeneratecVars ?? {})['preftype'] = ((s as any).prefdin2 ?? 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    ((s as any).npcgeneratecVars ?? {})['rand'] = ((s as any).rand ?? 0)(0, 5) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
+    ((s as any).npcgeneratecVars ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0) - ((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)];
     if (((s as any).npcgeneratecVars ?? 0)?.['rand'] < 2) {
       ((s as any).npcgeneratecVars ?? {})['makeupPref'] = 1 + ((s as any).npcgeneratecVars ?? {})?.['slutconstant'];
     } else {
@@ -1882,7 +1882,7 @@ function enterSetApprnc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rough ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
       ((s as any).npcgeneratecVars ?? {})['apprnc'] = (((s as any).npcgeneratecVars ?? {})['apprnc'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     } else {
-      ((s as any).npcgeneratecVars ?? {})['apprnc'] = (((s as any).npcgeneratecVars ?? {})['apprnc'] ?? 0) + (((s as any).rand ?? 0)(-10, 10));
+      ((s as any).npcgeneratecVars ?? {})['apprnc'] = (((s as any).npcgeneratecVars ?? {})['apprnc'] ?? 0) + ((Math.floor(Math.random() * (10 - -10 + 1)) + (-10)));
     }
   }
   // TODO-QSP: npc_apprnc[$ARGS[1]] = npcgeneratecVars['apprnc']

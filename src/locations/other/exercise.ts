@@ -941,7 +941,7 @@ function enterPushupsInner(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_energy_bonus = 200 - ((s as any).pcs_energy ?? 0);
   }
-  (s as any).pushnum = 10 * (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_sleep ?? 0) + ((s as any).temp_energy_bonus ?? 0)) / 33 + ((s as any).rand ?? 0)(-10, 10);
+  (s as any).pushnum = 10 * (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_sleep ?? 0) + ((s as any).temp_energy_bonus ?? 0)) / 33 + (Math.floor(Math.random() * (10 - -10 + 1)) + (-10));
   (s as any).pushnum = 0;
   // TODO-QSP: dynamic text: <br>You managed to do <<pushnum>> push-ups. Your previous record is <<pushrecord...
   scene.text(`<br>You managed to do ${((s as any).pushnum ?? 0)} push-ups. Your previous record is ${((s as any).pushrecord ?? 0)}.`);
@@ -971,7 +971,7 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
   (s as any).lastexerciseexp = 0;
   ((s as any).temp_exVars ?? {})['m'] = 0;
   // TODO-QSP: :multloop1
-  (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + (((s as any).rand ?? 0)(1, 6) / 6);
+  (s as any).lastexerciseexp = ((s as any).lastexerciseexp ?? 0) + ((Math.floor(Math.random() * 6) + 1) / 6);
   if (((s as any).locArgs?.[3] ?? 0) === '') {
     qspCall(s, 'exp_gain', '', ((s as any).locArgs?.[2] ?? 0), Math.floor(Math.random() * 2) + 0);
   } else {
@@ -983,14 +983,14 @@ function enterTier1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'exploop1'
     }
   }
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + ((s as any).rand ?? 0)(0, 5)) / 6);
-  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (((s as any).rand ?? 0)(1, 3) / 3);
-  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (((s as any).rand ?? 0)(2, 4) / 3);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + (Math.floor(Math.random() * 6) + 0)) / 6);
+  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((Math.floor(Math.random() * 3) + 1) / 3);
+  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - ((Math.floor(Math.random() * 3) + 2) / 3);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - (((s as any).rand ?? 0)(1, 6) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
   qspCall(s, 'sweat', 'add', 1);
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2 + ((s as any).rand ?? 0)(1, 2) / 2);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2 + (Math.floor(Math.random() * 2) + 1) / 2);
   }
   ((s as any).temp_exVars ?? {})['m'] = (((s as any).temp_exVars ?? {})['m'] ?? 0) + (1);
   if (((s as any).temp_exVars ?? 0)?.['m'] < ((s as any).temp_exVars ?? 0)?.['mult']) {
@@ -1031,14 +1031,14 @@ function enterTier2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'exploop2'
     }
   }
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + ((s as any).rand ?? 0)(0, 2)) / 3);
-  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (((s as any).rand ?? 0)(2, 4) / 3);
-  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (1 + ((s as any).rand ?? 0)(1, 3) / 3);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + (Math.floor(Math.random() * 3) + 0)) / 3);
+  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - ((Math.floor(Math.random() * 3) + 2) / 3);
+  (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (1 + (Math.floor(Math.random() * 3) + 1) / 3);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - (((s as any).rand ?? 0)(1, 6) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
   // TODO-QSP: gs 'sweat', 'add', 3 + rand(1, 3) / 3
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5 + ((s as any).rand ?? 0)(1, 2) / 2);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5 + (Math.floor(Math.random() * 2) + 1) / 2);
   }
   ((s as any).temp_exVars ?? {})['m'] = (((s as any).temp_exVars ?? {})['m'] ?? 0) + (1);
   if (((s as any).temp_exVars ?? 0)?.['m'] < ((s as any).temp_exVars ?? 0)?.['mult']) {
@@ -1079,11 +1079,11 @@ function enterTier3(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'exploop3'
     }
   }
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + ((s as any).rand ?? 0)(1, 2)) / 2);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((5 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + (Math.floor(Math.random() * 2) + 1)) / 2);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (1);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (2);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - (((s as any).rand ?? 0)(1, 6) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
   qspCall(s, 'sweat', 'add', 5);
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -1127,11 +1127,11 @@ function enterTier4(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'exploop4'
     }
   }
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((25 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + ((s as any).rand ?? 0)(1, 6))/ 6);
-  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (1 + ((s as any).rand ?? 0)(1, 3) / 3);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((25 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0)) + (Math.floor(Math.random() * 6) + 1))/ 6);
+  (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (1 + (Math.floor(Math.random() * 3) + 1) / 3);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (4);
   // TODO-QSP: gs 'mood', 'raise', rand(1, 3) / 3
-  (s as any).fat = ((s as any).fat ?? 0) - (((s as any).rand ?? 0)(1, 6) / 6);
+  (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 6) + 1) / 6);
   // TODO-QSP: gs 'sweat', 'add', 8 + rand(2, 4) / 3
   if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
