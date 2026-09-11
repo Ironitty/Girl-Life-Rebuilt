@@ -217,6 +217,16 @@ interface ParseResult {
       continue;
     }
 
+    // Scene (multi-value): if $ARGS[0] = '' or $ARGS[0] = 'start' or $ARGS[0] = 'main':
+    const sceneMultiMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s+(?:or\s+\$ARGS\[0\]\s*=\s*'[^']*'\s+)*or\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
+    if (sceneMultiMatch) {
+      const inner = parseBlock(lines, i + 1, unsupported);
+      const scene: QspScene = { kind: 'scene', arg: '', body: inner.nodes };
+      nodes.push(scene);
+      i = inner.endIdx;
+      continue;
+    }
+
     // Act block: act 'label':
     const actBlockMatch = trimmed.match(/^act\s+'((?:[^']|'')*)'\s*:\s*$/);
     if (actBlockMatch) {
