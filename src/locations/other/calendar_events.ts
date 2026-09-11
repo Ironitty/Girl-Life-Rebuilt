@@ -15,6 +15,7 @@ function enterAddToEventsList(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $events_list[] = $ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +24,7 @@ function enterRemoveFromEventsList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_index ?? 0) !== -1) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +33,7 @@ function enterChangeTitle(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $event_title[$ARGS[1]] = $ARGS[2]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,6 +42,7 @@ function enterMarkDone(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $event_title[$ARGS[1]] = '<s><<$event_title[$ARGS[1]]>></s>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +58,7 @@ function enterGetBlockingEvent(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).blocking_events_count = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -88,6 +93,7 @@ function enterIsDayHoliday(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -185,6 +191,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -335,6 +342,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).candidate ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -343,6 +351,7 @@ function enterNewEvent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).result ?? 0) === 0  &&  ((s as any).locArgs?.[2] ?? 0) !== 'dry_run') {
     qspCall(s, 'calendar_events', 'add_event', ((s as any).locArgs?.[1] ?? 0));
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -370,6 +379,7 @@ function enterAddEvent(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).cal_upcoming_dirty = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -420,6 +430,7 @@ function enterLoadNewEv(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -528,6 +539,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: jump 'loop_new_occurrence'
   // TODO-QSP: :cec_conflict_found
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -551,6 +563,7 @@ function enterRemoveEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: event_start_ts[$ARGS[1]] = 0
   (s as any).cal_upcoming_dirty = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -577,6 +590,7 @@ function enterGetEvent(s: GameState, scene: SceneBuilder): void {
     ((s as any).event_vars ?? {})['duration_ts'] = ((s as any).event_duration_ts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

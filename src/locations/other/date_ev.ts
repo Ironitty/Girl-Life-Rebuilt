@@ -26,6 +26,7 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,10 +80,12 @@ function enterInviteCode(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = 8;
   ((s as any).event_vars ?? {})['color'] = 13;
   // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPhoneInviteStart(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Want to go on a date?', handler: (st: GameState) => {
     if (((s as any).npc_is_busy ?? 0)[((s as any).call4Date ?? 0)?.['NPC']] === 1) {
@@ -124,6 +127,7 @@ function enterPhoneInviteStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDateInviteMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Grab a bite?', handler: (st: GameState) => {
     ((s as any).temp ?? {})['date_type'] = 'casual_meal';
@@ -167,6 +171,7 @@ function enterNpcPickDate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
@@ -182,6 +187,7 @@ function enterNpcPickDate(s: GameState, scene: SceneBuilder): void {
 
 function enterDateTimePicker(s: GameState, scene: SceneBuilder): void {
   scene.text('"Depends. When?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pick a time', handler: (st: GameState) => {
     // TODO-QSP: :date_time_loop
@@ -215,6 +221,7 @@ function enterDateTimePicker(s: GameState, scene: SceneBuilder): void {
 function enterDateDecline(s: GameState, scene: SceneBuilder): void {
   scene.text('"I can\'t in an hour. I\'m busy."');
   scene.text('"Oh, sorry. Okay, maybe we can go out some other time."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang up', goto: ['lover_call', 'fin'] },
   ]);
@@ -224,6 +231,7 @@ function enterDateDecline(s: GameState, scene: SceneBuilder): void {
 function enterNpcMealInvite(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp ?? {})['date_type'] = 'casual_meal';
   scene.text('"Want to grab a bite to eat? In like, an hour?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You can\'t', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_ev', 'date_decline'
@@ -247,6 +255,7 @@ function enterNpcMealInvite(s: GameState, scene: SceneBuilder): void {
 function enterNpcCinemaInvite(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp ?? {})['date_type'] = 'movie_date';
   scene.text('"Want to see a movie? Maybe in like, an hour?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You can\'t', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_ev', 'date_decline'
@@ -273,6 +282,7 @@ function enterNpcCinemaInvite(s: GameState, scene: SceneBuilder): void {
 function enterNpcChillInvite(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp ?? {})['date_type'] = 'netflix_chill';
   scene.text('"Want to come over to my place and chill? Maybe in like, an hour?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You can\'t', handler: (st: GameState) => {
     // TODO-QSP: xgt 'date_ev', 'date_decline'
@@ -383,6 +393,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -405,6 +416,7 @@ function enterExitIntoLoc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -422,6 +434,7 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['date_ev', 'exit'] },
   ]);
@@ -431,6 +444,7 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
 function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
   ((s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -443,11 +457,13 @@ function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).date_ev ?? {})['sugar_daddy_paid'] = 1;
   ((s as any).date_ev ?? {})['prostitution_paid'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLoverAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -456,6 +472,7 @@ function enterEnding(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).sex_ev ?? {}).length > 0) {
     qspCall(s, 'sex_ev_leave', 'end_code');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -500,6 +517,7 @@ function enterEndCode(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_last_date ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     ((s as any).npc_date_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_date_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -508,6 +526,7 @@ function enterBedRoomImg(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -516,6 +535,7 @@ function enterLivingRoomImg(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -524,6 +544,7 @@ function enterKitchenImg(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -532,12 +553,14 @@ function enterHallImg(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDateMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'chill_start');
   qspCall(s, 'date_ev', 'movie_start');
+  // TODO-QSP: end
   scene.build();
 }
 

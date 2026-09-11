@@ -78,6 +78,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Check the listings on "Hot or Not"': $view_location = 'school_lesson'
     scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'hotornot'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
@@ -825,6 +826,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
@@ -1378,6 +1380,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/classmusic.jpg');
@@ -2060,6 +2063,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
@@ -2563,6 +2567,7 @@ function enterArinaDream(s: GameState, scene: SceneBuilder): void {
   scene.text('"Lick my shoes clean or your punishment will be even worse!" she sternly tells you. You can\'t help yourself as you pick up her foot and start licking her shoes.');
   qspCall(s, 'arousal', 'BDSM', 3, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further punishment', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/arina/sex/dream/dream2.jpg');

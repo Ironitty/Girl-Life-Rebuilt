@@ -106,6 +106,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,6 +213,7 @@ function enterUniCafe(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -303,6 +305,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -355,6 +358,7 @@ function enterChat1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -379,6 +383,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, I\'m \'+iif(year = 2017 and month < 9, \'going to study\', \'studying\')+\' to become a teacher," she says. "What about you. Are you also studying here?"');
   // TODO-QSP: dynamic text: "I'm'+iif( $university['enrolled_in'] = 'teaching_studies', ' also going to stud...
   scene.text('"I\'m\'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \' also going to study to become a teacher,\', \' \'+iif(university[\'student\'] = 1, \'in the \' + $func(\'uni_programs\', \'get_program_name\') + \' program\', \'not studying at the university,\')+\',\')+\'" you reply.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', goto: ['katja_chat', 'chat1'] },
   ]);
@@ -399,6 +404,7 @@ function enterSofia1(s: GameState, scene: SceneBuilder): void {
   scene.text('"I doubt it," Katja says. "She\'s constantly hanging out with her boyfriend, and I don\'t think he wants her to meet other girls. She also returns to her hometown on Thursday nights and stays until Sunday, so she doesn\'t have much time to meet anyone."');
   scene.text('"You\'re not too fond of her boyfriend?" you ask.');
   scene.text('"I don\'t know," she says. "There\'s something about him that feels a little bit off, but I shouldn\'t speak ill of people you don\'t even know, so let\'s wait until after you meet him."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', goto: ['katja_chat', 'chat1'] },
   ]);
@@ -443,6 +449,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -490,6 +497,7 @@ function enterBrunch(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('After a while, a heavily tattooed waitress with short blond hair shaved on one side comes over to your table. "Welcome to the Coffee Hole, what can I get you?" she asks in a bored and monotone voice.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['brunch_bought'] = 1
@@ -842,6 +850,8 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja continues her story', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole2.jpg');
@@ -853,6 +863,825 @@ function enterCoffeeHoleEvent(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue to drink your coffee', goto: ['katja_chat', 'coffee_hole_hangout'] },
     ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterCoffeeHoleKatjaNushSveta(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/coffee_hole/pose1.jpg');
+  scene.text('When the moment passes, Anushka speaks up. "So who have you fucked or been fucked by?" she asks and just keeps talking, like what she said was the most natural thing in the world.');
+  if (((s as any).university ?? 0)?.['student'] === 1) {
+    scene.text('"So how\'s school? Keeping up the good grades?" Before either Katja or you can respond, Anushka mimics giving an invisible dick a blowjob along with the gagging sounds. "I know you\'re keeping your grades… up," she says to you with a wink, then looks at Katja. "How about you, Red?"');
+    if (((s as any).katjaQW ?? 0)?.['slut'] >= 100) {
+      scene.text('"Some of us know to use our heads to get good grades in other ways, so we don\'t need to suck on old lollipops," Katja replies, barely managing to keep her self from laughing. Anushka snorts and smiles at Katja\'s response.');
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['slut'] >= 75) {
+        scene.text('"Some of us can get good grades in other ways, but I understand that may be your way of doing it," Katja replies while turning very red in the face. Anushka\'s reply is to make a kiss at Katja, to which Katja replies "You wish," while trying to act cool and not burst out laughing.');
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['slut'] >= 50) {
+          scene.text('Katja doesn\'t seem to have a good come back and just says "Well, I\'ve been… studying…" Anushka just gives her a knowing wink, which causes Katja to turn bright red and look down at the table to avoid Anushka\'s gaze.');
+        } else {
+          scene.text('"I\'ve been keeping up well. The classes are mostly enlightening and I\'ve been spending a lot of the time in the library studying," Katja replies, either not understanding or simply ignoring Anushka\'s hints. Anushka has a slightly amused smile on her face while listening to Katja\'s response.');
+        }
+      }
+    }
+  } else {
+    scene.text('"So how\'s school, Red? Keeping up the good grades?"');
+    scene.text('"I\'ve been keeping up well. The classes are mostly enlightening and I\'ve been spending a lot of the time in the library studying," Katja replies.');
+    scene.text('Anushka nods. "Well, you shouldn\'t spend too much time studying.You need to loosen up and have fun too. Otherwise, what\'s the point in living if you\'re never having fun and being happy?" While it sounded like a question, Anushka turns her attention to you waiting for your answer, so perhaps she meant it as something Katja should just think about.');
+  }
+  scene.text('You laugh a little at her comment. "You would know! How about yourself?" you ask.');
+  scene.text('She sighs. "Going to the university, homework, working here, modeling, practicing with the band…" She lets out a slightly straggled scream that\'s loud enough to cause several people to look over at your table. She then drops her head on the table. "I feel like I never have enough time to just cut loose and have fun anymore." Before either of you can respond, she suddenly looks back up. "We should totally have a girls night out! Just go out, howl at the moon and totally cut loose. What do you say?"');
+  scene.text('You glance over to see what Katja thinks.');
+  if (((s as any).katjaQW ?? 0)?.['slut'] >= 80  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
+    // TODO-QSP: 'You look at Katja, who '+iif(katjaQW['slut'] >= 90 or katjaQW['simultanous_boys'] >=2, 'seems excit...
+    scene.actions([
+      { label: 'Yes', handler: (st: GameState) => {
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
+    ((s as any).katjaQW ?? {})['nush_girls_nigth_out'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big144.jpg');
+    scene.text('Katja and you agree it would be fun to have a girls night out. "Sure, that sounds like fun!" you say.');
+    scene.text('Anushka smiles. "Sweet! Friday or Saturday night works best for me. Just call me when you guys got time."');
+    scene.text('Joanna then walks out and looks around, her gaze stopping on your table, or more specifically, on Anushka. "What are you doing? I\'m not paying you to sit on your ass and talk to your friends!"');
+    scene.text('Anushka rolls her eyes slightly as she gets up and grabs the tray off the other table. "I have an amazing ass you know!" she jokes as she stops by the guy that had tried to get her attention before. She turns around and half bends over, almost sticking her ass in his face. "You think I have an amazing ass, don\'t you?"');
+    scene.text('He looks up and is staring right at her ass. "Uh… Yes… It\'s… Uh, great…" He looks around, obviously not sure what\'s happening.');
+    scene.text('Anushka never glances back at the guy after his response as she walks to the counter. "You can stop staring at my ass now," she says and he blushes slightly while quickly looking anywhere but at her ass. "You pay me to look hot and flirt with the customers," she tells Joanna.');
+    scene.text('Joanna shakes her head. "No, I pay you to work the counter, wait on customers and keep them happy."');
+    scene.text('Anushka walks behind the counter. "Yeah, that\'s what I said," she replies as she disappears in back. Joanna just looks up at the sky and visibly sighs, as if asking for help from a higher power to deal with Anushka.');
+    scene.actions([
+      { label: 'Go back to talking with Katja', goto: ['katja_chat', 'coffee_hole_hangout'] },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.text('You look at Katja, who shakes her head.');
+    if (((s as any).katjaQW ?? 0)?.['slut'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
+      if (((s as any).npc_had_sex ?? 0)?.['A14']) {
+        qspCall(s, 'willpower', 'misc', 'force', 'easy');
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['slut'] >= 65  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 3) {
+          qspCall(s, 'willpower', 'misc', 'force');
+        } else {
+          qspCall(s, 'willpower', 'misc', 'force', 'hard');
+        }
+      }
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Convince Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Convince Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
+    ((s as any).katjaQW ?? {})['nush_girls_nigth_out'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Come on, it\'ll be fun! You like to party and I\'m sure that going out with Nush will be even more fun. Please, for my sake," you plead with Katja, making your best puppy eyes before she finally relents. "Okay, we can do it, but you\'re responsible for anything that happens!" she says, not looking completely convinced that it\'s a good idea.');
+    scene.text('Anushka smiles. "Sweet! Friday or Saturday night works best for me. Just call me when you guys got time."');
+    scene.text('Joanna then walks out and looks around, her gaze stopping on your table, or more specifically, on Anushka. "What are you doing? I\'m not paying you to sit on your ass and talk to your friends!"');
+    scene.text('Anushka rolls her eyes slightly as she gets up and grabs the tray off the other table. "I have an amazing ass you know!" she jokes as she stops by the guy that had tried to get her attention before. She turns around and half bends over, almost sticking her ass in his face. "You think I have an amazing ass, don\'t you?"');
+    scene.text('He looks up and is staring right at her ass. "Uh… Yes… It\'s… Uh, great…" He looks around, obviously not sure what\'s happening.');
+    scene.text('Anushka never glances back at the guy after his response as she walks to the counter. "You can stop staring at my ass now," she says and he blushes slightly while quickly looking anywhere but at her ass. "You pay me to look hot and flirt with the customers," she tells Joanna.');
+    scene.text('Joanna shakes her head. "No, I pay you to work the counter, wait on customers and keep them happy."');
+    scene.text('Anushka walks behind the counter. "Yeah, that\'s what I said," she replies as she disappears in back. Joanna just looks up at the sky and visibly sighs, as if asking for help from a higher power to deal with Anushka.');
+    scene.actions([
+      { label: 'Go back to talking with Katja', goto: ['katja_chat', 'coffee_hole_hangout'] },
+    ]);
+  } },
+        ]);
+      }
+    } else {
+      scene.text('It\'s clear she can\'t be convinced.');
+    }
+    scene.actions([
+      { label: 'No', goto: ['katja_chat', 'coffee_hole_event_girls_night_no'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCoffeeHoleEventGirlsNightNo(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
+  scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/coffee_hole/pose1.jpg');
+  scene.text('Katja is shaking her head at the idea. "Not right now. Maybe some other time when we\'re less busy," you reply.');
+  scene.text('Anushka rolls her eyes as she gets up. "What ever, you guys need to learn to have fun and stop being so boring."');
+  scene.text('Joanna then walks out and looks around, her gaze stopping on your table, or more specifically, on Anushka. "What are you doing? I\'m not paying you to sit on your ass and talk to your friends!"');
+  scene.text('Anushka grabs the tray off the other table. "Yes, mom!" She walks over to the guy that had tried to get her attention before. "So what can I get for you?"');
+  scene.text('He looks up at her and smiles. "I would like a tea, please."');
+  scene.text('Anushka just keeps staring at him like she\'s expecting him to keep talking. His smile falters a bit as he looks around, obviously not sure what\'s happening. "And… a… Danish?" he asks in a slightly confused voice.');
+  scene.text('Anushka smiles brightly. "One tea and two danishes coming right up."');
+  scene.text('She turns and walks away, causing him to raise his hand. "I only… wanted… one… danish…" His voice drifts off as she just keeps walking like she never heard him. As she walks behind the counter, Joanna looks up at the sky and visibly sighs, as if asking for help from a higher power to deal with Anushka.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go back to talking with Katja', goto: ['katja_chat', 'coffee_hole_hangout'] },
+  ]);
+  scene.build();
+}
+
+function enterCoffeeHoleHangout(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'npc_relationship', 'modify', 'A14', 'like', 3, 'coffee_hole2');
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  qspCall(s, 'katja_meynold_schedule', '');
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole1.jpg');
+  qspCall(s, 'katja_procedural', 'face_color');
+  // TODO-QSP: $func('npc_reactions', 'general', 'A14')
+  scene.text('You and Katja spend some time chatting about school, what you\'ve both been up to and gossiping about your old school mates while drinking coffee.');
+  if (((s as any).locat ?? 0)?.['katja'] !== 30) {
+    if (((s as any).locat ?? 0)?.['katja'] === 29) {
+      // TODO-QSP: dynamic text: "I need to go study. '+iif($university['enrolled_in'] = 'teaching_studies' or ka...
+      scene.text('"I need to go study. \'+iif($university[\'enrolled_in\'] = \'teaching_studies\' or katjaQW[\'QWstage\']> 0, \'Wanna join me?\', \'See you later!\')+\'" she says as she packs her things and gets ready to leave.');
+      if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies'  ||  ((s as any).katjaQW ?? 0)?.['QWstage']> 0) {
+        scene.actions([
+          { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+        ]);
+      }
+      if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
+        scene.actions([
+          { label: 'Try to convince her to do something else', goto: ['katja_chat', 'coffee_hole_have_fun'] },
+        ]);
+      }
+      scene.actions([
+        { label: 'Say goodbye and leave', goto: ['city_coffee_hole', 'inner'] },
+      ]);
+    } else {
+      if (((s as any).locat ?? 0)?.['katja'] === 44) {
+        scene.text('"I\'m done here. I want to go to the city mall to look at clothes," Katja says as she packs her things and gets ready to leave.');
+        if (((s as any).katjaQW ?? 0)?.['QWstage']> 0) {
+          scene.actions([
+            { label: 'Go with Katja to the city mall', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_city', 'metro'] },
+          ]);
+        }
+        if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
+          scene.actions([
+            { label: 'Try to convince her to do something else', goto: ['katja_chat', 'coffee_hole_have_fun'] },
+          ]);
+        }
+        scene.actions([
+          { label: 'Say goodbye and Leave', goto: ['city_coffee_hole', 'inner'] },
+        ]);
+      } else {
+        scene.text('"I\'m sorry. But I gotta run. I will see you later" says Katja, as she starts to pack up her books.');
+      }
+    }
+  } else {
+    if (((s as any).trait_vars ?? 0)?.['panty_preference'] > 0  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['no_panties_day'] !== ((s as any).daystart ?? 0)) {
+      scene.actions([
+        { label: 'Show Katja that you\'re not wearing panties', goto: ['katja_pantyquest', 'coffee_hole'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['brunch_bought'] = 1
+    // TODO-QSP: gs 'food_menu'
+  } },
+      { label: 'Continue talking', goto: ['katja_chat', 'coffee_hole_event'] },
+      { label: 'Try to convince her to do something else', goto: ['katja_chat', 'coffee_hole_have_fun'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Say goodbye and get up', goto: ['city_coffee_hole', 'inner'] },
+  ]);
+  scene.build();
+}
+
+function enterCoffeeHoleHaveFun(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/girl/katja/uni/Coffe_hole1.jpg');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  if (((s as any).locat ?? 0)?.['katja'] === 29) {
+    scene.text('"Come on, Katja. Let\'s do something fun instead of studying," you say.');
+    scene.text('"No. I really need to study," she answers.');
+    if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  (((s as any).katjaQW ?? 0)?.['lazer_anal'] + ((s as any).katjaQW ?? 0)?.['lazer_pussy']) > 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['Lazar_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
+      scene.actions([
+        { label: 'Suggest that you call Lazar', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['Lazar_day'] = ((s as any).daystart ?? 0);
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Why don\'t we call Lazar to see if he wants to have some fun?" you ask.');
+    if (((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
+      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
+      scene.text('"No, I need to study!" she says in a voice that makes it clear that you won\'t convince her otherwise.');
+      scene.actions([
+        { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+        { label: 'Say goodbye and get up', goto: ['city_coffee_hole', 'inner'] },
+      ]);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['horny'] <= 65) {
+        scene.text('"No, I should be studying," Katja says, but something in her voice makes you think that she can be convinced.');
+        qspCall(s, 'willpower', 'sex', 'force', 'easy');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can study afterwards. Don't y...
+    scene.text('"Come on, Katja! This will be much more fun and we can study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('She looks shocked at what you said, but is also blushing heavily. After a long pause, she finally concedes. "Okay, I guess you\'re right. Studying can probably wait a little."');
+    if (((s as any).katjaQW ?? 0)?.['Lazar_Ivan_4some'] > 0  &&  (!(Math.floor(Math.random() * 7) + 0))) {
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      scene.text('You call him, and he tells you that Ivan is over at his place. You\'re sure that Ivan will be up for it again.');
+      scene.text('Katja readily agrees to include Ivan in the fun and you tell Lazar you\'ll come over. Katja then opens her purse and shows you the black bodysuits you wore last time, suggesting you go to the toilet to change into them since it seemed to turn the boys on.');
+      scene.text('You agree and head into the toilet to change while Katja packs up her stuff and pays her bill. She then quickly changes herself and you both leave the Coffee Hole and start walking towards Lazar\'s house.');
+      scene.actions([
+        { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_ivan_katja_uni_4some'] },
+      ]);
+    } else {
+      scene.text('You call Lazar, and he quickly agrees to have you over.');
+      scene.actions([
+        { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+      ]);
+    }
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+          { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+        ]);
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['horny'] <= 80) {
+          scene.text('"No, I really should be studying," Katja says, but still looks somewhat aroused.');
+          qspCall(s, 'willpower', 'sex', 'force');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can study afterwards. Don't y...
+    scene.text('"Come on, Katja! This will be much more fun and we can study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('Katja looks even more aroused, and after a little hesitation says, "Yes. I really want it!" she replies before looking around to see if anybody noticed.');
+    if (((s as any).katjaQW ?? 0)?.['Lazar_Ivan_4some'] > 0  &&  (!(Math.floor(Math.random() * 7) + 0))) {
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      scene.text('You call him, and he tells you that Ivan is over at his place. You\'re sure that Ivan will be up for it again.');
+      scene.text('Katja readily agrees to include Ivan in the fun and you tell Lazar you\'ll come over. Katja then opens her purse and shows you the black bodysuits you wore last time, suggesting you go to the toilet to change into them since it seemed to turn the boys on.');
+      scene.text('You agree and head into the toilet to change while Katja packs up her stuff and pays her bill. She then quickly changes herself and you both leave the Coffee Hole and start walking towards Lazar\'s house.');
+      scene.actions([
+        { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_ivan_katja_uni_4some'] },
+      ]);
+    } else {
+      scene.text('You call Lazar, and he quickly agrees to have you over.');
+      scene.actions([
+        { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+      ]);
+    }
+  } },
+            ]);
+          }
+          scene.actions([
+            { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+            { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+          ]);
+        } else {
+          if (((s as any).katjaQW ?? 0)?.['horny'] < 100) {
+            scene.text('"No, I really should study…" she replies, though she\'s not very convincing.');
+            qspCall(s, 'willpower', 'sex', 'force', 'easy');
+            if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+              scene.actions([
+                { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+              ]);
+            } else {
+              scene.actions([
+                { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can always study afterwards. ...
+    scene.text('"Come on, Katja! This will be much more fun and we can always study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('Katja looks even more aroused, and quickly says, "Yes. I really want it!" she replies before looking around to see if anybody noticed.');
+    if (((s as any).katjaQW ?? 0)?.['Lazar_Ivan_4some'] > 0  &&  (!(Math.floor(Math.random() * 7) + 0))) {
+      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      scene.text('You call him, and he tells you that Ivan is over at his place. You\'re sure that Ivan will be up for it again.');
+      scene.text('Katja readily agrees to include Ivan in the fun and you tell Lazar you\'ll come over. Katja then opens her purse and shows you the black bodysuits you wore last time, suggesting you go to the toilet to change into them since it seemed to turn the boys on.');
+      scene.text('You agree and head into the toilet to change while Katja packs up her stuff and pays her bill. She then quickly changes herself and you both leave the Coffee Hole and start walking towards Lazar\'s house.');
+      scene.actions([
+        { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_ivan_katja_uni_4some'] },
+      ]);
+    } else {
+      scene.text('You call him, and he quickly agrees to have you over.');
+      scene.actions([
+        { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+      ]);
+    }
+  } },
+              ]);
+            }
+            scene.actions([
+              { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+              { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+            ]);
+          } else {
+            scene.text('Katja looks very aroused. "Okay. Let\'s call him," she says while biting her lip.');
+            scene.text('You call him, and he quickly agrees to have you over.');
+            scene.actions([
+              { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+            ]);
+          }
+        }
+      }
+    }
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Let\'s go to the mall', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Let\'s go to the mall and try out clothes instead," you say.');
+    scene.text('"No, I need to study," Katja responds.');
+    if (((s as any).katjaQW ?? 0)?.['slut'] < 50) {
+      qspCall(s, 'willpower', 'misc', 'force', 'hard');
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['slut'] < 100) {
+        qspCall(s, 'willpower', 'misc', 'force');
+      } else {
+        qspCall(s, 'willpower', 'misc', 'force', 'easy');
+      }
+    }
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['katja_save1'] = 44;
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Come on, Katja!" you plead. "There will be plenty of time for studying later. Please, it\'s going to be so much fun!" you say.');
+    scene.text('After a little back and forth, Katja relents and agrees to go to the mall.');
+    scene.actions([
+      { label: 'Go to the city mall with Katja', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_city', 'metro'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+      { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+    ]);
+  } },
+      { label: 'Let\'s go to your room', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Let\'s go to your room and hang out instead," you beg.');
+    scene.text('"No, I need to study," she replies.');
+    if (((s as any).katjaQW ?? 0)?.['slut'] < 50) {
+      qspCall(s, 'willpower', 'misc', 'force', 'hard');
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['slut'] < 100) {
+        qspCall(s, 'willpower', 'misc', 'force');
+      } else {
+        qspCall(s, 'willpower', 'misc', 'force', 'easy');
+      }
+    }
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['katja_save1'] = 31;
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Come on, Katja! There will be plenty time for studying later. Please, we should hang out more before you go," you say.');
+    scene.text('After a little back and forth, Katja relents and agree to go to her room.');
+    scene.actions([
+      { label: 'Go with Katja to her room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_dorm', 'start'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Go to the library with Katja', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_uni', 'library2'] },
+      { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).locat ?? 0)?.['katja'] !== 30) {
+      scene.text('"Come on, Katja! Let\'s do something else," you plead.');
+      scene.text('"What do you want to do?" she asks.');
+      if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  (((s as any).katjaQW ?? 0)?.['lazer_anal'] + ((s as any).katjaQW ?? 0)?.['lazer_pussy']) > 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['Lazar_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
+        scene.actions([
+          { label: 'Suggest that you call Lazar', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Why don\'t we call Lazar to see if he wants to have some fun?" you ask.');
+    if (((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
+      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
+      scene.text('"No, I don\'t want to," Katja responds in a stern voice. You realize that you won\'t convince her otherwise.');
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['horny'] <= 65) {
+        scene.text('"No, I don\'t feel like it," Katja says, but something tells you that she could be convinced.');
+        qspCall(s, 'willpower', 'sex', 'force', 'easy');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can study afterwards. Don't y...
+    scene.text('"Come on, Katja! This will be much more fun and we can study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('She looks shocked at what you said, but is also blushing heavily. After a long pause, she finally concedes. "Okay, I guess you\'re right. Studying can probably wait a little."');
+    scene.text('You call Lazar, and he quickly agrees to have you over.');
+    scene.actions([
+      { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+    ]);
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Continue talking', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['katja_chat', 'coffee_hole_event'] },
+          { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+        ]);
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['horny'] <= 80) {
+          scene.text('"No, I\'m not in the mood," she replies, but she doesn\'t sound very convincing.');
+          qspCall(s, 'willpower', 'sex', 'force');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can study afterwards. Don't y...
+    scene.text('"Come on, Katja! This will be much more fun and we can study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('Katja\'s face turns red and after a short pause she says, "Yes, I do really want it." She then looks around to see if anybody noticed.');
+    scene.text('You call Lazar, and he quickly agrees to have you over.');
+    scene.actions([
+      { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+    ]);
+  } },
+            ]);
+          }
+          if (((s as any).locat ?? 0)?.['katja'] === 44) {
+            scene.actions([
+              { label: 'Go with Katja to the city mall', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_city', 'metro'] },
+            ]);
+          } else {
+            if (((s as any).locat ?? 0)?.['katja'] === 31) {
+              scene.actions([
+                { label: 'Go with Katja to her room', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_dorm', 'start'] },
+              ]);
+            }
+          }
+          scene.actions([
+            { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+          ]);
+        } else {
+          ((s as any).katjaQW ?? {})['Lazar_day'] = ((s as any).daystart ?? 0);
+          scene.text('Katja looks very aroused. "Okay. Let\'s call him," she says while biting her lip.');
+          scene.text('You call Lazar, and he quickly agrees to have you over.');
+          scene.actions([
+            { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+          ]);
+        }
+      }
+    }
+    if (((s as any).locat ?? 0)?.['katja'] === 44) {
+      scene.actions([
+        { label: 'Go to the mall with Katja', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_city', 'metro'] },
+      ]);
+    } else {
+      if (((s as any).locat ?? 0)?.['katja'] === 31) {
+        scene.actions([
+          { label: 'Go with Katja to her room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_dorm', 'start'] },
+        ]);
+      }
+    }
+    scene.actions([
+      { label: 'Say goodbye and get up', goto: ['city_coffee_hole', 'inner'] },
+    ]);
+  } },
+        ]);
+      }
+      if (((s as any).locat ?? 0)?.['katja'] !== 44) {
+        scene.actions([
+          { label: 'Let\'s go to the mall', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['katja_save1'] = 44;
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Let\'s go to the mall and try out clothes," you say.');
+    scene.text('"Okay," she replies.');
+    scene.actions([
+      { label: 'Go with Katja to the city mall', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_city', 'metro'] },
+    ]);
+  } },
+        ]);
+      }
+      if (((s as any).locat ?? 0)?.['katja'] !== 31) {
+        scene.actions([
+          { label: 'Let\'s go to your room', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['katja_save1'] = 31;
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Let\'s go to your room. I\'m sure we can find something fun to do there," you say with a wink.');
+    scene.text('"Okay," she says while blushing.');
+    scene.actions([
+      { label: 'Go with Katja to her room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_dorm', 'start'] },
+    ]);
+  } },
+        ]);
+      }
+    } else {
+      scene.text('"Come on, Katja! Let\'s do something else instead of just sitting here," you say.');
+      scene.text('"What do you want to do?" she asks.');
+      if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  (((s as any).katjaQW ?? 0)?.['lazer_anal'] + ((s as any).katjaQW ?? 0)?.['lazer_pussy']) > 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).katjaQW ?? 0)?.['Lazar_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
+        scene.actions([
+          { label: 'Suggest that you call Lazar', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Why don\'t we call Lazar to see if he wants to have some fun?" you ask.');
+    if (((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
+      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (1);
+      scene.text('"No, I don\'t want to," Katja responds in a stern voice. You realize that you won\'t convince her otherwise.');
+      scene.actions([
+        { label: 'Continue talking', goto: ['katja_chat', 'coffee_hole_event'] },
+        { label: 'Say goodbye and get up', goto: ['city_coffee_hole', 'inner'] },
+      ]);
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['horny'] <= 65) {
+        scene.text('"No, I don\'t feel like it," Katja says, but something in her voice makes you think that she can be convinced.');
+        qspCall(s, 'willpower', 'sex', 'force', 'easy');
+        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can study afterwards. Don't y...
+    scene.text('"Come on, Katja! This will be much more fun and we can study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('She looks shocked at what you said, but is also blushing heavily. After a long pause, she finally concedes. "Okay, I guess you\'re right. Studying can probably wait a little."');
+    scene.text('You call Lazar, and he quickly agrees to have you over.');
+    scene.actions([
+      { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+    ]);
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Continue talking', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['katja_chat', 'coffee_hole_event'] },
+          { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+        ]);
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['horny'] <= 80) {
+          scene.text('"No, I am not in the mood," Katja says, but doesn\'t sound very convincing.');
+          qspCall(s, 'willpower', 'sex', 'force');
+          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (10);
+    qspCall(s, 'willpower', 'pay', 'force');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    // TODO-QSP: dynamic text: "Come on, Katja! This will be much more fun and we can study afterwards. Don't y...
+    scene.text('"Come on, Katja! This will be much more fun and we can study afterwards. Don\'t you want to feel his big dick in your \'+iif(katjaQW[\'lazar_pussy\'] = 1, \'tight pussy\', \'tight ass\')+\'?" you ask, leaning in to whisper the last part in her ear.');
+    scene.text('Katja\'s face turns red and after a short pause she says, "Yes, I do really want it." She then looks around to see if anybody noticed.');
+    scene.text('You call Lazar, and he quickly agrees to have you over.');
+    scene.actions([
+      { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+    ]);
+  } },
+            ]);
+          }
+          scene.actions([
+            { label: 'Continue talking', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['katja_chat', 'coffee_hole_event'] },
+            { label: 'Say goodbye and get up', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['dom'] += 1
+  }, goto: ['city_coffee_hole', 'inner'] },
+          ]);
+        } else {
+          ((s as any).katjaQW ?? {})['Lazar_day'] = ((s as any).daystart ?? 0);
+          scene.text('Katja looks very aroused. "Okay. Let\'s call him," she says while biting her lip.');
+          scene.text('You call him, and he quickly agrees to have you over.');
+          scene.actions([
+            { label: 'Go to Lazar\'s place', goto: ['katja_uni_sex', 'lazar_katja_uni_3some'] },
+          ]);
+        }
+      }
+    }
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Let\'s go to the mall', handler: (st: GameState) => {
+    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['katja_save1'] = 44;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Let\'s go to the mall and try out clothes," you say.');
+    scene.text('"Okay," she replies. "Just let me finish my coffee."');
+    scene.actions([
+      { label: 'Go with Katja to the city mall', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_city', 'metro'] },
+    ]);
+  } },
+        { label: 'Let\'s go to your room', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    ((s as any).locat ?? {})['katja_rand1'] = ((s as any).daystart ?? 0);
+    ((s as any).locat ?? {})['katja_save1'] = 31;
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Let\'s go to your room. I\'m sure we can find something fun to do there," you say with a wink.');
+    scene.text('"Okay," she says while blushing.');
+    scene.actions([
+      { label: 'Go with Katja to her room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  }, goto: ['katja_dorm', 'start'] },
+    ]);
+  } },
+        { label: 'Stay and order from the menu (0:05)', handler: (st: GameState) => {
+    // TODO-QSP: katjaQW['brunch_bought'] = 1
+    // TODO-QSP: gs 'food_menu'
+  } },
+        { label: 'Stay and continue talking', goto: ['katja_chat', 'coffee_hole_event'] },
+        { label: 'Say goodbye and leave', goto: ['city_coffee_hole', 'inner'] },
+      ]);
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterNightclubSexFollowUp(s: GameState, scene: SceneBuilder): void {
+  ((s as any).npc_had_sex ?? {})['A14'] = 1;
+  if (((s as any).katjaQW ?? 0)?.['first_time_in_nightclub'] < 3) {
+    ((s as any).katjaQW ?? {})['QWstage'] = 6;
+  }
+  if (((s as any).katjaQW ?? 0)?.['QWstage'] < 3) {
+    ((s as any).katjaQW ?? {})['QWstage'] = 3;
+  }
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  scene.img('images/characters/shared/headshots_main/big14.jpg');
+  scene.text('"So the other night at the club was fun," Katja says, blushing slightly.');
+  scene.text('"Yes, it was," you agree.');
+  if (((s as any).katjaQW ?? 0)?.['first_time_in_nightclub'] < 3) {
+    // TODO-QSP: iif(katjaQW['first_time_in_nightclub'] = 2, '"I really loved the way you made me feel, I don''t thin...
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['first_time_in_nightclub'] === 3) {
+      // TODO-QSP: dynamic text: "it was some wild girls we met. I had '+iif(fame['pav_sex'] < 100 and fame['city...
+      scene.text('"it was some wild girls we met. I had \'+iif(fame[\'pav_sex\'] < 100 and fame[\'city_sex\'] < 100, \'no ide that you also where so wild.\', \' hear rumors about about you escapades but it was something else to experience it.\')+\' The way you used…" Katja suddenly stops, realizing how openly she talks about sex and her face becomes as red as a ripe tomato.');
+    }
+  }
+  if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] === 0) {
+    ((s as any).katjaQW ?? {})['simultanous_girls'] = 1;
+    scene.text('You give her a moment before you ask her, "Was this the first time you were with a girl?"');
+    // TODO-QSP: dynamic text: Katja answers with a shaking voice, "Yes… But '+iif(katjaQW['first_time_in_night...
+    scene.text('Katja answers with a shaking voice, "Yes… But \'+iif(katjaQW[\'first_time_in_nightclub\'] = 2, \'definitely\', \'probably\')+\' not the last time."');
+  } else {
+    scene.text('You give her a moment before you ask her, "Do you often have sex with girls?"');
+    // TODO-QSP: dynamic text: Katja answers with a shaking voice, "'+iif(katjaQW['simultanous_girls'] > 1, 'It...
+    scene.text('Katja answers with a shaking voice, "\'+iif(katjaQW[\'simultanous_girls\'] > 1, \'It happens not so rarely.\', \'I\'ve had sex with a few.\')+\' I like having sex with girls." Her face goes red again.');
+  }
+  if (((s as any).katjaQW ?? 0)?.['knows_dorm_room_number'] === 0) {
+    ((s as any).katjaQW ?? {})['knows_dorm_room_number'] = 1;
+    scene.text('When she has collected herself, she says, "We should hang out more. My room number is 204. Just come by whenever you like."');
+  } else {
+    scene.text('After a few minutes, she is back to her old self.');
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue chatting', handler: (st: GameState) => {
+    if (((s as any).loc ?? 0) === 'city_coffee_hole') {
+      scene.actions([{ label: 'Continue', goto: ['katja_chat', 'coffee_hole_hangout'] }]);
+    } else {
+      scene.actions([{ label: 'Continue', goto: ['katja_chat', 'chat1'] }]);
+    }
   } },
   ]);
   scene.build();
@@ -887,6 +1716,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'coffee_hole_event':
       enterCoffeeHoleEvent(s, scene);
+      break;
+    case 'coffee_hole_katja_nush_sveta':
+      enterCoffeeHoleKatjaNushSveta(s, scene);
+      break;
+    case 'coffee_hole_event_girls_night_no':
+      enterCoffeeHoleEventGirlsNightNo(s, scene);
+      break;
+    case 'coffee_hole_hangout':
+      enterCoffeeHoleHangout(s, scene);
+      break;
+    case 'coffee_hole_have_fun':
+      enterCoffeeHoleHaveFun(s, scene);
+      break;
+    case 'nightclub_sex_follow_up':
+      enterNightclubSexFollowUp(s, scene);
       break;
     default:
       enterDefault(s, scene);

@@ -69,6 +69,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask Tatiana what she wants', goto: ['tatiana_lab', 'missions'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -120,6 +121,7 @@ function enterGustav(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -131,6 +133,7 @@ function enterGustavDevelop(s: GameState, scene: SceneBuilder): void {
   (s as any).gustavday = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('You do exercises under the guidance of Gustav.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['tatiana_lab', 'Gustav'] },
   ]);
@@ -154,6 +157,7 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'tatiana_lab', 'BodyModded', $bodyModType, $bodyModDesc
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -284,6 +288,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -302,6 +307,7 @@ function enterListBuilder(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'BodyModLoop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,6 +316,7 @@ function enterBodyModded(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "You feel a bit drained and tingly all over. You look in the mirror."
   // TODO-QSP: "Your <<$ARGS[1]>> is now <<$ARGS[2]>>."
   // TODO-QSP: """Thanks Tatiana!"""
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank you', goto: ['tatiana_lab', 'Tatiana'] },
   ]);
@@ -780,6 +787,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -818,6 +826,7 @@ function enterTeach(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'teach_strip'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -842,6 +851,7 @@ function enterTeachStrip(s: GameState, scene: SceneBuilder): void {
       { label: 'One of the dildoed power-tools(Vaginal)', goto: ['tatiana_lab', 'teach_dildo_vag'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Why choose only one?(????)', goto: ['tatiana_lab', 'teach_full'] },
     { label: '"I think I will pass for now"', goto: ['tatiana_lab', 'start'] },
@@ -862,6 +872,7 @@ function enterSaddle(s: GameState, scene: SceneBuilder): void {
   scene.text('Finally, the controller slips from your clenching fingers as your magical climax triggers, taking your breath and self-control away and sending wave after wave of magically enhanced pleasure pulsing through your body.');
   qspCall(s, 'arousal', 'vaginal_vibe', 30, 'no_orgasm_msg', 'self');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for a lesson', handler: (st: GameState) => {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((s as any).tatiana_teach_escalation ?? 0) < 2) {
@@ -887,6 +898,7 @@ function enterEscalation1(s: GameState, scene: SceneBuilder): void {
   scene.text('Tatiana stops looking in your direction, her gaze returning to focus on the fragment as a smile creeps onto her face.');
   scene.text('"Don\'t worry my student, your role hasn\'t ended, we just need to raise the bar. So, what tool do you choose?"');
   scene.text('Saying this, Tatiana begins to push the power-tool-looking machines towards you.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"I think I will pass for now"', goto: ['tatiana_lab', 'start'] },
     { label: 'One of the dildoed power-tools(Anal)', goto: ['tatiana_lab', 'teach_dildo_anal'] },
@@ -924,6 +936,7 @@ function enterTeachDildoAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('With the power-tool firmly inserted up your ass, there is only a thing to do. You grab the control and activate the fucking machine. There is a mechanical "BRRR" and the device begins to pound your innards, making you clench your teeth in between moans and grunts.');
   scene.text('You put a sticky hand between your thighs and proceed to play with your cunt, your clit throbbing at the power-dildo rhythm, making you lose your breath. Under the ritual\'s influence, your growing arousal pushes against your magical core.');
   scene.text('Finally, in a magical explosion, an orgasmic bliss surges through your body, making you crumble under the sex machine\'s onslaught as mana starts flowing around the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for a lesson', handler: (st: GameState) => {
     if (((s as any).tatiana_teach_escalation ?? 0) < 4) {
@@ -963,6 +976,7 @@ function enterTeachDildoVag(s: GameState, scene: SceneBuilder): void {
   scene.text('With the power-tool firmly inserted into your cunt, there is only a thing to do. You grab the control and activate the fucking machine. There is a mechanical "BRRR" and the device begins to pound your pussy, making you clench your teeth in between moans and grunts.');
   scene.text('You put a sticky hand between your thighs and proceed to play with your throbbing clit, trying to follow the power-dildo rhythm, making you lose your breath. Under the ritual\'s influence, your growing arousal pushes against your magical core.');
   scene.text('Finally, in a magical explosion, an orgasmic bliss surges through your body, making you crumble under the sex machine\'s onslaught as mana starts flowing around the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for a lesson', handler: (st: GameState) => {
     if (((s as any).tatiana_teach_escalation ?? 0) < 4) {
@@ -987,6 +1001,7 @@ function enterEscalation2(s: GameState, scene: SceneBuilder): void {
   scene.text('She gets up with a jump and proceeds to grab all the fucking machines, placing them within your reach.');
   scene.text('"Fortunately, we can break that limitation with a sensory overload, so… Ready to give the show of your life?"');
   scene.text('You look at the smiling Tatiana, the talisman and the sex machines, the realization forming in your mind that Tatiana wants you to use <i>all</i> of them.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"I think I will pass for now"', goto: ['tatiana_lab', 'start'] },
     { label: 'The show must go on', goto: ['tatiana_lab', 'teach_full'] },
@@ -1023,6 +1038,7 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
       scene.text('Turning back, you can appreciate the half-buried dildo sticking out from your cornhole, the pulsing of your innards sending shivers of pleasure, making time go slow as you wait for the power to be turned on. However, an evilly smirking Tatiana begins to caress the other power-dildo.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'auto_lube', 'vag', 'self');
@@ -1092,6 +1108,7 @@ function enterLesson1(s: GameState, scene: SceneBuilder): void {
   scene.text('"It doesn\'t matter what the old guard wants you to believe, spells are just mnemonic tricks that use words, gestures and all that corny paraphernalia that covers our arts to <i>somehow</i> center our minds to <i>somehow</i> channel mana, to <i>somehow</i> cheat the cosmos. Techniques are spells that <i>somehow</i> can be trained until made instinctive beyond any ritual, but remember my student, beyond any methodology, what matters is our volition, passions and drive to reshape the world."');
   scene.text('You take a few minutes to digest Tatiana\'s information "So, you\'re saying that I can… em… do anything by only wishing it?" Tatiana give you a conspiratorial smile in reply.');
   scene.text('"Exactly! Of course, I admit that it isn\'t as easy as just wishing for something. We wizards have spent millennia perfecting a methodology to ease the process in the form of spells, but at best, that is an <i>if you do this, this happens</i> situation. Your willpower is the true drive behind spellcasting and you will soon discover that beyond using rituals for training, the most basic effects can be implemented just as a reflex action, with more powerful magic getting easier as you grow in power and experience. And now for the fun part!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'spellList', 'addAvailableSpells', 'basicSpells');
@@ -1126,6 +1143,7 @@ function enterLesson2(s: GameState, scene: SceneBuilder): void {
   scene.text('"This is a combat illusion called Clone. It will duplicate your moves, but will only stay within a few meters of you. With some luck, it will take a hit meant for you. And now to the fun part!"');
   scene.text('Tatiana picks up a knife from one of the shelves and without hesitation or pain, makes a deep cut along her palm. Blood begins to pour from the wound before suddenly stopping as Tatiana passes her other hand over the now quickly closing wound.');
   scene.text('"Ta-da! This is the Cure Wounds spell, and a personal favorite of magicians around the world! I\'m going to skip over how it uses your manamorphic patron to reconstitute your biological template, at least until you have a fifteen years apprenticeship under your belt. This is the most basic of the <i>common</i> healing spells, and like most have a limitation. You can\'t use it during combat and it can\'t be used on other beings. Its power is somewhat limited, as it\'s designed to heal scrapes and superficial wounds, the sort of things that are fixed with a visit to the doctor, but with enough mana, you can use it repeatedly to recover from truly grievous wounds. However, it will not heal long term damage, diseases or <i>cosmetic</i> changes. Beyond that, well… it\'s better if you experiment a little on your own to learn all the minutia. That will be all for now. This is the end of this lesson."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1143,6 +1161,7 @@ function enterLesson3(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand there, the strength sapped away from you as Tatiana leans in to kiss you, only to back away, her sudden <i>stalking creep mode</i> forgotten, and the sluggishness dissipating from your body.');
   scene.text('"What the hell Tatiana?! Why did you do that??!"');
   scene.text('Seriousness creeps back into her voice as she answers your questions. "A demonstration of the weak and underappreciated Stun, your new combat spell, and the sort of things the wrong class of sexual deviant or <i>you</i> can do when your rival is affected. After this little window into the Dark side, I am going to teach you your next healing spell, Greater Cure Wounds. You will forgive me if I don\'t demonstrate, as this spell, even with the same limitations that Cure Wounds has, is powerful enough to bring you back to peak health from little magical hazards like… full body third-grade burns caused by magical fireballs. That is all for now, but I think I will teach you more specialized healing spells next time."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1160,6 +1179,7 @@ function enterLesson4(s: GameState, scene: SceneBuilder): void {
   scene.text('As she is saying this, the mist disintegrates as a wave of gentle wind extends from the redheaded sorceress.');
   // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, with that we finally end with the Fog/Gust Of Wind bin...
   scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, with that we finally end with the Fog/Gust Of Wind binomial and can begin something more interesting, like the useful… Ta-Da! Cure Disease! Another vital part of the all-times favorite healing arts. This spell will cleanse you of most common diseases and will even act as a low-level painkiller, but also has the standard limitations of the <i>common</i> healing spells, such as only being used outside of combat. As an additional advertence, this isn't a get-out-of-the-hospital-free card. It's pretty good for things like STDs or the flu, but, like Cure Wounds, it will only treat things that can easily be dealt with by a visit to the local clinic."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1176,6 +1196,7 @@ function enterLesson5(s: GameState, scene: SceneBuilder): void {
   scene.text('You observe the files, and can\'t negate that something is wrong with the presentation. However, Tatiana doesn\'t seem bothered and continues talking.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> we are reaching the point where I can't teach you anything el...
   scene.text(`"${((s as any).pcs_nickname ?? 0)} we are reaching the point where I can't teach you anything else, but this little spell here is going to be awesome. This is called Heal, your first and probably last combat healing spell. Yes. you can treat your - and only yours - wounds when somebody is trying to kill you! However, don't get cocky. This spell is less mana intense than Cure Wounds, but it isn't a substitute for that one, so if you aren't in a life-or-death situation choose the latter.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1193,6 +1214,7 @@ function enterLesson6(s: GameState, scene: SceneBuilder): void {
   scene.text('You watch as Tatiana pulls out the screwdriver, leaving an ugly wound that pours blood onto the floor, only to stop as the wound begins to slowly heal.');
   // TODO-QSP: dynamic text: "This is the last healing spell that I am going to teach you <<$pcs_nickname>>. ...
   scene.text(`"This is the last healing spell that I am going to teach you ${((s as any).pcs_nickname ?? 0)}. It's called Regeneration, and it will heal you for two hours with a mana cost similar to Heal. Its healing is a little random, better than Cure Wounds, but switching urgency for time. Beyond that, it has the standard limitations of being a no-combat personal spell. This is the limit of the <i>common</i> healing spells. Beyond this point, most of them fall inside specialized healing arts or my Body-Modding Art."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1208,6 +1230,7 @@ function enterLesson7(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Yeah, I know <<$pcs_nickname>>… pretty. These are the sort of things that our e...
   scene.text(`"Yeah, I know ${((s as any).pcs_nickname ?? 0)}… pretty. These are the sort of things that our elders do with their free time. They don't seem to realize that the printing press is a thing, but let's continue with your training."`);
   scene.text('"These notes show your new combat spell, Haste. Want to dodge bullets or run at supersonic speed? Sorry, but forget about it. That magic is possible, but it\'s heavily specialized, costly and will break the disbelief that The Veil enforces. This spell will indeed enhance your reaction time to the human upper limit, and if you take your time to train, beyond, but it isn\'t so blatant to let you catch bullets with your hands. At least without a lot of luck and some magical protection to evade them."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1228,6 +1251,7 @@ function enterLesson8(s: GameState, scene: SceneBuilder): void {
   scene.text('Tatiana then passes you a notebook with a lot of biological-magical information about… you? It\'s all written in a precise and clear way, with theories and speculations about your potential, including managing a new spell called… Berserker Rage?');
   // TODO-QSP: dynamic text: "If you want to know <<$pcs_nickname>>, that is a peek into the thesis that I am...
   scene.text(`"If you want to know ${((s as any).pcs_nickname ?? 0)}, that is a peek into the thesis that I am writing about your nature and that spell? Well, it's a <i>common</i> combat spell that will enhance your agility, strength and endurance to the human limit for two hours, and with training, beyond. You must understand that the name isn't a misnomer, and you are one of the few lucky ones that can use it without losing their mind. So, there you go!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
   ]);
@@ -1265,6 +1289,7 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Ask Tatiana if she wants to try Succubus Sex': tatisucsexask = daystart
     scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Tatianasucsexask'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her to repeat what she knows about Succubae', goto: ['succubus', 'tatianaask'] },
     { label: 'Ask her if she has learned anything new about Succubae', handler: (st: GameState) => {
@@ -1326,6 +1351,7 @@ function enterTatianasucsexask(s: GameState, scene: SceneBuilder): void {
     scene.text('You give Tatiana a bright smile and ask,');
     scene.text('Hey Tatiana, you up for some Succubus Sex?');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'She answers:', handler: (st: GameState) => {
     if ((!((s as any).tatisucsex ?? 0))) {
@@ -1386,6 +1412,7 @@ function enterTatianasexreject(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'sclocrt'
     // TODO-QSP: killvar 'scargrt'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
   ]);
@@ -1413,6 +1440,7 @@ function enterSuctrainsex(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['succubus', 'tatianasex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1542,6 +1570,7 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).sucbypass = 1;
   // TODO-QSP: gt 'tatiana_lab', 'start', 'no_time'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1619,6 +1648,7 @@ function enterMissions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1645,6 +1675,7 @@ function enterStage_SMS(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A176', "gs 'tatiana_lab', 'Add SMS', <<result>>", "totminut > <<t...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1682,6 +1713,7 @@ function enterSMSConditions(s: GameState, scene: SceneBuilder): void {
       (s as any).result = ((s as any).result ?? 0) + (100);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1726,6 +1758,7 @@ function enterAddSMS(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) / 100 % 10 > 0) {
     (s as any).tatiana_mission_reminder = 21;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1736,6 +1769,7 @@ function enterAddContact(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[1]
   qspCall(s, 'SMStext_builder', 'end');
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -23,6 +23,7 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'natbel_friend', 'slut_reconcile_school_check');
   scene.actions([{ label: 'Continue', goto: ['gschool_lunch', 'cafeteria'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,6 +83,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Skip lunch', handler: (st: GameState) => {
     qspCall(s, 'gschool_gossip', 'skipping');
@@ -259,6 +261,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax in a classroom', goto: ['gschool_chats', 'nerds'] },
     { label: 'Hang out in the hallway', goto: ['gschool_chats', 'cooljocks'] },
@@ -350,6 +353,7 @@ function enterMarcusEvent(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Help him out', handler: (st: GameState) => {
     ((s as any).npc_had_sex ?? {})['A146'] = 1;
@@ -616,6 +620,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1106,6 +1111,7 @@ function enterRolanMeet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

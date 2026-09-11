@@ -56,6 +56,7 @@ function enterTopUpMetered(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
     ((s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-type'] = 2;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,6 +68,7 @@ function enterBuySubscription(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
     ((s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-type'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -130,6 +132,7 @@ function enterCheckSubscriptionActions(s: GameState, scene: SceneBuilder): void 
       // TODO-QSP: $internet_action_messages[] = 'Your mobile contract: <<$subscription[''monthly_calls-contract_messag...
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,12 +143,14 @@ function enterCancelSubscription(s: GameState, scene: SceneBuilder): void {
   ((s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-type'] = 0;
   ((s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-price'] = 0;
   ((s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-discount'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSuspendSubscription(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'internet_mobile', 'cancel_subscription', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: $subscription[$ARGS[1] + '-contract_message'] = 'Your monthly fee was declined again and services ha...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -173,6 +178,7 @@ function enterRenewSubscription(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-contract_message'] = 'Your monthly fee was ' + qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (', unfortunately your payment was declined. We will try to take the payment over the next \' + $func(\'wrap\', \'neg b\', \'' + qspUntranslated(s, "remainingday>", { location: "internet_mobile" }) + ' days\') + \' before suspending services.'));
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,12 +193,14 @@ function enterTransferSubscription(s: GameState, scene: SceneBuilder): void {
     ((s as any).subscription ?? {})['' + String((s as any).ARGS[2] || '') + '-type'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-type'];
     // TODO-QSP: subscription[$ARGS[0]] = 0
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckAllowedLocation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = qspUntranslated(s, "property['internet_enabled'] = 1", { location: "internet_mobile" });
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,16 +236,19 @@ function enterGetAccess(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: ! if arrpos('$ARGS', 'general') > 1: $access['general'] = 'Naughty sites are forbidden'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddLimitation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $access[$ARGS[1]] = $ARGS[2]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemoveLimitation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $access[$ARGS[1]] = ''
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -245,6 +256,7 @@ function enterSetLimitationMessage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).access ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
     // TODO-QSP: $access[$ARGS[1]] = $ARGS[2]
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,6 +265,7 @@ function enterSetSuspensionDate(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[2] = 5;
   }
   // TODO-QSP: subscription[$ARGS[1] + '-suspension_day'] = daystart + ARGS[2]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -260,6 +273,7 @@ function enterSendSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] > 0) {
     ((s as any).subscription ?? {})['metered_calls-sms_limit'] = (((s as any).subscription ?? {})['metered_calls-sms_limit'] ?? 0) - (1);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -270,6 +284,7 @@ function enterUseInternet(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: subscription[$ARGS[1]] = 0
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -277,6 +292,7 @@ function enterCheckInternetAccess(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
     (s as any).result = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

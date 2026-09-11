@@ -48,6 +48,7 @@ function enterAfricanStudies_101(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_listen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_talk'] },
@@ -66,6 +67,7 @@ function enterAfricanStudies_101Listen(s: GameState, scene: SceneBuilder): void 
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Bryant for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   scene.text('However, his biases towards a need for social and personal reparations come through as always. While he never outright says it, you get the feeling he thinks white girls should be offering their bodies to black African men as part of these reparations.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
@@ -84,6 +86,7 @@ function enterAfricanStudies_101Listen(s: GameState, scene: SceneBuilder): void 
 function enterAfricanStudies_101NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Bryant\'s lecture is very heavily influenced by his personal propaganda and you\'re having a hard time paying attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -118,6 +121,7 @@ function enterAfricanStudies_101Talk(s: GameState, scene: SceneBuilder): void {
       { label: 'Petka', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_talk_petka'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anushka', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_talk_anushka'] },
     { label: 'Djibril', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_talk_djibril'] },
@@ -168,6 +172,7 @@ function enterAfricanStudies102(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_listen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_talk'] },
@@ -182,6 +187,7 @@ function enterAfricanStudies_102Listen(s: GameState, scene: SceneBuilder): void 
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Bryant for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   scene.text('However, his biases towards a need for social and personal reparations come through as always. While he never outright says it, you get the feeling he thinks white girls should be offering their bodies to black African men as part of these reparations.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
@@ -201,6 +207,7 @@ function enterAfricanStudies_102Listen(s: GameState, scene: SceneBuilder): void 
 function enterAfricanStudies_102NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Bryant\'s lecture is very heavily influenced by his personal propaganda and you\'re having a hard time paying attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -235,6 +242,7 @@ function enterAfricanStudies_102Talk(s: GameState, scene: SceneBuilder): void {
       { label: 'Petka', goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_talk_petka'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anushka', goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_talk_anushka'] },
     { label: 'Djibril', goto: ['uni_lessons_electives_african_studies1', 'african_studies_102_talk_djibril'] },
@@ -266,6 +274,7 @@ function enterAfricanStudies_101TalkKendra_1(s: GameState, scene: SceneBuilder):
     scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she shushes you and tells you to pay attention in class and learn your place in the new world.');
     scene.text('She seems to be eating up what Professor Bryant says, completely agreeing with and believing every word, leaving you to wonder if you should visit her dorm room and see what she was talking about...');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -292,6 +301,7 @@ function enterAfricanStudies_102TalkKendra_1(s: GameState, scene: SceneBuilder):
     scene.text('You sit next to Kendra and try to have a conversation with her, but anytime you try and get a word in, she shushes you and tells you to pay attention in class and learn your place in the new world.');
     scene.text('She seems to be eating up what Professor Bryant says, completely agreeing with and believing every word, leaving you to wonder if you should visit her dorm room and see what she was talking about...');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -334,6 +344,7 @@ function enterAfricanStudies_101TalkKendra_2(s: GameState, scene: SceneBuilder):
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -342,6 +353,7 @@ function enterAfricanStudies_101TalkKendra_2(s: GameState, scene: SceneBuilder):
 
 function enterAfricanStudies_102TalkKendra_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'uni_lessons_electives_african_studies1', 'african_studies_101_talk_kendra_2');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -366,6 +378,7 @@ function enterAfricanStudies_101TalkKatja(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -390,6 +403,7 @@ function enterAfricanStudies_102TalkKatja(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -440,6 +454,7 @@ function enterAfricanStudies_101TalkAnushka(s: GameState, scene: SceneBuilder): 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -490,6 +505,7 @@ function enterAfricanStudies_102TalkAnushka(s: GameState, scene: SceneBuilder): 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -510,6 +526,7 @@ function enterAfricanStudies_101TalkDjibril(s: GameState, scene: SceneBuilder): 
       scene.text('You sit next to Djibril and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -530,6 +547,7 @@ function enterAfricanStudies_102TalkDjibril(s: GameState, scene: SceneBuilder): 
       scene.text('You sit next to Djibril and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -562,6 +580,7 @@ function enterAfricanStudies_101TalkLebogang(s: GameState, scene: SceneBuilder):
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -594,6 +613,7 @@ function enterAfricanStudies_102TalkLebogang(s: GameState, scene: SceneBuilder):
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -616,6 +636,7 @@ function enterAfricanStudies_101TalkErmias_1(s: GameState, scene: SceneBuilder):
   scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? 0)}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -675,6 +696,7 @@ function enterAfricanStudies_101TalkErmias_2(s: GameState, scene: SceneBuilder):
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -697,6 +719,7 @@ function enterAfricanStudies_102TalkErmias_1(s: GameState, scene: SceneBuilder):
   scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? 0)}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -757,6 +780,7 @@ function enterAfricanStudies_102TalkErmias_2(s: GameState, scene: SceneBuilder):
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -789,6 +813,7 @@ function enterAfricanStudies_101TalkFarai(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -821,6 +846,7 @@ function enterAfricanStudies_102TalkFarai(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -853,6 +879,7 @@ function enterAfricanStudies_101TalkArendse(s: GameState, scene: SceneBuilder): 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -885,6 +912,7 @@ function enterAfricanStudies_102TalkArendse(s: GameState, scene: SceneBuilder): 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -981,6 +1009,7 @@ function enterAfricanStudies_101TalkHaruna(s: GameState, scene: SceneBuilder): v
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -1077,6 +1106,7 @@ function enterAfricanStudies_102TalkHaruna(s: GameState, scene: SceneBuilder): v
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -1129,6 +1159,7 @@ function enterAfricanStudies_101TalkPetka(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -1181,6 +1212,7 @@ function enterAfricanStudies_102TalkPetka(s: GameState, scene: SceneBuilder): vo
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
   ]);
@@ -1351,6 +1383,7 @@ function enterAfricanStudies_101Events(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1437,6 +1470,7 @@ function enterAfricaNush(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1597,12 +1631,14 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl2.jpg');
   scene.text('You crack the door open and peek in. The two of them are seated back in their seats and seem to be talking about something on the computer, but you notice their overly flirting body language and that Anushka is sitting facing Djibril in a fairly short skirt with her legs spread wide enough for him to see her panties.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     { label: 'Keep watching', handler: (st: GameState) => {
@@ -1805,6 +1841,7 @@ function enterNushHarunaAfrica101(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('They leave the classroom holding hands, the seem to switch a couple of times which one is leading which. They head down the hallway and then up the stairs, until they get to the top floor, you follow them for a good five to ten minutes. As you follow them staying just out of sight once there is almost no one else around, you quickly realize they are going back to the same place as last time. Sure enough once they get to the top floor, he leads her to the same room, he drags her inside and closes the door behind them.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     { label: 'Keep watching', handler: (st: GameState) => {

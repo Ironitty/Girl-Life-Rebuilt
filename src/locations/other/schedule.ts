@@ -7,6 +7,15 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterCikl(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'miroslava_schedule', 'cikl');
+  qspCall(s, 'gp_elene_schedule', 'cikl');
+  qspCall(s, 'gp_zlatek_schedule', 'cikl');
+  return;
+  // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === ''  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('A2') : -1) >= 0) {
     qspCall(s, 'artem_chebotarev_schedule', '');
   }
@@ -95,14 +104,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.build();
-}
-
-function enterCikl(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'miroslava_schedule', 'cikl');
-  qspCall(s, 'gp_elene_schedule', 'cikl');
-  qspCall(s, 'gp_zlatek_schedule', 'cikl');
-  return;
   scene.build();
 }
 

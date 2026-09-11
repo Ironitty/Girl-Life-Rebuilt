@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterWarning(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b><font color = white>WARNING</font></b></center>');
   scene.img('images/system/1_openings/warning.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Continue</b>', goto: ['begin', 'start'] },
     { label: '<b>Quick Start</b>', goto: ['begin', 'quick_start'] },
@@ -23,6 +24,7 @@ function enterCheckimg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).locArgs?.[3] ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).locArgs?.[4] ?? 0)) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,6 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: '<b>Quick Start</b>', goto: ['intro_start', 'quick_start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change theme', goto: ['themes', 'menu'] },
     { label: 'Change game settings', handler: (st: GameState) => {
@@ -76,6 +79,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).start_type ?? {})['loc'] = qspFunc(s, 'begin', 'get_random', 'loc');
   ((s as any).start_type ?? {})['magic'] = qspFunc(s, 'begin', 'get_random', 'magic');
   scene.actions([{ label: 'Continue', goto: ['intro_start', 'quick_start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -98,6 +102,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,6 +122,7 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *P '<a href="exec:stat_cfg[''android''] = 1 & gt ''begin'',''real_character''">Here</a> (Current: <b...
   }
   scene.text('</center>');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Use the dynamic profile system</b>', handler: (st: GameState) => {
     ((s as any).face_style ?? {})['type'] = 0;
@@ -138,6 +144,7 @@ function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: You have selected: <<$face_style['avatar_path']>>. Is this correct?
   scene.text(`You have selected: ${((s as any).face_style ?? 0)?.['avatar_path']}. Is this correct?`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['intro_start', 'start'] },
     { label: 'Try again', goto: ['begin', 'use_avatar_menu'] },

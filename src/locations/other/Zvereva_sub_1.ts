@@ -249,6 +249,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -270,6 +271,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).christinaQW ?? {})['subpath'] = 3;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).christinaQW ?? 0)?.['subpath'] === 3) {
@@ -358,6 +360,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Christina pulls a dildo out of her sports bag, and sticks it on the shower wall ...
     scene.text(`Christina pulls a dildo out of her sports bag, and sticks it on the shower wall at groin level. "Start sucking, ${((s as any).pcs_nickname ?? 0)}, if you do a good job maybe I'll reward you.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on the dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj.jpg');
@@ -386,6 +389,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: Christina pulls a dildo out of her sports bag, puts a stone on the floor and sti...
   scene.text(`Christina pulls a dildo out of her sports bag, puts a stone on the floor and sticks the dildo on top of it. "Get down there, ${((s as any).pcs_nickname ?? 0)}. Do some push-ups while you suck on it, you could use the workout."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on the dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj2.jpg');
@@ -410,6 +414,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('Christina takes the by now familiar dildo out of her sports bag again, and tells you to squat. Afraid to disappoint her, you do as she says.');
   }
   scene.text('She sticks the dildo right in front of you and says "Don\'t move your feet, bitch. Those stay where they are. I don\'t care how you do it, but I want to see your lips around that dildo. Someone, help her out."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on the dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj3.jpg');
@@ -431,6 +436,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('Christina smiles at you when she reaches into her bag. "You\'ve been doing such a good job, bitch. I feel like you need a bigger challenge."');
   // TODO-QSP: dynamic text: She pulls out not one, but three dildos and sticks them all on a large mirror at...
   scene.text(`She pulls out not one, but three dildos and sticks them all on a large mirror at groin level. "Go ahead ${((s as any).pcs_nickname ?? 0)}, get to work. Make sure none of them feel left out."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on the dildos', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj4.jpg');
@@ -453,6 +459,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   scene.text('She pulls the familiar dildo out of her bag, and sticks it against the large mirror in the locker room with an evil grin.');
   // TODO-QSP: dynamic text: She taunts you, saying "Do you even know how big of a slut you are, <<$pcs_nickn...
   scene.text(`She taunts you, saying "Do you even know how big of a slut you are, ${((s as any).pcs_nickname ?? 0)}? Of course you don't… so I will show you. I want you to look yourself in the eye as you suck it off. Get to it."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on the dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj5.jpg');
@@ -473,6 +480,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina stands in the middle of the locker room and says "Bitch, come over here."');
   scene.text('Expecting her to stick a dildo on a wall or mirror or something, you\'re confused. As you walk over to her, she gives you a larger dildo than before. "Take it and start sucking." Christina steps back as you take the dildo from her hands, while all the girls look at you expectantly.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on the large dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj6.jpg');
@@ -492,6 +500,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina stops right in front of you. You notice she doesn\'t have her sports bag in her hands like usual.');
   scene.text('"Alright, bitch. We\'re doing something a little different today. Show us your smelly pussy. Now!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Obey', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj7.jpg');
@@ -564,6 +573,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
 function enter7(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina walks towards the showers, and sticks a dildo to the wall at groin level. When you automatically walk up to it and move to kneel, she stops you. "No no, bitch. No mouth today, you ride it." You can tell your classmates are getting restless, obviously they are expecting today\'s show to be good.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck your pussy with it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj13.jpg');
@@ -587,6 +597,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina grabs your face with her hand, squishing your cheeks together: "What\'s that, bitch? You\'re scared I forgot about your best rubber buddy? Don\'t worry, it\'s right here!"');
   scene.text('She pulls the dildo out of her bag and sticks it onto the floor. With an evil grin she says "Go ahead bitch, hop on. I know you want to."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride the dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj14.jpg');
@@ -610,6 +621,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina grabs your face with her hand, squishing your cheeks together. "What\'s that, bitch? You\'re scared I forgot about your best rubber buddy? Don\'t worry, it\'s right here!"');
   scene.text('She pulls the dildo out of her bag and sticks it onto the floor. With an evil grin she says "Go on bitch, hop on. You know you want to."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride the dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj15.jpg');
@@ -634,6 +646,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina smiles at you and says "You\'ve been doing such a good job, bitch… it\'s about time I reward you."');
   scene.text('She pulls an extra large dildo out of her backpack and grins. "Oh yes, I can see that greedy look in your eyes. It\'s all yours today. Girls, you can help her out if you want," she says as she sticks it to the floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride the large dildo', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj16.jpg');
@@ -658,6 +671,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina fakes sympathy as she says "Oh no! Bad news, bitch… I forgot your rubber friend! Let\'s see what else I have for you…"');
   scene.text('She digs through her purse, and pulls out her hairbrush. "Here you go, bitch. You can use this today… I expect you to clean it properly before you give it back, I don\'t want your pussy stinking up my purse."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use the handle on yourself', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj17.jpg');
@@ -679,6 +693,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
 function enter12(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('You notice all the girls from your class gathering around, wondering what Christina has in store for you today. Christina looks through her sports bag and shrugs. "Bad news, bitch. I forgot to pack your friends this morning. Use your own hands today."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate in front of them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj18.jpg');
@@ -703,6 +718,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
 function enter13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('After you take your clothes off, Christina whips your ass with her towel: "We\'re doing something a bit more interactive today, bitch. But first, you\'re fisting yourself. I want to see your whole hand disappear between those stinking folds. Girls, spit."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fist yourself', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj19,\'+rand(0, 1)+\'.jpg');
@@ -730,6 +746,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
 function enter14(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina laughs haughtily as she takes off her clothes. "You know what, bitch? I just realized… I do so many nice things for you, and you never do anything for me in return. So rude. Today, you\'re pleasing me. Get on your knees and crawl over to me, you\'re going to lick me to orgasm today."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/sex/christina/dildobj20,\'+rand(0, 1)+\'.jpg');
@@ -760,10 +777,12 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
     scene.text('She quickly heads into the showers, and for a second you feel unsure as to what to do. The other girls of your class smirk at your behaviour; you\'d gotten so used to Christina\'s abuse that you have no idea how to posture yourself when she\'s not here. You\'re deeply embarrassed when you try to imagine what they must think of you, and you do your best to ignore them.');
   }
   qspCall(s, 'Zvereva_sub_1', 'finished');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFinished(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons4', 'postphys2'] },
   ]);
@@ -773,6 +792,7 @@ function enterFinished(s: GameState, scene: SceneBuilder): void {
 function enterWs_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('Christina mutters about having to go to the bathroom, but then an idea strikes her when she sees you. "Excellent, just when I thought there was no toilet nearby. Bitch, come here. Get on your knees and open your mouth… and make it quick, I\'m ready to burst!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Obey and open your mouth', handler: (st: GameState) => {
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {

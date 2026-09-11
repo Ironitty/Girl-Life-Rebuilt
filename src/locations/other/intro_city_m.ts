@@ -11,11 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_start', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWelcomeIntro(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_end', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

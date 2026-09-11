@@ -16,6 +16,7 @@ function enterMiraApologise(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/turn_back.jpg');
   scene.text('Walking through the village, you hear someone catching up to you. Turning around, you see Mira nearing you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -73,6 +74,7 @@ function enterMitkaApologise(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/turn_back.jpg');
   scene.text('Walking through the village, you hear someone catching up to you. Turning around, you see Mitka running towards you. Knowing from experience that boys are faster runners, you stop and wait for him to catch up.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -113,6 +115,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
   scene.text('Walking through the village, you suddenly hear someone calling out to you. Turning back, you see that it is Stepan coming your way. Remembering his recent participation in the village gangbang makes you pick up your pace. There is no way you want to deal with it right now.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wait, I need to speak with you," Stepan yelled from afar, se...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, wait, I need to speak with you," Stepan yelled from afar, seeing that you were getting ready to run away.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -221,6 +224,7 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
   scene.text('You think about running away or resisting, but consider your tattered reputation and how men from the village are already treating you.');
   scene.text('You don\'t even have the will to stop or give a damn about your imminent fuck fest.');
   scene.text('One of the men puts both of his hands on your shoulders and not so gently pushes you down on your knees. You sighed and opened your mouth willingly, resigned to your fate…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start to suck', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all', 'VillageRiver');
@@ -306,6 +310,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'dinsex', 'sexcum');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let the men fuck your ass', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'drunk man', Math.floor(Math.random() * 27) + 19);
@@ -405,6 +410,7 @@ function enterGadriverGang3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'sexcum');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel and suck', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -501,6 +507,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
   qspCall(s, 'arousal', 'anal', (-5), 'sub', 'gangbang');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Slow down a little', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Drunk man', Math.floor(Math.random() * 27) + 19);
@@ -646,6 +653,7 @@ function enterGadriverGang5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'gangbang');
   // TODO-QSP: gs 'arousal', 'anal', -5, $npcID[2], 'sub', 'gangbang'
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sandwiched again', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'a villager', Math.floor(Math.random() * 27) + 19);
@@ -750,6 +758,7 @@ function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'gad1', 'A63'
@@ -786,6 +795,7 @@ function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'gad1', 'A61'
@@ -822,6 +832,7 @@ function enterGadukinoVasyan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'gad1', 'A62'
@@ -889,6 +900,7 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', goto: ['mitkasex', 'gad2'] },
   ]);
@@ -924,6 +936,7 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'forest1', 'A63'
@@ -960,6 +973,7 @@ function enterMiraKolyamba(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'forest1', 'A61'
@@ -996,6 +1010,7 @@ function enterMiraVasyan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'forest1', 'A62'
@@ -1063,6 +1078,7 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     // TODO-QSP: gt 'mitkasex', 'forest2', $ARGS[1]
@@ -1106,6 +1122,7 @@ function enterMira_3boys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', goto: ['mitkasex', 'forest3'] },
   ]);
@@ -1126,6 +1143,7 @@ function enterSound(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

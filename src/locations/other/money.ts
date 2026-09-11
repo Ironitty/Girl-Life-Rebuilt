@@ -54,6 +54,7 @@ function enterBankTransfer(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'money', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,6 +83,7 @@ function enterDeskTransfer(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'money', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,6 +116,7 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -132,6 +135,7 @@ function enterEarn(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,36 +150,42 @@ function enterSet(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPrice(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'price');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterProfit(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'profit');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBasePrice(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'money', '_remove_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'price');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBaseProfit(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'money', '_remove_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'profit');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCanAfford(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'money', '_can_afford_inner', qspFunc(s, 'money', '_apply_modifiers', qspUntranslated(s, "ARGS[1]", { location: "money" }), 'price'), ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -195,6 +205,7 @@ function enterGetCostString(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += ' ' + $func('wrap', 'v_neg', '(You can''t afford this)')
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -221,6 +232,7 @@ function enterCanAffordInner(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,11 +240,13 @@ function enterStringPrice(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[1] ?? 0))) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStringProfit(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -251,6 +265,7 @@ function enterFormat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -291,6 +306,7 @@ function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,6 +323,7 @@ function enterFormatPriceString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,6 +334,7 @@ function enterApplyModifiers(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['pos_mult_opt'], qspUntranslated(s, "ARGS[1]", { location: "money" }), ((s as any).cfg_vars ?? 0)?.['pos_mult']);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -332,6 +350,7 @@ function enterRemoveModifiers(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspUntranslated(s, "ARGS[1]", { location: "money" });
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -396,6 +415,7 @@ function enterPaymentMethod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,6 +426,7 @@ function enterCashPayment(s: GameState, scene: SceneBuilder): void {
     (s as any).money = ((s as any).money ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "money" }));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -416,6 +437,7 @@ function enterBankPayment(s: GameState, scene: SceneBuilder): void {
     (s as any).karta = ((s as any).karta ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "money" }));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -428,6 +450,7 @@ function enterDeskPayment(s: GameState, scene: SceneBuilder): void {
     (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).ARGS ?? 0)[1] - ((s as any).temp_moneyVars ?? {})?.['cash_portion']);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -446,6 +469,7 @@ function enterHybridPayment(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -506,6 +530,7 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -516,6 +541,7 @@ function enterDebtAdd(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', 'price', qspUntranslated(s, "ARGS[2]", { location: "money" }));
   // TODO-QSP: dynamic "<<$ARGS[1]>> += <<temp_moneyVars['amount']>>"
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -561,6 +587,7 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "<<$ARGS[1]>> -= <<temp_moneyVars['paid']>>"
   (s as any).result = ((s as any).temp_moneyVars ?? 0)?.['paid'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,6 +598,7 @@ function enterStringDebt(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[3] ?? 0))) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -578,6 +606,7 @@ function enterStringDebtReduction(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +614,7 @@ function enterStringDebtAddition(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) <= 0) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -619,6 +649,7 @@ function enterCanAffordDebt(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -638,6 +669,7 @@ function enterGetDebtCostString(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += ' ' + $func('wrap', 'v_neg', '(You can''t afford this)')
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

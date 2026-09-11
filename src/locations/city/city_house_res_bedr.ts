@@ -32,6 +32,7 @@ function enterBedro(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
   qspCall(s, 'blackmailer', 'open_package_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['city_house_res_misc', 'hallw'] },
     { label: 'Relax on your bed', goto: ['bed', 'start'] },

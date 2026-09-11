@@ -15,6 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Mommy Style</b></center>');
   scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
   scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the Shop', goto: ['city_mall', ''] },
     { label: 'View clothes', handler: (st: GameState) => {
@@ -31,6 +32,7 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'mothershop');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_materinstvo', 'start'] },
   ]);
@@ -47,6 +49,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

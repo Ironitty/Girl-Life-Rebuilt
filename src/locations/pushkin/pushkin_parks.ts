@@ -38,6 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'flash', 'park');
   qspCall(s, 'blackmailer', 'set_park_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Okhlopkov Square (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -128,6 +129,7 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'events', 'street_cum');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Visit the pond', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -146,6 +148,7 @@ function enterPavserjil(s: GameState, scene: SceneBuilder): void {
   (s as any).pavserhom = 1;
   scene.img('images/characters/pushkin/pavser/pavserjil2.jpg');
   scene.text('It is not clear why you are drawn to him, but you can barely take your eyes off him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pushkin_parks', 'lug'] },
   ]);
@@ -158,6 +161,7 @@ function enterPrut(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Park Pond</b></center>');
   scene.img('images/locations/pushkin/park/prut.jpg');
   scene.text('A large and pretty pond near the end of the park, it continues off in to a wooded area.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Explore the wooded area', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -255,6 +259,7 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
       scene.text('It would be a good place for skinny dipping but you\'re too worried about what people would think to do such a thing.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the field', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -273,6 +278,7 @@ function enterLuzhayka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/park/luzhayka.jpg');
   scene.text('A quiet hidden field that is well maintained but apart from the occasional grounds keeper you feel like it is all yours.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the woodland pond', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;

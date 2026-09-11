@@ -15,6 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).nerdvana_staff = Math.floor(Math.random() * 2) + 0;
     (s as any).nerdvana_staff_day = ((s as any).daystart ?? 0);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Nerdvana', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -38,6 +39,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
   // TODO-QSP: 'You walk up to the counter and stike up a conversation with the <<iif(nerdvana_staff = 0, ''lanky''...
   qspCall(s, 'blackmailer', 'set_nerdvana_talk_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -52,6 +54,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nerdvana</b></center>');
   scene.img('images/locations/city/island/nerdvana/shop.jpg');
   scene.text('If you\'re happy to push through the tourists, then Nerdvana has everything a young adult might like to wear. It\'s only a minor step up from G&M, but unless you can afford the boutiques in Old Town, you\'ll be buying your outfits here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_nerdvana', 'start'] },
     { label: 'View cosplay outfits', handler: (st: GameState) => {
@@ -84,6 +87,7 @@ function enterCosplay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -104,6 +108,7 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -123,6 +128,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -142,6 +148,7 @@ function enterBikinis(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -162,6 +169,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

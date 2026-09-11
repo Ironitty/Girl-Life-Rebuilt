@@ -5,37 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat', '');
-  scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
-  // TODO-QSP: $OpenInnerThought + '"Come on <<$pcs_firstname>>, keep it together! Act sober,"' + $CloseInnerThough...
-  // TODO-QSP: dynamic text: Your sister looks at you, her eyebrow raised. "Are you stoned, <<$pcs_nickname>>...
-  scene.text(`Your sister looks at you, her eyebrow raised. "Are you stoned, ${((s as any).pcs_nickname ?? 0)}?"`);
-  scene.actions([
-    { label: 'No', handler: (st: GameState) => {
-    (s as any).narkossister = 1;
-    qspCall(s, 'stat', '');
-    scene.text('You nervously shake your head and back away, but it\'s obvious that Anya can tell.');
-    scene.actions([
-      { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-    ]);
-  } },
-    { label: 'Yes', handler: (st: GameState) => {
-    (s as any).narkossister = 1;
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
-    scene.text('You admit that you learned where to buy drugs and wanted to try them out.');
-    // TODO-QSP: dynamic text: Anya looks at you sternly. "<<$pcs_nickname>>, I'm not your mother, who would ki...
-    scene.text(`Anya looks at you sternly. "${((s as any).pcs_nickname ?? 0)}, I'm not your mother, who would kill you if she found out by the way, but this is the first and last time. It's not worth it! If you continue, then your whole life will not be worth shit."`);
-    return;
-    scene.actions([
-      { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-    ]);
-  } },
-  ]);
   scene.build();
 }
 
@@ -189,6 +158,38 @@ function enterChecks(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
+  // TODO-QSP: $OpenInnerThought + '"Come on <<$pcs_firstname>>, keep it together! Act sober,"' + $CloseInnerThough...
+  // TODO-QSP: dynamic text: Your sister looks at you, her eyebrow raised. "Are you stoned, <<$pcs_nickname>>...
+  scene.text(`Your sister looks at you, her eyebrow raised. "Are you stoned, ${((s as any).pcs_nickname ?? 0)}?"`);
+  scene.actions([
+    { label: 'No', handler: (st: GameState) => {
+    (s as any).narkossister = 1;
+    qspCall(s, 'stat', '');
+    scene.text('You nervously shake your head and back away, but it\'s obvious that Anya can tell.');
+    scene.actions([
+      { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    { label: 'Yes', handler: (st: GameState) => {
+    (s as any).narkossister = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
+    scene.text('You admit that you learned where to buy drugs and wanted to try them out.');
+    // TODO-QSP: dynamic text: Anya looks at you sternly. "<<$pcs_nickname>>, I'm not your mother, who would ki...
+    scene.text(`Anya looks at you sternly. "${((s as any).pcs_nickname ?? 0)}, I'm not your mother, who would kill you if she found out by the way, but this is the first and last time. It's not worth it! If you continue, then your whole life will not be worth shit."`);
+    return;
+    scene.actions([
+      { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+  ]);
   scene.build();
 }
 
@@ -925,6 +926,7 @@ function enterTalking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -998,6 +1000,7 @@ function enterSmallTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1016,11 +1019,13 @@ function enterJobTalkStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Doing anything else for money, <<$pcs_nickname>>?"
     scene.text(`"Doing anything else for money, ${((s as any).pcs_nickname ?? 0)}?"`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sister_chat', 'porn_talk0');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1084,6 +1089,7 @@ function enterTwincompare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['sister_chat', 'talking'] },
   ]);
@@ -1111,6 +1117,7 @@ function enterPargone(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at your beloved pet flying away and have to hold back your tears. You turn away from your sister so she doesn\'t see you crying.');
     ((s as any).ParrotQW ?? {})['Owned2'] = 0;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1216,6 +1223,7 @@ function enterPregnantNotice(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sister_chat', 'talking'] },
   ]);
@@ -1275,6 +1283,7 @@ function enterPartyInvite(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No (study)', handler: (st: GameState) => {
     ((s as any).sisterQW ?? {})['party'] = (-1);
@@ -1315,6 +1324,7 @@ function enterMissedParty(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "We missed you at the party, <<$pcs_nickname>>!" she pouts. "I'll let you know w...
   scene.text(`"We missed you at the party, ${((s as any).pcs_nickname ?? 0)}!" she pouts. "I'll let you know when the next party is and maybe you'll be able to make it, okay?"`);
   scene.text('You apologize for missing the party and she smiles at you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sister_chat', 'talking'] },
   ]);
@@ -1346,6 +1356,7 @@ function enterAfterRoma(s: GameState, scene: SceneBuilder): void {
     (s as any).sisboytrioQW = 0;
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sister_chat', 'talking'] },
   ]);
@@ -1362,6 +1373,7 @@ function enterMissedRoma(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
   scene.text('Anya doesn\'t look happy with you. "What happened? You promised to join me and Roma! Well, maybe next time…"');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sister_chat', 'talking'] },
   ]);
@@ -1450,6 +1462,7 @@ function enterIncestTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1464,6 +1477,7 @@ function enterBathroomDildoTalk1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('As you open the door to your room, something suddenly comes flying towards you. You jump in surprise and flail, scrambling to catch the incoming projectiles. Somehow, you manage to not drop them, only at that point realizing that they\'re two rubber dicks with suction cups at the ends. Wait, aren\'t these yours???');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     ((s as any).mc_inventory ?? {})['dildo_suction'] = ((s as any).anyaQW ?? 0)?.['bathroom_dildos'];
@@ -1496,6 +1510,7 @@ function enterBathroomDildoTalk2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" your sister hisses. "Seriously! Mom is going to <i>kill</i>...
     scene.text(`"${((s as any).pcs_nickname ?? 0)}!" your sister hisses. "Seriously! Mom is going to <i>kill</i> you if you aren't more careful! Don't leave this in the tub after you're done!"`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bedrPar', ''] },
   ]);
@@ -1520,6 +1535,7 @@ function enterSexRoomTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s up?"');
     scene.text('"Did you bring a guy home while we were visiting the village this weekend?" The look on your face makes her mouth twist into a smirk. "Cause it smelled like sex in here after I got back."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['bedrPar', ''] },
   ]);
@@ -1539,6 +1555,7 @@ function enterMomslutTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1583,10 +1600,12 @@ function enterMomslutTalk2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMomslutTalk3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Why didn\'t you tell me?', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
@@ -1628,11 +1647,13 @@ function enterPornTalk0(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPornTalk1(s: GameState, scene: SceneBuilder): void {
   scene.text('"YOU <i>WHAT</i>?!" she blurts as her jaw opens wide, suddenly looking at the door as if your mother were going to come bursting in any second before dropping down into hushed tones. "You\'re doing <i>porn</i>?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'The money is good', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
@@ -1691,6 +1712,7 @@ function enterPornConfront1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar.jpg');
   scene.text('You take no more than a step into your room when Anya grabs you by the arm and yanks you inside before slamming the door behind you.');
   scene.text('"What the fuck?!" she hisses. "You\'re doing porn?!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Uhh', handler: (st: GameState) => {
     scene.text('"Uhhh…" is all you manage to get out as your sister continues to glare at you.');
@@ -1712,6 +1734,7 @@ function enterPornConfront1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornConfront2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'She won\'t find out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
@@ -1761,6 +1784,7 @@ function enterPornRepeat1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
   scene.text('"So… Are you still shooting porn?" Anya asks with surprising curiosity.');
   qspCall(s, 'sister_chat', 'porn_repeat2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1775,6 +1799,7 @@ function enterPornRepeat2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I quit' }, // TODO-QSP: empty action body
     { label: 'Still doing porn' }, // TODO-QSP: empty action body

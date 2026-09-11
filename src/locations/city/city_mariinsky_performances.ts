@@ -13,14 +13,17 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['city_mariinsky_performances', 'performances'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstPerformance(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPerformances(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

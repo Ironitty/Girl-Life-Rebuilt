@@ -5,6 +5,44 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>The Barber Shop</b></center>');
+  scene.text('<center>The only barber shop in the area owned by Oleg Anatolyevich Syomin. He denies ever playing football, but your brother is convinced he is "The Oleg Anatolyevich Syomin". While he can\'t do very special hairstyles, he\'s cheap and works fast.</center>');
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  if (((s as any).pcs_hairlng ?? 0) <= 15) {
+    scene.text('Your hair is not long enough to require cutting.');
+  } else {
+    // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 700) = 1, '"exec: gt 'barbershop', '...
+    scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 700) = 1, \'"exec: gt \'barbershop\', \'cuthair\'"\', \') + \'>Cut your hair (\' + $func(\'money\', \'string_price\', 700) + \')</a>');
+  }
+  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec: gt 'barbershop', '...
+  scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'dyehair\'"\', \') + \'>Dye your hair (\' + $func(\'money\', \'string_price\', 750) + \')</a>');
+  if (((s as any).nathcol ?? 0) !== ((s as any).pcs_haircol ?? 0)) {
+    if (((s as any).dyefade ?? 0) > 0  &&  ((s as any).dyefade ?? 0) < 7) {
+      // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 375) = 1, '"exec: gt 'barbershop', '...
+      scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 375) = 1, \'"exec: gt \'barbershop\', \'touchup\'"\', \') + \'>Touch up hair color (\' + $func(\'money\', \'string_price\', 375) + \')</a>');
+    } else {
+      if ((!((s as any).dyefade ?? 0))) {
+        // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec: gt 'barbershop', '...
+        scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'touchup2\'"\', \') + \'>Re-dye your existing hair color (\' + $func(\'money\', \'string_price\', 750) + \')</a>');
+      }
+    }
+  }
+  if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) >= 20) {
+    scene.text('The barber shop is closed at the moment, you should probably come back, when Mr. Syomin is in');
+    return;
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pav_commercial', ''] },
+    ]);
+  }
+  // TODO-QSP: end
   qspCall(s, 'jobs', 'get_job_definition', 'pav_barbershop_cleaner');
   if (((s as any).job_status ?? 0)?.['pav_barbershop_cleaner'] === '') {
     scene.actions([
@@ -63,6 +101,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pav_commercial', ''] },
     { label: 'Buy Scrunchies [+$func(\'money\', \'get_cost_string\', 60)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 60) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
@@ -87,48 +128,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-  ]);
-  scene.build();
-}
-
-function enterStart(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat', '');
-  scene.text('<center><b>The Barber Shop</b></center>');
-  scene.text('<center>The only barber shop in the area owned by Oleg Anatolyevich Syomin. He denies ever playing football, but your brother is convinced he is "The Oleg Anatolyevich Syomin". While he can\'t do very special hairstyles, he\'s cheap and works fast.</center>');
-  qspCall(s, 'stat', '');
-  qspCall(s, 'themes', 'indoors');
-  if (((s as any).pcs_hairlng ?? 0) <= 15) {
-    scene.text('Your hair is not long enough to require cutting.');
-  } else {
-    // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 700) = 1, '"exec: gt 'barbershop', '...
-    scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 700) = 1, \'"exec: gt \'barbershop\', \'cuthair\'"\', \') + \'>Cut your hair (\' + $func(\'money\', \'string_price\', 700) + \')</a>');
-  }
-  // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec: gt 'barbershop', '...
-  scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'dyehair\'"\', \') + \'>Dye your hair (\' + $func(\'money\', \'string_price\', 750) + \')</a>');
-  if (((s as any).nathcol ?? 0) !== ((s as any).pcs_haircol ?? 0)) {
-    if (((s as any).dyefade ?? 0) > 0  &&  ((s as any).dyefade ?? 0) < 7) {
-      // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 375) = 1, '"exec: gt 'barbershop', '...
-      scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 375) = 1, \'"exec: gt \'barbershop\', \'touchup\'"\', \') + \'>Touch up hair color (\' + $func(\'money\', \'string_price\', 375) + \')</a>');
-    } else {
-      if ((!((s as any).dyefade ?? 0))) {
-        // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec: gt 'barbershop', '...
-        scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'touchup2\'"\', \') + \'>Re-dye your existing hair color (\' + $func(\'money\', \'string_price\', 750) + \')</a>');
-      }
-    }
-  }
-  if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) >= 20) {
-    scene.text('The barber shop is closed at the moment, you should probably come back, when Mr. Syomin is in');
-    return;
-    scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 3;
-  }, goto: ['pav_commercial', ''] },
-    ]);
-  }
-  scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    (st as any).minut = ((st as any).minut ?? 0) + 3;
-  }, goto: ['pav_commercial', ''] },
   ]);
   scene.build();
 }
@@ -544,6 +543,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change you mind', goto: ['barbershop', 'start'] },
   ]);
@@ -564,6 +564,7 @@ function enterPerm(s: GameState, scene: SceneBuilder): void {
     scene.img(`${qspFunc(s, '$face_image', '')}`);
     scene.text('You get your hair curled, as it should be naturally.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['barbershop', 'start'] },
   ]);
@@ -584,6 +585,7 @@ function enterPerm2(s: GameState, scene: SceneBuilder): void {
     scene.img(`${qspFunc(s, '$face_image', '')}`);
     scene.text('You get your hair straightened. It should hold for around 2 weeks.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['barbershop', 'start'] },
   ]);
@@ -1168,6 +1170,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', goto: ['barbershop', 'start'] },
   ]);
@@ -1185,6 +1188,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
   scene.text('She flits around your head with her tools, and before you know it, your hair is restored to its earlier luster and color.');
   // TODO-QSP: dynamic text: You stand up from the chair and pay her ' + $func('money', 'string_price', 375) ...
   scene.text('You stand up from the chair and pay her \' + $func(\'money\', \'string_price\', 375) + \'.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['barbershop', 'start'] },
   ]);
@@ -1194,6 +1198,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
 function enterTouchup2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The hairdresser smiles apologetically, "Sorry, but you're going to need a comple...
   scene.text('The hairdresser smiles apologetically, "Sorry, but you\'re going to need a completely new dye job to cover that up. I can do it, if you want? It\'s only \' + $func(\'money\', \'string_price\', 750) + \'."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 45;

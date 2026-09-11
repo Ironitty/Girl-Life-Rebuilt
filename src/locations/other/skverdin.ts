@@ -16,6 +16,7 @@ function enterDParkPlacerBj(s: GameState, scene: SceneBuilder): void {
   (s as any).ppbj = 0;
   (s as any).ppsex = 0;
   (s as any).ppanal = 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his member in your hand', goto: ['skverdin', 'd_pp_hand'] },
     { label: 'Squat down', goto: ['skverdin', 'd_pp_squat'] },
@@ -63,6 +64,7 @@ function enterDPpHand(s: GameState, scene: SceneBuilder): void {
       { label: 'Squat down', goto: ['skverdin', 'd_pp_squat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +76,7 @@ function enterDPpHjcum(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 20) {
     qspCall(s, 'cum_call', 'clothes', ((s as any).npcID ?? 0));
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clean yourself up', goto: ['skverdin', 'd_pp_goend'] },
   ]);
@@ -86,6 +89,7 @@ function enterDPpSquat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/park/sex/squat.jpg');
   // TODO-QSP: dynamic text: You squat down on your haunches and find yourself face to face with his erect <<...
   scene.text(`You squat down on your haunches and find yourself face to face with his erect ${((s as any).dick ?? 0)}cm cock.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his cock', goto: ['skverdin', 'd_pp_bj'] },
   ]);
@@ -131,6 +135,7 @@ function enterDPpBj(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,6 +147,7 @@ function enterDPpBjcum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0, 0, 0, 15);
   qspCall(s, 'cum_call', 'clothes', ((s as any).npcID ?? 0), 0, 0, 0, 10);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clean yourself up', goto: ['skverdin', 'd_pp_goend'] },
   ]);
@@ -168,6 +174,7 @@ function enterDPpSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Squat down', goto: ['skverdin', 'd_pp_squat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -180,6 +187,7 @@ function enterDPpDouble(s: GameState, scene: SceneBuilder): void {
   scene.text('Everything happens so quickly that you don\'t even have time to process what\'s going on. Suddenly there are two penises in front of your face, their purple heads right in front of you. One of the guys impatiently pushes your head toward a cock.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck both members', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble2.jpg');
@@ -230,6 +238,7 @@ function enterDPpGoend(s: GameState, scene: SceneBuilder): void {
   scene.text(`You begin to clean yourself up. ${((s as any).boydesc ?? 0)} has already buttoned his pants. "Well, catch you later ${((s as any).pcs_nickname ?? 0)}. I still have things to do, but hope to see you again soon."`);
   qspCall(s, 'cum_cleanup', 'external');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_park', 'start'] },
   ]);

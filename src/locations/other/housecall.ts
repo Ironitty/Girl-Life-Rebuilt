@@ -14,6 +14,7 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   scene.text('She smiles at you. "Hello. My name is Ninel Pavlovna, and I\'m the new local doctor. Where is the patient?"');
   scene.text('"That would be me," you reply.');
   scene.text('She nods. "I see. Then I need you to go back to bed."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her help you back to bed', handler: (st: GameState) => {
     (s as any).ninelmet = 1;
@@ -197,6 +198,7 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, that\'s me."');
   // TODO-QSP: dynamic text: She nods. "I see. What are your symptoms, <<$pcs_nickname>>? Can I call you that...
   scene.text(`She nods. "I see. What are your symptoms, ${((s as any).pcs_nickname ?? 0)}? Can I call you that?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Complain', handler: (st: GameState) => {
     (s as any).ninelmet = 1;
@@ -353,6 +355,7 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
   scene.text('Ninel lies down next to you and starts to kiss and caress your naked body. You feel confused and horrified by her behavior, but she\'s so gentle. Your body responds to her kisses and caresses, your nipples grow hard and your pussy grows wet. You\'re too excited to resist…');
   qspCall(s, 'arousal', 'kiss', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Surrender to your arousal', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel14.jpg');
@@ -434,6 +437,7 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
   scene.text('You lie in bed quietly waiting for Ninel, your fingers rubbing your pussy as you prepare yourself for her visit. When the doorbell rings, your pussy is soaking wet and ready.');
   qspCall(s, 'arousal', 'clit_finger', 10);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s open!', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel21.jpg');

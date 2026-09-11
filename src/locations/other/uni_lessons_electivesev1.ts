@@ -8,51 +8,61 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterComputers_101(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCompNush(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_computers1', 'anushka'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterArt_101(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'art_101_events'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_art1', 'albina_art'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_shared1', 'obey_kendra'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterObeyKendraLaydown(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_shared1', 'obey_kendra_laydown'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterObeyKendraOffdesk(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_shared1', 'obey_kendra_offdesk'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterObeyKendraTakecum(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives_shared1', 'obey_kendra_takecum'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStudyWithFriends(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['uni_lessons_electives', 'study_with_friends'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

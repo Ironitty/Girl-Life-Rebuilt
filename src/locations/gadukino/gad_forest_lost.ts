@@ -29,6 +29,7 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'gad_forest_lost', 'wander');
   qspCall(s, 'gad_forest_lost', 'picking');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax here for a bit', goto: ['gad_forest_lost', 'relax'] },
   ]);
@@ -51,6 +52,7 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'gad_forest_lost', 'wander');
   qspCall(s, 'gad_forest_lost', 'picking');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax here for a bit', goto: ['gad_forest_lost', 'relax'] },
   ]);
@@ -83,6 +85,7 @@ function enterBushcraft(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -124,6 +127,7 @@ function enterWander(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -342,6 +346,7 @@ function enterRelax(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Explore the forest', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_forest_lost', $forest_args1
@@ -432,6 +437,7 @@ function enterPicking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +591,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -828,12 +835,14 @@ function enterRescue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWolves(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/forest/howl.jpg');
   scene.text('Suddenly your hear a terrifying howl nearby.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run away', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier4', 5, 'run');
@@ -1131,6 +1140,7 @@ function enterGadForestLostPicture(s: GameState, scene: SceneBuilder): void {
       scene.text('With nightfall, your chances of finding your way are practically nothing. You should stop and rest until daylight.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

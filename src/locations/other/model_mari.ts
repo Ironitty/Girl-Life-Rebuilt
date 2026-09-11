@@ -14,6 +14,7 @@ function enterMariAge(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).mari ?? {})['age'] = ((s as any).year ?? 0) - 1998;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/models/mari/meeting/1.jpg');
   scene.text('As you walk around the different sets inside the agency, you notice another model waiting on set for a shoot to start. You realize after a second, you can see right through her top, the breast area a mesh fabric.');
   scene.text('You stand there for a while in the background contemplating if you should approach her or not. After a while you decide to go for it, thinking what\'s the worst that can happen.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/meeting/2.jpg');
@@ -131,6 +133,7 @@ function enterMari_1_1(s: GameState, scene: SceneBuilder): void {
   scene.text('Something piques an interest in you as Mari mentions she\'s from out of town. "You\'re not from St. Petersburg?"');
   scene.text('"Nope, moved here from a place called Gadukino. You\'ve probably never heard of it. It\'s a small village outside the city. Too small to be honest, same boring ins and outs every day. I wanted more excitement in my life! More than a simple farm girl would ever have. So I moved here."');
   qspCall(s, 'model_mari', 'mari_1.2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -184,6 +187,7 @@ function enterMari_1_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask for modelling advice', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/meeting/4b.jpg');
@@ -235,6 +239,7 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'model_mari', 'mari_age');
   scene.img('images/characters/city/models/mari/talking/reading1.jpg');
   scene.text('On your way to a shoot, you see Mari on a break, sitting in the chair of an unused set. At least you think she\'s on break because she\'s reading a book. But you\'re not totally sure since she\'s also completely naked.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Hey Mari! What\'re you doing here? Aren\'t you on break?"', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
@@ -328,6 +333,7 @@ function enterMari_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).mari ?? {})['status'] = Math.floor(Math.random() * 2) + 3;
   scene.img('images/characters/city/models/mari/talking/reading1.jpg');
   scene.text('Looking for Mari, find her on break in her favorite set chair reading that same book as always.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
     { label: '"Hi Mari!"', handler: (st: GameState) => {
@@ -415,6 +421,7 @@ function enterMari_4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -425,6 +432,7 @@ function enterMariChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'model_mari', 'mari_food_chat');
   qspCall(s, 'model_mari', 'mari_fitness_chat');
   qspCall(s, 'model_mari', 'mari_sex_talk');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading13.jpg');
@@ -441,6 +449,7 @@ function enterMariChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Discuss random topics', handler: (st: GameState) => {
     ((s as any).mari ?? {})['convo'] = Math.floor(Math.random() * 7) + 1;
@@ -578,6 +587,7 @@ function enterMariFamilyChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"No, there\'s just me."');
     qspCall(s, 'model_mari', 'mari_chat');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -612,6 +622,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I buy from G&M too', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
@@ -748,6 +759,7 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'To make money to buy things', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
@@ -766,6 +778,7 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariBookChat(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about her book', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading16.jpg');
@@ -784,6 +797,7 @@ function enterMariBookChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariFoodChat(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about food', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
@@ -797,6 +811,7 @@ function enterMariFoodChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariFitnessChat(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask how she stays in shape', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
@@ -820,6 +835,7 @@ function enterMariModellingChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'model_mari', 'mari_parents');
   qspCall(s, 'model_mari', 'mari_fakepassport_talk');
   qspCall(s, 'model_mari', 'mari_first_nude');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     qspCall(st, 'model_mari', 'mari_chat');
@@ -856,10 +872,12 @@ function enterMariModelAdvice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMariOrigin(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her how she became a model', handler: (st: GameState) => {
     ((s as any).mari ?? {})['model_ask'] = 1;
@@ -902,6 +920,7 @@ function enterMariOrigin(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariNametalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about her real name', handler: (st: GameState) => {
     ((s as any).mari ?? {})['name_chat'] = 1;
@@ -937,6 +956,7 @@ function enterMariNametalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariNametalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'What <i>about</i> me?', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/face.jpg');
@@ -990,6 +1010,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'d rather not say', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
@@ -1007,6 +1028,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
 
 function enterMariNametalk4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Come now," Mari says, giving you a look. "That\'s not really fair, is it? I told you mine. Well, let you know it\'s real anyways. Please? Won\'t you tell me?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Insist no', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading10.jpg');
@@ -1048,6 +1070,7 @@ function enterMariNametalk4(s: GameState, scene: SceneBuilder): void {
 function enterMariNametalk5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" Mari says, smiling to herself as if seeing how your name fe...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}…" Mari says, smiling to herself as if seeing how your name feels in her mouth. "I like it. Do… do you mind if I call you that?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'d rather you not', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
@@ -1085,6 +1108,7 @@ function enterMariSameNametalk(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Most of the other models use a proper fake name," she says. "I didn\'t expect anybody else to be like me and basically still use their real name."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep chatting', goto: ['model_mari', 'mari_modelling_chat'] },
   ]);
@@ -1139,6 +1163,7 @@ function enterMariParents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1309,10 +1334,12 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMariFirstNude(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about her nude debut', handler: (st: GameState) => {
     if (((s as any).modelfoto ?? 0)?.['fullnude'] === 0) {
@@ -1364,6 +1391,7 @@ function enterMariFirstNude2(s: GameState, scene: SceneBuilder): void {
     scene.text('"You haven\'t seen the cover photo from the portfolio folders have you?"');
     qspCall(s, 'model_mari', 'mari_first_nude3');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1371,10 +1399,12 @@ function enterMariFirstNude2_shave(s: GameState, scene: SceneBuilder): void {
   scene.text('"They made you shave for it?" you ask.');
   scene.text('"Yeah. The studio has this policy that every model\'s first full frontal has to shave her… yeah… I\'d done it once before, but it\'s not like I showed anybody, let alone had photographs taken of it. It made me feel… naked? Like being more naked than naked if that makes any sense. It\'s a good thing I like being naked!" she laughs.');
   qspCall(s, 'model_mari', 'mari_first_nude4');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMariFirstNude3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
@@ -1426,6 +1456,7 @@ function enterMariFirstNude4(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep chatting', goto: ['model_mari', 'mari_modelling_chat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1457,6 +1488,7 @@ function enterPcNudeDebutTalk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell the truth', handler: (st: GameState) => {
     if (((s as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'mortified') {
@@ -1642,6 +1674,7 @@ function enterPcNudeDebutTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOtherModelsTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about the other models' }, // TODO-QSP: empty action body
   ]);
@@ -1687,6 +1720,7 @@ function enterWeekendPlans(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1827,6 +1861,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

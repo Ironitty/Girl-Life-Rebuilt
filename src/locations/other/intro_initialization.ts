@@ -32,12 +32,14 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs $ARGS[1], 'wear', $temp_type, ARGS[3]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWearItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'intro_initialization', 'add_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4], ARGS[5], ARGS[6], 1
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -70,6 +72,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,6 +90,7 @@ function enterRandomizeStats(s: GameState, scene: SceneBuilder): void {
   (s as any).agilbuf = ((s as any).agilbuf ?? 0) + (qspUntranslated(s, "temp_rand[2]", { location: "intro_initialization" }));
   (s as any).vitalbuf = ((s as any).vitalbuf ?? 0) + (qspUntranslated(s, "temp_rand[3]", { location: "intro_initialization" }));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,6 +110,7 @@ function enterRandomizeGrades(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'grades', 'grade_award', 'school', 'mus',  temp_rand[12]
   // TODO-QSP: gs 'grades', 'grade_award', 'school', 'pe',    temp_rand[13]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,6 +152,7 @@ function enterInitTime(s: GameState, scene: SceneBuilder): void {
     (s as any).kanicont = 245 - ((s as any).daystart_start ?? 0);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -179,6 +185,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -202,6 +209,7 @@ function enterSgSettings(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) >= 25) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -428,6 +436,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).droutine ?? {})['evening_step_2'] = 'teeth';
   ((s as any).droutine ?? {})['evening_step_3'] = 'mouthwash';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +454,7 @@ function enterMid(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'intro_initialization_city', '');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -513,6 +523,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat ?? {})['herm_sexual_partners'] = qspUntranslated(s, "max(stat['herm_sexual_partners'], stat['herm_jerked'], stat['herm_feetfucked'], stat['herm_titfucked'], stat['herm_blown'], stat['herm_fucked'])", { location: "intro_initialization" });
   ((s as any).stat ?? {})['herm_sexual_times'] = qspUntranslated(s, "max(stat['herm_sexual_times'], stat['herm_jerked_times'], stat['herm_feetfucked_times'], stat['herm_titfucked_times'], stat['herm_blown_times'], stat['herm_fucked_times'])", { location: "intro_initialization" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,6 +551,7 @@ function enterFixStatInner(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

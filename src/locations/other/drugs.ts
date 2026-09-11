@@ -17,6 +17,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'caffeine_cikl');
   qspCall(s, 'drugs', 'painkiller_cikl');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enterHourlyEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'caffeine_hourly_events');
   qspCall(s, 'drugs', 'painkiller_hourly_events');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -41,6 +43,7 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'caffeine_stat');
   qspCall(s, 'drugs', 'painkiller_stat');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -349,6 +352,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat_display_compute', 'queue_msg', 'drug_buttinj_high', 'accent', 'drugs/buttinj_high', 2);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -381,6 +385,7 @@ function enterPainRelief(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).pain ?? {})['relief'] = qspUntranslated(s, "max(0, min(pain['relief'], 95))", { location: "drugs" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -492,6 +497,7 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -519,6 +525,7 @@ function enterCaffeine(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -541,6 +548,7 @@ function enterCaffeineCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -558,6 +566,7 @@ function enterCaffeineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (Math.floor(Math.random() * 2) + 0);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -582,11 +591,11 @@ function enterCaffeineStat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.text(`<br><br>Error: The drug given: ${((s as any).locArgs?.[0] ?? 0)}, does not exist or is missing. Please report this and a small part of the text of the current scene as a bug.<br>`);
   if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
@@ -621,6 +630,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body', 'SkinLoss', 'Smoke');
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -657,6 +667,7 @@ function enterCigaretteHourlyEvents(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['cigarettes_used'] = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -696,6 +707,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -709,6 +721,7 @@ function enterWeedHourlyEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -734,6 +747,7 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
   ((s as any).drugVars ?? {})['amphetamine_high'] = 12;
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -792,6 +806,7 @@ function enterAmphetamineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -803,6 +818,7 @@ function enterAmphetamineStat(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['amphetamine_withdrawl'] = 2;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -834,6 +850,7 @@ function enterCocaine(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -852,6 +869,7 @@ function enterCocaineCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -898,6 +916,7 @@ function enterCocaineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -916,6 +935,7 @@ function enterCocaineStat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -933,6 +953,7 @@ function enterHeroin(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (10);
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -977,6 +998,7 @@ function enterHeroinHourlyEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1000,6 +1022,7 @@ function enterHeroinStat(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['heroin_penalty'] = (((s as any).drugVars ?? {})['heroin_penalty'] ?? 0) + (1);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1029,6 +1052,7 @@ function enterPainkiller(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1036,6 +1060,7 @@ function enterAddPainkillerTimer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'refresh_painkiller_timer');
   // TODO-QSP: painkiller_timer[] = 180
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1043,6 +1068,7 @@ function enterCountPainkillerTimer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'refresh_painkiller_timer');
   (s as any).result = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1062,6 +1088,7 @@ function enterRefreshPainkillerTimer(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1073,6 +1100,7 @@ function enterPainkillerActStr(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1099,6 +1127,7 @@ function enterPainkillerCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1132,6 +1161,7 @@ function enterPainkillerHourlyEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1141,6 +1171,7 @@ function enterPainkillerStat(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['painkiller_weak'] = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1197,6 +1228,7 @@ function enterAphrodisiac(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1206,6 +1238,7 @@ function enterAphrodisiacCikl(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).drugVars ?? {})['aphrodisiac_timer'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1220,6 +1253,7 @@ function enterAphrodisiacHourlyEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1237,6 +1271,7 @@ function enterMentats(s: GameState, scene: SceneBuilder): void {
   ((s as any).drugVars ?? {})['mentats_dose'] = (((s as any).drugVars ?? {})['mentats_dose'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1254,6 +1289,7 @@ function enterMentatsCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1275,6 +1311,7 @@ function enterSteroids(s: GameState, scene: SceneBuilder): void {
   ((s as any).drugVars ?? {})['steroids_dose'] = (((s as any).drugVars ?? {})['steroids_dose'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1295,6 +1332,7 @@ function enterSteroidsCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['steroids_dose'] = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1307,6 +1345,7 @@ function enterSteroidsHourlyEvents(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).drugVars ?? {})['steroids_check'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1328,6 +1367,7 @@ function enterBreastcream(s: GameState, scene: SceneBuilder): void {
   ((s as any).drugVars ?? {})['breastcream_dose'] = 1;
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1343,6 +1383,7 @@ function enterBreastcreamCikl(s: GameState, scene: SceneBuilder): void {
     scene.text('Feels like your breasts have grown slightly.');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1364,6 +1405,7 @@ function enterHairExtensioncream(s: GameState, scene: SceneBuilder): void {
   ((s as any).drugVars ?? {})['hair_extensioncream_dose'] = 1;
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1377,6 +1419,7 @@ function enterHairExtensioncreamCikl(s: GameState, scene: SceneBuilder): void {
     scene.text('Feels like your hair has grown slightly.');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1398,6 +1441,7 @@ function enterButtInjection(s: GameState, scene: SceneBuilder): void {
   ((s as any).drugVars ?? {})['butt_injection_dose'] = 1;
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1413,6 +1457,8 @@ function enterButtInjectionCikl(s: GameState, scene: SceneBuilder): void {
     scene.text('Feels like your butt has grown slightly.');
   }
   return;
+  // TODO-QSP: end
+  scene.text(`<br><br>Error: The drug given: ${((s as any).locArgs?.[0] ?? 0)}, does not exist or is missing. Please report this and a small part of the text of the current scene as a bug.<br>`);
   scene.build();
 }
 

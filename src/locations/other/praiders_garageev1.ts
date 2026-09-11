@@ -15,6 +15,7 @@ function enterRadsex(s: GameState, scene: SceneBuilder): void {
   scene.text('You dance around and start slowly stripping for him as he quickly pulls out his semi erect cock. "Come over here and wrap those beautiful lips around my dick."');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blow him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/radomir/sex/garage/practice2.jpg');

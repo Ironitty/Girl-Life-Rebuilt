@@ -24,6 +24,7 @@ function enterAnushkaStudy(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few hours, her phone starts beeping. "I need to get going. See you later, but you should stop by my place sometime."');
     scene.text('She tells you where the apartment she shares with the boys from the band is located before she gathers her stuff and leaves.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['uni_library', 'start'] },
   ]);
@@ -46,6 +47,7 @@ function enterObeyKendra(s: GameState, scene: SceneBuilder): void {
   scene.text('Kendra softly laughs. "You may refer to her as little white slut, little white bitch, or slave. Now unbutton his pants and take his dick out. Do you understand me, slave?"');
   qspCall(s, 'arousal', 'BDSM', 1, ((s as any).npcID1 ?? 0), 'humiliation', 'sub', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Unbutton his pants', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra1.jpg');
@@ -125,6 +127,7 @@ function enterObeyKendraLaydown(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'BDSM', (-1), ((s as any).npcID1 ?? 0), 'humiliation', 'sub', 'lesbian');
   qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID ?? 0), 'humiliation', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra8.jpg');
@@ -167,6 +170,7 @@ function enterObeyKendraOffdesk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'BDSM', (-1), ((s as any).npcID1 ?? 0), 'humiliation', 'sub');
   qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID ?? 0), 'humiliation', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bend over', handler: (st: GameState) => {
     (s as any).dick = 20;
@@ -211,6 +215,7 @@ function enterObeyKendraTakecum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 0);
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay put', handler: (st: GameState) => {
     qspCall(s, 'fame', 'city', 'sex', 5);

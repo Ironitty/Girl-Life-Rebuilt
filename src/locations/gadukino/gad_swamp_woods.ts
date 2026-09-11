@@ -40,6 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You think about picking up firewood before remembering you have plenty back at the yard.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hut', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

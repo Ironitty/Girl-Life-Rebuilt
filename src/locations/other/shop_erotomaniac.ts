@@ -106,6 +106,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -150,6 +151,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop browsing', goto: ['shop_erotomaniac', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +166,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -184,6 +187,7 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -203,6 +207,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -222,6 +227,7 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -241,6 +247,7 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -260,6 +267,7 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -289,6 +297,7 @@ function enterBasement(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masharab ?? 0) === 1) {
     // TODO-QSP: act 'Go to Masha': gt 'masharoom', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the basement', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -312,6 +321,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['shop_erotomaniac', 'basement'] },
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
@@ -405,6 +415,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the booth', goto: ['shop_erotomaniac', 'basement'] },
   ]);
@@ -598,6 +609,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -608,6 +620,7 @@ function enterKendra1(s: GameState, scene: SceneBuilder): void {
   scene.text('You take the dildo from Kendra and insert it into her pussy. You use one hand to fuck her with the dildo while the other caresses her clit, Kendra moaning and writhing in pleasure as she leans back on the table.');
   qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend3.jpg');
@@ -653,6 +666,7 @@ function enterKendra2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"I see you\'re already wet, slave. Eager for my cock, are you? Don\'t worry, you\'ll feel it soon enough. Now get on your knees and suck it first!"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck her strap-on', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend7.jpg');
@@ -688,6 +702,7 @@ function enterKendravag(s: GameState, scene: SceneBuilder): void {
   scene.text('You start riding the strap-on as Kendra drives it up from under you, trying to shove it as deep into your pussy as possible. Several minutes pass, and each thrust increases your arousal.');
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Rub clit', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend12.jpg');
@@ -829,6 +844,7 @@ function enterKendraanal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Submit', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/erotomaniac/sex/shkend13.jpg');
@@ -861,6 +877,7 @@ function enterKendrafinish(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, Mistress Kendra…" you submissively reply before you both leave the basement and head back up to the store.');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian', 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -906,6 +923,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -918,6 +936,7 @@ function enterShprod(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/city/redlight/erotomaniac/shprod.jpg');
   scene.text('The cashier stands in front of you, holding a miniskirt and offering to help you. "Girl, this is very you. Will you try it on?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['shop_erotomaniac', 'start'] },
     { label: 'Try it on', handler: (st: GameState) => {

@@ -18,6 +18,7 @@ function enterImage(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/down_night.jpg');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,6 +209,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'lover', 'lover_events');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the central park (0:35)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 35;

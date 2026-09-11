@@ -6,6 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['imagepath'] = 'locations/city/industrial';
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,6 +39,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'stage_title');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -73,6 +75,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -203,6 +206,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A long and high fence is built around the <a href="exec:gt \'Terminal\'">storage terminal</a>.');
   qspCall(s, 'lover', 'lover_events');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the main road to Pavlovsk (0:15)', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_industrial', 'exit', 'pavlovsk'

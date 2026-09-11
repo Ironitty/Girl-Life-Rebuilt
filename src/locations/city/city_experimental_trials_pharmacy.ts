@@ -26,6 +26,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
       { label: 'Buy something', goto: ['city_experimental_trials_pharmacy', 'cart'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the front desk', goto: ['city_experimental_trials', 'front_desk'] },
   ]);
@@ -36,6 +37,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'experimental_trials');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
     qspCall(st, 'item_cart', 'shopping_var_clear');

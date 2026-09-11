@@ -25,6 +25,7 @@ function enterRapeTalk(s: GameState, scene: SceneBuilder): void {
   scene.text(`Your crying gets worse and you start sobbing uncontrollably in your ${((s as any).npc_nickname ?? 0)?.['A29']}'s arms as she hugs you tighter until your tears subside.`);
   // TODO-QSP: dynamic text: Once you've stopped crying, she sits down with you. "<<$pcs_nickname>>, I love y...
   scene.text(`Once you've stopped crying, she sits down with you. "${((s as any).pcs_nickname ?? 0)}, I love you and I'm here for you and will support you through this. If there's anything you need, just come to me. If you want to talk about it or…"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -181,6 +182,7 @@ function enterMiscarriageTalk1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A29', 20);
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 4) + 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Admit relief', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -301,6 +303,7 @@ function enterLostVirginityTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,10 +371,12 @@ function enterLostVirginityTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLostVirginLeaveAlone(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her alone for now', handler: (st: GameState) => {
     scene.text('Right now, it doesn\'t matter how you feel or what you say. It\'s clear that neither you or your mother are going to listen to anything.');
@@ -386,6 +391,7 @@ function enterLostVirginLeaveAlone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLostVirginLeaveAlone1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her alone for now', handler: (st: GameState) => {
     scene.text('Right now, it doesn\'t matter how you feel or what you say. It\'s clear that neither you or your mother are going to listen to anything.');
@@ -400,6 +406,7 @@ function enterLostVirginLeaveAlone1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReconciliationTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach your <<$npc_nickname[\'A29\']>>', handler: (st: GameState) => {
     ((s as any).mother ?? {})['kickedout_timer'] = 0;
@@ -491,6 +498,7 @@ function enterReconciliationTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReconciliationReplies(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'You\'re not going to stop having sex', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -522,6 +530,7 @@ function enterKnock(s: GameState, scene: SceneBuilder): void {
   scene.text('She looks at you and starts to speak. "So the wanderer returns, huh?! Where on earth have you been?! Do you realise how worried we\'ve been?!"');
   scene.text('Before you can respond, she continues. "Never mind, you\'re here now and that\'s all that matters. Well? don\'t just stand there! Come in! Despite our... differences, I still love and care about you."');
   scene.text('She stands aside and gives you a hug as you enter.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m just visiting', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 25;
@@ -595,6 +604,7 @@ function enterKnockUni(s: GameState, scene: SceneBuilder): void {
   scene.text('"You can stay over for the night if you wish," she says as you finish your tea.');
   // TODO-QSP: dynamic text: "Thanks <<$npc_nickname['A29']>>," you reply as you get up and leave the kitchen...
   scene.text(`"Thanks ${((s as any).npc_nickname ?? 0)?.['A29']}," you reply as you get up and leave the kitchen.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['korrPar', ''] },
   ]);
@@ -605,6 +615,7 @@ function enterLoverTalks(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 8) {
     qspCall(s, 'mother_chats', 'natbel');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -680,6 +691,7 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

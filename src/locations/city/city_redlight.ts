@@ -120,6 +120,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Industrial Region (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -179,6 +180,7 @@ function enterCityCopyShop(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_redlight', 'start'] },
   ]);

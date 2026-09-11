@@ -98,6 +98,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,6 +122,7 @@ function enterExitIntoLoc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +131,7 @@ function enterExitIntoDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_clothing', 'dress_loop_end');
   ((s as any).sex_ev ?? {})['dress_end'] = 0;
   ((s as any).sex_ev ?? {})['extra_cum'] = (((s as any).sex_ev ?? {})['extra_cum'] ?? 0) + (5);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +146,7 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['sex_ev_leave', 'exit'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -151,6 +155,7 @@ function enterEnding(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).date_ev ?? {}).length > 0) {
     qspCall(s, 'date_ev', 'end_code');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -204,6 +209,7 @@ function enterEndCode(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

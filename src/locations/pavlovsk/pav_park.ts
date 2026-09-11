@@ -37,6 +37,7 @@ function enterPavParkImage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -272,6 +273,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'blackmailer', 'set_park_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -311,6 +313,7 @@ function enterAlbFatherMeeting_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"We need to take care of the corruption in our police force! How many of our daughters must be raped because our petty excuses for officers allow crime to run rampant in our streets for a handful of rubles from the very criminals they\'re supposed to fight?"');
   scene.text('You take a closer look and see that it\'s Albina\'s father speaking. He\'s going hard on the authorities while the crowd gets rowdier.');
   scene.text('"Calm down, everyone! Don\'t take out your anger now! Instead, show them at the ballots how upset you truly are!" Albina\'s father finishes to cheers from the crowd.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go on with your day', goto: ['pav_park', 'start'] },
   ]);
@@ -326,6 +329,7 @@ function enterAlbFatherMeeting_2(s: GameState, scene: SceneBuilder): void {
   scene.text('The crowd keeps calm, except for his most die-hard supporters, who yell profanities and accusations against the current administration as Albina\'s father continues.');
   scene.text('"My opponents are desperate, desperate because I\'m about to unravel their web of lies, corruption and bribes that let them laugh at you from up in their ivory towers while you fight for scraps down in the dirt!"');
   scene.text('He slams the podium again.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go on with your day', goto: ['pav_park', 'start'] },
   ]);
@@ -341,6 +345,7 @@ function enterAlbFatherMeeting_3(s: GameState, scene: SceneBuilder): void {
   scene.text('He clears his throat a few times. "And now for some entertainment from my daughter and her dance group. If you look to the right, there are some refreshments available."');
   scene.text('He awkwardly steps away from the podium as the music starts, and the girls reluctantly step out. They\'re all wearing skintight, skimpy leotards that leave nothing to the imagination. Some men whistle and holler while others and most of the women look on in disgust, whispering that they can\'t believe that young girls would wear such revealing outfits.');
   scene.text('You stay and watch the performance. The girls are clearly uncomfortable with the situation, and you see Albina glare at her father a few times. Finally, the girls finish their performance and quickly run from the stage as Albina\'s father desperately tries to appease his diminishing crowd as everyone leaves, yourself included.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_park', 'start'] },
   ]);
@@ -518,6 +523,7 @@ function enterDeeperPark(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'camera', 'check_location');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -581,6 +587,7 @@ function enterSetRunAct(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -607,6 +614,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your run', handler: (st: GameState) => {
     scene.text('You feel great after your jogging session. You\'re a bit sweaty, but you\'ve also improved your stamina. You even feel a bit slimmer.');
@@ -644,6 +652,7 @@ function enterRunReactions(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You feel great after your jogging session. Of course, you\'re a bit sweaty, but you\'ve also improved your stamina. You even feel a bit slimmer.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your run', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -679,6 +688,7 @@ function enterSetSleepAct(s: GameState, scene: SceneBuilder): void {
       { label: 'Sleep on a bench', goto: ['pav_park', 'sleeping_park_bench'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -708,6 +718,7 @@ function enterSleepingParkBench(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) >= 7  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
     scene.actions([{ label: 'Continue', goto: ['placer_sex', 'sleeping_park_alco_rape'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', handler: (st: GameState) => {
     if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {

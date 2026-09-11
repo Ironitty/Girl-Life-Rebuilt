@@ -29,6 +29,7 @@ function enterRexRep(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,6 +229,7 @@ function enterRexGdkTalk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,6 +243,7 @@ function enterSkver(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'rex_events', 'rexRep');
   scene.text('Rex is standing at the bench with his hands behind his back. Just as you walk up to him you see him smiling and then he pulls out from behind his back a little, but very beautiful, bouquet of flowers and hands it to you.');
   scene.text('You don\'t know what to say – "Wow…" you take the bouquet, inhaling the aroma, and on the exhale, keeping the smile hidden from your face, say: "Thank you, Rex…!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -456,6 +459,7 @@ function enterAvto(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -478,6 +482,7 @@ function enterRexStory(s: GameState, scene: SceneBuilder): void {
   scene.text('Forgive me for the bluntness. So we had a good time! Moreover, this has happened more than once. It actually happened several times. One day I asked her if I could take a picture while she was blowing me. Diana was a little surprised by my request but she eventually agreed and continued to suck This really turned me on. A few days later she asked me to remove the pictures. I told her I removed them all and she believed me.');
   // TODO-QSP: dynamic text: You have to understand, <<$pcs_nickname>>… I have a weakness for women's legs. T...
   scene.text(`You have to understand, ${((s as any).pcs_nickname ?? 0)}… I have a weakness for women's legs. They…, they really turn me on! And she gets really turned on at the sight of the male penis. And we both adore oral sex! I guess it runs in the family… -it just happened, we understood each other. You shouldn't think I actually had sex with my sister! We only had oral sex!`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -718,12 +723,14 @@ function enterAvto2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRexCarEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: nl
   scene.text('You have to go. You had fun, but it is time to go home now.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Home', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1006,6 +1013,7 @@ function enterSms(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1015,6 +1023,7 @@ function enterSmsEnd1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/reks/event/phone/smartsist.jpg');
   scene.text('Looking through the contacts on the phone you found Rex\' phone number and you sent a message. You received the report that the message was delivered. A little later, just when you were about to put the phone back and go to sleep, you received an answer.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'See', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1031,6 +1040,7 @@ function enterSmsEnd1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSmsEnd2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Send', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

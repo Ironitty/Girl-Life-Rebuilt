@@ -25,6 +25,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal', 'journalmenu');
   // TODO-QSP: $result
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -42,6 +43,7 @@ function enterNavigate(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'calendar', 'show', ((s as any).calendar_ui_week_start ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,12 +53,14 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_list', 'assign_color');
   // TODO-QSP: gs 'calendar_events', 'new_event', $event_vars['id']
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_events', 'remove_event', ((s as any).locArgs?.[1] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +141,7 @@ function enterPack(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +176,7 @@ function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).cal_upcoming_dirty = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

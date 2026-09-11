@@ -7,6 +7,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterReset(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $npc_preferences[$ARGS[1]] = ''
+  // TODO-QSP: end
   if (!isNaN(((((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
     if (((s as any).locArgs?.[1] ?? 0) === '') {
       // TODO-QSP: exit
@@ -45,11 +51,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterReset(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $npc_preferences[$ARGS[1]] = ''
-  scene.build();
-}
-
 function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_nsprefVars ?? {})['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
   // TODO-QSP: "
@@ -65,6 +66,7 @@ function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'rebuild_preferences_loop'
   }
   // TODO-QSP: $npc_preferences[$ARGS[1]] = $replace($temp_nsprefVars['pref_string'], '  ', '')
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,6 +79,7 @@ function enterRemovePreference(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'npc_nsp_pref_values', ((s as any).locArgs?.[2] ?? 0));
     qspCall(s, 'npc_set_preference', 'rebuild_preferences', ((s as any).locArgs?.[1] ?? 0));
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,6 +186,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -191,6 +195,7 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: copyarr('$npc_backup_traits', '$npc_pref_traits')
     // TODO-QSP: copyarr('npc_backup_values', 'npc_pref_values')
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -199,6 +204,7 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: copyarr('$npc_pref_traits', '$npc_backup_traits')
     // TODO-QSP: copyarr('npc_pref_values', 'npc_backup_values')
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['slept_in'] = 0;
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,6 +25,7 @@ function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'prepare_sleep'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,16 +149,19 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
     (s as any).fat = ((s as any).fat ?? 0) - (5);
   }
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'mod_sleeptriggers'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sleep…', handler: (st: GameState) => {
     ((s as any).clo_flag ?? {})['bed'] = 0;

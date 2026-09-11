@@ -357,6 +357,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
@@ -379,6 +380,7 @@ function enterKitchenShowPussy(s: GameState, scene: SceneBuilder): void {
   scene.text('"I do trust you, it\'s just that-" you start saying but are promptly cut off.');
   scene.text('"You are a pervert that gets off on ogling innocent girls\' naked private parts," she says with a naughty glint in her eyes.');
   scene.text('She then lets her skirt fall and turns back to her cooking.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_dorm', 'dorm_kitchen', 'second_floor'
@@ -620,6 +622,7 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'uni_lessons', 'schedule');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and move on', goto: ['uni_grounds', ''] },
   ]);
@@ -708,6 +711,7 @@ function enterUniExit(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'uni_lessons', 'schedule');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and move on', goto: ['uni_grounds', ''] },
   ]);
@@ -722,6 +726,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
       scene.text('You see <a href="exec:gt \'katja_pantyquest\', \'uni_hallway\'">Katja</a> sitting on a chair in a hallway.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -760,6 +765,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -995,6 +1001,7 @@ function enterCoffeeHoleAfter(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to convince her to do something else', goto: ['katja_chat', 'coffee_hole_have_fun'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and get up', goto: ['city_coffee_hole', 'inner'] },
   ]);

@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterEligibleForUniversity(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'uniutil', 'student', 'status') === 0  &&  qspFunc(s, 'uniutil', 'diploma', 'obtained') === 0  &&  (((s as any).age ?? 0) >= 17  ||  ((s as any).fakepassport ?? 0) === 1);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +35,7 @@ function enterPrepclass(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'entrance_exam', 'offered_this_month')  &&  ((s as any).week ?? 0) < 6;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,6 +69,7 @@ function enterCheckSemesterVsDate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,6 +149,7 @@ function enterStudent(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 2;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +176,7 @@ function enterDiploma(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'diploma', 'get') > 0", { location: "uniutil" });
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -198,12 +203,14 @@ function enterFakeDiploma(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'fake_diploma', 'get') === 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAppearToHaveGraduated(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'uniutil', 'diploma', 'obtained')  ||  qspFunc(s, 'uniutil', 'fake_diploma', 'obtained');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +237,7 @@ function enterAttendance(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'attendance', 'is_ok') === 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,6 +261,7 @@ function enterAssignmentProgress(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'assignment_progress', 'is_finished') === 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -283,6 +292,7 @@ function enterAssignmentsDone(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'uniutil', 'assignments_done', 'get') >= qspFunc(s, 'uniutil', 'assignments_done', 'min_num');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -303,6 +313,7 @@ function enterScholarship(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1200;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -364,6 +375,7 @@ function enterLecture(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -388,6 +400,7 @@ function enterExam(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'print_month') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -429,6 +442,7 @@ function enterSemester(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -455,6 +469,7 @@ function enterSemesterResult(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspUntranslated(s, "func('uniutil', 'semester_result', 'get') < 0", { location: "uniutil" });
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -475,6 +490,7 @@ function enterExamOutcome(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -489,6 +505,7 @@ function enterPassedSemesters(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uniutil', 'passed_semesters', 'set', qspFunc(s, 'uniutil', 'passed_semesters', 'get'));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

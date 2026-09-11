@@ -15,6 +15,7 @@ function enterToilet1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/nightclub/sex/glory.jpg');
   scene.text('You head into the stall and close the door. The walls are covered with obscene graffiti and circular holes are carved in the walls. Sitting on the toilet, you hear a noise coming from the next stall.');
   scene.text('The next thing you know, a cock is pushed through the hole. "Here\'s a treat for you, baby," a lustful voice says with a laugh.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclub', 'inside'] },
     { label: 'Take a closer look', handler: (st: GameState) => {
@@ -73,6 +74,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.text('You grab some toilet paper to wipe yourself, but press a little too hard and feel a warmth growing between your legs.');
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbation');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -101,6 +103,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
 function enterToilet2(s: GameState, scene: SceneBuilder): void {
   scene.text('As you\'re sitting on the toilet, you hear both adjacent stall doors closing.');
   scene.text('"Don\'t be afraid baby, we won\'t hurt you. On the contrary, we\'ll give you some delicious candy with extra cream filling!" a voice says with a laugh.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclub', 'inside'] },
     { label: 'Continue', handler: (st: GameState) => {

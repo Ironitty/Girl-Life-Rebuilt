@@ -12,6 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((s as any).klofQW ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).klofday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -48,6 +49,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -72,6 +74,7 @@ function enterEv1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,6 +89,7 @@ function enterEv2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) < 75) {
     // TODO-QSP: act 'Leave': gt 'city_jorahouse', 'ev3'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clean up', goto: ['city_jorahouse', 'ev4'] },
   ]);
@@ -96,6 +100,7 @@ function enterEv3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).klofQW = ((s as any).klofQW ?? 0) - (1);
   scene.text('You decide that the guys are looking for a maid, tell them to try the phonebook and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -110,6 +115,7 @@ function enterEv4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well look, as I said we have not been here long, right now we need a girl for home services."');
   scene.text('"When will have gotten better acquainted, we will talk business."');
   scene.text('"Now be a good girl and take off your clothes, you are now the entertainment."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck Jora', goto: ['city_jorahouse', 'ev5'] },
   ]);
@@ -127,6 +133,7 @@ function enterEv5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
   qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him', goto: ['city_jorahouse', 'ev6'] },
   ]);
@@ -146,6 +153,7 @@ function enterEv6(s: GameState, scene: SceneBuilder): void {
   scene.text('You get dressed and ready to go home.');
   scene.text('You are approached by Jora who hands you money, "Earned yourself a crumb."');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['city_residential', ''] },
   ]);
@@ -156,6 +164,7 @@ function enterEv7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/city/jora/klof1.jpg');
   scene.text('You enter the apartment');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say hello to the guys', goto: ['city_jorahouse', 'ev8'] },
   ]);
@@ -171,6 +180,7 @@ function enterEv8(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello boys, did you miss me?" You say, blushing.');
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Entertain Jora', goto: ['city_jorahouse', 'ev9'] },
     { label: 'Entertain Semyon', goto: ['city_jorahouse', 'ev10'] },
@@ -183,6 +193,7 @@ function enterEv8(s: GameState, scene: SceneBuilder): void {
 function enterEv9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have Jora fuck your pussy', goto: ['city_jorahouse', 'ev13'] },
     { label: 'Have Jora fuck your ass', goto: ['city_jorahouse', 'ev14'] },
@@ -200,6 +211,7 @@ function enterEv13(s: GameState, scene: SceneBuilder): void {
   scene.text('Jora fucks you in your pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/pc/body/cum/creampie/cumpussy3.jpg');
@@ -226,6 +238,7 @@ function enterEv14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 3) + 11;
   scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? 0)}.jpg`);
+  // TODO-QSP: end
   scene.actions([
     { label: '…', handler: (st: GameState) => {
     scene.img('images/characters/city/jora/sex/klof14.jpg');
@@ -252,6 +265,7 @@ function enterEv15(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 3) + 15;
   scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? 0)}.jpg`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('Jora discharges himself on your face');
@@ -271,6 +285,7 @@ function enterEv15(s: GameState, scene: SceneBuilder): void {
 function enterEv10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have Semyon fuck your pussy', goto: ['city_jorahouse', 'ev 16'] },
     { label: 'Have Semyon fuck your ass', goto: ['city_jorahouse', 'ev 17'] },
@@ -288,6 +303,7 @@ function enterEv16(s: GameState, scene: SceneBuilder): void {
   scene.text('Semyon fucks you in your pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID1 ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/pc/body/cum/creampie/cumpussy3.jpg');
@@ -314,6 +330,7 @@ function enterEv17(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 3) + 11;
   scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? 0)}.jpg`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/jora/sex/klof14.jpg');
@@ -341,6 +358,7 @@ function enterEv18(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 3) + 15;
   scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? 0)}.jpg`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('Semyon cums all over your face');
@@ -395,6 +413,7 @@ function enterEv19(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['city_residential', ''] },
   ]);
@@ -406,6 +425,7 @@ function enterEv20(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/characters/city/jora/klof.jpg');
   scene.text('You want to talk serious business with the boss');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to the boss', handler: (st: GameState) => {
     if (((s as any).klofQW ?? 0) < 10) {
@@ -423,6 +443,7 @@ function enterEv21(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jora/klof24.jpg');
   scene.text('From the room comes an ugly old man.');
   scene.text('"Too early for you to progress in our business." He says.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['city_residential', ''] },
   ]);
@@ -448,6 +469,7 @@ function enterEv22(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the boss\'s room', goto: ['city_jorahouse', 'ev23'] },
   ]);
@@ -473,6 +495,7 @@ function enterEv23(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show yourself', goto: ['city_jorahouse', 'ev24'] },
   ]);
@@ -498,6 +521,7 @@ function enterEv24(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show your breasts', goto: ['city_jorahouse', 'ev25'] },
   ]);
@@ -527,6 +551,7 @@ function enterEv25(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show your ass', goto: ['city_jorahouse', 'ev26'] },
   ]);
@@ -554,6 +579,7 @@ function enterEv26(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove your dress', goto: ['city_jorahouse', 'ev27'] },
   ]);
@@ -579,6 +605,7 @@ function enterEv27(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', goto: ['city_jorahouse', 'ev28'] },
   ]);
@@ -606,6 +633,7 @@ function enterEv28(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Seduce the boss', goto: ['city_jorahouse', 'ev29'] },
   ]);
@@ -632,6 +660,7 @@ function enterEv29(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give him a better view', goto: ['city_jorahouse', 'ev30'] },
   ]);
@@ -658,6 +687,7 @@ function enterEv30(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick the boss\'s cock', goto: ['city_jorahouse', 'ev31'] },
   ]);
@@ -684,6 +714,7 @@ function enterEv31(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck it', goto: ['city_jorahouse', 'ev32'] },
   ]);
@@ -711,6 +742,7 @@ function enterEv32(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', goto: ['city_jorahouse', 'ev33'] },
   ]);
@@ -738,6 +770,7 @@ function enterEv33(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck your pussy', goto: ['city_jorahouse', 'ev34'] },
   ]);
@@ -767,6 +800,7 @@ function enterEv34(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck your ass', goto: ['city_jorahouse', 'ev35'] },
   ]);
@@ -781,6 +815,7 @@ function enterEv35(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 30, ((s as any).npcID2 ?? 0), 'sub', 'rough');
   qspCall(s, 'stat', '');
   scene.text('You feel that the boss is ready to cum.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel in front of him', goto: ['city_jorahouse', 'ev36'] },
     { label: 'Let him end in your ass', goto: ['city_jorahouse', 'ev37'] },
@@ -797,6 +832,7 @@ function enterEv36(s: GameState, scene: SceneBuilder): void {
   scene.text('You jump from his member and start wanking his cock until the boss cums on your face.');
   qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID2 ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', goto: ['city_jorahouse', 'ev39'] },
   ]);
@@ -811,6 +847,7 @@ function enterEv37(s: GameState, scene: SceneBuilder): void {
   scene.text('You start furiously thrusting your ass trying to help him quickly reach orgasm. You fill the warm feeling that tells you he has cum in your ass.');
   qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID2 ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', goto: ['city_jorahouse', 'ev39'] },
   ]);
@@ -825,6 +862,7 @@ function enterEv38(s: GameState, scene: SceneBuilder): void {
   scene.text('Fine, but if you have a kid it\'s not mine." Says the boss.');
   qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID2 ?? 0), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', goto: ['city_jorahouse', 'ev39'] },
   ]);
@@ -851,6 +889,7 @@ function enterEv39(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Obediently serve the boys', goto: ['city_jorahouse', 'ev40'] },
   ]);
@@ -868,6 +907,7 @@ function enterEv40(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up and get dressed', goto: ['city_jorahouse', 'ev41'] },
   ]);
@@ -880,6 +920,7 @@ function enterEv41(s: GameState, scene: SceneBuilder): void {
   scene.text('You got dressed and cleaned up.');
   scene.text('Jora approaches you and says, "The boss likes you, he wants you to go to the pool at the Havana gym tomorrow after 10, take this money, you earned it.');
   scene.text('Oh, and bring your swimsuit.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -911,6 +952,7 @@ function enterEv42(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go swimming', goto: ['city_jorahouse', 'ev43'] },
   ]);
@@ -941,6 +983,7 @@ function enterEv43(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lie down beside the pool', goto: ['city_jorahouse', 'ev44'] },
   ]);
@@ -971,6 +1014,7 @@ function enterEv44(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hesitantly remove your top', goto: ['city_jorahouse', 'ev45'] },
   ]);
@@ -1008,6 +1052,7 @@ function enterEv45(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove hands', goto: ['city_jorahouse', 'ev46'] },
   ]);
@@ -1022,6 +1067,7 @@ function enterEv46(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jora/bas6.jpg');
   scene.text('You lift your arms behind his head and strike a pose.');
   scene.text('Jora orders, "Remove the rest."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go into the water and remove bikini bottoms', goto: ['city_jorahouse', 'ev47'] },
     { label: 'Get out of here', handler: (st: GameState) => {
@@ -1061,6 +1107,7 @@ function enterEv47(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the water', goto: ['city_jorahouse', 'ev48'] },
   ]);
@@ -1094,6 +1141,7 @@ function enterEv48(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', goto: ['city_jorahouse', 'ev49'] },
   ]);
@@ -1127,6 +1175,7 @@ function enterEv49(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your lips', goto: ['city_jorahouse', 'ev50'] },
   ]);
@@ -1159,6 +1208,7 @@ function enterEv50(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Caressing your pussy', goto: ['city_jorahouse', 'ev51'] },
   ]);
@@ -1190,6 +1240,7 @@ function enterEv51(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cum', goto: ['city_jorahouse', 'ev52'] },
   ]);
@@ -1221,6 +1272,7 @@ function enterEv52(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Insert dildo', goto: ['city_jorahouse', 'ev53'] },
   ]);
@@ -1233,6 +1285,7 @@ function enterEv53(s: GameState, scene: SceneBuilder): void {
   scene.text('Jora hands you a second Dildo and says "Insert this in the same hole."');
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbation', 'exhibitionism', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Insert second Dildo', goto: ['city_jorahouse', 'ev54'] },
   ]);
@@ -1264,6 +1317,7 @@ function enterEv54(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put one in your ass', goto: ['city_jorahouse', 'ev55'] },
   ]);
@@ -1277,6 +1331,7 @@ function enterEv55(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbation', 'exhibitionism', 'sub');
   qspCall(s, 'arousal', 'anal_dildo', (-5), 'masturbation', 'exhibitionism', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', goto: ['city_jorahouse', 'ev56'] },
   ]);
@@ -1308,6 +1363,7 @@ function enterEv56(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Obediently hold the glass', goto: ['city_jorahouse', 'ev57'] },
   ]);
@@ -1319,6 +1375,7 @@ function enterEv57(s: GameState, scene: SceneBuilder): void {
   scene.text('Jora leisurely drinks the beer with a straw, then smiling says, "Suck my dick, bitch."');
   qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Jora', goto: ['city_jorahouse', 'ev58'] },
   ]);
@@ -1332,6 +1389,7 @@ function enterEv58(s: GameState, scene: SceneBuilder): void {
   scene.text('Once he is aroused Jora orders, "Enough, come over here and sit on it."');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck Jora', goto: ['city_jorahouse', 'ev60'] },
   ]);
@@ -1347,6 +1405,7 @@ function enterEv60(s: GameState, scene: SceneBuilder): void {
   scene.text('You grind on Jora\'s dick as he gropes your tits, you put some real effort into draining his balls knowing you aren\'t getting away before he\'s satisfied. You use every muscle and trick you know to bring him to the point of no return.');
   qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take it', goto: ['city_jorahouse', 'ev61'] },
   ]);
@@ -1377,6 +1436,7 @@ function enterEv61(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck the crowd', goto: ['city_jorahouse', 'ev62'] },
   ]);
@@ -1415,6 +1475,7 @@ function enterEv62(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'vagina', ((s as any).npcID4 ?? 0));
   (s as any).guy = ((s as any).guy ?? 0) + (5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck the crowd', goto: ['city_jorahouse', 'ev63'] },
   ]);
@@ -1459,6 +1520,7 @@ function enterEv63(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'cum_call', 'face', $npcID[7]
   (s as any).guy = ((s as any).guy ?? 0) + (8);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck the crowd', goto: ['city_jorahouse', 'ev64'] },
   ]);
@@ -1487,6 +1549,7 @@ function enterEv64(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'stomach', ((s as any).npcID1 ?? 0));
   qspCall(s, 'cum_call', 'breasts', ((s as any).npcID2 ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up and dress in your swimsuit', goto: ['city_jorahouse', 'ev65'] },
   ]);
@@ -1507,6 +1570,7 @@ function enterEv65(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
   // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to dressing room', goto: ['havana', 'dressing_room'] },
   ]);

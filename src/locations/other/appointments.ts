@@ -13,11 +13,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterHasAppointment(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') ? (1) : (0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetAppointmentId(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -25,12 +27,14 @@ function enterGetEventDisplayTs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_events', 'get_event', ((s as any).locArgs?.[1] ?? 0));
   (s as any).result = ((((s as any).event_vars ?? 0)?.['flex_type'] === 1) ? (((s as any).event_vars ?? 0)?.['window_end_ts']) : (((s as any).event_vars ?? 0)?.['start_ts']));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetState(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'appointments', '_resolve_state', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,6 +42,7 @@ function enterGetWaitMinutes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'appointments', '_resolve_state', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   (s as any).result = ((s as any).appointment_state_wait ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,6 +71,7 @@ function enterResolveState(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'appointments', '_state_from_event', $appointment_active[$ARGS[1]], event_vars['daystart']
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,6 +84,7 @@ function enterStateFromEvent(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +110,7 @@ function enterOfferSlots(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'appointments', '_offer_describe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,6 +141,7 @@ function enterOfferTryDay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'offer_try_draw'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -145,6 +154,7 @@ function enterSlotEventVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['blocking'] = 1;
   ((s as any).event_vars ?? {})['priority'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -154,6 +164,7 @@ function enterCheckConflict(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'appointments', '_slot_event_vars', ARGS[1], ARGS[2]
   (s as any).result = qspFunc(s, 'calendar_events', 'new_event', ((s as any).event_vars ?? 0)?.['id'], 'dry_run');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,6 +199,7 @@ function enterOfferDescribe(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'offer_desc_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -209,6 +221,7 @@ function enterOfferConflictNote(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -234,6 +247,7 @@ function enterBook(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: appointment_late_limit[$ARGS[1]] = appointment_offer_late_limit
   (s as any).result = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -244,6 +258,7 @@ function enterResolve(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $appointment_active[$ARGS[1]] = ''
   // TODO-QSP: appointment_late_limit[$ARGS[1]] = 0
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,6 +271,7 @@ function enterDailyCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'daily_check_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -274,6 +290,7 @@ function enterCheckIn(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < ((s as any).temp_apptCheckin ?? 0)?.['severity']) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -306,6 +323,7 @@ function enterRenderActs(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -16,6 +16,7 @@ function enterAtticTeens(s: GameState, scene: SceneBuilder): void {
   scene.text('You try to retrieve your clothes, but the teenagers constantly push and pull you in different directions. You beg them to let you go, promising never to come here again. But the teenagers only laugh and have openly pinned you down. Suddenly, you feel someone\'s hands at your pants, pulling sharply to force them down. Another one pulls off your bra and any remaining clothes.');
   scene.text('Now you\'re standing completely naked in front of them. They begin to push you toward the depths of the attic, and only now do you notice a huge old sofa with broken legs. As they force you toward the couch, you try again to calm the teenagers, but they pay no attention. They abruptly push you onto the couch. The teenagers begin to unbutton their jeans. A powerfully built man approaches first, shoves your shoulders down onto your back, unceremoniously spreads your legs, lies on top of you, and abruptly penetrates you.');
   qspCall(s, 'arousal', 'vaginal', 30, 'gangbang');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/cherdak1.jpg');
@@ -72,6 +73,7 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -102,6 +104,7 @@ function enterAttic(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 1) > 90) {
     scene.text('In the depths of the attic, you hear a group of <a href="exec:gt \'ETO_building\', \'attic_teens\'">teens</a> talking. It seems they don\'t notice you.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['ETO_building', 'building_entrance'] },
     { label: 'Go up to the roof', goto: ['ETO_building', 'roof'] },
@@ -169,6 +172,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the attic', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {

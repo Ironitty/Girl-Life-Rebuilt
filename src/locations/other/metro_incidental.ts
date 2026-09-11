@@ -20,6 +20,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: gt 'metro_incidental', 'event<<temp_transportVars[''rand'']>>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,65 +37,90 @@ function enterEvent0(s: GameState, scene: SceneBuilder): void {
       scene.text('Several passengers are shocked, noticing the cum smears on you.');
     }
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 'event1') {
-    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
-    }
-    qspCall(s, 'stat', '');
-    qspCall(s, 'themes', 'indoors');
-    scene.img('images/locations/city/shared/metro/metro.jpg');
-    scene.text('The car is mostly empty, leaving you a choice of seats. You easily find a place for yourself, leaving you plenty of room to get comfortable. The few other people on the car mind their own business, leaving you to your own thoughts.');
-    if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
-      if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
-        qspCall(s, 'mood', 'lower', 'small');
-        scene.text('Several passengers are shocked, noticing the cum smears on you.');
-      }
-    }
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
-    ]);
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'event2') {
-      if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
-      }
-      qspCall(s, 'stat', '');
-      qspCall(s, 'themes', 'indoors');
-      scene.img(`images/locations/city/shared/metro/metrofull${Math.floor(Math.random() * 5) + 1}.jpg`);
-      scene.text('The car is full of people. All the seats are taken, but only a few people are forced to stand. You easily find a place for yourself, leaving you plenty of room to get comfortable.');
-      if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
-        if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
-          qspCall(s, 'mood', 'lower', 'small');
-          scene.text('Several passengers are shocked, noticing the cum smears on you.');
-        }
-      }
-      scene.actions([
-        { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-      ]);
-    } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'event3') {
-        if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
-        }
-        qspCall(s, 'stat', '');
-        qspCall(s, 'themes', 'indoors');
-        scene.img('images/locations/city/shared/metro/metropacked.jpg');
-        scene.text('The car is packed with people, most of them being forced to stand since there aren\'t enough seats. It\'s so tightly packed that people are crammed up tightly against each other, but you manage to squeeze yourself in. You can feel other bodies pressed up tightly against yours, making for a very uncomfortable journey.');
-        if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
-          if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
-            qspCall(s, 'mood', 'lower', 'small');
-            scene.text('Several passengers are shocked, noticing the cum smears on you.');
-          }
-        }
-        scene.actions([
-          { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-        ]);
-      }
+  ]);
+  scene.build();
+}
+
+function enterEvent1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.img('images/locations/city/shared/metro/metro.jpg');
+  scene.text('The car is mostly empty, leaving you a choice of seats. You easily find a place for yourself, leaving you plenty of room to get comfortable. The few other people on the car mind their own business, leaving you to your own thoughts.');
+  if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
+    if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
+      qspCall(s, 'mood', 'lower', 'small');
+      scene.text('Several passengers are shocked, noticing the cum smears on you.');
     }
   }
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEvent2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.img(`images/locations/city/shared/metro/metrofull${Math.floor(Math.random() * 5) + 1}.jpg`);
+  scene.text('The car is full of people. All the seats are taken, but only a few people are forced to stand. You easily find a place for yourself, leaving you plenty of room to get comfortable.');
+  if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
+    if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
+      qspCall(s, 'mood', 'lower', 'small');
+      scene.text('Several passengers are shocked, noticing the cum smears on you.');
+    }
+  }
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEvent3(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.img('images/locations/city/shared/metro/metropacked.jpg');
+  scene.text('The car is packed with people, most of them being forced to stand since there aren\'t enough seats. It\'s so tightly packed that people are crammed up tightly against each other, but you manage to squeeze yourself in. You can feel other bodies pressed up tightly against yours, making for a very uncomfortable journey.');
+  if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
+    if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
+      qspCall(s, 'mood', 'lower', 'small');
+      scene.text('Several passengers are shocked, noticing the cum smears on you.');
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterEnd(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.actions([{ label: 'Continue', goto: ['metro_incidental', 'end<<rand(1, 1)>>'] }]);
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterEnd1(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('This is a placeholder end incidental event!!');
+  scene.text('Cool stuff to be added here!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -111,6 +137,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'event0':
       enterEvent0(s, scene);
+      break;
+    case 'event1':
+      enterEvent1(s, scene);
+      break;
+    case 'event2':
+      enterEvent2(s, scene);
+      break;
+    case 'event3':
+      enterEvent3(s, scene);
+      break;
+    case 'end':
+      enterEnd(s, scene);
+      break;
+    case 'end1':
+      enterEnd1(s, scene);
       break;
     default:
       enterDefault(s, scene);

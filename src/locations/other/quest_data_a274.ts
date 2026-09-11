@@ -13,11 +13,13 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_id'); } }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_id'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,11 +63,13 @@ function enterQuestBody(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('Event init failed, $ARGS not set.');
+  // TODO-QSP: end
   scene.build();
 }
 

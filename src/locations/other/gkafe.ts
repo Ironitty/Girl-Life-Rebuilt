@@ -125,6 +125,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_market', ''] },
   ]);
@@ -132,6 +133,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
@@ -152,6 +154,7 @@ function enterBoris(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Borislav\'s cafe</b></center>');
   scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
   scene.text('The owner of the cafe is called Borislav. He is a tall, overweight man in his forties. Most people call him Slava.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['gkafe', ''] },
     { label: 'Talk', goto: ['motherkafeboss', ''] },

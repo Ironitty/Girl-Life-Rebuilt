@@ -72,6 +72,7 @@ function enterGirlCum(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -169,6 +170,7 @@ function enterMissCum(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -269,6 +271,7 @@ function enterDoggyCum(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -313,6 +316,7 @@ function enterCowgirlCum(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -390,6 +394,7 @@ function enterAnalDoggyCum(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -419,6 +424,7 @@ function enterFuckCumRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -541,6 +547,7 @@ function enterCumDecider(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -560,6 +567,7 @@ function enterCumCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)  &&  ((s as any).sex_ev ?? 0)?.['stop_orgasm'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'enjoy') {
     ((s as any).sex_ev ?? {})['girl_orgasm'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -613,6 +621,7 @@ function enterFuckCum(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -698,6 +707,7 @@ function enterCumDialogue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -873,6 +883,7 @@ function enterFuckCum2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +956,7 @@ function enterCumHisChoice(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -978,6 +990,7 @@ function enterCumHisChoice2(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_cum', 'cum_wherever');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1042,6 +1055,7 @@ function enterCumWherever(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1086,6 +1100,7 @@ function enterCumJerkoff(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_sex', 'sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1128,6 +1143,7 @@ function enterCumFacial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_cum', 'facial_tongue_cum');
   qspCall(s, 'sex_ev_cum', 'facial_tongue_spit');
   qspCall(s, 'sex_ev_cum', 'facial_brace');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him yourself', goto: ['sex_ev_cum', 'facial_jerk_him'] },
     { label: 'Jerk him into your mouth', goto: ['sex_ev_cum', 'facial_jerk_mouth'] },
@@ -1213,6 +1229,7 @@ function enterFacialJerkHim(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'facial_wipe_eyes');
   qspCall(s, 'sex_ev_reactions', 'cum_react');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1305,6 +1322,7 @@ function enterFacialJerkMouth(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'facial_wipe_eyes');
   qspCall(s, 'sex_ev_reactions', 'cum_react');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1314,15 +1332,18 @@ function enterFacialHeJerks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_cum', 'facial_tongue_cum');
   qspCall(s, 'sex_ev_cum', 'facial_tongue_spit');
   qspCall(s, 'sex_ev_cum', 'facial_brace');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCumCannonFacial(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFacialWipeEyes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_reactions', 'bask_satisfaction');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wipe your eyes', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'hands', ((s as any).npcID ?? 0), 1);
@@ -1337,6 +1358,7 @@ function enterFacialWipeEyes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFacialCloseEyes(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close your eyes', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'cum_facial');
@@ -1356,6 +1378,7 @@ function enterFacialCloseEyes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFacialTongueCum(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stick out your tongue', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['cum_describe1'] = 'Thanks,';
@@ -1440,6 +1463,7 @@ function enterFacialTongueCum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFacialTongueSpit(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stick out your tongue (spit)', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['next_act1'] = 'sex_ev_after';
@@ -1463,6 +1487,7 @@ function enterFacialTongueSpit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFacialBrace(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Brace yourself (disgust)', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'cum_facial');
@@ -1616,6 +1641,7 @@ function enterCumMouth(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'sex_ev_cum', 'facial_tongue_cum');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1704,6 +1730,7 @@ function enterCumMouth1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_cum', 'cum_mouth2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1854,6 +1881,7 @@ function enterCumMouth2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gather it in your mouth', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/cum53.jpg');
@@ -1909,6 +1937,7 @@ function enterCumMouth2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumMouthAfter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1984,6 +2013,7 @@ function enterCumTits1(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish him yourself', goto: ['sex_ev_cum', 'cum_tits2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1998,6 +2028,7 @@ function enterCumTits2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Beckoning ${((s as any).npcdesc ?? 0)} towards you, he moves forward, straddling your stomach with his legs. You take hold of his member with your hand and immediately start working it, its shaft still slick with your juices. Within two pumps, cum spurts from the tip of his cock, the thick white liquid spattering across your chest, hot against your skin.`);
   }
   qspCall(s, 'sex_ev_sex', 'sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2056,6 +2087,7 @@ function enterCumTits3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> quickly moves over to you, holding his cock in his hand. As you sit...
   scene.text(`${((s as any).npcdesc ?? 0)} quickly moves over to you, holding his cock in his hand. As you sit up, cum bursts from the tip, thick white droplets spattering across your breasts as ${((s as any).npcdesc ?? 0)} shudders in pleasure.`);
   qspCall(s, 'sex_ev_sex', 'sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2075,11 +2107,13 @@ function enterCumTits4(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_sex', 'sex_end');
   qspCall(s, 'sex_ev_after', 'wipe_tits');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCumTitsEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_reactions', 'cum_react');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2099,6 +2133,7 @@ function enterCreampieMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Creampie', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)  ||  ((s as any).pcs_horny ?? 0) > 90) {
@@ -2366,6 +2401,7 @@ function enterCumInside(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2373,6 +2409,7 @@ function enterMissCreampie(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> drives himself into your pussy, grunting. His cock pulses and a sud...
   scene.text(`${((s as any).npcdesc ?? 0)} drives himself into your pussy, grunting. His cock pulses and a sudden warmth floods through your insides.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride it out', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You lay there patiently, letting <<$npcdesc>> empty himself into your womb, wait...
@@ -2420,6 +2457,7 @@ function enterDoggyCreampie(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/vagcreampie/doggy4.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> drives himself into your pussy with a grunt. His cock pulses and a ...
   scene.text(`${((s as any).npcdesc ?? 0)} drives himself into your pussy with a grunt. His cock pulses and a sudden warmth floods through your insides.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride it out', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You stay there patiently, letting <<$npcdesc>> empty himself into your womb, wai...
@@ -2476,6 +2514,7 @@ function enterCowgirlCreampie(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> grabs you and pulls you down onto his cock. He holds you tight, thr...
     scene.text(`${((s as any).npcdesc ?? 0)} grabs you and pulls you down onto his cock. He holds you tight, thrusting humself upward, driving his cock in deep into you as he can manage. As he does, you feel him stiffen up and groan, and his cock pulses inside you.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride it out', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You ride out his orgasm, gently rock your hips and squeezing <<$npcdesc>>'s cock...
@@ -2509,6 +2548,7 @@ function enterAnalDoggyCreampie(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/analcreampie/doggy1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> drives himself into your asshole with a grunt. His cock pulses and ...
   scene.text(`${((s as any).npcdesc ?? 0)} drives himself into your asshole with a grunt. His cock pulses and a sudden warmth floods through your intestines.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride it out', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You stay there patiently, letting <<$npcdesc>> empty himself into your ass, wait...
@@ -2639,6 +2679,7 @@ function enterCumInsidePullAway(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2651,6 +2692,7 @@ function enterCumInsidePullAwayAnal(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_sex', 'sex_end');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2708,6 +2750,7 @@ function enterCumTogether(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Orgasm', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
@@ -2786,6 +2829,1614 @@ function enterAnalCumTogether(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end !}
   // TODO-QSP: dynamic text: "<<$sex_ev['cum_together_dialogue1']>>Let's come together instead," you say, giv...
   scene.text(`"${((s as any).sex_ev ?? 0)?.['cum_together_dialogue1']}Let's come together instead," you say, giving him a warm smile over your shoulder.`);
+  // TODO-QSP: end
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Orgasm', handler: (st: GameState) => {
+    if (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['anal_creampie_orgasm_count'] = (((s as any).sex_ev ?? {})['anal_creampie_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+      scene.img('images/shared/sex/anal/doggy/orgasm1.mp4');
+      // TODO-QSP: dynamic text: <<$npcdesc>>'s cock pulses inside you and something warm spills into your intest...
+      scene.text(`${((s as any).npcdesc ?? 0)}'s cock pulses inside you and something warm spills into your intestines. His hot cum filling you up is the last thing you need to get off and suddenly you're right there with him, quivering uncontrollably, and clenching your ass around him as the two of you come together.`);
+      qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+      qspCall(s, 'sex_ev_reactions', 'react_menu');
+    } else {
+      qspCall(s, 'sex_ev_cum', 'hypno_creampie_orgasm_fail');
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSurpriseCumTogether(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'anal_surprise_cum_together'] }]);
+  }
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.img('images/shared/sex/vag/miss/3.jpg');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/vag/doggy/1.jpg');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.img('images/shared/sex/vag/cowgirl/3.jpg');
+      }
+    }
+  }
+  ((s as any).sex_ev ?? {})['came_together'] = 2;
+  if (((s as any).sex_ev ?? 0)?.['no_condom'] === 1) {
+    ((s as any).sex_ev ?? {})['creampie_surprise'] = 1;
+    ((s as any).sex_ev ?? {})['surprise_cum_together'] = 1;
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    qspCall(s, 'sex_ev_stats', 'creampie_code');
+    scene.text('As your orgasm finishes winding down, you realize with a start that you feel very... <i><b>full</b></i>...');
+    qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+    qspCall(s, 'sex_ev_reactions_creampie', 'did_you_come_inside');
+  } else {
+    // TODO-QSP: dynamic text: As your orgasm finishes winding down, you realize with a start that <<$npcdesc>>...
+    scene.text(`As your orgasm finishes winding down, you realize with a start that ${((s as any).npcdesc ?? 0)} isn't moving and appears to be breathing very heavily.`);
+  }
+  qspCall(s, 'sex_ev_reactions_creampie', 'creampie_cum_together_react');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterAnalSurpriseCumTogether(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/shared/sex/vag/doggy/1.jpg');
+  ((s as any).sex_ev ?? {})['came_together'] = 2;
+  if (((s as any).sex_ev ?? 0)?.['no_condom'] === 1) {
+    ((s as any).sex_ev ?? {})['anal_creampie_count'] = (((s as any).sex_ev ?? {})['anal_creampie_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['anal_creampie_surprise'] = 1;
+    ((s as any).sex_ev ?? {})['anal_surprise_cum_together'] = 1;
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['last_cum'] = 'anal_creampie';
+    qspCall(s, 'sex_ev_stats', 'anal_creampie_code');
+    scene.text('As your orgasm finishes winding down, you realize with a start that your ass feels very... <i><b>full</b></i>...');
+    qspCall(s, 'sex_ev_reactions', 'anal_did_you_come_inside');
+  } else {
+    // TODO-QSP: dynamic text: As your orgasm finishes winding down, you realize with a start that <<$npcdesc>>...
+    scene.text(`As your orgasm finishes winding down, you realize with a start that ${((s as any).npcdesc ?? 0)} isn't moving and appears to be breathing very heavily.`);
+  }
+  qspCall(s, 'sex_ev_reactions_creampie', 'creampie_cum_together_react');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumTogether2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Collapse' }, // TODO-QSP: empty action body
+  ]);
+  scene.build();
+}
+
+function enterCumTogetherFake(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['cum_together_fake'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['position'] !== 'anal') {
+    qspCall(s, 'sex_ev_stats', 'creampie_code');
+  } else {
+    qspCall(s, 'sex_ev_stats', 'anal_creampie_code');
+  }
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.text('"Let\'s come together," you say, smiling warmly into his eyes.');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy'  ||  ((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
+      scene.text('"Let\'s come together," you say, giving him a warm smile over your shoulder.');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.text('"Let\'s come together," you say, smiling warmly into his eyes.');
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Fake orgasm', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['fake_orgasm_count'] = (((s as any).sex_ev ?? {})['fake_orgasm_count'] ?? 0) + (1);
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
+            scene.img('images/shared/sex/anal/doggy/orgasm3.mp4');
+          }
+        }
+      }
+    }
+    if (((s as any).sex_ev ?? 0)?.['position'] !== 'anal') {
+      // TODO-QSP: dynamic text: <<$npcdesc>>'s cock pulses inside you and something warm spills into your pussy ...
+      scene.text(`${((s as any).npcdesc ?? 0)}'s cock pulses inside you and something warm spills into your pussy and you moan loudly. You clench your pussy as hard as you can and shake your body, pretending that his cum is making you orgasm, keeping up the performance until you no longer feel his cock twitching inside your pussy.`);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>>'s cock pulses inside you and something warm spills into your ass an...
+      scene.text(`${((s as any).npcdesc ?? 0)}'s cock pulses inside you and something warm spills into your ass and you moan loudly. You clench your sphincter as hard as you can and shake your body, pretending that his cum is making you orgasm, keeping up the performance until you no longer feel his cock twitching inside your ass.`);
+    }
+  }, goto: ['sex_ev_sex', 'sex_end'] },
+  ]);
+  scene.build();
+}
+
+function enterCumForce(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['creampie_force'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 3);
+    qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+    qspCall(s, 'stat', '');
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      // TODO-QSP: dynamic text: Without warning, you wrap your legs around <<$npcdesc>>'s waist and pull him in,...
+      scene.text(`Without warning, you wrap your legs around ${((s as any).npcdesc ?? 0)}'s waist and pull him in, locking your ankles behind his back and forcing his cock as deep into you as you can.`);
+      scene.text('"Oh fu-!"');
+      scene.text('The sudden movement breaks his concentration and you feel him pulse within you, coming inside the condom. The sensation sends you over the edge as well and you gasp, holding him tight as simultaneous orgasms rock through both your bodies.');
+    } else {
+      scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+      // TODO-QSP: dynamic text: With a devilish grin, you suddenly speed up your movements, riding <<$npcdesc>> ...
+      scene.text(`With a devilish grin, you suddenly speed up your movements, riding ${((s as any).npcdesc ?? 0)} as hard as you can. Seconds later, you feel him come inside the condom, pulsing within you, and it sends you over the edge. The two of come together, holding each other tight, both of your orgasms fueling the other's. After some time, your orgasm fades, leaving both of you panting.`);
+    }
+    // TODO-QSP: else !}
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      // TODO-QSP: dynamic text: Without warning, you wrap your legs around <<$npcdesc>>'s waist and pull him in,...
+      scene.text(`Without warning, you wrap your legs around ${((s as any).npcdesc ?? 0)}'s waist and pull him in, locking your ankles behind his back and forcing his cock as deep into you as you can.`);
+      scene.text('"Oh fu-!"');
+      // TODO-QSP: dynamic text: The sudden movement breaks his concentration and you feel him pulse within you, ...
+      scene.text(`The sudden movement breaks his concentration and you feel him pulse within you, coming inside the condom. The sensation sends only makes you wrap your legs around ${((s as any).npcdesc ?? 0)} tighter, leaving no room for him to do anything but continue his orgasm inside you.`);
+    } else {
+      scene.img('images/shared/sex/vag/cowgirl/condom1.mp4');
+      // TODO-QSP: dynamic text: With a devilish grin, you suddenly speed up your movements and seconds later, yo...
+      scene.text(`With a devilish grin, you suddenly speed up your movements and seconds later, you feel ${((s as any).npcdesc ?? 0)} come inside the condom, pulsing within you. You don't slow down for even a second, continuing to ride him as hard as you can until you're sure he's completely finished his orgasm. Only then do you slow down and come to a halt on top of him.`);
+      // TODO-QSP: dynamic text: Judging by <<$npcdesc>>'s expression, you just rocked his world.
+      scene.text(`Judging by ${((s as any).npcdesc ?? 0)}'s expression, you just rocked his world.`);
+    }
+    qspCall(s, 'sex_ev_cum', 'cum_force2');
+  } else {
+    qspCall(s, 'sex_ev_stats', 'creampie_code');
+    qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+    qspCall(s, 'stat', '');
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['creampie_orgasm'] = 1;
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      // TODO-QSP: dynamic text: Without warning, you wrap your legs around <<$npcdesc>>'s waist and pull him in,...
+      scene.text(`Without warning, you wrap your legs around ${((s as any).npcdesc ?? 0)}'s waist and pull him in, locking your ankles behind his back and forcing his cock as deep into you as you can.`);
+      scene.text('"Oh fu-!"');
+      scene.text('The sudden movement breaks his concentration and you feel a pulse within you and a burst of warmth spread through your hips. The sensation sends you over the edge as well and you gasp, holding him tight as you shudder and he empties his balls into you in simultaneous orgasm.');
+    } else {
+      scene.img('images/shared/sex/cum/vagcreampie/cowgirl2.mp4');
+      // TODO-QSP: dynamic text: With a devilish grin, you suddenly speed up your movements, riding <<$npcdesc>> ...
+      scene.text(`With a devilish grin, you suddenly speed up your movements, riding ${((s as any).npcdesc ?? 0)} as hard as you can. Seconds later, you feel him pulse within you and warmth explodes through your hips. It sends you over the edge but you don't stop for a second, continuing to plunge yourself up and down even as you shudder in climax together.`);
+    }
+    qspCall(s, 'sex_ev_cum', 'cum_force2');
+    // TODO-QSP: else !}
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      // TODO-QSP: dynamic text: Without warning, you wrap your legs around <<$npcdesc>>'s waist and pull him in,...
+      scene.text(`Without warning, you wrap your legs around ${((s as any).npcdesc ?? 0)}'s waist and pull him in, crossing your ankles behind his back and forcing his cock deep inside you.`);
+      scene.text('"Oh fu-!"');
+      scene.text('The sudden movement breaks his concentration and you feel a pulse within you and a burst of warmth spread through your hips.');
+      scene.actions([
+        { label: 'Lock your legs', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: Without hesitation, you lock your legs behind <<$npcdesc>> and pull him even tig...
+    scene.text(`Without hesitation, you lock your legs behind ${((s as any).npcdesc ?? 0)} and pull him even tighter, giving him no choice but to empty his balls into you.`);
+    qspCall(s, 'sex_ev_cum', 'cum_force2');
+  } },
+      ]);
+    } else {
+      scene.img('images/shared/sex/cum/vagcreampie/cowgirl2.mp4');
+      // TODO-QSP: dynamic text: With a devilish grin, you suddenly speed up your movements and seconds later, yo...
+      scene.text(`With a devilish grin, you suddenly speed up your movements and seconds later, you feel ${((s as any).npcdesc ?? 0)} pulse inside you.`);
+      scene.actions([
+        { label: 'Milk him dry', handler: (st: GameState) => {
+    scene.text('You don\'t even slow down for a second, continuing to ride him as hard as you can until you\'re sure he\'s completely finished with his orgasm. Only then do you slow down and come to a halt on top of him.');
+    qspCall(s, 'sex_ev_cum', 'cum_force2');
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Creampie induced orgasm', handler: (st: GameState) => {
+    if (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+      qspCall(s, 'stat', '');
+      ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['came_together'] = 1;
+      ((s as any).sex_ev ?? {})['creampie_orgasm_count'] = (((s as any).sex_ev ?? {})['creampie_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['creampie_orgasm'] = 1;
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        // TODO-QSP: dynamic text: It sends you over the edge too and suddenly you're coming with <<$npcdesc>>, eve...
+        scene.text(`It sends you over the edge too and suddenly you're coming with ${((s as any).npcdesc ?? 0)}, every orgasmic shudder causing your legs to ratchet tighter around him until you're clutching him in a death grip of simultaneous climax.`);
+      } else {
+        scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+        // TODO-QSP: dynamic text: With a devilish grin, you suddenly speed up your movements and seconds later, yo...
+        scene.text(`With a devilish grin, you suddenly speed up your movements and seconds later, you feel ${((s as any).npcdesc ?? 0)} pulse inside you.`);
+        // TODO-QSP: dynamic text: Heat floods through your hips as <<$npcdesc>> comes inside you, making you come ...
+        scene.text(`Heat floods through your hips as ${((s as any).npcdesc ?? 0)} comes inside you, making you come as well but you don't even slow down for a second, desperately pounding your shuddering pussy with his cock until you're past the brink of insanity and your climax finally ends. Only then do you slow down, as your muscles are on the verge of giving out.`);
+      }
+      qspCall(s, 'sex_ev_cum', 'cum_force2');
+    } else {
+      qspCall(s, 'sex_ev_cum', 'hypno_creampie_orgasm_fail');
+    }
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumForce2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
+      ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/cum/condom1.jpg');
+        if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
+          // TODO-QSP: dynamic text: Your orgasms finally fade and you give a tired smile as you unlock your legs fro...
+          scene.text(`Your orgasms finally fade and you give a tired smile as you unlock your legs from behind his back, allowing ${((s as any).npcdesc ?? 0)} to pull out. As his cock pops free of your pussy, you see that the rubber encasing it is filled with a thick white liquid.`);
+        } else {
+          // TODO-QSP: dynamic text: When his orgasm finally ends, you unlock your legs from behind his back, unable ...
+          scene.text(`When his orgasm finally ends, you unlock your legs from behind his back, unable to keep from grinning as ${((s as any).npcdesc ?? 0)} pulls out. As his cock pops free of your pussy, you see that the rubber encasing it is filled with a thick white liquid.`);
+        }
+      } else {
+        scene.img('images/shared/sex/cum/cum81.jpg');
+        if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
+          // TODO-QSP: dynamic text: With a tired smile, you carefully pull yourself off of <<$npcdesc>>, removing hi...
+          scene.text(`With a tired smile, you carefully pull yourself off of ${((s as any).npcdesc ?? 0)}, removing his dick from your pussy. As it slides out, you see that the rubber encasing it is filled with a thick white liquid. Seeing as he still seems quite exhausted by what you put him through, you take the liberty of pulling it off, coming free with a wet slapping sound, and tossing it aside.`);
+        } else {
+          // TODO-QSP: dynamic text: You can't help but grin at his state and carefully pull yourself off of <<$npcde...
+          scene.text(`You can't help but grin at his state and carefully pull yourself off of ${((s as any).npcdesc ?? 0)}, removing his dick from your pussy. As it slides out, you see that the rubber encasing it is filled with a thick white liquid. Seeing as he still seems quite exhausted by what you put him through, you take the liberty of pulling it off, coming free with a wet slapping sound, and tossing it aside.`);
+        }
+      }
+      qspCall(s, 'sex_ev_sex', 'sex_end');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/vag/miss/3.jpg');
+        if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
+          // TODO-QSP: dynamic text: Finally, your orgasms end and your legs fall aside limply, releasing <<$npcdesc>...
+          scene.text(`Finally, your orgasms end and your legs fall aside limply, releasing ${((s as any).npcdesc ?? 0)} from your grip. You stare up into his eyes as you pant hard, both of you catching your breath after such tremendous orgasms.`);
+        } else {
+          // TODO-QSP: dynamic text: When it seems <<$npcdesc>>'s orgasm is finished, only then do you unlock your le...
+          scene.text(`When it seems ${((s as any).npcdesc ?? 0)}'s orgasm is finished, only then do you unlock your legs and allow him to pull free. He pants breathlessly as he recovers from what you did to him.`);
+        }
+      } else {
+        scene.img('images/shared/sex/cum/vagcreampie/cowgirl1.mp4');
+        if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
+          // TODO-QSP: dynamic text: Finally, your orgasm fades and <<$npcdesc>>'s seems to have finished as well. St...
+          scene.text(`Finally, your orgasm fades and ${((s as any).npcdesc ?? 0)}'s seems to have finished as well. Still wearing your grin, you drive your hips down as far as they can go one last time and clench your pussy before drawing yourself back up, trying to milk his cock for every last drop. His cum overflows from your snatch, unable to be contained by the imperfect plug of his cock, and you can somehow even feel it dribbling down the length of his shaft.`);
+        } else {
+          scene.text('Still wearing your grin, you drive your hips down as far as they can go one last time and clench your pussy before drawing yourself back up, trying to milk his cock for every last drop. His cum overflows from your snatch, unable to be contained by the imperfect plug of his cock, and you can somehow even feel it dribbling down the length of his shaft.');
+          // TODO-QSP: dynamic text: Judging by <<$npcdesc>>'s expression, you just rocked his world.
+          scene.text(`Judging by ${((s as any).npcdesc ?? 0)}'s expression, you just rocked his world.`);
+        }
+      }
+      qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+      qspCall(s, 'sex_ev_reactions', 'react_menu');
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterCumPullout(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 10) + 1) === 10  &&  ((s as any).sex_ev ?? 0)?.['extra_caution'] === 0) {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise'] }]);
+  }
+  ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+  ((s as any).sex_ev ?? {})['last_cum'] = 'pullout';
+  ((s as any).sex_ev ?? {})['pullout_count'] = (((s as any).sex_ev ?? {})['pullout_count'] ?? 0) + (1);
+  if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      ((s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).sex_ev ?? {})['cum_stomach'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).sex_ev ?? {})['cum_stomach'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
+      qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+      qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0), 1);
+      scene.img(`images/shared/sex/cum/stomach/bellycum${Math.floor(Math.random() * 2) + 3}.mp4`);
+      // TODO-QSP: '"Pull out!" ' + iif(sex_ev['speed'] < 3, 'you cry.', 'you scream.')
+      // TODO-QSP: dynamic text: <<$npcdesc>> spreads your legs and yanks his cock from your pussy. After only a ...
+      scene.text(`${((s as any).npcdesc ?? 0)} spreads your legs and yanks his cock from your pussy. After only a couple seconds of jacking himself off, cum erupts from the tip, spattering thick white droplets across your belly and chest.`);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        ((s as any).sex_ev ?? {})['cum_back'] = (((s as any).sex_ev ?? {})['cum_back'] ?? 0) + (1);
+        qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+        qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+        ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking back at the white liquid glazing your ass';
+        scene.img('images/shared/sex/cum/pullout_doggy1.mp4');
+        // TODO-QSP: '"Pull out!" ' + iif(sex_ev['speed'] < 3, 'you cry.', 'you scream.')
+        // TODO-QSP: dynamic text: Not even a second passes between feeling <<$npcdesc>>'s cock slip from your snat...
+        scene.text(`Not even a second passes between feeling ${((s as any).npcdesc ?? 0)}'s cock slip from your snatch and when hot liquid spatters across your back and dribbles onto your ass.`);
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking back at the white liquid glazing your ass';
+          qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+          ((s as any).sex_ev ?? {})['cum_ass'] = (((s as any).sex_ev ?? {})['cum_ass'] ?? 0) + (1);
+          scene.img('images/shared/sex/cum/cum4.jpg');
+          // TODO-QSP: '"Pull out!" ' + iif(sex_ev['speed'] < 3, 'you cry.', 'you scream.')
+          scene.text('You slip off his cock just in time, as not even a second later you feel hot liquid spatter all over your ass.');
+        }
+      }
+    }
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+      qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0), 1);
+      ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
+      ((s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).sex_ev ?? {})['cum_stomach'] ?? 0) + (1);
+      scene.img(`images/shared/sex/cum/stomach/bellycum${Math.floor(Math.random() * 2) + 3}.mp4`);
+      if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+        scene.text('"Not inside me!" you yelp frantically.');
+        if (((s as any).sex_ev ?? 0)?.['condom'] === 1) {
+          // TODO-QSP: dynamic text: <<$npcdesc>> pulls himself out of your pussy and tears off the condom, furiously...
+          scene.text(`${((s as any).npcdesc ?? 0)} pulls himself out of your pussy and tears off the condom, furiously jacking off over you. Moments later, he ejaculates, sending cum flying all over your body, spattering across your belly and chest.`);
+        } else {
+          // TODO-QSP: dynamic text: "Oh fuck!" <<$npcdesc>> barely follows your instructions in time. No sooner does...
+          scene.text(`"Oh fuck!" ${((s as any).npcdesc ?? 0)} barely follows your instructions in time. No sooner does his cock slip from your pussy than cum bursts from its tip, spattering all across your stomach and chest.`);
+        }
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['condom'] === 1) {
+          // TODO-QSP: dynamic text: <<$npcdesc>> pulls himself out of your pussy and tears off the condom, furiously...
+          scene.text(`${((s as any).npcdesc ?? 0)} pulls himself out of your pussy and tears off the condom, furiously jacking off over you. Moments later, he ejaculates, sending cum flying all over your body, spattering across your belly and chest.`);
+        } else {
+          // TODO-QSP: dynamic text: <<$npcdesc>> spreads your legs and yanks his cock from your pussy. After only a ...
+          scene.text(`${((s as any).npcdesc ?? 0)} spreads your legs and yanks his cock from your pussy. After only a couple seconds of jacking himself off, cum erupts from the tip, spattering thick white droplets across your belly and chest.`);
+        }
+      }
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+        qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+        ((s as any).sex_ev ?? {})['cum_back'] = (((s as any).sex_ev ?? {})['cum_back'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['cum_ass'] = (((s as any).sex_ev ?? {})['cum_ass'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking back at the white liquid glazing your ass';
+        scene.img('images/shared/sex/cum/pullout_doggy1.mp4');
+        if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+          scene.text('"Not inside me!" you yelp frantically.');
+          if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
+            // TODO-QSP: dynamic text: <<$npcdesc>> yanks himself from your pussy and you hear a <i>snap</i> as he rips...
+            scene.text(`${((s as any).npcdesc ?? 0)} yanks himself from your pussy and you hear a <i>snap</i> as he rips the condom off of his cock and moments later, you feel hot liquid spatter all over ass and across your back.`);
+          } else {
+            // TODO-QSP: dynamic text: "Oh fuck!" Not even a second passes between feeling <<$npcdesc>>'s cock vacate y...
+            scene.text(`"Oh fuck!" Not even a second passes between feeling ${((s as any).npcdesc ?? 0)}'s cock vacate your pussy and when hot liquid spatters across your back and dribbles onto your ass.`);
+          }
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0) {
+            // TODO-QSP: dynamic text: <<$npcdesc>> yanks himself from your pussy and you hear the condom <i>snap</i> a...
+            scene.text(`${((s as any).npcdesc ?? 0)} yanks himself from your pussy and you hear the condom <i>snap</i> as he rips it off his cock. Moments later, you feel hot liquid spatter all over ass and across your back.`);
+          } else {
+            // TODO-QSP: dynamic text: "Oh fuck!" <<$npcdesc>> suddenly cries out. His cock slips from your snatch and ...
+            scene.text(`"Oh fuck!" ${((s as any).npcdesc ?? 0)} suddenly cries out. His cock slips from your snatch and not even a moment later do you feel hot liquid spattering across your back and dribbling onto your ass.`);
+          }
+        }
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1  ||  ((s as any).sex_ev ?? 0)?.['condom'] === 1) {
+            qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+            qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+            ((s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).sex_ev ?? {})['cum_stomach'] ?? 0) + (1);
+            ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
+            scene.img('images/shared/sex/cum/pullout_cowgirl1.mp4');
+            if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+              scene.text('"Not inside me!" you yelp frantically.');
+            }
+            if (((s as any).sex_ev ?? 0)?.['condom'] === 1) {
+              // TODO-QSP: dynamic text: <<$npcdesc>> slips out from inside you and you hear the condom <i>snap</i> as he...
+              scene.text(`${((s as any).npcdesc ?? 0)} slips out from inside you and you hear the condom <i>snap</i> as he rips it off his cock. Barely even a second later, something hot and wet spatters across your back and all over your ass.`);
+            } else {
+              // TODO-QSP: dynamic text: "Oh fuck!" <<$npcdesc>> suddenly cries out. He barely slips out of you in time a...
+              scene.text(`"Oh fuck!" ${((s as any).npcdesc ?? 0)} suddenly cries out. He barely slips out of you in time and within a split second you feel his cum spatter across your ass and back.`);
+            }
+          } else {
+            qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+            qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+            ((s as any).sex_ev ?? {})['cum_back'] = (((s as any).sex_ev ?? {})['cum_back'] ?? 0) + (1);
+            ((s as any).sex_ev ?? {})['cum_ass'] = (((s as any).sex_ev ?? {})['cum_ass'] ?? 0) + (1);
+            ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
+            scene.img('images/shared/sex/cum/cum4.jpg');
+            // TODO-QSP: dynamic text: "Oh fuck!" <<$npcdesc>> grunts, his cock slipping from your pussy and sliding up...
+            scene.text(`"Oh fuck!" ${((s as any).npcdesc ?? 0)} grunts, his cock slipping from your pussy and sliding up between your ass cheeks. You reach around to put it back in when you feel something hot and wet spattering across your ass and back.`);
+          }
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
+            qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+            qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+            ((s as any).sex_ev ?? {})['cum_back'] = (((s as any).sex_ev ?? {})['cum_back'] ?? 0) + (1);
+            ((s as any).sex_ev ?? {})['cum_ass'] = (((s as any).sex_ev ?? {})['cum_ass'] ?? 0) + (1);
+            ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking back at the white liquid glazing your ass';
+            scene.img('images/shared/sex/cum/pullout_doggy1.mp4');
+            // TODO-QSP: dynamic text: "Oh fuck!" <<$npcdesc>> suddenly cries out. He yanks his cock from your asshole ...
+            scene.text(`"Oh fuck!" ${((s as any).npcdesc ?? 0)} suddenly cries out. He yanks his cock from your asshole and not even a moment later do you feel hot liquid spattering across your back and between your cheeks.`);
+          }
+        }
+      }
+    }
+  }
+  qspCall(s, 'sex_ev_sex', 'sex_end');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieSurprise(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['position'] !== 'miss'  &&  ((s as any).sex_ev ?? 0)?.['position'] !== 'doggy'  &&  ((s as any).sex_ev ?? 0)?.['position'] !== 'cowgirl') {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'anal_creampie_surprise'] }]);
+  }
+  if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] !== 1) {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'cum_condom'] }]);
+  }
+  ((s as any).sex_ev ?? {})['creampie_surprise'] = 1;
+  qspCall(s, 'sex_ev_stats', 'creampie_code');
+  if (((s as any).sex_ev ?? 0)?.['no_condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] < 1  &&  ((s as any).npc_creampie_permission ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
+    ((s as any).sex_ev ?? {})['accidental_creampie_count'] = (((s as any).sex_ev ?? {})['accidental_creampie_count'] ?? 0) + (1);
+  }
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+    if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+      scene.text('"Not insi-!"');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+        scene.text('"Pull ou-!"');
+      }
+    }
+    // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> grabs you tight and plunges his full length into you. His...
+    scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} grabs you tight and plunges his full length into you. His cock becomes even more rigid, pulsing like a second heartbeat in your cunt. And then, warmth floods your pussy.`);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/cum/vagcreampie/doggy3.mp4');
+      if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+        scene.text('"Not insi-!"');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+          scene.text('"Pull ou-!"');
+        }
+      }
+      // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> drives his cock into you. His cock becomes even more rigi...
+      scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} drives his cock into you. His cock becomes even more rigid, pulsing like a second heartbeat in your cunt. And then, warmth floods your pussy.`);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.img('images/shared/sex/cum/vagcreampie/cumvaginal.mp4');
+        if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+          scene.text('"Not insi-!"');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+            scene.text('"Pull ou-!"');
+          }
+        }
+        // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> grabs you tight, pulling you down against his chest and t...
+        scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} grabs you tight, pulling you down against his chest and thrusting himself deep into you. His cock becomes even more rigid, pulsing like a second heartbeat in your cunt. And then, warmth floods your pussy.`);
+      }
+    }
+  }
+  qspCall(s, 'sex_ev_cum', 'creampie_surprise2');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sex_ev_reactions_creampie', 'take_in_stride1');
+  if (((s as any).orgasm ?? 0) === ((s as any).sex_ev ?? 0)?.['orgasm']) {
+    scene.actions([
+      { label: 'Creampie induced orgasm', handler: (st: GameState) => {
+    if (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['creampie_orgasm_count'] = (((s as any).sex_ev ?? {})['creampie_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['creampie_orgasm'] = 1;
+      ((s as any).sex_ev ?? {})['came_together'] = 2;
+      // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(s, 'stat', '');
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+          scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+            scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+          }
+        }
+      }
+      scene.text('The sensation of cum filling your pussy is too much for you to handle and sends you over the edge.');
+      if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).sex_ev ?? 0)?.['magik'] < ((s as any).pcs_magik ?? 0)) {
+        // TODO-QSP: dynamic text: Right as your orgasm hits, you feel magic flood your system, ramping your senses...
+        scene.text(`Right as your orgasm hits, you feel magic flood your system, ramping your senses into overdrive. You can feel every hair on your body, every bead of sweat on your skin, every single vein and contour of ${((s as any).npcdesc ?? 0)}'s cock inside you. Somehow you can even feel each individual of the hundreds of millions of sperm pouring into your uterus. Energy courses from its origin in your womb to the tips of your nipples.`);
+        // TODO-QSP: dynamic text: That same energy splashes off of <<$npcdesc>> and back onto you, forcing you to ...
+        scene.text(`That same energy splashes off of ${((s as any).npcdesc ?? 0)} and back onto you, forcing you to share in his experiences. You can <i>feel</i> his orgasm pouring into you, <i>his</i> pleasure erupting from his manhood, as if it were <i>you</i> ejaculating into your own orgasming pussy. Caught in a feedback loop between your orgasm and his, your entire body locks up, screaming a silent open-mouthed scream of ecstasy, unable to do anything but shudder uncontrollably around the cock pulsing inside you.`);
+      } else {
+        scene.text('Orgasmic tremors quake through your body, covering your skin in goosebumps and you moan incoherently. You tremble, unable to do anything except quiver around the pulsing cock inside you.');
+      }
+      scene.actions([
+        { label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise_cum_together'] },
+      ]);
+    } else {
+      qspCall(s, 'sex_ev_cum', 'hypno_creampie_orgasm_fail');
+      scene.actions([
+        { label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise_cum_together'] },
+      ]);
+    }
+  } },
+      { label: 'Fake an orgasm', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['fake_orgasm_count'] = (((s as any).sex_ev ?? {})['fake_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['cum_together_fake'] = 1;
+    qspCall(s, 'stat', '');
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+        }
+      }
+    }
+    // TODO-QSP: dynamic text: As <<$npcdesc>> unloads inside you, sending cum and warmth through your pussy.
+    scene.text(`As ${((s as any).npcdesc ?? 0)} unloads inside you, sending cum and warmth through your pussy.`);
+    scene.text('You clench your muscles and quiver, putting on your best O-face and moan loudly, pretending that you\'re coming together with him.');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise_cum_together'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).orgasm ?? 0) > ((s as any).sex_ev ?? 0)?.['orgasm']) {
+      scene.actions([
+        { label: 'Come with him', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: As <<$npcdesc>> comes inside you, you come too. Cum and warmth floods through yo...
+    scene.text(`As ${((s as any).npcdesc ?? 0)} comes inside you, you come too. Cum and warmth floods through your pussy, driving you over the edge.`);
+    if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).sex_ev ?? 0)?.['magik'] < ((s as any).pcs_magik ?? 0)) {
+      // TODO-QSP: dynamic text: Magic floods your system, ramping your senses into overdrive. Energy courses fro...
+      scene.text(`Magic floods your system, ramping your senses into overdrive. Energy courses from its origin in your womb to the tips of your nipples. You can feel every hair on your body, every bead of sweat on your skin, every single vein and contour of ${((s as any).npcdesc ?? 0)}'s cock inside you. Somehow you can even feel each individual of the hundreds of millions of sperm pouring into your uterus.`);
+      // TODO-QSP: dynamic text: That same energy splashes off of <<$npcdesc>> and back onto you, forcing you to ...
+      scene.text(`That same energy splashes off of ${((s as any).npcdesc ?? 0)} and back onto you, forcing you to share in his experiences. You can <i>feel</i> his orgasm pouring into you, <i>his</i> pleasure erupting from his manhood, as if it were <i>you</i> ejaculating into your own orgasming pussy. Caught in a feedback loop between your orgasm and his, your entire body locks up, screaming a silent open-mouthed scream of ecstasy, unable to do anything but shudder uncontrollably around the cock pulsing inside you.`);
+    } else {
+      scene.text('Orgasmic tremors quake through your body, covering your skin in goosebumps and you moan incoherently. You tremble, unable to do anything except quiver around the cock inside you.');
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise_cum_together'] },
+    ]);
+  } },
+      ]);
+    }
+  }
+  qspCall(s, 'sex_ev_reactions_creampie', 'creampie_pc_startled');
+  qspCall(s, 'sex_ev_reactions_creampie', 'creampie_wtf_instant');
+  qspCall(s, 'sex_ev_reactions_creampie', 'creampie_accident_oh_shit');
+  qspCall(s, 'sex_ev_reactions_creampie', 'idk_you_panic_instant');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCreampieSurpriseCumTogether(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['react'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.img('images/shared/sex/vag/miss/2.jpg');
+    // TODO-QSP: dynamic text: You lay there, breathing heavily with <<$npcdesc>> on top of you.
+    scene.text(`You lay there, breathing heavily with ${((s as any).npcdesc ?? 0)} on top of you.`);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/vag/doggy/1.jpg');
+      // TODO-QSP: dynamic text: You let your knees give out underneath you, falling down to the bed with <<$npcd...
+      scene.text(`You let your knees give out underneath you, falling down to the bed with ${((s as any).npcdesc ?? 0)} on top of you. Breathing heavily, you look over your shoulder at him.`);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.img('images/shared/sex/vag/cowgirl/1.jpg');
+        // TODO-QSP: dynamic text: You let yourself collapse on top of <<$npcdesc>>, breathing heavily, feeling you...
+        scene.text(`You let yourself collapse on top of ${((s as any).npcdesc ?? 0)}, breathing heavily, feeling your breasts pressed against his chest rising and falling with the same strain as your own.`);
+      }
+    }
+  }
+  if (((s as any).npc_know_love_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    scene.text('He stares into your eyes, smiling.');
+  } else {
+    if ((((s as any).sex_ev ?? 0)?.['came_together'] === 2  ||  ((s as any).sex_ev ?? 0)?.['hypno_came_together'] === 1)  &&  ((s as any).sex_ev ?? 0)?.['not_inside'] === 0) {
+      ((s as any).sex_ev ?? {})['did_we_cum_together'] = 1;
+      scene.text('"Did... did we... did you...?" he pants.');
+    }
+  }
+  if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== 'enjoy'  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] > 0  &&  ((s as any).sex_ev ?? 0)?.['preg_risk'] !== 'danger') {
+    if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] > 0) {
+      scene.text('<i>At least creampies always feel good...</i> you think with hazy satisfaction.');
+    } else {
+      scene.text('<i>At least <b>that</b> felt good...</i> you think with hazy satisfaction.');
+    }
+  }
+  qspCall(s, 'sex_ev_reactions', 'react_menu');
+  if ((((s as any).sex_ev ?? 0)?.['orgasm_count'] >= 5  ||  ((s as any).pcs_sleep ?? 0) < 20)  &&  (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 4)) {
+    scene.actions([
+      { label: 'Collapse', goto: ['sex_ev_after', 'black_out'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterWhatNow(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['accidental_creampie'] === 2  ||  (((s as any).sex_ev ?? 0)?.['last_cum'] !== 'creampie'  &&  ((s as any).sex_ev ?? 0)?.['last_cum'] !== 'broken_condom')  ||  ((s as any).sex_ev ?? 0)?.['he_ask_creampie_yes'] > 0  ||  ((s as any).npc_know_bc ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    qspCall(s, 'sex_ev_sex', 'sex_end');
+  } else {
+    if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).sex_ev ?? 0)?.['preg_risk'] !== 'safe'  &&  ((s as any).sex_ev ?? 0)?.['ma_pill'] < 1) {
+      scene.text('"We should, uhm, probably stop now," he mumbles awkwardly, looking worried.');
+      scene.actions([
+        { label: 'Agree', handler: (st: GameState) => {
+    scene.text('You nod in somber agreement.');
+    qspCall(s, 'sex_ev_after', 'after_sex1');
+  } },
+        { label: 'Wanted to keep going', handler: (st: GameState) => {
+    scene.text('"Aww, seriously?" you complain. "I wanted to keep going! I\'m not satisfied yet."');
+    // TODO-QSP: dynamic text: <<$npcdesc>>'s brow furrows as he shakes his head.
+    scene.text(`${((s as any).npcdesc ?? 0)}'s brow furrows as he shakes his head.`);
+    scene.text('"Sorry, the thought of you getting pregnant with my kid is too distracting."');
+    scene.text('You let out a long and disappointed sigh.');
+    qspCall(s, 'sex_ev_after', 'after_sex1');
+  } },
+      ]);
+    } else {
+      if ((((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  ||  ((s as any).npc_abusive ?? 0)?.[String((s as any).npcID ?? 0)] > 0)  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+        if ((Math.floor(Math.random() * 10) + 1) >= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).sex_ev ?? 0)?.['cum_count'] >= 5 + ((s as any).sex_ev ?? 0)?.['extra_cum']) {
+          ((s as any).sex_ev ?? {})['sex_over'] = 1;
+          // TODO-QSP: dynamic text: "We should probably stop anyways," <<$npcdesc>> shrugs. "I think I'm pretty much...
+          scene.text(`"We should probably stop anyways," ${((s as any).npcdesc ?? 0)} shrugs. "I think I'm pretty much all tapped out."`);
+        } else {
+          // TODO-QSP: dynamic text: "So..." <<$npcdesc>> says. "We gonna go again or...?"
+          scene.text(`"So..." ${((s as any).npcdesc ?? 0)} says. "We gonna go again or...?"`);
+          ((s as any).sex_ev ?? {})['more_creampies_dialogue'] = 'Yeah. You need to pump more cum into me,';
+        }
+      } else {
+        if ((Math.floor(Math.random() * 10) + 1) >= ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).sex_ev ?? 0)?.['cum_count'] >= 5 + ((s as any).sex_ev ?? 0)?.['extra_cum']) {
+          ((s as any).sex_ev ?? {})['sex_over'] = 1;
+          // TODO-QSP: '"Uhh... I think that was my last shot..." <<$npcdesc>> says awkwardly. ' + iif(sex_ev['cock_inserte...
+        } else {
+          // TODO-QSP: dynamic text: "Uhh..." <<$npcdesc>> says awkwardly. "So... what now?"
+          scene.text(`"Uhh..." ${((s as any).npcdesc ?? 0)} says awkwardly. "So... what now?"`);
+          ((s as any).sex_ev ?? {})['more_creampies_dialogue'] = 'Pump me full of more cum, obviously!';
+        }
+      }
+      if (((s as any).sex_ev ?? 0)?.['sex_over'] === 0) {
+        if (((s as any).sex_ev ?? 0)?.['condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['no_condoms'] !== 1) {
+          scene.actions([
+            { label: 'Keep going (no condoms)', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
+      scene.img('images/shared/sex/misc/wait.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/vag/miss/4.jpg');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+          scene.img('images/shared/sex/vag/doggy/smile1.jpg');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+            scene.img('images/shared/sex/vag/cowgirl/smile1.jpg');
+          }
+        }
+      }
+    }
+    if (((s as any).daystage ?? 0) >= 3) {
+      scene.text('"I guess there\'s no point in using any more condoms tonight," you grin wickedly.');
+    } else {
+      scene.text('"I guess there\'s no point in using any more condoms today," you grin wickedly.');
+    }
+    if (((s as any).npc_condom_conscious ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+      // TODO-QSP: dynamic text: "No reason to increase the risk either," <<$npcdesc>> frowns and keeps more cond...
+      scene.text(`"No reason to increase the risk either," ${((s as any).npcdesc ?? 0)} frowns and keeps more condoms within arm's reach.`);
+    } else {
+      ((s as any).sex_ev ?? {})['no_condom'] = 1;
+      // TODO-QSP: dynamic text: <<$npcdesc>> grins back at you and his cock immediately starts to stiffen again,...
+      scene.text(`${((s as any).npcdesc ?? 0)} grins back at you and his cock immediately starts to stiffen again, apparently getting hard just at the thought of fucking you bareback.`);
+    }
+    qspCall(s, 'sex_ev_sex', 'reset');
+    qspCall(s, 'sex_ev_sex', 'sex_menu');
+  } },
+          ]);
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['creampie_count'] > 0  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] < 1  &&  ((s as any).npc_free_creampies ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
+            scene.actions([
+              { label: 'Keep going (free creampies)', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 0) {
+      scene.img('images/shared/sex/misc/wait.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/vag/miss/4.jpg');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+          scene.img('images/shared/sex/vag/doggy/smile1.jpg');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+            scene.img('images/shared/sex/vag/cowgirl/smile1.jpg');
+          }
+        }
+      }
+    }
+    if (((s as any).daystage ?? 0) >= 3) {
+      if (((s as any).sex_ev ?? 0)?.['ma_pill'] === 1) {
+        scene.text('"Well if I\'m already going to take a pill tomorrow, I guess there\'s no point in telling you not to come inside me tonight," you say. "Come wherever you want."');
+      } else {
+        scene.text('"Well I\'m already full of cum so I guess there\'s no point in telling you not to come inside me tonight," you say. "Come wherever you want."');
+      }
+    } else {
+      scene.text('"Well I\'m already full of cum so I guess there\'s no point in telling you not to come inside me today," you say. "Come wherever you want."');
+    }
+    if (((s as any).npc_childfree ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
+      // TODO-QSP: dynamic text: "No reason to increase the risk either," <<$npcdesc>> frowns. "I'm going to try ...
+      scene.text(`"No reason to increase the risk either," ${((s as any).npcdesc ?? 0)} frowns. "I'm going to try to keep pulling out anyways."`);
+      scene.text('"Boo," you moan. "You\'re no fun."');
+    } else {
+      ((s as any).sex_ev ?? {})['creampie_allowance'] = 1;
+      // TODO-QSP: dynamic text: <<$npcdesc>> grins back at you seeming to be excited he has permission.
+      scene.text(`${((s as any).npcdesc ?? 0)} grins back at you seeming to be excited he has permission.`);
+    }
+    qspCall(s, 'sex_ev_sex', 'reset');
+    qspCall(s, 'sex_ev_sex', 'sex_menu');
+  } },
+            ]);
+          }
+        }
+        scene.actions([
+          { label: 'Keep going', handler: (st: GameState) => {
+    scene.img('images/shared/sex/misc/wait.mp4');
+    scene.text('"Let\'s just keep going," you say. "I\'m not satisfied yet anyways."');
+    scene.text('"Great! Gimme a minute to get hard again," he says, working his cock, concentrating hard to stiffen up again.');
+    qspCall(s, 'sex_ev_sex', 'reset');
+    qspCall(s, 'sex_ev_sex', 'sex_menu');
+  } },
+          { label: 'More creampies!', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['cock_inserted'] === 1) {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/vag/miss/4.jpg');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+          scene.img('images/shared/sex/vag/doggy/1.jpg');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+            scene.img('images/shared/sex/vag/cowgirl/smile1.jpg');
+          }
+        }
+      }
+    } else {
+      scene.img('images/shared/sex/misc/wait.mp4');
+    }
+    // TODO-QSP: dynamic text: "<<$sex_ev['more_creampies_dialogue']>>" you grin back at <<$npcdesc>>. "Might a...
+    scene.text(`"${((s as any).sex_ev ?? 0)?.['more_creampies_dialogue']}" you grin back at ${((s as any).npcdesc ?? 0)}. "Might as well make the most of the situation."`);
+    ((s as any).sex_ev ?? {})['creampie_allowance'] = 1;
+    ((s as any).sex_ev ?? {})['no_condom'] = 1;
+    qspCall(s, 'sex_ev_sex', 'reset');
+    qspCall(s, 'sex_ev_sex', 'sex_menu');
+  } },
+        ]);
+      }
+      if (((s as any).sex_ev ?? 0)?.['accidental_creampie'] === 1) {
+        ((s as any).sex_ev ?? {})['accidental_creampie'] = 2;
+      }
+      scene.actions([
+        { label: 'Let\'s stop', handler: (st: GameState) => {
+    scene.text('"Probably best if we stop here," you say.');
+    if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['cum_count'] < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]/3) {
+      // TODO-QSP: dynamic text: <<$npcdesc>> sighs in disappointment.
+      scene.text(`${((s as any).npcdesc ?? 0)} sighs in disappointment.`);
+    } else {
+      // TODO-QSP: dynamic text: <<$npcdesc>> nods in somber agreement.
+      scene.text(`${((s as any).npcdesc ?? 0)} nods in somber agreement.`);
+    }
+    qspCall(s, 'sex_ev_after', 'after_sex1');
+  } },
+      ]);
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterAnalCreampieSurprise(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['anal_creampie_surprise'] = 1;
+  qspCall(s, 'sex_ev_stats', 'anal_creampie_code');
+  ((s as any).sex_ev ?? {})['last_cum'] = 'anal_creampie';
+  if (((s as any).sex_ev ?? 0)?.['no_condom'] === 1  &&  ((s as any).sex_ev ?? 0)?.['creampie_allowance'] < 1  &&  ((s as any).npc_creampie_permission ?? 0)?.[String((s as any).npcID ?? 0)] < 1) {
+    ((s as any).sex_ev ?? {})['accidental_creampie_count'] = (((s as any).sex_ev ?? {})['accidental_creampie_count'] ?? 0) + (1);
+  }
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
+    scene.img('images/shared/sex/cum/analcreampie/doggy1.mp4');
+    if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+      scene.text('"Not insi-!"');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+        scene.text('"Pull ou-!"');
+      }
+    }
+    // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> drives his cock into you. His cock becomes even more rigi...
+    scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} drives his cock into you. His cock becomes even more rigid, pulsing like a second heartbeat between your ass cheeks. And then, warmth floods your intestines.`);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+        scene.text('"Not insi-!"');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+          scene.text('"Pull ou-!"');
+        }
+      }
+      // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> grabs you tight and plunges his full length into you. His...
+      scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} grabs you tight and plunges his full length into you. His cock becomes even more rigid, pulsing like a second heartbeat between your ass cheeks. And then, warmth floods your intestines.`);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/cum/vagcreampie/doggy3.mp4');
+        if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+          scene.text('"Not insi-!"');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+            scene.text('"Pull ou-!"');
+          }
+        }
+        // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> drives his cock into you. His cock becomes even more rigi...
+        scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} drives his cock into you. His cock becomes even more rigid, pulsing like a second heartbeat between your ass cheeks. And then, warmth floods your intestines.`);
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/cum/vagcreampie/cumvaginal.mp4');
+          if (((s as any).sex_ev ?? 0)?.['not_inside'] === 1) {
+            scene.text('"Not insi-!"');
+          } else {
+            if (((s as any).sex_ev ?? 0)?.['pullout_ask'] === 1) {
+              scene.text('"Pull ou-!"');
+            }
+          }
+          // TODO-QSP: dynamic text: Suddenly, <<$npcdesc>> grabs you tight, pulling you down against his chest and t...
+          scene.text(`Suddenly, ${((s as any).npcdesc ?? 0)} grabs you tight, pulling you down against his chest and thrusting himself deep into you. His cock becomes even more rigid, pulsing like a second heartbeat between your ass cheeks. And then, warmth floods your intestines.`);
+        }
+      }
+    }
+  }
+  qspCall(s, 'sex_ev_cum', 'anal_creampie_surprise2');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterAnalCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).orgasm ?? 0) === ((s as any).sex_ev ?? 0)?.['orgasm']) {
+    scene.actions([
+      { label: 'Creampie induced orgasm', handler: (st: GameState) => {
+    if (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['anal_creampie_orgasm_count'] = (((s as any).sex_ev ?? {})['anal_creampie_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+      ((s as any).sex_ev ?? {})['creampie_orgasm'] = 1;
+      ((s as any).sex_ev ?? {})['came_together'] = 2;
+      // TODO-QSP: gs 'arousal', 'anal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+      qspCall(s, 'stat', '');
+      scene.img('images/shared/sex/anal/doggy/orgasm1.mp4');
+      scene.text('The sensation of cum filling your ass is too much for you to handle and sends you over the edge.');
+      if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).sex_ev ?? 0)?.['magik'] < ((s as any).pcs_magik ?? 0)) {
+        // TODO-QSP: dynamic text: Right as your orgasm hits, you feel magic flood your system, ramping your senses...
+        scene.text(`Right as your orgasm hits, you feel magic flood your system, ramping your senses into overdrive. You can feel every hair on your body, every bead of sweat on your skin, every single vein and contour of ${((s as any).npcdesc ?? 0)}'s cock inside you. Somehow you can even feel each individual of the hundreds of millions of sperm pouring into your large intestine. Energy courses from its origin deep inside your ass to the tips of your nipples.`);
+        // TODO-QSP: dynamic text: That same energy splashes off of <<$npcdesc>> and back onto you, forcing you to ...
+        scene.text(`That same energy splashes off of ${((s as any).npcdesc ?? 0)} and back onto you, forcing you to share in his experiences. You can <i>feel</i> his orgasm pouring into you, <i>his</i> pleasure erupting from his manhood, as if it were <i>you</i> ejaculating into your own spasming sphincter. Caught in a feedback loop between your orgasm and his, your entire body locks up, screaming a silent open-mouthed scream of ecstasy, unable to do anything but shudder uncontrollably around the cock pulsing inside you.`);
+      } else {
+        scene.text('Orgasmic tremors quake through your body, covering your skin in goosebumps and you moan incoherently. You tremble, unable to do anything except quiver around the pulsing cock inside you.');
+      }
+      scene.actions([
+        { label: 'Continue', goto: ['sex_ev_cum', 'anal_creampie_surprise_cum_together'] },
+      ]);
+    } else {
+      qspCall(s, 'sex_ev_cum', 'hypno_creampie_orgasm_fail');
+      scene.actions([
+        { label: 'Continue', goto: ['sex_ev_cum', 'anal_creampie_surprise_cum_together'] },
+      ]);
+    }
+  } },
+      { label: 'Fake an orgasm', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['fake_orgasm_count'] = (((s as any).sex_ev ?? {})['fake_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['cum_together_fake'] = 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/anal/doggy/orgasm1.mp4');
+    // TODO-QSP: dynamic text: As <<$npcdesc>> unloads inside you, sending cum and warmth into your large intes...
+    scene.text(`As ${((s as any).npcdesc ?? 0)} unloads inside you, sending cum and warmth into your large intestine.`);
+    scene.text('You clench your sphincter and quiver, putting on your best O-face and moan loudly, pretending that you\'re coming together with him.');
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_cum', 'anal_creampie_surprise_cum_together'] },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).orgasm ?? 0) > ((s as any).sex_ev ?? 0)?.['orgasm']) {
+      scene.actions([
+        { label: 'Come with him', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: As <<$npcdesc>> comes inside you, you come too. Cum and warmth floods into your ...
+    scene.text(`As ${((s as any).npcdesc ?? 0)} comes inside you, you come too. Cum and warmth floods into your asshole and drives you over the edge.`);
+    if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).sex_ev ?? 0)?.['magik'] < ((s as any).pcs_magik ?? 0)) {
+      // TODO-QSP: dynamic text: Magic floods your system, ramping your senses into overdrive. Energy courses fro...
+      scene.text(`Magic floods your system, ramping your senses into overdrive. Energy courses from its origin in your womb to the tips of your nipples. You can feel every hair on your body, every bead of sweat on your skin, every single vein and contour of ${((s as any).npcdesc ?? 0)}'s cock inside you. Somehow you can even feel each individual of the hundreds of millions of sperm pouring into your large intestine.`);
+      // TODO-QSP: dynamic text: That same energy splashes off of <<$npcdesc>> and back onto you, forcing you to ...
+      scene.text(`That same energy splashes off of ${((s as any).npcdesc ?? 0)} and back onto you, forcing you to share in his experiences. You can <i>feel</i> his orgasm pouring into you, <i>his</i> pleasure erupting from his manhood, as if it were <i>you</i> ejaculating into your own spasming asshole. Caught in a feedback loop between your orgasm and his, your entire body locks up, screaming a silent open-mouthed scream of ecstasy, unable to do anything but shudder uncontrollably around the cock pulsing inside you.`);
+    } else {
+      scene.text('Orgasmic tremors quake through your body, covering your skin in goosebumps and you moan incoherently. You tremble, unable to do anything except quiver around the cock inside you.');
+    }
+    scene.actions([
+      { label: 'Continue', goto: ['sex_ev_cum', 'anal_creampie_surprise_cum_together'] },
+    ]);
+  } },
+      ]);
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Ride it out', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You stay there patiently, letting <<$npcdesc>> empty himself into your ass, wait...
+    scene.text(`You stay there patiently, letting ${((s as any).npcdesc ?? 0)} empty himself into your ass, waiting until you no longer feel him twitching inside you.`);
+    qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+    qspCall(s, 'sex_ev_reactions', 'react_menu');
+  } },
+    { label: 'Tolerate it (disgust)', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You stay there, trying not to squirm in discomfort, feeling <<$npcdesc>>'s spunk...
+    scene.text(`You stay there, trying not to squirm in discomfort, feeling ${((s as any).npcdesc ?? 0)}'s spunk fill your ass. Despite your disgust, you don't move, waiting until you no longer feel him twitching inside you.`);
+    qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+    qspCall(s, 'sex_ev_reactions', 'react_menu');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAnalCreampieSurpriseCumTogether(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['react'] = 1;
+  scene.img('images/shared/sex/vag/doggy/1.jpg');
+  // TODO-QSP: dynamic text: You let your knees give out underneath you, falling down to the bed with <<$npcd...
+  scene.text(`You let your knees give out underneath you, falling down to the bed with ${((s as any).npcdesc ?? 0)} on top of you. Breathing heavily, you look over your shoulder at him.`);
+  if (((s as any).npc_know_love_creampie ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    scene.text('He stares into your eyes, smiling.');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['came_together'] === 2  ||  ((s as any).sex_ev ?? 0)?.['hypno_came_together'] === 1) {
+      ((s as any).sex_ev ?? {})['did_we_cum_together'] = 1;
+      scene.text('"Did... did we... did you...?" he pants.');
+    }
+  }
+  qspCall(s, 'sex_ev_reactions', 'react_menu');
+  if ((((s as any).sex_ev ?? 0)?.['orgasm_count'] >= 5  ||  ((s as any).pcs_sleep ?? 0) < 20)  &&  (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 4)) {
+    scene.actions([
+      { label: 'Collapse', goto: ['sex_ev_after', 'black_out'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumNotInside(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] > 9) {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise'] }]);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] >= 8) {
+      qspCall(s, 'sex_ev_cum', 'cum_mouth');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['cum_choice_int'] >= 6) {
+        qspCall(s, 'sex_ev_cum', 'cum_facial');
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'cum_pullout'] }]);
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumNotYet(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_vid'
+  if (((s as any).sex_ev ?? 0)?.['speed'] === 1) {
+    // TODO-QSP: '"Not yet!" you gasp. ' + iif(orgasm_buildup >= 100, '"I''m so close! Just a little longer!"', '"Jus...
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['speed'] === 2) {
+      // TODO-QSP: '"Not yet!" you pant. ' + iif(orgasm_buildup >= 100, '"I''m so close! Just a little longer!"', '"Jus...
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['speed'] === 3) {
+        // TODO-QSP: '"Not yet!" you cry. ' + iif(orgasm_buildup >= 100, '"I''m so close! Just a little longer!"', '"Just...
+      }
+    }
+  }
+  if (((s as any).sex_ev ?? 0)?.['sex_stamina'] > (Math.floor(Math.random() * 10) + 1)  &&  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  ((s as any).sex_ev ?? 0)?.['cant_hold_cum'] < 1) {
+    // TODO-QSP: dynamic text: <<$npcdesc>>'s brow furrows as he concentrates intensely on fucking you without ...
+    scene.text(`${((s as any).npcdesc ?? 0)}'s brow furrows as he concentrates intensely on fucking you without slowing down or without blowing his load. It pays off as he continues to plow you at the same pace.`);
+    ((s as any).sex_ev ?? {})['boy_cum'] = 0;
+    ((s as any).sex_ev ?? {})['cum_count'] = (((s as any).sex_ev ?? {})['cum_count'] ?? 0) - (1);
+    ((s as any).sex_ev ?? {})['fuck_count'] = (((s as any).sex_ev ?? {})['fuck_count'] ?? 0) - (1);
+    ((s as any).sex_ev ?? {})['cycle_limit'] = (((s as any).sex_ev ?? {})['cycle_limit'] ?? 0) - (Math.floor(Math.random() * 3) + 1);
+    qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  } else {
+    if (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] < 1  &&  ((s as any).sex_ev ?? 0)?.['cant_hold_cum'] < 1) {
+      ((s as any).sex_ev ?? {})['boy_cum'] = 0;
+      ((s as any).sex_ev ?? {})['cum_count'] = (((s as any).sex_ev ?? {})['cum_count'] ?? 0) - (1);
+      ((s as any).sex_ev ?? {})['fuck_count'] = (((s as any).sex_ev ?? {})['fuck_count'] ?? 0) - (1);
+      // TODO-QSP: dynamic text: "I think I need a quick break if that's the case," <<$npcdesc>> pants back. "If ...
+      scene.text(`"I think I need a quick break if that's the case," ${((s as any).npcdesc ?? 0)} pants back. "If we go for a second longer, I'm definitely gonna cum."`);
+      scene.text('"Okay, we can take a break."');
+      qspCall(s, 'sex_ev_sex', 'take_a_break');
+    } else {
+      // TODO-QSP: dynamic text: "I-!" <<$npcdesc>> grunts. "I can't-!"
+      scene.text(`"I-!" ${((s as any).npcdesc ?? 0)} grunts. "I can't-!"`);
+      if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie'  ||  ((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie_surprise') {
+        scene.text('And then he thrusts deep inside you.');
+        scene.actions([
+          { label: 'Continue', goto: ['sex_ev_cum', 'creampie_surprise'] },
+        ]);
+      } else {
+        // TODO-QSP: 'And then he yanks his throbbing cock from your ' + iif($sex_ev['position'] ! 'anal', 'pussy.', 'ass...
+        scene.actions([
+          { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'sex_ev_cum', 'cum_his_choice2');
+  } },
+        ]);
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumCondom(s: GameState, scene: SceneBuilder): void {
+  if (((((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'anal_doggy_creampie'] }]);
+  }
+  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 3);
+  ((s as any).sex_ev ?? {})['last_cum'] = 'condom';
+  if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking between your legs as he removes his cock, the rubber casing around it bulging with liquid';
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
+        ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking over your shoulder as you let his rubber encased cock slip from your pussy';
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+          ((s as any).sex_ev ?? {})['cum_describe2'] = 'settling yourself down onto his rubber encased cock';
+        }
+      }
+    }
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    // TODO-QSP: dynamic text: <<$npcdesc>> buries his cock inside your pussy. Even through the condom, you fee...
+    scene.text(`${((s as any).npcdesc ?? 0)} buries his cock inside your pussy. Even through the condom, you feel him <i>swell</i> inside you. And then, <i>release</i>.`);
+    scene.text('He throbs inside you like a heartbeat and it\'s all you need to come as well. You shudder, pussy clamping down hard on his cock and milking it for every last drop of cum into the condom, as you ride out your orgasms together.');
+    if (((s as any).condom_break ?? 0) > 0) {
+      qspCall(s, 'sex_ev_cum', 'broken_condom0');
+    } else {
+      ((s as any).sex_ev ?? {})['cum_condom'] = (((s as any).sex_ev ?? {})['cum_condom'] ?? 0) + (1);
+      qspCall(s, 'sex_ev_sex', 'sex_end');
+    }
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+      ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking between your legs as he removes his cock, the rubber casing around it bulging with liquid';
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/cum/cum71.jpg');
+        ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking over your shoulder as you let his rubber encased cock slip from your pussy';
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/cum/vagcreampie/cumvaginal.mp4');
+          ((s as any).sex_ev ?? {})['cum_describe2'] = 'settling yourself down onto his rubber encased cock';
+        }
+      }
+    }
+    // TODO-QSP: dynamic text: <<$npcdesc>> buries his cock inside your pussy and you can feel it pulse inside ...
+    scene.text(`${((s as any).npcdesc ?? 0)} buries his cock inside your pussy and you can feel it pulse inside you, straining against the rubber coat around it.`);
+    if (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      scene.actions([
+        { label: 'Come together', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+        }
+      }
+    }
+    qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+    qspCall(s, 'stat', '');
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    // TODO-QSP: dynamic text: <<$npcdesc>>'s pulsing cock is the final straw and a dam breaks inside you as yo...
+    scene.text(`${((s as any).npcdesc ?? 0)}'s pulsing cock is the final straw and a dam breaks inside you as your climax erupts. The two of come together, each of your orgasms fueling the other's until eventually they've run their course and both of you lay there panting.`);
+    if (((s as any).condom_break ?? 0) > 0) {
+      qspCall(s, 'sex_ev_cum', 'broken_condom0');
+    } else {
+      ((s as any).sex_ev ?? {})['cum_condom'] = (((s as any).sex_ev ?? {})['cum_condom'] ?? 0) + (1);
+      qspCall(s, 'sex_ev_sex', 'sex_end');
+    }
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Ride it out', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You wait patiently, letting <<$npcdesc>> empty himself into the condom, until yo...
+    scene.text(`You wait patiently, letting ${((s as any).npcdesc ?? 0)} empty himself into the condom, until you no longer feel him twitching inside you.`);
+    if (((s as any).condom_break ?? 0) > 0) {
+      qspCall(s, 'sex_ev_cum', 'broken_condom0');
+    } else {
+      ((s as any).sex_ev ?? {})['cum_condom'] = (((s as any).sex_ev ?? {})['cum_condom'] ?? 0) + (1);
+      qspCall(s, 'sex_ev_sex', 'sex_end');
+    }
+  } },
+      { label: 'Tolerate it (disgust)', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: You lay there, trying not to squirm as <<$npcdesc>> orgasm pumps load after load...
+    scene.text(`You lay there, trying not to squirm as ${((s as any).npcdesc ?? 0)} orgasm pumps load after load into your womb. Despite the condom safely encasing his cock, the idea of him filling you up is enough to fill you with disgust and you don't move, waiting until you no longer feel him twitching inside you.`);
+    if (((s as any).condom_break ?? 0) > 0) {
+      qspCall(s, 'sex_ev_cum', 'broken_condom0');
+    } else {
+      ((s as any).sex_ev ?? {})['cum_condom'] = (((s as any).sex_ev ?? {})['cum_condom'] ?? 0) + (1);
+      qspCall(s, 'sex_ev_sex', 'sex_end');
+    }
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBrokenCondom0(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['creampie_count'] = (((s as any).sex_ev ?? {})['creampie_count'] ?? 0) + (1);
+  if (((s as any).birth_control ?? 0)?.['think_safe'] === 0  &&  ((s as any).stat ?? 0)?.['preg_risk'] === 'danger'  &&  (!((s as any).knowpreg ?? 0))) {
+    ((s as any).sex_ev ?? {})['risky_creampie'] = (((s as any).sex_ev ?? {})['risky_creampie'] ?? 0) + (1);
+    ((s as any).npc_risky_creampie_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_risky_creampie_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  }
+  ((s as any).sex_ev ?? {})['last_cum'] = 'broken_condom';
+  ((s as any).sex_ev ?? {})['broken_condom'] = 1;
+  if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
+    ((s as any).sex_ev ?? {})['came_together'] = 2;
+    // TODO-QSP: dynamic text: <<$npcdesc>> buries his cock inside your pussy. It throbs inside you through the...
+    scene.text(`${((s as any).npcdesc ?? 0)} buries his cock inside your pussy. It throbs inside you through the condom, causing you to come as well. You ride out your orgasms together, oblivious to everything except the pleasure.`);
+    qspCall(s, 'sex_ev_cum', 'broken_condom2');
+  } else {
+    // TODO-QSP: dynamic text: <<$npcdesc>> buries his cock inside your pussy and you can feel it pulse inside ...
+    scene.text(`${((s as any).npcdesc ?? 0)} buries his cock inside your pussy and you can feel it pulse inside you, straining against the rubber coat around it.`);
+    qspCall(s, 'sex_ev_cum', 'broken_condom1');
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBrokenCondom1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: dynamic text: Right as it seems like <<$npcdesc>>'s finished, you feel a <i>pop</i> inside you...
+    scene.text(`Right as it seems like ${((s as any).npcdesc ?? 0)}'s finished, you feel a <i>pop</i> inside you and a sudden rush of warmth <i>floods</i> through your hips.`);
+    scene.actions([
+      { label: 'Oh shit!', handler: (st: GameState) => {
+    scene.img('images/shared/sex/cum/cum111.jpg');
+    scene.text('Your eyes go wide in shock and you jump off the bed, looking between your legs. As you feared, thick, white strands of cum leak from your snatch, running down your thighs. The condom must have broken.');
+    qspCall(s, 'sex_ev_reactions_creampie', 'oh_shit_options');
+  } },
+      { label: 'Take it in stride', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+      scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
+      scene.text('You blink in surprise and slowly raise your hips to remove yourself from his cock. The moment it slips free, cum gushes from your pussy and you visually confirm what you suspected: the condom broke.');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
+        // TODO-QSP: dynamic text: You blink in surprise but wait patiently without making a fuss until <<$npcdesc>...
+        scene.text(`You blink in surprise but wait patiently without making a fuss until ${((s as any).npcdesc ?? 0)} withdraws his cock from you. The moment it slips free, cum gushes from your pussy and you visually confirm what you suspected: the condom broke.`);
+      } else {
+        scene.img('images/shared/sex/cum/vagcreampie/doggy1.jpg');
+        // TODO-QSP: dynamic text: You blink in surprise but wait patiently without making a fuss until <<$npcdesc>...
+        scene.text(`You blink in surprise but wait patiently without making a fuss until ${((s as any).npcdesc ?? 0)} withdraws his cock from you. The moment it slips free, something wet gushes from your pussy and you turn around to visually confirm what you suspected: the condom broke.`);
+      }
+    }
+    qspCall(s, 'sex_ev_reactions_creampie', 'oh_shit_options');
+    qspCall(s, 'sex_ev_reactions_creampie', 'creampie_accident_birth_control');
+    qspCall(s, 'sex_ev_reactions_creampie', 'creampie_safe_day');
+  } },
+      { label: 'Come', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['broken_condom_creampie_cum'] = 1;
+    ((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] = (((s as any).sex_ev ?? {})['simultaneous_orgasm_count'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['came_together'] = 1;
+    // TODO-QSP: gs 'arousal', 'vaginal', -1, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/vag/miss/orgasm1.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/vag/doggy/orgasm2.mp4');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/vag/cowgirl/orgasm1.mp4');
+        }
+      }
+    }
+    // TODO-QSP: dynamic text: The sudden explosion of warmth inside you overwhelms your senses and you gasp. I...
+    scene.text(`The sudden explosion of warmth inside you overwhelms your senses and you gasp. It causes you to orgasm and your whole body shudders around ${((s as any).npcdesc ?? 0)}'s cock as heat fills you to the brim.`);
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/vag/miss/2.jpg');
+      // TODO-QSP: dynamic text: Eventually your orgasm comes down and you look up at <<$npcdesc>>, still quiveri...
+      scene.text(`Eventually your orgasm comes down and you look up at ${((s as any).npcdesc ?? 0)}, still quivering with his cock inside you.`);
+      scene.text('"I think... the condom... broke..." you pant.');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/vag/doggy/1.jpg');
+        // TODO-QSP: dynamic text: Eventually your orgasm comes down and your knees give out underneath you, fallin...
+        scene.text(`Eventually your orgasm comes down and your knees give out underneath you, falling down to the bed with ${((s as any).npcdesc ?? 0)} on top of you.`);
+        scene.text('"I think... the condom... broke..." you pant from beneath him.');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/vag/cowgirl/1.jpg');
+          // TODO-QSP: dynamic text: Eventually your orgasm comes down and you let yourself collapse on top of <<$npc...
+          scene.text(`Eventually your orgasm comes down and you let yourself collapse on top of ${((s as any).npcdesc ?? 0)}, feeling your breasts pressed against his chest, which rises and falls with the same laboured breathing as your own.`);
+          scene.text('"I think... the condom... broke..." you pant laying on his chest.');
+        }
+      }
+    }
+    qspCall(s, 'sex_ev_reactions_creampie', 'oh_shit_options');
+    qspCall(s, 'sex_ev_reactions_creampie', 'creampie_accident_birth_control');
+    qspCall(s, 'sex_ev_reactions_creampie', 'creampie_safe_day');
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterBrokenCondom2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.img('images/shared/sex/cum/cum61.jpg');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/cum/cum71.jpg');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.img('images/shared/sex/cum/cum81.jpg');
+      }
+    }
+  }
+  // TODO-QSP: dynamic text: You come down from your orgasm, panting, about to smile at <<$npcdesc>> when you...
+  scene.text(`You come down from your orgasm, panting, about to smile at ${((s as any).npcdesc ?? 0)} when you freeze in shock.`);
+  scene.text('Something feels...');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/cum/vagcreampie/doggy1.jpg');
+      // TODO-QSP: dynamic text: <<$npcdesc>> slips his cock out from behind you and something wet trickles out a...
+      scene.text(`${((s as any).npcdesc ?? 0)} slips his cock out from behind you and something wet trickles out after him.`);
+      scene.text('Turning around, you look at his crotch and confirm your suspicions: the condom broke.');
+    } else {
+      scene.img('images/shared/sex/cum/vagcreampie/miss1.jpg');
+      // TODO-QSP: dynamic text: <<$npcdesc>> slips his cock out from inside you and something wet trickles out a...
+      scene.text(`${((s as any).npcdesc ?? 0)} slips his cock out from inside you and something wet trickles out after it.`);
+      scene.text('Looking down between your legs, you see his cock and confirm your suspicions: the condom broke.');
+    }
+    qspCall(s, 'sex_ev_reactions_creampie', 'oh_shit_options');
+    qspCall(s, 'sex_ev_reactions_creampie', 'creampie_accident_birth_control');
+    qspCall(s, 'sex_ev_reactions_creampie', 'creampie_safe_day');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGirlCumCondomReact(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter2pumpEnjoymentDesc(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'enjoy') {
+    scene.text('Not that the enjoyment lasts very long.');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'unsatisfying') {
+      scene.text('Not that the experience lasts very long.');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] === 'painful') {
+        scene.text('Thankfully, the pain doesn\'t last very long.');
+      } else {
+        scene.text('Though it doesn\'t last very long.');
+      }
+    }
+  }
+  scene.text('"Oh fuck! I\'m cumming!"');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter2pumpchump(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['2pump'] = 2;
+    if (((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie_surprise'  ||  ((s as any).sex_ev ?? 0)?.['cum_choice'] === 'creampie'  ||  ((s as any).sex_ev ?? 0)?.['condom'] === 1) {
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 3);
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+        qspCall(s, 'sex_ev_cum', '2pump_enjoyment_desc');
+        // TODO-QSP: dynamic text: It can't be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly stiff...
+        scene.text(`It can't be more than 30 seconds before ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} suddenly stiffens up and thrusts his dick into you to the hilt.`);
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+          scene.img('images/shared/sex/cum/vagcreampie/doggy3.mp4');
+          qspCall(s, 'sex_ev_cum', '2pump_enjoyment_desc');
+          // TODO-QSP: dynamic text: It can't be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly stiff...
+          scene.text(`It can't be more than 30 seconds before ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} suddenly stiffens up and thrusts his dick to the hilt behind you.`);
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+            scene.img('images/shared/sex/cum/vagcreampie/cumvaginal.mp4');
+            qspCall(s, 'sex_ev_cum', '2pump_enjoyment_desc');
+            // TODO-QSP: dynamic text: It can't be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly stiff...
+            scene.text(`It can't be more than 30 seconds before ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} suddenly stiffens up, grabs your hips, and pulls you down all the way to the base of his cock.`);
+          }
+        }
+      }
+      if (((s as any).sex_ev ?? 0)?.['condom'] === 1) {
+        ((s as any).sex_ev ?? {})['last_cum'] = 'condom';
+        scene.text('His cock throbs inside you and distinct moves inside the latex of the condom.');
+        if (((s as any).condom_break ?? 0) > 0) {
+          qspCall(s, 'sex_ev_cum', 'broken_condom1');
+        } else {
+          scene.actions([
+            { label: 'Continue', goto: ['sex_ev_cum', '2pumpchump_condom'] },
+          ]);
+        }
+      } else {
+        ((s as any).sex_ev ?? {})['creampie_surprise'] = 1;
+        qspCall(s, 'sex_ev_stats', 'creampie_code');
+        scene.text('His cock pulses within you and warmth floods your pussy.');
+        qspCall(s, 'sex_ev_cum', '2pumpchump_creampie');
+      }
+    } else {
+      ((s as any).sex_ev ?? {})['last_cum'] = 'pullout';
+      ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+        qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 1);
+        ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
+        ((s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).sex_ev ?? {})['cum_stomach'] ?? 0) + (1);
+        scene.img('images/shared/sex/cum/stomach/bellycum5.mp4');
+        qspCall(s, 'sex_ev_cum', '2pump_enjoyment_desc');
+        // TODO-QSP: dynamic text: It can't be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly pulls...
+        scene.text(`It can't be more than 30 seconds before ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} suddenly pulls out.`);
+        scene.text('He pumps his shaft with his hand exactly once and cum erupts from the tip, spattering across your stomach.');
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+          qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+          qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+          ((s as any).sex_ev ?? {})['cum_back'] = (((s as any).sex_ev ?? {})['cum_back'] ?? 0) + (1);
+          ((s as any).sex_ev ?? {})['cum_ass'] = (((s as any).sex_ev ?? {})['cum_ass'] ?? 0) + (1);
+          ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking back at the white liquid glazing your ass';
+          scene.img('images/shared/sex/cum/pullout_doggy1.mp4');
+          // TODO-QSP: dynamic text: It can't be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly pulls...
+          scene.text(`It can't be more than 30 seconds before ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} suddenly pulls out.`);
+          scene.text('His cock slips from your snatch and not even a moment later, hot sticky liquid spatters across your ass and back.');
+        } else {
+          if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+            qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1);
+            qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 1);
+            ((s as any).sex_ev ?? {})['cum_stomach'] = (((s as any).sex_ev ?? {})['cum_stomach'] ?? 0) + (1);
+            ((s as any).sex_ev ?? {})['cum_describe2'] = 'looking at the white liquid glazing your stomach';
+            scene.img('images/shared/sex/cum/pullout_cowgirl1.mp4');
+            // TODO-QSP: dynamic text: It can't be more than 30 seconds before <<$npc_usedname[$npcID]>> suddenly slips...
+            scene.text(`It can't be more than 30 seconds before ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} suddenly slips his cock out from under you and feel something hot and wet spattering across your back.`);
+          }
+        }
+      }
+      scene.actions([
+        { label: 'Continue', goto: ['sex_ev_cum', '2pumpchump_pullout'] },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enter2pumpchumpCondom(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+  scene.img('images/shared/sex/cum/condom1.jpg');
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    // TODO-QSP: dynamic text: As <<$npcdesc>> withdraws his cock from your pussy, you can see that the latex c...
+    scene.text(`As ${((s as any).npcdesc ?? 0)} withdraws his cock from your pussy, you can see that the latex covering it is sagging and filled with white liquid. Any doubt you had that he hadn't just nutted immediately is erased by the visual evidence.`);
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      // TODO-QSP: dynamic text: As <<$npcdesc>> withdraws his cock from your pussy, you look over your shoulder ...
+      scene.text(`As ${((s as any).npcdesc ?? 0)} withdraws his cock from your pussy, you look over your shoulder and can see that the latex covering it is sagging and filled with white liquid. Any doubt you had that he hadn't just nutted immediately is erased by the visual evidence.`);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        // TODO-QSP: dynamic text: As you pull yourself off of <<$npcdesc>>, his cock flops from your pussy you can...
+        scene.text(`As you pull yourself off of ${((s as any).npcdesc ?? 0)}, his cock flops from your pussy you can see clearly that the latex covering it is sagging and filled with white liquid. Any doubt you had that he hadn't just nutted immediately is erased by the visual evidence.`);
+      }
+    }
+  }
+  scene.text('He looks incredibly uncomfortable and embarrassed.');
+  qspCall(s, 'sex_ev_reactions', '2pump_react');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter2pumpchumpCreampie(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sex_ev_reactions_creampie', 'did_you_come_inside');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Let him pull out', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+      scene.img('images/shared/sex/cum/vagcreampie/oops.jpg');
+      // TODO-QSP: dynamic text: As <<$npcdesc>> withdraws his cock from your pussy, feel a <i>pop</i> inside you...
+      scene.text(`As ${((s as any).npcdesc ?? 0)} withdraws his cock from your pussy, feel a <i>pop</i> inside you and milky white fluid spills out from your snatch.`);
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+        scene.img('images/shared/sex/cum/vagcreampie/doggy2.mp4');
+        // TODO-QSP: dynamic text: As <<$npcdesc>> withdraws his cock from your pussy, feel a <i>pop</i> inside you...
+        scene.text(`As ${((s as any).npcdesc ?? 0)} withdraws his cock from your pussy, feel a <i>pop</i> inside you and something thick dribble out of your snatch.`);
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+          scene.img('images/shared/sex/cum/vagcreampie/cowgirl3.mp4');
+          // TODO-QSP: dynamic text: As you pull yourself off of <<$npcdesc>>, his cock flops from your pussy you can...
+          scene.text(`As you pull yourself off of ${((s as any).npcdesc ?? 0)}, his cock flops from your pussy you can see clearly that the latex covering it is sagging and filled with white liquid. Any doubt you had that he hadn't just nutted immediately is erased by the visual evidence.`);
+        }
+      }
+    }
+    scene.text('He looks incredibly uncomfortable and embarrassed.');
+    qspCall(s, 'sex_ev_reactions', '2pump_react');
+  } },
+  ]);
+  scene.build();
+}
+
+function enter2pumpchumpPullout(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.img('images/shared/sex/cum/stomach/bellycum2.jpg');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/cum/pullout_doggy1.mp4');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.img('images/shared/sex/cum/pullout_cowgirl1.mp4');
+      }
+    }
+  }
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    scene.text('You look down at the cum spattered across your belly.');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.text('You look over your shoulder at the cum spattered across your back.');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.text('You look over your shoulder at the cum spattered across your back.');
+      }
+    }
+  }
+  scene.text('He looks incredibly uncomfortable and embarrassed.');
+  qspCall(s, 'sex_ev_reactions', '2pump_react');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterHypnoCreampieOrgasmFail(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
+    ((s as any).sex_ev ?? {})['hypno_anti_orgasm'] = (((s as any).sex_ev ?? {})['hypno_anti_orgasm'] ?? 0) + (1);
+    ((s as any).sex_ev ?? {})['hypno_came_together'] = 1;
+    qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+    qspCall(s, 'stat', '');
+    scene.img('images/shared/sex/cum/vagcreampie/creampie1.mp4');
+    if (((s as any).sex_ev ?? 0)?.['creampie_force'] === 0) {
+      // TODO-QSP: dynamic text: <<$npcdesc>> holds you tight and you gasp as his cum pours into you. It feels so...
+      scene.text(`${((s as any).npcdesc ?? 0)} holds you tight and you gasp as his cum pours into you. It feels so good! It's driving you crazy! You're gonna-!`);
+      // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+      scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. But climax refuses to come. ${((s as any).npcdesc ?? 0)} continues pulsing inside you and the sensation is indescribably good. Your insides scream for release! Your pussy clenches, squeezes, and squirms around ${((s as any).npcdesc ?? 0)}'s cock, desperately trying to orgasm!`);
+    } else {
+      // TODO-QSP: dynamic text: You lock your legs behind <<$npcdesc>>, holding him tight, forcing him to blow h...
+      scene.text(`You lock your legs behind ${((s as any).npcdesc ?? 0)}, holding him tight, forcing him to blow his load deep inside you. It feels so good! It's driving you crazy! You're gonna-!`);
+      // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+      scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. But climax refuses to come. our insides scream for release! Your pussy clamps down, squeezes, and squirms around ${((s as any).npcdesc ?? 0)}'s cock as it continues pulsing inside you! You clench your legs harder, desperately trying achieve orgasm!`);
+    }
+    scene.text('But despite all your best efforts, his orgasm dies down inside you before you find yours. And you just... <i>can\'t...</i> <i><b>come...</b></i>');
+    qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+    qspCall(s, 'sex_ev_reactions', 'react_menu');
+  } else {
+    if (((s as any).sex_ev ?? 0)?.['position'] === 'doggy') {
+      scene.img('images/shared/sex/cum/vagcreampie/doggy5.mp4');
+      ((s as any).sex_ev ?? {})['hypno_anti_orgasm'] = (((s as any).sex_ev ?? {})['hypno_anti_orgasm'] ?? 0) + (1);
+      qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+      qspCall(s, 'stat', '');
+      // TODO-QSP: dynamic text: <<$npcdesc>> holds you tight and you gasp as his cum pours into you. It feels so...
+      scene.text(`${((s as any).npcdesc ?? 0)} holds you tight and you gasp as his cum pours into you. It feels so good! It's driving you crazy! You're gonna-!`);
+      // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+      scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. ${((s as any).npcdesc ?? 0)} continues pulsing inside you and the sensation is indescribably good. Your insides scream for release! Your pussy clenches, squeezes, and squirms around ${((s as any).npcdesc ?? 0)}'s cock, trying to seek it.`);
+      scene.text('But despite all your best efforts, his orgasm dies down inside you before you find yours. And you just... <i>can\'t...</i> <i><b>come...</b></i>');
+      qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+      qspCall(s, 'sex_ev_reactions', 'react_menu');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['position'] === 'cowgirl') {
+        scene.img('images/shared/sex/cum/vagcreampie/cowgirl2.mp4');
+        ((s as any).sex_ev ?? {})['hypno_anti_orgasm'] = (((s as any).sex_ev ?? {})['hypno_anti_orgasm'] ?? 0) + (1);
+        ((s as any).sex_ev ?? {})['hypno_came_together'] = 1;
+        qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+        qspCall(s, 'stat', '');
+        if (((s as any).sex_ev ?? 0)?.['creampie_force'] === 0) {
+          // TODO-QSP: dynamic text: You grin as <<$npcdesc>>'s cum shoots into you, filling up your pussy. It feels ...
+          scene.text(`You grin as ${((s as any).npcdesc ?? 0)}'s cum shoots into you, filling up your pussy. It feels so good! It's driving you crazy! You're gonna-!`);
+          // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+          scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. But climax refuses to come. You keep working your hips, pounding ${((s as any).npcdesc ?? 0)}'s cock against your cervix even as it pulses inside you, pouring cum into your womb. The sensation is indescribably good.`);
+          scene.text('But orgasm still won\'t come.');
+          scene.text('Your insides scream for release! Your frantic riding takes on a sense of panic, squeezing him tighter and tighter and he groans loudly as your pussy clenches, milking him for every drop, desperately trying to orgasm!');
+        } else {
+          // TODO-QSP: dynamic text: You gasp as <<$npcdesc>>'s cum shoots into you, filling up your pussy. It feels ...
+          scene.text(`You gasp as ${((s as any).npcdesc ?? 0)}'s cum shoots into you, filling up your pussy. It feels so good! It's driving you crazy! You're gonna-!`);
+          // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+          scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. But climax refuses to come. ${((s as any).npcdesc ?? 0)} continues pulsing inside you and the sensation is indescribably good. Your insides scream for release! In a desperate panic, you start frantically riding ${((s as any).npcdesc ?? 0)} again, even as he's still coming. He groans loudly and your pussy clenches, squeezes, and squirms around his cock, milking him for every drop, desperately trying to orgasm!`);
+        }
+        scene.actions([
+          { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/shared/sex/cum/vagcreampie/cowgirl1.mp4');
+    scene.text('But no matter what you try, his orgasm dies down inside you before you find yours. His cum seeps from your pussy around his already softening shaft.');
+    scene.text('And you just... <i>can\'t...</i> <i><b>come...</b></i>');
+    if (((s as any).sex_ev ?? 0)?.['creampie_surprise'] === 1) {
+      qspCall(s, 'sex_ev_cum', 'creampie_surprise_cum_together');
+    } else {
+      qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+      qspCall(s, 'sex_ev_reactions', 'react_menu');
+    }
+  } },
+        ]);
+      } else {
+        if (((s as any).sex_ev ?? 0)?.['position'] === 'anal') {
+          scene.img('images/shared/sex/cum/analcreampie/doggy1.mp4');
+          ((s as any).sex_ev ?? {})['hypno_anti_orgasm'] = (((s as any).sex_ev ?? {})['hypno_anti_orgasm'] ?? 0) + (1);
+          ((s as any).sex_ev ?? {})['hypno_came_together'] = 1;
+          qspCall(s, 'sex_ev_sex', 'fuck_arousal_creampie_cum_code');
+          qspCall(s, 'stat', '');
+          if (((s as any).sex_ev ?? 0)?.['creampie_force'] === 0) {
+            // TODO-QSP: dynamic text: You grin as <<$npcdesc>>'s cum shoots into you, filling up your anus. It feels s...
+            scene.text(`You grin as ${((s as any).npcdesc ?? 0)}'s cum shoots into you, filling up your anus. It feels so good! It's driving you crazy! You're gonna-!`);
+            // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+            scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. But climax refuses to come. You keep working your hips, pounding ${((s as any).npcdesc ?? 0)}'s cock in your anus even as it pulses inside you, pouring cum into your intestines. The sensation is indescribably good.`);
+            scene.text('But orgasm still won\'t come.');
+            scene.text('Your insides scream for release! Your frantic riding takes on a sense of panic, squeezing him tighter and tighter and he groans loudly as your anus clenches, milking him for every drop, desperately trying to orgasm!');
+          } else {
+            // TODO-QSP: dynamic text: You gasp as <<$npcdesc>>'s cum shoots into you, filling up your anus. It feels s...
+            scene.text(`You gasp as ${((s as any).npcdesc ?? 0)}'s cum shoots into you, filling up your anus. It feels so good! It's driving you crazy! You're gonna-!`);
+            // TODO-QSP: dynamic text: Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantaliz...
+            scene.text(`Suddenly, your arousal slams up against a brick wall. Frustratingly, <i>tantalizingly</i> close. But climax refuses to come. ${((s as any).npcdesc ?? 0)} continues pulsing inside you and the sensation is indescribably good. Your insides scream for release! In a desperate panic, you start frantically riding ${((s as any).npcdesc ?? 0)} again, even as he's still coming. He groans loudly and your anus clenches, squeezes, and squirms around his cock, milking him for every drop, desperately trying to orgasm!`);
+          }
+          scene.actions([
+            { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/shared/sex/cum/analcreampie/doggy_drip2.mp4');
+    scene.text('But no matter what you try, his orgasm dies down inside you before you find yours. His cum seeps from your anus around his already softening shaft.');
+    scene.text('And you just... <i>can\'t...</i> <i><b>come...</b></i>');
+    if (((s as any).sex_ev ?? 0)?.['creampie_surprise'] === 1) {
+      qspCall(s, 'sex_ev_cum', 'creampie_surprise_cum_together');
+    } else {
+      qspCall(s, 'sex_ev_cum', 'cum_inside_pull_away');
+      qspCall(s, 'sex_ev_reactions', 'react_menu');
+    }
+  } },
+          ]);
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterHypnoCreampieOrgasmFail2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2923,6 +4574,90 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'anal_cum_together':
       enterAnalCumTogether(s, scene);
+      break;
+    case 'surprise_cum_together':
+      enterSurpriseCumTogether(s, scene);
+      break;
+    case 'anal_surprise_cum_together':
+      enterAnalSurpriseCumTogether(s, scene);
+      break;
+    case 'cum_together2':
+      enterCumTogether2(s, scene);
+      break;
+    case 'cum_together_fake':
+      enterCumTogetherFake(s, scene);
+      break;
+    case 'cum_force':
+      enterCumForce(s, scene);
+      break;
+    case 'cum_force2':
+      enterCumForce2(s, scene);
+      break;
+    case 'cum_pullout':
+      enterCumPullout(s, scene);
+      break;
+    case 'creampie_surprise':
+      enterCreampieSurprise(s, scene);
+      break;
+    case 'creampie_surprise2':
+      enterCreampieSurprise2(s, scene);
+      break;
+    case 'creampie_surprise_cum_together':
+      enterCreampieSurpriseCumTogether(s, scene);
+      break;
+    case 'what_now':
+      enterWhatNow(s, scene);
+      break;
+    case 'anal_creampie_surprise':
+      enterAnalCreampieSurprise(s, scene);
+      break;
+    case 'anal_creampie_surprise2':
+      enterAnalCreampieSurprise2(s, scene);
+      break;
+    case 'anal_creampie_surprise_cum_together':
+      enterAnalCreampieSurpriseCumTogether(s, scene);
+      break;
+    case 'cum_not_inside':
+      enterCumNotInside(s, scene);
+      break;
+    case 'cum_not_yet':
+      enterCumNotYet(s, scene);
+      break;
+    case 'cum_condom':
+      enterCumCondom(s, scene);
+      break;
+    case 'broken_condom0':
+      enterBrokenCondom0(s, scene);
+      break;
+    case 'broken_condom1':
+      enterBrokenCondom1(s, scene);
+      break;
+    case 'broken_condom2':
+      enterBrokenCondom2(s, scene);
+      break;
+    case 'girl_cum_condom_react':
+      enterGirlCumCondomReact(s, scene);
+      break;
+    case '2pump_enjoyment_desc':
+      enter2pumpEnjoymentDesc(s, scene);
+      break;
+    case '2pumpchump':
+      enter2pumpchump(s, scene);
+      break;
+    case '2pumpchump_condom':
+      enter2pumpchumpCondom(s, scene);
+      break;
+    case '2pumpchump_creampie':
+      enter2pumpchumpCreampie(s, scene);
+      break;
+    case '2pumpchump_pullout':
+      enter2pumpchumpPullout(s, scene);
+      break;
+    case 'hypno_creampie_orgasm_fail':
+      enterHypnoCreampieOrgasmFail(s, scene);
+      break;
+    case 'hypno_creampie_orgasm_fail2':
+      enterHypnoCreampieOrgasmFail2(s, scene);
       break;
     default:
       enterDefault(s, scene);

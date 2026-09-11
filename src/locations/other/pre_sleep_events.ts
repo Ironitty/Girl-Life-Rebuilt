@@ -30,12 +30,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'mod_sleepevents'] }]);
   }
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'pre_sleep_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +52,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,11 +64,13 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -73,6 +78,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,16 +86,19 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'pre_sleep2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSucEvent(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'succhoice'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMagbEvent(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'magbstchoice'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -102,6 +111,7 @@ function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): 
       // TODO-QSP: gt 'nichBedroomServant', 'sleepEvents', 1000
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,6 +129,7 @@ function enterSucchoice(s: GameState, scene: SceneBuilder): void {
   scene.text('Thinking about it you realize that you could push the energy out or pull it in!');
   scene.text('');
   scene.text('<center><b>You also feel that both are <i>permanent</i> choices.</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to ignore it and go to sleep', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', 'event_end');
@@ -141,6 +152,7 @@ function enterSucchoiceNO(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'pre_sleep_events', 'event_end');
@@ -169,6 +181,7 @@ function enterSucchoiceYES(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('Power bursts through your body causing you to hop out of bed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pre_sleep_events', 'succubinit'] },
   ]);
@@ -192,6 +205,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'medical_din', 'remove_preg');
     (s as any).RecovH = 0;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', 'event_end');
@@ -205,6 +219,7 @@ function enterMagbstchoice(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/pc/body/tits/t${((s as any).tittmp ?? 0)}.jpg`);
   scene.text('You have an odd dream where you are looking at your naked chest in a mirror and your breasts seem larger…');
   scene.text('As the dream starts to drift away, you find yourself gazing at the reflection of your breasts and think:');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nice, I wish my breasts really would grow.', handler: (st: GameState) => {
     (s as any).magf2bdo = 1;

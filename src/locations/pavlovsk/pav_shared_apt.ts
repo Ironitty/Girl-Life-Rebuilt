@@ -58,6 +58,7 @@ function enterUpdate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +96,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
       ((s as any).shared_apt ?? {})['alreadyProcessed'] = ((s as any).daystart ?? 0);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,6 +113,7 @@ function enterGetRentStatus(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $result += '<br>You may pay it in cash when you have enough money.'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,6 +126,7 @@ function enterBlockApt(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).shared_apt ?? {})['previousTenant'] = 1;
   ((s as any).shared_apt ?? {})['servitudeLvl'] = ((s as any).servitudelvl_bak ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +228,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go outside</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -265,6 +270,7 @@ function enterList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Signed: <a href="exec: gt 'pav_shared_oleg', 'oleg_dick'"><font color=#<<$Oleg['...
   scene.text(`Signed: <a href="exec: gt 'pav_shared_oleg', 'oleg_dick'"><font color=#${((s as any).Oleg ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A266']}</font></a>, <a href="exec: gt 'pav_shared_nestor', 'nestor_dick'"><font color=#${((s as any).Nestor ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A265']}</font></a>, <a href="exec: gt 'pav_shared_yakov', 'yakov_dick'"><font color=#${((s as any).Yakov ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A264']}</font></a>, ${((s as any).pcs_firstname ?? 0)}.`);
   scene.text('---------------------');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -282,6 +288,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('A shower, toilet, <a href="exec:gt \'mirror\',\'start\'">mirror</a>, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair, a sink and even a bath tub.');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -330,6 +337,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec: gt \'pav_shared_apt\', \'cookForGuys\'">Cook meals for the guys (1:30)</a>');
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -450,6 +458,7 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'daily_routine', 'offer_here');
   qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
   qspCall(s, 'music_actions', 'start');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave the room</b>', goto: ['pav_shared_apt', 'start'] },
     { label: 'Sit on the sofa bed', goto: ['pav_shared_apt', 'sofabed'] },
@@ -478,6 +487,7 @@ function enterSofabed(s: GameState, scene: SceneBuilder): void {
       { label: 'Masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a nap (1:00)', handler: (st: GameState) => {
     qspCall(st, 'sleep_simple', 'nap');
@@ -534,6 +544,7 @@ function enterOleg_Room(s: GameState, scene: SceneBuilder): void {
       scene.text('You don\'t have enough laundry detergent to clean the room');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -584,6 +595,7 @@ function enterNestor_Room(s: GameState, scene: SceneBuilder): void {
       scene.text('You don\'t have enough laundry detergent to clean the room');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -641,6 +653,7 @@ function enterYakov_Room(s: GameState, scene: SceneBuilder): void {
       scene.text('You don\'t have enough laundry detergent to clean the room');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -654,6 +667,7 @@ function enterCookForGuys(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/kitchen/cook.jpg');
   scene.text('You prepare three meals, using what you can from the guys\' food. It\'s not very healthy but you\'re not planning to offer to do their shopping too.');
   ((s as any).shared_apt ?? {})['price'] = ((s as any).shared_apt ?? 0)?.['price_cook'];
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the meal', goto: ['pav_shared_apt', 'payService'] },
   ]);
@@ -671,6 +685,7 @@ function enterCleanForGuys(s: GameState, scene: SceneBuilder): void {
   if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 2  &&  (Math.floor(Math.random() * 101) + 0) <= 50) {
     scene.text('<i>You notice bedsheets with what seems as dried out cum. Probably remainder of one of your "servings". Maybe it really is better to swallow every time…</i>');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang them to dry out and leave', goto: ['pav_shared_apt', 'payService'] },
   ]);
@@ -682,6 +697,7 @@ function enterEolegAgreement(s: GameState, scene: SceneBuilder): void {
   scene.text('You gather the guys around and explain to them that you wish to move out.');
   // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>><<$npc_firstname['A264']>> Looks disappointed as...
   scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font']}>${((s as any).npc_firstname ?? 0)?.['A264']} Looks disappointed as he addresses you. "That is a shame ${((s as any).pcs_firstname ?? 0)} we've very much enjoyed having you stay here with us. Are you sure this is what you want?"</font>`);
+  // TODO-QSP: end
   scene.actions([
     { label: '"Yes." End agreement', handler: (st: GameState) => {
     qspCall(s, 'pav_shared_apt', 'block_apt', 0);
@@ -702,6 +718,7 @@ function enterWeeklyReset(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -727,6 +744,7 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You do not have enough money to pay the rent.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Proceed', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -752,6 +770,7 @@ function enterPayService(s: GameState, scene: SceneBuilder): void {
     scene.text(`You still owe ${qspFunc(s, 'money', 'string_price', ((s as any).shared_apt ?? 0)?.['rentLeft'])} for your rent.`);
   }
   ((s as any).shared_apt ?? {})['price'] = 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -766,6 +785,7 @@ function enterAdvertNo30(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob\'+rand(1, 2)+\'.jpg');
   scene.text('<br>As you pass by the advertisements, you notice a sign - "сдаeтся в аренду комната" (Room for rent!). Some guys are looking for a roommate. They live in an apartment in one of the other buildings in the apartment complex.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pod_ezd', 'etaj_1'] },
   ]);
@@ -788,6 +808,7 @@ function enterDoorNo30(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back outside', goto: ['pav_complex', 'start'] },
   ]);
@@ -1260,6 +1281,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1277,6 +1299,7 @@ function enterRentSetup(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt ?? {})['Lockrent'] = 0;
   ((s as any).shared_apt ?? {})['weekNum'] = 0;
   ((s as any).shared_apt ?? {})['rentWeekNum'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -1305,6 +1328,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).shared_apt ?? {})['weekNum'] = 0;
   ((s as any).shared_apt ?? {})['rentWeekNum'] = 1;
   scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1395,6 +1419,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $pav_shared_apt_debug += '<a href="exec:gs ''notification'', ''add'', ''<font color=red>TEST: Rent i...
   // TODO-QSP: $pav_shared_apt_debug += '<a href="exec:gs ''notification'', ''add'', ''<font color=green>TEST: Rent...
   // TODO-QSP: func('cleanHTML', $pav_shared_apt_debug)
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

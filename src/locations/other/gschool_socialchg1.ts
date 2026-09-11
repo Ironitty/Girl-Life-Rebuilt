@@ -14,6 +14,7 @@ function enterTLazar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big149.jpg');
   scene.text('You decide to walk over and see what the fuss is about. As usual, Lazar is showing off his skills as some younger kids challenge him 1-on-1 or even 1-on-2, and he easily bests them. You see several girls from school sitting on the bleachers watching Lazar and notice that he glances at them from time to time, obviously trying to show off.');
   scene.text('As you walk out onto the field, he waves at you to come over before he kicks the ball away so that the younger kids go chasing after it. You stop in your tracks when you see your brother among the kids chasing the ball, and you know he would do anything to embarrass you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -202,6 +203,7 @@ function enterLazarVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn around and face the tree before pulling your clothes aside to expose your pussy to him and bending over. You feel the tip of his dick rubbing against your wet slit before he slides his massive dick into your pussy. You can feel it stretching to accommodate him and feel completely full.');
   qspCall(s, 'arousal', 'vaginal', 3, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/sportsfield/vaginal1.jpg');
@@ -259,6 +261,7 @@ function enterLazarAnal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'anal', 3, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/sportsfield/anal1.jpg');
@@ -296,6 +299,7 @@ function enterTIvan(s: GameState, scene: SceneBuilder): void {
   scene.text('Ivan is looking victorious as he greets you. "What are you doing out here this early?"');
   scene.text('"Nothing much, just out for a stroll." you answer, "I wasn\'t expecting to run into the two of you."');
   scene.text('Ivan smiles. "We usually do this to gain an edge against our opponents."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'I see', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -320,6 +324,7 @@ function enterTFedor(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big3.jpg');
   scene.text('A flustered Fedor is huffing and puffing. "You really need to take it easy. I can barely keep up with you, Ivan…"');
   scene.text('"Come on, Fedor. Don\'t sell yourself short. You\'ve got potential, and remember the dirtbag you wanted to get revenge on…" Ivan replies in an attempt to motivate a dejected Fedor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about the dirtbag', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -409,6 +414,7 @@ function enterIvanFedorNaked(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -420,6 +426,7 @@ function enterIvanfedorThreesome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/lake/event/sex/ivanfed3some2.jpg');
@@ -490,6 +497,7 @@ function enterTSvyatoslav(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big8.jpg');
   scene.text('You wait patiently until Svyatoslav ends one of his runs. "You\'re improving greatly!" you compliment him with a smile.');
   scene.text('"Thanks! I\'ve been trying my hardest to one-up Ivan this year," he replies while panting as sweat runs down his forehead.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep up the good work', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -527,6 +535,7 @@ function enterTVanya(s: GameState, scene: SceneBuilder): void {
   scene.text(`Vanya stops in his tracks when he sees you. "Hey, ${((s as any).pcs_nickname ?? 0)}, you're out early today!" he says with a subtle smile.`);
   scene.text('"The same can be said about you!" you answer playfully.');
   scene.text('"Well, to be honest, I was looking for something…" he mumbles before trailing off.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask what he\'s up to', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -553,6 +562,7 @@ function enterTErast(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk up to Erast. You don\'t want to bother him, but you must ask him how it works. "Sorry, Erast, I don\'t want to bother you…" you start as he puts down the weights.');
   // TODO-QSP: dynamic text: "Oh, hi, <<$pcs_nickname>>. You need some help?" Erast politely replies.
   scene.text(`"Oh, hi, ${((s as any).pcs_nickname ?? 0)}. You need some help?" Erast politely replies.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nod your head', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -640,6 +650,7 @@ function enterLariskaGm_1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -649,6 +660,7 @@ function enterLariskaGm_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_1.jpg');
   scene.text('You and Lariska try on random clothes, emerging from your changing rooms like you\'re models walking down a catwalk.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_2.jpg');
@@ -687,6 +699,7 @@ function enterLariskaGm_3(s: GameState, scene: SceneBuilder): void {
   scene.text('You maintain eye contact as you slide your hand down her back until you reach her panties. Softly hooking your finger over them, you slowly drag them down until her pink pussy is exposed. Dropping your panties, you gently push her against the mirror, enjoying the sight of her naked in the stand-up mirror before pulling her into your arms and kissing her.');
   qspCall(s, 'arousal', 'erotic_nudity', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/gm/gm_lariska_4.jpg');
@@ -726,6 +739,7 @@ function enterTBella(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big22.jpg');
   scene.text('You approach Bella and tap her on her shoulder. "Hey, Bella! You\'re heading into the city?"');
   scene.text('Bella sighs loudly as she replies. "Yeah, I\'m meeting some of my friends in town. There\'s a new gym opening, and we thought we might check it out."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds amazing', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A22', 2);
@@ -763,6 +777,7 @@ function enterTVeronika(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big141.jpg');
   scene.text('Noticing it\'s Veronika, you start waving and trying to catch her attention. But, unfortunately, she barely bats an eye towards you as you try your hardest to get her attention.');
   scene.text('After a while, she stops practicing and starts skating towards you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;

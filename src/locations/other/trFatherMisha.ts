@@ -607,11 +607,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

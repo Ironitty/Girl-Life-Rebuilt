@@ -15,6 +15,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A31_loc'], ((s as any).locat ?? 0)?.['A31_arg']);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -27,17 +28,20 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'gp_elene_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A31_loc_prev'], ((s as any).locat ?? 0)?.['A31_arg_prev']);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHereCore(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).locArgs?.[3] ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).locArgs?.[4] ?? 0) === ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['A31_rand'] = Math.floor(Math.random() * 840) + 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +50,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['A31_arg_prev'] = ((s as any).locat ?? 0)?.['A31_arg'];
   ((s as any).locat ?? {})['A31_arg1_prev'] = ((s as any).locat ?? 0)?.['A31_arg1'];
   qspCall(s, 'gp_elene_schedule', 'update_locat');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,6 +63,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_elene_locat = qspFunc(s, 'gp_elene_schedule', 'get_random_schedule', ((s as any).temp_elene_locat ?? 0));
   qspCall(s, 'gp_elene_schedule', 'set_locats', ((s as any).temp_elene_locat ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,6 +145,7 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -189,6 +196,7 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).result = 111 + ((s as any).temp_subloc ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -264,6 +272,7 @@ function enterSetLocats(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -298,6 +307,7 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

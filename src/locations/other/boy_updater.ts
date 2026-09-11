@@ -50,6 +50,7 @@ function enterHomeImgUpdate(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $npc_apt_spare[$npcID] = '<center><img <<$set_imgh>> src="<<$npcgeneratecVars[''home_path'']>>/<<$temp[''update_folder'']>>/<<npc_apt_number[$ARGS[1]]>>/<<$npc_apt_sparetype[$ARGS[1]]>>.jpg"></center>'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +70,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,6 +185,7 @@ function enterDickUpdate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -198,6 +201,7 @@ function enterCondomUpdate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -205,6 +209,7 @@ function enterStaminaUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     ((s as any).npc_sex_stamina ?? {})[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 10) + 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -260,6 +265,7 @@ function enterScheduleUpdate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -277,6 +283,7 @@ function enterTraitUpdates(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -284,12 +291,14 @@ function enterNameUpdates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_usedname ?? 0)?.[String((s as any).npcID ?? 0)] === '') {
     // TODO-QSP: $pcs_usedname[$npcID] = $pcs_nickname
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterUnique_NPCStatSeed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boy ?? 0) === 'A11') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -316,6 +325,7 @@ function enterKolkaSeed(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_sex_stamina ?? {})['A134'] = 5;
     ((s as any).npc_sex_volume ?? {})['A134'] = 2;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -344,6 +354,7 @@ function enterVasilySeed(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_sexdrive ?? {})['A11'] = 4;
     ((s as any).npc_sex_stamina ?? {})['A11'] = 5;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

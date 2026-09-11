@@ -7,14 +7,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScandalicious(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'moncheri') {
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'salacious') {
-    } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'lusso') {
-      }
-    }
-  }
+  scene.build();
+}
+
+function enterMoncheri(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterSalacious(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterLusso(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +28,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'scandalicious':
       enterScandalicious(s, scene);
+      break;
+    case 'moncheri':
+      enterMoncheri(s, scene);
+      break;
+    case 'salacious':
+      enterSalacious(s, scene);
+      break;
+    case 'lusso':
+      enterLusso(s, scene);
       break;
     default:
       enterDefault(s, scene);

@@ -83,6 +83,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You could <a href="exec:gt \'pav_train_hall_events\', \'trinkets\'">try to sell some trinkets</a> to some of the passengers.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Market (0:03)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -141,6 +142,7 @@ function enterPlatform(s: GameState, scene: SceneBuilder): void {
       { label: 'Take the train to the city center (<<func(\'transport_functions\', \'display_train_timecost\', \'pavlovsk\', \'center\', \'center\')>>)', goto: ['train', 'pavlovsk_center'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the station building', goto: ['pav_train_hall', ''] },
     { label: 'Walk to the bus platform (0:02)', handler: (st: GameState) => {
@@ -169,6 +171,7 @@ function enterTicket(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'The next train to St. Petersburg ' + iif(transportVars['train_wait_center'] = 0, 'is leaving now!',...
   qspCall(s, 'transport_functions', 'buy_train_ticket', 'pavlovsk', 'pc');
   qspCall(s, 'transport_functions', 'buy_train_pass');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the ticket office', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -245,6 +248,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['pav_train_hall', ''] },
   ]);
@@ -258,6 +262,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/trainstation/vokzal.jpg');
   // TODO-QSP: dynamic text: You stand by the station's restrooms. You see the <a href="exec:minut += 1 & gt ...
   scene.text('You stand by the station\'s restrooms. You see the <a href="exec:minut += 1 & gt \'pav_train_hall\', \'female\'">ladies\' restroom</a> to the right and <a href="exec:minut += 1 & gt \'pav_train_hall\', \'male\'">men\'s restroom</a> to the left, clearly marked by signs on the door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the train station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -275,6 +280,7 @@ function enterFemale(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -298,6 +304,7 @@ function enterMale(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

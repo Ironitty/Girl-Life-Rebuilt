@@ -305,6 +305,7 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your room', goto: ['city_sauna', 'saunaroom'] },
     { label: 'Use the staff bathroom', handler: (st: GameState) => {
@@ -404,6 +405,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Use breast pump', goto: ['lact_bp', 'bp_milking'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the foyer', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -438,6 +440,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterDebtPay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'debt_pay', 'workDolg');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -587,6 +590,7 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
       { label: 'Take off your clothes', goto: ['city_saunawhore', 'simplystrip'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -604,6 +608,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
   qspCall(s, 'arousal', 'striptease', 5, 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'strippedGate'] },
   ]);
@@ -624,6 +629,7 @@ function enterSimplystrip(s: GameState, scene: SceneBuilder): void {
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) - (1);
   qspCall(s, 'arousal', 'foreplay', 2, 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'strippedGate'] },
   ]);
@@ -640,6 +646,7 @@ function enterStrippedGate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['men_fucked'] >= 20) {
     // TODO-QSP: act 'Present your holes to him': gt 'city_saunawhore', 'holeshow'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel and open your mouth', goto: ['city_saunawhore', 'blowjob'] },
   ]);
@@ -660,6 +667,7 @@ function enterNakeddance(s: GameState, scene: SceneBuilder): void {
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
   qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'blowjob'] },
   ]);
@@ -680,6 +688,7 @@ function enterHoleshow(s: GameState, scene: SceneBuilder): void {
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
   qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'blowjob'] },
   ]);
@@ -727,6 +736,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -747,6 +757,7 @@ function enterBlowjobGate(s: GameState, scene: SceneBuilder): void {
       { label: 'Deepthroat him', goto: ['city_saunawhore', 'blowjobDeepthroat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -795,6 +806,7 @@ function enterBlowjobCaress(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -812,6 +824,7 @@ function enterBlowjobDeepthroat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'prostitution', 'deepthroat');
   scene.text('He seems to have had enough and signals that he wants some more.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'fuckGate'] },
   ]);
@@ -832,6 +845,7 @@ function enterFuckGate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'city_saunawhore', 'fuckGateCondomYes');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -839,6 +853,7 @@ function enterFuckGateCondomYes(s: GameState, scene: SceneBuilder): void {
   (s as any).useCondom = 1;
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) - (2);
   qspCall(s, 'city_saunawhore', 'fuckGateGo');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -846,6 +861,7 @@ function enterFuckGateCondomNo(s: GameState, scene: SceneBuilder): void {
   (s as any).useCondom = 2;
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (1);
   qspCall(s, 'city_saunawhore', 'fuckGateGo');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -878,6 +894,7 @@ function enterFuckGateGo(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -908,6 +925,7 @@ function enterFuckVaginal(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_saunawhore', 'cumClientGate'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum wherever he wants', handler: (st: GameState) => {
     (s as any).not_inside = 2;
@@ -936,6 +954,7 @@ function enterFuckAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('');
   scene.text('After a while, you can sense that he\'s about to cum.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum wherever he wants', handler: (st: GameState) => {
     (s as any).not_inside = 2;
@@ -976,6 +995,7 @@ function enterFuckRoughGate(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1001,6 +1021,7 @@ function enterFuckRoughVaginal(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_saunawhore', 'cumClientGate'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum wherever he wants', handler: (st: GameState) => {
     (s as any).not_inside = 2;
@@ -1025,6 +1046,7 @@ function enterFuckRoughAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('');
   scene.text('After seemingly endless assfucking, you finally sense that he\'s about to cum.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum wherever he wants', goto: ['city_saunawhore', 'cumClientGate'] },
   ]);
@@ -1150,6 +1172,7 @@ function enterCumClientGate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1187,6 +1210,7 @@ function enterCumVaginal(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'clientLeave'] },
   ]);
@@ -1226,6 +1250,7 @@ function enterCumAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'anus', 'sauna client', 0, 0, 0, ((s as any).cumVolMl ?? 0));
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'clientLeave'] },
   ]);
@@ -1243,6 +1268,7 @@ function enterCumFace(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'face', 0, 0, 0, ((s as any).cumVolMl ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'clientLeave'] },
   ]);
@@ -1263,6 +1289,7 @@ function enterCumMouth(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'mouth_swallow', 0, 0, 0, ((s as any).cumVolMl ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'clientLeave'] },
   ]);
@@ -1280,6 +1307,7 @@ function enterCumBelly(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'stomach', 0, 0, 0, ((s as any).cumVolMl ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'clientLeave'] },
   ]);
@@ -1298,6 +1326,7 @@ function enterCumTits(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'breasts', 0, 0, 0, ((s as any).cumVolMl ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_saunawhore', 'clientLeave'] },
   ]);
@@ -1311,6 +1340,7 @@ function enterBdsmclient(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>. This client is only somewhat kinky, so he won't ...
   scene.text(`"Don't worry ${((s as any).pcs_nickname ?? 0)}. This client is only somewhat kinky, so he won't hurt you." they assure you as they make you sit on the bench and tie you up.`);
   scene.text('"Just one last thing." they say as they put a paper bag over your head. They leave the room as you sit in silence.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sit and wait', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 2, 'handL', 'bind');
@@ -1440,6 +1470,7 @@ function enterClientLeave(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

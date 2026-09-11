@@ -56,6 +56,7 @@ function enterVicArt_Ev1_Cash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,6 +213,7 @@ function enterVicArt_Ev1_Broke(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No way', handler: (st: GameState) => {
     scene.text('After a few seconds, you have made your decision: "I… don\'t think I wanna take the risk."');

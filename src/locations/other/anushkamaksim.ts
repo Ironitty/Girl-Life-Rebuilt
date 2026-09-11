@@ -38,6 +38,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him your tits', handler: (st: GameState) => {
     ((s as any).maksimQW ?? {})['blackmail'] = 1;
@@ -161,6 +162,7 @@ function enterHallwayFlashTits(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fine," he sneers before stepping out of your way. "Go on then."');
   qspCall(s, 'arousal', 'flashlite', 1, 'humiliation', 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter', goto: ['anushapt', 'hallway'] },
   ]);
@@ -185,6 +187,7 @@ function enterHallwayFlashPussy(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'flashlite', 1, 'humiliation', 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter', goto: ['anushapt', 'hallway'] },
   ]);
@@ -203,6 +206,7 @@ function enterMaksimRoomNaked(s: GameState, scene: SceneBuilder): void {
   scene.text('You quickly get dressed and leave his room.');
   qspCall(s, 'arousal', 'flash', 5, 'humiliation', 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hall', goto: ['anushapt', 'hallway'] },
   ]);

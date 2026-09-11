@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterTsToStr(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +24,7 @@ function enterFormatRelativeDay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +52,7 @@ function enterGetEventDisplayRange(s: GameState, scene: SceneBuilder): void {
     (s as any).result_duration_ts = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,6 +71,7 @@ function enterGetEventsForDay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_events_day'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +97,7 @@ function enterGetEventsForTimeRange(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_events_time_range'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +134,7 @@ function enterShouldEventBeVisible(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +146,7 @@ function enterGetEventSpanForDay(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).event_vars ?? 0)?.['duration_ts'];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,6 +162,7 @@ function enterGetEventStartTimeslot(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).event_vars ?? 0)?.['start_ts'];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +234,7 @@ function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).upcoming_count = ((s as any).upc ?? 0)?.['count'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

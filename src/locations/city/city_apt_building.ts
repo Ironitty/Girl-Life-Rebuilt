@@ -27,6 +27,7 @@ function enterHousemates(s: GameState, scene: SceneBuilder): void {
     scene.text('Floor 4 - You don\'t know anyone on this floor.');
   }
   scene.text('Floor 5 - Apartment number 49: Your apartment');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_1'] },
   ]);
@@ -46,6 +47,7 @@ function enterFloor_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/stairs/stairs1.jpg');
   scene.text('There is a short staircase down to the basement maintenance area and a short staircase up to the first floor, where there is a <a href="exec: gt \'city_apt_building\', \'housemates\'">list</a> of the people who live here on the wall. There is a series of mailboxes for each apartment, two halls going off to each wing of the building, and more stairs going up. The area is fairly clean and well maintained.');
   scene.text('The stairwell is empty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -71,6 +73,7 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/stairs/stairs2.jpg');
   scene.text('The second floor stairwell is decently clean and fairly well maintained except for the occasional flickering or busted light, which is often not fixed for weeks.');
   scene.text('The stairwell is empty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the first floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -105,6 +108,7 @@ function enterFloor_3(s: GameState, scene: SceneBuilder): void {
       scene.text('A girl called Aliana lives on this floor, but she never seems to be home. She did mention that she spends a lot of time working at the nearby porn studio.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -130,6 +134,7 @@ function enterFloor_4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/stairs/stairs3.jpg');
   scene.text('The fourth floor stairwell is decently clean and fairly well maintained except for the occasional flickering or busted light, which is often not fixed for weeks.');
   scene.text('The stairwell is empty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the third floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -155,6 +160,7 @@ function enterFloor_5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/stairs/stairs3.jpg');
   scene.text('The fifth floor stairwell looks much like the other floors, but has a final set of stairs at the other end of the hall that go up to the roof.');
   scene.text('The stairwell is empty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -267,6 +273,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the fifth floor', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
@@ -286,6 +293,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/lift.jpg');
   scene.text('The elevator in the apartment building was renovated at some point, but is still fairly old. It\'s in good working order though.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Push button: Floor 1', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_apt_building', 'floor_1', 'from_lift'
@@ -311,6 +319,7 @@ function enterCheckLiftEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   // TODO-QSP: gt 'city_apt_building', 'lift_event_<<rand(1, 7)>>', $ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -322,6 +331,7 @@ function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod, reach in and push the button to go up to floor three. The doors close and the elevator moves away from you.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -335,6 +345,7 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('When the elevator door opens, you see a woman dressed in lingerie standing inside, her breasts hanging out of her bra with her coat pulled back to show off her body. At first her eyes are closed, but when she opens them, she looks at you in panic and frantically presses all of the elevator buttons. You\'re too baffled to do anything as the door closes.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -348,6 +359,7 @@ function enterLiftEvent_3(s: GameState, scene: SceneBuilder): void {
   scene.text('When the elevator door opens, you see a naked woman standing in it. She looks at you in panic and begins frantically pressing all of the elevator buttons. You\'re too baffled to do anything as the door closes.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -374,6 +386,7 @@ function enterLiftEvent_4(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -387,6 +400,7 @@ function enterLiftEvent_5(s: GameState, scene: SceneBuilder): void {
   scene.text('When the elevator door opens, you see a woman standing in it. She looks at you and smiles, then pulls her top down to expose her breasts, followed by pulling up her skirt and showing off her neatly trimmed pussy, before she reaches across and pushes one of the buttons. You\'re too baffled to do anything as the door closes.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -407,6 +421,7 @@ function enterLiftEvent_6(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -420,6 +435,7 @@ function enterLiftEvent_7(s: GameState, scene: SceneBuilder): void {
   scene.text('When the elevator door opens, you see two naked women standing in it. They look at you and then each other before laughing as one of them quickly reaches across and pushes one of the buttons. You\'re too baffled to do anything as the door closes.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', '<<$ARGS[1]>>'] },
   ]);
@@ -430,6 +446,7 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/pod_ob\' + rand(1, 2) + \'.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_1'] },
   ]);
@@ -438,6 +455,7 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
 
 function enterFloor1Events(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'city_apt_building', 'floor1_event_1', $ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -484,6 +502,7 @@ function enterFloor1Event_1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/stairs/event/floor1_gop.jpg');
@@ -556,6 +575,7 @@ function enterFloor2Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -564,6 +584,7 @@ function enterFloor2Event_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor2_clothed.jpg');
   scene.text('You see one of your neighbors, a middle aged woman, about to head down the stairs. She gives you a friendly smile and you exchange hellos before you both go on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -575,6 +596,7 @@ function enterFloor2Event_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor2_drunk.jpg');
   scene.text('There are a couple of young girls sitting on the steps who both look pretty wasted. Just as you start to walk past them, one of them suddenly throws up. Her friend quickly scoots away from her and looks like she\'s about to throw up as well. The smell of the vomit makes you feel a little ill yourself. You quickly make your way past them, being careful not to step in the vomit.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -587,6 +609,7 @@ function enterFloor2Event_3(s: GameState, scene: SceneBuilder): void {
   scene.text('A young woman stops on the stairs to the third floor in front of a young man. She pulls down her yoga pants and bends forward slightly with her legs spread. She gives the young man a nice view of her naked ass and pussy, and he stops dead in his tracks when confronted with the view. The girl then giggles, pulls up her pants and runs up the stairs. The young man takes off after her, gaining on her quickly. They soon disappear on the next floor up and shortly afterwards you hear her squealing in delight.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -598,6 +621,7 @@ function enterFloor2Event_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor2_girl.jpg');
   scene.text('You see a young woman about your age leaning against the wall. She\'s dressed in a tight, partially see-through, half-shirt that shows off her flat stomach, a very short skirt and mid calf high-heeled boots. She looks at you as you approach and gives you a friendly smile. You exchange hellos before you go on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -609,6 +633,7 @@ function enterFloor2Event_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor2_gop.jpg');
   scene.text('Sitting on the stairs are two young gopnik boys with a gopnik girl between them. They\'re all drinking from bottles and look a little drunk. As you squeeze your way past them, they give you dirty looks, but don\'t say anything.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -621,6 +646,7 @@ function enterFloor2Event_6(s: GameState, scene: SceneBuilder): void {
   scene.text('You see a woman walking down the hall to the stairwell landing, completely naked. When she sees you, she smiles. "Hello!" she says, as if everything was normal. You greet her in return and try not to stare. She walks right past you and down the hallway of the other wing of the building, entering one of the apartments down there.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -633,6 +659,7 @@ function enterFloor2Event_7(s: GameState, scene: SceneBuilder): void {
   scene.text('You see a woman standing next to an apartment door naked from the waist up, having been in the process of pulling her dress down while a man watched. When she sees you, she panics and quickly pulls her dress back up before running into the apartment. The young man laughs, looks at you and winks before following her inside.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -645,6 +672,7 @@ function enterFloor2Event_8(s: GameState, scene: SceneBuilder): void {
   scene.text('As you get to the stairwell landing, you see a woman walking up to the third floor. You notice that her skirt is very short and that she isn\'t wearing any panties. As she nears the top of the stairs, you get a clear view of her pussy. You\'re unsure if she was aware that she had herself on display or not.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -657,6 +685,7 @@ function enterFloor2Event_9(s: GameState, scene: SceneBuilder): void {
   scene.text('Sitting on the stairs is a naked man and a woman dressed in see through lingerie. She\'s squatting in front of him with her legs spread, showing off her pussy while she sucks his dick. He looks at you as you approach and gives you a huge smile. He backs up against the wall as best as he can and pulls her over, giving you just enough room to squeeze past them. She never does stop giving him a blowjob, even as you brush past her.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_2'] },
   ]);
@@ -712,6 +741,7 @@ function enterFloor3Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -720,6 +750,7 @@ function enterFloor3Event_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor3_clothed.jpg');
   scene.text('You see one of your neighbors, a young woman about your age dressed in an alternative style. She gives you a friendly smile and a wave and you exchange hellos before you go on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -731,6 +762,7 @@ function enterFloor3Event_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor3_drunk.jpg');
   scene.text('A young woman appears to be passed out on the landing, her belongings sitting on the stairs near her. You have no idea how long she\'s been here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her and continue', goto: ['city_apt_building', 'floor_3'] },
     { label: 'Help her', handler: (st: GameState) => {
@@ -753,6 +785,7 @@ function enterFloor3Event_3(s: GameState, scene: SceneBuilder): void {
   scene.text('An older woman stops on the stairs to the fourth floor in front of an older man. She pulls her skirt up, briefly exposing her pussy to him before she drops her skirt back in place and he walks up the few steps to her and gives her a kiss. After they finish kissing, they walk down the stairs hand-in-hand.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -764,6 +797,7 @@ function enterFloor3Event_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor3_girls.jpg');
   scene.text('Two young girls sit on the stairs filling bottles of juice with vodka. They ignore you as you walk past them, intent on their task at hand.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -813,6 +847,7 @@ function enterFloor3Event_5(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/stairs/event/floor3_gop.jpg');
@@ -855,6 +890,7 @@ function enterFloor3Event_6(s: GameState, scene: SceneBuilder): void {
   scene.text('You see a woman walking down the stairs, completely naked. When she sees you she smiles. "Hello!" she says as if everything was normal. You greet her in return and try not to stare. She walks right past you and down one of the hallways, entering one of the apartments down there.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -875,6 +911,7 @@ function enterFloor3Event_7(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -886,6 +923,7 @@ function enterFloor3Event_8(s: GameState, scene: SceneBuilder): void {
   scene.text('As you get to the stairwell landing, you see a woman walking up to the fourth floor with a man following her. As she nears the top of the stairs, she lifts her skirt and shows off her naked ass. The guy laughs and lunges for her, but she giggles and takes off up the stairs, shortly followed by the sound of a door opening and closing.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -897,6 +935,7 @@ function enterFloor3Event_9(s: GameState, scene: SceneBuilder): void {
   scene.text('You see a middle-aged woman making out with a younger, black man. Her hand is on the doorknob of a slightly opened apartment door, which you assume is hers. They seem completely oblivious to you as you walk past them.');
   qspCall(s, 'arousal', 'erotic', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -908,6 +947,7 @@ function enterFloor3Event_10(s: GameState, scene: SceneBuilder): void {
   scene.text('Down one of the hallways, leading to more apartments on this floor, you see an older woman on her knees in front of a man. She is dressed in a white teddy, a collar around her neck with a leash attached to it that the man is holding as she sucks his dick. The man glances your way and smiles at you as you continue on your way.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -920,6 +960,7 @@ function enterFloor3Event_11(s: GameState, scene: SceneBuilder): void {
   scene.text('Another man appears to be passed out, or sleeping, next to the two having sex. You\'re unsure what the story is here, but you figure it\'s likely a good one and that the sleeping man will likely not enjoy the story as much as everyone else, if he ever learns of it.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -961,6 +1002,7 @@ function enterFloor3Event_12(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -1020,6 +1062,7 @@ function enterFloor4Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1028,6 +1071,7 @@ function enterFloor4Event_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor4_clothed.jpg');
   scene.text('You see one of your neighbors, a young woman about your age, sitting on the steps. She scoots over when you approach to allow you to walk past her. She gives you a friendly smile and a wave and you exchange hellos before you go on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1039,6 +1083,7 @@ function enterFloor4Event_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor4_drunk.jpg');
   scene.text('A young woman appears to be passed out on the stairs, her belongings sitting on the stairs near her. You have no idea how long she\'s been here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her and continue', goto: ['city_apt_building', 'floor_4'] },
     { label: 'Help her', handler: (st: GameState) => {
@@ -1061,6 +1106,7 @@ function enterFloor4Event_3(s: GameState, scene: SceneBuilder): void {
   scene.text('A middle-aged woman stops on the stairs to the fifth floor in front of a man around her age. She pulls her skirt up, exposing her pussy to the man. She drops the skirt back in place and he walks up the few steps to her and gives her a kiss. After they finish kissing, they walk down the stairs hand-in-hand.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_3'] },
   ]);
@@ -1072,6 +1118,7 @@ function enterFloor4Event_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor4_girls.jpg');
   scene.text('Two young girls sit on the stairs talking. They ignore you as you walk past them, absorbed in their conversation about some cute boys they know.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1084,6 +1131,7 @@ function enterFloor4Event_5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/stairs/event/floor4_gop.jpg');
   scene.text('In the stairwell between the floors are three gopnik boys, with a young girl out between them who looks completely wasted. One of them has pulled her shirt part way up as you approach them. As you look at the girl, one of them says. "Mind your own business, bitch!"');
   scene.text('She doesn\'t seem to be trying to stop them from groping her or pulling at her clothes. Not sure what else to do, you continue on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1095,6 +1143,7 @@ function enterFloor4Event_6(s: GameState, scene: SceneBuilder): void {
   scene.text('In the stairwell between the floors you see a girl about your age leaning against the wall, completely naked and smoking a cigarette. When she sees you, she smiles. "Hello!" she says, as if everything was normal. You greet her in return and try not to stare as she continues to smoke and you walk by her.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1107,6 +1156,7 @@ function enterFloor4Event_7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor4_shop\' + rand(1, 2) + \'.jpg');
   scene.text('You see a beautiful woman dressed in nice clothes carrying a shopping bag. You\'ve seen her around before and you know she lives on this floor. Almost every time you see her, she\'s carrying some shopping bags. She either makes plenty of money or someone else buys her a lot of stuff. She smiles at you as she heads towards her apartment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1118,6 +1168,7 @@ function enterFloor4Event_8(s: GameState, scene: SceneBuilder): void {
   scene.text('As you get to the stairwell landing you see a man looking up the stairs at a middle aged-woman wearing a robe that\'s hanging wide open, her breasts and trimmed pussy on full display. They both look at you and smile before the guy pulls out his phone and starts taking pictures. After that, they both ignore you as you go on your way.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1130,6 +1181,7 @@ function enterFloor4Event_9(s: GameState, scene: SceneBuilder): void {
   scene.text('As you walk past her, you can\'t help but notice she\'s not wearing panties under the baby doll lingerie. This gives you a full view of her pussy and the cum dripping down her inner thighs. You glance around but don\'t see anyone else around, and she seems content to remain like this, so you go on your way.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1141,6 +1193,7 @@ function enterFloor4Event_10(s: GameState, scene: SceneBuilder): void {
   scene.text('As you make your way to the stairs you notice a few gopnik boys, who seem focused on someone else as they\'re giving them encouragement to keep going. As you get close enough, you see a young woman naked from the waist down fucking her ass with a bottle. When she sees you, she blushes and quickly jumps up and runs down one of the hallways. She\'s quickly followed by the boys, one of whom pauses long enough to give you a dirty look for ruining their fun.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1152,6 +1205,7 @@ function enterFloor4Event_11(s: GameState, scene: SceneBuilder): void {
   scene.text('A young man stands on the stairs in the stairwell with his pants pulled down just enough for his cock to be free. A girl, about his age, is bent over and sucking his dick. As you walk past them, he grins at you as he grabs hold of the back of her head with his hands and starts forcing his dick balls deep into her mouth and down her throat, gagging her. Just before the sounds of them fade completely, you hear him say "Fuck yeah, swallow it bitch!"');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1163,6 +1217,7 @@ function enterFloor4Event_12(s: GameState, scene: SceneBuilder): void {
   scene.text('As you approach the stairs, you hear moaning and grunting, the obvious sounds of people having sex. A man and woman, by the sounds of the moans. As you get to the landing, you see a light-skinned black girl about your age, her pants pulled down to her knees as she leans forward with her hands on the wall, her ass sticking out. A slightly older man is fucking her from behind. She looks in your direction, but you\'re not sure if she noticed you or not. She looks, and sounds, like she\'s really enjoying herself. You decide to move on and leave them to it.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_4'] },
   ]);
@@ -1204,6 +1259,7 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1248,6 +1304,7 @@ function enterFloor5Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1256,6 +1313,7 @@ function enterFloor5Event_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor5_clothed.jpg');
   scene.text('You see one of your neighbors, a young woman about your age, walking down the stairs to the fourth floor. She gives you a friendly smile and a wave and you exchange hellos before you go on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1267,6 +1325,7 @@ function enterFloor5Event_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor5_drunk.jpg');
   scene.text('On the stairs is a girl drinking from a bottle, clearly very drunk. She grins at you as you approach and you exchange hellos before you go on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1279,6 +1338,7 @@ function enterFloor5Event_3(s: GameState, scene: SceneBuilder): void {
   scene.text('A middle-aged woman at the top of the stairs is looking down at a man near the landing of the stairs below. She pulls up her top to expose her breasts to him and they both laugh before she hurries down the stairs to catch up to him. They exchange a quick kiss before walking down the stairs hand-in-hand.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1290,6 +1350,7 @@ function enterFloor5Event_4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor5_girls.jpg');
   scene.text('Two girls and a guy are in the hallway near the roof access. One of the girls is sitting and looking in your direction while the other is on all-fours with the guy behind her. They\'re all clothed, but the guy acts like he\'s fucking the girl and they all seem to find it funny. They keep talking and playing around as you continue on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1301,6 +1362,7 @@ function enterFloor5Event_5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/event/floor5_gop.jpg');
   scene.text('In the hallway are a few gopniks squatting next to a tiny table with a few drinks and some food. They talk, laugh and smoke as they eat and drink. They offer you some food when you walk past, but you politely decline as it doesn\'t look very good and continue on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1313,6 +1375,7 @@ function enterFloor5Event_6(s: GameState, scene: SceneBuilder): void {
   scene.text('You see a woman walking down the stairs to the fourth floor, completely naked. She seems to be in no hurry and doesn\'t turn to look in your direction. You shake your head slightly and continue on your way.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1326,6 +1389,7 @@ function enterFloor5Event_7(s: GameState, scene: SceneBuilder): void {
   scene.text('After taking a second to reflect on what you just seen, you continue on your way.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1337,6 +1401,7 @@ function enterFloor5Event_8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/sex/floor5_couple.jpg');
   scene.text('You\'re on the fifth floor, walking up the dim staircase when you spot a couple against the chipped green-and-white wall. He grins nervously while she strikes a bold pose, completely unfazed by your sudden presence.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1349,6 +1414,7 @@ function enterFloor5Event_9(s: GameState, scene: SceneBuilder): void {
   scene.text('A young man stands on the stairs in the stairwell with his pants pulled down just enough for his cock to be free. A girl, about his age, is bent over and sucking his dick. As you walk past them, he grins at you as he grabs hold of the back of her head with his hands and starts forcing his dick balls deep into her mouth and down her throat, gagging her. Just before the sounds of them fades completely, you hear him shout "Oh my god, that was amazing!"');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_5'] },
   ]);
@@ -1361,6 +1427,7 @@ function enterFloor5Event_10(s: GameState, scene: SceneBuilder): void {
   scene.text('As you approach the stairs, you hear moaning and grunting, the obvious sounds of people having sex. A man and woman by the sounds of it. As you approach the stairs, you see a woman on her back in the stairwell, but you can\'t really make her out other than her bare legs spread wide. A topless man with his pants pulled down is between her legs, thrusting. As you get closer, the man sees you and gives you a huge grin and a thumbs up. He doesn\'t stop thrusting into the woman underneath him as he does. Feeling a little awkward, you continue on your way.');
   qspCall(s, 'arousal', 'erotic_sex', 3);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_apt_building', 'floor_5'] },
   ]);

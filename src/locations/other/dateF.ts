@@ -5,34 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).args ?? 0)[0] === 'decline') {
-    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
-    scene.text('"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."');
-    // TODO-QSP: dynamic text: <<$npcdesc>> looks at you disappointed and then shrugs. "Well can't blame a girl...
-    scene.text(`${((s as any).npcdesc ?? 0)} looks at you disappointed and then shrugs. "Well can't blame a girl for trying, right?"`);
-    scene.text('The two of you say goodbye to each other.');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    dynamicGoto(st, 'loc', 'loc_arg');
-  } },
-    ]);
-  }
-  if (((s as any).args ?? 0)[0] === 'date_choice') {
-    if (((s as any).sunWeather ?? 0) === 1) {
-      scene.actions([
-        { label: '"Let\'s go to the park"', goto: ['dateF', 'datepark'] },
-      ]);
-    }
-    if ((!(Math.floor(Math.random() * 5) + 0))) {
-      scene.text('"We could just go to my place and make out." She says with a blush that exposes her arousal.');
-      scene.actions([
-        { label: 'Let\'s have sex', goto: ['hookup_female', 'quickie'] },
-      ]);
-    }
-    scene.actions([
-      { label: '"Let\'s go to a bar"', goto: ['dateF', 'datebar'] },
-    ]);
-  }
   scene.build();
 }
 
@@ -352,6 +324,35 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
+  if (((s as any).args ?? 0)[0] === 'decline') {
+    scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
+    scene.text('"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."');
+    // TODO-QSP: dynamic text: <<$npcdesc>> looks at you disappointed and then shrugs. "Well can't blame a girl...
+    scene.text(`${((s as any).npcdesc ?? 0)} looks at you disappointed and then shrugs. "Well can't blame a girl for trying, right?"`);
+    scene.text('The two of you say goodbye to each other.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  }
+  if (((s as any).args ?? 0)[0] === 'date_choice') {
+    if (((s as any).sunWeather ?? 0) === 1) {
+      scene.actions([
+        { label: '"Let\'s go to the park"', goto: ['dateF', 'datepark'] },
+      ]);
+    }
+    if ((!(Math.floor(Math.random() * 5) + 0))) {
+      scene.text('"We could just go to my place and make out." She says with a blush that exposes her arousal.');
+      scene.actions([
+        { label: 'Let\'s have sex', goto: ['hookup_female', 'quickie'] },
+      ]);
+    }
+    scene.actions([
+      { label: '"Let\'s go to a bar"', goto: ['dateF', 'datebar'] },
+    ]);
+  }
   scene.actions([
     { label: 'Ignore her and hurry away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -368,6 +369,7 @@ function enterDatepark(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Sounds great. Lets go." <<$npcdesc>> walks with you towards the park.
   scene.text(`"Sounds great. Lets go." ${((s as any).npcdesc ?? 0)} walks with you towards the park.`);
   scene.text('The two of you walk in the park for a while causally talking, getting knowing each other. After a while she suggests sitting down.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch people', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 45;
@@ -453,6 +455,7 @@ function enterWalkBack(s: GameState, scene: SceneBuilder): void {
   scene.text('As you finish up the two still holding hands walk all the way back to the park entrance. You stand there for a while feeling that awkward silence creeping up as neither of you know how to end the date.');
   // TODO-QSP: dynamic text: "I've had a great time." you say smiling. "Yeah, me too…" <<$npcdesc>> says quie...
   scene.text(`"I've had a great time." you say smiling. "Yeah, me too…" ${((s as any).npcdesc ?? 0)} says quietly. "Could I get your number so I can call you?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'lover', 'add_girlfriend', ((s as any).npcID ?? 0));
@@ -491,6 +494,7 @@ function enterDatebar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Great idea, <<$pcs_nickname>>. I know a great bar with great drinks and lightni...
   scene.text(`"Great idea, ${((s as any).pcs_nickname ?? 0)}. I know a great bar with great drinks and lightning."`);
   scene.text('The two of you enter this buzzing hip bar and find a spot where you have a great overview over the place.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Order', handler: (st: GameState) => {
     scene.img('images/locations/shared/date/bardrink.jpg');
@@ -530,6 +534,7 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "This place is packed." you say to <<$npcdesc>>
   scene.text(`"This place is packed." you say to ${((s as any).npcdesc ?? 0)}`);
   scene.text('"Yeah, it\'s pretty cool, I think it\'s the night when there is a band playing live here, so I guess that\'s why it\'s so packed."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -646,6 +651,7 @@ function enterBarend(s: GameState, scene: SceneBuilder): void {
   scene.text(`You tell ${((s as any).npcdesc ?? 0)}, "I've had a great time but we should be on our way."`);
   // TODO-QSP: dynamic text: "I had a great time, you're really fun to hang out with." <<$npcdesc>> tells you...
   scene.text(`"I had a great time, you're really fun to hang out with." ${((s as any).npcdesc ?? 0)} tells you. "Could I get your number?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'lover', 'add_girlfriend', ((s as any).npcID ?? 0));
@@ -707,6 +713,5 @@ export const dateF: LocationDef = {
   title: '"I\'m sorry but I don\'t feel us clicking so I\'ll have to decl',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['"I\'m sorry but I don\'t feel us clicking so I\'ll have to decline."'],
   enter: enter,
 };

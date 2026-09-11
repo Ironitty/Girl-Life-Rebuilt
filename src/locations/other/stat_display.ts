@@ -10,73 +10,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).settingmode ?? 0) === 1) {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[0] ?? 0) !== '') {
-    // TODO-QSP: exit
-  }
-  if (((s as any).debug ?? 0)?.['trace_shown'] === 1) {
-    qspCall(s, 'stat_display', 'debug_trace');
-    return;
-  }
-  if (((s as any).stat_cfg ?? 0)?.['android'] === 0) {
-    // TODO-QSP: clear
-  }
-  // TODO-QSP: $sd_android += '<<$weekName>> <<day>>/<<month>>, <<$func(''money'', ''format'', money)>>, <a href="e...
-  qspCall(s, 'stat_display', 'init');
-  qspCall(s, 'stat_display_compute', 'compute_data');
-  if (((s as any).cfg_vars ?? 0)?.['faceturn'] === 1) {
-    // TODO-QSP: view $func('$face_image')
-  }
-  if (((s as any).stat_cfg ?? 0)?.['font_size'] === -2) {
-    (s as any).sd_font_pct = 70;
-  } else {
-    if (((s as any).stat_cfg ?? 0)?.['font_size'] === -1) {
-      (s as any).sd_font_pct = 85;
-    } else {
-      if (((s as any).stat_cfg ?? 0)?.['font_size'] === 1) {
-        (s as any).sd_font_pct = 115;
-      } else {
-        if (((s as any).stat_cfg ?? 0)?.['font_size'] === 2) {
-          (s as any).sd_font_pct = 130;
-        } else {
-          if (((s as any).stat_cfg ?? 0)?.['font_size'] !== 0) {
-            (s as any).sd_font_pct = ((s as any).stat_cfg ?? 0)?.['font_size'];
-          } else {
-            (s as any).sd_font_pct = 100;
-          }
-        }
-      }
-    }
-  }
-  (s as any).sep_margin_px = 8 * ((s as any).sd_font_pct ?? 0) / 100;
-  if (((s as any).git_hash ?? 0) !== '') {
-  }
-  ((s as any).sd_d ?? {})['prev'] = '';
-  ((s as any).sd_d ?? {})['i'] = 0;
-  ((s as any).sd_d ?? {})['max'] = 0;
-  // TODO-QSP: :sd_dispatch_loop
-  ((s as any).sd_d ?? {})['sec'] = qspUntranslated(s, "stat_order[sd_d['i']]", { location: "stat_display" });
-  ((s as any).sd_d ?? {})['res'] = '';
-  if (((s as any).stat_hide ?? 0)[((s as any).sd_d ?? 0)?.['sec']] === 0) {
-    ((s as any).sd_d ?? {})['res'] = qspFunc(s, 'stat_display', 'sec_\' + $sd_d[\'sec\']');
-  }
-  if (((s as any).sd_d ?? 0)?.['sec'] !== 'weather'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'time'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'money'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'loadsave'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'menu_bar') {
-    if (((s as any).stat_hide ?? 0)[((s as any).sd_d ?? 0)?.['sec']] === 0  ||  ((s as any).stat_cfg ?? 0)?.['sec_headers'] === 2) {
-      ((s as any).sd_d ?? {})['res'] = qspFunc(s, 'stat_display', 'helper_section_header', ((s as any).sd_d ?? 0)?.['sec'], ((s as any).sd_d ?? 0)?.['res']);
-    }
-  }
-  if (((s as any).sd_d ?? 0)?.['res'] !== '') {
-    ((s as any).sd_d ?? {})['cur'] = ((((s as any).sd_st ?? 0)[((s as any).sd_d ?? 0)?.['sec']] !== '') ? (((s as any).sd_st ?? 0)?.[((s as any).sd_d ?? 0)?.['sec']]) : ('text'));
-    if (((s as any).sd_d ?? 0)?.['prev'] !== '') {
-      // TODO-QSP: $stat_msg += $func('stat_display', 'get_separator', $sd_d['prev'], $sd_d['cur'])
-    }
-    ((s as any).sd_d ?? {})['prev'] = ((s as any).sd_d ?? 0)?.['cur'];
-  }
-  // TODO-QSP: $stat_msg += $sd_d['res']
-  ((s as any).sd_d ?? {})['i'] = (((s as any).sd_d ?? {})['i'] ?? 0) + (1);
-  if (((s as any).sd_d ?? 0)?.['i'] < ((s as any).sd_d ?? 0)?.['max']) {
-    // TODO-QSP: jump 'sd_dispatch_loop'
-  }
-  qspCall(s, 'stat_display', 'finalize');
   scene.build();
 }
 
@@ -88,6 +21,7 @@ function enterHelperBar(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,6 +30,7 @@ function enterHelperBarCell(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sd ?? 0)?.['name_side'] === 1) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -118,6 +53,7 @@ function enterHelperSkillEntry(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,6 +85,7 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -156,6 +93,7 @@ function enterHelperToggle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_hide ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -193,6 +131,7 @@ function enterHelperRelName(s: GameState, scene: SceneBuilder): void {
   if (((s as any).result ?? 0) === '') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,6 +151,7 @@ function enterHelperResolveAlign(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -227,6 +167,7 @@ function enterHelperAlignWrap(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -234,6 +175,7 @@ function enterHelperFontWrap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sd_font_pct ?? 0) !== 100  &&  ((s as any).locArgs?.[1] ?? 0) !== '') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -252,6 +194,7 @@ function enterHelperSectionHeader(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -268,6 +211,7 @@ function enterGetSeparator(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,6 +254,7 @@ function enterSecWeather(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['temp_pos'] === 1  ||  ((s as any).stat_cfg ?? 0)?.['temp_pos'] === 2) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -338,6 +283,7 @@ function enterSecTime(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '<b>You have <<telefon[''UnreadSMS'']>> unread message(s).</b>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -350,6 +296,7 @@ function enterSecMoney(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += ', Bank: ' + $func('wrap', iif(karta >= bankDebtLimit, 'none b', 'v_neg b'), $func('money...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -364,6 +311,7 @@ function enterSecLoadsave(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '  <a href="exec: if input(''Input Anything to confirm Quick Load'') <> '''': opengame ''...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +393,7 @@ function enterSecMenuBar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sd_mb ?? 0)?.['cells'] !== '') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -560,6 +509,7 @@ function enterSecStatus(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sd ?? 0)?.['render_mode'] !== 2  &&  ((s as any).result ?? 0) !== '') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -701,6 +651,7 @@ function enterSecAttributes(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += $func('stat_display', 'helper_font_wrap', $sd_a['bars'])
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -753,6 +704,7 @@ function enterSecIcons(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -774,11 +726,13 @@ function enterSecAlerts(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSecCalendar(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -909,6 +863,7 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).stat_cfg ?? {})['bar_width'] = ((s as any).sd_sk ?? 0)?.['save_barwidth'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1042,6 +997,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).stat_cfg ?? {})['bar_width'] = ((s as any).sd_rl ?? 0)?.['save_barwidth'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1063,6 +1019,7 @@ function enterSecTexts(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1237,6 +1194,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += '</table>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1277,6 +1235,7 @@ function enterDebugTrace(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: p $debug['direct_trace']
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1621,6 +1580,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $stat_order[] = 'loadsave'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1633,6 +1593,74 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: pl $stat_msg
   }
   return;
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) !== '') {
+    // TODO-QSP: exit
+  }
+  if (((s as any).debug ?? 0)?.['trace_shown'] === 1) {
+    qspCall(s, 'stat_display', 'debug_trace');
+    return;
+  }
+  if (((s as any).stat_cfg ?? 0)?.['android'] === 0) {
+    // TODO-QSP: clear
+  }
+  // TODO-QSP: $sd_android += '<<$weekName>> <<day>>/<<month>>, <<$func(''money'', ''format'', money)>>, <a href="e...
+  qspCall(s, 'stat_display', 'init');
+  qspCall(s, 'stat_display_compute', 'compute_data');
+  if (((s as any).cfg_vars ?? 0)?.['faceturn'] === 1) {
+    // TODO-QSP: view $func('$face_image')
+  }
+  if (((s as any).stat_cfg ?? 0)?.['font_size'] === -2) {
+    (s as any).sd_font_pct = 70;
+  } else {
+    if (((s as any).stat_cfg ?? 0)?.['font_size'] === -1) {
+      (s as any).sd_font_pct = 85;
+    } else {
+      if (((s as any).stat_cfg ?? 0)?.['font_size'] === 1) {
+        (s as any).sd_font_pct = 115;
+      } else {
+        if (((s as any).stat_cfg ?? 0)?.['font_size'] === 2) {
+          (s as any).sd_font_pct = 130;
+        } else {
+          if (((s as any).stat_cfg ?? 0)?.['font_size'] !== 0) {
+            (s as any).sd_font_pct = ((s as any).stat_cfg ?? 0)?.['font_size'];
+          } else {
+            (s as any).sd_font_pct = 100;
+          }
+        }
+      }
+    }
+  }
+  (s as any).sep_margin_px = 8 * ((s as any).sd_font_pct ?? 0) / 100;
+  if (((s as any).git_hash ?? 0) !== '') {
+  }
+  ((s as any).sd_d ?? {})['prev'] = '';
+  ((s as any).sd_d ?? {})['i'] = 0;
+  ((s as any).sd_d ?? {})['max'] = 0;
+  // TODO-QSP: :sd_dispatch_loop
+  ((s as any).sd_d ?? {})['sec'] = qspUntranslated(s, "stat_order[sd_d['i']]", { location: "stat_display" });
+  ((s as any).sd_d ?? {})['res'] = '';
+  if (((s as any).stat_hide ?? 0)[((s as any).sd_d ?? 0)?.['sec']] === 0) {
+    ((s as any).sd_d ?? {})['res'] = qspFunc(s, 'stat_display', 'sec_\' + $sd_d[\'sec\']');
+  }
+  if (((s as any).sd_d ?? 0)?.['sec'] !== 'weather'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'time'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'money'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'loadsave'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'menu_bar') {
+    if (((s as any).stat_hide ?? 0)[((s as any).sd_d ?? 0)?.['sec']] === 0  ||  ((s as any).stat_cfg ?? 0)?.['sec_headers'] === 2) {
+      ((s as any).sd_d ?? {})['res'] = qspFunc(s, 'stat_display', 'helper_section_header', ((s as any).sd_d ?? 0)?.['sec'], ((s as any).sd_d ?? 0)?.['res']);
+    }
+  }
+  if (((s as any).sd_d ?? 0)?.['res'] !== '') {
+    ((s as any).sd_d ?? {})['cur'] = ((((s as any).sd_st ?? 0)[((s as any).sd_d ?? 0)?.['sec']] !== '') ? (((s as any).sd_st ?? 0)?.[((s as any).sd_d ?? 0)?.['sec']]) : ('text'));
+    if (((s as any).sd_d ?? 0)?.['prev'] !== '') {
+      // TODO-QSP: $stat_msg += $func('stat_display', 'get_separator', $sd_d['prev'], $sd_d['cur'])
+    }
+    ((s as any).sd_d ?? {})['prev'] = ((s as any).sd_d ?? 0)?.['cur'];
+  }
+  // TODO-QSP: $stat_msg += $sd_d['res']
+  ((s as any).sd_d ?? {})['i'] = (((s as any).sd_d ?? {})['i'] ?? 0) + (1);
+  if (((s as any).sd_d ?? 0)?.['i'] < ((s as any).sd_d ?? 0)?.['max']) {
+    // TODO-QSP: jump 'sd_dispatch_loop'
+  }
+  qspCall(s, 'stat_display', 'finalize');
   scene.build();
 }
 

@@ -204,6 +204,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
   }, goto: ['praiders_garage', 'hangout<<$ARGS[1]>>'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -211,6 +212,7 @@ function enterChatRadomir1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big154.jpg');
   scene.text('You now have a chance to ask him something.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -445,6 +447,7 @@ function enterChatAnushka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -452,6 +455,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('Now you just have to decide what you want to ask. Since people are starting to leave, you might not have time to ask about much.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big144.jpg');
@@ -659,6 +663,7 @@ function enterChatValentin(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -774,6 +779,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about Radomir', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big158.jpg');
@@ -869,6 +875,7 @@ function enterRadcheated(s: GameState, scene: SceneBuilder): void {
   scene.text('"After we finish our set, he disappears. After I help take care of our gear, I head upstairs to the bathroom, only to find Rad in there getting a blowjob from some chick a few years older than us. I don\'t know if that was the first time or what, I just know after that he cheated on Nush every chance he got. He had two or three regulars he fucked around with, plus he managed to find some girl to fuck at gigs. Eventually Nush caught him and they had a big fight over it."');
   scene.text('"Is that why the old drummer left?" you ask.');
   scene.text('He shakes his head. "No, but it was around the same time. No, Nush forgives him and he promises not to screw around on her again. That was an obvious lie as you\'d guess. After that, they were all lovey dovey again and douche left, with Arkadi joining us soon after, but Rad kept cheating, telling her it was the price of dating a rock star. She stayed with him, but she was clearly miserable and on more than one night, she cried on my shoulder about it, practically begging me to get him to stop. I did what I could, but I knew nothing was going to change."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'So what did you do?', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big158.jpg');
@@ -947,6 +954,7 @@ function enterChatArkadi(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -954,6 +962,7 @@ function enterChatArkadi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big156.jpg');
   scene.text('Now you just have to decide what you want to ask. Since people are starting to leave, you might not have time to ask about much.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'How\'s the band doing?', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big156.jpg');
@@ -1112,6 +1121,7 @@ function enterChatAlyona(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1147,6 +1157,7 @@ function enterChatAlyona1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about the band', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big143.jpg');
@@ -1271,6 +1282,7 @@ function enterChatLenalera(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask them some questions', goto: ['praiders_garage_chat', 'chat_lenalera1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1353,6 +1365,7 @@ function enterChatLenalera1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about the band', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big20.jpg');
@@ -1506,6 +1519,7 @@ function enterChatLavrenti(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Falling out with Dimka', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big155.jpg');
@@ -1709,6 +1723,7 @@ function enterChatRoman(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask him some questions', goto: ['praiders_garage_chat', 'chat_roman1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1732,6 +1747,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about Anushka', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big157.jpg');
@@ -1843,6 +1859,7 @@ function enterChatNiko(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2065,6 +2082,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"What\'s new with you?"', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 8) + 1;

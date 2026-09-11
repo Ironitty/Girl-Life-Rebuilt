@@ -21,6 +21,7 @@ function enterBrodila(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +35,7 @@ function enterBrodilr(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -47,6 +49,7 @@ function enterBrodilk(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_residential', ''] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,16 +67,19 @@ function enterBrodils(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDogpot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A191');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRexpot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A166');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +126,7 @@ function enterHypnoDaychange(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +144,7 @@ function enterHypnoAddiction(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -156,6 +164,7 @@ function enterPrezik(s: GameState, scene: SceneBuilder): void {
       ((s as any).mc_inventory ?? {})['equipped_condoms'] = 0;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -178,6 +187,7 @@ function enterFerteggfather(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

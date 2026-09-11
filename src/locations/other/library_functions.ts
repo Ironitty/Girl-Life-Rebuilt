@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -44,7 +46,817 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
     }
   }
+  scene.build();
+}
+
+function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp = ((s as any).pcs_intel ?? 0) * 2 + ((s as any).pcs_sprt ?? 0);
+  if (((s as any).temp ?? 0) < 100) {
+  } else {
+    if (((s as any).temp ?? 0) < 150) {
+    }
+  }
+  qspCall(s, 'willpower', 'misc', 'self', ((s as any).diff ?? 0));
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Read from the collected works of Leo Tolstoy (1:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Read from the collected works of Leo Tolstoy (1:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 4) + 3);
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (2);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/books/tolstoy.jpg');
+    scene.text('You read the book for an hour. Tolstoy is certainly a classic writer, but he used a <i>lot</i> of words.');
+    scene.actions([
+      { label: 'Put the book back', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Read an adventure novel (1:00)', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'mood', 'raise', 'small');
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/books/fiction\' + rand(1, 2) + \'.jpg');
+    scene.text('You spend an hour reading an adventure novel, immersing yourself in daring deeds and awesome twists.');
+    scene.actions([
+      { label: 'Put the book back', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    { label: 'Read a fantasy novel (1:00)', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'mood', 'raise', 'small');
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/books/fantasy\' + rand(1, 9) + \'.jpg');
+    scene.text('You spend an hour reading a fantasy novel, rescuing damsels from dragons, digging for jewels with dwarves and performing word changing magic alongside elves and druids.');
+    scene.actions([
+      { label: 'Put the book back', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    { label: 'Read a romance novel (1:00)', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'mood', 'raise', 'small');
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/books/romance\' + rand(1, 20) + \'.jpg');
+    scene.text('You spend a very short hour reading a romance novel - choosing between a vampire or a werewolf, falling in love with an obscenely wealthy Grey… Several of the scenes are very steamy and you find yourself getting quite aroused.');
+    scene.actions([
+      { label: 'Put the book back', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    { label: 'Read a book on science (1:00)', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 4) + 3);
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/books/science1.jpg');
+    scene.text('You spend an hour reading, trying to make sense of all the clever propositions written inside and understand the subject it describes.');
+    scene.actions([
+      { label: 'Put the book back', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    { label: 'Read a science fiction novel (1:00)', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'mood', 'raise', 'small');
+    ((s as any).grupvalue ?? {})[3] = (((s as any).grupvalue ?? {})[3] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    scene.img('images/pc/items/accessories/books/scifi\' + rand(1, 6) + \'.jpg');
+    scene.text('You spend an hour reading a science fiction novel - flying off into space, travelling though time, running from rogue AI and creating monsters with your hunchbacked assistant.');
+    scene.actions([
+      { label: 'Put the book back', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['mag_cooking'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['mag_fashion'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['mag_computer'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['mag_biography'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['mag_knitting'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['mag_fitness'] === 0) {
+    scene.text('You have no magazines to read.');
+  } else {
+    scene.actions([
+      { label: 'Read a magazine', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_magazine_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_magazine_topless.jpg');
+      } else {
+        if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+          scene.img('images/pc/activities/reading/bed_magazine_underwear.jpg');
+        } else {
+          scene.img('images/pc/activities/reading/bed_magazine_dressed.jpg');
+        }
+      }
+    }
+    qspCall(s, 'library_functions', 'set_magazine_acts');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Read a book', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    (s as any).temp_book_any = 0;
+    if (((s as any).mc_inventory ?? 0)?.['adventure_books'] <= 0) {
+      if (((s as any).BookVars ?? 0)?.['adventure_pages'] > 0) {
+        (s as any).temp_book_any = 1;
+      }
+    } else {
+      (s as any).temp_book_any = 1;
+      if (((s as any).BookVars ?? 0)?.['adventure_pages'] <= 0) {
+        if (((s as any).lib_book_loaned ?? 0) === 'an adventure novel'  &&  (!((s as any).lib_book_read ?? 0))) {
+          (s as any).lib_book_read = 1;
+        }
+        ((s as any).BookVars ?? {})['adventure_pages'] = Math.floor(Math.random() * 201) + 400;
+        ((s as any).mc_inventory ?? {})['adventure_books'] = (((s as any).mc_inventory ?? {})['adventure_books'] ?? 0) - (1);
+      }
+      if (((s as any).mc_inventory ?? 0)?.['adventure_books'] > 0) {
+        // TODO-QSP: $book_text[] = '<<mc_inventory[''adventure_books'']>> adventure novel' + iif(mc_inventory['adventure...
+      }
+    }
+    if (((s as any).mc_inventory ?? 0)?.['fantasy_books'] <= 0) {
+      if (((s as any).BookVars ?? 0)?.['fantasy_pages'] > 0) {
+        (s as any).temp_book_any = 1;
+      }
+    } else {
+      (s as any).temp_book_any = 1;
+      if (((s as any).BookVars ?? 0)?.['fantasy_pages'] <= 0) {
+        if (((s as any).lib_book_loaned ?? 0) === 'a fantasy novel'  &&  (!((s as any).lib_book_read ?? 0))) {
+          (s as any).lib_book_read = 1;
+        }
+        ((s as any).BookVars ?? {})['fantasy_pages'] = Math.floor(Math.random() * 201) + 400;
+        ((s as any).mc_inventory ?? {})['fantasy_books'] = (((s as any).mc_inventory ?? {})['fantasy_books'] ?? 0) - (1);
+      }
+      if (((s as any).mc_inventory ?? 0)?.['fantasy_books'] > 0) {
+        // TODO-QSP: $book_text[] = '<<mc_inventory[''fantasy_books'']>> fantasy novel' + iif(mc_inventory['fantasy_books...
+      }
+    }
+    if (((s as any).mc_inventory ?? 0)?.['romance_books'] <= 0) {
+      if (((s as any).BookVars ?? 0)?.['romance_pages'] > 0) {
+        (s as any).temp_book_any = 1;
+      }
+    } else {
+      (s as any).temp_book_any = 1;
+      if (((s as any).BookVars ?? 0)?.['romance_pages'] <= 0) {
+        if (((s as any).lib_book_loaned ?? 0) === 'a romance novel'  &&  (!((s as any).lib_book_read ?? 0))) {
+          (s as any).lib_book_read = 1;
+        }
+        ((s as any).BookVars ?? {})['romance_pages'] = Math.floor(Math.random() * 201) + 400;
+        ((s as any).mc_inventory ?? {})['romance_books'] = (((s as any).mc_inventory ?? {})['romance_books'] ?? 0) - (1);
+      }
+      if (((s as any).mc_inventory ?? 0)?.['romance_books'] > 0) {
+        // TODO-QSP: $book_text[] = '<<mc_inventory[''romance_books'']>> romance novel' + iif(mc_inventory['romance_books...
+      }
+    }
+    if (((s as any).mc_inventory ?? 0)?.['science_books'] <= 0) {
+      if (((s as any).BookVars ?? 0)?.['science_pages'] > 0) {
+        (s as any).temp_book_any = 1;
+      }
+    } else {
+      (s as any).temp_book_any = 1;
+      if (((s as any).BookVars ?? 0)?.['science_pages'] <= 0) {
+        if (((s as any).lib_book_loaned ?? 0) === 'a science book'  &&  (!((s as any).lib_book_read ?? 0))) {
+          (s as any).lib_book_read = 1;
+        }
+        ((s as any).BookVars ?? {})['science_pages'] = Math.floor(Math.random() * 201) + 400;
+        ((s as any).mc_inventory ?? {})['science_books'] = (((s as any).mc_inventory ?? {})['science_books'] ?? 0) - (1);
+      }
+      if (((s as any).mc_inventory ?? 0)?.['science_books'] > 0) {
+        // TODO-QSP: $book_text[] = '<<mc_inventory[''science_books'']>> science book' + iif(mc_inventory['science_books'...
+      }
+    }
+    if (((s as any).mc_inventory ?? 0)?.['scifi_books'] <= 0) {
+      if (((s as any).BookVars ?? 0)?.['scifi_pages'] > 0) {
+        (s as any).temp_book_any = 1;
+      }
+    } else {
+      (s as any).temp_book_any = 1;
+      if (((s as any).BookVars ?? 0)?.['scifi_pages'] <= 0) {
+        if (((s as any).lib_book_loaned ?? 0) === 'a science fiction novel'  &&  (!((s as any).lib_book_read ?? 0))) {
+          (s as any).lib_book_read = 1;
+        }
+        ((s as any).BookVars ?? {})['scifi_pages'] = Math.floor(Math.random() * 201) + 400;
+        ((s as any).mc_inventory ?? {})['scifi_books'] = (((s as any).mc_inventory ?? {})['scifi_books'] ?? 0) - (1);
+      }
+      if (((s as any).mc_inventory ?? 0)?.['scifi_books'] > 0) {
+        // TODO-QSP: $book_text[] = '<<mc_inventory[''scifi_books'']>> science fiction novel' + iif(mc_inventory['scifi_b...
+      }
+    }
+    if (((s as any).temp_book_any ?? 0) === 0  &&  (((s as any).artem_borrowed_book ?? 0) <= 0  &&  ((s as any).BookVars ?? 0)?.['artem_pages'] <= 0)) {
+      scene.text('You scratch your head looking at the book you already read, thinking. "Damn, nothing to read, maybe I\'ll take a walk or search the market for a new book?"');
+    }
+    if (Object.keys((s as any).book_text ?? {}).length > 0) {
+      // TODO-QSP: dynamic text: You still have <<func('string', 'enumerate_list', '$book_text')>> you haven't st...
+      scene.text(`You still have ${qspFunc(s, 'string', 'enumerate_list', '$book_text')} you haven't started on.`);
+    }
+    qspCall(s, 'library_functions', 'set_home_read_adventure_book_act');
+    qspCall(s, 'library_functions', 'set_home_read_fantasy_book_act');
+    qspCall(s, 'library_functions', 'set_home_read_romance_book_act');
+    qspCall(s, 'library_functions', 'set_home_read_science_book_act');
+    qspCall(s, 'library_functions', 'set_home_read_scifi_book_act');
+    qspCall(s, 'library_functions', 'set_home_read_artem_book_act');
+    if (((s as any).tractatus ?? 0) > 0) {
+      scene.actions([
+        { label: 'Study Aleksei\'s magical discourse on unarmed combat. You feel that there are <<tractatus * 100>> pages left (0:15) ', handler: (st: GameState) => {
+    if (((s as any).pcs_mana ?? 0) <= 400) {
+      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (s as any).tractatus = ((s as any).tractatus ?? 0) - (1);
+    if ((!((s as any).tractatus ?? 0))) {
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+    }
+    qspCall(s, 'mood', 'raise', 'tiny');
+    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (400);
+    qspCall(s, 'exp_gain', 'def', Math.floor(Math.random() * 4) + 7);
+    qspCall(s, 'exp_gain', 'jab', Math.floor(Math.random() * 4) + 7);
+    qspCall(s, 'exp_gain', 'kick', Math.floor(Math.random() * 4) + 7);
+    qspCall(s, 'exp_gain', 'punch', Math.floor(Math.random() * 4) + 7);
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    scene.text('As you read the strange text, the words blur and suddenly you are <i>inspired</i>. Your mind fill with new ideas and revelations, the defects in your combat form polished and the knows at how inflict the maximum level of pain at the minimal cost… sharpened.');
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).BookVars ?? 0)?.['adventure_pages'] > 0) {
+    scene.actions([
+      { label: 'Read Adventure Novel. There are <<BookVars[\'adventure_pages\']>> pages left (1:00)', handler: (st: GameState) => {
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    ((s as any).BookVars ?? {})['adventure_pages'] = (((s as any).BookVars ?? {})['adventure_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (((s as any).BookVars ?? 0)?.['adventure_pages'] <= 0) {
+      ((s as any).BookVars ?? {})['adventure_pages'] = 0;
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+      if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'an adventure novel') {
+        (s as any).lib_book_read = 2;
+      }
+    }
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['bookworm'] > 0) {
+      qspCall(s, 'mood', 'raise', 'small');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      if (((s as any).pcs_stren ?? 0) > 1) {
+        qspCall(s, 'exp_deg', 'stren', 1);
+      }
+      if (((s as any).pcs_vital ?? 0) > 5) {
+        qspCall(s, 'exp_deg', 'vital', 1);
+      }
+      if (((s as any).BookVars ?? 0)?.['adventure_pages'] <= 0) {
+        scene.text('You read the final chapters of the adventure novel, completely immersed in the climactic ending to the authors entralling story.');
+      } else {
+        // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
+      if (((s as any).BookVars ?? 0)?.['adventure_pages'] <= 0) {
+        scene.text('You read the final chapters of the adventure novel.');
+      } else {
+        // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).BookVars ?? 0)?.['fantasy_pages'] > 0) {
+    scene.actions([
+      { label: 'Read fantasy book. There are <<BookVars[\'fantasy_pages\']>> pages left (1:00)', handler: (st: GameState) => {
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    ((s as any).BookVars ?? {})['fantasy_pages'] = (((s as any).BookVars ?? {})['fantasy_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (((s as any).BookVars ?? 0)?.['fantasy_pages'] <= 0) {
+      ((s as any).BookVars ?? {})['fantasy_pages'] = 0;
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+      if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a fantasy novel') {
+        (s as any).lib_book_read = 2;
+      }
+    }
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {
+      qspCall(s, 'mood', 'raise', 'small');
+      if (((s as any).pcs_stren ?? 0) > 1) {
+        qspCall(s, 'exp_deg', 'stren', 1);
+      }
+      if (((s as any).pcs_vital ?? 0) > 5) {
+        qspCall(s, 'exp_deg', 'vital', 1);
+      }
+      if (((s as any).BookVars ?? 0)?.['fantasy_pages'] <= 0) {
+        scene.text('You read the final chapters of the fantasy novel, completely immersed in the climactic ending to the authors entralling story.');
+      } else {
+        // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      if (((s as any).BookVars ?? 0)?.['fantasy_pages'] <= 0) {
+        scene.text('You read the final chapters of the fantasy novel.');
+      } else {
+        // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).BookVars ?? 0)?.['romance_pages'] > 0) {
+    scene.actions([
+      { label: 'Read Romance Novel. There are <<BookVars[\'romance_pages\']>> pages left (1:00)', handler: (st: GameState) => {
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    ((s as any).BookVars ?? {})['romance_pages'] = (((s as any).BookVars ?? {})['romance_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (((s as any).BookVars ?? 0)?.['romance_pages'] <= 0) {
+      ((s as any).BookVars ?? {})['romance_pages'] = 0;
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+      if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a romance novel') {
+        (s as any).lib_book_read = 2;
+      }
+    }
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {
+      qspCall(s, 'mood', 'raise', 'small');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      if (((s as any).pcs_stren ?? 0) > 1) {
+        qspCall(s, 'exp_deg', 'stren', 1);
+      }
+      if (((s as any).pcs_vital ?? 0) > 5) {
+        qspCall(s, 'exp_deg', 'vital', 1);
+      }
+      if (((s as any).BookVars ?? 0)?.['romance_pages'] <= 0) {
+        scene.text('You read the final chapters of the romance novel, completely immersed in the climactic ending to the authors entralling story.');
+      } else {
+        // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      if (((s as any).BookVars ?? 0)?.['romance_pages'] <= 0) {
+        scene.text('You read the final chapters of the romance novel.');
+      } else {
+        // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).BookVars ?? 0)?.['science_pages'] > 0) {
+    scene.actions([
+      { label: 'Read Science Book. There are <<BookVars[\'science_pages\']>> pages left (1:00)', handler: (st: GameState) => {
+    (s as any).temp_pages_read = (70 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 10);
+    ((s as any).BookVars ?? {})['science_pages'] = (((s as any).BookVars ?? {})['science_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (((s as any).BookVars ?? 0)?.['science_pages'] <= 0) {
+      ((s as any).BookVars ?? {})['science_pages'] = 0;
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+      if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a science book') {
+        (s as any).lib_book_read = 2;
+      }
+    }
+    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 4) + 3);
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {
+      qspCall(s, 'mood', 'raise', 'small');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      if (((s as any).pcs_stren ?? 0) > 1) {
+        qspCall(s, 'exp_deg', 'stren', 1);
+      }
+      if (((s as any).pcs_vital ?? 0) > 5) {
+        qspCall(s, 'exp_deg', 'vital', 1);
+      }
+      if (((s as any).BookVars ?? 0)?.['science_pages'] <= 0) {
+        scene.text('You read the final chapters of the science book, completely immersed in the conclusions the authors make.');
+      } else {
+        // TODO-QSP: dynamic text: For an hour you enthusiastically read the book, completely immersed in absorbing...
+        scene.text(`For an hour you enthusiastically read the book, completely immersed in absorbing the knowledge within. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
+      if (((s as any).BookVars ?? 0)?.['science_pages'] <= 0) {
+        scene.text('You read the final chapters of the science book.');
+      } else {
+        // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).BookVars ?? 0)?.['scifi_pages'] > 0) {
+    scene.actions([
+      { label: 'Read Science Fiction Novel. There are <<BookVars[\'scifi_pages\']>> pages left (1:00)', handler: (st: GameState) => {
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    ((s as any).BookVars ?? {})['scifi_pages'] = (((s as any).BookVars ?? {})['scifi_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (((s as any).BookVars ?? 0)?.['scifi_pages'] <= 0) {
+      ((s as any).BookVars ?? {})['scifi_pages'] = 0;
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+      if (((s as any).lib_book_read ?? 0) === 1  &&  ((s as any).lib_book_loaned ?? 0) === 'a science fiction novel') {
+        (s as any).lib_book_read = 2;
+      }
+    }
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {
+      qspCall(s, 'mood', 'raise', 'small');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      if (((s as any).pcs_stren ?? 0) > 1) {
+        qspCall(s, 'exp_deg', 'stren', 1);
+      }
+      if (((s as any).pcs_vital ?? 0) > 5) {
+        qspCall(s, 'exp_deg', 'vital', 1);
+      }
+      if (((s as any).BookVars ?? 0)?.['scifi_pages'] <= 0) {
+        scene.text('You read the final chapters of the science fiction novel, completely immersed in the climactic ending to the authors entralling story.');
+      } else {
+        // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (3);
+      if (((s as any).BookVars ?? 0)?.['scifi_pages'] <= 0) {
+        scene.text('You read the final chapters of the science fiction novel.');
+      } else {
+        // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).BookVars ?? 0)?.['artem_pages'] > 0) {
+    scene.actions([
+      { label: 'Read the book you borrowed from Artem. There are <<BookVars[\'artem_pages\']>> pages left (1:00) ', handler: (st: GameState) => {
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    ((s as any).BookVars ?? {})['artem_pages'] = (((s as any).BookVars ?? {})['artem_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
+    if (((s as any).BookVars ?? 0)?.['artem_pages'] <= 0) {
+      ((s as any).BookVars ?? {})['artem_pages'] = 0;
+      (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
+    }
+    qspCall(s, 'library_functions', 'read_book');
+    qspCall(s, 'stat', '');
+    if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
+      scene.img('images/pc/activities/reading/bed_book_nude.jpg');
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) !== 'none'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
+        scene.img('images/pc/activities/reading/bed_book_underwear.jpg');
+      } else {
+        scene.img('images/pc/activities/reading/bed_book_dressed.jpg');
+      }
+    }
+    if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {
+      qspCall(s, 'mood', 'raise', 'small');
+      if (((s as any).pcs_stren ?? 0) > 1) {
+        qspCall(s, 'exp_deg', 'stren', 1);
+      }
+      if (((s as any).pcs_vital ?? 0) > 5) {
+        qspCall(s, 'exp_deg', 'vital', 1);
+      }
+      if (((s as any).BookVars ?? 0)?.['artem_pages'] <= 0) {
+        scene.text('You read the final chapters of the book, completely immersed in the climactic ending to the authors entralling story');
+      } else {
+        // TODO-QSP: dynamic text: For an hour you enthusiastically read the book, completely immersed in the autho...
+        scene.text(`For an hour you enthusiastically read the book, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    } else {
+      qspCall(s, 'mood', 'raise', 'tiny');
+      if (((s as any).BookVars ?? 0)?.['artem_pages'] <= 0) {
+        scene.text('You read the final chapters of the book.');
+      } else {
+        // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+      }
+    }
+    scene.actions([
+      { label: 'Close the book', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetMagazineActs(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['mag_cooking'] > 0) {
+    scene.actions([
+      { label: 'Read your cooking magazine', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_magazine');
+    ((s as any).mc_inventory ?? {})['mag_cooking'] = (((s as any).mc_inventory ?? {})['mag_cooking'] ?? 0) - (1);
+    scene.text('You relax for half an hour reading your cooking magazine.');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_fashion'] > 0) {
+    scene.actions([
+      { label: 'Read your fashion magazine', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_magazine');
+    ((s as any).mc_inventory ?? {})['mag_fashion'] = (((s as any).mc_inventory ?? {})['mag_fashion'] ?? 0) - (1);
+    qspCall(s, 'exp_gain', 'makupskl', 1);
+    scene.text('You relax for half an hour reading your fashion magazine.');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_computer'] > 0) {
+    scene.actions([
+      { label: 'Read your computing magazine', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_magazine');
+    ((s as any).mc_inventory ?? {})['mag_computer'] = (((s as any).mc_inventory ?? {})['mag_computer'] ?? 0) - (1);
+    qspCall(s, 'exp_gain', 'compskl', 1);
+    scene.text('You relax for half an hour reading your computing magazine.');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_biography'] > 0) {
+    scene.actions([
+      { label: 'Read your biographical magazine', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_magazine');
+    ((s as any).mc_inventory ?? {})['mag_biography'] = (((s as any).mc_inventory ?? {})['mag_biography'] ?? 0) - (1);
+    scene.text('You relax for half an hour reading your biographical magazine.');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_knitting'] > 0) {
+    scene.actions([
+      { label: 'Read your knitting magazine', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_magazine');
+    ((s as any).mc_inventory ?? {})['mag_knitting'] = (((s as any).mc_inventory ?? {})['mag_knitting'] ?? 0) - (1);
+    if (((s as any).pcs_sewng ?? 0) <= 100) {
+      qspCall(s, 'exp_gain', 'sewng', Math.floor(Math.random() * 3) + 1);
+    }
+    scene.text('You relax for half an hour reading your knitting magazine.');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_fitness'] > 0) {
+    scene.actions([
+      { label: 'Read your fitness magazine', handler: (st: GameState) => {
+    qspCall(s, 'library_functions', 'read_magazine');
+    ((s as any).mc_inventory ?? {})['mag_fitness'] = (((s as any).mc_inventory ?? {})['mag_fitness'] ?? 0) - (1);
+    scene.text('You relax for half an hour reading your fitness magazine.');
+    scene.actions([
+      { label: 'Return', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetReadPornAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
+    scene.actions([
+      { label: 'Read the porn magazine', handler: (st: GameState) => {
+    if (((s as any).blizoruk ?? 0) === 500  ||  ((s as any).glassqw ?? 0) === 1) {
+      (s as any).glassqw = 1;
+      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+    }
+    scene.img('images/pc/items/accessories/magazines/porn.jpg');
+    if (((s as any).mc_inventory ?? 0)?.['mag_porn'] === 1) {
+      scene.text('<font color="magenta">Boring</font>, you\'ve memorized this magazine by heart, you think that is time to buy a new one.');
+    } else {
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      scene.text('You flip through the porno magazine, reading the stories and looking at the pictures. A small excitement begins to cover your body.');
+    }
+    ((s as any).mc_inventory ?? {})['mag_porn'] = (((s as any).mc_inventory ?? {})['mag_porn'] ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Put away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetBookBuyActs(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a science book', 'science', 350);
+  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'an adventure novel', 'adventure', 350);
+  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a fantasy novel', 'fantasy', 350);
+  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a science fiction novel', 'scifi', 350);
+  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a romance novel', 'romance', 350);
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetSingleBookBuyAct(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+    ((s as any).ARGS ?? {})[3] = 350;
+  }
+  // TODO-QSP: dynamic "
+  // TODO-QSP: act ""Buy <<$ARGS[1]>>"" + $func('money', 'get_cost_string', <<ARGS[3]>>):
+  if (qspFunc(s, 'money', 'can_afford', ((s as any).locArgs?.[3] ?? 0)) === 0) {
+    s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+  } else {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    // TODO-QSP: gs 'money', 'pay', <<ARGS[3]>>
+    ((s as any).mc_inventory ?? {})['' + String((s as any).$ARGS[2] || '') + '_books'] = (((s as any).mc_inventory ?? {})['' + String((s as any).$ARGS[2] || '') + '_books'] ?? 0) + (1);
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: You buy <<$ARGS[1]>> for <<$func('money', 'string_price', ARGS[3])>>.
+    scene.text(`You buy ${((s as any).locArgs?.[1] ?? 0)} for ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "ARGS[3]", { location: "library_functions" }))}.`);
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  }
+  // TODO-QSP: end
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -52,6 +864,7 @@ function enterSetLoanActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'library_functions', 'return_book_act');
   qspCall(s, 'library_functions', 'pay_debt_act');
   qspCall(s, 'library_functions', 'loan_book_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,6 +932,7 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -138,6 +952,7 @@ function enterPayDebtAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -211,6 +1026,7 @@ function enterLoanBookAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -219,6 +1035,42 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'read_book':
       enterReadBook(s, scene);
+      break;
+    case 'set_library_read_acts':
+      enterSetLibraryReadActs(s, scene);
+      break;
+    case 'set_home_read_acts':
+      enterSetHomeReadActs(s, scene);
+      break;
+    case 'set_home_read_adventure_book_act':
+      enterSetHomeReadAdventureBookAct(s, scene);
+      break;
+    case 'set_home_read_fantasy_book_act':
+      enterSetHomeReadFantasyBookAct(s, scene);
+      break;
+    case 'set_home_read_romance_book_act':
+      enterSetHomeReadRomanceBookAct(s, scene);
+      break;
+    case 'set_home_read_science_book_act':
+      enterSetHomeReadScienceBookAct(s, scene);
+      break;
+    case 'set_home_read_scifi_book_act':
+      enterSetHomeReadScifiBookAct(s, scene);
+      break;
+    case 'set_home_read_artem_book_act':
+      enterSetHomeReadArtemBookAct(s, scene);
+      break;
+    case 'set_magazine_acts':
+      enterSetMagazineActs(s, scene);
+      break;
+    case 'set_read_porn_act':
+      enterSetReadPornAct(s, scene);
+      break;
+    case 'set_book_buy_acts':
+      enterSetBookBuyActs(s, scene);
+      break;
+    case 'set_single_book_buy_act':
+      enterSetSingleBookBuyAct(s, scene);
       break;
     case 'set_loan_acts':
       enterSetLoanActs(s, scene);

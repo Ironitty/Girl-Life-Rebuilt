@@ -10,7 +10,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).theme ?? {})['type'] = 'dynamic';
     qspCall(s, 'themes', 'set_theme', 'Dynamic Default', 'dynamic');
   }
-  // TODO-QSP: "Invalid parameter call for themes. You've found a bug! please let us know."
   scene.build();
 }
 
@@ -28,6 +27,7 @@ function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, '$menu_obnovit', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,6 +37,7 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'get_theme', 'indoors');
   // TODO-QSP: *p '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg +...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -141,6 +142,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '</td>'
   // TODO-QSP: *p '</tr></table>'
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).settingmode = ((s as any).themes_menu_prev_settingmode ?? 0);
@@ -153,32 +155,38 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterAltColor(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClothing(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWrap(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWrapHex(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWrapThought(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterOutdoors(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'apply', ((s as any).locArgs?.[0] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -186,6 +194,7 @@ function enterIndoors(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'apply', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'indoors', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -207,6 +216,7 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
   (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
   (s as any).fsize = ((s as any).theme ?? 0)?.['fsize'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,6 +224,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).fsize = 12;
   ((s as any).theme ?? {})['is_dark'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +235,7 @@ function enterSetTheme(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme ?? {})['fsize'] = 12;
   ((s as any).theme ?? {})['fname'] = 'Tahoma';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -283,6 +295,7 @@ function enterCheckCustomVars(s: GameState, scene: SceneBuilder): void {
     ((s as any).custom_theme ?? {})['header'] = '#f0c6c6';
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,6 +320,7 @@ function enterDefaultTheme(s: GameState, scene: SceneBuilder): void {
   ((s as any).theme_hex ?? {})['hypno'] = '#fe640b';
   ((s as any).theme_hex ?? {})['header'] = '#d24b4b';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -6942,6 +6956,8 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
+  // TODO-QSP: "Invalid parameter call for themes. You've found a bug! please let us know."
   scene.build();
 }
 

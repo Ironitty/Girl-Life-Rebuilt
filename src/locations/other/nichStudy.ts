@@ -4,7 +4,7 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'boyStat', 'A52');
@@ -42,20 +42,28 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'study');
     }
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 'gentleclubE1') {
-    (s as any).minut = ((s as any).minut ?? 0) + 90;
-    scene.img('images/characters/city/nicholas/gentleclub/e1p1.jpg');
-    scene.text('As you enter the study you see Nicholas sitting on his table talking to another business man.');
-    // TODO-QSP: dynamic text: "Good, you are here. This is <<$pcs_firstname>>, my new maid. <<$pcs_nickname>>,...
-    scene.text(`"Good, you are here. This is ${((s as any).pcs_firstname ?? 0)}, my new maid. ${((s as any).pcs_nickname ?? 0)}, this is Mister Fetisov."`);
-    scene.text('You curtsy and Mister Fetisov slightly nods in your direction.');
-    scene.text('For the next hour you are busy serving different kinds of refreshments to the two men. They are talking about business opportunities, the course of the industry and the global economy.');
-    scene.text('You have the feeling that Mister Fetisov is inspecting your butt and your breasts whenever you are not looking.');
-    scene.text('At the end of his visit Mister Fetisov looks directly at you while speaking to Nicholas.');
-    scene.text('"When I came here I thought I would waste my time. But now I know that we have way more in common than I thought. Maybe doing business together is not a bad idea after all."');
-    scene.text('He looks back at Nicholas. "There is a gentleman club where I am a member of. I think you would fit in there very well. Just go to this place." he hands Nicholas a business card. "He will inform the bouncer that I have invited you. Come any evening you like. And don\'t forget to bring your <i>maid</i>."');
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+  scene.actions([
+    { label: 'Return to the hallway', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichApartment', ''] },
+  ]);
+  scene.build();
+}
+
+function enterGentleclubE1(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 90;
+  scene.img('images/characters/city/nicholas/gentleclub/e1p1.jpg');
+  scene.text('As you enter the study you see Nicholas sitting on his table talking to another business man.');
+  // TODO-QSP: dynamic text: "Good, you are here. This is <<$pcs_firstname>>, my new maid. <<$pcs_nickname>>,...
+  scene.text(`"Good, you are here. This is ${((s as any).pcs_firstname ?? 0)}, my new maid. ${((s as any).pcs_nickname ?? 0)}, this is Mister Fetisov."`);
+  scene.text('You curtsy and Mister Fetisov slightly nods in your direction.');
+  scene.text('For the next hour you are busy serving different kinds of refreshments to the two men. They are talking about business opportunities, the course of the industry and the global economy.');
+  scene.text('You have the feeling that Mister Fetisov is inspecting your butt and your breasts whenever you are not looking.');
+  scene.text('At the end of his visit Mister Fetisov looks directly at you while speaking to Nicholas.');
+  scene.text('"When I came here I thought I would waste my time. But now I know that we have way more in common than I thought. Maybe doing business together is not a bad idea after all."');
+  scene.text('He looks back at Nicholas. "There is a gentleman club where I am a member of. I think you would fit in there very well. Just go to this place." he hands Nicholas a business card. "He will inform the bouncer that I have invited you. Come any evening you like. And don\'t forget to bring your <i>maid</i>."');
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/nicholas/01.jpg');
     scene.text('You wait in the study while Nicholas escorts Mister Fetisov to the door and says his farewell.');
     scene.text('When he returns he looks a little bit puzzled.');
@@ -86,13 +94,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-    ]);
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'reHire') {
-      scene.text('<center><b>Nicholas\' Study</b></center>');
-      scene.img('images/locations/city/citycenter/nichApartment/study.jpg');
-      scene.actions([
-        { label: 'Approach Nicholas and ask for job back.', handler: (st: GameState) => {
+  ]);
+  scene.build();
+}
+
+function enterReHire(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Nicholas\' Study</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/study.jpg');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Approach Nicholas and ask for job back.', handler: (st: GameState) => {
     scene.img('images/characters/city/nicholas/01.jpg');
     // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, what brings you here?" Nicholas asks while still reading...
     scene.text(`"Oh, ${((s as any).pcs_nickname ?? 0)}, what brings you here?" Nicholas asks while still reading his papers.`);
@@ -120,15 +131,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      ]);
-    }
-  }
-  scene.actions([
-    { label: 'Return to the hallway', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
   ]);
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'gentleclubE1':
+      enterGentleclubE1(s, scene);
+      break;
+    case 'reHire':
+      enterReHire(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const nichStudy: LocationDef = {

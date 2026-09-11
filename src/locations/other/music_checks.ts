@@ -57,6 +57,7 @@ function enterZariyahApproach(s: GameState, scene: SceneBuilder): void {
       (s as any).ml_approach = 0;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,6 +95,7 @@ function enterCheckIfFired(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +115,7 @@ function enterCheckIfCanPerform(s: GameState, scene: SceneBuilder): void {
     ((s as any).ml_delparcoQW ?? {})['Zariyah Trust'] = (((s as any).ml_delparcoQW ?? {})['Zariyah Trust'] ?? 0) - (10);
     (s as any).ml_perform = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +123,7 @@ function enterCheckForTrust(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_delparcoQW ?? 0)?.['Zariyah Trust'] <= 0) {
     ((s as any).ml_delparcoQW ?? {})['Stage'] = 100;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,6 +131,7 @@ function enterResetChecks(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_delparcoQW ?? {})['Drinking Rule'] = 1;
   ((s as any).ml_delparcoQW ?? {})['Weed Rule'] = 1;
   ((s as any).ml_delparcoQW ?? {})['Outfit Rule'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 

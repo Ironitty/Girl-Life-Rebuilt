@@ -14,6 +14,7 @@ function enterLOCA(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_warning = 1;
   qspCall(s, 'mod_system', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +24,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $modARGS[1] = $ARGS[2]
   qspCall(s, 'mod_system', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +33,7 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_warning = 0;
   qspCall(s, 'mod_system', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,6 +41,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
   return;
   (s as any).mod_warning = 0;
   qspCall(s, 'mod_system', 'core_loop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +50,7 @@ function enterFunc(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_warning = 0;
   qspCall(s, 'mod_system', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +59,7 @@ function enterArousal(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_warning = 0;
   qspCall(s, 'mod_system', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -63,6 +69,7 @@ function enterOutfit(s: GameState, scene: SceneBuilder): void {
   ((s as any).modARGS ?? {})[1] = qspUntranslated(s, "ARGS[3]", { location: "mod_system" });
   qspCall(s, 'mod_system', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,6 +93,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'mod_exec'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +120,7 @@ function enterSaveupdater(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name ?? {}).length) {
     // TODO-QSP: jump 'mod_data_updater'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -135,6 +144,7 @@ function enterAddMod(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $mod_author[] = $mod_info[2]
   // TODO-QSP: $mod_desc[] = $mod_info[3]
   // TODO-QSP: $mod_opt[] = $mod_info[4]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -180,6 +190,7 @@ function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name_temp ?? {}).length) {
     // TODO-QSP: jump 'mod_data_restore'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -221,6 +232,7 @@ function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mod_i ?? 0) < Object.keys((s as any).mod_name_temp ?? {}).length) {
     // TODO-QSP: jump 'mod_data_restore_update'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -243,6 +255,7 @@ function enterDeleteAllMods(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: freelib
   }
+  // TODO-QSP: end
   scene.build();
 }
 

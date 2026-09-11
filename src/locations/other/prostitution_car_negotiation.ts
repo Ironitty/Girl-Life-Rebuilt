@@ -67,6 +67,7 @@ function enterGeneralDescription(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('</td></tr></table>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,12 +151,14 @@ function enterLookClient(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClientRegular(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/prostitution/car/regular/negotiation/arrival.mp4');
   scene.text('A car approaches and slows down as it comes nearer. You take a look at the driver and you recognize him, he\'s one of your regulars.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach the car', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -333,6 +336,7 @@ function enterClientRegularFail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Shit? Really?" You nod and he looks disheartened. After a moment he shrugs and ...
   scene.text(`"Shit? Really?" You nod and he looks disheartened. After a moment he shrugs and throws you a grin. "Don't worry about it ${((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)]}, it's fine, you're always worth the wait."`);
   // TODO-QSP: '"Thanks," you say and step away from the car.'+iif(prostitute['std_mod'] = 1 and mc_inventory['norm...
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'work');
@@ -349,6 +353,7 @@ function enterClientRegularSuccess(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/prostitution/car/regular/negotiation/drive.mp4');
   scene.text('You get into his car and he takes you to your regular spot at the end of the parking lot.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 1) < 4  &&  ((s as any).prostitute ?? 0)?.['skip_start'] === 0) {
@@ -579,6 +584,7 @@ function enterNegotiationStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -641,6 +647,7 @@ function enterNegotiationCondomYes(s: GameState, scene: SceneBuilder): void {
   }, goto: ['prostitution_car_negotiation', 'negotiation_condom_no'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -692,6 +699,7 @@ function enterNegotiationCondomNo(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept and get into his car', handler: (st: GameState) => {
     qspCall(s, 'prostitution_functions', 'payment', 'condom_no', 'inside_yes');
@@ -772,6 +780,7 @@ function enterNegotiationAutomatic(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['prostitution_car_negotiation', 'negotiation_success'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -804,6 +813,7 @@ function enterNegotiationFail(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Step back from the car', handler: (st: GameState) => {
     ((s as any).prostitute ?? {})['fail_pay'] = 0;
@@ -881,6 +891,7 @@ function enterNegotiationSuccess(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -905,6 +916,7 @@ function enterMoney(s: GameState, scene: SceneBuilder): void {
       { label: 'Get to work', goto: ['prostitution_car_sex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

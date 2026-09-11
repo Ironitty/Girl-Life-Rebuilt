@@ -94,6 +94,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
     { label: 'Strip down', handler: (st: GameState) => {
@@ -169,6 +170,7 @@ function enterStudioClosing(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Photography studio</b></center>');
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('It\'s after midnight and the studio is closing down. You get dressed and leave before you get locked in.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
   ]);
@@ -264,6 +266,7 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look for work', handler: (st: GameState) => {
     scene.text('<center><b>Floor Manager</b></center>');
@@ -426,6 +429,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Search the props\' room', goto: ['tatiana_missions', 'mission2A'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the studio floor', goto: ['foto', 'studio'] },
     { label: 'Go to the showers', goto: ['foto', 'showers'] },
@@ -540,6 +544,7 @@ function enterShowers(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'din_van', 'brit');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the studio floor', handler: (st: GameState) => {
     // TODO-QSP: pcs_shave['free_razor'] = 0
@@ -609,6 +614,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the studio', goto: ['foto', 'studio'] },
     { label: 'Go to the showers', goto: ['foto', 'showers'] },
@@ -623,6 +629,7 @@ function enterManagerTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach the manager\'s desk.');
   // TODO-QSP: dynamic text: "Something I can help you with <<$model['firstname']>>?"
   scene.text(`"Something I can help you with ${((s as any).model ?? 0)?.['firstname']}?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the studio', goto: ['foto', 'studio'] },
     { label: 'Change your model name', handler: (st: GameState) => {
@@ -652,10 +659,12 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).practice_session = 0;
   }
   scene.actions([{ label: 'Continue', goto: ['foto', 'studio'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHiringAsk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about working as a glamour model', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -810,6 +819,7 @@ function enterInterview(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -962,6 +972,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I can\'t do it', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
@@ -1028,6 +1039,7 @@ function enterJobDecline(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1298,6 +1310,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1305,6 +1318,7 @@ function enterModelName1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('"A few more things to fill out your profile. Did you want to have a model name or a pseudonym? Or would you prefer to use your real name?"');
   qspCall(s, 'foto', 'model_name2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1319,6 +1333,7 @@ function enterModelName2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your real name', handler: (st: GameState) => {
     ((s as any).model ?? {})['firstname'] = ((s as any).pcs_firstname ?? 0);
@@ -1369,6 +1384,7 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Incorrect', goto: ['foto', 'model_name3'] },
   ]);
@@ -1377,6 +1393,7 @@ function enterModelName3(s: GameState, scene: SceneBuilder): void {
 
 function enterModelProfile(s: GameState, scene: SceneBuilder): void {
   scene.text('"We\'ll also need some additional details, so our readers can learn a little about you. Doesn\'t have to be true," ');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     ((s as any).model ?? {})['likes1'] = 0;
@@ -1406,6 +1423,7 @@ function enterGavePassport(s: GameState, scene: SceneBuilder): void {
     ((s as any).model ?? {})['age'] = ((s as any).age ?? 0);
   }
   ((s as any).model ?? {})['start_year'] = ((s as any).year ?? 0);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the studio', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'restore', 'foto');
@@ -1483,6 +1501,7 @@ function enterWanderingModels(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The studio is fairly empty. Most of the other models have gone home for the night.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1524,6 +1543,7 @@ function enterMicrocameraAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1656,6 +1676,7 @@ function enterBlackm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1666,6 +1687,7 @@ function enterUnderwear(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['foto'], lastwornpantynumber['foto']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['foto'], lastwornbranumber['foto']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1701,6 +1723,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     (s as any).model_job_week = 0;
     qspCall(s, 'jobs', 'resume_job', 'city_aphrodite_model');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

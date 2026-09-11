@@ -31,11 +31,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'teeth');
   qspCall(s, 'body_desc', 'appearance');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterChooseDescWord(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,6 +89,7 @@ function enterThroat(s: GameState, scene: SceneBuilder): void {
     ((s as any).pc_descFull ?? {})['throat'] = (((s as any).pc_descFull ?? {})['throat'] ?? 0) + (' Last you checked, your breath smelled fresh and minty.');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +140,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -189,12 +193,14 @@ function enterAnus(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBMI(s: GameState, scene: SceneBuilder): void {
   ((s as any).bodyVars ?? {})['bmi_desc'] = qspFunc(s, 'body_structure', 'bmi_desc');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -354,6 +360,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,6 +413,7 @@ function enterButt(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -462,6 +470,7 @@ function enterLips(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $pc_desc['lips'] = '<<$pc_desc[''lip size'']>> <<$pc_desc[''lip gloss'']>>'
   // TODO-QSP: $pc_descWordy['lips'] = '<<$pc_desc[''lip gloss'']>>, <<$pc_descWordy[''lip size'']>>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -494,6 +503,7 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,6 +536,7 @@ function enterSkin(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,6 +582,7 @@ function enterEyelashes(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -588,6 +600,7 @@ function enterGlasses(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -615,6 +628,7 @@ function enterEyeColor(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,6 +657,7 @@ function enterEyeSize(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -710,6 +725,7 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
     ((s as any).pc_desc ?? {})['navel'] = 'pierced';
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -893,6 +909,7 @@ function enterTattoo(s: GameState, scene: SceneBuilder): void {
     ((s as any).pc_desc ?? {})['wrist'] = 'tattooed';
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +962,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -972,6 +990,7 @@ function enterNipples(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -999,6 +1018,7 @@ function enterClit(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1096,6 +1116,7 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'body_desc', 'pube_desc_update');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1149,6 +1170,7 @@ function enterPubeDescUpdate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1171,6 +1193,7 @@ function enterLegs(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1438,6 +1461,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $pc_desc['hair'] = '<<$pc_desc[''hair status'']>>, <<$pc_desc[''hair length'']>> <<$pc_desc[''hair colour'']>> <<$pc_descWordy[''hair texture'']>>'
   // TODO-QSP: $pc_descWordy['hair'] = '<<$pc_desc[''hair status'']>>, <<$pc_descWordy[''hair length'']>> <<$pc_descWordy[''hair texture'']>> of <<$pc_descWordy[''hair colour'']>>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1560,6 +1584,7 @@ function enterTeeth(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1617,6 +1642,7 @@ function enterAppearance(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

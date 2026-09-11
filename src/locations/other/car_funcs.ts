@@ -15,6 +15,7 @@ function enterHasCar(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -25,6 +26,7 @@ function enterHasWreck(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +48,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,6 +67,7 @@ function enterIsHereArea(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +87,7 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
   ((s as any).car ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).car ?? {})['loc_arg'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).car ?? {})['region'] = ((s as any).locArgs?.[3] ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +100,7 @@ function enterAddCar(s: GameState, scene: SceneBuilder): void {
   ((s as any).car ?? {})['tank'] = ((s as any).CarTank ?? 0);
   ((s as any).car ?? {})['fuel'] = ((s as any).CarTank ?? 0);
   ((s as any).car ?? {})['wreck'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +109,7 @@ function enterGotoCar(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   // TODO-QSP: gt $car['loc'], $car['loc_arg']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,6 +140,7 @@ function enterAvtonorm(s: GameState, scene: SceneBuilder): void {
     (s as any).normneed = 0 - (((s as any).car ?? {})?.['current_condition'] - ((s as any).car ?? {})?.['new_condition']);
     (s as any).normrem = (((s as any).normneed ?? 0) * ((s as any).normhour ?? 0)) * 8;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -158,6 +166,7 @@ function enterAvt(s: GameState, scene: SceneBuilder): void {
   ((s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition'] = ((s as any).tehT ?? 0);
   ((s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition_desc'] = ((s as any).tehT_desc ?? 0);
   ((s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_price'] = ((s as any).bupay ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -609,6 +618,7 @@ function enterAvb(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

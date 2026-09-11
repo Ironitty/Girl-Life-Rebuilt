@@ -86,6 +86,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['komp', 'start'] },
   ]);
@@ -129,6 +130,7 @@ function enterKGOLklassvibor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -182,6 +184,7 @@ function enterKGOLklassvibor2(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).KGHP = ((s as any).KGOLvital ?? 0) * 10;
   (s as any).KGMana = ((s as any).KGOLintel ?? 0) * 10;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
     (st as any).KGOLpers = 1;

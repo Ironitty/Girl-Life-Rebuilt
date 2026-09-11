@@ -183,6 +183,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -232,6 +233,7 @@ function enterDimDrugs(s: GameState, scene: SceneBuilder): void {
       { label: 'Go with Dimka', goto: ['gschool_coolkid_chats', 'dimka_sex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,6 +243,7 @@ function enterDimkaPay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/drugs/cocainebag.jpg');
   scene.text('You nod your head and dig around in your purse before pulling out the money and quickly handing it to him. He takes his time slowly counting it out, which seems like an eternity before he finally hands over a small baggy. You snatch it from him and quickly leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
     { label: 'Do a line', handler: (st: GameState) => {
@@ -261,6 +264,7 @@ function enterDimkaSex(s: GameState, scene: SceneBuilder): void {
   scene.text('He leads you down the hall and finally stops at one of the classrooms. He opens the door and steps in, closing the door after you enter.');
   scene.text('Once inside, he pushes you up against the wall and leans in close so his face is only a few inches from yours. "Get on your knees, bitch."');
   scene.text('You obey him and slowly sink to your knees. You don\'t have to be told what to do next. You reach up and start undoing his pants.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get him hard', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/school/dimbj2.jpg');
@@ -672,6 +676,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -682,6 +687,7 @@ function enterTeaseIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A4', 'like');
   scene.img('images/characters/shared/headshots_main/big4.jpg');
   scene.text('You decide to tease him a little. "I hope you\'re not too sore after last time…" you whisper with a smirk. Igor\'s cheeks flush pink as he looks around nervously, hoping no one overheard.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just chat', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big4.jpg');
@@ -715,6 +721,7 @@ function enterIgorPeg(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/igor/sex/school/break1.jpg');
   scene.text('You lead him down the hall and finally stop at one of the classrooms. You open the door and step in, closing the door after he enters. Once inside you tell him to strip naked.');
   scene.text('He only hesitates for a second before he quickly strips from his clothes. Once he is naked, you push him down to his knees and he looks up at you submissively, already rock-hard.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat me', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/school/break2.jpg');
@@ -1032,6 +1039,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
       { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1119,6 +1127,7 @@ function enterKatjaTampon(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1136,6 +1145,7 @@ function enterKatjaproblems(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay… Uh… Look Katja, just think about it, okay? Just… give me a chance… Yeah… Ehm… Until later."');
   scene.text('As Svyatoslav leaves, Katja releases a long-winded sigh.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk with the twins', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1321,6 +1331,7 @@ function enterBella(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1377,6 +1388,7 @@ function enterBellaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1519,6 +1531,7 @@ function enterLizaveta(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1567,6 +1580,7 @@ function enterLizavetaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1576,6 +1590,7 @@ function enterLizavetaTampon(s: GameState, scene: SceneBuilder): void {
 function enterLizavetaLatestGossip(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big140.jpg');
   qspCall(s, 'gschool_gossip', 'Lizaveta');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1688,6 +1703,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1703,6 +1719,7 @@ function enterMarcus_KatjaTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Are you asking me if I want to have a threesome with two beautiful girls' + iif...
   scene.text('"Are you asking me if I want to have a threesome with two beautiful girls\' + iif(katjaQW[\'QWstage\'] > 5, \'?\', \', with one of them even being a virgin?\') + \'" he asks with a surprised look on his face. "Of course I\'m up for this!" he exclaims as his face turns into a huge grin.');
   scene.text('"Great," you answer. "I\'ll call you with her address when we are ready. But you have to be discreet, we don\'t want any rumors spread around!" you tell him and he smiles. "Of course, I\'m a gentleman and gentlemen never kiss and tell. I look forward to your call."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1809,6 +1826,7 @@ function enterAndrey(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1946,6 +1964,7 @@ function enterMefodiy(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2100,6 +2119,7 @@ function enterVicky(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2136,6 +2156,7 @@ function enterVickyTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2250,6 +2271,7 @@ function enterStasya(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2296,6 +2318,7 @@ function enterStasyaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2459,6 +2482,7 @@ function enterIrina(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2505,6 +2529,7 @@ function enterIrinaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2669,6 +2694,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2705,6 +2731,7 @@ function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);

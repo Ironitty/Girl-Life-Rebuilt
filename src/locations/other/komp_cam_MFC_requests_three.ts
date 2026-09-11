@@ -27,6 +27,7 @@ function enterShowAsshole(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show them your battered sphincter', handler: (st: GameState) => {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -85,6 +86,7 @@ function enterShowPussy(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your panties', handler: (st: GameState) => {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -159,6 +161,7 @@ function enterShowTits(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove your bra', handler: (st: GameState) => {
     qspCall(s, 'bras', 'remove');
@@ -225,6 +228,7 @@ function enterPlayTits(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play with your boobs', handler: (st: GameState) => {
     if (((s as any).braworntype ?? 0) !== 'none') {
@@ -265,6 +269,7 @@ function enterShowCunt(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do it', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic', 'request');
@@ -302,6 +307,7 @@ function enterShowVagina(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him your vagina', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'erotic', 'request');

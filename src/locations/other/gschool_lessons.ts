@@ -93,12 +93,14 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons', 'skip'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterUniformCheck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'school_check', 'apply', 'wearing');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,6 +309,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -315,6 +318,7 @@ function enterSkip(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>School Hallway</b></center>');
   scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
   scene.text('You don\'t feel like attending all of your classes this morning. Surely no one will miss you if you skip one of your three morning classes?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the girl\'s bathroom', handler: (st: GameState) => {
     (st as any).missing_class = ((st as any).missing_class ?? 0) + (1);
@@ -493,6 +497,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -609,6 +614,7 @@ function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'morning'] },
   ]);

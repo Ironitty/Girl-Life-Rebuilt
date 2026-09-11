@@ -49,6 +49,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -100,6 +101,7 @@ function enterNeighborhoodImage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,12 +113,14 @@ function enterDailyInit(s: GameState, scene: SceneBuilder): void {
     ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
     ((s as any).lover_home_trash ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 2) + 0) - (((s as any).npc_diligent ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLocInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'lover_home', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'lover_home', 'daily_init');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -138,6 +142,7 @@ function enterDressCloth(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'outfit', 'remove_backup', 'lover_ev');
   scene.actions([{ label: 'Continue', goto: ['lover_home', 'bedroom'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +175,7 @@ function enterLocMenu(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the door', goto: ['lover_home', 'hallway'] },
   ]);
@@ -208,6 +214,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_home', 'neighborhood_image');
   // TODO-QSP: dynamic text: You knock on <<$npcdesc>>'s door but there is no answer.
   scene.text(`You knock on ${((s as any).npcdesc ?? 0)}'s door but there is no answer.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -249,6 +256,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['lover_home', 'bedroom'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '</b>Leave the apartment</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -302,6 +310,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Relax in <<$npc_usedname[$npcID]>>\'s bed', goto: ['bed', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lover_home', 'loc_menu'
@@ -368,6 +377,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'din_van', 'private');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -431,6 +441,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       { label: 'Take out <<$npcdesc>>\'s trash',  },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lover_home', 'loc_menu'
@@ -466,6 +477,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lover_home', 'loc_menu'
@@ -482,6 +494,7 @@ function enterGamingRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $npc_apt_spare[$npcID]
   // TODO-QSP: dynamic text: <<$npcdesc>> has a nice desk, chair, and computer.
   scene.text(`${((s as any).npcdesc ?? 0)} has a nice desk, chair, and computer.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lover_home', 'loc_menu'
@@ -497,6 +510,7 @@ function enterHomeGym(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $npc_apt_spare[$npcID]
   // TODO-QSP: dynamic text: <<$npcdesc>> has a home gym.
   scene.text(`${((s as any).npcdesc ?? 0)} has a home gym.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lover_home', 'loc_menu'

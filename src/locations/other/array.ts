@@ -32,11 +32,13 @@ function enterGetMeIndex(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemoveElement(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +71,7 @@ function enterCoupledSort(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'coupled_sort_outer_start'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

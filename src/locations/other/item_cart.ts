@@ -49,6 +49,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('</table></center>');
   qspCall(s, 'item_cart', 'cart_total');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +58,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) - (((s as any).cost_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] * ((s as any).ARGS ?? 0)[2]);
   ((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = (((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] ?? 0) - (qspUntranslated(s, "ARGS[2]", { location: "item_cart" }));
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,12 +70,14 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic "<<$event_curr_aisle['<<ARGS[1]>>']>>"
   }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + qspUntranslated(s, "ARGS[1]", { location: "item_cart" }) + ''] * Math.max(1, qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
   ((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = (((s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (1 * Math.max(1, qspUntranslated(s, "ARGS[2]", { location: "item_cart" })));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +96,7 @@ function enterCartTotal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $item_line[2] += '<td>&nbsp;<a href="exec:gt ''item_cart'', ''cancel''">cancel</a>&nbsp;</td>'
   // TODO-QSP: $item_line[2] += '</tr></table></center>'
   // TODO-QSP: *p $item_line[2]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,17 +112,20 @@ function enterPurchase(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'pay', ((s as any).cart_tally ?? 0));
   qspCall(s, 'item_cart', 'shopping_var_clear');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCancel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_var_clear');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShoppingVarClear(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_stock_db', 'cleanup');
+  // TODO-QSP: end
   scene.build();
 }
 

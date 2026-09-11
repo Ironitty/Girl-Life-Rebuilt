@@ -16,6 +16,7 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt $home['location']
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -29,6 +30,7 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt $home['entrance'], 'start'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

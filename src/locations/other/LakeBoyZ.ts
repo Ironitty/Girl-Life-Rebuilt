@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '<<$pcs_nickname>>', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

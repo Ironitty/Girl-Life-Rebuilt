@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'booty_call', 'booty_call_scheduler');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,6 +41,7 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
     // TODO-QSP: jump 'bc_sched_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,11 +57,13 @@ function enterScheduleSms(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSugarDaddySchedule(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: npc_sugar_daddy_timer[$ARGS[1]] = daystart + 9 + rand(0, 6)
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,6 +113,7 @@ function enterBcNpcStatUpdate(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: npc_day_off[$ARGS[1]] = rand(1, 7)
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,6 +132,7 @@ function enterSetBootyCallDate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).boy ?? 0)] === 'sugar_daddy') {
     ((s as any).sugar_daddy_call ?? {})[String((s as any).boy ?? 0)] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +146,7 @@ function enterBlockBootyCalls(s: GameState, scene: SceneBuilder): void {
       ((s as any).npc_no_booty_call ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0) + 1;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,6 +154,7 @@ function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_residence ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)  &&  ((s as any).npc_residence ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 'uni_grounds') {
     // TODO-QSP: dynamic(' ''<a href="exec: minut += 2 & gt ''''sex_ev_start'''', ''''initiate_pre'''', ''''<<$ARGS[1...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,6 +168,7 @@ function enterHotelLinks(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
     // TODO-QSP: jump 'loop_hotel'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -167,6 +176,7 @@ function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).booty_call_hotel ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic(' ''<a href="exec: minut += 2 & gt ''''sex_ev_start'''', ''''initiate_pre'''', ''''<<$ARGS[1...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -176,6 +186,7 @@ function enterText(s: GameState, scene: SceneBuilder): void {
   scene.text('<b><font color="pink">hey yourself</font></b>');
   scene.text('you text back.');
   // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
+  // TODO-QSP: end
   scene.actions([
     { label: 'What about?', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
@@ -208,6 +219,7 @@ function enterText(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInviteYourself(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -217,6 +229,7 @@ function enterGetInvited(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Why don\'t you come over to my place tonight and we can have some fun?"');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +239,7 @@ function enterText1(s: GameState, scene: SceneBuilder): void {
   scene.text('<b><font color="pink">hey yourself</font></b>');
   scene.text('you text back.');
   // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
+  // TODO-QSP: end
   scene.actions([
     { label: 'What about?', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
@@ -257,6 +271,7 @@ function enterText1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterText2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Can\'t', handler: (st: GameState) => {
     scene.text('<b><font color="pink">sorry, I cant</font></b>');
@@ -417,10 +432,12 @@ function enterInviteYourself1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterInviteYourself2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m busy then', handler: (st: GameState) => {
     scene.text('<b><font color="pink">shit</font></b>');
@@ -457,6 +474,7 @@ function enterDraw(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).booty_call ?? {})['A0'] = ((s as any).daystart ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -474,6 +492,7 @@ function enterSMSRaiser(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_bc_i = ((s as any).temp_bc_i ?? 0) + (1);
     // TODO-QSP: jump 'sms_raiser_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -643,10 +643,12 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIcePlunge(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take an ice plunge', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

@@ -15,6 +15,7 @@ function enterFedorIntro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Gang/fight.jpg');
   scene.text('As you walk out of the cafeteria, you see a crowd of students gathered around; what appears to be a fight. You move closer to get a better look when one of the boys in the fight gets knocked back into you. You recoil as one of the boys throws a punch that misses the other, but is rushing toward your face. Suddenly you feel someone\'s arm press against your chest, pushing you away from the fight, and saving you from getting hit. The one who saved you says, "That was a close one. Are you alright?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A5', 5);
@@ -112,6 +113,7 @@ function enterFedorChat(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act 'Ask for help with Niko': gt 'NikoPayback', 'Fedor Help'
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A5', Math.floor(Math.random() * 6) + 5);
@@ -163,6 +165,7 @@ function enterFedorChat2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Hall/fedor.jpg');
   scene.text('You approach Fedor and ask "How about we spend some alone time together?" Fedor gives you a playful smile as he wraps his arm around your neck, he then leads you to the hallway near the back of the school. Fedor rests against a nearby window and asks "So, what would you like to do today?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wanna fool around in the locker room?', goto: ['FedorMisc', 'Locker Room'] },
     { label: 'Begin caressing Fedor', goto: ['FedorMisc', 'Hall'] },
@@ -187,6 +190,7 @@ function enterFedorHate(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['pav_disco_classmates', 'classmates'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -204,6 +208,7 @@ function enterComb(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorMisc" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
   scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorMisc" }) + '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     // TODO-QSP: gt $loc, $loc_arg, ARGS[1]
@@ -219,6 +224,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   scene.text('Fedor grabs your hand then leads you through the hallways, to the locker room. Fedor then releases your hand and carefully scopes out the area, both inside the locker room and out, checking if it\'s empty and as soon as he realizes that the coast is clear, he grabs your ass and kisses your lips as he pulls you in the locker room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue.', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
@@ -243,6 +249,7 @@ function enterLockerRoom1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'arousal', 'foreplay_give', (-5), 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'On your knees', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -306,6 +313,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
   scene.text('As you enter the locker room, Fedor begins pawing at your breasts as you reach down to rub on his crotch. Fedor\'s hands lower down to your stomach then slide under your shirt as he begins rubbing on your breast before taking off you shirt then licking your nipples. The feeling of Fedor\'s soft tongue in your nipples, brings you a great sensation, making you feel a gradual wetness forming between your legs.');
   qspCall(s, 'arousal', 'foreplay', 5, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Unbutton his pants', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -369,6 +377,7 @@ function enterLockerRoom3(s: GameState, scene: SceneBuilder): void {
   scene.text('As you and Fedor enter the locker room, Fedor approaches you from behind and begins pawing at your breasts through your clothes. You lilt your head back, letting Fedor caress your body while undressing you. Fedor removes your shirt then begins lightly squeezing your breasts and kissing your neck as he undresses himself.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -435,6 +444,7 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'arousal', 'foreplay_give', (-5), 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pull down his pants', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -507,6 +517,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4><font color=#00ffe4>Girl\'s Restroom</font></h4></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Restroom/girlsrestroom.jpg');
   scene.text('The girls restroom is fairly clean and has 6 <a href="exec:gt \'fedormisc\', \'Quick Wash\'">sinks</a>, 6 <a href="exec:gt \'mirror\', \'start\'">mirrors</a> and 5 stalls arranged symmetrically.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave restroom', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -528,6 +539,7 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4><font color=#00ffe4>Girl\'s Restroom</font></h4></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
   scene.text('You grab a few paper towels then approach the sink to clean yourself as thoroughly as possible while taking a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up then walk out of the restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dry off', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -545,6 +557,7 @@ function enterSmoke(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Hall/smoke.jpg');
   scene.text('"I was just thinking the same thing." Fedor hands you a cigarette then puts one in his mouth as he collects his lighter from his pocket then lights both cigarettes. You both spend the rest of the lunch period smoking while discussing current events.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish smoking', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -557,6 +570,7 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Hall/smoke.jpg');
   scene.text('"Sure thing." Fedor hands you a cigarette then puts one in his mouth as he collects his lighter from his pocket then lights both cigarettes. You both spend the next few minute gossiping about your classmates.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish smoking', goto: ['FedorMisc', 'Outcast'] },
   ]);
@@ -597,6 +611,7 @@ function enterFedorWorkout(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Build strength', handler: (st: GameState) => {
     (s as any).FedorWorkout = 1;
@@ -663,6 +678,7 @@ function enterFedorWorkout2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -707,6 +723,7 @@ function enterStrength(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish workout', goto: ['gdksport', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -750,6 +767,7 @@ function enterAgility(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish workout', goto: ['gdksport', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -794,6 +812,7 @@ function enterEndurance(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish workout', goto: ['gdksport', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -806,6 +825,7 @@ function enterVitekEvent(s: GameState, scene: SceneBuilder): void {
   scene.text(`As you and Fedor begin your warm ups, you hear someone shout "YOU FUCKING PUNK!" you both turn to see Vitek walking very quickly toward you. Fedor quickly begins running as Vitek gives chase, quickly catching up to Fedor. Vitek grabs Fedor's arm then pulls him onto the ground then climbs on top of him lifting his fist but before he could get a punch off he is grabbed from behind by Ivan who has wrapped his arms around Vitek's shoulders, dragging him back by his arms. Fedor quickly rises to his feet then runs off as Vitek bellows, "YOU WORTHLESS SACK OF SHIT! ${((s as any).pcs_firstname ?? 0)} IS MINE! YOU HEAR ME FUCKER!? ${((s as any).pcs_firstname ?? 0)} IS MIIIIIIINE!" as others rush in to help Ivan restrain Vitek.`);
   scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/ivan/angry1.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['gdksport', 'start'] },
   ]);
@@ -891,6 +911,7 @@ function enterOutcastIntro(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['pav_park', 'start'] },
   ]);
@@ -971,6 +992,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask for a smoke', goto: ['FedorMisc', 'Smoke 2'] },
     { label: 'Walk away', goto: ['pav_park', 'start'] },
@@ -988,6 +1010,7 @@ function enterFedorVsDimka(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('Fedor walks up to you then gives you a kiss on your cheek then whispers in your ear. "Are you ready to deal with that punk Dimka?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes I am', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1090,6 +1113,7 @@ function enterDimkaParty(s: GameState, scene: SceneBuilder): void {
   scene.text('You push Dimka away from you while shouting "Hey! Beat it! Are you crazy or something?" suddenly Fedor comes stumbling into the room, obviously a little drunk then quickly approaches Dimka. Dimka quickly released you then backs away, saying "Whoa, take it easy, I was just helping her to the door." Fedor gently grabs you by the arm and walks you out of the house while keeping his eyes trained on Dimka.');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Events/Dimka/fedor.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -1106,6 +1130,7 @@ function enterDimkaParty2(s: GameState, scene: SceneBuilder): void {
   scene.text('You rush over to Fedor to pull him away and he looks back at you and asks "Are you alright? He didn\'t hurt you, did he?" You give him a warm smile as you reply, "It\'s alright. I\'m fine. We should get going." you and Fedor then leave the house together.');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/Events/Dimka/outcast.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -1117,6 +1142,7 @@ function enterVKwip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/school/lockerroom/lr.jpg');
   scene.text('');
+  // TODO-QSP: end
   scene.actions([
     { label: '', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1166,6 +1192,7 @@ function enterWorkoutTime(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   // TODO-QSP: dynamic text: As you are walking around, Fedor approaches you then says, "Hey <<$pcs_nickname>...
   scene.text(`As you are walking around, Fedor approaches you then says, "Hey ${((s as any).pcs_nickname ?? 0)}, I'm heading to the sports center to do some workouts. Would you like to join me, or would you prefer that I take you home?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'I could use a good workout', handler: (st: GameState) => {
     (s as any).FedorDW = 1;

@@ -30,6 +30,7 @@ function enterYliving(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'subkid', '');
     qspCall(s, 'music_actions', 'start');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -79,6 +80,7 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -104,6 +106,7 @@ function enterYlibrary(s: GameState, scene: SceneBuilder): void {
     scene.text('A huge collection of books are neatly placed on the bookshelves.');
     qspCall(s, 'library_functions', 'set_library_read_acts');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -132,6 +135,7 @@ function enterYoffice(s: GameState, scene: SceneBuilder): void {
     scene.text('There\'s a <a href="exec:gt \'komp\', \'start\'">computer</a> sitting on your antique <a href="exec:gt \'stol\', \'start\'">desk</a>.');
     qspCall(s, 'music_actions', 'start');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -157,6 +161,7 @@ function enterYnursery(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[9] === 2) {
     qspCall(s, 'subkid', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

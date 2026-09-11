@@ -38,6 +38,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with it', handler: (st: GameState) => {
     (s as any).randlcpic = Math.floor(Math.random() * 7) + 1;
@@ -67,6 +68,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('Eugene leads you to the pantry again, and gives you a wink before she starts to undress.');
   // TODO-QSP: dynamic text: "So, what would you like to do today, <<$pcs_nickname>>?" she chuckles and expos...
   scene.text(`"So, what would you like to do today, ${((s as any).pcs_nickname ?? 0)}?" she chuckles and exposes her semi-erect cock to you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck me, Eugene!', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 5);

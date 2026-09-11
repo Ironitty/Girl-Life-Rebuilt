@@ -93,6 +93,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gad_beach', 'arrive_Mira_already_there'] }]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the river (0:05)', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1) {
@@ -278,6 +279,7 @@ function enterSetSwimmingAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -429,6 +431,7 @@ function enterSetSunbathAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -442,6 +445,7 @@ function enterMiraLeaves(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I have to go home, " Mira said and began gathering her stuff...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, I have to go home, " Mira said and began gathering her stuff.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_beach', 'start', 1
@@ -456,6 +460,7 @@ function enterArrive_MiraAlreadyThere(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   ((s as any).MiraVars ?? {})['follow_time'] = 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['swimday'] === ((s as any).daystart ?? 0)) {
@@ -559,6 +564,7 @@ function enterGetChanged(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -573,6 +579,7 @@ function enterSecondThoughts(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'npc_relationship', 'modify', 'A60', (-1));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_beach', 'start', 1
@@ -597,6 +604,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/gadukino/mira/mirarivernude.jpg');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
@@ -805,6 +813,7 @@ function enterGuysBeach(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_beach', 'start', 1

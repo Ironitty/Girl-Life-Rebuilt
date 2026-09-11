@@ -17,6 +17,7 @@ function enterIntercom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/alexhome.jpg');
   }
   scene.text('The house is situated on the more wealthy side of the neighborhood. It\'s big and expensive, but not by too much, and sits in a nebulous middle point, making it utterly forgettable, yet classy. You wonder if the neighnours know that one of the most powerful beings in the world lives here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Call the intercom', handler: (st: GameState) => {
     if (((s as any).succubusQW ?? 0) > 1  &&  ((s as any).succubusQW ?? 0) < 5  &&  (!((s as any).AlexSuc ?? 0))) {
@@ -108,6 +109,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Nobody is currently in this room. You wonder if you should peek inside.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the house', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

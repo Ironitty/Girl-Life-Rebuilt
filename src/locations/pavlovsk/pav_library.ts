@@ -87,6 +87,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Join the nerd\'s study group', goto: ['pav_library_nerdstudy', 'nerd_study_night'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
     { label: 'Go to the toilets', goto: ['gdktoilet', 'start'] },
@@ -106,6 +107,7 @@ function enterRead(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_library_read_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
     { label: 'Go back', goto: ['pav_library', ''] },
@@ -123,6 +125,7 @@ function enterLoan(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_loan_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
     { label: 'Go back', goto: ['pav_library', ''] },

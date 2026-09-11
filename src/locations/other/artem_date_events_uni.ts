@@ -15,6 +15,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while, you end up near the small movie theater on campus. Artem\'s eyes light up when he sees it. "Hey, let\'s go see a movie!"');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds like fun', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
@@ -65,6 +66,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
 function enterArtemDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
   scene.actions([{ label: 'Continue', goto: ['artem_date_events_uni', 'firstdate'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

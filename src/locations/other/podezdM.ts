@@ -13,6 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <<$npcdesc>> turns to you and says, "Let's go to the store and get some beer."
   scene.text(`${((s as any).npcdesc ?? 0)} turns to you and says, "Let's go to the store and get some beer."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk while embraced', handler: (st: GameState) => {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -67,6 +68,7 @@ function enterKiosk(s: GameState, scene: SceneBuilder): void {
   (s as any).podrand = Math.floor(Math.random() * 96) + 5;
   scene.img('images/locations/shared/apartment/podezdm.jpg');
   scene.text('As you leave he opens a bottle of beer and hands it to you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink a little', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer');
@@ -122,6 +124,7 @@ function enterKiosk1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: While drinking beer and walking back, <<$npcdesc>> tells you:
   scene.text(`While drinking beer and walking back, ${((s as any).npcdesc ?? 0)} tells you:`);
   qspCall(s, 'anekdot', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
     (s as any).SUB = ((s as any).SUB ?? 0) + (1);
@@ -153,6 +156,7 @@ function enterKiosk2(s: GameState, scene: SceneBuilder): void {
       { label: 'I have to go, call you later', goto: ['homes_properties', 'go_home'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -200,6 +204,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sexm', 'startPod'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I want you', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -240,6 +245,7 @@ function enterGrup(s: GameState, scene: SceneBuilder): void {
   }, goto: ['podezdM', 'grup1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink a little', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer');
@@ -275,6 +281,7 @@ function enterGrup1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <<$npcdesc>> drinks with them, they tell sexist jokes and the boys all laugh, af...
   scene.text(`${((s as any).npcdesc ?? 0)} drinks with them, they tell sexist jokes and the boys all laugh, after a few minutes. ${((s as any).npcdesc ?? 0)} tells them he needs to go and takes you up stairs.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go up stairs', goto: ['sexm', 'start'] },
   ]);
@@ -377,6 +384,7 @@ function enterGrup2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -393,6 +401,7 @@ function enterAlleyway(s: GameState, scene: SceneBuilder): void {
   scene.text(`You grab onto a nearby chain hanging from the fire escape on the side of the building, trying to keep your balance while also pushing back against him, the thought of getting caught turns you on more than you care to admit. You can hear people passing by on the sidewalk, out of view just a few meters away. You try to be as quiet as you can, but soon you can't control yourself any longer and your moans start getting louder and louder. "Oh god yes ${((s as any).npcdesc ?? 0)}, fuck me, fuck me harder!" You try to say it quietly but it was obviously much louder than you intended, as he gives your ass a slap and starts hammering your pussy as hard as he can, grunting as he does.`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/alleycum.jpg');

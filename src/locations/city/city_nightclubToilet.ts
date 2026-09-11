@@ -29,6 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_nightclubToilet', 'clubtoilet_men'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the women\'s restroom', goto: ['city_nightclubToilet', 'clubtoilet_women'] },
     { label: 'Return to the dance floor', goto: ['city_nightclub', 'inside'] },
@@ -46,6 +47,7 @@ function enterClubtoiletMen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'palelady');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'start'] },
   ]);
@@ -62,6 +64,7 @@ function enterClubtoiletWomen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'palelady');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'start'] },
     { label: 'Go to the last stall', goto: ['gloryhole', 'start'] },

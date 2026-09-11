@@ -30,6 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('One good thing about living in Pavlovsk is the access to rivers and lakes that let the locals do all sorts of water-related activities like swimming, tanning or just simply take a walk around the secluded groves.');
     scene.text('Katja and you are no less, and go to a secluded beach to do those things… and looking absolutely fabulous doing it.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lake activities', goto: ['katja_lake', 'lake_activities'] },
     { label: 'Sauna time', goto: ['katja_lake', 'sauna_time'] },
@@ -179,6 +180,7 @@ function enterLakeActivities(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -313,6 +315,7 @@ function enterSaunaTime(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -338,6 +341,7 @@ function enterBeachInSwimwear1(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk', goto: ['katja_lake', 'walk'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -367,6 +371,7 @@ function enterBeachInSwimwear2(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk', goto: ['katja_lake', 'walk'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -382,6 +387,7 @@ function enterSaunaInSwimmwear1(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     scene.actions([{ label: 'Continue', goto: ['katja_lake', 'saune_time'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -404,6 +410,7 @@ function enterSaunaInSwimmwear2(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the sauna', goto: ['katja_lake', 'saune_time'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -640,6 +647,7 @@ function enterWinterActivities(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -650,6 +658,7 @@ function enterPlayingInSnow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/KWT9.jpg');
   scene.text('Snow isn\'t exactly a novelty during the winter, but being the first to find a clean parcel without footsteps, car tracks or snot-nosed kids around <i>is</i> lucky!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a snowball fight', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/KWT10.jpg');
@@ -724,6 +733,7 @@ function enterHockeyMatch(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching the match', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -794,6 +804,7 @@ function enterBeachNude(s: GameState, scene: SceneBuilder): void {
       { label: 'Swim', goto: ['katja_lake', 'swim'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tan', goto: ['katja_lake', 'tan'] },
     { label: 'Walk', goto: ['katja_lake', 'walk'] },
@@ -850,6 +861,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tan', goto: ['katja_lake', 'tan'] },
     { label: 'Walk', goto: ['katja_lake', 'walk'] },
@@ -913,6 +925,7 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
       { label: 'Swim', goto: ['katja_lake', 'swim'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk', goto: ['katja_lake', 'walk'] },
     { label: 'Redress and look for something else to do', handler: (st: GameState) => {
@@ -967,6 +980,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Swim', goto: ['katja_lake', 'swim'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tan', goto: ['katja_lake', 'tan'] },
     { label: 'Redress and look for something else to do', handler: (st: GameState) => {
@@ -1062,6 +1076,7 @@ function enterIvanAppeared(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk with him', goto: ['katja_lake', 'ivan_interaction'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1081,6 +1096,7 @@ function enterIvanInteraction(s: GameState, scene: SceneBuilder): void {
       scene.text('You can appreciate a timid smile creeping onto Katja\'s cutely blushing face as she tries to attract his attention, but it isn\'t working. Maybe you could do something?');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with him', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1562,6 +1578,7 @@ function enterSauneTime(s: GameState, scene: SceneBuilder): void {
   }, goto: ['katjaEv', 'kathan'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1586,6 +1603,7 @@ function enterIceDipping(s: GameState, scene: SceneBuilder): void {
     scene.text('You scream with all your might to throw away the cold, Katja joining your exuberance and dipping with you several more times in the frozen lake.');
     scene.text('Trembling but happy, you both exit the water and proceed to do some warm-ups. This was fun, but it\'s time to look for something else to do.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shower and leave', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'restore', 'swim');
@@ -1697,6 +1715,7 @@ function enterSaunaSex1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1714,6 +1733,7 @@ function enterSaunaSex2(s: GameState, scene: SceneBuilder): void {
   scene.text('The two of you engage in a furious kissing war, the humid air in the sauna frustrating your attempts to think clearly. You caress and kiss your way around Katja\'s petite body as she constantly steps up the game.');
   scene.text('Somehow, you have ended up straddling Katja, who now lies sprawled over the bench, desperately licking your dripping wet pussy with all her might. Your breath comes out ragged, the hot air making your head dizzy, but you somehow understand what must be done.');
   scene.text('You reach back towards Katja\'s soaking equally wet pussy and start vigorously masturbating her. She instinctively raises her hips to milk more pleasure from your fingers, somehow synchronizing with your own needs until you both orgasm <i>hard</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Catch your breath', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

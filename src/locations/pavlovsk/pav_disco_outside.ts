@@ -22,20 +22,24 @@ function enterRoutingMatrix(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterOutsideImg(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/dk_night.jpg');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTalkImg(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/dk_night.jpg');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterExitOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the street', goto: ['pav_residential', ''] },
     { label: 'Return to the disco', goto: ['pav_disco', ''] },
@@ -73,6 +77,7 @@ function enterInviteBeer(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_disco_outside', 'chat_menu'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a beer', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'beer');
@@ -148,6 +153,7 @@ function enterInviteChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'chat_menu'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -166,6 +172,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_disco_outside', 'chat_menu'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['pav_disco_outside', 'chat_end'] },
     { label: 'You go to the disco a lot?', handler: (st: GameState) => {
@@ -279,6 +286,7 @@ function enterChatEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -286,6 +294,7 @@ function enterMoveMenu(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([{ label: 'Continue', goto: ['pav_disco_outside', 'boysex_options'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/outside_kiss.jpg');
@@ -435,6 +444,7 @@ function enterToomuchExit(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -492,6 +502,7 @@ function enterCallitanight(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Um, yeah, I guess... Probably should..." ${((s as any).npcdesc ?? 0)} nods back in with equal awkward as you retreat back into the disco.`);
     qspCall(s, 'pav_disco_outside', 'exit_options');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -521,6 +532,7 @@ function enterPcAsknumber(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll call you," he says, looking very pleased.');
     qspCall(s, 'pav_disco_outside', 'exit_options');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -558,10 +570,12 @@ function enterPcAskcoffee(s: GameState, scene: SceneBuilder): void {
     scene.text('You awkwardly shuffle around each other in silence for a moment before he just calls it quits and hurries back into the disco.');
     qspCall(s, 'pav_disco_outside', 'exit_options');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBoysexOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).npc_gentle_lover ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).npc_sensual_lover ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -598,6 +612,7 @@ function enterBoysexTitslip(s: GameState, scene: SceneBuilder): void {
       scene.text(`You gasp as ${((s as any).npcdesc ?? 0)} slips a finger inside your bra and tugs, resulting one of your breasts falling out of your top. For his part, he doesn't miss a beat and immediately cups your breast with the same hand that exposed it as he bends his head towards your nipple.`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_disco_outside', 'boysex_titsuck'] },
   ]);
@@ -609,6 +624,7 @@ function enterBoysexTitsuck(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/tits.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pops your nipple into his mouth and starts sucking, rolling his ton...
   scene.text(`${((s as any).npcdesc ?? 0)} pops your nipple into his mouth and starts sucking, rolling his tongue across the tip and around your areola. His free hand releases your other breast from ' + iif(PCloDress > 0, 'your dress ', 'your top ') + 'to palm it, gently squeezing it in a pulsing pattern while he sucks on your other tit.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'pav_disco_outside', 'sex_route', 'tit_suck'
@@ -639,6 +655,7 @@ function enterBoysexHandjob(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'pav_disco_sex', 'handjob');
+  // TODO-QSP: end
   scene.build();
 }
 

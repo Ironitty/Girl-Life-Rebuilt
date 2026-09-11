@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFour(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_start', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

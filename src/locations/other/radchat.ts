@@ -177,6 +177,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -656,6 +657,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'lover_looop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -669,6 +671,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('You shake your head slightly. "You\'ve never met him. I just met him."');
   scene.text('"Just some guy you met, huh?" he smirks.');
   scene.text('You laugh and tell him about your boyfriend, but he quickly gets bored and changes the subject.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Keep talking', goto: ['radchat', 'chat'] },
@@ -685,6 +688,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.text('He rolls his eyes. "So predictable."');
   scene.text('You briefly discuss why and he points out that that is what society expects of people, but they should live a little first.');
   scene.text('You\'re not sure what more to say on the topic, so change the subject.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Keep talking', goto: ['radchat', 'chat'] },

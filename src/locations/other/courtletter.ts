@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).policeQW_courtletter_dates ?? {}).length > 0  &&  ((s as any).daystart ?? 0) >= ((s as any).policeQW_courtletter_dates ?? 0)[0]) {
     scene.actions([{ label: 'Continue', goto: ['courtletter', 'letter'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -211,6 +212,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

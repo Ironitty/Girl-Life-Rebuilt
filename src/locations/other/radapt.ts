@@ -302,6 +302,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -314,6 +315,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/hall.jpg');
   scene.text('This is the entrance hall of Radomir\'s apartment. There\'s a small coat rack with several coats hanging from it, a large mirror just down the hall and a few paintings hanging on the wall. Other than that, the hall is empty and very clean.');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave Radomir\'s apartment</b>', goto: ['pav_complex', 'start'] },
     { label: 'Radomir\'s room', goto: ['radapt', 'radroom'] },
@@ -340,6 +342,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['radapt', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -589,6 +592,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Living room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/living_room.jpg');
   scene.text('The room is very clean and tidy. A couch is against one wall, with a TV stand and flatscreen TV sitting on it against the opposite wall. In front of the couch are two small coffee tables with plants on them. Large matching curtains hang on the wall next to the window, while a matching recliner sits near the couch.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['radapt', 'hallway'] },
   ]);
@@ -610,6 +614,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The room is very clean and tidy, with very homey feel to it. There is a small table that sits four in the middle of the room.');
   qspCall(s, 'kit_din', 'fill_bottle');
   qspCall(s, 'kit_din', 'driwater');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['radapt', 'hallway'] },
     { label: 'Look in the fridge', goto: ['radapt', 'fridge'] },
@@ -723,6 +728,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['radapt', 'kitchen'] },
   ]);
@@ -748,6 +754,7 @@ function enterRadparents(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['radapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -769,6 +776,7 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['radapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -789,6 +797,7 @@ function enterRadroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk to Radomir', goto: ['radchat', 'chat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['radapt', 'hallway'] },
   ]);
@@ -852,6 +861,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -941,6 +951,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -953,6 +964,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You lie down on his bed and roll over, taking a deep breath to find the pillow smells just like him. There\'s not much to do without Radomir, and you start feeling bored, wishing he was here.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the bed', goto: ['radapt', 'radroom'] },
   ]);
@@ -985,6 +997,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj4.jpg');
   scene.text('Radomir leads you to his apartment, and the two of you talk as you go. It\'s nothing important, just idle small talk to pass the time. Once on the fifth floor of his building, he leads you to apartment 21. It\'s one of the corner apartments, which you know from your own building are the bigger three bedroom apartments. He unlocks the door with his keys and leads you inside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -1140,6 +1153,7 @@ function enterMeetAfterSchool(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big154.jpg');
   scene.text('You find Radomir waiting for you outside the school.');
   scene.text('"You ready?" he asks, and you nod your head before the two of you walk back to the apartment complex.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['radapt', 'firstvisit'] },
   ]);

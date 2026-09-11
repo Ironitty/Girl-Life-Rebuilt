@@ -36,6 +36,7 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'cleanlocloop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -65,11 +66,13 @@ function enterCleandeposit(s: GameState, scene: SceneBuilder): void {
     (s as any).cumsumass = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanwomb(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +86,7 @@ function enterCumcondslip(s: GameState, scene: SceneBuilder): void {
     scene.text('With some effort, you manage to remove the condom.');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,73 +99,83 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).cumsumass = 0;
   (s as any).Enable_clearcum = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFullExternal(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS ?? {})[1] = 1;
-  if (((s as any).locArgs?.[0] ?? 0) === 'teeth') {
-    ((s as any).ARGS ?? {})[0] = 2;
+  scene.build();
+}
+
+function enterTeeth(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 2;
+  scene.build();
+}
+
+function enterInternal(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 3;
+  scene.build();
+}
+
+function enterExternal(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 4;
+  scene.build();
+}
+
+function enterHair(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 5;
+  scene.build();
+}
+
+function enterClothes(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 6;
+  scene.build();
+}
+
+function enterEnema(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 7;
+  scene.build();
+}
+
+function enterBlank(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 8;
+  scene.build();
+}
+
+function enterHands(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 9;
+  scene.build();
+}
+
+function enterFace(s: GameState, scene: SceneBuilder): void {
+  ((s as any).ARGS ?? {})[0] = 11;
+  if (((s as any).locArgs?.[0] ?? 0) === 'face  &&  hair'  ||  ((s as any).locArgs?.[0] ?? 0) === 'face_hair') {
+    ((s as any).ARGS ?? {})[0] = 12;
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'internal') {
-      ((s as any).ARGS ?? {})[0] = 3;
+    if (((s as any).locArgs?.[0] ?? 0) === 'head') {
+      ((s as any).ARGS ?? {})[0] = 13;
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'external') {
-        ((s as any).ARGS ?? {})[0] = 4;
+      if (((s as any).locArgs?.[0] ?? 0) === 'belly') {
+        ((s as any).ARGS ?? {})[0] = 14;
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'hair') {
-          ((s as any).ARGS ?? {})[0] = 5;
+        if (((s as any).locArgs?.[0] ?? 0) === 'ass'  ||  ((s as any).locArgs?.[0] ?? 0) === 'pussy') {
+          ((s as any).ARGS ?? {})[0] = 15;
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 'clothes') {
-            ((s as any).ARGS ?? {})[0] = 6;
+          if (((s as any).locArgs?.[0] ?? 0) === 'breasts') {
+            ((s as any).ARGS ?? {})[0] = 16;
           } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 'enema') {
-              ((s as any).ARGS ?? {})[0] = 7;
+            if (((s as any).locArgs?.[0] ?? 0) === 'arms') {
+              ((s as any).ARGS ?? {})[0] = 17;
             } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 'blank') {
-                ((s as any).ARGS ?? {})[0] = 8;
+              if (((s as any).locArgs?.[0] ?? 0) === 'therapist'  ||  ((s as any).locArgs?.[0] ?? 0) === 'hypno') {
+                ((s as any).ARGS ?? {})[0] = 18;
               } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 'hands') {
-                  ((s as any).ARGS ?? {})[0] = 9;
+                if (((s as any).locArgs?.[0] ?? 0) === 'everything') {
+                  ((s as any).ARGS ?? {})[0] = 20;
                 } else {
-                  if (((s as any).locArgs?.[0] ?? 0) === 'face') {
-                    ((s as any).ARGS ?? {})[0] = 11;
-                  } else {
-                    if (((s as any).locArgs?.[0] ?? 0) === 'face  &&  hair'  ||  ((s as any).locArgs?.[0] ?? 0) === 'face_hair') {
-                      ((s as any).ARGS ?? {})[0] = 12;
-                    } else {
-                      if (((s as any).locArgs?.[0] ?? 0) === 'head') {
-                        ((s as any).ARGS ?? {})[0] = 13;
-                      } else {
-                        if (((s as any).locArgs?.[0] ?? 0) === 'belly') {
-                          ((s as any).ARGS ?? {})[0] = 14;
-                        } else {
-                          if (((s as any).locArgs?.[0] ?? 0) === 'ass'  ||  ((s as any).locArgs?.[0] ?? 0) === 'pussy') {
-                            ((s as any).ARGS ?? {})[0] = 15;
-                          } else {
-                            if (((s as any).locArgs?.[0] ?? 0) === 'breasts') {
-                              ((s as any).ARGS ?? {})[0] = 16;
-                            } else {
-                              if (((s as any).locArgs?.[0] ?? 0) === 'arms') {
-                                ((s as any).ARGS ?? {})[0] = 17;
-                              } else {
-                                if (((s as any).locArgs?.[0] ?? 0) === 'therapist'  ||  ((s as any).locArgs?.[0] ?? 0) === 'hypno') {
-                                  ((s as any).ARGS ?? {})[0] = 18;
-                                } else {
-                                  if (((s as any).locArgs?.[0] ?? 0) === 'everything') {
-                                    ((s as any).ARGS ?? {})[0] = 20;
-                                  } else {
-                                    if (((s as any).locArgs?.[0] ?? 0) !== '') {
-                                      return;
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
+                  if (((s as any).locArgs?.[0] ?? 0) !== '') {
+                    return;
                   }
                 }
               }
@@ -430,6 +444,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'full external':
       enterFullExternal(s, scene);
+      break;
+    case 'teeth':
+      enterTeeth(s, scene);
+      break;
+    case 'internal':
+      enterInternal(s, scene);
+      break;
+    case 'external':
+      enterExternal(s, scene);
+      break;
+    case 'hair':
+      enterHair(s, scene);
+      break;
+    case 'clothes':
+      enterClothes(s, scene);
+      break;
+    case 'enema':
+      enterEnema(s, scene);
+      break;
+    case 'blank':
+      enterBlank(s, scene);
+      break;
+    case 'hands':
+      enterHands(s, scene);
+      break;
+    case 'face':
+      enterFace(s, scene);
       break;
     default:
       enterDefault(s, scene);

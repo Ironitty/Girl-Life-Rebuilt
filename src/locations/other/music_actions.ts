@@ -52,6 +52,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,6 +95,7 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'music_actions', 'set_up_account');
     qspCall(s, 'music_actions', 'delete_music');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');
@@ -122,6 +124,7 @@ function enterPutDownPickUp(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,6 +217,7 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,6 +253,7 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -294,6 +299,7 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,6 +374,7 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -410,6 +417,7 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -423,6 +431,7 @@ function enterEditRecording(s: GameState, scene: SceneBuilder): void {
   }, goto: ['music_onlinemusic', 'recordAndEditSong'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -466,6 +475,7 @@ function enterRehearseSets(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -475,6 +485,7 @@ function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
       { label: 'Set up an online music account (0:30)', goto: ['music_onlinemusic', 'set_up_account'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -498,6 +509,7 @@ function enterUploadMusic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -507,17 +519,20 @@ function enterDeleteMusic(s: GameState, scene: SceneBuilder): void {
       { label: 'Delete old recordings', goto: ['music_onlinemusic', 'deleteoldmusic'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNotAlone(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_not_alone = 1;
   qspCall(s, 'music_actions', 'willpower_cost');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNoMusic(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_no_music = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,15 +548,18 @@ function enterWillpowerCost(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClearRestrictions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFinish(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

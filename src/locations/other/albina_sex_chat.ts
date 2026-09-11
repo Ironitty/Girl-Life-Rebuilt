@@ -17,10 +17,12 @@ function enterSexTalkStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You steer the conversation towards sex, a topic Albina is more than comfortable with and readily engages with you about it.');
     qspCall(s, 'albina_sex_chat', 'sex_talk2');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
@@ -37,6 +39,7 @@ function enterSexTalk2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   qspCall(s, 'albina_sex_chat', 'sex_talk_topics');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her lead', handler: (st: GameState) => {
     qspCall(st, 'albina_sex_chat', 'sex_talk_albina_lead');
@@ -46,6 +49,7 @@ function enterSexTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexTalkTopics(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lead the conversation', handler: (st: GameState) => {
     scene.actions([
@@ -89,6 +93,7 @@ function enterBlowjobTalk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Do you like giving blowjobs?" you ask and Albina twists her lips thoughtfully, almost like she can\'t make up her mind.');
   scene.text('"I don\'t really mind giving head, but it\'s not my favorite," she says eventually. "It\'s just foreplay to get the guy hard or a way to get them to finish. Although... when a guy grabs my hair, takes charge, and shoves it down my throat... <i>Fuck me</i>... There\'s something so hot about that. It\'s actually made me cum once or twice before."');
+  // TODO-QSP: end
   scene.actions([
     { label: '"I don\'t like blowjobs"', handler: (st: GameState) => {
     scene.text('"Really? You\'ve gotten off on a blowjob before?" You wrinkle your nose. "I hate blowjobs. The taste is awful, they make my jaw ache, and they\'re just gross all around."');
@@ -118,6 +123,7 @@ function enterBlowjobTalk1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlowjobTalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I hate it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -180,6 +186,7 @@ function enter69Talk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Do you like 69ing?" you ask.');
   scene.text('"With a guy or a girl?" she smirks back wickedly.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Guy', handler: (st: GameState) => {
     scene.text('"A guy," you smile back and she twists her lips in thought for a moment before taking a deep breath and letting out a big sigh.');
@@ -212,6 +219,7 @@ function enterMasturbationFrequency(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -222,6 +230,7 @@ function enterMasturbationMethod(s: GameState, scene: SceneBuilder): void {
   scene.text('"You have a favorite toy?"');
   scene.text('"Of course," she smiles. "I use different dildos to fuck my pussy, but I like to keep a special one aside just for fucking my ass. One that\'s nice and girthy enough to <i>really</i> stretch me out."');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +239,7 @@ function enterCumTaste1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Do you like the taste of cum?" you ask and she immediately wrinkles her nose.');
   scene.text('"No! It\'s <i>vile</i>!" she replies as she makes a fake gagging sound. "I brush my teeth the first chance I get after I finish a guy with my mouth. Why? Do you like it?"');
   qspCall(s, 'albina_sex_chat', 'cum_taste2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -243,6 +253,7 @@ function enterCumTaste2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s gross', handler: (st: GameState) => {
     scene.text('"No, I agree with you one hundred percent," you say, making a face of disgust yourself. "It\'s bitter, it\'s sour, it\'s slimy. I want to throw up as soon as I taste it. It\'s just... <i>ugh!</i>"');
@@ -273,6 +284,7 @@ function enterFacialTalk1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Do you like it when guys cum on your face?" you ask.');
   scene.text('"Sometimes," she shrugs. "When a guy cums on my face, I feel <i>dirty</i>. Like a used cum rag. Which... I don\'t mind if I\'m in the mood for that kind of thing. Like when Lazar fucks me so hard that my makeup is fucked and my hair is frizzy and I\'m practically about to pass out. That\'s the perfect time for him to cum on my face. But that\'s situational. I\'d much rather he just blow his load in my ass. I\'m <i>always</i> in the mood for that..." she grins.');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -283,10 +295,12 @@ function enterCockTalk1(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ll take that as a yes then," you reply, causing you both to laugh.');
   scene.text('"What about you, slut?" she grins. "Do you like them hung like a horse?"');
   qspCall(s, 'albina_sex_chat', 'cock_talk2');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCockTalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I love them too', handler: (st: GameState) => {
     scene.text('You grin back. "I love them too..."');
@@ -346,6 +360,7 @@ function enterGuyTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s not kid ourselves. He would <i>love</i> to fuck me, especially if I were to drop my panties and bend over for him," she replies, which causes you both to laugh.');
     qspCall(s, 'albina_sex_chat', 'sex_talk');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -360,6 +375,7 @@ function enterPussyTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"I was just curious," you shrug.');
   }
   scene.text('"I guess I like it," she shrugs back. "It\'s different than sucking a dick. And a lot better for my jaw! Do you like it?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'I like it too', handler: (st: GameState) => {
     scene.text('"I like it as well," you reply. "Girls taste a lot better than guys!"');
@@ -439,6 +455,7 @@ function enterGirlTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend the next few minutes chatting about the twins and what they\'re like before the conversation moves on.');
     qspCall(s, 'albina_sex_chat', 'sex_talk');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -485,6 +502,7 @@ function enterSexTalkAlbinaLead(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -500,6 +518,7 @@ function enterAdmitPorno(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] !== '') {
     scene.text('And before you say anything, yes I know I gave you shit for doing it, which just makes it worse!"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Question her', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -573,6 +592,7 @@ function enterAdmitPorno(s: GameState, scene: SceneBuilder): void {
 
 function enterFavPosChat(s: GameState, scene: SceneBuilder): void {
   scene.text('"So what\'s your favourite position?" she asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['albina_sex_chat', 'missionary'] },
     { label: 'Doggystyle', goto: ['albina_sex_chat', 'doggystyle'] },
@@ -587,6 +607,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('Missionary," you admit.');
   scene.text('"BO-RING!" she shouts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s nice!', handler: (st: GameState) => {
     scene.text('"What\'s wrong with missionary?" you protest. "I think it\'s nice."');
@@ -617,6 +638,7 @@ function enterMissionary2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You both agree to disagree, but find yourself a little turned on by her response. Judging by the way she\'s rubbing her thighs together, you think she is too.');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about her anal fetish', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -628,6 +650,7 @@ function enterDoggystyle(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"I like doggystyle."');
   scene.text('"That\'s my girl!" she cheers excitedly. "What\'s your favorite thing about it?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s more intense', handler: (st: GameState) => {
     scene.text('"There\'s something <i>intense</i> about it," you say. "Something primal. I can\'t explain it, but when I get fucked from behind, it drives me wild."');
@@ -653,6 +676,7 @@ function enterDoggystyle2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You giggle at her answer, feeling warmth blossoming between your hips and wetness seeping from your pussy. With the "fuck me eyes" she\'s giving you, you think Albina\'s probably feeling something similar.');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about her anal fetish', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -673,6 +697,7 @@ function enterCowgirl(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'It feels better', handler: (st: GameState) => {
     scene.text('"It just feels better," you shrug. "I don\'t know how to explain it. The angle? Just the way it fits inside when I\'m on top? It feels good. What can I say?"');
@@ -701,6 +726,7 @@ function enterCowgirl2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You both agree to disagree, but find yourself a little turned on by her response. Judging by the way she\'s rubbing her thighs together, you think she is too.');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about her anal fetish', goto: ['albina_sex_chat', 'anal'] },
   ]);
@@ -730,6 +756,7 @@ function enterBjFav(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I like being in control', handler: (st: GameState) => {
     scene.text('"It makes me feel like I\'m in charge," you grin, though Albina looks back at you confused.');
@@ -808,6 +835,7 @@ function enterBjFav(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I spit', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -872,6 +900,7 @@ function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
 
 function enterSwallowWhy(s: GameState, scene: SceneBuilder): void {
   scene.text('"What the fuck?" Albina stares at you like you just said you have a meter long cock. "You <i>never</i> spit! You <i>always</i> swallow!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Why would I do that?', handler: (st: GameState) => {
     scene.text('"Why would I do that?" you ask. "Why would I swallow if I don\'t want to?"');
@@ -1068,10 +1097,12 @@ function enterBirthControlTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBirthControlPillHassleCondomVer(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Too much hassle', handler: (st: GameState) => {
     scene.text('"Too much hassle," you sigh. "I don\'t want to remember to take a pill every day. It\'s just easier to put a condom on the guy\'s cock before he fucks me. If the condom breaks, I can just get a morning after pill."');
@@ -1084,6 +1115,7 @@ function enterBirthControlPillHassleCondomVer(s: GameState, scene: SceneBuilder)
 }
 
 function enterBirthControlPillHassleNoCondoms(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Too much hassle', handler: (st: GameState) => {
     scene.text('"Too much hassle," you sigh. "I don\'t want to remember to take a pill every day. It\'s just one more annoying thing to do. I just want to have sex and enjoy it. Besides, I can always get a morning after pill."');
@@ -1096,6 +1128,7 @@ function enterBirthControlPillHassleNoCondoms(s: GameState, scene: SceneBuilder)
 }
 
 function enterBirthControlHormones(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No hormones', handler: (st: GameState) => {
     scene.text('"I don\'t want to mess with my body like that," you say while shaking your head. "Birth control hormones stop you from getting pregnant, but they do all other kinds of other stuff to you. I hear horror stories from changing your tastes to sudden weight gain to killing your sex drive, which sort of defeats the point of getting on the pill in the first place."');
@@ -1108,6 +1141,7 @@ function enterBirthControlHormones(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBirthControlPillProblem(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pill has the same problem', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1140,6 +1174,7 @@ function enterCalendarMethodWorking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1148,6 +1183,7 @@ function enterSexToys(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/talk/anal_dildo.jpg');
   scene.text('"Mama is always leaving condoms in my room trying to get me to be safe, but I hate using them," she says while rolling her eyes. "If I\'m gonna take a cock, I want to <i>feel</i> the cock, you know what I mean? I just use them on my dildos instead. It saves me a lot of clean up."');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1156,6 +1192,7 @@ function enterRoughLove(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cocksucker4.jpg');
   scene.text('"If my makeup isn\'t completely fucked up and running down my face by the time he cums, I barely even count it as sex," she grins.');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1164,6 +1201,7 @@ function enterAssToPussy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/doggy/anal31.jpg');
   // TODO-QSP: iif(AlbinaQW['knows_anal'] = 1, '"When you do anal, ', 'If you ever try anal, ') + 'make sure you ne...
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1201,6 +1239,7 @@ function enterLesbianTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.text('You shake your head. "I can\'t say I have."');
@@ -1216,6 +1255,7 @@ function enterLesbianTalk1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesbianTalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I like your taste', handler: (st: GameState) => {
     scene.text('"I like the way your pussy tastes," you say, licking your lips.');
@@ -1232,6 +1272,7 @@ function enterLesbianTalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLesbianTalk3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1513,6 +1554,7 @@ function enterBiggestDickTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep your secrets', handler: (st: GameState) => {
     scene.text('"Hmmm... Why should I tell you?" you reply teasingly.');
@@ -1541,6 +1583,7 @@ function enterAlbAskBodyCount1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her your body count', handler: (st: GameState) => {
     qspCall(st, 'albina_sex_chat', 'alb_ask_body_count2');
@@ -1601,10 +1644,12 @@ function enterAlbAskBodyCount2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAlbAskBodyCountHundreds(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get embarrassed', handler: (st: GameState) => {
     scene.actions([
@@ -1651,6 +1696,7 @@ function enterAlbAskBodyCountHundreds(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbAskBodyCountDozens(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sex is fun', handler: (st: GameState) => {
     scene.text('"What can I say?" you smirk in return. "Sex is fun."');
@@ -1677,6 +1723,7 @@ function enterAlbAskBodyCountFew(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Trust issues', handler: (st: GameState) => {
     scene.text('"It\'s a trust thing," you say. "I don\'t want to let someone put it in me unless I trust them."');
@@ -1696,6 +1743,7 @@ function enterSexualFantasies1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says with a sly look. "Do you have any sexual fantasies...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}," she says with a sly look. "Do you have any sexual fantasies?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.actions([
@@ -1834,6 +1882,7 @@ function enterSexualFantasies1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinasFantasy(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about her fantasies', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1867,6 +1916,7 @@ function enterAlbinasFantasy(s: GameState, scene: SceneBuilder): void {
 function enterPenetrationCum1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"Can you cum from getting fucked?" she asks. "Meaning <i>just</i> from getting fucked. No clit play or anything."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     scene.text('"I sure <i>do</i>," you grin back, putting an extra emphasis on the word that shows how you orgasm.');
@@ -1932,6 +1982,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Because of the rumors', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1981,6 +2032,7 @@ function enterAnalQuestionsShy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2009,12 +2061,14 @@ function enterAnalQuestionsOpen(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnal2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Try playing with your asshole while masturbating and get used to something touching you down there. If you\'re feeling brave, try a finger up to your knuckle right when you\'re about to cum. Then next time try one from the start. Or a small dildo with lots of lube. Or better yet, a butt plug. Then you can practice all day," she smirks. "Find out what works for you and <i>then</i> try it with a real dick, otherwise it\'ll be <i>very</i> painful and could put you off trying it again."');
   qspCall(s, 'albina_sex_chat', 'anal_end1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2022,6 +2076,7 @@ function enterAnalEnd1(s: GameState, scene: SceneBuilder): void {
   scene.text('You thank her for her helpful advice and she continues answering your questions and giving you all the advice she feels you need to know.');
   scene.text('"And, if you need some <i>hands on</i> teaching... you know you can always <i>come</i> here," she says, shamelessly eye fucking you.');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2029,6 +2084,7 @@ function enterAnalEnd2(s: GameState, scene: SceneBuilder): void {
   scene.text('"One word," she says, holding up her finger. "Practice. Your mistake was going straight for a real dick. That\'s a big no no. Practice with your fingers or a small dildo first to see what works for you. Some girls like it slow and gentle, others like it fast and rough. Just keep practicing and getting used to it. And relax. It\'ll always be a little painful, but it\'ll become more pleasurable the more you do it, especially when you get better at controlling the instinctive reflex to clench around what\'s inside you, whether that be a dildo or a fat cock."');
   scene.text('She grins at you. "If you ever want a <i>hands on</i> lesson, then I\'m willing to \'teach\' you some things..."');
   qspCall(s, 'albina_sex_chat', 'sex_talk');
+  // TODO-QSP: end
   scene.build();
 }
 

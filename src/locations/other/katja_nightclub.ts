@@ -18,6 +18,7 @@ function enterSetWillpower(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), 'hard');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +172,7 @@ function enterActivity(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -223,6 +225,7 @@ function enterDanceApproach(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Katja', goto: ['city_nightclub', 'dance'] },
   ]);
@@ -283,6 +286,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Katja', goto: ['city_nightclub', 'bar'] },
   ]);
@@ -366,14 +370,17 @@ function enterDanceGuyApproach(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDanceBlackGuyApproach(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDanceGirlApproach(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -460,6 +467,7 @@ function enterDanceTwoGuysApproach(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -537,6 +545,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'katja_nightclub', 'dance_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -687,6 +696,7 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -713,6 +723,7 @@ function enterBarArrive(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You don\'t feel well enough to drink alcohol.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t order a drink', goto: ['katja_nightclub', 'bar_after_drink'] },
   ]);
@@ -722,6 +733,7 @@ function enterBarArrive(s: GameState, scene: SceneBuilder): void {
 function enterDrink(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW ?? {})['disco_drink_bought'] = 1;
   qspCall(s, 'food_menu', 'city_nightclub_only_cost');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1155,6 +1167,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'katja_nightclub', 'bar_end');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1258,12 +1271,14 @@ function enterBarEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDanceGuy1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dancing1.jpg');
   scene.text('A guy approaches you and Katja and it\'s clear that he wants to join you. He\'s rather good looking and wearing nice clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him join you', goto: ['katja_nightclub', 'dance_guy2'] },
     { label: 'Don\'t let him join', handler: (st: GameState) => {
@@ -1292,6 +1307,7 @@ function enterDanceGuy2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_nightclub', 'dance_guy3'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1646,12 +1662,14 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDanceTwoGuys1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dancing1.jpg');
   scene.text('Two men approach you and Katja and it\'s clear that they want to join you. They\'re rather good looking and wearing nice clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them join you', goto: ['katja_nightclub', 'dance_two_guys2'] },
     { label: 'Don\'t let them join', handler: (st: GameState) => {
@@ -1680,6 +1698,7 @@ function enterDanceTwoGuys2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_nightclub', 'dance_two_guys3'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1900,12 +1919,14 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDanceTwoGirls1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dancing2.jpg');
   scene.text('Two girls approach you and Katja and it\'s clear that they want to join you. They\'re pretty hot wearing very sexy dresses.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them join you', goto: ['katja_nightclub', 'dance_two_girls2'] },
     { label: 'Don\'t let them join', handler: (st: GameState) => {
@@ -1934,6 +1955,7 @@ function enterDanceTwoGirls2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_nightclub', 'dance_two_girls3'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2113,6 +2135,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

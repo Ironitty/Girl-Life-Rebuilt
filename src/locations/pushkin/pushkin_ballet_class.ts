@@ -90,6 +90,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,6 +156,7 @@ function enterPilates(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -327,6 +329,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -377,6 +380,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -410,6 +414,7 @@ function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $popup_advise += '<font color = "red">✗</font> You need to change into sports clothing that is suita...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -467,6 +472,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Grab lunch', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'lunch');
@@ -483,6 +489,7 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You enter the school\'s canteen. It seems you\'ve timed it between lunch breaks, so it\'s relatively quiet.');
   qspCall(s, 'core_library', 'kitchen', 'shared');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head to next lesson', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -600,6 +607,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish lesson', handler: (st: GameState) => {
     ((s as any).setloc ?? {})['StageTitle'] = 'Reverance';
@@ -689,6 +697,7 @@ function enterMusicTheory(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).school_daily_check = ((s as any).daystart ?? 0);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish school', handler: (st: GameState) => {
     (s as any).hour = 17;
@@ -722,6 +731,7 @@ function enterAssessment(s: GameState, scene: SceneBuilder): void {
   scene.text(`Once you're dressed, you check your makeup in the mirror and walk over to ${((s as any).npc_firstname ?? 0)?.['A274']} to check her appearance in preparation for the first assessment, and she returns the favour.`);
   // TODO-QSP: dynamic text: With minutes to spare, you're outside the door to the examination. You feel your...
   scene.text(`With minutes to spare, you're outside the door to the examination. You feel your nerves are shredded but ${((s as any).npc_firstname ?? 0)?.['A274']} grabs your hand and whispers, "You've got this; remember neither fluff, nor feather." You nod smiling at the old saying replying with "to the devil", and the doors open.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Perform the Entrance', handler: (st: GameState) => {
     ((s as any).setloc ?? {})['StageImage'] = '' + qspUntranslated(s, "setloc['imagepath']>", { location: "pushkin_ballet_class" }) + 'exams/exam_1.jpg';

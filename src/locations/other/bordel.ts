@@ -27,6 +27,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,6 +65,7 @@ function enterBrothel(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -85,6 +87,7 @@ function enterDysh(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/sauna/bordysh.jpg');
   scene.text('The bathroom is well fitted and clean since customers can access it and hygiene is very important in a brothel.');
   scene.text('Your room is so dedicated to its purpose that your clothes are stored in here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to your room', goto: ['bordel', 'brothel'] },
     { label: 'Bathroom functions', goto: ['vann', 'start'] },
@@ -301,21 +304,25 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).borrand ?? 0) <= 4  &&  qspFunc(s, 'bordel', 'is_open') === 0) {
     scene.text('The brothel is closing now, so this is your last chance to work today.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = ((s as any).hour ?? 0) >= qspFunc(s, 'bordel', 'open_hour')  ||  ((s as any).hour ?? 0) <= qspFunc(s, 'bordel', 'close_hour');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterOpenHour(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 20;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCloseHour(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = 3;
+  // TODO-QSP: end
   scene.build();
 }
 

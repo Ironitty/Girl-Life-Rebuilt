@@ -21,12 +21,14 @@ function enterGetFilterHeader(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetShopFilterHeader(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -41,18 +43,21 @@ function enterGetFilterHeaderBase(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShopFilter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing_view', 'shop_filter');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCloFilter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing_view', 'home_filter');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -63,16 +68,19 @@ function enterFiltersBase(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing_view', 'home_filter');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterViewClothingList(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['clothing_view', 'view_grids_list'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClothingList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'clothing_view', 'view_grid', $ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -116,6 +124,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
       { label: 'Strip', goto: ['clothing_QV', 'strip'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -125,6 +134,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGym2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change back into your regular clothes', handler: (st: GameState) => {
     (s as any).clothingwornnumber = ((s as any).regularwornclothingnumber ?? 0);
@@ -145,6 +155,7 @@ function enterCloak(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) <= Object.keys((s as any).coat ?? {}).length) {
     // TODO-QSP: jump 'loopcoat'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -157,6 +168,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>You strip completely naked.</center>');
   }
   qspCall(s, 'clothing', 'strip');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose something to wear', handler: (st: GameState) => {
     if (((s as any).regularwornclothingtype ?? 0) === '') {
@@ -288,6 +300,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'clothing_QV', 'clothing_list', '<<$ward_list_store>>'

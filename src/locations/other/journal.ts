@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterRecords(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'housing', 'rent');
   qspCall(s, 'journal', 'journalmenu');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,11 +50,13 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'journal', 'leaveactions');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalendar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar', 'show');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,6 +80,7 @@ function enterMagictab(s: GameState, scene: SceneBuilder): void {
   scene.text('<br><center><h3>Non-Combat</h3></center><br>');
   // TODO-QSP: func('spellBook', 'list', '$nonComSpells')
   // TODO-QSP: delact 'Never mind'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -227,6 +231,7 @@ function enterHousingtab(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1042,6 +1047,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loverjournalloop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1069,6 +1075,7 @@ function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
     scene.text('<br><center><a href="exec: gs \'journal\', \'uni\'">University</a></center>');
   }
   scene.text('<br><center><a href="exec: gs \'journal\', \'clothing\'">Clothing information</a></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1085,6 +1092,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
     (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
     // TODO-QSP: jump 'jur_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1101,6 +1109,7 @@ function enterNotificationLog(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'notification_log_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1125,6 +1134,7 @@ function enterBallet(s: GameState, scene: SceneBuilder): void {
   scene.text('   • Get drunk too often or fall pregnant - kicked off the Corp De Ballet.');
   scene.text('   • Fail to maintain your appearance - reprimands or loss of income, leading to expulsion.');
   scene.text('These are the obvious repercussions, but there will be subtle consequences for your interactions with NPCs. This mod is meant to be played blind for your initial playthrough and the only feedback will be the varying conversations.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1142,6 +1152,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   scene.text('  Good quality outfit');
   scene.text('  Outstanding quality outfit');
   qspCall(s, 'journal', 'leaveactions');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1350,6 +1361,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   scene.text('<br><center><a href="exec: gs \'journal_uni\', \'university_students\'">Other University Students</a></center>');
   scene.text('<br><center><a href="exec: gs \'journal_uni\', \'former_pavlovsk_students\'">Former Pavlovsk Students</a></center>');
   qspCall(s, 'journal', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1366,6 +1378,7 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>St. Petersburg</h2></center>');
   scene.text('You\'ve heard many rumors about the city from both family members and school friends. They all say it\'s both a great and bad place. The few memories you have are connected to the big park that you and your family visited once, which had a large amusement park with lots of rides. You also know about the University because you\'ve overheard Anya and your mother argue about it. Sometimes, your mother would drag you and Anya along to the city mall while she was visiting the beauty salon. You remember running through the stores asking your mother to buy you clothes.');
   qspCall(s, 'journal', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1386,85 +1399,105 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A32');
   qspCall(s, 'journal_NPC_information', 'A54');
   qspCall(s, 'journal', 'leaveactions');
-  if (((s as any).locArgs?.[0] ?? 0) === 'pav_res') {
-    qspCall(s, 'journal', 'journalmenu');
-    scene.text('<center><h2>Pavlovsk Residents</h2></center>');
-    if (((s as any).yearstart ?? 0) > 1) {
-      qspCall(s, 'journal_NPC_information', 'A148', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A3', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A5', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A150', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A141', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A151', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A240', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A9', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A10', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A11', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A157', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A145', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A24', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A189', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A20', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A21', 'uni');
-      qspCall(s, 'journal_NPC_information', 'A143', 'uni');
-    }
-    qspCall(s, 'journal_NPC_information', 'A112');
-    qspCall(s, 'journal', 'leaveactions');
-    scene.actions([
-      { label: 'Go back', goto: ['journal', 'generaltab'] },
-    ]);
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'gad_res') {
-      qspCall(s, 'journal', 'journalmenu');
-      scene.text('<center><h2>Gadukino Residents</h2></center>');
-      qspCall(s, 'journal_NPC_information', 'A31');
-      qspCall(s, 'journal_NPC_information', 'A32');
-      if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
-        qspCall(s, 'journal_NPC_information', 'A60');
-      }
-      qspCall(s, 'journal_NPC_information', 'A63');
-      if (((s as any).GadBoy ?? 0)?.['first_drink'] > 1) {
-        qspCall(s, 'journal_NPC_information', 'A61');
-      }
-      if (((s as any).GadBoy ?? 0)?.['first_drink'] > 1) {
-        qspCall(s, 'journal_NPC_information', 'A62');
-      }
-      if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
-        qspCall(s, 'journal_NPC_information', 'A64');
-      }
-      if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
-        qspCall(s, 'journal_NPC_information', 'A65');
-      }
-      if (((s as any).npc_QW ?? 0)?.['A221'] > 0) {
-        qspCall(s, 'journal_NPC_information', 'A221');
-      }
-      if (((s as any).hunterVars ?? 0)?.['were_met'] > 0) {
-        qspCall(s, 'journal_NPC_information', 'A172');
-        qspCall(s, 'journal_NPC_information', 'A173');
-        qspCall(s, 'journal_NPC_information', 'A174');
-      }
-      qspCall(s, 'journal', 'leaveactions');
-      scene.actions([
-        { label: 'Go back', goto: ['journal', 'generaltab'] },
-      ]);
-    } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'city_res') {
-        qspCall(s, 'journal', 'journalmenu');
-        scene.text('<center><h2>City Residents</h2></center>');
-        if (((s as any).yearstart ?? 0) > 1) {
-          qspCall(s, 'journal_NPC_information', 'A154', 'uni');
-          qspCall(s, 'journal_NPC_information', 'A156', 'uni');
-          qspCall(s, 'journal_NPC_information', 'A158', 'uni');
-        }
-        qspCall(s, 'journal', 'leaveactions');
-        scene.actions([
-          { label: 'Go back', goto: ['journal', 'generaltab'] },
-        ]);
-      }
-    }
-  }
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
+  ]);
+  scene.build();
+}
+
+function enterPavRes(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'journal', 'journalmenu');
+  scene.text('<center><h2>Pavlovsk Residents</h2></center>');
+  if (((s as any).yearstart ?? 0) > 1) {
+    qspCall(s, 'journal_NPC_information', 'A148', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A3', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A5', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A150', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A141', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A151', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A240', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A9', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A10', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A11', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A157', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A145', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A24', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A189', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A20', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A21', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A143', 'uni');
+  }
+  qspCall(s, 'journal_NPC_information', 'A112');
+  qspCall(s, 'journal', 'leaveactions');
+  scene.actions([
+    { label: 'Go back', goto: ['journal', 'generaltab'] },
+  ]);
+  scene.build();
+}
+
+function enterGadRes(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'journal', 'journalmenu');
+  scene.text('<center><h2>Gadukino Residents</h2></center>');
+  qspCall(s, 'journal_NPC_information', 'A31');
+  qspCall(s, 'journal_NPC_information', 'A32');
+  if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
+    qspCall(s, 'journal_NPC_information', 'A60');
+  }
+  qspCall(s, 'journal_NPC_information', 'A63');
+  if (((s as any).GadBoy ?? 0)?.['first_drink'] > 1) {
+    qspCall(s, 'journal_NPC_information', 'A61');
+  }
+  if (((s as any).GadBoy ?? 0)?.['first_drink'] > 1) {
+    qspCall(s, 'journal_NPC_information', 'A62');
+  }
+  if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
+    qspCall(s, 'journal_NPC_information', 'A64');
+  }
+  if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
+    qspCall(s, 'journal_NPC_information', 'A65');
+  }
+  if (((s as any).npc_QW ?? 0)?.['A221'] > 0) {
+    qspCall(s, 'journal_NPC_information', 'A221');
+  }
+  if (((s as any).hunterVars ?? 0)?.['were_met'] > 0) {
+    qspCall(s, 'journal_NPC_information', 'A172');
+    qspCall(s, 'journal_NPC_information', 'A173');
+    qspCall(s, 'journal_NPC_information', 'A174');
+  }
+  qspCall(s, 'journal', 'leaveactions');
+  scene.actions([
+    { label: 'Go back', goto: ['journal', 'generaltab'] },
+  ]);
+  scene.build();
+}
+
+function enterCityRes(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'journal', 'journalmenu');
+  scene.text('<center><h2>City Residents</h2></center>');
+  if (((s as any).yearstart ?? 0) > 1) {
+    qspCall(s, 'journal_NPC_information', 'A154', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A156', 'uni');
+    qspCall(s, 'journal_NPC_information', 'A158', 'uni');
+  }
+  qspCall(s, 'journal', 'leaveactions');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go back', goto: ['journal', 'generaltab'] },
+  ]);
+  scene.build();
+}
+
+function enterRelindex(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Put your notebook down', handler: (st: GameState) => {
+    (s as any).jclose = 1;
+    dynamicGoto(st, 'menu_loc', 'menu_arg');
+  } },
   ]);
   scene.build();
 }
@@ -1513,6 +1546,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'family':
       enterFamily(s, scene);
+      break;
+    case 'pav_res':
+      enterPavRes(s, scene);
+      break;
+    case 'gad_res':
+      enterGadRes(s, scene);
+      break;
+    case 'city_res':
+      enterCityRes(s, scene);
+      break;
+    case 'relindex':
+      enterRelindex(s, scene);
+      break;
+    case 'leaveactions':
+      enterLeaveactions(s, scene);
       break;
     default:
       enterDefault(s, scene);

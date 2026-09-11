@@ -22,6 +22,7 @@ function enterNice1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "I was thinking that I prefer you naked, <<$pcs_lastname>>. So let's take off th...
   scene.text(`"I was thinking that I prefer you naked, ${((s as any).pcs_lastname ?? 0)}. So let's take off those clothes."`);
   scene.text('Grumbling, you follow his order and finally manage to get the last of your clothes off, something that seems to please him.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Your turn Aleksei"', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'clit_finger', 5, 'lesbian');
@@ -130,6 +131,7 @@ function enterGrumpy1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "You must understand the conundrum that I am now in <<$pcs_lastname>>. We made a...
   scene.text(`"You must understand the conundrum that I am now in ${((s as any).pcs_lastname ?? 0)}. We made a mutually beneficial deal, but it's evident that you lack the strength of character to follow the Path of Knowledge, so I am going to include some <i>discipline</i> lessons."`);
   scene.text('He then proceeds to intensify his massage, caressing your body, kissing your neck and rubbing between your legs, increasing your arousal and masking the pain in your knees.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'He slaps you', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'massage', 5, 'sub', 'lesbian');
@@ -252,6 +254,7 @@ function enterLong(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -335,6 +338,7 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -367,6 +371,7 @@ function enterNs1(s: GameState, scene: SceneBuilder): void {
   scene.text('You are groaning over a needed release as his face reaches your pussy and stops… He smells it and looks at you wickedly before he starts devouring your love button, making you climax in a torrent of magical force that wipes away all your tension and leaves you exhausted.');
   scene.text('"You have done well, my new apprentice."');
   scene.text('Aleksei lies down beside your breathless form and after giving you a few minutes to catch your breath, grabs your hips and draws you to him so he can continue with your <i>lesson</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -400,6 +405,7 @@ function enterNs2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"I think that is enough for today ${((s as any).pcs_lastname ?? 0)}."`);
   scene.text('The electrical aura that was filling the room quickly evaporates and you find yourself sitting snugly in a comfortable bed, exhausted, but pleased as you look into Aleksei\'s beautiful eyes as they observe you deep in thought, but with less intensity than they normally have, almost… relaxed.');
   scene.text('For the next few minutes, only the sound of your in sync breathing can barely be heard in the room until this is broken by a slight gasp on your part when one of Aleksei\'s hands caresses your body and makes you bend slightly towards his nipple that ends up in your mouth. After that, the spell is broken as you start kissing down her body to fulfill your part of the deal.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -436,6 +442,7 @@ function enterNs3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hm… Yes, my apprentice… Hm… You are doing well…"');
   scene.text('You caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth and tongue, but it\'s not enough. Only elicit entertained half-smiles appear on his face, pushing you a little more in a restless effort until you see him close his eyes and hear a change in his breathing as one of Aleksei\'s hands travels sensually down his body and he soon moans in constricted pleasure,');
   scene.text('For the next minutes, a smug Aleksei caresses your hair as you lie with your head in his pussy. You have not been able to make him scream like a bitch, but there is always another training lesson.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -480,6 +487,7 @@ function enterGs1(s: GameState, scene: SceneBuilder): void {
   scene.text('His smug smile meets your eyes as one of his hands travels down your body, little sparks shocking you and adding synesthetic pressure to your brain until he finally reaches your needy cunt and begins a quick and mechanical fingering, making your arousal climb until it peaks, making you scream in orgasmic bliss behind the ball gag.');
   // TODO-QSP: dynamic text: "Well done <<$pcs_lastname>>. Are you ready for the next part?"
   scene.text(`"Well done ${((s as any).pcs_lastname ?? 0)}. Are you ready for the next part?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -521,6 +529,7 @@ function enterGs2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hm… Well, that will be all for now <<$pcs_lastname>>."
   scene.text(`"Hm… Well, that will be all for now ${((s as any).pcs_lastname ?? 0)}."`);
   scene.text('After a few minutes, Aleksei releases your head and nonchalantly sits by your side, letting the electric magic exit the room, refilling it with the sound of your ragged breathing until he opens his legs and slowly caresses the side of your face before grabbing a lock of your hair. The message is clear and you begin to kneel.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -560,6 +569,7 @@ function enterGs3(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Ah-Ah-Ah… Easy now, ${((s as any).pcs_lastname ?? 0)}, you're not some common harlot!"`);
   scene.text('You eat out Aleksei, his constant nagging and <i>helpful</i> advice making sure that you <i>properly</i>, caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth and tongue, but it is not enough. Only elicit moans and even more nagging escape his mouth, pushing you a little more in a restless effort until you see him close his eyes and hear a change in his breathing as one of his handw travels sensually down his body he soon moans in constricted pleasure,');
   scene.text('For the next minutes, a smug Aleksei sits relaxed, smoking a cigarette as he observes you catching your breath, a silent question in the air… do you want another session?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -576,6 +586,7 @@ function enterNL1(s: GameState, scene: SceneBuilder): void {
   scene.text('You are groaning over a needed release as his face reaches your pussy and stops… He smells it and looks at you wickedly before he starts devouring your love button, making you climax in a torrent of magical force that wipes away all your tension and leaves you exhausted.');
   scene.text('"You have done well, my new apprentice."');
   scene.text('Aleksei lies down beside your breathless form and after giving you a few minutes to catch your breath, grabs your hips and draws you to him so he can continue with your <i>lesson</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -638,6 +649,7 @@ function enterGL1(s: GameState, scene: SceneBuilder): void {
   scene.text('His smug smile meets your eyes as one of his hands travels down your body, little sparks shocking you and adding synesthetic pressure to your brain until he finally reaches your needy cunt and begins a quick and mechanical fingering, making your arousal climb until it peaks, making you scream in orgasmic bliss behind the ball gag.');
   // TODO-QSP: dynamic text: "Well done <<$pcs_lastname>>. Are you ready for the next part?"
   scene.text(`"Well done ${((s as any).pcs_lastname ?? 0)}. Are you ready for the next part?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -704,6 +716,7 @@ function enterNice2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Nice my apprentice, very… nice. Now, sit on the headboard and present you to me."');
   scene.text('You don\'t doubt, and wiggling your ass, climb unto the bed, exposing as much you can to the wizard and tantalizingly dragging yourself towards the headboard, where you sit on the fluffy pillows, and lean back, opening your legs so Aleksei has a close-up of your aroused pussy.');
   scene.text('Aleksei stands beside the bed, obviously pleased as his eyes travel your body, then climbs unto it, and kneels between your legs. The next moments pass in silence until Aleksei extends a hand and delicately grabs your chin, an amused smirk on his lips.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'He goes down on you.', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -803,6 +816,7 @@ function enterGrumpy2(s: GameState, scene: SceneBuilder): void {
   scene.text('Aleksei doesn\'t talk. He just sits on a stool and observes you helplessly squirm with a cooly smile, at the same time he takes on a cigar. It\'s smoke carefully exhaled, fly towards your face, so you can take in the strange weed. You don\'t know what it is, but it\'s effects in your current predicament are brutal, as it enhances your sense of self, making you painfully aware of the tightly ropes tied all over your body.');
   // TODO-QSP: dynamic text: "Ok <<$pcs_lastname>>! Let's get you ready!"
   scene.text(`"Ok ${((s as any).pcs_lastname ?? 0)}! Let's get you ready!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ready?', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'anal_finger', 5, 'sub', 'lesbian');
@@ -931,6 +945,7 @@ function enterNL2(s: GameState, scene: SceneBuilder): void {
   scene.text('"So be it, my apprentice."');
   scene.text('Then, and only then, Aleksei let your arousal rise without impediment under his ministrations. You moan, scream and trash as mana begins to gather in your core, in sync with your sexual excitement, until you climax and a torrent of power sublimates your body in an orgasmic wave.');
   scene.text('After this, you slide down the headboard and cuddle with Aleksei so you can continue with your <i>lesson</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -989,6 +1004,7 @@ function enterGL2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Well… Let's begin ${((s as any).pcs_lastname ?? 0)}."`);
   scene.text('You contain your breath because you know what is going to happen. Aleksei disappears from your line of sight as he walks behind you, and pushes a finger up your rectum… "AHHHH!" You scream as an electrical jolt cleans your innards, and make you shake in your bounds… Then, without care for your sore asshole, Aleksei begins to smear some K-Y Jelly inside it. Your ragged breath fills the room at the mix of sensations as the Jelly touches the sensitive inner skin.');
   scene.text('"Hmpf" That barely whispered grunt, is the only sound that occasionally says Aleksei to accompany your grunts and moans. He, with utter detachment, plays with you, first stirring your asshole with an analhook and after that, he works your cunt with a magic wand. Your body suffers from painful cramps, your asshole is sore and stretched tight, and occasionally magical jolts shake your body. Even with all that you can negate your arousal, and little by little Aleksei manages to forcibly made you cum, triggering your core to suffuse your body in mana.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1072,6 +1088,7 @@ function enterNs4(s: GameState, scene: SceneBuilder): void {
   scene.text('"So be it, my apprentice."');
   scene.text('Then, and only then, Aleksei let your arousal rise without impediment under his ministrations. You moan, scream and trash as mana begins to gather in your core, in sync with your sexual excitement, until you climax and a torrent of power sublimates your body in an orgasmic wave.');
   scene.text('After this, you slide down the headboard and cuddle with Aleksei so you can continue with your <i>lesson</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -1105,6 +1122,7 @@ function enterNs5(s: GameState, scene: SceneBuilder): void {
   scene.text('He then, grabs your head and looks deep into your eyes. His mouth opens and unearthly words fill your head with arcane knowledge. Little by little you join him in a duet, at first labored but soon easily as you work through your magical connection.');
   scene.text('"Good my apprentice… good… now show me."');
   scene.text('You stir over Aleksei and extend a hand, soon, as you push mana through words of power, sparks begin to form between the fingers until there is an electrical flash, and magical lighting illuminates the room. Aleksei observe your demonstration with a critical eye, before assenting with approval. After that, is just you two, lazily lying in each other arms, before a sudden magical compulsion in the back of your head, made you move. Aleksei looks at you in understanding… is time to continue with his part of the <i>lesson</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -1137,6 +1155,7 @@ function enterNs6(s: GameState, scene: SceneBuilder): void {
   scene.text('He doesn\'t stop you as your tongue digs into that delicious hole - a light sigh on his lips is the only reaction - and your mind is flooded with strange visions and sensations, as your magics <i>connect</i>, making you shudder as mana begin to flow between you two. Instinctively, one of your hands reaches towards his pubic mound and plays with his well-groomed bush… but that isn\'t your final destination… After some moments, you reach to his perfect box, and begin to work.');
   scene.text('The room fills with Aleksei\'s dainty moans and your wet laps, as you edge his wet box and hot asshole, pleasuring the unflappable wizard. The only signal that he is getting near his climax, is when he finally caresses your face, so you turn and look into Aleksei\'s eyes, as he cum.');
   scene.text('After this, you again cuddle with him thinking in your lessons, until he pats lightly your backhead, to signal the end of your little runt.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -1174,6 +1193,7 @@ function enterGs4(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Well… Let's begin ${((s as any).pcs_lastname ?? 0)}."`);
   scene.text('You contain your breath because you know what is going to happen. Aleksei disappears from your line of sight as he walks behind you, and push a finger up your rectum… "AHHHH!" You scream as an electrical jolt cleans your innards, and make you shake in your bounds… Then, without care for your sore asshole, Aleksei begins to smear some K-Y Jelly inside it. Your ragged breath fills the room at the mix of sensations as the Jelly touches the sensitive inner skin.');
   scene.text('"Hmpf" That barely whispered grunt, is the only sound that occasionally says Aleksei to accompany your grunts and moans. He, with utter detachment, play with you, first stirring your asshole with an analhook and after that works your cunt with a magic wand. Your body suffers from painful cramps, your asshole is sore and stretched tight, and occasionally magical jolts shake your body. Even with all that you can negate your arousal, and little by little Aleksei manages to forcibly made you cum, triggering your core to suffuse your body in mana.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -1213,6 +1233,7 @@ function enterGs5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Hm… Well done <<$pcs_lastname>>."
   scene.text(`Hm… Well done ${((s as any).pcs_lastname ?? 0)}."`);
   scene.text('After that, Aleksei rearranges your hair, before without too much fanfare, releases the ropes, that tie you, and you fall painfully to the ground, ready for your next <i>lesson</i>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);
@@ -1250,6 +1271,7 @@ function enterGs6(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Ah-Ah-Ah… Easy now, ${((s as any).pcs_lastname ?? 0)}, you're not some common harlot!"`);
   scene.text('And you munch… and munch… with Aleksei\'s hand in your head, marking the rhythm, and his constant nagging and <i>helpful</i> advice, so you <i>properly</i>, caress, lick, penetrate, sink, slurp and stroke all around his pussy using your fingers, mouth, and tongue… and is not enough… only elicit more nagging from the elder wizard, pushing you a little more, in a restless effort… until you see him close the eyes, and hear a change in his breathing as one of Aleksei\'s hand travels sensually his body, and soon the blonde, moan in constricted pleasure,');
   scene.text('During the next minutes, a smug Aleksei sits relaxed, smoking a cigarette as he observes you, recatching your breath, a silent question in the air… do you want another session?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and follow Aleksei', goto: ['alexandriaHome', 'study'] },
   ]);

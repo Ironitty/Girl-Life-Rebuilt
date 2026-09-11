@@ -26,6 +26,7 @@ function enterIntSqrt(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).sqrtn ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -35,6 +36,7 @@ function enterIntDivide(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (((s as any).ARGS ?? 0)[1] + (((s as any).ARGS ?? 0)[2] / 2)) / ((s as any).ARGS ?? 0)[2];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,12 +46,14 @@ function enterIntRound(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).ARGS ?? 0)[2] * qspFunc(s, 'math', 'int_divide', qspUntranslated(s, "ARGS[1]", { location: "math" }), qspUntranslated(s, "ARGS[2]", { location: "math" }));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIntClamp(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +84,7 @@ function enterIntPower(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,6 +92,7 @@ function enterConvertToLong(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS ?? {})[1] = '' + qspUntranslated(s, "ARGS[1]>", { location: "math" }) + '';
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +101,7 @@ function enterConvertToInt(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = qspUntranslated(s, "val(ARGS[1])", { location: "math" });
   }
   (s as any).result = qspUntranslated(s, "ARGS[1]", { location: "math" });
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,6 +115,7 @@ function enterTrimLong(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'trim_long_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +128,7 @@ function enterPadLong(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[2] = (((s as any).ARGS ?? {})[2] ?? 0) - (1);
     // TODO-QSP: jump 'pad_long_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +181,7 @@ function enterLongAdd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_add_sign ?? 0)[0] === 1) {
   }
   // TODO-QSP: :long_add_cleanup
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -245,6 +255,7 @@ function enterLongSub(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_sub_sign ?? 0)[0] === 1) {
   }
   // TODO-QSP: :long_sub_cleanup
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -289,6 +300,7 @@ function enterLongMult(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_mult_sign ?? 0)[0] === 1) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -338,6 +350,7 @@ function enterLongDiv(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_div_sign ?? 0)[0] === 1) {
   }
   // TODO-QSP: :long_div_cleanup
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -345,6 +358,7 @@ function enterHexByte(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).math_hb ?? 0)).length) < 2) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -366,6 +380,7 @@ function enterColorMix(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += mid('0123456789ABCDEF', 1 + math_mix_g / 16, 1) + mid('0123456789ABCDEF', 1 + math_mix_g ...
   // TODO-QSP: $result += mid('0123456789ABCDEF', 1 + math_mix_b / 16, 1) + mid('0123456789ABCDEF', 1 + math_mix_b ...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

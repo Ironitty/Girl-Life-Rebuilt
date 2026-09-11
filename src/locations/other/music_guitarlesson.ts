@@ -27,6 +27,7 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   scene.text(`He looks at you "So, ${((s as any).pcs_firstname ?? 0)}, do you think you would be interested in taking lessons?"`);
   qspCall(s, 'npc_relationship', 'set', 'ML1', 45);
   ((s as any).ml_guitarlesson ?? {})['enquired'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sign up', handler: (st: GameState) => {
     scene.text('You nod "Yes, I really would like to learn to play the guitar. When can we start?"');
@@ -63,6 +64,7 @@ function enterSetlessonday(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 4 & $ml_guitarlesson[\'lessonday\'] = \'Thursday\' & gt \'music_guitarlesson\', \'goodbye\'">Thursday</a>');
   scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 5 & $ml_guitarlesson[\'lessonday\'] = \'Friday\' & gt \'music_guitarlesson\', \'goodbye\'">Friday</a>');
   scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 6 & $ml_guitarlesson[\'lessonday\'] = \'Saturday\' & gt \'music_guitarlesson\', \'goodbye\'">Saturday</a>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t arrange a lesson day', goto: ['pav_commclubs', ''] },
   ]);
@@ -71,6 +73,7 @@ function enterSetlessonday(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'lesson'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,6 +99,7 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 5 & $ml_guitarlesson[\'lessonday\'] = \'Friday\' & gt \'music_guitarlesson\', \'goodbye\'">Friday</a>');
   scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 6 & $ml_guitarlesson[\'lessonday\'] = \'Saturday\' & gt \'music_guitarlesson\', \'goodbye\'">Saturday</a>');
   scene.text('<a href="exec: ml_guitarlesson[\'lessonday\'] = 8 & $ml_guitarlesson[\'lessonday\'] = \'None\' & gt \'music_guitarlesson\', \'goodbye\'">You don\'t know yet</a>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,6 +114,7 @@ function enterGoodbye(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You are not sure when it would be a good day right now, so you agree to decide on a day later, you say goodbye and leave.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commclubs', ''] },
   ]);
@@ -120,6 +125,7 @@ function enterAdvertisement(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_guitarlesson ?? {})['advertisement'] = 1;
   scene.text('<center>As you pass by the community center door you see a new colour note screaming "Guitar Lessons!" in bright letters over the image of a guitar.<center>');
   scene.img('images/locations/shared/noticeboards/pav/flyer_music_guitar.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
   ]);
@@ -151,6 +157,7 @@ function enterGetdate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -19,6 +19,7 @@ function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <b>Rage meter: <<brothel_vars['rage_meter']>> / 100</b>
   scene.text(`<b>Rage meter: ${((s as any).brothel_vars ?? 0)?.['rage_meter']} / 100</b>`);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,6 +140,7 @@ function enterSection1PrefUpdate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -148,6 +150,7 @@ function enterSection1Cage(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/slaveincage.jpg');
   scene.text('You crawl into one of the small cages. The door locks on its own as it closes with an audible click.');
   scene.text('You are locked in a cage, like an animal. The bars are cold to the touch and don\'t budge in the slightest, stressing the feeling of helplessness even more.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for a client', goto: ['brothel_section1', 'section1_cage_client'] },
     { label: 'Try to get someone to let you out', handler: (st: GameState) => {
@@ -202,6 +205,7 @@ function enterSection1CageLeave(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +230,7 @@ function enterSection1ForceWork(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('"Stay there, someone will teach you a lesson in time. Hopefully you learn to be responsible."');
   (s as any).brothelCredit = 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for a client', goto: ['brothel_section1', 'section1_cage_client'] },
   ]);
@@ -280,6 +285,7 @@ function enterSection1CageClient(s: GameState, scene: SceneBuilder): void {
       scene.text('"Let\'s go you walking set of holes!"');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be led out of the cage', goto: ['brothel_section1', 'section1_start'] },
   ]);
@@ -324,6 +330,7 @@ function enterSection1Start(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -397,6 +404,7 @@ function enterSection1Pick(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -492,6 +500,7 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -507,6 +516,7 @@ function enterSection1ElectroAsshigh(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
   scene.img('images/locations/shared/brothel/asshigh.mp4');
   scene.text('You are bound, lying on your chest. Master raises your ass high in the air, forcing you in an awkward position with both your holes on display, while tying you so you cannot move at all.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 1
@@ -519,6 +529,7 @@ function enterSection1ElectroLike(s: GameState, scene: SceneBuilder): void {
   ((s as any).brothel_vars ?? {})['like'] = 1;
   ((s as any).brothel_vars ?? {})['orgasm_meter'] = (((s as any).brothel_vars ?? {})['orgasm_meter'] ?? 0) + (20);
   qspCall(s, 'fetish', 'add_pref', 'maso', 1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,6 +537,7 @@ function enterSection1ElectroDislike(s: GameState, scene: SceneBuilder): void {
   ((s as any).brothel_vars ?? {})['like'] = 0;
   ((s as any).brothel_vars ?? {})['rage_meter'] = (((s as any).brothel_vars ?? {})['rage_meter'] ?? 0) + (15);
   qspCall(s, 'fetish', 'add_pref', 'maso', (-1));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -555,6 +567,7 @@ function enterSection1ElectroButtplug(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -580,6 +593,7 @@ function enterSection1ElectroPushPlug(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -596,6 +610,7 @@ function enterSection1ElectroRod(s: GameState, scene: SceneBuilder): void {
   scene.text('A shiver runs through your spine and soon you know why! He puts the rod on your anus, electrocuting your sensitive hole!"');
   scene.text('<center><b>"Owwwwwwwwwwwwwwwwww!"</b></center>');
   scene.text('"Don\'t do it again slut! Or this will be halfway in your anus!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'brothel_section1', 'section1_electro_replug');
@@ -617,6 +632,7 @@ function enterSection1ElectroReplug(s: GameState, scene: SceneBuilder): void {
   scene.text('"What is it, slut? Can\'t handle being plugged any longer? Too bad, in it goes!"');
   scene.text('<center><b>"Owwchhh! PLEASE! PLEASE, DON\'T!"</b></center>');
   scene.text('The metallic plug touches your anus again, only to be brutally pushed in, increasing your pain even more.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: exit
@@ -632,6 +648,7 @@ function enterSection1ElectroElectrodes(s: GameState, scene: SceneBuilder): void
   scene.img('images/locations/shared/brothel/electrodesass.jpg');
   scene.text('You feel a slightly cold sensation, as if something wet was put on and near your private areas.');
   scene.text('The sensation fades away in a few seconds, leaving a feeling of something being stuck to your bottom parts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_electro_main', 3
@@ -653,6 +670,7 @@ function enterSection1ElectroElectrocute(s: GameState, scene: SceneBuilder): voi
   scene.text('Your body trembles and cramps as the electric discharge flows through your sensitive parts.');
   scene.text('<center><b>"Owwchhh! It hurts!"</b></center>');
   scene.text('"That\'s the point slut! How do you like it? Tell me now!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you hate it and want him to stop', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_dislike');
@@ -679,6 +697,7 @@ function enterSection1ElectroElectrocuteMore(s: GameState, scene: SceneBuilder):
   scene.text('You feel as if your skin should peel away and your anus would tear apart at any second.');
   scene.text('<center><b>"Owwchhh! It hurts so much! STOPP ITT!"</b></center>');
   scene.text('"You should\'ve subdued at the first point, dumb slut. How do you like it now?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you hate it and want him to stop', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_dislike');
@@ -709,6 +728,7 @@ function enterSection1ElectroElectrocuteMax(s: GameState, scene: SceneBuilder): 
   scene.text('You feel as if your skin should turn inside out and your anus would explode together with your stomach.');
   scene.text('<center><b>"Owwchhh! AAARHHHGHHGHGH!!!"</b></center>');
   scene.text('"Now this is what I call a barbecue party!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cry that you hate it and want him to stop', handler: (st: GameState) => {
     qspCall(s, 'brothel_section1', 'section1_electro_dislike');
@@ -804,6 +824,7 @@ function enterSection1TitsMain(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -820,6 +841,7 @@ function enterSection1TitsHangNeck(s: GameState, scene: SceneBuilder): void {
   scene.text('As you stand there, you are getting more nervous about what he\'s going to do with you…');
   scene.text('The Client comes with another rope, attaching it to an already prepared hook hanging from the ceiling.');
   scene.text('To your horror he snaps the rope around your neck as if he\'s going to hang you!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
@@ -839,6 +861,7 @@ function enterSection1TitsWhip(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/whiptits.mp4');
   scene.text('As you hang with your hands tied, you can only watch as the Client takes a whip and repeatedly punishes your tender titties…');
   scene.text('<center><b>"Oww! Oww! Nooo! Owww! Not… Any… More… Please… Oww…"</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
@@ -858,6 +881,7 @@ function enterSection1TitsCane(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/canetits.mp4');
   scene.text('As you hang with hands tied, you can only watch as the Client takes a wooden cane and repeatedly punishes your tender titties…');
   scene.text('<center><b>"Oww! Oww! Nooo! Owww! Not… Any… More… Please… Oww…"</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
@@ -878,6 +902,7 @@ function enterSection1TitsPinch(s: GameState, scene: SceneBuilder): void {
   scene.text('As you hang with hands tied, you can only watch as the Client takes a few wooden pins and pinches your sensitive nipples and areolas.');
   scene.text('First it is just unpleasant but the repeated attacks on your tits make it worse with each attempt…');
   scene.text('<center><b>"Oww! Oww! Nooo! Owww!"</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
@@ -898,6 +923,7 @@ function enterSection1TitsPunch(s: GameState, scene: SceneBuilder): void {
   scene.text('As you hang with hands tied, you can only watch as the Client closes his strong, manly fists.');
   scene.text('Your tender titties are but punchbags for him, as if this was a boxing session!');
   scene.text('<center><b>"Oww! Oww! Nooo! Owww!"</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 1
@@ -919,6 +945,7 @@ function enterSection1TitsPullNipples(s: GameState, scene: SceneBuilder): void {
   scene.text('As soon as both strings are in place, he pulls them hard, as if he was trying to tear off your nipples!');
   scene.text('<center><b>"Owwwwuuch!!!"</b></center>');
   scene.text('"Nice! Do you think this will make your nipples longer, slut? Or will those shrink again? Let\'s see!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 3
@@ -942,6 +969,7 @@ function enterSection1TitsBind(s: GameState, scene: SceneBuilder): void {
   scene.text('He ties the strings around your tits very tight, making them even more sensitive and as an addition turning more purple with each minute.');
   scene.text('<center><b>"Not so tight Master, please!"</b></center>');
   scene.text('"Shut up slut!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 4
@@ -962,6 +990,7 @@ function enterSection1TitsPinchBound(s: GameState, scene: SceneBuilder): void {
   scene.text('Your tits are already squeezed by the ropes, but the Client wants to unleash additional suffering upon them.');
   scene.text('He uses his fingers to pinch your nipples, stretching them as far as they go.');
   scene.text('Your tits are already so full that you feel as they should rupture any second, and by trying to catch the nipples, the client causes you extremely unpleasant sensations!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 5
@@ -985,6 +1014,7 @@ function enterSection1TitsHangTits(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"No Master, you can\'t be serious!! You will tear them off! It is against the rules, stop it!</b></center>');
   scene.text('"NO, it\'s not against the rules. They won\'t tear off, you\'ll see!"');
   scene.text('<center><b>"AYYYEEEEEEEEEEEE!</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tits_main', 6
@@ -1179,6 +1209,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1248,6 +1279,7 @@ function enterSection1TiedMain(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1260,6 +1292,7 @@ function enterSection1TiedLieBack(s: GameState, scene: SceneBuilder): void {
   scene.text('The client reaches for your neck, forcefully leading you to one of the beds.');
   // TODO-QSP: 'You know what''s coming… he throws you on the soft pillows:' + $func('wrap', 'neg', '"Lie on your b...
   scene.text('You do as ordered…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 1
@@ -1281,6 +1314,7 @@ function enterSection1TiedOnBack(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 4, 'LegL', 'bind');
   qspCall(s, 'stat', '');
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1307,6 +1341,7 @@ function enterSection1TiedMouth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 5, 'throat', 'stretch');
   qspCall(s, 'stat', '');
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'humiliation');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1336,6 +1371,7 @@ function enterSection1TiedAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 4, 'breasts', 'slap');
   qspCall(s, 'stat', '');
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'sub');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1365,6 +1401,7 @@ function enterSection1TiedVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'sub');
   qspCall(s, 'arousal', 'vaginal', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1389,6 +1426,7 @@ function enterSection1TiedTease(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 4, 'nipples', 'stretch');
   qspCall(s, 'stat', '');
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'humiliation');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1421,6 +1459,7 @@ function enterSection1TiedAnalfisting(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 4, 'tummy', 'cramp');
   qspCall(s, 'stat', '');
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1447,6 +1486,7 @@ function enterSection1TiedVibrate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
   qspCall(s, 'arousal', 'vaginal_vibe', 15, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1476,6 +1516,7 @@ function enterSection1TiedWhip(s: GameState, scene: SceneBuilder): void {
   scene.text('Your fears come true in a few seconds - he takes out a whip!');
   scene.text('He puts the top of the whip right on your exposed pussy lips, enjoying the frightened face you are giving him.');
   scene.text('Then suddenly he starts to punish the most sensitive part of your young body, giving you no mercy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'brothel_section1', 'section1_tied_main', 2
@@ -1512,6 +1553,7 @@ function enterSection1EndMain(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1524,6 +1566,7 @@ function enterSection1EndRage(s: GameState, scene: SceneBuilder): void {
   scene.text('Being bound, you have no choice but to witness his slimy dick turning dark red as he furiously masturbates.');
   scene.text('Finally, after a few minutes, a large amount of slimy cum lands all over your face. It gets in your mouth and even sticks your eyelids together.');
   qspCall(s, 'cum_call', 'face', 'Master');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_end'] },
   ]);
@@ -1613,6 +1656,7 @@ function enterSection1EndBehindVaginal(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1705,6 +1749,7 @@ function enterSection1EndBehindAnal(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1721,6 +1766,7 @@ function enterSection1EndFrontVaginal(s: GameState, scene: SceneBuilder): void {
     scene.text('With a growing sense of horror, you realize that you aren\'t on the shot and have no idea when you last took a birth control pill.');
   }
   qspCall(s, 'cum_call', '', '', 'Master');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_end'] },
   ]);
@@ -1737,6 +1783,7 @@ function enterSection1EndFrontAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('Being still bound on your back, you finally expect it to end.');
   scene.text('The Client increases his pace and, with a groan, cums into your anus, releasing his hot sperm inside your intestines.');
   qspCall(s, 'cum_call', 'anus', 'Master');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_end'] },
   ]);
@@ -1782,6 +1829,7 @@ function enterSection1EndMouth(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1822,6 +1870,7 @@ function enterSection1EndFace(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1910,6 +1959,7 @@ function enterSection1End(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

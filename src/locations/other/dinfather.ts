@@ -45,6 +45,7 @@ function enterFatherAct1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +85,7 @@ function enterFatherAct2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -132,6 +134,7 @@ function enterFatherAct3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,6 +155,7 @@ function enterFather1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +176,7 @@ function enterFather2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -196,6 +201,7 @@ function enterFather3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +230,7 @@ function enterFather4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -266,6 +273,7 @@ function enterGarAct1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'dinfather', 'garchat');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,6 +315,7 @@ function enterGarAct2(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'dinfather', 'garchat');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -369,6 +378,7 @@ function enterGarAct3(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'dinfather', 'garchat');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -481,10 +491,12 @@ function enterWatchtvAct1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWatchtvAct2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stare at his groin', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic', 5, 'incest');
@@ -523,6 +535,7 @@ function enterWatchtvAct2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWatchtvAct3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 5);
@@ -598,6 +611,7 @@ function enterWatchtv1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -618,6 +632,7 @@ function enterWatchtv2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -642,6 +657,7 @@ function enterWatchtv3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -672,6 +688,7 @@ function enterWatchtv4(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'dinfather', 'watchtv3');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -714,6 +731,7 @@ function enterDFatherdrunkAct1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -789,6 +807,7 @@ function enterDFatherdrunkAct2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -847,6 +866,7 @@ function enterDFatherdrunkAct3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -872,6 +892,7 @@ function enterGarchat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -902,6 +923,7 @@ function enterGarhelpchat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -961,6 +983,7 @@ function enterGardrunkchat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

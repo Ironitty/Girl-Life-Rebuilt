@@ -23,6 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The vodka has you feeling quite drunk, and soon you are too drunk to really think straight. When you hold onto the table to stop yourself from falling off your chair, you see the smiles on the Gopniks\' faces make place for rather greedy grins. Suddenly everyone\'s looking at you, ogling your body from top to bottom.');
     scene.text('A few of the guys approach you and pick you up, despite your meek protests. You\'re way too drunk to stop them, and just let it happen. The world won\'t stop spinning while they haul you around, and you feel rather disoriented when the Gopniks dump you down onto a sole mattress in an otherwise empty room.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     ((s as any).stat ?? {})['rape_count'] = (((s as any).stat ?? {})['rape_count'] ?? 0) + (1);
@@ -66,6 +67,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gopnik_house', 'rape_end'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -98,6 +100,7 @@ function enterRapeEnd(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

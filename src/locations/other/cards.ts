@@ -32,11 +32,13 @@ function enterShellOpen(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</div>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShellClose(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -47,6 +49,7 @@ function enterShell(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cards', 'shell_close');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,6 +62,7 @@ function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cards', 'shell_open');
   // TODO-QSP: *p $result
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,6 +70,7 @@ function enterSectionClose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cards', 'shell_close');
   // TODO-QSP: *p $result
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

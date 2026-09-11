@@ -61,6 +61,7 @@ function enterCoffeeHoleChat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask Natasha to go to the mall [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
@@ -108,6 +109,7 @@ function enterDormChats(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -135,6 +137,7 @@ function enterNightclubDateAsk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Maybe I'll pick you up in your room <<$pcs_nickname>>?" She suggests.
   scene.text(`"Maybe I'll pick you up in your room ${((s as any).pcs_nickname ?? 0)}?" She suggests.`);
   scene.text('You get up and give her a kiss on the cheek. "OK <i>girlfriend</i> see you this evening, shall we say about 8:00PM?" Natasha confirms her agreement before you leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to The Coffee Hole', goto: ['city_coffee_hole', 'inner'] },
   ]);
@@ -153,6 +156,7 @@ function enterNightclubDate1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ok well come on, we need to get a wriggle on. I want to dance and hold you tight." You tell her with a wink. "I take it you still want to go?"');
   scene.text('"Oh yes, I\'d love to go with you. Sorry, I started drawing this dress and got sorta lost track of time."');
   scene.text('"Well, go get your dress on and we\'ll head out." You return to her room so can she can get dressed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for Natasha to get ready', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -206,6 +210,7 @@ function enterNightclubDate1_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You take the metro to the City center and taking your seats you chat about recent events and university life.');
   scene.text('Before you know it you\'ve arrived at the city center so you take hold of her hand and walk to the nightclub where you each pay the entrance fee and enter the club.');
   scene.text('You grab Natasha\'s hand and lead her to the dance floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance together', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -297,6 +302,7 @@ function enterNightclubDate1_3(s: GameState, scene: SceneBuilder): void {
   scene.text('"She leans over and gives you a soft passionate kiss. "I love staying here the night and waking up next to you," she says lovingly. She then slowly moves down to your boobs and gives them a final kiss before settling down next to you.');
   scene.text('You answer by cuddling up to her and you both drift off to sleep.');
   qspCall(s, 'sleep_simple', 'simple');
+  // TODO-QSP: end
   scene.actions([
     { label: 'wake up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -350,6 +356,7 @@ function enterMallDate1(s: GameState, scene: SceneBuilder): void {
   scene.text('She shakes her head. "I… Well…" She trails off.');
   scene.text('"It\'s OK I\'m just teasing; I know what you\'re like so it\'s no surprise." You reply taking hold of her hand. "Come on then let\'s go."');
   scene.text('She immediately gets up and without letting go of your hand, probably to make sure you don\'t change your mind and leads you out of the café and you head down to the metro.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the mall', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -557,6 +564,7 @@ function enterMallDate1_2(s: GameState, scene: SceneBuilder): void {
   scene.text('Natasha also makes her choice and pays for it.');
   scene.text('After taking your seats you enjoy a tasty meal and drink whilc chatting about whatever comes to mind.');
   scene.text('You have a pleasant meal before finishing up when you agree it\'s time to head back.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to university', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -594,6 +602,7 @@ function enterLibraryDate1(s: GameState, scene: SceneBuilder): void {
   scene.text(`She nods and smiles at you. "Yes ${((s as any).pcs_nickname ?? 0)}."`);
   scene.text('"OK come on then <i>girlfriend</i>." You reply.');
   scene.text('She gets up you head out of the café and you head down to the metro holding hands.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the city center', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -708,6 +717,7 @@ function enterLibraryDate1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLibraryDate1_2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -771,6 +781,7 @@ function enterCafeDate1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Yeah. I'd love that; great idea <<$pcs_nickname>>!"
   scene.text(`"Yeah. I'd love that; great idea ${((s as any).pcs_nickname ?? 0)}!"`);
   scene.text('You both take your time over your coffee just chatting about anything that comes to mind.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'How about something to eat?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -955,6 +966,7 @@ function enterBeachDate1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -970,6 +982,7 @@ function enterBeachDate1BuySwimwearLoop(s: GameState, scene: SceneBuilder): void
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -986,6 +999,7 @@ function enterBeachDate1BuySwimsuit(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'clothing_view', 'display_grid_shop');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -1007,6 +1021,7 @@ function enterBeachDate1BuyBikini(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'clothing_view', 'display_grid_shop');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -1022,6 +1037,7 @@ function enterBeachDate1Lake(s: GameState, scene: SceneBuilder): void {
   scene.text('The water looks inviting so you both decide to have a swim.');
   scene.text('You have a great time swimming and splashing each other and generally having fun as you did when you were little kids.');
   scene.text('After 30 minutes or so you leave the water and dry off.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a walk along the shore', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;

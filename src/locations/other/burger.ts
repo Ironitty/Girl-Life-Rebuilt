@@ -45,6 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the diner', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -84,6 +85,7 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['burger', 'start'] },
     { label: 'Repay the debt [+$func(\'money\', \'get_cost_string\', 650000...]', handler: (st: GameState) => {
@@ -109,6 +111,7 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   // TODO-QSP: dynamic text: You go into the manager's office where you meet a smart girl. She begins to tell...
   scene.text(`You go into the manager's office where you meet a smart girl. She begins to tell you, that you can work almost every day, "Come in any time, run the snack bar and wash the dishes for 1:00. You will get ${qspFunc(s, 'money', 'string_profit', 70)} immediately on hand."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse and leave', goto: ['burger', 'start'] },
     { label: 'Accept work', handler: (st: GameState) => {
@@ -127,6 +130,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   // TODO-QSP: dynamic text: You go to the office of the manager. The girl tells the manager that you are doi...
   scene.text(`You go to the office of the manager. The girl tells the manager that you are doing good work and offers you another part-time job, "You can wash the floors in the morning, from 8 to 9. 1 hour of cleaning floors will get you ${qspFunc(s, 'money', 'string_profit', 70)} immediately on hand."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse and leave', goto: ['burger', 'start'] },
     { label: 'Agree to work', handler: (st: GameState) => {
@@ -688,6 +692,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['burger', 'start'] },
   ]);
@@ -704,6 +709,7 @@ function enterFloor(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/office/clener1.jpg');
   // TODO-QSP: dynamic text: You wash the floors of the bistro for an hour. Afterwards you are given <<$func(...
   scene.text(`You wash the floors of the bistro for an hour. Afterwards you are given ${qspFunc(s, 'money', 'string_profit', 70)} for your work.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['burger', 'start'] },
   ]);
@@ -762,11 +768,13 @@ function enterBoss(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBossSlut_01(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the manager\'s office. Anatoly Borisovich is sitting at the table studying some documents. When he sees you, he puts them aside and invites you to sit on a chair.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sit on a chair', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -941,6 +949,7 @@ function enterBossSlut_10(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['burger', 'start'] },
   ]);

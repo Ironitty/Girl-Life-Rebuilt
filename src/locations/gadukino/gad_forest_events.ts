@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterFindMeadow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/meadow/meadow_path.jpg');
   scene.text('Walking through the forest, you notice a small path that runs along some bushes and a small ravine. The trail leads away from the well-worn tracks you are currently on and into a dense thicket.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it and keep walking', goto: ['gad_forest', 'forest_edge'] },
     { label: 'Follow the path to see where it goes', handler: (st: GameState) => {
@@ -66,6 +67,7 @@ function enterMiraPickingTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('"Also, every morning during summertime, the truck from the city comes to buy mushrooms and berries from the local pickers. I don\'t bother doing it, but I\'m sure you could make some money from that if you wanted to."');
   scene.text('"One more warning, I\'ve heard some other villagers say there are wolves in the forest that come out after dark, so you shouldn\'t stay in the forest after sundown."');
   scene.text('"That\'s one of the reasons why I prefer to walk around the forest\'s edge in the morning. It\'s much safer in the daylight when more people are around."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
   ]);
@@ -84,6 +86,7 @@ function enterMiraNudeTalk(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, guess what I overheard recently," Mira giggles as she whispers in your ear. "Some village elders talked about how walking naked in the woods is said to greatly improve your health and mood."`);
   scene.text('"I don\'t know if it\'s the fresh air or just being surrounded by nature, but it did make me feel better."');
   scene.text('"I may have tried it once to see if what they said was true. Maybe we can go together sometime?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
   ]);
@@ -159,6 +162,7 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give in to Mira', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -186,6 +190,7 @@ function enterMiraMorningWalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As you walk through the forest, you hear a familiar voice call out, "Hey, <<$pcs...
   scene.text(`As you walk through the forest, you hear a familiar voice call out, "Hey, ${((s as any).pcs_nickname ?? 0)}, wait up!" You turn around and see Mira excitedly bounding up behind you.`);
   scene.text('"Want to join me on my walk?" she asks. "I love walking through the forest in the morning."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say Hello', goto: ['gad_forest', 'forest_edge'] },
   ]);
@@ -204,6 +209,7 @@ function enterMushroomPickers1(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -227,6 +233,7 @@ function enterMushroomPickers2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', goto: ['gad_forest', 'forest_edge'] },
   ]);
@@ -289,6 +296,7 @@ function enterMushroomPickers3(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave them be', goto: ['gad_forest', 'forest_outskirts'] },
   ]);
@@ -321,6 +329,7 @@ function enterMushroom(s: GameState, scene: SceneBuilder): void {
     scene.text('Unfortunately, your basket is full, and you cannot carry any more mushrooms.');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_forest', 'forest_center'] },
   ]);
@@ -353,6 +362,7 @@ function enterBilberry(s: GameState, scene: SceneBuilder): void {
     scene.text('Unfortunately, your basket is already full, and you cannot carry any more berries.');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_forest', 'forest_center'] },
   ]);
@@ -388,6 +398,7 @@ function enterBasket(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the basket alone', goto: ['gad_forest', 'forest_center'] },
   ]);
@@ -436,6 +447,7 @@ function enterPicnic(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -502,6 +514,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave them alone', handler: (st: GameState) => {
     // TODO-QSP: gt 'gad_forest', $ReturnAdr
@@ -753,6 +766,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

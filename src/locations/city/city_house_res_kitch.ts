@@ -46,6 +46,7 @@ function enterKitch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'lover_living', 'kitchen');
   qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['city_house_res_misc', 'hallw'] },
   ]);

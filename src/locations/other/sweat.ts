@@ -7,9 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).pcs_sweat ?? 0) < 0) {
-    (s as any).pcs_sweat = 0;
-  }
   scene.build();
 }
 
@@ -22,6 +19,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "sweat" }));
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -30,6 +28,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = Math.floor(Math.random() * 10) + 0;
   }
   qspCall(s, 'sweat', 'remove_deo');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,10 +38,15 @@ function enterDeo(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (2);
   }
   (s as any).deodorant_time = ((s as any).totminut ?? 0) + 24 * 60;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemoveDeo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  if (((s as any).pcs_sweat ?? 0) < 0) {
+    (s as any).pcs_sweat = 0;
+  }
   scene.build();
 }
 

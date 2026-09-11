@@ -210,6 +210,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_park', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a beer with the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
   ]);
@@ -322,6 +323,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0)<6) {
     // TODO-QSP: act 'Drink some more with the guys': gt 'zsoft_gopskverGorSlut', '2'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strike a sexy pose', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -710,6 +712,7 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<$r_piss_text>> Nothing interesting happens.
   scene.text(`${((s as any).r_piss_text ?? 0)} Nothing interesting happens.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pay the fine [+$func(\'money\', \'get_cost_string\', 500)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
@@ -917,6 +920,7 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cover up again', goto: ['zsoft_gopskverGorSlut', '2'] },
   ]);
@@ -935,6 +939,7 @@ function enterHornyparksex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$horny_orgazm_text2>> <<$horny_orgazm_text4>>
     scene.text(`${((s as any).horny_orgazm_text2 ?? 0)} ${((s as any).horny_orgazm_text4 ?? 0)}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -950,10 +955,12 @@ function enterHornyparksexanal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$horny_orgazm_text2>> <<$horny_orgazm_text4>>
     scene.text(`${((s as any).horny_orgazm_text2 ?? 0)} ${((s as any).horny_orgazm_text4 ?? 0)}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCumface(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum on your face', handler: (st: GameState) => {
     (s as any).spafinloc = 11;
@@ -987,6 +994,7 @@ function enterCumface(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumfaceGroup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them cum on your face', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0));
@@ -1024,6 +1032,7 @@ function enterCumfaceGroup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCummouth(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your mouth', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
@@ -1062,6 +1071,7 @@ function enterCummouth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCummouthGroup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them cum in your mouth', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
@@ -1096,6 +1106,7 @@ function enterCummouthGroup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumbody(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum on your body', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0));
@@ -1121,6 +1132,7 @@ function enterCumbody(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumass(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your ass', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'tiny');
@@ -1152,6 +1164,7 @@ function enterCumass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumassGroup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them cum in your ass', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'tiny');
@@ -1217,6 +1230,7 @@ function enterCumpussy(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pregriskeval', ((s as any).eff_contra ?? 0)) === -1  &&  ((s as any).birth_control ?? 0)?.['implant_status'] <= 1) {
     scene.text('As you push your fingers inside your pussy trying to scoop out his load, you think to yourself: "Did I take my pill today? I sure hope so…"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_park', 'start'] },
     { label: 'Return to the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
@@ -1225,6 +1239,7 @@ function enterCumpussy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumpussywanted(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your pussy', handler: (st: GameState) => {
     qspCall(s, 'zsoft_gopskverGorSlut', 'cumpussy', 'wanted');
@@ -1234,6 +1249,7 @@ function enterCumpussywanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumpussyunwanted(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him not to come in your pussy', handler: (st: GameState) => {
     qspCall(s, 'zsoft_gopskverGorSlut', 'cumpussy', 'unwanted');
@@ -1243,6 +1259,7 @@ function enterCumpussyunwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck your pussy', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1279,6 +1296,7 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnalsex(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck your ass', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

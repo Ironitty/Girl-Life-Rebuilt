@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterExport(s: GameState, scene: SceneBuilder): void {
   scene.text('Your current settings will be displayed on the next screen. Copy the entire block and save it to a text file. To restore, use Import and paste the text back.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: showstat 0
@@ -315,6 +316,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
 function enterImport(s: GameState, scene: SceneBuilder): void {
   scene.text('Paste your saved game settings into the input box (Likely at the bottom of the screen), then click Continue.');
   // TODO-QSP: showinput 1
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: cmdclear

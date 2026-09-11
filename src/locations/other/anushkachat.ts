@@ -925,6 +925,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +946,7 @@ function enterPhotoChat(s: GameState, scene: SceneBuilder): void {
     scene.text('She giggles at your reaction. "Yeah, I model at a place called Aphrodite in the city."');
     scene.text('You\'re a little surprised that you hadn\'t heard about this until now. "Oh. Uh yeah, sure I can do that."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take out your camera', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1180,6 +1182,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'lover_looop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1193,6 +1196,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('You shake your head slightly. "You\'ve never met him. I just met him."');
   scene.text('She smiles. "Just some guy you met, huh?"');
   scene.text('You laugh, then tell her about him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['anush_bedroom', 'anushroom'] },
     { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
@@ -1208,6 +1212,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
   scene.text('She gives you a somewhat skeptical look before shrugging. "Well, best of luck with that."');
   scene.text('You\'re not sure what more to say on the topic.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['anush_bedroom', 'anushroom'] },
     { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
@@ -1223,6 +1228,7 @@ function enterRadval(s: GameState, scene: SceneBuilder): void {
   scene.text('She gives you a slightly confused look. "Yeah, why?"');
   scene.text('You give her a friendly smile. "Well, I was just wondering if it causes problems? Like, do they get jealous of each other or something?"');
   scene.text('She glares at you before she bursts out laughing. "Are you fucking kidding me? Guys don\'t give a shit as long as they get a turn. Most guys I know would pimp out their girlfriend for a pack of smokes."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not all guys', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1270,6 +1276,7 @@ function enterTellAboutOlu(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You describe Olu to her and mention that he lives in your building. She nods, apparently knowing who you mean. "Yeah, I think I\'ve seen him around the courtyard before. So he lives in your building, huh? How did you meet? He looks a little old for you."');
   scene.text('"Well… he\'s my aunt\'s boyfriend," you tell her and she gives you a shocked look. "Oh my god! Does your aunt know?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1329,6 +1336,7 @@ function enterInviteOlu(s: GameState, scene: SceneBuilder): void {
   scene.text('You laugh. "You get used to it, trust me. So you want to or what?"');
   scene.text('She bites her lower lip before laughing. "Yeah, fuck it. Next time you go see him, text me and I\'ll come join you if I can."');
   scene.text('You nod. "Great, I\'ll let you know." You then tell her the story of your first time with Olu and what it was like. She presses you for details, obviously finding the story a big turn on, then shares her stories of Valentin, the biggest guy she has been with. You pass the time swapping stories and giggling about your sex lives.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
     { label: 'Talk about something else', goto: ['anushkachat', 'chat'] },
@@ -1346,6 +1354,7 @@ function enterTellAboutDjibril(s: GameState, scene: SceneBuilder): void {
   scene.text('She shoves you slightly. "Spill already! What about him?"');
   scene.text('You shove her back slightly and grin. "Well I had sex with him too. He isn\'t as big as his uncle, but let\'s just say, big dicks run in the family."');
   scene.text('She bites her lower lip. "Damn, black college boy with a big dick? Come on, dish with the details!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her about sex with him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1414,6 +1423,7 @@ function enterTellAboutDjibril1(s: GameState, scene: SceneBuilder): void {
   scene.text('She shoves you slightly. "Spill already! What about him?"');
   scene.text('You shove her back slightly and grin. "Well I had sex with him and he has one of the biggest dicks I\'ve ever seen! I mean <i>massive<i>." You hold up your hands to show her roughly how big it is.');
   scene.text('She bites her lower lip. "Damn, black college boy with a huge dick! Come on, dish with the details!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her about sex with him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1481,6 +1491,7 @@ function enterInviteDjibril(s: GameState, scene: SceneBuilder): void {
   scene.text('She nods. "Okay, yeah. Hanging out with a college boy at the dorms sounds like fun. Maybe I can find a cute college boy\'s dick to ride while we\'re there," she says with a laugh.');
   scene.text('You laugh. "I\'m sure they\'ll be lining up to stick it in you."');
   scene.text('The two of you continue talking for some time about boys, sex and even going to college. After a while, the conversation finally ends.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
     { label: 'Talk about something else', goto: ['anushkachat', 'chat'] },
@@ -1497,6 +1508,7 @@ function enterTellAboutDjibrilGangbang(s: GameState, scene: SceneBuilder): void 
   scene.text('When you don\'t immediately start talking, she shoves you slightly. "Spill already! What about him? You guys hooking up regular like?"');
   scene.text('You shove her back slightly and grin. "Well a bunch of his black friends came over while I was there.."');
   scene.text('She bites her lower lip. "So what did you do? Did you fuck all of them?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1531,6 +1543,7 @@ function enterInviteDjibrilGangbang(s: GameState, scene: SceneBuilder): void {
   scene.text('She bites her lip and seems to be thinking about it as she grins widely. "Okay, yeah. Getting fucked by a bunch of black guys sounds like a blast," she says with a laugh.');
   scene.text('You laugh. "I\'m sure they\'ll be lining up to stick it in you."');
   scene.text('The two of you go on talking for some time about boys, sex and even going to college. After a while, the conversation finally ends.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },
     { label: 'Talk about something else', goto: ['anushkachat', 'chat'] },
@@ -1576,6 +1589,7 @@ function enterPhotoshoot(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1586,6 +1600,7 @@ function enterPhotoshoot1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/set1/pose1.jpg');
   scene.text('Once out on the fire escape, you find a spot on the other side of the landing and pull your camera out. You start snapping photos of her standing on the fire escape landing.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spice this up', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);

@@ -408,6 +408,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -500,6 +501,7 @@ function enterCattleChoreActs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Mira', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -616,6 +618,7 @@ function enterWalkTogether(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -654,6 +657,7 @@ function enterOfferGoMeadow(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -692,6 +696,7 @@ function enterOfferDrinkBoys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -733,6 +738,7 @@ function enterOfferSteamBath(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -776,6 +782,7 @@ function enterOfferGoRiver(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -816,6 +823,7 @@ function enterOfferGoForest(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -828,6 +836,7 @@ function enterWearStrippedClothes(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).MiraVars ?? {})['strip_loc'] = '';
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -921,6 +930,7 @@ function enterGuestActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -931,6 +941,7 @@ function enterThirdWish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('You remind Mira about the third wish, and she reluctantly nods and says she remembers it. But, then, you act mysterious and, with a sinister smile, command her to follow you…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make Mira walk through village naked', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -1238,6 +1249,7 @@ function enterMiratalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1266,6 +1278,7 @@ function enterMiraclothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1282,11 +1295,13 @@ function enterMiraRiver(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/mirarivernudetal...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/mirarivernudetalk.jpg"></center>`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

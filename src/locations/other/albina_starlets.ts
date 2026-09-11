@@ -15,6 +15,7 @@ function enterAlbina1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   scene.text('At the end of the class, a few girls enter the dance studio, including Albina Barlovskaya. You know nothing about her outside of her reputation as a stuck up rich bitch.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet Albina', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -71,6 +72,7 @@ function enterAlbina2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   scene.text('At the end of the class, a few girls enter the dance studio, including Albina Barlovskaya. You know Albina from school and you have a pretty good relationship with each other.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet Albina', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -121,6 +123,7 @@ function enterAlbina3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   scene.text('At the end of the class, a few girls enter the dance studio, including Albina Barlovskaya. You\'ve known Albina for years and have formed a close friendship over your shared passion for dancing.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet Albina', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -233,6 +236,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -301,6 +305,7 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -560,6 +565,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);
@@ -569,6 +575,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
 function enterAfterShow(s: GameState, scene: SceneBuilder): void {
   scene.text('After the show, you see Albina talking with some men as one of your fellow Starlets stands next to her.');
   scene.text('Albina reluctantly hands her some money and the men forcefully drag the Starlet away as Albina looks at the floor, a single tear running down her cheek.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drive back', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -602,6 +609,7 @@ function enterParkrally(s: GameState, scene: SceneBuilder): void {
   scene.text('You might as well be wearing a thong for all it covers. You have to constantly adjust the strip of fabric covering your crotch to make it comfortable as you can.');
   scene.text('You look over and see Albina scowling as she inspects herself in the mirror, her leotard somehow looking even skimpier than yours and leaving little to the imagination; the outline of her perky breasts and nipples can clearly be seen and the near lack of rear coverage all but draws your attention to her jiggling bubble butt.');
   scene.text('"She fumes as she approaches you and the other girls. "Let\'s just get this over with. A car is waiting for us outside."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do the show', handler: (st: GameState) => {
     qspCall(s, 'exercise', 'tier2', 0, 'agil', 'danc');
@@ -633,6 +641,7 @@ function enterStarletsreact(s: GameState, scene: SceneBuilder): void {
   (s as any).starlets_practice = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: npc_pregtalk['A23'] = 1
@@ -649,6 +658,7 @@ function enterStarletsEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).starlets_practice = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: AlbinaQW['StarletsJoined'] = -1
@@ -695,6 +705,7 @@ function enterStarletsPracticeMissed(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -708,6 +719,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
   (s as any).starlets_practice = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: AlbinaQW['StarletsJoined'] = -2

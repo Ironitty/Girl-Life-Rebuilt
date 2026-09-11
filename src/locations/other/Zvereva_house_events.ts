@@ -62,6 +62,7 @@ function enterChrisWalkHome(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Zvereva_house', 'chris_bedro'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +70,7 @@ function enterChrisShower(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big18.jpg');
   scene.text('You find Christina in the shower. She hasn\'t noticed you yet.');
   qspCall(s, 'arousal', 'erotic_nudity', 5);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -198,6 +200,7 @@ function enterBedChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Step away', goto: ['Zvereva_house', 'chris_bedro'] },
     { label: 'Ask about the rules', handler: (st: GameState) => {

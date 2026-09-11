@@ -42,6 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play on phone', handler: (st: GameState) => {
     (s as any).school_bunk = 0;
@@ -82,6 +83,7 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bathroom/smoke\' + rand(1, 3) + \'.jpg');
     scene.text('You spend the rest of the period playing on your phone while you smoke. The games on your phone are boring, and once or twice you hear somebody walking around out in the corridor, causing your heart to skip a beat when you realize they might smell the smoke, but despite all that, you find this use of the period very relaxing and by the time the bell rings, you\'re in a far better mood than before.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -124,6 +126,7 @@ function enterBathroom3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play on phone', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -165,6 +168,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gschool_girls_bathroom', 'girl1'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +185,7 @@ function enterGirl1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: After a few minutes, you hear the bathroom door open and carefully peek out, hal...
   scene.text(`After a few minutes, you hear the bathroom door open and carefully peek out, half-expecting to see a teacher, but see ${((s as any).rand_girl ?? 0)} instead. Relieved and smiling, you exit the stall and greet her. She turns around, slightly startled at first but then breaking into a smile when she sees you. Within seconds, the two of you are chatting away about school, boys, clothes, makeup and anything else that strikes your fancy.`);
   scene.text('Before you know it, the bell rings and you both bid each other farewell before heading to your next class.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -222,6 +227,7 @@ function enterGirl2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return the kiss', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A25', 5);
@@ -394,6 +400,7 @@ function enterGirl3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Protest', handler: (st: GameState) => {
     scene.text('<center><b>Girls bathroom</b></center>');
@@ -501,6 +508,7 @@ function enterToyBunny(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'lesbian', 'group', 'sub');
   qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'group', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
@@ -588,6 +596,7 @@ function enterCompany(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -600,6 +609,7 @@ function enterCompany1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 10);
   qspCall(s, 'stat', '');
   scene.text('Afraid you might get caught, you close the door and move back to sit on the toilet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait them out', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
@@ -652,6 +662,7 @@ function enterCompany2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 10);
   qspCall(s, 'stat', '');
   scene.text('Afraid you might get caught, you close the door and move back to sit on the toilet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait them out', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
@@ -749,6 +760,7 @@ function enterCompany3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Boys bathroom</b></center>');
@@ -787,6 +799,7 @@ function enterCompany4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/bathroom/sex/teachers1.mp4');
   scene.text('After a few minutes, you hear someone else in the bathroom with you. Soft murmured voices echo in the room, one male, the other female; you can\'t quite make out what they\'re saying, but there\'s some rustling of clothes, shortly followed by female moans. You creep up to the stall door, crack it open, and peek outside.');
   scene.text('You see Mr. Kuznetsov standing near the sinks with his pants around his ankles while Miss Orlov is down on her knees with her top pulled down. She has his cock in her mouth, sucking it for all she is worth. They both seem to be greatly enjoying themselves. You know you should stop watching in case you get caught, but how often do you get to see two of your teachers go at it?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.text('<center><b>Girls bathroom</b></center>');
@@ -859,6 +872,7 @@ function enterCaught(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -874,6 +888,7 @@ function enterCaught1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Ms. Braakman shakes her head, looking more disappointed than angry at you. "Well, come on young lady. Get out of here and down to the principal\'s office." She points in the direction of the bathroom door.');
   scene.text('You don\'t know if or how you could get out of this mess. She knows you\'re supposed to be in class, so there\'s no point in trying to lie to her about that, but maybe you can convince her to let you off with a warning or something?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the principal\'s office', handler: (st: GameState) => {
     (s as any).demerit = ((s as any).demerit ?? 0) + (10);
@@ -1055,6 +1070,7 @@ function enterCaught1SlutPunishment(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you even have a chance to protest, she brings the paddle down on your bare ass. The smack echoes in the room, as does your yelp of pain. After just one swing, your ass is already stinging sharply, and her swings come quickly, each one bringing her full force and anger down on your cheeks. Each of them makes you jump inadvertently; you even hit your head against the mirror several times. Out of instinct, you try to shield your tender flesh from the paddle\'s next blow, but Ms. Braakman quickly grabs your hands with her free one and pulls them out of the way, once again exhibiting a strength you wouldn\'t expect from this slender woman.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub', 'maso');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
@@ -1139,6 +1155,7 @@ function enterCaught1Anal(s: GameState, scene: SceneBuilder): void {
   scene.text('As you play with your now wet pussy, pleasure replaces pain and a moan of desire escapes you. You hear a buzz coming from the harness - sounds like the strapon came with extras…');
   qspCall(s, 'arousal', 'anal_strap', 10, 'lesbian', 'sub', 'lube');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/raven/sex/school/caughtfanal2.jpg');
@@ -1174,6 +1191,7 @@ function enterCaught2(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Mr. Vasilyev shakes his head. He looks more disappointed than angry, you think. "Well, come on young lady. Get down to the principal\'s office." He points in the direction of the bathroom door.');
   scene.text('You don\'t know if or how you could get out of this mess. He knows you\'re supposed to be in class, so there\'s no point in trying to lie to him about that, but maybe you can convince him to let you off with a warning or something?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the principal\'s office', handler: (st: GameState) => {
     (s as any).demerit = ((s as any).demerit ?? 0) + (10);
@@ -1394,6 +1412,7 @@ function enterCaught3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/bathroom/caughtpr1.jpg');
   scene.text('After a few minutes, you hear someone else in the bathroom with you. You peek out and see Miss Volkov standing at the mirror, causing you to duck back into the stall and close the door as quietly as you can, your heart beating like crazy as you pray she didn\'t notice you. You hear the click of her heels coming closer, closer… and stop, right outside your stall door.');
   scene.text('"I saw you in the mirror, young lady!" she says menacingly as she pushes the door open. "What do you think you\'re doing? Skipping class, I presume?" Her eyes narrow when they fall on the smoldering cigarette on the ground. "And smoking in school too, huh? You know how I feel about students smoking in my school."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/caughtpr2.jpg');

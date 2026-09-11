@@ -45,6 +45,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'traits_init_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +58,7 @@ function enterDaily(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'traits_daily_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +71,7 @@ function enterHourly(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'traits_hourly_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,12 +98,14 @@ function enterMinute(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'traits_minute_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'traits', $ARGS[1], 'cheat', ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,12 +118,14 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'traits_stat_display_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetDetails(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', '', ((s as any).locArgs?.[1] ?? 0), 'details');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,6 +140,7 @@ function enterLevel(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'traits', $ARGS[1], 'level', ARGS[2]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -141,6 +149,7 @@ function enterRegisterAttskl(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $traitattskl[] = $ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,6 +158,7 @@ function enterDeregisterAttskl(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', '$traitattskl', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,6 +173,7 @@ function enterNotify(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: msg $temp_notify
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,6 +223,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   ((s as any).card_in ?? {})['opacity'] = ((s as any).temp_card ?? 0)?.['opac'];
   qspCall(s, 'cards', 'shell');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,6 +268,7 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'sa_render_hid'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -306,6 +319,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -396,6 +410,7 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -517,6 +532,7 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'traits', 'level', 'fertility', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-2), 1));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -586,6 +602,7 @@ function enterSensitivity(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -648,6 +665,7 @@ function enterNewAgain(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -835,6 +853,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +964,7 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1056,6 +1076,7 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1163,6 +1184,7 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1287,6 +1309,7 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1404,6 +1427,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'traits', 'level', 'drinking', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1584,6 +1608,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'traits', 'level', 'academic', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), 0, 3));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1686,6 +1711,7 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1745,6 +1771,7 @@ function enterSleepDuration(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1804,6 +1831,7 @@ function enterElasticity(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1939,6 +1967,7 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2024,6 +2053,7 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2084,6 +2114,7 @@ function enterHairGrowthRate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2167,6 +2198,7 @@ function enterBodyHairGrowthRate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2329,6 +2361,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2391,6 +2424,7 @@ function enterPainTolerance(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'traits', 'level', 'pain_tolerance', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -14,6 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichWork ?? 0) === 2) {
     qspCall(s, 'nichChore', 'inspect', 'bathGuest');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

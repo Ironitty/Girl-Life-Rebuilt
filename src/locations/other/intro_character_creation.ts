@@ -72,6 +72,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,6 +109,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'intro_character_templates', 'set_random_template');
   scene.actions([{ label: 'Continue', goto: ['intro_overview', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -151,6 +153,7 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -223,6 +226,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +234,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/pre_2.jpg');
   qspCall(s, 'intro_character_creation', 'core_birthday', 'link');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Confirm', handler: (st: GameState) => {
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
@@ -274,6 +279,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/pre_3.jpg');
   scene.text('In the Gadukino start, you\'re visiting your grandparent\'s house in the small farming village of Gadukino.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pavlovsk Start', handler: (st: GameState) => {
     scene.text('<center><h2>Pavlovsk</h2></center>');
@@ -486,6 +492,7 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -805,6 +812,7 @@ function enterGroupDesc(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'intro_character_creation', 'setup_personality', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -900,11 +908,13 @@ function enterRandomStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetupPersonality(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Confirm this starting option</b>', handler: (st: GameState) => {
     ((s as any).start_type ?? {})['cat'] = ((s as any).temp_cat ?? 0);
@@ -922,6 +932,7 @@ function enterSetupPersonality(s: GameState, scene: SceneBuilder): void {
 function enterModSetExitActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
     { label: 'Return to the <<$ARGS[1]>> options', handler: (st: GameState) => {
@@ -934,12 +945,14 @@ function enterModSetExitActs(s: GameState, scene: SceneBuilder): void {
 
 function enterModContinueAfterCharselect(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'appearance_hub'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSgSettings(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'sg_settings');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -983,6 +996,7 @@ function enterAppearanceHub(s: GameState, scene: SceneBuilder): void {
       { label: 'Done', goto: ['intro_overview', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1010,6 +1024,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center>Hair: <a href="exec:defcurly = 0 & curly = 0 & gs 'intro_character_creation', 'hair'">curly</a>, <a href="exec: pcs_haircol = (pcs_haircol + 1) mod 4 & gs 'intro_character_creation', 'hair'">${((s as any).pcs_haircolor ?? 0)}</a></center>`);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Done</b>', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1057,6 +1072,7 @@ function enterEyes(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><a href="exec:glass = 0 & gs \'intro_character_creation\', \'eyes\'">Remove glasses</a></center>');
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Done</b>', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1080,6 +1096,7 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><a href="exec:pcs_lip -= 1 & gs \'intro_character_creation\', \'lip\'">Smaller lips</a></center>');
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Done</b>', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1148,6 +1165,7 @@ function enterSetHairNextPrev(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

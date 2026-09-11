@@ -46,6 +46,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk back to the highway', goto: ['road', '10'] },
   ]);
@@ -84,6 +85,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevloc', 'prevarg');
@@ -112,6 +114,7 @@ function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
   scene.text('After Mira is done with her preaching, you try to think of something witty to say or raise your hand to slap her back, but you just can\'t bring yourself to do it.');
   // TODO-QSP: dynamic text: Mira sees the defeated look in your eyes and knows that she has won. She pulls y...
   scene.text(`Mira sees the defeated look in your eyes and knows that she has won. She pulls you into an embrace and whispers, "It's alright, ${((s as any).pcs_nickname ?? 0)}. We can just be friends again. And if you want to, maybe you can come work with me instead?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_prostitutes', 'start'] },
   ]);
@@ -153,6 +156,7 @@ function enterJustMira(s: GameState, scene: SceneBuilder): void {
       { label: 'Walk back to Gadukino together', goto: ['gadukino', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -175,6 +179,7 @@ function enterWatchMira(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,6 +188,7 @@ function enterWatchFromHiding(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/miraprost1_1.mp4');
   scene.text('You duck for cover as the guy suddenly gets out of the car, opens the passenger door, grabs Mira\'s head, and starts forcing his cock deep into her throat.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur_sex', 10);
@@ -209,6 +215,7 @@ function enterWatchClose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/sex/miraprost2_1.mp4');
   scene.text('Mira and the guy jump into the back of the van, and you watch as he starts fucking her wet pussy. His hand covers her mouth as she screams in ecstasy. The guy pounds his 20cm cock deep into her pussy. From Mira\'s grunts of partial joy and partial pain, you know the guy is hitting or entering her cervix.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur_sex', 10);
@@ -231,6 +238,7 @@ function enterWatchClose(s: GameState, scene: SceneBuilder): void {
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['gad_prostitutes', 'work_alone'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -292,6 +300,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'prostitution_car_negotiation', 'general_description');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop working for now', goto: ['gad_prostitutes', 'start'] },
   ]);
@@ -299,6 +308,7 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventCheck(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

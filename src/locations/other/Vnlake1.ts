@@ -40,6 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterVariant(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake0.jpg');
   scene.text('The girl looks at you in anticipation of your actions.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her', goto: ['Vnlake1', 'ukuni'] },
     { label: 'Ask her to lick you', goto: ['Vnlake1', 'kuni'] },
@@ -59,6 +60,7 @@ function enterUkuni(s: GameState, scene: SceneBuilder): void {
   scene.text('You kiss her breasts, eventually moving down lower and lower until your mouth reaches her pussy. You begin to caress her with your tongue, opening the route for your tongue to touch her clitoris. She pushes her lips apart with her fingers to give you full access, and you lap away.');
   qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -73,6 +75,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.text('The girl runs her tongue over your thighs and crotch and delicately kisses your vagina. Her tongue slides over your slit then, caressing your clitoris, it penetrates your vagina.');
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -87,6 +90,7 @@ function enterAnuli(s: GameState, scene: SceneBuilder): void {
   scene.text('She kisses your buttocks affectionately, eventually moving to the center. Reaching her goal, she spreads your anus with her tongue, then shoves it inside, pulls back to again lick the anus, then repeats several times.');
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -101,6 +105,7 @@ function enterBvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You take the bottle neck and poke it into her pussy. She kisses you while you drive it in and out with one hand and, with the other, fondle her breasts.');
   qspCall(s, 'arousal', 'vaginal_dildo_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -115,6 +120,7 @@ function enterBanal(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a bottle, licking the neck, trying to leave as much saliva on it as you can, gently insert it into the girls anus. You start to fuck her ass with the bottle, slowly at first then faster and faster.');
   qspCall(s, 'arousal', 'anal_dildo_give', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -130,6 +136,7 @@ function enterUbvag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Nudelake', ''] },
   ]);
@@ -141,6 +148,7 @@ function enterUbanal(s: GameState, scene: SceneBuilder): void {
   scene.text('The girl spits on your ass, collects saliva on the bottle neck and inserts it into your anus. You feel the glass slide into your ass, bringing you pleasure.');
   qspCall(s, 'arousal', 'anal_dildo', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -155,6 +163,7 @@ function enterUbsit(s: GameState, scene: SceneBuilder): void {
   scene.text('You put the bottle down and sit on it with your anus. You like the slippery feel of it. The girl caresses your breasts with her tongue until you get back off the bottle.');
   qspCall(s, 'arousal', 'anal_dildo', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['Vnlake1', 'variant'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -169,6 +178,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit across from each other, your legs interwoven so your pussies touch, and start to move your hips while caressing each other. You carry on doing this while kissing and touching each other until the wave of pleasure covers you both.');
   qspCall(s, 'arousal', 'trib', 10, 'lesbian');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Nudelake', ''] },
   ]);

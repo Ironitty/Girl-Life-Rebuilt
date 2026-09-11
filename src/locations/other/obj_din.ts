@@ -7,59 +7,39 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'menu_disabled') {
-    // TODO-QSP: $func('wrap', 'neg b', 'Menu is disabled for this event')
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === 'records') {
-    scene.actions([{ label: 'Continue', goto: ['journal', 'records'] }]);
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).AddDebugVar ?? 0)") {
-    if (((s as any).locArgs?.[1] ?? 0) !== '') {
-      (s as any).i = 0;
-      // TODO-QSP: $ObjDebugVars[i] = '<<$ARGS[1]>>'
-    }
-  }
-  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
-    if (((s as any).locArgs?.[1] ?? 0) !== '') {
-      if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
-        (s as any).i = 0;
-        // TODO-QSP: :DeleteDebugVarLoop
-        if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
-            (s as any).i = 0;
-          } else {
-            (s as any).i = ((s as any).i ?? 0) + (1);
-          }
-          // TODO-QSP: jump 'DeleteDebugVarLoop'
-        }
-      }
-    }
-  }
   scene.build();
 }
 
 function enterChartabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', ((s as any).locArgs?.[1] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBodytabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_looks', 'lookstabs', ((s as any).locArgs?.[1] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingstabs', ((s as any).locArgs?.[1] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheattabs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheattabs', ((s as any).locArgs?.[1] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'menu_disabled') {
+    // TODO-QSP: $func('wrap', 'neg b', 'Menu is disabled for this event')
+  }
   scene.build();
 }
 
@@ -69,11 +49,13 @@ function enterShowTits(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: view 'images/pc/body/tits/t<<tits>>.jpg'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowBody(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: view '<<$img_temp>>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,11 +77,16 @@ function enterShowTeeth(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowMissingTeeth(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: view 'images/pc/body/teeth/missing.jpg'
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'records') {
+    scene.actions([{ label: 'Continue', goto: ['journal', 'records'] }]);
+  }
   scene.build();
 }
 
@@ -131,6 +118,7 @@ function enterEmergency(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Pavlovsk', handler: (st: GameState) => {
     (st as any).inSleep = 0;
@@ -146,6 +134,7 @@ function enter_1Hour(s: GameState, scene: SceneBuilder): void {
   (s as any).hour = ((s as any).hour ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -153,6 +142,7 @@ function enter_1Hour2(s: GameState, scene: SceneBuilder): void {
   (s as any).hour = ((s as any).hour ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -202,6 +192,29 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).AddDebugVar ?? 0)") {
+    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+      (s as any).i = 0;
+      // TODO-QSP: $ObjDebugVars[i] = '<<$ARGS[1]>>'
+    }
+  }
+  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
+    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+      if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
+        (s as any).i = 0;
+        // TODO-QSP: :DeleteDebugVarLoop
+        if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
+          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+            (s as any).i = 0;
+          } else {
+            (s as any).i = ((s as any).i ?? 0) + (1);
+          }
+          // TODO-QSP: jump 'DeleteDebugVarLoop'
+        }
+      }
+    }
+  }
   scene.build();
 }
 
@@ -221,6 +234,7 @@ function enterWait(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,6 +253,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

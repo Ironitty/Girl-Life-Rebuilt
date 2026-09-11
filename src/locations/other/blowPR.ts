@@ -24,6 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] === 0) {
     // TODO-QSP: act 'Get him hard with your mouth': gt 'blowPR', '2'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,6 +67,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -75,6 +77,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/blowjob/bjp\'+rand(8, 13)+\'.jpg');
   scene.text('You close your lips around his member and flick your tongue over the tip of his cock teasingly. It stands at full erection in no time.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck on his cock', goto: ['blowPR', '12'] },
   ]);
@@ -191,6 +194,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -28,6 +28,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,6 +38,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
   scene.text('Feeling somewhat obligated to keep the conversation going, as awkward as it may be, you ask about his wife and learn that they had a happy, wonderful life together. He gets very emotional as he thanks you for listening to him.');
   scene.text('"I don\'t even know why I started telling you about her," he says. "I guess it\'s because you remind me of my wife when she was young. You\'re just as beautiful as she was. If only you could-"');
   scene.text('He seems to want to say more, but as the train pulls into the station you\'re both headed for, he shakes his head. He says he shouldn\'t ask, but wonders if you would accompany him to a spot that he and his wife liked to visit.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -140,6 +142,7 @@ function enterFit(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit in an empty seat by the window and look outside, lost in thought as others board the train. Shortly after the departure, a man in his thirties - or perhaps early forties - sits down next to you. You don\'t give him more than a short glance as he takes the seat, but it doesn\'t take more than that to notice that he is in <b>great</b> shape. You try not to stare, but you just can\'t help yourself - the world outside the window is just too boring to hold your attention. Of course, your gaze does not go unnoticed, and the man, grinning, engages you in a conversation.');
   scene.text('He asks you your name, where you\'re going and a few other questions, and before you know it, you\'re chatting and laughing about a movie both of you happen to have watched recently. He is pretty charming, and even a blind deaf woman would notice his flirting.');
   scene.text('As you talk, you realize you are both getting off at the next stop, and he asks if you would like to go for a walk with him along the tracks after you disembark the train. As innocent as he tries to make it sound, you have no doubt what he would really like to do with you on that "walk", but he <i>is</i> attractive and his fitness and charm are sexy enough to make his offer tempting.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse his offer', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -210,6 +213,7 @@ function enterYoung(s: GameState, scene: SceneBuilder): void {
   scene.text('"So where are you headed?" he asks.');
   scene.text('"I get off at the next stop," you respond without thinking. His lips curl into a suggestive grin; it takes you a moment to realize how your words could be taken as a sexual innuendo and blush slightly - something about this guy makes you blush a lot more than usual.');
   scene.text('"Well, I could help you with that, if you like," he offers, his eyes following your curves, "it\'s always better to get off together."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -405,6 +409,7 @@ function enterBreastfeed(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -423,6 +428,7 @@ function enterBreastfeed1(s: GameState, scene: SceneBuilder): void {
     scene.text('You get yourself into a comfortable position before you guide the baby\'s mouth to your awaiting nipple.');
     scene.text('It quickly latches on and starts eagerly sucking. You close your eyes and start softly humming as the familiar tingling sensation in your breast lets you know that you\'re about to start lactating.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).temp_var = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 2, 80);
@@ -469,6 +475,7 @@ function enterWeed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/pavplat.jpg');
   scene.text('After you buy your ticket, you are told that you have just missed the train. A little miffed at this, you take a seat on one of the benches on the platform to wait for the next train to arrive.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A man approaches you', handler: (st: GameState) => {
     scene.img('images/locations/shared/train/sex/weed.jpg');
@@ -623,6 +630,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/train/ride.jpg');
   scene.text('You board the train and walk past several of the private compartments on your way to the general seating area.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find a seat', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -721,6 +729,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re sitting in an empty seat by the window, lost in thought as others board the train. A gopnik boy suddenly sits down next to you, but you try to ignore him and keep staring outside.');
   scene.text('Unfazed, he gives you a once-over, a lewd grin you only see from the corner of your eye forming on his face as he leans in close and puts his arm around you.');
   scene.text('You turn your head to tell him off, but your mouth is immediately covered by his. Not content with just kissing you, the his hand starts roaming across your breasts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop him', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

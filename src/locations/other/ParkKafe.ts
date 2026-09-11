@@ -17,6 +17,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/parkcafe.jpg');
   scene.text('The café is a gathering point located in the center of the park. It\'s open all year round while offering different foods and beverages that depend on the season.');
   scene.text('The café is surrounded by lovely gardens and a natural forest, and every visitor usually takes a moment to enjoy the beautiful scenery.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the café', goto: ['parkKafe', 'end'] },
     { label: 'Have a seat', goto: ['parkKafe', 'table'] },
@@ -61,6 +62,7 @@ function enterTable(s: GameState, scene: SceneBuilder): void {
       scene.text('Observing the people while enjoying your meal, you notice two <a href="exec:gt \'ParkKafe\', \'guys\'">sporty guys</a> sitting at a table drinking beer.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up from the table', goto: ['parkKafe', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
@@ -150,6 +152,7 @@ function enterGuys(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -167,6 +170,7 @@ function enterKlof1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Did you like it, baby?" one of them mockingly asks.');
     (s as any).parkarainmouthnow = 0;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['event', 'klof 2'] },
     { label: 'No', goto: ['parkKafe', 'end'] },
@@ -346,6 +350,7 @@ function enterSeniors(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -746,6 +751,7 @@ function enterMan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -755,6 +761,7 @@ function enterWoman(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/cafe/girl1.jpg');
   scene.text('As you take a seat by your table, you notice a younger woman playing with her freshly ordered food. She doesn\'t really seem too impressed by it and looks around, as if looking for something…');
   scene.text('She spots you looking her way and makes eye contact. You\'re not really sure why she\'s so keen on getting your attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make eye contact', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1048,6 +1055,7 @@ function enterYouth(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1385,6 +1393,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1646,6 +1655,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1661,6 +1671,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_park', 'start'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

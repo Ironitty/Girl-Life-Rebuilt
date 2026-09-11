@@ -31,6 +31,7 @@ function enterAnalStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,6 +45,7 @@ function enterAnalInsertActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Insertion', goto: ['sex_ev_anal', 'anal_doggy_insert_slow'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -98,6 +100,7 @@ function enterAnalDoggySwitch(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_no_ask'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -124,6 +127,7 @@ function enterAnalPresentAss(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_goto2'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -189,6 +193,7 @@ function enterAnalAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Deny him', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['no_anal'] = 1;
@@ -220,6 +225,7 @@ function enterAnalWait1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Oh, uhh..." <<$npc_usedname[$npcID]>> stops awkwardly. "I, uhm, thought maybe w...
     scene.text(`"Oh, uhh..." ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} stops awkwardly. "I, uhm, thought maybe we could try it...? Uhm, anal?"`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask first (polite)', handler: (st: GameState) => {
     scene.text('"You need to ask first," you chide softly. "You can\'t just stick it in my ass without permission"');
@@ -319,6 +325,7 @@ function enterNoAssToPussy1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -339,6 +346,7 @@ function enterNoVaginal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -429,6 +437,7 @@ function enterAnalNoAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for him to put it in', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_anal', 'anal_doggy_insert_slow'
@@ -507,6 +516,7 @@ function enterAnalDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['anal_insert_desc2']
   qspCall(s, 'sex_ev_anal', 'anal_pain1');
   qspCall(s, 'sex_ev_anal', 'anal_insert_orgasm');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoyment', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
@@ -725,6 +735,7 @@ function enterAnalInsertOrgasm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -755,6 +766,7 @@ function enterAnalGirlOrgasmContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['position'] = 'anal';
   ((s as any).sex_ev ?? {})['pos_speed'] = 'anal' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_anal" }) + '';
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -796,6 +808,7 @@ function enterAnalGoto(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -815,10 +828,12 @@ function enterAnalGoto2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnalChangePosition(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/2.jpg');
@@ -845,6 +860,7 @@ function enterAnalPain1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ouch!', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
@@ -856,6 +872,7 @@ function enterAnalPain1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnalPain2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/3.jpg');
@@ -976,6 +993,7 @@ function enterAnalPain3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -985,6 +1003,7 @@ function enterAnal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_anal', 'anal1_start_desc');
   qspCall(s, 'sex_ev_anal', 'anal_pain1');
   qspCall(s, 'sex_ev_anal', 'anal_change_position');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy it', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
@@ -1057,6 +1076,7 @@ function enterAnal1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_anal', 'anal1.1_desc');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1166,6 +1186,7 @@ function enterAnal1_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1177,6 +1198,7 @@ function enterAnal1_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('And it\'s very boring</i>.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1186,6 +1208,7 @@ function enterAnal2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_anal', 'anal2_start_desc');
   qspCall(s, 'sex_ev_anal', 'anal_pain1');
   qspCall(s, 'sex_ev_anal', 'anal_change_position');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy it', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
@@ -1265,6 +1288,7 @@ function enterAnal2_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['pos_speed'] = 'anal2';
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1388,6 +1412,7 @@ function enterAnal2_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1401,6 +1426,7 @@ function enterAnal2_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('He keeps fucking you at a medium pace. It\'s boring.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1547,6 +1573,7 @@ function enterAnal3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy it', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'enjoy';
@@ -1641,6 +1668,7 @@ function enterAnal3_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   }
   qspCall(s, 'sex_ev_anal', 'anal_change_position');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1756,6 +1784,7 @@ function enterAnal3_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1775,6 +1804,7 @@ function enterAnalCreampieMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Creampie', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)  ||  ((s as any).pcs_horny ?? 0) > 90) {
@@ -2082,6 +2112,7 @@ function enterAnal1StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2155,6 +2186,7 @@ function enterAnal1EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2223,6 +2255,7 @@ function enterAnal1_1Desc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2362,6 +2395,7 @@ function enterAnal1_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2464,6 +2498,7 @@ function enterAnal1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2522,6 +2557,7 @@ function enterAnal1_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2580,6 +2616,7 @@ function enterAnal2StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2638,6 +2675,7 @@ function enterAnal2EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2755,6 +2793,7 @@ function enterAnal2_1Desc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2820,6 +2859,7 @@ function enterAnal2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2919,6 +2959,7 @@ function enterAnal2_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2976,6 +3017,7 @@ function enterAnal2_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3034,6 +3076,7 @@ function enterAnal3StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3103,6 +3146,7 @@ function enterAnal3EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your mind goes blank with pleasure, and you groan loudly, letting ${((s as any).npcdesc ?? 0)} fuck you into blissful oblivion.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3175,6 +3219,7 @@ function enterAnal3TooRough(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3192,6 +3237,7 @@ function enterAnal3SlowDown(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3309,6 +3355,7 @@ function enterAnal3_1Desc(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('And you are loving <i>every second</i> of it.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3428,6 +3475,7 @@ function enterAnal3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3539,6 +3587,7 @@ function enterAnal3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3597,10 +3646,12 @@ function enterAnal3_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWantTo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No, I want to', handler: (st: GameState) => {
     scene.img('images/shared/sex/foreplay/doggy1.jpg');
@@ -3621,6 +3672,7 @@ function enterWantTo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjInstead(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Can I just blow you', handler: (st: GameState) => {
     scene.text('"Can I just blow you instead?"');
@@ -3731,6 +3783,7 @@ function enterFuckInstead(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3746,6 +3799,7 @@ function enterAnalVirgNorm1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> rubs his cock over your pussy lips coating it in your juices before...
   scene.text(`${((s as any).npcdesc ?? 0)} rubs his cock over your pussy lips coating it in your juices before slowly pushing his cock against your pucker hole, his tip making its way inside using the lubrication. It fills you up, stretching your sphincter. After a brief pause, he pushes through, filling you to the brim and causing you to gasp. Whether in excitement or pain, you aren't really sure yet.`);
   scene.text('"You okay?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It hurts', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['virgin_react'] = 'hurt';
@@ -3763,6 +3817,7 @@ function enterAnalVirgNorm1(s: GameState, scene: SceneBuilder): void {
 function enterAnalVirgNorm1_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['anal_virgin_fuck'] = 1;
   qspCall(s, 'sex_ev_anal', '', '' + qspUntranslated(s, "sex_ev['virgin_react']>", { location: "sex_ev_anal" }) + '_react1');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/anal/doggy/insert2.mp4');
@@ -3792,6 +3847,7 @@ function enterAnalVirgNorm2(s: GameState, scene: SceneBuilder): void {
   scene.text(`As ${((s as any).npcdesc ?? 0)} changes his pace, you sigh deeply, feeling like you can breathe again.`);
   scene.text('Now that you aren\'t worried about being literally fucked to death, you feel like you can focus on the sensations of your first time and you...');
   scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'virgin_enjoyment'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3814,6 +3870,7 @@ function enterAnalVirgHard1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> doesn't stop for even a second and begins fucking you <i>hard</i>.
     scene.text(`${((s as any).npcdesc ?? 0)} doesn't stop for even a second and begins fucking you <i>hard</i>.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Scream', handler: (st: GameState) => {
     // TODO-QSP: gs 'arousal', 'ass', 1, 'rough', 'no_orgasm_msg', $sex_ev['prostitution_flag']
@@ -3869,6 +3926,7 @@ function enterAnalVirgHard2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3882,6 +3940,7 @@ function enterAnalVirgHard2_2(s: GameState, scene: SceneBuilder): void {
   scene.text('It hurts. But that makes it feel even better.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4053,6 +4112,7 @@ function enterVirginEnjoyment(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4062,6 +4122,7 @@ function enterVirgContinueHarder(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_anal', 'anal_virg_hard2_2'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -15,6 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/rasputin/building_day.jpg');
   scene.text('A club mostly for gentlemen, it has dancers and shows you can see.');
   scene.text('They also have adverts looking for new dancers so you could try and get some work here if you are skilled enough.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
   ]);

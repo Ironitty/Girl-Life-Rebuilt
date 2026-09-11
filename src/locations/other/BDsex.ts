@@ -174,6 +174,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -190,6 +191,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('His tongue work is exciting, but after a while, you begin to grow bored.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stroke his cock', goto: ['BDsex', 'hj'] },
     { label: 'Take by mouth', goto: ['BDsex', 'minet'] },
@@ -229,6 +231,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'BDsex', 'cum');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['BDsex', 'end'] },
   ]);
@@ -264,6 +267,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'BDsex', 'cum');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['BDsex', 'end'] },
   ]);
@@ -278,6 +282,7 @@ function enterSex3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'BDsex', 'org');
   qspCall(s, 'BDsex', 'cum');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -287,6 +292,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'bdsex', 'an');
   qspCall(s, 'bdsex', 'ancum');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,6 +313,7 @@ function enterAnal2(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'bdsex', 'ancum');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['BDsex', 'end'] },
   ]);
@@ -319,6 +326,7 @@ function enterAnal3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'bdsex', 'an');
   qspCall(s, 'bdsex', 'ancum');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -461,6 +469,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -583,6 +592,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -601,6 +611,7 @@ function enterFacial(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_manage', '');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Brush up', goto: ['BDsex', 'end'] },
   ]);
@@ -620,6 +631,7 @@ function enterSwallow(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Brush up', goto: ['BDsex', 'end'] },
   ]);
@@ -761,6 +773,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1023,6 +1036,7 @@ function enterOrg(s: GameState, scene: SceneBuilder): void {
   (s as any).cumprecheck = 1;
   (s as any).sexpartkno = 1;
   qspCall(s, 'cum_manage', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1077,6 +1091,7 @@ function enterCum(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).pose = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1115,6 +1130,7 @@ function enterAutobj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', (-5), 'sub');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1157,6 +1173,7 @@ function enterAn(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1186,6 +1203,7 @@ function enterAncum(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -29,6 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_wakeup', 'wake_events'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +81,7 @@ function enterWakeEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_wakeup', 'after_sleepfuck_wake');
   qspCall(s, 'sex_ev_wakeup', 'guilt_start');
   qspCall(s, 'sex_ev_wakeup', 'forgot_bc_pill');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -102,6 +104,7 @@ function enterWakeAlone(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['sex_ev_wakeup', 'wake_alone2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,6 +114,7 @@ function enterWakeAlone2(s: GameState, scene: SceneBuilder): void {
   scene.text(`It's only then that you sit up in bed and realize that ${((s as any).npcdesc ?? 0)} is gone.`);
   scene.text('You vaguely remember passing out last night. He must have left after you fell asleep. Or early this morning.');
   scene.text('Either way, now it\'s just... you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sex_ev_leave', 'exit'] },
   ]);

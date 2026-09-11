@@ -26,6 +26,7 @@ function enterFuckornot(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Doable if I get myself drunk first. Good match for Petia.');
   scene.text('2: Fugly - Has potential compared to a trash bin. Even Lesco could do better.');
   scene.text('1: Hideous - Wouldn\'t touch it with a stick.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
     if (((s as any).view_location ?? 0) === 'school') {
@@ -60,6 +61,7 @@ function enterHotornot(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Not even Zinaida would be seen with him.');
   scene.text('2: Fugly - Horribly ugly. Just being seen with him would lose you social standing.');
   scene.text('1: Hideous - Wouldn\'t touch it with a stick. Not even a whore would take his money.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
     if (((s as any).view_location ?? 0) === 'school') {
@@ -109,6 +111,7 @@ function enterFuckornotList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).j ?? 0) > 0) {
     // TODO-QSP: jump 'fu_loop_2'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -134,6 +137,7 @@ function enterHotornotList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).j ?? 0) > 0) {
     // TODO-QSP: jump 'ho_loop_2'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,6 +156,7 @@ function enterFuckornotUni(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Maybe if I was really horny and really drunk.');
   scene.text('2: Fugly - I would passout before I got drunk enough to hit that.');
   scene.text('1: Hideous - Are you sure it is even a girl?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', goto: ['komp', 'browse'] },
   ]);
@@ -173,6 +178,7 @@ function enterHotornotUni(s: GameState, scene: SceneBuilder): void {
   scene.text('3: Unattractive - Almost certainly still a virgin, what girl would want to ride that?');
   scene.text('2: Fugly - Horribly ugly. Wouldn\'t even be seen with him in public.');
   scene.text('1: Hideous - Wouldn\'t touch it with a stick. Not even a whore would take his money.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', goto: ['komp', 'browse'] },
   ]);
@@ -211,6 +217,7 @@ function enterFuckornotUniList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).j ?? 0) > 0) {
     // TODO-QSP: jump 'fu_loop_2_uni'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,6 +243,7 @@ function enterHotornotUniList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).j ?? 0) > 0) {
     // TODO-QSP: jump 'ho_loop_2_uni'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -7,9 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'andrey'  ||  ((s as any).locArgs?.[0] ?? 0) === 'stasya') {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_coolkids', 'andrey_stasya'] }]);
-  }
   scene.build();
 }
 
@@ -194,6 +191,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -335,6 +333,7 @@ function enterDimkaDance(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -384,6 +383,7 @@ function enterDimDrugs(s: GameState, scene: SceneBuilder): void {
       { label: 'Go with Dimka', goto: ['pav_discoev1', 'dimka_sex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -393,6 +393,7 @@ function enterDimkaPay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/drugs/cocainebag.jpg');
   scene.text('You nod your head and dig in your purse, pulling out the money and quickly handing it to him. He takes his time slowly counting it out, which seems like an eternity before he finally hands over a small baggy. You snatch it from him and then quickly leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Do a line', handler: (st: GameState) => {
@@ -543,6 +544,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -625,6 +627,10 @@ function enterMarcusDance(s: GameState, scene: SceneBuilder): void {
     }
   } },
     ]);
+  }
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'andrey'  ||  ((s as any).locArgs?.[0] ?? 0) === 'stasya') {
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_coolkids', 'andrey_stasya'] }]);
   }
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
@@ -836,6 +842,7 @@ function enterAndreyStasya(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -964,6 +971,7 @@ function enterMefodiy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -977,6 +985,7 @@ function enterMefodiyDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('Mefodiy grabs you by the hand and leads you right into the middle of the dance floor. He\'s really good, and confident enough to match your goofiest moves. He quickly adapts to your moves, making you look far better at dancing than you are.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {
@@ -1145,6 +1154,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1159,6 +1169,7 @@ function enterIgorHangOut(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you start discussing the outfits and styles of the various people at the disco, mostly giggling at those with awful fashion sense before he turns to you.');
     scene.text('"Would you like to dance?"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big4.jpg');
@@ -1263,6 +1274,7 @@ function enterIgorDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_coolkids', 'igor_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -1329,6 +1341,7 @@ function enterBella(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1392,6 +1405,7 @@ function enterVicky(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1448,6 +1462,7 @@ function enterInna(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1638,6 +1653,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1654,6 +1670,7 @@ function enterKatjaKiss(s: GameState, scene: SceneBuilder): void {
     scene.text('You slowly lean in towards Katja to kiss her. Unable to resist, Katja closes her eyes, slowly opens her mouth and leans in to meet your kiss.');
     qspCall(s, 'katjaEvDin', 'kiss_events');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1722,6 +1739,7 @@ function enterKatjaDanceAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'Go dancing', goto: ['pav_disco_coolkids', 'katja_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1904,6 +1922,7 @@ function enterKatjaDance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1923,6 +1942,7 @@ function enterKatjaWalkhome(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1978,6 +1998,7 @@ function enterLizaveta(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2092,6 +2113,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2110,6 +2132,7 @@ function enterSoniaDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_coolkids', 'sonia_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -2258,6 +2281,7 @@ function enterSoniaOutcast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2354,6 +2378,7 @@ function enterSoniaOutcastDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Just keep dancing', goto: ['pav_disco_coolkids', 'sonia_outcast_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -2367,6 +2392,7 @@ function enterSoniaWalkhome(s: GameState, scene: SceneBuilder): void {
   scene.text('Sonia takes you by the hand and the two of you walk through the streets back towards the apartment complex. Along the way, she chats about some fashion magazine she has recently read, but you don\'t really remember most of what she said - in fact most of the walk home is a blur.');
   scene.text('Once you get to the apartment complex, she helps you up the stairs to your floor and even helps you with your keys to unlock the door.');
   scene.text('"I hope you don\'t feel too bad tomorrow," she says and gives you a quick hug before walking back down the stairs.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go inside', goto: ['korrPar', ''] },
   ]);
@@ -2501,6 +2527,7 @@ function enterNatasha(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -2522,6 +2549,7 @@ function enterNatashaDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_coolkids', 'natasha_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);

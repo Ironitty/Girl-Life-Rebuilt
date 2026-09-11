@@ -37,6 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ((s as any).KGZVars ?? {})['sup'] = (((s as any).KGZVars ?? {})['sup'] ?? 0) - (1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +46,7 @@ function enterKGZvihod(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars ?? {})['weapon'] = 1;
     scene.text('You find a cudgel lying on the pavement, seemingly having been dropped by another survivor.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your apartment', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -103,6 +105,7 @@ function enterKGZvihod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -146,6 +149,7 @@ function enterKGZvihod2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -212,6 +216,7 @@ function enterKGZvihod4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down the side street', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -283,6 +288,7 @@ function enterKGZvihod4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod5(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -374,6 +380,7 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -413,6 +420,7 @@ function enterKGZvihod6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod7(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the street', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -483,6 +491,7 @@ function enterKGZvihod8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Boulevard', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -515,6 +524,7 @@ function enterKGZvihod8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod9(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the highway', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -559,6 +569,7 @@ function enterKGZvihod10(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head towards <<$KGZVars[\'placeA_text\']>>', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -655,6 +666,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the highway', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -692,6 +704,7 @@ function enterKGZvihod11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -741,6 +754,7 @@ function enterKGZvihod13(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod14(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -788,6 +802,7 @@ function enterKGZvihod14(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod15(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -928,6 +943,7 @@ function enterKGZvihod16(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head outside', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -965,6 +981,7 @@ function enterKGZvihod100(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wander through the suburbs', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -1020,6 +1037,7 @@ function enterKGZvihod100(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod102(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the supermarket', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -1063,6 +1081,7 @@ function enterKGZvihod102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod200(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk through the forest towards the highway', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -1095,6 +1114,7 @@ function enterKGZvihod200(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGZvihod201(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the forest', handler: (st: GameState) => {
     ((s as any).KGZVars ?? {})['hour'] = (((s as any).KGZVars ?? {})['hour'] ?? 0) + (1);
@@ -1133,6 +1153,7 @@ function enterKGZvincent(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Vincent questions why you\'re here and wonders aloud if you have a deathwish running around the zombie infested base.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
@@ -1178,6 +1199,7 @@ function enterKGZfizatk(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).KGZVars ?? 0)?.['dead']} zombie(s) swipe(s) at you while trying to bite.`);
     scene.text(`<center><b>You have taken ${((s as any).KGZVars ?? 0)?.['uron']} damage.</b></center>`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1207,6 +1229,7 @@ function enterKGZgunatk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1236,6 +1259,7 @@ function enterKGZgunatk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1265,6 +1289,7 @@ function enterKGZgunatk3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1301,6 +1326,7 @@ function enterKGZgunatk4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['bulgun'] > 0) {
     // TODO-QSP: jump 'KGZmarkgun'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1337,6 +1363,7 @@ function enterKGZgunatk5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGZVars ?? 0)?.['bulgun'] > 0) {
     // TODO-QSP: jump 'KGZmarkgunb'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1356,6 +1383,7 @@ function enterKGZdeadmanatk(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).KGZVars ?? 0)?.['dead']} zombie(s) limp(s) towards you.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1382,6 +1410,7 @@ function enterKGZgranatk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

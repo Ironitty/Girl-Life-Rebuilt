@@ -7,6 +7,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  (s as any).clothingBonus = qspFunc(s, 'AppearanceSystem', 'CalcClothingBonus');
+  (s as any).accessoriesBonus = qspFunc(s, 'AppearanceSystem', 'CalcAccessoriesBonus');
+  (s as any).groomingBonus = qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus');
+  (s as any).groomingPenalty = qspFunc(s, 'AppearanceSystem', 'CalcGroomingPenalty');
+  (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0) + ((((s as any).glamouractive ?? 0) === 1) ? (150) : (0)));
+  (s as any).pcs_hotcat = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).pcs_apprnc ?? 0));
+  // TODO-QSP: end
   if (((s as any).args ?? 0)[0] === 'UpdateBaseAppearance') {
     // TODO-QSP: Base Appearance is updated once a day at midnight and called from cikl
     // TODO-QSP: Base Appearance is calculated from:
@@ -18,12 +25,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).teethPenalty = qspFunc(s, 'AppearanceSystem', 'CalcTeethPenalty');
     (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0);
   }
-  (s as any).clothingBonus = qspFunc(s, 'AppearanceSystem', 'CalcClothingBonus');
-  (s as any).accessoriesBonus = qspFunc(s, 'AppearanceSystem', 'CalcAccessoriesBonus');
-  (s as any).groomingBonus = qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus');
-  (s as any).groomingPenalty = qspFunc(s, 'AppearanceSystem', 'CalcGroomingPenalty');
-  (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0) + ((((s as any).glamouractive ?? 0) === 1) ? (150) : (0)));
-  (s as any).pcs_hotcat = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).pcs_apprnc ?? 0));
   scene.build();
 }
 
@@ -62,6 +63,7 @@ function enterCalcFaceBonus(s: GameState, scene: SceneBuilder): void {
   (s as any).lipBonus = qspFunc(s, 'AppearanceSystem', 'AdjustFromBMI', ((s as any).lipBonus ?? 0));
   (s as any).result = ((s as any).eyelashesBonus ?? 0) + ((s as any).eyeSizeBonus ?? 0) + ((s as any).lipBonus ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +71,7 @@ function enterCalcAttributeBonus(s: GameState, scene: SceneBuilder): void {
   (s as any).tempAttributeBonus = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_vital ?? 0)) / 5;
   (s as any).result = qspFunc(s, 'AppearanceSystem', 'AdjustFromBMI', ((s as any).tempAttributeBonus ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,6 +81,7 @@ function enterCalcVisibleAgePenalty(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'AppearanceSystem', 'AdjustFromBMI', ((s as any).tempAttributePenalty ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,6 +100,7 @@ function enterCalcTeethPenalty(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'AppearanceSystem', 'AdjustFromBMI', ((s as any).tempAttributePenalty ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,18 +138,21 @@ function enterCalcBodyShapeBonus(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalcClothingBonus(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'outfit', 'CalcClothingBonus');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalcAccessoriesBonus(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'outfit', 'CalcAccessoriesBonus');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +180,7 @@ function enterCalcGroomingBonus(s: GameState, scene: SceneBuilder): void {
   (s as any).breathBonus = 5 * ((s as any).pcs_breath ?? 0);
   (s as any).result = qspFunc(s, 'AppearanceSystem', 'AdjustFromBMI', ((s as any).makeupBonus ?? 0) + ((s as any).breathBonus ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -213,6 +222,7 @@ function enterCalcGroomingPenalty(s: GameState, scene: SceneBuilder): void {
   (s as any).legPenalty = Math.max(0, Math.min(3 * (((s as any).pcs_leghair ?? 0) / 3), 9));
   (s as any).result = ((s as any).sweatPenalty ?? 0) + ((s as any).glassesPenalty ?? 0) + ((s as any).hairDyePenalty ?? 0) + ((s as any).buzzCutPenalty ?? 0) + ((s as any).legPenalty ?? 0) + ((s as any).lipBalmPenalty ?? 0) + ((s as any).hairPenalty ?? 0) + ((s as any).deodorantPenalty ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -221,6 +231,7 @@ function enterCalcAppearance(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_apprnc = ((s as any).pcs_apprncbase ?? 0) + ((s as any).clothingBonus ?? 0) + ((s as any).accessoriesBonus ?? 0) + ((s as any).groomingBonus ?? 0) - ((s as any).groomingPenalty ?? 0);
   (s as any).result = Math.max(0, 0) + ((s as any).superNaturalBonus ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -263,6 +274,7 @@ function enterConvertToHotcat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -299,6 +311,7 @@ function enterAdjustFromBMI(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

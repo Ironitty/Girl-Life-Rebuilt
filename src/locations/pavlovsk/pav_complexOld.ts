@@ -16,6 +16,7 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   scene.text('An old apartment complex that hasn\'t seen any kind of maintenance for years.');
   scene.text('The entry doors are left unlocked and even if they weren\'t, they look like they\'ll fall apart at any moment.');
   scene.text('Inside is a board with <a href="exec:gt \'pav_complexold\', \'advert\'">announcements</a> for the tenants.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', goto: ['pav_complex', 'start'] },
     { label: 'Take the elevator', handler: (st: GameState) => {
@@ -45,6 +46,7 @@ function enterAdvert(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/sharedapt/board.jpg');
   scene.text('');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_complexold', 'etaj_1'] },
   ]);

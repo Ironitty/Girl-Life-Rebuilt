@@ -24,6 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for Filipp Kudashov\'s office', goto: ['alexandriaEv', 'filipp'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
   ]);
@@ -39,6 +40,7 @@ function enterHearing(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hello, my name is ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}. I got this summon in the mail," you tell a woman sitting at the desk.`);
   scene.text('She tells you to hand it over and looks through it. "Okay, head to courtroom number 5 and they\'ll call you in when it\'s your turn."');
   scene.text('You nervously nod before finding your way to the designated courtroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head to the courtroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -78,6 +80,7 @@ function enterPunishment(s: GameState, scene: SceneBuilder): void {
   scene.text('You meekly nod and feel a little relieved.');
   // TODO-QSP: gs 'court_sentence_events', 'punishment_start', $policeQW_courthearing_subjects[0]
   ((s as any).policeQW ?? {})['fine_deadline'] = (((s as any).policeQW ?? {})['fine_deadline'] ?? 0) + (14);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the court', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_center', '', 'mom_check'
@@ -93,6 +96,7 @@ function enterPoliceArrest(s: GameState, scene: SceneBuilder): void {
   scene.text('There\'s a loud knock at the door and you open it to see two police officers standing in the hallway.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, you're under arrest!" one of them bellows...
   scene.text(`"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, you're under arrest!" one of them bellows.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'What?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -132,6 +136,7 @@ function enterPoliceArrest1(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).policeQW_courthearing_dates ?? {}).length > 1) {
     qspCall(s, 'array', 'coupled_sort', 'policeQW_courthearing_dates', '$policeQW_courthearing_subjects');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Await punishment', goto: ['sentence', 'punishment'] },
   ]);
@@ -149,6 +154,7 @@ function enterPoliceArrest2(s: GameState, scene: SceneBuilder): void {
   scene.text('Their eyes piercing through you, the judge clears their throat. "I see. You have thirty days to pay your fine. If you fail to do so, you will be arrested again and given a prison sentence."');
   scene.text('You silently nod that you understand.');
   ((s as any).policeQW ?? {})['fine_deadline'] = Math.max(((s as any).policeQW ?? 0)?.['fine_deadline'], ((s as any).daystart ?? 0) + 30);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the court', handler: (st: GameState) => {
     // TODO-QSP: gt 'city_center', '', 'mom_check'
@@ -164,6 +170,7 @@ function enterPoliceArrest3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Do you believe yourself to be above the law, Miss <<$pcs_lastname>>? I can assu...
   scene.text(`"Do you believe yourself to be above the law, Miss ${((s as any).pcs_lastname ?? 0)}? I can assure you that you are not. I sentence you to one year in prison."`);
   scene.text('You just nod in silence before you\'re hauled away to serve your time.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'gameover', 'check', 14);

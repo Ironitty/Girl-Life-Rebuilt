@@ -119,6 +119,7 @@ function enterMartinSexPrep(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop and get dressed', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/gettingdressed.mp4');
@@ -290,6 +291,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: :pic_loop
@@ -622,6 +624,7 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', (-5));
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for anal', handler: (st: GameState) => {
     (s as any).pic_rand = Math.floor(Math.random() * 2) + 1;
@@ -752,6 +755,7 @@ function enterPainalDyn(s: GameState, scene: SceneBuilder): void {
   scene.text('You could probably force it inside, but without lube, that\'s bound to be painful…');
   scene.text('Maybe you could finish Martin off with your mouth instead, if you\'re not feeling too horny or adventurous anymore tonight.');
   scene.text('Or… well, maybe you don\'t want to continue at all?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Force his dick inside your ass', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/anal/painal2.mp4');
@@ -856,6 +860,7 @@ function enterMartinCumshot_Mouth(s: GameState, scene: SceneBuilder): void {
   scene.text('When his \' + iif(pcs_horny = 0, \'and your orgasm have\', \'orgasm has\') + \' subsided, you release his softening dick from your mouth once more and show Martin his jizz on your tongue before swallowing it\' + iif(trait_vars[\'cumeater\'] = 1, \', savouring the taste you come to love as the thick liquid goes down your throat\', \' reluctantly, knowing that men love it when women do that\') + \'. The smile he gives you as you show him your clean tongue is simply priceless.');
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (5);
   qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get cleaned up', goto: ['MartinSex2', 'MartinCleanup'] },
   ]);
@@ -872,6 +877,7 @@ function enterMartinCumshot_Face(s: GameState, scene: SceneBuilder): void {
   scene.text('For a moment, you think about saying something dirty, like asking him to cum all over your face, but by the time this thought has manifested, Martin has already complied with it, shooting his hot sperm all over your cheek and forehead. You flinch a little, screwing your eyes shut as you feel his spurt hit you right at the corner of one of them, but you are acutely aware of how hot it feels, literally and figuratively, to have Martin\'s sperm run down your face.');
   scene.text('It takes a moment or three until Martin stops painting your face white, but when you tentatively open your eyes, you are met with a smile of self-satisfaction and adoration.');
   qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get cleaned up', goto: ['MartinSex2', 'MartinCleanup'] },
   ]);
@@ -887,6 +893,7 @@ function enterMartinCumshot_Tits(s: GameState, scene: SceneBuilder): void {
   scene.text('"Go ahead", you whisper in your sultriest voice, "Cum all over my tits, baby."');
   scene.text('That\'s all the invitation Martin needs: With a final moan, the first hot jet of cum hits your breasts, soon followed by another, and another. By the time his cock stops twitching, your breast and chin are covered in sperm. Cleaning up is gonna take a while, but with a single look at Martin and the satisfied boyish grin the sight of you puts on his face, you know that it\'s worth it.');
   qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 1);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get cleaned up', goto: ['MartinSex2', 'MartinCleanup'] },
   ]);
@@ -902,6 +909,7 @@ function enterMartinCleanup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'outfit', 'wear_last_worn');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bar', goto: ['city_industrial', ''] },
   ]);

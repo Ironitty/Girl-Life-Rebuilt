@@ -14,6 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Apartment businessman Yaroslav</b></center>');
   scene.img('images/characters/city/yaroslav/entrance.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 17  &&  ((s as any).yaq ?? 0) === 1) {
@@ -38,6 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterYaqw(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/yaroslav/sex/rabotu_2.jpg');
   scene.text('I need you to tidy up, dust, and wash some clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
@@ -90,6 +92,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/characters/city/yaroslav/sex/rabotu_3.jpg');
   scene.text('As you get started with the floor, you sit down and start to think about the things you have sunk to doing, your clothes wet, armpits starting to smell. Well at least you will earn some money for your efforts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Scrub the floor', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -120,6 +123,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/yaroslav/sex/rabotu_5.jpg');
   scene.text('"Hey!" You spin around "Are you looking at my ass?" You cried indignantly, but instead of trying to prevent him, you make sure he gets a good look at it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_6.jpg');
@@ -166,6 +170,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('You give the floor a quick wash as you wait for Yaroslav to appear in the doorway.');
   scene.text('"Are you looking at my ass?" You ask, giving him a good look at it.');
   scene.text('He smiles and says, "Very much so, now let\'s talk business."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up and remove top', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_9.jpg');
@@ -202,6 +207,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_8.jpg');
   scene.text('You squeeze out your sponge over your breasts and start to rub them seductively, "Oh dear, I\'m so wet…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_14.jpg');
@@ -236,6 +242,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_10.jpg');
   scene.text('Looking down, you see that his cock is, wow, that\'s a really delicious looking cock. You lick your lips in anticipation.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -288,6 +295,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   scene.text('"Let\'s fuck then." You strip off the rest of your clothes and sit on a unit, lifting you legs to show Yaroslav everything.');
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     scene.img('images/characters/city/yaroslav/sex/rabotu_16.jpg');
@@ -363,6 +371,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_22.jpg');
   scene.text('"Let\'s do this then." You strip off the rest of your clothes and sit on a unit, you twist to the side and lift your butt check to expose your ass.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A86');
@@ -424,6 +433,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/yaroslav/sex/rabotu_28.jpg');
   scene.text('Yaroslav leaves you to shower and gives you your wage and the bonus as per your agreement. He tells you he will be around every evening at the same time.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and leave', handler: (st: GameState) => {
     (s as any).yarikwork = ((s as any).yarikwork ?? 0) + (1);

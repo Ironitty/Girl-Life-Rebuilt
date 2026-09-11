@@ -46,6 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'camera', 'check_location');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -63,6 +64,7 @@ function enterRead(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_library_read_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -79,6 +81,7 @@ function enterLoan(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'library_functions', 'set_loan_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

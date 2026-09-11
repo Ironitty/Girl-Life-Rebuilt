@@ -42,6 +42,7 @@ function enterScheduler(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +58,7 @@ function enterGrave(s: GameState, scene: SceneBuilder): void {
   scene.text(`"I need to go somewhere, but I don't want to go alone," ${((s as any).npc_firstname ?? 0)?.['A274']} says, avoiding the question, her eyes looking at the floor.`);
   scene.text('"Are you okay?" you ask, concerned about her. You briefly think you saw the pain in her eyes before she looked away, but you remain unsure.');
   scene.text('"I just need to go to the graveyard tonight. It\'s something I need to do. I will understand if you don\'t want to come." Something in her voice leaves you puzzled, but you\'re not sure what it is.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the graveyard', handler: (st: GameState) => {
     // TODO-QSP: mayaqw['grave'] = 2
@@ -97,6 +99,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
       { label: 'Head back', goto: ['npc_274_init', 'post_grave'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hug <<$npc_firstname[\'A274\']>>', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A274', 'like');
@@ -238,6 +241,7 @@ function enterPostGrave(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch', goto: ['pushkin_ballet_res', 'bedroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -353,6 +357,7 @@ function enterSummerSchool(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

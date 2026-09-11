@@ -15,6 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/pool/sex/0.jpg');
   // TODO-QSP: dynamic text: You and <<$telsob>> rent a booth
   scene.text(`You and ${((s as any).telsob ?? 0)} rent a booth`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
     if (((s as any).telsob ?? 0) === 'Alla') {
@@ -119,6 +120,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['billsvid', '3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
     ((s as any).stat ?? {})['lesbian_count'] = (((s as any).stat ?? {})['lesbian_count'] ?? 0) + (1);
@@ -178,6 +180,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).bilsvidukiy ?? 0))) {
     // TODO-QSP: act 'Ask her to play with a cue': gt 'billsvid', '13'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,6 +211,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her', goto: ['billsvid', '10'] },
   ]);
@@ -239,6 +243,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['billsvid', '3'] },
   ]);
@@ -256,6 +261,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).bilsvidkiy ?? 0))) {
     // TODO-QSP: act 'Play with a cue': gt 'billsvid', '12'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['billsvid', '3'] },
   ]);
@@ -284,6 +290,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['billsvid', '3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/11.jpg');
@@ -359,6 +366,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_mall', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

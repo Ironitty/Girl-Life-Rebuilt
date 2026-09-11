@@ -33,6 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kit_din', 'edahota');
   qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

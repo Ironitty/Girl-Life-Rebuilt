@@ -880,6 +880,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Squat', goto: ['hunters', 'hunterslutSTART'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['gad_swamp_yard', 'start'] },
   ]);
@@ -917,6 +918,7 @@ function enterHuntersgroupORALsi(s: GameState, scene: SceneBuilder): void {
   scene.text(`You hear ${((s as any).boydesc ?? 0)} groaning more intensely, indicating he's ready to cum. You look up at him, smiling with your eyes and speed up you head motion. You keep on pleasuring him until he finishes on your face. He walks away, blissfuly smiling.`);
   (s as any).huntsexa = Math.floor(Math.random() * 5) + 1;
   qspCall(s, 'hunters', 'rng_1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +947,7 @@ function enterHuntersgroupORALsi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 5) + 1;
   qspCall(s, 'hunters', 'rng_1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -977,6 +980,7 @@ function enterHuntersgroupORALs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -998,6 +1002,7 @@ function enterHuntersgroupORALs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1022,6 +1027,7 @@ function enterHuntersgroupORALs1end(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
   qspCall(s, 'arousal', 'bj', 2, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1058,6 +1064,7 @@ function enterHuntersgroupORALi1end(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1089,6 +1096,7 @@ function enterHuntersgroupORALa1end(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1122,6 +1130,7 @@ function enterHuntersgroupORALi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1184,6 +1193,7 @@ function enterHuntersgroupORALend1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1219,6 +1229,7 @@ function enterHuntersgroupORALai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 5) + 1;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1243,6 +1254,7 @@ function enterHuntersgroupORALai1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 5) + 1;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1271,6 +1283,7 @@ function enterHuntersgroupORALi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1306,6 +1319,7 @@ function enterHuntersgroupORALas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_5');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1337,6 +1351,7 @@ function enterHuntersgroupORALasi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 5) + 1;
   qspCall(s, 'hunters', 'rng_6');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1383,6 +1398,7 @@ function enterHuntersgroupVias(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_6');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1434,6 +1450,7 @@ function enterHuntersgroupVas(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_5');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1472,6 +1489,7 @@ function enterHuntersgroupVas1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_5');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1521,6 +1539,7 @@ function enterHuntersgroupVa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_7');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1564,6 +1583,7 @@ function enterHuntersgroupVs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1634,6 +1654,7 @@ function enterHuntersgroupVi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1694,6 +1715,7 @@ function enterHuntersgroupVis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_8');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1732,6 +1754,7 @@ function enterHuntersgroupVis1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1775,6 +1798,7 @@ function enterHuntersgroupVi1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1828,6 +1852,7 @@ function enterHuntersgroupVs1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1889,6 +1914,7 @@ function enterHuntersgroupVia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1921,6 +1947,7 @@ function enterHuntersgroupVia1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1968,6 +1995,7 @@ function enterHuntersgroupVi2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2010,6 +2038,7 @@ function enterHuntersgroupVa1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_7');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2049,6 +2078,7 @@ function enterHuntersgroupVaOsHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_6');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2088,6 +2118,7 @@ function enterHuntersgroupVOsHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_8');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2142,6 +2173,7 @@ function enterHuntersgroupVaOHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2196,6 +2228,7 @@ function enterHuntersgroupDPasi(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_6');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2249,6 +2282,7 @@ function enterHuntersgroupDPsi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_8');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2301,6 +2335,7 @@ function enterHuntersgroupDPas(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (Math.floor(Math.random() * 2) + 2);
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_5');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2371,6 +2406,7 @@ function enterHuntersgroupDPai(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2412,6 +2448,7 @@ function enterHuntersgroupVsOaHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_6');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2461,6 +2498,7 @@ function enterHuntersgroupVsOHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_8');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2500,6 +2538,7 @@ function enterHuntersgroupVsOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_8');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2539,6 +2578,7 @@ function enterHuntersgroupVOi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2593,6 +2633,7 @@ function enterHuntersgroupVsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2627,6 +2668,7 @@ function enterHuntersgroupVOaHi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2660,6 +2702,7 @@ function enterHuntersgroupViOa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2704,6 +2747,7 @@ function enterHuntersgroupViO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2743,6 +2787,7 @@ function enterHuntersgroupVaOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_5');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2782,6 +2827,7 @@ function enterHuntersgroupVOs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2836,6 +2882,7 @@ function enterHuntersgroupVaO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_7');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2870,6 +2917,7 @@ function enterHuntersgroupAsOa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_5');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2919,6 +2967,7 @@ function enterHuntersgroupAsO(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2952,6 +3001,7 @@ function enterHuntersgroupAOa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_7');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2991,6 +3041,7 @@ function enterHuntersgroupDPis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_8');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3030,6 +3081,7 @@ function enterHuntersgroupDPia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 2;
   qspCall(s, 'hunters', 'rng_4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3057,6 +3109,7 @@ function enterHuntersgroupOis(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3087,6 +3140,7 @@ function enterHuntersgroupOia(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3119,6 +3173,7 @@ function enterHuntersgroupOsa(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3143,6 +3198,7 @@ function enterHuntersgroupAa(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_7');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3182,6 +3238,7 @@ function enterHuntersgroupAaEnd1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3221,6 +3278,7 @@ function enterHuntersgroupAaEnd2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3242,6 +3300,7 @@ function enterHuntersgroupAs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3281,6 +3340,7 @@ function enterHuntersgroupAsEnd1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3320,6 +3380,7 @@ function enterHuntersgroupAsEnd2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3341,6 +3402,7 @@ function enterHuntersgroupAi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3380,6 +3442,7 @@ function enterHuntersgroupAiEnd1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3419,6 +3482,7 @@ function enterHuntersgroupAiEnd2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3440,6 +3504,7 @@ function enterHuntersgroupVa2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 4) + 1;
   qspCall(s, 'hunters', 'rng_7');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3478,6 +3543,7 @@ function enterHuntersgroupVa2end(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3499,6 +3565,7 @@ function enterHuntersgroupVs2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3537,6 +3604,7 @@ function enterHuntersgroupVs2end(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3558,6 +3626,7 @@ function enterHuntersgroupVi3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 2;
   qspCall(s, 'hunters', 'rng_3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3597,6 +3666,7 @@ function enterHuntersgroupVi3end(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3646,6 +3716,7 @@ function enterHuntersgroupOsend(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3689,6 +3760,7 @@ function enterHuntersgroupOaend(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3737,6 +3809,7 @@ function enterHuntersgroupOiend(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3762,6 +3835,7 @@ function enterHunterslutSTART(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start sucking', goto: ['hunters', 'hunterslutORAL'] },
   ]);
@@ -3781,6 +3855,7 @@ function enterHunterslutEND(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him off', handler: (st: GameState) => {
     (s as any).protect = 0;
@@ -3830,6 +3905,7 @@ function enterHunterslutORAL(s: GameState, scene: SceneBuilder): void {
     scene.text(`All of a sudden ${((s as any).boydesc ?? 0)} begins moving faster, making sounds, you quickly realize he's edging and would be cumming soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3853,6 +3929,7 @@ function enterHunterslutCOW(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} began moving faster, grunting, you quickly realize he was edging and would be cumming soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3876,6 +3953,7 @@ function enterHunterslutHANDS(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).boydesc ?? 0)} starts breathing heavily and grunting loudly, you realize he's edging and is going to finish soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3899,6 +3977,7 @@ function enterHunterslutTREE(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} began moving faster, grunting, you quickly realize he was edging and would be cumming soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3922,6 +4001,7 @@ function enterHunterslutTREELEG(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} starts breathing heavily and grunting loudly, you realize he's edging and is going to finish soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3945,6 +4025,7 @@ function enterHunterslutLEG1(s: GameState, scene: SceneBuilder): void {
     scene.text(`All of a sudden ${((s as any).boydesc ?? 0)} begins moving faster, making sounds, you quickly realize he's edging and would be cumming soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3968,6 +4049,7 @@ function enterHunterslutLEG2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} began moving faster, grunting, you quickly realize he was edging and would be cumming soon.`);
   }
   qspCall(s, 'hunters', 'rng_9');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4223,6 +4305,7 @@ function enterHuntersTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4281,6 +4364,7 @@ function enterHuntersgroupfaint(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4325,6 +4409,7 @@ function enterRng_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4357,6 +4442,7 @@ function enterRng_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4386,6 +4472,7 @@ function enterRng_3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4421,6 +4508,7 @@ function enterRng_4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4459,6 +4547,7 @@ function enterRng_5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4515,6 +4604,7 @@ function enterRng_6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4544,6 +4634,7 @@ function enterRng_7(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4576,6 +4667,7 @@ function enterRng_8(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4607,6 +4699,7 @@ function enterRng_9(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) < 10) {
     // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

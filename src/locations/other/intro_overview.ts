@@ -320,6 +320,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '</center>'
   // TODO-QSP: view $func('$face_image')
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Continue</b>', goto: ['intro_overview', 'leave'] },
     { label: '<b>Skip Intro</b>', goto: ['intro_overview', 'quick_leave'] },
@@ -337,12 +338,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterLeave(s: GameState, scene: SceneBuilder): void {
   (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
   scene.actions([{ label: 'Continue', goto: ['intro_end', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterQuickLeave(s: GameState, scene: SceneBuilder): void {
   (s as any).tsg = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1) : (0));
   scene.actions([{ label: 'Continue', goto: ['intro_end', 'quick_start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -401,21 +404,25 @@ function enterRenderCell(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetFirstnameSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetNicknameSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetLastnameSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -423,12 +430,14 @@ function enterGetBirthdaySetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'init_monthends', ((s as any).birthyear ?? 0));
   qspCall(s, 'time', 'init_monthends', ((s as any).year ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetBirthmonthSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'init_monthnames');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -440,12 +449,14 @@ function enterGetBirthyearSetter(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_age_start = ((s as any).temp_age_start ?? 0) - (1);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetHaircolorSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'hair');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -453,12 +464,14 @@ function enterGetHairlengthSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'hair');
   qspCall(s, 'intro_character_creation', 'set_hair_next_prev');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetHairtypeSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'hair');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,6 +485,7 @@ function enterGetEyecolorSetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_eyecol ?? 0) === 3) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -485,6 +499,7 @@ function enterGetEyesizeSetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_eyesize ?? 0) === 3) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -498,28 +513,33 @@ function enterGetEyelashesSetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_lashes ?? 0) === 3) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetEyesightSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetLipsizeSetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'lips');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetTeethSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetHeightSetter(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_inches = (((s as any).pcs_hgt ?? 0) * 100 + 127) / 254;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,6 +553,7 @@ function enterGetPortraitSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,6 +561,7 @@ function enterGetBodyweightSetter(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_est_weight_bw = (2820 + 33 * (((s as any).pcs_mass ?? {})?.['body'] + ((s as any).pcs_mass ?? {})?.['bust_gen'] + ((s as any).pcs_mass ?? {})?.['butt_gen']) + 70 * (((s as any).pcs_hgt ?? 0) - 165)) / 100;
   (s as any).temp_lbs = (((s as any).temp_est_weight_bw ?? 0) * 1000 + 453) / 454;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,6 +593,7 @@ function enterGetBustSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -602,6 +625,7 @@ function enterGetButtSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -631,6 +655,7 @@ function enterGetEstBmi(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,6 +668,7 @@ function enterGetStartTypeLocSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -653,6 +679,7 @@ function enterGetStartTypeMagicSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -662,6 +689,7 @@ function enterGetStartTypeGroupSetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['cat'] === 'custom') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -693,6 +721,7 @@ function enterGetStartTypeCatSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -711,6 +740,7 @@ function enterGetStartLocationSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -729,18 +759,21 @@ function enterGetStartTimeSetter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetTrait(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', '', ((s as any).locArgs?.[1] ?? 0), 'overview');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetArchetypes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_tr_val_label += ' (' + arch_vars[$temp_tr_name + '_points'] / 250 + ')'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -748,76 +781,91 @@ function enterGetPassportSetter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0) === 'sg') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetSecretaryLicenceSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetMasseuseLicenceSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetUmbrellaSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetCombSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetMirrorSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWaterBottleSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetSkippingRopeSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetHulaHoopSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetYogaBookSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetIceSkatesSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetSewingKitSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetVibratorSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetButtPlugSetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetMoneySetter(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -871,6 +919,7 @@ function enterCycleGroup(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -985,6 +1034,7 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1018,6 +1068,7 @@ function enterCycleSgTime(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'intro_initialization', 'init_time');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1032,6 +1083,7 @@ function enterSetPortraitMode(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).face_style ?? {})['type'] = qspUntranslated(s, "ARGS[1]", { location: "intro_overview" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1066,6 +1118,7 @@ function enterGetArchetypeLabel(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

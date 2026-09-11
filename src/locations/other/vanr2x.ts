@@ -17,6 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'din_van', 'misery');
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave bathroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

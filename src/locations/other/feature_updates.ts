@@ -107,6 +107,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *p '</ul>'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit', handler: (st: GameState) => {
     // TODO-QSP: gt $ARGS[1]

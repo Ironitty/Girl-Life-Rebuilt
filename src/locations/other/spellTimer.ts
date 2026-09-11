@@ -50,6 +50,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'SpellTimerLoop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

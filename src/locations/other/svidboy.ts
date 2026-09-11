@@ -19,6 +19,7 @@ function enterKinosvid(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/kino0.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> buys the tickets, and you take your seats ready for viewing
   scene.text(`${((s as any).npcdesc ?? 0)} buys the tickets, and you take your seats ready for viewing`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the movie', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 90;
@@ -79,6 +80,7 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/sex_park0.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> and you meet at the entrance to the park.
   scene.text(`${((s as any).npcdesc ?? 0)} and you meet at the entrance to the park.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a walk', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -289,6 +291,7 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -326,6 +329,7 @@ function enterParksvid21(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'African guy', Math.floor(Math.random() * 15) + 21);
@@ -386,6 +390,7 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Annoy him', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'African guy', Math.floor(Math.random() * 15) + 21);
@@ -419,6 +424,7 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/city/boyfriend/sex/event/bil${((s as any).picrand ?? 0)}.jpg`);
   // TODO-QSP: dynamic text: <<$npcdesc>> pays for a table at a booth, and you go to play.
   scene.text(`${((s as any).npcdesc ?? 0)} pays for a table at a booth, and you go to play.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -503,6 +509,7 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/kafe0.jpg');
   // TODO-QSP: dynamic text: You and <<$npcdesc>> go into a small cafe. It seems that it does not enjoy popul...
   scene.text(`You and ${((s as any).npcdesc ?? 0)} go into a small cafe. It seems that it does not enjoy popularity, as you are almost the only customers. You sit at a table in one of the private booths.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the order', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;

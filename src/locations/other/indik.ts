@@ -3,6 +3,30 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enter1(s: GameState, scene: SceneBuilder): void {
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter2(s: GameState, scene: SceneBuilder): void {
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter3(s: GameState, scene: SceneBuilder): void {
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter4(s: GameState, scene: SceneBuilder): void {
+  return;
+  // TODO-QSP: end
   return;
   if (((';1;2;3;4;').indexOf((';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) {
     if (((s as any).Enable_Android ?? 0) === 1) {
@@ -20,26 +44,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).indik_counter = 0;
     (s as any).indik_stop_looping = 0;
   }
-  scene.build();
-}
-
-function enter1(s: GameState, scene: SceneBuilder): void {
-  return;
-  scene.build();
-}
-
-function enter2(s: GameState, scene: SceneBuilder): void {
-  return;
-  scene.build();
-}
-
-function enter3(s: GameState, scene: SceneBuilder): void {
-  return;
-  scene.build();
-}
-
-function enter4(s: GameState, scene: SceneBuilder): void {
-  return;
   scene.build();
 }
 

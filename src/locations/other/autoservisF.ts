@@ -99,6 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -109,6 +110,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterIsOpen(s: GameState, scene: SceneBuilder): void {
   (s as any).RESULT = ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 20  &&  ((s as any).week ?? 0) < 7;
+  // TODO-QSP: end
   scene.build();
 }
 

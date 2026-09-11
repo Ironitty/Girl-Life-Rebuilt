@@ -207,6 +207,7 @@ function enterSmokeWithHunters(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'meal_table');
@@ -237,6 +238,7 @@ function enterChatWithHunters(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -414,6 +416,7 @@ function enterChatWithHuntersTheme(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish chatting', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -555,6 +558,7 @@ function enterJoinDrinking(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -562,6 +566,7 @@ function enterDrinkWithHunters(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/fireside_drink.jpg');
   // TODO-QSP: dynamic text: Holding up two bottles, Igor approaches you "Take your pick <<$pcs_nickname>>: v...
   scene.text(`Holding up two bottles, Igor approaches you "Take your pick ${((s as any).pcs_nickname ?? 0)}: vodka, or beer?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink vodka', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
@@ -1113,12 +1118,14 @@ function enterBoozeDare(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDrunkenBlackout(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/swamphousedrunkgirl.jpg');
   scene.text('You are so wasted you can barely stand. You see the blanket by the fireside and lay on it for just a short nap');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pass out', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).hunterVars ?? 0)?.['collective_opinion'] < 30  &&  ((s as any).hunterVars ?? 0)?.['sexual_comfort'] > 30) {
@@ -1146,6 +1153,7 @@ function enterMeetHunters(s: GameState, scene: SceneBuilder): void {
   ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (10 + ((s as any).pcs_apprnc ?? 0) / 4);
   ((s as any).hunterVars ?? {})['violent'] = 0;
   scene.img('images/locations/gadukino/hunters/hanterswork1.7.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/hanterswork1.7.jpg');
@@ -1231,6 +1239,7 @@ function enterMeetHuntersAfterRescue(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1311,6 +1320,7 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     if (((s as any).tirand ?? 0) > 70) {
@@ -1329,6 +1339,7 @@ function enterAndreiQuickFuck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 10, 'pinch', 'nipples');
   scene.text('You yelp but it is cut short when he shoves his tongue down your throat, roughly fondling you all over');
   qspCall(s, 'arousal', 'foreplay', 15, 'sub');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You feel your pussy starting to get wet', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/hunter/andrei_naked_encounter_finger.jpg');
@@ -1369,6 +1380,7 @@ function enterAndreiQuickFuck(s: GameState, scene: SceneBuilder): void {
 
 function enterIgorDemonstration(s: GameState, scene: SceneBuilder): void {
   scene.text('Seeing Igor staring at your naked body like a deer in the headlights gives you an idea.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him it is no big deal', handler: (st: GameState) => {
     ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (3);
@@ -1536,6 +1548,7 @@ function enterNakedEncounter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1663,6 +1676,7 @@ function enterNighttimeGangbang(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1822,6 +1836,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1867,6 +1882,7 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1881,10 +1897,12 @@ function enterCumComment(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, you are just prancing around with cum on you like that...
     scene.text(`"Damn, ${((s as any).pcs_nickname ?? 0)}, you are just prancing around with cum on you like that? That's kind of hot to be honest`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCreeksideRape(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Resist', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -2001,6 +2019,7 @@ function enterSkirtBreeze(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2015,6 +2034,7 @@ function enterCreeksideGangbang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start', 1, 'gangbang');
   qspCall(s, 'arousal', 'bj', 2, 'sub', 'gangbang');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'The men step back for a second', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/hunter/hantersgroupvias3.\'+rand(0, 4)+\'.jpg');

@@ -30,6 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit with Artem', goto: ['artem_dorm', 'sit_couch'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Artem\'s dorm room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -44,6 +45,7 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/nightstand.jpg');
   scene.text('Having decided to snoop, you open the nightstand drawer to take a peek inside. Rummaging through the drawers, all you find is his phone hooked up to a charger, a few books, some cold medicine, some comics and a flashlight. Noticing him watching you snoop, you close the drawers.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the drawer', goto: ['artem_dorm', 'start'] },
   ]);
@@ -113,6 +115,7 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find something else to look at', goto: ['artem_dorm', 'start'] },
   ]);
@@ -134,6 +137,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at the computer, then at Artem.');
     scene.text('He meets your gaze and breaks into a smile. "Go ahead and use it if you want. I don\'t mind."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go online', goto: ['komp', 'start'] },
     { label: 'Find something else to look at', goto: ['artem_dorm', 'start'] },
@@ -159,6 +163,7 @@ function enterSitCouch(s: GameState, scene: SceneBuilder): void {
       scene.text('You can tell he\'s trying to make you happy.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Artem', goto: ['artem_dorm', 'chat'] },
     { label: 'Watch him play', handler: (st: GameState) => {
@@ -297,6 +302,7 @@ function enterWatchMore(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -343,6 +349,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['artem_dorm', 'start'] },
   ]);
@@ -499,6 +506,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -506,6 +514,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('Artem smiles at you. "Do you want to go for a walk on the quad?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', handler: (st: GameState) => {
     ((s as any).artemQW ?? {})['artfall'] = (((s as any).artemQW ?? {})['artfall'] ?? 0) - (4);
@@ -536,6 +545,7 @@ function enterDate(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('Artem smiles at you. "Would you like to go out on a date?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'dislike');
@@ -571,6 +581,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     scene.text('"I enjoyed seeing you naked last time. I want you to strip for me again, but can you make a bit more of a show of it this time?"');
   }
   qspCall(s, 'artem_dorm', 'askedstrip');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -578,6 +589,7 @@ function enterFlowers(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/school/boy/artem/flowers.jpg');
   scene.text('As you sit down to talk, Artem suddenly produces a bouquet of flowers and offers it to you. "I got these for you. I hope you like them."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept the flowers', handler: (st: GameState) => {
     ((s as any).artemQW ?? {})['date'] = (((s as any).artemQW ?? {})['date'] ?? 0) + (1);
@@ -665,6 +677,7 @@ function enterAnotherDate(s: GameState, scene: SceneBuilder): void {
   ((s as any).artemQW ?? {})['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('Artem smiles at you as he walks over and hugs you. "Would you like to go out on another date?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'dislike');
@@ -712,6 +725,7 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'drugs', 'alcohol', 'wine', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', (-25));
@@ -758,6 +772,7 @@ function enterOneMoreDate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   // TODO-QSP: dynamic text: Artem smiles at you as he walks over and hugs you. "<<$pcs_nickname>>, would you...
   scene.text(`Artem smiles at you as he walks over and hugs you. "${((s as any).pcs_nickname ?? 0)}, would you like to go out on another date?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'dislike');
@@ -1374,6 +1389,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).strapNumber ?? 0) > 0) {
     qspCall(s, 'artem_dorm', 'strapon_chat');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make small talk', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1572,10 +1588,12 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterArtemgirlfriend(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him to stop', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -1678,6 +1696,7 @@ function enterAskedstrip(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to strip', handler: (st: GameState) => {
     // TODO-QSP: gt 'artem_dorm', 'stripagree', 0
@@ -1699,6 +1718,7 @@ function enterStripagree(s: GameState, scene: SceneBuilder): void {
   scene.text('You see him visibly swallow as he blushes before nodding. "Yes, I do. I would really love it if you did."');
   scene.text('You think it over for a moment before nodding. "Okay fine. Sit back and enjoy the show."');
   scene.text('He grins widely as you start slowly stripping out of your clothes, teasing him as you do. You might as well have some fun with this.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start stripping', goto: ['artem_dorm', 'striptease'] },
   ]);
@@ -1710,6 +1730,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
   scene.text('You do a little dance on your knees as you slowly undress, teasing him without showing him anything but the hint of your panties. You then slowly remove your bottoms, leaving you with only your top and panties on.');
   qspCall(s, 'arousal', 'striptease', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove your top', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/strip3.jpg');
@@ -1752,6 +1773,7 @@ function enterTimecheck(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'second_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -27,6 +27,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'newspaper_shuffle_loop'
   }
   ((s as any).newspaperVars ?? {})['max_page_num'] = ((s as any).i ?? 0) - 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_np_page = 0;
   qspCall(s, 'stat', '');
   qspCall(s, 'newspaper', 'view');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,6 +57,7 @@ function enterView(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put the newspaper away', handler: (st: GameState) => {
     if (((s as any).newspaperVars ?? 0)?.['dbag'] === 0) {

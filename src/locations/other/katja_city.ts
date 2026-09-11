@@ -16,6 +16,7 @@ function enterMetro(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 16) === 1) {
     qspCall(s, 'money', 'pay', 16);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the train', goto: ['katja_city', 'metro_ride'] },
   ]);
@@ -27,6 +28,7 @@ function enterMetroRide(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/riding_metro.jpg');
   scene.text('The train arrives and you board before finding a place to sit as it leaves the station.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with Katja', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['drinks'] > (Math.floor(Math.random() * 5) + 10)) {
@@ -50,6 +52,7 @@ function enterMetroGetOff(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/riding_metro.jpg');
   scene.text('You chat with Katja as the train heads through the tunnel. After a short time, you arrive at your destination.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the metro', goto: ['katja_city', 'metro_destination'] },
   ]);
@@ -147,6 +150,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -174,12 +178,14 @@ function enterClothesStart1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to Pussy-Cats', goto: ['katja_city', 'Pussy-Cats'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClothesStart2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('Before you leave, Katja stops you. "Do you want to try on some clothes with me?" she asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['shopping_day'] = ((s as any).daystart ?? 0);
@@ -227,6 +233,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk into Pussy-Cats, the trendy store for cool kids, but still affordable enough that you might be able to buy what you try on if you really like it.');
   scene.text('You start browsing the stands, looking at all the new fashion trends. After a while, you decide that you should each pick a set that you think would look great on the other.');
   scene.text('You soon find something that you\'d like to see Katja in. You return to her and find that she also has some clothes for you to try on, so you head to the changing rooms and find one big enough for the two of you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try on clothes', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -427,6 +434,7 @@ function enterPussyCatOutfit1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her to turn around', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -545,6 +553,7 @@ function enterPussyCatOutfit1Strip(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -560,6 +569,7 @@ function enterPussyCatOutfit1Strip2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Enough of this," she says with a laugh, and starts to change her clothes normally.');
   // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
   scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -575,6 +585,7 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_5b.jpg');
   scene.text('Katja stops pulling the pants down and places one hand on her breast and the other down the pants before she starts playing with herself. She seems to be really getting into it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 3);
@@ -710,6 +721,7 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"This looks good," she says when she sees herself in the mirror. "But it\'s a bit short, and kind of see-through. I\'m not sure if I\'m brave enough to wear this in public," she continues.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'She starts to change', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -840,6 +852,7 @@ function enterPussyCatOutfit2Strip(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -855,6 +868,7 @@ function enterPussyCatOutfit2Strip2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Enough of this," she says with a laugh, and starts to change her clothes normally.');
   // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
   scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -893,6 +907,7 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You look into Katja\'s bag and find her butt plug and vibrator. "Use these to make the show even better," you say as you hand her the butt plug.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her insert the butt plug', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);

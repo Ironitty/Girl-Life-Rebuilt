@@ -37,6 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -63,6 +64,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (1);
   // TODO-QSP: dynamic text: Finally the food is served. <<$npcdesc>> pours you wine and proposes a toast to ...
   scene.text(`Finally the food is served. ${((s as any).npcdesc ?? 0)} pours you wine and proposes a toast to you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kafeM', 'b'
@@ -91,6 +93,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   }, goto: ['kafeM', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -150,6 +153,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -158,6 +162,7 @@ function enterTualet(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} pulls you inside the toilet and begins to knead your chest as you get ready for the act.`);
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give blowjob', goto: ['kafeM', 'bj'] },
     { label: 'Bend over the toilet', goto: ['kafeM', 'sex'] },
@@ -175,6 +180,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: dynamic text: Soon <<$npcdesc>> can no longer hold back and finishes in a condom.
   scene.text(`Soon ${((s as any).npcdesc ?? 0)} can no longer hold back and finishes in a condom.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['kafeM', 'end'] },
   ]);
@@ -194,6 +200,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   scene.text(`You faithfully look ${((s as any).npcdesc ?? 0)} in the eyes with your semen smeared face.`);
   qspCall(s, 'arousal', 'bj', 15, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['kafeM', 'end'] },
   ]);
@@ -204,6 +211,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <<$npcdesc>> offers to hold you.
   scene.text(`${((s as any).npcdesc ?? 0)} offers to hold you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Home', goto: ['sexm', 'start'] },
   ]);

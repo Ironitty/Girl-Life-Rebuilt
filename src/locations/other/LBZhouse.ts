@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).boydesc ?? 0)} leads you back to his place, gently brushing your cheek, "You are really hot, but I bet you know that already, don't you?" You start feeling a tingling sensation in your stomach. ${((s as any).boydesc ?? 0)} lowers his hand, raising your face up towards his and gives you a slow, passionate kiss.`);
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him lead', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/bimbo.knees3.jpg');
@@ -65,6 +66,7 @@ function enterBJ(s: GameState, scene: SceneBuilder): void {
   scene.text(`You wrap your lips round ${((s as any).boydesc ?? 0)}'s penis as he pushes it into your mouth. You look up at him, seeing an adoring smile on his face; he's clearly enjoying himself. You lick and suck on his cock as you can feel him grow in your mouth, "Open wide, ${((s as any).pcs_nickname ?? 0)}."`);
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Swallow', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/cumf60.mp4');
@@ -118,6 +120,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,6 +131,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 5);
   qspCall(s, 'arousal', 'anal', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have him finish', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/analcreampie/cumanal2.mp4');
@@ -163,6 +167,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   (s as any).LBZhouseShower = 1;
   qspCall(s, 'stat', '');
   scene.text('Finishing, you dry yourself off, get dressed, and head out.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the bathroom', goto: ['LBZhouse', 'End'] },
   ]);
@@ -181,6 +186,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$boydesc>> watches on as you get dressed and then gets up as you finish. You s...
     scene.text(`${((s as any).boydesc ?? 0)} watches on as you get dressed and then gets up as you finish. You slowly make your way to the door, talking and laughing with him about what just occurred.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).LBZhouseShower = 0;

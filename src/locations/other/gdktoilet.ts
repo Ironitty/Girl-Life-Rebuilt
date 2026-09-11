@@ -89,6 +89,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
     // TODO-QSP: act 'Go to the gym': gt 'gdksport', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -111,6 +112,7 @@ function enterWomens(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdktoilet', 'start'] },
     { label: 'Go to the last stall', goto: ['gloryhole', 'start'] },

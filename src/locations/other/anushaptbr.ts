@@ -325,6 +325,7 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['anushapt', 'hallway'] },
   ]);
@@ -400,6 +401,7 @@ function enterRaceMaksimResult(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['anushapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -745,6 +747,7 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

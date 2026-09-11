@@ -17,6 +17,7 @@ function enterPcCondomFunc(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 0, 'normal');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,6 +41,7 @@ function enterDiscoSexFame(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -331,6 +333,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -360,10 +363,12 @@ function enterDecline(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterKissing(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss him back', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -783,6 +788,7 @@ function enterKissing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHandjob(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him off', handler: (st: GameState) => {
     ((s as any).bmHJ ?? {})[String((s as any).Tboynum ?? 0)] = (((s as any).bmHJ ?? {})[String((s as any).Tboynum ?? 0)] ?? 0) + (1);
@@ -836,6 +842,7 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHandjobEnd(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him and go back to the disco', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -961,6 +968,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1158,6 +1166,7 @@ function enterInsert(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1167,6 +1176,7 @@ function enterVirginFuck(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/public/outdoor/stand_fuck1.mp4');
   // TODO-QSP: dynamic text: <<$npcdesc>> thrusts into your pussy, and you gasp in pain as his cock pierces y...
   scene.text(`${((s as any).npcdesc ?? 0)} thrusts into your pussy, and you gasp in pain as his cock pierces your hymen. You're not sure exactly what you expected sex to feel like, but you did hope it would feel better than this.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'This hurts!', handler: (st: GameState) => {
     if (((s as any).pcs_horny ?? 0) > 50) {
@@ -1209,6 +1219,7 @@ function enterFuckPre1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
@@ -1363,6 +1374,7 @@ function enterFuckPre2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1382,6 +1394,7 @@ function enterFuck1(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} quickly builds up to a steady pace, pummeling your pussy from behind, pumping his cock in and out of you. The rhythmic fucking pounds your insides just the right way, and you soon find yourself moaning in pleasure.`);
   }
   scene.actions([{ label: 'Continue', goto: ['pav_disco_sex', 'disco_cum'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1481,6 +1494,7 @@ function enterDiscoCum(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1510,6 +1524,7 @@ function enterDiscoCumFacial(s: GameState, scene: SceneBuilder): void {
       scene.text('You squat down before him and he starts rapidly jerking himself off. Seconds later, cum blasts from his tip, spattering across your forehead and running down your cheeks. He loses power after the first shot, but continues jerking himself to let the remainder dribble down onto your face.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Smile', handler: (st: GameState) => {
     scene.img('images/shared/sex/public/outdoor/facial_after1.mp4');
@@ -1536,6 +1551,7 @@ function enterDiscoCumFacial(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoMouthReact1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'A little warning?', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/dk_night.jpg');
@@ -1603,6 +1619,7 @@ function enterDiscoMouthReact1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDiscoMouthReact2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'A little warning?', handler: (st: GameState) => {
     scene.img('images/shared/sex/public/outdoor/facial_after1.mp4');
@@ -1647,6 +1664,7 @@ function enterDiscoCumMouth(s: GameState, scene: SceneBuilder): void {
       scene.text('You quickly jump off his cock, squat in front of him, and replace your pussy with your mouth. You bob your head up and down precisely twice before thick salty cum spurts out onto your tongue. Then, using your hand, you draw out every last drop before pulling back.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spit', handler: (st: GameState) => {
     // TODO-QSP: gs 'cum_call', 'mouth', $npcID, temp['known_cumID']
@@ -1709,6 +1727,7 @@ function enterDiscoCondom1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_disco_sex', 'disco_condom_break'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1736,6 +1755,7 @@ function enterDiscoCondom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_disco_sex', 'disco_condom_break'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1746,6 +1766,7 @@ function enterDiscoCondomBreak(s: GameState, scene: SceneBuilder): void {
   scene.text('The condom broke.');
   // TODO-QSP: dynamic text: Seeing the look in your eyes, <<$npcdesc>> decides to make a quick escape and ru...
   scene.text(`Seeing the look in your eyes, ${((s as any).npcdesc ?? 0)} decides to make a quick escape and runs off before you can even fix your clothing, leaving you with his load dripping from your twat in the darkness.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_commcenter', ''] },
   ]);
@@ -1803,6 +1824,7 @@ function enterDiscoCreampie(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Felt too good', handler: (st: GameState) => {
     scene.img('images/shared/sex/public/outdoor/creampie1.jpg');
@@ -1817,6 +1839,7 @@ function enterDiscoCreampie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCreampieSurprise1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Did you just cum inside me?', handler: (st: GameState) => {
     scene.img('images/shared/sex/public/outdoor/creampie1.jpg');
@@ -1969,6 +1992,7 @@ function enterCreampieSurprise2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> hurries away from you, escaping back into the disco as you stare at...
     scene.text(`${((s as any).npcdesc ?? 0)} hurries away from you, escaping back into the disco as you stare at your pussy, horrified by the white liquid oozing from inside it. Before you know it, you're alone in the dark, a stranger's cum inside your pussy.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_commcenter', ''] },
   ]);
@@ -2087,6 +2111,7 @@ function enterDiscoSexEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_commcenter', ''] },
   ]);
@@ -2146,6 +2171,7 @@ function enterHotelPre(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2158,6 +2184,7 @@ function enterHotel(s: GameState, scene: SceneBuilder): void {
   scene.text(`When you get outside, ${((s as any).npcdesc ?? 0)} quickly hails a taxi and has a short chat with the driver. "Come on, ${((s as any).pcs_nickname ?? 0)}. Let's go!"`);
   // TODO-QSP: dynamic text: You get into the back seat of the taxi with him and spend the next five minutes ...
   scene.text(`You get into the back seat of the taxi with him and spend the next five minutes driving, mostly in silence. You notice ${((s as any).npcdesc ?? 0)} giving the taxi driver an impressive tip when you arrive at the hotel... is he trying to impress you or is he just very generous...?`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to <<$npcdesc>>\'s room', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_start', 'hotel_start', 'hookup'
@@ -2514,6 +2541,7 @@ function enterHeatingUp(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give him a blowjob', handler: (st: GameState) => {
     // TODO-QSP: gt 'pav_disco_sex', 'hotelsex', 'unpaid'
@@ -2562,6 +2590,7 @@ function enterHotelsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/bj1.jpg');
@@ -2992,6 +3021,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('You look around the room and find a packet of wipes. You take one and quickly wipe the sperm off your face to make yourself presentable enough to go outside.');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hotel', goto: ['pav_market', ''] },
   ]);
@@ -3026,6 +3056,7 @@ function enterDrugUser(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_disco_sex', 'no drugs'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try some', goto: ['pav_disco_sex', 'drugs'] },
   ]);
@@ -3071,6 +3102,7 @@ function enterDrugs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/sex/hotel/hotel1.jpg');
@@ -3178,6 +3210,7 @@ function enterNoDrugs(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} snorts deeply and looks over at you. "Too bad. You'll be missing out on a great party. This is some quality stuff..."`);
   // TODO-QSP: dynamic text: "I think I'll be fine, thanks." you retort as you leave the room. <<$npcdesc>> j...
   scene.text(`"I think I'll be fine, thanks." you retort as you leave the room. ${((s as any).npcdesc ?? 0)} just shrugs his shoulders and jumps straight back into what he started.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['pav_market', ''] },
   ]);

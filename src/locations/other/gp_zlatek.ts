@@ -46,6 +46,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_zlatek', 'set_report_chores_acts');
   qspCall(s, 'gp_zlatek', 'get_random_chore_act');
   qspCall(s, 'gp_zlatek', 'set_talk_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['gp_zlatek', 'return'] },
   ]);
@@ -62,6 +63,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'gad_gphouse', $locat['A32_arg']
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +105,7 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -222,6 +225,7 @@ function enterGetRandomChoreAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,6 +243,7 @@ function enterSetReportChoresActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_zlatek', 'set_report_gatherberries_act');
   qspCall(s, 'gp_zlatek', 'set_report_gatherboth_act');
   qspCall(s, 'gp_zlatek', 'set_report_balehay_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,6 +364,7 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -366,6 +372,7 @@ function enterChoreFetchfirewood(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_fetch_firewood'] = 1;
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you run out to the barn and bring firewood for the sto...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, could you run out to the barn and bring firewood for the stove?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some in just a bit', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to fetch firewood (0:20)', handler: (st: GameState) => {
@@ -403,6 +410,7 @@ function enterEventFetchfirewood(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/village/firewood_winter.jpg');
   }
   scene.text('You decide to grab the firewood that your grandfather asked for, loading up as much as you can carry.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', ''] },
     { label: 'Return back to your grandfather', handler: (st: GameState) => {
@@ -432,6 +440,7 @@ function enterSetReportFetchfirewoodAct(s: GameState, scene: SceneBuilder): void
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -439,6 +448,7 @@ function enterChoreFeedhorse(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_feed_horse'] = 1;
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I need you to go to the barn and feed Desperado."
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, I need you to go to the barn and feed Desperado."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him that you will get to it in a little bit', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -467,6 +477,7 @@ function enterEventFeedhorse(s: GameState, scene: SceneBuilder): void {
   scene.text('You grab a sack of grain and fill Desperado\'s feed bucket. Then, you hang the bucket from his stall and gently pat his nose as he begins to eat.');
   scene.text('You watch him eat for a little while before moving on.');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandpa: feed horse', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', 'horse'] },
     { label: 'Return back to your grandfather', handler: (st: GameState) => {
@@ -497,6 +508,7 @@ function enterSetReportFeedhorseAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -504,6 +516,7 @@ function enterChoreLeadhorsetofield(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_lead_horse_to_field'] = 1;
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, take Desperado to the field. My legs hurt, so I need to rest...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, take Desperado to the field. My legs hurt, so I need to rest for a bit. I'll retrieve the horse in the evening."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will do it soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -526,6 +539,7 @@ function enterEventLeadhorsetofield(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/horse_field.jpg');
   scene.text('You take Desperado by the bridle and lead him to the field. You let him free in the paddock area and watch him run about before moving on.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'field'] },
     { label: 'Return back to your grandfather (0:30)', handler: (st: GameState) => {
@@ -555,6 +569,7 @@ function enterSetReportLeadhorsetofieldAct(s: GameState, scene: SceneBuilder): v
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -565,6 +580,7 @@ function enterEventLeadhorsehome(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandmaQW ?? {})['help_amount'] = (((s as any).grandmaQW ?? {})['help_amount'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
   qspCall(s, 'exp_gain', 'hndiwrk', Math.floor(Math.random() * 4) + 0);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gpbarn', ''] },
   ]);
@@ -574,6 +590,7 @@ function enterEventLeadhorsehome(s: GameState, scene: SceneBuilder): void {
 function enterChoreBathehorse(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_bathe_horse'] = 1;
   scene.text('"It\'s good weather today. Take Desperado to the river and give him a bath."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will do it in a little while', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -596,6 +613,7 @@ function enterEventBathehorse1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/horse_field.jpg');
   scene.text('You take Desperado by the bridle and lead him to the river.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_beach', 'start'] },
   ]);
@@ -684,6 +702,7 @@ function enterEventBathehorse2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -712,6 +731,7 @@ function enterEventBathehorse3(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gad_gpbarn', 'horse'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -735,6 +755,7 @@ function enterSetReportBathehorseAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -742,6 +763,7 @@ function enterChoreBrushhorse(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_brush_horse'] = 1;
   // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>, I need your help to groom Desperado."
   scene.text(`"Of course, ${((s as any).pcs_nickname ?? 0)}, I need your help to groom Desperado."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will do it in a bit', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -769,6 +791,7 @@ function enterEventBrushhorse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/comb_horse.jpg');
   scene.text('You spend about an hour cleaning and brushing Desperado, scrubbing his coat and brushing his mane and tail. Finally, you are satisfied with the result - he looks as clean and healthy as ever.');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandpa: brush horse', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', 'horse'] },
     { label: 'Return back to your grandfather', handler: (st: GameState) => {
@@ -807,6 +830,7 @@ function enterSetReportBrushhorseAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -814,6 +838,7 @@ function enterChoreFeedcow(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_feed_cow'] = 1;
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, go to the barn and feed the cow."
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, go to the barn and feed the cow."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him that you will do it in a little while', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -841,6 +866,7 @@ function enterEventFeedcow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/feed_cow.jpg');
   scene.text('Dawn is excited about feeding time, shaking her head and doing little cow tippy-taps with her feet. You dump some hay in her trough and watch as she digs in.');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandpa: feed cow', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', 'cow'] },
     { label: 'Return back to your grandfather', handler: (st: GameState) => {
@@ -870,6 +896,7 @@ function enterSetReportFeedcowAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -877,6 +904,7 @@ function enterChoreCleanyard(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_clean_yard'] = 1;
   // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>, I need your help in the yard. Bring a garden tool...
   scene.text(`"Of course, ${((s as any).pcs_nickname ?? 0)}, I need your help in the yard. Bring a garden tool with you."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him that you\'ll do it in a minute', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go clean up the yard (1:00)', goto: ['gp_zlatek', 'event_cleanyard'] },
@@ -906,6 +934,7 @@ function enterEventCleanyard(s: GameState, scene: SceneBuilder): void {
     scene.text('Armed with a shovel, you begin clearing the yard of snow. You\'re pleased with yourself seeing the courtyard is free of snow. You return the shovel to the shed and continue on with your business.');
   }
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandpa: clean yard', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'start'] },
     { label: 'Return back to your grandfather', handler: (st: GameState) => {
@@ -935,6 +964,7 @@ function enterSetReportCleanyardAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -942,6 +972,7 @@ function enterChoreFeedboar(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_feed_boar'] = 1;
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you go to the barn and feed the hog?"
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, could you go to the barn and feed the hog?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will get to it soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -968,6 +999,7 @@ function enterEventFeedboar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/feed_boar.jpg');
   scene.text('You grab the feed bag and fill Nickle\'s trough. You stand there and watch for a few minutes as he eats like a… well, like a pig.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', 'boar'] },
     { label: 'Return back to your grandfather', handler: (st: GameState) => {
@@ -997,6 +1029,7 @@ function enterSetReportFeedboarAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1009,6 +1042,7 @@ function enterChoreHerdcattle(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, it's our turn to look out for the cows grazing on the field ...
     scene.text(`"${((s as any).pcs_nickname ?? 0)}, it's our turn to look out for the cows grazing on the field today. So grab something to eat quickly, and stop by the field where the herd is. I'll bring them back home."`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will meet him there', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the field (0:40)', handler: (st: GameState) => {
@@ -1043,6 +1077,7 @@ function enterEventHerdcattle1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/cow_field.jpg');
   scene.text('You lead Dawn to the field, where your grandfather awaits you. It\'s his turn to keep an eye on the cows..');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'cow'] },
   ]);
@@ -1053,6 +1088,7 @@ function enterChoreLeadcowtofield(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandpaQW ?? {})['chore_lead_cow_to_field'] = 1;
   // TODO-QSP: dynamic text: "I have sore feet today, <<$pcs_nickname>>. My dear granddaughter, could you lea...
   scene.text(`"I have sore feet today, ${((s as any).pcs_nickname ?? 0)}. My dear granddaughter, could you lead the cow to the field and tell the herders to drive her home at the end of the day?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -1084,6 +1120,7 @@ function enterEventLeadcowtofield(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Return back to your grandfather (0:30)': minut += 30
     scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'talk'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'cow'] },
   ]);
@@ -1113,6 +1150,7 @@ function enterSetReportLeadcowtofieldAct(s: GameState, scene: SceneBuilder): voi
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1124,6 +1162,7 @@ function enterChoreGathermushrooms(s: GameState, scene: SceneBuilder): void {
   scene.text('"How much should I pick, grandpa?" you ask.');
   // TODO-QSP: dynamic text: "<<grandpaQW['chore_mushroom_quantity']>> kilos will be enough," grandfather rep...
   scene.text(`"${((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']} kilos will be enough," grandfather replies. "Be careful so you don't get lost."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the forest (1:00)', handler: (st: GameState) => {
@@ -1200,6 +1239,7 @@ function enterSetReportGathermushroomsAct(s: GameState, scene: SceneBuilder): vo
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1211,6 +1251,7 @@ function enterChoreGatherberries(s: GameState, scene: SceneBuilder): void {
   scene.text('"How much should I pick, grandpa?" you ask.');
   // TODO-QSP: dynamic text: "<<grandpaQW['chore_berry_quantity']>> kilos will be enough," grandfather replie...
   scene.text(`"${((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']} kilos will be enough," grandfather replies. "Just be careful so you don't get lost."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the forest (1:00)', handler: (st: GameState) => {
@@ -1284,6 +1325,7 @@ function enterSetReportGatherberriesAct(s: GameState, scene: SceneBuilder): void
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1296,6 +1338,7 @@ function enterChoreGatherboth(s: GameState, scene: SceneBuilder): void {
   scene.text('"How much should I pick, grandpa?"');
   // TODO-QSP: dynamic text: "<<grandpaQW['chore_mushroom_quantity']>> kilos of mushrooms and <<grandpaQW['ch...
   scene.text(`"${((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity']} kilos of mushrooms and ${((s as any).grandpaQW ?? 0)?.['chore_berry_quantity']} kilos of berries will be enough," grandfather replies. "Just don't get lost."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will go get some soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Agree and go to the forest (1:00)', handler: (st: GameState) => {
@@ -1377,6 +1420,7 @@ function enterSetReportGatherbothAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1385,6 +1429,7 @@ function enterChoreBalehay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we need to help with baling hay today, so we have to go to t...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, we need to help with baling hay today, so we have to go to the field to meet the others."`);
   scene.text('"Okay, grandfather," you replied.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you will head over there soon', goto: ['gp_zlatek', 'talk'] },
     { label: 'Grab a rake and head to the field (0:40)', handler: (st: GameState) => {
@@ -1418,6 +1463,7 @@ function enterEventBalehay(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/village/haying_time.jpg');
     scene.text('Almost all the villagers have shown up to help with the fresh-cut hay. You spend most of the day working hard and sweating as you help gather the fresh-cut hay. It is difficult, but you get a great workout and end the day feeling exhausted but immensely satisfied.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'field'] },
     { label: 'Return back to your grandfather (0:30)', handler: (st: GameState) => {
@@ -1450,6 +1496,7 @@ function enterSetReportBalehayAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1562,6 +1609,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

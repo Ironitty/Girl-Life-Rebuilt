@@ -27,6 +27,7 @@ function enterTownHostel(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hostel ?? 0)?.['status'] >= 3) {
     // TODO-QSP: act 'Inspect the shed': gt 'ETO_hostel', 'shed'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commercial', ''] },
   ]);
@@ -44,6 +45,7 @@ function enterSharedBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_intel ?? 0) > 50  &&  ((s as any).hostel ?? 0)?.['status'] === 1) {
     // TODO-QSP: act 'Inspect pipes': gt 'ETO_hostel', 'rusty_pipes'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to your room', goto: ['dom_gor', ''] },
   ]);
@@ -58,6 +60,7 @@ function enterRustyPipes(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Rusty Pipes</b></center>');
   scene.img('images/locations/pavlovsk/hostel/comm_tru.jpg');
   scene.text('All the pipes are rusted through, which, according to building regulations, is a clear violation. On top of that, the pipes smell of chemicals.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to your room', goto: ['dom_gor', ''] },
   ]);
@@ -75,6 +78,7 @@ function enterShed(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hostel/gor_saray.jpg');
   scene.text('In addition to an incredible amount of junk, there are chemicals on the floor. On one of the cans, you see a chemical hazard symbol and the inscription "Tetrodotoxin." It\'s better not to touch it.');
   scene.text('Hmm… This is no place for dangerous chemicals. You should try to find out more about this substance.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to your room', goto: ['dom_gor', ''] },
   ]);
@@ -88,6 +92,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hostel/vann_gor.jpg');
   scene.text('Bathroom in the dormitory.');
   qspCall(s, 'din_van', 'private');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your room', goto: ['dom_gor', ''] },
   ]);

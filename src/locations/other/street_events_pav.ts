@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterFameEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame_events', 'select', 'pav');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -21,6 +22,7 @@ function enterMinorProstitutes(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/street/town/hookers.jpg');
   scene.text('As you walk down the street, you see a couple of half-naked women standing on a corner. They approach cars that slow down or men that walk by. It is clear they are prostitutes trying to find customers.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -35,6 +37,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $streetev_title
   scene.img('images/locations/shared/street/town/nakedmarket.jpg');
   scene.text('As you walk down the street, you pass a young girl standing in front of a table covered in various items in front of a house. Despite the cold, she is completely naked other than her boots and hat. She is calling for people to come over and take a look at the items for sale. You must admit her technique seems to be working. She and her items are getting a lot of attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -104,6 +107,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $streetev_title
   scene.img('images/locations/shared/street/town/yardsale.jpg');
   scene.text('As you walk down the street, you pass several tables full of various items. It seems several people have got together and set up an impromptu market here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -191,6 +195,7 @@ function enterMinorOlderWomenShaming(s: GameState, scene: SceneBuilder): void {
       scene.text('You blush in shame from the old ladies\' caustic remarks and hurry on your way.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');

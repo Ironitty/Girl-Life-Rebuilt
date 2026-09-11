@@ -59,6 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +91,7 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp_cam_MFC_main', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +183,7 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
       { label: 'Pinch your nipples hard', goto: ['komp_cam_MFC_main', 'pinch_nipples'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for more viewers', goto: ['komp_cam_MFC_main', 'waitclients'] },
     { label: 'Turn off the webcam', goto: ['komp_cam_MFC_main', 'startpage'] },
@@ -212,6 +215,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'porn', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -231,6 +235,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'striptease', 5);
   qspCall(s, 'arousal', 'porn', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -252,6 +257,7 @@ function enterStripBra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bras', 'remove');
   qspCall(s, 'arousal', 'porn', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -273,6 +279,7 @@ function enterPlayWithTits(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'porn', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -294,6 +301,7 @@ function enterStripPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'panties', 'remove');
   qspCall(s, 'arousal', 'porn', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -315,6 +323,7 @@ function enterPlayWithPussy(s: GameState, scene: SceneBuilder): void {
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
     // TODO-QSP: $camGirl['MFC_donate_message']
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -336,6 +345,7 @@ function enterPlayWithAss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
     // TODO-QSP: $camGirl['MFC_donate_message']
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -354,6 +364,7 @@ function enterPinchNipples(s: GameState, scene: SceneBuilder): void {
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
     // TODO-QSP: $camGirl['MFC_donate_message']
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'waitclients'] },
   ]);
@@ -370,6 +381,7 @@ function enterAnyaInterrupted(s: GameState, scene: SceneBuilder): void {
   scene.text('When she\'s no longer paying attention to you, you open the site again and find yourself in the main lobby of MyFreeCams. You\'re a bit bummed that you couldn\'t get more out of that session, but cash in your earnings.');
   qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You can\'t watch porn with your sister in the room');
   qspCall(s, 'internet_mobile', 'add_limitation', 'nocamshow', 'You can\'t do a camshow with your sister in the room');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['komp_cam_MFC_main', 'start'] },
   ]);

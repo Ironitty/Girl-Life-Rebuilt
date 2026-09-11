@@ -16,6 +16,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
   scene.text('Niko wraps his arm around your neck and leads you to the locker room. When you enter, he closes the door and takes a quick look around to see if anyone is present before he walks up behind you and whispers in your ear. "Take off your clothes."');
   scene.text('You obediently do as he asks and he collects your clothes and puts them in a bag. You can\'t help but feel nervous.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a deep breath', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -362,6 +363,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     scene.text(`"I always thought about what it would be like to fuck ${((s as any).pcs_firstname ?? 0)} since I first saw her drop that chalk in math class. If only she wasn't so ugly…" Roman laughs.`);
   }
   scene.text('"So another girl turning into a slut…" Lizaveta says as she shakes her head. "Why do so many girls have no self respect? The boys are gonna love this." She takes out her phone and starts recording you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue toward the stairwell', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (5);
@@ -749,6 +751,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -759,6 +762,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock2.mp4');
   // TODO-QSP: dynamic text: As soon as you reach the locker room, Dan shoves you into the crowd. Roman catch...
   scene.text(`As soon as you reach the locker room, Dan shoves you into the crowd. Roman catches you and turns you around. You feel his dick entering your pussy and his pace begins increasing as he holds onto your waist, pushing you against his crotch. Roman leans forward and whispers in your ear. "How does my dick feel ${((s as any).pcs_nickname ?? 0)}? Isn't it the biggest dick you've ever had?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
@@ -959,6 +963,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/hallway/wos1.jpg');
   scene.text('You walk into the school building and hear many of the students whispering to each other before one of the girls you calls out. "Look who it is! The filthy whore!"');
   scene.text('You immediately lower your head in shame, pretending not to hear her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to ignore them', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1168,6 +1173,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
   scene.text('You look up to see Niko with a very distressed look on his face. "Please tell me you\'re okay."');
   scene.text('You take a few seconds to collect your thoughts before responding. "I… I\'m scared Niko. I don\'t think things will ever be normal for me again. I\'m just a whore to everyone. What do I do Niko? What do I do?"');
   scene.text('Tears are streaming down your face as Niko holds you in his arms. "I\'m sorry about what happened to you. I wish I was there to prevent it, but I\'ll always be here for you when you need me. Remember that. I will always be here for you." You start weeping in his arms as he holds you tighter.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Weep in his arms', handler: (st: GameState) => {
     (s as any).NikoEv = 11;
@@ -1254,6 +1260,7 @@ function enterLeaveWithNush(s: GameState, scene: SceneBuilder): void {
   scene.text('"Sorry, I can\'t." Alyona chimes in. "They said if I miss any more classes this month, they\'re going to expel me. My dad would fucking kill me if that happened." She sounds genuinely worried.');
   scene.text('"It\'s cool, I got her. You get to class and I\'ll call you later."');
   scene.text('They exchange goodbyes and Alyona starts to leave. "Come on, let\'s go," Anushka says and places a hand on your shoulder.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with her.', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

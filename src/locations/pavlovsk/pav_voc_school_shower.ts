@@ -15,6 +15,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/altschool/ptu_jen.jpg');
   scene.text('The shower is divided into two sections: a dressing room with lockers and the actual shower area with tiled floor and walls. Making sure that no one is in the shower, you walk over to lock the door. To your dismay, you discover that the lock has been removed, probably for security purposes.');
   scene.text('What to do? You might walk home all sweaty, but what if you meet someone you know? You\'re already here, so you might as well take the shower…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your clothes', goto: ['pav_voc_school_shower', 'undress'] },
     { label: 'Walk out', goto: ['pav_voc_school', 'gymnasium'] },
@@ -29,6 +30,7 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/clinic/gyno/sex/ptu_shower_1.jpg');
   scene.text('You decide to take a shower after all. You\'re already here, so you might as well do it. You undress, standing next to your locker, taking a last look around to make sure no one is there.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head to the shower', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 0) === 0  &&  ((s as any).pcs_horny ?? 0) >= 70) {
@@ -66,6 +68,7 @@ function enterShowerEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the shower.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tease them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/gyno/sex/ptu_shower_3.jpg');

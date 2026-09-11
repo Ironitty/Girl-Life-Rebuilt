@@ -30,6 +30,7 @@ function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s now or never. You take a deep breath and strut out onto the stage.');
   qspCall(s, 'jobs', 'clock', 'city_strip_stripper');
   qspCall(s, 'stwork2', 'strip_hub2', 1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,6 +45,7 @@ function enterStripShowEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $strip_club['clothing_type'], strip_club['clothing_number']
   }
   scene.actions([{ label: 'Continue', goto: ['stwork', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +76,7 @@ function enterStripHub(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: There are men sitting in front of the stage <<$pubhot>>
   scene.text(`There are men sitting in front of the stage ${((s as any).pubhot ?? 0)}`);
   qspCall(s, 'stwork2', 'strip_hub2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -177,6 +180,7 @@ function enterStripHub2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the stage', goto: ['stwork2', 'strip_show_end'] },
   ]);
@@ -227,6 +231,7 @@ function enterSetCustomerMood(s: GameState, scene: SceneBuilder): void {
       scene.text('"Show us some more flesh!" one of them yells out.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -253,6 +258,7 @@ function enterSetCustomerMoodPole(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -267,6 +273,7 @@ function enterDanceClothed(s: GameState, scene: SceneBuilder): void {
   scene.text('You dance seductively around the pole at the center of the stage.');
   qspCall(s, 'stwork2', 'set_customer_mood');
   scene.text('The men are starting to call for you to strip, so you\'d better give them what they want.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip out of your outfit', goto: ['stwork2', 'strip_clothes'] },
   ]);
@@ -285,6 +292,7 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/sveta_clothed1.jpg');
   scene.text('You start moving seductively around the pole at the center of the stage.');
   qspCall(s, 'stwork2', 'set_customer_mood');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your top', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/stripclub/sveta_clothed2.jpg');
@@ -336,6 +344,7 @@ function enterStripBra(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/sveta_show1.jpg');
   scene.text('You start moving seductively around the pole in the center of the stage wearing just your underwear.');
   qspCall(s, 'stwork2', 'set_customer_mood');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your bra', handler: (st: GameState) => {
     qspCall(s, 'bras', 'remove');
@@ -371,6 +380,7 @@ function enterStripPanties(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/sveta_show3.jpg');
   scene.text('You dance seductively in just your panties, teasing the crowd.');
   qspCall(s, 'stwork2', 'set_customer_mood');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip out of your panties', handler: (st: GameState) => {
     qspCall(s, 'panties', 'remove');
@@ -433,6 +443,7 @@ function enterDanceNude(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the stage', goto: ['stwork2', 'strip_show_end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -450,6 +461,7 @@ function enterPoleUnderwear(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/pole_panties.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your underwear.');
   qspCall(s, 'stwork2', 'set_customer_mood_pole');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['stwork2', 'strip_hub'] },
   ]);
@@ -470,6 +482,7 @@ function enterPolePanties(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/pole_topless.jpg');
   scene.text('You grab hold of the pole and acrobatically slide around it in your panties.');
   qspCall(s, 'stwork2', 'set_customer_mood_pole');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['stwork2', 'strip_hub'] },
   ]);
@@ -597,6 +610,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,6 +657,7 @@ function enterPrivatdance(s: GameState, scene: SceneBuilder): void {
   scene.text('You then spend half an hour showing off your lap dancing skills while slowly peeling off your clothing. Every time you grind against him, you feel his rock hard cock straining against his pants.');
   scene.text('When you finish your dance, your customer looks just as flustered as he does happy.');
   qspCall(s, 'stwork2', 'privatdance_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -652,6 +667,7 @@ function enterPr1(s: GameState, scene: SceneBuilder): void {
   scene.text('The men cheer when they see you and start crowding around you while offering you wads of cash. "Hey Sergey, your stripper is here!"');
   scene.text('The groom to be looks at you with a drunken smile. "Show us what you\'ve got, girl!"');
   scene.text('Music starts playing as the lights dim and you seductively walk over to the pole in the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance on the pole', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -745,6 +761,7 @@ function enterPr2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -783,6 +800,7 @@ function enterPr3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
@@ -815,6 +833,7 @@ function enterPr4(s: GameState, scene: SceneBuilder): void {
   scene.text('As the dance ends, you climb off him and stand before him, noticing the huge wet spot on the front of his pants.');
   scene.text('He gives you every last bill from his wallet and thanks you profusely, telling you multiple times that he\'ll never forget you.');
   qspCall(s, 'stwork2', 'privatdance_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -850,6 +869,7 @@ function enterPr5(s: GameState, scene: SceneBuilder): void {
     scene.text('This job is really gross sometimes...');
     qspCall(s, 'stwork2', 'privatdance_end');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -862,6 +882,7 @@ function enterPr6(s: GameState, scene: SceneBuilder): void {
   scene.text('After he closes the door behind him and you gather your things, a security guard cracks open the door and hands you a wad of cash. "This is from your client. You must have made a good impression since he wouldn\'t shut up about you. Nice work."');
   scene.text('Despite working in such a dark and sometimes depraved place, you walk back to the dressing room with your head up a little higher than before, feeling good about a job well done.');
   qspCall(s, 'stwork2', 'privatdance_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -871,6 +892,7 @@ function enterPr7(s: GameState, scene: SceneBuilder): void {
   scene.text('You meet your patron in one of the private rooms with a more lush setting than many of the others. Red velvet curtains and mirrors line the walls, and multiple poles surround the outskirts of the room, allowing for many girls to serve many customers at once. Tonight though, it\'s just you and one other man.');
   scene.text('You feel relatively safe knowing there\'s a security guard right outside the door, but the way the man\'s eyes pierce your own makes your heart race. There\'s definitely more than meets the eye with him.');
   scene.text('Still, you\'re here to do a job, and you start dancing for him as seductively as possible. After a few minutes, he tosses a handful of bills at you. "Let\'s see some skin, girl!" he exclaims.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him some skin', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1007,6 +1029,7 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stwork2', 'privatdance_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1021,6 +1044,7 @@ function enterPrivatdanceEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'dancero', Math.floor(Math.random() * 3) + 2);
   ((s as any).strip_club ?? {})['total_stripshows'] = (((s as any).strip_club ?? {})['total_stripshows'] ?? 0) + (1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the dressing room', goto: ['stwork2', 'strip_show_end'] },
   ]);

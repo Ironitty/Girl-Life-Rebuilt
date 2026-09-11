@@ -128,6 +128,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Step away from the reception desk', goto: ['pav_hotel', 'skip_resepevent'] },
     { label: 'Rent a room', handler: (st: GameState) => {
@@ -215,6 +216,7 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', goto: ['pav_hotel', ''] },
   ]);

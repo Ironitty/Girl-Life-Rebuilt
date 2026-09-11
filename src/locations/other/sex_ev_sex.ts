@@ -24,6 +24,7 @@ function enterInsertedImg(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $sex_ev['bed_room']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +100,7 @@ function enterSexStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -154,6 +156,7 @@ function enterSexPre(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_sex', 'lube_up_bb1');
   qspCall(s, 'sex_ev_condoms', 'condoms');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -197,6 +200,7 @@ function enterPositionPicker(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +210,7 @@ function enterPositionMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_doggy', 'doggy_goto');
   qspCall(s, 'sex_ev_cowgirl', 'cowgirl_goto');
   qspCall(s, 'sex_ev_anal', 'anal_start');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -240,6 +245,7 @@ function enterPositionChoose(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -265,6 +271,7 @@ function enterLetHimChoose(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -319,6 +326,7 @@ function enterHeInitiate(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: xgt 'sex_ev_<<$sex_ev[''position'']>>', '<<$sex_ev[''position'']>>_goto'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -417,6 +425,7 @@ function enterHeChoosePosition(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_sex', 'rand_position');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -436,6 +445,7 @@ function enterLubeUpBb1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -461,6 +471,7 @@ function enterLubeUpCondom1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -545,6 +556,7 @@ function enterRandPosition(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -579,6 +591,7 @@ function enterInsertionArousalCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).sex_ev ?? {})['new_pos'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -657,6 +670,7 @@ function enterFuckArousalCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +705,7 @@ function enterFuckRoughArousalCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -722,6 +737,7 @@ function enterFuckRoughNoCumCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -752,6 +768,7 @@ function enterFuckNoCumCode(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -771,6 +788,7 @@ function enterFuckArousalCreampieCumCode(s: GameState, scene: SceneBuilder): voi
     // TODO-QSP: gs 'arousal', 'anal', sex_ev['fuck_time_temp'], 'no_orgasm_msg', $sex_ev['prostitution_flag']
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -788,6 +806,7 @@ function enterGirlOrgasmChangePosition(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1085,6 +1104,7 @@ function enterFuckContinue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1150,6 +1170,7 @@ function enterPositionChange(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Switch to blowjob', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['blowjob_switch'] = 1;
@@ -1248,6 +1269,7 @@ function enterChangePace(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['speed'] < 3) {
     qspCall(s, 'sex_ev_sex', 'fuck_me_faster');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_sex', 'fuck_continue');
@@ -1257,6 +1279,7 @@ function enterChangePace(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckMeFaster(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask <<$npcdesc>> to fuck you faster', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -1326,6 +1349,7 @@ function enterFuckMeFaster(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFuckMeSlower(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask <<$npcdesc>> to fuck you slower', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {

@@ -72,6 +72,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss him goodnight', handler: (st: GameState) => {
     if (((s as any).npc_vaginal_count ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
@@ -368,6 +369,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -403,6 +405,7 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lie down and spread your legs', goto: ['sexm', 'miss'] },
     { label: 'Doggy-Style', goto: ['sexm', 'dog'] },
@@ -477,6 +480,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to suck', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
@@ -511,6 +515,7 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'hj', 30, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wipe your hands and walk him to the door', goto: ['sexm', 'endsex'] },
   ]);
@@ -535,6 +540,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'cuni', 30, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     if (((s as any).husID ?? 0) !== ''  &&  ((s as any).hour ?? 0) < 17  &&  ((s as any).hour ?? 0) > 7  &&  (!((s as any).boycherdaksex ?? 0))) {
@@ -555,6 +561,7 @@ function enterStrapon(s: GameState, scene: SceneBuilder): void {
   scene.text('You use some lubrication on the guy\'s anus and stick the strapon in. While you fuck his ass, he groans a lot and finally finishes. You remove the strapon from his ass and go to the bathroom.');
   qspCall(s, 'arousal', 'anal_strap_give', 30, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wipe your hands and walk him to the door', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -679,6 +686,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sexm', 'endsex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -696,6 +704,7 @@ function enterMiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_finger', 5);
   qspCall(s, 'arousal', 'vaginal', 25);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him out', goto: ['sexm', 'endsex'] },
   ]);
@@ -715,6 +724,7 @@ function enterDog(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} makes you get on all fours and spread your pussy before he enters.`);
   qspCall(s, 'arousal', 'vaginal', 30, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him out', goto: ['sexm', 'endsex'] },
   ]);
@@ -767,6 +777,7 @@ function enterStartPod(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy-Style', goto: ['sexm', 'doggy'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -781,6 +792,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} makes you get on all fours and spread your pussy before he enters.`);
   qspCall(s, 'arousal', 'vaginal', 30, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Collect clothes and leave', goto: ['homes_properties', 'go_straight_home'] },
   ]);
@@ -792,6 +804,7 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You squat, and <<$npcdesc>> pulls out his penis.
   scene.text(`You squat, and ${((s as any).npcdesc ?? 0)} pulls out his penis.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take by mouth', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -903,6 +916,7 @@ function enterGangrape(s: GameState, scene: SceneBuilder): void {
   scene.text('You begin to struggle, and one of the guys hits you with his hand on your cheek, saying, "Shut up slut! Now spread your legs! We will fuck you up now!"');
   qspCall(s, 'npcgeneratec', '', 0, 'Stranger', Math.floor(Math.random() * 28) + 18);
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Obey', goto: ['sexm', 'gangbang'] },
     { label: 'Start a fight', handler: (st: GameState) => {
@@ -960,6 +974,7 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10, 'gangbang', 'sub');
   qspCall(s, 'arousal', 'hj', (-10), 'gangbang', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Moan', handler: (st: GameState) => {
     scene.img('images/shared/sex/group/gangbang1.jpg');
@@ -1334,6 +1349,7 @@ function enterPopala(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1344,6 +1360,7 @@ function enterEndsex(s: GameState, scene: SceneBuilder): void {
   (s as any).boycherdaksex = 0;
   qspCall(s, 'arousal', 'end');
   scene.actions([{ label: 'Continue', goto: ['homes_properties', 'go_straight_home'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

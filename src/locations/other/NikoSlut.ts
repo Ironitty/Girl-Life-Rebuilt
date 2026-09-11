@@ -69,6 +69,7 @@ function enterCustomers(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Diner Exit'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +84,7 @@ function enterCustomer1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/1.jpg');
   scene.text('A biker approaches Niko. "I want to spend some time with this girl again." He gently strokes your cheek gently as he hands Niko the money. Niko counts the money and nods at him before the biker drags you to the restroom where he removes his pants while watching you undress.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 5, 'dom');
@@ -222,6 +224,7 @@ function enterCustomer2(s: GameState, scene: SceneBuilder): void {
   scene.text('A trucker approaches Niko. "I want to feel her up a bit then fuck her behind the diner."');
   scene.text('"Sure," Niko responds. "But I\'ll be keeping an eye on things."');
   scene.text('"Sure, whatever works for you," the trucker responds and he hands Niko the money before all three of you get up and head to the back of the diner.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -362,6 +365,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
   scene.text(`A biker approaches Niko. "I want to fuck ${((s as any).NikoSlutName ?? 0)}'s pussy in the restroom."`);
   scene.text('Niko nods. "Sure thing, let\'s have the money first."');
   scene.text('The trucker gives Niko the money before leading you to the restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter restroom', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
@@ -496,6 +500,7 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
   scene.text(`A biker approaches Niko. "I want to fuck ${((s as any).NikoSlutName ?? 0)} out back."`);
   scene.text('"Sure thing," Niko responds. "But I\'ll be keeping an eye on things."');
   scene.text('"Well you better not be keeping an eye on my dick, or we\'re gonna have a problem," the biker responds and they both laugh as the man pays Niko before taking you to the back of the diner while Niko follows.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow the man', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
@@ -611,6 +616,7 @@ function enterCustomer5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/highway/borisdiner/npc/5.jpg');
   scene.text('A trucker approaches Niko. "I would like some alone time with this lovely lady."');
   scene.text('"Sounds good to me, but I take payment up front." Niko replies. The trucker nods with a smile and hands Niko the money before leading you outside, with Niko following closely behind.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow trucker', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -873,6 +879,7 @@ function enterCustomer6(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -891,6 +898,7 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
   scene.text('Niko chuckles. "She sure is. Are you interested? Her services are only \'+$func(\'money\', \'string_profit\', 2000)+\'."');
   scene.text('"Sounds fair," the trucker responds. "I\'m friends with the owner of this diner, so we can use the back room."');
   scene.text('He hands Niko the money before leading you to the back room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1051,6 +1059,7 @@ function enterCustomer8(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "'+$func('money', 'string_profit', 2000)+'" Niko replies.
   scene.text('"\'+$func(\'money\', \'string_profit\', 2000)+\'" Niko replies.');
   scene.text('"Fair enough. Here you go." He hands Niko the money and offers you his hand before leading you to the restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1327,6 +1336,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1339,6 +1349,7 @@ function enterNoCustomers(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Leave early': NikoDiner = 0
     scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customers'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue waiting', goto: ['NikoSlut', 'Customers'] },
   ]);
@@ -1354,6 +1365,7 @@ function enterBikerAttack(s: GameState, scene: SceneBuilder): void {
   scene.text(`Niko stands up. "If you want ${((s as any).NikoSlutName ?? 0)}'s services, then you speak with me."`);
   scene.text('The biker pushes him back onto his seat. "I don\'t talk to boys, now get lost. She\'s the one I want."');
   scene.text('Niko gets up and immediately lunges at the man, but he quickly rams his fist into Niko\'s face, sending him face first onto the ground. You try to back away when the biker grabs you by the hair. "You\'re coming with me bitch. I need a new fuck toy and you\'ll do nicely," he says sternly and starts pulling you outside when Niko reaches into his pocket and pulls out a knife before lunging at the man again, only to get caught by the throat. The biker twists Niko\'s wrist, causing him to drop the knife while you try to break free. "You tried to use a knife on me, boy? Big mistake."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Help Niko', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1415,6 +1427,7 @@ function enterDinerExterior(s: GameState, scene: SceneBuilder): void {
     scene.text('This small diner has a large parking lot where you can often find over the road trucks parked. It sits at one end of a larger brick building which houses the local biker bar. The outside of the diner and parking lot is well lit, the lighting shining off the chrome of the building while the gaudy neon sign makes sure no one driving down the highway will miss it.');
     scene.text('Truckers can be found here throughout the day while commuters and some locals can be found here during the day and evening. Bikers tend to stop by in the evening or late at night and stay into the early morning hours after the biker bar next door closes.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the diner', goto: ['NikoSlut', 'Diner Interior'] },
     { label: 'Go back to the highway', goto: ['road', '20'] },
@@ -1451,6 +1464,7 @@ function enterDinerInterior(s: GameState, scene: SceneBuilder): void {
       scene.text('You see <a href="exec:gt \'NikoSlut\', \'Yurik In\'">a burly bearded man</a> sitting in the corner of the bar eating some dinner.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the women\'s restroom', goto: ['NikoSlut', 'Ladies Restroom'] },
     { label: 'Go to the mens restroom', goto: ['NikoSlut', 'Mens Restroom'] },
@@ -1499,6 +1513,7 @@ function enterMeal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/boris_meal1.jpg');
   scene.text('You order a plate of eggs and hash browns, along with a cup of tea. It doesn\'t take too long to arrive and is better than expected.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1517,6 +1532,7 @@ function enterMeal2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/boris_meal2.jpg');
   scene.text('You order a large burger and fries, along with a cup of tea. It doesn\'t take too long to arrive and is better than expected.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1535,6 +1551,7 @@ function enterMeal3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/boris_meal3.jpg');
   scene.text('You order a plate of fried chicken and fries, along with a cup of tea. It doesn\'t take too long to arrive and is better than expected.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1553,6 +1570,7 @@ function enterSalad(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/salad.jpg');
   scene.text('You order a salad, along with a cup of tea. It doesn\'t take too long to arrive and is better than expected.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1573,6 +1591,7 @@ function enterMensRestroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave restroom', goto: ['NikoSlut', 'Diner Interior'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1590,6 +1609,7 @@ function enterLadiesRestroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave restroom', goto: ['NikoSlut', 'Diner Interior'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1619,6 +1639,7 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1692,6 +1713,7 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
     (s as any).VKPartner = 1;
     // TODO-QSP: act 'Accept his offer (Eat a burger)': gt 'NikoSlut', 'Friendly Meal'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1743,6 +1765,7 @@ function enterBikers(s: GameState, scene: SceneBuilder): void {
     (s as any).VKPartner = 2;
     // TODO-QSP: act 'Accept his offer (Eat a burger)': gt 'NikoSlut', 'Friendly Meal'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1765,6 +1788,7 @@ function enterFriendlyMeal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/food/boris_meal2.jpg');
   // TODO-QSP: dynamic text: The <<$VKPartner_text>> orders you a burger and you both chat until the food arr...
   scene.text(`The ${((s as any).VKPartner_text ?? 0)} orders you a burger and you both chat until the food arrives. You and the ${((s as any).VKPartner_text ?? 0)} then spend the next few minutes eating while discussing current events until you both finish your meals.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1793,6 +1817,7 @@ function enterYurikIn(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1813,6 +1838,7 @@ function enterYurikOut(s: GameState, scene: SceneBuilder): void {
       scene.text('You see Yurik sticking out his thumb at the incoming vehicles. He seems to be hitchhiking as he notices you. "Well if it isn\'t Niko\'s little whore. Get lost girl, I don\'t need my dick sucked right now."');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['road', '<<nroad>>'] },
   ]);
@@ -1829,6 +1855,7 @@ function enterYurikDinner(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/kiss.mp4');
   scene.text('Yurik orders you some fried chicken with mashed potatoes and gravy, along with a cup of tea. You and Yurik spend the next few minutes eating and chatting until you both finish your food. Yurik then holds you in his strong arms and gives you a passionate kiss.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
   ]);
@@ -1866,6 +1893,7 @@ function enterDinerExit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

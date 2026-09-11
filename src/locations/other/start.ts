@@ -27,6 +27,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveg', '');
   qspCall(s, 'addbuilddate', '');
   scene.actions([{ label: 'Continue', goto: ['start', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +62,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['start', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<center><b>Start</b></center>', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
@@ -94,6 +96,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterVersion(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'version', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['start', 'start'] },
   ]);

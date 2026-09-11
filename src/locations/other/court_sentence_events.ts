@@ -18,11 +18,13 @@ function enterJudgeStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'LOCA', 'mod_sentenceevents', 'hearing');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterJudgeEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['sentence', 'punishment'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +92,7 @@ function enterJudgeShoplift(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Await punishment', goto: ['court_sentence_events', 'judge_end'] },
   ]);
@@ -175,6 +178,7 @@ function enterJudgeProstitution(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -190,6 +194,7 @@ function enterPunishmentStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'LOCA', 'mod_sentenceevents', 'punishment', ((s as any).locArgs?.[1] ?? 0));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +345,7 @@ function enterPunishmentShoplift(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -488,6 +494,7 @@ function enterPunishmentProstitution(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

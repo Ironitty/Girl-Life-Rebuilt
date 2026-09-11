@@ -48,6 +48,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
   qspCall(s, 'blackmailer', 'open_package_act');
   qspCall(s, 'music_actions', 'start');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -67,6 +68,7 @@ function enterSick(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/apartment/event/sick/sick${Math.floor(Math.random() * 7) + 11}.jpg`);
   scene.text('You\'re lying in bed coughing, sneezing and blowing your nose.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Check your temperature', goto: ['bedr', ''] },
   ]);

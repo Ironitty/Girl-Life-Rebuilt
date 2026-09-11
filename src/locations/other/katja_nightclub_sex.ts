@@ -462,6 +462,7 @@ function enterPrivateRoom1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -602,6 +603,7 @@ function enterPrivateRoom2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,6 +645,7 @@ function enterPrivateBooth_FFM(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You're '+iif($pantyworntype = 'none', 'already completely naked', 'only wearing ...
   scene.text(`You're '+iif($pantyworntype = 'none', 'already completely naked', 'only wearing panties')+' while Katja is still wearing some of her underwear. However, her breasts are on full display, so you start sucking on one of them. She starts moaning loudly as ${((s as any).npcdesc ?? 0)} looks on intently.`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start licking her pussy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/one_guy_private2.jpg');
@@ -842,6 +845,7 @@ function enterLoneBartender(s: GameState, scene: SceneBuilder): void {
   scene.text('"Let\'s go to one of the small bars upstairs. There isn\'t usually that many people up there," Katja says and you follow her upstairs.');
   scene.text('You quickly find a bar that\'s empty except for the bartender, but just as you\'re about to enter, Katja suddenly stops.');
   scene.text('"Sorry, but I really need to powder my nose. Just go ahead and start ordering. I\'ll be back in just a minute." Before you can say anything, she\'s gone.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bartender', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -987,6 +991,7 @@ function enterLonebartenderDrinking(s: GameState, scene: SceneBuilder): void {
   scene.text('Katja arrives as he\'s about to serve your order, and you quickly whisper that she should be quick and very kind.');
   scene.text('She does as you say and places her order immediately when he serves yours, and you soon both have your drinks.');
   scene.text('Once you\'re both finished, you thank the bartender again and head back to the dance floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go dancing', goto: ['katja_nightclub', 'dance'] },
   ]);
@@ -1006,6 +1011,7 @@ function enterBartenderBj(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You get down on your knees and move your hands towards his pants, which are bare...
   scene.text(`You get down on your knees and move your hands towards his pants, which are barely hiding his now very hard dick. "I think you want these ${((s as any).pc_desc ?? 0)?.['lip size']} lips around your cock…" you say, licking your lips.`);
   scene.text('"Yes… Oh yes!" he replies.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his cock', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/bartender_bj2.jpg');
@@ -1158,6 +1164,7 @@ function enterBartenderBjKatja(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1219,6 +1226,7 @@ function enterBartenderBjKatjaWatch(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'food_menu', 'city_nightclub_only_cost');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1228,6 +1236,7 @@ function enterBartenderBjKatjaJoin(s: GameState, scene: SceneBuilder): void {
   scene.text('"Let me help with that," she says. You hold out the bartender\'s dick for her and she starts licking it.');
   scene.text('You share his dick for a few minutes, taking turns sucking on it.');
   qspCall(s, 'arousal', 'bj', 3);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get him off', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 10) + 1) < Math.min(((s as any).katjaQW ?? 0)?.['slut']/20, 5)  &&  ((s as any).npc_throat ?? 0)?.['A14'] > ((s as any).dick ?? 0)) {
@@ -1258,6 +1267,7 @@ function enterBartenderSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
   ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja wants some dick too', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/bartender_sex2.jpg');
@@ -1358,6 +1368,7 @@ function enterLonebartenderDrinking1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_drinnking_bar.jpg');
   scene.text('Katja also orders her drink, and you soon both have your drinks, talking until they\'re finished. The whole time, the bartender tries to avoid looking either of you in the eyes.');
   scene.text('You thank the bartender again, which makes him blush before you head back to the dance floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go dancing', goto: ['katja_nightclub', 'dance'] },
   ]);
@@ -1371,6 +1382,7 @@ function enterLonebartenderDrinking2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_drinnking_bar.jpg');
   scene.text('Katja also orders her drink, and you soon both have your drinks and start talking. The bartender, on occasion, joins the conversation and you have a great time.');
   scene.text('You both thank him with kisses on his cheek when you\'ve finished your drinks before heading back to the dance floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go dancing', goto: ['katja_nightclub', 'dance'] },
   ]);
@@ -1491,6 +1503,7 @@ function enterCheatingConversation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1505,6 +1518,7 @@ function enterPrivateroomTwoGirls(s: GameState, scene: SceneBuilder): void {
   scene.text('You leave the dance floor and head for the private rooms upstairs. One of the girls talks with a bouncer and a waiter soon arrives and shows you into one of the rooms.');
   scene.text('Once you\'re seated, the waiter asks for your orders.');
   qspCall(s, 'food_menu', 'city_nightclub_only_cost');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1644,6 +1658,7 @@ function enterPrivateroomTwoGirlsAfterDrinks(s: GameState, scene: SceneBuilder):
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1681,6 +1696,7 @@ function enterPrivateBooth_FFFF(s: GameState, scene: SceneBuilder): void {
   ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
   qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID ?? 0), 'group', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Join them', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/sex/two_girls_private2.jpg');
@@ -1787,6 +1803,7 @@ function enterPrivateBooth_FFFFYou(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay_give', (-2), ((s as any).npcID2 ?? 0), 'group', 'lesbian');
   ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept the giant dildo in your ass', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'D7', 'c');
@@ -1968,6 +1985,7 @@ function enterPrivateBooth_FFFFYouLicking(s: GameState, scene: SceneBuilder): vo
   qspCall(s, 'arousal', 'breasts', (-4), ((s as any).npcID ?? 0), 'group', 'lesbian');
   qspCall(s, 'arousal', 'breasts', (-4), ((s as any).npcID2 ?? 0), 'group', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: '<<$npcdesc2>> \'s turn', goto: ['katja_nightclub_sex', 'private_booth_FFFF_girls'] },
   ]);
@@ -1987,6 +2005,7 @@ function enterPrivateBooth_FFFFGirls(s: GameState, scene: SceneBuilder): void {
   scene.text(`After ${((s as any).npcdesc2 ?? 0)} get her breath back, she get up. "Okay whore, now it's your turn so get down on all fours," she says to ${((s as any).npcdesc1 ?? 0)}.`);
   qspCall(s, 'arousal', 'vaginal_dildo_give', 4, ((s as any).npcID2 ?? 0), 'group', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'See what happens', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);

@@ -14,6 +14,7 @@ function enterPush(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $background_stack[] = $backimage
   // TODO-QSP: $loc_stack[]        = $loc
   // TODO-QSP: $loc_arg_stack[]    = $loc_arg
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -21,6 +22,7 @@ function enterPop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killobj
   // TODO-QSP: p $stat_stack[arrsize('$stat_stack')-1]
   // TODO-QSP: *p $main_stack[arrsize('$main_stack')-1]
+  // TODO-QSP: end
   scene.build();
 }
 

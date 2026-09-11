@@ -5,46 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $textstand[1] = 'Leaning against the tree, you feel Mira''s hot breath and the stimulating touch of ...
-  // TODO-QSP: $textstand[2] = 'Closing your eyes and leaning against the tree, you feel the light touch of Mira''s...
-  // TODO-QSP: $textstand[3] = 'Leaning against the tree, you feel Mira''s hot breath and the light touch of her to...
-  // TODO-QSP: $textdog[1] = 'Standing with your ass facing Mira, you feel her hot breath and the stimulating touch...
-  // TODO-QSP: $textdog[2] = 'Closing your eyes and sticking your ass out in front of Mira, you feel the light touc...
-  // TODO-QSP: $textdog[3] = 'Standing with your ass facing Mira, you feel her hot breath between your legs and the...
-  // TODO-QSP: $textdog[4] = 'Standing with your ass facing Mira, you feel the stimulating touch of her hands cares...
-  // TODO-QSP: $textmis[1] = 'Mira is sitting on the rock in front of you, her legs spread wide, watching your prog...
-  // TODO-QSP: $textmis[2] = 'Sitting on the stone with her legs spread wide, Mira enjoys the caress of your lips a...
-  // TODO-QSP: $textmis[3] = 'Mira is relaxing with her legs spread wide apart, feeling your hot breath on her crot...
-  // TODO-QSP: $text69[1] = 'You and Mira lie on top of one another, greedily licking the other''s pussy. '
-  // TODO-QSP: $text69[2] = 'You lie on the ground, and right before your eyes is Mira''s dripping wet pussy. '
-  // TODO-QSP: $text69[3] = 'Spread her legs wide apart. Mira is hanging her pussy over you, enjoying your hot brea...
-  // TODO-QSP: $text69[4] = 'You lie on the ground with Mira, throwing a leg over you, and she takes a position on ...
-  // TODO-QSP: $text69[5] = 'Licking Mira, you feel her hot breath between your legs and the stimulating touch of h...
-  // TODO-QSP: $textlick[1] = 'Spreading your labia with her fingers, she licks clumsily, her inexperienced tongue ...
-  // TODO-QSP: $textlick[2] = 'She timidly kisses your labia, sometimes touching gently touching your clitoris. '
-  // TODO-QSP: $textlick[3] = 'She carefully moves her inexperienced tongue from top to bottom, sometimes gently to...
-  // TODO-QSP: $textlick[4] = 'Spreading your labia with her fingers, she licks skillfully, swiping her tongue acro...
-  // TODO-QSP: $textlick[5] = 'She kisses your pussy, sometimes trying to penetrate a naughty finger in your <<$pc_...
-  // TODO-QSP: $textlick[6] = 'She quickly but skillfully licks your pussy from top to bottom, sometimes making a c...
-  // TODO-QSP: $textlick[7] = 'Your face buried between her legs, your lick clumsily, swiping your inexperienced to...
-  // TODO-QSP: $textlick[8] = 'You timidly kiss her labia, sometimes attempting to finger her clitoris. '
-  // TODO-QSP: $textlick[9] = 'You gently move your inexperienced tongue from top to bottom, across her pussy, and ...
-  // TODO-QSP: $textlick[10] = 'Your face is buried between her legs. You lick her enthusiastically, swiping your t...
-  // TODO-QSP: $textlick[11] = 'You kiss her pussy, caress her labia lips, and occasionally penetrate them with you...
-  // TODO-QSP: $textlick[12] = 'You quickly and skillfully lick her pussy, penetrating her vagina and caressing her...
-  // TODO-QSP: $textfinger[1] = 'You feel a quick movement of her fingers, moving back and forth in your pussy. '
-  // TODO-QSP: $textfinger[2] = 'She moves two fingers inside your <<$pc_desc[''pussy'']>> vagina. '
-  // TODO-QSP: $textfinger[3] = 'She moves her fingers along the entire length of your <<$pc_desc[''pussy'']>>, mak...
-  // TODO-QSP: $text_emotions[1] = 'Causing a storm of emotions to wash over you. '
-  // TODO-QSP: $text_emotions[2] = 'Causing your screams of pleasure. '
-  // TODO-QSP: $text_emotions[3] = 'Making moans of pleasure escape your lips and forcing her to move her hips to m...
-  // TODO-QSP: $text_emotions[4] = 'Making moans of pleasure escape your lips and forcing her to move her ass to me...
-  // TODO-QSP: $text_emotions[5] = 'Making her tremble from every touch. '
-  // TODO-QSP: $text_emotions[6] = 'Making moans of pleasure escape her lips. '
-  // TODO-QSP: $text_emotions[7] = 'Make her whole body arch and press your head deeper into her crotch. '
-  // TODO-QSP: $text_cum[1] = 'Gradually, a pleasant warmth grows and spreads from your belly. Then the sensations ...
-  // TODO-QSP: $text_cum[2] = 'After some time, Mira began to tremble, and her pussy started rhythmically pulsing i...
-  // TODO-QSP: $text_cum[3] = 'Gradually, a pleasant warmth grows and spreads from your belly. Then the sensations ...
   scene.build();
 }
 
@@ -88,6 +48,7 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
       { label: 'Escalate', goto: ['mirasex', 'foreplay'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +68,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira starts to unbutton your top.');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Allow her to continue', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/sex/miraforeplay\'+rand(5, 7)+\'.jpg');
@@ -171,6 +133,7 @@ function enterHornyTalk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -184,6 +147,7 @@ function enterMirafinger(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'vaginal_finger', (-10), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Moan', goto: ['mirasex', 'miralick_dog'] },
   ]);
@@ -231,6 +195,7 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -251,6 +216,7 @@ function enterLickmiraStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick', goto: ['mirasex', 'lickmira_mis2'] },
   ]);
@@ -309,6 +275,7 @@ function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -324,6 +291,7 @@ function enterMiralickStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Moan', goto: ['mirasex', 'miralick_stand2'] },
   ]);
@@ -333,6 +301,7 @@ function enterMiralickStart(s: GameState, scene: SceneBuilder): void {
 function enterMiralickOrgasm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 50) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -405,6 +374,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,6 +419,7 @@ function enterMiralickStand2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -458,6 +429,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   scene.actions([{ label: 'Continue', goto: ['gadukino', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -476,6 +448,7 @@ function enterMiralickFirst(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Moan', goto: ['mirasex', 'miralick_stand1'] },
   ]);
@@ -508,6 +481,7 @@ function enterMiralickStand1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gadukino', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -525,6 +499,7 @@ function enterLickmiraFirst(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick', goto: ['mirasex', 'lickmira_mis1'] },
   ]);
@@ -564,6 +539,47 @@ function enterLickmiraMis1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gadukino', ''] },
     ]);
   }
+  // TODO-QSP: end
+  // TODO-QSP: $textstand[1] = 'Leaning against the tree, you feel Mira''s hot breath and the stimulating touch of ...
+  // TODO-QSP: $textstand[2] = 'Closing your eyes and leaning against the tree, you feel the light touch of Mira''s...
+  // TODO-QSP: $textstand[3] = 'Leaning against the tree, you feel Mira''s hot breath and the light touch of her to...
+  // TODO-QSP: $textdog[1] = 'Standing with your ass facing Mira, you feel her hot breath and the stimulating touch...
+  // TODO-QSP: $textdog[2] = 'Closing your eyes and sticking your ass out in front of Mira, you feel the light touc...
+  // TODO-QSP: $textdog[3] = 'Standing with your ass facing Mira, you feel her hot breath between your legs and the...
+  // TODO-QSP: $textdog[4] = 'Standing with your ass facing Mira, you feel the stimulating touch of her hands cares...
+  // TODO-QSP: $textmis[1] = 'Mira is sitting on the rock in front of you, her legs spread wide, watching your prog...
+  // TODO-QSP: $textmis[2] = 'Sitting on the stone with her legs spread wide, Mira enjoys the caress of your lips a...
+  // TODO-QSP: $textmis[3] = 'Mira is relaxing with her legs spread wide apart, feeling your hot breath on her crot...
+  // TODO-QSP: $text69[1] = 'You and Mira lie on top of one another, greedily licking the other''s pussy. '
+  // TODO-QSP: $text69[2] = 'You lie on the ground, and right before your eyes is Mira''s dripping wet pussy. '
+  // TODO-QSP: $text69[3] = 'Spread her legs wide apart. Mira is hanging her pussy over you, enjoying your hot brea...
+  // TODO-QSP: $text69[4] = 'You lie on the ground with Mira, throwing a leg over you, and she takes a position on ...
+  // TODO-QSP: $text69[5] = 'Licking Mira, you feel her hot breath between your legs and the stimulating touch of h...
+  // TODO-QSP: $textlick[1] = 'Spreading your labia with her fingers, she licks clumsily, her inexperienced tongue ...
+  // TODO-QSP: $textlick[2] = 'She timidly kisses your labia, sometimes touching gently touching your clitoris. '
+  // TODO-QSP: $textlick[3] = 'She carefully moves her inexperienced tongue from top to bottom, sometimes gently to...
+  // TODO-QSP: $textlick[4] = 'Spreading your labia with her fingers, she licks skillfully, swiping her tongue acro...
+  // TODO-QSP: $textlick[5] = 'She kisses your pussy, sometimes trying to penetrate a naughty finger in your <<$pc_...
+  // TODO-QSP: $textlick[6] = 'She quickly but skillfully licks your pussy from top to bottom, sometimes making a c...
+  // TODO-QSP: $textlick[7] = 'Your face buried between her legs, your lick clumsily, swiping your inexperienced to...
+  // TODO-QSP: $textlick[8] = 'You timidly kiss her labia, sometimes attempting to finger her clitoris. '
+  // TODO-QSP: $textlick[9] = 'You gently move your inexperienced tongue from top to bottom, across her pussy, and ...
+  // TODO-QSP: $textlick[10] = 'Your face is buried between her legs. You lick her enthusiastically, swiping your t...
+  // TODO-QSP: $textlick[11] = 'You kiss her pussy, caress her labia lips, and occasionally penetrate them with you...
+  // TODO-QSP: $textlick[12] = 'You quickly and skillfully lick her pussy, penetrating her vagina and caressing her...
+  // TODO-QSP: $textfinger[1] = 'You feel a quick movement of her fingers, moving back and forth in your pussy. '
+  // TODO-QSP: $textfinger[2] = 'She moves two fingers inside your <<$pc_desc[''pussy'']>> vagina. '
+  // TODO-QSP: $textfinger[3] = 'She moves her fingers along the entire length of your <<$pc_desc[''pussy'']>>, mak...
+  // TODO-QSP: $text_emotions[1] = 'Causing a storm of emotions to wash over you. '
+  // TODO-QSP: $text_emotions[2] = 'Causing your screams of pleasure. '
+  // TODO-QSP: $text_emotions[3] = 'Making moans of pleasure escape your lips and forcing her to move her hips to m...
+  // TODO-QSP: $text_emotions[4] = 'Making moans of pleasure escape your lips and forcing her to move her ass to me...
+  // TODO-QSP: $text_emotions[5] = 'Making her tremble from every touch. '
+  // TODO-QSP: $text_emotions[6] = 'Making moans of pleasure escape her lips. '
+  // TODO-QSP: $text_emotions[7] = 'Make her whole body arch and press your head deeper into her crotch. '
+  // TODO-QSP: $text_cum[1] = 'Gradually, a pleasant warmth grows and spreads from your belly. Then the sensations ...
+  // TODO-QSP: $text_cum[2] = 'After some time, Mira began to tremble, and her pussy started rhythmically pulsing i...
+  // TODO-QSP: $text_cum[3] = 'Gradually, a pleasant warmth grows and spreads from your belly. Then the sensations ...
   scene.build();
 }
 

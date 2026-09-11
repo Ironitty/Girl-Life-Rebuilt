@@ -17,6 +17,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -32,6 +33,7 @@ function enterOpenAccount(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Your account is now open with your ' + $func('money', 'string_price', 1000) + '...
   scene.text('"Your account is now open with your \' + $func(\'money\', \'string_price\', 1000) + \'. Your account is not allotted an overdraft protection at this time, so be careful."');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -54,6 +56,7 @@ function enterAskOverdraft(s: GameState, scene: SceneBuilder): void {
     scene.text(`After a few moments, she looks up and frowns. "I'm sorry, Miss ${((s as any).pcs_lastname ?? 0)}, but it appears you do not meet the requirements for overdraft protection at this time. Please feel free to check back in the future once you have maintained a higher balance for a longer period."`);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -70,6 +73,7 @@ function enterDepositAmount(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'bank', 'set_deposit_text', ((s as any).kartaIN ?? 0));
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -82,6 +86,7 @@ function enterDepositShortcut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'bank_transfer', ((s as any).kartaIN ?? 0), 'to_bank');
   qspCall(s, 'bank', 'set_deposit_text', ((s as any).kartaIN ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -95,6 +100,7 @@ function enterDepositAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bank', 'set_deposit_text', ((s as any).kartaIN ?? 0));
   qspCall(s, 'stat', '');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -105,6 +111,7 @@ function enterDepositAll(s: GameState, scene: SceneBuilder): void {
 function enterWithdrawAmount(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bank', 'withdraw_cash', 0);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -116,6 +123,7 @@ function enterWithdrawShortcut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'bank_transfer', ((s as any).bankShortCutMoney ?? 0), 'to_cash');
   qspCall(s, 'bank', 'set_withdraw_text', ((s as any).bankShortCutMoney ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the lobby', goto: ['bank', 'start'] },
     { label: 'Leave the bank', goto: ['bank', 'leave'] },
@@ -237,6 +245,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['bank', 'leave'] },
   ]);
@@ -453,6 +462,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,6 +482,7 @@ function enterDepositCash(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: It will take 2 days for funds to be available. Your new balance will be <<$func(...
     scene.text(`It will take 2 days for funds to be available. Your new balance will be ${qspFunc(s, 'money', 'format', ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) + ((s as any).atmDeposit ?? 0))}.`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -492,6 +503,7 @@ function enterWithdrawCash(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'bank', 'set_withdraw_text', ((s as any).kartaOUT ?? 0));
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -502,11 +514,13 @@ function enterSetWithdrawText(s: GameState, scene: SceneBuilder): void {
     if (((s as any).karta ?? 0) === ((s as any).bankDebtLimit ?? 0)) {
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetDepositText(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<br>You deposit <<$func(''money'', ''format'', ARGS[1])>>. '
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -744,6 +758,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'homes_properties', 'clean_up_property_data');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

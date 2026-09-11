@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRide(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with the massive man', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -36,6 +37,7 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to get away', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -141,6 +143,7 @@ function enterSlap(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him to let go', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -320,6 +323,7 @@ function enterSucksasha(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'deepthroat');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from them', goto: ['pav_lake', ''] },
   ]);

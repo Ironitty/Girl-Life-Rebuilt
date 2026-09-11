@@ -36,12 +36,14 @@ function enterClamp(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (Math.max(5, Math.min(20, ((s as any).pcs_mood ?? 0) - ((s as any).moodVars ?? {})?.['min'])));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_mood = ((s as any).moodVars ?? 0)?.['disp'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +78,7 @@ function enterInterpret(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +87,7 @@ function enterRaise(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['pos_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['pos_mood_mult']));
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +96,7 @@ function enterLower(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_mood = ((s as any).pcs_mood ?? 0) - (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['neg_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['neg_mood_mult']));
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,6 +106,7 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'mood', $mid($temp_mood_str, 1, temp_pipe - 1), $mid($temp_mood_str, temp_pipe + 1)
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,6 +114,7 @@ function enterRaiseTrauma(s: GameState, scene: SceneBuilder): void {
   (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "mood" }));
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -115,6 +122,7 @@ function enterLowerTrauma(s: GameState, scene: SceneBuilder): void {
   (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) - (qspUntranslated(s, "ARGS[1]", { location: "mood" }));
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,6 +135,7 @@ function enterRaiseDisposition(s: GameState, scene: SceneBuilder): void {
   ((s as any).moodVars ?? {})['disp_base'] = (((s as any).moodVars ?? {})['disp_base'] ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['pos_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['pos_mood_mult']));
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,12 +148,14 @@ function enterLowerDisposition(s: GameState, scene: SceneBuilder): void {
   ((s as any).moodVars ?? {})['disp_base'] = (((s as any).moodVars ?? {})['disp_base'] ?? 0) - (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['neg_mood_opt'], ((s as any).temp_val ?? 0), ((s as any).cheatVars ?? 0)?.['neg_mood_mult']));
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHold(s: GameState, scene: SceneBuilder): void {
   ((s as any).moodVars ?? {})['hold_minut'] = qspUntranslated(s, "max(moodVars['hold_minut'], ARGS[1])", { location: "mood" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +182,7 @@ function enterStatusEffects(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -203,6 +215,7 @@ function enterDecay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -210,6 +223,7 @@ function enterUpdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'decay');
   qspCall(s, 'mood', 'clamp');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

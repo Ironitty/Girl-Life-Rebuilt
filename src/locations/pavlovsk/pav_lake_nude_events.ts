@@ -185,6 +185,7 @@ function enterPavLakeNudeNudist(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur', 10);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -237,6 +238,7 @@ function enterPavLakeNudeForestPiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([{ label: 'Continue', goto: ['pav_lake_nude', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -201,6 +201,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential Area (0:40)', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
@@ -236,6 +237,7 @@ function enterAquapark(s: GameState, scene: SceneBuilder): void {
   scene.text('You go to the attractions. There is <a href="exec:minut += 1 & gt \'city_lake\', \'gidro\'">jet skiing</a>, a <a href="exec:minut += 1 & gt \'city_lake\', \'banan\'">banana ride</a>, the <a href="exec:minut += 1 & gt \'city_lake\', \'gorka\'">water slide</a>, and a <a href="exec:minut += 1 & gt \'city_lake\', \'tour_boat\'">tour boat</a>.');
   // TODO-QSP: dynamic text: There is also a small <a href="exec:minut += 1 & gt 'city_lake', 'hut'">hut</a> ...
   scene.text('There is also a small <a href="exec:minut += 1 & gt \'city_lake\', \'hut\'">hut</a> that rents out surf boards.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -248,6 +250,7 @@ function enterGidro(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You go to the jet ski kiosk. It costs ' + $func('money', 'string_price', 100) + ...
   scene.text('You go to the jet ski kiosk. It costs \' + $func(\'money\', \'string_price\', 100) + \' for 30 minutes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -282,6 +285,7 @@ function enterBanan(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You go to the banana ride. It costs ' + $func('money', 'string_price', 100) + '.
   scene.text('You go to the banana ride. It costs \' + $func(\'money\', \'string_price\', 100) + \'.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -321,6 +325,7 @@ function enterGorka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You go to the water slide. It costs ' + $func('money', 'string_price', 50) + ' p...
   scene.text('You go to the water slide. It costs \' + $func(\'money\', \'string_price\', 50) + \' per go.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use the slide [+$func(\'money\', \'get_cost_string\', 50)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
@@ -356,6 +361,7 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/horse0.jpg');
   // TODO-QSP: dynamic text: You walk over to where the horses are gathered. It costs ' + $func('money', 'str...
   scene.text('You walk over to where the horses are gathered. It costs \' + $func(\'money\', \'string_price\', 100) + \' to ride one.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -391,6 +397,7 @@ function enterTourBoat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You step up to the tour boat que and wait your turn the cost of a 2 hour tour is...
   scene.text('You step up to the tour boat que and wait your turn the cost of a 2 hour tour is \' + $func(\'money\', \'string_price\', 100) + \'.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -439,6 +446,7 @@ function enterHut(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/hut.jpg');
   // TODO-QSP: dynamic text: There is a young man here renting surf bourds and wind surfing boards. He smiles...
   scene.text(`There is a young man here renting surf bourds and wind surfing boards. He smiles and talks you through using each and tells you it would cost ${qspFunc(s, 'money', 'string_profit', 100)} to rent either for 2 hours.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Surf', goto: ['city_lake', 'surf'] },
     { label: 'WindSurf', goto: ['city_lake', 'windsurf'] },
@@ -454,6 +462,7 @@ function enterSurf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/surf.jpg');
   scene.text('You spend 2 hours surfing and riding the smalls waves from the near by sea, several guys whistle and cheer as you ride the waves. At the end of the 2 hours you return the surfboard to the hut.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -467,6 +476,7 @@ function enterWindsurf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/windsurf.jpg');
   scene.text('You spend 2 hours enjoying being on the water and windsurfing you are not confident enough to try any tricks and simply ride the small sea side waves to and fro. At the end of the 2 hours you return the windboard to the hut');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -658,11 +668,13 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDinribak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A177');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the idiot alone', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -916,6 +928,7 @@ function enterWalklake2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -928,6 +941,7 @@ function enterStasValera(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/sex/stas/talk1.jpg');
   // TODO-QSP: dynamic text: "My name is <<$pcs_nickname>>." you reply and Stasik smiles. "Nice to meet you, ...
   scene.text(`"My name is ${((s as any).pcs_nickname ?? 0)}." you reply and Stasik smiles. "Nice to meet you, ${((s as any).pcs_nickname ?? 0)}." Valera also comes over and greets you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -969,6 +983,7 @@ function enterStasValera2a(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remain silent', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/stas/tits1.jpg');
@@ -990,6 +1005,7 @@ function enterStasValera2b(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'arousal', 'foreplay', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['city_lake', 'stasValera3'] },
   ]);
@@ -1046,6 +1062,7 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be silent', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/stas/tits3.jpg');
@@ -1072,6 +1089,7 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0));
   qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img(`images/locations/city/residential/lake/sex/stas/sex${Math.floor(Math.random() * 3) + 7}.jpg`);
@@ -1188,6 +1206,7 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Flirt with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake2.jpg');
@@ -1281,6 +1300,7 @@ function enterVlake1cum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/vlake1/vlake5.jpg');
   scene.text('The men begin jerking their dicks and their cum is soon splattering across your face and into your mouth. Once they\'re all finished, you lick the cum off their dicks and swallow it. Satisfied, they dress and walk away, leaving you sitting in the sand covered in cum.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1318,6 +1338,7 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wave at them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake2.jpg');
@@ -1422,6 +1443,7 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
     (s as any).anreiday = ((s as any).daystart ?? 0);
@@ -1505,6 +1527,7 @@ function enterKater1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
@@ -1577,6 +1600,7 @@ function enterKater1cum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   scene.img('images/locations/city/residential/lake/sex/kater1/kater9.jpg');
   scene.text('You suck his dick for a few seconds before a stream of warm cum starts pouring into your mouth. You begin swallowing, but there\'s so much that it spills out your mouth and drips down your chest and stomach.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick him clean', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater10.jpg');
@@ -1617,6 +1641,7 @@ function enterKater2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach them', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
@@ -1709,6 +1734,7 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
@@ -1784,6 +1810,7 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse2.jpg');
@@ -1908,6 +1935,7 @@ function enterHorse2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse2/horse2.jpg');
@@ -1988,6 +2016,7 @@ function enterVolleyballIntroDay(s: GameState, scene: SceneBuilder): void {
   scene.text('You reach over, grab the ball, and heave it back with a sigh. "Be more careful please. I don\'t want a face full of volleyball, thanks." you say with some rancour as you pass him the ball awkwardly from your towel.');
   scene.text('He lunges forward and catches it then tosses back into the game.');
   scene.text('Turning back to you he offers a smile. "Kinda noticed you were all alone here. Wanna join us? We got plenty of food and could use one more for the game."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to join', goto: ['city_lake', 'volleyball_day'] },
     { label: 'Decline (polite)', handler: (st: GameState) => {
@@ -2029,6 +2058,7 @@ function enterVolleyballDay(s: GameState, scene: SceneBuilder): void {
   scene.text('You hangout and dance to the songs coming from the speaker nearby and join in the volleyball game.');
   scene.text('You are not great but have fun and everyone is laughing and having a good time.');
   scene.text('As the party winds down you say goodbye to the group and gather your things to begin making your way home.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -2045,6 +2075,7 @@ function enterVolleyballNite(s: GameState, scene: SceneBuilder): void {
   scene.text('You hangout and dance to the songs coming from the speaker nearby and join in the volleyball game.');
   scene.text('You are not great but have fun and everyone is laughing and having a good time.');
   scene.text('As the party winds down, and the sun finishes setting, you say goodbye to the group, gather your things and begin making your way home.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
   ]);
@@ -2056,6 +2087,7 @@ function enterBonfire(s: GameState, scene: SceneBuilder): void {
   scene.text('As you are gathering your things to leave young guy in trunks runs up to you.');
   scene.text('"Hey, wanna join us?" He says waving to his friends around a bonfire, "we have plenty of food and drinks."');
   scene.text('You consider a moment then decide…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
@@ -2093,6 +2125,7 @@ function enterAndreiIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('Strong hands caress your body and you feel yourself get covered in goosebumps before a finger slides under your swimwear and starts to rub your pussy. You gasp when it finds your clit.');
   scene.text('Your body is thrown into a fever, sweat runs down your back, and you\'re growing wet. You grow aware that the pleasure comes from reality and not a dream, but are still unable to overcome the sleepy bliss and open your eyes.');
   scene.text('The pleasure you\'re feeling leads you into a trance and you moan loudly, wriggling under the hot sun. Just when you think something is about to happen, you\'re startled awake.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your eyes', handler: (st: GameState) => {
     scene.text('Opening your eyes, you see the shadowy figure of an unshaven man lustfully staring at you. You become uncomfortable - you\'re lying in front of a stranger, moaning in sexual bliss like a slut. There\'s no one else on the beach and you fear what he might do with you.');
@@ -2157,6 +2190,7 @@ function enterAndreiRape(s: GameState, scene: SceneBuilder): void {
   scene.text('You grit your teeth in pain as he starts fucking your ass. However, his fingers start rubbing your clit and you start moaning softly.');
   qspCall(s, 'arousal', 'anal', 10);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0));

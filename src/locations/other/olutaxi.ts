@@ -204,6 +204,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -242,6 +243,7 @@ function enterDjibrilTaxiSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make out', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A82', 1);
@@ -408,6 +410,7 @@ function enterDjibrilJustAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 5, 'rough');
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get butt fucked', goto: ['olutaxi', 'djibril_taxi_sex_anal1'] },
     { label: 'Take selfie', goto: ['olutaxi', 'djibril_selfie_anal'] },
@@ -428,6 +431,7 @@ function enterDjibrilTaxiSexAnal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'anal', 5, 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get butt fucked', goto: ['olutaxi', 'djibril_taxi_sex_anal1'] },
     { label: 'Take selfie', goto: ['olutaxi', 'djibril_selfie_anal'] },
@@ -444,6 +448,7 @@ function enterDjibrilSelfieAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 2, 'exhibitionism');
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get butt fucked', goto: ['olutaxi', 'djibril_taxi_sex_anal1'] },
   ]);
@@ -456,6 +461,7 @@ function enterDjibrilTaxiSexAnal1(s: GameState, scene: SceneBuilder): void {
   scene.text('He reaches up and grabs your hip, getting a really firm grip on you as he starts to pick up the pace and really hammer away at your asshole. He starts grunting and panting soon after and you don\'t think he\'s going to last much longer, yet he keeps going until he finally pulls out of you and pushes you down on your side.');
   qspCall(s, 'arousal', 'anal', 5, 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     ((s as any).DjibrilQW ?? {})['invite'] = 1;
@@ -490,6 +496,7 @@ function enterOluTaxiSex(s: GameState, scene: SceneBuilder): void {
   scene.text('Content that you\'re aroused, he starts unbuttoning his pants.');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -647,6 +654,7 @@ function enterOluTaxiSexVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel your pussy stretching as his monstrous cock invades your body, leaving you feeling completely full as he starts fucking you, slowly working himself just a little deeper with each thrust.');
   qspCall(s, 'arousal', 'vaginal', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -776,6 +784,7 @@ function enterOluTaxiSexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 5);
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get butt fucked', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

@@ -38,7 +38,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGD ?? {})['damage'] = 10;
     ((s as any).KGD ?? {})['day'] = 1;
   }, goto: ['KGDgame', ''] },
-    { label: 'Leave', goto: ['KGDgame', 'exit'] },
   ]);
   scene.build();
 }
@@ -46,6 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterLoadsave(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Disopl</b></center>');
   scene.text('<center><b>Are you sure you want to load this saved game?</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Confirm', handler: (st: GameState) => {
     (s as any).KGDsavegame = qspUntranslated(s, "ARGS[1]", { location: "KGDstart" });
@@ -59,9 +59,11 @@ function enterLoadsave(s: GameState, scene: SceneBuilder): void {
 function enterDeletesave(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Disopl</b></center>');
   scene.text('<center><b>Are you sure you want to delete this saved game?</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Confirm', goto: ['KGDstart', ''] },
     { label: 'Cancel', goto: ['KGDstart', ''] },
+    { label: 'Leave', goto: ['KGDgame', 'exit'] },
   ]);
   scene.build();
 }

@@ -40,6 +40,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Move away</b>', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -82,6 +83,7 @@ function enterLoverDiscription(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,6 +119,7 @@ function enterLoverAction(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -174,6 +177,7 @@ function enterBedr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== '') {
     qspCall(s, 'lover_living', 'husband_drunk');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,6 +212,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -222,6 +227,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drunk_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 20) {
     qspCall(s, 'music_actions', 'no_music');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -303,11 +309,322 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
+  // TODO-QSP: end
+  // TODO-QSP: end
+  if (((s as any).spouseVars ?? 0)?.['drink'] === 11  &&  ((s as any).spouseVars ?? 0)?.['hus_strapon'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['drunk_day']) {
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      scene.text('Your husband approaches you. "Honey, my ass hurts. Did something happen yesterday?"');
+    } else {
+      scene.text('Your husband approaches you. "Honey, my ass hurts. Like a lot. Do you know why?"');
+    }
+    scene.actions([
+      { label: 'Lie', handler: (st: GameState) => {
+    ((s as any).spouseVars ?? {})['hus_strapon'] = 0;
+    qspCall(s, 'stat', '');
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      scene.text('"Not that I know of, though you were in the bathroom a lot," you say with an innocent look on your face before he shrugs his shoulders and walks away.');
+    } else {
+      scene.text('"No dear, I don\'t know anything about that," you answer, trying to look as innocent as possible before he shrugs and walks away.');
+    }
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+      { label: 'Confess', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
+      if ((!(Math.floor(Math.random() * 2) + 0))) {
+        scene.text('"You got so drunk yesterday that I decided to teach you a lesson and put a plug in your ass."');
+      } else {
+        scene.text('"Honey, you were so drunk last night that I decided to teach you a lesson and put a butt plug up your ass."');
+      }
+    } else {
+      if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
+          scene.text('"I wanted to give you a pleasant surprise and started to give you a blowjob, but you wouldn\'t cum no matter how much I tried, so I put a finger in your ass, but again you failed to cum. That\'s when I put the dildo in your ass and you shot your load. Forgive me, but I just wanted to get you off."');
+        } else {
+          scene.text('"I wanted to make you happy, so I started to give you a blowjob, but you didn\'t cum, so I inserted a finger into your asshole. When you still didn\'t cum, I took a small dildo and some lube and put in it your ass; I\'ve never seen you cum like that before. I even gave you a second blowjob. Forgive me, but you seemed to enjoy it so much that I could\'t stop. I just wanted to make you happy," you lie to him.');
+        }
+      } else {
+        if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            scene.text('"I wanted to give you a pleasant surprise and started to give you a blowjob, but you wouldn\'t cum no matter how much I tried, so I put a finger in your ass, but again you failed to cum. That\'s when I put in a second finger and you started moving your ass up and down, fucking my fingers as you moaned in pleasure. Since you seemed to be liking it so much and asked for more, I put on my strap-on and fucked you with it while I was jerking you off. I just wanted you to be happy, even if you don\'t remember. Please forgive me!"');
+          } else {
+            scene.text('"I wanted to make you happy, so I started to give you a blowjob, but you didn\'t cum, so I inserted a finger into your asshole. When you still didn\'t cum, I put in a second finger you began to move your ass towards my fingers, moaning heavily. I thought that you liked it, so I put on a strap-on. You enjoyed it so much that you finished over and over again, and I continued until I was tired. I then licked all the cum off your body and went to sleep. I just wanted to make you happy and you were enjoying it," you lie to him.');
+          }
+        }
+      }
+    }
+    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
+        if ((!(Math.floor(Math.random() * 2) + 0))) {
+          scene.text('"I\'m sorry. I won\'t get that drunk again," he says before leaving the room.');
+        } else {
+          scene.text('"I\'m sorry. I won\'t get that drunk again," he says and leaves the room.');
+        }
+      } else {
+        if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
+          ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            scene.text('"You\'re such a caring woman. Instead of scolding me for being drunk, you suck me off. Thank you, dear," he says before leaving the room.');
+          } else {
+            scene.text('"You\'re so thoughtful. Instead of scolding me, you still wanted to make me happy. Thank you, dear," he says and leaves the room.');
+          }
+        } else {
+          if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
+            ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
+              scene.text('"I really liked it?" he asks and you nod. "Well then, thank you dear, but ask for my consent next time," he says before leaving the room.');
+            } else {
+              scene.text('"Did I really like it?" he asks and you nod.');
+              scene.text('"Well then, thank you dear. Ask me next time though," he says and leaves the room.');
+            }
+          }
+        }
+      }
+    } else {
+      if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+        if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
+          if ((!(Math.floor(Math.random() * 2) + 0))) {
+            scene.text('"Just don\'t do that anymore," is all he says before leaving the room.');
+          } else {
+            scene.text('"Don\'t do that again!" he snarls and storms off.');
+          }
+        } else {
+          if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
+            ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
+            if ((!(Math.floor(Math.random() * 2) + 0))) {
+              scene.text('"Don\'t ever do that again. I\'m a man and <i>I</i> do the fucking!" he says before leaving the room.');
+            } else {
+              scene.text('"Don\'t do that again! I\'m a man and I\'m not supposed to get fucked in the ass!" he snarls and storms off.');
+            }
+          } else {
+            if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
+              if (((s as any).pcs_intel ?? 0) > 40  ||  ((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+                ((s as any).spouseVars ?? {})['gentle_add'] = (((s as any).spouseVars ?? {})['gentle_add'] ?? 0) + (1);
+                if ((!(Math.floor(Math.random() * 2) + 0))) {
+                  scene.text('"Are you really trying to tell me that I asked you to fuck me with a strap-on, bitch?" he bellows. When you start crying and lamenting that you only wanted to please him, he looks at you and exhales. "Fine, fine, I believe you. I believe you wanted to pleasure me and make me happy, but never do that again."');
+                } else {
+                  scene.text('"Are you serious?! I\'m not some kind of bitch that wants to get fucked up the ass!" he yells at you. You start to cry and say that you only wanted to please him and he looks at you and sighs. "Don\'t cry, sweetie. I believe you, just don\'t do it again."');
+                }
+              } else {
+                if (((s as any).pcs_intel ?? 0) <= 40) {
+                  qspCall(s, 'lover_love', 'divorce');
+                  (s as any).fingal = ((s as any).fingal ?? 0) + (1);
+                  (s as any).minut = ((s as any).minut ?? 0) + 120;
+                  scene.text('The next thing you feel is a powerful slap to the face. When you come back to your senses, your husband and his things are gone. He left a note telling you he\'s going to file for divorce.');
+                }
+              }
+            }
+          }
+        }
+      } else {
+        qspCall(s, 'lover_love', 'divorce');
+        (s as any).fingal = ((s as any).fingal ?? 0) + (1);
+        (s as any).minut = ((s as any).minut ?? 0) + 120;
+        qspCall(s, 'stat', '');
+        scene.text('The next thing you feel is a powerful slap to the face. When you come back to your senses, your husband and his things are gone. He left a note telling you he\'s going to file for divorce.');
+      }
+    }
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    // TODO-QSP: spouseVars['hus_strapon'] = 0
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
   ]);
+  scene.build();
+}
+
+function enterSantehnik(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).husID ?? 0) === '') {
+    scene.text('ERROR: "lover_living, santehnik" should not be able to trigger.');
+    return;
+    scene.actions([
+      { label: 'Leave', goto: ['sitr', ''] },
+    ]);
+  }
+  (s as any).sexpartkno = 1;
+  qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
+  qspCall(s, 'npcStat', 'A53', 1);
+  if (((s as any).spouseVars ?? 0)?.['drink'] !== 10) {
+    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    scene.img('images/locations/city/residential/apartment/sex/s7.jpg');
+    scene.text('You tell your husband about the leak and he makes a phone call. After 20 minutes, a plumber arrives.');
+    scene.text('Your husband walks him to the kitchen and the two of you began to observe his actions, you are sick of hearing about how the plumber hates cheap Chinese fittings and what people pushed into the sink, and you decided to wait in the living room.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/residential/apartment/sex/s8.jpg');
+    scene.text('You go into the room and sit on the couch, soon your husband comes in and sits down beside you. With one hand on your breast, he runs his other hand down under your panties and begins to massage your clitoris.');
+    scene.text('"What are you doing? What if the plumber comes in?"');
+    scene.text('"He\'ll be another hour poking around." he answers, "Come on, quick blow job."');
+    scene.text('"OK, lets." you say, now excited, it really looks like his hand has done its job.');
+    qspCall(s, 'arousal', 'foreplay', 10, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Start', handler: (st: GameState) => {
+    scene.img('images/locations/city/residential/apartment/sex/s9.jpg');
+    scene.text('The husband stands up and pulls from his unbuttoned pants his member, you drop to your knees and his cock is in your mouth, right then the plumber enters, "I\'m finished." he says and freezes, seeing this picture.');
+    qspCall(s, 'arousal', 'bj', 10, 'sub');
+    qspCall(s, 'stat', '');
+    if (((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      scene.text('Your husband tries to remove his member from your mouth');
+      if (((s as any).pcs_horny ?? 0) < 80) {
+        scene.actions([
+          { label: 'Stop', handler: (st: GameState) => {
+    scene.text('Your husband quickly hides his dick in his pants and with the plumber goes out into the corridor');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['sitr', ''] },
+    ]);
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Do not stop', handler: (st: GameState) => {
+    scene.text('You grabbed your husbands hips and continued to work your mouth, he jerks a couple of times trying to free himself, but you can not stop and just swallow his cock even deeper. When he stops twitching you bring one hand to your crotch and with just a couple of motions bring yourself to orgasm.');
+    scene.text('But the excitement does not recede, you want even more, and the watching plumber just arouses you. You can not control yourself.');
+    qspCall(s, 'arousal', 'bj', 10, 'sub');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Ride your husband', handler: (st: GameState) => {
+    qspCall(s, 'cum_manage', '');
+    (s as any).suprdolg = ((s as any).suprdolg ?? 0) + (1);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
+    ((s as any).spouseVars ?? {})['pervert_add'] = (((s as any).spouseVars ?? {})['pervert_add'] ?? 0) + (1);
+    scene.img('images/locations/city/residential/apartment/sex/s12.jpg');
+    scene.text('You release your husband\'s member from your mouth and quickly push him to sit on the couch, then jump on top of him, quickly planting his dick in your pussy. You ride it like crazy, ignoring the plumber, still stood in the doorway, watching you. When you are again close to orgasm you feel as sperm gushes into you');
+    scene.text('It take a few movements from his twitching cock, but you also reach orgasm, uttering a cry you limp and fall from your husband. He leaves you still quaking, pulls up his pants and walks out with the plumber to the hallway.');
+    qspCall(s, 'arousal', 'vaginal', 10, 'sub');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['sitr', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.text('Your husband did not even try to stop you');
+      if (((s as any).pcs_horny ?? 0) < 80) {
+        scene.actions([
+          { label: 'Stop', handler: (st: GameState) => {
+    if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      scene.text('You release your husband\'s member from your mouth and he quickly pulls up his pants and with the plumber goes out into the corridor');
+      scene.actions([
+        { label: 'Leave', goto: ['sitr', ''] },
+      ]);
+    } else {
+      (s as any).guy = ((s as any).guy ?? 0) + (1);
+      scene.text('You tried to spit the member from your mouth, but your husband grabs hold of your head and he starts to fuck you in the mouth, talking with shocked plumber, "We\'re a little busy, at the moment, it\'s her feeding time." he laughes, "How much do I owe you?" He continues.');
+      scene.text('"Fifteen hundred." Manages the plumber.');
+      scene.text('"Well, with those prices can agree that if you feed her too, we consider it paid?" He asks.');
+      scene.text('"I do not know, a blowjob would earn a discount, but if she can do us both, then yes." replied the plumber.');
+      scene.text('"You know how to bargain." Says your husband, "Okay agreed." He adds, almost without thinking. Knowing the character of your husband you know that your peril has been decided.');
+      scene.actions([
+        { label: 'Serve both', handler: (st: GameState) => {
+    (st as any).picrand = 43;
+  }, goto: ['sexdvoe', 'var'] },
+      ]);
+    }
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Do not stop', handler: (st: GameState) => {
+    scene.text('You continued to suck ignoring the watching plumber.');
+    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      scene.text('Your husband tries not to look at the plumber, obviously embarrassed, but he does not hesitate to follow your every move.');
+    } else {
+      if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+        scene.text('Your husband stands savoring the process without paying attention to the plumber.');
+      } else {
+        scene.text('Your husband chats with the plumber does not hesitate to turn slightly so that it is easier for him to see.');
+      }
+    }
+    qspCall(s, 'arousal', 'bj', 10, 'sub');
+    qspCall(s, 'stat', '');
+    if (((s as any).pcs_horny ?? 0) > 70) {
+      scene.actions([
+        { label: 'Suggest a threesome', handler: (st: GameState) => {
+    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+      ((s as any).spouseVars ?? {})['houseslut'] = (((s as any).spouseVars ?? {})['houseslut'] ?? 0) + (1);
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 2);
+      scene.img('images/locations/city/residential/apartment/sex/s11.jpg');
+      scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
+      scene.text('Your husband is a little shocked by the idea, what would convince him? In a loud voice you continue, "Let him lick me while I caress you."');
+      scene.text('The plumber tenses, waiting for the reaction of your husband, "Well, if only licking you, then let him." Says your husband. The plumber does not need persuading, your husband sits on the sofa, and you get on your knees and stick out your ass as the plumbers tongue penetrates your pussy.');
+      scene.text('At first your husband keeps glancing in his direction, but soon relaxes and finally when the guy starts to finger your hole with a vengeance, he says nothing, you decide that he is no longer against you sharing with others.');
+      // TODO-QSP: gs 'arousal', 'cuni', 10, $npcID[1], 'sub', 'group'
+      // TODO-QSP: gs 'arousal', 'vaginal_finger', -10, $npcID[0], 'sub', 'group'
+      qspCall(s, 'stat', '');
+      scene.actions([
+        { label: 'Serve both', handler: (st: GameState) => {
+    (st as any).picrand = 43;
+  }, goto: ['sexdvoe', 'var'] },
+      ]);
+    } else {
+      if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-5));
+        scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
+        scene.text('"You think I should share you, my wife with the plumber? Cool that foolish pussy, you must think with your head." shouts your husband and returning his member to his pants goes out of the room with the plumber.');
+        scene.actions([
+          { label: 'Leave', goto: ['sitr', ''] },
+        ]);
+      } else {
+        ((s as any).spouseVars ?? {})['houseslut'] = (((s as any).spouseVars ?? {})['houseslut'] ?? 0) + (1);
+        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 2);
+        scene.img('images/locations/city/residential/apartment/sex/s10.jpg');
+        scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
+        scene.text('"It\'s not for nothing that they say all women are whores, hey man this whore wants to do both of us, but then the repair is free of charge." Says your husband. The plumber does need a second invite, he quickly approaches and pulls out his dick.');
+        scene.text('Bringing it to your face, you cling to him and start to suck both cocks alternately, your husband stands carefully watching your actions "You like sucking fresh meat, but do not forget about me, and this boys and mine you swallow deeper and deeper."');
+        // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[0], 'sub', 'group'
+        // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'group'
+        qspCall(s, 'stat', '');
+        scene.actions([
+          { label: 'Serve both', handler: (st: GameState) => {
+    (st as any).picrand = 43;
+  }, goto: ['sexdvoe', 'var'] },
+        ]);
+      }
+    }
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
+    (s as any).suprdolg = ((s as any).suprdolg ?? 0) + (1);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    scene.text('You continue to blow your husband, and soon a stream of hot liquid squirts into your mouth, swallowing the sperm you lick the remnants of semen from his penis. Your husband puts his cleaned dick in his pants and walks out into the hallway with the plumber. And you are left sitting on the floor, exhausted from desire.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Leave', goto: ['sitr', ''] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -334,6 +651,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'husband_drunk':
       enterHusbandDrunk(s, scene);
+      break;
+    case 'santehnik':
+      enterSantehnik(s, scene);
       break;
     default:
       enterDefault(s, scene);

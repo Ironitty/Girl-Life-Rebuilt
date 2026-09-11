@@ -23,6 +23,7 @@ function enterSisboyQWParty(s: GameState, scene: SceneBuilder): void {
   scene.text('You cheerfully ask Anya, "You won\'t leave me alone at the party will you?"');
   // TODO-QSP: dynamic text: Anya smiles and hands you a bottle of vodka. "Of course not <<$pcs_nickname>>."
   scene.text(`Anya smiles and hands you a bottle of vodka. "Of course not ${((s as any).pcs_nickname ?? 0)}."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline the drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -84,6 +85,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Congratulate Rex personally', goto: ['rex_party_firstTime', 'reks'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -121,6 +123,7 @@ function enterAnyaFind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('You look for your sister but can\'t find her. "Where the hell did she go?" You look everywhere in desperation.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the bathroom', goto: ['rex_party_firstTime', 'anya_toilet'] },
     { label: 'Look in the kitchen', goto: ['rex_party_firstTime', 'anya_kit'] },
@@ -138,6 +141,7 @@ function enterAnyaKit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_24.jpg');
   scene.text('You walk into the kitchen and look around for your sister. You see two drunk girls having fun in the corner of the room, but neither of them know where your sister is. Suddenly, you hear heavy breathing behind you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_25.jpg');
@@ -207,6 +211,7 @@ function enterAnyaToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_22.jpg');
   scene.text('You walk into the bathroom and find some guy pushing some poor girl\'s head into the toilet. Thankfully, it isn\'t Anya, and not wanting to get involved any further, you leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the kitchen', goto: ['rex_party_firstTime', 'anya_kit'] },
     { label: 'Look in the bedroom', goto: ['rex_party_firstTime', 'anya_bed'] },
@@ -221,6 +226,7 @@ function enterAnyaBed(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_23.jpg');
   scene.text('In the bedroom, you see two guys jerking off onto the face of some poor unconscious girl as one of them says to the other, "Let\'s get the fuck out of here before she wakes up. I don\'t want to deal with her ex-boyfriend. He\'s one of the boxers."');
   scene.text('Anya isn\'t here, so you keep searching.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the bathroom', goto: ['rex_party_firstTime', 'anya_toilet'] },
     { label: 'Look in the kitchen', goto: ['rex_party_firstTime', 'anya_kit'] },
@@ -236,6 +242,7 @@ function enterReks(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hey girl! Damn, you\'ve been having fun. Oh yeah, you\'re Anya\'s little sister, right? I know she\'s… That\'s odd, I haven\'t seen her. Although I have been drinking bubbly all day. Here, drink up!"');
   scene.text('He starts pouring the sweet champagne down your throat. He\'s so drunk that he pours it too fast, and as much as you try to keep up, a lot of it spills on you and the floor.');
   scene.text('Then, without a word, Rex just staggers off.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look for Anya', goto: ['rex_party_firstTime', 'anya_find'] },
     { label: 'Follow Rex to the toilet for birthday sex', handler: (st: GameState) => {
@@ -282,6 +289,7 @@ function enterTwoBoy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'sub', 'group', 'unknown');
   qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID1 ?? 0), 'sub', 'group', 'unknown');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_15.jpg');
@@ -330,6 +338,7 @@ function enterDrink(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Everyone undresses to the waist and goes into the hall to dance. "Come dance <<$...
   scene.text(`Everyone undresses to the waist and goes into the hall to dance. "Come dance ${((s as any).pcs_nickname ?? 0)}, you don't want to be left alone," Anya calls out to you.`);
   scene.text('Not now Anya. I want to drink some more first," you reply, but not taking no for an answer, Anya drags you out to dance with her and her friends.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go dance', goto: ['rex_party_firstTime', 'dance'] },
   ]);
@@ -342,6 +351,7 @@ function enterSit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/rekshome/party/sisboyqwparty_12.jpg');
   // TODO-QSP: dynamic text: You are starting to feel a little dizzy after drinking so much and so sit down f...
   scene.text(`You are starting to feel a little dizzy after drinking so much and so sit down for a while. Anya and her friends then approach you. "${((s as any).pcs_nickname ?? 0)}? Why are you just sitting there? Come dance with us." Not taking no for an answer, Anya drags you out to dance with her and her friends.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go dance', goto: ['rex_party_firstTime', 'dance'] },
   ]);

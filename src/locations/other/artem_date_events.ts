@@ -15,6 +15,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while, you end up near the movie theater. Artem\'s eyes light up when he sees it. "Hey, let\'s go see a movie!"');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds like fun', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
@@ -79,6 +80,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
 function enterArtemDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
   scene.actions([{ label: 'Continue', goto: ['artem_date_events', 'firstdate'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +183,7 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
   }, goto: ['artem_date_events', 'stand_up'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +233,7 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch in silence', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/walkgop_udar.jpg');
@@ -462,6 +466,7 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'exhibitionism');
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get face fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggbj2.jpg');
@@ -571,6 +576,7 @@ function enterFightGang(s: GameState, scene: SceneBuilder): void {
       { label: 'Get raped', goto: ['artem_date_events', 'gang_rape'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -591,6 +597,7 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
   scene.text('They lift you off the ground, one covering your mouth as they drag you off deeper into the park far away from any of the paths. You see two others are dragging the unconscious Artem along. You eventually arrive in a clearing with a dirty old mattress laying on the ground, where they start ripping your clothes off. Artem is dumped nearby and the two gopniks go to stand watch as you hear your clothes ripping and tearing, which they seem to be doing intentionally. They keep ripping and tearing at your clothes until you\'re completely naked.');
   qspCall(s, 'arousal', 'flash', 5, 'gangbang', 'rape', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/bound.jpg');
@@ -719,6 +726,7 @@ function enterGeneratgopniks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'e');
   qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 6', Math.floor(Math.random() * 8) + 18);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'f');
+  // TODO-QSP: end
   scene.build();
 }
 

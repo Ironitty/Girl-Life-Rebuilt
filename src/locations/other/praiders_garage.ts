@@ -80,6 +80,7 @@ function enterBandGarage(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -425,11 +426,13 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHangout(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'praiders_garage', $hangout_rand
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -477,6 +480,7 @@ function enterHangout1(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -524,6 +528,7 @@ function enterHangout2(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -571,6 +576,7 @@ function enterHangout3(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -619,6 +625,7 @@ function enterHangout4(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -667,6 +674,7 @@ function enterHangout5(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -716,6 +724,7 @@ function enterHangout6(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -765,6 +774,7 @@ function enterHangout7(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -815,6 +825,7 @@ function enterHangout8(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -866,6 +877,7 @@ function enterHangout9(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -913,6 +925,7 @@ function enterHangout10(s: GameState, scene: SceneBuilder): void {
       { label: 'Party is finishing', goto: ['praiders_garage', 'party_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -939,6 +952,7 @@ function enterPartyOver(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

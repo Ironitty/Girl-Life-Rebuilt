@@ -622,6 +622,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t confess', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1093,6 +1094,7 @@ function enterSecrets(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1103,6 +1105,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
   scene.text('You remove your clothes and expose your pussy before the priest, his eyes intently watching as you do. "Now you must pleasure yourself so that I can pray and absolve you of the sin."');
   qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start masturbating', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/mast2.jpg');
@@ -1147,6 +1150,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
   scene.text('You do as he asks and take his cock into your hand, feeling it twitch as you begin to stroke it.');
   qspCall(s, 'arousal', 'hj', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stroke him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/hj2.jpg');
@@ -1193,6 +1197,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   scene.text('You pull your clothes aside to expose your breasts as he pulls out his dick from his pants. You can see it is already hard as he places his hand upon the top of your head. "Now open your mouth."');
   qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/bj2.jpg');
@@ -1239,6 +1244,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('He stands up and gently pushes you against the wall before his hands start roaming over your body, slowly removing your clothes until your breasts are exposed and his hand is rubbing your clit. "We must purge the lust from your body and banish your sexual desires." You feel one of his fingers slide inside your wet pussy and he slowly fucks you with one finger before adding a second.');
   qspCall(s, 'arousal', 'vaginal_finger', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open to purging', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/foreplay3.jpg');
@@ -1310,6 +1316,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('He stands up and pulls his dick out of his pants. It is already rock-hard. "Kneel my child."');
   scene.text('As you kneel down, he strokes his cock while looking at you. "Please disrobe as well."');
   scene.text('Once you\'re fully naked, he speaks once more. "Open your mouth."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/anal2.jpg');

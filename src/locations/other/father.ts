@@ -5,6 +5,29 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterFatherRep(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_rel ?? 0)?.['A28'] < 20) {
+    scene.text('You and your stepfather can\'t stand each other, and spend as little time in the same room as possible.');
+  } else {
+    if (((s as any).npc_rel ?? 0)?.['A28'] < 40) {
+      scene.text('You and your stepfather don\'t get along very well.');
+    } else {
+      if (((s as any).npc_rel ?? 0)?.['A28'] < 60) {
+        scene.text('You have a normal relationship with your stepfather.');
+      } else {
+        if (((s as any).npc_rel ?? 0)?.['A28'] < 80) {
+          scene.text('You have a good relationship with your stepfather.');
+        } else {
+          scene.text('You have a great relationship with your stepfather.');
+        }
+      }
+    }
+  }
+  return;
+  // TODO-QSP: end
   (s as any).fatherAge = ((s as any).year ?? 0) - ((((s as any).npc_dob ?? {})?.['A28'] - (((s as any).npc_dob ?? {})?.['A28'] % 10000)) / 10000);
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'stat', '');
@@ -811,28 +834,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterFatherRep(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_rel ?? 0)?.['A28'] < 20) {
-    scene.text('You and your stepfather can\'t stand each other, and spend as little time in the same room as possible.');
-  } else {
-    if (((s as any).npc_rel ?? 0)?.['A28'] < 40) {
-      scene.text('You and your stepfather don\'t get along very well.');
-    } else {
-      if (((s as any).npc_rel ?? 0)?.['A28'] < 60) {
-        scene.text('You have a normal relationship with your stepfather.');
-      } else {
-        if (((s as any).npc_rel ?? 0)?.['A28'] < 80) {
-          scene.text('You have a good relationship with your stepfather.');
-        } else {
-          scene.text('You have a great relationship with your stepfather.');
-        }
-      }
-    }
-  }
-  return;
-  scene.build();
-}
-
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -850,6 +851,5 @@ export const father: LocationDef = {
   title: 'Your stepfather, Vladimir Mikhailovich Scriabin',
   region: 'other',
   locationType: 'event',
-  description: ['Your stepdad folds up his paper and leaves the kitchen.'],
   enter: enter,
 };

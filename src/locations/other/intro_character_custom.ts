@@ -80,6 +80,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['intro_character_creation', 'appearance_hub'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Set attributes', goto: ['intro_character_custom', 'modatt'] },
     { label: 'Set skills', goto: ['intro_character_custom', 'modskl'] },
@@ -125,6 +126,7 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Manage Piercings', goto: ['piercing_management', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).money = ((s as any).intro_custom ?? 0)?.['money'];
@@ -223,6 +225,7 @@ function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Remove pussy tattoo':    gs 'tattoo_management', 'remove', 'pussy'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modclo_menu'] },
   ]);
@@ -846,6 +849,7 @@ function enterModclo(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -893,6 +897,7 @@ function enterModcloLoop(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', '', 'display_' + qspUntranslated(s, "intro_custom_shop['slot']>", { location: "intro_character_custom" }) + '_grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -992,6 +997,7 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_idx ?? 0) < 9) {
     // TODO-QSP: jump 'modapp_butt_loop'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Body fat (<<pcs_mass[\'body\']>>/200)', handler: (st: GameState) => {
     qspCall(st, 'intro_character_custom', 'setbodymass');
@@ -1018,10 +1024,12 @@ function enterSetgenbsize(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModite(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fake passport (<<fakepassport>>/1)', handler: (st: GameState) => {
     if ((!((s as any).fakepassport ?? 0))) {
@@ -1050,6 +1058,7 @@ function enterModrelSetup2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic 'if <<$ARGS[1]>> > 100: <<$ARGS[1]>> = 100'
   // TODO-QSP: dynamic 'x = <<$ARGS[1]>>'
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$ARGS[2]>> (<<x>>/100)</td><td><a href...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1058,6 +1067,7 @@ function enterModrelSetup3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic 'if <<$ARGS[1]>> > 200: <<$ARGS[1]>> = 200'
   // TODO-QSP: dynamic 'x = <<$ARGS[1]>>'
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$ARGS[2]>> (<<x>>/200)</td><td><a href...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1066,6 +1076,7 @@ function enterModrelSetup4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic 'if <<$ARGS[1]>> > 100: <<$ARGS[1]>> = 100'
   // TODO-QSP: dynamic 'x = 100-<<$ARGS[1]>>'
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$ARGS[2]>> (<<x>>/100)</td><td><a href...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1080,6 +1091,7 @@ function enterModiteCos(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modite'] },
   ]);
@@ -1103,6 +1115,7 @@ function enterModitePha(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modite'] },
   ]);
@@ -1117,6 +1130,7 @@ function enterModiteMis(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modite'] },
   ]);
@@ -1135,6 +1149,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your current purse is <<$currentpursetype>>_<<currentpursenumber>>.
     scene.text(`Your current purse is ${((s as any).currentpursetype ?? 0)}_${((s as any).currentpursenumber ?? 0)}.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'start'] },
     { label: 'Get G&M', handler: (st: GameState) => {
@@ -1252,6 +1267,7 @@ function enterSetval(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1271,6 +1287,7 @@ function enterSetval2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1290,6 +1307,7 @@ function enterSetval3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1317,6 +1335,7 @@ function enterSetbodymass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1339,6 +1358,7 @@ function enterModatt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'start'] },
   ]);
@@ -1346,6 +1366,7 @@ function enterModatt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModskl(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Mental skills', goto: ['intro_character_custom', 'modskl_men'] },
     { label: 'Sport skills', goto: ['intro_character_custom', 'modskl_spo'] },
@@ -1370,6 +1391,7 @@ function enterModsklMen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
   ]);
@@ -1391,6 +1413,7 @@ function enterModsklSpo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
   ]);
@@ -1409,6 +1432,7 @@ function enterModsklCom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
   ]);
@@ -1427,6 +1451,7 @@ function enterModsklBea(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
   ]);
@@ -1445,6 +1470,7 @@ function enterModsklArt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
   ]);
@@ -1465,6 +1491,7 @@ function enterModsklJob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display
   scene.text('</table></center>');
   // TODO-QSP: nl
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modskl'] },
   ]);
@@ -1473,12 +1500,14 @@ function enterModsklJob(s: GameState, scene: SceneBuilder): void {
 
 function enterBirthday(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'core_birthday'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModgrup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your current social group is <<$soc_grup>>.
   scene.text(`Your current social group is ${((s as any).soc_grup ?? 0)}.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nerd', handler: (st: GameState) => {
     ((s as any).start_type ?? {})['group'] = 'nerd';
@@ -1533,10 +1562,12 @@ function enterModgrup(s: GameState, scene: SceneBuilder): void {
 function enterNone(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_all');
   (s as any).grupTipe = 5;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModrel(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Family', goto: ['intro_character_custom', 'modrel_fam'] },
     { label: 'Popular Kids', goto: ['intro_character_custom', 'modrel_pop'] },
@@ -1587,6 +1618,7 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Brother: <<npc_rel['A34']>></td><td><a hr...
   scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg']}><td>Brother: ${((s as any).npc_rel ?? 0)?.['A34']}</td><td><a href="exec:gs 'npc_relationship', 'set', 'A34', 0 & gt 'intro_character_custom', 'modrel_fam'">zero</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', -10 & gt 'intro_character_custom', 'modrel_fam'">minus 10</a></td><td bgcolor=#ff9999><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', -5 & gt 'intro_character_custom', 'modrel_fam'">minus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', 5 & gt 'intro_character_custom', 'modrel_fam'">plus 5</a></td><td bgcolor=#99ff99><a href="exec:gs 'npc_relationship', 'modify_exact', 'A34', 10 & gt 'intro_character_custom', 'modrel_fam'">plus 10</a></td><td><a href="exec:gs 'npc_relationship', 'set', 'A34', 100 & gt 'intro_character_custom', 'modrel_fam'">100</a></td>`);
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1601,6 +1633,7 @@ function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 100;
   }
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$npc_firstname[''<<$ARGS[1]>>'']>> <<$...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1623,6 +1656,7 @@ function enterModrelPop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td>Set relationship level for all girls in ...
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1646,6 +1680,7 @@ function enterModrelAth(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td>Set relationship level for all girls in ...
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1667,6 +1702,7 @@ function enterModrelNer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td>Set relationship level for all girls in ...
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1694,6 +1730,7 @@ function enterModrelGop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td>Set relationship level for all girls in ...
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1708,6 +1745,7 @@ function enterModrelOut(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td>Set relationship level for all boys in t...
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1733,6 +1771,7 @@ function enterModrelTea(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td>Set relationship level for all women in ...
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1746,6 +1785,7 @@ function enterModrelOth(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
   // TODO-QSP: $table_display
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['intro_character_custom', 'modrel'] },
   ]);
@@ -1762,6 +1802,7 @@ function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'pol_grup_set_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

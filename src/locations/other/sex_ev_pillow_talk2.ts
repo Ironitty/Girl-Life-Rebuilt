@@ -17,6 +17,7 @@ function enterSmallTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['sleepover'] === 1) {
     qspCall(s, 'sex_ev_talk', 'morning_talk');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_pillow_talk', 'topics');
@@ -81,12 +82,14 @@ function enterWeatherTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGeneralSexTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk2', 'fav_body_part');
   qspCall(s, 'sex_ev_pillow_talk2', 'favorite_position');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -367,6 +370,7 @@ function enterFavBodyPart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -532,11 +536,13 @@ function enterFavoritePosition(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRelationshipTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk2', 'dont_hookup');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -586,6 +592,7 @@ function enterDontHookup(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -670,6 +677,7 @@ function enterDatingQuestion(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -734,6 +742,377 @@ function enterTakeAShower(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMadeMeLate1(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).gschoolVars ?? 0)?.['absence_count'] > 0  &&  ((s as any).npc_school_absences ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).gschoolVars ?? 0)?.['absence_count']  &&  ((s as any).npc_school_absences ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] > 1) {
+    scene.actions([
+      { label: 'Made me late for school again', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Annoyed', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    if (((s as any).npc_last_sex ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)) {
+      // TODO-QSP: dynamic text: "You made me late for school this morning," you grumble, eyeballing <<$npcdesc>>...
+      scene.text(`"You made me late for school this morning," you grumble, eyeballing ${((s as any).npcdesc ?? 0)}. "Again."`);
+    } else {
+      // TODO-QSP: dynamic text: "You made me late for school the last time I came over," you grumble, eyeballing...
+      scene.text(`"You made me late for school the last time I came over," you grumble, eyeballing ${((s as any).npcdesc ?? 0)}.`);
+    }
+    qspCall(s, 'sex_ev_pillow_talk2', 'made_me_late2');
+  } },
+      { label: 'Not mad', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).gschoolVars ?? 0)?.['absence_count'] > 0  &&  ((s as any).npc_fuck_times ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+      scene.actions([
+        { label: 'Made me late for school', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'Annoyed', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    if (((s as any).npc_last_sex ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).daystart ?? 0)) {
+      // TODO-QSP: dynamic text: "You made me late for school this morning," you grumble, eyeballing <<$npcdesc>>...
+      scene.text(`"You made me late for school this morning," you grumble, eyeballing ${((s as any).npcdesc ?? 0)}.`);
+    } else {
+      // TODO-QSP: dynamic text: "You made me late for school the last time I came over," you grumble, eyeballing...
+      scene.text(`"You made me late for school the last time I came over," you grumble, eyeballing ${((s as any).npcdesc ?? 0)}.`);
+    }
+    qspCall(s, 'sex_ev_pillow_talk2', 'made_me_late2');
+  } },
+      { label: 'Not mad', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+  } },
+    ]);
+  } },
+      ]);
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterMadeMeLate2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPlansLater(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['plans_later_talk'] === 0  &&  ((s as any).sex_ev ?? 0)?.['what_do_today'] === 0) {
+    if (((s as any).hour ?? 0) < 14  &&  ((s as any).hour ?? 0) >= 5) {
+      scene.actions([
+        { label: 'What\'re you up to later?', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['plans_later_talk'] = 1;
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    scene.text('"Got any plans for the rest day?" you ask.');
+    if (((s as any).sex_ev ?? 0)?.['unique_npc'] === 1) {
+      scene.text('"Not really," he shrugs. "It\'s my day off so I\'m just chilling. What about you?"');
+      qspCall(s, 'sex_ev_after', 'after_sex2');
+    } else {
+      if (((s as any).npc_day_off ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).week ?? 0)) {
+        scene.text('"Not really," he shrugs. "It\'s my day off so I\'m just chilling. What about you?"');
+        qspCall(s, 'sex_ev_pillow_talk2', 'pc_plans_later');
+      } else {
+        if (((s as any).npc_end_free_time ?? 0)?.[String((s as any).npcID ?? 0)] >= ((s as any).hour ?? 0)  &&  ((s as any).hour ?? 0) > 0) {
+          scene.text('"I have to go to work after this," he says, checking the time. "Shit, I\'m gonna be late. I gotta get going now."');
+          // TODO-QSP: dynamic text: <<$npcdesc>> hauls himself out of bed and you guess you should do the same.
+          scene.text(`${((s as any).npcdesc ?? 0)} hauls himself out of bed and you guess you should do the same.`);
+          ((s as any).sex_ev ?? {})['npc_late'] = 1;
+          qspCall(s, 'sex_ev_after', 'after_sex2');
+        } else {
+          scene.text('"I have to go to work after this," he says, checking the time. "What about you?"');
+          qspCall(s, 'sex_ev_pillow_talk2', 'pc_plans_later');
+        }
+      }
+    }
+  } },
+      ]);
+    } else {
+      if (((s as any).hour ?? 0) >= 20) {
+        scene.actions([
+          { label: 'What\'d you do today?', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['what_do_today'] = 1;
+    qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+    scene.text('"So, what\'d you get up to today?" you ask.');
+    qspCall(s, 'sex_ev_pillow_talk2', 'day_events');
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Doing anything else today?', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['what_do_today'] = 1;
+    qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+    // TODO-QSP: dynamic text: "So, what else have you done today? Besides me I mean," you smirk at <<$npcdesc>...
+    scene.text(`"So, what else have you done today? Besides me I mean," you smirk at ${((s as any).npcdesc ?? 0)}.`);
+    qspCall(s, 'sex_ev_pillow_talk2', 'day_events');
+  } },
+        ]);
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPcPlansLater(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 8) {
+    scene.actions([
+      { label: 'School', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['school_after'] = 1;
+    scene.text('"I have class today," you reply.');
+    qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
+    scene.actions([
+      { label: 'Speaking of which...', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['late_for_school'] = 1;
+    ((s as any).sex_ev ?? {})['sex_over'] = 1;
+    ((s as any).sex_ev ?? {})['cock_inserted'] = 0;
+    scene.img('images/shared/sex/after/check_phone1.mp4');
+    scene.text('Speaking of class...');
+    scene.text('You reach over to the bedside table and grab your phone to check the time.');
+    qspCall(s, 'shortgs', 'calendar_display');
+    qspCall(s, 'sex_ev_pillow_talk2', 'talk_late_for_school2');
+  } },
+    ]);
+  } },
+    ]);
+  } else {
+    if (((s as any).lernHome ?? 0) > 0) {
+      scene.actions([
+        { label: 'Do my homework', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['homework_after'] = 1;
+    scene.text('"I still need to do my homework, so probably that."');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+      ]);
+    }
+  }
+  if ((((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A23'] === 0  &&  ((s as any).starlets_on ?? 0) === 1)  ||  ((s as any).gsAboDance ?? 0) > 0  ||  (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] !== 0)) {
+    scene.actions([
+      { label: 'Dance practice', handler: (st: GameState) => {
+    if (((s as any).hour ?? 0) < 15) {
+      scene.text('"I have dance practice later," you reply.');
+    } else {
+      scene.text('"I had dance practice earlier," you reply.');
+    }
+    qspCall(s, 'sex_ev_pillow_talk2', 'dance_talk');
+  } },
+    ]);
+  }
+  if (((s as any).hour ?? 0) > 16) {
+    if (((s as any).region ?? 0) === 'pav'  &&  (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6)) {
+      scene.actions([
+        { label: 'Disco', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['disco_after'] = 1;
+    scene.text('"Thinking about going to the disco later," you reply.');
+    qspCall(s, 'sex_ev_pillow_talk2', 'disco_club_dancing');
+  } },
+        { label: 'Go clubbing', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['club_after'] = 1;
+    scene.text('"Thinking about going clubbing later," you reply.');
+    qspCall(s, 'sex_ev_pillow_talk2', 'disco_club_dancing');
+    qspCall(s, 'sex_ev_pillow_talk2', 'cum_drip_tease');
+  } },
+      ]);
+    } else {
+      if (((s as any).region ?? 0) !== 'pav') {
+        scene.actions([
+          { label: 'Go clubbing', handler: (st: GameState) => {
+    ((s as any).sex_ev ?? {})['club_after'] = 1;
+    scene.text('"Thinking about going clubbing later," you reply.');
+    qspCall(s, 'sex_ev_pillow_talk2', 'disco_club_dancing');
+    qspCall(s, 'sex_ev_pillow_talk2', 'club_wasted');
+    qspCall(s, 'sex_ev_pillow_talk2', 'cum_drip_tease');
+  } },
+        ]);
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'See a movie', handler: (st: GameState) => {
+    scene.text('"Thinking about going to see a movie later."');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    { label: 'Go to the library', handler: (st: GameState) => {
+    scene.actions([
+      { label: 'To study', handler: (st: GameState) => {
+    scene.text('"I was planning on doing some studying at the library later."');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+      { label: 'To read', handler: (st: GameState) => {
+    scene.text('"Wanted to go to the library, see if I can find any new books to borrow."');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDiscoClubDancing(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Wanna dance', handler: (st: GameState) => {
+    qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+    if (((s as any).sex_ev ?? 0)?.['disco_after'] === 1) {
+      scene.text('"Thinking about going to the disco later," you reply. "I feel like dancing tonight."');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['club_after'] === 1) {
+        scene.text('"Thinking about going clubbing later," you reply. "I feel like dancing tonight."');
+      }
+    }
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+  ]);
+  scene.build();
+}
+
+function enterDiscoClubHookup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Random hookup', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    if (((s as any).sex_ev ?? 0)?.['disco_after'] === 1) {
+      scene.text('"Thinking about going to the disco later," you reply. "I feel like hooking up with a stranger tonight."');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['club_after'] === 1) {
+        scene.text('"Thinking about going clubbing later," you reply. "I feel like hooking up with a stranger tonight."');
+      }
+    }
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+  ]);
+  scene.build();
+}
+
+function enterClubWasted(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sex_ev ?? 0)?.['club_after'] === 1) {
+    scene.actions([
+      { label: 'Wanna get wasted', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    scene.text('"Thinking about going clubbing later," you reply. "I kinda want to get wasted tonight."');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCumDripTease(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
+    scene.actions([
+      { label: 'Show off <<$npcdesc>>\'s cum', handler: (st: GameState) => {
+    scene.img('images/shared/sex/after/pillow_talk1.jpg');
+    if (((s as any).sex_ev ?? 0)?.['disco_after'] === 1) {
+      scene.text('"Thinking about going to the disco later," you reply. "I want to dance with your cum running down my thighs."');
+    } else {
+      if (((s as any).sex_ev ?? 0)?.['club_after'] === 1) {
+        scene.text('"Thinking about going clubbing later," you reply. "I want to dance with your cum running down my thighs."');
+      }
+    }
+    // TODO-QSP: dynamic text: You give <<$npcdesc>> a mischievous smirk, rubbing your legs together where his ...
+    scene.text(`You give ${((s as any).npcdesc ?? 0)} a mischievous smirk, rubbing your legs together where his cum still leaks from your snatch.`);
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterDayEvents(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_work_end ?? 0)?.[String((s as any).npcID ?? 0)] < ((s as any).hour ?? 0)  &&  ((s as any).npc_day_off ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).week ?? 0)) {
+    // TODO-QSP: dynamic text: "Just work," <<$npcdesc>> shrugs turning to look at you. "Getting together with ...
+    scene.text(`"Just work," ${((s as any).npcdesc ?? 0)} shrugs turning to look at you. "Getting together with you was my fun time today. What about you?"`);
+    qspCall(s, 'sex_ev_pillow_talk2', 'pc_day_events');
+    qspCall(s, 'sex_ev_pillow_talk2', 'pc_plans_later');
+  } else {
+    if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'cheater'  ||  ((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'open')  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+      // TODO-QSP: dynamic text: "Went on a date with my girlfriend," <<$npcdesc>> responds casually.
+      scene.text(`"Went on a date with my girlfriend," ${((s as any).npcdesc ?? 0)} responds casually.`);
+      scene.actions([
+        { label: 'Uncomfortable', handler: (st: GameState) => {
+    scene.text('"Oh. I see..." you murmur uncomfortably. You leave it at that, unsure of what else to say.');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+        { label: 'How was it?', handler: (st: GameState) => {
+    scene.text('"Oh, that\'s cool," you reply pleasantly. "How was it? Your date?"');
+    if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] !== 'serious') {
+      scene.text('"It was okay." He turns to grin at you. "This was way more fun."');
+    } else {
+      if ((Math.floor(Math.random() * 3) + 1) === 1  &&  ((s as any).npc_car ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        scene.text('"It was nice. I took her to a barbecue joint down the way. She gave me a blowjob in the car on the drive back," he grins. " What about you?"');
+      } else {
+        if ((Math.floor(Math.random() * 2) + 1) === 1) {
+          scene.text('"We saw a movie together. It was nice. What about you?"');
+        } else {
+          scene.text('"Went out to a restaurant. It was a good time. What about you?"');
+        }
+      }
+    }
+    qspCall(s, 'sex_ev_pillow_talk2', 'pc_day_events');
+  } },
+      ]);
+    } else {
+      if (((s as any).npc_gymrat ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+        scene.text('"Had a good workout at the gym. Had an even better one here in my bed," he grins back at you. "What about you?"');
+      } else {
+        if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] === 'gaming') {
+          scene.text('"Played video games at home. I\'ve been really into this new game that came out recently. What about you?"');
+        } else {
+          scene.text('"Nothing much. It\'s my day off so I just sort of hung out and relaxed. You\'re the only thing I\'ve done today," he grins back. "What about you?"');
+        }
+      }
+      qspCall(s, 'sex_ev_pillow_talk2', 'pc_day_events');
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPcDayEvents(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6) {
+    scene.actions([
+      { label: 'School', handler: (st: GameState) => {
+    scene.text('"I spent most of the day in class," you shrug. "It\'s school. It\'s whatever."');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    ]);
+  }
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).lernHome ?? 0) === 0  &&  (!((s as any).kanikuli ?? 0))) {
+    scene.actions([
+      { label: 'Homework', handler: (st: GameState) => {
+    scene.text('"Just did my homework," you shrug. "Got the boring stuff out of the way so I could enjoy my fun without worry."');
+    // TODO-QSP: dynamic text: You give <<$npcdesc>> an affectionate smile.
+    scene.text(`You give ${((s as any).npcdesc ?? 0)} an affectionate smile.`);
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    ]);
+  }
+  if ((((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A23'] === 0  &&  ((s as any).starlets_on ?? 0) === 1  &&  ((s as any).hour ?? 0) < 15)  ||  (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] !== 0)) {
+    scene.actions([
+      { label: 'Dance practice', handler: (st: GameState) => {
+    scene.text('"I had dance practice today," you reply.');
+    qspCall(s, 'sex_ev_pillow_talk2', 'dance_talk');
+  } },
+    ]);
+  } else {
+    if (((s as any).stat ?? 0)?.['last_dance_class'] === ((s as any).daystart ?? 0)  ||  (((s as any).stat ?? 0)?.['last_dance_class'] === ((s as any).daystart ?? 0) - 1  &&  ((s as any).hour ?? 0) < 5  &&  ((s as any).sex_ev ?? 0)?.['sleepover'] !== 1)) {
+      scene.actions([
+        { label: 'Dance class', handler: (st: GameState) => {
+    scene.text('"I had dance class today," you reply.');
+    qspCall(s, 'sex_ev_pillow_talk2', 'dance_talk');
+  } },
+      ]);
+    }
+  }
+  if (((s as any).stat ?? 0)?.['last_disco'] === ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Was at the disco', handler: (st: GameState) => {
+    scene.text('Was at the disco');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Nothing', handler: (st: GameState) => {
+    scene.text('"I didn\'t do much. Just you," you smirk back.');
+  }, goto: ['sex_ev_pillow_talk2', 'small_talk'] },
+  ]);
   scene.build();
 }
 
@@ -766,6 +1145,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'take_a_shower':
       enterTakeAShower(s, scene);
+      break;
+    case 'made_me_late1':
+      enterMadeMeLate1(s, scene);
+      break;
+    case 'made_me_late2':
+      enterMadeMeLate2(s, scene);
+      break;
+    case 'plans_later':
+      enterPlansLater(s, scene);
+      break;
+    case 'pc_plans_later':
+      enterPcPlansLater(s, scene);
+      break;
+    case 'disco_club_dancing':
+      enterDiscoClubDancing(s, scene);
+      break;
+    case 'disco_club_hookup':
+      enterDiscoClubHookup(s, scene);
+      break;
+    case 'club_wasted':
+      enterClubWasted(s, scene);
+      break;
+    case 'cum_drip_tease':
+      enterCumDripTease(s, scene);
+      break;
+    case 'day_events':
+      enterDayEvents(s, scene);
+      break;
+    case 'pc_day_events':
+      enterPcDayEvents(s, scene);
       break;
     default:
       enterDefault(s, scene);

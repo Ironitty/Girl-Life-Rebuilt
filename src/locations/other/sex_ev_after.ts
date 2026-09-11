@@ -57,6 +57,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,10 +79,12 @@ function enterQuit2(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_after', 'after_sex2');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStopHere(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask to stop', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['sleep_fuck'] > 0) {
@@ -179,6 +182,7 @@ function enterStopHereMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'sex_ev_pillow_talk2', 'wakeup_sex_late_for_school');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,6 +240,7 @@ function enterStopHere2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -312,6 +317,7 @@ function enterAskContinueOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I can\'t keep going', handler: (st: GameState) => {
     if (((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
@@ -384,6 +390,7 @@ function enterAskContinueOptions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWellContinue(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Well...', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['blue_ball'] = 0;
@@ -430,6 +437,7 @@ function enterWellContinue2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['keep_going_continue'] = (((s as any).sex_ev ?? {})['keep_going_continue'] ?? 0) + (1);
   qspCall(s, 'sex_ev_sex', 'reset');
   qspCall(s, 'sex_ev_sex', 'keep_fucking_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him lead', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_sex', 'he_choose_position');
@@ -554,12 +562,14 @@ function enterTapOut(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStopHurry1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['fuck_enjoyment'] !== 'enjoy') {
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"You good?"', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_sex', 'inserted_img');
@@ -588,6 +598,7 @@ function enterStopHurry2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sex_ev['bed_room']
   }
   qspCall(s, 'sex_ev_after', 'after_sex2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -645,6 +656,7 @@ function enterFuckedOut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ugh', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['end_comment'] = '"Ugh..." you groan with a roll of your eyes.';
@@ -688,6 +700,7 @@ function enterFuckedOut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNoCondomEnd(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'End here?', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -749,6 +762,7 @@ function enterBoySleep(s: GameState, scene: SceneBuilder): void {
     scene.text(`It's been a while since ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} has moved and glancing at him, you see his eyes are closed, his breathing soft and relaxed. He's fallen asleep...`);
   }
   qspCall(s, 'sex_ev_after', 'after_sex2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -843,6 +857,7 @@ function enterHisWipes(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -851,6 +866,7 @@ function enterWipeMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_after', 'wipe_face');
   qspCall(s, 'sex_ev_after', 'wipe_tits');
   qspCall(s, 'sex_ev_after', 'wipe_pussy');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['sex_over'] === 1) {
@@ -876,6 +892,7 @@ function enterWipeHands(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -892,6 +909,7 @@ function enterWipeFace(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -908,6 +926,7 @@ function enterWipeTits(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -924,6 +943,7 @@ function enterWipeStomach(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -940,6 +960,7 @@ function enterWipeButt(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -974,6 +995,7 @@ function enterWipePussy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1018,6 +1040,7 @@ function enterFinishSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1114,10 +1137,12 @@ function enterNoCumEnd(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBadSexEnd(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'End here (bad end)', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/annoyed1.jpg');
@@ -1229,6 +1254,7 @@ function enterBlackOut(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('<i>darkness...</i>');
+  // TODO-QSP: end
   scene.actions([
     { label: '. . .', handler: (st: GameState) => {
     if (((s as any).npc_girlfriend ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 3) + 1) === 3  &&  ((s as any).sex_ev ?? 0)?.['loc'] === 'npc_home') {
@@ -1261,6 +1287,7 @@ function enterBlackOutWake(s: GameState, scene: SceneBuilder): void {
   scene.text(`"You passed out suddenly," ${((s as any).npcdesc ?? 0)} says, looking annoyed. "You need to get dressed and get out. My girlfriend is going to be here any minute."`);
   ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
   qspCall(s, 'sex_ev_after', 'black_out_wake_options');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1275,6 +1302,7 @@ function enterBlackOutWakeOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find your clothes', goto: ['sex_ev_after', 'black_out_wake2'] },
     { label: 'Shower?', handler: (st: GameState) => {
@@ -1319,6 +1347,7 @@ function enterBlackOutWake2(s: GameState, scene: SceneBuilder): void {
   ((s as any).pc_know_npc_has_girlfriend ?? {})[String((s as any).npcID ?? 0)] = 1;
   scene.img('images/shared/sex/after/leave_bed1.mp4');
   scene.text('You stumble out of bed, getting your bearings before getting up to gather your clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/dress_1.mp4');
@@ -1348,6 +1377,7 @@ function enterBlackOutEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The moment you clear the threshold, <<$npcdesc>> slams it behind you, leaving yo...
     scene.text(`The moment you clear the threshold, ${((s as any).npcdesc ?? 0)} slams it behind you, leaving you alone in the dark.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
   ]);
@@ -1490,6 +1520,7 @@ function enterCumClean(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1511,6 +1542,7 @@ function enterFacialMouthClean(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1562,6 +1594,7 @@ function enterAfterSex1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1578,6 +1611,7 @@ function enterPostCigaretteBoy(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_after', 'after_sex2');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1638,12 +1672,14 @@ function enterPullApart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAfterSex2WPicture(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
   qspCall(s, 'sex_ev_after', 'after_sex2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1692,6 +1728,7 @@ function enterLoverRoomDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

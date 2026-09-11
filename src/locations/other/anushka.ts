@@ -46,6 +46,7 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
@@ -277,6 +278,7 @@ function enterHerTurn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No fucking', handler: (st: GameState) => {
     scene.text('<center><b>Detention</b></center>');
@@ -337,6 +339,7 @@ function enterWedgieFight(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re not about to let go first, because you know Anushka well enough to know she has a twisted sense of humor. "No, you let go first then I will!"');
   scene.text('"Yeah, right! Like I\'ll fall for that!" she replies as the two of you wrestle around, still pulling on each other\'s panties before she suddenly switches tactics. Instead of yanking your panties up, she starts trying to yank your clothes off. You panic for a moment and let go of her to hold onto your own clothes before she gets them off you, but she still manages to show half your ass off to everyone that is watching. Now you know you\'re in a losing position. If you let go of your clothes, she\'ll pull them off, but if all you do is hold onto them, then you can\'t do anything to her in response. Before you can figure out a different plan of attack, the teacher walks in.');
   scene.text('"What are the two of you doing?!" he asks as he holds up his hand. "Actually, I don\'t care, because both of you will come with me. The rest of you behave until I get back." He then grabs both you and Anushka by the arm and drags you both out of the library to the principal\'s office.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'In trouble', handler: (st: GameState) => {
     scene.text('<center><b>Principal\'s Office</b></center>');
@@ -413,6 +416,7 @@ function enterTemptation(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Detention</b></center>');
   scene.img('images/locations/pavlovsk/school/detention/detflash.mp4');
   scene.text('As you\'re sitting at a table, bored out of your mind and waiting for detention to end, you look around and notice that Anushka has snuck off into the book stacks. You can just barely see her between the books and the row above. Once she catches you looking, she smiles, pulls up her shirt and flashes her breasts at you. This is quickly followed by her motioning you over.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Can\'t risk it', handler: (st: GameState) => {
     scene.text('<center><b>Detention</b></center>');
@@ -495,6 +499,7 @@ function enterNaked(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Detention</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/getnaked2.jpg');
   scene.text('As you start stripping off the rest of your clothes, she steps out of her shorts and panties. "That\'s the spirit! I knew you were a fun girl." Once the two of you are both naked, she gathers up your clothes and stuffs them behind some books on the bottom shelf of one of the bookcases. She gives your naked body a quick look over before heading towards the library\'s side door. "Come on, we have to go out this way."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Into the halls', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flash', 3, 'exhibitionism');
@@ -978,6 +983,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -995,6 +1001,7 @@ function enterTellAboutGenericBoyfreind(s: GameState, scene: SceneBuilder): void
   scene.text('"Who?" She asks as she cocks her head slightly.');
   scene.text('You shake your head slightly. "You\'ve never met him. I just met him."');
   scene.text('She smiles. "Just some guy you met, huh?" You laugh and start telling her about him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', goto: ['anushka', 'chatwhilewaiting'] },
   ]);
@@ -1008,6 +1015,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
   scene.text('She gives you a somewhat skeptical look before shrugging. "Well, best of luck with that."');
   scene.text('You\'re not sure what more to say on the topic.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', goto: ['anushka', 'chatwhilewaiting'] },
   ]);
@@ -1017,6 +1025,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
 function enterMeetAfterSchool(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/walk_homeg1.jpg');
   scene.text('You find Anushka waiting for you outside the school. "You ready?" she asks, and you nod your head. The two of you walk back to the apartment complex and to her building. You go up to the fourth floor where she leads you into her family\'s apartment and takes you into the living room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['anushapt', 'firstvisit'] },
   ]);

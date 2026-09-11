@@ -122,6 +122,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Help out in the kitchen', goto: ['lakecafe', 'Kitchen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the cafe', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -514,6 +515,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -559,6 +561,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish work', goto: ['lakecafe', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -653,6 +656,7 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave them alone', goto: ['lakecafe', 'main'] },
     { label: 'Ask to borrow money', handler: (st: GameState) => {

@@ -26,6 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10, 'group');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

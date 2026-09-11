@@ -32,6 +32,7 @@ function enterDateRate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,6 +72,7 @@ function enterDateMood(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +86,7 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'lover', 'remove', ((s as any).npcID ?? 0));
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['date_ev', 'exit'] },
   ]);
@@ -93,6 +96,7 @@ function enterBreakUp(s: GameState, scene: SceneBuilder): void {
 function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_fuckbuddy', ((s as any).npcID ?? 0));
   ((s as any).npc_no_booty_call ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -105,11 +109,13 @@ function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).date_ev ?? {})['sugar_daddy_paid'] = 1;
   ((s as any).date_ev ?? {})['prostitution_paid'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLoverAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,6 +123,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';" + $ARGS[1] + ";'))) + 1 <= 0) {
     ((s as any).date_ev ?? {})['first_time'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,22 +135,26 @@ function enterDateTracker(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $npc_date_locs[$npcID] += $ARGS[1] + ";"
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev ?? {})['cont_loc'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).date_ev ?? {})['cont_arg'] = ((s as any).locArgs?.[2] ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFlashStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_date_flash ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_date_flash ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
   qspCall(s, 'arousal_oneline', 'flash', 1);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang out at his place?', handler: (st: GameState) => {
     scene.text('"Want to just go back to your place and hang?"');

@@ -7,6 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSelfie(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -21,10 +22,12 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     ((s as any).selfie_last_chosen ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
     // TODO-QSP: gt $temp_ssh_ret_loc, $temp_ssh_ret_arg, 'images/pc/activities/phone/selfies/<<$ARGS[1]>>/<<$ARGS[2]...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSelfie2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -33,14 +36,17 @@ function enterShow2(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: view '<$ARGS[1]>><<ARGS[2]>>.jpg'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSMSSetSelfie(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSMSGetImloc(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

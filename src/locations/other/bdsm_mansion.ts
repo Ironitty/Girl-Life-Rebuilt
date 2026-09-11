@@ -32,6 +32,7 @@ function enterTaxi(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +81,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'taxi', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the elite settlement', goto: ['city_suburbs', 'start'] },
   ]);
@@ -110,6 +112,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well," the woman puts her hands together and looks at you. Due to the nature of this club I have to carry out a visual inspection to confirm physical suitability.');
   scene.text('"I do not know," you shrug. "What does that mean?"');
   scene.text('"Simple you remove all your clothing and I have a good look, its a perk of the job. Besides we record this interview and it helps discourage talk about the club reaching people it should not."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hesitate', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -163,6 +166,7 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/suburb/bdsm_club/1_1.jpg');
     scene.text('You enter the club and Mistress Elektra is sitting at her desk overseeing admissions.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to dressing room', goto: ['bdsm_dressing', ''] },
     { label: 'Pay to extend your membership and return to the dressing room [+$func(\'money\', \'get_cost_string\', 10000)]', handler: (st: GameState) => {
@@ -189,6 +193,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/suburb/bdsm_club/1_1.jpg');
     scene.text('You go to the reception, Mistress Elektra is sitting at her desk looking a little bored.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Foyer', goto: ['bdsm_hallway', 'foyer'] },
     { label: 'Go to the garage', goto: ['bdsm_garden', 'garage'] },

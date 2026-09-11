@@ -13,6 +13,7 @@ function enterNudeDebutMemory(s: GameState, scene: SceneBuilder): void {
   scene.text('Hello, if you are seeing this page it is either because you were already doing nude modelling on a save before this content was added or the game has bugged out for some reason.');
   scene.text('The following scene is a memory of your full frontal debut as a model and the creator encourages you to roleplay it as your character would have been at the time of their first nude shoot.');
   scene.text('Please enjoy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['foto_nude_debut', 'nude_debut_pre'] },
   ]);
@@ -24,6 +25,7 @@ function enterNudeDebutPre(s: GameState, scene: SceneBuilder): void {
   scene.text('"You want to do a nude shoot? This would be your first one, won\'t it?" the manager asks.');
   scene.text('"Yes," you nod back.');
   qspCall(s, 'foto_nude_debut', 'nude_debut_shave_start');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,10 +93,12 @@ function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
     ((s as any).modelfoto ?? {})['nude_shave_no'] = 1;
@@ -136,6 +140,7 @@ function enterNudeDebutShaving(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_pubes = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['foto_nude_debut', 'nude_debut1'] },
   ]);
@@ -182,16 +187,19 @@ function enterNudeDebut1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'foto_nude_debut', 'nude_debut2');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNudeDebut2Desc(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('It\'s decided that since it\'s your debut, it\'s going to be a full frontal shoot against a plain backdrop, showing you head to toe with your pussy exposed with nothing to distract from your beauty.');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'foto_nude_debut', 'nude_debut2_desc');
@@ -282,6 +290,7 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
 
 function enterNudeDebut3(s: GameState, scene: SceneBuilder): void {
   scene.text('Finally, the photographer turns to you and says, "It\'s time."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Step on set', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
@@ -328,6 +337,7 @@ function enterSickDebut(s: GameState, scene: SceneBuilder): void {
   scene.text('A wave of dizziness passes through your head. Your legs feel like jelly, barely keeping you upright. The lights flash again and you suddenly want to throw up.');
   scene.text('Time passes in a miserable blur, barely aware of your surroundings while taking stiff poses, trying with all your might to keep from ruining the shoot by vomiting all over the set. By the time the photographer calls an end to the shoot, you\'re on the verge of tears, having wanted it to be over an hour ago.');
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +372,7 @@ function enterArousedDebut(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Time passes in a furious blur, barely aware of your surroundings while taking poses, trying with all your might not to openly pant in heat. Several pauses have to be taken just to wipe you down, the overflowing arousal of your dripping snatch won\'t stop running down your thighs. The intervals between each wipe gets shorter after each one until the shoot is called to an end.');
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -391,6 +402,7 @@ function enterHappyDebut(s: GameState, scene: SceneBuilder): void {
   scene.text('Joy overflows from your soul with every new flash of the lights and click of the shutters.');
   scene.text('Time passes in a blur, taking casual poses with such enthusiasm that the photographer has to tell you to slow down. Something about this is fills you with glee and it\'s all you can do not to break into laughter. By the time the photographer calls an end to the shoot, you feel giddy.');
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -422,6 +434,7 @@ function enterCalmDebut(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Time passes in a blur and before you know it, the shoot is already over.');
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -451,6 +464,7 @@ function enterNumbDebut(s: GameState, scene: SceneBuilder): void {
   scene.text('Numbness surrounds you. The air around your skin feels fuzzy. You move through different poses as instructed, but your body feels stiff and every movement awkward.');
   scene.text('It feels like an age passes before the photographer calls an end to the shoot.');
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -485,6 +499,7 @@ function enterDirtyDebut(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,11 +529,13 @@ function enterHollowDebut(s: GameState, scene: SceneBuilder): void {
   scene.text('Halfway through the shoot, you blink in surprise when a single tear suddenly rolls down your cheek, pausing to carefully wipe it away without smudging your makeup. You stare at the droplet of water on the end of your finger in hollow confusion, wondering what just happened.');
   scene.text('The empty feeling never goes away. By the end of the shoot, it only feels deeper.');
   qspCall(s, 'foto_nude_debut', 'debut_after1');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDebutAfter1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Want to see how it turned out?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/modelbts2.mp4');
@@ -553,6 +570,7 @@ function enterDebutAfter2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'foto_nude_debut', 'debut_after_reaction');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -842,6 +860,7 @@ function enterDebutAfterReaction(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['foto_nude_debut', 'debut_ending'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -859,6 +878,7 @@ function enterDebutEnding(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: They hand you an envelope containing <<$func('money', 'string_profit', modelpayf...
   scene.text(`They hand you an envelope containing ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))}, double the going rate for a standard nude shoot, as promised.`);
   scene.text('And with that, your nude debut shoot is concluded.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['foto', 'end'] },
   ]);

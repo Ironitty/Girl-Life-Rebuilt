@@ -32,6 +32,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`With ${((s as any).npcdesc ?? 0)} snoring to your side, you find yourself suddenly alone with your thoughts...`);
   }
   qspCall(s, 'sex_ev_reflection', 'top_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -73,6 +74,7 @@ function enterTopMenu(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_reflection', 'creampie_menu'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop reflecting', goto: ['sex_ev_after', 'relax_together'] },
   ]);
@@ -94,10 +96,12 @@ function enterWhatDidIDo(s: GameState, scene: SceneBuilder): void {
   scene.text('Did you lead him on? Give him the wrong idea? Should you just have spoken up more?');
   scene.text('<i>What did I do...?</i> you think again.');
   scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'You don\'t know how to feel', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
@@ -166,10 +170,12 @@ function enterGladDeflowered(s: GameState, scene: SceneBuilder): void {
   scene.text(`As reluctant as you were at the start, you're actually happy that ${((s as any).npcdesc ?? 0)} pushed you into sleeping with him. How it happened doesn't matter as much as <i>that</i> it happened. You're not a virgin anymore and that's news!`);
   scene.text('The full meaning of that didn\'t hit you until now and fills you with an odd sense of giddiness.');
   scene.actions([{ label: 'Continue', goto: ['sex_ev_reflection', 'top_menu'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Happy with it', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['thought_mood'] = 'happy';
@@ -231,6 +237,7 @@ function enterCatchingFeelings(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you lay there next to ${((s as any).npcdesc ?? 0)} looking at him, his cum dripping from your pussy, your heart flutters inside your chest. It makes you realize with a start-`);
   }
   scene.text('<i>I think I\'m falling for him...</i>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -250,6 +257,7 @@ function enterCreampieMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_reflection', 'top_menu'

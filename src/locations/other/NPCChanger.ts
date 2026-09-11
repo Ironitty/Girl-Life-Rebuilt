@@ -14,6 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).n = 1;
   (s as any).o = 10;
   qspCall(s, 'NPCChanger', 'NPCLoop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -43,6 +44,7 @@ function enterNPCLoop(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''back50'' ">Back 50</a> '
   // TODO-QSP: *p '<a href="exec:gt ''NPCChanger'', ''selection'' ">Select an NPC to modify</a>'
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go Back', goto: ['cheatmenu_din', 'npcs'] },
   ]);
@@ -53,6 +55,7 @@ function enterNext10(s: GameState, scene: SceneBuilder): void {
   (s as any).o = ((s as any).o ?? 0) + (10);
   (s as any).n = (((s as any).o ?? 0) - 10);
   qspCall(s, 'NPCChanger', 'NPCLoop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +63,7 @@ function enterNext50(s: GameState, scene: SceneBuilder): void {
   (s as any).o = ((s as any).o ?? 0) + (50);
   (s as any).n = (((s as any).o ?? 0) - 10);
   qspCall(s, 'NPCChanger', 'NPCLoop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -70,6 +74,7 @@ function enterBack10(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).n = (((s as any).o ?? 0) - 10);
   qspCall(s, 'NPCChanger', 'NPCLoop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +85,7 @@ function enterBack50(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).n = (((s as any).o ?? 0) - 10);
   qspCall(s, 'NPCChanger', 'NPCLoop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +105,7 @@ function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: *p ' <<$npc_lastname[''A<<n>>'']>>'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,6 +117,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -134,6 +142,7 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('NPC gender: Female');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
     (s as any).n = (((s as any).o ?? 0) - 10);
@@ -145,30 +154,35 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
 function enterEditf(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_firstname ?? {})['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEditn(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_nickname ?? {})['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEditl(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_lastname ?? {})['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEditu(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_usedname ?? {})['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEditd(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_dob ?? {})['A' + String((s as any).s || '') + ''] = 0;
   scene.actions([{ label: 'Continue', goto: ['NPCChanger', 'selection2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

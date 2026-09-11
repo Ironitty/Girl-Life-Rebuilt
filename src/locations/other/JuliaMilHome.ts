@@ -43,6 +43,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
   ]);
@@ -58,6 +59,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/juliahome/hallway.jpg');
   scene.text('As you enter the Milov\'s hallway, you notice it very nice, well decorated and very clean. Everything in it\'s place.');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave Julia\'s apartment</b>', goto: ['JuliaMilHome', 'leave_apartment'] },
     { label: 'Julia\'s Room', goto: ['JuliaMilHome', 'julia_room'] },
@@ -75,6 +77,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Living room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/juliahome/living_room.jpg');
   scene.text('Like the rest of the house the living room is spotless, with plenty of decorations around, arranged just perfectly.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['JuliaMilHome', 'hallway'] },
   ]);
@@ -92,6 +95,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', 'driwater');
   qspCall(s, 'kit_din', 'dritea');
   qspCall(s, 'kit_din', 'fill_bottle');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['JuliaMilHome', 'hallway'] },
     { label: 'Look in the fridge', goto: ['JuliaMilHome', 'fridge'] },
@@ -261,6 +265,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['JuliaMilHome', 'kitchen'] },
   ]);
@@ -282,6 +287,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['JuliaMilHome', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -497,6 +503,7 @@ function enterJuliaRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -646,6 +653,7 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -654,6 +662,7 @@ function enterJuliaGo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big12.jpg');
   // TODO-QSP: dynamic text: As you approach Julia after school, she smiles at you and asks, "Hi <<$pcs_nickn...
   scene.text(`As you approach Julia after school, she smiles at you and asks, "Hi ${((s as any).pcs_nickname ?? 0)}! Want to go to my place? We can do our homework together, and maybe grab a bite to eat?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Julia', handler: (st: GameState) => {
     if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 0) {
@@ -674,6 +683,7 @@ function enterJuliaGo(s: GameState, scene: SceneBuilder): void {
 
 function enterLeaveApartment(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_3'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

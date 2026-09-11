@@ -129,6 +129,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +138,7 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
   // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, but time has come to get to work darling."
   scene.text(`"Good job ${((s as any).pcs_nickname ?? 0)}, but time has come to get to work darling."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Trade', handler: (st: GameState) => {
     (s as any).hour = 18;
@@ -176,6 +178,7 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I see my new, super sexy secretary came." Arthur smiles while eyeing you lustfully.');
   }
   scene.text('You quickly get to work. "We\'ve got the usual paperwork to complete." Arthur instructs you as you begin.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Work', handler: (st: GameState) => {
     (s as any).hour = 17;

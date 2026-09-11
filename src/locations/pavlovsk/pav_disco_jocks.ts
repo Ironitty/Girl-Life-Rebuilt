@@ -168,6 +168,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,6 +188,7 @@ function enterLazarDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_jocks', 'lazar_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -199,6 +201,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big3.jpg');
   scene.text('To your surprise, you see Ivan hanging out with the other jocks, talking to a few of them and smiling. You almost never see him here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -296,6 +299,7 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: gt 'FedorMisc', 'Fedor Chat', 1
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -436,6 +440,7 @@ function enterSvyatoslav(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -455,6 +460,7 @@ function enterSvyatoslavDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_jocks', 'svyatoslav_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -531,6 +537,7 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,6 +547,7 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big150.jpg');
   scene.text('You\'re a little surprised to see Erast hanging out with the cool kids and jocks, standing near one of the tables with his arms crossed. You rarely see him here and you don\'t think he\'s enjoying himself, but he gives polite smiles to people that talk to him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -744,6 +752,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -757,6 +766,7 @@ function enterAlbinaDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('You go out onto the dance floor and start dancing with Albina.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {
@@ -860,6 +870,7 @@ function enterAlbinaWalkhome(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -952,6 +963,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1015,6 +1027,7 @@ function enterChristinaDance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1138,6 +1151,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1154,6 +1168,7 @@ function enterLariskaDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('Dancing with her, you notice several guys hungrily eyeing the two of you. She doesn\'t seem to be paying attention though, and you try not to think about it yourself and let loose a little.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {
@@ -1319,6 +1334,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1335,6 +1351,7 @@ function enterLinaDance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/disco/club.jpg');
   scene.text('You spend some time dancing with Lina. She seems to enjoy dancing, her face lit up in a bright smile, even laughing when one of you tries a risky dance move.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Keep dancing', handler: (st: GameState) => {

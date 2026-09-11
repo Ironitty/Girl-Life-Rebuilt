@@ -47,6 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 1250) = 1, '"exec:gt 'hairsalon', 'b...
   scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 1250) = 1, \'"exec:gt \'hairsalon\', \'braidhair\'"\', \') + \'>Get your hair braided - \' + $func(\'money\', \'string_price\', 1250) + \'</a>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -527,6 +528,7 @@ function enterCuthair(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', goto: ['hairsalon', 'start'] },
   ]);
@@ -592,6 +594,7 @@ function enterStraighthair(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -654,6 +657,7 @@ function enterCurlhair(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1278,6 +1282,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', goto: ['hairsalon', 'start'] },
   ]);
@@ -1294,6 +1299,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
   scene.text('The hairdresser has a bubbly personality, chatting about this and that without pause or much feedback from you, but you don\'t mind as it keeps you distracted while you go through the usual wash and dry routine.');
   scene.text('She flits around your head with her tools, and before you know it, your hair is restored to its earlier luster and color.');
   scene.text('"It\'s been great talking to you. You can pay at the reception." the hairdresser tells you, smiling.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['hairsalon', 'mirror'] },
   ]);
@@ -1303,6 +1309,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
 function enterTouchup2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The receptionist smiles apologetically, "Sorry, but you're going to need a compl...
   scene.text('The receptionist smiles apologetically, "Sorry, but you\'re going to need a completely new dye job to cover that up. We can help you out with it if you want? It\'s only \' + $func(\'money\', \'string_price\', 1000) + \'."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 45;
@@ -1346,6 +1353,7 @@ function enterBraidhair(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('"I\'ll have someone help you out straight away! Just a second while I get someone, feel free to take a seat." the receptionist tells you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sit down', handler: (st: GameState) => {
     scene.text('"Just relax, we\'ll be done in no time.", the hairdresser tells you.');
@@ -1372,6 +1380,7 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`${qspUntranslated(s, "FUNC('face_image')", { location: "hairsalon" })}`);
   scene.text('You take a long look at your new hairstyle in the mirror. You\'re really pleased with the work that the hairdresser did.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['hairsalon', 'start'] },
   ]);
@@ -1453,6 +1462,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

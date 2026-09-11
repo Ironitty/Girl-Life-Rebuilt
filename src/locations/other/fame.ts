@@ -8,6 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterCheckIfOnlyLocal(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'sex'  ||  ((s as any).locArgs?.[1] ?? 0) === 'prostitute'  ||  ((s as any).locArgs?.[1] ?? 0) === 'flash');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -132,6 +133,7 @@ function enterDeg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'calculate', 'teaching');
   qspCall(s, 'fame', 'calculate', 'media');
   qspCall(s, 'fame', 'calculateGroups');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -314,6 +316,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fame', 'calculate', ((s as any).locArgs?.[1] ?? 0));
   }
   qspCall(s, 'fame', 'calculateGroups');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -379,6 +382,7 @@ function enterSetContributions(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).fame ?? {})['village_' + String((s as any).$ARGS[1] || '') + '_contribution'] = ((s as any).fame ?? 0)['village_' + ((s as any).locArgs?.[1] ?? 0) + '_core'] / 100;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -467,6 +471,7 @@ function enterCalculate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)['village_' + ((s as any).locArgs?.[1] ?? 0)] > 1200) {
     ((s as any).fame ?? {})['village_' + String((s as any).$ARGS[1] || '') + ''] = 1200;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -575,11 +580,13 @@ function enterCalculateGroups(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCalculateSlut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'calculateGroups');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -597,6 +604,7 @@ function enterChurchReduction(s: GameState, scene: SceneBuilder): void {
     ((s as any).fame ?? {})['' + String((s as any).$ARGS[1] || '') + '_flash'] = 0;
   }
   qspCall(s, 'fame', 'calculateGroups');
+  // TODO-QSP: end
   scene.build();
 }
 

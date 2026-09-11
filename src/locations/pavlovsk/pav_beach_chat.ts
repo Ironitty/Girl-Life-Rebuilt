@@ -70,16 +70,19 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back', goto: ['pav_lake', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'pav_beach_chat', $listname
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'pav_beach_chat', $listname
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -211,6 +214,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -291,6 +295,7 @@ function enterSvyatoslav(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -324,6 +329,7 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}! Check this out!" Vanya says as he flexes showing off what muscles he has. You just shake your head at him and soon the two of you are having a pleasant conversation.`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -351,6 +357,7 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
       scene.text('You walk over and take a seat on the sand next to him. You start talking to him and he quickly engages in a conversation with you, the two of you talking for some time about a variety of topics.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -363,6 +370,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/christina/beach_chat.jpg');
   scene.text('You walk over to Christina as she lays on the beach sunbathing. Before you can even say a word, she speaks up. "I\'m having a good day, so go away before you ruin it or I\'ll ruin your day." You sigh before turning and walking away. It seems she\'ll never forgive you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -453,6 +461,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -496,6 +505,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
       scene.text('"We\'ll do it later. I have to find Christina right away or else she\'ll get mad." She quickly excuses herself.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -526,6 +536,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       scene.text('She glances around to see if Christina is looking, then talks with you for a few minutes before she suddenly stops and gets up. You notice Christina looking in your direction with an angry look on her face as Lariska heads towards her.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -552,6 +563,7 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
       scene.text('He smiles and engages you in an interesting conversation for a while. The conversation eventually ends and you sit in silence before he gets up and walks over to Ivan.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -605,6 +617,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -674,6 +687,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -759,6 +773,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -873,6 +888,7 @@ function enterKatja(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -914,6 +930,7 @@ function enterBella(s: GameState, scene: SceneBuilder): void {
       scene.text('"You and I?" she looks around. "Is this a prank? Where have you hidden the cameras?" She keeps on looking around. "Don\'t be silly! Run along now, kid." She scoffs you aside.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -976,6 +993,7 @@ function enterLizaveta(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1041,6 +1059,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1056,6 +1075,7 @@ function enterMarcus_KatjaTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Are you asking me if I want to have a threesome with two beautiful girls' + iif...
   scene.text('"Are you asking me if I want to have a threesome with two beautiful girls\' + iif(katjaQW[\'QWstage\'] > 5, \', with one of them even being a virgin?\', \'?\') + \'" he asks with a surprised look on his face. "Of course I\'m up for this!" he exclaims as his face turns into a huge grin.');
   scene.text('"Great," you answer. "I\'ll call you with her address when we are ready. But you have to be discreet, we don\'t want any rumors spread around!" you tell him and he smiles. "Of course, I\'m a gentleman and gentlemen never kiss and tell. I look forward to your call."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1133,6 +1153,7 @@ function enterAndrey(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1168,6 +1189,7 @@ function enterMefodiy(s: GameState, scene: SceneBuilder): void {
       scene.text('Mefodiy has you laughing nonstop the entire time you\'re hanging out with him. You lose track of time, but eventually some of the guys call him over and he excusses himself to go see what they want.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1207,6 +1229,7 @@ function enterVicky(s: GameState, scene: SceneBuilder): void {
       scene.text('It can be hard to follow Vicky as she keeps up a lively conversation, jumping from one topic to another, but you don\'t really mind and find her upbeat attitude intoxicating.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1262,6 +1285,7 @@ function enterStasya(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1379,6 +1403,7 @@ function enterInna(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);
@@ -1434,6 +1459,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to someone else', goto: ['pav_beach_chat', 'beach_hangout'] },
   ]);

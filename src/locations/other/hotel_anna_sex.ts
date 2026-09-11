@@ -23,6 +23,7 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You barely have the time to realize you are now in the middle of a BDSM session.');
   scene.text('"What do we have here? A happy hooker? And tell me slut, why are you smiling? Did your last client pay you that well? Or are you just happy to see your Mistress? You may answer." There is strength in the way Anna delivers these words.');
   scene.text('"Mistress! this slut is happy to see The Mistress!" The woman replies enthusiastically.');
+  // TODO-QSP: end
   scene.actions([
     { label: '…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -148,6 +149,7 @@ function enterLesSex2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"A choice for you ${((s as any).pcs_nickname ?? 0)}, she's got one more orgasm in her before she completely loses her mind. You can do it, or she can." she says as she holds up the vibrator still buzzing and whirring in her hand.`);
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Pass me the baton"', handler: (st: GameState) => {
     ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
@@ -201,6 +203,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
   scene.text('An older man walks in, he looks down at all times and quickly strips off his expensive suit and sits in front of Anna in just his shirt and boxer shorts.');
   // TODO-QSP: dynamic text: "Before the presentation <<$pcs_nickname>>." She continues ignoring the man comp...
   scene.text(`"Before the presentation ${((s as any).pcs_nickname ?? 0)}." She continues ignoring the man completely, "Is there anything you would like to ask? Something you may want to improve or a last minute tip?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: '"Control"', handler: (st: GameState) => {
     ((s as any).AnnaQW ?? {})['switch'] = (((s as any).AnnaQW ?? {})['switch'] ?? 0) + (1);
@@ -287,6 +290,7 @@ function enterSlaveM1(s: GameState, scene: SceneBuilder): void {
   scene.text('With him facing away from both of you she starts to whip his back as you watch on.');
   qspCall(s, 'arousal', 'erotic', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem3b.jpg');
@@ -338,6 +342,7 @@ function enterSlaveM2(s: GameState, scene: SceneBuilder): void {
   scene.text('Anna is not even touching the wall and looks completely stable but such skill comes with experience.');
   qspCall(s, 'arousal', 'erotic', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Prepare', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem4.jpg');
@@ -383,6 +388,7 @@ function enterSlaveM3(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Now clean Mistress ${((s as any).pcs_nickname ?? 0)}'s."`);
   qspCall(s, 'arousal', 'erotic', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have your boots cleaned', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem5a.jpg');
@@ -433,6 +439,7 @@ function enterSlaveF(s: GameState, scene: SceneBuilder): void {
   scene.text('She\'s wearing purple latex panties and a small yellow latex bra. Anna leads you to the bed and tells you to lie down.');
   qspCall(s, 'arousal', 'erotic', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lie on the bed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/female/slavef4a.jpg');
@@ -494,6 +501,7 @@ function enterSlaveF1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Good, but that is the easy test. Now it\'s my turn"');
   qspCall(s, 'arousal', 'BDSM_give', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anna\'s turn', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/female/slavef3c.jpg');
@@ -552,6 +560,7 @@ function enterSlaveF2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Pathetic!" Anna removes her toe abruptly. "Open your mouth, no wider!"');
   qspCall(s, 'arousal', 'erotic', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Foot!', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/female/slavef7a.jpg');
@@ -680,6 +689,7 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +701,7 @@ function enterLibrarian(s: GameState, scene: SceneBuilder): void {
   (s as any).Anna_librarian_brat = 0;
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian0.jpg');
   scene.text('<center><b> "…That\'s the dress… see… you are not naked… "</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: '…What does she wants?…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -725,6 +736,7 @@ function enterLibrarian1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You return to Anna with your pile between your chin and your hands… it's like tr...
     scene.text('You return to Anna with your pile between your chin and your hands… it\'s like trying to walk on a rope between two trees… but you managed to do your task at the end. \' + $func(\'wrap\', \'accent\', \' "…Move them on the desk. Now bring me all you can find about "Adult Babies Roleplay" and "Age Play". " Move.\') + \' Again you move toward the big pile and collect what Anna is looking for…');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'If I run I could finish earlier', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -762,6 +774,7 @@ function enterLibrarian2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian4.jpg');
   scene.text('You go sit on the desk with your gear on; there\'s nothing interesting to do and you have to spend your time. You could follow Anna\'s advice or try to forget for a moment why you are locked and gagged sitting on a desk…');
+  // TODO-QSP: end
   scene.actions([
     { label: '…\'…I didn\'t come here to study!…\'…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -816,6 +829,7 @@ function enterLibrarian3(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'Anna free your hands to let you execute her order.' + $func('wrap', 'accent', ' "Strip to the under...
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run!', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -899,6 +913,7 @@ function enterLibrarian5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat…', handler: (st: GameState) => {
     if (((s as any).Anna_librarian_brat ?? 0) >= 1) {
@@ -1066,6 +1081,7 @@ function enterLibrarianEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1221,6 +1237,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1231,6 +1248,7 @@ function enterAnnaDomSession(s: GameState, scene: SceneBuilder): void {
   (s as any).BDSM_Knowledge = ((s as any).BDSM_Knowledge ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom0.jpg');
   // TODO-QSP: 'You follow Anna to her room, and she quickly change into a "normal" dress… if you exclude that now ...
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ok. Let me see…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1299,6 +1317,7 @@ function enterAnnaDomSession1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '   '
   // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 10 & gt ''hotel_anna_sex'',''Anna_dom_session2''"><img src="image...
   // TODO-QSP: *p '   '
+  // TODO-QSP: end
   scene.actions([
     { label: '…', goto: ['hotel_anna_sex', 'Anna_dom_session2'] },
   ]);
@@ -1371,6 +1390,7 @@ function enterAnnaDomSession2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '   '
   // TODO-QSP: *p '<a href="exec:Anna_tame_maid = 11 & gt ''hotel_anna_sex'',''Anna_dom_session3''"><img src="image...
   // TODO-QSP: *p '   '
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shit! I don\'t remember…', goto: ['hotel_anna_sex', 'Anna_dom_session3'] },
   ]);
@@ -1424,6 +1444,7 @@ function enterAnnaDomSession3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1457,6 +1478,7 @@ function enterAnnaDomSession4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch0.jpg');
   scene.text('<center><b> "Latch!"</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: '…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1534,6 +1556,7 @@ function enterAnnaDomBrat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/brat0.mp4');
   // TODO-QSP: dynamic text: You didn't reach the door that…' + $func('wrap', 'accent', '"Where do you think ...
   scene.text('You didn\'t reach the door that…\' + $func(\'wrap\', \'accent\', \'"Where do you think you are going young lady?"\') + \' Anna free herself before you were able to exit the room.<br>\' + $func(\'wrap\', \'v_neg\', \'"…Ahhh my hair!…"\') + \'<br>\' + $func(\'wrap\', \'accent\', \' "Surrender! You need to learn some manners!"\') + \' Anna drag you back and forth the room pulling your hair… you didn\'t had a good idea…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Haaaah! Anna… Anna… I surrender! I surrender!', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

@@ -8,16 +8,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_start', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTatianaPRE(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'intro_start', 'tg_adult_shared', 3
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWelcomeIntro(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_end', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

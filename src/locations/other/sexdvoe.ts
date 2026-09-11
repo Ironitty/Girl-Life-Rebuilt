@@ -23,6 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   scene.actions([{ label: 'Continue', goto: ['sexdvoe', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +100,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them choose', handler: (st: GameState) => {
     if (((s as any).BlowBan ?? 0) === 1  &&  ((s as any).DoubleBan ?? 0) !== 1) {
@@ -141,6 +143,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/sex/sexdvoe/kiss.jpg');
   scene.text('After some kissing, it is time to move on to the next stage.');
   scene.actions([{ label: 'Continue', goto: ['sexdvoe', 'menu'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -263,6 +266,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sexdvoe', 'end');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,6 +372,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Then <<$npcdesc[0]>> throws you out of the apartment.
     scene.text(`Then ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })} throws you out of the apartment.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).picrand ?? 0) >= 24  &&  ((s as any).picrand ?? 0) <= 26) {

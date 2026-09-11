@@ -33,6 +33,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_park', 'deeper_park'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -622,6 +623,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_park', 'deeper_park'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1009,6 +1011,7 @@ function enterGopnikBeer(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_park', 'deeper_park'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1451,6 +1454,7 @@ function enterNikoBeer(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1492,6 +1496,7 @@ function enterNikoBeerBoys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Niko\'s cock', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1577,6 +1582,7 @@ function enterDrinkingGame(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alyona_time ?? 0) > ((s as any).highest ?? 0)) {
     (s as any).highest = ((s as any).alyona_time ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

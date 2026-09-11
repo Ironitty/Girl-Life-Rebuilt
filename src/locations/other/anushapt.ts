@@ -437,6 +437,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -482,6 +483,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   }, goto: ['anushaptbr', 'brotherroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -500,6 +502,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['anushapt', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -601,6 +604,7 @@ function enterNushshower(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The toilet sits along the far wall. There's also a bathtub with an old plastic s...
   scene.text(`The toilet sits along the far wall. There's also a bathtub with an old plastic shower curtain hanging from a rod above it. Anushka peeks out from around the curtain. When she sees that it's you, she pushes it aside and grabs a towel. "Oh hey ${((s as any).pcs_nickname ?? 0)}, what's up?"`);
   qspCall(s, 'arousal', 'voyeur', 2);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just came over to hangout', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -742,6 +746,7 @@ function enterShowerWait(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'erotic_nudity', 2);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the bed', goto: ['anush_bedroom', 'anushroom'] },
     { label: 'Chat', goto: ['anushkachat', 'chat'] },
@@ -946,6 +951,7 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1327,6 +1333,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['anushapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1371,6 +1378,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       { label: 'Look in the fridge', goto: ['anushapt', 'fridge'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1480,6 +1488,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['anushapt', 'kitchen'] },
   ]);
@@ -1531,6 +1540,7 @@ function enterAnushparents(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1539,6 +1549,7 @@ function enterBand(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/parroom.jpg');
   scene.text('She seems a bit bitchy right now. "How do you feel about Anushka being in a band with only boys?" you ask.');
   scene.text('"Hmmph… I guess it\'s okay. It\'s not like I can stop her from doing it. That little bitch is probably fucking them all anyway, along with all the other boys in the neighborhood."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oh, really?', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/parroom.jpg');
@@ -1612,6 +1623,7 @@ function enterAlbum(s: GameState, scene: SceneBuilder): void {
   scene.text('In a rare occurrence, Valeria almost seems to smile as she picks up the old album and starts to look through the photos.');
   scene.text('"We all looked so happy then…" she says. "It was a whole different world back then. Come and have a look."');
   scene.text('You sit next to her as she flips through the photo album. All of a sudden, you notice something…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Point at picture', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/parroom.jpg');
@@ -1637,6 +1649,7 @@ function enterAlyonaAsk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/parroom.jpg');
   scene.text('You\'re curious and decide to ask Valeria about Anushka\'s friend Alyona. Valeria looks at you as if you\'ve crossed some invisible line and instantly grows hostile towards you.');
   scene.text('"Why are you asking about that lying little cunt?" she says.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Alyona?', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/parroom.jpg');
@@ -1688,6 +1701,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj4.jpg');
   scene.text('Anushka leads you to her apartment, and the two of you talk as you go. It\'s nothing important, just idle small talk to pass the time. Once on the fourth floor of her building, she leads you to apartment 17. It\'s one of the corner apartments. You know from your own building that these are the bigger three bedroom apartments. She unlocks the door with her keys and leads you inside. "Let\'s see if my dad is home," she tells you as she leads you to the living room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).AnushkaLoc = 5;
@@ -1764,6 +1778,7 @@ function enterNushlivroom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the show with her', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1823,6 +1838,7 @@ function enterNushkidstory(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['anushapt', 'hallway'] },
   ]);

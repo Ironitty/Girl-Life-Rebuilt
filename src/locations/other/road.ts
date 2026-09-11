@@ -450,6 +450,7 @@ function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 15, 'prostitution');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 0);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['road', 'autostop_drive'] },
   ]);
@@ -479,6 +480,7 @@ function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 15, 'prostitution');
   qspCall(s, 'cum_call', 'clothes', ((s as any).npcID ?? 0), 0);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['road', 'autostop_drive'] },
   ]);
@@ -528,6 +530,7 @@ function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'prostitution_functions', 'set_highway_prostitute');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the car', goto: ['road', '<<nroad>>'] },
   ]);
@@ -686,6 +689,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -766,6 +770,7 @@ function enterAutostopD(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -773,6 +778,7 @@ function enterMistakeCheck(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'prostitution_functions', 'random_approach_chance') >= (Math.floor(Math.random() * 100) + 1)) {
     (s as any).result = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -867,6 +873,7 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

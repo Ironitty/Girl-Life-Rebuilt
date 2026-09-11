@@ -43,6 +43,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish practice', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'available_actions');
@@ -52,6 +53,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVocals(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -89,6 +91,7 @@ function enterRehearse(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).ml_performance ?? {})['set_quality'] = (((s as any).ml_performance ?? {})['set_quality'] ?? 0) + (((s as any).rand ?? 0)(1, (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0))/10));
   ((s as any).ml_performance ?? {})['set_lastpracticeday'] = ((s as any).daystart ?? 0);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish practice', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'available_actions');

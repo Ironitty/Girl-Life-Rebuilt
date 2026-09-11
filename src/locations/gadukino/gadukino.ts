@@ -193,6 +193,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['road', '10'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -257,6 +258,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the village center', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -278,6 +280,7 @@ function enterSuccubusHunt(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gadukino', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -287,6 +290,7 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
   scene.text('You head to the kitchen for a midnight snack, and as you tear through the fridge, eating whatever looks appetizing, you hear a man curse.');
   scene.text('"Shit, what the hell happened to my door?!"');
   scene.text('You freeze on the spot. You didn\'t think anybody would actually come home while you were still here, but now that they did, maybe you can still salvage this mess.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
@@ -713,6 +717,7 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -772,6 +777,7 @@ function enterOtherEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

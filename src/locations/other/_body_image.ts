@@ -5,10 +5,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterBody(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTits(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,6 +108,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += 'hair/pussy'
   }
   // TODO-QSP: $result += '.jpg'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,6 +150,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -166,6 +170,7 @@ function enterCoat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +211,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -215,6 +221,7 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $body_image_msg += 'You are wearing <<$pantyworntype>> panty no. <<pantywornnumber>>'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +231,7 @@ function enterBra(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $body_image_msg += 'You are wearing <<$braworntype>> bra no. <<brawornnumber>>. Your breasts would b...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -233,6 +241,7 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $body_image_msg += 'You are wearing <<$bodysuitworntype>> bodysuit <<bodysuitwornnumber>>. Your brea...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -242,6 +251,7 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $body_image_msg += 'You are wearing ' + $func('$shoe_description', $shoeworntype, shoewornnumber)
   }
+  // TODO-QSP: end
   scene.build();
 }
 

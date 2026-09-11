@@ -14,6 +14,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -21,6 +22,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_changingroomVars ?? {})['ignore_inhib'] = 0;
   ((s as any).temp_changingroomVars ?? {})['leave_naked'] = qspUntranslated(s, "ARGS[1]", { location: "changingroom" });
   scene.actions([{ label: 'Continue', goto: ['changingroom', 'view_swim_list'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,6 +119,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
       scene.text('<center>You are wearing a bikini.</center>');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'changingroom', 'leave');
@@ -195,6 +198,7 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'menu_loc', 'menu_arg');
@@ -282,6 +286,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_nerdvana_bikinis'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

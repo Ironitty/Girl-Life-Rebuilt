@@ -103,6 +103,7 @@ function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/apartment/event/sick/housecall.jpg');
   scene.text('You dial the number of the clinic several times, but it\'s always busy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep trying', handler: (st: GameState) => {
     scene.text('Finally, a tired nurse\'s voice answers. "Hello, this is the clinic. How can I help you?"');
@@ -175,6 +176,7 @@ function enterCallDoctor2(s: GameState, scene: SceneBuilder): void {
   scene.text('You answer the door and an older, balding man with a medical bag in his hand is standing on the threshold.');
   scene.text('"Hello, doctor."');
   scene.text('"Hello, dear. I\'m the local doctor. Now please go back to bed and don\'t stand in this cold air."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to bed', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/drpp1.jpg');
@@ -239,6 +241,7 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello, my name is Ninel Pavlovna. I do the home visits for the clinic. Where is the patient?"');
   scene.text('"That would be me…"');
   scene.text('"I see. First, we need to get you back into bed."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to bed', handler: (st: GameState) => {
     (s as any).ninelmet = 1;
@@ -397,6 +400,7 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
 
 function enterBurgerIly1(s: GameState, scene: SceneBuilder): void {
   scene.text('<b><font color = red>The doorbell rings</font></b>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Answer the door', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -494,11 +498,13 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNatbel(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'There\'s an urgent knocking on your front door', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -549,6 +555,7 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
 
 function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'There\'s an urgent knocking on your front door', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -630,6 +637,7 @@ function enterSetWashClothesAct(s: GameState, scene: SceneBuilder): void {
   }, goto: ['home_events', 'wash_clothes'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -637,6 +645,7 @@ function enterWashClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'wash_all');
   scene.img('images/locations/city/residential/apartment/stir.jpg');
   scene.text('You wash all your clothes');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -679,6 +688,7 @@ function enterGoHomeNakedPre(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sneak home', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -708,6 +718,7 @@ function enterGoHomeNaked(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/naked/complexnaked.jpg');
     scene.text('There are several older women sitting out front of your building, so you make your way round to the back of the complex near the garages, you stop a moment to peek around one of the buildings. Not seeing anyone, you dart from one building to the next, leaving just the small courtyard behind your building to cross. You peek around a building and see a few people there, you keep yourself hidden as you wait, finally they move off and you rush across the courtyard and into the back door of the apartment building.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go inside', handler: (st: GameState) => {
     if (((s as any).home ?? 0)?.['location'] === 'pav_complex') {

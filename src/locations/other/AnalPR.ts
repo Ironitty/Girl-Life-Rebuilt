@@ -34,6 +34,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -102,6 +103,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', 10, 'sub', 'unknown', 'prostitution');
     qspCall(s, 'arousal', 'end');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,6 +116,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_intel ?? 0) >= 50) {
     // TODO-QSP: act 'Apologize and make amends': gt 'AnalPR', '5'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave quietly', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -142,6 +145,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');
@@ -160,6 +164,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   scene.text('He then says, "Good enough. Lie down in the grass."');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'humiliation', 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him fuck you', goto: ['AnalPR', '6'] },
   ]);
@@ -179,6 +184,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'locSex', 'metkaSex');

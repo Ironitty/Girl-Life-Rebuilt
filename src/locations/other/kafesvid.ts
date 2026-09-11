@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/0.jpg');
   // TODO-QSP: dynamic text: You and <<$telsob>> go to a small cafe in the center of the city.
   scene.text(`You and ${((s as any).telsob ?? 0)} go to a small cafe in the center of the city.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
     if (((s as any).telsob ?? 0) === 'Alla') {
@@ -112,6 +113,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['kafesvid', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find out just how wet she is', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/2.jpg');
@@ -174,6 +176,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$telsob>> is far from finished. She finds her purse, and fishes out her dildo....
   scene.text(`${((s as any).telsob ?? 0)} is far from finished. She finds her purse, and fishes out her dildo. With a huge smile on her face, she looks up at you slowly sucking and licking her toy.`);
   scene.text('"Whatever will we do with this thing?", she says, feigning confusion.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let\'s put it in your pussy', goto: ['kafesvid', '11'] },
     { label: 'Let\'s put it in your ass', goto: ['kafesvid', '12'] },
@@ -197,6 +200,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
       { label: 'Your pussy', goto: ['kafesvid', '13'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kafesvid', 'end'] },
   ]);
@@ -218,6 +222,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
       { label: 'Your pussy', goto: ['kafesvid', '13'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kafesvid', 'end'] },
   ]);
@@ -240,6 +245,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
       { label: 'Her ass', goto: ['kafesvid', '12'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['kafesvid', 'end'] },
   ]);
@@ -274,6 +280,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['kafesvid', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do not resist', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/11.jpg');
@@ -585,6 +592,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite her to your home', goto: ['lezbsex', 'startloverhome'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -14,6 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Yuri\'s Flat</b></center>');
   scene.img('images/characters/city/peter/peterdoor.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -64,6 +65,7 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You and Yuri walk together to the metro. You get in the car and sit in silence for the length of the trip to the industrial part of the city. Exiting the subway station, Yuri grabs hold of your hand and leads you in the direction of some newly erected buildings. Yuri looks tense as he doesn\'t say one word while you\'re walking either.');
   scene.text('Finally you come to a new nine-story building. Yuri opens the entrance door, and you walk inside. Yuri moves over to the elevator and calls it. It doesn\'t take long before you arrive at his pad.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the apartment', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;

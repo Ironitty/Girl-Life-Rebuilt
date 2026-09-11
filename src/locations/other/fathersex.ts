@@ -17,6 +17,7 @@ function enterFatherblow1(s: GameState, scene: SceneBuilder): void {
   scene.text(`After he plays with your ass for a little while, your stepfather suddenly pulls away from you. He quickly takes off his clothes, sits back in his chair and points down to his cock without saying a word. Not needing any more encouragement, you get down on your knees in front of him and open your mouth, taking most of his cock down your throat in one swift movement. Your stepfather lets out a moan of pleasure and throws back his head. "${((s as any).pcs_nickname ?? 0)}, you have a minute to lubricate my cock properly. You know where it's going to go next." Getting giddy with excitement you realize it's in your best interest to do as he says and continue to suck his cock with increased vigor, spreading as much saliva on it as you can.`);
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him to your parents\' bedroom', goto: ['fathersex', 'fatherSex_act1'] },
     { label: 'Crawl on top of him', goto: ['fathersex', 'fatherSex_act2'] },
@@ -33,6 +34,7 @@ function enterFatherblow2(s: GameState, scene: SceneBuilder): void {
   scene.text(`Your stepfather suddenly pulls away from you. He quickly takes off his clothes, sits back in his chair and points down to his cock without saying a word. Not needing any more encouragement, you get down on your knees in front of him and open your mouth, taking most of his cock down your throat in one swift movement. Your stepfather lets out a moan of pleasure and throws back his head. "${((s as any).pcs_nickname ?? 0)}, you have a minute to lubricate my dick properly, it's going in your ass after that." Getting giddy with excitement you realize it's in your best interest to do as he says and continue to suck his cock with increased vigor, spreading as much saliva on it as you can.`);
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him to your parents\' bedroom', goto: ['fathersex', 'fatherSex_act1'] },
     { label: 'Crawl on top of him', goto: ['fathersex', 'fatherSex_act2'] },
@@ -48,6 +50,7 @@ function enterFatherblow3(s: GameState, scene: SceneBuilder): void {
   scene.text('You enthusiastically suck your stepfather\'s hard cock. He pushes you to your limits, making you take a bit more of it down your throat with every thrust, all the while telling you what a great little cocksucker you are. You skillfully take most of it down your throat but struggle a bit with the last inch, and after a while he loses his patience. Grabbing you by the hair he lets out a loud groan and pulls your face into his groin, until you feel his balls on your chin and his pubic hair itching your nose. Realizing you can take it, he begins to move his hips and fucks your throat. He controls the pace at first, but after a while he releases his grip on your hair and lets you take over.');
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'He cums in your mouth', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A28');
@@ -74,6 +77,7 @@ function enterFatherblow4(s: GameState, scene: SceneBuilder): void {
   scene.text('Not needing any more encouragement, you get down on your knees in front of him and start to lick the tip of his cock as you look him in the eyes. "Does this make you feel good, Daddy?" you ask between licks. Then, deciding you have teased him enough, you take his cock in your mouth and diligently start to suck.');
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Deepthroat him', goto: ['fathersex', 'fatherblow3'] },
     { label: 'Follow him to your parents\' bedroom', goto: ['fathersex', 'fatherSex_act1'] },
@@ -92,6 +96,7 @@ function enterFatherbend_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'anal_dildo', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your parents\' bedroom with him', goto: ['fathersex', 'fathergotobedroom'] },
   ]);
@@ -107,6 +112,7 @@ function enterFatherbend_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his cock', goto: ['fathersex', 'fatherblow1'] },
   ]);
@@ -124,6 +130,7 @@ function enterFatherbend_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'anal_finger', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his cock', goto: ['fathersex', 'fatherblow1'] },
   ]);
@@ -134,6 +141,7 @@ function enterFathergotobedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/vladimir/sex/fahterim3.mp4');
   scene.text('You hop on the bed and drop to your hands and knees there, sticking your ass out as much as you can. Your stepfather smiles eagerly and continues where he left off: playing with your butt plug, pushing and pulling it in all directions. After a while constant teasing, stretching and tugging, you smile and look at him: "Daddy, maybe there is something else you could put in its place?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him remove the plug and show him your gape', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim9.jpg');
@@ -617,6 +625,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -627,6 +636,7 @@ function enterFatherSexAct2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim5_1.jpg');
   // TODO-QSP: dynamic text: Just as you were getting into the groove of things, your stepfather gently but s...
   scene.text(`Just as you were getting into the groove of things, your stepfather gently but surely moves your head away from his groin and pulls you up by the shoulder. He gives you a playful slap on the ass and says "Alright ${((s as any).pcs_nickname ?? 0)}, time's up." You meekly nod and pretend you'll follow him, but decide to give him a hard time and just drop on all fours half-way down the hallway. You stick your ass out as high as you can and spread your ass cheeks with your hands. "Come and get it, Daddy", you tell him in a sultry voice, refusing to move another step.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim5.mp4');

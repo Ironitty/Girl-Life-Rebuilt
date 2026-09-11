@@ -14,6 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).KGOLlvl = ((s as any).KGOLlvl ?? 0) + (1);
     (s as any).KGOLexp = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,6 +38,7 @@ function enterKGOLatk(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text(`${((s as any).KGname ?? 0)} dodged your attack`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,12 +63,14 @@ function enterKGOLatkPoison(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text(`${((s as any).KGname ?? 0)} dodged your attack`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterKGOLatkFB(s: GameState, scene: SceneBuilder): void {
   (s as any).KGHPV = ((s as any).KGHPV ?? 0) - (((s as any).KGOLpower ?? 0));
   scene.text(`Fireball inflicts ${((s as any).KGOLpower ?? 0)} damage`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,6 +95,7 @@ function enterKGOLatkV(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You dodge the attack');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -130,6 +135,7 @@ function enterKGOLrise(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the stats screen', goto: ['KGOLgame', ''] },
   ]);
@@ -195,6 +201,7 @@ function enterKGOLrise2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the skills screen', goto: ['KGOLgame', ''] },
   ]);
@@ -208,6 +215,7 @@ function enterKGOLatkKGOLspell2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGLOloop ?? 0) > 0) {
     // TODO-QSP: jump 'multiloop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

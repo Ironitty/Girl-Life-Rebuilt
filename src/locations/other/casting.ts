@@ -49,6 +49,7 @@ function enterCallboard(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<b>Calls For Supporting Actress</b>');
   scene.text('<b>Calls For Lead Actress</b>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['talent_agency', ''] },
   ]);
@@ -65,12 +66,14 @@ function enterCallboardExtrasUpdate(s: GameState, scene: SceneBuilder): void {
   (s as any).casting_extra7 = Math.floor(Math.random() * 100) + 1;
   (s as any).casting_extra8 = Math.floor(Math.random() * 100) + 1;
   (s as any).casting_extra9 = Math.floor(Math.random() * 100) + 1;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCallboardUpdate(s: GameState, scene: SceneBuilder): void {
   (s as any).casting_minor1 = Math.floor(Math.random() * 100) + 1;
   (s as any).casting_minor2 = Math.floor(Math.random() * 100) + 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,10 +99,12 @@ function enterAuditionSchedule(s: GameState, scene: SceneBuilder): void {
   ((s as any).audition ?? {})['day'] = ((s as any).daystart ?? 0) + ((s as any).audition ?? {})?.['week'];
   ((s as any).acting ?? {})['shoot_day'] = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * (((s as any).audition ?? {})?.['day'] + (Math.floor(Math.random() * 6) + 2) + 1)));
   ((s as any).acting ?? {})['shoot_time'] = Math.floor(Math.random() * 17) + 6;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClearcasting(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +112,7 @@ function enterTryout(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/front.jpg');
   scene.text('You decide to try for this one and go to the front desk to schedule the audition. The lady at the desk quickly puts your information into her computer and rummages through a file cabinet to pull out a script for you.');
   scene.text('"Okay! You\'re all set! Don\'t be late!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the script and leave', goto: ['talent_agency', ''] },
   ]);
@@ -120,6 +126,7 @@ function enterGeneralTryout(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hi, I was just looking at the callboard and saw that they were holding auditions for ${((s as any).audition ?? 0)?.['role']} today?"`);
   scene.text('"Yes! They are! Just go to the general audition room at the end of the hall. If the door is open, you\'re free to go in."');
   scene.text('"Thanks," you nod.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['talent_agency', ''] },
   ]);
@@ -132,6 +139,7 @@ function enterDetails(s: GameState, scene: SceneBuilder): void {
   scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', ((s as any).acting ?? 0)?.['pay'])}`);
   // TODO-QSP: dynamic text: Audition time: '+func('time', 'get_time_string', 16, 0)+'-'+func('time', 'get_ti...
   scene.text(`Audition time: '+func('time', 'get_time_string', 16, 0)+'-'+func('time', 'get_time_string', 18, 0)+', ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${((s as any).audition ?? 0)?.['calendar_day']} of ${((s as any).audition ?? 0)?.['month']}.`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +148,7 @@ function enterGeneralDetails(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Pay: <<$func('money', 'string_profit', acting['pay'])>>
   scene.text(`Pay: ${qspFunc(s, 'money', 'string_profit', ((s as any).acting ?? 0)?.['pay'])}`);
   scene.text('Walk in auditions today. Ask receptionist for details.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +159,7 @@ function enterBackShowerGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Uninhibited girls wanted for the role of <b>Background Shower Girl.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -168,6 +178,7 @@ function enterSpringBreakFlasher(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Big boobed girl wanted for the role of <b>Spring Break Flasher.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -186,6 +197,7 @@ function enterCadaver(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'casting', 'audition_schedule');
   scene.text('Young pretty girl wanted for the role of <b>Dead Girl 2</b>');
   qspCall(s, 'casting', 'details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -206,6 +218,7 @@ function enterDildoGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Big boobed girl wanted for the role of <b>Dildo Girl.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -224,6 +237,7 @@ function enterNakedLockerGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Naked Locker Girl.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -247,6 +261,7 @@ function enterUndressingLockerGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Big boobed girls wanted for the role of <b>Undressing Locker Girl.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -266,6 +281,7 @@ function enterModestCheerleader(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Pretty girls wanted for the role of <b>Modest Cheerleader.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -286,6 +302,7 @@ function enterUnderwearCheerleader(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Pretty girls wanted for the role of <b>Underwear Cheerleader.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -307,6 +324,7 @@ function enterToplessCheerleader(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Topless Cheerleader 3.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -325,6 +343,7 @@ function enterHotShowerGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).acting ?? {})['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Hot Shower Girl.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -344,6 +363,7 @@ function enterWerewolfGirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).audition ?? {})['roletits'] = 4;
   scene.text('Big boobed girl wanted for the role of <b>Werewolf Victim.</b>');
   qspCall(s, 'casting', 'general_details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -370,6 +390,7 @@ function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
   scene.text(`Number of scenes: ${((s as any).acting ?? 0)?.['scenecount']}`);
   scene.text('One dialogue scene, one sex scene.');
   qspCall(s, 'casting', 'details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -397,6 +418,7 @@ function enterHotBartender(s: GameState, scene: SceneBuilder): void {
   scene.text(`Number of scenes: ${((s as any).acting ?? 0)?.['scenecount']}`);
   scene.text('Three dialogue scenes, including one sex scene.');
   qspCall(s, 'casting', 'details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -423,6 +445,7 @@ function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Number of scenes: <<acting['scenecount']>>
   scene.text(`Number of scenes: ${((s as any).acting ?? 0)?.['scenecount']}`);
   qspCall(s, 'casting', 'details');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');
@@ -449,6 +472,7 @@ function enterYulyaGavrikov(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Audition: Room <<audition['room']>> - '+func('time', 'get_time_string', 16, 0)+'...
   scene.text(`Audition: Room ${((s as any).audition ?? 0)?.['room']} - '+func('time', 'get_time_string', 16, 0)+'-'+func('time', 'get_time_string', 18, 0)+', ${qspUntranslated(s, "weekName[audition['week']]", { location: "casting" })}, ${((s as any).audition ?? 0)?.['calendar_day']} of ${((s as any).audition ?? 0)?.['month']}.`);
   scene.text('Filming duration: 2 months');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'casting', 'clearcasting');

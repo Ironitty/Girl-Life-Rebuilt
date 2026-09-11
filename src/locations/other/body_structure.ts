@@ -159,6 +159,7 @@ function enterGetClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -286,6 +287,7 @@ function enterBodyImgTotals(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -425,6 +427,7 @@ function enterBodyImgTransform(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,6 +452,7 @@ function enterDefaultSetClassTransform(s: GameState, scene: SceneBuilder): void 
     (s as any).result = (((s as any).cheatVars ?? {})?.['fix_bi_set'] / 10 % 10) * 100 + ((s as any).result ?? 0) % 100;
   }
   (s as any).result = ((s as any).result ?? 0) + (((s as any).base_result ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -470,6 +474,7 @@ function enterBodyImg(s: GameState, scene: SceneBuilder): void {
       (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'default_set_class_transform', ((s as any).bs_temp_bs_class ?? 0));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -601,6 +606,7 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $result += '<<temp_img_chosen>>.jpg'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -642,6 +648,7 @@ function enterBodyImgPathFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -663,6 +670,7 @@ function enterCustomBodyImg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_img_name ?? 0) === '') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -684,6 +692,7 @@ function enterBodyDesc(s: GameState, scene: SceneBuilder): void {
       (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'default_set_class_transform', ((s as any).bs_temp_bs_class ?? 0));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -762,6 +771,7 @@ function enterBodyDescFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -774,6 +784,7 @@ function enterCustomBodyDesc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_bs_body_desc ?? 0) === '') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -782,6 +793,7 @@ function enterBmiDesc(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = ((s as any).pcs_bmi ?? 0);
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }), 30, 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -809,6 +821,7 @@ function enterBmiDescFromClass(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -821,6 +834,7 @@ function enterAppearanceBonus(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).bs_temp_bs_class = qspFunc(s, 'body_structure', 'get_class', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }), qspUntranslated(s, "ARGS[2]", { location: "body_structure" }), 0);
   (s as any).result = qspFunc(s, 'body_structure', 'appearance_bonus_from_class', ((s as any).bs_temp_bs_class ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -929,6 +943,7 @@ function enterAppearanceBonusFromClass(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -936,6 +951,7 @@ function enterCsGetDefaultImg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
     // TODO-QSP: ARGS[1] *= 100
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -943,6 +959,7 @@ function enterCsGetDefaultDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cheatVars ?? 0)['fix_biset_' + ((s as any).cheatVars ?? 0)?.['fix_bi_set'] + '_advanced'] === 0) {
     // TODO-QSP: ARGS[1] *= 100
   }
+  // TODO-QSP: end
   scene.build();
 }
 

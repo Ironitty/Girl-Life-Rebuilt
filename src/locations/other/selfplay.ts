@@ -141,6 +141,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_horny ?? {})['A66'] = (((s as any).npc_horny ?? {})['A66'] ?? 0) + (1);
     scene.text('Bandit the dog is watching you curiously.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -314,6 +315,7 @@ function enterHoleCapDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -384,6 +386,7 @@ function enterHoleCapCalc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -402,6 +405,7 @@ function enterDildosizeDesc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dildonumber ?? 0) === 7) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -441,6 +445,7 @@ function enterDildoOptions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).dildonumber ?? 0) === 7) {
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -478,6 +483,7 @@ function enterBrushplay(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -565,6 +571,7 @@ function enterVagmastDildoStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -749,6 +756,7 @@ function enterPussyDildoMast(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -893,6 +901,7 @@ function enterAnalDildoStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1080,6 +1089,7 @@ function enterAnalDildoMast(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1098,6 +1108,7 @@ function enterSuctionDildo(s: GameState, scene: SceneBuilder): void {
       scene.text('You can also stick a suction dildo inside <a href="exec:gs \'selfplay\',\'shower_suction_dildo_apply\' & gt $loc, $loc_arg">the shower</a>.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1105,6 +1116,7 @@ function enterBathtubSuctionDildoApply(s: GameState, scene: SceneBuilder): void 
   // TODO-QSP: dynamic '<<$loc>>_bathtub_dildo = 1'
   // TODO-QSP: dynamic '<<$loc>>_suction_dildo += 1'
   ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) - (1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1112,6 +1124,7 @@ function enterBathtubSuctionDildoRemove(s: GameState, scene: SceneBuilder): void
   // TODO-QSP: dynamic '<<$loc>>_bathtub_dildo = 0'
   // TODO-QSP: dynamic '<<$loc>>_suction_dildo -= 1'
   ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) + (1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1125,6 +1138,7 @@ function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) - (1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1138,6 +1152,7 @@ function enterShowerSuctionDildoRemove(s: GameState, scene: SceneBuilder): void 
     }
   }
   ((s as any).mc_inventory ?? {})['dildo_suction'] = (((s as any).mc_inventory ?? {})['dildo_suction'] ?? 0) + (1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1147,6 +1162,7 @@ function enterBathtubDildoCheck(s: GameState, scene: SceneBuilder): void {
       { label: 'Ride your bathtub dildo', goto: ['selfplay', 'bath_bathtub_suction_dildo_ride'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1167,12 +1183,14 @@ function enterShowerDildoCheck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBathSuctionDildo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/bathtub_dildo.jpg');
   scene.text('Your suction dildo is currently stuck onto the bathtub.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave it there', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1189,6 +1207,7 @@ function enterBathSuctionDildo(s: GameState, scene: SceneBuilder): void {
 function enterShowerSuctionDildo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/shower_dildo.jpg');
   scene.text('Your suction dildo is currently stuck on the wall of the shower.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave it there', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1222,6 +1241,7 @@ function enterBathSuctionDildoRide(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'selfplay', 'dildo_masturbate_options', 1);
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1267,6 +1287,7 @@ function enterShowerBathtubSuctionDildoRide(s: GameState, scene: SceneBuilder): 
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'selfplay', 'dildo_masturbate_options', 2);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1318,6 +1339,7 @@ function enterBathBathtubSuctionDildoRide(s: GameState, scene: SceneBuilder): vo
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'selfplay', 'dildo_masturbate_options', 3);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1374,6 +1396,7 @@ function enterShowerBathtubWallDildoFuck(s: GameState, scene: SceneBuilder): voi
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'selfplay', 'dildo_masturbate_options', 4);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1404,6 +1427,7 @@ function enterGlassShowerSuctionDildoFuck(s: GameState, scene: SceneBuilder): vo
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'masturbate');
   qspCall(s, 'selfplay', 'dildo_masturbate_options', 5);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1452,6 +1476,7 @@ function enterDildoMasturbateOptions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish masturbating [+iif(dildo_type = 1, \', \' and dry off\')]', handler: (st: GameState) => {
     (s as any).dildo_timer = 0;
@@ -1500,6 +1525,7 @@ function enterSisProv(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1532,6 +1558,7 @@ function enterSisReact(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1550,6 +1577,7 @@ function enterVanVtor(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).selfplaytime = ((s as any).selfplaytime ?? 0) - (15);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1577,6 +1605,7 @@ function enterClitPlay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).org_temp ?? 0) === ((s as any).orgasm ?? 0)) {
     qspCall(s, 'selfplay', 'fingering');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1626,6 +1655,7 @@ function enterFingering(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1692,6 +1722,7 @@ function enterFingering2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1745,6 +1776,7 @@ function enterFingering3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1825,6 +1857,7 @@ function enterFingering4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1878,6 +1911,7 @@ function enterSelfFisting_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1933,6 +1967,7 @@ function enterSelfFisting_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -1990,6 +2025,7 @@ function enterAnalFingering(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose a different way to masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2079,6 +2115,7 @@ function enterAnalFingering2(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose a different way to masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2173,6 +2210,7 @@ function enterAnalFingering3(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose a different way to masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2268,6 +2306,7 @@ function enterAnalFingering4(s: GameState, scene: SceneBuilder): void {
       { label: 'Choose a different way to masturbate', goto: ['selfplay', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2353,6 +2392,7 @@ function enterAnalFisting(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop masturbating', goto: ['selfplay', 'stop'] },
   ]);
@@ -2384,6 +2424,7 @@ function enterStop(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

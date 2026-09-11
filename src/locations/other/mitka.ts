@@ -51,6 +51,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -65,6 +66,7 @@ function enterFirstChat(s: GameState, scene: SceneBuilder): void {
   scene.text(`If you want I could show you around the village, then he offers, "${((s as any).mitkaInvitation ?? 0)}"`);
   qspCall(s, 'calendar', 'remove', 'mitka_drinking_invite');
   qspCall(s, 'calendar', 'add', 'mitka_drinking_invite');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -82,6 +84,7 @@ function enterNormalChat(s: GameState, scene: SceneBuilder): void {
   scene.text(`Mitka smiles, "That's great to hear, ${((s as any).pcs_nickname ?? 0)}.", then he offers, "${((s as any).mitkaInvitation ?? 0)}"`);
   qspCall(s, 'calendar', 'remove', 'mitka_drinking_invite');
   qspCall(s, 'calendar', 'add', 'mitka_drinking_invite');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -470,6 +473,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -156,12 +156,14 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterProhorovSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/tease.jpg');
   scene.text('You hug Katja and slip your arm around her to hold her close as you walk down the corridor, the other students staring as you pass by. As you head into a deserted hallway, you notice Ivan following you and turn to look at him while smiling seductively at Katja. "Want to give him a show?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
@@ -315,6 +317,7 @@ function enterMarcusWait(s: GameState, scene: SceneBuilder): void {
   scene.text('While you wait, you getly stroke Katja\'s body to keep her\'+iif(npc_vag[\'A14\'] + 5 < npc_dick[\'A146\'] or katjaQW[\'marcus_pussy\'] = 0, \' nerves down.\', \' excited.\')+\' Finally, after what seems like an eternity, you hear the doorbell ring.');
   qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID1 ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him to come in', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -358,6 +361,7 @@ function enterMarcusFirst(s: GameState, scene: SceneBuilder): void {
   scene.text('You stop kissing Katja and reach down to take Marcus\'s enormous semi-hard cock into your hand and start stroking it. He quickly gets hard in your hand, which Katja watches in fascination. After spending a few more minutes watching, she reaches down and starts stroking his dick herself. You let go to allow her to stroke the full length of his shaft in her hand.');
   qspCall(s, 'arousal', 'hj', 3, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give him a blowjob', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/katvirg4.jpg');
@@ -479,6 +483,7 @@ function enterMarcusThreesome(s: GameState, scene: SceneBuilder): void {
   scene.text('After you stop kissing Katja, you look down and see that she\'s already stroking Marcus\'s massive hard cock with her hand. After a few seconds, she reaches over to pull your hand over and you take her place jerking him off.');
   qspCall(s, 'arousal', 'hj', 3, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/virgin/katvirg5.jpg');
@@ -634,6 +639,7 @@ function enterMarcusAftermatch(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk with Katja', goto: ['KatjaHomeTalk', ''] },
   ]);
@@ -665,6 +671,7 @@ function enterKatnatsex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear', 'backup');
   qspCall(s, 'clothing', 'strip');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/KWS7.jpg');
@@ -958,6 +965,7 @@ function enterKatnatsex2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hm?! What? <<$pcs_nickname>>? Huff! I'm wasted! That was nice… Hm? Where is Nat...
   scene.text(`"Hm?! What? ${((s as any).pcs_nickname ?? 0)}? Huff! I'm wasted! That was nice… Hm? Where is Natasha?"`);
   scene.text('Kissing her, you explain to the redhead that Natasha has just left and then you snuggle against Katja, enjoying her company until you think it\'s time to redress.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -992,6 +1000,7 @@ function enterKatnatsex3(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Yes Natasha, she will forget ALL your debt. You are friends aren't you ${((s as any).pcs_nickname ?? 0)}?"`);
   scene.text('You turn surprised towards the redhead… Shit! Before you can retort, a horny and frustrated Natasha gets up and begins to redress, giving you a nice glance at her body, but before she leaves, Katja grabs her hand and kisses the nerd\'s mouth. After a few moments, she releases Natasha, who remains by the bedside a moment, before quickly exiting the room.');
   scene.text('Katja is silent for a while, caressing your belly before sighing and redressing. She doesn\'t say anything, but you doubt she is happy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Redress and leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -1010,6 +1019,7 @@ function enterFirstFisting(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('You tell Katja that of course, you would love to show her how it feels to have a whole hand in your pussy. You tell her to strip off her clothes while you do the same and climb onto the bed with her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lay her down', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay_give', 3, 'lesbian');

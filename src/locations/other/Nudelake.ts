@@ -115,6 +115,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the main beach', goto: ['city_lake', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -122,6 +123,7 @@ function enterVoleybol(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img('images/locations/city/residential/lake/volleyball.jpg');
   scene.text('You go to the volleyball court.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', goto: ['Nudelake', 'smotr'] },
     { label: 'Leave', goto: ['Nudelake', ''] },
@@ -179,6 +181,7 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Nudelake', ''] },
   ]);
@@ -205,6 +208,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the water.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Nudelake', ''] },
   ]);
@@ -216,6 +220,7 @@ function enterSmotr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/volleyball.jpg');
   scene.text('You watch the others play.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Nudelake', ''] },
   ]);

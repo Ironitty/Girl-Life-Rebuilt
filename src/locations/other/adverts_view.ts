@@ -20,6 +20,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Have your first audition TODAY!<br>'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,6 +38,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
   ((s as any).ml_guitarlesson ?? {})['advertisement'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +47,7 @@ function enterSing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Only <<$func(''money'', ''string_price'', 500)>>!'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,6 +59,7 @@ function enterBurlesque(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Catch the shows from 6 PM to 11 PM, from Wednesday to Sunday<br>'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,6 +81,7 @@ function enterSecretary(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_hiring_step ?? 0)?.['city_office_secretary'] === 0) {
     ((s as any).job_hiring_step ?? {})['city_office_secretary'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,11 +92,13 @@ function enterDiner(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Apply in person.'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFitness(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Your Sports Club. Join Now!</center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,6 +108,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Embrace history and heritage in Old Town.'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +121,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Stop by today and dance your problems away!'
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -124,6 +133,7 @@ function enterTherapy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $text += 'Pick yourself up from the depths of sadness and take back control of your life! It''s neve...
   // TODO-QSP: $text += '</center>'
   // TODO-QSP: $text
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,6 +149,7 @@ function enterHotelmaid(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] === 0) {
     ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

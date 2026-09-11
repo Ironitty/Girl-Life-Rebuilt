@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterPostShower(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/locker/nudepic2.jpg');
   scene.text('You walk back to your locker, throwing your towel in a bin along the way, and start rifling through your locker, gathering your things and grabbing your clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', goto: ['gschool_lessons4', 'dress'] },
     { label: 'Check out the other girls', handler: (st: GameState) => {
@@ -1240,6 +1241,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
 function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/shower/postphyssho\' + rand(1, 7) + \'.jpg');
   scene.text('You let your eyes wander around the room, checking out the other girls as they chat and shower. It\'s a nice view, one thing you\'ll always appreciate about gym class.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');

@@ -20,6 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Oh, you want to practice today?"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"Maybe not today"', goto: ['foto', 'studio'] },
     { label: '"Yes, please"', handler: (st: GameState) => {
@@ -48,6 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFashion(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fashion', handler: (st: GameState) => {
     scene.actions([
@@ -108,6 +110,7 @@ function enterFashion(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBikini(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bikini modelling', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 20) {
@@ -213,6 +216,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLingerie(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lingerie modelling', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 25) {
@@ -318,6 +322,7 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexy(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sexy clothing', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 30) {
@@ -419,6 +424,7 @@ function enterSexy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTransparent(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Transparent clothing that exposes your breasts', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 40) {
@@ -486,6 +492,7 @@ function enterTransparent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTransLing(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Transparent Lingerie', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 55) {
@@ -590,6 +597,7 @@ function enterTransLing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTopless(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Topless', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 50) {
@@ -692,14 +700,17 @@ function enterTopless(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTasteful(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterToplessNude(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNude(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nude', handler: (st: GameState) => {
     scene.actions([

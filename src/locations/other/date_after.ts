@@ -99,6 +99,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,6 +122,7 @@ function enterExitIntoLoc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +131,7 @@ function enterEnding(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).sex_ev ?? {}).length > 0) {
     qspCall(s, 'sex_ev_leave', 'end_code');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +173,7 @@ function enterEndCode(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_last_date ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     ((s as any).npc_date_count ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_date_count ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,6 +191,7 @@ function enterAfterDate(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['date_after', 'daytime_after_menu'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -244,6 +249,7 @@ function enterAfterOutsideImage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -273,6 +279,7 @@ function enterEveningAfterMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'date_after', 'date_sex_ask');
+  // TODO-QSP: end
   scene.build();
 }
 

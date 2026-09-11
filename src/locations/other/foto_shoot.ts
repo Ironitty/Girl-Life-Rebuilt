@@ -27,6 +27,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
       { label: '"I\'d like to do a fitness shoot"', goto: ['foto_shoot', 'fitness_shoot'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', handler: (st: GameState) => {
     scene.text('<center><b>Manager</b></center>');
@@ -111,6 +112,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
 function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('"Alright, what kind of shoot would you like to do? Fashion, bikini, or lingerie?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fashion', handler: (st: GameState) => {
     ((s as any).modelfoto ?? {})['shoot_type'] = 'fashion';
@@ -190,6 +192,7 @@ function enterFashionShoot(s: GameState, scene: SceneBuilder): void {
 function enterGlamourShoot(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('"Alright, we can do that. What kind of glamour shoot?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sexy clothing', handler: (st: GameState) => {
     ((s as any).modelfoto ?? {})['shoot_type'] = 'sexy_clo';
@@ -336,6 +339,7 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('"Alright, we can do that. What kind of nude shoot?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Limited nude', handler: (st: GameState) => {
     ((s as any).modelfoto ?? {})['shoot_type'] = 'taste_nude';
@@ -489,6 +493,7 @@ function enterNudeShoot(s: GameState, scene: SceneBuilder): void {
 function enterFitnessShoot(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('"Alright, what kind of shoot would you like to do? Sportwear, Sport underwear, or Artistic nude?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sportwear', handler: (st: GameState) => {
     scene.actions([
@@ -579,6 +584,7 @@ function enterFashion(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -611,6 +617,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,6 +650,7 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -671,6 +679,7 @@ function enterSexy(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -701,6 +710,7 @@ function enterTransparent(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -737,6 +747,7 @@ function enterTransLing(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -768,6 +779,7 @@ function enterTopless(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -798,6 +810,7 @@ function enterTasteful(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -828,6 +841,7 @@ function enterToplessNude(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -896,6 +910,7 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -930,6 +945,7 @@ function enterErotic(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -961,6 +977,7 @@ function enterSportswear(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['foto', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -986,6 +1003,7 @@ function enterSportsUnderwear(s: GameState, scene: SceneBuilder): void {
   scene.text('Modeling sport underwear, is slightly different from other jobs. First, you are taken to the Havanna Fitness Center, as the studio doesn\'t have all the necessary props to do it. Second, you must look "dynamic", and that means do some warm-ups, and add some oil, to give that "sweaty" and "sporty" look. After that, you are ready to pose the next two hours for the photographer.');
   // TODO-QSP: dynamic text: After having taken all his pictures, you and the crew head back to Aphrodite, co...
   scene.text(`After having taken all his pictures, you and the crew head back to Aphrodite, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} to hand to you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'end'] },
   ]);
@@ -1014,6 +1032,7 @@ function enterFitnessArtisticNude(s: GameState, scene: SceneBuilder): void {
   scene.text('Already naked, you do some warm-ups, work up a sweat, add some body-oil and step onto the set to begin the shoot.');
   // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
   scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often being asked to carefully position your hands or legs in ways that tastefully hides your pussy and nipples. These images, are less provocative, than artistic, as they must show your body in movement so they can appear in sports-related advertisements, articles, and magazines. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for your work.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'end'] },
   ]);

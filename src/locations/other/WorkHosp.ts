@@ -23,6 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Work in the operating room (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -101,6 +102,7 @@ function enterMilit(s: GameState, scene: SceneBuilder): void {
   scene.text('Kat turns to you. "Listen, I\'m scheduled to work this weekend, but I have plans. Here\'s the deal: war games are often held not far from the city and, well, according to the rules, they need doctors on site before they can begin.');
   // TODO-QSP: dynamic text: She notices your reaction. "Don't worry, you'll have a doctor with you, so the m...
   scene.text(`She notices your reaction. "Don't worry, you'll have a doctor with you, so the most you'll need to do is apply some bandages. If you feel up to it, you can catch a bus at the clinic on Saturday between '+func('time', 'get_time_string', 6, 0)+' and '+func('time', 'get_time_string', 9, 0)+'. Oh yeah, I almost forgot! The pay for two days is ${qspFunc(s, 'money', 'string_profit', 5000)}. So what do you say?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['WorkHosp', 'start'] },
   ]);
@@ -165,6 +167,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -245,6 +248,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['WorkHosp', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -267,6 +271,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex', 'minet'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oust him', handler: (st: GameState) => {
     // TODO-QSP: gs 'exp_gain', 'medcn', rand (0, 1)
@@ -305,6 +310,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['podrsex', 'suck'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask if she actually needs treatment', handler: (st: GameState) => {
     qspCall(st, 'exp_gain', 'medcn', 0);
@@ -456,6 +462,7 @@ function enterRanddoc(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'boyStat', '', ((s as any).npclastsaved ?? 0));
   ((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] = (((s as any).docfuck ?? {})[String((s as any).randdoc ?? 0)] ?? 0) + (1);
+  // TODO-QSP: end
   scene.build();
 }
 

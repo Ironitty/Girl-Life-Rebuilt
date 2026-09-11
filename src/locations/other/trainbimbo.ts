@@ -66,6 +66,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for men', goto: ['trainbimbo', 'pos1'] },
     { label: 'Leave', goto: ['pav_train_hall', 'male'] },
@@ -79,6 +80,7 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo2.jpg');
   scene.text('An unfamiliar man blushes and goes into a stall.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him into the stall', goto: ['trainbimbo', 'pos22'] },
     { label: 'Leave', goto: ['pav_train_hall', 'male'] },
@@ -94,6 +96,7 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/blowjob/bimbo.knees\'+rand(0, 6)+\'.jpg');
   }
   scene.text('You burst into the stall without knocking. The man is standing there with his pants unbuttoned, dick hanging out, and looking at you with surprise. You get down on your knees and wrap your lips around his cock.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 9);
@@ -175,6 +178,7 @@ function enterPos3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo2.jpg');
   scene.text('The guy smiles to you and walks over to you, unbuttoning his pants. You make a rude gesture with your tongue.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kneel down', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/bimbo.knees\'+rand(0, 6)+\'.jpg');
@@ -199,6 +203,7 @@ function enterPos33(s: GameState, scene: SceneBuilder): void {
   scene.text('As you open your mouth to start sucking the guy, he grabs you by your hair, and before you can react, he shoves his dick into your mouth and down your throat.');
   scene.text('You start gagging and struggling to breath. After a bit, he stops forcing himself so deep in your mouth, giving you time to recover.');
   scene.text('He repeats these actions several times, while you start taking off your clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pull your panties off and masturbate', goto: ['trainbimbo', 'pos333'] },
   ]);
@@ -224,6 +229,7 @@ function enterPos333(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['trainbimbo', 'pos3334'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,6 +242,7 @@ function enterPos3333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 10, 'lube');
   qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['trainbimbo', 'pos33333'] },
   ]);
@@ -256,6 +263,7 @@ function enterPos3334(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 10);
   // TODO-QSP: gs 'cum_call', '', $npcID, 0, 0, 500*rand(16, 24), rand(30, 50)
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['trainbimbo', 'pos33333'] },
   ]);
@@ -269,6 +277,7 @@ function enterPos33333(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/sex/bimbo.cum.body0.mp4');
   scene.text('He pulls out a marker and writes on your chest Pussy Whore. "This way it will be clear to everyone what you really are, ha ha ha!" He pulls up his pants and leaves you there, lying on the floor covered in cum.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dress', goto: ['trainbimbo', 'pos1'] },
   ]);
@@ -280,6 +289,7 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo4.jpg');
   scene.text('You pretend not to notice anything. Maybe they will just think you are so stupid that you mixed up the women\'s room with the mens room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', goto: ['trainbimbo', 'pos1'] },
     { label: 'Leave', goto: ['pav_train_hall', 'male'] },
@@ -292,6 +302,7 @@ function enterPos5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo1.jpg');
   scene.text('You run into a toilet stall and close the door. You feel shame at the thought of anyone catching you in here. Your heart pounds in your chest.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the stall', goto: ['pav_train_hall', 'male'] },
   ]);
@@ -304,6 +315,7 @@ function enterPos6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/trainstation/vokbimbo2.jpg');
   scene.text('"Come on, who is in here with us?" You hear a drunken guy shout.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/trainstation/bimbo.strip\'+rand(0, 6)+\'.mp4');
@@ -432,6 +444,7 @@ function enterPos66(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cuminsidereact', '', 'some drunk guy whom you likely won\'t even remember tomorrow', ((s as any).sck ?? 0));
   }
   scene.text('After taking a few breaths, you stand up with some difficulty and gather your scattered stuff from the bathroom floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'dress', goto: ['trainbimbo', 'pos1'] },
   ]);

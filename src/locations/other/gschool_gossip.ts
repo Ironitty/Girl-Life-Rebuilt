@@ -17,18 +17,21 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'gschool_gossip', 'gossip', 'picture');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSkipping(s: GameState, scene: SceneBuilder): void {
   scene.text('On your way to hang out with your friends during lunch, you pass by small groups of your fellow students engaged in their own conversations. As you do, you overhear them talking about a variety of things, including some juicy gossip.');
   qspCall(s, 'gschool_gossip', 'gossip');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBagged(s: GameState, scene: SceneBuilder): void {
   scene.text('You take your bagged lunch to one of the empty tables and take a seat. As you\'re eating your lunch, you overhear some of the conversations going on around you. Your fellow students are talking about a variety of things, including some juicy gossip.');
   qspCall(s, 'gschool_gossip', 'gossip');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,18 +39,21 @@ function enterBuying(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand in line to buy your lunch. While waiting in line, you chat to a few of your fellow students until you make your purchase. You then take your lunch tray and sit at one of the empty tables.');
   scene.text('As you\'re eating your lunch, you overhear some of the conversations going on around you. Your fellow students are talking about a variety of things, including some juicy gossip.');
   qspCall(s, 'gschool_gossip', 'gossip');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGym(s: GameState, scene: SceneBuilder): void {
   scene.text('Exiting the girls locker room, you pass by some of your fellow students as they leave the gym as well. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   qspCall(s, 'gschool_gossip', 'girls');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLesson(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re curious about what your classmates behind you are talking about. You shift back in your seat a little, take a quick peek and listen in.');
   qspCall(s, 'gschool_gossip', 'gossip');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +178,7 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -746,6 +753,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 13  &&  ((s as any).loc_arg ?? 0) === 'watercooler') {
     scene.text('You find Natasha in the hallway and have a little chat. Dimka is nowhere to be seen. A few other seats are empty as well. You smile thinking about what that means.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1109,6 +1117,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 13) {
     scene.text('You find Natasha in the hallway and have a little chat. Dimka is nowhere to be seen; you smile, thinking about what that means.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1420,6 +1429,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dimaRevenge ?? 0) === 4  &&  ((s as any).dimaRevChoice ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 13) {
     scene.text('You find Natasha in the hallway and have a little chat. Dimka is nowhere to be seen; you smile, thinking about what that means.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1637,6 +1647,7 @@ function enterLizaveta(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1691,6 +1702,7 @@ function enterSoniaDiscoGossip(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).soniafall ?? {})['gossip'] = ((s as any).soniaQW ?? 0)?.['soniafall'];
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1742,6 +1754,7 @@ function enterSvetaDykeRumors(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+  // TODO-QSP: end
   scene.build();
 }
 

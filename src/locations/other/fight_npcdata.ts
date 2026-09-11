@@ -17,38 +17,42 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).NPCFightStatStr = 0;
   (s as any).NPCFightStatVit = 0;
   (s as any).result = 5 * (((s as any).NPCFightStatStr ?? 0) + ((s as any).NPCFightStatVit ?? 0));
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
-  }
   scene.build();
 }
 
 function enterGustav(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 2;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTatiana(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 3;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterProstitute(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 4;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBandit(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 5;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterProstitute2(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 6;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRapist(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 8;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,111 +62,137 @@ function enterRobber(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).fightEnding = 9;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSnatcher(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 9;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDimka(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 10;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStranger(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 11;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterChristina(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 12;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStallion(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 13;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGanggirl(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 14;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGirls(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 14;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSilvestr(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 15;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBitchSquad(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 16;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBtatiana(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 17;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSandbaggingana(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 18;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnagopniks(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 19;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBossana(s: GameState, scene: SceneBuilder): void {
   (s as any).fightEnding = 20;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopnews_1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopnews_2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopnews_3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopnews_4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopnews_5(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopnews_6(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLena(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLera(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandomGopfem(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandomGopmale(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  }
   scene.build();
 }
 

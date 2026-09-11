@@ -48,6 +48,7 @@ function enterClotTypePrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +91,7 @@ function enterClotQualPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -168,6 +170,7 @@ function enterClotTopPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -392,6 +395,7 @@ function enterBottShorPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -462,6 +466,7 @@ function enterClotThinPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -497,6 +502,7 @@ function enterBimbPrefTmp(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).npcdesc ?? 0)} says you would look much better dressed up as a bimbo."`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -541,6 +547,7 @@ function enterPierPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +592,7 @@ function enterTattPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -609,6 +617,7 @@ function enterLipsPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -715,6 +724,7 @@ function enterMakePrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -771,6 +781,7 @@ function enterHairPref(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -795,6 +806,7 @@ function enterIQPrefTmp(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -940,6 +952,7 @@ function enterTitBoy(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1051,6 +1064,7 @@ function enterFigPref(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1061,12 +1075,14 @@ function enterClothesPref(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_likes', 'bottShorPrefTmp');
   qspCall(s, 'lover_likes', 'clotThinPrefTmp');
   qspCall(s, 'lover_likes', 'bimbPrefTmp');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFacePref(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_likes', 'makePrefTmp');
   qspCall(s, 'lover_likes', 'hairPref');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1076,6 +1092,7 @@ function enterBodyPrefTmp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_likes', 'tattPrefTmp');
   qspCall(s, 'lover_likes', 'titBoy');
   qspCall(s, 'lover_likes', 'lipsPrefTmp');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1093,11 +1110,13 @@ function enterAllPref(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_likes', 'pierPrefTmp');
   qspCall(s, 'lover_likes', 'tattPrefTmp');
   qspCall(s, 'lover_likes', 'titBoy');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckPier(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'piercing_management', 'count');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1136,6 +1155,7 @@ function enterCompliance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

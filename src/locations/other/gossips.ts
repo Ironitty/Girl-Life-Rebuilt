@@ -143,6 +143,7 @@ function enterComplex(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep going', goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -225,6 +226,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue on', goto: ['gschool_events', 'leave_break_events2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

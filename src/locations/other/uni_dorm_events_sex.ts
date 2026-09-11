@@ -15,6 +15,7 @@ function enter8floorAnalGangbang(s: GameState, scene: SceneBuilder): void {
   scene.text('She moans as he starts fucking her ass, the other girls looking over and watching as their friend gets her ass fucked; all but the last look eager for their turn.');
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get in place', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set2/5wg1bm2.jpg');

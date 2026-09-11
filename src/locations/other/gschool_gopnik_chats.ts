@@ -195,6 +195,7 @@ function enterVitek(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -416,6 +417,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -428,6 +430,7 @@ function enterRadInviteNo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big154.jpg');
   scene.text('"Sorry, but I can\'t. Maybe some other time?" you reply.');
   scene.text('He frowns and shrugs. "Sure, whatever."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -441,6 +444,7 @@ function enterRadInviteYes(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big154.jpg');
   scene.text('"Yeah, I would like that," you reply.');
   scene.text('"Nice babe, I\'ll wait for you at the doors after school."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -540,6 +544,7 @@ function enterRoman(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -621,6 +626,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -820,6 +826,7 @@ function enterValentin(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -900,6 +907,7 @@ function enterShulga(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1032,6 +1040,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1176,6 +1185,7 @@ function enterLavrenti(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1228,6 +1238,7 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1289,6 +1300,7 @@ function enterKatyusha(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1364,6 +1376,7 @@ function enterLera(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1600,6 +1613,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1665,6 +1679,7 @@ function enterAlyonaTampon(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2099,6 +2114,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2111,6 +2127,7 @@ function enterNushInviteNo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('"Sorry, but I can\'t. Maybe some other time?" you reply.');
   scene.text('She frowns and shrugs. "Sure, whatever. Some other time then."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2124,6 +2141,7 @@ function enterNushInviteYes(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   scene.text('"Yeah, I\'d like that," you reply.');
   scene.text('"Sweet, I\'ll wait for you at the doors after school."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2160,6 +2178,7 @@ function enterAnushkaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2240,6 +2259,7 @@ function enterLena(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -2360,6 +2380,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);

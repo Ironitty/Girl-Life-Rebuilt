@@ -123,6 +123,7 @@ function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -150,6 +151,7 @@ function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$grid_text>>
   scene.text(`${((s as any).grid_text ?? 0)}`);
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -176,6 +178,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Teachers & Facility</h2></center>');
   qspCall(s, 'journal_school', 'create_grid', 6, 'teachers');
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -201,6 +204,7 @@ function enterPopular(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A148', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A4', 'gschool');
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -225,6 +229,7 @@ function enterJocks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A141', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A19', 'gschool');
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -245,6 +250,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A151', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A240', 'gschool');
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -271,6 +277,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A155', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A189', 'gschool');
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -289,6 +296,7 @@ function enterOutcasts(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A5', 'gschool');
   }
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -312,6 +320,7 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A136', 'gschool');
   qspCall(s, 'journal_NPC_information', 'A133', 'gschool');
   qspCall(s, 'journal_school', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal_school', 'school'] },
   ]);
@@ -319,6 +328,7 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;

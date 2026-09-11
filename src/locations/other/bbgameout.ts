@@ -75,6 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -89,6 +90,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
   scene.text(`You line up with ${((s as any).rand_girl ?? 0)} and ${((s as any).rand_girl1 ?? 0)} and get ready to enter the game. You're all pumped up, ready to take on any of the other teams.`);
   scene.text('"You ready, girls?!" you confidently yell out and get a loud shout back.');
   scene.text('The three of you confidently step onto the court and get ready for the game.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for opponent', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1040,6 +1042,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1049,6 +1052,7 @@ function enterMarcusno(s: GameState, scene: SceneBuilder): void {
   scene.text('You and your teammates huddle together and make up a game plan.');
   scene.text('All three of you are oozing with anticipation and are pumped up for the game.');
   scene.text('You encourage each other as you step out onto the court. "Come on, we\'ve got this!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give it your best', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1478,6 +1482,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
   scene.text('"We\'ve got this!" the first one says.');
   // TODO-QSP: dynamic text: "Yeah, let us show you how it's done, <<$pcs_nickname>>," the other adds. "Just ...
   scene.text(`"Yeah, let us show you how it's done, ${((s as any).pcs_nickname ?? 0)}," the other adds. "Just pass us the ball and we'll be fine."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give it your best', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1918,6 +1923,7 @@ function enterEndGame(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/pickupgames/bboutside/pickteams.jpg');
   scene.text('Once the game is over, you\'re all tired and sweaty, but everyone had a great time. You all go over to the bleachers and find a seat to rest.');
   scene.text('You talk and joke with one another about the game, the winners bragging on their win while the losers promise revenge. Once rested, everyone starts to get up and drift away, saying their goodbyes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
   ]);

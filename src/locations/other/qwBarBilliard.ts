@@ -53,6 +53,7 @@ function enterBilliardEngine(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,6 +352,7 @@ function enterBilliardEv1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -563,6 +565,7 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -587,6 +590,7 @@ function enterBilliardFriendly(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Either way, it was great fun and you quite enjoyed playing.');
   scene.text('Another small group of people enters the backroom just as you and your newfound acquaintances finish up. With a few friendly words, you return to the main room and part ways.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
   ]);
@@ -617,6 +621,7 @@ function enterBilliardMoney(s: GameState, scene: SceneBuilder): void {
     scene.text(`Since they also have to leave, you return to the main room with them where you part ways, ${qspFunc(s, 'money', 'string_price', 250)} poorer than half an hour ago.`);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the bar', goto: ['qwBarPolet', 'bar'] },
   ]);

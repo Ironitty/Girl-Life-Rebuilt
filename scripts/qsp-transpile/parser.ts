@@ -180,37 +180,40 @@ interface ParseResult {
   endIdx: number;
 }
 
- function parseBlock(lines: string[], startIdx: number, unsupported: string[]): ParseResult {
-   const nodes: QspNode[] = [];
-   let i = startIdx;
-   let inBlockComment = false;
+  function parseBlock(lines: string[], startIdx: number, unsupported: string[], stopAtEnd = true): ParseResult {
+    const nodes: QspNode[] = [];
+    let i = startIdx;
+    let inBlockComment = false;
 
-    while (i < lines.length) {
+     while (i < lines.length) {
       const raw = lines[i];
       const trimmed = raw.trim();
       if (!trimmed) { i++; continue; }
 
-     // QSP block comment: !{ ... !} (may span lines; text on marker lines is also comment)
-      if (inBlockComment) {
-        if (trimmed.endsWith('!}') || trimmed.endsWith('!!}')) inBlockComment = false;
-        i++;
-        continue;
-      }
-      if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
-        if (!trimmed.endsWith('!}')) inBlockComment = true;
-        i++;
-        continue;
+      // QSP block comment: !{ ... !} (may span lines; text on marker lines is also comment)
+       if (inBlockComment) {
+         if (trimmed.endsWith('!}') || trimmed.endsWith('!!}')) inBlockComment = false;
+         i++;
+         continue;
+       }
+       if (trimmed.startsWith('!{') || trimmed.startsWith('!!{')) {
+         if (!trimmed.endsWith('!}')) inBlockComment = true;
+         i++;
+         continue;
+       }
+
+      if (stopAtEnd && (trimmed === 'end' || trimmed === 'end ')) {
+        return { nodes, endIdx: i + 1 };
       }
 
-     if (trimmed === 'end' || trimmed === 'end ') {
-       return { nodes, endIdx: i + 1 };
-     }
-
-    // Scene: if $ARGS[0] = 'x':
-    const sceneMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
+    // Scene: if/elseif $ARGS[0] = 'x':
+    const sceneMatch = trimmed.match(/^(?:if|elseif)\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
     if (sceneMatch) {
+      if (!stopAtEnd) {
+        return { nodes, endIdx: i };
+      }
       const arg = sceneMatch[1];
-      const inner = parseBlock(lines, i + 1, unsupported);
+      const inner = parseBlock(lines, i + 1, unsupported, false);
       const scene: QspScene = { kind: 'scene', arg, body: inner.nodes };
       nodes.push(scene);
       i = inner.endIdx;
@@ -220,7 +223,10 @@ interface ParseResult {
     // Scene (multi-value): if $ARGS[0] = '' or $ARGS[0] = 'start' or $ARGS[0] = 'main':
     const sceneMultiMatch = trimmed.match(/^if\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s+(?:or\s+\$ARGS\[0\]\s*=\s*'[^']*'\s+)*or\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/);
     if (sceneMultiMatch) {
-      const inner = parseBlock(lines, i + 1, unsupported);
+      if (!stopAtEnd) {
+        return { nodes, endIdx: i };
+      }
+      const inner = parseBlock(lines, i + 1, unsupported, false);
       const scene: QspScene = { kind: 'scene', arg: '', body: inner.nodes };
       nodes.push(scene);
       i = inner.endIdx;

@@ -28,6 +28,7 @@ function enterBoyTopics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['flashing_jogger'] === 0  &&  (((s as any).npc_build_desc ?? 0)?.[String((s as any).npcID ?? 0)] === 'athletic'  ||  ((s as any).npc_build_desc ?? 0)?.[String((s as any).npcID ?? 0)] === 'thin'  ||  ((s as any).npc_gymrat ?? 0)?.[String((s as any).npcID ?? 0)] > 0)) {
     // TODO-QSP: $date_ev_topics[] = "gt 'date_boy_talk', 'flashing_jogger'"
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,10 +37,12 @@ function enterWhatDoYouLikeTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "What do you like to do?" <<$npcdesc>> asks.
   scene.text(`"What do you like to do?" ${((s as any).npcdesc ?? 0)} asks.`);
   qspCall(s, 'date_boy_talk', 'what_do_you_like_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWhatDoYouLikeMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Studying', handler: (st: GameState) => {
     scene.text('"I spend a lot of time studying."');
@@ -108,6 +111,7 @@ function enterVideoGamesTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: "Do you play video games?" <<$npcdesc>> asks.
   scene.text(`"Do you play video games?" ${((s as any).npcdesc ?? 0)} asks.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'I love video games!', goto: ['date_boy_talk', 'video_games_love'] },
   ]);
@@ -123,10 +127,12 @@ function enterVideoGamesLove(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh, that\'s cool. What do you play?"');
   }
   qspCall(s, 'date_boy_talk', 'video_game_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '"Casual" games', handler: (st: GameState) => {
     scene.actions([
@@ -230,6 +236,7 @@ function enterVideoGameSnob(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Oh." <<$npcdesc>>'s grin turns to a sneer. "I thought you played <i>real</i> ga...
     scene.text(`"Oh." ${((s as any).npcdesc ?? 0)}'s grin turns to a sneer. "I thought you played <i>real</i> games, not that junk."`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Feel hurt', handler: (st: GameState) => {
     qspCall(s, 'date_talk', 'loc_img');
@@ -255,10 +262,12 @@ function enterWhatsYourTypeTalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`"You told me about some of the things you like in a guy before," ${((s as any).npcdesc ?? 0)} says. "Anything else I should know?"`);
   }
   qspCall(s, 'date_boy_talk', 'whats_your_type_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWhatsYourTypeMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Never thought about it', handler: (st: GameState) => {
     if (((((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';type_talk;'))) + 1 === 0) {
@@ -319,6 +328,7 @@ function enterLoveHairTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank him', handler: (st: GameState) => {
     scene.text('"Thanks," you smile back. "It\'s always nice to be told you\'re beautiful."');
@@ -347,6 +357,7 @@ function enterWashingHandsTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> takes a moment to use the restroom.
   scene.text(`${((s as any).npcdesc ?? 0)} takes a moment to use the restroom.`);
   scene.text('When he gets back, he says, "Man, don\'t you just hate it when you\'re about to leave the bathroom and somebody comes in so you have to actually wash your hands?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Quiet disgust', handler: (st: GameState) => {
     scene.text('"Uhm, yeah..." you reply stiffly, trying not to let your disgust show on your face.');
@@ -514,6 +525,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'ll try not to get jealous', handler: (st: GameState) => {
     scene.text('"I\'ll try not to get jealous," you snicker back at him.');

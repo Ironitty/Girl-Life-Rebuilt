@@ -814,6 +814,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -825,6 +826,7 @@ function enterMartinTalkHobby(s: GameState, scene: SceneBuilder): void {
   scene.text('Martin leans in close too, closer than he\'s been to you yet. His dark eyes and aged face look different from here: Behind the counter or when he has to step in somewhere in the bar, he looks like nothing can get to him, caring and friendly when he can be, strong and imposing when he has to be. Up close, however, he looks tired - full of life, and yet aged before his time. These thoughts are swiped away though when he whispers into your ear with his coarse but warm voice:');
   scene.text('"Not even remotely."');
   scene.text('You\'ve done some friendly flirting with Martin before, but something about the way he said this before turning to serve another customer made your belly tingle.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
   ]);
@@ -874,6 +876,7 @@ function enterMartinTalkApartment(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your drink', goto: ['qwBarPolet', 'bar'] },
   ]);

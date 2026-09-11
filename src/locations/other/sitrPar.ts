@@ -176,6 +176,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -224,6 +225,7 @@ function enterMomFloorSweeping(s: GameState, scene: SceneBuilder): void {
   }, goto: ['korrPar', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -231,6 +233,7 @@ function enterNakedMomPresent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/body/nude1.jpg');
   // TODO-QSP: dynamic text: Not wearing any clothing, you're frightened to see your <<$npc_nickname['A29']>>...
   scene.text(`Not wearing any clothing, you're frightened to see your ${((s as any).npc_nickname ?? 0)?.['A29']} in the living room and leave as quickly as possible.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -268,6 +271,7 @@ function enterSofa(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -306,6 +310,7 @@ function enterTVfam(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep watching', goto: ['sitrPar', 'TVfam'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -327,6 +332,7 @@ function enterTVend(s: GameState, scene: SceneBuilder): void {
   scene.text('Your mother also gets up. "You should go to bed, or at least go to your room so your brother can get his rest."');
   scene.text('She then turns to Kolka. "Don\'t even think of staying up late. Go to bed."');
   scene.text('She quickly ushers you out of the room. As you walk out, you see Kolka putting his pillow and sheet on the couch.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

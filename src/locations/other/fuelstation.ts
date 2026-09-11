@@ -80,6 +80,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).region ?? 0) === 'city') {
@@ -113,6 +114,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'pblc_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restroom', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {

@@ -116,6 +116,7 @@ function enterSetCoffeeHoleChats(s: GameState, scene: SceneBuilder): void {
     scene.text(`You spot ${((s as any).npc_usedname ?? 0)?.['A16']} sitting at a corner table.`);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -131,6 +132,7 @@ function enterCoffeeHoleChatGf_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You spot Natasha sitting in the corner with a cup in front of her. She looks very sad and is just staring blankly into space.');
   scene.text('You head over to surprise her.');
   qspCall(s, 'beverage', 'coffee_stats');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -204,6 +206,7 @@ function enterCoffeeHoleNightclubdateGf_1(s: GameState, scene: SceneBuilder): vo
   scene.text(`As you arrive she greets you and tells you that she bought you a Cappuccino. "Here you go ${((s as any).pcs_nickname ?? 0)}, I hope it's still warm."`);
   scene.text('You thank her and drink the coffee then you both get up and make your way to the metro and then onto the city center.');
   qspCall(s, 'beverage', 'coffee_stats');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the nightclub', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -320,6 +323,7 @@ function enterCoffeeHoleNightclubdateGf_1After(s: GameState, scene: SceneBuilder
   scene.text('She looks a little downcast and you sigh. "Look, let\'s get some breakfast and get washed and dressed then we can do something before heading back."');
   scene.text('She nods at you and calls room service to buy a breakfast each and you both get washed and changed then eat breakfast together in silence.');
   qspCall(s, 'food', 'medium_meal_stats');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -396,6 +400,7 @@ function enterCoffeeHoleNightclubdate_1CafeLeave(s: GameState, scene: SceneBuild
   scene.text('Natasha is now an even brighter shade of red. "Be quite!… What am I to do with you?" She shakes her head.');
   scene.text('You start to respond. "Well… Now that\'s a good question and I can think of a few options…" However, deciding you don\'t want to tease her further you take her hand and say while grinning. "You know; you\'re so cute when you get embarrassed."');
   scene.text('You both head back to the hotel chatting about whatever comes to mind and sucking on your ice pops.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start undressing', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
@@ -653,6 +658,7 @@ function enterCoffeeHoleChatBrokenup_1(s: GameState, scene: SceneBuilder): void 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t restart your relationship with her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -676,6 +682,7 @@ function enterCoffeeHoleChatStrangers_1(s: GameState, scene: SceneBuilder): void
   scene.text('You enter the café and have a look around to see who else is there so you can maybe go and have a friendly chat.');
   scene.text('You spot Natasha sitting in the corner with a cup in front of her. She looks very sad and is just staring blankly into space.');
   scene.text('Maybe you can go over and try to cheer her up as you don\'t think she has many friends. You also think that she may have developed a bit of a crush on you over time during your final year at school as you caught the way she looked at you sometimes or maybe it was just your imagination.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her and carry on what you\'re doing', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -844,6 +851,7 @@ function enterCoffeeHoleNightclubdateStrangers_1(s: GameState, scene: SceneBuild
   scene.text(`As you arrive she greets you and tells you that she bought you a Cappuccino. "Here you go ${((s as any).pcs_nickname ?? 0)}, I hope it's still warm."`);
   scene.text('You thank her and drink the coffee and have a quick chat with her about university.');
   qspCall(s, 'beverage', 'coffee_stats');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her if she\'s doing any extra courses', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -987,6 +995,7 @@ function enterCoffeeHoleNightclubdateStrangers_1After(s: GameState, scene: Scene
   qspCall(s, 'din_van', 'showerdin');
   qspCall(s, 'outfit', 'restore');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her to confirm she\'s your girlfriend', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
@@ -1228,6 +1237,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHub(s: GameState, scene: Scen
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1238,6 +1248,7 @@ function enterCoffeeHoleNightclubdateStrangers_1JobHubPorn(s: GameState, scene: 
   scene.text(`Natasha starts fidgeting more then looks at you and says in a very quiet voice "Erm… ${((s as any).pcs_nickname ?? 0)} are you ${((s as any).pfname ?? 0)}?"`);
   scene.text('You look at her quizzically but she doesn\'t respond and averts her eyes away from you.');
   scene.text('You were hoping she wouldn\'t have brought this up but guess that if you stay with her it would need to be discussed at some point so it might as well be now.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No it\'s not me', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

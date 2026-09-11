@@ -53,6 +53,7 @@ function enterMinorDebtPayoff(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +77,7 @@ function enterMinorDidntDeliverDisk(s: GameState, scene: SceneBuilder): void {
     scene.text('You give him the envelope. He warns you that such delays in the future may be harmful to your business relationships.');
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -95,6 +97,7 @@ function enterMinorTatianaUnlockMagic(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Tatiana looks at you closely, "I felt a burst of energy. Were you attacked by a magician?"');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', goto: ['mainQW', ''] },
   ]);

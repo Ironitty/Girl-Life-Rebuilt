@@ -5,9 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'leave_break_events') {
-    // TODO-QSP: act 'Continue': gt 'gschool_events', 'leave_break_events2'
-  }
   scene.build();
 }
 
@@ -121,6 +118,7 @@ function enterTeacherGreet(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hello', handler: (st: GameState) => {
     if (((s as any).npc_rel ?? 0)?.['A26'] < 10) {
@@ -1410,6 +1408,10 @@ function enterBreakEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'leave_break_events') {
+    // TODO-QSP: act 'Continue': gt 'gschool_events', 'leave_break_events2'
+  }
   scene.build();
 }
 
@@ -1429,6 +1431,7 @@ function enterLeaveBreakEvents2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2016,6 +2019,7 @@ function enterAfterschoolEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2126,6 +2130,7 @@ function enterAfterschoolClassroomEvents(s: GameState, scene: SceneBuilder): voi
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
   ]);
@@ -2258,12 +2263,14 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandBoyArg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).school_static_num ?? 0) !== 'A0') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2274,12 +2281,14 @@ function enterRandBoyArg1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'rnd_boy1_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandGirlArg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).school_static_num ?? 0) !== 'A0') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2290,12 +2299,14 @@ function enterRandGirlArg1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'rnd_girl1_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRandTeacherArg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).school_static_num ?? 0) !== 'A0') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2311,6 +2322,7 @@ function enterRandomPers(s: GameState, scene: SceneBuilder): void {
   }
   if (Object.keys((s as any).tmpCandidateArr ?? {}).length > 0) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 

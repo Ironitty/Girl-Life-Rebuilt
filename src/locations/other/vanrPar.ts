@@ -68,24 +68,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'din_van', 'private');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLatch(s: GameState, scene: SceneBuilder): void {
   (s as any).vanr_lock = 1;
   scene.actions([{ label: 'Continue', goto: ['vanrPar', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterUnlatch(s: GameState, scene: SceneBuilder): void {
   (s as any).vanr_lock = 0;
   scene.actions([{ label: 'Continue', goto: ['vanrPar', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPermLatch(s: GameState, scene: SceneBuilder): void {
   (s as any).vanr_lock = 2;
   scene.actions([{ label: 'Continue', goto: ['vanrPar', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +176,7 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -180,6 +185,7 @@ function enterStepdadNosex(s: GameState, scene: SceneBuilder): void {
   scene.text('You hear movement at the door and turn around. It\'s your stepfather. It looks like he passed by and accidentally peeked in. Catching his glance, you feel mischievous and excited, so you blow him a kiss.');
   scene.text('He disappears without a word, yet you can\'t help but smile as you dry your hair.');
   (s as any).stepdadqw = ((s as any).stepdadqw ?? 0) + (1);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['vanrPar', ''] },
   ]);
@@ -192,6 +198,7 @@ function enterStepdadSexNo(s: GameState, scene: SceneBuilder): void {
   scene.text('He stands at the threshold, staring at you and nervously licking his lips. The way he\'s looking at you makes you feel exposed, so you quickly cover yourself up. "Oh my god! What you are doing?! Get out! Get out and close the door!"');
   scene.text('He looks surprised by your outburst and is about to say something before he shakes his head and pulls the door closed behind him, letting you finish your shower in peace.');
   (s as any).stepdadqw = ((s as any).stepdadqw ?? 0) - (2);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['vanrPar', ''] },
   ]);
@@ -268,6 +275,7 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck me!', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 5, 'gentle');
@@ -323,6 +331,7 @@ function enterStepdadSexVag(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 5, 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Climax', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 6) + 0) < ((s as any).tempcpchance ?? 0)) {
@@ -347,6 +356,7 @@ function enterStepdadSexCreampie(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5, 'rough');
   qspCall(s, 'cum_call', '', '', 'A28', 1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shove him', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/creampie5.mp4');
@@ -377,6 +387,7 @@ function enterStepdadSexPullout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'butt', 'A28', 1);
   qspCall(s, 'stat', '');
   qspCall(s, 'vanrPar', 'stepdad_sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -391,12 +402,14 @@ function enterStepdadSexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'butt', 'A28', 1);
   qspCall(s, 'stat', '');
   qspCall(s, 'vanrPar', 'stepdad_sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStepdadSexEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_had_sex ?? {})['A28'] = 1;
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash again', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;

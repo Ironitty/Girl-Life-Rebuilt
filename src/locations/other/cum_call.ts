@@ -62,14 +62,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).sexspecpot = ((((s as any).locArgs?.[4] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[4]", { location: "cum_call" })) : (((s as any).npcSpermPot ?? 0)));
   (s as any).sexvolume = ((((s as any).locArgs?.[5] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[5]", { location: "cum_call" })) : (0));
-  qspCall(s, 'cum_manage', '');
-  if (((s as any).cumnpc ?? 0) !== '') {
-    qspCall(s, 'npcStat', '', ((s as any).cumnpc ?? 0), 0, ((s as any).cumCon ?? 0));
-  } else {
-    if (((s as any).cumboy ?? 0) !== '') {
-      qspCall(s, 'npcStat', '', ((s as any).cumboy ?? 0), 0, ((s as any).cumCon ?? 0));
-    }
-  }
   scene.build();
 }
 
@@ -163,6 +155,15 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
+    }
+  }
+  // TODO-QSP: end
+  qspCall(s, 'cum_manage', '');
+  if (((s as any).cumnpc ?? 0) !== '') {
+    qspCall(s, 'npcStat', '', ((s as any).cumnpc ?? 0), 0, ((s as any).cumCon ?? 0));
+  } else {
+    if (((s as any).cumboy ?? 0) !== '') {
+      qspCall(s, 'npcStat', '', ((s as any).cumboy ?? 0), 0, ((s as any).cumCon ?? 0));
     }
   }
   scene.build();

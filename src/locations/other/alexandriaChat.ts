@@ -18,6 +18,7 @@ function enterLate(s: GameState, scene: SceneBuilder): void {
   scene.text('The bells in the Victorian clock rumble, silencing anything that you or Aleksei were saying and he looks reflectively at the clock hands before continuing the conversation.');
   // TODO-QSP: dynamic text: Aleksei stands and signals towards the door. "Well <<$pcs_lastname>>, it's getti...
   scene.text(`Aleksei stands and signals towards the door. "Well ${((s as any).pcs_lastname ?? 0)}, it's getting late. Time for you to go." He walks towards the door, expecting you to follow.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_suburbs', 'start'] },
     { label: '"Can I sleep here tonight?"', handler: (st: GameState) => {
@@ -259,6 +260,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -360,6 +362,7 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -489,6 +492,7 @@ function enterPeople(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,6 +537,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -552,6 +557,7 @@ function enterElectric1(s: GameState, scene: SceneBuilder): void {
   scene.text('He then leans back in his chair, hands interlocked under his chin, eyes looking at the ceiling, silent. He is lost in his thoughts for several minutes before deciding with a resigned sigh.');
   // TODO-QSP: dynamic text: "<<$pcs_lastname>>, under normal circumstances, teaching the basic magical theor...
   scene.text(`"${((s as any).pcs_lastname ?? 0)}, under normal circumstances, teaching the basic magical theory takes years, even decades, until somebody with minimal talent can actually learn a Magical School, but neither of us has that kind of time in our hands. At this point, I feel I must re-teach you all the basics and I only see one solution. Let me see your hands."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Extend your hands', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -594,6 +600,7 @@ function enterElectric2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Put this on."');
     scene.text('A set of bondage ropes land at your feet that you, after undressing obediently, put on. After undressing himself, he drags you towards a bare-bones room with tools on a table.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Begin the lesson(Long Version)', goto: ['alexandriaSex', 'long'] },
     { label: 'Begin the lesson(Short Version)', goto: ['alexandriaSex', 'short'] },
@@ -687,6 +694,7 @@ function enterElectric3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -900,6 +908,7 @@ function enterSword(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -914,6 +923,7 @@ function enterTractatus(s: GameState, scene: SceneBuilder): void {
   scene.text(`Aleksei is already sitting in his chair in the studio, some kind of leatherbound book on his lap. "I find myself in a conundrum ${((s as any).pcs_lastname ?? 0)}, as now you are irretrievably tangled in this childish feud. If you were one of my agents, I would have spirited you away from the current situation, but, alas, is evident that even if The Council isn't involved in the current mess, they are going to limit any reasonable option, so… I must lend this to you."`);
   scene.text('Aleksei passes you the text, that now you realize isn\'t a book. In fact, is a set of yellowish sheets, sewn together, written elegantly in… <i>Latin</i>? and keep in some kind of leather portfolio. The set seems <i>handcrafted</i> and <i>centuries</i> old, but well preserved, with a tingle of magic.');
   scene.text('"This - written by me - <i>tractatus</i>, is and advanced <i>discourse</i> on unarmed combat. I am not sure when exactly it turned magical, but that is the nature of magic… unpredictable. It\'s primary power, is that in exchange for some mana, it will train your unarmed combat skills without the need to do the physical part, letting you grow - let\'s hope - in the security of your home… additionally, you don\'t need to know Latin to understand it. It\'s limitation is somewhat confusing, the number of <i>lessons</i> are variable but seems related to your performance on any task related to me. I assume that this last adventure will have granted you some uses."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['alexandriaHome', 'study'] },
   ]);

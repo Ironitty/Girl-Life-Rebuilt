@@ -16,6 +16,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,6 +54,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AnalBan ?? 0) <= 0) {
     // TODO-QSP: act 'In the ass': gt 'sex', 'anal'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,6 +93,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +132,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -173,6 +177,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).cumprecheck = 1;
   qspCall(s, 'cum_manage', '');
   scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -215,6 +220,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['sex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -238,6 +244,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).picrand ?? 0) >= 54  &&  ((s as any).picrand ?? 0) <= 73) {

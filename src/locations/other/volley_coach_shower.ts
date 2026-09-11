@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);
@@ -20,6 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enter0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenersexshower1.jpg');
   scene.text('You hear a suspicious noise.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Investigate', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenersexshower2.jpg');
@@ -67,6 +69,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Scream', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenersexshower4.jpg');
@@ -116,6 +119,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Flip him off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenersexshower7.jpg');
@@ -131,6 +135,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 function enter3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower10.jpg');
   scene.text('Leaning against the glass and sticking out your ass, you moan from the pounding your ass is receiving. What the fuck is that moving on the other side of the glass?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get a better look', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower19.jpg');
@@ -195,6 +200,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 function enter4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower10.jpg');
   scene.text('Leaning against the glass and sticking out your ass, you moan from the pounding your ass is receiving. You can see movement through the glass…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get a better look', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower19.jpg');
@@ -257,6 +263,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   scene.text('Leaning against the glass and sticking out your ass, you moan from the pounding your ass is receiving. You can see movement through the glass…');
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get a better look', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower19.jpg');

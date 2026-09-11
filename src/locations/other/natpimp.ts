@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoSeeOlu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take her to see Olu for 500', handler: (st: GameState) => {
     ((s as any).OluQW ?? {})['nat_inv'] = 1;

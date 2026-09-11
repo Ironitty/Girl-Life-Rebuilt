@@ -25,6 +25,7 @@ function enterBuildWeekSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_schedule', 'assign_columns');
   qspCall(s, 'calendar_schedule', 'cleanup_temp_structures');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -89,6 +90,7 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_collect_days'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -209,6 +211,7 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'set_max_rows'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -217,6 +220,7 @@ function enterPlaceDayEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_schedule', 'place_static_events', ((s as any).temp_d ?? 0));
   qspCall(s, 'calendar_schedule', 'place_flexible_events', ((s as any).temp_d ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -276,6 +280,7 @@ function enterPlaceStaticEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_priority_pse'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -319,6 +324,7 @@ function enterPlaceFlexibleEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_priority_pfe'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -333,6 +339,7 @@ function enterCheckOverlap(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -390,6 +397,7 @@ function enterIsRangeBlocked(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -419,6 +427,7 @@ function enterFindBestPlacement(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_try_positions'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,6 +458,7 @@ function enterFindFreeWindowAround(s: GameState, scene: SceneBuilder): void {
   (s as any).result_window_start = ((s as any).temp_left ?? 0);
   (s as any).result_window_end = ((s as any).temp_right ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -461,6 +471,7 @@ function enterApplyPlacement(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_schedule', 'add_event_to_schedule', ((s as any).temp_d ?? 0), ((s as any).placement_window_start ?? 0), ((s as any).temp_evt_id ?? 0));
   ((s as any).placement_state ?? {})['' + String((s as any).$temp_evt_id || '') + ', placed'] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -493,6 +504,7 @@ function enterHideOverlappingLowerPriority(s: GameState, scene: SceneBuilder): v
     // TODO-QSP: jump 'loop_scan'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -529,6 +541,7 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar_schedule', 'change_busy_timeslots', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0), 1);
   ((s as any).week_schedule ?? {})['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_t || '') + ', event_count'] = ((s as any).temp_e ?? 0) + 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -542,6 +555,7 @@ function enterChangeBusyTimeslots(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'inc_busy_ts_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -561,6 +575,7 @@ function enterAssignColumns(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_pass2'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -615,6 +630,7 @@ function enterAssignDayColumns(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).week_schedule ?? {})['days=' + String((s as any).temp_d || '') + ', max_columns'] = ((s as any).temp_max_col_used ?? 0) + 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -657,6 +673,7 @@ function enterCalculateDayColspans(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_ts_cdc'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -686,6 +703,7 @@ function enterCalculateEventColspan(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :done
   (s as any).result = ((s as any).temp_colspan ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -748,6 +766,7 @@ function enterIsColumnFreeForSpan(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -759,6 +778,7 @@ function enterCleanupTempStructures(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_cleanup'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

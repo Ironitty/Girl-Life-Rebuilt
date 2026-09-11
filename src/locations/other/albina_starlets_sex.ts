@@ -178,6 +178,7 @@ function enterWhore1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -353,6 +354,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -467,6 +469,7 @@ function enterWhore3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -477,6 +480,7 @@ function enterWhore4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'stat', '');
   scene.text('Holding your hand, the old man escorts you into his cheap motel room. While he still retains some muscle and even tattoos from his youth, you can\'t ignore the fact that he\'s old enough to be your grandfather, if not older.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get started', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -555,6 +559,7 @@ function enterWhore5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('The two old men can barely contain their excitement as they lead you to their cheap motel room. You can\'t ignore the fact that they\'re both old enough to be your grandfather, if not older.');
   scene.text('As soon as you enter the room, the two men immediately start undressing faster than you were expecting for men their age.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck them both', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
@@ -623,6 +628,7 @@ function enterWhore6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'npcStat', $AlbinaQW['Cust']
   qspCall(s, 'stat', '');
   scene.text('The man leads you by the hand into his hotel room and over to the bed, where he undresses you and lays you on your back. You notice the ring on his finger, but since he hasn\'t paid for you to ask questions, you ignore it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get eaten out', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -747,6 +753,7 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/prostitute/bukkake2.jpg');
@@ -783,6 +790,7 @@ function enterWhore7_1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_whore7_0'
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/prostitute/bukkake4.jpg');
@@ -848,6 +856,7 @@ function enterWhore8(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Knowing what you need to do, you quickly undress and get on all fours with your ass in the air. The woman walks back into the room and smiles at your display. "Good girl," she says and pats you on the head. She inserts the buttplug into you before applying the collar around your neck and pulling you along. "Time for your walk, pet."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -964,6 +973,7 @@ function enterWhore9(s: GameState, scene: SceneBuilder): void {
   scene.text('The bald man escorts you to a hotel room, where you\'re greeted by a second man.');
   scene.text('"Okay, here\'s the deal, bitch," the bald man says. "We\'ve hired you to film a porn scene for us. My man here will be the one fucking you while I do the filming. Now hurry up and get your clothes off!"');
   scene.text('You quickly do as you\'re told and strip naked, as does the other man before he sits on the edge of the bed. The bald man approaches with a video camera as you kneel in front of the second man, his cock already growing hard in anticipation.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get started', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', (-2), 'exhibitionism', 'prostitution');
@@ -1059,6 +1069,7 @@ function enterCabHome(s: GameState, scene: SceneBuilder): void {
     scene.text('While waiting for the taxi, you gather up your clothes and enter the bathroom. You clean yourself up at the sink as best as you can before getting dressed.');
     scene.text('You feel incredibily dirty and the only thing you want right now is a thorough shower when you get home.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);

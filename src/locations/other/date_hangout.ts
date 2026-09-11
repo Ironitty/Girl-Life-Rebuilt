@@ -37,6 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><<$npc_apt_hall[$npcID]>></center>
   scene.text(`<center>${((s as any).npc_apt_hall ?? 0)?.[String((s as any).npcID ?? 0)]}</center>`);
   qspCall(s, 'date_hangout', 'settle_in');
+  // TODO-QSP: end
   scene.build();
 }
 

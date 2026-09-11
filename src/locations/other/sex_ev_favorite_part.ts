@@ -23,6 +23,7 @@ function enterGoodForYou(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,10 +49,12 @@ function enterBoyGoodForYou(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([{ label: 'Continue', goto: ['sex_ev_favorite_part', 'boy_good_for_you_options'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBoyGoodForYouOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lukewarm', handler: (st: GameState) => {
     scene.actions([
@@ -202,6 +205,7 @@ function enterGoodForYou2(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_favorite_part', 'good_for_you_too'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -309,6 +313,7 @@ function enterCreampieFavorite(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_favorite_part', 'pc_nothing_fav');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -529,6 +534,7 @@ function enterCumMouthFavorite(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -619,6 +625,7 @@ function enterFacialFavorite(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Glad you enjoyed it', handler: (st: GameState) => {
     if (((s as any).cum_loc ?? 0)?.['face'] > 0) {
@@ -726,6 +733,7 @@ function enterTitCumFavorite(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Glad you enjoyed it', handler: (st: GameState) => {
     if (((s as any).cum_loc ?? 0)?.['tits'] > 0) {
@@ -756,6 +764,7 @@ function enterPussyeatFavorite(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "I love the way you taste," <<$npcdesc>> smiles.
   scene.text(`"I love the way you taste," ${((s as any).npcdesc ?? 0)} smiles.`);
   qspCall(s, 'sex_ev_pillow_talk', 'kuni_wear_out');
+  // TODO-QSP: end
   scene.actions([
     { label: 'What do I taste like?', handler: (st: GameState) => {
     scene.text('"Yeah?" you smirk back. "What do I taste like?"');
@@ -829,6 +838,7 @@ function enterPussyeatFavorite(s: GameState, scene: SceneBuilder): void {
 function enterNpcMissFav1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['boy_favorite'] = 'missionary';
   scene.text('"I liked fucking you," he grins. "Especially when I got to be on top."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Me too', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -888,6 +898,7 @@ function enterNpcMissFav1(s: GameState, scene: SceneBuilder): void {
 function enterNpcDoggyFav1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['boy_favorite'] = 'doggy';
   scene.text('"I liked fucking you," he grins. "Especially when I got to fuck you from behind."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Me too', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -947,6 +958,7 @@ function enterNpcCowgirlFav1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"I liked when you were on top," he grins.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Me too', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -1014,6 +1026,7 @@ function enterNpcAnalFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Me too', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -1054,6 +1067,7 @@ function enterNpcArgueLashout(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
   // TODO-QSP: dynamic text: "Why're you being such a bitch?" <<$npcdesc>> scowls back. "What's the point of ...
   scene.text(`"Why're you being such a bitch?" ${((s as any).npcdesc ?? 0)} scowls back. "What's the point of asking me what I liked if you're just going to piss on it?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let it slide', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk_eyeroll.mp4');
@@ -1076,6 +1090,7 @@ function enterNpcArgueLashout(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcBjFav1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['boy_favorite'] = 'blowjob';
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1100,6 +1115,7 @@ function enterPcFavoritePart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_favorite_part', 'pc_mouthcum_fav1');
   qspCall(s, 'sex_ev_favorite_part', 'pc_facial_fav1');
   qspCall(s, 'sex_ev_favorite_part', 'pc_titcum_fav1');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You love his cock', handler: (st: GameState) => {
     if (((s as any).pcs_pubes ?? 0) < 12) {
@@ -1115,6 +1131,7 @@ function enterPcFavoritePart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcNothingFav(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No one thing', handler: (st: GameState) => {
     scene.actions([
@@ -1216,10 +1233,12 @@ function enterPcBjFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPcBjFav2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the compliment', handler: (st: GameState) => {
     scene.text('You enjoy the praise, letting it wash over you and give you a warm fuzzy feeling inside.');
@@ -1230,6 +1249,7 @@ function enterPcBjFav2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcBjFav3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his thumb', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As his thumb trails past you let it slip into your mouth. Almost instinctively, ...
@@ -1242,6 +1262,7 @@ function enterPcBjFav3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcFuckFav1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be open about it', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['virgin'] === 1) {
@@ -1370,6 +1391,7 @@ function enterPcMissPref1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1428,6 +1450,7 @@ function enterPcDoggyPref1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1488,6 +1511,7 @@ function enterPcCowgirlPref1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1578,6 +1602,7 @@ function enterPcRoughGentleFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1609,6 +1634,7 @@ function enterPcFuckFav2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1674,6 +1700,7 @@ function enterPcMissPref2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1733,6 +1760,7 @@ function enterPcDoggyPref2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1788,6 +1816,7 @@ function enterPcCowgirlPref2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1854,6 +1883,7 @@ function enterPcRoughGentleFav2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1945,6 +1975,7 @@ function enterPcAnalPref1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2037,6 +2068,7 @@ function enterPcAnalPref2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2078,6 +2110,7 @@ function enterPcCuniFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2127,6 +2160,7 @@ function enterPcCreampieFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2166,6 +2200,7 @@ function enterPcAnalCreampieFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2224,6 +2259,7 @@ function enterPcMouthcumFav1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2245,6 +2281,7 @@ function enterPcFacialFav1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2266,6 +2303,7 @@ function enterPcTitcumFav1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2282,6 +2320,7 @@ function enterPcBrokenCondom1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2446,6 +2485,7 @@ function enterGoodForYouToo(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Satisfied', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I had fun," you say, smiling at <<$npcdesc>>.

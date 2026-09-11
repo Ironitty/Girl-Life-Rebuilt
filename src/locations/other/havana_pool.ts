@@ -20,6 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Search ZHoru': Goraday = daystart
     scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev42'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a swim', goto: ['havana_pool', 'swim'] },
     { label: 'Return to the dressing room', goto: ['havana', 'dressing_room'] },
@@ -57,6 +58,7 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You\'re too tired to swim. You should recover some of your stamina first.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['havana_pool', 'start'] },
   ]);

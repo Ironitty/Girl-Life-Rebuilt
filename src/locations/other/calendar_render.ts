@@ -134,6 +134,7 @@ function enterGetEventColor(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,6 +143,7 @@ function enterGetTimeslotBgColor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_hour ?? 0) % 2 === 0) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -154,6 +156,7 @@ function enterIsTodayBusyAtTimeslot(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((((s as any).week_schedule ?? 0)['days=' + ((s as any).temp_days_from_monday ?? 0) + 1 + ', timeslots=' + ((s as any).temp_check_ts ?? 0) + ', busy_count'] > 0) ? (1) : (0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +174,7 @@ function enterRenderCalendar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += '</table></div>'
   // TODO-QSP: $result += '<center><small>❀ = Current timeslot, ⚘ = Busy timeslot today, Timeslot = 15 minute perio...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -247,6 +251,7 @@ function enterRenderHeader(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += '</tr>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -323,6 +328,7 @@ function enterRenderAlldaySection(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_allday_rows_ad'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -349,6 +355,7 @@ function enterGetFirstTimeslot(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).temp_gfs_first ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -381,6 +388,7 @@ function enterRenderTimeslotRow(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += '</tr>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -498,6 +506,7 @@ function enterRenderDayCell(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -562,6 +571,7 @@ function enterRenderEventCell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</td>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -572,6 +582,7 @@ function enterRenderEmptyCell(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_ec_day = qspUntranslated(s, "ARGS[4]", { location: "calendar_render" });
   // TODO-QSP: $result += 'class="empty-cell" style="background-color: ' + $temp_ec_bg + ';">&nbsp;</td>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

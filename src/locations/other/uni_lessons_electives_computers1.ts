@@ -43,6 +43,7 @@ function enterComputers_101(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_lessons_electives_computers1', 'computers_101_listen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_computers1', 'computers_101_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_computers1', 'computers_101_talk'] },
@@ -56,6 +57,7 @@ function enterComputers_101Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Blagov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
@@ -75,6 +77,7 @@ function enterComputers_101Listen(s: GameState, scene: SceneBuilder): void {
 function enterComputers_101NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Blagov\'s lecture is very dry and boring, and you\'re having a hard time paying attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -84,6 +87,7 @@ function enterComputers_101NoAttention(s: GameState, scene: SceneBuilder): void 
 function enterComputers_101Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dimka', goto: ['uni_lessons_electives_computers1', 'computers_101_talk_dimka'] },
     { label: 'Anushka', goto: ['uni_lessons_electives_computers1', 'computers_101_talk_anushka'] },
@@ -128,6 +132,7 @@ function enterComputers_102(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_lessons_electives_computers1', 'computers_102_listen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_computers1', 'computers_102_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_computers1', 'computers_102_talk'] },
@@ -141,6 +146,7 @@ function enterComputers_102Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Blagov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
@@ -160,6 +166,7 @@ function enterComputers_102Listen(s: GameState, scene: SceneBuilder): void {
 function enterComputers_102NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Blagov\'s lecture is very dry and boring, and you\'re having a hard time paying attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -169,6 +176,7 @@ function enterComputers_102NoAttention(s: GameState, scene: SceneBuilder): void 
 function enterComputers_102Talk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('As you arrive in class, you look around and decide to sit next to…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dimka', goto: ['uni_lessons_electives_computers1', 'computers_102_talk_dimka'] },
     { label: 'Anushka', goto: ['uni_lessons_electives_computers1', 'computers_102_talk_anushka'] },
@@ -201,6 +209,7 @@ function enterComputers_101TalkDimka(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit next to Dimka, but other than making a few crude remarks about your sexual exploits, he just ignores you and a fellow student asks you to be quiet.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -230,6 +239,7 @@ function enterComputers_102TalkDimka(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit next to Dimka, but other than making a few crude remarks about your sexual exploits, he just ignores you and a fellow student asks you to be quiet.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -256,6 +266,7 @@ function enterComputers_101TalkAnushka(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -282,6 +293,7 @@ function enterComputers_102TalkAnushka(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -302,6 +314,7 @@ function enterComputers_101TalkDjibril(s: GameState, scene: SceneBuilder): void 
       scene.text('You sit next to Djibril and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -322,6 +335,7 @@ function enterComputers_102TalkDjibril(s: GameState, scene: SceneBuilder): void 
       scene.text('You sit next to Djibril and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -358,6 +372,7 @@ function enterComputers_101TalkNatasha(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -394,6 +409,7 @@ function enterComputers_102TalkNatasha(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_computers1', 'computers_101_events'] },
   ]);
@@ -475,6 +491,7 @@ function enterComputers_101Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
     { label: 'Wait for Anushka', goto: ['uni_lessons_electives_computers1', 'anushka'] },
@@ -565,6 +582,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -575,6 +593,7 @@ function enterAnushkaPhotoshoot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose0.jpg');
   scene.text('The two of you stand there talking a bit, mostly you finding the best spot with the right lighting for the photoshoot. Once the last of your classmates are gone, you pull your camera out and have her stand in front of one of the computer work stations. You start snapping photos of her standing in different poses as you direct her, asking her to interact occasionally with the computer.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spice this up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -833,12 +852,14 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl2.jpg');
   scene.text('You crack the door open and peek in. The two of them are seated back in their seats and seem to be talking about something on the computer, but you notice their overly flirting body language and that Anushka is sitting facing Djibril in a fairly short skirt with her legs spread wide enough for him to see her panties.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     { label: 'Keep watching', handler: (st: GameState) => {

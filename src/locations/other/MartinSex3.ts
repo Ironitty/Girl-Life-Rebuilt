@@ -72,6 +72,7 @@ function enterMartinBlowTease(s: GameState, scene: SceneBuilder): void {
   }, goto: ['MartinSex2', 'MartinSexPrep'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No more teasing - Blow him', goto: ['MartinSex3', 'MartinBlowjob'] },
   ]);
@@ -132,6 +133,7 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him cum on your tits', goto: ['MartinSex2', 'MartinCumshot_Tits'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your mouth', goto: ['MartinSex2', 'MartinCumshot_Mouth'] },
     { label: 'Let him cum on your face', goto: ['MartinSex2', 'MartinCumshot_Face'] },
@@ -153,6 +155,7 @@ function enterMartinPussyLick(s: GameState, scene: SceneBuilder): void {
   scene.text(`You watch him, somewhat amazed at how hot it is to watch a man go down on you. Even if it didn't feel as good as it does, that alone might explain why men like getting blowjobs so much. You barely even notice how minutes pass as Martin licks your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy like an ice cream in summer.`);
   qspCall(s, 'arousal', 'cuni', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return the favor (Blowjob)', goto: ['MartinSex3', 'MartinBlowTease'] },
     { label: 'Lie down on your back (On your back)', handler: (st: GameState) => {

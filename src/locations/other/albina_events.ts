@@ -34,6 +34,7 @@ function enterAlbinaJoggingPav(s: GameState, scene: SceneBuilder): void {
       scene.text('She then jogs away without another word, leaving you behind.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the park', goto: ['pav_park', 'start'] },
   ]);
@@ -45,6 +46,7 @@ function enterStudyDoor(s: GameState, scene: SceneBuilder): void {
   scene.text('As you make your way up the stairs, you take note of the double doors down the hallway. Albina got rather agitated and told you to leave it alone when you first mentioned it to her. She said the room was locked for a reason and under no circumstances would she ever open it.');
   // TODO-QSP: dynamic text: At this point, the maid walks out of the room and neglects to close the door bef...
   scene.text(`At this point, the maid walks out of the room and neglects to close the door before heading down the hall, smiling at you as she walks past. "Hello, Miss ${((s as any).pcs_firstname ?? 0)}."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Investigate', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/study.jpg');
@@ -79,6 +81,7 @@ function enterStudyDoor(s: GameState, scene: SceneBuilder): void {
 function enterFlashDrive(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/accessories/computer/komp.jpg');
   scene.text('You plug the flash drive into your computer and find that it contains a single folder titled "Blackmail material". When you open it, you\'re presented with a series of videos and a note which reads "To be used if any \'associates\' get out of line."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the first video', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/laptop/video1.mp4');
@@ -214,6 +217,7 @@ function enterSchoolPhoto(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yeah. Why?" you ask.');
   scene.text('"You\'ll see," she replies as you stop outside one of the classrooms. It\'s Mrs. Sokoloff\'s. "Ha! This will be great!"');
   scene.text('She opens the door and quickly drags you inside before closing and locking it behind you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'What\'s going on?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -384,6 +388,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -402,6 +407,7 @@ function enterAlbinaJoggingUni(s: GameState, scene: SceneBuilder): void {
     scene.text('She just glances at you. "I don\'t have time to chat. I need to finish my run."');
     scene.text('She then jogs away without another word, leaving you behind.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the quad', goto: ['uni_grounds', ''] },
   ]);
@@ -482,6 +488,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -584,6 +591,7 @@ function enterFloorEightSex(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
   ]);
@@ -596,6 +604,7 @@ function enterCastingVideo(s: GameState, scene: SceneBuilder): void {
   scene.text('You hate yourself for even looking it up, but you\'re curious about Albina\'s porno. After some significant searching, you eventually find it, but it\'s locked behind a paywall.');
   scene.text('A banner reads: <b>"Subscribe now to unlock the premium Casting Corner experience, including the FULL video (featuring POV AND post sex interview!), plus the FULL image set of this shoot!"</b>');
   scene.text('Looks like you\'ll have to make do with browsing the limited amount of free images.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look at the first image', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur', 2);
@@ -789,6 +798,7 @@ function enterUniCafe(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah, sure…" you say, but she\'s already out of earshot.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -880,6 +890,7 @@ function enterCoffeeHole1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Albina isn\'t your biggest fan and you don\'t want to cause a scene in front of this woman, whoever she is, so you leave them be.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave them be', goto: ['city_coffee_hole', 'inner'] },
@@ -961,6 +972,7 @@ function enterCoffeeHole2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yeah, sure…" you say, but she\'s already out of earshot.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave her be', goto: ['city_coffee_hole', 'inner'] },
@@ -1005,6 +1017,7 @@ function enterMoncheri(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

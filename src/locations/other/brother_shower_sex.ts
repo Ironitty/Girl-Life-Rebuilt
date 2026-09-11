@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blow him', goto: ['brother_shower_sex', 'brother_shower_bj'] },
     { label: 'Fuck him', goto: ['brother_shower_sex', 'brother_shower_fuck'] },
@@ -21,6 +22,7 @@ function enterSexMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterMutualMasturbation(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/shower/fun2.mp4');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,6 +38,7 @@ function enterBrotherShowerBj(s: GameState, scene: SceneBuilder): void {
   scene.text('Kneeling down, you take Kolka\'s freshly washed cock and push it between your lips, sucking gently. Several minutes go by while you to continue blowing your brother, going slowly up and down his length, the sound of water raining down from the showerhead muting the soft slurping sounds coming from your mouth.');
   qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 3) + 3, 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', Math.floor(Math.random() * 5) + 1, 'incest');
@@ -256,6 +259,7 @@ function enterBrotherShowerFuckFirst(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -271,6 +275,7 @@ function enterBrotherShowerFuckFirst2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your pussy easily swallows your brother's <<npc_dick['A34']>> cm cock and you im...
     scene.text(`Your pussy easily swallows your brother's ${((s as any).npc_dick ?? 0)?.['A34']} cm cock and you immediately start building into a rhythm, pushing back on him in time with his thrusts for maximum depth of penetration.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/shared/sex/shower/doggy${Math.floor(Math.random() * 3) + 1}.mp4`);
@@ -337,6 +342,7 @@ function enterBrotherShowerFuckFirst3(s: GameState, scene: SceneBuilder): void {
   scene.text('Kolka\'s really getting into it. He pumps in and out you, member slick with your juices. His hands come up to grab your breasts and you gasp when they\'re used as leverage to fuck you harder, his cock reaching even deeper inside you. His cock! Oh god! It\'s driving you insane! Even though it\'s his first time, he\'s actually pretty good! Fuck! You should have jumped on his dick ages ago!');
   scene.text('Several minutes go by with you unable to think about anything except how good fucking your brother feels.');
   scene.text('Suddenly, you feel him urgently tapping you on the shoulder.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brother_shower_sex', 'brother_fuck_cum'] },
   ]);
@@ -355,6 +361,7 @@ function enterBrotherShowerFuck(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npc_relationship', 'modify', 'A34', 5);
   scene.actions([{ label: 'Continue', goto: ['brother_shower_sex', 'brother_fuck_cum'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,6 +382,7 @@ function enterBrotherShowerAnal(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['brother_shower_sex', 'brother_shower_anal_vagnv_analnv'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -386,6 +394,7 @@ function enterBrotherShowerAnalVagvAnalv(s: GameState, scene: SceneBuilder): voi
   scene.text('Kolka looks confused, and with a hint of pleading in his voice says "But… I don\'t get it. How would she know?"');
   scene.text('You are momentarily surprised he doesn\'t know before realizing that he has no reason to know. "Why do you think I have to go to the doctors every month? I have to get checked."');
   scene.text('Kolka thinks for a moment before smiling. "Are my grades good enough to become a doctor?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'What a smartass', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/brothershowersex1.jpg');
@@ -459,6 +468,7 @@ function enterBrotherShowerAnalVagnvAnalv(s: GameState, scene: SceneBuilder): vo
   scene.text('This question stops you. Thinking back to porn that you\'ve seen, they often just spit, but that doesn\'t sound like a good option to you now that you\'re about to have something fairly large entering you.');
   scene.text('Kolka comes up with a suggestion. "I could try to use some of your pussy juice… You know, like one or two thrusts there first, then we try. What do you think?"');
   scene.text('While you\'re not sure if you like the label \'pussy juice\', it\'s the only plan you\'ve got.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Okay, let\'s do that."', handler: (st: GameState) => {
     scene.img('images/shared/sex/shower/anal1.mp4');
@@ -524,6 +534,7 @@ function enterBrotherShowerAnalVagvAnalnv(s: GameState, scene: SceneBuilder): vo
   scene.text('You want, no, <i>need</i> to continue, but thanks to your mother\'s stupid rule you know your pussy is out of bounds, but you do have other options…');
   // TODO-QSP: dynamic text: "Kolka, ' + iif (brotherQW['anal'] > 0, 'I still can't let you have my pussy, bu...
   scene.text('"Kolka, \' + iif (brotherQW[\'anal\'] > 0, \'I still can\'t let you have my pussy, but would you be okay with doing me in the ass again?"\', \'I can\'t let you have my pussy, but would you be okay with anal?"\') + \' You ask and Kolka\'s eyes light up.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Prepare yourself', handler: (st: GameState) => {
     scene.img('images/shared/sex/shower/anal2.mp4');
@@ -571,6 +582,7 @@ function enterBrotherShowerAnalVagnvAnalnv(s: GameState, scene: SceneBuilder): v
   ((s as any).brotherQW ?? {})['anal'] = (((s as any).brotherQW ?? {})['anal'] ?? 0) + (1);
   qspCall(s, 'arousal', 'anal', 3, 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/kolka/event/shower/showeranal6.mp4');
@@ -895,6 +907,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -914,6 +927,7 @@ function enterShowerSwallow(s: GameState, scene: SceneBuilder): void {
     scene.text('He doesn\'t even finish the word before you feel hot liquid squirting into your mouth.');
     scene.text('"… cum."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Swallow', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/showerbj.mp4');
@@ -1186,6 +1200,7 @@ function enterShowerFacial(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1221,6 +1236,7 @@ function enterShowerCreampie(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1240,6 +1256,7 @@ function enterShowerForcedCreampie(s: GameState, scene: SceneBuilder): void {
       scene.text('Kolka steps back, staring as he watches his spunk drip from your pussy. "Why\'d you do that? I wanted to cum in your mouth."');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'And I wanted a creampie (argue)', handler: (st: GameState) => {
     scene.img(`images/shared/sex/cum/vagcreampie/doggy${Math.floor(Math.random() * 4) + 1}.mp4`);
@@ -1335,6 +1352,7 @@ function enterShowerFillMeUp(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Your cries push him over the edge and Kolka can\'t hold back any longer. He groans and pulls you tight against him. His cock plunges deep and you feel his cum spurting deep inside you. You bite your lip and curl your toes, enjoying the sensation even if it doesn\'t bring you to orgasm. Eventually his cock stops pulsating and you feel him slide out of you.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Feel his cum', handler: (st: GameState) => {
     scene.img(`images/shared/sex/cum/vagcreampie/doggy${Math.floor(Math.random() * 4) + 1}.mp4`);
@@ -1381,6 +1399,7 @@ function enterEndingRouteRoutine(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish showering together', goto: ['brother_voyeur', 'brother_shower_end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1636,10 +1655,12 @@ function enterBrotherShowerFuckEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBrotherShowerFinish(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'brother_shower_sex', 'brother_shower_finish_end');
@@ -1649,6 +1670,7 @@ function enterBrotherShowerFinish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBrotherShowerFinishdryoff(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish drying off', handler: (st: GameState) => {
     qspCall(s, 'brother_shower_sex', 'brother_shower_finish_end');
@@ -1660,6 +1682,7 @@ function enterBrotherShowerFinishdryoff(s: GameState, scene: SceneBuilder): void
 function enterBrotherShowerFinishEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).mirror_steam = ((s as any).hour ?? 0);
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

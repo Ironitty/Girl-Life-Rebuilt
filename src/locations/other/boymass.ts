@@ -19,6 +19,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   ((s as any).bmFrend ?? {})[String((s as any).boynum ?? 0)] = 0;
   ((s as any).bmKISS ?? {})[String((s as any).boynum ?? 0)] = 0;
   ((s as any).bmTITS ?? {})[String((s as any).boynum ?? 0)] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +35,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'boystat', $bmNane[Tboynum]
   }
+  // TODO-QSP: end
   scene.build();
 }
 

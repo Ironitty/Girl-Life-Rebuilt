@@ -5,13 +5,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'move') {
-    (s as any).minut = ((s as any).minut ?? 0) + (1);
-  }
   if (((s as any).shoplocation ?? 0) !== '') {
     // TODO-QSP: $ARGS[0] = $shoplocation
     // TODO-QSP: gt 'shop', $ARGS[0]
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,6 +22,10 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   scene.actions([{ label: 'Continue', goto: ['shop', 'main'] }]);
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'move') {
+    (s as any).minut = ((s as any).minut ?? 0) + (1);
+  }
   scene.build();
 }
 
@@ -163,6 +165,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -239,6 +242,7 @@ function enterATM(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -268,6 +272,7 @@ function enterGrocery(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc_bak ?? 0) === 'pav_commercial') {
     qspCall(s, 'shoplifting', 'pav');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the grocery department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -348,6 +353,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -415,6 +421,7 @@ function enterCosmetics(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc_bak ?? 0) === 'pav_commercial') {
     qspCall(s, 'shoplifting', 'pav');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the cosmetics department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -451,6 +458,7 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hardware department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -515,6 +523,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the women\'s clothing department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -557,6 +566,7 @@ function enterUnderwear(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'bras', 'is_owned', 'gm', 18) === 0) {
     // TODO-QSP: *p '<a href="exec:gt ''bra_view'', ''view_item'', ''shop'', ''gm'', 18"><img height="150" src="image...
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop', 'clothing'] },
   ]);
@@ -578,6 +588,7 @@ function enterTech(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'tech');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/store/shop5.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the appliance department', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -594,6 +605,7 @@ function enterIcecream(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/store/icecreamcounter.jpg');
   // TODO-QSP: dynamic text: Ice cream is available for ' + $func('money', 'string_price', 50) + '.
   scene.text('Ice cream is available for \' + $func(\'money\', \'string_price\', 50) + \'.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the counter', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -804,6 +816,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription['metered_calls']>> minutes</b> for mobile cal...
   scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_calls']} minutes</b> for mobile calls and <b>${((s as any).subscription ?? 0)?.['metered_calls-sms_limit']} text messages</b></center>`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the supermarket', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -819,6 +832,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sister_chat', 'checks');
   // TODO-QSP: dynamic text: "Don't disturb me at work, <<$pcs_nickname>>! Can't you see that I have customer...
   scene.text(`"Don't disturb me at work, ${((s as any).pcs_nickname ?? 0)}! Can't you see that I have customers?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

@@ -202,6 +202,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -247,6 +248,7 @@ function enterRacing1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);
@@ -296,6 +298,7 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);
@@ -327,6 +330,7 @@ function enterVball1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);
@@ -380,6 +384,7 @@ function enterDance2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -390,6 +395,7 @@ function enterRacing2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/park/parkbeg.jpg');
   scene.text('You spend 20 minutes on warm up and run for 90 minutes before spending 10 minutes on your cool down.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdksport', 'start'] },
   ]);
@@ -537,6 +543,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the shower.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -547,6 +554,7 @@ function enterShowerWithIvan(s: GameState, scene: SceneBuilder): void {
   scene.text('"Want to wash me?" he asks with a wink when he notices you staring.');
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lather Ivan', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A3');
@@ -718,6 +726,7 @@ function enterFedorFirstDate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>," he says with a warm smile. He pauses for a moment, t...
     scene.text(`"Hello ${((s as any).pcs_firstname ?? 0)}," he says with a warm smile. He pauses for a moment, then reaches into his pockets and pulls out 2 tickets. "Here's the deal. I have an extra ticket to the movies and I'd like know if you would be up for a good comedy?"`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -824,6 +833,7 @@ function enterJocksAcceptance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

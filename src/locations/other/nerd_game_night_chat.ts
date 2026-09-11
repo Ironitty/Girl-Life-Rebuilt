@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'city_coffee_hole') {
@@ -33,6 +34,7 @@ function enterNerdChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/142.jpg');
   scene.img('images/characters/shared/headshots_main/12.jpg');
   scene.text('</tr></table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,6 +121,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -168,6 +171,7 @@ function enterPetka(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -216,6 +220,7 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -264,6 +269,7 @@ function enterFeofan(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -313,6 +319,7 @@ function enterGerasim(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +369,7 @@ function enterZinaida(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
+  // TODO-QSP: end
   scene.build();
 }
 

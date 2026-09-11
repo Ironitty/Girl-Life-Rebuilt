@@ -20,6 +20,7 @@ function enterNpcUpdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boy_updater', 'schedule_update');
   qspCall(s, 'boy_updater', 'trait_updates');
   qspCall(s, 'boy_updater', 'name_updates');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +75,7 @@ function enterStartingStats(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev ?? {})['bc_type'] = ' pill';
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,6 +129,7 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -144,6 +147,7 @@ function enterStartingMood(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

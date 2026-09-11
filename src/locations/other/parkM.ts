@@ -38,6 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -85,6 +86,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,6 +96,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} kisses you and reaches around to gently massage your ass. His touch excites you and ${((s as any).npcdesc ?? 0)} takes you by the hand and drags you into the bushes.`);
   qspCall(s, 'arousal', 'kiss', 15);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop it', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
@@ -117,6 +120,7 @@ function enterSexrand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 15);
   qspCall(s, 'arousal', 'cuni', (-15));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop it', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
@@ -139,6 +143,7 @@ function enterSexrand1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} bares your pussy and began to caress it gently, then increasing the tempo, you are very excited, your pussy is sopping, aching for more. ${((s as any).npcdesc ?? 0)} whispers to you, "Suck me!"`);
   qspCall(s, 'arousal', 'vaginal_finger', 15);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'We can not do that here', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
@@ -164,6 +169,7 @@ function enterSexrand2(s: GameState, scene: SceneBuilder): void {
   scene.text(`After a few minutes ${((s as any).npcdesc ?? 0)} tells you, "Baby, if you continue, I'll finish. Let's have sex!"`);
   qspCall(s, 'arousal', 'bj', 15, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to suck', goto: ['parkM', 'sexrand3'] },
     { label: 'Sex', goto: ['parkM', 'sexrand4'] },
@@ -183,6 +189,7 @@ function enterSexrand3(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npcdesc ?? 0)} pulls his member out of your cum-filled mouth stuffed and tucked it into his pants, helping you rise then says goodbye, promising to call you.`);
   qspCall(s, 'arousal', 'bj', 15, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
@@ -208,6 +215,7 @@ function enterSexrand4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
@@ -341,6 +349,7 @@ function enterAa(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

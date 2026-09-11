@@ -14,6 +14,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/rex/rex_gadukino_\'+iif(month > 3 and month < 11, \'summer\', \'winter\')+\'.jpg');
   // TODO-QSP: dynamic text: <<$rex['name']>> is running around '+iif(month > 3 and month < 11, 'sniffing eve...
   scene.text(`${((s as any).rex ?? 0)?.['name']} is running around '+iif(month > 3 and month < 11, 'sniffing everything', 'playing in the snow')+'. Your grandmother loves taking care of him, so you don't have to worry about him while you're in Gadukino.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -63,6 +64,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'pet_dog', 'activities_normal');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -120,6 +122,7 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rex ?? 0)?.['play_inside'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).objects ?? 0)?.['toys'] === 1) {
     // TODO-QSP: act 'Play with him inside (0:20)': gt 'pet_dog', 'play_inside'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,6 +142,7 @@ function enterFeed(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You have enough dog food for <<objects['dog_food']>> meals.
     scene.text(`You have enough dog food for ${((s as any).objects ?? 0)?.['dog_food']} meals.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him eat', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -155,6 +159,7 @@ function enterTreat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/rex/treat.jpg');
   scene.text('"Who\'s a good boy?" you ask with a smile and pull one of his favorite treats out of your pocket. He sniffs and his tail wags back and forth. "Who\'s a good boy?" you ask again and he barks in response. "Yes, you are!" you agree and hold out the treat. He snatches it right out of your hand and happily goes back to his dog basket.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pet_dog', 'start'] },
   ]);
@@ -222,6 +227,7 @@ function enterExercise(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -234,6 +240,7 @@ function enterPlayInside(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/rex/play_inside_\'+rand(0, 3)+\'.jpg');
   // TODO-QSP: dynamic text: You cavort with <<$rex['name']>> and lavish him with all the attention he deserv...
   scene.text(`You cavort with ${((s as any).rex ?? 0)?.['name']} and lavish him with all the attention he deserves. You get one of his toy balls and roll it around the apartment, playing a safe version of indoor catch. You cuddle up on the couch with him and spend the last few minutes stroking his soft fur.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop playing', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -252,6 +259,7 @@ function enterBath(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Come ${((s as any).rex ?? 0)?.['name']}, time to take a bath," you say and open the door to the bathroom. ${((s as any).rex ?? 0)?.['name']} looks a bit confused. "Come on boy," you say clicking your fingers and he finally follows you inside.`);
   scene.text('You brush his fur before trying to get him into the tub. It takes a few tries to convince him, but he eventually listens.');
   scene.text('"Stay," you say in a calm and reassuring voice and gently start scrubbing him with dog shampoo before rinsing and drying his fur. Once you\'re finished, you let him leave the bathroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -274,6 +282,7 @@ function enterName(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rex ?? 0)?.['name'] === '') {
     ((s as any).rex ?? {})['name'] = 'Rex';
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: $status['dog'] = 'active'

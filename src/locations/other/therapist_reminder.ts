@@ -89,6 +89,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +121,7 @@ function enterIgnoreCost(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'therapist', 'restTherapyVariables');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -141,16 +143,19 @@ function enterMoveToTherapist(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'shoes', 'wear', 'last_worn');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterReturn(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_loc', 'menu_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTherapist(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['therapist', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

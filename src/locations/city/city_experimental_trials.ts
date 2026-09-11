@@ -103,6 +103,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Put the contract down and leave', goto: ['city_clinic', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

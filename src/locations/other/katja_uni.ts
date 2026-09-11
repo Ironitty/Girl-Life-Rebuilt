@@ -354,6 +354,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
     ((s as any).katjaQW ?? {})['know_going_to_teaching_degree'] = 1;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -735,6 +736,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -976,6 +978,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1013,6 +1016,7 @@ function enterBathroomKatjaPantyRemove(s: GameState, scene: SceneBuilder): void 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1121,6 +1125,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
       { label: 'Apologize and leave', goto: ['uni_library', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1171,6 +1176,7 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her studying', goto: ['katja_uni', 'study_watch'] },
   ]);
@@ -1205,6 +1211,7 @@ function enterStudyingAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1254,6 +1261,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1285,6 +1293,7 @@ function enterStudyingExamAsk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1416,6 +1425,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_grounds', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1458,6 +1468,7 @@ function enterStudySelect(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1467,6 +1478,7 @@ function enterStudyWatch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/studying_alone.jpg');
   scene.text('You sit down and watch Katja study for a while. She sometimes asks you a question, but you mostly just watch her as she works.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to watch her', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).pcs_hotcat ?? 0) > (Math.floor(Math.random() * 16) + 5)) {
@@ -1508,6 +1520,7 @@ function enterDormRoomInvite(s: GameState, scene: SceneBuilder): void {
   scene.text('As you\'re leaving the last class of the day, an excited Katja grabs your arm.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I bought a new dress and I want to hear your opinion on it. ...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}! I bought a new dress and I want to hear your opinion on it. Do you have time to come to my dorm room to see it?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Katja', goto: ['katja_uni', 'dorm_room_walk'] },
     { label: 'You don\'t have time', handler: (st: GameState) => {
@@ -1534,6 +1547,7 @@ function enterDormRoomWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('"… and I bought the <i>cutest</i> dress at the mall. There\'s so much variety here! Way more than what we had in Pavlovsk. And I passed the salon, so I thought about getting a mani-pedi but I decided I didn\'t have time. There\'s more swim shops here too but half of them are super slutty. I don\'t know how any girl could wear some of the things they sell. They might as well just be strings!"');
   scene.text('As you are walking to the dorms, Katja keeps telling you about her shopping trip yesterday, seeming unusually chatty today. When you reach the elevator, the light above it indicates it\'s already on the top floor and you\'d have to wait for it to come all the way back down.');
   scene.text('Katja turns to you. "I live on the second floor, so let\'s just take the stairs."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk up the stairs', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur', 3, 'lesbian');
@@ -1603,6 +1617,7 @@ function enterExperiencedTell(s: GameState, scene: SceneBuilder): void {
   scene.text('You tell Katja that you have \'+iif(girl > 5 or (stat[\'cuni_give\'] + stat[\'vaginal_finger_give\'] + stat[\'vaginal_fist_give\'] + stat[\'vaginal_dildo_give\'] + stat[\'vaginal_strap_give\'] + stat[\'vaginal_vibe_give\']) > 10, \'a lot\', \'some\')+\'experience having sex with girls.');
   scene.text('She bites her lip hesitantly.');
   scene.text('"Would you like to kiss me?" she asks, looking at you with her big eyes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Katja', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['QWstage'] = 3;
@@ -1648,6 +1663,7 @@ function enterInexperiencedTell(s: GameState, scene: SceneBuilder): void {
   scene.text('You tell Katja that you have kissed a girl before, but not done anything else.');
   scene.text('She bites her lip hesitantly.');
   scene.text('"Would you like to kiss me?" she asks, looking at you with her big eyes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Katja', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['QWstage'] = 3;
@@ -1688,6 +1704,7 @@ function enterNoExperiencedTell(s: GameState, scene: SceneBuilder): void {
   scene.text('You tell Katja that you have never kissed a girl.');
   scene.text('She bites her lip hesitantly.');
   scene.text('"Do you maybe want to… find out what it\'s like? Together…?" she asks, looking at you with her big eyes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Katja', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['QWstage'] = 3;
@@ -1728,6 +1745,7 @@ function enterTryClothes(s: GameState, scene: SceneBuilder): void {
   scene.text('"It looks great," you smile and she seems to swell with pride, grinning back.');
   scene.text('Katja keeps changing through outfits, showing you what she bought —which is a lot— while you make comments on each one. It\'s hard not to be impressed with her sense of fashion. She finally get the last item she laid out.');
   scene.text('"This is the dress I told you about!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'See the dress', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1769,6 +1787,7 @@ function enterKatjaLazarCafe(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/lazar_cafe_uni.jpg');
   scene.text('As you and Katja sit in the cafeteria eating lunch while talking about life at the university, someone suddenly sits down at your table. You glance over and see that it\'s Lazar.');
   scene.text('"Hey girls, what\'s up? How\'s college life treating you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him to get lost', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/lazar_cafe_uni.jpg');

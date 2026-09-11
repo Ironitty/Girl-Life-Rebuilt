@@ -24,6 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   (s as any).picrand = Math.floor(Math.random() * 2) + 0;
   scene.actions([{ label: 'Continue', goto: ['paysex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,6 +148,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['paysex', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -296,6 +298,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.text('After all of the guys had their way with your body, you can finally catch your breath.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).paysxbj = 0;

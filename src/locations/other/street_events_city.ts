@@ -24,6 +24,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
   scene.text('"No? What the hell is going on? I don\'t know what you\'re talking about!" you try to explain.');
   scene.text('"Don\'t lie to us, you stupid bitch!" he snarls before he hits you on the head and you pass out.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', handler: (st: GameState) => {
     scene.text('You wake up somewhere, tied up and naked. You look down and notice traces of cum on your body. You can also feel cum flowing from your ass and pussy.');
@@ -57,6 +58,7 @@ function enterFailedCelebBlackmail(s: GameState, scene: SceneBuilder): void {
 function enterFameEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame_events', 'select', 'city');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,6 +69,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/street/girlcat.jpg');
   scene.text('As you walk down the street, you pass a young girl sitting on the sidewalk with some bags next to her, a cat in her lap and a sign saying that she is homeless, pleading for help.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -182,6 +185,7 @@ function enterMinorHomelessMen(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/street/city/homeless.jpg');
   scene.text('As you walk down the street, you pass a couple of homeless men lying on a metro gate, using it for warmth in the freezing conditions.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore them', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -197,6 +201,7 @@ function enterMinorGayCouple(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/street/city/gay.jpg');
   scene.text('As you walk down the street, you pass a couple of boys holding hands and occasionally kissing. Soon a few other guys come over and start harassing them, calling them all sorts of names.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -212,6 +217,7 @@ function enterMinorOldCouple(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/street/city/sell.jpg');
   scene.text('As you walk down the street, you pass an old couple all bundled up against the cold. They have several jars and other homemade food items, along with a couple of household items and jewelry they are trying to sell.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
@@ -222,6 +228,7 @@ function enterMinorOldCouple(s: GameState, scene: SceneBuilder): void {
 
 function enterMinorGirlBeggarSubEvent(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give her another  [+$func(\'money\', \'string_price\', 5000)]', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 5000, 'cash');

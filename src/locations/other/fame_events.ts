@@ -59,6 +59,7 @@ function enterSelect(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +93,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank you!', handler: (st: GameState) => {
     scene.img('images/locations/shared/fame/boyapproaching1.jpg');
@@ -219,6 +221,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank you!', handler: (st: GameState) => {
     scene.text('"Wow, thank you!" you smile back. "It\'s always nice to meet a fan!"');

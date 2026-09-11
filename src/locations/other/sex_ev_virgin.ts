@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask <<$npcdesc>> to take your virginity', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['virgin'] = 1;
@@ -27,6 +28,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give <<$npcdesc>> your virginity', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['virgin'] = 1;
@@ -46,6 +48,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay," you whisper, spreading your legs, gasping when his fingers find your dripping lips. "You can have it. Take my virginity."');
   qspCall(s, 'sex_ev_virgin', 'start_flavor');
   qspCall(s, 'sex_ev_virgin', 'start_options');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,6 +61,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay," you whisper, spreading your legs, gasping when his fingers find your dripping lips. "You can have me."');
   qspCall(s, 'sex_ev_virgin', 'start_flavor');
   qspCall(s, 'sex_ev_virgin', 'start_options');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -85,6 +89,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_virgin', 'start_options');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +118,7 @@ function enterStartFlavor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,6 +145,7 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -157,6 +164,7 @@ function enterStartWithCondom(s: GameState, scene: SceneBuilder): void {
     scene.text(`With the condom securely wrapped around ${((s as any).npcdesc ?? 0)}'s cock, he moves back in between your legs.`);
     qspCall(s, 'sex_ev_virgin', 'miss_virg_start');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,12 +178,14 @@ function enterStartWithoutCondom(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} moves back in, lining his naked cock up with your pussy. Moments later, he takes your virginity.`);
     qspCall(s, 'sex_ev_virgin', 'miss_virg_start');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStartOptions2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['orgasm_count'] = ((s as any).orgasm ?? 0);
   scene.text('"Did you want to decide how we do this?" he asks. "It\'s <i>your</i> first time after all."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him take the lead', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -263,6 +273,7 @@ function enterSavingVirginity(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_foreplay', 'foreplay_choose');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -324,6 +335,7 @@ function enterHookupWait(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_condoms', 'virgin_condom_ask1');
   qspCall(s, 'sex_ev_condoms', 'virgin_condom_pc_ask1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -497,10 +509,12 @@ function enterLoverWait(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_virgin', 'anal_instead');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNotReady(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m just not sure if I\'m ready', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -574,6 +588,7 @@ function enterNotReady(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWantTo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No, I want to', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -622,6 +637,7 @@ function enterWantTo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjInstead(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Can I just blow you', handler: (st: GameState) => {
     scene.text('"Can I just blow you instead?"');
@@ -690,6 +706,7 @@ function enterBjInstead(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnalInstead(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'What about anal instead?', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['anal_allowed'] = 1;

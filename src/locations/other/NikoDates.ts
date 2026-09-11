@@ -16,6 +16,7 @@ function enterDate1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/dates/1/d.jpg');
   scene.text('As you ride the train, Niko pulls out his phone. "Would you like to take a photo together?" You give him a smile and nod as he wraps his arm around your waist and pulls you towards him. He then lifts his phone above you before snapping a photo. You spend the rest of the journey discussing your favorite musical artists and bands.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the train', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -138,6 +139,7 @@ function enterStrangerDanger(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
   scene.text('As you walk over to the boxing game, Niko pats on his pockets. "Oh shit! I think I dropped my wallet back there. Give me a minute," he says before quickly running off.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -161,6 +163,7 @@ function enterDate1_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/dates/1/boxing.jpg');
   scene.text('Niko takes your hand and leads you to the boxing vending game, where he puts a coin into the machine, causing it to light up as he turns to you. "How about another wager? If I win, then you\'ll have to grant me a request. Fair?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -366,6 +369,7 @@ function enterHome1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/dates/1/exit.jpg');
   // TODO-QSP: dynamic text: You walk out of the amusement park and head towards the train station. You board...
   scene.text(`You walk out of the amusement park and head towards the train station. You board the train and spend the journey discussing your favorite hobbies until the train reaches Pavlovsk, where you both exit the train before Niko gives you a hug. "You're an amazing girl, ${((s as any).pcs_firstname ?? 0)}. I anxiously await our next meeting. Take care." He gives you a kiss on the forehead before letting go of you and walking away.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to town', goto: ['pav_residential', ''] },
   ]);
@@ -377,6 +381,7 @@ function enterHomeSad(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/dates/1/exit.jpg');
   scene.text('You walk out of the amusement park and head towards the train station. You board the train and spend the journey discussing your favorite hobbies until the train reaches Pavlovsk, where you both exit the train before Niko turns to you and says, "I hope you enjoyed yourself today. Hopefully next time we can do something more… interesting." He gives you a kiss on the hand before letting go of you and walking away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to town', goto: ['pav_residential', ''] },
   ]);
@@ -393,6 +398,7 @@ function enterDate2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Have you ever fished before?" he asks.');
   scene.text('You tilt your head. "I haven\'t, but I guess I\'m willing to try it out."');
   scene.text('He smiles. "Great! Let\'s get started." He carefully guides you onto the boat before you both get comfortably seated and Niko gently paddles the boat out onto the lake.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Learn how to fish', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -514,6 +520,7 @@ function enterDate2_2(s: GameState, scene: SceneBuilder): void {
   scene.text('As soon as you arrive, he takes you to a bar while talking on the phone. When you arrive at the bar, he hangs up the phone. "Are you ready to have as many drinks as you can take before passing out?"');
   scene.text('You scratch your head. "So you want to get me drunk I see."');
   scene.text('He smirks. "No, I just want to get to know the real you. There\'s a saying which states that you never know, truly know, someone until you see them drunk. So are you ready to have some fun?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -595,6 +602,7 @@ function enterDateRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/dates/2/d4.jpg');
   scene.text('You open your eyes to see Niko carrying you to his house, you are feeling very lightheaded as you almost fall to the ground. Niko catches you then begins carrying you up the stairs to his place before opening the door, carrying you inside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
@@ -685,6 +693,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   scene.text('He gives you a wolfish grin. "I want you to suck me off right now." You can feel your face growing red.');
   scene.text('"I… I don\'t know. What if someone sees us?" Niko rubs your back with one hand while he starts unbuttoning his pants with the other.');
   scene.text('"That\'s the fun part. Let\'s see what happens, shall we?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -717,6 +726,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/dates/3/d.jpg');
   scene.text('As soon as you reach the lake, Niko scoffs. "What the hell are these people doing here?! It\'s normally secluded."');
   scene.text('You see a bunch of people relaxing by the lake and even see some food carts scattered around.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Niko', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -911,6 +921,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/charmer1.jpg');
   scene.text('You arrive at his house and Niko holds the door open for you, inviting you inside. He gives your ass a firm smack as you walk in the door. "We only have about two hours before my brother shows up, so let\'s not waste any time." He grabs your hand and leads you to the living room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'kiss', 5);
@@ -995,6 +1006,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/volkovHome/Rooms/bathroom.jpg');
   scene.text('The bathroom seems rather clean and contains a sink, a toilet, a <a href="exec:gt \'mirror\', \'start\'">mirror</a> and a bathtub.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Quick wash (0:10)', goto: ['NikoDates', 'quick_wash'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -1025,6 +1037,7 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
   scene.text('You approach the sink to clean yourself as thoroughly as possible while taking a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up and walk away from the sink.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dry off', handler: (st: GameState) => {
     if (((s as any).NikoEv ?? 0) === 5) {
@@ -1044,6 +1057,7 @@ function enterYurikIntro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/volkovHome/Rooms/garage/garage.jpg');
   scene.text('As you walk out of the bathroom, you look around for Niko, only to hear loud hammering coming from outside. You follow the noise to an old garage, where you push the door open and see a motorcycle with a lot of tools and parts scattered around the room. You begin examining the parts when you suddenly hear someone shout "Hands off my shit!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1178,6 +1192,7 @@ function enterHallwayStrip(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
   scene.text('As you enter the cafeteria, Niko grabs your hand and whispers in your ear. "Are you ready for another \'daring\' activity?"');
   scene.text('You look back to him and say…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds fun', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -1304,6 +1319,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1436,6 +1452,7 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka');
@@ -1583,6 +1600,7 @@ function enterAfterSchool2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1672,6 +1690,7 @@ function enterTeacherBlock(s: GameState, scene: SceneBuilder): void {
   scene.text('Niko starts to seeth, but puts on a sweet smile when he turns back towards her. "Nothing, we were just talking about what we wanted for lunch."');
   scene.text('Ms Braakman points in the direction of the cafeteria. "Cafeteria, NOW!"');
   scene.text('Niko pulls you in close to him and kisses the side of your head. "Don\'t worry, we\'ll get our chance to have some fun."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['gschool_lunch', 'break'] },
   ]);

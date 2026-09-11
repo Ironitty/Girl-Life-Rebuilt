@@ -15,6 +15,7 @@ function enterZariyahPassingBy(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'music_actions', 'finish');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -88,6 +89,7 @@ function enterDelparcoStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Decline', goto: ['music_gigstarts', 'delparco_decline'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -105,6 +107,7 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Oh, just one thing, please, when you visit me and whenever you play at the café${((s as any).ruletext ?? 0)}" she smiles at you and hurries off.`);
   }
   qspCall(s, 'music_checks', 'reset_checks');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');
@@ -130,6 +133,7 @@ function enterDelparcoDecline(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Oh, just one thing, please, when you visit me and if you decide to play at the café${((s as any).ruletext ?? 0)}" - she waves goodbye and hurries off.`);
   }
   qspCall(s, 'music_checks', 'reset_checks');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');

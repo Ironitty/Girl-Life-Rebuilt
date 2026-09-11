@@ -13,6 +13,7 @@ function enterChampagne1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
   scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
   scene.text('As you walk out of the changing room you hear someone call your name.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -100,6 +101,7 @@ function enterChampagne1_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 9);
   scene.img('images/locations/city/citycenter/photo/mirrors.jpg');
   scene.text('You walk over to the makeup department and the dressers get your hair and face ready before going to meet the photographer on set. Just before you leave, they have you slip on a gold thong and then send you on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fame/champagne1.mp4');
@@ -139,6 +141,7 @@ function enterKickboxingDocumentary(s: GameState, scene: SceneBuilder): void {
   scene.text('"A kickboxing documentary?" you ask.');
   scene.text('"Yea. The local sports magazine, is doing a coverage of the Female Kickboxing League. We are doing the graphic part, lots of work doing artistic naked pics, making you women look badass and beautiful. As you are gaining in popularity, they will want a journalist to do an interview. The royalties and the advertising are great. Are you interested?."');
   scene.text('"Hmmm…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the list', goto: ['foto_events', 'list'] },
     { label: 'Yeah! I\'m in!', handler: (st: GameState) => {
@@ -220,6 +223,7 @@ function enterTrack__FieldDocumentary(s: GameState, scene: SceneBuilder): void {
   scene.text('"A Track & Field documentary?" you ask.');
   scene.text('"Aja. During the warmer seasons, local sports magazines, they like to do articles about the women on the running business. With the sun and heat, they can take them to the field and do some artistic photos. We are doing the graphic part in a reserved field. Most photos will be naked, and as they want you to do some runs, it will not be possible to hide all of your bodyparts. As you are gaining in popularity, they will want a journalist to do an interview. The royalties and the advertising are great. Are you interested?."');
   scene.text('"Hmmm…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the list', goto: ['foto_events', 'list'] },
     { label: 'I\'d like to do this one', handler: (st: GameState) => {

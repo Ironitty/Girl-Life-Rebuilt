@@ -52,6 +52,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +61,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'hookup');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -85,6 +87,7 @@ function enterCreampieMad(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cool off', handler: (st: GameState) => {
     scene.text(`<center><b>${((s as any).npcdesc ?? 0)}'s Bedroom</b></center>`);
@@ -167,6 +170,7 @@ function enterCreampiePanic(s: GameState, scene: SceneBuilder): void {
   scene.text('You put your hand to your head as you begin to feel faint.');
   // TODO-QSP: dynamic text: "Jeez, I didn't know you were going to freak out like this," <<$npcdesc>> says, ...
   scene.text(`"Jeez, I didn't know you were going to freak out like this," ${((s as any).npcdesc ?? 0)} says, holding his hands up defensively. "Just chill out! You can buy a morning-after pill tomorrow, it'll be fine."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Calm down', handler: (st: GameState) => {
     scene.text(`<center><b>${((s as any).npcdesc ?? 0)}'s Bedroom</b></center>`);
@@ -532,6 +536,7 @@ function enterCreampieReact(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'hookup_after', 'preg_responsibility_glare');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -594,6 +599,7 @@ function enterCreampieReact2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -631,6 +637,7 @@ function enterCreampieSurpriseCum(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'hookup_talk', 'creampie_surprise_cum_react2');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -676,10 +683,12 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBirthControlLie(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m on birth control (lie)', handler: (st: GameState) => {
     if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
@@ -712,6 +721,7 @@ function enterBirthControlLie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPregResponsibilityTease(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'If I get pregnant, you better take responsibility (tease)', handler: (st: GameState) => {
     if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
@@ -738,6 +748,7 @@ function enterPregResponsibilityTease(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPregResponsibilityGlare(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'If I get pregnant, you better take responsibility (glare)', handler: (st: GameState) => {
     if (((s as any).hookup ?? 0)?.['position'] === 'miss') {
@@ -763,6 +774,7 @@ function enterPregResponsibilityGlare(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCondomStuck(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -829,6 +841,7 @@ function enterLightCigarette(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -851,6 +864,7 @@ function enterLightCigarette2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask to bum a cigarette', handler: (st: GameState) => {
     ((s as any).hookup ?? {})['cigarette'] = 5;
@@ -1282,6 +1296,7 @@ function enterPre(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1370,6 +1385,7 @@ function enterWipes(s: GameState, scene: SceneBuilder): void {
   ((s as any).hookup ?? {})['wipes'] = 0;
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'hookup_after', 'start');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1451,6 +1467,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'hookup_after', 'gotta_go');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Can I borrow your shower?', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bathroom[$npcID]
@@ -1529,6 +1546,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drift off into sleep', handler: (st: GameState) => {
     ((s as any).hookup ?? {})['sleep_accident'] = 1;
@@ -1580,6 +1598,7 @@ function enterCuddle(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1592,6 +1611,7 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hookup ?? 0)?.['continuation'] === 0) {
     ((s as any).hookup ?? {})['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I should go', handler: (st: GameState) => {
     ((s as any).hookup ?? {})['i_should_go'] = 1;
@@ -1658,11 +1678,13 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'hookup_after', 'panty_gift');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
   ((s as any).hookup ?? {})['npc_can_spend_the_night'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     ((s as any).hookup ?? {})['npc_can_spend_the_night'] = 2;
@@ -1714,6 +1736,7 @@ function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'We should hook up again later', handler: (st: GameState) => {
     if (((s as any).hookup ?? 0)?.['dress'] === 1) {
@@ -1745,6 +1768,7 @@ function enterPcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPcDateRequest(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Maybe I could see you again sometime?', handler: (st: GameState) => {
     if (((s as any).hookup ?? 0)?.['dress'] === 1) {
@@ -1809,6 +1833,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'hookup_after', 'dress_loop');
   qspCall(s, 'hookup_after', 'have_a_boyfriend');
   qspCall(s, 'hookup_after', 'have_a_girlfriend');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     ((s as any).hookup ?? {})['fuckbuddy'] = 1;
@@ -1838,6 +1863,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
 function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well... Maybe I could see you again sometime? Not just sex, but like really see you, you know? Take you out on a date or something? Dinner? See a movie?"');
   qspCall(s, 'hookup_after', 'just_a_hookup');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     scene.text('"Yeah, I think I\'d like that," you smile gently.');
@@ -1929,6 +1955,7 @@ function enterFuckbuddyText(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('That little exchange done, you cheerfully wave him goodbye and head out the door.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1936,6 +1963,7 @@ function enterLater(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'hookup_after', 'finish_dressing');
   qspCall(s, 'hookup_after', 'pc_fuckbuddy_request');
   qspCall(s, 'hookup_after', 'pc_date_request');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1945,6 +1973,7 @@ function enterJustAHookup(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).hookup ?? {})['just_a'] = 'random hookup';
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'This was a <<$hookup[\'just_a\']>>', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "No," you shake your head. "This was just a <<$hookup['just_a']>>. I'm not looki...
@@ -2015,6 +2044,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2065,6 +2095,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2074,6 +2105,7 @@ function enterDressImage(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/pc/activities/misc/dress_1.mp4');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2119,6 +2151,7 @@ function enterDressLoop(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'outfit', 'remove_backup', 'hookup');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2143,6 +2176,7 @@ function enterFinishDressing(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2180,6 +2214,7 @@ function enterPantyGift(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2220,6 +2255,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You did a good job', handler: (st: GameState) => {
     // TODO-QSP: $npc_apt_bedroom[$npcID]
@@ -2281,6 +2317,7 @@ function enterPantyGift2(s: GameState, scene: SceneBuilder): void {
 
 function enterPantyGiftGirlfriend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'hookup_after', 'dress_loop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide them', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Just hide them," you say, <<$hookup['dress_describe']>>. "If you can hide a fuc...
@@ -2355,6 +2392,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
     ((s as any).sveta_punishment ?? {})['no_come_home'] = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['hookup_morning', 'morning'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

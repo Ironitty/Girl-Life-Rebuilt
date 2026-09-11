@@ -13,6 +13,7 @@ function enterSolarium(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/mall/salon/solar1.jpg');
   scene.text('You walk into the room with the solarium. The room is quiet with dim lighting, and it seems like there is nobody here except for the administrator. You look at the door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the door', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/solar8.jpg');
@@ -96,6 +97,7 @@ function enterMarketGrope(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel good, enjoying the scent of some expensive men\'s cologne.');
   scene.text('You feel a guy standing behind you—he\'s a groper and is now intent on touching your ass!');
   scene.text('His hand grabs one of your buttcheeks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['city_market', 'start'] },
     { label: 'Next', handler: (st: GameState) => {

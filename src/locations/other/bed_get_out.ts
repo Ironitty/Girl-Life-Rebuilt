@@ -11,12 +11,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).strip_here = 0;
   (s as any).SleepHorny = 0;
   scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'mod_sleeptriggers'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +33,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -38,6 +38,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('As you enter the bar, you see that about a dozen regular tables and stools take up most of the room. A bar counter, right in front of you, dominates the center of the establishment. At the far end of it, near a door leading to the toilet, a doorway with a curtain leads to the obligatory pool table that rounds off the furniture.');
   // TODO-QSP: dynamic text: This place has a rowdy air about it: The smell of spilled beer, schnaps, and a h...
   scene.text('This place has a rowdy air about it: The smell of spilled beer, schnaps, and a hint of vomit and blood are hard to miss, and some of the stools and billiard cues look like they\'ve been used in fights before. It is obviously a worker pub and not trying to be anything fancier than that, but that gives it an odd charm and coziness of its own\' + iif(hour >= 16, \', and despite the hints of shadiness, you can hear plenty of laughter and friendly conversation\', \') + \'. You doubt you\'ll get a fancy cocktail in here, though.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit to the street', goto: ['city_industrial', ''] },
     { label: 'Approach the bar', goto: ['qwBarPolet', 'bar'] },
@@ -174,6 +175,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the bar (0:05)', goto: ['qwBarPolet', 'Ordering'] },
     { label: 'Leave the bar', goto: ['qwBarPolet', ''] },
@@ -237,6 +239,7 @@ function enterDrinkingBooze(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -358,6 +361,7 @@ function enterOrdering(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -609,6 +613,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

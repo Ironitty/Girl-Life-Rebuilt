@@ -41,12 +41,14 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).total = qspFunc(s, 'piercing_management', 'get_total', ((s as any).locArgs?.[1] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,6 +61,7 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).locArgs?.[2] ?? 0) + '_owned'] !== 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,6 +71,7 @@ function enterIsPierced(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +84,7 @@ function enterIsWearing(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +95,7 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (((s as any).pcs_piercings ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -98,6 +104,7 @@ function enterSetManageString(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec: gt \'piercing_management\', \'main\'">Manage Piercings</a>');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,6 +115,7 @@ function enterSetManageAct(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,6 +129,7 @@ function enterPierce(s: GameState, scene: SceneBuilder): void {
   ((s as any).pcs_piercings ?? {})['total'] = (((s as any).pcs_piercings ?? {})['total'] ?? 0) + (1);
   // TODO-QSP: pcs_piercings[$ARGS[1]] = -999
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +152,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -161,6 +171,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: pcs_piercings[$ARGS[1]] = ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +181,7 @@ function enterWearLast(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'piercing_management', 'wear', $ARGS[1], -pcs_piercings[$ARGS[1]]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -180,15 +192,18 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   ((s as any).pcs_piercings ?? {})['wearing'] = (((s as any).pcs_piercings ?? {})['wearing'] ?? 0) - (1);
   // TODO-QSP: pcs_piercings[$ARGS[1]] = -pcs_piercings[$ARGS[1]]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterImage(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFullReset(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -244,12 +259,14 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'piercing_view', 'init', 'set_exceptions');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -274,6 +291,7 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'piercing_management', 'add', $ARGS[1], ARGS[2]
   qspCall(s, 'piercing_management', 'count');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -289,6 +307,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Piercing Management</b></center>');
   qspCall(s, 'piercing_management', 'mirror_table');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close Piercing management', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -511,6 +530,7 @@ function enterMirrorTable(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: *p      '</td>'
   // TODO-QSP: *p    '</tr>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,6 +546,7 @@ function enterEars(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopears'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -540,6 +561,7 @@ function enterEarsImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -555,6 +577,7 @@ function enterNose(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopnose'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -569,6 +592,7 @@ function enterNoseImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -584,6 +608,7 @@ function enterBrow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopbrow'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -598,6 +623,7 @@ function enterBrowImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -613,6 +639,7 @@ function enterLip(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'looplip'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -627,6 +654,7 @@ function enterLipImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -642,6 +670,7 @@ function enterTongue(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'looptongue'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -656,6 +685,7 @@ function enterTongueImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -671,6 +701,7 @@ function enterNavel(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopnavel'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -685,6 +716,7 @@ function enterNavelImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -700,6 +732,7 @@ function enterNipples(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopnipples'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -714,6 +747,7 @@ function enterNipplesImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -729,6 +763,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'looppussy'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['piercing_management', 'main'] },
   ]);
@@ -743,18 +778,21 @@ function enterPussyImage(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS ?? {})[1] = -((s as any).ARGS ?? 0)[1];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterViewItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'piercing_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

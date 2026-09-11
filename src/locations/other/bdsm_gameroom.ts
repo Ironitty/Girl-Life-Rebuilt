@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'bdsm_gameroom', '');
   scene.img('images/locations/city/suburb/bdsm_club/games.jpg');
   scene.text('Games room');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the landing', goto: ['bdsm_landing', ''] },
   ]);
@@ -20,6 +21,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   scene.actions([{ label: 'Continue', goto: ['bdsm_gameroom', 'event_1'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -28,6 +30,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('A maid is crawling along a bench seat showing everyone her pussy and anus.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_gameroom', ''] },
   ]);

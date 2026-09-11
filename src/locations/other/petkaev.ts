@@ -217,6 +217,7 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,6 +236,7 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk over to him and start to undo your shirt. "If you do this for me, I\'ll do something for you," you say in your most seductive tone.');
   scene.text('His eyes bulge as he looks down at your chest.');
   scene.text('"Like what?" he squeaks out.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your top', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homework2.jpg');
@@ -351,6 +353,7 @@ function enterPetraHomeworkFacial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'A6');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the homework', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
@@ -403,6 +406,7 @@ function enterSchoolRestroomStrap(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get ready to fuck him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging1.jpg');
@@ -483,6 +487,7 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use spit', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
@@ -569,6 +574,7 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'anal_strap_give', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck your buttslut', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging4.jpg');
@@ -631,6 +637,7 @@ function enterFemdomPetkaDoggyFinish(s: GameState, scene: SceneBuilder): void {
   scene.text('Without prompting, he opens his backpack and pulls out his homework before handing it over to you.');
   qspCall(s, 'arousal', 'anal_strap_give', 2, 'dom');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the homework', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
@@ -690,6 +697,7 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use spit', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
@@ -776,6 +784,7 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'magicd_anal', 3, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck your buttslut', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging4.jpg');
@@ -866,6 +875,7 @@ function enterFemdomPetkaPulloutMagic(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -916,6 +926,7 @@ function enterFemdomPetkaCuminsideMagic(s: GameState, scene: SceneBuilder): void
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

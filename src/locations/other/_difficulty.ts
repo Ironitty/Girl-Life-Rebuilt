@@ -194,12 +194,14 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetdifficultyInt(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatVars ?? {})['skill_gain'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -218,6 +220,7 @@ function enterSetdifficulty(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,12 +231,14 @@ function enterGetdifficulty(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cheatVars ?? 0)?.['skill_gain'] === 4) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetexpadj(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 20 * ((s as any).cheatVars ?? {})?.['skill_gain'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,26 +254,31 @@ function enterGetExpGain(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 50;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetDegLoss(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).egVars ?? 0)?.['deg_loss_mult'], 100, ((s as any).cheatVars ?? 0)?.['deg_speed_custom']);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddmoney(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'earn', ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddmoneystring(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpendmoney(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,10 +327,12 @@ function enterGetMultiplied(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpendmoneystring(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +352,7 @@ function enterGetmaxgrades(s: GameState, scene: SceneBuilder): void {
   if (((s as any).max_grades ?? 0) > 100) {
     (s as any).max_grades = 100;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

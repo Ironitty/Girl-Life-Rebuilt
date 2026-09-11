@@ -7,32 +7,43 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDolls(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'fashionista') {
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'coco') {
-    } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'flamingos') {
-      } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'danilovich') {
-        } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 'gm') {
-          } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 'cats') {
-            } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 'nerdvana') {
-              } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 'moncheri') {
-                } else {
-                  if (((s as any).locArgs?.[0] ?? 0) === 'bomba') {
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  scene.build();
+}
+
+function enterFashionista(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterCoco(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterFlamingos(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDanilovich(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGm(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterCats(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterNerdvana(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterMoncheri(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterBomba(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -41,6 +52,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'dolls':
       enterDolls(s, scene);
+      break;
+    case 'fashionista':
+      enterFashionista(s, scene);
+      break;
+    case 'coco':
+      enterCoco(s, scene);
+      break;
+    case 'flamingos':
+      enterFlamingos(s, scene);
+      break;
+    case 'danilovich':
+      enterDanilovich(s, scene);
+      break;
+    case 'gm':
+      enterGm(s, scene);
+      break;
+    case 'cats':
+      enterCats(s, scene);
+      break;
+    case 'nerdvana':
+      enterNerdvana(s, scene);
+      break;
+    case 'moncheri':
+      enterMoncheri(s, scene);
+      break;
+    case 'bomba':
+      enterBomba(s, scene);
       break;
     default:
       enterDefault(s, scene);

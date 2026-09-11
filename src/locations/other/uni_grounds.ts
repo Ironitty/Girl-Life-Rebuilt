@@ -149,6 +149,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_cafe', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -449,6 +450,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -500,6 +502,7 @@ function enterDayCold(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -721,6 +724,7 @@ function enterNightWarm(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -320,6 +320,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -459,6 +460,7 @@ function enterPetka(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -703,6 +705,7 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -774,6 +777,7 @@ function enterJuliaTampon(s: GameState, scene: SceneBuilder): void {
       { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -874,6 +878,7 @@ function enterNatasha(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -977,6 +982,7 @@ function enterEvgeny(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1089,6 +1095,7 @@ function enterFeofan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1285,6 +1292,7 @@ function enterGerasim(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1492,6 +1500,7 @@ function enterZinaida(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1676,6 +1685,7 @@ function enterNatalia(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);

@@ -32,12 +32,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterApply(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
   scene.text('You knock on the door, and someone calls you in from the other side, "You can enter." After you enter, you\'re greeted by the sight of a sour-faced older man reading papers at his desk. When he sees you, his expression hardens. "Surprised to see an old man managing a clothing store for teenage girls?" he grunts. You didn\'t even say anything yet, but he doesn\'t seem to care. "Yeah, I get that a lot…," he adds under his breath before sighing and looking back to his papers. "What do you need?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['shop_pussycats', 'start'] },
     { label: 'Mention the for hire sign', handler: (st: GameState) => {
@@ -162,6 +164,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<font color="gray">You think about asking to switch schedules, but the other shift conflicts with your existing commitments.</font>');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Resign', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
@@ -340,10 +343,12 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBeg(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Beg for your job back', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
@@ -393,6 +398,7 @@ function enterBeg(s: GameState, scene: SceneBuilder): void {
 function enterReapply(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
   scene.text('Mr. Sobulyagin doesn\'t mind having you back since you ended it all on quite good terms.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept your previous position', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -456,6 +462,7 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
   scene.text('You swallow hard and nod your head. "If this means keeping my job… I\'ll do it."');
   scene.text('Mr. Sobulyagin smiles. "Good girl. I\'m happy to have such a hard worker here at the store," he says almost mockingly. He brings his hand to your cheek and cups it admiring your face with a triumphant smirk. "On your knees," he commands as his hand suddenly moves to the top of your head to push you down towards his crotch.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get on your knees', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/sex/bj1.jpg');
@@ -515,6 +522,7 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A101');
   scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
   scene.text('Taking a deep breath you nod your head. "Fine… I\'ll do it." You see Mr. Sobulyagin smile as he places his hand on top of your head and pushes you down to your knees.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get on your knees', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A101');
@@ -595,6 +603,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A101');
   scene.img('images/locations/city/citycenter/mall/cats/fired.jpg');
   scene.text('Taking a deep breath you nod your head. "Fine… I\'ll do it." You see Mr. Sobulyagin smile as he places his hand on top of your head and pushes you down to your knees.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get on your knees', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A101');

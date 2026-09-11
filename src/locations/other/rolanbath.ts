@@ -87,6 +87,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'prvt_pee');
   qspCall(s, 'din_van', 'toymanage');
   qspCall(s, 'din_van', 'enema');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
     { label: 'Take a shower (0:15)', handler: (st: GameState) => {
@@ -487,6 +488,7 @@ function enterSexev(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave him alone', goto: ['rolanapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -511,6 +513,7 @@ function enterEv(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -575,6 +578,7 @@ function enterBazar(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat some more', goto: ['rolanbath', 'bazar'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -586,6 +590,7 @@ function enterPervshower(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanselfcare0.jpg');
   // TODO-QSP: dynamic text: "Sure Miss <<$pcs_lastname>>, tell me!"
   scene.text(`"Sure Miss ${((s as any).pcs_lastname ?? 0)}, tell me!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a shower (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -708,6 +713,7 @@ function enterBonershower(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, w-w-what do you mean?"`);
   scene.text('"I mean, we could both save some time and water if we bathed together!"');
   scene.text('Rolan can only stutter and stammer.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bra', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -855,6 +861,7 @@ function enterDryOff(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -879,6 +886,7 @@ function enterTools(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -892,6 +900,7 @@ function enterSurprise(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>… I-I am speechless…"
   scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}… I-I am speechless…"`);
   scene.text('"Which part do you like best?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

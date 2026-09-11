@@ -56,6 +56,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -70,6 +71,7 @@ function enterSermon(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
   scene.text('The candles dim as the sermon begins. You listen intently to the priest as he preaches the word of god. You study his teachings, feeling enlightened until you reach the end of the sermon.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up', goto: ['city_church', 'Narthex'] },
   ]);
@@ -99,6 +101,7 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
   scene.text('You attend the vigil and reflect on the recent events in your life. The harmonies as the hymns and psalms are sung sweep aside some of the worries in your heart, although you know they will return once you leave this holy place. You still enjoy the rest of the vigil as the sweet scent of incense tickles your nose.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['city_church', 'Narthex'] },
     { label: 'Stay for the Rite of Mutual Forgiveness', handler: (st: GameState) => {
@@ -137,6 +140,7 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
   scene.text('You join the congregation for the Divine Liturgy. You see mostly older people around, but there are some people around your age present as well. You participate in the singing, but that\'s about it. Your presence seems to go largely unnoticed and you have the chance to rest. You feel a lot better.');
   qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 4) + 0);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the church', goto: ['city_church', 'start'] },
   ]);
@@ -151,6 +155,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/enterchurch.jpg');
   scene.text('You enter the church and the scent of incense and beeswax fills your lungs. Your eyes are drawn past the Narthex into the Nave, its walls covered in lovingly painted icons while a thousand points of light dance in joy throughout God\'s house from the magnificent chandelier that hangs from the ceiling.');
   scene.text('To your left is a counter where a deacon sells candles, icons and prayer books. He smiles and nods at you absently, acknowledging your presence without really seeing you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the church', goto: ['city_church', 'start'] },
     { label: 'Light a candle', goto: ['city_church', 'candle'] },
@@ -201,6 +206,7 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     scene.text('You approach the iconostasis and light your candle in the dark church before you start praying. The darkness, combined with the pleasant sight of fire, makes you feel warm inside.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Narthex', goto: ['city_church', 'Narthex'] },
   ]);
@@ -228,6 +234,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pray', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

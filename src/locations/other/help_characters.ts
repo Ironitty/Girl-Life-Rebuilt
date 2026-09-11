@@ -100,6 +100,7 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content += '</td></tr></table>'
   qspCall(s, 'help', 'render', ((s as any)._hc_key ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -430,12 +431,14 @@ function enterLocText(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharsPc(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -446,6 +449,7 @@ function enterCharDad(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[3] = 'Stepfather of|char_kolka|A34'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -459,6 +463,7 @@ function enterCharMom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[6] = 'Daughter of|char_grandpa|A32'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -469,6 +474,7 @@ function enterCharLuda(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[3] = 'Aunt of|chars_pc|PC'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -479,6 +485,7 @@ function enterCharGrandma(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[3] = 'Long-time farmhand|char_grigory|A221'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -489,6 +496,7 @@ function enterCharGrandpa(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[3] = 'Long-time farmhand|char_grigory|A221'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -500,6 +508,7 @@ function enterCharAnya(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[4] = 'Boyfriend|char_roma|A56'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -510,6 +519,7 @@ function enterCharKolka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[3] = 'Older sister|char_anya|A33'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -517,6 +527,7 @@ function enterCharUncleMisha(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Uncle of|chars_pc|PC'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -524,6 +535,7 @@ function enterCharDimka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_igor|A4'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -531,6 +543,7 @@ function enterCharIgor(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_dimka|A1'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -538,6 +551,7 @@ function enterCharMarcus(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Best friend and host family|char_andrey|A147'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -547,12 +561,14 @@ function enterCharAndrey(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Aunt|char_miss_aleksand|A136'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMefodiy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -561,6 +577,7 @@ function enterCharKatja(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Brother|char_roma|A56'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -569,18 +586,21 @@ function enterCharVicky(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Brother|char_roma|A56'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharIrina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharBella(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -588,12 +608,14 @@ function enterCharStasya(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Boyfriend|char_andrey|A147'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharLizaveta(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -601,6 +623,7 @@ function enterCharSonia(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Step-brother|char_shulyov|A127'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -608,6 +631,7 @@ function enterCharIvan(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Training partner|char_fedor|A5'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -615,30 +639,35 @@ function enterCharFedor(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Training partner|char_ivan|A3'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharSvyatoslav(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharLazar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharErast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharVanya(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -646,6 +675,7 @@ function enterCharLariska(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Best friend|char_christina|A18'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -655,6 +685,7 @@ function enterCharChristina(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Older brother|char_silvestr|A248'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -662,18 +693,21 @@ function enterCharLina(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_christina|A18'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharAlbina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharRonnie(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -681,6 +715,7 @@ function enterCharArtem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Close friend|char_petka|A6'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -688,36 +723,42 @@ function enterCharPetka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Close friend|char_artem|A2'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharEvgeny(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharFeofan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharGerasim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharJulia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharNatashaS(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -725,12 +766,14 @@ function enterCharZina(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Brother|char_petia|A159'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharNatalia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -740,6 +783,7 @@ function enterCharVitek(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Best friend|char_shulga|A11'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -748,6 +792,7 @@ function enterCharDan(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Best friend|char_shulga|A11'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -757,6 +802,7 @@ function enterCharShulga(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Father|char_sergey|A112'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -766,12 +812,14 @@ function enterCharRadomir(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Bandmate (bassist)|char_valentin|A158'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharLavrenti(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -781,6 +829,7 @@ function enterCharArkadi(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Bandmate|char_valentin|A158'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -788,6 +837,7 @@ function enterCharRomanY(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Associate|char_niko|A189'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -797,6 +847,7 @@ function enterCharValentin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Bandmate|char_arkadi|A156'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -804,6 +855,7 @@ function enterCharNiko(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Associate|char_roman_y|A157'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -812,6 +864,7 @@ function enterCharLena(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Best friend|char_lera|A21'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -822,18 +875,21 @@ function enterCharLera(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[3] = 'Best friend|char_lena|A20'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharPauline(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharAlyona(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -843,12 +899,14 @@ function enterCharAnushka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Bandmate|char_valentin|A158'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharKatyusha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -857,6 +915,7 @@ function enterCharLesco(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Cousin|char_lera|A21'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -864,60 +923,70 @@ function enterCharPetia(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Sister|char_zina|A142'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharCoach(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharVasilyev(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharIvanov(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharYenotin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharPavlovich(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharKuznetsovT(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMatveev(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMissVolkov(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMissSokoloff(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -925,18 +994,21 @@ function enterCharMissAleksand(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Nephew|char_andrey|A147'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMissBraakman(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMissOrlov(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -946,6 +1018,7 @@ function enterCharAnatoly(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Nephew|char_lesco|A7'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -954,6 +1027,7 @@ function enterCharVera(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Daughter|char_lera|A21'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -961,6 +1035,7 @@ function enterCharOlu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Nephew|char_djibril|A82'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -970,6 +1045,7 @@ function enterCharRoma(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[2] = 'Girlfriend|char_anya|A33'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -977,18 +1053,21 @@ function enterCharRex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_anya|A33'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharArthur(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMarisha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -996,12 +1075,14 @@ function enterCharSergey(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Son|char_shulga|A11'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharVadim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1009,12 +1090,14 @@ function enterCharShulyov(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Step-sister|char_sonia|A25'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharPavlin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1023,24 +1106,28 @@ function enterCharMira(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Brother|char_vitaliy|A65'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharKolyamba(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharVasyan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMitka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1049,6 +1136,7 @@ function enterCharAfanasiy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Son|char_vitaliy|A65'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1057,30 +1145,35 @@ function enterCharVitaliy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Father|char_afanasiy|A64'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharAndreiG(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharIgorG(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharSergeiG(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharJora(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1088,42 +1181,49 @@ function enterCharNicholas(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Sister|char_tanya|A218'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharIlyushkin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharTryndin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharEugene(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharTatiana(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharNastja(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharSavva(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1131,6 +1231,7 @@ function enterCharTanya(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Brother|char_nicholas|A52'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1138,6 +1239,7 @@ function enterCharKat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'University roommate|char_sofia_u|A260'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1146,18 +1248,21 @@ function enterCharGrigory(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Farmhand on land of|char_grandpa|A32'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharAlex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharAmelia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1166,30 +1271,35 @@ function enterCharDjibril(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[1] = 'Friend|char_haruna|A245'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharGoshi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharKendra(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharVikaU(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharErmias(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1197,12 +1307,14 @@ function enterCharHaruna(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Friend|char_djibril|A82'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharLilly(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1210,6 +1322,7 @@ function enterCharSilvestr(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'Younger sister|char_christina|A18'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1217,54 +1330,63 @@ function enterCharSofiaU(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $_hc_rel[0] = 'University roommate|char_kat|A219'
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharProfMarinova(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharProfKudelina(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharProfBorisov(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharMaya(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharTanis(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharGasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharRudolf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCharBronya(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help_characters', 'build');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

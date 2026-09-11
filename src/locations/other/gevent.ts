@@ -15,6 +15,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A54');
   scene.img('images/characters/pavlovsk/resident/misha/sex/rape.jpg');
   scene.text('You agree to help, and leave the cafe with uncle Misha. When you reach his apartment, he takes you by the hand and pulls you to his bedroom, locking the door with a key behind him. Roughly grabbing you by your hair, he pulls you down to your knees and unbuttons his pants with his other hand.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/misha/sex/bj.mp4');
@@ -93,6 +94,7 @@ function enter1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'arousal', 'vaginal', 10);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish him!', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/misha/sex/mishasex3.jpg');
@@ -122,6 +124,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/park/sex/2.jpg');
   // TODO-QSP: dynamic text: You quietly leave with the guy, who pulls you towards the men's room rather urge...
   scene.text(`You quietly leave with the guy, who pulls you towards the men's room rather urgently. After pulling you into one of the stalls, he locks the door and shoves you down to your knees, expecting you to suck his cock as he pulls out his phone. You obediently put your lips around his dick, not wanting to disappoint. Slowly bobbing your head back and forth, you take his dick further and further down your throat until you can lick his balls. He smirks and says: "Nice show. Smile for the camera, baby!", as he pulls his cock out of your mouth and cums all over your face, rubbing his dick against your lips for good measure. After you clean up his cum with your tongue, he quickly pulls up his pants and drops a crumpled bank note. By the time you notice it's only worth ${qspFunc(s, 'money', 'string_profit', 10)}, he is gone. You hope he won't share the video with his friends, but deep inside you know better.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash up and return to the cinema lobby', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -159,6 +162,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0));
   qspCall(s, 'cum_call', 'mouth', ((s as any).npcID2 ?? 0));
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_residential', ''] },
   ]);
@@ -178,6 +182,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   scene.text('You accompany the guy to his house, where you enjoy a few beverages with him. A while later you find yourself on your back, getting pounded by this stranger. He rides you with his hairy body and pulls out right before he orgasms, draping his load all over your buttocks. Not bothering to clean it up, you simply get dressed. You sit back down and chat with him for a while, drinking some tea in an attempt to sober up before leaving. You still feel rather drunk when you close the door behind you, returning to the streets.');
   qspCall(s, 'arousal', 'vaginal', 20, 'humiliation');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Pavlovsk', goto: ['pav_residential', ''] },
   ]);
@@ -235,6 +240,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 15, 'prostitution');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Straighten your clothes', goto: ['pav_residential', ''] },
   ]);
@@ -278,6 +284,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   scene.text('Taking their turns fucking your mouth and pussy mercilessly, some even came back for seconds while one of them made sure to capture all of it on camera. The last thing you remember is him taking some close-ups of your cum-covered face, saying: "Man look at this whore, no inhibitions whatsoever! This video is going to be a huge hit on the internet!"');
   scene.text('By the time you wake up again it\'s the middle of the next day, and you are lying naked in a ditch somewhere just outside of town, covered in semen. Luckily they were decent enough to at least give you your clothes back, which you find in a pile next to you with your other belongings. As you quickly get dressed you silently pray they reconsidered and didn\'t share the video, but at the same time know better. As you make your way back to Pavlovsk you realize this probably hurt your reputation in town as a result, since many people will have seen the video by now.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Pavlovsk streets', goto: ['pav_residential', ''] },
   ]);
@@ -308,6 +315,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'vaginal', ((s as any).npcID1 ?? 0));
   qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the Pavlovsk streets', goto: ['pav_residential', ''] },
   ]);

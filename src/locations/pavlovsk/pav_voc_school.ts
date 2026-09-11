@@ -26,6 +26,7 @@ function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the train station', goto: ['pav_commercial', ''] },
   ]);
@@ -127,6 +128,7 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The club is closing. The lights go off, the music fades, and everyone begins to leave.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', goto: ['pav_voc_school', 'community_center'] },
   ]);
@@ -245,6 +247,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', goto: ['pav_voc_school', 'outside'] },
   ]);
@@ -262,6 +265,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed'  &&  ((s as any).teacher ?? 0)?.['level'] > 0  &&  ((s as any).teacher ?? 0)?.['level'] < 10) {
     ((s as any).teacher ?? {})['on_notice'] = 1;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -292,6 +296,7 @@ function enterSportsArea(s: GameState, scene: SceneBuilder): void {
       { label: 'Disregard', goto: ['pav_voc_school', 'sports_area'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', goto: ['pav_voc_school', 'outside'] },
   ]);
@@ -312,6 +317,7 @@ function enterFirstFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'first_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['pav_voc_school', 'reception'] },
     { label: 'Go to the gym', goto: ['pav_voc_school', 'gymnasium'] },
@@ -335,6 +341,7 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'second_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Principal\'s Office', goto: ['pav_voc_school', 'principals_office'] },
     { label: 'Go to the library', goto: ['pav_voc_school', 'library'] },
@@ -361,6 +368,7 @@ function enterThirdFloor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 20) {
     // TODO-QSP: act 'Staff room': gt 'pav_voc_school', 'staff_room'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['pav_voc_school', 'reception'] },
   ]);
@@ -429,6 +437,7 @@ function enterStaffRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lie down on the couch (1:00)', handler: (st: GameState) => {
     qspCall(st, 'sleep_simple', 'nap');
@@ -482,6 +491,7 @@ function enterClassroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).teacher ?? 0)?.['level'] > 10) {
     // TODO-QSP: act 'Read the school magazine': gt 'pav_voc_school', 'school_magazine'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the corridor', goto: ['pav_voc_school', 'third_floor'] },
   ]);
@@ -514,6 +524,7 @@ function enterTeachingStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -675,6 +686,7 @@ function enterTeaching(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the classroom', goto: ['pav_voc_school', 'third_floor'] },
   ]);
@@ -694,6 +706,7 @@ function enterPrincipalsOffice(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Hello again, ${((s as any).pcs_nickname ?? 0)}."`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the office', goto: ['pav_voc_school', 'second_floor'] },
   ]);
@@ -705,6 +718,7 @@ function enterGymnasium(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Gym</b></center>');
   scene.img('images/locations/pavlovsk/altschool/sportzal.jpg');
   scene.text('Gym for team sports.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hall', goto: ['pav_voc_school', 'reception'] },
     { label: 'Women\'s Shower', goto: ['pav_voc_school', 'womens_shower'] },
@@ -739,6 +753,7 @@ function enterWomensShower(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You\'ve run out of shampoo and will have to buy more before you can wash yourself.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the gym', goto: ['pav_voc_school', 'gymnasium'] },
   ]);
@@ -752,6 +767,7 @@ function enterMensShower(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Men\'s Shower</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_muz.jpg');
   scene.text('Shower for boys. You shouldn\'t be here. This will negatively affect your reputation.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the gym', goto: ['pav_voc_school', 'gymnasium'] },
   ]);
@@ -776,6 +792,7 @@ function enterMedicalOffice(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'medical_office'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'To the corridor (1st Floor)', goto: ['pav_voc_school', 'first_floor'] },
   ]);
@@ -804,6 +821,7 @@ function enterDiningRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Buy lunch [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -851,6 +869,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['pav_voc_school', 'second_floor'] },
   ]);
@@ -900,6 +919,7 @@ function enterTeachersToilet(s: GameState, scene: SceneBuilder): void {
       { label: 'Next', goto: ['pav_voc_school', 'teachers_toilet'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['pav_voc_school', 'second_floor'] },
   ]);
@@ -932,6 +952,7 @@ function enterSchoolMagazine(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_voc_school', 'third_floor'] },
   ]);
@@ -945,6 +966,7 @@ function enterDatingProfile(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/altschool/ptu_tech.jpg');
   // TODO-QSP: dynamic text: "Good afternoon, <<$pcs_nickname>>! As you requested, I tried to take a picture ...
   scene.text(`"Good afternoon, ${((s as any).pcs_nickname ?? 0)}! As you requested, I tried to take a picture as erotic as possible. I hope I didn't overdo it. Or maybe I didn't do it right—the photo doesn't seem quite erotic. So please, email me if anything else is needed."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'See next photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

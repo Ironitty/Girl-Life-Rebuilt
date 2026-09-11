@@ -31,6 +31,7 @@ function enterRep(s: GameState, scene: SceneBuilder): void {
     scene.text('You have an excellent relationship with Sergey, and you\'re always welcome in his home.');
   }
   scene.text('');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,6 +52,7 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['vasilyhome', 'hallway'] },
     { label: 'Chat with Sergey', handler: (st: GameState) => {
@@ -90,6 +92,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/serge/sleep.jpg');
   scene.text('Sergey is sound asleep.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', goto: ['vasilyhome', 'sergey_room'] },
     { label: 'Wake him up', handler: (st: GameState) => {

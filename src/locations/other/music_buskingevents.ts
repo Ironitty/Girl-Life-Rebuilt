@@ -30,6 +30,7 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/activities/music/guitarf\'+ rand(1, 2) +\'.jpg');
   // TODO-QSP: dynamic text: You start to play the songs you know, pushing your open guitar case forward a li...
   scene.text(`You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.' + iif(ml_online['account'] = 1 and ml_online['active'] = 1, ' You also set up the sign with the link to your webprofile.', ') + ' After playing for an hour you have made ${((s as any).ml_tipsearned ?? 0)} <b>P</b> in tips.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_buskingevents', 'finish');
@@ -60,6 +61,7 @@ function enterCalculateTips(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_time_loc_mod = (((s as any).ml_location_mod ?? 0) + ((s as any).ml_time_mod ?? 0));
   (s as any).ml_tipsmax = ((((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0) + ((((s as any).pcs_hotcat ?? 0)-4)*35)) * ((s as any).ml_time_loc_mod ?? 0))/50;
   (s as any).ml_tipsearned = (Math.max(0, 0)*((s as any).ml_buskingtime ?? 0)) / 60;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -159,6 +161,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');
@@ -171,6 +174,7 @@ function enterLenaAndLera(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   // TODO-QSP: dynamic text: Lena and Lera harasses <<$pcs_nickname>>
   scene.text(`Lena and Lera harasses ${((s as any).pcs_nickname ?? 0)}`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');
@@ -190,6 +194,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'music_actions', 'finish');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

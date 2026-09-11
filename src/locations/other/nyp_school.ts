@@ -18,6 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
   scene.text('You notice what you think are all your classmates from school here, or at least the majority of them. Most of them are milling about at several tables with tea and sweets laid out. It doesn\'t take long before most of them drift off into their individual cliques, with the gopniks staking claim to the bleachers, sitting and laying about on them, the cool kids and jocks mingling around the tables and the nerds hovering around the edges. The outcasts do their best to stay out of sight, leaning against one of the walls far from the gopniks.');
   scene.text('Some of the teachers are also here, although they don\'t seem to be paying much attention to the students and seem a lot more interested in socializing with each other.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have tea and buns', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -409,6 +410,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -592,6 +594,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -605,6 +608,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/events/newyear/gopniks.jpg');
   scene.text('The gopniks mostly gather over by the bleachers pushed against the wall. A few climb up on top to sit there, with a commanding view of the rest of the party, while the rest stand near the wall in smaller groups.');
   scene.text('As you hang out, it doesn\'t take long for most of them to start complaining about how boring the party is, despite the spiked juice and start discussing ways to make it more interesting. Everyone breaks up into groups to figure out what to do to make it more fun.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go tag something', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/gopniks.jpg');
@@ -1126,6 +1130,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1143,6 +1148,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).InvitationToDimkaNYparty = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
   ]);
@@ -1153,6 +1159,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/system/image_needed.png');
   scene.text('Once in the bathroom, Vasily immediately pulls down his pants. "Suck my cock bitch. I know that you\'ve been anticipating this for the whole party."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snybj.jpg');
@@ -1267,6 +1274,7 @@ function enterDrinkMore(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
   ]);

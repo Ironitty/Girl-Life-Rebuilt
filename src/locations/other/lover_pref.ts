@@ -158,6 +158,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +182,7 @@ function enterGetMakeupPref(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += ' amount of'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -200,6 +202,7 @@ function enterGetPiercingPref(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -219,6 +222,7 @@ function enterGetTattooPref(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -238,6 +242,7 @@ function enterGetPierChange(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -257,6 +262,7 @@ function enterGetTattChange(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -276,6 +282,7 @@ function enterGetLipChange(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -286,6 +293,7 @@ function enterCheckPiercings(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -296,6 +304,7 @@ function enterCheckTattoos(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -306,6 +315,7 @@ function enterCheckMakeup(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -316,6 +326,7 @@ function enterCheckHaircol(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -326,6 +337,7 @@ function enterCheckTits(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -336,6 +348,7 @@ function enterCheckLips(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -346,6 +359,7 @@ function enterCheckBmi(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

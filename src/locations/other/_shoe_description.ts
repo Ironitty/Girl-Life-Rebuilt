@@ -7,26 +7,35 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoncheri(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'cats') {
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'bomba') {
-    } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'dolls') {
-      } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'eroto') {
-        } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 'scandalicious') {
-          } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 'gm') {
-            } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 'danilovich') {
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  scene.build();
+}
+
+function enterCats(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterBomba(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDolls(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterEroto(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterScandalicious(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGm(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterDanilovich(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -35,6 +44,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'moncheri':
       enterMoncheri(s, scene);
+      break;
+    case 'cats':
+      enterCats(s, scene);
+      break;
+    case 'bomba':
+      enterBomba(s, scene);
+      break;
+    case 'dolls':
+      enterDolls(s, scene);
+      break;
+    case 'eroto':
+      enterEroto(s, scene);
+      break;
+    case 'scandalicious':
+      enterScandalicious(s, scene);
+      break;
+    case 'gm':
+      enterGm(s, scene);
+      break;
+    case 'danilovich':
+      enterDanilovich(s, scene);
       break;
     default:
       enterDefault(s, scene);

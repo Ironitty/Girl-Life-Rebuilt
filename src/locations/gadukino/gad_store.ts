@@ -34,6 +34,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'gad_store');
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/market.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
     // TODO-QSP: $backimage = ''

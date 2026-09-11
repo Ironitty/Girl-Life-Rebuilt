@@ -496,6 +496,7 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -916,12 +917,14 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHelp(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/classroom/teacherhelp.jpg');
   scene.text('Mr. Tsarev notices that you appear to be stuck on one of the assignments and kneels down next to you. He patiently explains some easier solutions to the problems and, slowly but surely, you gather a better understanding.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     { label: 'Gently touch his hand', handler: (st: GameState) => {
@@ -1573,6 +1576,7 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2148,6 +2152,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2325,6 +2330,7 @@ function enterShopPunishment(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

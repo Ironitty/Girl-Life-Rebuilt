@@ -16,6 +16,7 @@ function enterToysPaddle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Paddles huh? Well they are flat instruments used for spanking purposes; usually...
   scene.text(`"Paddles huh? Well they are flat instruments used for spanking purposes; usually made of wood or some other rigid material. This one is a simple carved paddle that leaves some pretty writing on the butt cheeks. Paddles are the preferred toy for spanking but it's not exclusive. You can use your bare hands or something else like hairbrush, ruler, your imagination is the only limit. So ${((s as any).pcs_nickname ?? 0)}, are you willing to try the paddle a little?"`);
   qspCall(s, 'hotel_anna_gear', 'toys_paddle_options');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oh… no, thank you for the offer Anna…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -73,6 +74,7 @@ function enterToysPaddleOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try the paddle', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -140,6 +142,7 @@ function enterToysVacuum(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ummm… let me see… what can you tell me about vacuum cups…?"');
   // TODO-QSP: dynamic text: "Vacuum cups uh? Well here we have some manual vacuum cups. With cupping we mean...
   scene.text(`"Vacuum cups uh? Well here we have some manual vacuum cups. With cupping we mean the placing of suction devices on the skin to increase blood flow. Typically these are used on the nipples and the genitalia to increase sensation. Those little one are manual cups, but they can also be linked to a mechanical vacuum pump. Cups can be placed all over the body to create elaborate patterns. I have to tell you that even if they seem harmless, cupping can be considered an edgeplay: leaving a vacuum cup on for too much time with really high negative pressure value, can be very dangerous. Nonetheless I have to say that when cupping is done within the right limits… mmmm… definitively a must have. Say ${((s as any).pcs_nickname ?? 0)}, are you willing to try the cups a little?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'I-is it safe?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -213,6 +216,7 @@ function enterToysVacuum2(s: GameState, scene: SceneBuilder): void {
   scene.text('Anna puts the pump on and adjusts the settings to create a vacuum. "Hope you don\'t mind… I enjoy a bit more pressure than you can get with the manual ones." The cup stays firmly in place and you can see clearly that her nipple is dragged forward by the pressure; immediately Anna starts to move the cup.');
   scene.text('"Uh? Do you have to \'jerk\' the cup like that?"');
   scene.text('"No. I just like how it feels and it shows you how well the suction holds the cup in place"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Got it', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -240,6 +244,7 @@ function enterToysVacuum3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Exactly… they are more difficult to use. It\'s a matter of experience, but with the manual cups you can avoid any serious mistakes which you could make using the pump unit. Some lube or your own spit can help, the skin isn\'t like a mirror, so the grip isn\'t secure, especially at the beginning."');
   scene.text('You try again and this time manage to get it to attach, the sensation is weird and watching as you nipple it pulled forwards in the tube is very strange. You feel a little arousal but that is more from letting someone else play with your nipple than the cups.');
   scene.text('"The main point of this is to draw blood to the area and make the nerves work harder, you will be a bit more sensitive for a while afterwards."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -264,6 +269,7 @@ function enterToysWheel(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ummm… let see… this one Anna. What can you tell me about Wattenburg wheel…?"');
   // TODO-QSP: dynamic text: "Wattenburg wheel uh? Well, it's a medical pinwheel to stimulate or cause a ting...
   scene.text(`"Wattenburg wheel uh? Well, it's a medical pinwheel to stimulate or cause a tingling sensation, it can be used on the whole body or you can focus on preferred area. I prefer to use a single circle pinwheel instead of a multi circle pinwheel because of the area of the stimulation gets too big and sensations may be lessened on the body… but that's a personal preference. Depending on the usage of these instruments, you can have really different effects. If you use it with force it's a pain game; while if you use it with light pressure on the body you can cause, with the right person, an effect called knismolagnia: the sexual arousal from tickling. The use of the Wattenburg wheel on the genital area is a mix between pain and pleasure… if you know yourself and your partner you can reach the perfect mix between those states. Say ${((s as any).pcs_nickname ?? 0)}, are you willing to try the wheel a little?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Okay', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -559,6 +565,7 @@ function enterToysWand(s: GameState, scene: SceneBuilder): void {
   scene.text('Ummm… let see… this one Anna. What can you tell me about this Violet wand…?"');
   // TODO-QSP: dynamic text: "Violet wand uh? Well, they are BDSM devices, that uses electric charges to appl...
   scene.text(`"Violet wand uh? Well, they are BDSM devices, that uses electric charges to apply intense stimulation. ${((s as any).pcs_nickname ?? 0)}…Do you want to try it?."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Is it safe?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1002,10 +1009,12 @@ function enterToysImages(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterToysImagesClear(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1017,6 +1026,7 @@ function enterRestraintsRope(s: GameState, scene: SceneBuilder): void {
   scene.text('"Also ropes can be used for suspension this is an advantage over tape as ropes are very strong, the ropes we use have soft fibres, sometimes silk so that they are comfortable. A base knowledge of knots is normally required in the beginning you can get away with any knots but if they are used in a suspension game you have to be sure the knots are strong and can be undone quickly if something goes wrong.');
   // TODO-QSP: dynamic text: "Ropes are a dominant choice and the best way to learn is by doing so <<$pcs_nic...
   scene.text(`"Ropes are a dominant choice and the best way to learn is by doing so ${((s as any).pcs_nickname ?? 0)}, do you want to tie me up?`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'That sounds fun', handler: (st: GameState) => {
     ((s as any).AnnaQW ?? {})['dom'] = (((s as any).AnnaQW ?? {})['dom'] ?? 0) + (1);
@@ -1046,6 +1056,7 @@ function enterRestraintsRopeDom(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ropes can be dangerous so you have to follow my instructions to the letter."');
   scene.text('"This will be easiest if I\'m naked, ropes can get caught in clothing unless you know exactly what you are doing." Anna strips down. "I\'m keeping the stockings on as they make my legs look great and will not be in the way." She smiles.');
   scene.text('"Ok, now pass that rope around my above my right breast and then below the left, I\'ll correct any mistakes at the end." You follow Anna\'s instructions until you have wrapped the rope tightly around her breasts in a figure of eight.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'BDSM_give', 5);
@@ -1088,6 +1099,7 @@ function enterRestraintsHarness(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ummm… let see… this one Anna. What can you tell me about this?"');
   // TODO-QSP: dynamic text: "The harness? Well a harness is one of the most popular things in BDSM; this is ...
   scene.text(`"The harness? Well a harness is one of the most popular things in BDSM; this is a classic leather harness both for subs and Dominants who love to show some skin. There are models that more clearly shows the role but this is a neutral harness. This harness can also be a restriction device… for example a locked harness could become a chastity belt, or it can be used in pet play. Harnesses are made typically with leather; that's why they are considered one of the more classic items in the BDSM community. Anyway today we have a great many materials used to make BDSM items. So ${((s as any).pcs_nickname ?? 0)}… do you want to try that one?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ok', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5);
@@ -1267,6 +1279,7 @@ function enterRestraintsCuff(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ummm… let see… What about the cuffs, what can you tell me about those?"');
   // TODO-QSP: dynamic text: "Cuffs uh? well for that we should move to the bedroom." You and Anna moves to t...
   scene.text(`"Cuffs uh? well for that we should move to the bedroom." You and Anna moves to the bedroom. Anna moves some pillows to make some room. "${((s as any).pcs_nickname ?? 0)}… please take a seat. Just pretend like you're at home." The bed seems comfy.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find a spot on the bed', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1431,6 +1444,7 @@ function enterRestraintsLeash(s: GameState, scene: SceneBuilder): void {
   scene.text('"The leash is intended to be the hand that grips slave\'s life, and a tool to guide them."');
   // TODO-QSP: dynamic text: "So <<$pcs_nickname>>… are you willing to try the collar and the leash? If so ju...
   scene.text(`"So ${((s as any).pcs_nickname ?? 0)}… are you willing to try the collar and the leash? If so just strip this will allow me to explain its purpose better."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

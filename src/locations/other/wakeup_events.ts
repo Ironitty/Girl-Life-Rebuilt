@@ -44,12 +44,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'mod_sleepevents'] }]);
   }
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'wakeup_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,6 +66,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -75,6 +78,7 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +87,7 @@ function enterEventEnd(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: xgt 'wakeup_events', 'event_handler2', 'priority'
   }
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,27 +95,32 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   scene.actions([{ label: 'Continue', goto: ['wakeup', 'get_out'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMotherSextalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['mother_sextalk', 'dildo_wakeup1'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMotherLaundry(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'mother_laundry2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMotherLaundry2(s: GameState, scene: SceneBuilder): void {
   scene.text('You mother has done the laundry and you see a fresh pile of clothing in your wardrobe.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'wakeup_events', 'event_end');
@@ -129,6 +139,7 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
   ((s as any).vomit ?? {})['morning_sick'] = 0;
   ((s as any).vomit ?? {})['hangover'] = 0;
   ((s as any).vomit ?? {})['unlucky'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,16 +147,19 @@ function enterVomitingEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'wakeup_events', 'exit');
   qspCall(s, 'home_activity', 'vomiting_images');
   scene.actions([{ label: 'Continue', goto: ['home_activity', 'morning_vomit'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNatWakeupSex(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'nat_wakeup_sex1'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'natbel_kissinggames', 'wakeup_event_text');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', handler: (st: GameState) => {
     qspCall(st, 'wakeup_events', 'event_end');
@@ -163,18 +177,21 @@ function enterMarishaEvMorning(s: GameState, scene: SceneBuilder): void {
   scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname ?? 0)}. See you later." She then leaves as you continue getting up.`);
   ((s as any).MarishaQW ?? {})['marisha_sleepover'] = 0;
   qspCall(s, 'wakeup_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTransEarlyShocked(s: GameState, scene: SceneBuilder): void {
   scene.text('The first thing you think as you wake up is, "Damn! It\'s is not a dream, I really am a woman now."');
   qspCall(s, 'wakeup_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTransLittleShocked(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at your female body, you are still a little surprised it\'s actually you.');
   qspCall(s, 'wakeup_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -182,6 +199,7 @@ function enterSgGoSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');
   qspCall(s, 'wakeup_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -204,6 +222,7 @@ function enterSgSleptIn(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'wakeup_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 

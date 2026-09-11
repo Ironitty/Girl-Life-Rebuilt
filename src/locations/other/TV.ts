@@ -40,6 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('Sometimes while watching TV, you catch glimpses of your reflection in the screen during darker scenes. Each time you notice your feminine legs or chest, a wave of shock passes through you. The reality that your body is now that of a woman still feels surreal.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn off the TV and get up', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -57,6 +58,7 @@ function enterNokable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('Sometimes while watching TV, you catch glimpses of your reflection in the screen during darker scenes. Each time you notice your feminine legs or chest, a wave of shock passes through you. The reality that your body is now that of a woman still feels surreal.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -77,6 +79,7 @@ function enterKable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     scene.text('Sometimes while watching TV, you catch glimpses of your reflection in the screen during darker scenes. Each time you notice your feminine legs or chest, a wave of shock passes through you. The reality that your body is now that of a woman still feels surreal.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -151,6 +154,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,6 +191,7 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +229,7 @@ function enterMeyhome(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

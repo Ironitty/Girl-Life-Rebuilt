@@ -82,6 +82,7 @@ function enterLesco(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -356,6 +357,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -556,6 +558,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -594,6 +597,7 @@ function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
     scene.text('"We\'ve all been there," she says with a shrug and a small smile and you run to the bathroom to put the tampon in.');
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -607,6 +611,7 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Chat'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

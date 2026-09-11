@@ -21,6 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'gad_backwater', 'hunter' else gt 'gad_backwater', 'alone'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -182,6 +183,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hut', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -221,6 +223,7 @@ function enterHunter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay naked', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/swampbackwaternude3.jpg');

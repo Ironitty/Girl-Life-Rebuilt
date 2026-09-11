@@ -12,32 +12,54 @@ function enterSetXpprvXpnxt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_xpnxt = func('stat_funcs', 'get_xpnxt', <<$ARGS[1]>>_lvl)
   // TODO-QSP: "
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_funcs', 'add_att_to_list', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_funcs', 'add_skl_to_list', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_funcs', 'add_trait_to_list', ((s as any).locArgs?.[1] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_sklattrib', 'init');
+  scene.build();
+}
+
+function enterDaycall(s: GameState, scene: SceneBuilder): void {
+  ((s as any).temp_sklattrib ?? {})['index'] = 0;
+  // TODO-QSP: :sklxploop
+  ((s as any).temp_sklattrib ?? {})['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
+  // TODO-QSP: dynamic "
+  // TODO-QSP: <<$temp_sklattrib['name']>>_exp += <<$temp_sklattrib['name']>>_exp_skill_derived / 100
+  // TODO-QSP: <<$temp_sklattrib['name']>>_exp_skill_derived = 0
+  // TODO-QSP: "
+  ((s as any).temp_sklattrib ?? {})['index'] = (((s as any).temp_sklattrib ?? {})['index'] ?? 0) + (1);
+  if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
+    // TODO-QSP: jump 'sklxploop'
+  }
+  qspCall(s, 'stat_sklattrib', 'degradation_loop');
+  // TODO-QSP: end
   qspCall(s, 'stat_sklattrib', 'advancement_loop', ((s as any).locArgs?.[0] ?? 0));
   qspCall(s, 'stat_sklattrib_lvlset', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,6 +126,7 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'degloop_outer'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -179,6 +202,7 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'advloop_outer'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -189,6 +213,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat_sklattrib', 'init_loop');
   (s as any).attsklupdate = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +255,7 @@ function enterInitLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'initloop_outer'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -287,6 +313,7 @@ function enterInitVars(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $skl_name[39]  = 'songwrit'    & $skl_desc['songwrit']    = 'Songwriting'
   // TODO-QSP: $skl_name[40]  = 'vball'      & $skl_desc['vball']    = 'Volleyball'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -304,6 +331,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'add_trait_to_list':
       enterAddTraitToList(s, scene);
+      break;
+    case 'daycall':
+      enterDaycall(s, scene);
       break;
     case 'degradation_loop':
       enterDegradationLoop(s, scene);

@@ -27,6 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
     (s as any).hour = 23;
@@ -43,6 +44,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterEnd1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/party/itog.jpg');
   scene.text('Gradually, your steady alcohol intake gets the better of you, and you spend the rest of the night in the bathroom, hugging the toilet');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'tenth_floor'] },
   ]);
@@ -66,6 +68,7 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get a room with Vika', handler: (st: GameState) => {
     if ((!((s as any).vikasex ?? 0))) {
@@ -107,6 +110,7 @@ function enterEnd3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,6 +131,7 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Vika to an empty room', handler: (st: GameState) => {
     if ((!((s as any).vikasex ?? 0))) {
@@ -142,6 +147,7 @@ function enterEnd5(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (1);
   scene.img('images/locations/city/island/university/dorm/sex/party/itog5.jpg');
   scene.text('You wake up on the floor in the hallway, halfway to your room. Panting over your body is a pimply young man, dick inside you, trying to fuck your vagina carefully so you don\'t wake up. Noticing that you\'re awake, he quickly jumps to his feet and runs off, leaving you lying confused and naked on the dirty floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'tenth_floor'] },
   ]);
@@ -151,6 +157,7 @@ function enterEnd5(s: GameState, scene: SceneBuilder): void {
 function enterEnd6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/party/itog6.jpg');
   scene.text('You spend all evening molesting a girl with big tits, begging her to let you kiss them. Eventually, you both get so drunk she allows you to bury your face in her cleavage and motorboat her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'tenth_floor'] },
   ]);
@@ -176,6 +183,7 @@ function enterEnd7(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove your panties', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/sex/party/itog71.jpg');
@@ -234,6 +242,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Caress Vika', handler: (st: GameState) => {
     if ((!((s as any).vikasex ?? 0))) {
@@ -292,6 +301,7 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
 function enterEnd9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/party/sex/itog9.jpg');
   scene.text('Girls love to have fun, particularly drunken ones. You and two new girlfriends you met spend the party kissing and caressing each other, drawing a lot of admiring glances.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'tenth_floor'] },
   ]);
@@ -315,6 +325,7 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_dorm', 'korr'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Grab his crotch', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'stranger from a party', Math.floor(Math.random() * 11) + 18);
@@ -331,6 +342,7 @@ function enterEnd11(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/party/skirtcum.jpg');
   scene.text('You wake up in a strange room, lying on a man\'s stomach, thankfully still dressed although your hangover is killing you.');
   scene.text('As you sit up, you notice something wet on your butt. What a bastard! He dragged you into some random room and came on your clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'tenth_floor'] },
   ]);
@@ -345,6 +357,7 @@ function enterEnd12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', (-15));
   qspCall(s, 'arousal', 'vaginal_finger_give', (-15));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', goto: ['vecher', 'end12'] },
     { label: 'Leave', handler: (st: GameState) => {

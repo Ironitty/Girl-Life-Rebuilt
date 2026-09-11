@@ -64,6 +64,7 @@ function enterNestor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -229,6 +230,7 @@ function enterNestorDick(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -528,6 +530,7 @@ function enterNestor_Chat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -639,6 +642,7 @@ function enterNestor_Serve(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -659,6 +663,7 @@ function enterNestorHandjobStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: His dick falls out of them, already half hard. <font color=#<<$Nestor['font']>>>...
   scene.text(`His dick falls out of them, already half hard. <font color=#${((s as any).Nestor ?? 0)?.['font']}>"Get to work, little girl."</font>`);
   scene.text('Looking at the cock, you decide to:');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk it slowly', goto: ['pav_shared_nestor', 'Nestor_handjob_slow'] },
   ]);
@@ -687,6 +692,7 @@ function enterNestorHandjobHeader(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> orgasm build-up: '+orgB+'/100
   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)]} orgasm build-up: '+orgB+'/100`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -707,6 +713,7 @@ function enterNestorHandjobSlow(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'hj', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk it slowly', goto: ['pav_shared_nestor', 'Nestor_handjob_slow'] },
     { label: 'Jerk it fast', goto: ['pav_shared_nestor', 'Nestor_handjob_fast'] },
@@ -728,6 +735,7 @@ function enterNestorHandjobFast(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to make him cum', goto: ['pav_shared_nestor', 'Nestor_handjob_cum_attempt'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk it slowly', goto: ['pav_shared_nestor', 'Nestor_handjob_slow'] },
     { label: 'Jerk it fast', goto: ['pav_shared_nestor', 'Nestor_handjob_fast'] },
@@ -752,6 +760,7 @@ function enterNestorHandjobLube(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to make him cum', goto: ['pav_shared_nestor', 'Nestor_handjob_cum_attempt'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk it slowly', goto: ['pav_shared_nestor', 'Nestor_handjob_slow'] },
     { label: 'Jerk it fast', goto: ['pav_shared_nestor', 'Nestor_handjob_fast'] },
@@ -773,6 +782,7 @@ function enterNestorHandjobLubeTip(s: GameState, scene: SceneBuilder): void {
       { label: 'Try to make him cum', goto: ['pav_shared_nestor', 'Nestor_handjob_cum_attempt'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk it slowly', goto: ['pav_shared_nestor', 'Nestor_handjob_slow'] },
     { label: 'Jerk it fast', goto: ['pav_shared_nestor', 'Nestor_handjob_fast'] },
@@ -818,6 +828,7 @@ function enterNestorHandjobCumAttempt(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -831,6 +842,7 @@ function enterNestorHandjobCumFail(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A265', (-3));
   ((s as any).Nestor ?? {})['hjFail'] = (((s as any).Nestor ?? {})['hjFail'] ?? 0) + (1);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
   ]);
@@ -854,6 +866,7 @@ function enterNestorHandjobCumSuccess(s: GameState, scene: SceneBuilder): void {
     scene.text('You just pack your things and quietly leave through the door.');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'pav_shared_apt', 'payService');
@@ -1232,6 +1245,7 @@ function enterNestor_Suck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1817,6 +1831,7 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2419,6 +2434,7 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

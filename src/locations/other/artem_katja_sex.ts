@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -5,35 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: If $ARGS[0] = 'home_work_ask_player_katja':
-  (s as any).minut = ((s as any).minut ?? 0) + 1;
-  qspCall(s, 'stat', '');
-  scene.img('images/characters/shared/headshots_main/big14.jpg');
-  scene.text('"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.');
-  if (((s as any).katjaQW ?? 0)?.['horny'] < 30) {
-    scene.text('"We can go do out homework with him. But I\'m not up for any funny business with him today" Katja answers.');
-  } else {
-    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 31) + 30)) {
-      scene.text('"Sure, but I don\'t think I\'m up for anything more than just doing homework" Katja answers.');
-    } else {
-      scene.text('"Sure, we had fun last time, so let\'s do our homework together and see what else happens" Katja answers.');
-    }
-  }
-  scene.actions([
-    { label: 'Go ask Artem', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'npc_relationship', 'modify', 'A2', 'live');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/shared/headshots_main/big2.jpg');
-    scene.text('you walk over to Artem standing on the other side of the school courtyard. When he sees you and Katja he smiles and says "what can I do for the two of you?"');
-    scene.text('"We where wondering if you want to do your homework with the two of us today?" you ask, while Katja nods in agreement.');
-    scene.text('"Sure, we had fun last time, let\'s go" Artem answers, "okay, let\'s go to my house, nobody else is home right now" Katja says.');
-    scene.actions([
-      { label: 'Walk to the Meynold\'s home', goto: ['artem_katja_sex', 'home_work'] },
-    ]);
-  } },
-  ]);
   scene.build();
 }
 
@@ -51,6 +24,7 @@ function enterGoingHomeTogether(s: GameState, scene: SceneBuilder): void {
     scene.text(`Artem turns to you. "Is that true, ${((s as any).pcs_nickname ?? 0)}?"`);
     scene.text('He\'s avoiding eye contact with Katja, who winks at you to signal that she\'s ready to put your plan into motion.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the plan', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -174,6 +148,7 @@ function enterFirstTimeStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('As you\'re close to finishing up, Katja gives you a look which is clearly her asking for confirmation to start seducing Artem.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start the seduction', goto: ['artem_katja_sex', 'first_time_seduction'] },
     { label: 'Call it off', handler: (st: GameState) => {
@@ -223,6 +198,7 @@ function enterFirstTimeAbortedWalkingHome(s: GameState, scene: SceneBuilder): vo
     }
   }
   scene.text('The two of you finally get back to your apartment building, where Artem bids you farewell before heading into his apartment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Alone', goto: ['pod_ezd', 'etaj_1'] },
   ]);
@@ -245,6 +221,7 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'Artem can''t take his eyes off her breasts, '+iif(artemQW['confidence'] < 10, 'and turns completely...
   scene.text('A beam of pride appears on Katja\'s face. "Like what you see?" she asks seductively while pushing her breasts up further using her hands.');
   scene.text('You sit on the table and mirror Katja\'s move.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'See Artem\'s response', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 3);
@@ -395,6 +372,7 @@ function enterFirstTimeTitjob(s: GameState, scene: SceneBuilder): void {
   scene.text('While she does that, you spit on your breasts. "Okay, that\'s enough. Let me show you how a titjob is done."');
   scene.text('Katja moves aside and you scoot up and wrap your breasts around Artem\'s dick, use your hands to push them together and envelope his cock.');
   scene.text('When you\'re sure you have a tight grip, you start moving your breasts up and down Artem\'s shaft.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 1);
@@ -747,6 +725,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -760,6 +739,7 @@ function enterFirstTimeNext(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['artem_katja_sex', 'first_time_on_table'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -773,6 +753,7 @@ function enterFirstTimeOnTable(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 3);
   qspCall(s, 'arousal', 'foreplay', (-2));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn again', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/first_time_9.jpg');
@@ -842,6 +823,7 @@ function enterFirstTimeKatjaTitjob(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride Artem', handler: (st: GameState) => {
     // TODO-QSP: gt 'artem_katja_sex', 'first_time_ride', 1
@@ -864,6 +846,7 @@ function enterFirstTimeRide(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 3);
   qspCall(s, 'stat', '');
   scene.text('After a short while, Artem stops you. "I want to fuck Katja\'s tight little pussy one more time before I cum."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja\'s turn to ride Artem', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay_give', 3);
@@ -1032,6 +1015,7 @@ function enterFirstTimeWalkingHome(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('The two of you finally get back to your apartment building, where Artem bids you farewell before heading into his apartment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Alone', goto: ['pod_ezd', 'etaj_1'] },
   ]);
@@ -1046,6 +1030,7 @@ function enterHomeWorkAskKatja(s: GameState, scene: SceneBuilder): void {
   scene.text('"Are you going to do your homework? Why don\'t we go to my house to do it together, the three of us? We worked really well together last time," she says with a naughty wink in her eye.');
   // TODO-QSP: dynamic text: Artem looks at you a little excited, probably hoping for a repeat performance. "...
   scene.text(`Artem looks at you a little excited, probably hoping for a repeat performance. "Sounds like a good idea. What do you think, ${((s as any).pcs_nickname ?? 0)}?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do homework with both Katja and Artem', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
@@ -1114,6 +1099,7 @@ function enterHomeWorkAskArtem(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk over to Artem and he smiles as you approach.');
   scene.text('When you meet him, he greets you. "Why don\'t we ask Katja to study with us today?"');
   scene.text('It\'s clear by his voice that he hopes the study session will turn out to be more than just studying, as has happened before.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you don\'t want to today', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1151,6 +1137,7 @@ function enterHomeWorkAskPlayer(s: GameState, scene: SceneBuilder): void {
   scene.text('"Why don\'t we ask Katja to study with us today? We had fun last time!" you ask him.');
   scene.text('He looks satisfied, probably remembering the threesome you had with Katja before.');
   scene.text('"Sure, lets do it!" he answers.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go ask Katja', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1183,6 +1170,22 @@ function enterHomeWorkAskKatjaNoArtem(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She confirms it immediately when you arrive. "Hi <<$pcs_nickname>>! Why don't we...
     scene.text(`She confirms it immediately when you arrive. "Hi ${((s as any).pcs_nickname ?? 0)}! Why don't we do our homework with Artem, and maybe have some fun with him afterwards?"`);
   }
+  // TODO-QSP: end
+  // TODO-QSP: If $ARGS[0] = 'home_work_ask_player_katja':
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/shared/headshots_main/big14.jpg');
+  scene.text('"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.');
+  if (((s as any).katjaQW ?? 0)?.['horny'] < 30) {
+    scene.text('"We can go do out homework with him. But I\'m not up for any funny business with him today" Katja answers.');
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 31) + 30)) {
+      scene.text('"Sure, but I don\'t think I\'m up for anything more than just doing homework" Katja answers.');
+    } else {
+      scene.text('"Sure, we had fun last time, so let\'s do our homework together and see what else happens" Katja answers.');
+    }
+  }
+  // TODO-QSP: end
   scene.actions([
     { label: 'agree', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
@@ -1241,6 +1244,641 @@ function enterHomeWorkAskKatjaNoArtem(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
+    { label: 'Go ask Artem', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'npc_relationship', 'modify', 'A2', 'live');
+    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big2.jpg');
+    scene.text('you walk over to Artem standing on the other side of the school courtyard. When he sees you and Katja he smiles and says "what can I do for the two of you?"');
+    scene.text('"We where wondering if you want to do your homework with the two of us today?" you ask, while Katja nods in agreement.');
+    scene.text('"Sure, we had fun last time, let\'s go" Artem answers, "okay, let\'s go to my house, nobody else is home right now" Katja says.');
+    scene.actions([
+      { label: 'Walk to the Meynold\'s home', goto: ['artem_katja_sex', 'home_work'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterHomeWork(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/going_home_with_artem2.jpg');
+  if (((s as any).artemQW ?? 0)?.['confidence'] < 10) {
+    scene.text('You walk to the Meynold house mostly in silence. Artem is clearly still not very confident around women he don\'t know that well, even the ones he has already had sex with.');
+    scene.text('Katja tries to get him to talk, but only when she turns to school stuff does she get any response.');
+  } else {
+    if (((s as any).artemQW ?? 0)?.['confidence'] < 20) {
+      scene.text('You walk to the Meynold house with Artem and Katja, chatting about school and other stuff as if they were old friends.');
+    } else {
+      scene.text('You walk to the Meynold house with Artem flirting overtly with Katja.');
+      if (((s as any).katjaQW ?? 0)?.['horny'] >= 70) {
+        scene.text('Katja responds in kind, flirting overtly with him. You\'re almost afraid that she\'ll drag him into the bushes to jump him immediately.');
+      } else {
+        scene.text('Katja appreciates the attention and responds well to his advances.');
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Start doing your homework', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (s as any).lern = ((s as any).lern ?? 0) + (Math.floor(Math.random() * 3) + 2);
+    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
+    if (((s as any).lernHome ?? 0) >= 1) {
+      qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 3, 80);
+    }
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/first_time_1.jpg');
+    scene.text('When you arrive at the Meynold house, Katja lets you in and shows you to the kitchen.');
+    scene.text('You then sit down, pull out your school books, and begin a lively study session.');
+    scene.text('AFter about half an hour, you have finished the homework for today.');
+    scene.text('"That\'s it, we\'re so prepared that the teachers can throw anything at us and we\'ll knock it out!" Artem proclaims.');
+    if (((s as any).katjaQW ?? 0)?.['horny'] >= (Math.floor(Math.random() * 41) + 60)) {
+      scene.text('"Why don\'t we go to my room to relax a little?" Katja says.');
+      scene.text('By the way her eyes are eating up Artem\'s crotch, it\'s clear that there isn\'t going to be much relaxing at all.');
+      if (((s as any).artemQW ?? 0)?.['confidence'] < 10) {
+        scene.text('Artem looks at you for confirmation, not seeming to be completely sure what her intentions are, but also ready to have a repeat performance.');
+      } else {
+        // TODO-QSP: dynamic text: "That sounds nice, but it's up to you, <<$pcs_nickname>>," Artem says, but it's ...
+        scene.text(`"That sounds nice, but it's up to you, ${((s as any).pcs_nickname ?? 0)}," Artem says, but it's clear he's hoping for a repeat performance.`);
+      }
+      scene.actions([
+        { label: 'Go to Katja\'s room for a threesome', goto: ['artem_katja_sex', 'after_home_work_start'] },
+        { label: 'Tell Katja that you have to leave', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
+    qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"I\'m sorry Katja, but we have to run. Maybe some other time," you tell her, but the horny girl is clearly not accepting that.');
+    // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>> don't be such a bore, I'm sure that you and Artem hav...
+    scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)} don't be such a bore, I'm sure that you and Artem have time to entertain me a little longer. I don't think whatever you are supposed to do can't wait until after we have a little fun," Katja says, really pulling out all her seduction tricks.`);
+    scene.text('Artem looks on, clearly having caught on that Katja wants sex, but waiting for you to decide.');
+    qspCall(s, 'willpower', 'sex', 'resist', 'easy');
+    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      scene.actions([
+        { label: 'Stand firm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Stand firm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A14', 'hate');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"I\'m really sorry, but we really have to run. Another time Katja," you say and hurry to pack up your school stuff, with Artem doing the same.');
+    // TODO-QSP: 'You then quickly leave a fuming Katja and wonder how long she''ll stay mad,'+iif( katjaQW['masturba...
+    scene.actions([
+      { label: 'Leave with Artem', goto: ['artem_katja_sex', 'going_artem_after_homework_no_sex'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Relent', handler: (st: GameState) => {
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) + (2);
+    qspCall(s, 'willpower', 'pay', 'resist');
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"You\'re right Katja, we\'re not in that much of a hurry… We can keep you company for a little while longer…" you say.');
+    scene.text('Katja\'s face lights up like it\'s Christmas, and Artem also seems satisfied with your decision.');
+    scene.actions([
+      { label: 'Go to Katja\'s room for a threesome', goto: ['artem_katja_sex', 'after_home_work_start'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Try to suggest to Katja that you have a threesome', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('You lean into Katja\'s ear.');
+    scene.text('"Why don\'t we take Artem to your room and have some fun with him?" you whisper.');
+    if (((s as any).katjaQW ?? 0)?.['horny'] > (Math.floor(Math.random() * 41) + 40)) {
+      scene.text('Katja looks at Artem, who is packing up his stuff, before nodding. "Okay. I had fun last time."');
+      scene.text('"Why don\'t we go to Katja\'s room to relax a little?" you loudly say.');
+      scene.text('"Sounds like a good idea!" Katja quickly adds, ');
+      scene.text('Artem looks a little surprised, clearly not completely sure on what\'s going on, but he doesn\'t complain and you finish packing your stuff and leave for her room.');
+      scene.actions([
+        { label: 'Go to Katja\'s room for a threesome', goto: ['artem_katja_sex', 'after_home_work_start'] },
+      ]);
+    } else {
+      scene.text('"I really don\'t feel like sex today," Katja says,');
+      if (((s as any).katjaQW ?? 0)?.['horny'] > 60) {
+        qspCall(s, 'willpower', 'sex', 'force', 'easy');
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['horny'] > 30) {
+          qspCall(s, 'willpower', 'sex', 'force', 'medium');
+        } else {
+          qspCall(s, 'willpower', 'sex', 'force', 'hard');
+        }
+      }
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    qspCall(s, 'willpower', 'pay', 'force');
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    if (((s as any).katjaQW ?? 0)?.['horny'] <= 30) {
+      ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    }
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    scene.text('"Come on Katja, don\'t be such a bore! You had fun the last time and I\'m sure that tight pussy of yours is begging to be stuffed by a big hard cock," you whisper to her.');
+    scene.text('She does not look completely convinced. "Okay, you get your way."');
+    scene.text('"Why don\'t we go to Katja\'s room to relax a little?" you loudly say, with Katja hesitantly nodding.');
+    scene.text('Artem looks a little surprised, clearly not completely sure on what\'s going on, but he doesn\'t complain and you finish packing your stuff and leave for her room.');
+    scene.actions([
+      { label: 'Go to Katja\'s room for a threesome', goto: ['artem_katja_sex', 'after_home_work_start'] },
+    ]);
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Leave with Artem', goto: ['artem_katja_sex', 'going_artem_after_homework_no_sex'] },
+      ]);
+    }
+  } },
+        { label: 'Leave with Artem', goto: ['artem_katja_sex', 'going_artem_after_homework_no_sex'] },
+      ]);
+    }
+  } },
+  ]);
+  scene.build();
+}
+
+function enterGoingArtemAfterHomeworkNoSex(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/going_home_with_artem.jpg');
+  scene.text('Once you finish doing your homework together, Artem checks the time and mentions he needs to get home soon. You and Artem gather up your books, say goodbye to Katja, and head out.');
+  scene.text('Once you get outside, the two of you walk back to your apartment building, but you can tell he\'s a little disappointed. He was likely expecting a repeat of last time, but he doesn\'t say anything. He mostly just talks about the school work you guys did together and what you all learned, as well as how much he enjoyed studying together. After you reach his apartment door, he gives you a quick kiss before heading inside.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave Artem\'s door', goto: ['pod_ezd', 'etaj_1'] },
+  ]);
+  scene.build();
+}
+
+function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 6;
+  qspCall(s, 'npcStat', 'A2');
+  qspCall(s, 'npcStat', 'A14', 'a');
+  qspCall(s, 'npc_relationship', 'modify', 'A14', 'love');
+  qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
+  ((s as any).katjaQW ?? {})['horny'] = qspUntranslated(s, "min(katjaQW['horny'], 70)", { location: "artem_katja_sex" });
+  if (((s as any).artemQW ?? 0)?.['confidence'] < 10) {
+    ((s as any).artemQW ?? {})['confidence'] = (((s as any).artemQW ?? {})['confidence'] ?? 0) + (1);
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_1.jpg');
+  scene.text('As you get to Katja\'s room Artem, suddenly says, "I think I know how to answer the problem we couldn\'t solve. Just give me a minute," and without waiting for your answer, gets out his laptop and sits down in a chair starting to look up stuff on the net.');
+  scene.text('You and Katja get onto the bed and she says, "Come on Artem, it can wait until later!" But he responds, "Just a moment, I almost have it!"');
+  scene.text('You wait a little while, watching him work, and the moment turns into minutes. You turn to Katja and she looks at you, horny and frustrated.');
+  scene.text('Then she loudly says, "Boys! They don\'t know what is good for them. If he doesn\'t want to be a part of it, we can do just fine without him." Pouting, she leans into you for a kiss.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Makeout with Katja', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_2.jpg');
+    scene.text('You lean into Katja and your mouths meet. Her tongue then hungrily enters your mouth and she starts to french kiss you deeply.');
+    scene.text('She does not try to hide the sounds of your sloppy kissing, and soon you can\'t hear Artem typing on his computer anymore.');
+    scene.text('Katja has noticed the same, and breaks off the kiss. "I think we got him," she whispers to you. "Let\'s get rid of our shirts."');
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    qspCall(s, 'arousal', 'kiss', 3, ((s as any).npcID1 ?? 0), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Strip for Artem', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_3.jpg');
+    // TODO-QSP: 'You turn towards Artem and slowly start to unbutton your shirt, exposing your '+iif($braworntype ='...
+    scene.text('You see that Katja is doing the same, opening her shirt from the bottom slowly, revealing the underside of her ample C-cup breasts.');
+    scene.text('You notice that she is not wearing a bra… That\'s not normal for her. The naughty girl must have removed it earlier in anticipation of what was to come.');
+    if (((s as any).artemQW ?? 0)?.['confidence'] < 10) {
+      scene.text('Artem just sits there, staring with his laptop slowly gliding out of his hand. As it is about to fall, he notices and manages to grasp it in an awkward movement, then stows it away.');
+      scene.text('You have a hard time not laughing, but see that Katja doesn\'t pays any heed to his clumsiness.');
+    } else {
+      if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
+        scene.text('Artem puts his laptop away and enjoys the sight, clearly not embarrassed by staring at the naked breasts of Katja anymore.');
+      } else {
+        if (((s as any).artemQW ?? 0)?.['confidence'] < 20) {
+          scene.text('Artem puts his laptop away and says, "Nice, very nice."');
+        } else {
+          // TODO-QSP: dynamic text: Artem puts his laptop away and says, "That's it, show me what you got. '+iif($br...
+          scene.text(`Artem puts his laptop away and says, "That's it, show me what you got. '+iif($braworntype ='none', 'No bras for me, very considerate.', 'Why don't you also lose your bra, ${((s as any).pcs_nickname ?? 0)}?')+'"`);
+        }
+      }
+    }
+    if (((s as any).braworntype ?? 0) !== 'none') {
+      if (((s as any).artemQW ?? 0)?.['confidence'] < 20) {
+        scene.text('You follow Katja\'s lead, and when your shirt is off, you remove your bra.');
+      } else {
+        scene.text('You do as Artem suggests, and when your shirt is off, you remove your bra.');
+      }
+    }
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    qspCall(s, 'arousal', 'striptease', 3);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Lick Katja\'s breast', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_4.jpg');
+    if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
+      scene.text('You turn towards Katja and start to lick her full breast.');
+      scene.text('"See this, Artem? Your girlfriend knows what tastes good. If you hadn\'t been so caught up in homework, it could have been you tasting it," Katja says to Artem.');
+      scene.text('She then starts to moan very loudly, clearly exaggerated to prove a point. Artem just sits there, eating it all up with his eyes.');
+    } else {
+      // TODO-QSP: dynamic text: "Why don't you taste Katja's breast <<$pcs_nickname>>?" Artem says, more as a co...
+      scene.text(`"Why don't you taste Katja's breast ${((s as any).pcs_nickname ?? 0)}?" Artem says, more as a command than as a suggestion. You do as he says and start to lick Katja's full breast.`);
+      if (((s as any).katjaQW ?? 0)?.['slut'] < 100) {
+        scene.text('"So you like watching your girlfriend servicing other girls? Naughty boy…" Katja says to Artem, who just nods in agreement.');
+      } else {
+        scene.text('"So you think your girlfriend\'s a slut ready to taste other girls? Do you get off on seeing your girl getting used by others?" Katja asks Artem.');
+        if (((s as any).artemQW ?? 0)?.['confidence'] >= 20  &&  ((s as any).artemQW ?? 0)?.['artem_dom'] >= 20) {
+          scene.text('Artem laughs a bit at the question. "\'Used\' is a bit strong, but yeah, I like seeing my girl with other girls. Besides, she is a big girl and knows what she likes. Why do you like using other girls? I thought you were the one that liked getting used."');
+        } else {
+          if (((s as any).artemQW ?? 0)?.['confidence'] >= 20) {
+            scene.text('Artem smiles smugly. "I like seeing my girl happy. If this makes her happy, then I\'m happy." Then he winks.');
+          } else {
+            if (((s as any).artemQW ?? 0)?.['confidence'] >= 10) {
+              scene.text('Artem looks at the scene lustily. "Yeah, watching the two of you go at it is hot."');
+            } else {
+              scene.text('Artem blushes bright red and tries to stammer a response, obviously embarrassed. "I… I mean… that is…" You quickly take pity on him and interject. "He loves me and likes for me to be happy. Isn\'t that right, baby?" Artem relaxes a little and nods. "Yeah, I do." He looks at you with pure love in his eyes.');
+            }
+          }
+        }
+      }
+    }
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    qspCall(s, 'arousal', 'foreplay_give', 3, ((s as any).npcID1 ?? 0), 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Involve Artem', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_5\'+iif(katjaQW[\'slut\'] >= 100, \'b\', \'a\')+\'.jpg');
+    if (((s as any).artemQW ?? 0)?.['confidence'] >= 20) {
+      scene.text('"Okay, I think that it\'s time you two get over here. My cock needs some attention, too," Artem commands.');
+    } else {
+      if (((s as any).katjaQW ?? 0)?.['slut'] >= 100) {
+        scene.text('"I think we have tortured Artem enough. I don\'t want to have to buy new pants for him, so I think we need to get his dick out before it get so hard, it breaks them," Katja says in a very sultry voice.');
+      } else {
+        scene.text('"We should not neglect my boyfriend, Katja…" you say after removing you mouth from her tit.');
+      }
+    }
+    scene.text('You both then get off of the bed and get down on your knees in front of Artem.');
+    if (((s as any).katjaQW ?? 0)?.['slut'] >= 100) {
+      scene.text('"Take off your shirt," Katja commands as you approach and Artem does so.');
+      scene.text('"So, let me feel if this is as big and hard as it looks," she says and sticks her arm down his pants.');
+      scene.text('"Ooh, this is nice, so hard and big! This is going to stretch my tiny pussy, just like I like it," she comments as she stroke his cock through his pants.');
+      qspCall(s, 'arousal', 'erotic_nudity', 3);
+    } else {
+      // TODO-QSP: iif( artemQW['confidence'] >= 15, '"Give me a kiss," Artem says', '"Give Artem a kiss, Katja," you t...
+      scene.text('Meanwhile, you take your time to feel Artem\'s nice hard cock through his pants.');
+      qspCall(s, 'arousal', 'foreplay_give', 3, ((s as any).npcID ?? 0), 'group');
+    }
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get his dick out', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_6.jpg');
+    // TODO-QSP: dynamic text: You remove Artem's pants and get his <<dick>> cm long and <<$dick_girth>> dick o...
+    scene.text(`You remove Artem's pants and get his ${((s as any).dick ?? 0)} cm long and ${((s as any).dick_girth ?? 0)} dick out and start stroking it.`);
+    scene.text('Katja moves her hand and starts to gently play with his balls, while you move your hand up and down his rock hard shaft.');
+    scene.text('Artem is just sitting back, clearly feeling extremely good, but Katja wants to do more and says "Let\'s taste it."');
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    qspCall(s, 'arousal', 'hj', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck his cock', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_7.jpg');
+    scene.text('You move aside so that Katja can be next to you, and she takes one of his balls in her mouth and gently licks it. You then move up and let your wet mouth close around the head of his his cock.');
+    scene.text('You move your head up and and down his rod while Katja licks his ball for a while, then switch positions.');
+    scene.text('Artem is clearly enjoying it very much, and might be close to coming.');
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
+      ((s as any).npc_throat ?? {})['A14'] = (((s as any).npc_throat ?? {})['A14'] ?? 0) + (1);
+    }
+    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'See if he has the willpower to resist coming', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_8.jpg');
+    scene.text('You remove your mouth from his balls, and know you should stop teasing him if you want to get fucked.');
+    scene.text('But you can\'t resist joining joining Katja, and you are now both licking the sides of the head of his cock.');
+    if ((Math.floor(Math.random() * 10) + 0) < ((s as any).artemQW ?? 0)?.['confidence']) {
+      (s as any).minut = ((s as any).minut ?? 0) + 2;
+      scene.text('Artem steels his mind and says, "Okay girls, this is the best blow job I have ever gotten, but I need to fuck your pussies before I come, so on the the bed with you." He then gets up so you can\'t continue.');
+      qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID ?? 0), 'group');
+      qspCall(s, 'stat', '');
+      scene.actions([
+        { label: 'Move to the bed', goto: ['artem_katja_sex', 'after_home_work_bed'] },
+      ]);
+    } else {
+      scene.text('Artem clearly can\'t hold it, so unless you stop Katja, he is going to come from the blowjob.');
+      qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID ?? 0), 'group');
+      if (((s as any).artemQW ?? 0)?.['confidence'] > 1) {
+        ((s as any).artemQW ?? {})['confidence'] = (((s as any).artemQW ?? {})['confidence'] ?? 0) - (1);
+      }
+      qspCall(s, 'willpower', 'bj', 'force', 'easy');
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Stop Katja [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    // TODO-QSP: msg $noWillpower
+  } },
+        ]);
+      } else {
+        scene.actions([
+          { label: 'Stop Katja', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    qspCall(s, 'willpower', 'pay', 'force');
+    ((s as any).katjaQW ?? {})['dom'] = (((s as any).katjaQW ?? {})['dom'] ?? 0) - (1);
+    ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) - (1);
+    qspCall(s, 'stat', '');
+    scene.text('"Okay, Katja that\'s enough," you say as you remove you head from Artem\'s cock.');
+    scene.text('"But it tastes so good!" she complains. "True, but if you want to feel it in your pussy, you need to let him rest a little," you explain.');
+    scene.text('"Fine, I thought that he was made of stronger stuff," she says as she gets up, and you can clearly see that Artem\'s pride is a little hurt by her comment.');
+    scene.actions([
+      { label: 'Follow Katja', goto: ['artem_katja_sex', 'after_home_work_bed'] },
+    ]);
+  } },
+        ]);
+      }
+      scene.actions([
+        { label: 'Let Artem cum', handler: (st: GameState) => {
+    // TODO-QSP: gs 'stat'
+  }, goto: ['artem_katja_sex', 'after_home_work_premature_eruption'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_9.jpg');
+  // TODO-QSP: dynamic text: You and Katja take off your skirts'+iif($pantyworntype ! 'none', ' and panties,'...
+  scene.text('You and Katja take off your skirts\'+iif($pantyworntype ! \'none\', \' and panties,\', \',\')+\' "Lay down on the bed with your head at the edge," she tells you.');
+  scene.text('You do as she says and she gets on top of you in thr 69 position, putting her very wet pussy just in front of your mouth.');
+  scene.text('She starts to lick your pussy, and you return the favor. For a couple of minutes, you eat each other out while Artem gets ready.');
+  if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 20) {
+    ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    scene.text('When Artem has recovered, he walks over. "Katja, I\'m going to pound that tight little pussy of yours until you scream."');
+    scene.text('He then slides his cock into her pussy, just above your face.');
+  } else {
+    if (((s as any).artemQW ?? 0)?.['confidence'] >= 20) {
+      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 10);
+      scene.text('When Artem has recovered, he walks over "I hope that pussy is nice and wet for me, Katja!"');
+      scene.text('He then slides his cock into her pussy, just above your face.');
+    } else {
+      ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (Math.floor(Math.random() * 6) + 5);
+      scene.text('When you can see that Artem has recovered, you remove your mouth from Katja\'s pussy. "Come here, Artem. Katja needs your fat cock in her wet pussy."');
+      scene.text('He walks over to the bed and positions his cock before Katja\'s soaked cunt. "I\'m going to put it in now."');
+    }
+  }
+  if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
+    ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) - (2);
+    if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 20) {
+      scene.text('Katja let out a shriek of pain and he immediately stops.');
+      scene.text('"Well that didn\'t take long. I didn\'t mean to actually hurt you. Sorry!" he says.');
+    } else {
+      scene.text('Katja let out a shriek of pain and he immediately stops.');
+      scene.text('"I\'m so sorry!" he exclaims, clearly very concerned.');
+    }
+    if (((s as any).katjaQW ?? 0)?.['slut'] > 80) {
+      scene.text('"Don\'t stop, I can take it, continue to pound me," Katja says. He then hesitantly starts to pick up the pace again.');
+    } else {
+      scene.text('"Don\'t be, just go slow," Katja says. He then hesitantly starts to pick up the pace again.');
+    }
+    scene.text('Katja buries her tongue in your pussy to hide any sounds of pain. She clearly doesn\'t want him to stop just because she\'s feeling a little pain.');
+  } else {
+    if (((s as any).katjaQW ?? 0)?.['slut'] > 80) {
+      scene.text('"Ahhh, yes, pound me!!" Katja cries out in ecstacy, then continues to lick your pussy as he fucks her.');
+    } else {
+      scene.text('"Ahhh!" Katja moans, then continues to lick your pussy as he fucks her.');
+    }
+  }
+  if (((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
+    ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+  }
+  if (2*((s as any).npc_vag ?? 0)?.['A14'] < ((s as any).dick ?? 0)) {
+    ((s as any).npc_vag ?? {})['A14'] = (((s as any).npc_vag ?? {})['A14'] ?? 0) + (1);
+  }
+  qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+  qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Artem continues to fuck Katja', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(s, 'stat', '');
+    if (((s as any).katjaQW ?? 0)?.['horny'] >= 100) {
+      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (4);
+      ((s as any).katjaQW ?? {})['horny'] = 0;
+      scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_10a.jpg');
+      scene.text('After having her pussy pounded for a couple of minutes, Katja suddenly removes her mouth from your pussy and lets out a huge scream as she comes.');
+      scene.text('You can feel her shaking all over as her orgasm continues, and after a short while, she whimpers. "Stop… please stop… I can\'t… I can\'t take anymore…"');
+      scene.text('You stop licking her pussy and Artem withdraws his cock from her pussy. Katja collapses on you.');
+      // TODO-QSP: dynamic text: "Guess I get to fuck you now, <<$pcs_nickname>>" Artem says as Katja rolls off o...
+      scene.text(`"Guess I get to fuck you now, ${((s as any).pcs_nickname ?? 0)}" Artem says as Katja rolls off of you.`);
+    } else {
+      ((s as any).katjaQW ?? {})['slut'] = (((s as any).katjaQW ?? {})['slut'] ?? 0) + (2);
+      scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_10b.jpg');
+      scene.text('After pounding Katja\'s pussy for a couple of minutes, Artem pulls out and says, "I want to fuck my girlfriend before I cum."');
+      scene.text('"Sure, she IS your girlfriend," Katja says, but you can detect the disappointment of not having cum yet in her voice.');
+      scene.text('She then get off of you and lies back on the bed next to you.');
+    }
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_11.jpg');
+    // TODO-QSP: dynamic text: "My legs are getting tired, so it's time for you to do some work," Artem says an...
+    scene.text(`"My legs are getting tired, so it's time for you to do some work," Artem says and lies down on the bed while his ${((s as any).dick ?? 0)} cm shaft stands rigid, inviting you to climb on it.`);
+    scene.text('Artem hold up his hands to support your legs as you sit down on his cock in reverse cowgirl.');
+    scene.text('Katja then joins and start to lick your pussy as you begin to ride up and down Artem\'s cock.');
+    qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'arousal', 'cuni', (-3), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Ride Artem', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_12.jpg');
+    scene.text('You ride up and down Artem\'s cock for several minutes, and the pace slowly increases until you\'re at last riding him so fast, the bed is shaking.');
+    scene.text('Katja is not able to keep her tongue on your clit at this speed, so she changes to using her fingers.');
+    qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
+    qspCall(s, 'arousal', 'cuni', (-3), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.text('"I\'m gonna cum!" Artem grunts.');
+    scene.actions([
+      { label: 'Artem is cumming', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_13.jpg');
+    scene.text('You hop off of his cock and just manage to get your head down to it before it erupts with several thick spurts of cum. Katja, on the side, milks it firmly with her hand.');
+    scene.text('She continues to pump him for a while, cum continuing to come out over your pretty faces and in your mouths.');
+    qspCall(s, 'cum_call', 'mouth', 'A2', 1);
+    qspCall(s, 'cum_call', 'face', 'A2', 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cleanup', handler: (st: GameState) => {
+    qspCall(s, 'arousal', 'end');
+    (s as any).cumspclnt = 1;
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_14.jpg');
+    scene.text('After there isn\'t anymore cum coming from Artems\'s cock, you and Katja start to clean it with your mouths.');
+    scene.text('She then proceeds to lick your face clean and shares the rest of the cum with you in a deep kiss.');
+    if (((s as any).katjaQW ?? 0)?.['horny'] === 0) {
+      if (((s as any).artemQW ?? 0)?.['confidence'] < 15) {
+        ((s as any).artemQW ?? {})['confidence'] = (((s as any).artemQW ?? {})['confidence'] ?? 0) + (1);
+      }
+      scene.text('"You are great, Artem, you made me cum so hard. You really knows how to use that big dick of yours," Katja says as she gets up and starts to put on her clothes.');
+    } else {
+      scene.text('"Thanks for the fuck Artem, you have a nice big dick," Katja says as she gets up and starts to put on her clothes, but you can clearly hear the frustration of not having cum beneath it.');
+    }
+    if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 20) {
+      scene.text('"Thanks yourself. I always love fucking that tight little pussy." Artem says back to her as he reaches over and slaps her on the ass. "Next time, I\'d like to fuck that ass too."');
+      if (((s as any).katjaQW ?? 0)?.['anal_quest'] >= 3) {
+        scene.text('"I\'ll hold you to it, I love getting my ass destroyed," Katja says with a wink.');
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['anal_quest'] > 0) {
+          scene.text('"I haven\'t done it yet, but I do want to try it," Katja answers.');
+        } else {
+          scene.text('"I don\'t know, haven\'t thought about it, maybe…" Katja mumbles, clearly embarrassed to talk about such stuff.');
+        }
+      }
+    } else {
+      if (((s as any).artemQW ?? 0)?.['confidence'] >= 10) {
+        scene.text('"Thanks yourself. You have a nice, tight pussy. Always a joy to fuck it," Artem says back to her as you\'re all getting dressed.');
+      } else {
+        scene.text('"Thanks…" Artem mumbles back to her as you all are getting dressed.');
+      }
+    }
+    scene.text('Once you\'re all dressed, he checks his phone. "I need to get going. I need to get home before dinner." He gathers up his laptop and puts in back in his backpack before looking at you. "Ready?"');
+    scene.actions([
+      { label: 'Leave with Artem', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/going_home_with_artem.jpg');
+    scene.text('You smile at him and stand up. "Sure, stud." Then you turn to Katja. "Okay, we\'re going to head out. See you later."');
+    scene.text('"See you later, guys," she says and waves goodbye to you.');
+    if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 20  ||  ((s as any).artemQW ?? 0)?.['confidence'] >= 20) {
+      scene.text('He wraps his arm confidently around you. "Later, Katja." With that, he leads you out of her house. The two of you walk back to your apartment building, talking about what just happened. Artem has come a long way. His confidence and dominance is really soaring! He\'s come a long way from the shy nerd he used to be.');
+      scene.text('Once you get to his apartment, he gives you a kiss before heading inside.');
+    } else {
+      if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 10  ||  ((s as any).artemQW ?? 0)?.['confidence'] >= 15) {
+        scene.text('He waits for you at her bedroom door. Once you catch up to him, he says, "Bye Katja, I had fun."');
+        scene.text('As you walk back to your apartment building, you talk about what just happened. Artem is more confident in himself and around girls now, no longer the shy nerd he used to be. Once you get to his apartment, he gives you a kiss before heading inside.');
+      } else {
+        scene.text('He blushes at your words, gives Katja an awkward little wave, then hurries from her room. "I\'ll wait outside for you," he quickly blurts out while he rushes away, leaving you and Katja to share a look.');
+        scene.text('Once you get outside, the two of you walk back to your apartment building. He keeps the topic on needing to finish the homework the three of you didn\'t do after dinner. After you reach his apartment door, he gives you a quick kiss before heading inside.');
+      }
+    }
+    scene.actions([
+      { label: 'Leave Artem\'s door', goto: ['pod_ezd', 'etaj_1'] },
+    ]);
+  } },
+      { label: 'Stay with Katja', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/characters/shared/headshots_main/big2.jpg');
+    scene.text('You shake your head. "No, I\'m going to stay with Katja."');
+    if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 20  ||  ((s as any).artemQW ?? 0)?.['confidence'] >= 20) {
+      scene.text('He glances at you and smiles. "Okay babe, you girls have fun."');
+      scene.text('With that, he walks out of Katja\'s room and heads home.');
+    } else {
+      if (((s as any).artemQW ?? 0)?.['artem_dom'] >= 10  ||  ((s as any).artemQW ?? 0)?.['confidence'] >= 15) {
+        scene.text('He glances at you and smiles. "Okay babe, uh… I guess I\'ll see you later then."');
+        scene.text('He walks over and gives you a kiss. Once he breaks it, he walks out of Katja\'s room and heads home.');
+      } else {
+        ((s as any).artemQW ?? {})['confidence'] = (((s as any).artemQW ?? {})['confidence'] ?? 0) - (1);
+        ((s as any).artemQW ?? {})['artem_dom'] = (((s as any).artemQW ?? {})['artem_dom'] ?? 0) - (1);
+        scene.text('He looks a bit crestfallen and glances at Katja for a moment before looking back at you. "Oh… okay babe, if you want… Sure I guess… Uh… I guess I\'ll see you later then…"');
+        scene.text('He walks over and gives you an awkward quick kiss, seeming to blush a little as Katja watches before hurrying out of the room, almost dropping his backpack on the way out the door.');
+      }
+    }
+    scene.actions([
+      { label: 'Talk with Katja about the sex', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    scene.img('images/characters/shared/headshots_main/big14.jpg');
+    if (((s as any).katjaQW ?? 0)?.['horny'] > 0) {
+      // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>. I know he's your boyfriend, and he does have a ni...
+      scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? 0)}. I know he's your boyfriend, and he does have a nice cock, but he needs to learn to pay better attention to his sex partners. I know he wanted to fuck you, but I didn't get to cum," she says, radiating frustration.`);
+      scene.actions([
+        { label: 'Help Katja get the orgasm she deserves', goto: ['KatjaEvDin', 'kiss'] },
+        { label: 'Talk about something else', goto: ['katjaHomeTalk', 'chat'] },
+      ]);
+    } else {
+      // TODO-QSP: dynamic text: "That's a great boyfrind you have, '+iif(katjaQW['slut'] >= 100, 'He hammered my...
+      scene.text('"That\'s a great boyfrind you have, \'+iif(katjaQW[\'slut\'] >= 100, \'He hammered my pussy so good, I came until I saw stars.\', \'He made me feel great, and I had a huge orgasm\')+\' We should invite him again some other time," Katja says.');
+      scene.text('"I\'m aware that you came very hard. In fact, I think that all of Pav knows you had an orgasm with all your screaming," you tease.');
+      if (((s as any).katjaQW ?? 0)?.['slut'] >= 100) {
+        scene.text('"Well having orgasms is nothing to be ashamed of. Guys brag about cumming all the time, so we girls should be able to, too!" Katja responds.');
+      } else {
+        if (((s as any).katjaQW ?? 0)?.['slut'] >= 75) {
+          scene.text('"I\'m not that loud!" Katja complains, not so much mad as a little embarrassed.');
+        } else {
+          scene.text('Katja doesn\'t say anything, but her face turns completely red. It\'s clear that she mostly just wants to hide from the shame.');
+        }
+      }
+      scene.actions([
+        { label: 'Talk about something else', goto: ['katjaHomeTalk', 'chat'] },
+      ]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterAfterHomeWorkPrematureEruption(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_13.jpg');
+  scene.text('Artem can\'t hold it anymore and comes in several thick spurts all over the faces of you and Katja.');
+  scene.text('"That was quick," Katja says and Artem looks extremely embarrassed when he is finished coming.');
+  scene.text('"Give him a little rest and I\'m sure he\'ll ready to go again," you say, then start to slowly lick the cum off of Katja\'s face.');
+  scene.text('You and Katja spend the next couple of minutes slowly using your tongues to clean off Artem\'s cum, occasionally sharing some of it in a kiss.');
+  scene.text('You try to make it look really sexy and it seems to be working because, after a few minutes, Artem\'s cock is hard again and he stands up ready to join you again.');
+  qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
+  qspCall(s, 'cum_call', 'mouth', 'A2', 1);
+  qspCall(s, 'cum_call', 'face', 'A2', 1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Move to the bed', handler: (st: GameState) => {
+    (s as any).cumspclnt = 1;
+    qspCall(s, 'cum_cleanup', '');
+    qspCall(s, 'stat', '');
+  }, goto: ['artem_katja_sex', 'after_home_work_bed'] },
   ]);
   scene.build();
 }
@@ -1293,6 +1931,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'home_work_ask_katja_no_artem':
       enterHomeWorkAskKatjaNoArtem(s, scene);
       break;
+    case 'home_work':
+      enterHomeWork(s, scene);
+      break;
+    case 'going_artem_after_homework_no_sex':
+      enterGoingArtemAfterHomeworkNoSex(s, scene);
+      break;
+    case 'after_home_work_start':
+      enterAfterHomeWorkStart(s, scene);
+      break;
+    case 'after_home_work_bed':
+      enterAfterHomeWorkBed(s, scene);
+      break;
+    case 'after_home_work_premature_eruption':
+      enterAfterHomeWorkPrematureEruption(s, scene);
+      break;
     default:
       enterDefault(s, scene);
       break;
@@ -1303,6 +1956,5 @@ export const artem_katja_sex: LocationDef = {
   name: 'artem_katja_sex',
   title: 'You walk across the school courtyard to meet up with Artem, ',
   region: 'other',
-  description: ['"Why don\'t we ask Artem to study with us today? I will be willoing to share him with you afterwards!" you ask Katja.'],
   enter: enter,
 };

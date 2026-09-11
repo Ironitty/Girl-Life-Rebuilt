@@ -19,6 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 6) {
     scene.text('<a href="exec:gt \'katspalnya\', \'katslip\'">Kat</a> is sound asleep in her huge bed.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Kat\'s apartment', goto: ['city_residential', ''] },
   ]);
@@ -36,6 +37,7 @@ function enterKatslip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
     // TODO-QSP: act 'Seduce her': gt 'lezbsex', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with her for a while', goto: ['katspalnya', 'start'] },
   ]);
@@ -53,6 +55,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
     // TODO-QSP: act 'Seduce her': gt 'lezbsex', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make up an excuse and leave', goto: ['katspalnya', 'start'] },
     { label: 'Chat with Kat', handler: (st: GameState) => {
@@ -77,6 +80,7 @@ function enterKatjobs(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   scene.img('images/characters/city/katja/kat.jpg');
   scene.text('Kat talks about her job for a while, and then suggests: "By the way… if you want, I can put in a good word for you! Maybe you could work at the clinic as well!"');
+  // TODO-QSP: end
   scene.actions([
     { label: '"But I\'m not qualified to work as a nurse!"', handler: (st: GameState) => {
     scene.text('You shrug off the idea at first, saying: "But I\'m not a nurse! I wouldn\'t know what to do!"');

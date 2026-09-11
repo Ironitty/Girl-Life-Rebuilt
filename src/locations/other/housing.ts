@@ -62,6 +62,7 @@ function enterRent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $home_rent_txt[1] = $func('money', 'string_price', 15000)
   ((s as any).home_rent ?? {})[4] = 10000;
   // TODO-QSP: $home_rent_txt[4] = $func('money', 'string_price', 10000)
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +75,7 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $home_value_txt[5] = $func('money', 'string_price', 1500000)
   ((s as any).home_value ?? {})[15] = 800000;
   // TODO-QSP: $home_value_txt[15] = $func('money', 'string_price', 800000)
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +95,7 @@ function enterUtil(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 1) {
     (s as any).hcount_util = ((s as any).hcount_util ?? 0) + (1);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,6 +112,7 @@ function enterCable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).accessible_property ?? 0)?.['city_house'] === 1) {
     (s as any).hcount_cable = ((s as any).hcount_cable ?? 0) + (1);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

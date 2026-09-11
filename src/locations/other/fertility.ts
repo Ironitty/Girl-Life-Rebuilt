@@ -151,6 +151,7 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'fertility', 'birth_control_status_update');
   // TODO-QSP: :auto_pill_break_goto
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -261,6 +262,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'MenCal', 0
   }
   qspCall(s, 'fertility', 'birth_control_status_update');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -289,6 +291,7 @@ function enterBirthControlStatusUpdate(s: GameState, scene: SceneBuilder): void 
       ((s as any).birth_control ?? {})['type'] = 'none';
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -656,6 +659,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('No Pregnancies registered.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to cheat index', goto: ['cheatmenu_din', 'index'] },
   ]);
@@ -713,6 +717,7 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
     ((s as any).babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 1;
   }
   qspCall(s, 'din_bad', 'd_cycreport_upduedate');
+  // TODO-QSP: end
   scene.build();
 }
 

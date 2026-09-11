@@ -84,6 +84,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -225,6 +226,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   (s as any).whore_money_groupsex = ((s as any).whore_money_bjsex ?? 0) + ((s as any).whore_money_analsex ?? 0) + ((s as any).whore_money_clsex ?? 0) + ((s as any).whore_dopmoney ?? 0);
   (s as any).whore_money_bjvagsex = ((s as any).whore_money_bjsex ?? 0) + ((s as any).whore_money_clsex ?? 0);
   (s as any).whore_money_bjanalsex = ((s as any).whore_money_bjsex ?? 0) + ((s as any).whore_money_analsex ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 

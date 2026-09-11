@@ -14,12 +14,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'mod_sleepevents'] }]);
   }
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_get_out_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +36,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,11 +48,13 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['bed_get_out_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +62,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,12 +70,14 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterVomit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bed_get_out_events', 'exit');
   scene.actions([{ label: 'Continue', goto: ['home_activity', 'vomiting_exit'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

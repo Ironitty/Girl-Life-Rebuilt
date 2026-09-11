@@ -13,6 +13,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   ((s as any)._n_counter ?? {})['timer'] = ((s as any)._n_counter ?? 0)?.['duration'];
   ((s as any)._n_counter ?? {})['shown'] = 1;
   ((s as any)._n_counter ?? {})['lock'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +24,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'notification_log', 0
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

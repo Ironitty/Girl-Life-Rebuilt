@@ -39,6 +39,7 @@ function enterParseString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,6 +95,7 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,6 +319,7 @@ function enterParseNumber(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -332,6 +335,7 @@ function enterHash(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'hash_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -341,6 +345,7 @@ function enterToAscii(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 31 + ((' !"#$%&\'()*+,-./123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~').indexOf((((s as any).locArgs?.[1] ?? 0)))) + 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -394,6 +399,7 @@ function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'split_key_value_outer_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

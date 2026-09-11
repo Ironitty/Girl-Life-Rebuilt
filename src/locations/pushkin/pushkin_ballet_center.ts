@@ -13,6 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You can see the apartment block that\'s been converted into a residential accommodation for the school. The street always seems to be packed with cars but there is few people on the street at this time.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Press the buzzer', goto: ['pushkin_ballet_res', 'warden'] },
     { label: 'Back to street', goto: ['pushkin', ''] },

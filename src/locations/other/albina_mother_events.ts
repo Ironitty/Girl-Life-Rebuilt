@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterZoyaChatMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make small talk', handler: (st: GameState) => {
     qspCall(st, 'albina_mother_events', 'zoya_small_talk');
@@ -23,6 +24,7 @@ function enterZoyaSmallTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you for coming over by the way," Zoya smiles at you warmly. "I\'m not just being polite. After everything Albina\'s been through, I\'m glad she has a friend like you to rely on. She needs it."');
     qspCall(s, 'albina_mother_events', 'zoya_chat_menu');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -40,6 +42,7 @@ function enterZoyaMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('"Doctor, actually," she says, smirking wryly. "But you can just call me Zoya."');
   scene.text('"Oh no! I could-"');
   scene.text('"I insist," she smiles warmly. "Would you like to come inside?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
@@ -126,6 +129,7 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make small talk until Albina returns', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
@@ -219,6 +223,7 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
@@ -251,6 +256,7 @@ function enterZoyaSunbathingAlbina(s: GameState, scene: SceneBuilder): void {
   scene.text('She closes the door behind you and escorts you through the house to the pool before returning to her duties.');
   scene.text('You see Albina and Zoya both lying topless upon the poolside deck chairs, cocktail glasses filled with fruity looking liquids at elbowside tables beside them next to various oils and lotions.');
   scene.text('Zoya notices you first, casually rolling away from you and onto her belly, her dark hair shifting to let you see her marvelously toned back.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach them', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/home/pool/alb_zoya2.jpg');
@@ -299,6 +305,7 @@ function enterZoyaYogaAlbina(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}, I gotta get showered and changed."`);
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
@@ -351,6 +358,7 @@ function enterZoyaWorkoutSolo(s: GameState, scene: SceneBuilder): void {
   scene.text('She excuses herself and leaves the room, leaving you alone to decide what to do.');
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for Albina', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
@@ -365,6 +373,7 @@ function enterPeep1(s: GameState, scene: SceneBuilder): void {
   scene.text('You carefully follow Zoya to her bedroom, waiting around the corner as she enters the room and closes the door behind her.');
   scene.text('After waiting a few seconds, you walk up to the door and listen carefully. You hear her walking around before the sound of running water from the shower fills the room.');
   scene.text('You stand frozen at the door, deciding whether or not you should enter.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('You decide not to invade Zoya\'s privacy and leave, waiting downstairs for Albina to return.');
@@ -406,6 +415,7 @@ function enterPeep1(s: GameState, scene: SceneBuilder): void {
 
 function enterPeep2(s: GameState, scene: SceneBuilder): void {
   scene.text('As you approach the door to Zoya\'s bedroom, you find it slightly ajar. You can hear Zoya inside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('You decide not to disturb her and go on your way.');

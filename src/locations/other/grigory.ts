@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDummy(s: GameState, scene: SceneBuilder): void {
   scene.text('It is a shortcut out - because this event is not finished, be patient !!!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to village', goto: ['gad_field', 'field'] },
   ]);
@@ -27,6 +28,7 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at him, you can\'t help but think he looks familiar, but you aren\'t quite able to place him.');
   scene.text('He\'s perhaps in his late thirties, early forties at most. His angular face is framed by his unruly brown hair, and as he draws closer you start to become aware of just how massive this man is.');
   scene.text('"Kotenok?" He calls when he gets close, the pet name surprising you.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Grigory?"', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -149,6 +151,7 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him be', goto: ['gad_gpbarn', ''] },
     { label: 'Say hi', handler: (st: GameState) => {
@@ -193,6 +196,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -275,6 +279,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
 function enterBarnStand(s: GameState, scene: SceneBuilder): void {
   scene.text('For several minutes the two of you talk, but eventually he stops and gives a disappointed little smile, "Well little lady, I really need to get back to work."');
   scene.text('You say your goodbyes and he exits the barn.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gpbarn', ''] },
   ]);
@@ -415,6 +420,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -423,6 +429,7 @@ function enterGardenComfort(s: GameState, scene: SceneBuilder): void {
   scene.text('He doesn\'t quite meet your eyes as he shifts his weight from foot to foot, "You\'re right Kotenok," He says softly.');
   scene.text('"I\'m your friend," A smile blossoms on your face, "If you want to talk to me, just talk to me."');
   scene.text('The two of you spend a few more minutes talking, the situation still feeling a little weird when you finally part ways. When he leaves, he gives a little smile and a wave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -438,6 +445,7 @@ function enterGardenBrush(s: GameState, scene: SceneBuilder): void {
   scene.text('A wistful smile touches his lips, "I need to get back to work, see you later Kotenok."');
   scene.text('"See you later Grigory," You reply softly.');
   scene.text('A moment later, you\'re left with your work and your thoughts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -449,6 +457,7 @@ function enterGardenTease(s: GameState, scene: SceneBuilder): void {
   scene.text('Grigory opens his mouth like he\'s going to say something, but then closes it again. With a sigh, you see the big man defalte a little, "Sorry Kotenok," He finally mumbles.');
   scene.text('Again, he looks like he\'s going to say something, but finally gives you a self conscious wave and leaves.');
   scene.text('Shrugging to yourself, you return to your work.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -462,6 +471,7 @@ function enterFlower1(s: GameState, scene: SceneBuilder): void {
   scene.text('Reaching out, you pick up one of the flowers, looking at it in wonder.');
   scene.text('You used to pick these things all the time when you were little.');
   scene.text('Wondering who could have put them there, you look out across the yard but see no sign of who might have left them there.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Well that\'s kind of creepy', handler: (st: GameState) => {
     if ((!((s as any).grigory_flower ?? 0))) {
@@ -538,6 +548,7 @@ function enterFlower2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Probably not', handler: (st: GameState) => {
     scene.text('"I don\'t think so," You say, a little shocked at the proposition. Since it doesn\'t look like he was the one to leave the flowers, you turn and walk away.');
@@ -558,6 +569,7 @@ function enterFlower3(s: GameState, scene: SceneBuilder): void {
   scene.text('"But how do I find out who did it? Did you maybe see someone in the yard this morning?"');
   scene.text('Grandfather barks a little laugh, "Even if I knew, and I don\'t, I wouldn\'t tell you." He shakes his head, "Got to make the man work for it."');
   scene.text('Waving dismissively, you know grandfather is done talking about it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -574,6 +586,7 @@ function enterFlower4(s: GameState, scene: SceneBuilder): void {
   scene.text('"But I don\'t know who it is," You say, feeling a little overwhelmed.');
   scene.text('"But that is the magic of it!" Grandmother says, clearly overjoyed by the situation. She leans forward, kissing your cheek, "Whoever this boy is, he will reveal himself if you just let him."');
   scene.text('Not feeling much better, you thank her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -624,6 +637,7 @@ function enterFlower5(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -672,6 +686,7 @@ function enterFlower6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -686,6 +701,7 @@ function enterFlower7(s: GameState, scene: SceneBuilder): void {
     scene.text('Kneeling beside the flowers, you pick up a single one. For a second, you look at it, wondering who left it there. Then on a sudden impulse you tuck the flower into your hair.');
     scene.text('Maybe whoever left these here for me will see it and finally say something?');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'dummy'] },
   ]);
@@ -761,6 +777,7 @@ function enterFlower8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -776,6 +793,7 @@ function enterReject(s: GameState, scene: SceneBuilder): void {
   scene.text('When you reach the door, you open it and turn to run. You\'ve neared the end of his driveway and are just stepping onto the dirt road leading to it when you finally look back.');
   scene.text('There on the porch of his house, Grigory is standing watching you, his flask in hand.');
   scene.text('Turning your attention back to the road, you continue towards the village.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['grigory', 'reject'] },
   ]);
@@ -786,6 +804,7 @@ function enterAccept(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes," You say even before you realize you\'ve made a decision.');
   scene.text('The smile the blossoms on Grigory\'s face is enough to make your heart race, and a nervous smile finds its way onto your own face in return.');
   scene.text('Suddenly, his lips are pressed against yours so hard it takes your breath away. The seconds that follow are a blur as he sweeps you off towards his bedroom, pieces of each of your blothing hitting the floor in your wake.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Virgin', handler: (st: GameState) => {
     scene.text('With almost exaggerated care, Grigory lays you on his bed, his big hands taking hold of your panties and sliding your last article of clothing slowly down your legs.');
@@ -832,6 +851,7 @@ function enterField1(s: GameState, scene: SceneBuilder): void {
     scene.text('When he does, you put both hands over your heart and smile back at him.');
     scene.text('Feeling unexpectedly happy, you give him a little wave then continue on your way.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'field'] },
   ]);
@@ -841,6 +861,7 @@ function enterField1(s: GameState, scene: SceneBuilder): void {
 function enterField2(s: GameState, scene: SceneBuilder): void {
   scene.text('You can see Grigory standing beside his old truck while looking out at the field. Following his gaze, you notice that he\'s watching a bull mount one of the female cows part way across the pasture.');
   scene.text('Grigory shifts where he stands, one hand adjusting the tent in the front of his pants.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave before this gets weird', goto: ['grigory', 'field_weird'] },
     { label: 'Tease him a little about it', goto: ['grigory', 'field_tease'] },
@@ -851,6 +872,7 @@ function enterField2(s: GameState, scene: SceneBuilder): void {
 
 function enterFieldWeird(s: GameState, scene: SceneBuilder): void {
   scene.text('Quietly, you make your exit before Grigory can notice that you are there.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_field', 'field'] },
   ]);
@@ -860,6 +882,7 @@ function enterFieldWeird(s: GameState, scene: SceneBuilder): void {
 function enterFieldTease(s: GameState, scene: SceneBuilder): void {
   scene.text('"So this is what passes for porn around here?" You tease unable to hide your smirk.');
   scene.text('Grigory sputters, half turning to hide his state of arousal, "I, uh," He stammers, unable to find anything to say, his face is crimson with embarrassment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tease him more', handler: (st: GameState) => {
     scene.text('"Somehow I don\'t think she\'s going to feel a thing after having that bull inside her," You say with a giggle.');
@@ -903,6 +926,7 @@ function enterFieldWatch(s: GameState, scene: SceneBuilder): void {
   scene.text('Staying quiet, you watch the animals mating in the field. You\'re a little surprised at just how quickly it\'s over. The bull mounts its mate, thrusting savagely for maybe half a minute before leaving its mate behind, massive amounts of cum dripping from her vagina.');
   scene.text('Turning your attention back to Grigory, you can see that his hand is now inside of his pants, moving rhythmically.');
   scene.text('You can feel your own arousal growing slightly at the sight.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
     scene.text('Breathless at the sight of him stroking himself, you stand there and watch.');
@@ -984,6 +1008,7 @@ function enterField3(s: GameState, scene: SceneBuilder): void {
   scene.text('"I understand," You say, a little disappointed. ');
   scene.text('That disappointment is short lived however as he sweeps you up in his arms suddenly, pressing his lips against yours in a rough but affectionate kiss before sitting you back down.');
   scene.text('The two of you say your goodbyes and finally part ways. You can\'t help but think about how good it felt to be so close to him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be Friendly', handler: (st: GameState) => {
     scene.text('Grigory smiles when he sees your approach, raising a hand in greeting.');
@@ -1042,6 +1067,7 @@ function enterDrunk(s: GameState, scene: SceneBuilder): void {
   scene.text('Another soft laugh, "Wasn\'t asking you Kotenok," He gives you an affectionate squeeze. You close your eyes and just enjoy the warmth of the big man cradling you so close to his body.');
   scene.text('"Only other place I can think of is mine," A long pause, "Hope you don\'t take this the wrong way," He seems to say to himself.');
   scene.text('A second later you begin to feel the swaying of his footsteps again. Within seconds you drift to sleep.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('With a groan of discomfort, you feel yourself being sat in a cold leather chair, the chill of the night making you shiver as the big warm thing you had snuggled against is gone.');
@@ -1101,6 +1127,8 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
   scene.text('You snuggle closer to him, your head against his chest as you enjoy the warmth of his body against your own.');
   scene.text('For a long time, the two of you sit along the shore, you can hear his heartbeat from where your head is pressed against his chest, the rhythmic beating putting you at ease.');
   scene.text('You start to drift off, almost falling to sleep when the rumble of his voice demands your attention, "Kotenok? You going to fall asleep on me? Maybe we should go."');
+  // TODO-QSP: end
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('You sigh softly, then stretch to kiss him lightly on the cheek, "Maybe another time."');
@@ -1167,6 +1195,221 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('At his house, you get out your side of the truck before he can get the door for you. He leads you into the house, taking your hand as he makes his way into his bedroom.');
   } },
     ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDrunkLate(s: GameState, scene: SceneBuilder): void {
+  scene.text('"Kotenok!" Grigory\'s voice startles you.');
+  scene.text('You look around, trying to peer into the dark shadows between houses, "Grigory?"');
+  scene.text('"I love you Kotenok," He calls loudly. The sound of his voice is enough for you to finally figure out where he is.');
+  scene.text('Turning towards the darkness between two buildings, "Are you ok Grigory?"');
+  scene.text('The big man finally emerges from the shadows, his steps staggered. After a few paces, he reaches for the wall to steady himself. With his other hand, he raises his flask to his lips. A look of concern crosses his features, then he holds the flask out in front of himself. Tipping it upside down, nothing comes out, "Damn," He mutters before returning the flask to his pocket.');
+  if (((s as any).Flower_path_not_complete ?? 0) === 1) {
+    scene.text('"Grigory, I think you\'re drunk," You say, "Maybe you should go home and get some sleep? You\'re talking nonsense."');
+    scene.text('Grigory pauses, leaning heavily against the building. Meeting your gaze, he reaches for his flask again, raising it almost to his lips before seeming to remember that it\'s empty. Making a sour face, he puts it away again.');
+    scene.actions([
+      { label: 'Offer to help him', handler: (st: GameState) => {
+    scene.text('"Do you need help getting home?" You ask softly, stepping towards him.');
+    scene.text('"I love you Kotenok," He mumbles, not quite meeting your eyes as he says it.');
+    scene.text('"No you don\'t Grigory, you\'re just drunk," You step up close to him, looking into his soft eyes, "Let me help you get home."');
+    scene.text('Grigory opens his mouth like he\'s going to say something, then closes it again. He reaches for his flask again, but as soon as his fingers come in contact with it, he sighs heavily and lets his hand fall back to his side.');
+    scene.text('"Can you walk?" You ask, knowing full well that he\'s far too large for you to effectively support him, "I can help steady you a little if you need it."');
+    scene.text('His voice is a little sad when he replies, "Ok," Pushing off from the wall, he reaches out and places a big hand on your shoulder, reminding you just how large he really is.');
+    scene.text('Slipping up beside him, you put your arm around him to help steady him, "Where\'d you park?" You ask him.');
+    scene.text('His only reply is a vague gesture towards the outskirts of town.');
+    scene.text('You start walking in that direction. At times, the massive man leans on you heavily enough that it nearly drives you to your knees, but for the most part, he stays upright with little effort. Your back is beginning to ache from the effort when you finally see his pickup parked beside the field just outside of town.');
+    scene.text('Once there, he reaches out for his truck, opening the door before turning to look at you. He looks like he wants to say something, but refrains from doing so.');
+    scene.text('"You going to be ok getting the rest of the way home?" You ask.');
+    scene.text('He nods, swaying slightly as he does so, "Yes," He says, his voice subdued, "Thank you Kotenok."');
+    scene.text('You watch as he climbs into the vehicle with some difficulty, then fumbles with the keys for a moment before you hear the engine rumble angrily to life.');
+    scene.text('A minute later, all you can see are the tail lights of the truck as he drives home.');
+    scene.actions([
+      { label: 'Continue', goto: ['grigory', 'dummy'] },
+    ]);
+  } },
+      { label: 'Tease him a little bit', handler: (st: GameState) => {
+    scene.text('Seeing Grigory looking at you with adoration in his eyes, you can\'t help yourself. You bite your lip playfully and let one hand come up to cup your breast.');
+    scene.text('Why is he so fun to tease? You think as a smile spreads on your face.');
+    scene.text('"Kotenok, please," Grigory slurs, his hungry eyes watching every move you make, "Stop teasing me like this."');
+    scene.text('"Teasing you?" Your tone is playful, "I wouldn\'t tease you, would I?"');
+    scene.text('You see a jumble of emotions cross his face as he struggles to maintain his composure.');
+    scene.text('You jump a little in surprise as he pushes off of the wall suddenly. For a split second, you think he\'s going to attack you, then his expression turns sad. Turning his gaze away from you, he starts to walk drunkedly away.');
+    scene.text('You\'re unable to stifle a giggle as he leaves.');
+    scene.actions([
+      { label: 'Continue', goto: ['grigory', 'dummy'] },
+    ]);
+  } },
+    ]);
+  } else {
+    scene.text('"Grigory, you\'re drunk," You say.');
+    scene.text('"Love you Kotenok," Grigory says in a mumble, taking a couple more unsteady steps towards you.');
+    scene.text('You wonder if you should try to steady the big man, or just trust him to keep himself upright.');
+    if (((s as any).Not_Romanticly_involved ?? 0)===1) {
+      scene.text('"We\'ve already talked about this. I don\'t have those kind of feelings for you."');
+      scene.text('Grigory pauses, leaning heavily against the building. His eyes are filled with sadness, he reaches for his flask again, raising it almost to his lips before seeming to remember that it\'s empty. Making a sour face, he puts it away again.');
+      scene.text('"You should get home, sleep it off," You add.');
+      scene.text('He opens his mouth like he\'s going to say something, but before he can utter a word, you turn and walk away.');
+      scene.actions([
+        { label: 'Continue', goto: ['grigory', 'dummy'] },
+      ]);
+    } else {
+      scene.text('"I know you do," You say with a fond smile on your lips.');
+      scene.text('Gregory\'s smile is warm, reachig his eyes. He takes a couple more unsteady steps towards you.');
+      scene.text('Seeing him waver on his feet, you step forward quickly and slip an arm around him to steady the large man. The sudden weight he puts on you is almost enough to send you both tumbling to the ground, but somehow you both stay upright.');
+      scene.text('"Where\'d you park?" You ask him. ');
+      scene.text('His only reply is a vague gesture towards the outskirts of town.');
+      scene.text('You start walking in that direction. At times, the massive man leans on you heavily enough that it nearly drives you to your knees, but for the most part, he stays upright with little effort. Your back is beginning to ache from the effort when you finally see his pickup parked beside the field just outside of town.');
+      scene.text('Once there, he reaches out for his truck, opening the door before turning to look at you.');
+      scene.text('"You want me to ride home with you? Make sure you get there ok?" You ask, as you look up into his big soulful eyes.');
+      scene.text('He leans forward, kissing the top of your head in answer. You can smell the alcohol on him as he does so. Even so, you tilt your head up and kiss him on the chin before he turns to the truck.');
+      scene.actions([
+        { label: 'Let him go alone', handler: (st: GameState) => {
+    scene.text('Hoping he makes it home ok, you watch him climb into the vehicle. When he looks at you, you blow him a little kiss, then wave as he starts to drive away. The last you see of him is his smile and a casual wave in return.');
+    scene.actions([
+      { label: 'Continue', goto: ['grigory', 'dummy'] },
+    ]);
+  } },
+        { label: 'Go with him', handler: (st: GameState) => {
+    scene.text('Moving quickly, you get into the passenger side of the vehicle right as the engine roars to life. A few seconds later, the truck is in motion.');
+    scene.text('After a short drive, Grigory slows the vehicle as he pulls to a stop in front of his home.');
+    scene.text('There\'s a sudden silence as he turns the key, killing the engine. Then without removing the key, he swings open his door and starts to get out. The truck rocks heavily when he grabs his door for support.');
+    scene.text('Realizing he\'s leaving his keys, you reach over and remove them from the ignition before getting out your own side of the truck.');
+    scene.text('By the time you close the door behind yourself, Grigory is already walking clumsily towards the house. At the door, the large man starts to pat his pockets, looking for the key to the front door. You jingle the keys he had forgotten and are rewarded with a sheepish grin from him. Stepping to the door, you unlock it and turn the knob to open it.');
+    scene.text('Gregory enters a couple of paces behind you, having the presence of mind to close the door behind himself.');
+    scene.text('You turn on a light, then walk further into the house to turn the bedroom light on. Somewhere behind you, you hear him bump into something. ');
+    scene.text('Turning to look, you see Gregory only half way across the living room of the house, an end table several inches from where you had last seen it beside him. His shirt is on the floor behind him and his pants are just sliding past his knees. All the while, he\'s swaying dangerously as he tries to pull first one, then the other, boot off his feet.');
+    scene.text('When he reaches the bedroom door, he\'s managed to loose his pants just a few paces behind himself and is reaching for his underwear. He gives you a smile that would seem lecherous from anyone else, but just looks cute on his weathered face.');
+    scene.text('Stepping further into the room, you pull back the covers for him.');
+    scene.text('"Kotenok," He says drunkedly, "I\'m going to make love to you." ');
+    scene.text('You turn just in time to see him half reach, half fall, towards you. You quickly move out of the way to avoid being crushed by him.');
+    scene.text('He ends up falling about two thirds onto the bed, and after a couple of minutes, you\'re able to get him the rest of the way onto the bed. By then, you can hear the soft sounds of his snoring.');
+    scene.text('You can\'t help but smile while looking at him, his naked ass sticking up into the air. You quickly pull the covers over him.');
+    scene.text('After a few seconds consideration, you pull remove your own shoes, then pull back the covers on the other side of the bed before crawling in beside him.');
+    scene.text('Snuggling up against the warmth of his big body, you feel him roll onto his side, one of his arms slipping around your middle. "Love you Kotenok," He mumbles in his drunken sleep.');
+    scene.text('Smiling to yourself, you close your eyes and drift off to sleep.');
+    scene.actions([
+      { label: 'Wake up', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + (((33 - ((s as any).hour ?? 0)) * 60) - ((s as any).minut ?? 0));
+    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (100);
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (100);
+    qspCall(s, 'stat', '');
+    scene.text('You\'re woken by the early morning sun peeking past the drapes of the bedroom. You start to shy away from the light, but then realize that you\'re alone in the bed.');
+    scene.text('Looking around the room, you see that Grigory is nowhere to be seen. ');
+    scene.text('"Grigory?" You call softly when you finally motivate yourself to crawl out of bed, "Grigory? Where\'d you get off to?"');
+    scene.text('With no response, you exit the bedroom and start to look around. The first thing you notice is that all of Grigory\'s clothes have been picked up, and that the end table has been moved back to where it belongs. The second is when you look out the living room window and notice that his truck is gone.');
+    scene.text('You sigh, then start back toward the bedroom to grab your shoes and tidy up before leaving. You\'re almost to the front door when you notice a note stuck to the door.');
+    scene.text('Sorry about last night. I had a bit too much to drink. Please forgive me.');
+    scene.text('I was going to wake you this morning, but you looked like a sleeping angel and I couldn\'t bring myself to wake you up. I hope you slept well.');
+    scene.text('Help yourself to the fridge for breakfast, maybe I\'ll see you a little later.');
+    scene.text('Love you Kotenok,');
+    scene.text('Grigory</b>');
+    scene.text('Smiling to yourself, you take down the note.');
+    scene.actions([
+      { label: 'Continue', goto: ['grigory', 'dummy'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRape(s: GameState, scene: SceneBuilder): void {
+  scene.text('Walking in the darkness, you see a shape between the houses. Slowing your pace, you watch as Grigory moves into view.');
+  scene.text('"Hey there Kotenok," His voice has a slightly drunken slur.');
+  scene.text('"Hi Grigory," You say, feeling suddenly uncomfortable with the way he is looking at you.');
+  scene.text('Grigory takes a sip from his flask, his eyes never leaving your body as he does so, "Good girls should be home in bed at this hour," He says, his voice husky, "But you\'re just a little tease aren\'t you? You like to toy with men\'s emotions."');
+  scene.text('Your discomfort at the situation quickly edges towards fear.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave quickly', handler: (st: GameState) => {
+    scene.text('"You\'re right, good girls should be in bed at this hour, and I should be heading home to bed right now." Scared to take your eyes off of him, you take a few steps in the direction of your grandparent\'s home.');
+    scene.text('His eyes never leave you as you walk away. The last thing you see before rounding the corner is him raising his flask to his lips for another sip.');
+  } },
+    { label: 'Try to talk to him', handler: (st: GameState) => {
+    scene.text('"Grigory, are you ok?" You ask, concerned.');
+    scene.text('In spite of your unease, you take a couple of steps towards the large man.');
+    scene.text('"Ok?" He blurts drunkenly, "You toy with my heart, then you ask if I\'m ok?" There\'s raw emotion in his voice as he speaks.');
+    scene.text('Your thoughts go to all the times you\'ve teased him, or been mean to him just for your own entertainment.');
+    scene.text('Maybe I\'ve been out of line? You think, looking up at the big man as he looms over you.');
+    scene.text('Suddenly, he takes a step towards you, his arms wrapping around you in a grip that\'s just a little too tight, "Grigory, you\'re hurting me," You manage to say as he squeezes the air from your lungs.');
+    scene.text('The grip lingers for another second, then he lets go suddenly. ');
+    scene.text('Your chest aches just a little as you take a deep breath. After a few seconds of breathing again, "Grigory?" You call his name softly, keeping just a little distance between the two of you, "I never mean to hurt you, if I tease you a little, it\'s because you\'re my friend."');
+    scene.text('"Friend," The word sounds bitter coming from Grigory\'s mouth.');
+    scene.text('"I think you need to go home, get some sleep," You venture, "Can I help you to your truck?" Even as you ask, you wonder how you\'d ever be able to help the giant of a man get to his truck considering how much smaller than him you are.');
+    scene.text('Taking a step towards you again, he doesn\'t embrace you this time, instead he leans forward, his lips touching your forehead. The smell of alcohol is strong on him, "Later Kotenok," He mumbles, then turns and starts walking away.');
+    scene.text('Standing there, you can see from the way he walks that he\'s had far too much to drink this night.');
+    scene.actions([
+      { label: 'Continue', goto: ['gadukino', ''] },
+    ]);
+  } },
+    { label: 'Tease him a little', handler: (st: GameState) => {
+    scene.text('"A tease?" You can\'t help but smile a little, "Maybe I am."');
+    scene.text('Grigory raises his flask to his lips for another sip.');
+    scene.text('You let one of your hands reach up, cupping your breast while biting your lip seductively, "And who says I\'m a good girl?" You barely suppress a laugh at the way Grigory openly gapes at you for several seconds.');
+    scene.text('Then, faster than you ever imagined the big man could move, he closes the distance between you, picking you up in a crushing hug that makes your ribs hurt. His lips press against yours, and the taste of the alcohol on his tongue is enough to make your head swim.');
+    scene.text('Before you even realize what is happening, Grigory lets go of you, shoving you to the ground roughly. ');
+    scene.text('Your heart races as you start to get up, only reaching your hands and knees before his huge hands grab your hips. With a powerful pull and the sound of ripping clothing, you feel the cool night air on your suddenly exposed bottom.');
+    if (((s as any).stat ?? 0)?.['vaginal'] === 0) {
+      scene.text('"Grigory, no! I\'m-" You cry in alarm, horrified at what he is about to do to you.');
+      scene.text('One of his hands grabs the back of your neck, pushing your face into the dirt before you can protest further. A second later, you can feel his other hand brush between your legs as he searches for your slit.');
+      scene.text('The moment his thick finger touches the folds of your pussy, you can hear him make a pleased sound. His finger probes deeper until he finds your opening, then shoves his finger forward, tearing through your hymen painfully.');
+      scene.text('"You\'re a tight little slut, Kotenok," He growls behind you. His fingers piston in and out of you a number of times, then withdraw.');
+      scene.text('You shudder, hoping this means Grigory has come to his senses, but the pleasant thought is dashed when you feel a finger, larger than the first probe your lips. It\'s not until he starts to push forward that you realize this isn\'t his finger, but instead is his penis.');
+      scene.text('Shoving forward roughly, you feel his big cock fill you suddenly, pain, discomfort, and a sense of rightness all fill your core with a confusing mix of sensations that make you whimper.');
+      scene.text('Without any hesitation, he begins to rut at your sex, rapid, almost violent thrusts. Pain and pleasure fill you while you thrash under him, trying to escape the big man\'s attack, but his size and position above you leave you helpless to stop him.');
+      scene.text('Fortunately, or perhaps not so fortunately, it only takes him a minute or two before he thrusts forward and stops suddenly.');
+      scene.text('Then you can feel a warmth filling your deepest place and you\'re faced with the new horror that your freshly deflowered pussy is being filled with his cum.');
+      scene.text('A pathetic, hopeless cry escapes your lips as he satisfies himself inside of you, then his entire weight is suddenly pressing you against the ground.');
+      scene.text('"Grigory! Get off! You\'re crushing me!" You groan, but he does not heed your words.');
+      scene.text('After a few seconds, you realize that you\'re hearing a growling sound coming from him. You\'re filled with disbelief as you realize that he\'s fallen asleep on top of you, his rapidly deflating cock slipping from your abused pussy.');
+      scene.text('It takes you a couple of minutes to push him off of you enough to escape, then once you do, you gather up your torn clothes and make a rapid retreat.');
+      scene.actions([
+        { label: 'Continue', goto: ['gadukino', ''] },
+      ]);
+    } else {
+      if (((s as any).High_Arousal ?? 0)===1) {
+        scene.text('"Grigory, don\'t!" You cry in alarm, horrified at what he is about to do to you.');
+        scene.text('One of his hands grabs the back of your neck, pushing your face into the dirt before you can protest further. A second later, you can feel his other hand brush between your legs as he searches for your slit.');
+        scene.text('The moment his thick finger touches the folds of your pussy, you can hear him make a pleased sound. His finger probes deeper until he finds your embarrassingly wet opening, then shoves his finger forward, filling you with a fullness that would be pleasant under different circumstances.');
+        scene.text('"You\'re a tight little slut, Kotenok," He growls behind you. His fingers piston in and out of you a number of times, then withdraw.');
+        scene.text('You shudder, hoping this means Grigory has come to his senses, but the pleasant thought is dashed when you feel a finger, larger than the first probe your lips. It\'s not until he starts to push forward that you realize this isn\'t his finger, but instead is his penis.');
+        scene.text('Shoving forward roughly, you feel his big cock fill you with almost no resistance, filling you with a delightful feeling that makes you moan in pleasure.');
+        scene.text('Without any hesitation, he begins to rut at your sex, rapid, almost violent thrusts. Pleasure fills you while you lay under him, enjoying the pleasure while hating the circumstances.');
+        scene.text('Fortunately, or perhaps not so fortunately, it only takes him a minute or two before he thrusts forward and stops suddenly.');
+        scene.text('Then you can feel a warmth filling your deepest place and you\'re faced with the realization that he\'s cumming inside of you, filling your womb with his seed.');
+        scene.text('A pathetic, wanton moan fills the air as you cum around his throbbing cock, then his entire weight is suddenly pressing you against the ground.');
+        scene.text('"Grigory! Get off! You\'re crushing me!" You groan, but he does not heed your words.');
+        scene.text('After a few seconds, you realize that you\'re hearing a growling sound coming from him. You\'re filled with disbelief as you realize that he\'s fallen asleep on top of you, his rapidly deflating cock slipping from your abused pussy.');
+        scene.text('It takes you a couple of minutes to push him off of you enough to escape, then once you do, you gather up your torn clothes and make a rapid retreat.');
+        scene.actions([
+          { label: 'Continue', goto: ['gadukino', ''] },
+        ]);
+      } else {
+        scene.text('"Grigory, don\'t!" You cry in alarm, horrified at what he is about to do to you.');
+        scene.text('One of his hands grabs the back of your neck, pushing your face into the dirt before you can protest further. A second later, you can feel his other hand brush between your legs as he searches for your slit.');
+        scene.text('The moment his thick finger touches the folds of your pussy, you can hear him make a pleased sound. His finger probes deeper until he finds your unaroused sex, then shoves his finger forward, filling you with a fullness that is painful given the fact that you don\'t feel aroused.');
+        scene.text('"You\'re a tight little slut, Kotenok," He growls behind you. His fingers piston in and out of you a number of times, then withdraw.');
+        scene.text('You shudder, hoping this means Grigory has come to his senses, but the pleasant thought is dashed when you feel a finger, larger than the first probe your lips. It\'s not until he starts to push forward that you realize this isn\'t his finger, but instead is his penis. ');
+        scene.text('Shoving forward roughly, you feel his big cock fill you suddenly, filling you with pain because you are not wet enough for the invasion.');
+        scene.text('Without any hesitation, he begins to rut at your sex, rapid, almost violent thrusts. You cry and scream as he painfully violates you.');
+        scene.text('Fortunately, or perhaps not so fortunately, it only takes him a minute or two before he thrusts forward and stops suddenly.');
+        scene.text('Then you can feel a warmth filling your deepest place and you\'re faced with the realization that he\'s cumming inside of you, filling your womb with his seed.');
+        scene.text('A pathetic cry fills the air as you feel him empty the contents of his balls within you.');
+        scene.text('Then, with no warning, his entire weight is suddenly pressing you against the ground.');
+        scene.text('"Grigory! Get off! You\'re crushing me!" You groan, but he does not heed your words.');
+        scene.text('After a few seconds, you realize that you\'re hearing a growling sound coming from him. You\'re filled with disbelief as you realize that he\'s fallen asleep on top of you, his rapidly deflating cock slipping from your painfully abused pussy.');
+        scene.text('It takes you a couple of minutes to push him off of you enough to escape, then once you do, you gather up your torn clothes and make a rapid retreat.');
+        scene.actions([
+          { label: 'Continue', goto: ['gadukino', ''] },
+        ]);
+      }
+    }
   } },
   ]);
   scene.build();
@@ -1255,6 +1498,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'romantic_event':
       enterRomanticEvent(s, scene);
+      break;
+    case 'drunk_late':
+      enterDrunkLate(s, scene);
+      break;
+    case 'rape':
+      enterRape(s, scene);
       break;
     default:
       enterDefault(s, scene);

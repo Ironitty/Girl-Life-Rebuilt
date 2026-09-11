@@ -33,6 +33,7 @@ function enterFoyer(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the Kitchen', goto: ['bdsm_kitchen', 'kitchen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -41,6 +42,7 @@ function enterCheckFoyerEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   scene.actions([{ label: 'Continue', goto: ['bdsm_hallway', 'foyer_event_<<rand(1, 5)>>'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,6 +51,7 @@ function enterFoyerEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('A sexy domme in her underwear is leading a sub upstairs by her leash.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_hallway', 'foyer'] },
   ]);
@@ -63,6 +66,7 @@ function enterFoyerEvent_2(s: GameState, scene: SceneBuilder): void {
     scene.text('The woman rides her ponyboy over to you and looks you over, grabbing hold of your chin as if she was inspecting you. "Well arn\'t you just a cute little filly. I\'ve been thinking about putting my boy here out to stud and I think you will do nicely. Come along." She says as she attaches a lead to your collar from the saddle, the she uses the spurs to get ponyboy going and rides him up the stairs pulling you behind them.');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_hallway', 'foyer'] },
   ]);
@@ -80,6 +84,7 @@ function enterFoyerEvent_3(s: GameState, scene: SceneBuilder): void {
     scene.text('As they leave the man in leather pulls another leash off his belt and attaches it to your collar, while he takes hold of the other girls leash. Now with both leashes firmly in hand, he pulls on them and heads up the stairs. At the pull of the leash the other girl starts crawling on all fours behind him, you follow her lead and do the same.');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_hallway', 'foyer'] },
   ]);
@@ -91,6 +96,7 @@ function enterFoyerEvent_4(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman is give her dominant a blowjob while another sub watches from the stairs.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_hallway', 'foyer'] },
   ]);
@@ -102,6 +108,7 @@ function enterFoyerEvent_5(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the maids is giving her dominant a blowjob by the small staircase.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

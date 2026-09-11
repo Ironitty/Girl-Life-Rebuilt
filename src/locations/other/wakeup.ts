@@ -10,12 +10,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   ((s as any).sleepVars ?? {})['no_sleep_loss'] = 1;
   scene.actions([{ label: 'Continue', goto: ['wakeup', 'mod_sleeptriggers'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'wakeup', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['wakeup_events', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +78,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
   }, goto: ['wakeup', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed (0:05)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -86,6 +89,7 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSnoozeAlarm(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '"Snooze" a few minutes more…', handler: (st: GameState) => {
     ((s as any).sleepVars ?? {})['slept_in'] = 1;
@@ -97,6 +101,7 @@ function enterSnoozeAlarm(s: GameState, scene: SceneBuilder): void {
 
 function enterWearBedClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'restore', 'bed');
+  // TODO-QSP: end
   scene.build();
 }
 

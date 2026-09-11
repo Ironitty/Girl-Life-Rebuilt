@@ -15,12 +15,14 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetEndActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'nerd_game_night_chat', 'set_leave_act');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with someone', goto: ['nerd_game_night_chat', 'nerd_chat'] },
   ]);
@@ -79,6 +81,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +167,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -200,6 +204,7 @@ function enterGameNight1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Introduction', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -247,6 +252,7 @@ function enterGameOn(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "How about we let <<$pcs_nickname>> decide? She's new and should be objective," ...
   scene.text(`"How about we let ${((s as any).pcs_nickname ?? 0)} decide? She's new and should be objective," Artem suggests and the others nod approvingly.`);
   scene.text('You first ask what they mean by buffing and learn that it will make Zinaida\'s character tougher and able to take more damage.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Side with Artem', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
@@ -299,6 +305,7 @@ function enterKeepPlayingOn1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Feofan nods with a smile. "Okay then. Roll your attack, <<$pcs_nickname>>."
   scene.text(`Feofan nods with a smile. "Okay then. Roll your attack, ${((s as any).pcs_nickname ?? 0)}."`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Roll the dice', handler: (st: GameState) => {
     (s as any).temp = Math.floor(Math.random() * 20) + 1;
@@ -392,6 +399,7 @@ function enterGameNight2(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem lets out a deep sigh. "Always going with these safe choices! Why not live it up a little?! The game is getting stale and I really want to feel overpowered for once!"');
   scene.text('The two of them bicker back and forth and get nowhere, causing Feofan step in to break it up. "You\'ll have to decide on what to do…"');
   scene.text('You all decide to do a vote and everyone starts voting on how to proceed. Gerasim can\'t make up his mind and decides that his character wouldn\'t vote. It\'s neck and neck and before you know it, you have the deciding vote. Everyone watches you, expecting a decisive vote.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Grab all the loot', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
@@ -429,6 +437,7 @@ function enterKeepPlayingOn2(s: GameState, scene: SceneBuilder): void {
   scene.text('He nods. "Yes, you set up camp just at the edge of the trees. The river is just a short walk beyond them."');
   scene.text('Everyone is silent, not understanding why you\'re asking. "What? None of us have bathed in days! That\'s just gross! I thought we were role-playing; imagine what our characters smell like!"');
   scene.text('Everyone quickly agrees that it makes sense and that they never really thought about it until you brought it up. They also explain how they normally don\'t worry about stuff like that.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay in camp', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
@@ -528,6 +537,7 @@ function enterGameNight3(s: GameState, scene: SceneBuilder): void {
   scene.text('Feofan is clearly loving the attention. "Thanks, it took me several weeks to draw up the details and paint everything. Shall we get started?" You all quickly take a seat around the table as Feofan begins. "After you break camp and pack up, you make haste to the village. You enter the sleepy village around midday."');
   scene.text('He then describes the layout of the village, pointing out the blacksmith shop where you can upgrade your gear, the tavern where you can collect valuable information and the alchemist shop where you can buy potions. There\'s even a rumor of a brothel located somewhere within the village.');
   scene.text('You all sit in awe as Feofan explains further. As soon as he\'s finished, Artem takes over. "Let\'s find an inn. We need a base where we can rest at night." It doesn\'t take long before you find a nice inn that you settle into.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Settle in', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/village.jpg');
@@ -825,6 +835,7 @@ function enterGameNight4(s: GameState, scene: SceneBuilder): void {
   scene.text('Feofan begins describing the scene. "You spend an uneventful night at the inn, and at the early dawn you\'re all awoken by a roosters\' crow. You take some time to get ready and all meet up in front of the inn."');
   scene.text('"So what should we focus on today?" Petka asks.');
   scene.text('"It\'s adventure time! We really need to find a new quest today. We\'re low on funds, so we need to find an adventure that will sustain us for a while," Artem explains, taking the role of leader once again. "Don\'t worry, I\'m sure we\'ll overhear something interesting in the tavern."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head to the tavern', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/village.jpg');
@@ -1005,6 +1016,7 @@ function enterThreeQuestsActs(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Tell your party what you learned': gt 'nerd_game_night', 'inform_them'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1019,6 +1031,7 @@ function enterWoman(s: GameState, scene: SceneBuilder): void {
   scene.text('She goes on to describe the mansion and its location as you carefully listen.');
   qspCall(s, 'nerd_game_night', 'three_quests_acts');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1029,6 +1042,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
   scene.text('The men start laughing. "Were you listening in on a private conversation? You\'re a bit cocky for a little squirt." One of the men spits next to your feet. "Listen here, let\'s not drag this out, we can share the information if you pay us."');
   scene.text('"And how can I trust that you\'re telling me the truth?" you ask.');
   scene.text('The man pulls out a pouch and throws it on the table. "See that? That\'s my share from the last treasure run we did. And believe me girl, we have plenty of treasure maps remaining."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decide', handler: (st: GameState) => {
     ((s as any).nerd_game ?? {})['taverngroup'] = 1;
@@ -1081,6 +1095,7 @@ function enterOldman(s: GameState, scene: SceneBuilder): void {
   scene.text('"I wouldn\'t recommend going there, unless you want to end up like my crew…" the old man warns.');
   scene.text('You shake your head. "We\'re not afraid of anything!" You order another round and manage to pry out the information. After several more drinks loosen his tongue, he describes how to find the Necromancer\'s lair.');
   qspCall(s, 'nerd_game_night', 'three_quests_acts');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1111,6 +1126,7 @@ function enterInformThem(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1122,6 +1138,7 @@ function enterVoteMansion(s: GameState, scene: SceneBuilder): void {
   scene.text('Feofan stands firm. "That\'s it for today! Everyone needs to calm down as this discussion got way out of line!"');
   scene.text('With that, everyone helps pack everything up.');
   qspCall(s, 'nerd_game_night', 'set_end_acts');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1136,6 +1153,7 @@ function enterGameNight5(s: GameState, scene: SceneBuilder): void {
   scene.text('"Freaking finally! Let\'s get out of this god-forsaken town and on to a new adventure!" Zinaida exclaims.');
   scene.text('"We just need to pack up and we\'re good to go!" Gerasim replies.');
   scene.text('The group quickly packs up everything from the rooms in the inn, pays for their stay and head outside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the inn', goto: ['nerd_game_night1', 'mansion_adventure_start'] },
   ]);
@@ -1151,6 +1169,7 @@ function enterGameNight6(s: GameState, scene: SceneBuilder): void {
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
   scene.text('Feofan has already set everything up as you walk in and you all quickly take a seat around the table as Feofan begins.');
   scene.text('"We pick up our adventure where we left off, having just defeated a group of undead who were under the control of dark magic…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start playing', goto: ['nerd_game_night1', 'mansion_interior4'] },
   ]);
@@ -1166,6 +1185,7 @@ function enterGameNight7(s: GameState, scene: SceneBuilder): void {
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
   scene.text('Feofan has already set everything up as you walk in and you all quickly take a seat around the table as Feofan begins.');
   scene.text('"We pick up our adventure where we left off. Having just confronted the succubus, she has transformed into her true demonic self in front of you…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start playing', goto: ['nerd_game_night1', 'succubus_fight'] },
   ]);
@@ -1186,6 +1206,7 @@ function enterGameNight8(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone goes up to their room to put their gear away before coming back down. Artem then explains the plans and gives everyone tasks.');
   scene.text('"Once everyone is done, let\'s meet back here to celebrate and get a hearty meal."');
   scene.text('With that, the group splits up. Some go to sell their loot and others go to replenish their supplies while you\'re sent out to check on rumors of any new adventures.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Search for more adventures', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
@@ -1410,6 +1431,7 @@ function enterNextWeek(s: GameState, scene: SceneBuilder): void {
   scene.text('The arguing starts getting more intense as everyone tries to get their point across, the yelling getting louder and louder until Feofan gets fed up and slams the table. "Now that I have your attention! Since you can\'t decide what you should do, I suggest you have a vote on it!"');
   scene.text('There\'s a lot of loud moans. "I don\'t care how you feel about it! Vote!" Feofan commands.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Vote to bash the Necromancer', handler: (st: GameState) => {
     qspCall(st, 'nerd_game_night', 'vote_necromancer');
@@ -1430,6 +1452,7 @@ function enterVoteNecromancer(s: GameState, scene: SceneBuilder): void {
   scene.text('With that, everyone helps pack everything up.');
   qspCall(s, 'nerd_game_night', 'set_end_acts');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1444,6 +1467,7 @@ function enterGameNight9(s: GameState, scene: SceneBuilder): void {
   scene.text('"I can\'t wait to get out of town and back on the road again, off to another new adventure!" Zinaida exclaims.');
   scene.text('"We just need grab a few more supplies and we\'re good to go!" Gerasim replies.');
   scene.text('The group quickly packs up everything from the rooms in the inn, pays for their stay and head outside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the inn', goto: ['nerd_game_night1', 'necromancer_adventure_start'] },
   ]);
@@ -1460,6 +1484,7 @@ function enterGameNight10(s: GameState, scene: SceneBuilder): void {
   scene.text('Feofan has already set everything up as you walk in and you all quickly take a seat around the table as Feofan begins.');
   // TODO-QSP: dynamic text: "We pick up our adventure where we left off, having just arrived at the strongho...
   scene.text(`"We pick up our adventure where we left off, having just arrived at the stronghold with ${((s as any).pcs_nickname ?? 0)} Rogue about to cross the drawbridge…"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start playing', goto: ['nerd_game_night1', 'necromancer_stronghold_gatehouse'] },
   ]);
@@ -1475,6 +1500,7 @@ function enterGameNight11(s: GameState, scene: SceneBuilder): void {
   scene.text('As you arrive, you notice that the atmosphere is quite elated as the group can\'t wait to continue their adventures.');
   scene.text('Feofan has already set everything up as you walk in and you all quickly take a seat around the table as Feofan begins.');
   scene.text('"We pick up our adventure where we left off. Having just defeated the Death Knight and found the entrance to the crypt…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start playing', goto: ['nerd_game_night1', 'necromancer_fight'] },
   ]);
@@ -1498,6 +1524,7 @@ function enterGameNight12(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone goes up to their room to put their gear away before coming back down. Artem then explains the plans and gives everyone tasks.');
   scene.text('"Once everyone is done, let\'s meet back here to celebrate and get a hearty meal."');
   scene.text('With that, the group splits up. Some go to sell their loot and others go to replenish their supplies while you\'re sent out to check on rumors of any new adventures.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Search for more adventures', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
@@ -1671,6 +1698,7 @@ function enterNextWeek1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'nerd_game_night', 'set_end_acts');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1704,6 +1732,7 @@ function enterBoardGames(s: GameState, scene: SceneBuilder): void {
       scene.text('Before you know it, the game board is out and Feofan starts explaining the rules.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start playing', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/board1.jpg');
@@ -1764,6 +1793,7 @@ function enterGameInviteSmsSwitch(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'A152');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1773,6 +1803,7 @@ function enterFirstText(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'telefon', 'AddContact', 'A152', 'images/characters/shared/headshots_main/big152.jpg', 0);
   }
   ((s as any).nerd_game ?? {})['first_SMS_received'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1861,6 +1892,7 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1950,6 +1982,7 @@ function enterSummer2InviteSms(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2021,6 +2054,7 @@ function enterInviteUni(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2068,6 +2102,7 @@ function enterCrashGamenightUni(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat with someone', goto: ['nerd_game_night_chat', 'nerd_chat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

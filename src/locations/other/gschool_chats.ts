@@ -197,6 +197,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'Lesco is reading a book '+iif(npc_grupTipe['A5'] ! 5, '', 'Fedor is sitting on a window sill starin...
   qspCall(s, 'gschool_groups', 'outcasts');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -377,6 +378,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek, Dan, Vasily, Lena, Lera, Pauline, Alyona, Anushka, Katyusha, Radomir, Lavrenti, Arkadi, Roman, Valentin and Niko are hanging around.');
   qspCall(s, 'gschool_groups', 'gopniks');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -384,6 +386,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopniks2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -702,6 +705,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
   scene.text('While the jocks Ivan, Fedor, Svyatoslav, Lariska, Christina, lina, Albina, Veronika, Lazar, Erast and Vanya are spread evenly.');
   qspCall(s, 'gschool_groups', 'jocks');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -714,6 +718,7 @@ function enterNerdEventCheck(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['gschool_chats', 'nerd_grope_event'] }]);
   }
   qspCall(s, 'natbel_friend', 'slut_reconcile_school_check', 'nerd_chat');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -722,6 +727,7 @@ function enterGopnikEventCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gschool_gropeday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).pcs_hotcat ?? 0) >= 8  &&  ((s as any).temp_rand ?? 0) < 2)  ||  (((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).temp_rand ?? 0) === 0))) {
     scene.actions([{ label: 'Continue', goto: ['gschool_chats', 'gopnik_grope_event'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -730,6 +736,7 @@ function enterCooljockEventCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gschool_gropeday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).pcs_hotcat ?? 0) >= 8  &&  ((s as any).temp_rand ?? 0) < 2)  ||  (((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).temp_rand ?? 0) === 0))) {
     scene.actions([{ label: 'Continue', goto: ['gschool_chats', 'cooljocks_grope_event'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -746,6 +753,7 @@ function enterNerdGropeEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 1, 'humiliation');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', goto: ['gschool_chats', 'nerds'] },
     { label: 'Identify the perpetrator', goto: ['gschool_events1', 'butt_grab'] },
@@ -766,6 +774,7 @@ function enterGopnikGropeEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 1, 'humiliation');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', goto: ['gschool_chats', 'gopniks'] },
     { label: 'Identify the perpetrator', goto: ['gschool_events1', 'butt_grab'] },
@@ -786,6 +795,7 @@ function enterCooljocksGropeEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'flashlite', 1, 'humiliation');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', goto: ['gschool_chats', 'cooljocks'] },
     { label: 'Identify the perpetrator', goto: ['gschool_events1', 'butt_grab'] },

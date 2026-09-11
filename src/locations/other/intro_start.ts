@@ -45,6 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,6 +54,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'intro_functions', 'set_default', 'name');
   }
   scene.actions([{ label: 'Continue', goto: ['intro_character_creation', 'quick_start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +63,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   scene.text('The big day has finally arrived! Your family piled into your stepfather\'s Gazelle pickup and you all traveled from your hometown, Pavlovsk, to St. Petersburg. Today is the day you move into the university dorms to start this new phase of your life.');
   scene.text('As you approach the city, you think back to your school days and recall what type of student you were...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['intro_character_creation', 'start'] },
   ]);
@@ -72,6 +75,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
   scene.text('The big day has finally arrived! Your family piled into your stepfather\'s Gazelle pickup and you all traveled from your hometown, Pavlovsk, to St. Petersburg. Today is the day you move into your own apartment and start this new phase of your life.');
   scene.text('You think back to your school days and what kind of student you were…');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['intro_character_creation', 'start'] },
   ]);
@@ -84,6 +88,7 @@ function enterSgShared(s: GameState, scene: SceneBuilder): void {
   scene.text('Your mother is Natasha, but you don\'t know much about your biological father since your mother never wants to talk about him, or why he left you and your older sister, Anya.');
   scene.text('Your mother met another man, Vladimir, not long after she and your biological father got divorced. Together, they had your little brother, Kolka. Even though he\'s not your real father, Vladimir has always treated you and Anya as if you were his own children.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/shared/pre_6.jpg');
@@ -283,6 +288,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -608,6 +614,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -649,11 +656,13 @@ function enterTgAdultSharedSetMikaelStats(s: GameState, scene: SceneBuilder): vo
   (s as any).birthday = 1;
   (s as any).pcs_dob = 19830401;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTgAdultSharedResetMikaelStats(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -773,6 +782,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

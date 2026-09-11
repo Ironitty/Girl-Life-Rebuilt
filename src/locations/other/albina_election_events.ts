@@ -16,6 +16,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('"What? Am I under arrest?" you ask in panicked surprise, but he just ignores you and continues.');
   // TODO-QSP: dynamic text: "You are <<$pcs_firstname>> <<$pcs_lastname>>, correct? Please come and sit in m...
   scene.text(`"You are ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, correct? Please come and sit in my car. We need to have a little chat."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Speak with Chernov', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -70,6 +71,7 @@ function enterGiveStatement(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
   scene.text('You agree to write a statement and Chernov nods.');
   scene.text('"You\'re a smart girl. Just sign here," he says and hands you a pen and paper. Reading the paper, you see that it has a pre-printed statement on it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -127,6 +129,7 @@ function enterRefuseStatement(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Write a statement', goto: ['albina_election_events', 'give_statement'] },
     { label: 'Refuse again', goto: ['albina_election_events', 'refuse_statement2'] },
@@ -142,6 +145,7 @@ function enterRefuseStatement2(s: GameState, scene: SceneBuilder): void {
   scene.text('While a part of you wants to help, you don\'t trust him and refuse.');
   scene.text('He sighs in resignation. "I can\'t force you, but just know that you could have really helped your friend out here."');
   scene.text('He motions for you to get out of the car and it drives away as soon as you close the door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Call Albina', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

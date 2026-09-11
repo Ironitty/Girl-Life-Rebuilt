@@ -38,6 +38,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the counter', goto: ['shop_dolls', 'viola'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Browse clothing', goto: ['shop_dolls', 'browse'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -59,6 +60,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     ((s as any).anushkaQW ?? {})['discount'] = (-10);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_dolls', 'start'] },
     { label: 'View dresses', handler: (st: GameState) => {
@@ -92,6 +94,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -113,6 +116,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -133,6 +137,7 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -153,6 +158,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -173,6 +179,7 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -210,6 +217,7 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him about the store', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A204', 2);
@@ -271,6 +279,7 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her about the store', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big205.jpg');

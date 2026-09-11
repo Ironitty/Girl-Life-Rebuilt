@@ -19,48 +19,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $textsexhunter[10] = '<<$boydesc>> finished and walked away with a satisfied smile on her face, and ...
   // TODO-QSP: $textsexhunter[11] = 'Gradually, a pleasant warmth growing and throbbing in the abdomen, then the se...
   // TODO-QSP: $textsexhunter[12] = 'You feel nice when <<dick>> cm dick is moving inside of your ass and you moan ...
-  if (((s as any).args ?? 0)[0] === 'gadsexOral1') {
-    (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
-    (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
-    if (((s as any).pcs_throat ?? 0) <= 15) {
-      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (5);
-    }
-    if (((s as any).pcs_throat ?? 0) > 15) {
-      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (10);
-    }
-    scene.img('images/locations/gadukino/sex/mitka/mitkagadsexoral1.\'+rand(1, 2)+\'.jpg');
-    // TODO-QSP: dynamic text: You kneel in front of a boy. <<$boydesc>> takes his <<dick>> cm dick, brings it ...
-    scene.text(`You kneel in front of a boy. ${((s as any).boydesc ?? 0)} takes his ${((s as any).dick ?? 0)} cm dick, brings it to your lips…`);
-    qspCall(s, 'oral', 'start');
-    // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
-    scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
-    qspCall(s, 'arousal', 'bj', 5, 'sub');
-    qspCall(s, 'stat', '');
-    if (((s as any).horny_boyA ?? 0) < 100) {
-      if (((s as any).huntsexa ?? 0) === 1) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
-      }
-      if (((s as any).huntsexa ?? 0) === 2) {
-        // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
-      }
-      if (((s as any).huntsexa ?? 0) === 3) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
-      }
-      if (((s as any).huntsexa ?? 0) === 4) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
-      }
-      if (((s as any).huntsexa ?? 0) === 5) {
-        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
-      }
-      if (((s as any).huntsexa ?? 0) === 6) {
-        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
-      }
-    } else {
-      scene.actions([
-        { label: 'Suck on', goto: ['mitkasex', 'gadOralCum1'] },
-      ]);
-    }
-  }
   scene.build();
 }
 
@@ -85,6 +43,7 @@ function enterForest1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 3) {
     // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_3'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +88,7 @@ function enterForest2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/sex/mitka/mitkaforestsex2.jpg');
   scene.text('Entering deeper into the thicket the guys come up to you and Mira. They undress you both and make you kneel before them…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['mitkasex', 'forestOral2_1'] },
   ]);
@@ -163,6 +123,7 @@ function enterForest3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 3) {
     // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral3_3'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -184,6 +145,7 @@ function enterGad1(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<$boydesc>> takes you out to some field, and undresses you. He makes you kneel ...
   scene.text(`${((s as any).boydesc ?? 0)} takes you out to some field, and undresses you. He makes you kneel in front of him…`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['mitkasex', 'gadsexOral1'] },
   ]);
@@ -212,6 +174,7 @@ function enterGad2(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/sex/mitka/mitkagadsex2.2.jpg"></center>`);
   }
   scene.text('The guys take you to some field and undress you. You drop to your knees and place your hands on their members…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', handler: (st: GameState) => {
     (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
@@ -333,6 +296,7 @@ function enterGadOralCum2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -384,6 +348,7 @@ function enterGadOralCum2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -418,6 +383,7 @@ function enterGadHandsCum2(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['mitkasex', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -494,6 +460,7 @@ function enterGadDog2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -546,6 +513,7 @@ function enterGadDogCum2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -606,6 +574,7 @@ function enterGadDogCum2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -682,6 +651,7 @@ function enterGadCow2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -733,6 +703,7 @@ function enterGadCowCum2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -785,6 +756,7 @@ function enterGadCowCum2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -861,6 +833,7 @@ function enterGadStan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -912,6 +885,7 @@ function enterGadStanCum2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -962,6 +936,49 @@ function enterGadStanCum2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 6) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
   }
+  // TODO-QSP: end
+  if (((s as any).args ?? 0)[0] === 'gadsexOral1') {
+    (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
+    (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
+    if (((s as any).pcs_throat ?? 0) <= 15) {
+      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (5);
+    }
+    if (((s as any).pcs_throat ?? 0) > 15) {
+      (s as any).horny_boyA = ((s as any).horny_boyA ?? 0) + (10);
+    }
+    scene.img('images/locations/gadukino/sex/mitka/mitkagadsexoral1.\'+rand(1, 2)+\'.jpg');
+    // TODO-QSP: dynamic text: You kneel in front of a boy. <<$boydesc>> takes his <<dick>> cm dick, brings it ...
+    scene.text(`You kneel in front of a boy. ${((s as any).boydesc ?? 0)} takes his ${((s as any).dick ?? 0)} cm dick, brings it to your lips…`);
+    qspCall(s, 'oral', 'start');
+    // TODO-QSP: dynamic text: <<$textsexhunter[4]>>
+    scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
+    qspCall(s, 'arousal', 'bj', 5, 'sub');
+    qspCall(s, 'stat', '');
+    if (((s as any).horny_boyA ?? 0) < 100) {
+      if (((s as any).huntsexa ?? 0) === 1) {
+        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 2) {
+        // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 3) {
+        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 4) {
+        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      }
+      if (((s as any).huntsexa ?? 0) === 5) {
+        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      }
+      if (((s as any).huntsexa ?? 0) === 6) {
+        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      }
+    } else {
+      scene.actions([
+        { label: 'Suck on', goto: ['mitkasex', 'gadOralCum1'] },
+      ]);
+    }
+  }
   scene.build();
 }
 
@@ -976,6 +993,7 @@ function enterGadOralCum1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1030,6 +1048,7 @@ function enterGadSideVag1(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on your side then', goto: ['mitkasex', 'gadSideVagCum1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1043,6 +1062,7 @@ function enterGadSideVagCum1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1097,6 +1117,7 @@ function enterGadMisVag1(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on the ground', goto: ['mitkasex', 'gadHandsCum1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1141,6 +1162,7 @@ function enterGadDogVag1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'gadsexOral1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1189,6 +1211,7 @@ function enterGadCowVag1(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep riding', goto: ['mitkasex', 'gadCowVagCum1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1202,6 +1225,7 @@ function enterGadCowVagCum1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1256,6 +1280,7 @@ function enterGadDogAnal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Make the boy cum', goto: ['mitkasex', 'gadDogAnalCum1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1275,6 +1300,7 @@ function enterGadDogAnalCum1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1329,6 +1355,7 @@ function enterGadCowAnal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on the ground', goto: ['mitkasex', 'gadHandsCum1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1342,6 +1369,7 @@ function enterGadHandsCum1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1391,6 +1419,7 @@ function enterForestOral1_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestOralCum1_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1443,6 +1472,7 @@ function enterForestOral1_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestOralCum1_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1495,6 +1525,7 @@ function enterForestOral1_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestOralCum1_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1510,6 +1541,7 @@ function enterForestOralCum1_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[10]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1562,6 +1594,7 @@ function enterForestSide1_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Lie on your side', goto: ['mitkasex', 'forestSideCum1_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1576,6 +1609,7 @@ function enterForestSideCum1_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[10]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1635,6 +1669,7 @@ function enterForestSide1_2(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_3'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1693,6 +1728,7 @@ function enterForestCow1_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep riding', goto: ['mitkasex', 'forestSideCum1_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1706,6 +1742,7 @@ function enterForestSideCum1_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[10]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1762,6 +1799,7 @@ function enterForestCow1_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['mitkasex', 'forestCowCum1_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1797,6 +1835,7 @@ function enterForestCowKiss1_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['mitkasex', 'forestCowCum1_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1809,6 +1848,7 @@ function enterForestCowCum1_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[10]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1870,6 +1910,7 @@ function enterForestCowOral1_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['mitkasex', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1919,6 +1960,7 @@ function enterForestDog1_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['mitkasex', 'forestDogCum1_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1937,6 +1979,7 @@ function enterForestDogCum1_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'group');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -1989,6 +2032,7 @@ function enterForestDog1_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['mitkasex', 'forestDogCum1_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2000,6 +2044,7 @@ function enterForestDogCum1_2(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'voyeur_sex', 1, 'sub', 'group');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -2051,6 +2096,7 @@ function enterForestDog1_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['mitkasex', 'forestDogCum1_3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2064,6 +2110,7 @@ function enterForestDogCum1_3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[10]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[10]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -2108,6 +2155,7 @@ function enterForestOral2_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestOralCum2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2166,6 +2214,7 @@ function enterForestDog2_1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2224,6 +2273,7 @@ function enterForestDog2_2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2283,6 +2333,7 @@ function enterForestDogSide2_1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2324,6 +2375,7 @@ function enterForestOralCum2_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['mitkasex', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2345,6 +2397,7 @@ function enterForestRelax2(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch', goto: ['mitkasex', 'forestOralCum_mira2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2393,6 +2446,7 @@ function enterForestSide2_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestOralCum2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2441,6 +2495,7 @@ function enterForestSide2_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestOralCum2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2489,6 +2544,7 @@ function enterForestCow2_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestOralCum2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2514,6 +2570,7 @@ function enterForestOralMira2_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestOralCum2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2542,6 +2599,7 @@ function enterForestRelax3(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['mitkasex', 'end'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2569,6 +2627,7 @@ function enterForestDogMira2_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['mitkasex', 'forestOralCum_mira2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2596,6 +2655,7 @@ function enterForestCowMira2_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Make him cum', goto: ['mitkasex', 'forestOralCum_mira2_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2634,6 +2694,7 @@ function enterForestRelax(s: GameState, scene: SceneBuilder): void {
       { label: 'Look at Mira', goto: ['mitkasex', 'forestCum_mira3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2674,6 +2735,7 @@ function enterForestOral3_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestCum3_3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2748,6 +2810,7 @@ function enterForestOral3_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2813,6 +2876,7 @@ function enterForestOral3_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck on', goto: ['mitkasex', 'forestCum3_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2928,6 +2992,7 @@ function enterForestVag3(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3056,6 +3121,7 @@ function enterForestAnal3_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestCum3_3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3167,6 +3233,7 @@ function enterForestAnal3_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3242,6 +3309,7 @@ function enterForestAnal3_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Kneel', goto: ['mitkasex', 'forestCum3_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3280,6 +3348,7 @@ function enterForestCum3_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'oral', 'start');
   scene.text('Soon, unable to withstand your skill the guys start to finish. Jets of sperm hit you in the mouth and face. There was so much sperm your mouth can\'t hold it all and it runs down your chin and onto your breasts. The guys have you clean their dicks before going about their business. You are left alone to clean up.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -3355,6 +3424,7 @@ function enterForestCum3_2(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Soon, unable to withstand your skill the guys start to finish. Jets of sperm hit you in the mouth and face. There was so much sperm your mouth can\'t hold it all and it runs down your chin and onto your breasts. The guys have you clean their dicks before going about their business. You are left alone to clean up.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -3388,6 +3458,7 @@ function enterForestCum3_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -3419,6 +3490,7 @@ function enterForestRelaxMira(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3451,6 +3523,7 @@ function enterForestDPMira3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 4) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3473,6 +3546,7 @@ function enterForestCowMira3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).huntsexa ?? 0) === 4) {
     // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3504,6 +3578,7 @@ function enterForestCowMira2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3535,6 +3610,7 @@ function enterForestSideMira2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3566,6 +3642,7 @@ function enterForestMisMira2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3597,6 +3674,7 @@ function enterForestDogMira2(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3628,6 +3706,7 @@ function enterForestCowMira1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3659,6 +3738,7 @@ function enterForestDogVMira1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3700,6 +3780,7 @@ function enterForestDogAMira1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3731,6 +3812,7 @@ function enterForestThroatMira1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3762,6 +3844,7 @@ function enterForestOralMira1(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3772,6 +3855,7 @@ function enterForestCumMira1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
   ]);
@@ -3785,6 +3869,7 @@ function enterForestCumMira2(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck', goto: ['mitkasex', 'forestCum3_2'] },
   ]);
@@ -3796,6 +3881,7 @@ function enterForestCumMira3(s: GameState, scene: SceneBuilder): void {
   scene.text('Turning your head to look at Mira, you can see her, moaning loudly, as she plays with the cum covering her face and body.');
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['mitkasex', 'end'] },
   ]);
@@ -3804,6 +3890,7 @@ function enterForestCumMira3(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

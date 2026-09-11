@@ -71,6 +71,7 @@ function enterPrincipal(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -324,6 +325,7 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -331,6 +333,7 @@ function enterNoPluginNude(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/principal/bare.jpg');
   scene.text('Once you walk over to her, Miss Volkov bends you over before she pulls up your skirt.');
   scene.text('She pauses. "Where are your panties?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Feign innocence', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
@@ -418,6 +421,7 @@ function enterPluginPanties(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/plug.jpg');
   scene.text('Once you walk over to her, Miss Volkov bends you over and pulls up your skirt and pulls down your panties, but stops when she sees your buttplug.');
   scene.text('"Why do you have <i>this</i>, young lady?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
@@ -507,6 +511,7 @@ function enterPluginNude(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/plug.jpg');
   scene.text('Once you walk over to her, Miss Volkov bends you over. She pulls up your skirt, but pauses when she sees your bare ass stuffed with your plug.');
   scene.text('"Where are your panties? And why do you have <i>that</i> inside you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
@@ -606,6 +611,7 @@ function enterDetPunishment1(s: GameState, scene: SceneBuilder): void {
   scene.text('Hesitantly, you both slowly remove all your clothes. Once you\'re both naked, Miss Volkov motions you over. As soon as you\'re within arm\'s reach, she grabs you and pulls you across her lap. She then proceeds to spank your bare ass until your cheeks are cherry red and stinging.');
   // TODO-QSP: dynamic text: <<$rand_girl>> takes a seat on the couch and silently watches.
   scene.text(`${((s as any).rand_girl ?? 0)} takes a seat on the couch and silently watches.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -650,6 +656,7 @@ function enterWhore(s: GameState, scene: SceneBuilder): void {
   scene.text('When you hesitate, she looks at you sternly. "It\'s either this or I call your parents right now and tell them why you\'re being expelled from school."');
   scene.text('A cold chill runs down your spine at the thought. Unwilling to test her and with little choice in the matter, you strip off your clothes. Once you\'re down to just your shoes and socks, she pulls you across her lap and starts giving your bare ass a hard spanking with her hand. She hits you with full force every single time and keeps it up until her own hand starts to sting and she stops. You\'re starting to think you\'re done then she grips you by the hair and bends you over her desk instead.');
   qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
+  // TODO-QSP: end
   scene.actions([
     { label: 'She takes out the paddle', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore1.jpg');
@@ -715,6 +722,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
   (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'humiliation', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take it deep', handler: (st: GameState) => {
     qspCall(s, 'pain', '', 5, 'asshole', 'ache');
@@ -777,6 +785,7 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
   scene.text('Mr. Ivanov lets go of you. "I caught her in the bathroom doing some kind of drugs, but she flushed them down the toilet before I could get them."');
   scene.text('You\'re about to say something, but one look from Miss Volkov silences you. You know your only chance is if she believes you, and disobeying her won\'t help.');
   scene.text('She looks at him, and then at you. "This is a very serious offence. Is this true?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Admit it', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -843,6 +852,7 @@ function enterSuspended(s: GameState, scene: SceneBuilder): void {
   scene.text('She grabs your arm and drags you out of the school, lecturing you the whole way home. In fact, she never stops talking until she drops you off at the apartment.');
   scene.text('"I have to get back to work, so make yourself useful for once and clean this place up!"');
   scene.text('She walks out and slams the door before you can reply.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['korrPar', ''] },
   ]);

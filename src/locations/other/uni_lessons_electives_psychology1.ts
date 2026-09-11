@@ -42,6 +42,7 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_lessons_electives_psychology1', 'psychology_101_listen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_psychology1', 'psychology_101_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_psychology1', 'psychology_101_talk'] },
@@ -56,6 +57,7 @@ function enterPsychology_101Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Kucherov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
@@ -76,6 +78,7 @@ function enterPsychology_101NoAttention(s: GameState, scene: SceneBuilder): void
   // TODO-QSP: close all
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Kucherov\'s lecture is fairly interesting, but you don\'t find it that engaging. You end up having a hard time focusing on the class.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -95,6 +98,7 @@ function enterPsychology_101Talk(s: GameState, scene: SceneBuilder): void {
       { label: 'Kendra', goto: ['uni_lessons_electives_psychology1', 'psychology_101_talk_kendra_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Albina', goto: ['uni_lessons_electives_psychology1', 'psychology_101_talk_albina'] },
     { label: 'Mia and Yana', goto: ['uni_lessons_electives_psychology1', 'psychology_101_talk_mia_yana'] },
@@ -131,6 +135,7 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
   }, goto: ['uni_lessons_electives_psychology1', 'psychology_102_listen'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', goto: ['uni_lessons_electives_psychology1', 'psychology_102_no_attention'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_psychology1', 'psychology_102_talk'] },
@@ -145,6 +150,7 @@ function enterPsychology_102Listen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You listen attentively to Professor Kucherov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
@@ -163,6 +169,7 @@ function enterPsychology_102Listen(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_102NoAttention(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/bored.jpg');
   scene.text('Professor Kucherov\'s lecture is fairly interesting, but you don\'t find it very engaging. You end up having a hard time focusing on the class.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -181,6 +188,7 @@ function enterPsychology_102Talk(s: GameState, scene: SceneBuilder): void {
       { label: 'Kendra', goto: ['uni_lessons_electives_psychology1', 'psychology_102_talk_kendra_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Albina', goto: ['uni_lessons_electives_psychology1', 'psychology_102_talk_albina'] },
     { label: 'Mia and Yana', goto: ['uni_lessons_electives_psychology1', 'psychology_102_talk_mia_yana'] },
@@ -209,6 +217,7 @@ function enterPsychology_101TalkKendra_1(s: GameState, scene: SceneBuilder): voi
     scene.text('She smiles. "Yes, I have many sex slaves here, and I can train you to serve me well. If you\'re interested, come to my dorm room. It\'s on the eighth floor of the east dorm, room 808."');
     scene.text('She ignores you for the rest of the class, leaving you to wonder if you should visit her dorm room and see what she was talking about...');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -249,6 +258,7 @@ function enterPsychology_101TalkKendra_2(s: GameState, scene: SceneBuilder): voi
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -277,6 +287,7 @@ function enterPsychology_102TalkKendra_1(s: GameState, scene: SceneBuilder): voi
     scene.text('She smiles. "Yes, I have many sex slaves here, and I can train you to serve me well. If you\'re interested, come to my dorm room. It\'s on the eighth floor of the east dorm, room 808."');
     scene.text('She ignores you for the rest of the class. You wonder if you should visit her dorm room and see what she was talking about...');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -317,6 +328,7 @@ function enterPsychology_102TalkKendra_2(s: GameState, scene: SceneBuilder): voi
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -342,6 +354,7 @@ function enterPsychology_101TalkKatja(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -367,6 +380,7 @@ function enterPsychology_102TalkKatja(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -392,6 +406,7 @@ function enterPsychology_101TalkVicky(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -417,6 +432,7 @@ function enterPsychology_102TalkVicky(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -450,6 +466,7 @@ function enterPsychology_101TalkAlbina(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -483,6 +500,7 @@ function enterPsychology_102TalkAlbina(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -518,6 +536,7 @@ function enterPsychology_101TalkMiaYana(s: GameState, scene: SceneBuilder): void
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -553,6 +572,7 @@ function enterPsychology_102TalkMiaYana(s: GameState, scene: SceneBuilder): void
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_psychology1', 'psychology_101_events'] },
   ]);
@@ -602,6 +622,7 @@ function enterPsychology_101Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
   ]);
@@ -617,6 +638,7 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
   scene.text('With class finished, everyone gets up and heads for the exit. You glance over once more at Kendra, who motions for you to follow. Once the class clears out, she sits on the professor\'s desk while the boy leans against the desk.');
   scene.text('"What did you want, mistress?" you obediently ask.');
   scene.text('Kendra glances at the boy, then you. "I told my friend here what a good little white slave slut you are, so you\'re going to show him just how well you obey me."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     { label: 'Wait for her to answer', handler: (st: GameState) => {

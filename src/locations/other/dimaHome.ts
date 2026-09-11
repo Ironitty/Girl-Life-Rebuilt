@@ -52,6 +52,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -62,6 +63,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/hallway.jpg');
   scene.text('You walk into the entrance hall of Dimka\'s house, noticing that it is tastefully decorated. There is a small closet for your coat with a set of shelves and a mirror. This room leads to all other areas of the house.');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave Dimka\'s home</b>', goto: ['pav_residential', ''] },
     { label: 'Living Room', goto: ['dimaHome', 'livingroom'] },
@@ -83,6 +85,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter a half bathroom with a large sink area and hardwood floors. The toilet sits along the far wall. It all looks very spotless. The main bathroom with the tub and shower must be upstairs, you assume.');
   scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['dimaHome', 'hallway'] },
   ]);
@@ -96,6 +99,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Living room</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/livingroom.jpg');
   scene.text('The spacious living room is very clean and tidy. Everything appears perfectly in place, the couch is a large L shape, with shelves set against the back. Several very large windows provide a great view of the manicured lawn. Hanging on the main wall above the fireplace is a huge flat screen TV. You are astonished by how crisp and stylish everything seems. Nothing like your own home.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the living room', goto: ['dimaHome', 'hallway'] },
   ]);
@@ -121,6 +125,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the kitchen', goto: ['dimaHome', 'hallway'] },
   ]);
@@ -154,6 +159,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +170,7 @@ function enterHallway2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/hallway1.jpg');
   scene.text('You enter the long upstairs hallway of Dimka\'s home. It displays a warm, welcoming decor. This hall leads to all the other rooms on the second floor.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go downstairs', goto: ['dimaHome', 'hallway'] },
     { label: 'Dimka\'s Room', goto: ['dimaHome', 'dimkaroom'] },
@@ -247,6 +254,7 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['dimaHome', 'hallway2'] },
   ]);
@@ -281,6 +289,7 @@ function enterDimkaroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Dimka\'s room', goto: ['dimaHome', 'hallway2'] },
   ]);
@@ -294,6 +303,7 @@ function enterDimkaparents(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Dimka\'s parent\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/parentsroom.jpg');
   scene.text('You enter the master bedroom and it just as clean and neat as the rest of the home. The furniture is all highly polished wood. You feel almost overwhelmed by how beautifully the room is decorated.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -366,6 +376,7 @@ function enterDimkaMasterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'bteeth');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['dimaHome', 'dimkaparents'] },
   ]);
@@ -379,6 +390,7 @@ function enterGuest(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Guest Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/guestroom.jpg');
   scene.text('You enter the guest bedroom and it just as clean and neat as the rest of the home. The furniture is all highly polished wood. You feel almost overwhelmed by how beautifully the room is decorated.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -401,6 +413,7 @@ function enterBasement(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Basement</b></center>');
   scene.img('images/locations/pavlovsk/resident/dimkahome/basement.jpg');
   scene.text('You walk down the stairs into the basement, even the basement in this place is nice. A door leads off to the utility room and another leads off to what looks like a fairly large part of the basement.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back upstairs', goto: ['dimaHome', 'hallway'] },
     { label: 'Try the door', handler: (st: GameState) => {
@@ -428,6 +441,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You smile back, "I'm <<$pcs_firstname>> but you can call me <<$pcs_nickname>>. I...
   scene.text(`You smile back, "I'm ${((s as any).pcs_firstname ?? 0)} but you can call me ${((s as any).pcs_nickname ?? 0)}. I'm in the same class as Dimka."`);
   scene.text('Uncertain how to react she replies back, "O-Oh, hello, I\'m Olya and am Dimka\'s mother. Please take a seat, let me make some tea."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a seat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -484,6 +498,7 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
   scene.text('You look worryingly at her, "I would like to but I have to talk to you about something."');
   // TODO-QSP: dynamic text: Olya looks at you in fear, "What's wrong <<$pcs_nickname>>? Did anything happen ...
   scene.text(`Olya looks at you in fear, "What's wrong ${((s as any).pcs_nickname ?? 0)}? Did anything happen to you?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -523,6 +538,7 @@ function enterStudy1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Noticing you, he stops and looks towards you, "Hello <<$pcs_nickname>> What can ...
   scene.text(`Noticing you, he stops and looks towards you, "Hello ${((s as any).pcs_nickname ?? 0)} What can I help you with?"`);
   scene.text('You stumble a little as you\'re surprised that the man knows your name, as you\'ve never met him before in your life.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'How do you know my name?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -560,6 +576,7 @@ function enterStudy2(s: GameState, scene: SceneBuilder): void {
   scene.text('He looks up indifferent towards you, "And how can I help you?"');
   scene.text('You\'re taken a back a little by his brashness, "H-Hi, I didn\'t mean to bother you, I was looking for Dimka."');
   scene.text('The man let\'s out a loud sigh, "You won\'t find him here. He\'s probably somewhere else around. As you should be."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sorry to have bothered you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -585,6 +602,7 @@ function enterStudy3(s: GameState, scene: SceneBuilder): void {
   scene.text('Noticing it\'s you, Leonid open-hearteningly welcomes you, "Come in my dear, it\'s been a while since I\'ve seen you last. Have you been avoiding me?" he teasingly says.');
   scene.text('Smiling, "No not at all, I\'ve just been busy with school and Dimka." you reply.');
   scene.text('"I understand, bet you and Dimka have been having fun with each other?" Leonid asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'How come?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -674,6 +692,7 @@ function enterStudy4(s: GameState, scene: SceneBuilder): void {
   scene.text('Seeing you once again entering his study, Dimka\'s father irritably ask you, "What are you doing back here again? Didn\'t Dimka tell you that this room is off limits?"');
   scene.text('You nod, "Yes, he did but…"');
   scene.text('The father frowns as he continues on, "So what do you want? I don\'t have time to deal with your issues…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -747,6 +766,7 @@ function enterDimkaChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make small talk', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A1', 1);
@@ -1300,6 +1320,7 @@ function enterDimkaMakeout(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'To your knees', goto: ['dimaHome', 'dimka_knees'] },
   ]);
@@ -1359,6 +1380,7 @@ function enterDimkaSeduce(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make out', goto: ['dimaHome', 'dimka_makeout2'] },
   ]);
@@ -1417,6 +1439,7 @@ function enterDimkaMakeout2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'To your knees', goto: ['dimaHome', 'dimka_knees'] },
   ]);
@@ -1435,6 +1458,7 @@ function enterDimkaKnees(s: GameState, scene: SceneBuilder): void {
   scene.text('With you undressed he pulls you up to stand with him, giving you another kiss. Then he pushes you down roughly to your knees as he pulls his shirt off. You know what he wants, so you start unbuttoning his pants. You tentatively pull his dick free and start stroking it with your hand. It doesn\'t take very long till it is rock-hard and pointing at your mouth.');
   qspCall(s, 'arousal', 'hj', 3, 'unknown');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A1', 3);

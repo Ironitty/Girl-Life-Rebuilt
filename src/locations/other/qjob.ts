@@ -181,6 +181,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -219,6 +220,7 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have some fun with her', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 2000);
@@ -490,6 +492,7 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -27,6 +27,7 @@ function enterSlyHouseIntro_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Follow him', goto: ['Zvereva_Sly_events', 'Sly_house_intro_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -42,6 +43,7 @@ function enterSlyHouseIntro_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     // TODO-QSP: act 'Refuse': gt 'Zvereva_Sly_events', 'first_refuse'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Submit', goto: ['Zvereva_Sly_events', 'submit'] },
   ]);
@@ -68,6 +70,7 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m a virgin, <i>Master</i>."');
     scene.text('"Good, that means you\'re unspoiled. Before today is done, you won\'t be able to say that anymore."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Insist', handler: (st: GameState) => {
     ((s as any).slyQW ?? {})['virgin'] = 2;
@@ -107,6 +110,7 @@ function enterFirstRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('He simply raises his hand again, making you flinch back. "If you have at least half a brain between those slappable cheeks, I would kneel. Now."');
   qspCall(s, 'pain', '', 3, 'cheeks', 'slap');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse again', goto: ['Zvereva_Sly_events', 'second_refuse'] },
     { label: 'Sullenly kneel', goto: ['Zvereva_Sly_events', 'submit'] },
@@ -122,6 +126,7 @@ function enterSecondRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('"That one will leave a mark. Not off to a good start, are you? The next one will be a fist, in a place that won\'t bruise."');
   qspCall(s, 'pain', '', 9, 'cheeks', 'slap');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sullenly kneel', goto: ['Zvereva_Sly_events', 'submit'] },
   ]);
@@ -151,6 +156,7 @@ function enterSubmit(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Zvereva_Sly_sex', 'hj_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,6 +218,7 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);

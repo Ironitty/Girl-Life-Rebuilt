@@ -16,6 +16,7 @@ function enterGeneralEducation_202(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Kovalyov enters the classroom and closes the door before turning to the class.');
   scene.text('"Today is your final exam. I hope you\'ve all paid attention in my class and taken notes. Much of your grade will be decided by this one exam." As he talks, he walks around handing out the papers. Once everyone has one, he walks back to the front of the class and looks at the clock on the wall. "You have three hours to complete the test and may begin now."');
   scene.text('You spend all three hours you have on the exam, doing all the parts you\'re positive on before going back to the parts you\'re less sure of to check them again. Once you\'re happy with your work, you hand in your paper as class ends and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -56,6 +57,7 @@ function enterLearningTheories_202(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Pasternak enters the classroom and closes the door before turning to the class.');
   scene.text('"Today is your final exam. I hope you\'ve all paid attention in my class and taken notes. Much of your grade will be decided by this one exam." As he talks, he walks around handing out the papers. Once everyone has one, he walks back to the front of the class and looks at the clock on the wall. "You have three hours to complete the test and may begin now."');
   scene.text('You spend all three hours you have on the exam, doing all the parts you\'re positive on before going back to the parts you\'re less sure of to check them again. Once you\'re happy with your work, you hand in your paper as class ends and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -96,6 +98,7 @@ function enterPsychologyOfAStudent_201(s: GameState, scene: SceneBuilder): void 
   scene.text('You walk into the classroom and see Professor Kovalchuk sitting behind her desk. The rest of your classmates walk in one by one and she smiles at each one as they enter. Once everyone is seated, you find an exam paper sitting on the desk waiting for you.');
   scene.text('"Today is your final exam. If you have paid attention in my class and studied, then you should have no problem passing. It is a very important exam since most of your grade is decided by this paper. Show us what you have learned." She glances at the clock on the wall. "You have three hours to complete the test and may begin now."');
   scene.text('You spend all three hours you have on the exam, doing all the parts you\'re positive on before going back to the parts you\'re less sure of to check them again. Once you\'re happy with your work, you hand in your paper as class ends and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -136,6 +139,7 @@ function enterPatientCare_202(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Kudelina enters the classroom and closes the door before turning to the class.');
   scene.text('"Today is your final exam, so you better have paid attention in my class and taken notes. Most of your grade will be decided by this one exam, so don\'t screw it up or you\'ll be sweeping the hospital floor for a living instead." As she talks, she walks around slamming the papers down on your desks. Once everyone has one, she walks back to the front of the class and looks at the clock on the wall. "You have three hours, so make the most of it because that\'s all you\'re getting."');
   scene.text('You spend all three hours you have on the exam, doing all the parts you\'re positive on before going back to the parts you\'re less sure of to check them again. Once you\'re happy with your work, you hand in your paper as class ends and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -176,6 +180,7 @@ function enterAnatomyAndPhysiology_202(s: GameState, scene: SceneBuilder): void 
   scene.text('You walk into the classroom and see Professor Marinova sitting behind her desk. The rest of your classmates walk in one by one and she smiles at each one as they enter. Once everyone is seated, you find an exam paper sitting on the desk waiting for you.');
   scene.text('"Today is your final exam. If you have paid attention in my class and studied, then you should have no problem passing. It is a very important exam since most of your grade is decided by this paper. Show me what you have learned." She glances at the clock on the wall. "You have three hours to complete the test and may begin now."');
   scene.text('You spend all three hours you have on the exam, doing all the parts you\'re positive on before going back to the parts you\'re less sure of to check them again. Once you\'re happy with your work, you hand in your paper as class ends and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);
@@ -216,6 +221,7 @@ function enterDosagesAndPharmaceuticals_102(s: GameState, scene: SceneBuilder): 
   scene.text('You walk into the classroom and take a seat next to a window. The rest of your classmates walk in one by one before Professor Borisov enters the classroom and closes the door before turning to the class.');
   scene.text('"Most of your grade will be decided by this final exam, so I hope you have all been paying attention," he says as he shuffles around handing out the papers. Once everyone has one, he walks back to the front of the class and looks at the clock on the wall. "You have three hours to complete the test and may begin now."');
   scene.text('You spend all three hours you have on the exam, doing all the parts you\'re positive on before going back to the parts you\'re less sure of to check them again. Once you\'re happy with your work, you hand in your paper as class ends and leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img(`images/locations/city/island/university/classroom/exam${Math.floor(Math.random() * 3) + 1}.jpg`);

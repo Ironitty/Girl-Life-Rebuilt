@@ -24,6 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'gloryhole', 'start_options');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -42,6 +43,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'gloryhole', 'start_options');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,6 +68,7 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up and leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -150,6 +153,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -318,12 +322,14 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterVirgin(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/gloryhole/sex/ghvirgin1.mp4');
   scene.text('You tentatively reach out and gently touch the dick, half afraid to, but also half wanting to.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Quickly leave the stall', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -405,6 +411,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['vaginal'] > 0  ||  ((s as any).stat ?? 0)?.['anal'] > 0) {
     // TODO-QSP: act 'Undress': gt 'gloryhole', 'ghsex'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to Suck', handler: (st: GameState) => {
     scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${Math.floor(Math.random() * 5) + 1}.mp4`);
@@ -492,6 +499,7 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Re-dress and suck it instead', goto: ['gloryhole', 'blowjob'] },
   ]);
@@ -510,6 +518,7 @@ function enterCondom(s: GameState, scene: SceneBuilder): void {
     (s as any).sexcontra = 3;
     scene.text('You take a condom and put it on the stranger\'s dick.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gloryhole', 'pussy'] },
   ]);
@@ -623,6 +632,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed', goto: ['gloryhole', 'return'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -634,6 +644,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'clit_finger', 5, 'unknown', 'sub');
   qspCall(s, 'arousal', 'anal', (-5), 'unknown', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep Going', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

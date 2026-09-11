@@ -5,6 +5,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStat(s: GameState, scene: SceneBuilder): void {
+  return;
+  // TODO-QSP: end
   if (((s as any).locArgs?.[1] ?? 0) === 'cikl') {
     if (((s as any).week ?? 0) === 1) {
       // TODO-QSP: killvar 'npc_reaction_weekly'
@@ -15,11 +21,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (!isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
   }
-  scene.build();
-}
-
-function enterStat(s: GameState, scene: SceneBuilder): void {
-  return;
   scene.build();
 }
 
@@ -93,6 +94,7 @@ function enterGeneral(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +139,7 @@ function enterBimboLook(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +184,7 @@ function enterGothLook(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -225,6 +229,7 @@ function enterPunkLook(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -269,6 +274,7 @@ function enterClothesThinnes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -313,6 +319,7 @@ function enterShortSkirt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -357,6 +364,7 @@ function enterPiercing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -401,6 +409,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +454,7 @@ function enterTattoo(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -489,6 +499,7 @@ function enterCumOnFace(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,6 +544,7 @@ function enterCumOnClothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -577,6 +589,7 @@ function enterPregnant(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -621,6 +634,7 @@ function enterTan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -665,6 +679,7 @@ function enterStrong(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -709,6 +724,7 @@ function enterFit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

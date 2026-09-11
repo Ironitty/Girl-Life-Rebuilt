@@ -29,6 +29,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,6 +65,7 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slyQW ?? 0)?.['met'] === 2) {
     // TODO-QSP: act 'Silvestr''s bedroom': gt 'Zvereva_house', 'sly_bedro'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -100,6 +102,7 @@ function enterLivroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Silvestr'] === 5) {
     scene.text('<a href="exec:gt \'Zvereva_Sly_events\',\'sly_house_chat\'">Silvestr</a> is here, watching TV.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -134,6 +137,7 @@ function enterKitch(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'kitchen', 'shared');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -154,6 +158,7 @@ function enterBathr(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Silvestr'] === 3) {
     scene.text('Silvestr is in the shower right now.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -179,6 +184,7 @@ function enterChrisBedro(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Christina'] === 22) {
     scene.text('<a href="exec:gt \'Zvereva_house_events\', \'bed_chat\'">Christina</a> is hanging out here, looking bored.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);
@@ -198,6 +204,7 @@ function enterSlyBedro(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Silvestr'] === 7) {
     scene.text('<a href="exec:gt \'Zvereva_Sly_events\',\'sly_house_chat\'">Silvestr</a> is hanging out in here.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['Zvereva_house', 'hallw'] },
   ]);

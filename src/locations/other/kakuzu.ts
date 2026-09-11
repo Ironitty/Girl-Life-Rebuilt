@@ -15,6 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Mansion Kakuzu</b></center>');
   scene.img('images/locations/city/industrial/mansion/mansion.jpg');
   scene.text('Old gloomy mansion, which even at the local gangs don\'t approach out of fear and sincerely believe that something evil lives there. No need to have some sort of skills that make your system, from the death blows.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the mansion', goto: ['kakuzu', 'mansion'] },
     { label: 'Leave', goto: ['city_industrial', ''] },
@@ -28,6 +29,7 @@ function enterMansion(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Mansion Kakuzu</b></center>');
   scene.img('images/locations/city/industrial/mansion/mansion1.jpg');
   scene.text('The room sits Kakuzu not paying any attention to you');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Kakuzu', goto: ['kakuzu', 'mansion1'] },
     { label: 'Leave', goto: ['kakuzu', 'start'] },
@@ -186,6 +188,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['kakuzu', 'mansion'] },
   ]);

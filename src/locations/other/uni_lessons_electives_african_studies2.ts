@@ -15,6 +15,7 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
   scene.text('With class finished, everyone gets up and heads for the exit. You glance over once more at Kendra, who motions for you to follow. Once the class clears out, she sits on the professor\'s desk while the boy leans against the desk.');
   scene.text('"What did you want, mistress?" you obediently ask.');
   scene.text('Kendra glances at the boy, then you. "I told my friend here what a good little white slave slut you are, so you\'re going to show him just how well you obey me."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     { label: 'Wait for her to answer', handler: (st: GameState) => {
@@ -314,6 +315,7 @@ function enterAfricanStudiesDjibrilNush(s: GameState, scene: SceneBuilder): void
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -326,6 +328,7 @@ function enterAfricanStudiesDjibrilNushBj(s: GameState, scene: SceneBuilder): vo
   scene.text(`Anushka are you both get down on your knees, so Djibril long massive thick black cock is right in your faces. You open up your mouth and take the end of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick in your mouth as you start to suck on it. Anushka for her part kneels next to you and watches you suck his black dick, she seems fairly eager for her turn to suck it. "Oh fuck yeah, that feels so good." Djibril says as he moans slightly.`);
   qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID ?? 0), 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give his dick to her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff10.jpg');
@@ -378,6 +381,7 @@ function enterAfricanStudiesDjibrilNushRidehim(s: GameState, scene: SceneBuilder
   scene.text(`You straddle him reverse cowgirl style and slowly lower yourself down, until the you feel the tip of his wet dick, press against your slit. You lower yourself a bit more and you feel his wet dick easily slide into your wet pussy. As you keep going you feel his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick stretch your pussy, as it slides in. Anushka places her hand on your back as she says to you. "That's it, take his massive black cock into your white pussy, let it stretch you out, that's it. Keep going." With her encouragement you slide down until his dick is balls deep in your pussy as you start to slowly ride him.`);
   qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride his dick some more', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff15.jpg');
@@ -431,6 +435,7 @@ function enterAfricanStudiesDjibrilNushGetfucked(s: GameState, scene: SceneBuild
   qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID ?? 0));
   qspCall(s, 'arousal', 'clit_finger', (-2), ((s as any).npcID1 ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked some more', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff20.jpg');
@@ -481,6 +486,7 @@ function enterAfricanStudiesDjibrilNushCleanup(s: GameState, scene: SceneBuilder
   scene.text('Djibril finishes getting dressed first, once he is he says. "Thanks girls, that was amazing, maybe we can do it again soon."');
   scene.text('Anushka glances to you for a moment and smirks before looking back to him. "Sure maybe, if your lucky… or maybe not."');
   scene.text('He barks a slight laugh. "Ok sure, well I\'m going to get going, see you girls around." With that he leaves out of the room, you finish getting dressed before Anushka finishes, as she takes some time to check on her makeup and fix it up a bit. You could just be on your way, or you could hang around and see if Anushka wants to do something now.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     { label: 'Wait for Anushka', handler: (st: GameState) => {

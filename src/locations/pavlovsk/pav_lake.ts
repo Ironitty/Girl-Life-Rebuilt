@@ -243,6 +243,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Pavlovsk', handler: (st: GameState) => {
     if (((s as any).konki_cloth ?? 0) === 1) {
@@ -281,6 +282,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLostClothing(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your clothes back on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -521,6 +523,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -556,6 +559,7 @@ function enterSwimming(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the water.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the water', goto: ['pav_lake', ''] },
   ]);
@@ -568,6 +572,7 @@ function enterSki(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/lake/skiing_2.jpg');
   scene.text('As you ski, you take in the breathtaking views of the snow-covered trees, the crisp blue sky above and all the people ice skating out on the lake. The sound of your skis slices through the snow filled air. You feel a sense of freedom and exhilaration as you carve your way around the lake. The cold air fills your lungs and you can\'t help but smile, feeling alive and free.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish skiing', goto: ['pav_lake', ''] },
   ]);
@@ -582,6 +587,7 @@ function enterCarSex(s: GameState, scene: SceneBuilder): void {
   scene.text('It wasn\'t the best sex you\'ve had, but at least you have some clothes to wear now. With a sigh of relief, you straighten the clothes and feel ready to take the day on again, hoping your own clothes will turn up at some point.');
   qspCall(s, 'arousal', 'vaginal', 10, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_lake', ''] },
   ]);
@@ -593,6 +599,7 @@ function enterSkatingStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/locations/pavlovsk/lake/katok0,${Math.floor(Math.random() * 4) + 0}.jpg`);
   scene.text('You slowly make your way over to the ice rink where a lot of people are already skating. Some of them are really good and fly around the lake, while others carefully shuffle around, doing their best to just stay on their feet without falling.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the rink', goto: ['pav_lake', ''] },
     { label: 'Skate on the rink', goto: ['pav_lake', 'skating'] },
@@ -657,6 +664,7 @@ function enterSkating(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pav_lake', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -685,6 +693,7 @@ function enterSchoolMates(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_lake', ''] },
   ]);
@@ -724,6 +733,7 @@ function enterBeachHangout(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile and take a seat with them, but get mixed responses. The ones you know better seem somewhat friendly, but the others range from indifference to annoyance. Many choose just to ignore you.');
     scene.text('Some are tanning, others sit around talking, and some horse around. You spend some time trying to get involved in the conversations going on, but meet limited success. You can use this opportunity to get to know one of them better if you want.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_lake', ''] },
     { label: 'Talk to one of them', goto: ['pav_beach_chat', 'beach_hangout'] },
@@ -735,6 +745,7 @@ function enterKlake(s: GameState, scene: SceneBuilder): void {
   (s as any).KsenyaQW = 2;
   scene.img('images/characters/pushkin/ksenya/lake2.jpg');
   scene.text('As you head to the lake you see a figure walking around the water. It\'s Ksenya. She is in a black negligee and nothing else. You walk up to her and see her mother taking pictures of her. You stand back for a bit watching her work.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pushkin/ksenya/lake1.jpg');

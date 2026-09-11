@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSetPavDatesActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'natbel_dates_repeat', 'set_small_pav_dates_acts');
   qspCall(s, 'natbel_dates_repeat', 'set_big_pav_dates_acts');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -20,6 +21,7 @@ function enterSetSmallPavDatesActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the cafe', goto: ['natbel_dates_repeat', 'go_to_del_parco'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go for a walk', goto: ['natbel_dates_repeat', 'go_for_walk'] },
     { label: 'Go to the park', goto: ['natbel_dates_repeat', 'go_to_park'] },
@@ -35,6 +37,7 @@ function enterSetBigPavDatesActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'natbel_dates_repeat', 'set_shopping_date_act');
     qspCall(s, 'natbel_dates_repeat', 'set_celebrate_act');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +49,7 @@ function enterGoForWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('You both head off as friends to hang out together whilst going on a walk around town. On the way, Natasha says, "I like walking around with you as I\'m not into sports too much, and I do like isn\'t the exercise. It\'ll help keep my figure if I stay in shape."');
   scene.text('You look at her and feel that a compliment is in order as she has a lovely figure. "Well, Natasha, I think that you have a lovely figure! Umm… Maybe you might like to go for a jog with me sometime?"');
   scene.text('Natasha is unsure about your suggestion, and you barely get a "Yeah, maybe…" response. You think that at least she didn\'t say no, and it might be fun.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suggest going to the cafe', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/walk2.jpg');
@@ -127,6 +131,7 @@ function enterGoToPark(s: GameState, scene: SceneBuilder): void {
   scene.text('You decide to spend quality time chatting, so you ask Natasha about her interests. "So Natasha, I believe you are interested in fashion and makeup?"');
   scene.text('Natasha gives you a wry smile. "Well, yes, I love fashion and would love to get some new clothes as I know that I\'m not viewed too kindly by some of our classmates, however, regrettably, we simply don\'t have much money, and I have to help my mum out as she works hard, but the pay is poor, and we struggle."');
   scene.text('You know many fellow students can be assholes, especially to nerds and outcasts. Still, you also know some of them are not, despite what Natasha might think.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Disagree', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/park2.jpg');
@@ -179,6 +184,7 @@ function enterGoToDelParco(s: GameState, scene: SceneBuilder): void {
   scene.text('You both head to the park and walk around. Enjoying the open space and the greenery, which is in marked contrast to your estate, whilst making the most of each other\'s company as friends. After a while, you suggest you go to Del Parco for a drink and get a couple of Kvass. You pay \' + $func(\'money\', \'string_price\', 240) + \' for both yours and Natasha\'s. It\'s a charming restaurant, and you both love it there.');
   // TODO-QSP: dynamic text: Natasha expresses her gratitude to you. "Thanks for this, <<$pcs_nickname>>. You...
   scene.text(`Natasha expresses her gratitude to you. "Thanks for this, ${((s as any).pcs_nickname ?? 0)}. You really didn't have to."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be friendly', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/delparco2.jpg');
@@ -223,6 +229,7 @@ function enterGoToParkAndWork(s: GameState, scene: SceneBuilder): void {
   scene.text('However, you have a brief chat about your interests, and Natasha responds, "Well… mine is mainly fashion."');
   scene.text('When she sees you looking at her and not responding, she continues, "Although I\'m in the nerds\' clique, I don\'t really fit in with them and don\'t consider myself at home there. I think there\'s more to life than studying and the games they play on their games night, so I don\'t join them."');
   scene.text('You are unsure how to respond but do your best to reassure her. Giving her a friendly smile, you say, "Well, look, I\'m your friend and let\'s see where the journey takes us." After an hour, you are both a bit richer, and you can…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to her room', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -241,6 +248,7 @@ function enterSetDiscoDateAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -289,6 +297,7 @@ function enterDiscoDate1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -309,6 +318,7 @@ function enterDiscoDate2(s: GameState, scene: SceneBuilder): void {
   scene.text('She smiles and nods at you. "Yes it is and that\'s thanks to you. She gives you a quick kiss on the cheek.');
   scene.text('You take her by the hand and walk back to her apartment.');
   scene.text('When you reach her door, she pulls you in close.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodnight', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -430,6 +440,7 @@ function enterDiscoDate3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Good morning sleepyhead, did you sleep well?"');
   scene.text('She rubs her eyes and yawns then replies. "Yeah and you?"');
   scene.text('"Yep, nice dreams too." You say with a cheeky grin and a wink which makes Natasha blush.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Got to go', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
@@ -472,6 +483,7 @@ function enterDiscoDate4(s: GameState, scene: SceneBuilder): void {
   scene.text('You give her an affectionate smile as you head into the bathroom returning 15 minutes later having got showered and brushed your hair.');
   qspCall(s, 'din_van', 'showerdin');
   (s as any).pcs_hairbsh = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -487,6 +499,7 @@ function enterDiscoDate5(s: GameState, scene: SceneBuilder): void {
   scene.text('Once back in the room you quickly get dressed and go to join Natasha in the kitchen just as she\'s finishing breakfast.');
   scene.text('You both tuck in, no doubt hungry from your early morning exercise.');
   scene.text('After a pleasant breakfast and a nice chat you give Natasha a final kiss before leaving telling her you\'ll see her soon.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
   ]);
@@ -507,6 +520,7 @@ function enterSetCityRaceDateAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -522,6 +536,7 @@ function enterCityRaceDate1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: She looks a little crestfallen. "Well okay <<$pcs_nickname>> but at least let me...
   scene.text(`She looks a little crestfallen. "Well okay ${((s as any).pcs_nickname ?? 0)} but at least let me treat us to breakfast and a meal later tonight. It's just a little something nice for us.`);
   scene.text('"Okay Natasha that\'d be lovely thanks." You say with a smile.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Train journey', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -754,6 +769,7 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'din_van', 'tampon');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use mirror', goto: ['mirror', 'start'] },
     { label: 'Change outfit', goto: ['wardrobe', 'start'] },
@@ -781,6 +797,7 @@ function enterCityRaceDate2(s: GameState, scene: SceneBuilder): void {
     scene.text(`That brings a smile "A bit of window shopping sounds like a good plan to me; we can get to try on some stuff too. Come on ${((s as any).pcs_nickname ?? 0)} let's go."`);
     scene.text('She doesn\'t catch you rolling your eyes or the smirk on your face as you head out.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to mall', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -929,6 +946,7 @@ function enterCityRaceDate3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well I was going to spend it looking at the shops in the mall but we did that yesterday. I have somewhere else in mind but you\'ll need to wait and see where."');
   // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>."
   scene.text(`"Okay ${((s as any).pcs_nickname ?? 0)}."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up sex', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -957,6 +975,7 @@ function enterCityRaceDate4(s: GameState, scene: SceneBuilder): void {
   scene.text('"That\'d be nice, thank you. While you\'re doing that I\'ll get showered and dressed." You give her an affectionate kiss as you head into the bathroom returning 15 minutes later having got showered, brushed your teeth and combed your hair.');
   scene.text('Once back in the room you quickly get dressed just as breakfast arrives.');
   scene.text('You both tuck in, no doubt hungry from your early morning exertions.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Hermitage museum', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -998,6 +1017,7 @@ function enterCityRaceDate5(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Yes ${((s as any).pcs_nickname ?? 0)}. That was really nice thank you. The buildings are beautiful in themselves let alone what's inside. It'd definitely somewhere I'd like to come back to as there's plenty more to see."`);
   scene.text('"Yes, I\'d like that too and you\'re right about the building, it\'s stunning, even at night." You show her a picture of it all lit up.');
   scene.text('"Anyway, best we get going."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the train home', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -1033,6 +1053,7 @@ function enterSetShoppingDateAct(s: GameState, scene: SceneBuilder): void {
       { label: 'Go window shopping (1:30)', goto: ['natbel_dates_repeat', 'shopping_date1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1044,6 +1065,7 @@ function enterShoppingDate1(s: GameState, scene: SceneBuilder): void {
   scene.text('You know how much Natasha likes fashion and browsing for clothes, especially now that she\'s debt free and has a few nice outfits so you ask her if she wants to spend an hour or so with you browsing.');
   scene.text('She happily accepts and rushes to get ready then grabs you by the hand and almost drags you out of the room and down the stairs as you head off to the shops.');
   scene.text('Once there you both browse various windows to get an idea of what they\'ve got before heading into a shop.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head inside a clothes shop', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -1143,6 +1165,7 @@ function enterSetCelebrateAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1158,6 +1181,7 @@ function enterCelebrateRunnerChampionship1(s: GameState, scene: SceneBuilder): v
   scene.text('She catches you by surprise but you quickly recover and return her kiss.');
   scene.text('After a few moments you break the kiss and tell her to get ready.');
   scene.text('"Well now. That was much nicer than just saying well done!" You say with a grin.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Natasha gets changed and you leave together', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

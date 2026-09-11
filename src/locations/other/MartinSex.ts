@@ -414,6 +414,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -438,6 +439,7 @@ function enterMartinTease(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['MartinSex', 'MartinTease4'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -453,6 +455,7 @@ function enterMartinTease1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'strip');
   qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease2.jpg');
@@ -527,6 +530,7 @@ function enterMartinTease2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I must have forgotten to put it on," you note innocently.');
   qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for a good look', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease2.jpg');
@@ -624,6 +628,7 @@ function enterMartinTease3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'strip');
   qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/tease2.jpg');
@@ -753,6 +758,7 @@ function enterMartinTease4(s: GameState, scene: SceneBuilder): void {
   scene.text('Martin chuckles softly at your nonchalance, but with his eyes glued to your crotch, he replies: "Just curious."');
   qspCall(s, 'arousal', 'foreplay', 1, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A little curiosity doesn\'t hurt', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease2.jpg');
@@ -906,6 +912,7 @@ function enterMartinTeaseDildo(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile at Martin as you slowly push it deeper inside, but involuntary moans are escaping you now.');
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck yourself with your dildo', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/teasedildo2.jpg');

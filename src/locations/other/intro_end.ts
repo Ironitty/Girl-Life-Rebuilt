@@ -34,6 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +51,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['intro_game_start', 'quick_start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +63,7 @@ function enterSetRandomUniCourse(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_admin', 'courses', 'enroll_nursing', 1);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,6 +89,7 @@ function enterSetRandomUniElectives(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -346,11 +350,13 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSgShared(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['intro_game_start', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -358,6 +364,7 @@ function enterUniTg(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
   scene.text('"You\'re awake!" Tatiana says while looking into your eyes.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look at yourself', handler: (st: GameState) => {
     scene.img('images/system/1_openings/1_tf/8.jpg');
@@ -717,6 +724,7 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -724,6 +732,7 @@ function enterCityTg(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
   scene.text('"You\'re awake!" Tatiana says while looking into your eyes.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look at yourself', handler: (st: GameState) => {
     scene.img('images/system/1_openings/1_tf/8.jpg');
@@ -901,6 +910,7 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

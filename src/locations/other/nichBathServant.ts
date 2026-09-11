@@ -30,6 +30,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.build();
 }
 

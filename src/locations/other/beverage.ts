@@ -20,6 +20,7 @@ function enterSetExit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -35,6 +36,7 @@ function enterAfteralcohol(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +52,7 @@ function enterAfterdrink(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +63,7 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You enjoy a drink of water, and<<$mtxt>>
   scene.text(`You enjoy a drink of water, and${((s as any).mtxt ?? 0)}`);
   qspCall(s, 'kit_din', 'fill_bottle');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -71,6 +75,7 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
 function enterBbr(s: GameState, scene: SceneBuilder): void {
   (s as any).food_loc = 0;
   scene.actions([{ label: 'Continue', goto: ['brothel', 'password'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,6 +84,7 @@ function enterWaterText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/barorderwater.jpg');
   // TODO-QSP: dynamic text: You enjoy a drink of water, and<<$mtxt>>
   scene.text(`You enjoy a drink of water, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +101,7 @@ function enterWaterStats(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_cleanup', '', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,6 +111,7 @@ function enterWater(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'water_stats');
   qspCall(s, 'beverage', 'water_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +120,7 @@ function enterOnlyCostWater(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'water_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +129,7 @@ function enterTeaText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/tea.jpg');
   // TODO-QSP: dynamic text: You enjoy a relaxing cup of tea, and<<$mtxt>>
   scene.text(`You enjoy a relaxing cup of tea, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -139,6 +149,7 @@ function enterTeaStats(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_breath = 0;
   ((s as any).teeth ?? {})['caffe_or_tea'] = (((s as any).teeth ?? {})['caffe_or_tea'] ?? 0) + (2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -148,6 +159,7 @@ function enterTea(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'tea_stats');
   qspCall(s, 'beverage', 'tea_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -156,6 +168,7 @@ function enterOnlyCostTea(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'tea_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +177,7 @@ function enterJuiceText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/juice.jpg');
   // TODO-QSP: dynamic text: You enjoy a refreshing juice, and<<$mtxt>>
   scene.text(`You enjoy a refreshing juice, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -184,6 +198,7 @@ function enterJuiceStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -193,6 +208,7 @@ function enterJuice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'juice_stats');
   qspCall(s, 'beverage', 'juice_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -201,6 +217,7 @@ function enterOnlyCostJuice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'juice_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -209,6 +226,7 @@ function enterCoffeeText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/coffee.jpg');
   // TODO-QSP: dynamic text: You enjoy a hot coffee, and<<$mtxt>>
   scene.text(`You enjoy a hot coffee, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -229,6 +247,7 @@ function enterCoffeeStats(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_breath = 0;
   ((s as any).teeth ?? {})['caffe_or_tea'] = (((s as any).teeth ?? {})['caffe_or_tea'] ?? 0) + (5);
   qspCall(s, 'drugs', 'caffeine', 4, 1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -238,6 +257,7 @@ function enterCoffee(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'coffee_stats');
   qspCall(s, 'beverage', 'coffee_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -246,6 +266,7 @@ function enterOnlyCostCoffee(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'coffee_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -254,6 +275,7 @@ function enterEspressoText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/coffee.jpg');
   // TODO-QSP: dynamic text: You enjoy a hot espresso, and<<$mtxt>>
   scene.text(`You enjoy a hot espresso, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -270,6 +292,7 @@ function enterEspressoStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
   qspCall(s, 'drugs', 'caffeine', 2, 5);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -279,6 +302,7 @@ function enterEspresso(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'espresso_stats');
   qspCall(s, 'beverage', 'espresso_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -287,6 +311,7 @@ function enterOnlyCostEspresso(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'espresso_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -295,6 +320,7 @@ function enterKvassText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/kvass.jpg');
   // TODO-QSP: dynamic text: You enjoy a drink of kvass, and<<$mtxt>>
   scene.text(`You enjoy a drink of kvass, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -311,6 +337,7 @@ function enterKvassStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -320,6 +347,7 @@ function enterKvass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'kvass_stats');
   qspCall(s, 'beverage', 'kvass_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -328,6 +356,7 @@ function enterOnlyCostKvass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'kvass_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -336,6 +365,7 @@ function enterMilkshakeText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/milkshake.jpg');
   // TODO-QSP: dynamic text: You enjoy an ice cold milkshake, and<<$mtxt>>
   scene.text(`You enjoy an ice cold milkshake, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -353,6 +383,7 @@ function enterMilkshakeStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +393,7 @@ function enterMilkshake(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'milkshake_stats');
   qspCall(s, 'beverage', 'milkshake_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -370,6 +402,7 @@ function enterOnlyCostMilkshake(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'milkshake_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -378,6 +411,7 @@ function enterEnergyDrinkText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/energy_drink.jpg');
   // TODO-QSP: dynamic text: You enjoy an energy drink, and<<$mtxt>>
   scene.text(`You enjoy an energy drink, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -398,6 +432,7 @@ function enterEnergyDrinkStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '', 2);
   (s as any).pcs_breath = 0;
   qspCall(s, 'drugs', 'caffeine', 4, 1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -407,6 +442,7 @@ function enterEnergyDrink(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'energy_drink_stats');
   qspCall(s, 'beverage', 'energy_drink_text');
   qspCall(s, 'beverage', 'set_exit');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -415,6 +451,7 @@ function enterOnlyCostEnergyDrink(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'energy_drink_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -423,12 +460,14 @@ function enterBeerText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/darkbeer.jpg');
   // TODO-QSP: dynamic text: You drink the beer, enjoying the fresh, mildly bitter taste, and<<$mtxt>>
   scene.text(`You drink the beer, enjoying the fresh, mildly bitter taste, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBeerStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'beer');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -442,6 +481,7 @@ function enterBeer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'beer_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -450,6 +490,7 @@ function enterOnlyCostBeer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'beer_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -458,12 +499,14 @@ function enterWineText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/redwine.jpg');
   // TODO-QSP: dynamic text: You drink some red wine, and<<$mtxt>>
   scene.text(`You drink some red wine, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWineStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'wine');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -477,6 +520,7 @@ function enterWine(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'wine_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -485,6 +529,7 @@ function enterOnlyCostWine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'wine_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -493,12 +538,14 @@ function enterVodkaText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/brothel/barordervodka.jpg');
   // TODO-QSP: dynamic text: The vodka shot disappears like it was only water, and<<$mtxt>>
   scene.text(`The vodka shot disappears like it was only water, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterVodkaStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'vodka');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -512,6 +559,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'vodka_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -520,6 +568,7 @@ function enterOnlyCostVodka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'vodka_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -528,6 +577,7 @@ function enterBlackRussianText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/blackrussian.jpg');
   // TODO-QSP: dynamic text: You drink a Black Russian, and<<$mtxt>>
   scene.text(`You drink a Black Russian, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -535,6 +585,7 @@ function enterBlackRussianStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'drugs', 'alcohol', 'vodka');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -548,6 +599,7 @@ function enterBlackRussian(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'black_russian_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -556,6 +608,7 @@ function enterOnlyCostBlackRussian(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'black_russian_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -564,12 +617,14 @@ function enterScotchText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/scotch.jpg');
   // TODO-QSP: dynamic text: You drink scotch on the rocks, and<<$mtxt>>
   scene.text(`You drink scotch on the rocks, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterScotchStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'scotch');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -583,6 +638,7 @@ function enterScotch(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'scotch_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -591,6 +647,7 @@ function enterOnlyCostScotch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'scotch_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -599,6 +656,7 @@ function enterVodkaMartiniText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/martini.jpg');
   // TODO-QSP: dynamic text: You drink a vodka martini, and<<$mtxt>>
   scene.text(`You drink a vodka martini, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -606,6 +664,7 @@ function enterVodkaMartiniStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'drugs', 'alcohol', 'vodka');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -619,6 +678,7 @@ function enterVodkaMartini(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'vodka_martini_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -627,6 +687,7 @@ function enterOnlyCostVodkaMartini(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'vodka_martini_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -635,12 +696,14 @@ function enterChampagneText(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/drinks/champagne.jpg');
   // TODO-QSP: dynamic text: You drink some champagne, and<<$mtxt>>
   scene.text(`You drink some champagne, and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterChampagneStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'champagne');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -654,6 +717,7 @@ function enterChampagne(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'champagne_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -662,6 +726,7 @@ function enterOnlyCostChampagne(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'champagne_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -670,6 +735,7 @@ function enterCocktailText(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/drinks/cocktail${Math.floor(Math.random() * 4) + 1}.jpg`);
   // TODO-QSP: dynamic text: You drink a fancy cocktail and<<$mtxt>>
   scene.text(`You drink a fancy cocktail and${((s as any).mtxt ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -678,6 +744,7 @@ function enterCocktailStats(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 41) + 10);
   qspCall(s, 'drugs', 'alcohol', 'rum');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +758,7 @@ function enterCocktail(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'beverage', 'cocktail_text');
     qspCall(s, 'beverage', 'set_exit');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -699,6 +767,7 @@ function enterOnlyCostCocktail(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'cocktail_stats');
   scene.text('Added to your order');
   scene.actions([{ label: 'Continue', goto: ['food_menu', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

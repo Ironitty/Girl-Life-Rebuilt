@@ -110,6 +110,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to town', goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +141,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).LariskaQW ?? 0)?.['metAnna'] >= 1) {
     // TODO-QSP: act 'Anna''s Bedroom': gt 'LariskaHome', 'anna_bedroom'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to town', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -174,6 +176,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Lariska'] === 18) {
     scene.text('You see <a href="exec: gt \'LariskaHome\', \'livingroom_clean_1\'">Lariska</a> cleaning.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
   ]);
@@ -187,6 +190,7 @@ function enterLivingroomTv_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'livingroom'] },
   ]);
@@ -200,6 +204,7 @@ function enterLivingroomExercise_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'livingroom'] },
   ]);
@@ -213,6 +218,7 @@ function enterLivingroomClean_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'livingroom'] },
   ]);
@@ -265,6 +271,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
   ]);
@@ -290,6 +297,7 @@ function enterKitchenMeal_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_breath = 0;
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish eating', goto: ['LariskaHome', 'kitchen'] },
   ]);
@@ -303,6 +311,7 @@ function enterKitchenCooking_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the conversation', goto: ['LariskaHome', 'kitchen'] },
   ]);
@@ -316,6 +325,7 @@ function enterKitchenCleaning_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'kitchen'] },
   ]);
@@ -342,6 +352,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'din_van', 'private');
     qspCall(s, 'din_van', 'prvt_pee');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
   ]);
@@ -355,6 +366,7 @@ function enterBathroomCleaning_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaHome', 'bathroom'] },
   ]);
@@ -384,6 +396,7 @@ function enterBathroomJoin_1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['LariskaHome', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -398,6 +411,7 @@ function enterBathroomJoin_2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['LariskaHome', 'bathroom_join_3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the shower', handler: (st: GameState) => {
     (s as any).noshampoo = 1;
@@ -426,6 +440,7 @@ function enterBathroomJoin_3(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'kiss', (-8), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_shower_4.jpg');
@@ -466,6 +481,7 @@ function enterAnnaBedroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_mom_bedroom.jpg');
   scene.text('The japanese styled bedroom is clean and orderly. You see an extra door off to one side.');
   scene.text('There is not much for you to do here at this time.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['LariskaHome', 'hallway'] },
     { label: 'Go into the side room', handler: (st: GameState) => {
@@ -487,6 +503,7 @@ function enterBdsmRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/home_2.jpg');
   scene.text('This room is full of all kinds of scary looking equipment.');
   scene.text('Until you get to know Anna better, you shouldn\'t mess with anything here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['LariskaHome', 'anna_bedroom'] },
   ]);
@@ -651,6 +668,7 @@ function enterLariskaBedroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -667,6 +685,7 @@ function enterLariskaAsleep_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the bed', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -679,6 +698,7 @@ function enterLariskaDressing_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -691,6 +711,7 @@ function enterLariskaCleaning_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -703,6 +724,7 @@ function enterLariskaReading_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -724,6 +746,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You did your homework together and Lariska explained the hard parts to you.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish up', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -767,12 +790,14 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCommunityCenterInvite(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   scene.text('Lariska looks at her watch and says, "It\'s time to go to the sports club."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and leave', goto: ['pav_residential', ''] },
     { label: 'Go with Lariska', handler: (st: GameState) => {

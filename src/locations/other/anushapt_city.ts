@@ -365,6 +365,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -378,6 +379,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/city/island/homes/band_apt/hallway.jpg');
   scene.text('This is the entrance hall to the apartment. It\'s devoid of any furniture and the walls and floor are completely bare. The only thing you can see is a single row of coat hooks by the door, which is mostly empty. Other than that the hall, just has a series of doors leading to the other rooms in the apartment.');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave the apartment</b>', goto: ['city_island', ''] },
     { label: 'Anushka\'s room', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -404,6 +406,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['anushapt_city', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -567,6 +570,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -582,6 +586,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('Against the wall opposite the cabinets is a small table with four chairs, which is covered in bags of chips, papers and other things. You wouldn\'t call the kitchen dirty, but it isn\'t exactly clean either.');
   qspCall(s, 'kit_din', 'fill_bottle');
   qspCall(s, 'kit_din', 'driwater');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['anushapt_city', 'hallway'] },
     { label: 'Look in the fridge', goto: ['anushapt_city', 'fridge'] },
@@ -722,6 +727,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['anushapt_city', 'kitchen'] },
   ]);
@@ -752,6 +758,7 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
   scene.text('She gets up and heads to the kitchen with you, the two of you talking and laughing the whole way.');
   scene.text('As you walk into the kitchen, Anushka points to a refrigerator. "Grab some drinks out of the fridge and anything else good."');
   scene.text('While you are doing that, she grabs a couple of snack cakes and chips from the cabinets, and once you both have your spoils from your raid on the kitchen, you head back to her room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to her room', handler: (st: GameState) => {
     // TODO-QSP: locat['A144'] = 2
@@ -875,6 +882,7 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -886,6 +894,7 @@ function enterArkValRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/homes/band_apt/ark_val_room.jpg');
   scene.text('The room is pretty small, the smallest bedroom in the apartment. In each corner opposite the door is a bed; both are a mess and neither looks like they\'ve ever been made. The walls and even the ceiling are covered in posters along with a few records. Most of the posters are of various bands, but a few are of scantly or completely naked girls, along with one rather large Star Wars poster on the ceiling.');
   scene.text('Between the beds along the back wall are two night stands, one by each bed. Both are pretty cluttered looking, with a single window just between the night stands. Other a closet near the door, the room is otherwise pretty empty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['anushapt_city', 'hallway'] },
     { label: 'Look around', handler: (st: GameState) => {
@@ -950,6 +959,7 @@ function enterNushlivroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the show with her', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

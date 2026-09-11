@@ -20,6 +20,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLneedDist = 3;
   (s as any).KGOLpowerV = ((s as any).KGOLstrenV ?? 0);
   (s as any).KGOLennum = (-1);
+  // TODO-QSP: end
   scene.build();
 }
 

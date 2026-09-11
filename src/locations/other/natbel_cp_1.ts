@@ -277,6 +277,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -290,6 +291,7 @@ function enterNatDebtTimer(s: GameState, scene: SceneBuilder): void {
       scene.text('Natasha promised to pay you back by now, maybe you should talk to her about it.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -365,6 +367,7 @@ function enterMakeHerDoHomework(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -451,6 +454,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to school', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
@@ -475,6 +479,7 @@ function enterSchoolwalk(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_grounds', 'main'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -529,6 +534,7 @@ function enterHwundress(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just wait until she\'s done', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You are woken out of your daydream by Natasha saying: "It's done <<$pcs_nickname...
@@ -543,6 +549,7 @@ function enterHwundress(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUndressedhw(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy looking at Natasha', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
@@ -696,6 +703,7 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Allow her to dress', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['underwear'] = 0;
@@ -807,6 +815,7 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -820,6 +829,7 @@ function enterLickFeet(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/lickfeet1.jpg');
   scene.text('"My feet have been killing me today. Take off my shoes for me and lick my feet until I feel better." You bark at Natasha.');
   scene.text('Natasha immediately settles you on the bed and takes off your shoes. She seems to enjoy being dominated by you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her suffer for a bit', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -863,6 +873,7 @@ function enterSpitFace(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natknee.jpg');
   scene.text('You bark at Natasha to get on her knees. She immediately kneels down at your feet and obediently opens her mouth.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spit in her face', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -943,6 +954,7 @@ function enterLickPussy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -960,6 +972,7 @@ function enterOpenlegs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'dom');
   scene.text('When it finally starts to subside you let go and just lie there, catching your breath. Natasha keeps licking you occasionally. Each time her tongue touches your overly sensitive clitoris, it sends a new shiver through you.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -980,6 +993,7 @@ function enterStraddleface(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'dom');
   scene.text('When it finally starts to subside you let go and slump down on top of her, catching your breath. Natasha\'s face locked between your legs. You can feel her breath on your pussy. Each exhalation sends a new shiver through you.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -990,6 +1004,7 @@ function enterNatAfterShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   // TODO-QSP: dynamic text: With a sparkle in her eyes she says: "Oh, hi <<$pcs_nickname>>, I didn't know yo...
   scene.text(`With a sparkle in her eyes she says: "Oh, hi ${((s as any).pcs_nickname ?? 0)}, I didn't know you were coming over."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her get dressed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/natdressing2.jpg');
@@ -1172,6 +1187,7 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', handler: (st: GameState) => {
     (st as any).NatashaLoc = 2;

@@ -20,30 +20,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).ShoStyle ?? 0) === 1) {
-    // TODO-QSP: $result += ' These shoes are considered alternative shoes.'
-  }
-  if (((s as any).ShoStyle2 ?? 0) === 1  ||  ((s as any).ShoStrip ?? 0) === 1) {
-    // TODO-QSP: $result += ' These shoes are considered stripper shoes.'
-  } else {
-    if (((s as any).ShoStyle2 ?? 0) === 2  ||  ((s as any).ShoSport ?? 0) === 1) {
-      // TODO-QSP: $result += ' These shoes are considered exercise shoes.'
-    }
-  }
-  if (((s as any).ShoBimbo ?? 0) === 1) {
-    // TODO-QSP: $temp_shoe_desc[] = 'bimbo'
-  }
-  if (((s as any).ShoGoth ?? 0) === 1) {
-    // TODO-QSP: $temp_shoe_desc[] = 'goth'
-  }
-  if (((s as any).ShoPunk ?? 0) === 1) {
-    // TODO-QSP: $temp_shoe_desc[] = 'punk'
-  }
-  if (Object.keys((s as any).temp_shoe_desc ?? {}).length > 0) {
-    // TODO-QSP: $result += ' These shoes are considered '
-    // TODO-QSP: $result += func('string', 'enumerate_list', '$temp_shoe_desc')
-    // TODO-QSP: $result += ' shoes.'
-  }
   scene.build();
 }
 
@@ -90,6 +66,31 @@ function enterDanilovich(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
+  }
+  // TODO-QSP: end
+  if (((s as any).ShoStyle ?? 0) === 1) {
+    // TODO-QSP: $result += ' These shoes are considered alternative shoes.'
+  }
+  if (((s as any).ShoStyle2 ?? 0) === 1  ||  ((s as any).ShoStrip ?? 0) === 1) {
+    // TODO-QSP: $result += ' These shoes are considered stripper shoes.'
+  } else {
+    if (((s as any).ShoStyle2 ?? 0) === 2  ||  ((s as any).ShoSport ?? 0) === 1) {
+      // TODO-QSP: $result += ' These shoes are considered exercise shoes.'
+    }
+  }
+  if (((s as any).ShoBimbo ?? 0) === 1) {
+    // TODO-QSP: $temp_shoe_desc[] = 'bimbo'
+  }
+  if (((s as any).ShoGoth ?? 0) === 1) {
+    // TODO-QSP: $temp_shoe_desc[] = 'goth'
+  }
+  if (((s as any).ShoPunk ?? 0) === 1) {
+    // TODO-QSP: $temp_shoe_desc[] = 'punk'
+  }
+  if (Object.keys((s as any).temp_shoe_desc ?? {}).length > 0) {
+    // TODO-QSP: $result += ' These shoes are considered '
+    // TODO-QSP: $result += func('string', 'enumerate_list', '$temp_shoe_desc')
+    // TODO-QSP: $result += ' shoes.'
   }
   scene.build();
 }

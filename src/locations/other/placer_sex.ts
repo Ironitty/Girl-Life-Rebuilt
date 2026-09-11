@@ -17,6 +17,39 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).frost ?? 0) > 0) {
     (s as any).frost = 0;
   }
+  scene.build();
+}
+
+function enterDinDush(s: GameState, scene: SceneBuilder): void {
+  (s as any).noshampoo = 1;
+  qspCall(s, 'din_van', 'showerdin');
+  (s as any).minut = ((s as any).minut ?? 0) + 15;
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
+  (s as any).pcs_hairbsh = 0;
+  (s as any).pcs_makeup = 1;
+  if (((s as any).frost ?? 0) > 0) {
+    (s as any).frost = 0;
+  }
+  qspCall(s, 'stat', '');
+  scene.img('images/shared/home/bathroom/dush.mp4');
+  // TODO-QSP: dynamic text: <<$din_dush_text>>
+  scene.text(`${((s as any).din_dush_text ?? 0)}`);
+  if (((s as any).deodorant_on ?? 0) === 1) {
+    qspCall(s, 'sweat', 'remove_deo');
+    scene.text('<br>Your deodorant gets washed away in the shower.');
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  (s as any).analPlugInbonus = 10;
+  (s as any).analPlugIn = 0;
+  (s as any).analPlugOut = 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/pavlovsk/park/sex/placer_sex16.mp4');
+  // TODO-QSP: end
   if (((s as any).args ?? 0)[0] === 'meet') {
     if (((s as any).placerParameter ?? 0)?.['number_of_man'] < 4  &&  ((s as any).pcs_ass ?? 0) > 14  &&  ((s as any).pcs_vag ?? 0) > 14  &&  ((s as any).mesec ?? 0) <= 0) {
       (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -2136,37 +2169,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDinDush(s: GameState, scene: SceneBuilder): void {
-  (s as any).noshampoo = 1;
-  qspCall(s, 'din_van', 'showerdin');
-  (s as any).minut = ((s as any).minut ?? 0) + 15;
-  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
-  (s as any).pcs_hairbsh = 0;
-  (s as any).pcs_makeup = 1;
-  if (((s as any).frost ?? 0) > 0) {
-    (s as any).frost = 0;
-  }
-  qspCall(s, 'stat', '');
-  scene.img('images/shared/home/bathroom/dush.mp4');
-  // TODO-QSP: dynamic text: <<$din_dush_text>>
-  scene.text(`${((s as any).din_dush_text ?? 0)}`);
-  if (((s as any).deodorant_on ?? 0) === 1) {
-    qspCall(s, 'sweat', 'remove_deo');
-    scene.text('<br>Your deodorant gets washed away in the shower.');
-  }
-  scene.build();
-}
-
-function enterDinAnalPlugInOff(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).analPlugInbonus = 10;
-  (s as any).analPlugIn = 0;
-  (s as any).analPlugOut = 1;
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/park/sex/placer_sex16.mp4');
-  scene.build();
-}
-
 function enterSittingParkBench(s: GameState, scene: SceneBuilder): void {
   if (((s as any).alko ?? 0) >= 7  &&  ((s as any).pcs_apprnc ?? 0) >= 120) {
     scene.actions([{ label: 'Continue', goto: ['placer_sex', 'sleeping_park_alco_rape'] }]);
@@ -2201,6 +2203,7 @@ function enterSittingParkBench(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2232,6 +2235,7 @@ function enterSleepingParkBench(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You\'re feeling tired, and decide to try and get some sleep on the park bench.');
   scene.text('');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', handler: (st: GameState) => {
     if (((s as any).PCloSkirt ?? 0) === 4) {
@@ -2321,6 +2325,7 @@ function enterSleepingParkAlcoRape(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/park/sex/bench/sleeping_parc_alco1_1.jpg');
   scene.text('Maybe it\'s the alcohol, or maybe you just haven\'t slept well… but you feel tired. You sit down on the park bench, wanting to rest your exhausted body for a while. Slowly, your eyes begin to close. Realizing that it could be dangerous to fall asleep in a public place like the park, you do your best to stay awake. The alcohol in your blood makes it impossible though, and you slowly feel your consciousness drift away.');
   scene.text('A few minutes later, you\'re vaguely aware of the fact that someone is dragging you up from the park bench. You\'re too drunk to do anything about it though, and slowly fade out again.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/park/sex/bench/sleeping_parc_alco1_2.jpg');
@@ -2573,6 +2578,5 @@ export const placer_sex: LocationDef = {
   title: '<br>Your deodorant gets washed away in the shower.',
   region: 'other',
   locationType: 'public_outdoors',
-  description: ['You accept the drink happily: "Sure, a drink would be nice! Thanks!"'],
   enter: enter,
 };

@@ -71,6 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).hour ?? 0) < 3  ||  (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 45))  &&  ((s as any).drugVars ?? 0)?.['cigarettes_used'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
     // TODO-QSP: act 'Take a smoke break': gt 'stwork', 'smoke_break'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the staff bathroom', goto: ['stwork', 'toilet'] },
     { label: 'Change your clothes', goto: ['wardrobe', 'start'] },
@@ -97,6 +98,7 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stripclub_schedule', 'next_week_set_schedule');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -176,10 +178,12 @@ function enterSetPerformActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetShiftOverAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shift over', handler: (st: GameState) => {
     qspCall(s, 'jobs', 'paycheck', 'city_strip_stripper');
@@ -261,6 +265,7 @@ function enterStripClothing(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     qspCall(s, 'panties', 'remove');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -314,6 +319,7 @@ function enterTipcalculator(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -404,6 +410,7 @@ function enterStripgirl(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['stwork', 'start'] },
   ]);
@@ -728,6 +735,7 @@ function enterGuard(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -745,6 +753,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['stwork', 'start'] },
     { label: 'Have a shower', handler: (st: GameState) => {
@@ -1171,6 +1180,7 @@ function enterRest(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1182,6 +1192,7 @@ function enterSmokeBreak(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/smoke5.jpg');
   scene.text('You grab one of the robes hanging up and wrap it around yourself before heading out the back to smoke a cigarette, feeling yourself relax a little as the smoke fills your lungs.');
   scene.text('Once you\'re done, you flick the remains of the cigarette away and head back inside to continue your shift.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back inside', goto: ['stwork', 'start'] },
   ]);

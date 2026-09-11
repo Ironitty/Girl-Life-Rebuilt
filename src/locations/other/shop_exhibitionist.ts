@@ -39,6 +39,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The shop is closing and you have to leave.');
     return;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -72,6 +73,7 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -92,6 +94,7 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -111,6 +114,7 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -130,6 +134,7 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -149,6 +154,7 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -198,6 +204,7 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.img('images/locations/shared/park/ksenya/ksenya8.jpg');
@@ -218,6 +225,7 @@ function enterKsenyaChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/park/ksenya/ksenya9.jpg');
   scene.text('You meet up with Ksenya and spend the next hour talking about random things. Flashing, clothing, and just everyday stuff.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['shop_exhibitionist', 'start'] },
   ]);
@@ -232,6 +240,7 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
   scene.text(`She walks over to you and gives you a big hug. "${((s as any).pcs_nickname ?? 0)}! How are you, love?" she asks before giving you a quick kiss on the lips.`);
   scene.text('"I\'m okay," you say, returning the kiss.');
   scene.text('"What brings you here today? Looking for new clothes?" she asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask her out', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A263', 2);
@@ -316,6 +325,7 @@ function enterKsenyaShop(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re taken to Ksenya\'s office. It\'s open a crack and you look inside. You see her sitting on a chair looking back at you.');
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Come in, come in. To what do I owe the pleasure?" she as...
   scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}. Come in, come in. To what do I owe the pleasure?" she asks and closes the door behind you, after which she hugs you gently.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pushkin/ksenya/shop2.jpg');

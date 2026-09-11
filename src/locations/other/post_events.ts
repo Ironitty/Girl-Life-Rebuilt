@@ -16,6 +16,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.text('You return to the man\'s house after you leave the post office and ring the doorbell. "Ah, you came back!" he smiles happily when he opens the door. "Please come in, this will only take a minute of your time."');
   scene.text('"I only need to make sure it fits your body well. So, you know, she doesn\'t hate me!" he laughs nervously. "Anyway, right this way!"');
   scene.text('He ushers you into the bathroom, giving you the gown after taking it out of the package carefully. He tells you to take as long as you need and closes the door so you have some privacy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Model the gown for him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -148,6 +149,7 @@ function enter1_1(s: GameState, scene: SceneBuilder): void {
   scene.text('Within a few minutes, the man\'s breaths grow shorter and shallower until he groans. "Oh m- I\'m going to cum!"');
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his load on your body', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'breasts', 'Nice man');
@@ -197,6 +199,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('"He loves it when I do that!" she whispers in your ear as she keeps undressing you. "And… I do too! Shhh!"');
   scene.text('She gives you a conspiratory wink and undresses too.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her to the bedroom', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-3.jpg');
@@ -334,6 +337,7 @@ function enter2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   scene.text('For the next few minutes, you suck Arsen off while Maksim takes dozens of photos.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -421,6 +425,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'arousal', 'cuni', (-5));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-13.jpg');
@@ -604,6 +609,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: "Uhhh, I'm <<$pcs_firstname>>," you say. "And I'm here because…"
   scene.text(`"Uhhh, I'm ${((s as any).pcs_firstname ?? 0)}," you say. "And I'm here because…"`);
+  // TODO-QSP: end
   scene.actions([
     { label: '"I want what\'s in that package."', handler: (st: GameState) => {
     scene.text('"I want what\'s in that package."');
@@ -713,6 +719,7 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -728,6 +735,7 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"My last little slut was too scared that her parents would ask questions about how she paid for all those new clothes, so she kept everything I bought her here," he continues, nodding at the closet\'s contents. "Then, one day, she stopped visiting. Turns out her parents found out about me fucking their precious little daughter and forced her to move away with them! Haven\'t heard from her since. Damn shame, too. She didn\'t know much when I first found her, but she was always so eager to please…"');
   scene.text('He shoots you a seductive smile. "Anyway, long story short: you like clothes, I have a closet full of them. And I like you. See where I\'m going with this?"');
   scene.text('You feel his hand sliding underneath your skirt and fondling your ass cheeks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/events/postwardrobe.jpg');
@@ -844,6 +852,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show some skin to get him off faster', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {

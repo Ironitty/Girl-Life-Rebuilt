@@ -45,6 +45,7 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'npccleanc', $ucase($npc_index[i_gs_cl])
     // TODO-QSP: jump 'CiklNpcCleanLoop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,6 +54,7 @@ function enterAge(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_npcVars ?? {})['month'] = (((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 100) % 100;
   ((s as any).temp_npcVars ?? {})['year'] = ((s as any).npc_dob ?? 0)[((s as any).locArgs?.[1] ?? 0)] / 10000;
   (s as any).result = qspFunc(s, 'time', 'get_age', ((s as any).temp_timeVars ?? 0)?.['year'], ((s as any).temp_timeVars ?? 0)?.['month'], ((s as any).temp_timeVars ?? 0)?.['day']);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -62,6 +64,7 @@ function enterIsNpcID(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((('ABCDM').indexOf((((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +83,7 @@ function enterFindInNpcStat(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).result ?? 0) === '') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +107,7 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $ARGS[2] = '<<ARGS[2]>>'
   }
   // TODO-QSP: dynamic "gs 'npcStat', $npcID<<$ARGS[1]>>, <<$ARGS[2]>>, $npcCondom<<$ARGS[1]>>"
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,6 +152,7 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).locArgs?.[2] ?? 0)).length) > 0) {
     // TODO-QSP: jump 'loop_outer_npc_count'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -185,6 +191,7 @@ function enterUpdateHotcat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'hotcat_calc_jump'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -212,6 +219,7 @@ function enterNpcStatUpdateAll(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'update_loop2'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -247,6 +255,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   if (((s as any).apendix ?? 0) !== ''  &&  ((s as any).apendix ?? 0) !== ' ') {
     // TODO-QSP: $apendix
   }
+  // TODO-QSP: end
   scene.build();
 }
 

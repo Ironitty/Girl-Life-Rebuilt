@@ -5,31 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  &&  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field'  &&  ((s as any).locat ?? 0)?.['A60_loc_prev'] !== 'gad_field') {
-    scene.img('images/characters/gadukino/mira/mira2.jpg');
-    scene.text('While keeping an eye on the cow herd, you see Mira in the distance, approaching. You happily wave to her.');
-    // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. I wanted to visit you, and I've brought some water with ...
-    scene.text(`"Hi, ${((s as any).pcs_nickname ?? 0)}. I wanted to visit you, and I've brought some water with me," she says, nearing you. "Have you missed me?"`);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
-    qspCall(s, 'stat', '');
-    ((s as any).MiraVars ?? {})['follow_time'] = 20 - ((s as any).hour ?? 0);
-    return;
-    scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
-    if (((s as any).hour ?? 0) < 13) {
-      scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow'] }]);
-    } else {
-      if (((s as any).hour ?? 0) < 16) {
-        scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow2'] }]);
-      } else {
-        scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow3'] }]);
-      }
-    }
-  } },
-    ]);
-  }
   scene.build();
 }
 
@@ -67,6 +42,7 @@ function enterField(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['grigory', 'flower8'] }]);
   }
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'field');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the road (0:10)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -82,6 +58,7 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/horse.jpg');
   scene.text('Your grandfather\'s horse, Desperado.');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'field_horse');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the field', goto: ['gad_field', 'field'] },
   ]);
@@ -191,6 +168,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -258,6 +236,7 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -321,6 +300,32 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
         { label: 'Back to the village', goto: ['gadukino', ''] },
       ]);
     }
+  }
+  // TODO-QSP: end
+  if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1  &&  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field'  &&  ((s as any).locat ?? 0)?.['A60_loc_prev'] !== 'gad_field') {
+    scene.img('images/characters/gadukino/mira/mira2.jpg');
+    scene.text('While keeping an eye on the cow herd, you see Mira in the distance, approaching. You happily wave to her.');
+    // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. I wanted to visit you, and I've brought some water with ...
+    scene.text(`"Hi, ${((s as any).pcs_nickname ?? 0)}. I wanted to visit you, and I've brought some water with me," she says, nearing you. "Have you missed me?"`);
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
+    qspCall(s, 'stat', '');
+    ((s as any).MiraVars ?? {})['follow_time'] = 20 - ((s as any).hour ?? 0);
+    return;
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+    if (((s as any).hour ?? 0) < 13) {
+      scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow'] }]);
+    } else {
+      if (((s as any).hour ?? 0) < 16) {
+        scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow2'] }]);
+      } else {
+        scene.actions([{ label: 'Continue', goto: ['gad_field', 'cow3'] }]);
+      }
+    }
+  } },
+    ]);
   }
   scene.build();
 }
@@ -461,6 +466,7 @@ function enterSetNomiraActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -496,6 +502,5 @@ export const gad_field: LocationDef = {
   title: '<center><h4>Field</h4></center>',
   region: 'gadukino',
   locationType: 'secluded',
-  description: ['While keeping an eye on the cow herd, you see Mira in the distance, approaching. You happily wave to her.'],
   enter: enter,
 };

@@ -66,6 +66,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'prostitution_car_negotiation', 'general_description');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop working', goto: ['road', ''] },
   ]);
@@ -73,6 +74,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventCheck(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -151,6 +153,7 @@ function enterRoadSegment(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

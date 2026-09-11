@@ -34,6 +34,7 @@ function enterIShouldGo(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_hookup_leave', 'hookup_continuation');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +55,7 @@ function enterThanksForFun(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_hookup_leave', 'hookup_continuation');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +63,7 @@ function enterKickedOut(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
   // TODO-QSP: dynamic text: "Hey so uhh, time for you to get going," <<$npcdesc>> says, cracking his neck di...
   scene.text(`"Hey so uhh, time for you to get going," ${((s as any).npcdesc ?? 0)} says, cracking his neck dismissively.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yeah, I should', handler: (st: GameState) => {
     scene.text('"Yeah, I really ought to get going," you agree, hauling yourself out of bed.');
@@ -215,6 +218,7 @@ function enterKickedOutMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -278,10 +282,12 @@ function enterHookupContinuation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpendTheNight(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['cant_stay'] = 1;
@@ -342,6 +348,7 @@ function enterPcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "This was fun. We should hook up again some time," you say, <<$sex_ev['dress_des...
     scene.text(`"This was fun. We should hook up again some time," you say, ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -375,6 +382,7 @@ function enterPcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
 function enterPcDateRequest(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hey, I was thinking... maybe I could see you again? For like, dinner? Or a movi...
   scene.text(`"Hey, I was thinking... maybe I could see you again? For like, dinner? Or a movie? Or something?" you say, ${((s as any).sex_ev ?? 0)?.['dress_describe']}.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -433,6 +441,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
       scene.text('"Cool. Maybe we can hook up again sometime?"');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You mean like fuckbuddies?', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -477,6 +486,7 @@ function enterNpcFuckbuddyRequest(s: GameState, scene: SceneBuilder): void {
 function enterNpcDateRequest(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well... Maybe I could see you again sometime? Not just sex, but like really see you, you know? Take you out on a date or something? Dinner? See a movie?"');
   qspCall(s, 'sex_ev_hookup_leave', 'just_a_hookup');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -611,10 +621,12 @@ function enterNpcSugarDaddyOffer(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNpcSugarDaddyRefuse(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse him', handler: (st: GameState) => {
     scene.actions([
@@ -659,6 +671,7 @@ function enterNpcSugarDaddyRefuse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcSugarDaddyHowMuch(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'How much?', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -675,6 +688,7 @@ function enterNpcSugarDaddyHowMuch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcSugarDaddyAccept(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'sugar_daddy_add');
@@ -691,6 +705,7 @@ function enterNpcSugarDaddyAccept(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcSugarDaddyHaggle(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Haggle', handler: (st: GameState) => {
     // TODO-QSP: :invalid_counter_offer
@@ -758,6 +773,7 @@ function enterNpcSugarDaddyHaggle2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -777,6 +793,7 @@ function enterNpcSugarDaddyHaggleFail(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Everything becomes very awkward very quickly and you take that as your cue to grab your things and hurry out the door.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['sex_ev_leave', 'exit'] },
   ]);
@@ -796,10 +813,12 @@ function enterFuckbuddyText(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('That little exchange done, you cheerfully wave him goodbye and head out the door.');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeaveMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish getting dressed', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_leave', 'dressing_finish'
@@ -816,6 +835,7 @@ function enterJustAHookup(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).sex_ev ?? {})['just_a'] = 'random hookup';
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'This was a <<$sex_ev[\'just_a\']>>', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -908,6 +928,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -978,6 +999,7 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

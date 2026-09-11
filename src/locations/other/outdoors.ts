@@ -97,6 +97,7 @@ function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).weatherMeanTemp = ((s as any).weatherMeanTemp ?? 0) + (40);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,6 +209,7 @@ function enterWeather(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -263,6 +265,7 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -439,6 +442,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     ((s as any).location_type ?? {})['is_outdoors'] = 0;
     qspCall(s, 'themes', 'indoors');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

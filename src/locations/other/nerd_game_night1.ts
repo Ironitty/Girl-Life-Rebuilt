@@ -17,6 +17,7 @@ function enterMansionAdventureStart(s: GameState, scene: SceneBuilder): void {
   scene.text('"I doubt it," Petka replies. "That \'grieving widow\' was probably lying and there\'s nothing out here but a few dusty skeletons in an old house. If there even is a house."');
   scene.text('"I agree," Artem adds. "Her story sounded way too good to be true. A ton of gold just sitting there, ripe for the taking? It\'s either a trap or someone else has beaten us to it long ago."');
   scene.text('"There must be <i>something</i> out here worth finding," Zinaida chimes in. "Why else would she tell us about this place? If we\'re careful and work together, then we\'ll be fine and might make a profit."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Side with the girls', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
@@ -132,6 +133,7 @@ function enterMansionEntrance(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -144,6 +146,7 @@ function enterMansionInterior1(s: GameState, scene: SceneBuilder): void {
   scene.text('"As you discuss your grim discovery, a loud cry echoes through the walls," Feofan narrates. "Before you can react, you\'re suddenly besieged by another group of undead, who all slowly shuffle their way across the cave towards you."');
   scene.text('"<i>More</i> undead?! Are we up against a necromancer?!" Julia asks, roleplaying her character being shocked.');
   scene.text('Artem nods. "It looks like it, so let\'s be careful. We don\'t know what kind of necromancer is calling this place home."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fight the undead', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -284,6 +287,7 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -298,6 +302,7 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
   scene.text(`"But it's <i>dark magic</i>!" Artem retorts. "Just look at what it's done to ' + iif(nerd_game['lust_curse'] = 1, '${((s as any).pcs_nickname ?? 0)}!', 'Julia!') + ' This voice clearly intends to lure us into a trap!"`);
   scene.text('"Look around us! We\'re already in the trap!" Gerasim points out. "The only way we\'re getting out of here is to let her follow the voice."');
   scene.text('Artem sighs before he reluctantly nods.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow the voice', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -434,6 +439,7 @@ function enterMansionInterior4(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t like it, but I agree," Artem replies. "Whatever this dark magic is, we must put a stop to it, even if it means springing whatever trap we\'ve been lured into here."');
     scene.text('The others nod in reluctant agreement, still unsure of what threat you\'re actually facing and what dangers you might be walking into here.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow the voice', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -569,6 +575,7 @@ function enterSuccubusMeeting(s: GameState, scene: SceneBuilder): void {
       scene.text('"The woman transforms before you. Curled horns, bat like wings, and a long, arrowed tail all sprout from her body as her fingers transform into razor sharp claws," Feofans narrates. Something about the way Feofan describes her looks and mannerisms nags at you, like you should remember it…');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -662,6 +669,7 @@ function enterSuccubusFight(s: GameState, scene: SceneBuilder): void {
       { label: 'Battle the succubus', goto: ['nerd_game_night1', 'succubus_fight1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -894,6 +902,7 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -902,6 +911,7 @@ function enterCursedVillage1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
   scene.text('"Leaving the cursed lair of the slain succubus behind, you all escort the women into the tree line, all of whom seem terrified that the cursed men will find them," Feofan narrates.');
   scene.text('"It\'s okay," Julia says. "They can\'t hurt you anymore."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be blunt', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'dislike');
@@ -948,6 +958,7 @@ function enterCursedVillage1a(s: GameState, scene: SceneBuilder): void {
   scene.text('"We should burn the bodies, just to be sure," Zinaida suggests.');
   scene.text('"I agree," Julia states. "I say a prayer for them, welcoming them into the embrace of the Morning Light. I can look after the women while you do that. They don\'t need to see this. "');
   scene.text('You then help gather and burn the bodies of both the men and the women, all of whom seem to have died very violent deaths.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Burn the bodies', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
@@ -1019,6 +1030,7 @@ function enterCursedVillage2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I say we should have destroyed that lair somehow. Or just found a way to prevent people from getting in. Who knows what kind of dark magic is still active in that place, even if the succubus is dead," Artem replies.');
   scene.text('"There was no dark magic left," Petka replies. "Any trace of that succubus died with her."');
   scene.text('"Good," Julia bluntly states as you continue on your journey to the village.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
@@ -1073,6 +1085,7 @@ function enterEndOfAdventure1(s: GameState, scene: SceneBuilder): void {
   scene.text('Most of those present moan in disappointment, but everyone starts to put their dice and character sheets away.');
   qspCall(s, 'nerd_game_night', 'set_end_acts');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1086,6 +1099,7 @@ function enterNecromancerAdventureStart(s: GameState, scene: SceneBuilder): void
   scene.text('Feofan rolls some dice behind his Dungeon Master Screen and says. "You move slowly all day as Gerasim\'s ranger scouts ahead but he finds nothing, not even local animals. But just before nightfall he finds a small chapel.');
   scene.text('Gerasim says. "I will wait near the chapel for the others to catch up.');
   scene.text('Feofan nods and makes another roll of dice which makes everyone nervously share glances, then he smiles. "The rest of the party shortly arrive, the rest of you find Gerasim\'s ranger standing not too far from a small, overgrown chapel of the Local Saint, Gwennifer the Sword. Julia, your cleric knows that this would be blessed ground. No undead would be able to enter here, so it would be a safe place for a long rest."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the chapel', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/necro_saint_chapel.jpg');
@@ -1167,6 +1181,7 @@ function enterNecromancerChapelFeast(s: GameState, scene: SceneBuilder): void {
   scene.text('Feofan shrugs. "In the fading light of the evening it seems you had all failed to notice it."');
   scene.text('Petka looks excited. "Maybe magic was masking it and the dawn light shows it through the magic, after all undead fear the dawn." Everyone exchanges looks and smiles a bit.');
   scene.text('Julia looks to Petka. "Good thinking, that is likely it. Which means we should hurry before the magic cloaks it again." With that all of you quickly hurry down the path to the stronghold, arriving just as the sun fully clears the horizon. It seems you made it in time as the stronghold is still there, but now somehow even in the sunlight looks dark and forbidding.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach the stronghold', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/necromancer_stronghold.jpg');
@@ -1202,6 +1217,7 @@ function enterNecromancerStrongholdGatehouse(s: GameState, scene: SceneBuilder):
   scene.text('Since you pause a moment, Feofan winks at you: "Since you do NOT want to enter the moat with the kraken, and the moat is also REALLY dirty and stinks, you have no real choice but to cross the bridge."');
   scene.text('You nod at that. "Ok then I will try my best to sneak across the bridge."');
   scene.text('He smiles, "Well it is daylight and there is no cover, but go ahead and give me a stealth roll."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Roll your stealth check', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1308,6 +1324,7 @@ function enterNecromancerKeep1(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem says. "Shit, get ready, this is going to be a hard fight." You battle the Death Knight and undead, and it starts to look like you might lose when Petka remembers the scrolls you had found in the chapel. With those you manage to just barely win, at the cost of all the scrolls you found.');
   scene.text('Artem says "Damn, we might need those to fight the Necromancer but I guess there is nothing we can do about it now. We should search if there is anything of value. I admit this wasn\'t the Necromancer I was expecting to find."');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Search the keep', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1331,6 +1348,7 @@ function enterNecromancerKeep2(s: GameState, scene: SceneBuilder): void {
   scene.text('Just then Feofan interrupts. "That is all for tonight, we will leave it here." You hear a disappointing sigh go through the room as everybody stops and closes their handbooks. The group is still buzzing and you chat for some time about the twists and turns you\'ve encountered so far.');
   qspCall(s, 'nerd_game_night', 'set_end_acts');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1340,6 +1358,7 @@ function enterNecromancerFight(s: GameState, scene: SceneBuilder): void {
   scene.text('Julia is the first to speak up. "We should head down into the crypt and make sure there is no other evil here." Feofan describes you heading down into the secret crypt only to find a mausoleum of the family that once ruled here. "Other than their graves there seems to be nothing more of interest." Feofan explains before adding. "The mansion and keep are somewhat of a letdown, empty and fallen into ruin, but you have defeated the Death Knight that ruled here. The Death Knight that you destroyed last session was the last heir of the castle lords, it would seem."');
   scene.text('Gerasim asks. "What do we know about this family?"');
   scene.text('Feofan smiles at that. "Ok everyone give me a History or Nobles Lore check."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Roll your dice', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/rollingdice.jpg');
@@ -1396,6 +1415,7 @@ function enterNecromancerCave(s: GameState, scene: SceneBuilder): void {
   scene.text('The party reaches a third level of old graves below ground, with long stairs downward between them. Zinaida counts on her fingers: "We are some eighty meters down right now by my estimate, below the crypt which was at least five meters down already."');
   scene.text('Artem frowns. "It doesn\'t matter, we only have one way to go, so let\'s keep going down."');
   scene.text('Feofan tells you: "You go down another flight of rough stone stairs, but this one opens up into a large natural cave, illuminated by some greenish light from cave mushrooms. The cave is long, with a low ceiling: fifty meters wide at the widest part, one hundred and twenty meters long at the longest point, some ten meters high. Probably formed by a natural cistern of a subterranean river that has dried up since then. The staircase ends near the southeastern end of the cave, and in the north end you can see a dais where a man-like creature is standing, chanting from a huge old tome."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'The Necromancer', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/necromancer.jpg');

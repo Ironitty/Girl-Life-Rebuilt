@@ -397,6 +397,7 @@ function enterRimmasexdi(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye to Rima', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');

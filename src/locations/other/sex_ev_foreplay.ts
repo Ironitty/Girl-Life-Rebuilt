@@ -13,6 +13,7 @@ function enter69Code(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'arousal', 'bj', 5, 'no_orgasm_msg', $sex_ev['prostitution_flag']
   // TODO-QSP: gs 'arousal', 'cuni', 5, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -20,6 +21,7 @@ function enterBjCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['foreplay_enjoyment'] !== 'enjoy') {
   }
   // TODO-QSP: gs 'arousal', 'bj', 5, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -27,10 +29,12 @@ function enterCuniCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['foreplay_enjoyment'] !== 'enjoy') {
   }
   // TODO-QSP: gs 'arousal', 'cuni', 5, 'no_orgasm_msg', $sex_ev['prostitution_flag']
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCockReact(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +65,7 @@ function enterBedStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,10 +97,12 @@ function enterGenerousInitiative(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPoliteInitiative(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -115,6 +122,7 @@ function enterSelfishInitiative(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,6 +131,7 @@ function enterSelfishBjStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
   // TODO-QSP: dynamic text: <<$npcdesc>> pulls you towards him and pushes you to your knees in the same moti...
   scene.text(`${((s as any).npcdesc ?? 0)} pulls you towards him and pushes you to your knees in the same motion, dangling his cock in front of your face. It's pretty obvious what he wants right now...`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t wanna suck cock', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -325,6 +334,7 @@ function enterSelfishFuckStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_foreplay', 'selfish_fuck_start'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -344,6 +354,7 @@ function enterFingeringStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s hand slides down your belly, snaking between your thighs towards your snatch.`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread for him', handler: (st: GameState) => {
     scene.text('Almost on instinct, your legs widen and your hips buck, begging without words for him to touch you...');
@@ -370,6 +381,7 @@ function enterFingeringInit(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} makes you gasp involuntarily, his touch sending thrills through you from the first moment of contact. It's like his fingers know everything about your pussy, slipping between your folds to hit all the right spots, worshiping your clit with lavish attention. He's got you squirming in seconds and you can feel your girlcum slopping out with every movement of his hand.`);
     scene.text('Fuck! He\'s good at this!');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -393,14 +405,17 @@ function enterFingeringGoodCycle(s: GameState, scene: SceneBuilder): void {
       { label: 'Orgasm', goto: ['sex_ev_foreplay', 'fingering_orgasm'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFingeringOrgasm(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterKuniAsk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him to eat you out', handler: (st: GameState) => {
     scene.text('"Do you think you could give me some TLC?" you ask. "A little tongue action?"');
@@ -429,6 +444,7 @@ function enterKuniStartActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_foreplay', 'kuni_leg_spread'
@@ -487,6 +503,7 @@ function enterKuniLegSpread(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -534,6 +551,7 @@ function enterKuniLegClose(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_foreplay', 'cuni_alternatives');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -576,6 +594,7 @@ function enterCuniAlternatives(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You could play with my tits?', handler: (st: GameState) => {
     scene.text('"You could play with my tits instead?" you say.');
@@ -646,6 +665,7 @@ function enterPeriodLick(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -666,6 +686,7 @@ function enterPussyLickStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`You lay back on the bed, closing your eyes, letting them roll back in your skull, and focus on the sensation of ${((s as any).npcdesc ?? 0)}'s tongue exploring your pussy. It playfully flicks across your clit, making you squirm. It runs up the lips of your snatch, sending shivers through your spine. Every once in a while, he licks the side of your thigh, prompting ticklish giggles. It feels <i>so</i> good and you relax while he goes to work on you down there.`);
   }
   qspCall(s, 'sex_ev_foreplay', 'pussy_lick_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -680,6 +701,7 @@ function enterPussyLickReact(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You lay back on the bed, closing your eyes, letting them roll back in your skull...
     scene.text(`You lay back on the bed, closing your eyes, letting them roll back in your skull, and focus on the sensation of ${((s as any).npcdesc ?? 0)}'s tongue exploring your pussy. It playfully flicks across your clit, making you squirm. It runs up the lips of your snatch, sending shivers through your spine. Every once in a while, he licks the side of your thigh, prompting ticklish giggles. It feels <i>so</i> good and you relax while he goes to work on you down there.`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -728,6 +750,7 @@ function enterPussyLickContinue(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -781,10 +804,12 @@ function enterPussyLickLoop(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_foreplay', 'cuni_too_sensitive');
   qspCall(s, 'sex_ev_sex', 'sex_start');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCuniTooSensitive(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop him (too sensitive)', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['sensitive_cuni'] = 1;
@@ -865,6 +890,7 @@ function enterNipplePlay(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -872,6 +898,7 @@ function enterBjAsk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "How about a blowjob?" <<$npcdesc>> asks.
   scene.text(`"How about a blowjob?" ${((s as any).npcdesc ?? 0)} asks.`);
   qspCall(s, 'sex_ev_foreplay', 'bj_ask2');
+  // TODO-QSP: end
   scene.build();
 }
 

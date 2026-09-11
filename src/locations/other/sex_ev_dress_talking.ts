@@ -134,6 +134,7 @@ function enterDressTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish getting dressed', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_leave', 'dressing_finish'
@@ -170,6 +171,7 @@ function enterHadAGoodTime(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['sex_ev_dress_talking', 'dress_talk'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -217,6 +219,7 @@ function enterStayOverThanks(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +229,7 @@ function enterWalkFunny(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).sex_ev ?? {})['walk_funny_day'] = 'day tomorrow';
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Embarrassed', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['walk_funny_talk'] = 'embarrassed';
@@ -322,6 +326,7 @@ function enterWalkFunny2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -338,10 +343,12 @@ function enterWalkFunny3(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_dress_talking', 'dress_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeakAllDay(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Embarrassed', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['cum_leak_talk'] = 'embarrassed';
@@ -534,6 +541,7 @@ function enterLeakAllDay2(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_dress_talking', 'leak_all_day3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -550,10 +558,12 @@ function enterLeakAllDay3(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_dress_talking', 'dress_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWhenDoYouGetOff(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask what time he gets off', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -581,6 +591,7 @@ function enterRuinedPanties(s: GameState, scene: SceneBuilder): void {
       { label: '' }, // TODO-QSP: empty action body
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -600,6 +611,7 @@ function enterNpcDateLaterResponse(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Oh." ${((s as any).npcdesc ?? 0)} looks away uncomfortably.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -698,10 +710,12 @@ function enterPcSexEvInvite(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPcSexEvTimeset(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'How about...', handler: (st: GameState) => {
     // TODO-QSP: :invalid_timeset
@@ -758,6 +772,7 @@ function enterPcSexEvInvite2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_dress_talking', 'pc_sex_ev_invite_accepted');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -767,6 +782,7 @@ function enterPcSexEvInviteAccepted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['morning_after'] === 1) {
     qspCall(s, 'sex_ev_morning', 'end_morning');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -776,6 +792,7 @@ function enterPcSexEvInviteDenied(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['morning_after'] === 1) {
     qspCall(s, 'sex_ev_morning', 'end_morning');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -836,10 +853,12 @@ function enterNpcSexEvInvite(s: GameState, scene: SceneBuilder): void {
     ((s as any).sex_ev ?? {})['sex_ev_he_ask'] = 1;
     scene.actions([{ label: 'Continue', goto: ['sex_ev_dress_talking', 'dress_talk'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexEvInviteLater(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['sex_ev_ask'] = 1;
@@ -885,6 +904,7 @@ function enterSexEvInviteLater(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBusyLater(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m busy', handler: (st: GameState) => {
     qspCall(s, 'booty_call', 'block_booty_calls');
@@ -905,6 +925,7 @@ function enterBusyLater(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBusyTime(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m busy', handler: (st: GameState) => {
     qspCall(s, 'booty_call', 'block_booty_calls');
@@ -944,6 +965,7 @@ function enterSexEvPlan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds good', handler: (st: GameState) => {
     qspCall(s, 'booty_call', 'set_booty_call_date');
@@ -1028,6 +1050,7 @@ function enterSexEvPlan2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_dress_talking', 'pc_sex_ev_invite_accepted');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1190,10 +1213,12 @@ function enterMaPillAskMoney1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMaPillAskMoney2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '<<$func(\'money\', \'string_profit\', 100)>> (just a little)', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 100);
@@ -1247,6 +1272,7 @@ function enterMaPillAskMoney3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank him', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -1275,6 +1301,7 @@ function enterMoneyForMaPill(s: GameState, scene: SceneBuilder): void {
   scene.text('"For the morning after pill," he says.');
   scene.text('"Oh yeah, thanks," you nod, taking it from him.');
   qspCall(s, 'sex_ev_leave', 'dressing2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1282,6 +1309,7 @@ function enterSugarMoney(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['sugar_daddy_paid'] = 1;
   ((s as any).sex_ev ?? {})['prostitution_paid'] = 1;
   // TODO-QSP: gs 'money', 'earn', npc_sugar_daddy_price[$npcID]
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask demurely', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_clothing', 'dress_loop');
@@ -1338,11 +1366,13 @@ function enterBreakUpEv(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_dress_talking', 'breakup_explain'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBreakupExplain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_dress_talking', 'no_more_cheating_breakup');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t explain', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
@@ -1409,6 +1439,7 @@ function enterUnsatisfiedBreakup(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sexually incompatible', handler: (st: GameState) => {
     scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
@@ -1520,6 +1551,7 @@ function enterIsntGoingToWork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1527,6 +1559,7 @@ function enterGrabThingsLeave(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/misc/depart_annoyed1.mp4');
   scene.text('"This just isn\'t going to work," you say, cutting him off. "We\'re done."');
   scene.text('And with that, you head out the door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['sex_ev_leave', 'break_up'] },
   ]);

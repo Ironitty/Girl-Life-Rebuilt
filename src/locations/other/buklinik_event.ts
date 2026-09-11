@@ -16,6 +16,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The succeeded clients look at you, "Good afternoon! I wanted to introduce myself...
   scene.text(`The succeeded clients look at you, "Good afternoon! I wanted to introduce myself. My name is ${((s as any).pcs_nickname ?? 0)} and I am the new volunteer. Don't hesitate to get in touch with me and I'll try my best to help you all."`);
   scene.text('The majority of them mumble between themselves before going back to loitering around. All except one. "Hey girl! The name\'s Vladimir! Why are you standing there all scared? Come in and sit with us. I\'ll introduce you to everyone."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['buklinik', 'holl'] },
     { label: 'Stay by the door', goto: ['buklinik_event', 'pos5'] },
@@ -32,6 +33,7 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   scene.text('Vladimir calls you over, "Take a seat, young lady. There\'s nothin\' to worry about."');
   scene.text('You take a seat at a small table in the middle of the room. In no time, you\'re surrounded by the men. "Meet Vitaly, Paul Afanasyevitch, Oleg, Kostya, and slow Albert."');
   scene.text('Suddenly, you feel one of them touch you. "So young and smooth…" while someone else takes a sniff of you, "Delicious…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to get away', goto: ['buklinik_event', 'pos3'] },
   ]);
@@ -46,6 +48,7 @@ function enterPos3(s: GameState, scene: SceneBuilder): void {
   scene.text('You manage to stand up, but as you\'re surrounded, they easily keep you in place. "Where are you going, girl? Did you see that ass?!"');
   scene.text('You feel someone squeezing your ass. "Come on, show us your tits!"');
   scene.text('Slow Albert grabs you around the waist and starts dry humping you, while one of the others starts pulling on your clothes, exposing your breasts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look towards the door', goto: ['buklinik_event', 'pos4'] },
   ]);
@@ -59,6 +62,7 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   scene.text('Olga slams the door behind her and turns towards you, "Are you okay? Did they hurt you?"');
   scene.text('"Just a little shaken, that is all," you reply.');
   scene.text('She grabs you by the shoulders. "Whatever you do, don\'t drop your guard around anyone here. They see you as easy prey and will jump you as soon as they see an opportunity."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', goto: ['buklinik', 'holl'] },
   ]);
@@ -74,6 +78,7 @@ function enterPos5(s: GameState, scene: SceneBuilder): void {
   scene.text('The men quickly lose interest and start going on with their business.');
   scene.text('Vladimir looks irritated. "Well, if you\'re just going to stand there and glare, fuck off from here!"');
   scene.text('Feeling threatened, you decide it would be wise to leave.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back into the corridor', goto: ['buklinik', 'holl'] },
   ]);
@@ -84,6 +89,7 @@ function enterPos6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/bukli_eat.jpg');
   scene.text('Olga cheerfully greets you. "Thank you for agreeing to help out. Just set the tables. Some of the clients are a bit special to say the least, so you\'ll have to make do. And be sure to keep the apron on; you do not want your clothes to get dirty."');
   scene.text('You nod, "Got it! Should be easy enough."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Set the tables', goto: ['buklinik_event', 'pos7'] },
   ]);
@@ -104,6 +110,7 @@ function enterPos7(s: GameState, scene: SceneBuilder): void {
       scene.text('Startled, you stammer, "W-What?! I-I… M-Mind your own business!" Your cheeks turn red as the client keeps eying you intensely…');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['buklinik', 'olga2'] },
   ]);
@@ -121,6 +128,7 @@ function enterPos8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/industrial/mercyclinic/bukli_sitter1.jpg');
   scene.text('You head over to the elderly client and do some work around the house. As you finish, you chat a bit with the elderly client who is truly grateful for all of your help.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['buklinik', 'olga2'] },
   ]);
@@ -143,6 +151,7 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
       { label: 'I have an idea', goto: ['buklinik_event', 'pos10'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let me work on this, I think I have an idea', goto: ['buklinik', 'olga2'] },
   ]);
@@ -164,6 +173,7 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
   scene.text('After a short tussle, the others manage to get him under control and lead him away.');
   scene.text('As things quiet down, you get approached by a volunteer, "No one has been able to get him that under control; how did you do it?"');
   scene.text('With a smirk, you reply, "A girl has to keep some secrets."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the shelter', goto: ['buklinik', 'olga2'] },
   ]);
@@ -182,6 +192,7 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
       { label: 'Go', goto: ['city_industrial', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bathroom Michael', goto: ['buklinik_event', 'room'] },
     { label: 'Kitchen', goto: ['buklinik_event', 'kitchen'] },
@@ -214,6 +225,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.text('<a href="exec:gt \'buklinik_event\',\'misha\'">Michael</a> lies in bed reading a book.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Out', goto: ['buklinik_event', 'hall'] },
   ]);
@@ -242,6 +254,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['buklinik_event', 'hall'] },
   ]);
@@ -253,6 +266,7 @@ function enterVika(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/vika/0.jpg');
   // TODO-QSP: dynamic text: The nurse Vika is a little older than you, at <<VikaAge>> years.
   scene.text(`The nurse Vika is a little older than you, at ${((s as any).VikaAge ?? 0)} years.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -293,6 +307,7 @@ function enterMisha(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Michael was paralyzed after an illness, affecting his entire body. His fingers, ...
   scene.text(`Michael was paralyzed after an illness, affecting his entire body. His fingers, toes, and head, are the only things he can move. He is ${((s as any).MishaAge ?? 0)} years old. His spine is severely curved, preventing him from sitting in a regular chair.`);
   qspCall(s, 'buklinik_event', 'event2');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -324,6 +339,7 @@ function enterEvent0(s: GameState, scene: SceneBuilder): void {
   scene.text('- Wow! - you answered in surprise.');
   scene.text('- In general, go to this address - they will explain what you need to do there.');
   (s as any).nanny_act = 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go', goto: ['buklinik_event', 'event1'] },
   ]);
@@ -341,6 +357,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   scene.text('You arrived at the address and knocked on the door. A young girl opened it and asked:');
   scene.text('- Are you from the mercy clinic?');
   scene.text('- Yes, - you replied, looking at the girl. She seemed quite cute. She invited you to enter.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/kor.jpg');
@@ -440,6 +457,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['buklinik_event', 'hall'] },
   ]);
@@ -497,6 +515,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -515,6 +534,7 @@ function enterEvent2_MishaLoveFinished(s: GameState, scene: SceneBuilder): void 
   scene.text('- I\'m sorry, Misha, I\'m sorry again, but no, you don\'t have to do this. - you said, holding back tears.');
   scene.text('And you went into the kitchen to wait for Vika. When she arrived, you were in a hurry to leave.');
   scene.text('<br><b>END of CURRENT STORY : YOURSELF</b>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go', goto: ['buklinik', 'olga2'] },
   ]);
@@ -534,6 +554,7 @@ function enterEvent2NannyStoryFinished(s: GameState, scene: SceneBuilder): void 
   scene.text('- It means that we\'re together now, he explained.');
   scene.text('- Really? I\'m so happy for you! How did it happen? Tell us! you urged.');
   scene.text('- Okay, now I will tell you… he agreed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Listen', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/massage.mp4');
@@ -653,6 +674,7 @@ function enterEvent2NannyAct1(s: GameState, scene: SceneBuilder): void {
   scene.text('- Yes, you were right; it was nothing complicated.');
   scene.text('- I told you! - she said with a smile.');
   scene.text('- Well, I should probably get going. - you replied.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and leave', goto: ['buklinik', 'olga2'] },
   ]);
@@ -667,6 +689,7 @@ function enterEvent2NannyAct2(s: GameState, scene: SceneBuilder): void {
   scene.text('Well, Vika is bound to come back soon. - He said.');
   scene.text('Hmm… Vika seems like an interesting person. She communicates nicely with Michael. Could there be something between them? A thought slipped into your mind.');
   scene.text('I need to know! Maybe I should ask Michael? No, better not. But damn, it\'s so interesting! Yeah, screw it; I\'ll ask directly.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask Vika', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/misha.jpg');
@@ -750,6 +773,7 @@ function enterEvent2NannyAct3(s: GameState, scene: SceneBuilder): void {
   scene.text('On the first day, Misha told how to use the breathing apparatus, and you were already accustomed to using it.');
   scene.text('He took a few breaths of air and his lips parted.');
   scene.text('- Yes, I\'m listening. - he said.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let\'s…', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/misha.jpg');
@@ -890,6 +914,7 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
   scene.text('- I want to do something that makes you happy.');
   scene.text('- Well, I won\'t give up.');
   scene.text('It is a natural desire, thought you. He didn\'t want to passively accept the affection; he wanted to respond to it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress him', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/pants.mp4');
@@ -1037,6 +1062,7 @@ function enterEvent2NannyAct5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/misha.jpg');
   scene.text('- So let\'s start? - you asked. He agreed and said he was looking forward to today. He was beginning to think he could have sex and get pleasure from it like "normal" people.');
   scene.text('Furthermore, he was able to give pleasure to you. For a person in Michael\'s position, whose sexual needs were perceived at best as an inconvenience, this must have given him incredible confidence. He wanted to believe he could bring someone pleasure in bed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove clothing', handler: (st: GameState) => {
     scene.text('You undressed him and yourself. As usual, Misha was lying on the left edge of the bed. His head was always turned to the right, so only in this position could he see you when you lay next to him. You sat on the right edge of the mattress and threw your legs over his. Then you rolled onto your side and clung to him. His cock was already excited. You kissed him on the forehead.');
@@ -1106,6 +1132,7 @@ function enterEvent2NannyAct6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A185');
   (s as any).buklinikDay = ((s as any).daystart ?? 0);
   scene.text('Misha undressed you and himself. His cock was almost hard.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.text('You held his penis in your hands for a few minutes and he asked if he could kiss your vagina.');

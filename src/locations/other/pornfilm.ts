@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  return;
   scene.build();
 }
 
@@ -84,6 +83,7 @@ function enterPornactor(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,6 +142,7 @@ function enterPornactress(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,6 +215,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -237,6 +239,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? 0)} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and start', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/hj.mp4');
@@ -310,6 +313,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? 0)} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and start', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/hj.mp4');
@@ -406,6 +410,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
   scene.text(`${((s as any).npcdesc ?? 0)} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and start', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/hj.mp4');
@@ -518,6 +523,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your co-stars for this shoot are <<$npcdesc>> and <<$npcdesc1>>. They watch porn...
   scene.text(`Your co-stars for this shoot are ${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)}. They watch porn on a monitor, getting their cocks ready for you.`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and kneel', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/tbj.mp4');
@@ -611,6 +617,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> and <<$npcdesc1>> are your co-stars for this shoot. They watch porn...
   scene.text(`${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)} are your co-stars for this shoot. They watch porn on a monitor, getting their cocks ready for you.`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and start', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
@@ -718,6 +725,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your co-star for this shoot is <<$npcdesc>>. He is standing to the side, slowly ...
   scene.text(`Your co-star for this shoot is ${((s as any).npcdesc ?? 0)}. He is standing to the side, slowly stroking his dick.`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and start', handler: (st: GameState) => {
     (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
@@ -788,6 +796,9 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.text('The set is already bustling with assistants preparing for the shoot.');
   // TODO-QSP: dynamic text: <<$npcdesc>> and <<$npcdesc1>> are your co-stars for this shoot. They watch porn...
   scene.text(`${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)} are your co-stars for this shoot. They watch porn on a monitor, getting their cocks ready for you.`);
+  // TODO-QSP: end
+  return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress and kneel', handler: (st: GameState) => {
     scene.img('images/locations/city/redlight/studio_porn/sex/tbj.mp4');
@@ -879,6 +890,1422 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enter9(s: GameState, scene: SceneBuilder): void {
+  if ((!(Math.floor(Math.random() * 3) + 0))) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  (s as any).pornswall = ((s as any).pornswall ?? 0) + (1);
+  (s as any).pornvag = ((s as any).pornvag ?? 0) + (1);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (1);
+  (s as any).porncream = ((s as any).porncream ?? 0) + (1);
+  (s as any).pfType = 1;
+  qspCall(s, 'fame', 'city', 'porn', 25);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>> and <<$npcdesc1>> are your co-stars for this shoot. They watch porn...
+  scene.text(`${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)} are your co-stars for this shoot. They watch porn on a monitor, getting their cocks ready for you.`);
+  // TODO-QSP: end
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Undress and kneel', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/tbj.mp4');
+    // TODO-QSP: dynamic text: You get into position kneeling before <<$npcdesc>> and <<$npcdesc1>>. When the c...
+    scene.text(`You get into position kneeling before ${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)}. When the camera starts rolling, they slap their fully erect cocks against your face.`);
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Suck them', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/tbj2.mp4');
+    scene.text('You take turns sucking one dick while jerking the other with your hand. The two men moan loudly in pleasure and encourage you to take them deeper.');
+    // TODO-QSP: dynamic text: You're sucking <<$npcdesc1>>'s dick when he grabs your hair for leverage and sta...
+    scene.text(`You're sucking ${((s as any).npcdesc1 ?? 0)}'s dick when he grabs your hair for leverage and starts face fucking you. After a while, the director gestures for you to move on to the next scene, so he releases you and urges you to push your ass out.`);
+    qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'exhibitionism', 'group', 'rough');
+    qspCall(s, 'arousal', 'bj', 7, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'hj', (-7), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'hj', (-8), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck them', handler: (st: GameState) => {
+    (s as any).pornvag = ((s as any).pornvag ?? 0) + (1);
+    (s as any).pornswall = ((s as any).pornswall ?? 0) + (1);
+    scene.img(`images/shared/sex/group/threesomepm${Math.floor(Math.random() * 12) + 1}.mp4`);
+    if ((!(Math.floor(Math.random() * 2) + 0))) {
+      // TODO-QSP: dynamic text: You get in position before <<$npcdesc1>> and start sucking him while <<$npcdesc>...
+      scene.text(`You get in position before ${((s as any).npcdesc1 ?? 0)} and start sucking him while ${((s as any).npcdesc ?? 0)} fucks your pussy. He fucks you enthusiastically, making you swallow ${((s as any).npcdesc1 ?? 0)}'s dick. They fuck you like this and in several other poses and take turns switching between your mouth and pussy before the director signals that it's time for the finale.`);
+      qspCall(s, 'arousal', 'vaginal', 25, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+      qspCall(s, 'arousal', 'bj', (-25), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 1, 0, 10000, 1);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1, 0, 0, 40);
+    } else {
+      // TODO-QSP: dynamic text: You get in position before <<$npcdesc>> and start sucking him while <<$npcdesc1>...
+      scene.text(`You get in position before ${((s as any).npcdesc ?? 0)} and start sucking him while ${((s as any).npcdesc1 ?? 0)} fucks your pussy. He fucks you enthusiastically, making you swallow ${((s as any).npcdesc ?? 0)}'s dick. They fuck you like this and in several other poses and take turns switching between your mouth and pussy before the director signals that it's time for the finale.`);
+      qspCall(s, 'arousal', 'vaginal', 25, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+      qspCall(s, 'arousal', 'bj', (-25), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', 'precum', ((s as any).npcID1 ?? 0), 1, 0, 10000, 1);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID1 ?? 0), 1, 0, 10000, 40);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1, 0, 0, 40);
+    }
+    qspCall(s, 'stat', '');
+    scene.text('The guys start fucking you even faster while coordinating with each other, and you soon feel them twitching inside you simultaneously. Your pussy is filled with cum as another load hits your throat, causing you to choke slightly.');
+    if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+      scene.actions([
+        { label: 'Fake orgasm', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+    scene.text('You fake an orgasm alongside the guys, your moans muffled by the cock in your mouth. Finally, the guys finish and step away so the camera can film you swallowing the load in your mouth before moving down to get a close-up of the cum trickling out of your pussy.');
+    qspCall(s, 'arousal', 'vaginal', 5, 'exhibitionism');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+      ]);
+    } else {
+      (s as any).will_cost = 0;
+      if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+        qspCall(s, 'willpower', 'exhib', 'self', 'hard');
+      }
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Block out everything but the pleasure and let yourself orgasm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        // TODO-QSP: act iif(orgasm_buildup < 300 - pcs_inhib, 'Block out everything but the pleasure and let yourself or...
+        if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+          qspCall(s, 'willpower', 'pay', 'self');
+        }
+        (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+        (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+        scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+        scene.text('You have a very real orgasm and explosive orgasm, your moans muffled by the cock in your mouth. The guys finish and step away so the camera can film you swallowing the load in your mouth before moving down for a close-up of the cum trickling out of your pussy.');
+        qspCall(s, 'arousal', 'vaginal', 5, 'exhibitionism');
+        qspCall(s, 'arousal', 'end');
+        scene.actions([
+          { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter4GuyBlowJerkBreastCuni(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', 5, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'breasts', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'breasts', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'breasts', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'breasts', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'cuni', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'cuni', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'cuni', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'cuni', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter4GuyBlowJerkVaginal(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter10(s: GameState, scene: SceneBuilder): void {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  (s as any).pornvag = ((s as any).pornvag ?? 0) + (2);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (2);
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornhj = ((s as any).pornhj ?? 0) + (1);
+  }
+  (s as any).pornbukk = ((s as any).pornbukk ?? 0) + (2);
+  (s as any).pfType = 1;
+  qspCall(s, 'fame', 'city', 'porn', 30);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
+  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  scene.text('The set is already bustling with assistants preparing the set for the shoot.');
+  // TODO-QSP: dynamic text: Your co-stars, <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are...
+  scene.text(`Your co-stars, ${((s as any).npcdesc ?? 0)}, ${((s as any).npcdesc1 ?? 0)}, ${((s as any).npcdesc2 ?? 0)} and ${((s as any).npcdesc3 ?? 0)}, are watching porn while loudly discussing who gets to do what first.`);
+  scene.text('As they continue arguing, you do a striptease for the camera, allowing it to get close-up shots of your holes as you talk dirty, teasing the viewers.');
+  qspCall(s, 'arousal', 'striptease', 5);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Warmup', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
+    scene.text('Under pressure from the director, the men eventually agree and gather around you. You start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates it\'s time to change the scene.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_breast_cuni');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck them', handler: (st: GameState) => {
+    scene.img(`images/locations/city/redlight/studio_porn/sex/gangp${Math.floor(Math.random() * 4) + 1}.mp4`);
+    scene.text('The guys take turns fucking you in a variety of positions. You keep them hard by jerking and sucking them off when they\'re not fucking you.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_vaginal');
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 1, 0, 10000, 1);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'precum', ((s as any).npcID1 ?? 0), 1, 0, 10000, 1);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'precum', ((s as any).npcID2 ?? 0), 1, 0, 10000, 1);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'precum', ((s as any).npcID3 ?? 0), 1, 0, 10000, 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finale', handler: (st: GameState) => {
+    scene.text('The guys continue to fuck you, but this time with the purpose of cumming as quickly as possible.');
+    if ((Math.floor(Math.random() * 6) + 0) > 0) {
+      scene.img(`images/locations/city/redlight/studio_porn/sex/cumbath${Math.floor(Math.random() * 2) + 1}.mp4`);
+      // TODO-QSP: dynamic text: <<$npcdesc>> is fucking you when he suddenly groans and pulls out, coating your ...
+      scene.text(`${((s as any).npcdesc ?? 0)} is fucking you when he suddenly groans and pulls out, coating your labia with his load of cum. You look up at him seductively while biting your lip, a look of satisfied pleasure on his face.`);
+      qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+    } else {
+      scene.img(`images/locations/city/redlight/studio_porn/sex/cumbathm${Math.floor(Math.random() * 2) + 1}.mp4`);
+      // TODO-QSP: dynamic text: <<$npcdesc>> is fucking you when he suddenly groans and pulls his dick out of yo...
+      scene.text(`${((s as any).npcdesc ?? 0)} is fucking you when he suddenly groans and pulls his dick out of your pussy, but messes up when his first shot of cum shoots straight into your open pussy. He quickly corrects his aim, and the others coat your labia.`);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 0, 10000, 10);
+      qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1, 0, 10000, 30);
+      (s as any).cuminside = 1;
+    }
+    if (((s as any).orgasm_buildup ?? 0) >= 200 - ((s as any).pcs_inhib ?? 0)) {
+      (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+      (s as any).pornorg = 1;
+      scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+      scene.text('You\'re rubbing your clit and end up cumming alongside him as he coats your twitching pussy with his load.');
+      qspCall(s, 'stat', '');
+    }
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: Once he's done, he's replaced by <<$npcdesc1>>, who quickly penetrates you and s...
+    scene.text(`Once he's done, he's replaced by ${((s as any).npcdesc1 ?? 0)}, who quickly penetrates you and starts thrusting.`);
+    if ((Math.floor(Math.random() * 6) + 0) > 0) {
+      scene.img('images/locations/city/redlight/studio_porn/sex/cumbath4.mp4');
+      // TODO-QSP: dynamic text: Reaching climax, <<$npcdesc1>> groans and pulls out, aiming his dick at your tit...
+      scene.text(`Reaching climax, ${((s as any).npcdesc1 ?? 0)} groans and pulls out, aiming his dick at your tits. He jerks his dick, and you look down to see hot cum splattering over your tits. You giggle and smile as you squeeze your cum covered tits in your hands.`);
+      qspCall(s, 'cum_call', 'breasts', ((s as any).npcID1 ?? 0), 1, 0, 10000, 40);
+    } else {
+      scene.img('images/locations/city/redlight/studio_porn/sex/cumbath4.mp4');
+      // TODO-QSP: dynamic text: Reaching climax, <<$npcdesc1>> groans and pulls out. He aims at your tits, but h...
+      scene.text(`Reaching climax, ${((s as any).npcdesc1 ?? 0)} groans and pulls out. He aims at your tits, but his first shot hits you straight in the face. He quickly corrects his aim, and the rest of his cum coats your tits.`);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID1 ?? 0), 1, 0, 10000, 10);
+      qspCall(s, 'cum_call', 'breasts', ((s as any).npcID1 ?? 0), 1, 0, 10000, 30);
+      (s as any).cuminside = 1;
+    }
+    // TODO-QSP: dynamic text: Once he's done, he's replaced by <<$npcdesc2>>, who moves in and starts pounding...
+    scene.text(`Once he's done, he's replaced by ${((s as any).npcdesc2 ?? 0)}, who moves in and starts pounding your pussy hard.`);
+    if ((Math.floor(Math.random() * 6) + 0) > 0) {
+      scene.img('images/shared/sex/cum/cum2.mp4');
+      // TODO-QSP: dynamic text: <<$npcdesc2>> is really going at it and doesn't stop until the last second. He s...
+      scene.text(`${((s as any).npcdesc2 ?? 0)} is really going at it and doesn't stop until the last second. He suddenly groans and quickly pulls out before straddling you. You close your eyes just in time as his warm cum splatter across your face and into your hair. When he's finished, you take him into your mouth and suck his dick clean.`);
+      qspCall(s, 'cum_call', 'hair', ((s as any).npcID2 ?? 0), 1, 0, 10000, 20);
+      qspCall(s, 'cum_call', 'face', ((s as any).npcID2 ?? 0), 1, 0, 10000, 20);
+    } else {
+      scene.img(`images/locations/city/redlight/studio_porn/sex/cumbathm${Math.floor(Math.random() * 2) + 1}.mp4`);
+      // TODO-QSP: dynamic text: <<$npcdesc2>> is pounding you hard. He reaches climax rather quickly but doesn't...
+      scene.text(`${((s as any).npcdesc2 ?? 0)} is pounding you hard. He reaches climax rather quickly but doesn't pull out fast enough. His first shot of cum shoots straight into your open pussy, and the rest splatters over your already-covered labia.`);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID2 ?? 0), 1, 0, 10000, 10);
+      qspCall(s, 'cum_call', 'labia', ((s as any).npcID2 ?? 0), 1, 0, 10000, 15);
+      (s as any).cuminside = 1;
+    }
+    if (((s as any).orgasm_buildup ?? 0) >= 200 - ((s as any).pcs_inhib ?? 0)) {
+      (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+      (s as any).pornorg = 1;
+      scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+      // TODO-QSP: dynamic text: <<$npcdesc2>> is pounding you so hard that you have an orgasm as he coats your w...
+      scene.text(`${((s as any).npcdesc2 ?? 0)} is pounding you so hard that you have an orgasm as he coats your writhing body with his load.`);
+    }
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: Once he's done, he's replaced by <<$npcdesc3>>, the last of the men.
+    scene.text(`Once he's done, he's replaced by ${((s as any).npcdesc3 ?? 0)}, the last of the men.`);
+    if ((Math.floor(Math.random() * 6) + 0) > 0) {
+      scene.img('images/locations/city/redlight/studio_porn/sex/cumbath3.mp4');
+      // TODO-QSP: dynamic text: <<$npcdesc3>> fucks you for only a few minutes before he groans and pulls out, c...
+      scene.text(`${((s as any).npcdesc3 ?? 0)} fucks you for only a few minutes before he groans and pulls out, coating your belly with his cum.`);
+      qspCall(s, 'cum_call', 'stomach', ((s as any).npcID3 ?? 0), 1, 0, 10000, 40);
+    } else {
+      scene.img(`images/locations/city/redlight/studio_porn/sex/cumbathm${Math.floor(Math.random() * 2) + 1}.mp4`);
+      // TODO-QSP: dynamic text: <<$npcdesc3>> fucks you for a few minutes before he pulls out but messes up when...
+      scene.text(`${((s as any).npcdesc3 ?? 0)} fucks you for a few minutes before he pulls out but messes up when his first shot of cum shoots straight into your open pussy. He quickly corrects his aim, and the rest splatter across your stomach.`);
+      (s as any).cumnostd = 1;
+      qspCall(s, 'cum_call', '', '', ((s as any).npcID3 ?? 0), 1, 0, 10000, 10);
+      qspCall(s, 'cum_call', 'stomach', ((s as any).npcID3 ?? 0), 1, 0, 10000, 30);
+      (s as any).cuminside = 1;
+    }
+    if (((s as any).orgasm_buildup ?? 0) >= 200 - ((s as any).pcs_inhib ?? 0)) {
+      (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+      (s as any).pornorg = 1;
+      scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+      scene.text('The four guys fucking you has aroused you incredibly. You end up having an explosive orgasm as he coats your writhing body with his load.');
+    }
+    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    if (((s as any).cuminside ?? 0) === 1) {
+      (s as any).porncream = ((s as any).porncream ?? 0) + (1);
+      // TODO-QSP: killvar 'cuminside'
+    }
+    if (((s as any).pornorg ?? 0) === 1) {
+      (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+      // TODO-QSP: killvar 'pornorg'
+    }
+    qspCall(s, 'stat', '');
+    qspCall(s, 'arousal', 'end');
+    scene.text('The men finish and you lie on the bed, teasingly playing with your cum covered body for a few seconds. The camera gets a few close-ups of you before you sit up and use your fingers to scoop some cum off your tits. You make a seductive show of sucking your fingers clean and smiling at the camera. Finally, the director is pleased and ends the shoot.');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter11(s: GameState, scene: SceneBuilder): void {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornhj = ((s as any).pornhj ?? 0) + (1);
+  }
+  (s as any).pornvag = ((s as any).pornvag ?? 0) + (2);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (2);
+  (s as any).porncream = ((s as any).porncream ?? 0) + (2);
+  (s as any).pfType = 1;
+  qspCall(s, 'fame', 'city', 'porn', 30);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
+  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: Your co-stars <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are ...
+  scene.text(`Your co-stars ${((s as any).npcdesc ?? 0)}, ${((s as any).npcdesc1 ?? 0)}, ${((s as any).npcdesc2 ?? 0)} and ${((s as any).npcdesc3 ?? 0)}, are watching porn while loudly discussing who gets to do what first.`);
+  scene.text('As they continue arguing, you do a striptease for the camera, allowing it to get close-up shots of your holes as you talk dirty, teasing the viewers.');
+  qspCall(s, 'arousal', 'striptease', 5);
+  // TODO-QSP: end
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Warmup', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
+    scene.text('Under pressure from the director, the men eventually agree and gather around you. You start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates that it\'s time to change the scene.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_breast_cuni');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck them', handler: (st: GameState) => {
+    scene.img(`images/shared/sex/group/threesomepm${Math.floor(Math.random() * 12) + 1}.mp4`);
+    scene.text('The guys take turns fucking you in a variety of positions. You keep them hard by jerking and sucking them off when they\'re not fucking you.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_vaginal');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Creampies', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).porncream = ((s as any).porncream ?? 0) + (1);
+    scene.img(`images/locations/city/redlight/studio_porn/sex/porncp${Math.floor(Math.random() * 3) + 1}.mp4`);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID1 ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID2 ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID3 ?? 0), 1, 0, 10000, 40);
+    qspCall(s, 'arousal', 'vaginal', 4, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 4, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 4, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 4, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+      scene.actions([
+        { label: 'No orgasm', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/porncp4some.mp4');
+    scene.text('You lie on your back, spread your legs and smile at the guys, talking dirty and inviting them to cum inside you. They gather around and take turns fucking you, making you moan as you feel each load of cum being pumped deep inside you. The cum from the first two guys starts to leak from you and pool below you as the last guy fucks you fast and hard.');
+    scene.text('As soon as the guys are finished, the camera comes for a close-up as a stream of cum runs from your pussy. It then pans up to you, and you give it a wink and kiss.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/pornwalk.mp4');
+    scene.text('The scene ends with you putting on your dress and stepping out the door with cum still dripping from your pussy.');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      (s as any).will_cost = 0;
+      if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+        qspCall(s, 'willpower', 'exhib', 'self', 'hard');
+      }
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Block out everything but the pleasure and let yourself orgasm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        // TODO-QSP: act iif(orgasm_buildup < 300 - pcs_inhib, 'Block out everything but the pleasure and let yourself or...
+        if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+          qspCall(s, 'willpower', 'pay', 'self');
+        }
+        scene.img('images/locations/city/redlight/studio_porn/sex/porncp4some.mp4');
+        scene.text('You lie on your back, spread your legs and smile at the guys, talking dirty and inviting them to cum inside you. They gather around and take turns fucking you, making you moan as you feel each load of cum being pumped deep inside you. The cum from the first two guys starts to leak from you and pool below you as the last guy fucks you fast and hard.');
+        scene.text('Since you\'re already on edge, this pushes you over, and you cum around his dick, milking it even more. This pleases the director greatly. As soon as the guys are finished, the camera comes for a close-up as a stream of cum runs from your pussy. It then pans up to you, and you give it a wink and kiss.');
+        (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+        (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+        qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'vaginal', 1, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'end');
+        scene.actions([
+          { label: 'Finish', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/pornwalk.mp4');
+    scene.text('The scene ends with you putting on your dress and stepping out the door with cum still dripping from your pussy.');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter4GuyBlowJerkAnal(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+  qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter12(s: GameState, scene: SceneBuilder): void {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornhj = ((s as any).pornhj ?? 0) + (1);
+  }
+  (s as any).pornanal = ((s as any).pornanal ?? 0) + (2);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (2);
+  (s as any).porncream = ((s as any).porncream ?? 0) + (2);
+  (s as any).pfType = 0;
+  qspCall(s, 'fame', 'city', 'porn', 30);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
+  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: Your co-stars, <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are...
+  scene.text(`Your co-stars, ${((s as any).npcdesc ?? 0)}, ${((s as any).npcdesc1 ?? 0)}, ${((s as any).npcdesc2 ?? 0)} and ${((s as any).npcdesc3 ?? 0)}, are watching porn while loudly discussing who gets to do what first.`);
+  scene.text('As they continue arguing, you do a striptease for the camera, allowing it to get close-up shots of your holes as you talk dirty, teasing the viewers.');
+  qspCall(s, 'arousal', 'striptease', 5);
+  // TODO-QSP: end
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Warmup', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
+    scene.text('Under pressure from the director, the men eventually agree and gather around you. Next, you start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates that it\'s time to change the scene.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_breast_cuni');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck them', handler: (st: GameState) => {
+    qspCall(s, 'stat', '');
+    scene.img(`images/shared/sex/group/threesomepm${Math.floor(Math.random() * 6) + 0}.mp4`);
+    scene.text('The guys take turns fucking your ass in a variety of positions. You keep them hard by jerking and sucking them off when they\'re not fucking you.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_anal');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal creampies', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID2 ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID3 ?? 0), 1, 0, 10000, 40);
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+      scene.actions([
+        { label: 'No orgasm', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/anal4some.mp4');
+    scene.text('You lower your head onto the pillows while pushing your ass in the air and spreading your cheeks to give the guys easy access to your asshole. You feel a dick slide into your asshole and start fucking you hard for a few seconds before stopping. You then feel it push deep into your ass and pump a considerable amount of warm cum into your bowels.');
+    scene.text('The guy pulls out, and you immediately feel another dick replace him, pushing deep into your ass before it starts thrusting. Then, the other guys take turns cumming in your ass, and you can feel a considerable amount of cum pooled inside you when they\'re done.');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/pornwalk.mp4');
+    scene.text('As soon as the last guy pulls out, you quickly stuff a butt plug into your ass to contain the cum inside you. The scene ends with you putting on your dress and stepping out the door with the cum inside you.');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    } else {
+      (s as any).will_cost = 0;
+      if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+        qspCall(s, 'willpower', 'exhib', 'self', 'hard');
+      }
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Block out everything but the pleasure and let yourself orgasm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        // TODO-QSP: act iif(orgasm_buildup < 300 - pcs_inhib, 'Block out everything but the pleasure and let yourself or...
+        if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+          qspCall(s, 'willpower', 'pay', 'self');
+        }
+        scene.img('images/locations/city/redlight/studio_porn/sex/anal4some.mp4');
+        scene.text('You lower your head onto the pillows while pushing your ass in the air and spreading your cheeks to give the guys easy access to your asshole. You feel a dick slide into your asshole and start fucking you hard for a few seconds before stopping. You then feel it push deep into your ass and pump a considerable amount of warm cum into your bowels.');
+        scene.text('Since you\'re already on edge, this pushes you over, and you moan into the pillow as your legs buckle in orgasm. The director seems exceptionally pleased with this. The guy pulls out, and you immediately feel another dick replace him, pushing deep into your ass before it starts thrusting. The other guys take their turns cumming in your ass, and you can feel a considerable amount of cum pooled inside you when they\'re done.');
+        (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+        (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'end');
+        scene.actions([
+          { label: 'Finish', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/pornwalk.mp4');
+    scene.text('As soon as the last guy pulls out, you quickly stuff a butt plug into your ass to contain the cum inside you. The scene ends with you putting on your dress and stepping out the door with the cum inside you.');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter13(s: GameState, scene: SceneBuilder): void {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornhj = ((s as any).pornhj ?? 0) + (1);
+  }
+  (s as any).pornvag = ((s as any).pornvag ?? 0) + (1);
+  (s as any).pornanal = ((s as any).pornanal ?? 0) + (1);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (2);
+  (s as any).porncream = ((s as any).porncream ?? 0) + (2);
+  (s as any).pfType = 1;
+  qspCall(s, 'fame', 'city', 'porn', 30);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactorID[2], 'a'
+  // TODO-QSP: gs 'npcStat', $pactorID[3], 'b'
+  // TODO-QSP: gs 'npcStat', $pactorID[4], 'c'
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: Your co-stars, <<$npcdesc>>, <<$npcdesc1>>, <<$npcdesc2>> and <<$npcdesc3>>, are...
+  scene.text(`Your co-stars, ${((s as any).npcdesc ?? 0)}, ${((s as any).npcdesc1 ?? 0)}, ${((s as any).npcdesc2 ?? 0)} and ${((s as any).npcdesc3 ?? 0)}, are watching porn while loudly discussing who gets to do what first.`);
+  scene.text('As they continue arguing, you do a striptease for the camera, allowing it to get close-up shots of your holes as you talk dirty, teasing the viewers.');
+  qspCall(s, 'arousal', 'striptease', 5);
+  // TODO-QSP: end
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Warmup', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/warmupgang.mp4');
+    scene.text('Under pressure from the director, the men eventually agree and gather around you. Next, you start sucking one guy\'s dick while giving a handjob to another. The other two get creative - one sucks your tits while the other licks your pussy. They occasionally switch places before the director indicates that it\'s time to change the scene.');
+    qspCall(s, 'pornfilm', '4_guy_blow_jerk_breast_cuni');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Let them fuck you', handler: (st: GameState) => {
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', '', '', ((s as any).npcID1 ?? 0), 1, 0, 10000, 40);
+    qspCall(s, 'arousal', 'vaginal', 7, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 7, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 7, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 7, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    scene.img(`images/shared/sex/group/doublevag${Math.floor(Math.random() * 4) + 1}.mp4`);
+    if (((s as any).orgasm_buildup ?? 0) < 200 - ((s as any).pcs_inhib ?? 0)) {
+      scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+      // TODO-QSP: dynamic text: <<$npcdesc>> lies on the bed, and you slide down onto his dick, moaning as it st...
+      scene.text(`${((s as any).npcdesc ?? 0)} lies on the bed, and you slide down onto his dick, moaning as it stretches your pussy. ${((s as any).npcdesc1 ?? 0)} steps behind you and pushes his dick inside your already-occupied vagina. The two guys start fucking you in tandem. When the director signals, they start fucking you more forcefully, and thanks to their timing, they cum inside you at the same time.`);
+      scene.text('You talk dirty to them and fake an orgasm while you wait for them to finish unloading inside you.');
+    } else {
+      (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+      (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+      scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+      // TODO-QSP: dynamic text: <<$npcdesc>> lies on the bed, and you slide down onto his dick, moaning as it st...
+      scene.text(`${((s as any).npcdesc ?? 0)} lies on the bed, and you slide down onto his dick, moaning as it stretches your pussy. Then, ${((s as any).npcdesc1 ?? 0)} steps behind you and pushes his dick inside your already-occupied vagina. The two guys start fucking you in tandem. When the director signals, they start fucking you more forcefully, and thanks to their timing, they cum inside you at the same time.`);
+      scene.text('Thanks to the two dicks stretching your pussy and fucking you hard, you also cum, crying out in pleasure as your pussy contracts around them while they unload inside you.');
+    }
+    qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'They fuck your ass', handler: (st: GameState) => {
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID2 ?? 0), 1, 0, 10000, 40);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID3 ?? 0), 1, 0, 10000, 40);
+    qspCall(s, 'arousal', 'anal', 7, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 7, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 7, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 7, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    scene.img(`images/locations/city/redlight/studio_porn/sex/doublean${Math.floor(Math.random() * 4) + 1}.mp4`);
+    // TODO-QSP: dynamic text: Cum leaks from your pussy as <<$npcdesc>> and <<$npcdesc1>> pull out and let <<$...
+    scene.text(`Cum leaks from your pussy as ${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)} pull out and let ${((s as any).npcdesc2 ?? 0)} and ${((s as any).npcdesc3 ?? 0)} replace them. You give them a quick blowjob before ${((s as any).npcdesc2 ?? 0)} lies on the bed and pulls you on top of him, sliding his cock into your ass. ${((s as any).npcdesc3 ?? 0)} moves in behind and inserts his dick into your already stretched hole. Despite the tightness, the guys quickly find a rhythm.`);
+    if (((s as any).orgasm_buildup ?? 0) < 200 - ((s as any).pcs_inhib ?? 0)) {
+      scene.actions([
+        { label: 'Fake orgasm', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+    // TODO-QSP: dynamic text: Cum leaks from your pussy as <<$npcdesc>> and <<$npcdesc1>> pull out and let <<$...
+    scene.text(`Cum leaks from your pussy as ${((s as any).npcdesc ?? 0)} and ${((s as any).npcdesc1 ?? 0)} pull out and let ${((s as any).npcdesc2 ?? 0)} and ${((s as any).npcdesc3 ?? 0)} replace them. You give them a quick blowjob before ${((s as any).npcdesc2 ?? 0)} lies on the bed and pulls you on top of him, sliding his cock into your ass. ${((s as any).npcdesc3 ?? 0)} moves in behind and inserts his dick into your already stretched hole. Despite the tightness, the guys quickly find a rhythm.`);
+    scene.text('You talk dirty to them while they fuck your ass and fake an orgasm when they cum inside you.');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+      ]);
+    } else {
+      (s as any).will_cost = 0;
+      if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+        qspCall(s, 'willpower', 'exhib', 'self', 'hard');
+      }
+      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        scene.actions([
+          { label: 'Block out everything but the pleasure and let yourself orgasm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+        ]);
+      } else {
+        // TODO-QSP: act iif(orgasm_buildup < 300 - pcs_inhib, 'Block out everything but the pleasure and let yourself or...
+        if (((s as any).orgasm_buildup ?? 0) < 300 - ((s as any).pcs_inhib ?? 0)) {
+          qspCall(s, 'willpower', 'pay', 'self');
+        }
+        (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+        (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+        scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+        scene.text('The pleasure of your ass being double fucked means you also cum, visibly orgasming on camera alongside the guys.');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID2 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'anal', 1, ((s as any).npcID3 ?? 0), 'exhibitionism', 'group');
+        qspCall(s, 'arousal', 'end');
+        scene.actions([
+          { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+        ]);
+      }
+    }
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter14(s: GameState, scene: SceneBuilder): void {
+  (s as any).porngang = ((s as any).porngang ?? 0) + (5);
+  (s as any).pornexhib = ((s as any).pornexhib ?? 0) + (5);
+  (s as any).pfType = 1;
+  qspCall(s, 'fame', 'city', 'porn', 40);
+  (s as any).minut = ((s as any).minut ?? 0) + 30;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  (s as any).guy = ((s as any).guy ?? 0) + (50);
+  qspCall(s, 'stat', '');
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  if (((s as any).fame ?? 0)?.['city_porn'] >= 200) {
+    scene.text('Fifty guys are standing around. They are your fans and have come just for the chance to fuck you. They\'re all nervously talking and watching your previous works on screens.');
+  } else {
+    scene.text('Fifty guys are standing around, most of them strangers who answered an open casting call for a chance to participate in the gangbang. They\'re all nervously talking and eyeing you up.');
+  }
+  scene.img('images/locations/city/redlight/studio_porn/sex/touching.mp4');
+  scene.text('You lie down on the stage and let them touch you to get them into the mood.');
+  qspCall(s, 'arousal', 'foreplay', 10, 'self', 'gangbang', 'exhibitionism');
+  qspCall(s, 'stat', '');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Start filming', handler: (st: GameState) => {
+    (s as any).sexpartkno = 0;
+    (s as any).gangOrg = 0;
+    (s as any).gb_counter = 0;
+    (s as any).gb_bj_count = 0;
+    (s as any).gb_hj_count = 0;
+    (s as any).gb_lip_count = 0;
+    (s as any).gb_anal_count = 0;
+    (s as any).gb_bukk_count = 0;
+    (s as any).gb_sex_count = 0;
+    // TODO-QSP: :gb_main_loop
+    (s as any).gb_counter = ((s as any).gb_counter ?? 0) + (1);
+    ((s as any).arousal_overcall ?? {})['args'] = '';
+    qspCall(s, 'npcgeneratec', '', 0, 'Porn Fan', Math.floor(Math.random() * 17) + 22, 0, 1);
+    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+    (s as any).gb_roll = Math.floor(Math.random() * 6) + 1;
+    if (((s as any).gb_roll ?? 0) === 1) {
+      qspCall(s, 'pornfilm', '14_gb_bj');
+    } else {
+      if (((s as any).gb_roll ?? 0) === 2) {
+        qspCall(s, 'pornfilm', '14_gb_hj');
+      } else {
+        if (((s as any).gb_roll ?? 0) === 3) {
+          qspCall(s, 'pornfilm', '14_gb_lip');
+        } else {
+          if (((s as any).gb_roll ?? 0) === 4) {
+            qspCall(s, 'pornfilm', '14_gb_anal');
+          } else {
+            if (((s as any).gb_roll ?? 0) === 5) {
+              qspCall(s, 'pornfilm', '14_gb_bukk');
+            } else {
+              qspCall(s, 'pornfilm', '14_gb_sex');
+            }
+          }
+        }
+      }
+    }
+    if (((s as any).orgasm_buildup ?? 0) >= 400 - 3*((s as any).pcs_inhib ?? 0)) {
+      (s as any).gangOrg = ((s as any).gangOrg ?? 0) + (1);
+    }
+    if (((s as any).gb_counter ?? 0) < 50) {
+      // TODO-QSP: jump 'gb_main_loop'
+    }
+    ((s as any).stat ?? {})['vaginal'] = (((s as any).stat ?? {})['vaginal'] ?? 0) + (((s as any).gb_sex_count ?? 0));
+    ((s as any).stat ?? {})['anal'] = (((s as any).stat ?? {})['anal'] ?? 0) + (((s as any).gb_anal_count ?? 0));
+    ((s as any).stat ?? {})['bj'] = (((s as any).stat ?? {})['bj'] ?? 0) + (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0));
+    ((s as any).stat ?? {})['hj'] = (((s as any).stat ?? {})['hj'] ?? 0) + (((s as any).gb_hj_count ?? 0));
+    if (((s as any).gb_bj_count ?? 0) + ((s as any).gb_lip_count ?? 0) > 5) {
+      (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+    }
+    if (((s as any).gb_bj_count ?? 0) > 3) {
+      (s as any).pornswall = ((s as any).pornswall ?? 0) + (1);
+    }
+    if (((s as any).gb_hj_count ?? 0) >= 5) {
+      (s as any).pornhj = ((s as any).pornhj ?? 0) + (1);
+    }
+    if (((s as any).gb_hj_count ?? 0) >= 5) {
+      (s as any).pornbukk = ((s as any).pornbukk ?? 0) + (1);
+    }
+    if (((s as any).gb_anal_count ?? 0) > 5) {
+      (s as any).pornanal = ((s as any).pornanal ?? 0) + (1);
+    }
+    if (((s as any).gb_bukk_count ?? 0) > 5) {
+      (s as any).pornbukk = ((s as any).pornbukk ?? 0) + (1);
+    }
+    if (((s as any).gb_sex_count ?? 0) > 45) {
+      (s as any).pornvag = ((s as any).pornvag ?? 0) + (5);
+      (s as any).porncream = ((s as any).porncream ?? 0) + (5);
+    } else {
+      if (((s as any).gb_sex_count ?? 0) > 35) {
+        (s as any).pornvag = ((s as any).pornvag ?? 0) + (4);
+        (s as any).porncream = ((s as any).porncream ?? 0) + (4);
+      } else {
+        if (((s as any).gb_sex_count ?? 0) > 25) {
+          (s as any).pornvag = ((s as any).pornvag ?? 0) + (3);
+          (s as any).porncream = ((s as any).porncream ?? 0) + (3);
+        } else {
+          if (((s as any).gb_sex_count ?? 0) > 15) {
+            (s as any).pornvag = ((s as any).pornvag ?? 0) + (2);
+            (s as any).porncream = ((s as any).porncream ?? 0) + (2);
+          } else {
+            if (((s as any).gb_sex_count ?? 0) > 5) {
+              (s as any).pornvag = ((s as any).pornvag ?? 0) + (1);
+              (s as any).porncream = ((s as any).porncream ?? 0) + (1);
+            }
+          }
+        }
+      }
+    }
+    scene.img(`images/locations/city/redlight/studio_porn/sex/fuckfifty${Math.floor(Math.random() * 6) + 0}.mp4`);
+    if (((s as any).fame ?? 0)?.['city_porn'] >= 200) {
+      scene.text('Your fans gather around and start fucking you with great enthusiasm, but little technique. The gangbang lasts for hours, and you\'re plastered in cum by the time they\'re all finished.');
+    } else {
+      scene.text('The guys gather around and start fucking you with great enthusiasm, but little technique. The gangbang lasts for hours, and you\'re plastered in cum by the time they\'re all finished.');
+    }
+    if (((s as any).gangOrg ?? 0) > 0) {
+      // TODO-QSP: 'During the shoot you managed to ' + iif(gangOrg = 1, 'have one orgasm.', 'orgasm <<gangOrg>> times....
+    }
+    (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (((s as any).gangOrg ?? 0)*10);
+    (s as any).porngasm = ((s as any).porngasm ?? 0) + (((s as any).gangOrg ?? 0));
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter14GbBj(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 0, 0, 10000, 1);
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  (s as any).gb_bj_count = ((s as any).gb_bj_count ?? 0) + (1);
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter14GbHj(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'hj', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 0, 0, 10000, 1);
+  qspCall(s, 'cum_call', 'hands', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  (s as any).gb_hj_count = ((s as any).gb_hj_count ?? 0) + (1);
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter14GbLip(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 0, 0, 10000, 1);
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  } else {
+    qspCall(s, 'cum_call', 'hair', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  }
+  (s as any).gb_lip_count = ((s as any).gb_lip_count ?? 0) + (1);
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter14GbAnal(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'anal', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 0, 0, 10000, 1);
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  (s as any).gb_anal_count = ((s as any).gb_anal_count ?? 0) + (1);
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter14GbBukk(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'foreplay', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 0, 0, 10000, 1);
+  (s as any).bukkloc = Math.floor(Math.random() * 7) + 0;
+  if ((!((s as any).bukkloc ?? 0))) {
+    qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  } else {
+    if (((s as any).bukkloc ?? 0) === 1) {
+      qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+    } else {
+      if (((s as any).bukkloc ?? 0) === 2) {
+        qspCall(s, 'cum_call', 'back', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+      } else {
+        if (((s as any).bukkloc ?? 0) === 3) {
+          qspCall(s, 'cum_call', 'legs', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+        } else {
+          if (((s as any).bukkloc ?? 0) === 4) {
+            qspCall(s, 'cum_call', 'arms', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+          } else {
+            if (((s as any).bukkloc ?? 0) === 5) {
+              qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+            } else {
+              qspCall(s, 'cum_call', 'breasts', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+            }
+          }
+        }
+      }
+    }
+  }
+  (s as any).gb_bukk_count = ((s as any).gb_bukk_count ?? 0) + (1);
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter14GbSex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'arousal', 'vaginal', 8, ((s as any).npcID ?? 0), 'gangbang', 'exhibitionism');
+  (s as any).cumnostd = 1;
+  qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 0, 0, 10000, 40);
+  (s as any).gb_sex_count = ((s as any).gb_sex_count ?? 0) + (1);
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter15(s: GameState, scene: SceneBuilder): void {
+  if ((!(Math.floor(Math.random() * 2) + 0))) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  (s as any).pornanal = ((s as any).pornanal ?? 0) + (1);
+  if ((!(Math.floor(Math.random() * 3) + 0))) {
+    (s as any).porngang = ((s as any).porngang ?? 0) + (1);
+  }
+  (s as any).porncream = ((s as any).porncream ?? 0) + (1);
+  (s as any).pfType = 1;
+  qspCall(s, 'fame', 'city', 'porn', 20);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
+  scene.text(`${((s as any).npcdesc ?? 0)} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Undress and start', handler: (st: GameState) => {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+    scene.img('images/locations/city/redlight/studio_porn/sex/bj.mp4');
+    // TODO-QSP: dynamic text: The scene starts with you giving a camera a striptease and bending over to provi...
+    scene.text(`The scene starts with you giving a camera a striptease and bending over to provide a close-up view of your asshole. You then finger your ass and use a dildo to fuck yourself before ${((s as any).npcdesc ?? 0)} walks over.`);
+    scene.text('You crawl up to him with a seductive gaze, take his cock into your mouth, and start sucking it.');
+    qspCall(s, 'arousal', 'striptease', 5);
+    qspCall(s, 'arousal', 'bj', 25, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Keep sucking', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/deep.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> grabs your hair in his fists and begins to fuck your mouth, driving...
+    scene.text(`${((s as any).npcdesc ?? 0)} grabs your hair in his fists and begins to fuck your mouth, driving his cock down your throat with every thrust.`);
+    scene.text('After a few minutes, he takes his cock out, and you wipe the saliva from your mouth.');
+    qspCall(s, 'arousal', 'bj', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Penetration', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/analinsert.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> sits on the bed, and you turn around, presenting your ass to him. H...
+    scene.text(`${((s as any).npcdesc ?? 0)} sits on the bed, and you turn around, presenting your ass to him. He slaps and squeezes your ass a few times before you start grinding his cock between your ass cheeks, your saliva coating your asshole. ${((s as any).npcdesc ?? 0)} then guides his cock to your now wet hole and slowly penetrates you, both of you groaning as he slides inside you.`);
+    qspCall(s, 'arousal', 'anal', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal', handler: (st: GameState) => {
+    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+    scene.img('images/locations/city/redlight/studio_porn/sex/sex2.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> enjoys the tightness as you ride his dick, occasionally sliding it ...
+    scene.text(`${((s as any).npcdesc ?? 0)} enjoys the tightness as you ride his dick, occasionally sliding it out to show both ${((s as any).npcdesc ?? 0)} and the camera your stretched hole. This continues for a while before it starts hurting, and you pull out to suck his dick for a few minutes to let your ass recover.`);
+    // TODO-QSP: dynamic text: You then get on all fours, and <<$npcdesc>> slides back inside you and resumes f...
+    scene.text(`You then get on all fours, and ${((s as any).npcdesc ?? 0)} slides back inside you and resumes fucking your ass. You get ass fucked in various positions, with breaks being called to let you rest or ${((s as any).npcdesc ?? 0)} get hard again.`);
+    qspCall(s, 'arousal', 'anal', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal creampie', handler: (st: GameState) => {
+    (s as any).sexpartkno = 1;
+    (s as any).orgasmbonus = ((s as any).orgasmbonus ?? 0) + (10);
+    (s as any).porngasm = ((s as any).porngasm ?? 0) + (1);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+    scene.img('images/locations/city/redlight/studio_porn/sex/porncpanal.mp4');
+    // TODO-QSP: dynamic text: You're really getting into it and let out a pleasured moan as your ass tightens ...
+    scene.text(`You're really getting into it and let out a pleasured moan as your ass tightens around ${((s as any).npcdesc ?? 0)}'s cock, which sends him over the edge. You suddenly feel his cock twitching inside you as your bowels are flooded with warm cum.`);
+    // TODO-QSP: dynamic text: You climb off <<$npcdesc>> and bend over on all fours as the camera moves in beh...
+    scene.text(`You climb off ${((s as any).npcdesc ?? 0)} and bend over on all fours as the camera moves in behind you. Your well fucked hole lets out a loud squelch as you squeeze the cum from your ass. The director seems satisfied with the scene and ends the shoot.`);
+    qspCall(s, 'arousal', 'anal', 5, 'exhibitionism');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter16(s: GameState, scene: SceneBuilder): void {
+  if ((Math.floor(Math.random() * 3) + 0)===0) {
+    (s as any).pornhj = ((s as any).pornhj ?? 0) + (1);
+  }
+  if ((Math.floor(Math.random() * 3) + 0)===0) {
+    (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  }
+  (s as any).pornanal = ((s as any).pornanal ?? 0) + (1);
+  (s as any).pornbukk = ((s as any).pornbukk ?? 0) + (1);
+  (s as any).pfType = 0;
+  qspCall(s, 'fame', 'city', 'porn', 16);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. He is standing to the side, slowly ...
+  scene.text(`${((s as any).npcdesc ?? 0)} is your co-star for this shoot. He is standing to the side, slowly stroking his dick.`);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Undress and start', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/hj.mp4');
+    // TODO-QSP: dynamic text: The scene starts with you giving a camera a striptease and getting on all fours ...
+    scene.text(`The scene starts with you giving a camera a striptease and getting on all fours on a sofa to provide it with a close-up view of your pussy and asshole. You then finger your ass before ${((s as any).npcdesc ?? 0)} walks over.`);
+    // TODO-QSP: dynamic text: <<$npcdesc>> sits on the sofa next to you. You kneel beside him, take his dick i...
+    scene.text(`${((s as any).npcdesc ?? 0)} sits on the sofa next to you. You kneel beside him, take his dick in your hand and start jerking it while making out with him.`);
+    qspCall(s, 'arousal', 'striptease', 5);
+    qspCall(s, 'arousal', 'hj', 25, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Blow him', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/bj.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> is now rock-hard in your hand, so you bend over and start passionat...
+    scene.text(`${((s as any).npcdesc ?? 0)} is now rock-hard in your hand, so you bend over and start passionately sucking his dick while he leans over and plays with your ass.`);
+    qspCall(s, 'arousal', 'bj', 5, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Rimjob', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/rimming.mp4');
+    // TODO-QSP: dynamic text: After sucking his dick for a few minutes, you get up and seductively walk over t...
+    scene.text(`After sucking his dick for a few minutes, you get up and seductively walk over to a nearby table. You lie down on the table and spread your ass for ${((s as any).npcdesc ?? 0)}, who walks over and starts rimming you, expertly flicking his tongue over your hole.`);
+    qspCall(s, 'arousal', 'rimming', 5, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal', handler: (st: GameState) => {
+    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+    scene.img('images/locations/city/redlight/studio_porn/sex/sexanal.mp4');
+    // TODO-QSP: dynamic text: Your asshole now wet and ready, <<$npcdesc>> fingers you before standing and ins...
+    scene.text(`Your asshole now wet and ready, ${((s as any).npcdesc ?? 0)} fingers you before standing and inserting his dick. He starts fucking you hard, occasionally pulling out to show your gaping asshole to the camera.`);
+    scene.text('You get ass fucked in various poses on and next to the table, with several breaks in filming to let you rest or let him get hard again. You eventually return to the pose on the table you started with.');
+    qspCall(s, 'arousal', 'anal', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Climax', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0), 1, 0, 10000, 40);
+    qspCall(s, 'stat', '');
+    scene.img('images/locations/city/redlight/studio_porn/sex/cumanal.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> starts fucking your ass fast and hard as you talk dirty to him and ...
+    scene.text(`${((s as any).npcdesc ?? 0)} starts fucking your ass fast and hard as you talk dirty to him and the camera. Finally, he starts panting, and just as he's about to cum, he pulls out and shoots his load over your ass.`);
+    scene.actions([
+      { label: 'Clean his cock', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1, 0, 10000, 4);
+    scene.img('images/locations/city/redlight/studio_porn/sex/bj2.mp4');
+    scene.text('You quickly slide off the table and take his cock down your throat before licking his shaft clean, the camera getting a good shot of your cum covered ass as you do.');
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter17(s: GameState, scene: SceneBuilder): void {
+  (s as any).porntrib = ((s as any).porntrib ?? 0) + (1);
+  (s as any).porncuni = ((s as any).porncuni ?? 0) + (1);
+  (s as any).pornlesbo = ((s as any).pornlesbo ?? 0) + (1);
+  (s as any).pfType = 0;
+  qspCall(s, 'fame', 'city', 'porn', 16);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactressID[1]
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>> is your co-star for this shoot. She is sitting to the side, fondlin...
+  scene.text(`${((s as any).npcdesc ?? 0)} is your co-star for this shoot. She is sitting to the side, fondling her breasts while watching porn on a monitor.`);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Start', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo0.mp4');
+    // TODO-QSP: dynamic text: The scene starts with you playing with <<$npcdesc>>'s ass. You give her a firm s...
+    scene.text(`The scene starts with you playing with ${((s as any).npcdesc ?? 0)}'s ass. You give her a firm slap on the rear and tease the camera by slowly pulling her panties halfway down before pulling them up again. You then quickly pull them down again, this time to her ankles. She gives the camera a view of her pussy and asshole before you push her onto the bed in front of you.`);
+    qspCall(s, 'arousal', 'foreplay_give', 5, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat her pussy', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo1.mp4');
+    // TODO-QSP: dynamic text: You kneel before <<$npcdesc>>, lifting her panties from her ankles and spreading...
+    scene.text(`You kneel before ${((s as any).npcdesc ?? 0)}, lifting her panties from her ankles and spreading her legs. You slowly trace lines along her labia with your tongue before running it between her lips and reaching her clit. You then quickly start flicking her clit, your tongue swirling over it as it begins to swell.`);
+    qspCall(s, 'arousal', 'cuni_give', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Your turn', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo2.mp4');
+    scene.text('After pleasing her for a while, you withdraw your tongue from her crotch as she quickly pulls you down onto your back. She lifts your legs and practically rips your panties off before tossing them aside. She wastes no time and buries her face right into your pussy, teasing your engorged clit as she vigorously eats you out, her tongue lapping up the juices that run from your pussy.');
+    qspCall(s, 'arousal', 'cuni', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Tribbing', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo3.mp4');
+    // TODO-QSP: dynamic text: Satisfied with pleasing you with her tongue, <<$npcdesc>> straddles you and hold...
+    scene.text(`Satisfied with pleasing you with her tongue, ${((s as any).npcdesc ?? 0)} straddles you and holds your leg to one side as she brings her pussy down to meet your own. You let out a pleasured moan as your clits make contact. She then starts rocking her hips back and forth, and you both enjoy the sensation as your wet labia makes it easy for her to slide across you.`);
+    qspCall(s, 'arousal', 'trib', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Double dildo', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo4.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> stops her movements and reaches over to grab a sizeable, doubled-he...
+    scene.text(`${((s as any).npcdesc ?? 0)} stops her movements and reaches over to grab a sizeable, doubled-headed dildo. She sucks on one end and slides it into your pussy. The toy is buried firmly in your hole, and she slides down onto the other end. She then starts to ride the dildo, her movements pushing it deeper into your pussy.`);
+    qspCall(s, 'arousal', 'vaginal_dildo', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/locations/city/redlight/studio_porn/sex/porgasm.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc>> reaches her climax as she slams down on the dildo, sending it deep ...
+    scene.text(`${((s as any).npcdesc ?? 0)} reaches her climax as she slams down on the dildo, sending it deep into her pussy. Her body is pleased as her juices run down the shaft of the dildo and onto your pussy. Finally, she withdraws the dildo from her pussy and pulls it out of you. You both suck the ends of it clean.`);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter18(s: GameState, scene: SceneBuilder): void {
+  (s as any).porncuni = ((s as any).porncuni ?? 0) + (1);
+  (s as any).pornlesbo = ((s as any).pornlesbo ?? 0) + (1);
+  (s as any).pfType = 0;
+  qspCall(s, 'fame', 'city', 'porn', 16);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactressID[1]
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>>, your co-star for this shoot, is sitting to the side, fondling her ...
+  scene.text(`${((s as any).npcdesc ?? 0)}, your co-star for this shoot, is sitting to the side, fondling her breasts while watching porn on a monitor.`);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Start', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo0.mp4');
+    // TODO-QSP: dynamic text: The scene starts with you playing with <<$npcdesc>>'s ass. You give her a firm s...
+    scene.text(`The scene starts with you playing with ${((s as any).npcdesc ?? 0)}'s ass. You give her a firm slap on the rear and tease the camera by slowly pulling her panties halfway down before pulling them up again. You then quickly pull them down, this time to her ankles. She gives the camera a view of her pussy and asshole before you push her onto the bed in front of you.`);
+    qspCall(s, 'arousal', 'foreplay_give', 5, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Eat her pussy', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo1.mp4');
+    // TODO-QSP: dynamic text: You kneel before <<$npcdesc>>, lifting her panties from her ankles and spreading...
+    scene.text(`You kneel before ${((s as any).npcdesc ?? 0)}, lifting her panties from her ankles and spreading her legs. You slowly trace lines along her labia with your tongue before running it between her lips and reaching her clit. You then quickly start flicking her clit, your tongue swirling over it as it begins to swell.`);
+    qspCall(s, 'arousal', 'cuni_give', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Your turn', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo2.mp4');
+    scene.text('After pleasing her for a while, you withdraw your tongue from her crotch as she quickly pulls you down onto your back. Next, she lifts your legs and practically rips your panties before tossing them aside. She wastes no time and buries her face right into your pussy, teasing your engorged clit as she vigorously eats you out, her tongue lapping up the juices that run from your pussy.');
+    qspCall(s, 'arousal', 'cuni', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Get fucked', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo5.mp4');
+    // TODO-QSP: dynamic text: You are lying on the bed as <<$npcdesc>> moves off to the side and slips on a st...
+    scene.text(`You are lying on the bed as ${((s as any).npcdesc ?? 0)} moves off to the side and slips on a strap-on dildo. She moves over to you as you slide down, take the plastic cock in your mouth and give her a blowjob before she pushes you down onto the bed and climbs on top of you. She slides inside your pussy and begins to fuck you hard.`);
+    qspCall(s, 'arousal', 'vaginal_strap', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Her turn', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo6.mp4');
+    // TODO-QSP: dynamic text: After the vigorous pounding, <<$npcdesc>> pulls out, slides the strapon off and ...
+    scene.text(`After the vigorous pounding, ${((s as any).npcdesc ?? 0)} pulls out, slides the strapon off and gets on all fours as you stand and strap yourself in. She's on her knees before you begging you to fuck her ass, and you're eager to comply. The plastic cock is coated in your juices, making it easy to push yourself into her awaiting hole. You start fucking her ass as she begs you to go harder.`);
+    qspCall(s, 'arousal', 'anal_strap_give', 15, 'exhibitionism');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/locations/city/redlight/studio_porn/sex/lesbo7.mp4');
+    // TODO-QSP: dynamic text: The relentless ass fucking you give <<$npcdesc>> is enough to bring her to orgas...
+    scene.text(`The relentless ass fucking you give ${((s as any).npcdesc ?? 0)} is enough to bring her to orgasm. Her juices spray from her twitching pussy as her ass tightens around your fake cock. You pull out of her and the camera comes in for a shot of her stretched hole. The scene ends with you locking tongues with ${((s as any).npcdesc ?? 0)}.`);
+    qspCall(s, 'arousal', 'end');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter19(s: GameState, scene: SceneBuilder): void {
+  (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  (s as any).pornvag = ((s as any).pornvag ?? 0) + (1);
+  (s as any).pornanal = ((s as any).pornanal ?? 0) + (1);
+  (s as any).pornswall = ((s as any).pornswall ?? 0) + (1);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (1);
+  (s as any).pfType = 0;
+  qspCall(s, 'fame', 'city', 'porn', 25);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactressID[1], 'a'
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>> watches porn on a monitor, getting himself ready while <<$npcdesc1>...
+  scene.text(`${((s as any).npcdesc ?? 0)} watches porn on a monitor, getting himself ready while ${((s as any).npcdesc1 ?? 0)} has her make-up touched up.`);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Undress and start', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff0.mp4');
+    // TODO-QSP: dynamic text: The camera starts rolling and comes for a close-up of you and <<$npcdesc1>>. As ...
+    scene.text(`The camera starts rolling and comes for a close-up of you and ${((s as any).npcdesc1 ?? 0)}. As it does, she grabs your ass and gives it a jiggle for the camera. Then, ${((s as any).npcdesc ?? 0)} moves into the scene, and you both kneel before him.`);
+    scene.actions([
+      { label: 'Suck', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff1.mp4');
+    // TODO-QSP: dynamic text: You take <<$npcdesc>>'s cock into your mouth and begin sucking on his tip as <<$...
+    scene.text(`You take ${((s as any).npcdesc ?? 0)}'s cock into your mouth and begin sucking on his tip as ${((s as any).npcdesc1 ?? 0)}t runs her tongue along his shaft. You then take him deeper into your throat as ${((s as any).npcdesc1 ?? 0)} playfully sucks on his balls.`);
+    qspCall(s, 'arousal', 'bj', 15, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck', handler: (st: GameState) => {
+    qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff2.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc1>> remains on her knees as you move up and guide <<$npcdesc>>'s cock ...
+    scene.text(`${((s as any).npcdesc1 ?? 0)} remains on her knees as you move up and guide ${((s as any).npcdesc ?? 0)}'s cock into your pussy. You start riding him as ${((s as any).npcdesc1 ?? 0)} buries her face in your pussy and quickly starts flicking her tongue over your clit, causing waves of pleasure to overwhelm you.`);
+    qspCall(s, 'arousal', 'vaginal', 20, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'cuni', 20, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'precum', ((s as any).npcID ?? 0), 1, 0, 10000, 1);
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal', handler: (st: GameState) => {
+    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff3.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc1>> gets up from the floor and lies down on the bed. You straddle her,...
+    scene.text(`${((s as any).npcdesc1 ?? 0)} gets up from the floor and lies down on the bed. You straddle her, your pussy sitting before her face as ${((s as any).npcdesc ?? 0)} moves in behind and slowly pushes his cock into your ass. ${((s as any).npcdesc1 ?? 0)} playfully licks your swollen clit as he starts fucking your ass hard.`);
+    qspCall(s, 'arousal', 'cuni', 15, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    qspCall(s, 'arousal', 'anal', 15, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Creampie', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff4.mp4');
+    // TODO-QSP: dynamic text: You eventually feel <<$npcdesc>> starting to twitch and feel a sudden warmth flo...
+    scene.text(`You eventually feel ${((s as any).npcdesc ?? 0)} starting to twitch and feel a sudden warmth flood your ass. When he pulls out, a stream of cum soon follows, running down your pussy and into ${((s as any).npcdesc1 ?? 0)}'s awaiting mouth.`);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0), 1, 0, 10000, 20);
+    qspCall(s, 'arousal', 'anal', 15, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'arousal', 'cuni', 15, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum sharing', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (s as any).pornswall = ((s as any).pornswall ?? 0) + (1);
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff5.mp4');
+    // TODO-QSP: dynamic text: You quickly climb off <<$npcdesc1>> and kneel before her as she opens her mouth,...
+    scene.text(`You quickly climb off ${((s as any).npcdesc1 ?? 0)} and kneel before her as she opens her mouth, and ${((s as any).npcdesc ?? 0)}'s load drools from her tongue and into your mouth. You show the camera your cum filled mouth before swallowing the cum and finishing the scene making out with ${((s as any).npcdesc1 ?? 0)}.`);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1, 0, 10000, 20);
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enter20(s: GameState, scene: SceneBuilder): void {
+  (s as any).pornbj = ((s as any).pornbj ?? 0) + (1);
+  (s as any).pornswall = ((s as any).pornswall ?? 0) + (1);
+  (s as any).porngang = ((s as any).porngang ?? 0) + (1);
+  (s as any).pfType = 0;
+  qspCall(s, 'fame', 'city', 'porn', 25);
+  (s as any).minut = ((s as any).minut ?? 0) + 180;
+  ((s as any).stat ?? {})['gangbang_count'] = (((s as any).stat ?? {})['gangbang_count'] ?? 0) + (1);
+  qspCall(s, 'stat', '');
+  // TODO-QSP: gs 'npcStat', $pactorID[1]
+  // TODO-QSP: gs 'npcStat', $pactressID[1]
+  scene.text('The set is already bustling with assistants preparing for the shoot.');
+  // TODO-QSP: dynamic text: <<$npcdesc>> is watching porn on a monitor, getting himself ready, while <<$npcd...
+  scene.text(`${((s as any).npcdesc ?? 0)} is watching porn on a monitor, getting himself ready, while ${((s as any).npcdesc1 ?? 0)} is having her make-up touched up.`);
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Undress and start', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff0.mp4');
+    // TODO-QSP: dynamic text: The camera starts rolling and comes for a close-up of you and <<$npcdesc1>>. You...
+    scene.text(`The camera starts rolling and comes for a close-up of you and ${((s as any).npcdesc1 ?? 0)}. You grab her ass and give it a jiggle for the camera as it does. Then, ${((s as any).npcdesc ?? 0)} moves into the scene, and you both kneel before him.`);
+    scene.actions([
+      { label: 'Suck', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff1.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc1>> wastes no time and takes <<$npcdesc>>'s cock down her throat as yo...
+    scene.text(`${((s as any).npcdesc1 ?? 0)} wastes no time and takes ${((s as any).npcdesc ?? 0)}'s cock down her throat as you get down low and suck his balls.`);
+    qspCall(s, 'arousal', 'bj', 15, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Fuck', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff2.mp4');
+    // TODO-QSP: dynamic text: You remain on your knees as <<$npcdesc1>> straddles <<$npcdesc>>, slides down on...
+    scene.text(`You remain on your knees as ${((s as any).npcdesc1 ?? 0)} straddles ${((s as any).npcdesc ?? 0)}, slides down onto his cock and starts riding him as you take your place and bury your face into her pussy, running your tongue over her clit as she takes ${((s as any).npcdesc ?? 0)} deep inside her. She shrieks in pleasure, and you're sure she orgasms at least once.`);
+    qspCall(s, 'arousal', 'cuni_give', 15, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Anal', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff3.mp4');
+    // TODO-QSP: dynamic text: You lie down on the bed, <<$npcdesc1>> straddling you, her glistening pussy begg...
+    scene.text(`You lie down on the bed, ${((s as any).npcdesc1 ?? 0)} straddling you, her glistening pussy begging you to please it. ${((s as any).npcdesc ?? 0)} moves in behind, inserts himself into her ass, and starts to pound her, ${((s as any).npcdesc1 ?? 0)} begging him to go harder. You start flicking your tongue over ${((s as any).npcdesc1 ?? 0)}'s now massively engorged clit.`);
+    qspCall(s, 'arousal', 'cuni_give', 15, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Creampie', handler: (st: GameState) => {
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff4.mp4');
+    // TODO-QSP: dynamic text: You pull your face out of <<$npcdesc1>>'s crotch in time to see <<$npcdesc>>'s b...
+    scene.text(`You pull your face out of ${((s as any).npcdesc1 ?? 0)}'s crotch in time to see ${((s as any).npcdesc ?? 0)}'s balls twitching as he unloads inside her ass. At the same time, you see her pussy convulsing, and she screams in pleasure as they reach orgasm together. You open your mouth as he pulls out of her, and a stream of cum runs from her hole down onto your tongue.`);
+    (s as any).cumnostd = 1;
+    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1, 0, 10000, 30);
+    qspCall(s, 'arousal', 'cuni_give', 15, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    qspCall(s, 'stat', '');
+    scene.actions([
+      { label: 'Cum sharing', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.img('images/locations/city/redlight/studio_porn/sex/mff5.mp4');
+    // TODO-QSP: dynamic text: <<$npcdesc1>> climbs off and kneels in front of you as you open your mouth and a...
+    scene.text(`${((s as any).npcdesc1 ?? 0)} climbs off and kneels in front of you as you open your mouth and allow ${((s as any).npcdesc ?? 0)}'s load to drool from your tongue and into her mouth. She then shows her cum filled mouth to the camera and makes a somewhat perverted show of swallowing it. The scene ends with the two of you making out.`);
+    qspCall(s, 'arousal', 'kiss', 10, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'lesbian');
+    scene.actions([
+      { label: 'Take a shower', goto: ['pornstudio', 'shower'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -911,6 +2338,69 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case '8':
       enter8(s, scene);
+      break;
+    case '9':
+      enter9(s, scene);
+      break;
+    case '4_guy_blow_jerk_breast_cuni':
+      enter4GuyBlowJerkBreastCuni(s, scene);
+      break;
+    case '4_guy_blow_jerk_vaginal':
+      enter4GuyBlowJerkVaginal(s, scene);
+      break;
+    case '10':
+      enter10(s, scene);
+      break;
+    case '11':
+      enter11(s, scene);
+      break;
+    case '4_guy_blow_jerk_anal':
+      enter4GuyBlowJerkAnal(s, scene);
+      break;
+    case '12':
+      enter12(s, scene);
+      break;
+    case '13':
+      enter13(s, scene);
+      break;
+    case '14':
+      enter14(s, scene);
+      break;
+    case '14_gb_bj':
+      enter14GbBj(s, scene);
+      break;
+    case '14_gb_hj':
+      enter14GbHj(s, scene);
+      break;
+    case '14_gb_lip':
+      enter14GbLip(s, scene);
+      break;
+    case '14_gb_anal':
+      enter14GbAnal(s, scene);
+      break;
+    case '14_gb_bukk':
+      enter14GbBukk(s, scene);
+      break;
+    case '14_gb_sex':
+      enter14GbSex(s, scene);
+      break;
+    case '15':
+      enter15(s, scene);
+      break;
+    case '16':
+      enter16(s, scene);
+      break;
+    case '17':
+      enter17(s, scene);
+      break;
+    case '18':
+      enter18(s, scene);
+      break;
+    case '19':
+      enter19(s, scene);
+      break;
+    case '20':
+      enter20(s, scene);
       break;
     default:
       enterDefault(s, scene);

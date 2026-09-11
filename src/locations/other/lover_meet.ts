@@ -537,6 +537,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -548,10 +549,12 @@ function enterLikes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover_likes', 'bodyPrefTmp');
   }
   scene.actions([{ label: 'Continue', goto: ['lover_meet', 'actions'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterActions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Can I ask you how you think I look?', handler: (st: GameState) => {
     scene.img(`${((s as any).npc_pic ?? 0)?.[String((s as any).npcID ?? 0)]}`);
@@ -1068,6 +1071,7 @@ function enterGoParkDate(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['parksvid', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1078,6 +1082,7 @@ function enterGoMovieDate(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['kinosvid', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1088,6 +1093,7 @@ function enterGoCafeDate(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['kafesvid', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1098,34 +1104,40 @@ function enterGoRestaurantDate(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['kafesvid', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGoCasinoDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_meet', 'cleanup');
   scene.actions([{ label: 'Continue', goto: ['kazinosvid', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGoPoolHallDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_meet', 'cleanup');
   scene.actions([{ label: 'Continue', goto: ['billsvid', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGoStairwellDate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_meet', 'cleanup');
   scene.actions([{ label: 'Continue', goto: ['podezdM', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGoHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_meet', 'cleanup');
   scene.actions([{ label: 'Continue', goto: ['homes_properties', 'go_home'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

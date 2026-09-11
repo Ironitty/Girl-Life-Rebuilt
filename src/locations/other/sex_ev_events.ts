@@ -38,6 +38,7 @@ function enterRandEvCheck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -65,6 +66,7 @@ function enterBadThrustStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yelp', goto: ['sex_ev_events', 'bad_thrust_yelp'] },
   ]);
@@ -206,6 +208,7 @@ function enterBadThrustYelp(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get irritated', goto: ['sex_ev_events', 'bad_thrust_irate'] },
   ]);
@@ -248,6 +251,7 @@ function enterBadThrustIrate(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -323,10 +327,12 @@ function enterPositionSwapEv(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDirtyTalkRouter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -345,6 +351,7 @@ function enterWhosePussy(s: GameState, scene: SceneBuilder): void {
       scene.text('"Whose pussy is this?" he growls at you.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'This is hot', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -399,6 +406,7 @@ function enterWhosePussyCum(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['orgasm_count'] = (((s as any).sex_ev ?? {})['orgasm_count'] ?? 0) + (1);
   // TODO-QSP: dynamic text: The way that <<$npcdesc>> is dominating you, taking ownership of you pussy like ...
   scene.text(`The way that ${((s as any).npcdesc ?? 0)} is dominating you, taking ownership of you pussy like this, it's driving you crazy! Deep inside, you feel an intense orgasm building...`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play into it', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -425,6 +433,7 @@ function enterSexFilmCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['phone_film'] === 0  &&  ((s as any).npc_sex_filmer ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  (Math.floor(Math.random() * 20) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_events', 'sex_film1'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -435,10 +444,12 @@ function enterSexFilm1(s: GameState, scene: SceneBuilder): void {
   scene.text(`You're panting in time with ${((s as any).npcdesc ?? 0)}'s thrusts on top of you when you suddenly become aware of a glow coming from above you. ${((s as any).npcdesc ?? 0)} has his phone out. And it's pointed directly at you.`);
   qspCall(s, 'sex_ev_events', 'sex_film_protest');
   qspCall(s, 'sex_ev_events', 'sex_film_accept');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexFilmProtest(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cover your face', handler: (st: GameState) => {
     scene.actions([
@@ -630,6 +641,7 @@ function enterSexFilmForceStop(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

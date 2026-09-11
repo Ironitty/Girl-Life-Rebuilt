@@ -66,6 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Katja\'s dorm room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -242,6 +243,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Katja\'s dorm room', handler: (st: GameState) => {
     if (((s as any).sofiaQW ?? 0)?.['know'] === 0  &&  ((s as any).university ?? 0)?.['semester_week'] > 0) {
@@ -443,6 +445,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell Katja, that you an Artem are in an open relationship', goto: ['KatjaHomeTalk', 'artem_opne_relationship'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with Katja', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (1);
@@ -492,6 +495,7 @@ function enterSofiaMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('"That\'s right, I\'ll be leaving now," you say.');
   scene.text('"Nice meeting you," Sofia says. "Wish we had more time to chat since I barely know anybody here; just Katja and my boyfriend Maxim. See you again soon. I\'m sure we\'ll become great friends," she continues.');
   scene.text('You say goodbye to Katja and as you leave the room, you hear Sofia continuing to talk the ear off of Katja.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'second_floor'] },
   ]);
@@ -849,6 +853,7 @@ function enterLazarPussyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -877,6 +882,7 @@ function enterLazarRefuse(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You\'re too precious to share', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (20);
@@ -992,6 +998,7 @@ function enterLazarAgree(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1278,6 +1285,7 @@ function enterLazarAnalTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1287,6 +1295,7 @@ function enterLazarKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/katja_kiss.jpg');
   scene.text('Katja almost jumps you and gives you a kiss. Afterward, she looks at you a little hesitantly. "You know, why don\'t we call Lazar to see if he wants us to come over?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
@@ -1406,6 +1415,7 @@ function enterMovieTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch a movie with Katja', handler: (st: GameState) => {
     scene.text('"Sounds good," you reply. "Anything I can help with?"');
@@ -1432,6 +1442,7 @@ function enterMovieTalk2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('"Come join me," Katja says, not removing her eyes from the screen as you approach her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch a movie with Katja', handler: (st: GameState) => {
     scene.text('"Okay," you reply and she makes room for you next to her on the bed.');
@@ -1623,6 +1634,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1630,6 +1642,7 @@ function enterAfterMovieStrip1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/after_movie1.jpg');
   qspCall(s, 'arousal', 'erotic', 2);
   scene.text('It\'s gotten very hot in the room, and Katja has stripped down to her underwear. She\'s breathing heavily with her eyes closed and has her hand on her breast.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait and see what she does', goto: ['katja_uni_sex', 'after_movie_masturbation1'] },
     { label: 'Get dressed and leave', handler: (st: GameState) => {
@@ -1655,6 +1668,7 @@ function enterAfterMovieStrip2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/after_movie3.jpg');
   qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
   scene.text('The room grew hotter throughout the movie. At one point, Katja stripped down to her underwear and you did the same. As the movie ends, Katja leans into you from behind and starts to kiss you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her back', goto: ['katja_uni_sex', 'after_movie_sex1'] },
     { label: 'You\'re not in the mood', handler: (st: GameState) => {
@@ -1689,6 +1703,7 @@ function enterRelationshipTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('Katja is immediately captivated by the movie, she completely forgets to eat any of the popcorn, so drawn into the story as though it speaks to something inside of her.');
   scene.text('When the movie is over, she remains silent for several minutes.');
   scene.text('"The movie got me to thinking," she says. "What are we? I mean, we have sex and like, I mean…" She is clearly having trouble saying it loud. "Are we a couple? Am I your girlfriend?" she finally asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1863,6 +1878,7 @@ function enterCocainOffer(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do some lines with Katja', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 8;

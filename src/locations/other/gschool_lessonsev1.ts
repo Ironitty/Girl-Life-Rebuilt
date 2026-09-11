@@ -111,6 +111,7 @@ function enterFizRand(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -147,6 +148,7 @@ function enterFiz2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pull your pants down', handler: (st: GameState) => {
     scene.text('You refrain from following their example and just sway your ass for the boys, but they seem to be more interested in the other girls.');
@@ -211,6 +213,7 @@ function enterFiz8(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t retaliate', handler: (st: GameState) => {
     ((s as any).grupvalue ?? {})[4] = (((s as any).grupvalue ?? {})[4] ?? 0) - (2);
@@ -251,6 +254,7 @@ function enterFiz10(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do nothing', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/victor/sex/storage1.jpg');
@@ -823,6 +827,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1197,6 +1202,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2006,6 +2012,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2646,6 +2653,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

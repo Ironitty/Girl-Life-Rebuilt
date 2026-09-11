@@ -54,6 +54,7 @@ function enterCowgirlGoto(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +77,7 @@ function enterCowgirlGoto2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,6 +113,7 @@ function enterCowgirlStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,6 +122,7 @@ function enterCowgirlVirginPre(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pulls you on top of him, his thighs behind yours, and his cock rest...
   scene.text(`${((s as any).npcdesc ?? 0)} pulls you on top of him, his thighs behind yours, and his cock resting against your hips.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop him (virgin)', goto: ['sex_ev_virgin', 'lover_wait'] },
     { label: 'Let <<$npcdesc>> take your virginity', goto: ['sex_ev_virgin', 'start3'] },
@@ -182,6 +186,7 @@ function enterCowgirlSwitch(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['cock_inserted'] = 1;
   ((s as any).sex_ev ?? {})['position'] = 'cowgirl';
   qspCall(s, 'sex_ev_cowgirl', 'cowgirl_menu2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -204,6 +209,7 @@ function enterCowgirlSwitch2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_cowgirl', 'cowgirl_menu'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,6 +242,7 @@ function enterCowgirlClimbOn(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_cowgirl', 'cowgirl_menu');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,6 +263,7 @@ function enterCowgirlInsertActs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -290,6 +298,7 @@ function enterCowgirlFirstInsertion(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just put it in', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_cowgirl', 'cowgirl_insert_menu'
@@ -303,6 +312,7 @@ function enterCowgirlFirstInsertion(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCowgirlInsertMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ease yourself down', goto: ['sex_ev_cowgirl', 'cowgirl_insert_slow'] },
   ]);
@@ -518,10 +528,12 @@ function enterCowgirlInsertSlow(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCowgirlInsertHard(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -580,6 +592,7 @@ function enterCowgirlInsertOrgasm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -600,6 +613,7 @@ function enterCowgirlGirlOrgasmContinue(s: GameState, scene: SceneBuilder): void
   ((s as any).sex_ev ?? {})['position'] = 'cowgirl';
   ((s as any).sex_ev ?? {})['pos_speed'] = 'cowgirl' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_cowgirl" }) + '';
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -613,10 +627,12 @@ function enterCowgirlMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Ride him hard', goto: ['sex_ev_cowgirl', 'cowgirl3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCowgirlMenu2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride him gently', goto: ['sex_ev_cowgirl', 'cowgirl1.2'] },
     { label: 'Ride him steadily', goto: ['sex_ev_cowgirl', 'cowgirl2.2'] },
@@ -626,6 +642,7 @@ function enterCowgirlMenu2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCowgirlChangePosition(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/cowgirl/smile1.jpg');
@@ -652,6 +669,7 @@ function enterCowgirlPain1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ouch!', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['first_insertion'] = 1;
@@ -665,6 +683,7 @@ function enterCowgirlPain1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCowgirlPain2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_sex', 'fuck_no_cum_code');
@@ -707,6 +726,7 @@ function enterCowgirlPain3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Oh fuck!" he exclaims as he manages to grab hold of your hips. "What happened? Are you okay?"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be irritated', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -797,6 +817,7 @@ function enterCowgirlVid(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1059,6 +1080,7 @@ function enterCowgirl1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1210,6 +1232,7 @@ function enterCowgirl1_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1220,6 +1243,7 @@ function enterCowgirl1_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('You keep fucking him at a slow pace. It\'s boring.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1455,6 +1479,7 @@ function enterCowgirl2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1607,6 +1632,7 @@ function enterCowgirl2_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1617,6 +1643,7 @@ function enterCowgirl2_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('You keep fucking him at a medium pace. It\'s boring.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1859,6 +1886,7 @@ function enterCowgirl3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2024,6 +2052,7 @@ function enterCowgirl3_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2035,6 +2064,7 @@ function enterCowgirl3_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('You keep riding him hard. It\'s boring.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2066,6 +2096,7 @@ function enterCowgirlChangePace(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2143,6 +2174,7 @@ function enterCowgirl1StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2220,6 +2252,7 @@ function enterCowgirl1StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2279,6 +2312,7 @@ function enterCowgirl1BoyTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2302,6 +2336,7 @@ function enterCowgirl1BoyTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2370,6 +2405,7 @@ function enterCowgirl1EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2433,6 +2469,7 @@ function enterCowgirl1_1Desc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2567,6 +2604,7 @@ function enterCowgirl1_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2683,6 +2721,7 @@ function enterCowgirl1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2741,6 +2780,7 @@ function enterCowgirl1_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2799,6 +2839,7 @@ function enterCowgirl2StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2857,6 +2898,7 @@ function enterCowgirl2StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2916,6 +2958,7 @@ function enterCowgirl2BoyTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2939,6 +2982,7 @@ function enterCowgirl2BoyTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2997,6 +3041,7 @@ function enterCowgirl2EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3114,6 +3159,7 @@ function enterCowgirl2_1Desc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3179,6 +3225,7 @@ function enterCowgirl2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3278,6 +3325,7 @@ function enterCowgirl2_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3335,6 +3383,7 @@ function enterCowgirl2_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3393,6 +3442,7 @@ function enterCowgirl3StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3451,6 +3501,7 @@ function enterCowgirl3StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3510,6 +3561,7 @@ function enterCowgirl3BoyTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3533,6 +3585,7 @@ function enterCowgirl3BoyTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3602,6 +3655,7 @@ function enterCowgirl3EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your mind goes blank with pleasure and you groan loudly, letting ${((s as any).npcdesc ?? 0)} fuck you into blissful oblivion.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3672,6 +3726,7 @@ function enterCowgirl3TooRough(s: GameState, scene: SceneBuilder): void {
       scene.text(`Tears run down your face and sweat covers your body as ${((s as any).npcdesc ?? 0)} pummels you into the bed.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3687,6 +3742,7 @@ function enterCowgirl3SlowDown(s: GameState, scene: SceneBuilder): void {
       scene.text('"Could you-! Slow down-!" you gasp desperately. He releases your hair, letting you collapse face first onto the bed. "I can\'t keep going this hard..."');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3804,6 +3860,7 @@ function enterCowgirl3_1Desc(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('And you are loving <i>every second</i> of it.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3923,6 +3980,7 @@ function enterCowgirl3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4034,6 +4092,7 @@ function enterCowgirl3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4092,6 +4151,7 @@ function enterCowgirl3_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

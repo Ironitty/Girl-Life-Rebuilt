@@ -23,6 +23,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/resident/apartment/aptdoor.jpg');
   scene.text('You\'re at the door to the Shulgin apartment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Knock on door', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -137,6 +138,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You can not leave the apartment while naked.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['vasilyhome', 'livingroom'] },
     { label: 'Go to the bathroom', goto: ['vasilyhome', 'bathroom'] },
@@ -307,6 +309,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', goto: ['vasilyhome', 'hallway'] },
     { label: 'Sit on the small sofa', handler: (st: GameState) => {
@@ -398,6 +401,7 @@ function enterShHooker(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -462,6 +466,7 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,6 +477,7 @@ function enterDrunkenSexYes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/yes\' + rand(1, 6) + \'.jpg');
   scene.text('It\'s time to show these boys that you know how to have a good time. The guys urge you on, calling out various lewd suggestions.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Present your ass', goto: ['vasily_home_sex', 'drunken_body_popa'] },
     { label: 'Show them your pussy', goto: ['vasily_home_sex', 'drunken_body_piz'] },
@@ -489,6 +495,7 @@ function enterDrunkenSexNo(s: GameState, scene: SceneBuilder): void {
   scene.text('"You\'re all fixing to get a swift kick in the balls if you don\'t cut it out, or I can wake this whole building up with a scream," you drunkenly slur.');
   scene.text('Dan sneers at you. "Settle down bitch, nobody\'s going to hurt you. Why don\'t you go lie down on the couch and sleep it off?"');
   scene.text('The guys lose interest in you and go back to pounding beers as you crawl away in the direction of the sofa.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pass out', goto: ['vasilyhome', 'drunken_sleep'] },
   ]);
@@ -503,6 +510,7 @@ function enterDrunkenSleep(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel\' + rand(1, 4) + \'.jpg');
   scene.text('You passed out for about three hours and wake up with a splitting headache and only vague memories of your night with the guys. Remembering that somebody deserved a kick in the balls, you look around the room. Vasily is passed out in a heap on the sofa with no sign of the other two.');
   scene.text('"It was probably Dan that deserved a kick…" you mutter to yourself as you try to get your bearings.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clear your head', goto: ['vasilyhome', 'livingroom'] },
   ]);
@@ -515,6 +523,7 @@ function enterVasilySexSonya(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'vasily_sexev2_sonya'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -572,6 +581,7 @@ function enterShultv(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'vasilyhome', 'view_pornotv');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look around the room', goto: ['vasilyhome', 'livingroom'] },
     { label: 'Change the channel', goto: ['vasilyhome', 'shultv'] },
@@ -580,6 +590,7 @@ function enterShultv(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewPornotv(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Flip to the porn channel', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'porn', 20);
@@ -630,6 +641,7 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['vasilyhome', 'livingroom'] },
     { label: 'Talk', handler: (st: GameState) => {
@@ -848,6 +860,7 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['vasilyhome', 'livingroom'] },
     { label: 'Talk', handler: (st: GameState) => {
@@ -955,6 +968,7 @@ function enterVitekBazar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['vasilyhome', 'livingroom'] },
     { label: 'Talk', handler: (st: GameState) => {
@@ -1069,6 +1083,7 @@ function enterVasilyBazarDay(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['vasilyhome', 'livingroom'] },
     { label: 'Talk', handler: (st: GameState) => {
@@ -1150,6 +1165,7 @@ function enterVasilyRep(s: GameState, scene: SceneBuilder): void {
       scene.text('Vasily is your very close friend.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1286,6 +1302,7 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1359,6 +1376,7 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1371,6 +1389,7 @@ function enterVasilyLernSexNo(s: GameState, scene: SceneBuilder): void {
   scene.text('"That\'s enough! I\'m not in the mood. It should be enough that I let you touch me, but if you really want to fuck, then here you go," you say as you flip your middle finger at him.');
   scene.text('He bursts out laughing, and playfully tries to bite your finger.');
   scene.text('"Hey, watch those teeth! You\'re such a good teacher that you might give me ideas," you finish by playfully snapping your teeth at him. He just laughs even harder');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand', goto: ['vasilyhome', 'livingroom'] },
   ]);
@@ -1400,6 +1419,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['vasilyhome', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -1426,6 +1446,7 @@ function enterSoniaSex(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['vasily_home_sex', 'sonia_bathroom_sex2'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1468,6 +1489,7 @@ function enterSoniaEv(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with Sonia', goto: ['vasilyhome', 'sonia_chat'] },
     { label: 'Leave the bathroom', goto: ['vasilyhome', 'hallway'] },
@@ -1501,6 +1523,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, but I have to go. Maybe I'll see you here again so we ...
   scene.text(`"Sorry ${((s as any).pcs_nickname ?? 0)}, but I have to go. Maybe I'll see you here again so we can chat some more!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['vasilyhome', 'hallway'] },
   ]);
@@ -1538,6 +1561,7 @@ function enterVasilykitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sup_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).sup_count = 2;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['vasilyhome', 'hallway'] },
     { label: 'Look in the fridge', goto: ['vasilyhome', 'fridge'] },
@@ -1645,6 +1669,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['vasilyhome', 'vasilykitchen'] },
   ]);
@@ -1671,6 +1696,7 @@ function enterSergeyRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['vasilyhome', 'hallway'] },
   ]);
@@ -1678,6 +1704,7 @@ function enterSergeyRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a nap (2:00)', handler: (st: GameState) => {
     qspCall(s, 'sleep_simple', 'nap_base', 120);
@@ -1703,6 +1730,7 @@ function enterVasilyRoom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('A narrow <a href="exec:gt \'vasilyhome\',\'vasily_bed\'">bed</a> is against the other wall.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['vasilyhome', 'hallway'] },
   ]);
@@ -1713,6 +1741,7 @@ function enterVasilyBed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vasily_room.jpg');
   scene.text('You lie on his bed and roll over. There\'s not much to do and you start feeling a bit bored, wishing Vasily was here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the bed', goto: ['vasilyhome', 'vasily_room'] },
     { label: 'Take a nap', goto: ['vasilyhome', 'sleep_vasily_bed'] },
@@ -1724,6 +1753,7 @@ function enterSleepVasilyBed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
   qspCall(s, 'sleep_simple', 'forced', 240);
   scene.text('You lay down and sleep for a few hours.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['vasilyhome', 'vasily_room'] },
   ]);
@@ -1734,6 +1764,7 @@ function enterVasilyAsleep(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/vasya/vasya_sleep.jpg');
   scene.text('Vasily is fast asleep.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['vasilyhome', 'hallway'] },
     { label: 'Wake him up', handler: (st: GameState) => {
@@ -1756,6 +1787,7 @@ function enterVasilyAsleep1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Can I lay next to you while I sleep?" you ask.');
   scene.text('"Go sleep on the small couch or just go home, you big baby!" Vasily answers.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['vasilyhome', 'hallway'] },
   ]);
@@ -1801,6 +1833,7 @@ function enterVasilyAsleep2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a nap', goto: ['vasilyhome', 'sleep_vasily_bed'] },
   ]);

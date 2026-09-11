@@ -104,6 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,6 +150,7 @@ function enterWorkFloor(s: GameState, scene: SceneBuilder): void {
       { label: 'Resign', goto: ['office', 'resign'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -180,6 +182,7 @@ function enterSecretaryOffice(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -215,6 +218,7 @@ function enterBreakRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
   ]);
@@ -242,6 +246,7 @@ function enterRestrooms(s: GameState, scene: SceneBuilder): void {
   }, goto: ['office', 'mens_restrooms'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the women\'s restroom', goto: ['office', 'womens_restrooms'] },
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
@@ -262,6 +267,7 @@ function enterWomensRestrooms(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan', 'no_prost');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
@@ -343,6 +349,7 @@ function enterMensRestrooms(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -854,6 +861,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', goto: ['office', 'work_floor'] },
   ]);
@@ -865,6 +873,7 @@ function enterInterview(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/office/waiting_interview.jpg');
   scene.text('You go to the elevators and follow the directions you were given. You pass by a break room and many offices, as well as a large open room with many work stations, most likely the secretary room. When you arrive at HR, you are asked to take a seat. As you sit and wait to be called in for your interview, you reflect on what you saw on your way here. A few things stood out to you. The office is very expensive looking, almost all of the managers are men ranging from their mid twenties to mid forties and almost all of the secretaries and personal assistants seem to be rather young and attractive women. Before you can ponder this more, you are called into the office for your interview.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Interview for a job', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/office/npc/torbica_office.jpg');
@@ -947,6 +956,7 @@ function enterResign(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/office/npc/torbica_office.jpg');
   scene.text('You walk into Mrs Torbica\'s office and tell her that you\'re resigning.');
   scene.text('"Are you sure?" she asks, obviously a little surprised you\'re quitting.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;

@@ -175,6 +175,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -189,6 +190,7 @@ function enterReluctantStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: After getting a few more shots of you and asking a few more questions, he stands...
   scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock spring free while motioning for you get in position.`);
   scene.text('You glare at him out of camera shot, but get on your knees in front of him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 3);
@@ -310,6 +312,7 @@ function enterHesitantStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 3);
@@ -408,6 +411,7 @@ function enterEnthusiasticStart(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: After getting a few more shots of you and asking a few more questions, he stands...
   scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock spring free while motioning for you get in position.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 3);
@@ -495,6 +499,7 @@ function enterTalentScoutMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('You quietly walk through the lobby and head up to the room where the talent scout is waiting for you.');
   scene.text('You knock on the door and he quickly answers it, ushering you inside before closing the door.');
   scene.text('"This way," he says and you follow him into the lavish bedroom, where you find cameras and lights set up around the bed. "I need to finish setting a few things up, but go ahead and strip down. We\'ll start soon."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Reluctantly undress', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -559,6 +564,7 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He can\'t keep his eyes or his hands off your ass, complimenting not only its size, but its firmness as well.');
   }
   scene.text('He then moves the scene on, motioning for you to suck his dick as he climbs off the bed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 3);
@@ -722,6 +728,7 @@ function enterCastingAftermath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.corr.jpg');
   scene.text('Once out in the corrider, you let out a deep breath, your emotions about what just happened flooding your mind.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It was fun', handler: (st: GameState) => {
     scene.text('You smile. That was pretty fun! Not only was the sex good, but you got paid for it!');
@@ -759,6 +766,7 @@ function enterDiscoverVideo(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', 'body_ass_bubble')  ||  qspFunc(s, 'pcs_has_attr', 'body_ass_big')) {
     scene.text('"Absolute PAWG! The things I would do to an ass like that!"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cry', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -843,6 +851,7 @@ function enterWatchCastingCall(s: GameState, scene: SceneBuilder): void {
     scene.text('@PAWG_Worshipper: "WHAT AN ASS! Think you could get her and that other PAWG babe you fucked back for a threesome?"');
     scene.text('@CastingCorner: "I don\'t think I\'d survive that threesome, but fucking them at the same time would be a dream come true!"');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cry', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

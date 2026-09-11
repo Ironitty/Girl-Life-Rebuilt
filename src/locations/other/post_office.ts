@@ -16,6 +16,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['pav_commercial', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +46,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the Postmaster\'s office', goto: ['post_master', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -188,6 +190,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -281,6 +284,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -331,6 +335,7 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You have collected all your mail.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['post_office', 'counter'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -347,6 +352,7 @@ function enterAddMail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $mail_region[] = $ARGS[1]
   // TODO-QSP: $mail_code[] = $ARGS[2]
   // TODO-QSP: mail_time[] = ARGS[3]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -354,6 +360,7 @@ function enterRemoveMail(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mail_index = qspUntranslated(s, "arrpos('mail_code', ARGS[1])", { location: "post_office" });
   if (((s as any).temp_mail_index ?? 0) >= 0) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -395,6 +402,7 @@ function enterPostOff(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit office', goto: ['post_office', 'start'] },
   ]);

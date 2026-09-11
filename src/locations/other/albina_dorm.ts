@@ -136,6 +136,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,6 +150,7 @@ function enterFirstRoomVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod, feeling somewhat jealous at her unique living arrangement as you take in the rest of her room. The wall above her bed is covered with framed pictures and other decorations, and a desk next to her bed houses a large amount of makeup, as well as her laptop and study materials. A whiteboard above the desk has multiple notes and reminders scribbled on it.');
   scene.text('On the other side of the room is a wardrobe and dresser containing her sizeable collection of clothes, with just enough room left to squeeze in her TV and games console.');
   scene.text('Overall, the room reminds you of her old bedroom back in the mansion in Pavlovsk, only with extra flair.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find something to do', goto: ['albina_dorm', 'start'] },
   ]);
@@ -158,6 +160,7 @@ function enterFirstRoomVisit(s: GameState, scene: SceneBuilder): void {
 function enterDressing(s: GameState, scene: SceneBuilder): void {
   scene.text('You and Albina open her wardrobe and begin digging into her various clothes.');
   scene.text('As you rummage around, you\'re amazed by how many different clothes she owns. While not as vast as the collection she keeps at home, her wardrobe is still filled with dresses, skirts, leggings, jeans and other expensive-looking clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try on some clothes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -200,6 +203,7 @@ function enterYoga(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit next to her', goto: ['albina_dorm', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -210,6 +214,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
   scene.text('You look at the TV and games console sitting in the corner of the room. A row of various Tekken and Mortal Kombat games sit underneath them.');
   scene.text('"I wish I could afford a console…" you mumble.');
   scene.text('She smiles at you. "You want to play a few games?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -332,6 +337,7 @@ function enterPlaygame(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the bet', goto: ['albinahome', 'game_bet'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -347,6 +353,7 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile. "You\'re on. You\'re so going to get fucked!"');
   scene.text('Albina laughs as she tosses the strapon and a bottle of lube on the bed before she sits back beside you and picks her controller up. "<i>Please</i>! You\'re so going to lose!"');
   scene.text('She starts the game, and you both fall silent, your focus only on winning.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play until someone wins', handler: (st: GameState) => {
     (s as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_gaming ?? 0);
@@ -428,6 +435,7 @@ function enterAlbinaNotHereErmiasStart(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -452,6 +460,7 @@ function enterAlbinaNotHereErmias_SMS(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', 'A23', "gs 'albina_dorm', 'albina_not_here_ermias_SMS_response'", ...
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -502,6 +511,7 @@ function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder)
   }
   qspCall(s, 'SMStext_builder', 'end');
   qspCall(s, 'array', 'remove_element', 'AlbinaQW', 'SMSID');
+  // TODO-QSP: end
   scene.build();
 }
 

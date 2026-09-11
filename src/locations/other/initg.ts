@@ -21,16 +21,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $t
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetGameSet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'import_export', 'export');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetGameSet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'import_export', 'import');
+  // TODO-QSP: end
   scene.build();
 }
 

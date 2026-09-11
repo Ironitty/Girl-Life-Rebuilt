@@ -51,12 +51,14 @@ function enterGetTotal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTotals(s: GameState, scene: SceneBuilder): void {
   (s as any).total = qspFunc(s, 'purses', 'get_total', ((s as any).locArgs?.[1] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +82,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +98,7 @@ function enterCanWear(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (qspFunc(s, 'purses', 'not_wear_reason', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "ARGS[2]", { location: "purses" }), 'attributes_set') === '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +111,7 @@ function enterIsOwned(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -122,6 +127,7 @@ function enterInWardrobe(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +143,7 @@ function enterInStorage(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,24 +159,28 @@ function enterInUnwanted(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).currentpursetype ?? 0) !== ''  &&  ((s as any).currentpursetype ?? 0) !== 'none');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).currentpursetype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).currentpursenumber ?? 0) === ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,6 +199,7 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_purses[<<ARGS[2]>>] = 1
   // TODO-QSP: "
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -210,17 +222,20 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
     (s as any).lastwornpursenumber = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purses', 'remove_item', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,6 +250,7 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 0"
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,6 +265,7 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 1"
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -263,12 +280,14 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic "<<$ARGS[1]>>_pursesS[<<ARGS[2]>>] = 2"
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purses', 'strip');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -279,6 +298,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   (s as any).purselastwornnumber = ((s as any).currentpursenumber ?? 0);
   qspCall(s, 'purses', 'strip_code');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -288,6 +308,7 @@ function enterStripCode(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purses', 'reset_PPurseVars');
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -296,6 +317,7 @@ function enterReset_PurseVars(s: GameState, scene: SceneBuilder): void {
   (s as any).PursePrice = 0;
   (s as any).PurseStrength = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -304,6 +326,7 @@ function enterReset_PPurseVars(s: GameState, scene: SceneBuilder): void {
   (s as any).PPurseQuality = 0;
   (s as any).PPursePrice = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -339,6 +362,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   (s as any).PPursePrice = ((s as any).PursePrice ?? 0);
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -383,40 +407,47 @@ function enterDescriptions(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetShopDisplayExceptions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purse_view', 'init', 'set_exceptions');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterViewPurseList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterViewPurseItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'purse_view', 'view_item', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDest0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'purses', 'move_to_wardrobe', $ARGS[2], ARGS[3]
   // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDest1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'purses', 'move_to_storage', $ARGS[2], ARGS[3]
   // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDest2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'purses', 'move_to_unwanted', $ARGS[2], ARGS[3]
   // TODO-QSP: gt 'purse_view', 'view_grid', $ARGS[1], $ARGS[2], ARGS[3], ARGS[4]
+  // TODO-QSP: end
   scene.build();
 }
 

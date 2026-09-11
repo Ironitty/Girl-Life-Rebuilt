@@ -307,10 +307,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetVibrAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your vibrator', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -339,6 +341,7 @@ function enterSetVibrAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSmallAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your small dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -367,6 +370,7 @@ function enterSetSmallAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNormalAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your medium dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -395,6 +399,7 @@ function enterSetNormalAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBigAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your large dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -423,6 +428,7 @@ function enterSetBigAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLargeAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your very large dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -451,6 +457,7 @@ function enterSetLargeAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHugeAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your 30cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -479,6 +486,7 @@ function enterSetHugeAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEnormousAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your enormous 35cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -507,6 +515,7 @@ function enterSetEnormousAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGiganticAnalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your humongous 40cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -537,6 +546,7 @@ function enterSetGiganticAnalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetVibrVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your vibrator', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -564,6 +574,7 @@ function enterSetVibrVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSmallVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your small dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -591,6 +602,7 @@ function enterSetSmallVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNormalVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your medium dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -618,6 +630,7 @@ function enterSetNormalVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your large dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -649,6 +662,7 @@ function enterSetBigVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your very large dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -681,6 +695,7 @@ function enterSetLargeVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your 30cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -713,6 +728,7 @@ function enterSetHugeVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEnormousVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your enormous 35cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -746,6 +762,7 @@ function enterSetEnormousVagAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGiganticVagAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your humongous 40cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');

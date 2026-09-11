@@ -20,6 +20,7 @@ function enterBathr(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'din_van', 'misery');
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['city_house_res_misc', 'hallw'] },
   ]);

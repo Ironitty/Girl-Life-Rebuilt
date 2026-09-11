@@ -32,6 +32,7 @@ function enterSort(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: jump 'loop1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,6 +49,7 @@ function enterShuffle(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'loop3'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -15,6 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'arousal', 'kiss', (-5), 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head to the livingroom', goto: ['FedorEv4', 'Home 2'] },
     { label: 'Get down on your knees', handler: (st: GameState) => {
@@ -113,6 +114,7 @@ function enterHome2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/sitting.jpg');
   scene.text('You walk into the living room then take a seat on the couch. Fedor walks into the kitchen and returns with a bowl of <a href="exec:gt \'FedorEv4\', \'Popcorn\'">popcorn</a>, some <a href="exec:gt \'FedorEv4\', \'Snacks\'">snacks</a> and a few cans of soda then lays them down on the table. Fedor grabs the remote then sits down next to you as he begins flipping through channels.');
   qspCall(s, 'FedorEV4', 'movie_choice');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -130,6 +132,7 @@ function enterPopcorn(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/munch2.jpg');
   scene.text('You begin munching on some popcorn and drinking some soda as Fedor continues flipping through channels.');
   qspCall(s, 'FedorEV4', 'movie_choice');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,10 +149,12 @@ function enterSnacks(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/munch1.jpg');
   scene.text('You begin enjoying some strawberries and drinking soda as Fedor continues flipping through channels.');
   qspCall(s, 'FedorEV4', 'movie_choice');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMovieChoice(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for Fedor to pick a channel', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 4) + 1;
@@ -181,6 +186,7 @@ function enterMovieAction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino\'+rand(2, 3)+\'.mp4');
   scene.text('You and Fedor begin watching an action/drama movie while occasionally discussing your favorite scenes as you see them.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish movie', goto: ['FedorEv4', 'Home 3'] },
   ]);
@@ -193,6 +199,7 @@ function enterMovieSports(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport\'+rand(1, 2)+\'.mp4');
   scene.text('You and Fedor begin watching a variety of different sports channels while occasionally discussing your favorite teams and fighters.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish watching TV', goto: ['FedorEv4', 'Home 3'] },
   ]);
@@ -205,6 +212,7 @@ function enterMovieFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult\'+rand(1, 2)+\'.mp4');
   scene.text('You and Fedor begin watching a family/drama while occasionally discussing your favorite characters.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish movie', goto: ['FedorEv4', 'Home 3'] },
   ]);
@@ -218,6 +226,7 @@ function enterMoviePorn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn\'+rand(1, 5)+\'.mp4');
   scene.text('You and Fedor begin watching a variety of different adult films while occasionally discussing your favorite pornstars and positions.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish movie', goto: ['FedorEv4', 'Home 3'] },
   ]);
@@ -247,6 +256,7 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VKwip ?? 0) === 100) {
     // TODO-QSP: act 'Is that a yoga ball?': gt 'FedorEv4_sex', 'LivingRoom 3'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take me', goto: ['FedorEv4', 'random_sex'] },
     { label: 'Suck Fedor\'s dick', handler: (st: GameState) => {
@@ -305,6 +315,7 @@ function enterRandomSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -342,6 +353,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -358,6 +370,7 @@ function enterBathroomWash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
   scene.text('You grab a few paper towels then approach the sink to clean yourself as thoroughly as possible while taking a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up and walk out of the bathroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Join Fedor in the livingroom', goto: ['FedorEv4', 'Home 2'] },
   ]);
@@ -379,6 +392,7 @@ function enterQuickWash(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
   scene.text('You grab a few paper towels then approach the sink to clean yourself as thoroughly as possible while taking a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up and walk away from the sink.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dry off', goto: ['FedorEv4', 'Bathroom'] },
   ]);
@@ -398,6 +412,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the shower.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dry off', goto: ['FedorEv4', 'Bathroom'] },
   ]);
@@ -436,6 +451,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Bathroom'] },
   ]);
@@ -449,6 +465,7 @@ function enterToilet2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/potty.jpg');
   scene.text('You pull down your pants then sit on the toilet. You take a this time to reflect on many things in your life, leaving you feeling more relaxed. After you are finished you use the nearby toilet paper to wipe yourself before washing your hands and flushing the toilet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Bathroom'] },
   ]);
@@ -460,6 +477,7 @@ function enterToilet3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Evil Toilet</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/vket.jpg');
   scene.text('<h4><b>FEED ME!!!</b></h4>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'NOO!', goto: ['FedorEv4', 'Bathroom'] },
   ]);
@@ -495,6 +513,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', 'driwater');
   qspCall(s, 'kit_din', 'dritea');
   qspCall(s, 'kit_din', 'fill_bottle');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['FedorEv4', 'Hallway'] },
     { label: 'Enter the living room', goto: ['FedorEv4', 'Livingroom'] },
@@ -518,6 +537,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       scene.text('<a href="exec:gt \'FedorEv4\', \'Regina Chat\'">Regina</a> is sitting down on the couch, watching TV.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['FedorEv4', 'Hallway'] },
     { label: 'Step into the kitchen', goto: ['FedorEv4', 'Kitchen'] },
@@ -571,6 +591,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the living room', goto: ['FedorEv4', 'Livingroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave the house</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -609,6 +630,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave bedroom', goto: ['FedorEv4', 'Hallway'] },
   ]);
@@ -619,6 +641,7 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/nude.jpg');
   scene.text('<center><b>I can\'t go out onto the streets naked. Hmm, Isn\'t there a wardrobe in Fedor\'s bedroom?</b></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['FedorEv4', 'Hallway'] },
   ]);
@@ -631,6 +654,7 @@ function enterPicture(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv4" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
   scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv4" }) + '');
   scene.text('Fedor has framed the picture he took of you and placed it by his bed with your name on the frame. After seeing the picture by his bed, you can\'t help but think to yourself. "That\'s so sweet. I must mean a lot to him… ohh Fedor." you then place the picture back.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Step away', goto: ['FedorEv4', 'Bedroom'] },
   ]);
@@ -644,6 +668,7 @@ function enterSolo(s: GameState, scene: SceneBuilder): void {
   scene.text('VKwip');
   qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['FedorEv4', 'Livingroom'] },
   ]);
@@ -658,6 +683,7 @@ function enterSoloCaught(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/caught.jpg');
   scene.text('VKwip');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Livingroom'] },
   ]);
@@ -668,6 +694,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/eating.jpg');
   scene.text('You open the refrigerator and see leftover food and some snacks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close refrigerator door', goto: ['FedorEv4', 'Kitchen'] },
     { label: 'Have a snack', handler: (st: GameState) => {
@@ -713,6 +740,7 @@ function enterFedorSleeping(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Fedor then looks back at you and frowns. "<<$pcs_firstname>> you're hurt. My mot...
     scene.text(`Fedor then looks back at you and frowns. "${((s as any).pcs_firstname ?? 0)} you're hurt. My mother works as a nurse. You should have her take a look at you."`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Bedroom'] },
     { label: 'Spend the night', goto: ['bed2', ''] },
@@ -725,6 +753,7 @@ function enterEndDate(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/fedor.jpg');
   scene.text('Fedor notices that you leaving then approaches you. "Are you ready to go?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not right now', goto: ['FedorEv4', 'Hallway'] },
     { label: 'Yes I am', handler: (st: GameState) => {
@@ -751,6 +780,7 @@ function enterEndDate2(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Fedor fetches your coat then hands it to you as he puts on his coat. Fedor opens the front door and holds it for you while guiding you out. You and Fedor begin walking back to your apartment while chatting about all of the latest trends on television. When you reach the door to your house, Fedor spins you around then gives you a passionate kiss as he presses you against the wall. After a few seconds, Fedor pulls off you then gives you a wink as he turns away and walks off.');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/endkiss.mp4');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk home', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'go_straight_home');
@@ -786,6 +816,7 @@ function enterTV(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish movie', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Watch action movies (1:30)', goto: ['FedorEv4', 'TV Action'] },
@@ -802,6 +833,7 @@ function enterTVAction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino\'+rand(2, 3)+\'.mp4');
   scene.text('You and Fedor begin watching an action/drama movie while occasionally discussing your favorite scenes as you see them.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off couch', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Change channel', goto: ['FedorEv4', 'TV'] },
@@ -815,6 +847,7 @@ function enterTVGeographic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo\'+rand(1, 4)+\'.mp4');
   scene.text('You change to the geographic channel. You study what you see to have a better understanding of the world around you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off couch', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Change channel', goto: ['FedorEv4', 'TV'] },
@@ -828,6 +861,7 @@ function enterTVSports(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport\'+rand(1, 2)+\'.mp4');
   scene.text('You begin cycling through sports channels, enjoying the athletes competing in various sports.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off couch', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Change channel', goto: ['FedorEv4', 'TV'] },
@@ -841,6 +875,7 @@ function enterTVFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult\'+rand(1, 2)+\'.mp4');
   scene.text('You change to the family channel and begin watch an animated movie with cute cuddly animals.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off couch', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Change channel', goto: ['FedorEv4', 'TV'] },
@@ -855,6 +890,7 @@ function enterTVPorn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn\'+rand(1, 5)+\'.mp4');
   scene.text('You begin cycling through adult channels watching various sexual acts being performed by professional pornstars…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off couch', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Change channel', goto: ['FedorEv4', 'TV'] },
@@ -867,6 +903,7 @@ function enterPornCaught(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/caught.jpg');
   scene.text('VKwip');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off couch', goto: ['FedorEv4', 'Livingroom'] },
   ]);
@@ -883,6 +920,7 @@ function enterReginaIntro(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/fedorhome/regina.jpg');
   // TODO-QSP: dynamic text: You approach Fedor's mother and her eyes light up when she sees you. "Ahh, you m...
   scene.text(`You approach Fedor's mother and her eyes light up when she sees you. "Ahh, you must be ${((s as any).pcs_firstname ?? 0)}. Fedor told me a bit about you but I can never get that boy to talk to me about anything. So how serious are things between you two? Ohh but where are my manners? My name is Regina. I am Fyodor's mother. I have been looking forward to meeting my son's first girlfriend." You tilt your head as you reply, "His first?" Regina replies, "Well yes. Fedor usually spends too much time in front of that TV or with his friend Ivan. His father always lectures that boy about not being more active, that is… when he's here anyway, I've droned on for long enough. Would you like me to make you something to eat?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thank you', goto: ['FedorEv4', 'Kitchen'] },
     { label: 'Only if it\'s no trouble', goto: ['FedorEv4', 'Dinner 1'] },
@@ -954,6 +992,7 @@ function enterReginaChat(s: GameState, scene: SceneBuilder): void {
       { label: 'May I join you for dinner?', goto: ['FedorEv4', 'Dinner 1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Kitchen'] },
   ]);
@@ -993,6 +1032,7 @@ function enterReginaChat2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Kitchen'] },
   ]);
@@ -1007,6 +1047,7 @@ function enterDinner1(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b><h4><font color="#FF00FF">${'Regina Kozlov'}</font></h4></b></center>`);
   scene.img('images/locations/pavlovsk/resident/fedorhome/regina.jpg');
   scene.text('Of course, it\'s no problem. Here, have a seat and I\'ll make us a nice meal.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a seat', goto: ['FedorEv4', 'Dinner'] },
   ]);
@@ -1026,6 +1067,7 @@ function enterDinner(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/regina.jpg');
   scene.text('You and Regina spend a few minutes getting to know each other while eating a well prepared meal.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['FedorEv4', 'Kitchen'] },
   ]);
@@ -1043,6 +1085,7 @@ function enterCheckUp(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit down on a nearby chair as Regina runs off to fetch her medical supplies. When Regina comes back she begins unpacking her supplies as she asks you about any health issues you may have. After a few minutes of being patching up, you feel a lot better. Regina gives you a warm smile while re-packing her supplies. When Regina finishes she gives you a lollipop as she says, "I know you might feel too old for these but I can\'t let any patient go with out one of these, I\'m just really old fashioned like that."');
   // TODO-QSP: dynamic text: You give her <<$func('money', 'string_price', 20)>> and say, "Please take this, ...
   scene.text(`You give her ${qspFunc(s, 'money', 'string_price', 20)} and say, "Please take this, for helping me." Regina gives you a smile before leaving the room to put her supplies away.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank you', goto: ['FedorEv4', 'Kitchen'] },
   ]);
@@ -1081,6 +1124,7 @@ function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
     // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Livingroom'] },
     { label: 'Chat', goto: ['FedorEv4', 'Fedor Livingroom Chat'] },
@@ -1143,6 +1187,7 @@ function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
     // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Kitchen'] },
     { label: 'Chat', goto: ['FedorEv4', 'Fedor Kitchen Chat'] },
@@ -1227,6 +1272,7 @@ function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Spend the night', goto: ['bed2', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['FedorEv4', 'Bedroom'] },
   ]);
@@ -1259,6 +1305,7 @@ function enterFedorBedroom2(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
     // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Maybe later', goto: ['FedorEv4', 'Bedroom'] },
     { label: 'Sure', goto: ['FedorEv4', 'Fedor Bedroom Chat 2'] },
@@ -1277,6 +1324,7 @@ function enterLoveTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You crawl up the bed and lay down beside him and reply, "I feel the same way abo...
   scene.text(`You crawl up the bed and lay down beside him and reply, "I feel the same way about you… I love you Fyodor." Fedor looks shocked for a moment then responds, "I love you too ${((s as any).pcs_firstname ?? 0)}. You really mean everything to me and I never want to lose you." You respond, "You never will." as you lean forward and share a very passionate kiss with Fedor`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/kiss.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish kissing', goto: ['FedorEv4', 'Fedor Bedroom'] },
   ]);
@@ -1295,6 +1343,7 @@ function enterLoveTalkStrela(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You can feel your cheeks getting flushed as you respond, "Well you're everything...
   scene.text(`You can feel your cheeks getting flushed as you respond, "Well you're everything I need in a man and that is why I… I love you Fyodor." Fedor looks shocked for a moment then responds, "I love you too ${((s as any).pcs_firstname ?? 0)}. You really mean everything to me and I never want to lose you." You respond, "You never will." as you lean forward and share a very passionate kiss with Fedor.`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/kiss.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish kissing', goto: ['FedorEv4', 'Fedor Bedroom'] },
   ]);
@@ -1312,6 +1361,7 @@ function enterLoveTalkStrela2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Fedor lets out a mild smile as he continues staring at the ceiling and after a f...
   scene.text(`Fedor lets out a mild smile as he continues staring at the ceiling and after a few seconds responds, "You are the greatest gift I can ever ask for and I'm so glad I met you. ${((s as any).pcs_firstname ?? 0)} you are the perfect girl and I will always strive to be the best boyfriend you can ever have." You lightly kiss his cheek as you reply, "You are already the best boyfriend I could ever have." Fedor quickly turns to you and kisses your lips very passionately.`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/kiss.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish kissing', goto: ['FedorEv4', 'Fedor Bedroom'] },
   ]);
@@ -1364,6 +1414,7 @@ function enterFuture(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Never mind', goto: ['FedorEv4', 'Fedor Bedroom'] },
     { label: 'Marriage', handler: (st: GameState) => {
@@ -1384,6 +1435,7 @@ function enterFedorLivingroomChat(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/fedor.jpg');
   scene.text('You sit down next to Fedor and both of you discuss your favorite TV shows.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish chatting', goto: ['FedorEv4', 'Livingroom'] },
   ]);
@@ -1396,6 +1448,7 @@ function enterFedorKitchenChat(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/fedor.jpg');
   scene.text('You sit down next to Fedor and both of you discuss your favorite foods.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish chatting', goto: ['FedorEv4', 'Kitchen'] },
   ]);
@@ -1408,6 +1461,7 @@ function enterFedorBedroomChat(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/fedor.jpg');
   scene.text('You sit down next to Fedor and both of you share stories about your classmates.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish chatting', goto: ['FedorEv4', 'Bedroom'] },
   ]);
@@ -1431,6 +1485,7 @@ function enterFedorBedroomChat2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish chatting', goto: ['FedorEv4', 'Fedor Bedroom 2'] },
   ]);
@@ -1443,6 +1498,7 @@ function enterPrivateChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorsad.jpg');
   // TODO-QSP: dynamic text: You sit down next to Fedor then ask, "Can we talk for a moment… in private?" Fed...
   scene.text(`You sit down next to Fedor then ask, "Can we talk for a moment… in private?" Fedor turns to you with a concerned look on his face. "Of course ${((s as any).pcs_firstname ?? 0)}. Let's head to my room where we can talk in private." Fedor takes your hand then leads you to the bedroom.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow Fedor to his bedroom', goto: ['FedorEv4', 'Dimka Help'] },
   ]);
@@ -1456,6 +1512,7 @@ function enterFedorShelter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You sit down next to Fedor then say, "Fedor… I need your help." Fedor quickly si...
   scene.text(`You sit down next to Fedor then say, "Fedor… I need your help." Fedor quickly sits up then responds, "What do you need?" you downcast your eyes then say, "My mother threw me out… of my home, and I don't know what to do." you begin sobbing as Fedor wraps his arms around you. "That's horrible. I bet my mother will take you in. I will speak to her the next time I see her. Don't worry I won't let you live on the streets." you quickly wrap your arms around Fedor's chest then say, "Thank you so much Fedor. I am so scared." Fedor kisses you on the forehead, as he responds, "I will always be here for you ${((s as any).pcs_firstname ?? 0)}, whenever you need me." you give Fedor a soft kiss then get up and say, "I'm so lucky to have you." Fedor responds with a thumbs up, and a smile.`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/console2.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave room', goto: ['FedorEv4', 'Hallway'] },
   ]);
@@ -1472,6 +1529,7 @@ function enterFedorShelter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/fedorhome/regina.jpg');
   scene.text('You can see Fedor and Regina sitting down together chatting then Regina notices you. Regina looks up to you with a sad face then says, "Fyodor told me about what happened. Your mother threw you out? Why?" you lower your head, trying to figure out where to start when Regina says, "It\'s ok, you don\'t have to tell me. I can\'t believe that she would throw out her own daughter. Fyodor and I have been discussing, and I decided that it would be best if you to stay for while, but promise me that you will try to find a place to live when you graduate, okay?" you happily nod, and can feel tears gathering in your eyes, as you reply, "Yes I will. Thank you so much. I thought that I would be living on the street. Thank you." Regina approaches you then wipes away your tears. "I will get you a key." Regina then reaches inside of a drawer then pulls out a set of keys then give you one. Fedor gives you a hug then says, "You will always be welcome here." You return the hug, as you reply, "Thank you for everything Fyodor. You are the best boyfriend ever."');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/console1.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['FedorEv4', 'Kitchen'] },
   ]);
@@ -1484,6 +1542,7 @@ function enterDimkaHelp(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/console1.jpg');
   // TODO-QSP: dynamic text: You sit at the edge of the bed next to Fedor then lower your head, staring blank...
   scene.text(`You sit at the edge of the bed next to Fedor then lower your head, staring blankly at the ground, trying to collect your thoughts when you feel Fedor's hand on your shoulder. "${((s as any).pcs_firstname ?? 0)}, what's wrong?" You look toward him but are unable to look him in the eye. "Fedor… I need your help with something but I…" He sits up then wraps his arms around your waist. "${((s as any).pcs_firstname ?? 0)} whatever it is, you can talk to me."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s… It\'s nothing', goto: ['FedorEv4', 'Bedroom'] },
     { label: 'Ask him for help', handler: (st: GameState) => {
@@ -1511,6 +1570,7 @@ function enterDimkaAftermath(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You give Fedor a soft kiss. "I know that I will always be safe with you." Fedor ...
   scene.text(`You give Fedor a soft kiss. "I know that I will always be safe with you." Fedor looks into your eyes. "I will always love you ${((s as any).pcs_firstname ?? 0)}." You reply, "And I, you, Fedor" then you both share a long passionate kiss.`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/kiss2.mp4');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'FedorEv4') {
@@ -1529,6 +1589,7 @@ function enterHomeEntrance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/house.jpg');
   scene.text('Fedor\'s house is a bit weathered but still looks quite lovely. This house is but a short walk away from my parents apartment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1571,6 +1632,7 @@ function enterHomeEntrance2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1582,6 +1644,7 @@ function enterHomeEntrance3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('You knock on the door until Fedor opens it and invites you inside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter apartment', goto: ['FedorEv4', 'Hallway'] },
   ]);

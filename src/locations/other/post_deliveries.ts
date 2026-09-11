@@ -31,6 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You take some time to get ready for your round, checking all the addresses and planning a route before leaving the post office around noon to get started.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start your round', handler: (st: GameState) => {
     ((s as any).post_vars ?? {})['round'] = 0;
@@ -137,6 +138,7 @@ function enterPickEvent(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -196,6 +198,7 @@ function enterResume(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -295,6 +298,7 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -621,6 +625,7 @@ function enterBandsex(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -693,6 +698,7 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Return to the businessman''s house': gt 'post_events', '3'
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commercial', ''] },
   ]);
@@ -728,6 +734,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him what\'s in the parcel', handler: (st: GameState) => {
     ((s as any).post_vars ?? {})['qw_1'] = 1;
@@ -780,6 +787,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I uhh... I have a letter for Mr. Yanovich?" you reply.');
   scene.text('"Mr. Yanovich isn\'t wearing any clothes right now!" she laughs. "He\'s my boyfriend. Just give it to me, I\'ll make sure he gets it. Unless you want to come in for some fun...?"');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Insist you have to hand it over personally', handler: (st: GameState) => {
     scene.text('"I\'m sorry miss, but I have to give it to him personally. Those are the rules," you tell her.');
@@ -864,6 +872,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask what he wants', handler: (st: GameState) => {
     ((s as any).post_vars ?? {})['qw_3'] = 1;
@@ -1008,6 +1017,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Beg him to not go through with it', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent4-2.jpg');
@@ -1083,6 +1093,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with them for a while', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1139,6 +1150,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a five minute break', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1187,6 +1199,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/postoffice/window.jpg');
   scene.text('Continuing along your route, you manage to catch a glimpse of a woman at a nearby window, looking out over the street expectantly. She\'s completely naked! You wonder who she\'s waiting for...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1200,6 +1213,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.text('Another set of houses down, another street of mail to be delivered. You only get halfway down this row of buildings before you hear the ripping of threads and a firm tug against your bag. You look behind you to spot the nail that tore open your bag and the pile of letters that have fallen out onto the ground.');
   scene.text('Sighing, you bend down and spend a few minutes hunting them all down and cramming them back into your broken bag. As you stand up to resume your round, you realize that you now have to constantly make sure you don\'t lose anything. That\'s definitely going to slow you down for the rest of the day!');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Resume your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1218,6 +1232,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   scene.text('A car driver seems to have other ideas, however. You swear he aimed for that puddle, dousing you in a huge spray of dirty, cold water.');
   scene.text('You might be able to pull off the wet T-shirt look nicely, but this definitely put a dampener on your day!');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1251,6 +1266,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to draw the attention of the dog\'s owner', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1276,6 +1292,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   scene.text('At long last, you find a staircase leading up to a shabby office. The man looks at you as if he doesn\'t have time. "You\'re late," he mutters. "I needed this an hour ago! Leave now so I can work!"');
   scene.text('After some convincing, he finally signs so you can leave, but only after complaining about how late you are once more. What a jerk...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1318,6 +1335,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay a few minutes and try to cheer her up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1349,6 +1367,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     scene.text('Just before he closes the door completely, you see a nude girl walking through Sergey\'s apartment! You didn\'t get a good enough look to see who it is though...');
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1366,6 +1385,7 @@ function enter14(s: GameState, scene: SceneBuilder): void {
   scene.text(`"What are you doing here, ${((s as any).pcs_nickname ?? 0)}? I thought you were working?" she asks while eyeing you up and down suspiciously.`);
   scene.text('Your stepfather gives you a desperate smile, hoping you\'ll cover for him. He clearly didn\'t mean for your mother to find out about this package.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you forgot something', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A28', 5);
@@ -1409,6 +1429,7 @@ function enter15(s: GameState, scene: SceneBuilder): void {
   scene.text('You just nod and he grunts. "Good. Now get lost!"');
   scene.text('When he turns around, you can see the clear outline of a gun in his jacket. You definitely don\'t want to bother him again, so you quickly forge a signature on your sheet and walk down the stairs again. There\'s no way you\'ll get complaints about this package, but you can\'t help but wonder why he was so paranoid. And rather: what you just brought him!');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1426,6 +1447,7 @@ function enter16(s: GameState, scene: SceneBuilder): void {
   scene.text('As you back out of the room, the receptionist comes racing down the hall, out of breath. "I meant the second door on the right! The second door! I\'m so sorry!"');
   scene.text('"Uhh, t-that\'s okay..." you mutter, still rather rattled.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let the girl take you to the doctor\'s office', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/doclaugh.jpg');
@@ -1453,6 +1475,7 @@ function enter17(s: GameState, scene: SceneBuilder): void {
   scene.text('"The guys are on their way. You just lie there and be pretty for a while!" he smirks before he turns back to you. "I swear she does it on purpose! Horny little bitch... Anyway, here\'s a pen. You can keep that. Have a nice day, miss."');
   scene.text('He ushers you out the door and you quickly cast one more glance at the girl on your way out. You wonder what he has in store for her...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1472,6 +1495,7 @@ function enter18(s: GameState, scene: SceneBuilder): void {
   scene.text('"Damn, you\'re no fun..." she groans mockingly when you get her to sign so you can be on your way. "Are you sure you don\'t want to come in for a little while? You seem stressed. I bet I could help you relax..."');
   scene.text('You respectfully decline the offer and turn around to continue your round. You\'d swear you feel a bit wobbly just from standing near that house for so long!');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1491,6 +1515,7 @@ function enter19(s: GameState, scene: SceneBuilder): void {
   scene.text('"Thanks! You have a nice day, miss!" he says, giving you a friendly nod before closing the door again.');
   scene.text('You bury your head in your hands for a moment and let out a deep sigh; what must that man be thinking of you right now?! That was definitely not your proudest moment...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1504,6 +1529,7 @@ function enter20(s: GameState, scene: SceneBuilder): void {
   scene.text('You squeeze your way past them as best you can, trying your best not to offend them.');
   scene.text('"Excuse me, miss. You dropped these," you hear a deep voice behind you. One of the men is holding a few envelopes in his huge fist as he gives you a friendly smile. You thank him and continue on your way to your destination.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -1536,6 +1562,7 @@ function enter21(s: GameState, scene: SceneBuilder): void {
   scene.text('"My new tail! Isn\'t it adorable? I\'m so happy right now! Master will be so happy, too! You\'re the best!" she squeals again, besides herself with happiness. She moves her bare ass back and forth, making it look like she\'s wagging her tail at you.');
   scene.text('You\'re not entirely surprised when you see her signature looks exactly like a cat\'s paw.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1554,6 +1581,7 @@ function enter22(s: GameState, scene: SceneBuilder): void {
   scene.text('You just shrug and offer him his mail. He signs absent-mindedly while scanning the street before glaring back at the young woman you assume is his wife.');
   scene.text('You\'re fairly certain you have a good idea of what just happened, but don\'t have time to get into it. Leaving the man behind, you continue on your round.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1576,6 +1604,7 @@ function enter23(s: GameState, scene: SceneBuilder): void {
   scene.text('"Eeeep!" she squeaks and quickly pulls her pants up.');
   scene.text('You giggle and keep walking, realizing the show\'s over. You can hear the two of them bickering as you continue on your way.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1588,6 +1617,7 @@ function enter24(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/postoffice/mailbox.jpg');
   scene.text('As you\'re walking through the posh area of town, you see the strangest mailbox! Whoever lives here must have a lot of money, if even their mailbox is this fancy...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your round', goto: ['post_deliveries', 'resume'] },
   ]);
@@ -1604,6 +1634,7 @@ function enter25(s: GameState, scene: SceneBuilder): void {
   scene.text('When you don\'t respond quickly enough, she coughs insistently. "My eyes are up here, girl! Make it quick, I have things to do!"');
   scene.text('She gives you a scolding look and you feel yourself shrinking in front of her...');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize and give her her mail', handler: (st: GameState) => {
     scene.text('"I have a package for... Mistress Madeline?" you mumble. "That\'s you, right? I\'m sorry, I jus-"');
@@ -1650,6 +1681,7 @@ function enter26(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Deliver the note for him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

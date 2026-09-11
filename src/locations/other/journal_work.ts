@@ -51,6 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your journal down', handler: (st: GameState) => {
     dynamicGoto(st, 'menu_loc', 'menu_arg');

@@ -26,6 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['belpicknick', 'leave'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink the vodka', handler: (st: GameState) => {
     qspCall(s, 'drugs', 'alcohol', 'vodka');
@@ -66,6 +67,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['belpicknick', 'leave'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Perform a striptease for them', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'striptease', 5);
@@ -141,6 +143,7 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
       { label: 'Shove the bottom into your ass', goto: ['belpicknick', 'ab_hard'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -195,6 +198,7 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
       { label: 'Shove the bottom into your ass', goto: ['belpicknick', 'ab_hard'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,6 +253,7 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
       { label: 'Shove the bottom into your ass', goto: ['belpicknick', 'ab_hard'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -278,6 +283,7 @@ function enterAbHard(s: GameState, scene: SceneBuilder): void {
   }, goto: ['belpicknick', 'leave'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['belpicknick', 'gang'] },
   ]);
@@ -288,6 +294,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   scene.text('You slowly take off your clothes one piece at a time, while you skillfully try to give the bandits the sexy dance they want from you. You can tell they want you badly, and that your dancing is definitely having an effect on them.');
   // TODO-QSP: dynamic text: Once you're completely naked, they applaud you and tell you: "Very nice, <<$pcs_...
   scene.text(`Once you're completely naked, they applaud you and tell you: "Very nice, ${((s as any).pcs_nickname ?? 0)}. Now let's see how good you are with your mouth."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A115', 'a');
@@ -431,6 +438,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -519,6 +527,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -538,6 +547,7 @@ function enterVibor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -563,6 +573,7 @@ function enterPoisk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tempgm ?? 0) === 1  &&  ((s as any).sashaBeliTimes ?? 0) > 0  ||  ((s as any).tempgm ?? 0) === 2  &&  ((s as any).sipliGangTimes ?? 0) > 0  ||  ((s as any).tempgm ?? 0) === 3  &&  ((s as any).kolGangTimes ?? 0) > 0  ||  ((s as any).tempgm ?? 0) === 4  &&  ((s as any).tatarGangTimes ?? 0) > 0) {
     (s as any).gmember = ((s as any).tempgm ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -609,6 +620,7 @@ function enterGang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: After a while, you begin to struggle keeping your own weight up. The guys don't ...
   scene.text(`After a while, you begin to struggle keeping your own weight up. The guys don't care, and your body lies prone on ${((s as any).boydesc1 ?? 0)}'s chest as the guys keep up their rough fucking. After what feels like forever, you feel arms under your armpits lifting you up and pulling you away from ${((s as any).boydesc1 ?? 0)}, putting you on your knees in front of the men. They gather in a circle around you and start stroking their cocks furiously.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take their loads on your face', handler: (st: GameState) => {
     qspCall(s, 'npcStat', '', ((s as any).npcID1 ?? 0));
@@ -684,6 +696,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -693,6 +706,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['road', '<<(rand(1, 19) + rand(1, 19)) / 2>>'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

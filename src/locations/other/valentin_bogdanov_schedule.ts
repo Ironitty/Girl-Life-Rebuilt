@@ -178,6 +178,7 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -404,6 +404,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -414,6 +415,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Hallway</b></center>');
   scene.img('images/locations/pavlovsk/resident/soniaHome/hall.jpg');
   scene.text('You enter a small bright hallway with a door to the lounge on your right and a staircase at the end leading to the bedrooms and bathroom upstairs. There\'s also a door to the kitchen in front of you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
     { label: 'Go to Sonia\'s bedroom', goto: ['soniahome', 'sonia_room'] },
@@ -434,6 +436,7 @@ function enterBackyard(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Garden in Backyard</b></center>');
   scene.img('images/locations/pavlovsk/resident/soniaHome/house_back.jpg');
   scene.text('You step out through the french doors into the garden. The first thing you notice is all the flowers — several large flower beds with a neatly kept path snaking through them. A few trees give plenty of shade, and there are a couple of stone benches to sit on. A tall wooden fence runs all along the back yard, giving a fair bit of privacy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back inside', goto: ['soniahome', 'kitchen'] },
   ]);
@@ -535,6 +538,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the hallway', goto: ['soniahome', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +695,7 @@ function enterSoniaShower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -719,6 +724,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('As you enter the kitchen, you notice that whilst it isn\'t large, it\'s very tastefully done and has everything needed. It also has a dining table adjacent to it for family meals. There is also a set of french doors leading into a back yard.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['soniahome', 'hallway'] },
     { label: 'Go to the backyard', goto: ['soniahome', 'backyard'] },
@@ -867,6 +873,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['soniahome', 'kitchen'] },
   ]);
@@ -888,6 +895,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You walk into a small but comfortable lounge which is very clean and tidy. You see the TV in the corner and a cozy family settee on the opposite wall facing a fireplace, giving the room a warm and comfortable look.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['soniahome', 'hallway'] },
   ]);
@@ -921,6 +929,7 @@ function enterSoniaparents(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -931,6 +940,7 @@ function enterSoniabrother(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Shulyov\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/soniaHome/shulyov.jpg');
   scene.text('You try the door, but it\'s locked.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['soniahome', 'hallway'] },
   ]);
@@ -976,6 +986,7 @@ function enterSoniaRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the hallway', goto: ['soniahome', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1013,6 +1024,7 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
       scene.text('You decide to snoop, so you open the nightstand\'s drawer to peek inside. Inside it is neatly organized with a lot of skin care products and other normal things you might find in a nightstand. The only thing of note is the small bullet vibrator tucked into the corner almost completely concealed.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the drawer', goto: ['soniahome', 'sonia_room'] },
   ]);

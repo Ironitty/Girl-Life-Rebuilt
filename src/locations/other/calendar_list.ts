@@ -30,6 +30,7 @@ function enterInitEventVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['window_start_ts'] = 0;
   ((s as any).event_vars ?? {})['window_end_ts'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,6 +39,7 @@ function enterAssignColor(s: GameState, scene: SceneBuilder): void {
     ((s as any).event_vars ?? {})['color'] = Math.floor(Math.random() * 20) + 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,6 +51,7 @@ function enterHolidayNewYear(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly-0101-0108';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +63,7 @@ function enterHolidayChristmas(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,6 +75,7 @@ function enterHolidayFatherland(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,6 +87,7 @@ function enterHolidayWomensDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +99,7 @@ function enterHolidayLaborDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,6 +111,7 @@ function enterHolidayMay_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -115,6 +123,7 @@ function enterHolidayVictoryDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -126,6 +135,7 @@ function enterHolidayRussiaDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +147,7 @@ function enterHolidayJune_13(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -148,6 +159,7 @@ function enterHolidayUnityDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -159,6 +171,7 @@ function enterSchoolWinterBreak(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly-1231-0114';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +183,7 @@ function enterSchoolSpringBreak(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly-0319-0325';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +195,7 @@ function enterSchoolSummerBreak(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly-0531-0830';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -192,6 +207,7 @@ function enterSchoolAutumnBreak(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'yearly-1103-1110';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +222,7 @@ function enterSchoolGraduation(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (4 * 4);
   ((s as any).event_vars ?? {})['priority'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -223,6 +240,7 @@ function enterSchoolMondayFall2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -240,6 +258,7 @@ function enterSchoolTuesdayFall2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -257,6 +276,7 @@ function enterSchoolWednesdayFall2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -274,6 +294,7 @@ function enterSchoolThursdayFall2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -291,6 +312,7 @@ function enterSchoolFridayFall2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -308,6 +330,7 @@ function enterSchoolMondayWinter2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -325,6 +348,7 @@ function enterSchoolTuesdayWinter2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -342,6 +366,7 @@ function enterSchoolWednesdayWinter2016(s: GameState, scene: SceneBuilder): void
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,6 +384,7 @@ function enterSchoolThursdayWinter2016(s: GameState, scene: SceneBuilder): void 
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -376,6 +402,7 @@ function enterSchoolFridayWinter2016(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -393,6 +420,7 @@ function enterSchoolMondaySpring2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -410,6 +438,7 @@ function enterSchoolTuesdaySpring2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -427,6 +456,7 @@ function enterSchoolWednesdaySpring2017(s: GameState, scene: SceneBuilder): void
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -444,6 +474,7 @@ function enterSchoolThursdaySpring2017(s: GameState, scene: SceneBuilder): void 
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -461,6 +492,7 @@ function enterSchoolFridaySpring2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -478,6 +510,7 @@ function enterSchoolMondayFinal2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -495,6 +528,7 @@ function enterSchoolTuesdayFinal2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -512,6 +546,7 @@ function enterSchoolWednesdayFinal2017(s: GameState, scene: SceneBuilder): void 
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -529,6 +564,7 @@ function enterSchoolThursdayFinal2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -546,6 +582,7 @@ function enterSchoolFridayFinal2017(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (6 * 4);
   ((s as any).event_vars ?? {})['color'] = 20;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -561,6 +598,7 @@ function enterTherapistAppointment(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['recur'] = '4';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -577,6 +615,7 @@ function enterTherapistHotelVisit(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['recur'] = '6';
   ((s as any).event_vars ?? {})['recur_end'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -592,6 +631,7 @@ function enterDiscoParty(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (1 * 4) + (30 / 15);
   ((s as any).event_vars ?? {})['recur'] = '5 6';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -609,6 +649,7 @@ function enterGopnikInitiationEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 9;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -624,6 +665,7 @@ function enterTrainMorning(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['recur'] = 'daily';
   ((s as any).event_vars ?? {})['color'] = 9;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -639,6 +681,7 @@ function enterTrainEvening(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['recur'] = 'daily';
   ((s as any).event_vars ?? {})['color'] = 9;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -655,6 +698,7 @@ function enterChurchVigil(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['recur'] = '6';
   ((s as any).event_vars ?? {})['color'] = 7;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -671,6 +715,7 @@ function enterChurchLiturgy(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['recur'] = '7';
   ((s as any).event_vars ?? {})['color'] = 7;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +736,7 @@ function enterStarletsPracticeRegular(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['holiday'] = 1;
   ((s as any).event_vars ?? {})['color'] = 3;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -713,6 +759,7 @@ function enterStarletsPracticeFriday(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 3;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -731,6 +778,7 @@ function enterAnnaBdsmSession(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 6;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -749,6 +797,7 @@ function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 1;
   ((s as any).event_vars ?? {})['color'] = 4;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -767,6 +816,7 @@ function enterGopnikFightNightEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 1;
   ((s as any).event_vars ?? {})['color'] = 9;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -787,6 +837,7 @@ function enterBandPracticeEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 0;
   ((s as any).event_vars ?? {})['color'] = 5;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -805,6 +856,7 @@ function enterCheerleadingPractice_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -824,6 +876,7 @@ function enterCheerleadingPractice_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -843,6 +896,7 @@ function enterCheerleadingPractice_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -862,6 +916,7 @@ function enterCheerleadingPractice_4(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -877,6 +932,7 @@ function enterCheerleadingGameTomorrow(s: GameState, scene: SceneBuilder): void 
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -899,6 +955,7 @@ function enterCheerleadingGame_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -918,6 +975,7 @@ function enterCheerleadingGame_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -937,6 +995,7 @@ function enterCheerleadingGame_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -956,6 +1015,7 @@ function enterCheerleadingGame_4(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -971,6 +1031,7 @@ function enterVolleyballTournament(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (4 * 4);
   ((s as any).event_vars ?? {})['recur'] = '6';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -984,6 +1045,7 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['window_end_ts'] = ((((s as any).ml_guitarlesson ?? {})?.['lessonhour'] + 1) * 4) + (0 / 15);
   ((s as any).event_vars ?? {})['duration_ts'] = (45 / 15);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1000,6 +1062,7 @@ function enterMitkaDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 1;
   ((s as any).event_vars ?? {})['color'] = 9;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1009,6 +1072,7 @@ function enterFineDeadline(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['title'] = ((s as any).policeQW ?? {})?.['legal_fine'] + ' Fine Due';
   ((s as any).event_vars ?? {})['all_day'] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1024,6 +1088,7 @@ function enterBlackmailPaymentDeadline(s: GameState, scene: SceneBuilder): void 
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1047,6 +1112,7 @@ function enterBelgangPaymentDeadline(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['priority'] = 2;
   ((s as any).event_vars ?? {})['color'] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1057,6 +1123,7 @@ function enterCyclePhase_0(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'daily';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1067,6 +1134,7 @@ function enterCyclePhase_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'daily';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1077,6 +1145,7 @@ function enterCyclePhase_2(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'daily';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1087,6 +1156,7 @@ function enterCyclePhase_3(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['all_day'] = 1;
   ((s as any).event_vars ?? {})['recur'] = 'daily';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -75,6 +75,7 @@ function enterSetAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,6 +164,7 @@ function enterEnterNatashaRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -178,6 +180,7 @@ function enterDiscussRelationshipStatus(s: GameState, scene: SceneBuilder): void
   scene.text('"Sorry, Natasha, first off what do you want? What exactly are you saying? Do you want a committed or open relationship or do you want to break up? As you brought the subject up I need to know what <i>YOU</i> really want, not what you think I want."');
   scene.text('She gathers herself then almost in a whisper replies "I want you as my girlfriend and only you."');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Confirm sole girlfriend relationship', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -239,6 +242,7 @@ function enterDesignsChat(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod in acknowledgement then continue. "Do you have a portfolio of your own designs that you like best yet?"');
   scene.text('She sighs. "Well I\'ve got numerous designs but it\'s all in a bit of a muddle. I really do need to spend some time sorting through them and putting the best ones into folders for the different types of clothes but I can\'t seem to find the time."');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show me', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -319,6 +323,7 @@ function enterDesignsDormGift(s: GameState, scene: SceneBuilder): void {
   scene.text('Confused, you ask. "What\'s the matter Natasha? I thought you\'d like them."');
   scene.text('Natasha turns to you and gives you a big kiss and hug. "Yeah I love them. They\'re much better than what I\'ve been using. Sorry for getting emotional — I know you\'ve bought me much more expensive things, but this... well, this is special. It\'s the first time someone has bought me anything for design or said anything encouraging other than my tutor. I think even my mother just humours me, thinking it\'s just a phase."');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sort through her drawings', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -363,6 +368,7 @@ function enterVisitAphrodite(s: GameState, scene: SceneBuilder): void {
   scene.text('You decide to fulfil your promise to Natasha and take her designs to Aphrodite Photography to get their opinion about their quality and ask if they\'d be interested in doing anything with them.');
   scene.text('You take the metro to the center and, on arriving, head into the agency and seek out the manager.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Discuss her designs with the manager', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -461,6 +467,7 @@ function enterVisitTailor(s: GameState, scene: SceneBuilder): void {
   scene.text('He interrupts you. "Now that\'s very commendable but very difficult to succeed in. Anyway, sorry, I didn\'t let you finish."');
   scene.text('Smiling, you tell him. "That\'s okay... I have some of her designs with me. I was hoping that you could get them made up for her so we can try them out and maybe get some photos done for her portfolio."');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him the designs', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -501,6 +508,7 @@ function enterCollectTailor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'pay', 10000);
   ((s as any).natbelQW ?? {})['tailor_collected'] = 1;
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show Natasha the tailor\'s work', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;

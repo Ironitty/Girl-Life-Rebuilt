@@ -15,6 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/pet_emporium/parrot_home.jpg');
   // TODO-QSP: dynamic text: <center><<$ParrotQW['Name1']>> sitting in his cage.</center>
   scene.text(`<center>${((s as any).ParrotQW ?? 0)?.['Name1']} sitting in his cage.</center>`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dina', 'brodila'] },
     { label: 'Open a window and release your parrot', handler: (st: GameState) => {
@@ -32,6 +33,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/pet_emporium/parrot_home.jpg');
   // TODO-QSP: dynamic text: <center><<$ParrotQW['Name2']>> sitting in his cage.</center>
   scene.text(`<center>${((s as any).ParrotQW ?? 0)?.['Name2']} sitting in his cage.</center>`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

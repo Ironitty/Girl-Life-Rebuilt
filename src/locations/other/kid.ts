@@ -148,6 +148,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['kid', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -355,6 +356,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "<hr>"
+  // TODO-QSP: end
   scene.build();
 }
 

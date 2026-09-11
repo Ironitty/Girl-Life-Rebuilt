@@ -34,6 +34,7 @@ function enterBench(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     // TODO-QSP: act 'Smoke a joint': gt 'pav_aptcourtev', 'smoke_joint'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['pav_complex', 'start'] },
     { label: 'Wait thirty minutes', goto: ['pav_aptcourtev', 'wait'] },
@@ -70,6 +71,7 @@ function enterWait(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,6 +81,7 @@ function enterRead(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/events/benchreadw.jpg');
   scene.text('You take one of your magazines out of your purse and start reading it while enjoying the fresh air.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['pav_complex', 'start'] },
     { label: 'Keep reading', goto: ['pav_aptcourtev', 'read'] },
@@ -92,6 +95,7 @@ function enterPhone(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/events/benchphonew.jpg');
   scene.text('You pull out your phone and check your messages before playing a game.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['pav_complex', 'start'] },
     { label: 'Keep playing on your phone', goto: ['pav_aptcourtev', 'phone'] },
@@ -108,6 +112,7 @@ function enterSmoke(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
     // TODO-QSP: act 'Have another cigarette': gt 'pav_aptcourtev', 'smoke'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['pav_complex', 'start'] },
   ]);
@@ -119,6 +124,7 @@ function enterSmokeJoint(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'joint');
   scene.img('images/locations/pavlovsk/resident/apartment/events/benchsmoke.jpg');
   scene.text('You pull a joint of your purse and light it up. Trying to act like you\'re just smoking a cigarette, you take a long slow drag off it as you relax on the bench. You\'re soon feeling the effects.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', goto: ['pav_complex', 'start'] },
   ]);
@@ -668,6 +674,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -717,6 +724,7 @@ function enterMaksimFriendsFlash(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'flash', 'pussy', 'outdoors', 1, 2);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['pav_complex', 'start'] },
   ]);
@@ -1193,6 +1201,7 @@ function enterEvents2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1200,6 +1209,7 @@ function enterDealer(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/events/weed.jpg');
   // TODO-QSP: dynamic text: You turn at the sound of movement, just in time to see a guy slightly older than...
   scene.text(`You turn at the sound of movement, just in time to see a guy slightly older than you walk up to you. He stops just short of you and is holding a joint in his hand. "You look like the type of girl that likes to have fun. Only ${qspFunc(s, 'money', 'string_price', 50)} each or a dozen for ${qspFunc(s, 'money', 'string_price', 500)}. So what do you say?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     scene.img('images/pc/reactions/no.jpg');
@@ -1268,6 +1278,7 @@ function enterMaleGopnikBeer(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1498,6 +1509,7 @@ function enterFemaleGopnikBeer_1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1714,6 +1726,7 @@ function enterFemaleGopnikBeer_2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink more', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1888,6 +1901,7 @@ function enterEatlera(s: GameState, scene: SceneBuilder): void {
   scene.text('You lean in and start to lap at her clit and pussy. She moans softly as the other girls whistle and catcall. Lera, on the other hand, has her own words of encouragement. "Mmhmm… That\'s right bitch, eat my pussy!"');
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian', 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lera/sex/complex/eatlera2.jpg');
@@ -1933,6 +1947,7 @@ function enterSmokeblowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/smokebj2.jpg');
@@ -2005,6 +2020,7 @@ function enterTwoBoys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 2);
@@ -2163,6 +2179,7 @@ function enterMisha(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, you best get inside then," he tells you and you unlock the door as quickly as you can. As you head inside, you think you hear him say "Where were girls like that when I was in school?"');
   scene.text('You rush down the hall to your bedroom.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your bedroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;

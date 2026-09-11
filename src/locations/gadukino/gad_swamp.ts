@@ -37,6 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the forest (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -183,6 +184,7 @@ function enterStuck(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_swamp_yard', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

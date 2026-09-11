@@ -62,6 +62,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['outside'] === 1  &&  ((s as any).hunterVars ?? 0)?.['available'] === 1  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
     qspCall(s, 'gad_swamp_yard', 'daytime_flavor_events');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Go to the swamp</b>', goto: ['gad_swamp_yard', 'swamp_escape'] },
     { label: 'Go into the house', goto: ['gad_swamphouse', 'start'] },
@@ -229,6 +230,7 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['gad_swamp_yard', 'start'] },
   ]);
@@ -389,6 +391,7 @@ function enterShootingPractice(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -421,6 +424,7 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'gad_swamp', 'start' else gt 'gad_swamp', 'stuck'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +449,7 @@ function enterDaytimeFlavorEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

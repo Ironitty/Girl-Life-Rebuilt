@@ -41,6 +41,7 @@ function enterUndressFunction(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'panties', 'remove');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +58,7 @@ function enterUndressMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Pull off your top', goto: ['sex_ev_clothing', 'top_undress'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress each other slowly', goto: ['sex_ev_clothing', 'slow_undress'] },
     { label: 'Clothes. Off. Bed. Now.', goto: ['sex_ev_clothing', 'frantic_undress'] },
@@ -101,6 +103,7 @@ function enterSlowUndress(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_start', 'starting_route');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -153,6 +156,7 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_start', 'starting_route');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,10 +245,12 @@ function enterTopUndress(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_start', 'starting_route');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPantyMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip your panties', goto: ['sex_ev_clothing', 'panty_strip'] },
     { label: 'Let him take off your panties', goto: ['sex_ev_clothing', 'panty_undress'] },
@@ -264,6 +270,7 @@ function enterPantyUndress(s: GameState, scene: SceneBuilder): void {
     scene.text(`You let yourself fall back onto the bed and lift your legs. ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} takes the hint and grabs hold of your panties, tugging them over your hips and down your thighs, leaving you completely naked.`);
   }
   qspCall(s, 'sex_ev_start', 'starting_route');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -276,6 +283,7 @@ function enterPantyStrip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_seen_pussy ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
   }
   qspCall(s, 'sex_ev_start', 'starting_route');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -288,6 +296,7 @@ function enterPantylessSkirt(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('All he does is grin in delight at the sight of your bare pussy between your thighs.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him lead', handler: (st: GameState) => {
     if (((((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['orgasm_count'] === 0)  ||  ((s as any).npc_pussyeater ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
@@ -344,6 +353,7 @@ function enterDressImage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,6 +361,7 @@ function enterDressLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_clothing', 'dress_loop_code');
   qspCall(s, 'sex_ev_clothing', 'dress_image');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -371,6 +382,7 @@ function enterDressLoopEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['dress_end'] = 1;
   qspCall(s, 'outfit', 'remove_backup', 'sex_ev');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -487,6 +499,7 @@ function enterDressLoopCode(s: GameState, scene: SceneBuilder): void {
     return;
   }
   ((s as any).sex_ev ?? {})['dress_end'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 

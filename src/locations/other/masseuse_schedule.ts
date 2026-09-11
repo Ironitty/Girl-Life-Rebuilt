@@ -31,10 +31,12 @@ function enterScheduleReset(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loop_masseuse_sched_part'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterExitSchedule(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish scheduling', goto: ['salon', 'receptionist'] },
   ]);
@@ -89,6 +91,7 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $result += '</td></tr>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,6 +117,7 @@ function enterRandomMasseuseName(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,16 +253,19 @@ function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=  '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
   scene.text(`${((s as any).temp_table ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'masseuse_schedule', 'set_schedule_base', 0);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNextWeekSetSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'masseuse_schedule', 'set_schedule_base', 1);
+  // TODO-QSP: end
   scene.build();
 }
 

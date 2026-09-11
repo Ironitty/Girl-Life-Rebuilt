@@ -65,6 +65,7 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
       { label: 'Collect your salary', goto: ['pav_hotelReception', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -81,6 +82,7 @@ function enterMaid(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.corr.jpg');
   scene.text('You check your planning and go to the next room on your list.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the room', goto: ['pav_hotelWork', 'work'] },
   ]);
@@ -186,6 +188,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -200,6 +203,7 @@ function enterEnding(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['pav_hotelWork', 'ending2'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,6 +232,7 @@ function enterWork0(s: GameState, scene: SceneBuilder): void {
     (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
     (s as any).chai = 0;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -287,6 +292,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +346,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -493,6 +500,7 @@ function enterWork3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -802,6 +810,7 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get back to work', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -814,6 +823,7 @@ function enterTip(s: GameState, scene: SceneBuilder): void {
   scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? 0))} in a jar on the table. Looks like someone left you a tip!`);
   (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
   (s as any).chai = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -825,6 +835,7 @@ function enterWork5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).chai ?? 0) > 0) {
     qspCall(s, 'pav_hotelWork', 'tip');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -839,6 +850,7 @@ function enterWork6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).chai ?? 0) > 0) {
     qspCall(s, 'pav_hotelWork', 'tip');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -876,6 +888,7 @@ function enterWork7(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -900,6 +913,7 @@ function enterWork8(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_hotelWork', 'maid'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them for a while', handler: (st: GameState) => {
     scene.text('Making sure you don\'t make a sound, you put your things away and watch them for a while while softly fondling yourself through your clothes. It feels great, and the couple on the bed looks like they\'re having a great time as well.');
@@ -935,6 +949,7 @@ function enterWork9(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_hotelWork', 'maid'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them for a while', handler: (st: GameState) => {
     (s as any).threesomewatched = ((s as any).threesomewatched ?? 0) + (1);
@@ -972,6 +987,7 @@ function enterWork10(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_hotelWork', 'maid'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them for a while', handler: (st: GameState) => {
     scene.text('You decide to watch them for a while longer, and idly start fondling yourself through your clothes. You notice they\'re quite rough with the girl and she sometimes struggles a little.');
@@ -998,6 +1014,7 @@ function enterWork11(s: GameState, scene: SceneBuilder): void {
     (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
     (s as any).chai = 0;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'maid'] },
   ]);
@@ -1115,6 +1132,7 @@ function enterWork12(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1177,6 +1195,7 @@ function enterWork13(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1240,6 +1259,7 @@ function enterWork14(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1302,6 +1322,7 @@ function enterWork15(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1326,6 +1347,7 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
     scene.text('You can feel how wet they already are.');
   }
   scene.text('Motya is sitting in a chair next to the bed, happily watching the scene unfold.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gs 'arousal', 'massage', 10, $npcID[0]
@@ -1423,6 +1445,7 @@ function enterHotcoupledoggy(s: GameState, scene: SceneBuilder): void {
   scene.text('You then feel Motya\'s dick pushing against your pussy. He enters without much problem and starts rhythmically pumping, his hips slapping against your ass.');
   scene.text('"Mmm, Uliana… This girl is so tight, I don\'t think I can hold out much longer!" he groans.');
   scene.text('He pulls out of you and grabs you by the waist before he swiftly turns you around so you end up on your back on the bed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotelWork', 'hotcoupfin'] },
   ]);
@@ -1437,6 +1460,7 @@ function enterHotcoupfin(s: GameState, scene: SceneBuilder): void {
   scene.text('You obey and Motya soon blows his load all over your face before Uliana licks most of it up.');
   scene.img('images/locations/pavlovsk/hotel/sex/hotcouple9.jpg');
   scene.text('You decide to end the evening with a three-way French kiss before Uliana and Motya both wave goodbye and tell you that you\'re always welcome to repeat this experience.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the lobby', goto: ['pav_hotel', ''] },
   ]);
@@ -1461,6 +1485,7 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
   scene.text('You switch from one cock to the other for the next few minutes, occasionally trying to take both of them in your mouth at the same time.');
   qspCall(s, 'arousal', 'bj', 10, 'prostitution');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'On to the main event', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Black guy', Math.floor(Math.random() * 23) + 18, 0, 1);
@@ -1586,6 +1611,7 @@ function enterEnding0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/maid.cloth6.jpg');
   scene.text('You finish your shift after several hours of hard work. You return to the locker room and take off the skimpy maid uniform before putting your own clothes back on.');
   scene.text('Leaving the uniform in a neat pile on the table, you grab your things and go to the hotel lobby.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_hotel', ''] },
   ]);
@@ -1692,6 +1718,7 @@ function enterEnding1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1699,6 +1726,7 @@ function enterEnding2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/maid.cloth6.jpg');
   scene.text('After several hours of hard work, you finish your shift. You return to the locker room and take off the skimpy maid uniform before putting your own clothes back on.');
   scene.text('Leaving the uniform in a neat pile on the table, you grab your things and make your way to the hotel lobby. On your way to the lobby, you pass the room where the two men were enjoying themselves with a girl. You try to resist the urge to peep again.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk past the door and go to the lobby', goto: ['pav_hotel', ''] },
     { label: 'Peep through the keyhole', handler: (st: GameState) => {

@@ -108,6 +108,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,6 +120,7 @@ function enterCheckStarletsEvt(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,14 +145,17 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['gdksport', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPregnant(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDancebreak(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,6 +373,7 @@ function enterResEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'kima_gossip') {
     scene.text('WIP - tbc');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -378,6 +384,7 @@ function enterBarreExercise(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/ballet_residence/residence_barre_single.jpg');
   scene.text('You leave your bedroom and head to the exercise room. You see some barres already set up for use and spend the next while performing some light stretching exercises and practicing your forms.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -393,6 +400,7 @@ function enterIntro_274(s: GameState, scene: SceneBuilder): void {
   scene.text(`You walk over to a tall willowly blonde girl, "Hi I'm ${((s as any).pcs_nickname ?? 0)}". The girl gives you a warm smile, "I'm ${((s as any).npc_firstname ?? 0)?.['A274']} pleased to meet you. Where you from?" 'Pavlosk' you reply, 'Yourself?'`);
   // TODO-QSP: dynamic text: "I live Pushkin now but from Moscow originally.", <<$npc_firstname['A274']>> rep...
   scene.text(`"I live Pushkin now but from Moscow originally.", ${((s as any).npc_firstname ?? 0)?.['A274']} replles before another girl jumps in taking her attention.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -406,6 +414,7 @@ function enterIntro_275(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You notice girl writing in a small book. She notices you looking at it, and make...
   scene.text(`You notice girl writing in a small book. She notices you looking at it, and makes a small attempt to try and avoid you. "Yes?", she asks, "I'm just introducing myself, ${((s as any).pcs_nickname ?? 0)}". "Ah you're the dancer from Pavlovsk." she said, looking at you critically. `);
   scene.text('"Yes, how did you know?", you ask puzzled but before she ignores you and goes back to writing in the book.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -418,6 +427,7 @@ function enterIntro_276(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).npc_img_path ?? 0)?.['A276']}/276.jpg`);
   // TODO-QSP: dynamic text: Glancing around the room you spot another girl and quickly approach her, "Hi I'm...
   scene.text(`Glancing around the room you spot another girl and quickly approach her, "Hi I'm ${((s as any).pcs_nickname ?? 0)}". The girl gives you a wary look, "Hello, I suppose I should introduce myself since it is obvious you don't know me. I'm ${((s as any).npc_firstname ?? 0)?.['A276']}. I am one of the best dancers in Russia.", she looks at you coldly, expecting you to know her. Seeing your blank look, she looks disdainfully at you before walking off.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -439,6 +449,7 @@ function enterIntro_277(s: GameState, scene: SceneBuilder): void {
   scene.text(`She frowns at you, her eyes betraying her nervousness. "Yes, I suppose I am. Thank you for your concern.", and as she says this she bolts from the room leaving you standing there dumbfounded. Then a few moments later you see Madam ${((s as any).npc_lastname ?? 0)?.['A284']} quickly follow her out of the room.`);
   // TODO-QSP: dynamic text: You briefly think about following them to see what is wrong with <<$npc_firstnam...
   scene.text(`You briefly think about following them to see what is wrong with ${((s as any).npc_firstname ?? 0)?.['A277']} but instead decide to give her privacy.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -470,6 +481,7 @@ function enterIntro_278(s: GameState, scene: SceneBuilder): void {
   scene.text(`"My agent said it would be a great experience for an upcoming role about a ballerina. Oh, Madam ${((s as any).npc_lastname ?? 0)?.['A284']} is staring at us. I think we need to be more sociable!", she takes your hand gracefully, "I know what it is like to struggle ${((s as any).pcs_nickname ?? 0)}, and by the will of God, I really do wish you all the best and you achieve your dreams."`);
   // TODO-QSP: dynamic text: "With this <<$npc_firstname['A278']>> leaves you at the table staring after her ...
   scene.text(`"With this ${((s as any).npc_firstname ?? 0)?.['A278']} leaves you at the table staring after her as she navigates her way through the crowd being socialable, you can't help but wonder at how effortlessly she manages to captivate the people she speaks to.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -495,6 +507,7 @@ function enterIntro_279(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Thank you, I will keeep that in mind. Madam ${((s as any).npc_lastname ?? 0)?.['A284']} seems intimidating."`);
   // TODO-QSP: dynamic text: "More than you realise <<$pcs_nickname>>", more than you realise.", She gives a ...
   scene.text(`"More than you realise ${((s as any).pcs_nickname ?? 0)}", more than you realise.", She gives a small laugh, "however I can't monopolise all your time tonight, we need to meet the other girls! She gives you friendly laugh and another cheeky grin as she twirls into the crowd leaving you in bewilderment staring after her.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -522,6 +535,7 @@ function enterIntro_280(s: GameState, scene: SceneBuilder): void {
   scene.text('"It\'s been nice to meet you, and I wish you all the best for this week", as you take your leave.');
   // TODO-QSP: dynamic text: "Likewise <<$pcs_nickname>>, I hope we get a chance to dance together."
   scene.text(`"Likewise ${((s as any).pcs_nickname ?? 0)}, I hope we get a chance to dance together."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -534,6 +548,7 @@ function enterIntro_281(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).npc_img_path ?? 0)?.['A281']}/281.jpg`);
   // TODO-QSP: dynamic text: In the corner of the room you see a pair of twins bickering with each other. Ove...
   scene.text(`In the corner of the room you see a pair of twins bickering with each other. Over the clamour of the room you can't hear what is being said. As you start to move closer to see what the commotion is, a voice says "I wouldn't interfere with the ${((s as any).npc_lastname ?? 0)?.['A281']} twins". You turn around to see who spoke, but then you notice Madam ${((s as any).npc_lastname ?? 0)?.['A284']} walking over to them and you decide to stay away. `);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -546,6 +561,7 @@ function enterIntro_282(s: GameState, scene: SceneBuilder): void {
   scene.img(`${((s as any).npc_img_path ?? 0)?.['A282']}/282.jpg`);
   // TODO-QSP: dynamic text: In the corner of the room you see a pair of twins bickering with each other. Ove...
   scene.text(`In the corner of the room you see a pair of twins bickering with each other. Over the clamour of the room you can't hear what is being said. As you start to move closer to see what the commotion is, a voice says "I wouldn't interfere with the ${((s as any).npc_lastname ?? 0)?.['A281']} twins". You turn round to see who spoke, but then you notice Madam ${((s as any).npc_lastname ?? 0)?.['A284']} walking over to them and you decide to stay away. `);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     // TODO-QSP: gt 'pushkin_ballet_evt', 'res_events', 'introductions'
@@ -555,18 +571,22 @@ function enterIntro_282(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstperformance(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPerformances(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSocialnight(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRudolphqw(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -679,6 +699,7 @@ function enterResEventsArray(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -718,6 +739,7 @@ function enterJournal(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -189,6 +189,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the park', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -331,6 +332,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('The client examines you hesitantly, a bit startled by the amount you asked for. He shakes his head as he starts his car: "Too much."');
   scene.text('Then he drives away before you can get another word in. Doesn\'t he understand how bartering works!?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['prostitute', 'start'] },
   ]);
@@ -339,6 +341,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
 
 function enterWork2(s: GameState, scene: SceneBuilder): void {
   scene.text('The client grins and gives you a nod: "Get in."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get into his car', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, '"John"', Math.floor(Math.random() * 28) + 18);

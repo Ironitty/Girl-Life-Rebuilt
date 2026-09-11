@@ -94,6 +94,7 @@ function enterYfoyer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk outside', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -136,6 +137,7 @@ function enterYbedroom(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('On one side of the room is the entrance to a walk-in <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a>.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -166,6 +168,7 @@ function enterYbathroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'din_van', 'misery_2');
     qspCall(s, 'home_events', 'bathroom');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -221,6 +224,7 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover_living', 'kitchen');
     qspCall(s, 'core_library', 'kitchen', 'full');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

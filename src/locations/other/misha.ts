@@ -39,6 +39,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his dick in your mouth', handler: (st: GameState) => {
     scene.img(`images/characters/pavlovsk/resident/misha/sex/misha0,${Math.floor(Math.random() * 8) + 0}.jpg`);
@@ -87,6 +88,7 @@ function enter1_2ndPart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1, '', '', 20);
@@ -115,6 +117,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your stepfather instructs you, "Well, <<$pcs_nickname>>, given your history, I'm...
   scene.text(`Your stepfather instructs you, "Well, ${((s as any).pcs_nickname ?? 0)}, given your history, I'm sure you know what to do with these. Get started."`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get on your knees and suck them off', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A28', '1');
@@ -357,6 +360,7 @@ function enterWallet(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -364,6 +368,7 @@ function enterTakeWallet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/misha/sex/wallet/wallet3.jpg');
   scene.text('You pick up the wallet and slide it into your clothes, then you grab the pack of smokes. You take a calming breath. You can\'t look nervous or guilty or he will know something is up. After a couple of breaths, you are ready to go face him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around and leave', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -440,6 +445,7 @@ function enterMaidAgree(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/misha/sex/wallet/wallet_maid.jpg');
   // TODO-QSP: $agreeText
   scene.text('His face softens a bit. "Ah, we were all young once. You hold up your end of the deal and we will forget all about it. Now get out of here before I change my mind!" You thank him again and then hurriedly leave his apartment. Now you\'ve got to come up with enough time to clean his place.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
   ]);
@@ -454,6 +460,7 @@ function enterWalletBj(s: GameState, scene: SceneBuilder): void {
   scene.text('As you slide off of the chair in front of him, he undoes his belt and unbuttons his pants. His pants fall down around his ankles, exposing his fairly long and very thick cock in front of you as you squat in front of him. You take his soft dick into your mouth and you feel it quickly start to harden as you suck on it. "Ohh yeah, you are a dirty little girl. Bet you\'ve had a lot of cocks in your mouth, haven\'t you?" You can tell by how he said it that he isn\'t expecting a response.');
   qspCall(s, 'arousal', 'bj', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking his dick', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -496,6 +503,7 @@ function enterWalletVag(s: GameState, scene: SceneBuilder): void {
   scene.text(`Taking his dick out of your mouth, you stand up and face the table. Once you do, you bend over it, glancing back to see him step up behind you. Moments later, you feel the tip of his dick rubbing against your wet slit. Once he is sure both are nice and wet, he slides his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your wet pussy. Then he starts to slowly stroke his dick inside of you.`);
   qspCall(s, 'arousal', 'vaginal', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy the fucking', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -529,6 +537,7 @@ function enterWalletAnal(s: GameState, scene: SceneBuilder): void {
   scene.text(`You feel his dick slide between your butt checks as he rubs the tip of his cock against your asshole. Then, he starts pushing it forward until the tip of his dick pops into your asshole, causing you to gasp for a moment. He stops moving until you relax, then he slowly forces his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick all the way into your asshole. Following that, he starts to slowly fuck your ass, his massive dick causing your hole to stretch. "OH… even tighter than I was hoping for."`);
   qspCall(s, 'arousal', 'anal', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy the ass fucking', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -569,6 +578,7 @@ function enterDirtyBj(s: GameState, scene: SceneBuilder): void {
   scene.text('As you stand there, he strips off all your clothes, then turns you around to get a nice view of your ass. He delivers a firm slap to your ass, hard enough to make you give a little yelp. "Damn, you are such a dirty girl." As you turn back to face him, he grabs and lifts you. He is surprisingly strong for his age, as he has no problems lifting you up and setting you on the counter. As you sit on the counter naked, he pushes your legs apart, exposing your moist pussy to him. He then slowly gets down on his knees in front of you.');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get eaten out', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -611,6 +621,7 @@ function enterDirtyVag(s: GameState, scene: SceneBuilder): void {
   scene.text(`Taking his dick out of your mouth, you stand up and face the table. Once you do, you bend over it. Glancing back, you see him step up behind you. Moments later, you feel the tip of his dick rubbing against your wet slit. Once he is sure both are nice and wet, he slides his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your wet pussy. Then, he starts to fuck your pussy; slowly, at first, working himself deeper and deeper into you.`);
   qspCall(s, 'arousal', 'vaginal', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy the fucking', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -644,6 +655,7 @@ function enterDirtyAnal(s: GameState, scene: SceneBuilder): void {
   scene.text(`You feel his dick slide between your butt checks as he rubs the tip of his cock against your asshole. Then, he starts pushing it forward until the tip of his dick pops into your asshole, causing you to gasp softly. He stops moving until you relax, then he slowly forces his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick all the way into your asshole. Following that, he starts to slowly fuck your ass, his massive dick causing your hole to stretch. "OH… just as tight as last time. Don't worry, I'll stretch it out for you, girl."`);
   qspCall(s, 'arousal', 'anal', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy the ass fucking', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

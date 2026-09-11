@@ -21,6 +21,7 @@ function enterStoryIntro(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hi, ${((s as any).pcs_nickname ?? 0)}," she says, sounding nervous. "I was just practicing my control. Impressed?"`);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -119,6 +120,7 @@ function enterGettingToKnow(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You spend the next few minutes chatting about random stuff.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -134,6 +136,7 @@ function enterBoyfriend_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"So… uuh…${((s as any).pcs_nickname ?? 0)}, I was wondering what you think about me finding a boyfriend? I've never had one before, Christina never let me."`);
   scene.text('A little surprised, you can\'t help but ask her, "Are you a virgin?"');
   scene.text('"No, I\'ve had sex, I just never had an actual boyfriend. I like what we have been doing together, I don\'t want to stop, I just… I don\'t know… I want to see what having a boyfriend is like."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -176,6 +179,7 @@ function enterBoyfriend_2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_cooking_2.jpg');
   scene.text('Finding Lariska in the kitchen cooking dinner, you decide to join her and help prepare the food. Grabbing a knife, you start chopping vegetables while chatting with her.');
   scene.text('It doesn\'t take long before the two of you are laughing at each other\'s jokes and having a great time together. Suddenly her cellphone starts ringing, so she stops to answer it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Listen in', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_cooking_3.jpg');
@@ -260,6 +264,7 @@ function enterBoyfriend_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_cleanup', '');
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish Eating', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_lariska_meal.jpg');
@@ -283,6 +288,7 @@ function enterBoyfriend_4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   // TODO-QSP: dynamic text: "So, <<$pcs_nickname>>, what did you think of Lev?" She leans forward, eager to ...
   scene.text(`"So, ${((s as any).pcs_nickname ?? 0)}, what did you think of Lev?" She leans forward, eager to hear your opinion.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'He seemed nice', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -359,6 +365,7 @@ function enterBoyfriend_5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/lev_nightclub.jpg');
   scene.text('As you enter the nightclub and look around, you recognize someone on the dancefloor. Looking closer, you realize it\'s Lev with his arms wrapped around someone with blonde hair. Surprised to find Lariska not only at the disco but actually dancing, you head towards them. About halfway there you catch a glimpse of her face and realize the girl he\'s groping isn\'t Lariska.');
   scene.text('You consider making a scene, but decide against it. Better to just tell Lariska the next time you are at her house. She is going to be devastated, she really liked him!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['pav_disco', ''] },
   ]);
@@ -400,6 +407,7 @@ function enterBoyfriend_6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let it go for now', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -415,6 +423,7 @@ function enterBoyfriend_7(s: GameState, scene: SceneBuilder): void {
   scene.text('Tears spring into her eyes and she bursts out "I\'m pregnant! Lev got me pregnant! We only had sex without a condom once and now I\'m pregnant and I don\'t know what to do… I wanted to play sports and go to University, but I\'m pregnant now and I don\'t know how he\'s gonna react. What\'s Mom going to say? What do I do? Oh God!"');
   scene.text('You quickly wrap your arms around her and just hold her, letting her vent all these fears out.');
   scene.text('Once she calms down a bit, she asks you "What should I do?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep the baby', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big13.jpg');
@@ -477,6 +486,7 @@ function enterBoyfriend_8(s: GameState, scene: SceneBuilder): void {
   scene.text('"Don\'t worry, I\'m not going anywhere."');
   scene.text('"I still don\'t know how to tell my mom."');
   scene.text('"When you\'re ready, we can do it together."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);
@@ -501,6 +511,7 @@ function enterBoyfriend_9(s: GameState, scene: SceneBuilder): void {
   scene.text('"See, It\'s going to be ok."');
   scene.text('"I\'m going to stop trying to find a boyfriend, and will stick to anal when I do mess around. Maybe someday, after I\'ve accomplished some things, I\'ll reconsider. For now though, can it just be us? Boys as toys only?"');
   scene.text('Giggling, you answer with "Yeah, for now it\'s just you and me."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish this conversation', goto: ['LariskaHome', 'lariska_bedroom'] },
   ]);

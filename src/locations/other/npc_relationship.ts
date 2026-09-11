@@ -84,6 +84,7 @@ function enterModify(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcRelSetVal ?? 0) > 0) {
     // TODO-QSP: npc_known[$ARGS[1]] = 1
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +100,7 @@ function enterModifyExact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcRelSetVal ?? 0) > 0) {
     // TODO-QSP: npc_known[$ARGS[1]] = 1
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -138,6 +140,7 @@ function enterSet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcRelSetVal ?? 0) > 0) {
     // TODO-QSP: npc_known[$ARGS[1]] = 1
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -154,6 +157,7 @@ function enterCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'npcRelCheck000'
   }
   (s as any).result = ((s as any).npc_rel_check ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -169,6 +173,7 @@ function enterDefaultFamilyFriends(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'set', 'A63', 40);
   qspCall(s, 'npc_relationship', 'set', 'A62', 20);
   qspCall(s, 'npc_relationship', 'set', 'A61', 20);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,24 +192,28 @@ function enterSocialgroupSettingInternal(s: GameState, scene: SceneBuilder): voi
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'socialgroup_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSocialgroupSetting(s: GameState, scene: SceneBuilder): void {
   (s as any).sg_setting_gend = 0;
   // TODO-QSP: gs 'npc_relationship', 'socialgroup_setting_internal', ARGS[1], ARGS[2], ARGS[3], ARGS[4], ARGS[5], ...
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSocialgroupSettingBoys(s: GameState, scene: SceneBuilder): void {
   (s as any).sg_setting_gend = 1;
   // TODO-QSP: gs 'npc_relationship', 'socialgroup_setting_internal', ARGS[1], ARGS[2], ARGS[3], ARGS[4], ARGS[5], ...
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSocialgroupSettingGirls(s: GameState, scene: SceneBuilder): void {
   (s as any).sg_setting_gend = 2;
   // TODO-QSP: gs 'npc_relationship', 'socialgroup_setting_internal', ARGS[1], ARGS[2], ARGS[3], ARGS[4], ARGS[5], ...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -218,6 +227,7 @@ function enterDefaultfriendship(s: GameState, scene: SceneBuilder): void {
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'default_friendship_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -231,6 +241,7 @@ function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'default_friendship_loop2'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -242,6 +253,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'default_friendship_loop3'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

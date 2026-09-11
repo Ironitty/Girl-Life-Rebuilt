@@ -61,6 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'masterbath');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the master bedroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

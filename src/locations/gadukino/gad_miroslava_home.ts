@@ -51,6 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to the village center', goto: ['gadukino', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,6 +60,7 @@ function enterMirabrother(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big65.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him be', goto: ['gad_miroslava_home', 'start'] },
     { label: 'Ask if you can get a ride on his motorcycle', handler: (st: GameState) => {

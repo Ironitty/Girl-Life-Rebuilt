@@ -92,6 +92,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'nichChore', 'inspect', 'tanya');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

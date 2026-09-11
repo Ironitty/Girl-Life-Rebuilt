@@ -7,33 +7,17 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).washer_funcs ?? {})['washing_count'] = qspUntranslated(s, "{", { location: "washer" });
-  // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
-    (s as any).washer_total_wash_count = ((s as any).washer_total_wash_count ?? 0) + (1);
-  }
-  // TODO-QSP: "
-  ((s as any).washer_funcs ?? {})['washing_cost'] = qspUntranslated(s, "{", { location: "washer" });
-  // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
-    (s as any).washer_total_wash_cost = ((s as any).washer_total_wash_cost ?? 0) + (10);
-  }
-  // TODO-QSP: "
-  ((s as any).washer_funcs ?? {})['wash'] = qspUntranslated(s, "{", { location: "washer" });
-  // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
-    // TODO-QSP: <<$ARGS[0]>>_dirt[<<ARGS[1]>>] = 0
-  }
-  // TODO-QSP: "
   scene.build();
 }
 
 function enterSetWasherActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'set_wash_all_act');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetWashOtherAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash your other clothes',  },
   ]);
@@ -68,17 +52,38 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
+  ((s as any).washer_funcs ?? {})['washing_count'] = qspUntranslated(s, "{", { location: "washer" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
+    (s as any).washer_total_wash_count = ((s as any).washer_total_wash_count ?? 0) + (1);
+  }
+  // TODO-QSP: "
+  ((s as any).washer_funcs ?? {})['washing_cost'] = qspUntranslated(s, "{", { location: "washer" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
+    (s as any).washer_total_wash_cost = ((s as any).washer_total_wash_cost ?? 0) + (10);
+  }
+  // TODO-QSP: "
+  ((s as any).washer_funcs ?? {})['wash'] = qspUntranslated(s, "{", { location: "washer" });
+  // TODO-QSP: dynamic "
+  if (((s as any).locArgs?.[0] ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+    // TODO-QSP: <<$ARGS[0]>>_dirt[<<ARGS[1]>>] = 0
+  }
+  // TODO-QSP: "
   scene.build();
 }
 
 function enterSetResizeCost(s: GameState, scene: SceneBuilder): void {
   (s as any).tailor_total_resize_cost = 0;
   qspCall(s, 'tailor', 'clothing_loop');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterResizeAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tailor', 'clothing_loop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +97,7 @@ function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'panties_loop');
   ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -105,6 +111,7 @@ function enterCheckTotalCost(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'washer', 'panties_loop');
   ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -118,6 +125,7 @@ function enterWashAll(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_washerVars ?? {})['array_postfix'] = '_bodysuits';
   qspCall(s, 'washer', 'bodysuits_loop');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +151,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'core_loop_outer'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +159,7 @@ function enterClothingLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing_view', 'init', 'add_types', 'all');
   qspCall(s, 'washer', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -157,6 +167,7 @@ function enterBrasLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bra_view', 'init', 'add_types', 'all');
   qspCall(s, 'washer', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +175,7 @@ function enterPantiesLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'panty_view', 'init', 'add_types', 'all');
   qspCall(s, 'washer', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +183,7 @@ function enterBodysuitsLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear_bodysuit_view', 'init', 'add_types', 'all');
   qspCall(s, 'washer', 'core_loop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

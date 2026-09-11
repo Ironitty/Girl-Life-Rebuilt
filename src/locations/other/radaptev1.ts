@@ -16,6 +16,7 @@ function enterShowerRostislav1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh yeah, you\'re an experienced little cock sucker, aren\'t you? Did my son teach you how to suck cock so good? Or is it just from practicing on a lot of them?" he says with a laugh.');
   qspCall(s, 'arousal', 'bj', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower6.jpg');
@@ -98,6 +99,7 @@ function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,6 +112,7 @@ function enterShowerRadislav1Vag(s: GameState, scene: SceneBuilder): void {
   scene.text('You can tell he\'s not expecting an answer from you by the way he said it; he isn\'t even looking at you since he\'s too busy watching his dick slide in and out of your pussy, so you say nothing.');
   qspCall(s, 'arousal', 'vaginal', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep getting fucked', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -156,6 +159,7 @@ function enterShowerRadislav1Anal(s: GameState, scene: SceneBuilder): void {
   scene.text('"There\'s plenty of lube from your slobber," he says as he grips your hips and forces his dick deeper into your ass. "See? It fits just fine," he says as he starts fucking your ass.');
   qspCall(s, 'arousal', 'anal', 3, 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dry fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_anal2.jpg');

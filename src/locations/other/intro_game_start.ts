@@ -62,6 +62,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: savegame 'autosave_newgame.sav'
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     (s as any).music_loop = 0;
@@ -96,6 +97,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_initialization', 'init');
   (s as any).music_loop = 0;
   // TODO-QSP: savegame 'autosave_newgame.sav'
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {

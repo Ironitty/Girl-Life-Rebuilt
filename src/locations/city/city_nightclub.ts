@@ -66,6 +66,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city center', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -210,6 +211,7 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the club', handler: (st: GameState) => {
     (s as any).drunk = 0;
@@ -230,6 +232,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     scene.text('It\'s getting late and the music stops. It looks like it might be time to go home.');
     return;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the dance floor', goto: ['city_nightclub', 'inside'] },
     { label: 'Dance (0:15)', handler: (st: GameState) => {
@@ -372,6 +375,7 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_nightclub', 'dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
     scene.text('You\'re passionately kissing the guy, while he\'s continuously groping you, always dedicating one of his hands to either your tits or your ass.');
@@ -425,6 +429,7 @@ function enterDanceCouple(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_nightclub', 'dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to a private room with them', handler: (st: GameState) => {
     qspCall(s, 'dinSex', 'std_trigger_oral');
@@ -751,6 +756,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
     }
     return;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Order from the menu', handler: (st: GameState) => {
     qspCall(s, 'food_menu', '');
@@ -771,6 +777,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You head to the men\'s toilet, where he drags you into one of the empty stalls. He starts to caress your breasts before helping you undress.');
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give him a blowjob', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -864,6 +871,7 @@ function enterBar0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/nightclub/sex/bar0.jpg');
   scene.text('As you sit at the bar, a woman walks up and starts chatting with you.');
   scene.text('During the conversation, you get the feeling that she\'s flirting with you, but before you can react, her hands start wandering over your body.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from her', goto: ['city_nightclub', 'bar'] },
     { label: 'Kiss her', handler: (st: GameState) => {
@@ -884,6 +892,7 @@ function enterBar1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bar</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/sex/bar7.jpg');
   scene.text('As you sit at the bar, a man comes over and grabs your ass. "Why don\'t we have some fun together?" he asks. You can tell from the slur in his voice that he\'s had more than a few drinks tonight.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn him down', goto: ['city_nightclub', 'bar'] },
     { label: 'Take him to the restroom', goto: ['city_nightclub', 'sex'] },
@@ -896,6 +905,7 @@ function enterLezbsort(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>WC</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/sex/lezbsort.jpg');
   scene.text('She follows you into the women\'s restroom and you lure her into one of the empty stalls.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her', goto: ['city_nightclub', 'lezbsort1'] },
     { label: 'Tell her to lick you', goto: ['city_nightclub', 'lezbsort2'] },
@@ -914,6 +924,7 @@ function enterLezbsort1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Your turn': gt 'city_nightclub', 'lezbsort2'
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'clubtoilet_women'] },
   ]);
@@ -931,6 +942,7 @@ function enterLezbsort2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Lick her': gt 'city_nightclub', 'lezbsort1'
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_nightclubToilet', 'clubtoilet_women'] },
   ]);
@@ -942,6 +954,7 @@ function enterPrivateRooms(s: GameState, scene: SceneBuilder): void {
   scene.text('Upstairs overlooking the dance floor is a walkway which has a number of private booths where thick curtains can be used for privacy.');
   scene.text('Security guards are on watch, making sure that people who have paid for them won\'t be disturbed.');
   scene.text('There\'s also some smaller bars, some with their own dance floors, located up here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the private booths', goto: ['city_nightclub', 'inside'] },
   ]);
@@ -1058,6 +1071,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

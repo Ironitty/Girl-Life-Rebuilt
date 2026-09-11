@@ -24,6 +24,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Jimmy just nods at you, then returns his attention to the guitar laying on the counter in front of him.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shop for guitars and amps', goto: ['city_musicstore_stock', 'acoustic'] },
     { label: 'Leave', handler: (st: GameState) => {
@@ -72,6 +73,7 @@ function enterSetRadomirCounterText(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +95,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
       scene.text('A tall, ginger haired man turns to you with a bored expression that turns into a perplexed smile as he takes your sight in.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach the counter', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/musicstore/jimmy.jpg');
@@ -145,6 +148,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
 function enterCameback(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/musicstore/music_store.jpg');
   scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask Jimmy about the guitar [+$func(\'money\', \'get_cost_string\', 3400)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3400) === 0) {
@@ -197,6 +201,7 @@ function enterBuycheapacoustic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'city_musicstore', 'first_setup');
   qspCall(s, 'money', 'pay', 3400);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_mall', ''] },
   ]);
@@ -214,6 +219,7 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = ...
     scene.text(`He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = 1, 'its case', ') + ' and hands it to you. "All the best, ${((s as any).pcs_nickname ?? 0)}."`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_mall', ''] },
   ]);
@@ -228,6 +234,7 @@ function enterFirstSetup(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_guitar ?? {})['carried'] = 1;
   ((s as any).ml_performance ?? {})['max_perform_minutes'] = ((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0);
   ((s as any).ml_performance ?? {})['performed_minutes'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 

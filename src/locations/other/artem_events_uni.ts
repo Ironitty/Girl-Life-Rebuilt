@@ -69,6 +69,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sit at a table', goto: ['artem_events_uni', 'coffee_hole_sit'] },
   ]);
@@ -222,6 +223,7 @@ function enterCoffeeHoleSit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +232,7 @@ function enterAfterOrdering(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/uni/event/coffee_hole/hangout.jpg');
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself');
   scene.text('A few minutes later, she returns with your food and the two of you talk, drink your drinks, and eat your snacks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -340,6 +343,7 @@ function enterNush1(s: GameState, scene: SceneBuilder): void {
   scene.text('Every so often, Anushka comes around and always has a snide remark for Artem. You know she\'s just teasing him, but you can also tell it\'s slowly getting to him as the time goes by.');
   scene.text('Just as you\'re getting ready to leave, Artem looks around. As he does, you do as well and notice that you\'re the only customers at the moment. "I should teach that little bitch a lesson. I\'m getting tired of her comments."');
   scene.text('You know exactly what kind of \'lesson\' he wants to teach her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him he shouldn\'t', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -376,6 +380,7 @@ function enterNush2(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem pays for your drink and snack that you order and orders a coffee and muffin for himself. A few minutes later, she returns with your food and the two of you sit, talk, drink your drinks and eat your snacks.');
   scene.text('The two of you sit in the cafe talking for about an hour about a variety of subjects, such as what\'s going on with your families, friends and how things are going in general, just to name a few.');
   scene.text('After finishing your snack and drink, you decide to head back to the dorms before it gets too late. Once back at his room, you talk for a few minutes more before you agree it\'s time for you to go so he can get some other things done today.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave his dorm room', goto: ['uni_dorm', 'second_floor'] },
   ]);
@@ -570,6 +575,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose another table', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
@@ -583,6 +589,7 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself.');
   scene.text('Katja orders another cappuccino and a few minutes later, the girl returns with your order.');
   scene.text('The three of you then talk, drink your drinks, and eat your snacks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -818,6 +825,7 @@ function enterCoffeeHoleAlbinaSit(s: GameState, scene: SceneBuilder): void {
   }, goto: ['artem_events_uni', 'coffee_hole_sit'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -826,6 +834,7 @@ function enterCoffeeHoleAlbinaDrink(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem pays for your drink and snack and orders a coffee and muffin for himself.');
   scene.text('Albina orders another coffee and a few minutes later, the girl returns with your order.');
   scene.text('The three of you then talk, drink your drinks, and eat your snacks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 20;

@@ -25,6 +25,7 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
   scene.text('Turning towards the voice, you see…');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: '…Reinhold', handler: (st: GameState) => {
     scene.text('<center><b>Alexandria VS Reinhold?!</b></center>');
@@ -143,6 +144,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"She, ${((s as any).pcs_lastname ?? 0)}, is The Lilith, head of all Succubae, holder of the Succubus seat on The Council, and the direct leader of the Eastern European Succubae… and the high-minded fool that thinks herself in the right to interfere in our affairs."`);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A little chat', handler: (st: GameState) => {
     scene.text('<center><b>Alexandria</b></center>');
@@ -352,6 +354,7 @@ function enterInterview3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -385,6 +388,7 @@ function enterInterview4(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 4;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tatiana?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -425,6 +429,7 @@ function enterFilipp(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "You are <<$pcs_nickname>> isn't it? A pleasure! You are famous! So… Let me gues...
     scene.text(`"You are ${((s as any).pcs_nickname ?? 0)} isn't it? A pleasure! You are famous! So… Let me guess! Alexandria - The greatest bitch The Council has ever produced - has sent you here in some unfathomable quest?"`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '?!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -497,6 +502,7 @@ function enterAnacall(s: GameState, scene: SceneBuilder): void {
     scene.text('"About how you have left Mr.<i>Creepyzoid</i> without even trying! So… I have two things to say - First! Like my Dyeda always say! Speak softly, aim a meat grinder to their balls, and talk about the advantages of socialism, you will go far. And second! Mr.<i>Creepyzoid</i> hid that beautiful Pattern 1796 Heavy Cavalry Sword, in the local VTB bank, box 159, but… I have the key! And if you want to see it alive you will look for me somewhere in the city center! But not during the week, because I have exams, and neither nights, because I have a life! Oh! And bring some sexy sportswear!"');
     scene.text('She then hangs up, leaving you more than a little flabbergasted. It seems that you must find her, but first probably you should tell Aleksei about Filipp Kudashov\'s actions.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_center', ''] },
   ]);
@@ -534,6 +540,7 @@ function enterKneel(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ah… Fiu… Well… Mr. Aleksei\'s possession is in a security box in the local VTB bank. That is the number, but you will need a security key. I give it to that other girl, Ana, now I have work to do. Gregor! Take her out!"');
     scene.text('Before you can protest, a policeman enters and <i>escort</i> you, out of the room, as you can see a devil-may-care smile on Mr. Kudashov\'s face. It seems that you have been tricked.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'A call?', goto: ['alexandriaEv', 'anacall'] },
   ]);
@@ -553,6 +560,7 @@ function enterContribution(s: GameState, scene: SceneBuilder): void {
   scene.text('Giving a tired sigh, Filipp, returns to his work, but has the decency to answer.');
   scene.text('"Mr. Aleksei\'s possession is in a security box in the local VTB bank. That is the number, but you will need a security key. I give it to that other girl, Ana, now I have work to do. Gregor! Take her out!"');
   scene.text('Before you can protest, a policeman enters and <i>escort</i> you, out of the room, as you can see a devil-may-care smile on Mr. Kudashov\'s face. It seems that you have been tricked.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A call?', goto: ['alexandriaEv', 'anacall'] },
   ]);
@@ -576,6 +584,7 @@ function enterSuccubribe(s: GameState, scene: SceneBuilder): void {
   scene.text('Bending sexily at your waist, you carefully rearrange the lapels on his shirt, before whispering sultrily into his ear.');
   scene.text('"Mr. Kudashov… You are so lucky that I don\'t have a chastity cage right now."');
   scene.text('Without waiting for more stupid words, you straighten your back and get out of his <i>office</i>, your hunger transforming into rage. You are going to kill that BITCH!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A call?', goto: ['alexandriaEv', 'anacall'] },
   ]);
@@ -625,6 +634,7 @@ function enterPersufilipp(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -672,6 +682,7 @@ function enterAnachase1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just leave, this is ridiculous.', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -733,6 +744,7 @@ function enterAnachase2(s: GameState, scene: SceneBuilder): void {
       { label: 'Why run? You have a car!', goto: ['alexandriaEv', 'anacarchase'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You aren\'t crazy! Abandon this chase!', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -807,6 +819,7 @@ function enterAnachase3(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the bribe.', goto: ['alexandriaEv', 'anabribe1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oh fuck this! You leave!', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -863,6 +876,7 @@ function enterAnachase4(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the bribe.', goto: ['alexandriaEv', 'anabribe1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oh fuck this! You leave!', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -942,6 +956,7 @@ function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You fall unconscious', goto: ['alexandriaEv', 'hospital'] },
   ]);
@@ -961,6 +976,7 @@ function enterHospital(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "I'm… sorry <<$pcs_lastname>>. I wasn't expecting this task to escalate, and you...
   scene.text(`"I'm… sorry ${((s as any).pcs_lastname ?? 0)}. I wasn't expecting this task to escalate, and you end up needing urgent medical attention. I… have taken the liberty to heal the most grievous wounds and ordered to clean your clothes. Take your time to recover and then return to me, we need to talk."`);
   scene.text('Saying that Aleksei departs, leaving you to the care of the medical staff that helps you get up and dress. After a last medical examination - that leaves a baffling physician assuming that your wounds were misdiagnosed - you are put in a wheelchair and escorted to the hospital\'s exit.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -1006,6 +1022,7 @@ function enterHeal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the bribe.', goto: ['alexandriaEv', 'anabribe1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oh fuck this! You leave!', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -1049,6 +1066,7 @@ function enterAnacarchase(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the bribe.', goto: ['alexandriaEv', 'anabribe1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Oh fuck this! You leave!', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -1071,6 +1089,7 @@ function enterAnafight1(s: GameState, scene: SceneBuilder): void {
   scene.text('Then, screaming at full volume, she continues falling back <i>matrix-style</i> somehow bending without breaking the rhythm on the tumble, putting a hand in the ground, and doing an elegant cartwheel that ends with her crouched in an action pose.');
   scene.text('"Whoaaa! Go, girl! Cheater! Girl fight!"');
   scene.text('Around you, the crowd begins to howl in pleasure at your <i>performance</i>, and Ana… hail back… well, it doesn\'t matter to you, the key is at your reach… only that the key doesn\'t seem like a security key… Then you look back to a smiling Ana, that extends her left arm, that in a moment EXPLODE in a black-crimson mist, before she launches her, back against you!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'FIGHT!', handler: (st: GameState) => {
     scene.img('images/characters/city/ana/action.jpg');
@@ -1096,6 +1115,7 @@ function enterJail(s: GameState, scene: SceneBuilder): void {
   scene.text('"What the hell?! What is happening Ana?!"');
   scene.text('"Jeez! Ok… look Sexy… ehm… it wasn\'t my idea! <i>Da Boss</i> think that you have abandoned the race too soon… so… well… you are going to pass this day <i>en chirona</i>… hm… so sorry! Bye! I have exams!"');
   scene.text('"Wait! Ana! What the fuck!" but is too late, Ana has run away and has left you alone… so… you only can sit and wait. You pass the next 24 hours, bored out of your mind, without other things to do except sleep and look at the slowly peeling paint on the walls, until the time passes, and without fanfare, you are escorted out of the cell towards the street.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -1115,6 +1135,7 @@ function enterAnabribe1(s: GameState, scene: SceneBuilder): void {
   scene.text('You are going to answer, but Ana, give a jump, backflip mid-air, and land behind you, before beginning to carefully walk backward, putting back the key, and looking for something else in her pockets, all the time warily eyeing you. Finally, her retreat put her back against a black SUV that just parked, and finding what she was looking, she trow it towards you.');
   scene.text('"So… Sexy… Why are even?"');
   scene.text('You grab the item, a little pouch with money inside. That is the moment that chooses Ana to jump inside the SUV and drive away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
   ]);
@@ -1152,6 +1173,7 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pay them a new TV [+$func(\'money\', \'get_cost_string\', 15000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
@@ -1237,6 +1259,7 @@ function enterHeal2(s: GameState, scene: SceneBuilder): void {
   scene.text('"No Ana, I am going after you!!"');
   scene.text('"Ehm… I am… Look, I don\'t think is a good idea, is better if you look for a medic, but… if you must… I am in the parking lot crossing the street."');
   scene.text('She then hangs up, leaving you to follow her instructions, and cross the street towards a multistory car park.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', goto: ['alexandriaEv', 'anachasefinal'] },
   ]);
@@ -1379,6 +1402,7 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1401,6 +1425,7 @@ function enterHeal3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, but… Well… Ok, you are a tough bitch, I owe you that… ...
   scene.text(`"Sorry ${((s as any).pcs_nickname ?? 0)}, but… Well… Ok, you are a tough bitch, I owe you that… I am in the nearer parking lot."`);
   scene.text('She then hangs up, leaving you to rise like a zombie, scaring the bystanders and following her instructions, you walk towards the multistory car park.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', goto: ['alexandriaEv', 'anachasefinal'] },
   ]);
@@ -1473,6 +1498,7 @@ function enterAnachase7(s: GameState, scene: SceneBuilder): void {
   }, goto: ['alexandriaEv', 'anachase6'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1548,6 +1574,7 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'You aren\'t going to fight this nut! Just leave!', handler: (st: GameState) => {
     (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) - (1);
@@ -1578,6 +1605,7 @@ function enterHeal4(s: GameState, scene: SceneBuilder): void {
   scene.text('Then she takes a key and launches it to you… It\'s a <i>key</i> but now that you can examine it, not the sort used on security boxes. You are going to retort to the annoying fuck before she rise her hands in a conciliating gesture.');
   scene.text('"Yeah I know! It just… Look sexy, I don\'t have the key, but if you come with me, I will tell you where is the sword! Ehm… Girl Scout Word!"');
   scene.text('Ana pout, giving puppy eyes, as she raises a hand in the three-finger salute.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', goto: ['alexandriaEv', 'anamotel'] },
   ]);
@@ -1596,6 +1624,7 @@ function enterAnascore(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s a <i>key</i> but now that you can examine it, not the sort used on security boxes. You are going to retort to the annoying fuck before she rise her hands in a conciliating gesture.');
   scene.text('"Yeah I know! It just… Look sexy, I don\'t have the key, but if you come with me, I will tell you where is the sword! Ehm… Girl Scout Word!"');
   scene.text('Ana pouts, giving you her best puppy eyes, as she raises a hand in a three-finger salute.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with the loonie', goto: ['alexandriaEv', 'anamotel'] },
   ]);
@@ -1617,6 +1646,7 @@ function enterAnaryan(s: GameState, scene: SceneBuilder): void {
   scene.text('Ok, you are going to scrub the ground with her face! You reach for her but stop as she raises her hands in a defeated gesture, her head slightly turned like she was listening to something.');
   scene.text('"Sexy! I surrender! You win! Yeah! <i>I don\'t care! She wins!</i>! Look sexy, I don\'t have the key, but if you come with me, I will tell you where is the sword! Ehm… Girl Scout Word!"');
   scene.text('Ana pout, giving puppy eyes, as she raises a hand in the three-finger salute.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with the loonie', goto: ['alexandriaEv', 'anamotel'] },
   ]);
@@ -1635,6 +1665,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
   scene.text('You facepalm, suddenly very tired. "So… Now what Ana?!"');
   scene.text('Ana shrugged "You won, so I suppose that is a point for Alexandria. Additionally… Ehm… I don\'t know how to say this… My boss explained to me that i… well… you know… Hm… After all this running around, you are sweaty, and maybe you want a shower… and I can… scrub you? If you want!"');
   scene.text('A moment? The room? The shower? Is she insinuating herself to you? Oh hell no! That weirdo is… Suddenly, there is a change in Ana\'s posture and some of the unearthly vibes she has been transmitting disappear… She now looks more… Normal? Insecure? Timid? Cute? Was she affecting you with some kind of magic? What can you do now?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t put on crazy! Run away!', handler: (st: GameState) => {
     (st as any).AlexandriaQW = 18;

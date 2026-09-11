@@ -60,6 +60,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +77,7 @@ function enterIntroPavlovsk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling out. "<<$pcs_nickname>>, time to get ...
   scene.text(`You suddenly hear a familiar voice yelling out. "${((s as any).pcs_nickname ?? 0)}, time to get up! You can't spend the whole day laying around!"`);
   qspCall(s, 'intro_sg', 'set_mother_nickname');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -164,6 +166,7 @@ function enterIntroGadukino(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling. "<<$pcs_nickname>>, time to get up. ...
   scene.text(`You suddenly hear a familiar voice yelling. "${((s as any).pcs_nickname ?? 0)}, time to get up. You can't spend the whole day lying around!"`);
   qspCall(s, 'intro_sg', 'set_mother_nickname');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -272,6 +275,7 @@ function enterIntroPushkin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling out. "<<$pcs_nickname>>, time to get ...
   scene.text(`You suddenly hear a familiar voice yelling out. "${((s as any).pcs_nickname ?? 0)}, time to get up! I won't have you making Vladimir late for work!"`);
   qspCall(s, 'intro_sg', 'set_mother_nickname');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -359,6 +363,7 @@ function enterIntroSharing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling. "<<$pcs_firstname>> <<$pcs_lastname>...
   scene.text(`You suddenly hear a familiar voice yelling. "${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}! Get out of my house!"`);
   qspCall(s, 'intro_sg', 'set_mother_nickname');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -431,6 +436,7 @@ function enterSetMotherNickname(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0) !== '') {
     ((s as any).npc_nickname ?? {})['A29'] = ((s as any).temp ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

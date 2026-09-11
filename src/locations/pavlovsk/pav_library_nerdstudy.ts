@@ -34,6 +34,7 @@ function enterNerdStudyNight(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_library', ''] },
     { label: 'Study', goto: ['pav_library_nerdstudy', 'nerd_study_night1'] },
@@ -75,6 +76,7 @@ function enterNerdStudyNight1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study\' + rand(1, 5) + \'.jpg');
   scene.text('You help each other out, debate topics and discuss answers. You have a very enjoyable time and feel like you\'ve learned a fair bit about your subject.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pack up', goto: ['pav_library_nerdstudy', 'nerd_study_night_over'] },
   ]);
@@ -318,6 +320,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Study', goto: ['pav_library_nerdstudy', 'nerd_study_night1'] },
   ]);
@@ -337,6 +340,7 @@ function enterNerdStudyNightOver(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/nerdsstudy/nerds_study\' + rand(1, 5) + \'.jpg');
   scene.text('After an hour, everyone starts packing up and talking about heading home. A few text their parents to let them know they\'re leaving the library. You gather up your stuff and leave with the group.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_library', ''] },
   ]);

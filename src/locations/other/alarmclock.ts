@@ -5,9 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'fin') {
-    // TODO-QSP: gt $menu_loc, $menu_arg
-  }
   scene.build();
 }
 
@@ -16,6 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bedroom/bed2.jpg');
   scene.text('<center><h4>Enter the time using the number pad and click on set to change alarm times, don\'t forget to turn your alarm on.</h></center>');
   qspCall(s, 'alarmclock', 'build_table');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (s as any).bud1 = 0;
@@ -36,18 +34,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlarmDisplay(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWeekDisplay(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetWeekendDisplay(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBaseAlarmclockText(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,6 +60,7 @@ function enterClear(s: GameState, scene: SceneBuilder): void {
   (s as any).bud4 = 0;
   (s as any).numbud = 0;
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +86,7 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,6 +108,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -125,6 +130,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,6 +152,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -167,6 +174,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,6 +196,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -209,6 +218,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +240,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -251,6 +262,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -272,6 +284,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -293,6 +306,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
     (s as any).numbud = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,6 +324,10 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
   (s as any).bud4 = 0;
   (s as any).numbud = 0;
   scene.actions([{ label: 'Continue', goto: ['alarmclock', 'start'] }]);
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'fin') {
+    // TODO-QSP: gt $menu_loc, $menu_arg
+  }
   scene.build();
 }
 
@@ -352,6 +370,7 @@ function enterBuildTable(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).more_html ?? 0)}${((s as any).alarm_html ?? 0)}${((s as any).even_more_html ?? 0)}${((s as any).numbud_table ?? 0)}`);
   // TODO-QSP: dynamic text: <<$alarmVars_table>>
   scene.text(`${((s as any).alarmVars_table ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 

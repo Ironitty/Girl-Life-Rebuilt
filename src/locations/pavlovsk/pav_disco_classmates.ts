@@ -155,6 +155,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $table_disco += '</table></center>'
     // TODO-QSP: $table_disco
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -165,16 +166,19 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'pav_disco_jocks', $listname
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'pav_disco_coolkids', $listname
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGopList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'pav_disco_gopniks', $listname
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -298,6 +302,7 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pav_disco_classmates', 'atdisco2', 143);
   ((s as any).discoenable ?? {})['A141'] = 0;
   ((s as any).discoenable ?? {})['A145'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -308,6 +313,7 @@ function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -318,6 +324,7 @@ function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -328,6 +335,7 @@ function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -338,6 +346,7 @@ function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -348,6 +357,7 @@ function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -358,6 +368,7 @@ function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,6 +379,7 @@ function enterAtdisco10i(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -444,6 +456,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away', goto: ['pav_disco_classmates', 'classmates'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -451,6 +464,7 @@ function enterCoachSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let's find somewhere a bit more private." You are about to s...
   scene.text(`"${((s as any).pcs_lastname ?? 0)}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow him', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 3) + 0))) {

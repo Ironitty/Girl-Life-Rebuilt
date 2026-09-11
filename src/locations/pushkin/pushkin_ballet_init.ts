@@ -16,6 +16,7 @@ function enterCheckForInit(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pushkin_ballet_init', 'start');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -42,6 +43,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'array', 'remove_element', 'balletqw', 'letter');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,6 +60,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,6 +85,7 @@ function enterOutsideEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,12 +97,14 @@ function enterExercisePain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', Math.floor(Math.random() * 3) + 1, 'armR', 'stretch');
   qspCall(s, 'pain', '', Math.floor(Math.random() * 3) + 1, 'back', 'stretch');
   qspCall(s, 'pain', '', Math.floor(Math.random() * 3) + 1, 'chest', 'stretch');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterReputation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_modelling'] >= 10  ||  ((s as any).fame ?? 0)?.['pav_slut'] > 9  ||  ((s as any).fame ?? 0)?.['city_prostitute'] > 0  ||  ((s as any).fame ?? 0)?.['ciy_sexind'] > 0  ||  ((s as any).fame ?? 0)?.['city_modelling'] >= 10  ||  ((s as any).fame ?? 0)?.['city_slut'] > 30  ||  ((s as any).fame ?? 0)?.['city_prostitute'] > 19  ||  ((s as any).fame ?? 0)?.['city_sexind'] > 19  ||  ((s as any).fame ?? 0)?.['pushkin_modelling'] >= 10  ||  ((s as any).fame ?? 0)?.['pushkin_slut'] > 0  ||  ((s as any).fame ?? 0)?.['pushkin_sex'] > 0  ||  ((s as any).fame ?? 0)?.['pushkin_prostitute'] > 0  ||  ((s as any).fame ?? 0)?.['pushkin_sexind'] > 0) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,11 +230,13 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs $loc, 'cleanup_var'
     ((s as any).balletqw ?? {})['letter'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFamemodifier(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'pushkin', 'ballet', 'small', 'local');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -243,6 +251,7 @@ function enterCleanupVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'balletqw', 'rank');
   }
   qspCall(s, 'array', 'remove_element', 'balletqw', 'daystart');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -282,6 +291,7 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -308,6 +318,7 @@ function enterScoreDebug(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ballet_log[] = 'Cumulative daily score: <<ballet_grade_score[''class'']>>'
   // TODO-QSP: $ballet_log[] = 'Cumulative homework score: <<ballet_grade_score[''homework'']>>'
   // TODO-QSP: $ballet_log[] = 'Passmark: ' + 100 * (ballet_grade_score['class'] + ballet_grade_score['homework']) ...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -343,6 +354,7 @@ function enterDebugVars(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ballet_day ?? 0) > 0  &&  ((s as any).balletqw ?? 0)?.['school'] === 0) {
     qspCall(s, 'pushkin_ballet_init', 'score_debug');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -364,6 +376,7 @@ function enterBalletDebug(s: GameState, scene: SceneBuilder): void {
     scene.text('No debug messages');
   }
   scene.text('<b><center>---- End of Log ----</center></b>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

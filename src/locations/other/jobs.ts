@@ -55,18 +55,21 @@ function enterSetEmployed(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $job_active_schedule[$ARGS[1]] = '0'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetTerminated(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', '_end_employment', ((s as any).locArgs?.[1] ?? 0), 'terminated');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetFired(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', '_end_employment', ((s as any).locArgs?.[1] ?? 0), 'fired');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +87,7 @@ function enterEndEmployment(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_pos ?? 0) >= 0) {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -100,6 +104,7 @@ function enterSuspendJob(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,12 +125,14 @@ function enterResumeJob(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetRank(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: job_rank[$ARGS[1]] = ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,6 +143,7 @@ function enterResolveScheduleIdx(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -153,6 +161,7 @@ function enterClock(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: job_shifts_total[$ARGS[1]] += 1
   // TODO-QSP: job_shifts_this_period[$ARGS[1]] += 1
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -162,6 +171,7 @@ function enterClockIn(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: job_clocked_in[$ARGS[1]] = totminut
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -174,6 +184,7 @@ function enterClockOut(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: job_clocked_in[$ARGS[1]] = 0
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -190,6 +201,7 @@ function enterMissedShift(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -251,6 +263,7 @@ function enterDailyCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'daily_check_v4_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -296,18 +309,21 @@ function enterPaycheck(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBonusPay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: job_bonus_pay[$ARGS[1]] += ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDockPay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: job_docked_pay[$ARGS[1]] += ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -355,18 +371,21 @@ function enterIsWorkDay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsWorkTime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', '_is_time_check', ((s as any).locArgs?.[1] ?? 0), 'work');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsArrivalTime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', '_is_time_check', ((s as any).locArgs?.[1] ?? 0), 'arrival');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -442,6 +461,7 @@ function enterIsTimeCheck(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,6 +546,7 @@ function enterGetShiftForDay(s: GameState, scene: SceneBuilder): void {
     (s as any).result_duration = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -547,6 +568,7 @@ function enterNextWorkDay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'next_day_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -578,6 +600,7 @@ function enterMatchesRecurringSchedule(s: GameState, scene: SceneBuilder): void 
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -612,6 +635,7 @@ function enterGetShiftFromRecurrence(s: GameState, scene: SceneBuilder): void {
   (s as any).result_start = 0;
   (s as any).result_duration = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -649,11 +673,13 @@ function enterClearAllBookings(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: job_bookings_active[$ARGS[1]] = 0
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBookingCount(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).job_bookings_active ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -677,6 +703,7 @@ function enterHasBookingForDay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'has_booking_slot_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -698,6 +725,7 @@ function enterGetBookingDataForDay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'get_bdata_day_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -722,6 +750,7 @@ function enterGetNextBookingDay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'get_next_booking_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -765,11 +794,13 @@ function enterBookSlot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'calendar_events', 'add_event', $event_vars['id']
   (s as any).result = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetBookingData(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -790,6 +821,7 @@ function enterCheckBookingConflict(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['title'] = 'Conflict Check';
   (s as any).result = qspFunc(s, 'calendar_events', 'check_event_conflicts');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -820,6 +852,7 @@ function enterCheckBookingGap(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -833,6 +866,7 @@ function enterCancelBooking(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'calendar_events', 'remove_event', 'job_booking_' + $ARGS[1] + '_' + $str(ARGS[2]) + '_' + $str(A...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -843,18 +877,21 @@ function enterChangeSchedule(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'jobs', 'create_recurring_event', ((s as any).locArgs?.[1] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetJobFile(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $job_definition_source[$ARGS[1]] = $ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetJobIcon(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $job_icons_source[$ARGS[1]] = $ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -887,6 +924,7 @@ function enterResolveSlotTiming(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -906,6 +944,7 @@ function enterBuildBookingEventVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).event_vars ?? {})['duration_ts'] = (((s as any).temp_resolved_end ?? 0) - ((s as any).temp_resolved_start ?? 0)) / 15;
   ((s as any).event_vars ?? {})['exclude_prefix'] = 'job_booking_' + ((s as any).locArgs?.[1] ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -918,6 +957,7 @@ function enterGetJobDefinition(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -941,6 +981,7 @@ function enterCheckEmploymentPossible(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -990,6 +1031,7 @@ function enterBuildEventVarsForJob(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).event_vars ?? {})['recur_end'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1000,6 +1042,7 @@ function enterCreateRecurringEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'calendar_events', 'add_event', 'job_' + $ARGS[1]
   // TODO-QSP: $job_event_id[$ARGS[1]] = 'job_' + $ARGS[1]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1013,6 +1056,7 @@ function enterCreateAvailabilityEvents(s: GameState, scene: SceneBuilder): void 
     // TODO-QSP: $job_event_id[$ARGS[1]] = 'job_avail_' + $ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1249,6 +1293,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1357,6 +1402,7 @@ function enterCleanupJob(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'job_list', temp_list_idx
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1369,6 +1415,7 @@ function enterTerminateAllJobs(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'terminate_all_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1418,6 +1465,7 @@ function enterFormatDays(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'fd_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1452,6 +1500,7 @@ function enterEnsureRegistry(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $job_registry[25] = 'highway_brothel_prostitute'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1515,6 +1564,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   ((s as any).card_in ?? {})['opacity'] = ((s as any).jc_opac ?? 0);
   qspCall(s, 'cards', 'shell');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1591,6 +1641,7 @@ function enterShowAll(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'show_all_r_hidden'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

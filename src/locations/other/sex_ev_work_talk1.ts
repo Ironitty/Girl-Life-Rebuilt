@@ -13,6 +13,7 @@ function enterJobTalk(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).npc_job_known ?? 0))) {
     qspCall(s, 'sex_ev_work_talk1', 'whats_your_job');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_pillow_talk', 'topics');
@@ -22,6 +23,7 @@ function enterJobTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'What is your job?', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/pillow_talk1.jpg');

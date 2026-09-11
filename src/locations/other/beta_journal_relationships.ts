@@ -68,6 +68,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('</center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,6 +92,7 @@ function enterRelFamily(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs $loc_id, 'npc_preview'
   }
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -145,6 +147,7 @@ function enterRelSpouseKids(s: GameState, scene: SceneBuilder): void {
     (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
     // TODO-QSP: jump 'loverjournalloop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -175,10 +178,12 @@ function enterRelPavlovsk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs $loc_id, 'npc_preview'
   }
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRelSchool(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -225,6 +230,7 @@ function enterRelCity(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs $loc_id, 'npc_preview'
   }
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -290,10 +296,12 @@ function enterRelGadukino(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <a href="exec:pavlovsk_show = 0 & gs '<<$loc_id>>', 'init'">Hide Gadukino NPCs</...
   scene.text(`<a href="exec:pavlovsk_show = 0 & gs '${((s as any).loc_id ?? 0)}', 'init'">Hide Gadukino NPCs</a>`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRelPushkin(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -608,6 +616,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_known ?? 0)?.['A93'] === 1  ||  ((s as any).npc_rel ?? 0)?.['A41'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A42'] > 0  ||  ((s as any).npc_known ?? 0)?.['A43'] === 1  ||  ((s as any).gosh ?? 0) > 0  ||  ((s as any).npc_known ?? 0)?.['A220'] === 1  ||  ((s as any).npc_known ?? 0)?.['A219'] === 1  ||  ((s as any).npc_QW ?? 0)?.['A192'] > 0  ||  ((s as any).npc_known ?? 0)?.['A218'] === 1) {
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -617,6 +626,7 @@ function enterNpcPreview(s: GameState, scene: SceneBuilder): void {
   scene.text(`<th width="30%">${qspUntranslated(s, "npc_firstname['A<<rel_id", { location: "beta_journal_relationships" })}']>> ${qspUntranslated(s, "npc_lastname['A<<rel_id", { location: "beta_journal_relationships" })}']>> (${qspUntranslated(s, "npc_nickname['A<<rel_id", { location: "beta_journal_relationships" })}']>>):`);
   qspCall(s, 'journal', 'relindex', 'A' + qspUntranslated(s, "rel_id>", { location: "beta_journal_relationships" }) + '');
   scene.text('</th><th align left>Events</th></tr>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -681,6 +691,7 @@ function enterVcard(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $qsteps +=  '<br>'
   // TODO-QSP: $qsteps +=  '<br>'
   // TODO-QSP: $qsteps
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -700,6 +711,7 @@ function enterNavigation(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'quest_data_<<$quest_id>>', 'init');
   qspCall(s, 'beta_journal_quests', 'init');
+  // TODO-QSP: end
   scene.build();
 }
 

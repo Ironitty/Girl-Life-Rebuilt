@@ -28,6 +28,7 @@ function enterAnushroom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['anushkachat', 'chat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Anushka\'s room', goto: ['anushapt', 'hallway'] },
   ]);
@@ -39,6 +40,7 @@ function enterThePrettyReckless(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/the_pretty_reckless_poster.jpg');
   scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="exec:gt \'anush_bedroom\',\'taylor_momsen\'">Taylor\'s</a> breasts on full display.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find something else to look at', goto: ['anush_bedroom', 'anushroom'] },
   ]);
@@ -50,6 +52,7 @@ function enterTaylorMomsen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/taylor_poster.jpg');
   scene.text('There\'s a crease in the middle of the poster like it came folded up inside something. It looks like Anushka made a lot of effort to get rid of the crease, but you can still see it. Perhaps she really loves the band or has a crush on the lead singer? Knowing Anushka, it\'s likely both.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find something else to look at', goto: ['anush_bedroom', 'anushroom'] },
   ]);
@@ -72,6 +75,7 @@ function enterNushdresser(s: GameState, scene: SceneBuilder): void {
       { label: 'Find something else to look at', goto: ['anush_bedroom', 'anushroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -199,6 +203,7 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -208,6 +213,7 @@ function enterMoreClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/maksimspy2.jpg');
   scene.text('The two of you keep trying on different outfits and checking yourselves out in the mirror while giggling and commenting on each other\'s clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'These jeans are tight', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -304,6 +310,7 @@ function enterChaseNaked(s: GameState, scene: SceneBuilder): void {
   scene.text('Maksim runs into the living room with you and Anushka gaining on him; he runs past his dad, who turns towards Maksim. "What the hell is going on?" he asks Maksim, who is cowering in the corner.');
   scene.text('"She\'s trying to kill me!" a panicking Maksim replies.');
   scene.text('Eduard turns to the two of you. "Just what the hell…" He never finishes his sentence. Instead, he immediately turns his head away and puts his hand in front of his eyes. "God dammit! The two of you need to put some clothes on right now!" he bellows.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'The look', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -398,6 +405,7 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -614,6 +622,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -650,6 +659,7 @@ function enterAgreeporn(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -804,6 +814,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -834,6 +845,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of the bed', goto: ['anush_bedroom', 'anushroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1037,6 +1049,7 @@ function enterNushGuitar(s: GameState, scene: SceneBuilder): void {
       scene.text('Music is turned off.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1139,6 +1152,7 @@ function enterNushGuitarTeach(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1172,6 +1186,7 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1241,6 +1256,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

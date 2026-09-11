@@ -100,6 +100,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You don\'t see anyone familiar here.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['pav_park', 'start'] },
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {

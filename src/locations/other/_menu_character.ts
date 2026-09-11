@@ -8,6 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,6 +38,7 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'tabhead', '', ((s as any).menu_page ?? 0));
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the menu', handler: (st: GameState) => {
     qspCall(st, '$menu_character', 'menu_exit');
@@ -194,6 +196,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`You are wearing a brace on your <a href="exec:gs 'obj_din', 'show_teeth'">teeth</a>, you can remove them on or after the ${((s as any).dateVars ?? 0)?.['day']}${((s as any).dateVars ?? 0)?.['suffix']} of ${qspUntranslated(s, "monthName[dateVars['month']]", { location: "_menu_character" })}, ${((s as any).dateVars ?? 0)?.['year']}.`);
   }
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -252,6 +255,7 @@ function enterCurrentHome(s: GameState, scene: SceneBuilder): void {
     scene.text('Set current home as <a href="exec:gs \'homes_properties\', \'set_home\', \'meynold_household\'    & gt \'$menu_character\', \'current_home\'">Meynold Houshold</a>');
   }
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to main description', goto: ['$menu_character', 'description'] },
   ]);
@@ -472,6 +476,7 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'Lesbian sex preference: ' + func('fetish', 'get_pref', 'lesbian')
   // TODO-QSP: 'Lesbian sex: ' + func('fetish', 'get_exp', 'lesbian')
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -554,6 +559,7 @@ function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '<td align="center"><<temp[''level_exp_width'']>></td>'
   }
   // TODO-QSP: $result += '</tr>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1701,6 +1707,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table += '</tr>'
   // TODO-QSP: $table += '</table>'
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1741,6 +1748,7 @@ function enterHusbCheatCount(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1789,6 +1797,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sdtext[kidnumber] = 'son'
     // TODO-QSP: $kidPosProPN[kidnumber] = 'He'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2215,6 +2224,7 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2233,6 +2243,7 @@ function enterArchetypes(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: *p $settings['table_end']
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2242,6 +2253,7 @@ function enterTraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p $settings['table_start']
   // TODO-QSP: $func('traits', 'show_all')
   // TODO-QSP: *p $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2406,6 +2418,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *p '<<$pfilmhistory>>'
   }
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2434,6 +2447,7 @@ function enterDisplayRegionFames(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <b>Social = <<fame['<<$ARGS[1]>>_social']>></b>
   // TODO-QSP: Social media = <<fame['<<$ARGS[1]>>_media']>>
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2478,6 +2492,7 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 

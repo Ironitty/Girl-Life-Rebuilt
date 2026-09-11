@@ -16,6 +16,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hello there, young lady. Do you want to adjust some of your clothing? It'll cos...
   scene.text(`"Hello there, young lady. Do you want to adjust some of your clothing? It'll cost you ${qspFunc(s, 'money', 'string_price', 500)} per item."`);
   qspCall(s, 'tailor', 'set_tailor_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_industrial', ''] },
   ]);
@@ -81,6 +82,7 @@ function enterEnter(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_factory', 'enter'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -107,6 +109,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).job_miss_acknowledged ?? {})['pav_factory'] = ((s as any).job_missed_total ?? 0)?.['pav_factory'];
+  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', goto: ['pav_factory', 'enter'] },
   ]);
@@ -129,6 +132,7 @@ function enterFired(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_lastname ?? 0)}, I'm afraid we have to let you go. It's nothing personal — just the way things are."`);
   }
   qspCall(s, 'jobs', 'cleanup_job', 'pav_factory');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -155,6 +159,7 @@ function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'jobs', 'change_schedule', 'pav_factory', 1);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_factory', 'enter'] },
   ]);
@@ -207,6 +212,7 @@ function enterJobStart(s: GameState, scene: SceneBuilder): void {
       scene.text('Unfortunately, the shift times conflict with your existing schedule.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_factory', 'enter'] },
   ]);
@@ -221,6 +227,7 @@ function enterJob(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>TEXTILE FACTORY, PARIS COMMUNE</b></center>');
   scene.img('images/locations/pavlovsk/factory/pav_factory.jpg');
   scene.text('You work hard throughout your shift at the factory. The foreman has you running all over the factory, performing all types of tasks. You barely even have time to rest during the shift.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

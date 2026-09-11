@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterIsInit(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).shop_display ?? 0)?.['init'] !== 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -217,6 +218,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -334,6 +336,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -439,24 +442,28 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayListWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -465,10 +472,12 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'cleanup');
   // TODO-QSP: gt '<<$shop_display['return_loc']>>', '<<$shop_display['return_arg0']>>', '<<$shop_display['return_a...
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -482,6 +491,7 @@ function enterSetAllExceptions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purse_view', 'init', 'set_exceptions');
   qspCall(s, 'tattoo_management', 'set_shop_display_exceptions');
   qspCall(s, 'piercing_management', 'set_shop_display_exceptions');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -491,6 +501,7 @@ function enterGetDiscount(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS ?? {})[4] = ((s as any).Clothingstock ?? 0)?.[1 + (419 + (3 * ((s as any).ARGS ?? 0)[1] + 5 * ((s as any).ARGS ?? 0)[2]) % 293) % 293];
   (s as any).result = (((s as any).ARGS ?? 0)[3] - ((s as any).ARGS ?? 0)[4]) * (((s as any).ARGS ?? 0)[3] - ((s as any).ARGS ?? 0)[4]) * 11 / 10000 * 5;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -532,6 +543,7 @@ function enterFilter(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1423,108 +1435,126 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingListWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayShoesGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayShoesListWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBrasGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBrasGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPantiesGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPantiesGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBodysuitsGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBodysuitsGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayCoatsGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayCoatsGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPursesGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPursesGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayTattoosGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPiercingsGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1541,6 +1571,7 @@ function enterInitDisplay(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'shop_utils', 'init', 'end');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1557,6 +1588,7 @@ function enterInitDisplayMultiple(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'shop_utils', 'init', 'end');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1589,12 +1621,14 @@ function enterInitAddTypes(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAddTypes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'init_add_types', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

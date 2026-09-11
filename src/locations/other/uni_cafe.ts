@@ -77,6 +77,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['exam_week'] > 0  &&  ((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
     qspCall(s, 'uni_lessons', 'exam_schedule');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -98,6 +99,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +109,7 @@ function enterSittingChoice(s: GameState, scene: SceneBuilder): void {
       { label: 'Eat your lunch with Katja', goto: ['katja_chat', 'uni_cafe'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat your lunch alone', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -182,6 +185,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -230,6 +234,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -274,6 +279,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -314,6 +320,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -412,6 +419,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);
@@ -457,6 +465,7 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_grounds', ''] },
   ]);

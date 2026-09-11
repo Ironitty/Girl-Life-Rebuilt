@@ -205,6 +205,7 @@ function enterKGDhire(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) <= 6) {
     // TODO-QSP: jump 'kgdhire_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +231,7 @@ function enterMngFarm(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).KGD ?? {})['table'] = (((s as any).KGD ?? {})['table'] ?? 0) + ('</table></center>');
   // TODO-QSP: $KGD['table']
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
@@ -265,6 +267,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: copyarr 'KGD<<KGDsavegame>>', 'KGD'
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back to the main menu', goto: ['komp', 'start'] },
   ]);

@@ -65,6 +65,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).pcs_inhib ?? 0) > 30) {
     // TODO-QSP: act 'Masturbate': gt 'balkon2', 'masopt'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the living room', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'sitr') {

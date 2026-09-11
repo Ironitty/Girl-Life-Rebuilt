@@ -21,6 +21,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
   scene.text(`You feel a hand patting your leg and open your eyes to see Anya kneeling next to you. "${((s as any).pcs_nickname ?? 0)}, are you okay? It looks like you were having a bad dream." You quickly look around and realize that you're in your bedroom as Anya stands up. "Come on, everyone's waiting for us."`);
   scene.text('You tilt your head as you reply. "Who\'s waiting for us?"');
   scene.text('She smiles. "You know. Mom, Vlad and Kolka. Have you hit your head or something? Come on, you know that we can\'t eat breakfast without you." She takes your hand and leads you to the kitchen.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter kitchen', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -109,6 +110,7 @@ function enterWoods(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/1.jpg');
   // TODO-QSP: 'You can feel grass on your face which you quickly brush away before looking around and noticing tha...
   // TODO-QSP: 'You stand up and look around, trying to get your bearings when you hear music and the sounds of lau...
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods2'] },
   ]);
@@ -147,6 +149,7 @@ function enterWoods2(s: GameState, scene: SceneBuilder): void {
       { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -185,6 +188,7 @@ function enterWoods3(s: GameState, scene: SceneBuilder): void {
       { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods4'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -223,6 +227,7 @@ function enterWoods4(s: GameState, scene: SceneBuilder): void {
       { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods5'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -261,6 +266,7 @@ function enterWoods5(s: GameState, scene: SceneBuilder): void {
       { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods6'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -299,6 +305,7 @@ function enterWoods6(s: GameState, scene: SceneBuilder): void {
       { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods7'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -338,6 +345,7 @@ function enterWoods7(s: GameState, scene: SceneBuilder): void {
       { label: 'Head toward the train tracks', goto: ['NikoDreams', 'woods8'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -379,6 +387,7 @@ function enterWoods8(s: GameState, scene: SceneBuilder): void {
       { label: 'Move deeper into the woods', goto: ['NikoDreams', 'woods_home'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide', goto: ['NikoDreams', 'woods_hide'] },
   ]);
@@ -402,6 +411,7 @@ function enterWoodsHome(s: GameState, scene: SceneBuilder): void {
     scene.text('There is an old derelict house in the distance, but the path to the house is blocked by a crying woman. <a href="exec:gt \'NikoDreams\', \'teehee\'">TeeHee</a> continuously rubs against your leg while purring softly.');
   }
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/residents/weepeeidle.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach the crying woman', goto: ['NikoDreams', 'weepee1'] },
   ]);
@@ -436,6 +446,7 @@ function enterTeehee(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: We meet again, <<$pcs_firstname>>. Have you come to re-join your own path, or do...
     scene.text(`We meet again, ${((s as any).pcs_firstname ?? 0)}. Have you come to re-join your own path, or do you wish to stay and face WeePee's wrath?`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept TeeHee\'s offer', handler: (st: GameState) => {
     (st as any).VKTeeHee = 1;
@@ -456,6 +467,7 @@ function enterSmiley1(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Smiley'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/residents/smiley2.jpg');
   scene.text('As you walk through the forest, you hear loud laughing behind you and suddenly feel something rubbing across your throat, causing a stream of blood to begin pouring out of your neck. You let out a gurgled scream as your energy fades and the ground rushes toward you…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Rest in peace', handler: (st: GameState) => {
     (st as any).VKSmiley = 3;
@@ -472,6 +484,7 @@ function enterWeepee1(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b><h4><font color=#E400FF>${'WeePee'}</font></h4></b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/residents/weepee.jpg');
   scene.text('As you approach the crying woman, she instantly turns around and lunges toward you, shoving her hand into your chest and pulling out your heart, staring into your eyes as she watches your life slowly drain away…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Rest in peace', handler: (st: GameState) => {
     (st as any).VKSmiley = 3;
@@ -494,6 +507,7 @@ function enterWoodsHide(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly duck behind a tree and stare into the forest. You wait for a few seconds before realizing that there\'s nothing there. You get out from behind the tree and brush the dirt from your leg.');
     scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/${((s as any).VKWoods ?? 0)}.jpg`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['NikoDreams', 'woods<<VKWoods>>'] },
   ]);
@@ -512,6 +526,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>. What are you waiting for?" Katja asks.
   scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}. What are you waiting for?" Katja asks.`);
   scene.text('Natalia nods "Don\'t worry, I threw away all your clothes. Whores don\'t need clothes." You look down and notice that you\'re naked before Katja suddenly slams the bed frame. "Enough messing around! DANCE WHORE!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -606,6 +621,7 @@ function enterClassroomDream(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/class/rest.jpg');
   // TODO-QSP: dynamic text: You can feel yourself getting tired, so you lay your head down on your desk to r...
   scene.text(`You can feel yourself getting tired, so you lay your head down on your desk to rest as you wait for the period to end. After a few seconds, you hear someone shouting. "Who's that sleeping in my class?" You immediately sit up, pretending that you weren't laying down as you continue listening to the teacher. "Always remember to double check the problem, so that you can be confident with your solution. Now let's move on to the next lesson… How to treat a whore. For this lesson, I will need a volunteer. Miss ${((s as any).pcs_lastname ?? 0)}, get up here now."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Who me?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -670,6 +686,7 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/class/rest.jpg');
   scene.text('You can feel the day dragging in slowly, so you rest your head on the desk trying your best to focus on anything but today\'s lesson. The light occasionally creeps in between your arms so you keep re-adjusting until it stops, causing you to feel at peace as you slumber through the lesson.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

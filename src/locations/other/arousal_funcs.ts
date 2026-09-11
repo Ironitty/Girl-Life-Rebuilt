@@ -12,6 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGetBaseStimmag(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 1 + (Math.floor(Math.random() * 3) + 0) + (Math.floor(Math.random() * 4) + 0) + (Math.floor(Math.random() * 4) + 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -22,6 +23,7 @@ function enterCalcStimtotal(s: GameState, scene: SceneBuilder): void {
   ((s as any).tempStim ?? {})['pref'] = qspUntranslated(s, "ARGS[4]", { location: "arousal_funcs" });
   ((s as any).tempStim ?? {})['time'] = 0;
   (s as any).result = (((s as any).tempStim ?? {})?.['mag'] * ((s as any).tempStim ?? {})?.['act'] * ((s as any).tempStim ?? {})?.['kink'] / 100 + ((s as any).tempStim ?? {})?.['pref']) * ((s as any).tempStim ?? {})?.['time'] / 120;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +56,7 @@ function enterStretch(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +123,7 @@ function enterGetHolePain(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: arousalVars['length_diff'] /= 1000
   // TODO-QSP: arousalVars['girth_diff'] /= 1000
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -165,6 +169,7 @@ function enterInVag(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
     // TODO-QSP: gs 'cum_manage', 'cum_decay', ((dick_length11 + arousalVars['girth_range']) / 2) * max(1, stim['time...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -203,6 +208,7 @@ function enterInAnal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0  &&  ((s as any).cumvol ?? 0)[3] > (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2))) {
     // TODO-QSP: gs 'cum_manage', 'cum_decay', ((dick_length11 + arousalVars['girth_range']) / 2) * max(1, stim['time...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -246,6 +252,7 @@ function enterInThroat(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -285,6 +292,7 @@ function enterSetVirginityStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).day ?? 0) === ((s as any).birthday ?? 0)  &&  ((s as any).month ?? 0) === ((s as any).birthmonth ?? 0)) {
     ((s as any).virgin_stats ?? {})['birthday'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -308,6 +316,7 @@ function enterFeed(s: GameState, scene: SceneBuilder): void {
   if ((Array.isArray((s as any).arousal_npc_feed_ids) ? ((s as any).arousal_npc_feed_ids as any[]).indexOf(((s as any).npcID10 ?? 0)) : -1) < 0) {
     // TODO-QSP: $arousal_npc_feed_ids[] = $npcID10
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -315,6 +324,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: copyarr('ARGS', $ARGS[1])
   qspCall(s, 'nichUtil', 'onArouse', ((s as any).locArgs?.[0] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -334,6 +344,7 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
     ((s as any).count ?? {})['hidden_erotic'] = 0;
     ((s as any).count ?? {})['hidden_erotic_nudity'] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -346,6 +357,7 @@ function enterCount2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: count['hidden_' + $ARGS[1]] = 0
     // TODO-QSP: stat['hidden_' + $ARGS[1]] += 1
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -356,6 +368,7 @@ function enterChecks(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fetish', 'add_exp', ((s as any).locArgs?.[1] ?? 0), 1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -426,6 +439,7 @@ function enterAutoLube(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

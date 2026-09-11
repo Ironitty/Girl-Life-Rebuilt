@@ -102,6 +102,7 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['havana', 'dressing_room'] },
   ]);
@@ -128,6 +129,7 @@ function enterViewRecords(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'recordloop'
   }
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -145,6 +147,7 @@ function enterGirlmeet(s: GameState, scene: SceneBuilder): void {
   scene.text(`As you enter the crossfit box, you notice ${((s as any).npcheight_pref ?? 0)} girl with ${((s as any).npcbuild_pref ?? 0)} body and ${((s as any).npchair ?? 0)} hair. She is wearing ${((s as any).npcClo ?? 0)}.`);
   // TODO-QSP: dynamic text: She greets you with a smile. "Hey, I'm <<$boydesc>>. I heard you beat my old rec...
   scene.text(`She greets you with a smile. "Hey, I'm ${((s as any).boydesc ?? 0)}. I heard you beat my old record. Very impressive!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank her', handler: (st: GameState) => {
     scene.text('"Oh. Thank you," you reply. "Your score wasn\'t easy to beat!"');

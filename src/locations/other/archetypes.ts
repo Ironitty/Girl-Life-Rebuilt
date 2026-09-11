@@ -26,6 +26,7 @@ function enterFmtPts(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,6 +37,7 @@ function enterClamp(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: arch_vars['<<$ARGS[1]>>_points'] = max(0, arch_vars['<<$ARGS[1]>>_points'])
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,6 +57,7 @@ function enterGetArchetype(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +77,7 @@ function enterGetOpposite(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -89,6 +93,7 @@ function enterGetPercentage(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,6 +114,7 @@ function enterGetLvl(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,6 +166,7 @@ function enterGain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'archetypes', 'log_event', $temp_opp0, 'opposition', '', -temp_points
   // TODO-QSP: gs 'archetypes', 'log_event', $temp_opp1, 'opposition', '', -temp_points
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -195,6 +202,7 @@ function enterLose(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'archetypes', 'log_event', $ARGS[1], 'story', $ARGS[3], -temp_points
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -304,6 +312,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,6 +326,7 @@ function enterFaithGain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: faithVars[$ARGS[1] + '_day'] = daystart
   (s as any).pcs_faith = Math.min(100, ((s as any).pcs_faith ?? 0) + ((s as any).ARGS ?? 0)[2]);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -332,6 +342,7 @@ function enterSexChange(s: GameState, scene: SceneBuilder): void {
   ((s as any).arch_vars ?? {})['sex_bimbo_today'] = (((s as any).arch_vars ?? {})['sex_bimbo_today'] ?? 0) + (((s as any).temp_sex_bimbo ?? 0));
   // TODO-QSP: gs 'archetypes', 'change', temp_sex_bimbo, 0, ARGS[2], 0, 0, 1, 'story', $ARGS[3]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -352,6 +363,7 @@ function enterSetActive(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).arch_vars ?? {})['main_active'] = ((s as any).temp_sa_active ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -668,6 +680,7 @@ function enterGetStatePoints(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'archetypes', 'change', temp_state['bimbo'], temp_state['preppy'], temp_state['prude'], temp_stat...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -700,6 +713,7 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'archetypes', 'compute_withdrawal');
   qspCall(s, 'archetypes', 'apply_effects', ((s as any).temp_loop_mul ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -708,6 +722,7 @@ function enterGetDecayRate(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_gdr_h = ((s as any).arch_const ?? {})?.['decay_half'] / 1000;
   (s as any).result = ((s as any).arch_const ?? {})?.['decay_cap'] * ((s as any).temp_gdr_x ?? 0) * ((s as any).temp_gdr_x ?? 0) / (((s as any).temp_gdr_x ?? 0) * ((s as any).temp_gdr_x ?? 0) + ((s as any).temp_gdr_h ?? 0) * ((s as any).temp_gdr_h ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -727,6 +742,7 @@ function enterDecay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'decay_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -969,6 +985,7 @@ function enterApplyEffects(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -997,6 +1014,7 @@ function enterDailySnapshot(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'snapshot_archetype_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1023,6 +1041,7 @@ function enterComputeWithdrawal(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1044,6 +1063,7 @@ function enterSeedSnapshots(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'archetypes', 'compute_withdrawal');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1189,6 +1209,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1235,6 +1256,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   ((s as any).arch_const ?? {})['sex_chastity_bonus_prude'] = 2700;
   ((s as any).arch_vars ?? {})['last_update'] = ((((s as any).totminut ?? 0) <= 0) ? (((s as any).minut ?? 0) + ((s as any).hour ?? 0) * 60 + ((s as any).daystart ?? 0) * 1440) : (((s as any).totminut ?? 0)));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1260,6 +1282,7 @@ function enterArchTabs(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $arch_tabs_h += '</tr></table></b></center>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1372,6 +1395,7 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat_cfg ?? {})['bar_width'] = ((s as any).temp_tv ?? 0)?.['saved_bar_width'];
   // TODO-QSP: *p '<center><font size="2" color="#888888">Archetypes are shaped by clothing, makeup, and other pres...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1525,6 +1549,7 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: *p '</div></center>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1850,6 +1875,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Direct archetype gains and losses from...
   scene.text('</div></center>');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1872,6 +1898,7 @@ function enterLogEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $arch_log_label[]  = $ARGS[3]
   // TODO-QSP: arch_log_delta[]  = ARGS[4]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1889,6 +1916,7 @@ function enterAggregate(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'agg_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1898,6 +1926,7 @@ function enterTrackArchetype(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $tnotif_archetype_names[] = $ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1932,12 +1961,14 @@ function enterGetArchetypeMessage(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).tnotif_window_start = ((s as any).totminut ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsEmptyArchetypes(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (Object.keys((s as any).tnotif_archetype_names ?? {}).length === 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2030,6 +2061,7 @@ function enterNotifyPopup(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

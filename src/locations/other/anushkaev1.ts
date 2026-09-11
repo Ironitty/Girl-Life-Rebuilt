@@ -526,6 +526,7 @@ function enterStrapon1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -536,6 +537,7 @@ function enterStraponCowgirl(s: GameState, scene: SceneBuilder): void {
   scene.text('You grab her arm and pull her over, guiding her to straddle you. She wastes little time and quickly lines up the dildo before easing herself down. You watch as the dildo slowly penetrates her pussy and disappears inside her as she lets out a soft moan. She starts riding you slowly at first, but starts going faster over time. The faster she goes, the louder she moans.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her keep riding it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapnush5.jpg');
@@ -835,6 +837,7 @@ function enterStraponCowgirlMagic(s: GameState, scene: SceneBuilder): void {
   scene.text('You grab her arm and pull her over, guiding her to straddle you. She wastes little time and quickly lines up your dick, just having her hand grip your dick feels pleasant. When she eases herself down, you feel your dick slowly slide into her wet pussy, causing you both to moan in pleasure. You watch as your dick slowly penetrates her pussy and disappears inside her completely. She starts riding you slowly at first, but starts going faster over time. The faster she goes, the louder she moans, while you moan as well, as her pussy grips your dick tightly milking it with each stroke.');
   qspCall(s, 'arousal', 'magicd_vaginal', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her keep riding it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapnush5.jpg');
@@ -1022,6 +1025,7 @@ function enterDomnushFuckpussy(s: GameState, scene: SceneBuilder): void {
       { label: 'Fuck her pussy', goto: ['anushkaev1', 'strapon_doggy'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1033,6 +1037,7 @@ function enterDomnushDoggy(s: GameState, scene: SceneBuilder): void {
   scene.text('While hanging onto her hips, you pull nearly all the way out of her and slam it back as far as it will go before you start fucking her as hard and rough as you can. You could keep fucking her pussy, but you can\'t help but notice her asshole just looks like it\'s begging for a big cock to rip it up.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her pussy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush5.jpg');
@@ -1083,6 +1088,7 @@ function enterStraponDoggyMagic(s: GameState, scene: SceneBuilder): void {
   scene.text('While hanging onto her hips, you pull nearly all the way out of her and slam it back as far as it will go before you start fucking her as hard and rough as you can. You could keep fucking her pussy, but you can\'t help but notice her asshole just looks like it\'s begging for a big cock to rip it up and you just so happen to be magically endowed with a big cock.');
   qspCall(s, 'arousal', 'magicd_vaginal', 5, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her pussy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush5.jpg');
@@ -1130,6 +1136,7 @@ function enterDomnushFuckass1(s: GameState, scene: SceneBuilder): void {
   scene.text('She cries out in a mix of surprise, pain and pleasure. You\'re not sure which is the stronger emotion she\'s feeling, but you don\'t really care as you shove the full length of the shaft balls deep into her ass.');
   qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1176,6 +1183,7 @@ function enterDomnushFuckassAfterglow1(s: GameState, scene: SceneBuilder): void 
   scene.text('You giggle loudly, then turn your head to give her a kiss on the lips. "Yes, I\'m happy."');
   scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed and cleaned up.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
@@ -1192,6 +1200,7 @@ function enterDomnushFuckassMagic1(s: GameState, scene: SceneBuilder): void {
   scene.text('She cries out in a mix of surprise, pain and pleasure. You\'re not sure which is the stronger emotion she\'s feeling, but you don\'t really care as you shove the full length of the shaft balls deep into her ass, making you moan in pleasure.');
   qspCall(s, 'arousal', 'magicd_anal', 3, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1283,6 +1292,7 @@ function enterDomnushFuckass2(s: GameState, scene: SceneBuilder): void {
       { label: 'Just lube the tip', goto: ['anushkaev1', 'domnush_fuckass_nolube'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1297,6 +1307,7 @@ function enterDomnushFuckassLubed(s: GameState, scene: SceneBuilder): void {
   scene.text('You shove your hips forward and feel her asshole give way as your fake cock slides into her ass. She hisses in a mix of pain and pleasure. You\'re not sure which is the stronger emotion she\'s feeling, but you don\'t really care as you shove the full length of the shaft balls deep into her ass.');
   qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1343,6 +1354,7 @@ function enterDomnushFuckassLubedMagic(s: GameState, scene: SceneBuilder): void 
   scene.text('You shove your hips forward and feel her asshole give way as your cock slides into her well lubed ass, once it is in, it slides pretty easily with all the lube the rest of the way in. She hisses in a mix of pain and pleasure. You\'re not sure which is the stronger emotion she\'s feeling, but you don\'t really care as you shove the full length of your dick balls deep into her ass.');
   qspCall(s, 'arousal', 'magicd_anal', 3, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1408,6 +1420,7 @@ function enterDomnushFuckassNolube(s: GameState, scene: SceneBuilder): void {
   scene.text('You shove your hips forward and feel her asshole give way as your fake cock slides into her ass. She hisses in a mix of pain and pleasure and you notice she grips the sheets tightly, making her knuckles go white. "FUCK!" she cries out loudly.');
   qspCall(s, 'arousal', 'anal_strap_give', 2, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1456,6 +1469,7 @@ function enterDomnushFuckassAfterglow2(s: GameState, scene: SceneBuilder): void 
   scene.text('You laugh at her comment and notice she said she\'s willing to let you have another go. "I told you, you\'re my bitch. The sooner you accept this, the sooner you\'ll start enjoying it."');
   scene.text('She shakes her head and with the banter finished, the two of you lay side by side naked for some time, nearly falling asleep in the silence before you both begin to stir and get dressed, cleaning up after your love making, if you can call that while sex ride love making.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     // TODO-QSP: gt 'anush_bedroom' + $returnLoc, 'anushroom'
@@ -1478,6 +1492,7 @@ function enterDomnushFuckassNolubeMagic(s: GameState, scene: SceneBuilder): void
   scene.text('You shove your hips forward and feel her asshole give way as your cock slides into her ass. She hisses in a mix of pain and pleasure and you notice she grips the sheets tightly, making her knuckles go white. "FUCK!" she cries out loudly. While you moan loudly, as her barely lubed asshole grips your dick in a crushing grip.');
   qspCall(s, 'arousal', 'magicd_anal', 2, 'lesbian', 'dom', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush7.jpg');
@@ -1611,6 +1626,7 @@ function enterCouchStraponGive(s: GameState, scene: SceneBuilder): void {
   scene.text('She bites her lower lip and you can tell she is really turned on. You both lean forward until your lips meet and passionately kissing each other.');
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make her eat you', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap3.jpg');
@@ -1708,6 +1724,7 @@ function enterCouchFuckHer(s: GameState, scene: SceneBuilder): void {
   scene.text(`With the strapon firmly in place, you sit on the couch and pull her onto your lap. She straddles you and lowers herself down until the ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo slides in, stretching her wet pussy. You let her take the lead and she starts riding you as she leans down towards you. Your lips meet and you begin to kiss as she rides you.`);
   qspCall(s, 'arousal', 'vaginal_strap_give', 3, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['anushkaev1', 'couch_strap_finish'] },
     { label: 'Fuck her more', handler: (st: GameState) => {
@@ -1798,6 +1815,7 @@ function enterCouchFuckHerAss(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap9.jpg');
@@ -1819,6 +1837,7 @@ function enterCouchStrapFinish(s: GameState, scene: SceneBuilder): void {
   scene.text('You loosen the harness and step out of it. You lean forward and lock lips with her, sharing a passionate kiss for a few minutes. She then breaks the kiss and you both stand to get cleaned up. After cleaning the strap-on, you put it back in your purse and you both get dressed again, bantering back and forth. Once dressed, you both take your seats back on the couch and Anushka changes the channel to some other movie. The two of you then settle down to hang out for a while.');
   qspCall(s, 'arousal', 'foreplay', 1, 'lesbian');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the show with her', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1846,6 +1865,7 @@ function enterCouchFuckHerMagic(s: GameState, scene: SceneBuilder): void {
   scene.text(`With the magic melding the strapon to you body, you feel the dildo twitch to life. You sit on the couch and pull her onto your lap. She straddles you and lowers herself down until your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock slides in, stretching her wet pussy. Her pussy clenches around your dick, causing you to moan almost as loud as she does. You let her take the lead and she starts riding you as she leans down towards you. Your lips meet and you begin to kiss as she rides you.`);
   qspCall(s, 'arousal', 'magicd_vaginal', 3, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish on her face', goto: ['anushkaev1', 'couch_strap_finish_magic1'] },
     { label: 'Finish in her mouth', goto: ['anushkaev1', 'couch_strap_finish_magic2'] },
@@ -1916,6 +1936,7 @@ function enterCouchFuckHerAssMagic(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap9.jpg');
@@ -1947,6 +1968,7 @@ function enterCouchStrapFinishMagic1(s: GameState, scene: SceneBuilder): void {
     scene.text('Once you finish cumming, you step off the couch panting a bit, feeling drained in more ways than one. "OH… uh, it\'s just one of those fake realistic looking dildo with fake cum, that shoots out when I cum." You try to explain to her, you can see her eyes start to cloud almost at once as the magic starts to work on her memory.');
     scene.text('She nods a bit after a moment. "Oh… yeah I heard of those." She licks some cum off her lips. "Mmhmm it\'s taste kinda sweet, I like how it tastes." She then licks the rest of it off her lips, before grabbing a tissue to clean the rest off her face.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove the strapon', goto: ['anushkaev1', 'couch_strap_finish_magic_remove'] },
   ]);
@@ -1969,6 +1991,7 @@ function enterCouchStrapFinishMagic2(s: GameState, scene: SceneBuilder): void {
     scene.text('Once you finish cumming, you step off the couch panting a bit, feeling drained in more ways than one. "OH… uh, it\'s just one of those fake realistic looking dildo with fake cum, that shoots out when I cum." You try to explain to her, you can see her eyes start to cloud almost at once as the magic starts to work on her memory.');
     scene.text('She nods a bit after a moment. "Oh… yeah I heard of those." She licks some cum off her lips. "Mmhmm it\'s taste kinda sweet, I like how it tastes." She then licks the rest of it off her lips, before grabbing a tissue to clean the rest off her face.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove the strapon', goto: ['anushkaev1', 'couch_strap_finish_magic_remove'] },
   ]);
@@ -1982,6 +2005,7 @@ function enterCouchStrapFinishMagicRemove(s: GameState, scene: SceneBuilder): vo
   scene.text('You loosen the harness, as you do, you feel the magic of the spell break. You feel the harness loosen from your skin and the dildo turn back into a regular silicone dildo, as you step out of the harness. You lean forward and lock lips with her, sharing a passionate kiss for a few minutes, you can taste the sweetness of your magical cum still on her lips and tongue as you do. She then breaks the kiss and you both stand to get cleaned up. After cleaning the strap-on, you put it back in your purse and you both get dressed again, bantering back and forth. Once dressed, you both take your seats back on the couch and Anushka changes the channel to some other movie. The two of you then settle down to hang out for a while.');
   qspCall(s, 'arousal', 'foreplay', 1, 'lesbian');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the show with her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 90;
@@ -2011,6 +2035,7 @@ function enterCouchStraponGet(s: GameState, scene: SceneBuilder): void {
   scene.text('Turned on by what she said, you hand the strap-on over to her. She takes it and pulls you into a kiss with her that lasts for a few minutes.');
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Help her put on the harness', handler: (st: GameState) => {
     ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);

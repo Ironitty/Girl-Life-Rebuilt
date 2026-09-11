@@ -125,6 +125,7 @@ function enterClo(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Clothes.</b></center>');
   scene.text('You inspect the cheap clothing the stall has to offer.');
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -139,6 +140,7 @@ function enterWares(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'market');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/market/rinok.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop looking at the wares', goto: ['city_market', 'start'] },
   ]);
@@ -179,6 +181,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -186,6 +189,7 @@ function enterTailorActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "So <<$pcs_nickname>>. Do you need any clothing adjusted?"
   scene.text(`"So ${((s as any).pcs_nickname ?? 0)}. Do you need any clothing adjusted?"`);
   qspCall(s, 'tailor', 'set_tailor_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;

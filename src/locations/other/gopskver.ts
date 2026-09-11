@@ -553,6 +553,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -561,6 +562,7 @@ function enterBjBeerStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You get into a seductive pose and give them your most enchanting smile. The guys look and whisper some things at each other, but Vasily quickly grins and beckons you to come closer.');
   // TODO-QSP: dynamic text: You shake your hips and teasingly lick your parched <<$pc_desc['lips']>> lips, a...
   scene.text(`You shake your hips and teasingly lick your parched ${((s as any).pc_desc ?? 0)?.['lips']} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though. Just when you reach out to take it from him, he suddenly pulls it away from you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Act surprised', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/gop/bjbeer.mp4');
@@ -686,6 +688,7 @@ function enterBjBeerBeaten(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -761,6 +764,7 @@ function enterBjBeerYes(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -775,6 +779,7 @@ function enterBjBeerAct(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your tongue tightly hugs his penis as he pushed it all the way past your <<$pc_d...
     scene.text(`Your tongue tightly hugs his penis as he pushed it all the way past your ${((s as any).pc_desc ?? 0)?.['lips']} lips, you successfully managed to take his cock all the way down your throat. Eventually, your lower lip is resting on his scrotum.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick his balls', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A11');
@@ -819,6 +824,7 @@ function enterBjBeerPas(s: GameState, scene: SceneBuilder): void {
   scene.text('You lazily take the cock in your mouth. You make a token effort of using your tongue a little, but all in all just aren\'t feeling it today. The guys sit back and have another beer while you passively suck their cocks, but a half hour later they\'re not much closer to being satisfied than when you started.');
   scene.text('Finally, Dan pulls his dick away from you and complains: "That has to be by far the worst blowjob I have ever gotten. It\'s been half an hour already… are you even trying?"');
   scene.text('You promise you\'ll do better, and obediently open your mouth again.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A9', 'b');
@@ -874,6 +880,7 @@ function enterBjBeerDouble(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group');
   qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0), 1);
   qspCall(s, 'cum_call', 'hair', ((s as any).npcID1 ?? 0), 1, '', 500);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to clean yourself up a little', goto: ['gopskver', 'BjBeerFace'] },
   ]);
@@ -906,6 +913,7 @@ function enterBjBeerFace(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"How about that beer?"', handler: (st: GameState) => {
     if (((s as any).BjBeerActiv ?? 0) === 1) {
@@ -973,6 +981,7 @@ function enterBjBeerPhone(s: GameState, scene: SceneBuilder): void {
   scene.text(`Luckily the guys don't last long, and finish fairly quickly. They both pull out and drop their loads on your face, and wipe their dicks on your ${((s as any).pcs_haircolor ?? 0)} ${((s as any).curly_txt ?? 0)} hair. They make you lick their cocks clean, but don't let go of your hair just yet.`);
   // TODO-QSP: dynamic text: Vasily grins as he tells the camera: "And that was the premiere presentation of ...
   scene.text(`Vasily grins as he tells the camera: "And that was the premiere presentation of ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} in her very first production called "Gagging Whore"! You delivered an excellent performance ${((s as any).pcs_nickname ?? 0)}, say hi to your ${((s as any).npc_nickname ?? 0)?.['A29']}!" He zooms in on your face, and continues to film.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do as he says', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: By now you would rather just disappear in a large hole in the ground and never c...
@@ -1015,6 +1024,7 @@ function enterBjBeerPalevo(s: GameState, scene: SceneBuilder): void {
   scene.text('The guys, oblivious to your train of thought, simultaneously reach orgasm, and you have to do your best to swallow their sperm as it hits the back of your throat. You cough and recoil, having a rough time swallowing it all.');
   scene.text('Several thoughts race through your head… what if he tells your mother or stepfather? What would he think of you now?');
   scene.text('You look around trying to find him again, but he is gone. You obediently suck their cocks clean, and lick the last bits of sperm off them like you always do for the guys. When they\'re finally satisfied with your performance, Dan lets go of your hair.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to clean yourself up', goto: ['gopskver', 'BjBeerFace'] },
   ]);
@@ -1057,6 +1067,7 @@ function enterBjBeerVag(s: GameState, scene: SceneBuilder): void {
     scene.text(`Vitek runs his hand over your smooth skin and mutters: "It's time you get a proper brand, ${((s as any).pcs_nickname ?? 0)}… no one can see what a huge slut you are, if you don't get a proper tattoo. Maybe we'll have to take you down to the city one day…"`);
   }
   scene.text('After fondling your pussy for another while, your pussy ends up being quite wet from their fondlings. The guys grin at one another: "She\'s ready, boys. Who wants to go first?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked on the ground', handler: (st: GameState) => {
     (s as any).dick = 18;
@@ -1173,6 +1184,7 @@ function enterBjBeerAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('"You won\'t be needing this!" Vasily grins, and he pulls out your butt plug with a loud pop. He\'s quite rough with it, and you grimace at the sudden extrusion.');
   }
   scene.text('Once he thinks you\'re ready, Vasily roughly pulls your buttocks to the sides with a grin on his face and looks at your sphincter, before spitting on it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to relax your anus', handler: (st: GameState) => {
     (s as any).dick = 15;
@@ -1217,6 +1229,7 @@ function enterBjBeerAnal2(s: GameState, scene: SceneBuilder): void {
   scene.text('The boys laugh: "Look at her… she seems like such a sweet and innocent girl, but she\'s nothing more than an ordinary butt slut!"');
   scene.text('Your \'confession\' seems to have done it for Dan, and his movements are almost immediately speeding up. A few seconds later, he drives his cock deep inside your ass one final time and pumps his seed into you.');
   scene.text('You\'re still on your hands and knees on the bench, sperm slowly dribbling from your now well-used asshole. You still have the biggest cock of the lot to please though, and Vitek walks around you in a circle. His impressive cock is gently bobbing with every step, and he grins as he notices your look is fixated on it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Offer your ass', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A9');
@@ -1279,6 +1292,7 @@ function enterBjBeerAnal2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDanBlowjob(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Squat before Dan', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1317,6 +1331,7 @@ function enterDanBlowjob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTripleBlow(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Dan\'s cock', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 15);

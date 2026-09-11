@@ -127,6 +127,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_forest', 'forest_edge'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -153,12 +154,14 @@ function enterWorkout(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['exercise', 'workout'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFruitTrees(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/gadukino/meadow/meadow_fruit_${Math.floor(Math.random() * 2) + 0}.jpg`);
   scene.text('These fruit trees are flourishing in the undisturbed beauty of the meadow. But, unfortunately, all the fruit is out of your reach.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_meadow', 'start'] },
   ]);
@@ -168,6 +171,7 @@ function enterFruitTrees(s: GameState, scene: SceneBuilder): void {
 function enterRuins(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/meadow/meadow_nearby_ruins.jpg');
   scene.text('The ruins of this old house look intriguing. But, you wonder how long it has been here.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_meadow', 'start'] },
   ]);
@@ -176,6 +180,7 @@ function enterRuins(s: GameState, scene: SceneBuilder): void {
 
 function enterMiraFreeAndHere(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec: gt \'gad_meadow\', \'Mira\'">Mira</a> is in the meadow, spinning with a delightful smile and laughing.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Mira', goto: ['gad_meadow', 'Mira'] },
   ]);
@@ -332,6 +337,7 @@ function enterMira(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -480,6 +486,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -489,6 +496,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/mirameadowsex.jpg');
   scene.text('You see Mira and Mitka talking to each other. You can\'t hear what they say from this far away, but they begin to undress in your meadow.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/mirameadowsex1.jpg');
@@ -528,6 +536,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 2);
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
@@ -575,6 +584,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_meadow', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -624,6 +634,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -638,6 +649,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -664,6 +676,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -678,6 +691,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -691,6 +705,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   scene.text('You see Mira on all fours with her back to you. She is shoving an ear of corn in her ass which looks painful, but she is still moaning. Eventually, Mira finishes and tosses the cum covered ear of corn off into the bushes, almost hitting you!');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until she leaves', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -705,6 +720,7 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mirameadowsex.jpg');
   scene.text('You see Mira and Mitka talking to each other. You can\'t hear what they say from this far away, but they begin to undress in your meadow.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/mirameadowsex1.jpg');
@@ -740,6 +756,7 @@ function enterMiraGang(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira is almost invisible with all the bodies around her. You can only see her naked ass and feet swaying in the air. You spend half an hour watching as the men take turns fucking Mira until they are all tired.');
   qspCall(s, 'arousal', 'voyeur_sex', 30);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hide until they leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -759,6 +776,7 @@ function enterMiraperversion11(s: GameState, scene: SceneBuilder): void {
   scene.text('But you were also drunk and did not do what she did. Her face sinks with shame, and she looks at the ground.');
   scene.text('You speak with her awhile and somehow manage to soothe her and tell her that she should just bite the bullet and move on.');
   scene.text('Mira sincerely thanks you for your support, but her eyes still look down…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -782,6 +800,7 @@ function enterLesbMira(s: GameState, scene: SceneBuilder): void {
   if (((s as any).MiraVars ?? 0)?.['arousal'] >= 20) {
     // TODO-QSP: act 'Continue': gt 'mirasex', 'foreplay'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -820,6 +839,7 @@ function enterMiraLesb(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -839,6 +859,7 @@ function enterLesbTalkMira1(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira thought for a second, but it was an easy choice. She didn\'t want to lose your friendship.');
   // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>, I'll do it, " she said, falling to her knees.
   scene.text(`"Well, ${((s as any).pcs_nickname ?? 0)}, I'll do it, " she said, falling to her knees.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
   ]);
@@ -860,6 +881,7 @@ function enterLesbTalkMira2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What?" Mira asked, blushing terribly, although she already guessed where this was going.');
   scene.text('"It\'s time to return the favor", you replied triumphantly while leaning on a tree and beckoning her with your finger. "You can start."');
   scene.text('Mira hesitated a couple of moments as if pondering something and then sat down in front of you on her knees.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
   ]);
@@ -874,6 +896,7 @@ function enterLesbTalkMira3(s: GameState, scene: SceneBuilder): void {
   scene.text('You leaned on the tree and beckoned Mira the finger.');
   scene.text('"Get over her, Mira. You know what to do."');
   scene.text('She already knew what to do and got down on her knees in front of you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
   ]);
@@ -940,6 +963,7 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
       { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -960,6 +984,7 @@ function enterMiraLesbTalk2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What?" you ask, blushing terribly, although you already guessed where this is going.');
   scene.text('"It\'s time to return the favor, " she said triumphantly, leaning on a tree, beckoning you with her finger. "You can start."');
   scene.text('You hesitated for a couple of moments as if pondering something, and then you knelt down on your knees in front of her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
   ]);
@@ -983,6 +1008,7 @@ function enterMiraLesbTalk3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Where were you, ${((s as any).pcs_nickname ?? 0)}? I was looking for you," she said. So get over here and help me out.`);
   }
   scene.text('You are already familiar with this and get on your knees before her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
   ]);
@@ -1004,6 +1030,7 @@ function enterMiraLesbTalk4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Come help me out, <<$pcs_nickname>>," she said and started to get comfortable.
   scene.text(`"Come help me out, ${((s as any).pcs_nickname ?? 0)}," she said and started to get comfortable.`);
   scene.text('You are already familiar with this and get on your knees before her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick Mira', goto: ['mirasex', 'lickmira_first'] },
   ]);
@@ -1380,6 +1407,7 @@ function enterMirameadow(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

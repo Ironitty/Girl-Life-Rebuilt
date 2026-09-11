@@ -7,7 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  return;
   scene.build();
 }
 
@@ -36,6 +35,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,12 +46,14 @@ function enterHomeFilter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'shop_utils', 'filter', 'set_pass');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShopFilter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'filter', 'set_pass');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,6 +70,7 @@ function enterFilter(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,6 +94,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,6 +110,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,18 +151,21 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -186,6 +194,7 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['shop_utils', 'return'] },
   ]);
@@ -217,6 +226,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['underwear_bodysuit_view', 'view_item_unwanted'] }]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view[...
@@ -253,6 +263,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -272,6 +283,7 @@ function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view[...
@@ -283,6 +295,7 @@ function enterViewItemWearing(s: GameState, scene: SceneBuilder): void {
 function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear_bodysuit_view', 'storage_options');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view[...
@@ -298,6 +311,7 @@ function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
   scene.text('This bodysuit is in storage.');
   qspCall(s, 'underwear_bodysuit_view', 'storage_options');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view[...
@@ -310,6 +324,7 @@ function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
   scene.text('This bodysuit is unwanted.');
   qspCall(s, 'underwear_bodysuit_view', 'storage_options');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view[...
@@ -333,6 +348,7 @@ function enterViewItemWear(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'underwear_bodysuits', 'wear', $shop_utils_view['type'], shop_utils_view['number']
   qspCall(s, 'shop_utils', 'cleanup');
   scene.actions([{ label: 'Continue', goto: ['wardrobe', 'main'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,6 +375,7 @@ function enterViewItemWearHypno(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view[...
@@ -401,6 +418,9 @@ function enterStorageOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: act $func('wrap', 'neg', 'Throw this bodysuit away'):
   // TODO-QSP: gs 'underwear_bodysuits', 'remove_item', $shop_utils_view['type'], shop_utils_view['number']
   // TODO-QSP: gt 'underwear_bodysuit_view', 'view_grid', $shop_utils_view['link']
+  // TODO-QSP: end
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 

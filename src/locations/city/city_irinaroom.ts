@@ -18,6 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Irina\'s front door</b></center>');
   scene.img('images/locations/shared/apartment/podezdhr.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -47,6 +48,7 @@ function enterFirst(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Apartment Ira</b></center>');
   scene.img('images/characters/city/ira/irinaroom.jpg');
   scene.text('It\'s a small studio apartment which Irina keeps neat and tidy. There\'s not much to see, there\'s a decently sized living room with a smaller kitchen area.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a drink in the kitchen', goto: ['city_irinaroom', 'first1'] },
   ]);
@@ -72,6 +74,7 @@ function enterFirst1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IrinaQW ?? 0) >= 10) {
     // TODO-QSP: act 'Kiss her': gt 'city_irinaroom', 'kiss'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -84,6 +87,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 10, 'lesbian');
   qspCall(s, 'mood', 'raise', 'medium');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have sex', goto: ['city_irinaroom', 'sex'] },
   ]);
@@ -106,6 +110,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'large');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -122,6 +127,7 @@ function enterFirst2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/ira/irinaqw1.jpg');
   // TODO-QSP: dynamic text: You toast to sisterhood, and you notice that Irina is looking at you strangely, ...
   scene.text(`You toast to sisterhood, and you notice that Irina is looking at you strangely, but she follows along and raises her glass and begins laughing, "I didn't expect to hear that from you, ${((s as any).pcs_firstname ?? 0)}." You feel a slight bond building between the two of you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', goto: ['city_irinaroom', 'first3'] },
   ]);
@@ -134,6 +140,7 @@ function enterFirst3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'large');
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress her', goto: ['city_irinaroom', 'first4'] },
     { label: 'Drink some more', goto: ['city_irinaroom', 'first5'] },
@@ -148,6 +155,7 @@ function enterFirst4(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile mischievously as you tug at Irinas\' blouse, but before you\'re able to start unbuttoning her, she pushes you off, and leaps from her chair screaming, "What are you doing?! I\'m not a lesbian! Get out!"');
   scene.text('She seems freaked out by your forwardness and points towards the door.');
   scene.text('"I-I\'m sor…" you try to tell her, but she\'s not really in the mood to hear your excuses and just stands by the door waiting for you to leave as quickly as possible.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -174,6 +182,7 @@ function enterFirst5(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 15, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', goto: ['city_irinaroom', 'first6'] },
   ]);
@@ -186,6 +195,7 @@ function enterFirst6(s: GameState, scene: SceneBuilder): void {
   scene.text('Between moans, she says "Don\'t stop, please. I\'m all yours…"');
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fondle her breasts', goto: ['city_irinaroom', 'first7'] },
   ]);
@@ -197,6 +207,7 @@ function enterFirst7(s: GameState, scene: SceneBuilder): void {
   scene.text('Giving into temptation, you lower your head and start sucking and licking her hard nipples. As your hand slides down towards her pussy, Irina moans even louder in pleasure.');
   qspCall(s, 'arousal', 'foreplay_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', goto: ['city_irinaroom', 'first8'] },
   ]);
@@ -211,6 +222,7 @@ function enterFirst8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy', goto: ['city_irinaroom', 'first9'] },
   ]);
@@ -223,6 +235,7 @@ function enterFirst9(s: GameState, scene: SceneBuilder): void {
   scene.text('Your knees are weak, but you have her rise up and lick your juices from her lips. "This is only the start, I\'m so going to have fun with you," you tell her as she starts blushing…');
   qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

@@ -12,12 +12,14 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon_schedules', 'cikl_calls');
   qspCall(s, 'telefon_schedules', 'cikl_sms');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCiklCalls(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover_call', 'scheduler');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -52,6 +54,7 @@ function enterCiklSms(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mainQW ?? 0) >= 1) {
     qspCall(s, 'tatiana_lab', 'stage_SMS');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

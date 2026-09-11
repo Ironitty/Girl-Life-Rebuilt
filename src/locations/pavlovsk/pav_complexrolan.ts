@@ -228,6 +228,7 @@ function enterSpy(s: GameState, scene: SceneBuilder): void {
   scene.text(`<br>${((s as any).court_imga ?? 0)}<br>`);
   // TODO-QSP: dynamic text: <br><<$court_texta>><br>
   scene.text(`<br>${((s as any).court_texta ?? 0)}<br>`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur', 5);
@@ -527,6 +528,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

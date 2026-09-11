@@ -16,6 +16,7 @@ function enterGoshaRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('As soon as you sit down on the couch, he sits next to you and begins fondling your breasts and slowly undressing you.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop him', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
@@ -115,6 +116,7 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

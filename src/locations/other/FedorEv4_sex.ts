@@ -14,6 +14,7 @@ function enterHallSex(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor licks his finger tips then he leans forward and begins kissing you as he reaches down between your legs and rubs your vagina. You spread your legs for him, giving him easier access. You continue to kiss Fedor while enjoying his finger tips on your clit until he eventually picks you up by your shoulders and then lightly pushes you against the wall then buries his head between your legs.');
   qspCall(s, 'arousal', 'foreplay', 10, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall3.jpg');
@@ -92,6 +93,7 @@ function enter3Way(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_finger', 5, 'sub');
   qspCall(s, 'arousal', 'vaginal', (-5), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look closer', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -147,6 +149,7 @@ function enter3way1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A3');
   qspCall(s, 'arousal', 'hj', (-5), 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride Fedor', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -255,6 +258,7 @@ function enter3way2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', (-5), 'sub');
   qspCall(s, 'arousal', 'bj', (-5), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cowgirl', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -330,6 +334,7 @@ function enter3way3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A3');
   qspCall(s, 'arousal', 'hj', (-5), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Ivan\'s dick', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -448,6 +453,7 @@ function enterLivingroom1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'arousal', 'bj', (-5), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride him', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -524,6 +530,7 @@ function enterLivingroom2(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor gets up off the sofa to remove his pants as you crawl on the sofa up to him and grab his dick then lightly pull it to your face as you wrap your lips around it and begin sucking Fedor\'s dick. Fedor leans his hips forward gently pushing his cock deeper down your throat as you open your mouth wider to welcome it. You stare into his eyes as he rubs your cheeks in an adoring manner. After a few minutes Fedor lightly pull away from you then moves closer to you.');
   qspCall(s, 'arousal', 'bj', 5, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -600,6 +607,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/sex/ball1.mp4');
   scene.text('');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lay on the ball', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -709,6 +717,7 @@ function enterBathroom1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('You pull off of Fedor then tell him "I have to use the bathroom real quick. I\'ll be right back." You then get up, turn away and walk to the bathroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to bathroom', goto: ['FedorEv4', 'Bathroom'] },
   ]);
@@ -723,6 +732,7 @@ function enterBathroomCam(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You pull down your pants and sit on the toilet as you ponder what you and Fedor ...
   scene.text(`You pull down your pants and sit on the toilet as you ponder what you and Fedor will do today. You are so lost in though, that you don't even notice that Fedor has entered the room until you see his shadow loom over your feet. You look up to see Fedor holding a camera and can't help but laugh when you see a goofy look on his face as he stands there recording you. Fedor then asks "Hey ${((s as any).pcs_firstname ?? 0)} care to put on a show for the camera?"`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/Cam/cam2.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds like fun', goto: ['FedorEv4_sex', 'Bathroom Cam 2'] },
     { label: 'No', handler: (st: GameState) => {
@@ -759,6 +769,7 @@ function enterBathroomCam2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/Cam/cam3.jpg');
   scene.text('Fedor happily lifts your shirt as he asks "How about you take off that shirt and show me your tits?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take off your shirt', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -944,6 +955,7 @@ function enterBathroom2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/sex1.jpg');
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/sex2.jpg');
@@ -1006,6 +1018,7 @@ function enterBathroom3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/sex4.jpg');
   qspCall(s, 'arousal', 'vaginal', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'VKwip', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bathroom/Toilet/sex5.jpg');
@@ -1063,6 +1076,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
   scene.text('As soon as you enter the kitchen Fedor grabs you by your hips then spins you around and lightly pushes you against the counter as he begins kissing you lustfully. You break off the kiss and drop to your knees in front of him then begin licking the tip of Fedor\'s penis causing him to moan. You lick his dick a few more times then slowly wrap your lips around his shaft, trying to take the full length into your mouth.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/sex/kitchen.mp4');
@@ -1123,6 +1137,7 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the kitchen with Fedor and he begins kissing your neck as he lightly grabs and squeezes your breasts. Fedor\'s hands raises up to your shoulders, he then pushes you onto your knees and then presses his penis against your lips You welcome his dick inside your mouth by opening up and wrapping your lips around Fedor\'s dick, licking and sucking his cock as you rub on his balls with your finger tips.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/sex/kitchen4.jpg');
@@ -1189,6 +1204,7 @@ function enterBedroomCam(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: As you both enter the bedroom, Fedor walks up to his desk then opens a drawer an...
   scene.text(`As you both enter the bedroom, Fedor walks up to his desk then opens a drawer and pulls out a camera. He turns to you. "Hey ${((s as any).pcs_nickname ?? 0)}, how about we make a little video, just for us?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sounds good to me', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
@@ -1374,6 +1390,7 @@ function enterBedroom1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 5, 'sub');
   qspCall(s, 'arousal', 'foreplay', (-5), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him off', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/sex/hj1.mp4');
@@ -1543,6 +1560,7 @@ function enterBedroom2(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor begins kissing you passionately as he reaches out for your hands. You continue kissing as your hands meet up and you both interlock your fingers which gives you a warm feeling inside feeling Fedor\'s fingers wrapped around yours, his lips on yours, his tongue caressing yours, his chest pressed against yours and his heart beating at the same pace as yours. Fedor gently pulls away from your lips then asks "What do you desire, my love?"');
   qspCall(s, 'arousal', 'kiss', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vag.mp4');
@@ -1738,6 +1756,7 @@ function enterBedroom3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'arousal', 'vaginal_vibe', (-5), 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/sex/caress2.mp4');
@@ -1774,6 +1793,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the shower.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Invite him in', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

@@ -49,12 +49,14 @@ function enterInitBreasttissue(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation ?? {})['alveoliexpandlvl_change'] = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetUseableCupsize(s: GameState, scene: SceneBuilder): void {
   ((s as any).lactation ?? {})['useable_cupsize'] = ((s as any).pcs_mass ?? {})?.['bust'] + ((s as any).bodyVars ?? {})?.['bust_bonus'] + ((s as any).bodyVars ?? {})?.['bust_lact'] + ((s as any).bodyVars ?? {})?.['bust_magic'] + ((s as any).bodyVars ?? {})?.['bust_other'] - ((s as any).bodyVars ?? {})?.['vofat'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +131,7 @@ function enterBsizetoccm(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -203,6 +206,7 @@ function enterBccmtosize(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +230,7 @@ function enterLactationBreastGrowth(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lact_lib', 'init_breasttissue');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -257,6 +262,7 @@ function enterShowBreastStat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: lactation['breastmv'] = <<lactation['breastmv']>>
   scene.text(`lactation['breastmv'] = ${((s as any).lactation ?? 0)?.['breastmv']}`);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -366,6 +372,7 @@ function enterProdMilk(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -414,6 +421,7 @@ function enterBreastEngorment(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -424,6 +432,7 @@ function enterLactSwitch(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lact_lib', 'lact_off');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,6 +458,7 @@ function enterLactOn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lact_lib', 'breastcycle');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -468,6 +478,7 @@ function enterLactOff(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lact_lib', 'breastcycle');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -631,6 +642,7 @@ function enterBreastcycle(s: GameState, scene: SceneBuilder): void {
     ((s as any).lactation ?? {})['milkgrowday'] = ((s as any).daystart ?? 0);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -647,6 +659,7 @@ function enterLactateOptout(s: GameState, scene: SceneBuilder): void {
   ((s as any).lactation ?? {})['lactaterate'] = 0;
   ((s as any).lactation ?? {})['dailyoverdemand'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -689,6 +702,7 @@ function enterGetSuckflowrate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -708,6 +722,7 @@ function enterGetMaxnipflowrate(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (8000 + ((s as any).lactation ?? {})?.['nip_flow_mod']);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -738,6 +753,7 @@ function enterGetMoodmod(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).lactation ?? 0)?.['moodmod'];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -773,6 +789,7 @@ function enterGetSorenessmod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -838,6 +855,7 @@ function enter_getBreastmilkTime(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -984,6 +1002,7 @@ function enter_getBreastmilk(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1044,6 +1063,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

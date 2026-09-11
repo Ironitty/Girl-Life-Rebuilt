@@ -34,6 +34,7 @@ function enterAlbina_3some(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch', goto: ['artem_alb_sex', 'game'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -151,6 +152,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -162,6 +164,7 @@ function enterAlbina_3someCuniDom(s: GameState, scene: SceneBuilder): void {
   scene.text('"Shut up and suck my dick like a good little slut!" he orders as he stands next to the bed, his rock hard cock twitching in anticipation.');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Albina gives Artem a blowjob', goto: ['artem_alb_sex', 'albina_3some_bj_dom'] },
   ]);
@@ -176,6 +179,7 @@ function enterAlbina_3someCuni(s: GameState, scene: SceneBuilder): void {
   scene.text('Artem grins as he sits back on her bed, his rock hard cock visibly twitching in anticipation.');
   qspCall(s, 'arousal', 'voyeur_sex', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Albina gives Artem a blowjob', goto: ['artem_alb_sex', 'albina_3some_bj'] },
   ]);
@@ -188,6 +192,7 @@ function enterAlbina_3someCuni2(s: GameState, scene: SceneBuilder): void {
   scene.text('You eat her out for a few minutes before Artem suddenly pulls you away and you see him standing next to you stroking his cock before he grabs your hair in his hand and pulls you over to him.');
   qspCall(s, 'arousal', 'cuni_give', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', goto: ['artem_alb_sex', 'albina_3some_doggy_dom'] },
   ]);
@@ -203,6 +208,7 @@ function enterAlbina_3someBjDom(s: GameState, scene: SceneBuilder): void {
   scene.text('"Get this slut\'s pussy nice and wet for me!" he barks.');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', goto: ['artem_alb_sex', 'albina_3some_cuni2'] },
   ]);
@@ -215,6 +221,7 @@ function enterAlbina_3someBj(s: GameState, scene: SceneBuilder): void {
   scene.text('"I didn\'t know you had a tongue piercing! Fuck, it feels so good!" he moans before he places his hand on the back of her head and encourages her to go deeper. She gags slightly as she obediently deepthroats him.');
   qspCall(s, 'arousal', 'voyeur_sex', (-2));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A2');
@@ -244,6 +251,7 @@ function enterAlbina_3someDoggyDom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', (-2));
   qspCall(s, 'arousal', 'cuni', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy it', goto: ['artem_alb_sex', 'albina_3some_rough'] },
   ]);
@@ -260,6 +268,7 @@ function enterAlbina_3someDoggy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 2);
   qspCall(s, 'arousal', 'cuni', (-2), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Swap with Albina', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A2');
@@ -291,6 +300,7 @@ function enterAlbina_3someBjDouble(s: GameState, scene: SceneBuilder): void {
   scene.text('Curious, you stop riding Artem as you watch Albina climb off of him and motion for you to do the same. You do as she asks and join her as she kneels next to his cock.');
   scene.text('"Your boyfriend has a pretty nice cock," she says teasingly, more to Artem than you. "How about we share it at the same time?"');
   scene.text('You nod and start jerking Artem\'s cock as Albina watches. Glancing up at Artem, you can see that he\'s just as surprised as he is curious.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 2);
@@ -339,6 +349,7 @@ function enterAlbina_3someRough(s: GameState, scene: SceneBuilder): void {
   scene.text('Albina gazes up at him while biting her lower lip. "Is that so? Then prove it."');
   scene.text('His gaze hardens and he starts ramming his cock into her pussy while roughly kneading her breast in his hand, causing her to moan and gasp loudly in pleasure.');
   scene.text('"Fuck yeah, pound my tight little pussy! Harder!" she squeals as Artem thrusts himself balls deep into her, the bed squeaking loudly beneath them as you continue watching.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
     scene.text('You continue watching Artem roughly pound Albina, who gropes at her breasts as she moans in pleasure. After a few minutes, he pulls out again.');
@@ -371,6 +382,7 @@ function enterAlbina_3someRough1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Fuck, you two sluts look fucking hot like this!" he grunts as you glance back and watch his cock sliding in and out of Albina\'s wet pussy.');
   scene.text('After a few minutes, he switches back to you. As he fucks you, he grabs Albina\'s legs and wraps them behind your back, the two of you now entangled in each other as he gives you a few deep thrusts before switching back to Albina.');
   scene.text('He continues alternating between fucking the two of you before he starts grunting that he\'s about to cum.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Climax', goto: ['artem_alb_sex', 'albina_3some_cumshot'] },
   ]);
@@ -380,6 +392,7 @@ function enterAlbina_3someRough1(s: GameState, scene: SceneBuilder): void {
 function enterAlbina_3someSwallow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/sex/artem/threesome_bj4.jpg');
   scene.text('Artem lets out a loud satisfied sigh as Albina pops his spent cock out of her mouth.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her swallow it and get cleaned up', goto: ['artem_alb_sex', 'albina_3some_cleanup'] },
     { label: 'Kiss her', handler: (st: GameState) => {
@@ -406,6 +419,7 @@ function enterAlbina_3someCumshot(s: GameState, scene: SceneBuilder): void {
   scene.text('"You\'re going to lick up every last drop like the little slut you are!" he barks.');
   scene.text('You glance back and watch as Albina obediently starts licking the cum from your ass, seemingly enjoying having Artem degrade and dominate her.');
   scene.text('Once she\'s finished, Artem grins smugly. "Good. Now kiss her with that slutty mouth. And don\'t spill a drop!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be kissed', handler: (st: GameState) => {
     ((s as any).AlbinaQW ?? {})['artem_dom'] = 1;
@@ -453,6 +467,7 @@ function enterAlbina_3someCleanup(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "It\'s time for us to go."');
     scene.text('He smiles back and you both leave Albina\'s room.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask how he feels', goto: ['artem_alb_sex', 'how_he_feels_sex'] },
   ]);
@@ -489,6 +504,7 @@ function enterHowHeFeels(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,6 +530,7 @@ function enterHowHeFeelsBj(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['uni_dorm', 'elevator'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -622,6 +639,7 @@ function enterHowHeFeelsSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -647,6 +665,7 @@ function enterAlbina_3some2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let Albina suck his dick', goto: ['artem_alb_sex', 'albina_3some2_bj_alb'] },
     { label: 'Suck his dick yourself', goto: ['artem_alb_sex', 'albina_3some2_bj_sveta'] },
@@ -671,6 +690,7 @@ function enterAlbina_3some2BjAlb(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', handler: (st: GameState) => {
     scene.img('images/shared/sex/lesbian/ukuni11.jpg');
@@ -854,6 +874,7 @@ function enterAlbina_3some2BjSveta(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2);
   qspCall(s, 'arousal', 'cuni', (-2), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Mount him', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A2');
@@ -958,6 +979,7 @@ function enterAlbina_3some2AnalAlb(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 2);
   qspCall(s, 'arousal', 'kiss', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['artem_alb_sex', 'albina_3some2_creampie_alb'] },
   ]);
@@ -980,6 +1002,7 @@ function enterAlbina_3some2AnalSveta(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 2, 'lube');
   qspCall(s, 'arousal', 'voyeur', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A2');
@@ -1013,6 +1036,7 @@ function enterAlbina_3some2CreampieAlb(s: GameState, scene: SceneBuilder): void 
   }
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/artem/threesome_bj5.jpg');
@@ -1048,6 +1072,7 @@ function enterAlbina_3some2CreampieSveta(s: GameState, scene: SceneBuilder): voi
     scene.text('Once he\'s done, he pulls out of you and sits back. Before you can react, Albina pulls you on top of her and you gasp when you feel her tongue eagerly lapping away at your asshole, licking up Artem\'s cum as it leaks out of you.');
   }
   scene.text('When you pull away, you look back and see her rolling up onto her knees and showing off her cum covered tongue to Artem.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her swallow it and get cleaned up', goto: ['artem_alb_sex', 'albina_3some2_cleanup'] },
     { label: 'Kiss her', handler: (st: GameState) => {
@@ -1236,6 +1261,7 @@ function enterAlbina_3some2Cleanup(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1332,6 +1358,7 @@ function enterAlbina_3someRepeating(s: GameState, scene: SceneBuilder): void {
       { label: 'Have another threesome', goto: ['artem_alb_sex', 'albina_3some3_threesome'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1345,6 +1372,7 @@ function enterAlbina_3some3Solo(s: GameState, scene: SceneBuilder): void {
   scene.text('The room is soon filled with the sounds of both Artem\'s moans and Albina gagging and slurping as she sucks his dick.');
   scene.text('After a few minutes, he abruptly slides his cock out of her mouth, but offers her no reprieve as she gasps for air.');
   scene.text('"Open wide, slut!" he orders. "I\'m going to fuck your throat now."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur_sex', 3);
@@ -1540,6 +1568,7 @@ function enterSoloAftermath(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1556,6 +1585,7 @@ function enterAlbina_3some3Threesome(s: GameState, scene: SceneBuilder): void {
     scene.text('"Think you can handle us both sucking your dick at the same time again?" she teasingly asks Artem.');
     scene.text('You start jerking Artem\'s already rock hard cock in your hand. Glancing up at him, you see a smug, yet happy grin on his face.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 2);
@@ -1685,6 +1715,7 @@ function enterAlbina_3some3Aftermath(s: GameState, scene: SceneBuilder): void {
   scene.text('You all bask in the afterglow for a few minutes before Albina moves to get ready.');
   scene.text('She smiles as she pulls her yoga pants back on. "I\'ll see you guys around, but give me a text next time you want to have some more fun."');
   scene.text('Artem smiles and you nod as she seductively walks over to the door. She gives Artem a shake of her ass before she opens the door and steps out.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('"I should get going myself," you tell Artem as you give him a kiss. "I have some things I need to do."');

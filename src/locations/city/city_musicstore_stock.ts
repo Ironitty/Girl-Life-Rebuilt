@@ -158,6 +158,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_musicstore', ''] },
   ]);
@@ -269,6 +270,7 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_musicstore', ''] },
   ]);
@@ -344,6 +346,7 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_musicstore', ''] },
   ]);
@@ -385,6 +388,7 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_musicstore', ''] },
   ]);

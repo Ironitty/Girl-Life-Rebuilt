@@ -96,6 +96,7 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to go with Katja', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -233,6 +234,7 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to go with Katja', handler: (st: GameState) => {
     if (((s as any).katjaQW ?? 0)?.['party_location'] === 1) {
@@ -279,6 +281,7 @@ function enterPartyPreparations(s: GameState, scene: SceneBuilder): void {
   scene.text('"I need to finish prepping. I still need to do my makeup," Katja says as she starts moving around.');
   scene.text('"Let me see how you look," Katja says, stopping and turning around to look at you.');
   qspCall(s, 'katja_party', 'part_dress_check');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -288,6 +291,7 @@ function enterPartyLookApproval(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised2.jpg');
   scene.text('You show yourself to Katja again. "OK. Let\'s see how you look now," she says and takes a good look at you.');
   qspCall(s, 'katja_party', 'part_dress_check');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -419,6 +423,7 @@ function enterPartDressCheck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -429,6 +434,7 @@ function enterPartyPreparationsFinal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "What do you think, <<$pcs_nickname>>?" she asks.
   scene.text(`"What do you think, ${((s as any).pcs_nickname ?? 0)}?" she asks.`);
   scene.text('"I don\'t know. Show me some more," you say with a wink.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue the show', handler: (st: GameState) => {
     if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  (Math.floor(Math.random() * 2) + 0) === 0  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 99  ||  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] > 4)) {
@@ -886,6 +892,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

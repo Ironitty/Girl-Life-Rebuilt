@@ -41,6 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the club', goto: ['city_suburbs', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Foyer (no role set)', goto: ['bdsm_hallway', 'foyer'] },
   ]);

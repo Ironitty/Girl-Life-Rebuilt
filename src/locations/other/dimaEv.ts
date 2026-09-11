@@ -76,6 +76,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Dimka', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -101,6 +102,7 @@ function enterDrugged(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('You take several sips as you talk with Dimka. Again he doesn\'t seem to want to chat, and appears to be waiting for something. After a while you start to feel funny. For a moment you just feel numb, then you feel yourself get aroused. The heat coming from your pussy intensifying as it soaks itself. You gasp. It is almost too much to take. You desperately need someone to fuck you. "Oh, fuck". You don\'t think this is normal. He must have laced it with something. You blink a few times trying to clear your head, but soon your thoughts grow murky.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['dimaEv', 'firstvisitsex'] },
   ]);
@@ -113,6 +115,7 @@ function enterCocaine(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/drugs/dur.jpg');
   scene.text('You sniff up the dose of powder. For a moment you just feel numb, then you feel yourself get aroused. The heat coming from your pussy intensifying as it soaks itself. You gasp. It is almost too much to take. You desperately need someone to fuck you. "Oh, fuck". You don\'t think this is normal. He must have laced it with something. You blink a few times trying to clear your head, but soon your thoughts grow murky.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['dimaEv', 'firstvisitsex'] },
   ]);
@@ -124,6 +127,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/pre.jpg');
   scene.text('You hear Dimka chuckling. It takes and eternity to turn your head and center your eyes on him. You see him looking at you intently, examining whatever has affected your brain. "Well, it looks like the drugs have taken full effect on you already." He stands up, unbuttons his pants and pulls out his dick, giving it a couple of strokes to get it hard for you. "Come here, baby, and suck on this." You stand there looking stupidly at his cock. He then sighs and, tapping it, says "Come on slut, here, take your bone."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him', handler: (st: GameState) => {
     (s as any).bja = ((s as any).bja ?? 0) + (1);
@@ -332,6 +336,7 @@ function enterCleanup(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You are shocked. Once he sees that you understand he adds, "If you don\'t do as I say and come by here once a week to see to my needs, I will make sure everyone in school and your house gets this video."');
   scene.text('At his threat, your blood runs cold and you go pale, you know what this would mean to your reputation, not counting how your mother would react.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run out of his house', goto: ['pav_residential', ''] },
     { label: 'Plead', goto: ['dimaEv', 'plead'] },
@@ -344,6 +349,7 @@ function enterPlead(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Dimka\'s Room</b></center>');
   scene.img('images/pc/reactions/tears1.jpg');
   scene.text('You start begging and pleading him not to do this and to give you the video. But laughter is all the confirmation you need that, no matter what you say he won\'t give it to you. Tears begin to spill from your eyes, as you realize you\'re trapped and powerless, a plaything for him, as long as that video exists. Not knowing what else to do, you gather your stuff and run out of his house, his laughter echoes in your ears.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run out of his house', goto: ['pav_residential', ''] },
   ]);
@@ -398,6 +404,7 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -410,6 +417,7 @@ function enterDimkawarns(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 15, 'rough', 'rape');
   qspCall(s, 'pain', '', 3, 'vaginal', 'tear');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
     (s as any).face_write = 1;
@@ -455,6 +463,7 @@ function enterDimkaplays(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Snort', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -475,6 +484,7 @@ function enterDimkaplays2(s: GameState, scene: SceneBuilder): void {
   (s as any).dimasexday = ((s as any).daystart ?? 0);
   (s as any).dimadalrand = Math.floor(Math.random() * 13) + 0;
   scene.actions([{ label: 'Continue', goto: ['dimaEv', 'dimkaabuse<<dimadalrand>>'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -483,6 +493,7 @@ function enterDimkaabuse0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 2, 'armL', 'bind');
   qspCall(s, 'stat', '');
   scene.text('Dimka looks at you with an indifferent grin as he examines your body. He walked over to the closer and rummages in it, taking out a few things. He comes up to you and roughly pulls your hands behind your back. You hear the distinctive clicking of handcuffs and you feel the cold steel tighten on your wrists. He comes up to you from behind and shoves a metal ring that has leather straps attached to it into your mouth. He quickly buckles the belt tightly behind your head before you can attempt to spit out the ring.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -528,6 +539,7 @@ function enterDimkaabuse1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'pain', '', 2, 'throat', 'stretch');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -548,6 +560,7 @@ function enterDimkaabuse2(s: GameState, scene: SceneBuilder): void {
   scene.text(`Ignoring foreplay, Dimka push his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock through your vaginal lips. Pain from the rape, bondage, forced position and, especially, the humiliation make you cry. "Peee." That stupid sound is the only thing that you can make. Dimka seems to enjoy it, and his laughs are probably the worst. "Peee". He tries to fuck you hard, but the wheel makes you drive away. Eventually he forces you against the wall pounding himself balls deep into your pussy, instead of moaning, you make funny clown sounds."Peee."`);
   qspCall(s, 'dinsex', 'sexcum');
   scene.text('At last he bends over you, nailing the steering wheel with his weight on your back. Pain rises all over your body. He is cumming. Then, slowly, Dimka get up, and without a word go to take a shower. You are left crying and sore. It takes a while to slowly undo all the stupid set, all the time sobbing in a corner of the room. Once Dimka end showering he walk over to you "What the fuck are you doing here".');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -563,6 +576,7 @@ function enterDimkaabuse3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/car.jpg');
   scene.text('Dimka binds and ties your knees with a pair of little carts, tie you up with rope, attach a steering wheel to your back, covers your face in blue clown makeup and finally, puts a clown horn in your mouth and tapes it in place. "You know. I have been asking my father for a car. He says no. That I must wait until eighteen. So… I will comfort with you." Smilling, he put himself in position to shove his dick.');
   qspCall(s, 'dinSex', 'boy_wants_anal', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -588,6 +602,7 @@ function enterDimkaabuse4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/nar.jpg');
   scene.text('Dimka ties your hands tightly behind your back, then ties your legs so that they are fully folder under you. He puts a collar on you and drags you to a post where a dildo has been taped in place. Dimka makes you take the dildo in your mouth, then he ties the collar to the post so that you can not get the dildo out of your mouth. Just when you think Dimka has finished with you, he pulls the rope on your collar forcing the dildo down your throat. Dimka begins to enjoy the sight of your face reddened by suffocation, while streams of snot, saliva and tears run down your face. You choke with the dildo in your throat and you can feel that your body keeps trying to vomit. You start to fear that this is how you will die, choked with a dildo down your throat. As you start to lose consciousness, Dimka finally frees you and you are able to finally breathe freely.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -607,6 +622,7 @@ function enterDimkaabuse5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/spank.jpg');
   scene.text('Dimka ties you to a pole. Then he shows you a leather whip. "You know slut. I am really am understanding individual. And what I think you need, is a little of discipline. So… Let see if I can help you." He begins to whip your ass. "One." Sharp flashes of pain burn through your drug induced euphoria and you begin screaming. "Two." You beg Dimka to stop. "Three." You sob and fight against the bonds. "Four." You understand that this is only the beginning. After several more, Dimka is satisfied and releases you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -632,6 +648,7 @@ function enterDimkaabuse6(s: GameState, scene: SceneBuilder): void {
     scene.text('When he finally gets bored, Dimka pierces your nipples with metal bars, then sets you free.');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -655,6 +672,7 @@ function enterDimkaabuse7(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'piercing_management', 'add', 'tongue', 1);
     scene.text('When he gets bored of watching you in pain, Dimka pulls the needles, pierces your tongue with a metal bar, then sets you free');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -676,6 +694,7 @@ function enterDimkaabuse8(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'piercing_management', 'add', 'pussy', 1);
     scene.text('When he gets bored of watching you in pain, Dimka takes the pins out of your pussy, pierces your clitoris, then sets you free');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -694,6 +713,7 @@ function enterDimkaabuse9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 15, 'humiliation', 'sub');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -705,6 +725,7 @@ function enterDimkaabuse10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('Dimka closed the door to his room and turned to you, "Take off your clothes."');
   scene.text('He smirks indifferently as he examines your body, then goes to the closet and rummages around in it before taking something out. He walks up to you and turns you around roughly, pulling your hands behind your back. You hear the click of handcuffs locking and you feel the cold steel on your wrists. He walks up to you and pushes a ring into your mouth before buckling the attached straps behind your head, holding it firmly in place.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A1');
@@ -734,6 +755,7 @@ function enterDimkaabuse10(s: GameState, scene: SceneBuilder): void {
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['dimalina', 'dimkalina0'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -775,6 +797,7 @@ function enterDimkaWarning(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

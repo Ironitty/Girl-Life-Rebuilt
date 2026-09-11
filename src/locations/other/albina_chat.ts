@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Make small talk', goto: ['albina_chat', 'small_talk2'] },
@@ -29,10 +30,12 @@ function enterChatExit(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['albinahome', 'bedroom'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSmallTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Keep talking', goto: ['albina_chat', 'small_talk2'] },
@@ -66,10 +69,12 @@ function enterSmallTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTopicMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about people', handler: (st: GameState) => {
     qspCall(s, 'albina_chat', 'maid_conversation');
@@ -196,6 +201,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -318,6 +324,7 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,6 +382,7 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -386,6 +394,7 @@ function enterAlbinaPornRant1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "After everything I protected you from, you let yourself get talked into being f...
     scene.text(`"After everything I protected you from, you let yourself get talked into being fucked on camera just for some cash?" she sneers back. "I can't believe you'd stoop to doing something so disgusting, ${((s as any).pcs_nickname ?? 0)}."`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -395,6 +404,7 @@ function enterAlbinaPornRant2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Ugh, gross!" she sneers. "I can\'t believe after everything I protected you from, you\'re willing to get fucked on camera just for some extra cash. I can\'t imagine doing porn, especially with all the videos and images of me that are likely floating around out thanks to my father\'s creep friends. Like I\'d want to add any more to their collection."');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -404,10 +414,12 @@ function enterPornstarTalk2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'albina_chat', 'pornstar_talk2.3');
   qspCall(s, 'albina_chat', 'pornstar_talk2.4');
   qspCall(s, 'albina_chat', 'pornstar_talk2.5');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPornstarTalk2_1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'What\'s wrong with porn?', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] === 'embarrassed') {
@@ -432,6 +444,7 @@ function enterPornstarTalk2_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk2_2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I need the money (ashamed)', handler: (st: GameState) => {
     scene.text('"It\'s not my first choice of job," you admit, a sharp arrow of shame piercing your chest at your friend\'s judgemental tone. "But I really need the money right now…"');
@@ -464,10 +477,12 @@ function enterPornstarTalk2_3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPornstarTalk2_4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I want to afford nice stuff', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] === 'embarrassed') {
@@ -484,6 +499,7 @@ function enterPornstarTalk2_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk2_5(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s fun', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] === 'embarrassed') {
@@ -500,6 +516,7 @@ function enterPornstarTalk2_5(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk3_1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to disagree', handler: (st: GameState) => {
     scene.text('"Whatever," you sigh. "Let\'s just talk about something else."');
@@ -511,6 +528,7 @@ function enterPornstarTalk3_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk3_2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get mad', handler: (st: GameState) => {
     ((s as any).AlbinaQW ?? {})['porn_fight'] = 1;
@@ -544,6 +562,7 @@ function enterPornstarTalk3_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'What\'s wrong with porn?', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] === 'embarrassed') {
@@ -564,6 +583,7 @@ function enterPornstarTalk4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk4_1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I need the money (ashamed)', handler: (st: GameState) => {
     scene.text('"It\'s not my first choice of job," you admit. "But I really need the money right now…"');
@@ -576,6 +596,7 @@ function enterPornstarTalk4_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk4_2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I need the money (casual)', handler: (st: GameState) => {
     scene.text('You shrug. "I need the money and it pays decently well."');
@@ -588,6 +609,7 @@ function enterPornstarTalk4_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk4_3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s fun', handler: (st: GameState) => {
     if (((s as any).AlbinaQW ?? 0)?.['porn_talk'] === 'embarrassed') {
@@ -604,6 +626,7 @@ function enterPornstarTalk4_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornstarTalk4_4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Avoid talking about it', handler: (st: GameState) => {
     scene.text('"You sigh. "Let\'s just talk about something else."');
@@ -623,6 +646,7 @@ function enterPornstarTalk4_5(s: GameState, scene: SceneBuilder): void {
   scene.text('She gives you a small smile. "You know it! Should we talk about something else now?"');
   scene.text('"Yeah," you smile back.');
   qspCall(s, 'albina_chat', 'small_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -679,6 +703,7 @@ function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'G&M', handler: (st: GameState) => {
     scene.text('"I get most of mine from G&M," you admit.');
@@ -836,10 +861,12 @@ function enterCommandoTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCommandoReply(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I don\'t remember', handler: (st: GameState) => {
     scene.text('"I…" you start to say before trailing off. "… I don\'t remember actually…"');
@@ -912,6 +939,7 @@ function enterCommandoReply(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubeTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask about her pubes', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1073,10 +1101,12 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGrowPubesChat1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Growing it out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1094,6 +1124,7 @@ function enterGrowPubesChat1(s: GameState, scene: SceneBuilder): void {
 
 function enterGrowPubesChat2(s: GameState, scene: SceneBuilder): void {
   scene.text('She wrinkles her nose in disgust. "Ew! Why the fuck would you do that?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change of pace', handler: (st: GameState) => {
     scene.text('"No reason," you shrug back. "Change of pace I guess. Might feel nice having some hair down there again."');
@@ -1130,6 +1161,7 @@ function enterGrowPubesChat2(s: GameState, scene: SceneBuilder): void {
 function enterPubeExplainChat1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pube_style ?? 0)?.['shape'] !== 'bush') {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1141,6 +1173,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('"Who?" she asks with a confused look on her face.');
   scene.text('You shake your head. "You won\'t know him. I only just met him."');
   scene.text('"Some random guy you just bumped into? I\'m sure that will end well…" she sarcastically quips before you tell her about him and how you met.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
@@ -1153,6 +1186,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You sigh in a way only those who are in love can. "Hopefully <<$ARGS[1]>> and I ...
   scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
   scene.text('She gives you a somewhat skeptical look, then shrugs. "Best of luck with that, I guess. I\'m happy just hooking up for casual sex. Relationships can suck it."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
@@ -1179,6 +1213,7 @@ function enterMaidConversation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1210,6 +1245,7 @@ function enterLazarConversation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1329,6 +1365,7 @@ function enterLoverConversation(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'albina_chat', 'lover_kolka_talk');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1358,6 +1395,7 @@ function enterLoverNikoTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1383,6 +1421,7 @@ function enterLoverFedorTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1401,6 +1440,7 @@ function enterLoverVitekTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1427,6 +1467,7 @@ function enterLoverArtemTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1446,6 +1487,7 @@ function enterLoverRexTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1547,6 +1589,7 @@ function enterLoverKolkaTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1615,14 +1658,17 @@ function enterZoyaConversation(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClothingConversation(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFunTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about life', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1661,6 +1707,7 @@ function enterFunTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExerciseTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'How does you keep fit?', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1675,6 +1722,7 @@ function enterExerciseTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExerciseReply(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not since Starlets', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1718,6 +1766,7 @@ function enterExerciseReply(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDietTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask what she eats', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -1730,6 +1779,7 @@ function enterDietTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask what she wears to bed', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/sleep1.jpg');
@@ -1784,6 +1834,7 @@ function enterPajamaTalk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNikoHelpTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask for help with Niko', handler: (st: GameState) => {
     ((s as any).AlbinaQW ?? {})['niko_help'] = 1;
@@ -1844,6 +1895,7 @@ function enterArtemThreesome(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1875,6 +1927,7 @@ function enterArtemThreesome1(s: GameState, scene: SceneBuilder): void {
       scene.text(`She smiles again. "I'll hold you to that, ${((s as any).pcs_nickname ?? 0)}. Bring him here again on Sunday night and we'll see."`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
@@ -1942,6 +1995,7 @@ function enterBlackGuy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, but it still feels embarrassing to have told you that...
     scene.text(`"Thanks ${((s as any).pcs_nickname ?? 0)}, but it still feels embarrassing to have told you that."`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
@@ -1959,6 +2013,7 @@ function enterClubBj(s: GameState, scene: SceneBuilder): void {
   scene.text('"I didn\'t think you\'d ever do something like that," you reply.');
   scene.text('"Neither did I," she says with a small smile. "I was against it at first, but I slowly came round to it after I realized that I wasn\'t being forced to do it. Like I said, it\'s my choice if I do it or not, and that made me more comfortable with the idea."');
   scene.text('"Okay," you smile. "As long as you\'re comfortable with it, then I won\'t say anything more about it."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', goto: ['albina_chat', 'chat'] },
     { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },

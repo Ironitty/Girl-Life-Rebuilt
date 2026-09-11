@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -18,10 +19,12 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'setloc', ((s as any).curloc ?? 0), ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'core_library', 'stage_title');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNavigation(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Mariinsky Theatre', goto: ['city_mariinsky', 'start'] },
     { label: 'Canals', goto: ['city_canals', 'start'] },
@@ -31,20 +34,24 @@ function enterNavigation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $curloc, 'setup', $ARGS[0]
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDates(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPark(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

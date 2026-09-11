@@ -1,28 +1,12 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: makeup['routine_<<ARGS[1]>>_makeup'] > 0 and
-  // TODO-QSP: pcs_makeup < makeup['routine_<<ARGS[1]>>_makeup'] + 1 and
-  // TODO-QSP: mc_inventory['cosmetics'] >= min(makeup['routine_<<ARGS[1]>>_makeup'], 3)
-  // TODO-QSP: makeup['routine_<<ARGS[1]>>_lipbalm'] > 0 and
-  // TODO-QSP: pcs_lipbalm < makeup['routine_<<ARGS[1]>>_lipbalm'] and
-  // TODO-QSP: mc_inventory['lipbalm'] > 0
-  // TODO-QSP: makeup['routine_<<ARGS[1]>>_lashes'] > 0 and
-  // TODO-QSP: lashextensionstyle <= 0 and
-  // TODO-QSP: pcs_lashes < makeup['routine_<<ARGS[1]>>_lashes'] + 2 and
-  // TODO-QSP: ((
-  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 1;
-  // TODO-QSP: mc_inventory['eyelash_fake'] >= 1
-  // TODO-QSP: ) or (
-  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 2;
-  // TODO-QSP: mc_inventory['eyelash_mink'] >= 1
-  // TODO-QSP: ))
   scene.build();
 }
 
@@ -537,6 +521,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'makeup_routine_apply_acts_loop'
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the mirror', goto: ['mirror', 'fin'] },
     { label: 'Manage your custom make-up routines', handler: (st: GameState) => {
@@ -551,6 +536,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterGetMaxCosmeticRoutines(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 4;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +571,7 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_routine_index ?? 0) <= ((s as any).temp_max_cosmetic_routines ?? 0)) {
     // TODO-QSP: jump 'makeup_routine_manage_acts_loop'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit', goto: ['mirror', 'start'] },
     { label: 'Save routine', handler: (st: GameState) => {
@@ -676,6 +663,7 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -697,6 +685,23 @@ function enterRoutineCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
     return;
   }
+  // TODO-QSP: end
+  // TODO-QSP: makeup['routine_<<ARGS[1]>>_makeup'] > 0 and
+  // TODO-QSP: pcs_makeup < makeup['routine_<<ARGS[1]>>_makeup'] + 1 and
+  // TODO-QSP: mc_inventory['cosmetics'] >= min(makeup['routine_<<ARGS[1]>>_makeup'], 3)
+  // TODO-QSP: makeup['routine_<<ARGS[1]>>_lipbalm'] > 0 and
+  // TODO-QSP: pcs_lipbalm < makeup['routine_<<ARGS[1]>>_lipbalm'] and
+  // TODO-QSP: mc_inventory['lipbalm'] > 0
+  // TODO-QSP: makeup['routine_<<ARGS[1]>>_lashes'] > 0 and
+  // TODO-QSP: lashextensionstyle <= 0 and
+  // TODO-QSP: pcs_lashes < makeup['routine_<<ARGS[1]>>_lashes'] + 2 and
+  // TODO-QSP: ((
+  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 1;
+  // TODO-QSP: mc_inventory['eyelash_fake'] >= 1
+  // TODO-QSP: ) or (
+  ((s as any).makeup ?? {})['routine_' + String((s as any).ARGS[1] || '') + '_lashes'] = 2;
+  // TODO-QSP: mc_inventory['eyelash_mink'] >= 1
+  // TODO-QSP: ))
   scene.build();
 }
 
@@ -704,6 +709,7 @@ function enterSteam(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/home/bathroom/mirror1.jpg');
   scene.text('<center>The mirror is heavily misted. It must be wiped or left to cool.</center>');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wipe the mirror', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -746,11 +752,13 @@ function enterBrush(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['mirror', 'fin'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWorksRoutine(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gt 'mirror', 'works', makeup['routine_<<ARGS[1]>>_makeup'], makeup['routine_<<ARGS[1]>>_lipbalm'], m...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -853,6 +861,206 @@ function enterWorks(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterApplyLipbalm(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) - (1);
+    (s as any).lipkoef = ((s as any).lipkoef ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    if (((s as any).lipkoef ?? 0) > 50) {
+      (s as any).lipkoef = 0;
+      (s as any).pcs_lip = ((s as any).pcs_lip ?? 0) + (1);
+    }
+    (s as any).pcs_lipbalm = ((s as any).pcs_lipbalm ?? 0) + (8);
+    scene.text('You apply some moisturizing balm on your lips.');
+  }
+  // TODO-QSP: end & !! --- applyLipbalm ---
+  scene.build();
+}
+
+function enterApplyLashesmink(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['eyelash_mink'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 4) {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    ((s as any).mc_inventory ?? {})['eyelash_mink'] = (((s as any).mc_inventory ?? {})['eyelash_mink'] ?? 0) - (1);
+    if (((s as any).false_lashes ?? 0) >= 1  &&  ((s as any).pcs_lashes ?? 0) === 3) {
+      scene.text('You remove your old, plain lashes first.');
+    }
+    (s as any).false_lashes = 1;
+    (s as any).pcs_lashes = 4;
+    scene.text('You spend a good bit of time affixing your lavish, mink lash strips.');
+  }
+  // TODO-QSP: end & !! --- applyLashesmink ---
+  scene.build();
+}
+
+function enterApplyLashesplain(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).mc_inventory ?? 0)?.['eyelash_fake'] > 0  &&  ((s as any).pcs_lashes ?? 0) < 3) {
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    ((s as any).mc_inventory ?? {})['eyelash_fake'] = (((s as any).mc_inventory ?? {})['eyelash_fake'] ?? 0) - (1);
+    (s as any).false_lashes = 1;
+    (s as any).pcs_lashes = 3;
+    scene.text('You spend a fair bit of time carefully trimming and affixing your flirtatious false lashes.');
+  }
+  // TODO-QSP: end & !! --- applyLashesplain ---
+  scene.build();
+}
+
+function enterApplyMakeupDo(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  // TODO-QSP: gt 'mirror', 'works', droutine_settings['makeup_level'], 0, 0
+  // TODO-QSP: end & !! --- apply_makeup_do ---
+  scene.build();
+}
+
+function enterBrushHairDo(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + (Math.min(15, Math.max(1, ((s as any).pcs_hairlng ?? 0) / 80)));
+  (s as any).pcs_hairbsh = 1;
+  scene.img(`${qspFunc(s, '$face_image', '')}`);
+  scene.text('You brush your hair.');
+  // TODO-QSP: end & !! --- brush_hair_do ---
+  scene.actions([
+    { label: 'Done', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterLipbalmDo(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'mirror', 'applyLipbalm');
+  scene.img('images/pc/activities/routine/2.jpg');
+  scene.text('You apply some moisturising balm to your lips.');
+  // TODO-QSP: end & !! --- lipbalm_do ---
+  scene.actions([
+    { label: 'Done', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterApplyLashesDo(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  if (((s as any).droutine_settings ?? 0)?.['lashes_type'] === 1) {
+    qspCall(s, 'mirror', 'applyLashesplain');
+  } else {
+    if (((s as any).droutine_settings ?? 0)?.['lashes_type'] === 2) {
+      qspCall(s, 'mirror', 'applyLashesmink');
+    }
+  }
+  // TODO-QSP: end & !! --- apply_lashes_do ---
+  scene.actions([
+    { label: 'Done', handler: (st: GameState) => {
+    qspCall(st, 'daily_routine', 'finish_step', 'mirror', 'start');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterFin(s: GameState, scene: SceneBuilder): void {
+  scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'locM', 'locM_arg'); } }]);
+  // TODO-QSP: end & !! --- fin ----
+  scene.build();
+}
+
+function enterDBagMirror(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.text('<center><h1>Compact Mirror</h1></center>');
+  scene.img('images/pc/items/mirror_compact.jpg');
+  scene.text('<center><table cellspacing="0" cellpadding="20" valign="top"><tr>');
+  scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
+  // TODO-QSP: dynamic text: You have ' + iif(mc_inventory['travel_makeup'] > 0, '<b><<mc_inventory['travel_m...
+  scene.text(`You have ' + iif(mc_inventory['travel_makeup'] > 0, '<b>${((s as any).mc_inventory ?? 0)?.['travel_makeup']}</b>', 'no') + ' cosmetic applications and ' + iif(mc_inventory['makeup_wipes'] > 0, '<b>${((s as any).mc_inventory ?? 0)?.['makeup_wipes']}</b>', 'no') + ' tissues left in your purse.`);
+  if (((s as any).pcs_hairbsh ?? 0) < 1  &&  ((s as any).mc_inventory ?? 0)?.['comb'] === 1) {
+    scene.text('<a href="exec: pcs_hairbsh = 1 & gt \'mirror\', \'d_bag_mirror\'"><b>Brush your hair</b></a>');
+  }
+  if ((!((s as any).pcs_makeup ?? 0))) {
+    if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
+      scene.text('<a href="exec: mc_inventory[\'makeup_wipes\'] -= 1 & pcs_makeup = makeup[\'base\'] & gt \'mirror\', \'d_bag_mirror\'"><b>Clear smeared cosmetics</b></a>');
+      if (((s as any).mc_inventory ?? 0)?.['travel_makeup'] >= Math.min(((s as any).makeupSetting ?? 0), 3)) {
+        if (((s as any).makeup ?? 0)?.['base'] < ((s as any).makeupSetting ?? 0) + 1) {
+          scene.text('<a href="exec: gt \'mirror\', \'kosmetitka_fix\'"><b>Fix your makeup</b></a>');
+        }
+      } else {
+        scene.text('You need portable makeup and tissues to fix your makeup.');
+      }
+    } else {
+      scene.text('You need portable makeup and tissues to fix your makeup.');
+    }
+  } else {
+    if (((s as any).pcs_makeup ?? 0) === 1) {
+      if (((s as any).mc_inventory ?? 0)?.['travel_makeup'] > 0) {
+        // TODO-QSP: dynamic text: <a href="exec: minut += 3 & gs 'exp_gain', 'makupskl', rand(1,3) & pcs_makeup = ...
+        scene.text('<a href="exec: minut += 3 & gs \'exp_gain\', \'makupskl\', rand(1,3) & pcs_makeup = 2 & mc_inventory[\'travel_makeup\'] -= 1 & gt \'mirror\', \'d_bag_mirror\'"><b>Put on light makeup</b></a>');
+      }
+    } else {
+      if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+        if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0) {
+          scene.text('<a href="exec: mc_inventory[\'makeup_wipes\'] -= 1 & pcs_makeup = makeup[\'base\'] & gt \'mirror\', \'d_bag_mirror\'"><b>Remove your makeup</b></a>');
+        }
+      }
+    }
+    if (((s as any).pcs_lipbalm ?? 0) <= 0  &&  ((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0) {
+      scene.text('<a href="exec: gs \'mirror\', \'applyLipbalm\' & gt \'mirror\', \'d_bag_mirror\'"><b>Apply lip balm</b></a>');
+    }
+  }
+  scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Finish', goto: ['din_bad', 'd_bag'] },
+  ]);
+  scene.build();
+}
+
+function enterKosmetitkaFix(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><h1>Compact Mirror</h1></center>');
+  scene.img('images/pc/activities/routine/4.jpg');
+  ((s as any).mc_inventory ?? {})['makeup_wipes'] = (((s as any).mc_inventory ?? {})['makeup_wipes'] ?? 0) - (1);
+  qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
+  if (((s as any).makeupSetting ?? 0) === 1) {
+    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (1);
+    (s as any).pcs_makeup = 2;
+    scene.text('<center>You carefully fix your makeup and restore the neutral and light tones that bring out your natural beauty.</center>');
+  } else {
+    if (((s as any).makeupSetting ?? 0) === 2) {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (2);
+      (s as any).pcs_makeup = 3;
+      scene.text('<center>You carefully fix your makeup and restore the mildly vibrant tones and colors that cover your minor imperfections and enhance your best features.</center>');
+    } else {
+      if (((s as any).makeupSetting ?? 0) === 3) {
+        (s as any).minut = ((s as any).minut ?? 0) + 10;
+        ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (3);
+        (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
+        (s as any).pcs_makeup = 4;
+        scene.text('<center>You carefully fix your makeup and restore the deeper, richer shades, thick enough to cover most imperfections, while drawing attention to your eyes and lips.</center>');
+      } else {
+        if (((s as any).makeupSetting ?? 0) === 5) {
+          (s as any).minut = ((s as any).minut ?? 0) + 10;
+          ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (3);
+          (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
+          (s as any).pcs_makeup = 6;
+          scene.text('<center>You carefully fix your makeup and restore the bright, seductive shades, thick enough to cover most imperfections, while drawing attention in a way only a bimbo can.</center>');
+        } else {
+          if (((s as any).makeupSetting ?? 0) === 6) {
+            (s as any).minut = ((s as any).minut ?? 0) + 10;
+            ((s as any).mc_inventory ?? {})['travel_makeup'] = (((s as any).mc_inventory ?? {})['travel_makeup'] ?? 0) - (3);
+            (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
+            (s as any).pcs_makeup = 7;
+            scene.text('<center>You carefully fix your makeup and restore the makeup thick enough to cover most imperfections, while drawing attention in a way only a goth can.</center>');
+          }
+        }
+      }
+    }
+  }
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', goto: ['mirror', 'd_bag_mirror'] },
+  ]);
+  scene.build();
+}
+
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
@@ -882,6 +1090,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'works':
       enterWorks(s, scene);
+      break;
+    case 'applyLipbalm':
+      enterApplyLipbalm(s, scene);
+      break;
+    case 'applyLashesmink':
+      enterApplyLashesmink(s, scene);
+      break;
+    case 'applyLashesplain':
+      enterApplyLashesplain(s, scene);
+      break;
+    case 'apply_makeup_do':
+      enterApplyMakeupDo(s, scene);
+      break;
+    case 'brush_hair_do':
+      enterBrushHairDo(s, scene);
+      break;
+    case 'lipbalm_do':
+      enterLipbalmDo(s, scene);
+      break;
+    case 'apply_lashes_do':
+      enterApplyLashesDo(s, scene);
+      break;
+    case 'fin':
+      enterFin(s, scene);
+      break;
+    case 'd_bag_mirror':
+      enterDBagMirror(s, scene);
+      break;
+    case 'kosmetitka_fix':
+      enterKosmetitkaFix(s, scene);
       break;
     default:
       enterDefault(s, scene);

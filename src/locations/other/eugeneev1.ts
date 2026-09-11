@@ -16,6 +16,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   scene.text('After a few awkward seconds, she breaks the silence. "This may scare you, but I don\'t know how else to say it, so…" She reaches under her skirt and pulls her panties down around her ankles before slowly lifting her skirt…');
   qspCall(s, 'arousal', 'kiss', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttime2.jpg');
@@ -196,6 +197,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text(`"So, what would you like to do today, ${((s as any).pcs_nickname ?? 0)}?" she chuckles as she exposes her semi-erect cock to you. You kiss and fondle each other as you undress, and once you're both mostly naked, she grabs you by the hair and pushes you down.`);
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get on your knees', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex2.jpg');
@@ -307,6 +309,7 @@ function enterSexWork(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/eugene/sex/work1.jpg');
   scene.text('Eugene leads you into the pantry again and pushes you down on top of one of the boxes, giving you a wink before she strips you from the waist down.');
   scene.text('She pulls off her pants and skirts around her waist, exposing her semi-erect cock to you before she grabs you by the hair and pulls you around, so you\'re facing her on all fours on the box.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', 1);
@@ -554,6 +557,7 @@ function enterPhotography(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-10));

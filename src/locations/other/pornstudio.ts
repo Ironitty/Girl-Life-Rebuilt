@@ -117,6 +117,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_redlight', 'start'] },
     { label: 'Go to the manager', goto: ['pornstudio', 'manager'] },
@@ -276,6 +277,7 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['pornstudio', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -288,6 +290,7 @@ function enterDelivery(s: GameState, scene: SceneBuilder): void {
   scene.text('"We made inquiries about you, and everything seems in order. In short, we give you a thumb drive and you deliver it to the sauna. They give you an envelope and you bring it to us. Immediately."');
   // TODO-QSP: dynamic text: "Upon delivery of the envolope, you get '+$func('money', 'string_profit', 5000)+...
   scene.text('"Upon delivery of the envolope, you get \'+$func(\'money\', \'string_profit\', 5000)+\'. Deliveries are available every Friday, after the studio has opened. If you agree, then visit any Friday, and choose a safe mode of transport."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Disagree', handler: (st: GameState) => {
     (st as any).bomzQW = (-1);
@@ -355,6 +358,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Go and see Dimitri', goto: ['pornstudio', 'postvideo'] },
@@ -367,6 +371,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/photo/shower.jpg');
   scene.text('You can freshen up in the mirror or go and see Dimitri about being paid.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Go and see Dimitri', goto: ['pornstudio', 'postvideo'] },
@@ -536,6 +541,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -574,6 +580,7 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Filter by date', handler: (st: GameState) => {
     qspCall(st, 'pornschedule', 'selection');
@@ -615,6 +622,7 @@ function enterFirst(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -818,6 +826,7 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make excuses and leave', goto: ['pornstudio', ''] },
   ]);
@@ -832,6 +841,7 @@ function enterMedical(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the office where the doctor is waiting. He quickly snaps on a pair of rubber gloves and tells you to undress.');
   scene.text('You remove your clothes and sit on the gynecological chair before the doctor starts the check up. After a thorough inspection, he takes a blood sample.');
   scene.text('"It will be about half an hour before the tests are finished. They will tell us if you have caught something."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 25);
@@ -1041,6 +1051,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pfcash = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pornstudio', ''] },
   ]);
@@ -1053,6 +1064,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/studio_porn/pierre_1.jpg');
   scene.text('You\'ve come to the studio, looking for someone, anything that you think can help you.');
   scene.text('You approach a man, who introduces himself as Dimitri.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'State the purpose of your visit', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -1130,6 +1142,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       scene.text('You get the role.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['pornstudio', ''] },
   ]);
@@ -1140,12 +1153,14 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   (s as any).actr = 0;
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['BDSM', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPregreact(s: GameState, scene: SceneBuilder): void {
   scene.text('"Wow. I\'m surprised you still want to do the shoot considering how far along you are. The good news is, we\'ve been looking into appealing to people with different fetishes, so this is the perfect opportunity to start marketing to pregnancy fetishists. However, this is also going to change the shoots you can do."');
   scene.text('"You see, this is more of a niche thing and not something we can really use for wide appeal. You can still work, but only on specific pregnancy shoots, so you might not get the same amount of work you got before. Don\'t worry; if we can find a way to make money off of you, we definitely will," Dimitri says with a smile.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).pregtalkpornstudio = 1;

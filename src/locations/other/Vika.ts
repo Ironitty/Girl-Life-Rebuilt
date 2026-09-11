@@ -19,6 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'Vika', 'actions', 'awake');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -32,6 +33,7 @@ function enterText(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'Vika', 'awake_text', ((s as any).locArgs?.[2] ?? 0));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,6 +46,7 @@ function enterActions(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'Vika', 'awake_actions', ((s as any).locArgs?.[2] ?? 0));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,10 +59,12 @@ function enterAsleepText(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/vika/vika_sleep.jpg');
     scene.text('Vika is sleeping in her bed after a night of adventures. You wonder what she got up to tonight.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAsleepActions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -112,6 +117,7 @@ function enterAwakeText(s: GameState, scene: SceneBuilder): void {
     scene.text('She throws you a bathrobe and grabs you by the arm before dragging you out of the room as you struggle to get the robe on in time.');
   }
   qspCall(s, 'Vika', 'leave_for_night');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -174,6 +180,7 @@ function enterAwakeActions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,6 +195,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'Vika', 'actions', 'awake', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'Vika', 'leave_for_night');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -243,6 +251,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -252,6 +261,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A220', 'like');
   qspCall(s, 'stat', '');
   // TODO-QSP: iif($ARGS[1] = 'continue', 'You and Vika continue studying together.', 'You get out your textbooks a...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -259,6 +269,7 @@ function enterLeaveForNight(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'bordel', 'is_open')) {
     // TODO-QSP: 'Vika tells you she needs to ' + iif(vikaslut = 1, 'leave for work at the brothel.', 'get going.')
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -300,6 +311,7 @@ function enterBrothelQuestions(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

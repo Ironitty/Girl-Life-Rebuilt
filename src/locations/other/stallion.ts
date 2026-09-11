@@ -42,6 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run away', handler: (st: GameState) => {
     scene.text('You quickly sort yourself out and get out of the stall. You try the bathroom door. It\'s locked. There is no handle, and the lock is just a keyhole.');
@@ -55,6 +56,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterFight(s: GameState, scene: SceneBuilder): void {
   scene.text('The strange man laughs. "You think I\'m a pushover? I\'ve trained in Soo Bahk Do and Krav Maga. Fighting me is futile. Give up now."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give up', goto: ['stallion', 'rape'] },
     { label: 'Fight', handler: (st: GameState) => {
@@ -177,6 +179,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t respond', handler: (st: GameState) => {
     scene.text('You turn your head away from him, willing your mind to drift away from this unpleasant experience as he uses your body for his own ends.');
@@ -194,6 +197,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
   scene.text('He twitches on top of you, and you feel him fill you with his seed.');
   // TODO-QSP: dynamic text: "Give birth to a cute baby for me, <<$pcs_nickname>>. But don't you dare kill it...
   scene.text(`"Give birth to a cute baby for me, ${((s as any).pcs_nickname ?? 0)}. But don't you dare kill it. You won't survive it long. Ta ta!" He says, pulling out.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['stallion', 'end'] },
   ]);
@@ -206,6 +210,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvolume = 70;
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Awaken', goto: ['stallion', 'awaken'] },
   ]);
@@ -242,6 +247,7 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: There is a note next to your clothing. '<<$temp[1]>>You were a pretty good fuck....
   scene.text(`There is a note next to your clothing. '${qspUntranslated(s, "temp[1]", { location: "stallion" })}You were a pretty good fuck. I'll be keeping my eye on you. I look forward to see you growing large with my baby. If you go get an abortion to stop it, ${((s as any).temp ?? 0)}. Go to the cops if you want, you'll never stop me. The door is unlocked, you can leave now. -Stallion`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
   ]);

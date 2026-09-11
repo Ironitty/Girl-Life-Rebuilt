@@ -156,6 +156,7 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gad_forest', 'picking');
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'blackmailer', 'set_park_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the woods (0:15)', handler: (st: GameState) => {
     if (((s as any).swamp_clothes ?? 0) === 1) {
@@ -384,6 +385,7 @@ function enterForestOutskirts(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gad_forest', 'dressing');
   qspCall(s, 'gad_forest', 'walking');
   qspCall(s, 'gad_forest', 'picking');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back out of the forest (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -460,6 +462,7 @@ function enterForestCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gad_forest', 'dressing');
   qspCall(s, 'gad_forest', 'walking');
   qspCall(s, 'gad_forest', 'picking');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back out of the forest (0:15)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -524,6 +527,7 @@ function enterBushcraft(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'gad_forest_lost', $ARGS[1]
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,6 +544,7 @@ function enterTorncloth(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -617,6 +622,7 @@ function enterStripping(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -707,6 +713,7 @@ function enterDressing(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -804,6 +811,7 @@ function enterWalking(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -918,6 +926,104 @@ function enterPicking(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPickingClothes(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[2] ?? 0) === 'mushroom') {
+    if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
+      if (((s as any).clothingworntype ?? 0) !== 'nude') {
+        // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom'+ra...
+        scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/miramushroom'+rand(1, 2)+'.jpg"></center>`);
+      }
+      if (((s as any).clothingworntype ?? 0) === 'nude') {
+        // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom_nud...
+        scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/miramushroom_nude'+rand(1, 2)+'.jpg"></center>`);
+      }
+    } else {
+      if (((s as any).clothingworntype ?? 0) === 'nude') {
+        // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom4.'+ran...
+        scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/mushroom4.'+rand(1, 3)+'.jpg"></center>`);
+      }
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
+        // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom1.jpg">...
+        scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/mushroom1.jpg"></center>`);
+      }
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+        // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom2.jpg">...
+        scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/mushroom2.jpg"></center>`);
+      }
+      if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+        // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom3.jpg">...
+        scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/mushroom3.jpg"></center>`);
+      }
+    }
+  } else {
+    if (((s as any).locArgs?.[2] ?? 0) === 'berry') {
+      if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
+        if (((s as any).clothingworntype ?? 0) !== 'nude') {
+          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom'+ra...
+          scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/miramushroom'+rand(1, 2)+'.jpg"></center>`);
+        }
+        if (((s as any).clothingworntype ?? 0) === 'nude') {
+          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom_nud...
+          scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/miramushroom_nude'+rand(1, 2)+'.jpg"></center>`);
+        }
+      } else {
+        if (((s as any).clothingworntype ?? 0) === 'nude') {
+          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom4.'+ran...
+          scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/mushroom4.'+rand(1, 3)+'.jpg"></center>`);
+        }
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
+          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/blueberry_picki...
+          scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/blueberry_picking_'+rand(3, 6)+'.jpg"></center>`);
+        }
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/blueberry_picki...
+          scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/blueberry_picking_2.jpg"></center>`);
+        }
+        if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+          // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/blueberry_picki...
+          scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/blueberry_picking_1.jpg"></center>`);
+        }
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPickingClothesEmpty(s: GameState, scene: SceneBuilder): void {
+  if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  ((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
+    if (((s as any).clothingworntype ?? 0) !== 'nude') {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom3.jp...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/miramushroom3.jpg"></center>`);
+    }
+    if (((s as any).clothingworntype ?? 0) === 'nude') {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom_nud...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/gadukino/mira/miramushroom_nude3.jpg"></center>`);
+    }
+  } else {
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest2.jpg"...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gulforest2.jpg"></center>`);
+    }
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest3.jpg"...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gulforest3.jpg"></center>`);
+    }
+    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest_tanga...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gulforest_tanga1.'+rand(1, 2)+'.jpg"></center>`);
+    }
+    if (((s as any).clothingworntype ?? 0) === 'nude') {
+      // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest_nude1...
+      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/gulforest_nude1.'+rand(1, 4)+'.jpg"></center>`);
+    }
+  }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -950,6 +1056,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'picking':
       enterPicking(s, scene);
+      break;
+    case 'picking_clothes':
+      enterPickingClothes(s, scene);
+      break;
+    case 'picking_clothes_empty':
+      enterPickingClothesEmpty(s, scene);
       break;
     default:
       enterDefault(s, scene);

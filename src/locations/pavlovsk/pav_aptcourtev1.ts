@@ -14,6 +14,7 @@ function enterFollownush(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/complex/hey.jpg');
   scene.text('You follow her inside, but not seeing her, you stop and listen a moment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_complex', 'start'] },
     { label: 'Go look for her', handler: (st: GameState) => {
@@ -282,6 +283,7 @@ function enterMagicCumMouth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'magicd_bj', 1);
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -311,6 +313,7 @@ function enterMagicCumFace(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'magicd_bj', 1);
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -347,6 +350,7 @@ function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'arousal', 'hj', (-4), ((s as any).npcID ?? 0), 'group', 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Vitek as well', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/suck3s2.jpg');

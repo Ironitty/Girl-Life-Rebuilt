@@ -20,6 +20,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       ((s as any).christinaQW ?? {})['bully'] = 99;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -29,6 +30,7 @@ function enterChristinaBu_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).christinaQW ?? {})['bully'] = 50;
   scene.img('images/locations/pavlovsk/school/events/nastymessage.jpg');
   scene.text('It\'s your first day back to school, and Christina has decided to welcome you as only she could. As you approach your locker you find her writing graffiti on it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say nothing', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -114,6 +116,7 @@ function enterChristinaBu_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,6 +124,7 @@ function enterChristinaDecide1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big18.jpg');
   scene.text('You can\'t ever seem to decide how to deal with Christina. No matter how you treat her, she always seems to come off as cold or fake and has been this way for as long as you can remember. She\'s such a bully to everybody except Albina, who seems to be the only person she\'s seemingly wary of. She seems to especially hate you though, and bullies you every chance she gets.');
   scene.text('You could try to fight her. She is reputedly one of the toughest girls in school though, so you better make sure you can actually do it before trying. Another option would be to find some dirt you could use against her. It would have to be something pretty embarressing to her to actually keep her from messing with you again.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave it as is', goto: ['gschool_lessons', 'short_break'] },
     { label: 'Pick a fight', handler: (st: GameState) => {
@@ -147,6 +151,7 @@ function enterChristinaDecide2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big18.jpg');
   scene.text('You can\'t ever seem to decide how to deal with Christina. No matter how you treat her, she always seems to come off as cold or fake and has been this way for as long as you can remember. She\'s such a bully to everybody except Albina, who seems to be the only person she\'s seemingly wary of. She seems to especially hate you though, and bullies you every chance she gets.');
   scene.text('You could try and join Lina and Lariska, they both seem pretty happy to follow her orders and not having to think for themselves. The idea of being humiliated and treated as a possession strangely appeals to some dark part of you. It would be pretty easy to let her take control of your life too.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave it as is', goto: ['gschool_lessons', 'short_break'] },
     { label: 'Try and become her new pet', handler: (st: GameState) => {
@@ -172,6 +177,7 @@ function enterChris_LinaPark(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You give a friendly wave to the girls as they get closer, but Christina just gives you a disgusted look and they continue running without slowing down.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_park', 'start'] },
   ]);
@@ -182,6 +188,7 @@ function enterKristinaFight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/christina/school/fight.mp4');
   scene.text('You wait until you see Christina crossing the field heading home. Deciding you want to throw the first punch, you casually walk by like you were heading the same way. You know she cannot resist saying something nasty, and sure enough, she takes the bait. What she doesn\'t expect is as soon as she tosses out an insult you whip towards her and punch her face, hard.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fight her', handler: (st: GameState) => {
     qspCall(s, 'fight', 'initFight');

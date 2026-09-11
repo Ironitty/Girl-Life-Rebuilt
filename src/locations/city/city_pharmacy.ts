@@ -26,6 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,6 +50,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Buy something', goto: ['city_pharmacy', 'cart'] },
     { label: 'Leave the pharmacy', handler: (st: GameState) => {
@@ -77,6 +79,7 @@ function enterBuyAntifungal(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['city_pharmacy', 'shop'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -85,6 +88,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'chemist');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_'+pharma_picrand+'.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', handler: (st: GameState) => {
     qspCall(st, 'item_cart', 'shopping_var_clear');

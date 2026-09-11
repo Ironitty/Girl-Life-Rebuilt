@@ -15,6 +15,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
   scene.text('The two of you leave the dance floor and sneak off to the restrooms. Marcus looks into the men\'s restroom and then waves you in when he sees that nobody is inside. The two of you quickly sneak into the last stall and he pulls his dick out. You sit down on the toilet, take it into your mouth and start sucking on it. He moans softly as you do.');
   qspCall(s, 'arousal', 'bj', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/marcus/sex/disco/bj2.jpg');
@@ -105,6 +106,7 @@ function enterMarcusAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('He rubs your clit until you\'re wet and lubes up his dick before he gently starts pressing the tip against your asshole. The pressure builds until the head of his dick pops into your ass and he stops, letting you adjust. When you relax, he starts to slowly fuck your ass, gradually working himself deeper.');
   qspCall(s, 'arousal', 'anal', 3, 'lube');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/marcus/sex/disco/anal2.jpg');
@@ -148,6 +150,7 @@ function enterAndreyStasyaMarcus(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/andreyhome/home.jpg');
   scene.text('The four of you walk to Andrey\'s house and you quickly realize that the plan is for you all to have a foursome. Andrey and Marcus seem really pumped while Stasya is a little more reluctant, but agrees anyway, seemingly to make Andrey happy. Once at the door, Andrey unlocks it and holds it open for you and Stasya. "Let\'s go have a hell of a night girls! After you."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A147', 'dislike');
@@ -320,6 +323,7 @@ function enterIgorPeg(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -329,6 +333,7 @@ function enterStraponIgorBj(s: GameState, scene: SceneBuilder): void {
   scene.text('He eagerly starts sucking on your fake cock. It looks like he\'s been practicing and is showing very good technique.');
   qspCall(s, 'arousal', 'foreplay', 2, 'dom', 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Deepthroat him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg4.jpg');
@@ -485,6 +490,7 @@ function enterStraponIgorMagic(s: GameState, scene: SceneBuilder): void {
   scene.text('He eagerly starts sucking on your fake cock. It feels like he\'s been practicing, you can feel his lips tightly gripped around the shaft of your cock, while his tongue presses against the bottom of your shaft, it feels wonderful.');
   qspCall(s, 'arousal', 'magicd_bj', 2, 'dom', 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Deep throat him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/disco/disco_peg4.jpg');
@@ -653,6 +659,7 @@ function enterStraponIgorMagic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIgorDiscoBj(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     ((s as any).npc_had_sex ?? {})['A4'] = 1;
@@ -679,6 +686,7 @@ function enterIgorDiscoBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIgorDimaDiscoBj(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     ((s as any).npc_had_sex ?? {})['A4'] = 1;
@@ -707,6 +715,7 @@ function enterIgorDimaDiscoBj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGirlfriendAsk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the disco', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big4.jpg');
@@ -817,6 +826,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk back to Sonia\'s house. She seems to be in a pretty good mood, chatting about a variety of subjects while you hold hands.');
   scene.text('Once at her home, she unlocks the door. "Be quiet. My mom is asleep."');
   scene.text('The two of you sneak to her room before hopping on the bed and quickly stripping down to your underwear.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/disco2.jpg');
@@ -902,6 +912,7 @@ function enterDan(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod and part your lips, slowly guiding his cock into your mouth. Dan puts his hand on your head and gets a firm grip of your hair, but to your surprise he doesn\'t make you take more of his cock in. You\'re still in control of the pace, and gently bob your head up and down on his cock as he gently strokes your hair.');
   qspCall(s, 'arousal', 'bj', 3, 'sub', 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dan/sex/disco/disco2.jpg');
@@ -981,6 +992,7 @@ function enterDanFuck(s: GameState, scene: SceneBuilder): void {
   scene.text(`He slides his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your pussy and begins to fuck you. He grabs hold of your hips with his hands to hold you in place as he slowly starts picking up speed and fucking you harder.`);
   qspCall(s, 'arousal', 'vaginal', 3, 'sub', 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dan/sex/disco/disco6.jpg');
@@ -1027,6 +1039,7 @@ function enterDanButtfuck(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'auto_lube', 'anal');
   qspCall(s, 'arousal', 'anal', 3, 'sub', 'inhibition', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dan/sex/disco/disco8.jpg');
@@ -1074,6 +1087,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
   scene.text('"Nice… Well? Go on then…" he says while motioning to his cock.');
   qspCall(s, 'arousal', 'voyeur', 3, 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him off', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/radomir/sex/disco/radbj2.jpg');
@@ -1145,6 +1159,7 @@ function enterValentin(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a seat on the toilet and start sucking his cock, which causes him to moan softly as you feel his semi hard dick start to harden in your mouth.');
   qspCall(s, 'arousal', 'bj', 3, 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Interrupted', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/valentin/sex/disco/watched_bj2.jpg');
@@ -1269,6 +1284,7 @@ function enterValentinCuni(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'cuni', 3, 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/valentin/sex/disco/watched_eat2.jpg');
@@ -1298,6 +1314,7 @@ function enterValentinVag(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal', 3, 'inhibition');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/valentin/sex/disco/watched_vag2.jpg');
@@ -1366,6 +1383,7 @@ function enterValentinAnal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'anal', 3, 'inhibition', 'lube');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/valentin/sex/disco/watched_anal2.jpg');
@@ -1422,6 +1440,7 @@ function enterLera(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lera/sex/disco/restroom1.jpg');
   scene.text('You make your way down to the women\'s restroom and head inside. You glance under the stall doors, but don\'t see any feet. Lera must not have come this way you like you thought.');
   scene.text('You glance over at the mirrors along one wall and walk over to check and touch-up your makeup.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet Lera', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1549,6 +1568,7 @@ function enterLeraSex(s: GameState, scene: SceneBuilder): void {
   scene.text('Her fingers then slide into your pussy and she starts slowly fingerbanging you, going faster the louder you moan.');
   qspCall(s, 'arousal', 'vaginal_finger', 3, 'inhibition', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get eaten out', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -1649,6 +1669,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/alyona/sex/disco/restroom1.jpg');
   scene.text('On her way out, Alyona stops to grab a bottle of wine from one of the other gopniks, then makes her way down to the restrooms. She staggers into the women\'s room and you follow her inside.');
   scene.text('You enter to see her standing by one of the stalls, gulping down the wine. After taking a huge swig, she turns towards you and offers you the bottle. "Here, want a drink?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdktoilet', 'start'] },
     { label: 'Take a drink', handler: (st: GameState) => {
@@ -1706,6 +1727,7 @@ function enterAlyonaMakeout(s: GameState, scene: SceneBuilder): void {
   scene.text('She starts stripping you as you continue to make out, and very quickly has your pussy exposed.');
   qspCall(s, 'arousal', 'kiss', 3, 'inhibition', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get fingered', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/alyona/sex/disco/restroom7.jpg');
@@ -1766,6 +1788,7 @@ function enterDimkaSex(s: GameState, scene: SceneBuilder): void {
   scene.text('He leads you down the hall and finally stops at one of the other rooms. He opens the door and steps in, closing the door after you enter.');
   scene.text('Once inside, he pushes you up again the wall and leans in close so his face is only a few inches from yours. "Get on your knees, bitch."');
   scene.text('You obey him and slowly sink to your knees. You don\'t have to be told what to do next. You reach up and start undoing his pants.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get him hard', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/school/dimbj2.jpg');
@@ -1844,6 +1867,7 @@ function enterKatjaMarcusStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and she smiles. "Okay. Go and get Marcus."');
     // TODO-QSP: 'Katja turns and leaves'+iif( discoenable['A15'] = 1, ', telling Vicky that she''s going to the toil...
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get Marcus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1874,6 +1898,7 @@ function enterMarcusKatjaDisco(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/disco/sex/marcus_katja_sveta/mks1.jpg');
   scene.text('You head down to the basement and find Katja waiting. "I talked to him. He\'ll be down in a few minutes."');
   scene.text('Katja blushes, but nods and smiles.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for Marcus', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 8;

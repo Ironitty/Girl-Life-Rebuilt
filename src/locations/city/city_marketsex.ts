@@ -17,6 +17,7 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
   (s as any).horand = Math.floor(Math.random() * 100) + 1;
   (s as any).gbrand = Math.floor(Math.random() * 100) + 1;
   scene.text('You enter a large warehouse, where he pulls out a bottle of vodka and a snack.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink with Arthur', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -231,6 +232,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', (-7), ((s as any).npcID1 ?? 0), 'sub', 'group');
   qspCall(s, 'arousal', 'hj', (-6), ((s as any).npcID2 ?? 0), 'sub', 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'More', handler: (st: GameState) => {
     scene.img('images/shared/sex/group/triplep.jpg');
@@ -275,6 +277,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text(`Arthur leads you into the warehouse and pushes you onto your knees in front of him before he pulls his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick out. He smacks you in the face with it and then rubs the tip against your lips before he shoves his dick into your mouth and starts roughly fucking your throat.`);
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).rand_act = Math.floor(Math.random() * 3) + 0;

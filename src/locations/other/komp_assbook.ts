@@ -35,6 +35,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Read more about Assbook', goto: ['komp_assbook', 'mission_statements'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close Assbook', goto: ['komp', 'browse'] },
   ]);
@@ -53,6 +54,7 @@ function enterSignup(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the main page', goto: ['komp_assbook', 'main'] },
   ]);
@@ -65,6 +67,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 20);
   qspCall(s, 'stat', '');
   scene.text('You spend some time browsing social media');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep browsing assbook (0:20)', goto: ['komp_assbook', 'browse'] },
     { label: 'Go back to the main page', goto: ['komp_assbook', 'main'] },
@@ -75,6 +78,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
 function enterFriends(s: GameState, scene: SceneBuilder): void {
   scene.text('You don\'t know the account names of your friends :(');
   scene.text('This content is WIP.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the main page', goto: ['komp_assbook', 'main'] },
   ]);
@@ -94,6 +98,7 @@ function enterLogin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length) {
     // TODO-QSP: jump 'LocationLoop'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the main page', goto: ['komp_assbook', 'main'] },
   ]);
@@ -102,6 +107,7 @@ function enterLogin(s: GameState, scene: SceneBuilder): void {
 
 function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'komp_assbook', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,6 +115,7 @@ function enterListretrieve(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table += $func('komp_assbook', 'retrieve_clothed_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += $func('komp_assbook', 'retrieve_swim_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += '</table></center>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +144,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr><tr></tr>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -165,6 +173,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr><tr></tr>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -178,6 +187,7 @@ function enterUploadPhoto(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length) {
     // TODO-QSP: jump 'LocationLoop_upload'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to your page', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -193,12 +203,14 @@ function enterUploadPhoto2(s: GameState, scene: SceneBuilder): void {
   (s as any).elektro = ((s as any).elektro ?? 0) + (1);
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
   scene.actions([{ label: 'Continue', goto: ['komp_assbook', 'login'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowlocation2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${qspUntranslated(s, "selfieLocDesc[ARGS[1]]", { location: "komp_assbook" })} selfies</b></center>`);
   // TODO-QSP: gs 'komp_assbook', 'listretrieve2', ARGS[1], $selfieLoc[ARGS[1]]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +218,7 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table += $func('komp_assbook', 'upload_clothed_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += $func('komp_assbook', 'upload_swim_selfies',    ARGS[1], $ARGS[2])
   // TODO-QSP: $temp_table += '</table></center>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,6 +248,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr><tr></tr>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -264,6 +278,7 @@ function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr><tr></tr>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -285,6 +300,7 @@ function enterMissionStatements(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Assbook for Business:</b>');
   scene.text('Entrepreneurs and businesses, take note! Assbook offers a unique platform for networking, brand promotion, and reaching your target audience. Leverage the power of the Assbook community to elevate your brand and connect with potential customers.');
   scene.text('Join the Assbook revolution today and experience social media in a way that transcends the ordinary. Embrace the beauty of Russian culture, forge lasting connections, and make Assbook your digital home!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the main page', goto: ['komp_assbook', 'main'] },
   ]);
@@ -297,6 +313,7 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re currently on Russia\'s biggest social network site, "Assbook". Almost everyone has an account here, probably including the girl you took that photo of the other day!');
   scene.text('"Maybe if I can find her, I can blackmail her", you think to yourself. "This photo is very raunchy, after all… I bet she would hate to see it published if she\'s important!"');
   scene.text('You can\'t help but rub your pussy every now and then while you look at it. You\'ll probably keep a copy of this for yourself, either way!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to find out who she is (1:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;

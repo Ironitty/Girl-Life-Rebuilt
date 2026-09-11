@@ -5,20 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: act'What you want to eat later':
-  if (((s as any).hour ?? 0) >= 21) {
-    scene.text('... what you want to have for breakfast.');
-    scene.text('<i>Pancakes? Eggs? Maybe I should just have a cup of coffee and call it quits.</i>');
-  } else {
-    if (((s as any).hour ?? 0) >= 16) {
-      scene.text('... what you want to have for dinner later.');
-      scene.text('<i>Should I go out for dinner? Maybe I should cook something at home. Takeout and split the difference?</i>');
-    } else {
-      scene.text('... what you want to have for lunch later.');
-      scene.text('<i>Should I go out for lunch? Maybe I should cook something at home. Takeout and split the difference?</i>');
-    }
-  }
-  qspCall(s, 'sex_ev_sugardaddy_talk', 'pretend_listen_end');
   scene.build();
 }
 
@@ -28,6 +14,7 @@ function enterVirginityPaidTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/misc/money.jpg');
   // TODO-QSP: dynamic text: "By the way, here," <<$npcdesc>> says, suddenly turning away from you and diggin...
   scene.text(`"By the way, here," ${((s as any).npcdesc ?? 0)} says, suddenly turning away from you and digging about for a moment before coming up with a wad of bank notes.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'What\'s this for?', handler: (st: GameState) => {
     scene.text('"What is this for?" you ask, confused.');
@@ -88,6 +75,7 @@ function enterSugarBabyOffer(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_sugardaddy_talk', 'sugar_baby_offer2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"I could tell"', handler: (st: GameState) => {
     scene.text('"I could tell," you smirk in reply. He grins back.');
@@ -98,6 +86,7 @@ function enterSugarBabyOffer(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarBabyOffer2(s: GameState, scene: SceneBuilder): void {
   scene.text('"So how about we do it again?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play coy', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
@@ -116,6 +105,7 @@ function enterSugarBabyOffer3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_sugardaddy_talk', 'sugar_baby_offer_how_much');
   qspCall(s, 'sex_ev_sugardaddy_talk', 'have_a_boyfriend');
   qspCall(s, 'sex_ev_sugardaddy_talk', 'have_a_girlfriend');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not a hooker', handler: (st: GameState) => {
     scene.img('images/shared/sex/after/annoyed1.jpg');
@@ -130,6 +120,7 @@ function enterSugarBabyOffer3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSugarBabyRefuse(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse him', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['sugar_baby_offer'] = (-1);
@@ -159,6 +150,7 @@ function enterSugarBabyRefuse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSugarBabyOfferHowMuch(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'How much?', handler: (st: GameState) => {
     scene.text('"Depends," you muse. "How much are we talking?"');
@@ -178,6 +170,7 @@ function enterJustAHookup(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).sex_ev ?? {})['just_a'] = 'random hookup';
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'This was a <<$sex_ev[\'just_a\']>>', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 5);
@@ -248,6 +241,7 @@ function enterHaveABoyfriend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -309,10 +303,12 @@ function enterHaveAGirlfriend(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSugarBabyOfferAccept(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_stats', 'sugar_daddy_add');
@@ -328,6 +324,7 @@ function enterSugarBabyOfferAccept(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSugarBabyOfferHaggle(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Haggle', handler: (st: GameState) => {
     // TODO-QSP: :invalid_counter_offer
@@ -398,6 +395,7 @@ function enterSugarBabyOfferHaggle2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -415,6 +413,7 @@ function enterSugarBabyOfferHaggleFail(s: GameState, scene: SceneBuilder): void 
     scene.text(`"Still too rich for my blood," ${((s as any).npcdesc ?? 0)} says with a shake of his head. "You know what? Forget it. I don't need another gold digger in my life."`);
   }
   scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -490,10 +489,12 @@ function enterWifeProblems(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTherapyReact(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Empathize with him', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add', Math.floor(Math.random() * 6) + 15);
@@ -516,6 +517,95 @@ function enterPretendListenThoughts(s: GameState, scene: SceneBuilder): void {
   scene.text('... what you need to buy at the store later.');
   scene.text('<i>What\'s left in the fridge? I can\'t remember.</i>');
   qspCall(s, 'sex_ev_sugardaddy_talk', 'pretend_listen_end');
+  // TODO-QSP: end
+  // TODO-QSP: act'What you want to eat later':
+  if (((s as any).hour ?? 0) >= 21) {
+    scene.text('... what you want to have for breakfast.');
+    scene.text('<i>Pancakes? Eggs? Maybe I should just have a cup of coffee and call it quits.</i>');
+  } else {
+    if (((s as any).hour ?? 0) >= 16) {
+      scene.text('... what you want to have for dinner later.');
+      scene.text('<i>Should I go out for dinner? Maybe I should cook something at home. Takeout and split the difference?</i>');
+    } else {
+      scene.text('... what you want to have for lunch later.');
+      scene.text('<i>Should I go out for lunch? Maybe I should cook something at home. Takeout and split the difference?</i>');
+    }
+  }
+  qspCall(s, 'sex_ev_sugardaddy_talk', 'pretend_listen_end');
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPretendListenEnd(s: GameState, scene: SceneBuilder): void {
+  scene.text('It\'s something like half an hour before he finally lets the topic die and you don\'t have to pretend to listen anymore.');
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterWorkComplaints(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add', Math.floor(Math.random() * 6) + 10);
+  if ((Math.floor(Math.random() * 2) + 1) === 1) {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_sugardaddy_talk', 'coworker_complain'] }]);
+  } else {
+    scene.actions([{ label: 'Continue', goto: ['sex_ev_sugardaddy_talk', 'subbordinate_complain'] }]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCoworkerComplain(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['coworker_complain_talk'] = 1;
+  qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+  // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> goes on for a long time, complaining about his co-work...
+  scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} goes on for a long time, complaining about his co-workers.`);
+  scene.text('"...eeps mistaking me for this other dickhead. Though I admit it\'s logical since he does the same thing I do and does the same thing I do, has a pension for the same kind of suits I wear, and even goes to the same barber I do. Though I have a slightly better haircut."');
+  qspCall(s, 'sex_ev_sugardaddy_talk', 'work_complain_react');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSubbordinateComplain(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['subbordinate_complain_talk'] = 1;
+  qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
+  qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+  // TODO-QSP: dynamic text: <<$npc_usedname[$npcID]>> goes on for a long time, complaining about his subordi...
+  scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} goes on for a long time, complaining about his subordinates.`);
+  qspCall(s, 'sex_ev_sugardaddy_talk', 'work_complain_react');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterWorkEmails(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sex_ev ?? {})['work_emails_talk'] = 1;
+  qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
+  qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+  scene.text('He shows you shockingly confidential emails and details about his work.');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterWorkComplainReact(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: act'Listen intently':
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+  scene.text('To other people, what he says might seem boring. But you can\'t help but hang on every word. And you can tell he appreciates it.');
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  // TODO-QSP: end
+  // TODO-QSP: act'Smile and pretend to listen':
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+  scene.text('You nod along, smiling like a Barbie as he goes on and on and <i>on and on and on...</i>');
+  scene.text('<i>For fuck\'s sake, how can anybody talk about themselves this much? What a fucking bore. Makes me wonder if it\'s even worth the money...</i>');
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  // TODO-QSP: end
+  // TODO-QSP: act'Sigh in boredom':
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
+  qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
+  scene.text('As the minutes drag on, you start to feel your soul breaking. He\'s so. Fucking. Boring.');
+  scene.text('You let out a long and tired sigh and he\'s so caught up in his own idiotic tirade that he doesn\'t even notice. Is this <i>really</i> worth the money he\'s paying you?');
+  scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
+  // TODO-QSP: end
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -570,6 +660,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'pretend_listen_thoughts':
       enterPretendListenThoughts(s, scene);
       break;
+    case 'pretend_listen_end':
+      enterPretendListenEnd(s, scene);
+      break;
+    case 'work_complaints':
+      enterWorkComplaints(s, scene);
+      break;
+    case 'coworker_complain':
+      enterCoworkerComplain(s, scene);
+      break;
+    case 'subbordinate_complain':
+      enterSubbordinateComplain(s, scene);
+      break;
+    case 'work_emails':
+      enterWorkEmails(s, scene);
+      break;
+    case 'work_complain_react':
+      enterWorkComplainReact(s, scene);
+      break;
     default:
       enterDefault(s, scene);
       break;
@@ -580,6 +688,5 @@ export const sex_ev_sugardaddy_talk: LocationDef = {
   name: 'sex_ev_sugardaddy_talk',
   title: '"So how about we do it again?"',
   region: 'other',
-  description: ['... what you want to have for breakfast.'],
   enter: enter,
 };

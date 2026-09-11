@@ -53,6 +53,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_redlight', 'start'] },
   ]);
@@ -60,6 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEmployeeEntrance(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head around to the back', handler: (st: GameState) => {
     if (((s as any).job_status ?? 0)?.['city_strip_stripper'] === 'employed'  &&  qspFunc(s, 'jobs', 'has_booking_for_day', 'city_strip_stripper', ((s as any).daystart ?? 0))) {
@@ -156,6 +158,7 @@ function enterEntry(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the club', handler: (st: GameState) => {
     scene.text('<center><b>Strip Club</b></center>');
@@ -265,6 +268,7 @@ function enterPayEnter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -279,6 +283,7 @@ function enterWorkLeave(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['strip_club'], lastwornbranumber['strip_club']
   }
   scene.actions([{ label: 'Continue', goto: ['stripclub', 'main_floor'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -342,6 +347,7 @@ function enterMainFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -368,6 +374,7 @@ function enterBar(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You head over to the bar, where ' + iif($job_status['city_strip_bargirl'] <> ', ...
     scene.text('You head over to the bar, where \' + iif($job_status[\'city_strip_bargirl\'] <> \', \'Nadia\', \'a girl wearing a skimpy outfit\') + \' is taking orders, her large breasts drawing your attention as they jiggle with each of her movements. You decide what you want to drink as you wait your turn.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['stripclub', 'main_floor'] },
     { label: 'Order a glass of water', handler: (st: GameState) => {
@@ -468,6 +475,7 @@ function enterPrivateDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['stripclub', 'main_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -475,6 +483,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/sveta_show3.jpg');
   scene.text('The DJ announces that one of the strippers will soon be performing on the pole, much to the glee of the men in the crowd.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the show', handler: (st: GameState) => {
     qspCall(s, 'schedule', 'A23');
@@ -539,6 +548,7 @@ function enterPrivateSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/private_dance_sex.jpg');
   scene.text('The girls lead you away from the stage and into a private booth. Before you know it, they\'ve taken off your clothes and have you spreading your legs as one of them licks your pussy, quickly and expertly bringing you to orgasm while the other girl continues to caress your body.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['stripclub', 'main_floor'] },
     { label: 'More', goto: ['stripclub', 'private_sex1'] },
@@ -554,6 +564,7 @@ function enterPrivateSex1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/private_dance_sex.jpg');
   scene.text('The other girl lets out a sigh and gently pushes her friend away. "You\'ve already made her cum. I want in on the action now," she says and starts eating you out, quickly bringing you to orgasm a second time.');
   scene.text('When you recover, you notice that you\'re now alone in the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['stripclub', 'main_floor'] },
   ]);
@@ -607,6 +618,7 @@ function enterHire1(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['stripclub', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -655,6 +667,7 @@ function enterHire2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_redlight', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -679,6 +692,7 @@ function enterHire3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: He chuckles. "Straight to the point I see. The club operates between '+func('tim...
   scene.text('He chuckles. "Straight to the point I see. The club operates between \'+func(\'time\', \'get_time_string\', 18, 0)+\' and \'+func(\'time\', \'get_time_string\', 3, 0)+\', and bargirls need to show up between \'+func(\'time\', \'get_time_string\', 17, 0)+\' and\'+func(\'time\', \'get_time_string\', 18, 0)+\'.');
   scene.text('He pulls up a list of some kind. "I currently have two shift patterns open: Wednesday and Thursday nights, or Friday and Saturday nights. You get paid weekly plus tips. Interested?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the job', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -753,6 +767,7 @@ function enterHire3(s: GameState, scene: SceneBuilder): void {
 
 function enterStripperTryout1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, first thing\'s first. Get naked."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Panic', handler: (st: GameState) => {
     scene.text('A chill runs through your spine.');
@@ -851,6 +866,7 @@ function enterStripperTryout2(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('He then leads you to one of the private booths and points to the pole.');
   scene.text('"Alright. Now show me what you can do."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance for him', goto: ['stripclub', 'stripper_tryout3'] },
   ]);
@@ -874,6 +890,7 @@ function enterStripperTryout3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -886,6 +903,7 @@ function enterStripperAccept1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Any tips you get are yours, but we're not paying you hourly. Think of it as an ...
   scene.text('"Any tips you get are yours, but we\'re not paying you hourly. Think of it as an incentive to perform well. If a customer wants a private lap dance, then it\'s \'+$func(\'money\', \'string_profit\', 1000)+\' <i>per</i> dance. You get 40% and the rest goes to the club."');
   scene.text('He then sits up in his chair and gives you a serious look. "Some clients may want to pay extra for a \'happy ending\' to their dance; this is strictly limited to a blowjob at most. We are <i>not</i> a brothel, so you <i>will</i> refuse <i>any</i> requests for sex, no matter how much they offer to pay you. If they get pushy, then call Viktor. Now sign here."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1019,6 +1037,7 @@ function enterManagerJobChange(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1108,6 +1127,7 @@ function enterAlbinaFirstDance1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1184,6 +1204,7 @@ function enterAlbinaRecurrentDance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1230,6 +1251,7 @@ function enterAlbinaConfront(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1321,6 +1343,7 @@ function enterAlbinaDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to the floor', goto: ['stripclub', 'main_floor'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1344,6 +1367,7 @@ function enterFanApproach(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: A man dressed in <<$npc_outfit[$npcID]>> is trying to get your attention as you ...
     scene.text(`A man dressed in ${((s as any).npc_outfit ?? 0)?.[String((s as any).npcID ?? 0)]} is trying to get your attention as you exit through the staff door. His clothes look expensive.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore him', goto: ['stripclub', 'start'] },
     { label: 'Approach him', goto: ['stripclub', 'fan_chat'] },
@@ -1636,6 +1660,7 @@ function enterFanChat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1670,6 +1695,7 @@ function enterSetGirl(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

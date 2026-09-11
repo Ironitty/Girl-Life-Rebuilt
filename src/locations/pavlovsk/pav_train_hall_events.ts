@@ -49,6 +49,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the train station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -106,6 +107,7 @@ function enterWallet1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her keep it', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -169,6 +171,7 @@ function enterWallet2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give him your money', handler: (st: GameState) => {
     qspCall(s, 'money', 'set', 0);
@@ -740,6 +743,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -843,6 +847,7 @@ function enterToiletEvent(s: GameState, scene: SceneBuilder): void {
       scene.text('You hear a man loudly empty his bowels and focus on finishing your work as fast as you can, doing your best to ignore the smell.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -874,6 +879,7 @@ function enterTrinkets(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/market/peron.jpg');
   // TODO-QSP: dynamic text: You manage to sell <<tovarand>> trinkets to passengers today, earning ' + $func(...
   scene.text(`You manage to sell ${((s as any).tovarand ?? 0)} trinkets to passengers today, earning ' + $func('money', 'string_profit', tovpay) + '.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

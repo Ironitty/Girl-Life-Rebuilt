@@ -29,6 +29,7 @@ function enterSettings(s: GameState, scene: SceneBuilder): void {
   (s as any).shgopsex_count = Math.floor(Math.random() * 4) + 4;
   (s as any).shgopsex_group_count = Math.floor(Math.random() * 3) + 3;
   (s as any).shgopsex_init = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,6 +45,7 @@ function enterGgDevstDeflor(s: GameState, scene: SceneBuilder): void {
       scene.text('His member enters you with some resistance, but it doesn\'t hurt. If anything, it feels good. You expected your first time to be painful and with some blood, yet there is none.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,6 +165,7 @@ function enterGgSexOrgasm(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -207,6 +210,7 @@ function enterMasturbGg(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -286,6 +290,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
   }, goto: ['vasilyhome', 'livingroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have sex with  [+func(\'gopsex\', \'hide\', \'Shulga_var_name\'...]', handler: (st: GameState) => {
     if (((s as any).shgopsex_vasya_count ?? 0) <= 0) {
@@ -350,6 +355,7 @@ function enterShgopsex(s: GameState, scene: SceneBuilder): void {
   }, goto: ['vasilyhome', 'livingroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hand job', goto: ['gopsex', 'shgopsex_hj'] },
     { label: 'Blow job', goto: ['gopsex', 'shgopsex_bj'] },
@@ -394,6 +400,7 @@ function enterShgopsexEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -436,6 +443,7 @@ function enterShgopsexLick(s: GameState, scene: SceneBuilder): void {
     scene.text('"And what\'s wrong with that? Are you ashamed to do me nicely?"');
     scene.text('"Yes, it\'s unpleasant for me to lick cunt of a slut. God knows how many cocks you have got there today… So come on! Don\'t fuck with me… Expose your whorish holes! I\'m going to fuck you."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
@@ -489,6 +497,7 @@ function enterShgopsex_69(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -502,6 +511,7 @@ function enterShgopsexTits(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Well, ${((s as any).npcdesc ?? 0)}, do you like my boobies' ' + func('gopsex', 'hide', 'gop_text3') + '?"`);
   // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>, you've got awesome tits!"
   scene.text(`"Yes, ${((s as any).pcs_nickname ?? 0)}, you've got awesome tits!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck boobs', handler: (st: GameState) => {
     // TODO-QSP: gt 'gopsex', 'hide', 'shgopsex_eattits'
@@ -530,6 +540,7 @@ function enterShgopsexHj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gopsex', 'shgopsex_end');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -547,6 +558,7 @@ function enterShgopsexBj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gopsex', 'shgopsex_end');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -564,6 +576,7 @@ function enterShgopsexThroat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gopsex', 'shgopsex_end');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -596,6 +609,7 @@ function enterShgopsexVag(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gopsex', 'shgopsex_end');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -629,6 +643,7 @@ function enterShgopsexAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gopsex', 'shgopsex_end');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -702,6 +717,7 @@ function enterShgopsexGroup(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck one by one', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'hide', 'group_sex_start');

@@ -21,6 +21,7 @@ function enterMarishaEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -30,6 +31,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   scene.text('As you are walking away from the boys, you notice a girl peeking at one of Kolka\'s friends from behind the bleachers.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -63,6 +65,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   scene.text('As you are walking away from the boys, you the same girl from last time, staring at one of Kolka\'s friends from behind the bleachers.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -94,6 +97,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   // TODO-QSP: 'As you are walking away from the boys, you the girl again sneaking around the bleachers. ' + $OpenI...
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -150,6 +154,7 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   scene.text('You both arrive at the mall then you head to the clothing shop. You guide Marisha to the clothing store where you grab the sexiest outfit that you can find and say, "Let\'s try this one. You will look cute in it." She quickly shakes her head and instead, grabs a more conservative outfit then says, "I like this one." You shake your head and say, "Suit yourself." She then turns to you and says, "I like this outfit. I hope I can keep it clean though because my mother always gets upset with me for getting my clothes dirty. Even my clothes right now are dirty." You respond, "You can always use my shower to clean yourself up." She responds, "If you don\'t mind." You reply, "It\'s no trouble at all. Let\'s go."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take her home', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;

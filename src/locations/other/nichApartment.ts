@@ -182,6 +182,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Debug Menu', goto: ['nichUtil', 'debug'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the city center</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -244,6 +245,7 @@ function enterJobInterview(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -372,6 +374,7 @@ function enterHiring(s: GameState, scene: SceneBuilder): void {
   scene.text('6. You will call me Master Nicholas, my wife is Mistress Gala and from now on Tanya is Miss Tanya to you. You will also curtsy when you approach one of us.');
   scene.text('7. Starting tomorrow you are on probation. You will do all your chores during the day and report to me in the evening. If you do everything to my satisfaction for three days I will formally employ you.');
   scene.text('Do you accept these conditions?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     qspCall(s, 'nichUtil', 'hired');
@@ -448,6 +451,7 @@ function enterVisitTanya(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['nichApartment', 'casual_visit'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -519,6 +523,7 @@ function enterAgreedToJob(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +590,7 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -618,6 +624,7 @@ function enterCasualVisit(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).nichTanya ?? 0)?.['DateCounter'] > 0  ||  ((s as any).nichJobRefused ?? 0) === 1)  &&  (((s as any).nichTanya ?? 0)?.['DateLast'] !== ((s as any).daystart ?? 0)  ||  ((s as any).nichDebug ?? 0) === 1)) {
     qspCall(s, 'nichTanya', 'date_proposal');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have sex with Tanya', goto: ['nichTanya', 'sexL'] },
     { label: 'Chat with Tanya', goto: ['nichTanya', 'chat'] },
@@ -628,6 +635,7 @@ function enterCasualVisit(s: GameState, scene: SceneBuilder): void {
 function enterRemoveNote(s: GameState, scene: SceneBuilder): void {
   (s as any).nichNote = 0;
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -642,6 +650,7 @@ function enterMaidJobReHire(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "I am here to see if '+$npc_nickname['A52']+' still needs a maid," you answer po...
   scene.text('"I am here to see if \'+$npc_nickname[\'A52\']+\' still needs a maid," you answer politely.');
   scene.text('"I see. Master Nicholas is currently in his study. I am sure he will be glad to see you," he replies as he lets you in.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head to the study.', handler: (st: GameState) => {
     scene.img('images/characters/city/tanya/01.jpg');

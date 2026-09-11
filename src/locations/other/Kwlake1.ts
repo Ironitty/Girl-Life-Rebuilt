@@ -99,6 +99,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('"You\'re such a pervert!" you grin, watching Kat close her lips around the stone cock.');
   scene.text('Kat laughs with you, and says: "Hey! I know how to make a man want me, so I can then make him do whatever I want…"');
   scene.text('She tosses the rock to the side carelessly, and you continue on your walk.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['Nudelake', ''] },
   ]);

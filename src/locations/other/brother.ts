@@ -430,6 +430,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -448,6 +449,7 @@ function enterBroSchoolField(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -592,6 +594,7 @@ function enterPlayfootball(s: GameState, scene: SceneBuilder): void {
   }, goto: ['seeporn', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -602,6 +605,7 @@ function enterKissTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big34.jpg');
   scene.text('"Hey…" you say awkwardly. "Can we talk? About… you know…" you blush and look away awkwardly, the memory of your brother\'s lips pressing at your mind.');
   scene.text('Kolka immediately blushes back and swallows, "Uh… yeah. We can talk… about… you know…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sit down', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -773,6 +777,7 @@ function enterSleepsexcum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You catch your breath then carefully climb off your still sleeping, though smiling, brother. You gently replace the blanket and quietly step away.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -784,6 +789,7 @@ function enterSleepsexcum(s: GameState, scene: SceneBuilder): void {
 function enterShowbody(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: showbody is deprecated in brother.qsrc');
   scene.actions([{ label: 'Continue', goto: ['brother_lessons', 'showbody'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -836,6 +842,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brother_lessons', 'homework'] },
   ]);
@@ -906,6 +913,7 @@ function enterBrotherSexStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Fuck your brother (Anal)', goto: ['brother', 'fuckanal'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk your brother off', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A34', 2);
@@ -941,6 +949,7 @@ function enterFuckvaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   qspCall(s, 'dinsex', 'sexcum');
   qspCall(s, 'brother', 'brotherSexEnd');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -959,6 +968,7 @@ function enterFuckanal(s: GameState, scene: SceneBuilder): void {
   scene.text(`You lie back on the sofa, pulling your knees up to your chest and expose your ${((s as any).pc_desc ?? 0)?.['anus']} asshole to your sibling. "I want you to fuck my ass, Kolka," you tell him. Your brother practically pounces you, not needing more encouragement from you.`);
   qspCall(s, 'dinSex', 'boy_wants_anal', 'Kolka', 'lubri\' & gs \'dinsex', 'analsex');
   qspCall(s, 'brother', 'brotherSexEnd');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1002,6 +1012,7 @@ function enterBrotherSexEnd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1027,11 +1038,13 @@ function enterBrotherSexCount(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['last_sex_day'] === 0) {
     ((s as any).brotherQW ?? {})['last_sex_day'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBrotherGoAway(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_go_away is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_go_away'] },
   ]);
@@ -1040,6 +1053,7 @@ function enterBrotherGoAway(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherGoAway2(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_go_away2 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_go_away2'] },
   ]);
@@ -1048,6 +1062,7 @@ function enterBrotherGoAway2(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_end is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_voyeur_end'] },
   ]);
@@ -1056,6 +1071,7 @@ function enterBrotherVoyeurEnd(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv1(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev1 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_voyeur_ev1'] },
   ]);
@@ -1064,6 +1080,7 @@ function enterBrotherVoyeurEv1(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv2(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev2 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_voyeur_ev2'] },
   ]);
@@ -1072,6 +1089,7 @@ function enterBrotherVoyeurEv2(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv3(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev3 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_voyeur_ev3'] },
   ]);
@@ -1080,6 +1098,7 @@ function enterBrotherVoyeurEv3(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv3_2(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev3 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_voyeur', 'brother_voyeur_ev3_2'] },
   ]);
@@ -1102,11 +1121,13 @@ function enterBrotherSexEnd2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'brother_shower_sex', 'brother_shower_finish');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBrotherVoyeurEv4(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev4 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_lessons', 'anatomylesson2_1'] },
   ]);
@@ -1115,6 +1136,7 @@ function enterBrotherVoyeurEv4(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv5(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev5 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_lessons', 'anatomylesson2_2'] },
   ]);
@@ -1161,6 +1183,7 @@ function enterVirginitydialog(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1205,11 +1228,13 @@ function enterAnusCheck(s: GameState, scene: SceneBuilder): void {
       scene.text('He backs off, "Okay, okay, I\'ll be quiet…"');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBrotherVoyeurEv6(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev6 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_lessons', 'anatomylesson2_3'] },
   ]);
@@ -1218,6 +1243,7 @@ function enterBrotherVoyeurEv6(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv7(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev7 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_lessons', 'anatomylesson2_4'] },
   ]);
@@ -1226,6 +1252,7 @@ function enterBrotherVoyeurEv7(s: GameState, scene: SceneBuilder): void {
 
 function enterBrotherVoyeurEv8(s: GameState, scene: SceneBuilder): void {
   scene.text('If you can read this text, please contact a developer with the following information: brother_voyeur_ev8 is deprecated in brother.qsrc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'OK', goto: ['brother_lessons', 'anatomylesson2_5'] },
   ]);
@@ -1339,6 +1366,7 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).brother_pregreact = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1347,6 +1375,7 @@ function enterBrotherknows1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yeah, this baby is yours," you say, rubbing your belly. "And after it\'s born, I might let you help me make another one," you add before giving your brother a kiss. You look down at him and notice a lump starting to form in his pants.');
   // TODO-QSP: dynamic text: Kolka's eyes suddenly go wide, "Wait! You're not going to tell <<$npc_nickname['...
   scene.text(`Kolka's eyes suddenly go wide, "Wait! You're not going to tell ${((s as any).npc_nickname ?? 0)?.['A29']} I got you pregnant, are you?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.text('"Don\'t worry, I\'ll think of something to tell her. I\'ll probably just say I was raped on the way home from the disco. This\'ll just be our little secret," you wink and blow a kiss to your brother before finally walking away.');
@@ -1382,6 +1411,7 @@ function enterBrotherknows2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, you should have thought of that before knocking me up! You\'re going to have to figure it out," your brother is clearly crestfallen as you walk away.');
   // TODO-QSP: dynamic text: "Wait!" Kolka yells after you. "You're not going to tell <<$npc_nickname['A29']>...
   scene.text(`"Wait!" Kolka yells after you. "You're not going to tell ${((s as any).npc_nickname ?? 0)?.['A29']} I got you pregnant, right?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No (Blackmail him)', handler: (st: GameState) => {
     scene.text('You glare at Kolka, "Fuck you! I told you that you got me pregnant, and you\'re still worried about yourself? Okay, I\'ll keep it a secret, but you\'d better fall in line! If you don\'t do everything I say, I\'ll end you!"');
@@ -1409,6 +1439,7 @@ function enterBrotherknows3(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_pregtalk ?? {})['A34'] = 1;
   scene.text('"It could be, I\'m still not sure yet. I just wanted to give you a heads up." You then add with a wink, "Honestly, I kind of hope it is."');
   scene.text('"Me too," he states just a little too eagerly. He then quickly moves his lips to yours and you share a passionate kiss.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sitrPar', ''] },
   ]);
@@ -1420,6 +1451,7 @@ function enterBrotherknows4(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m still not sure," you say. "But if it is, you had better take responsibility."');
   scene.text('Your brother rolls his eyes, "Then I really hope it\'s someone else\'s problem."');
   scene.text('"Fuck off! If it\'s yours then I\'ll make sure you take responsibility!" You then storm away, leaving Kolka to stew.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sitrPar', ''] },
   ]);
@@ -1431,6 +1463,7 @@ function enterBrotherknows5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "No, you got lucky this time. It's actually <<$wombthfath>>'s," you tell him. "I...
   scene.text(`"No, you got lucky this time. It's actually ${((s as any).wombthfath ?? 0)}'s," you tell him. "I just wanted to share the news with my little brother."`);
   scene.text('"Oh, well congratulations!" He tries to sound happy, but you detect a note of disappointment in his voice.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sitrPar', ''] },
   ]);
@@ -1558,6 +1591,7 @@ function enterBrotherknows6(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1584,6 +1618,7 @@ function enterBrotherknows7(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1618,6 +1653,7 @@ function enterBrotherknows8(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

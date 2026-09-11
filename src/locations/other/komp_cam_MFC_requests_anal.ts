@@ -41,6 +41,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decide to improvise', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -190,10 +191,12 @@ function enterSetVibrAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSmallAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your small dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -222,6 +225,7 @@ function enterSetSmallAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetNormalAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your medium dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -250,6 +254,7 @@ function enterSetNormalAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBigAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your large dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -278,6 +283,7 @@ function enterSetBigAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLargeAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your very large dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -306,6 +312,7 @@ function enterSetLargeAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetHugeAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your 30cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -334,6 +341,7 @@ function enterSetHugeAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetEnormousAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your enormous 35cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');
@@ -362,6 +370,7 @@ function enterSetEnormousAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGiganticAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use your humongous 40cm dildo', handler: (st: GameState) => {
     qspCall(s, 'komp_cam_functions', 'camming', 5, 'porn', 'request');

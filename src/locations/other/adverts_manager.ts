@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'saveposition', '');
   scene.actions([{ label: 'Continue', goto: ['adverts_manager', 'show'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -20,6 +21,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) > 8) {
     ((s as any).adv_chance ?? {})['guitar'] = 50;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -65,6 +67,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -109,6 +112,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Known Adverts</b></center>');
     qspCall(s, 'adverts_manager', 'show_adverts', 1);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the board', goto: ['restoreposition', ''] },
   ]);
@@ -132,6 +136,7 @@ function enterSumAdverts(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) <= ((s as any).adv_listSize ?? 0)) {
     // TODO-QSP: jump 'sum_visible_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +155,7 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'appearance_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -194,6 +200,7 @@ function enterShowAdverts(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $adv_table_adverts += '</table></center>'
   // TODO-QSP: $adv_table_adverts
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -204,6 +211,7 @@ function enterViewAdvert(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'adverts_view', $args[1]
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['adverts_manager', 'show'] },
   ]);

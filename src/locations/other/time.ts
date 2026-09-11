@@ -34,6 +34,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'time', 'update_daystage', ((s as any).totminut ?? 0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +51,7 @@ function enterTimeCheatFix(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'time', 'update_date');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -63,6 +65,7 @@ function enterUpdateDate(s: GameState, scene: SceneBuilder): void {
   (s as any).day_of_year = ((s as any).dateVars ?? 0)?.['day_of_year'];
   qspCall(s, 'time', 'init_monthends', ((s as any).year ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -216,6 +219,7 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
     scene.text(`inner_years: ${((s as any).temp_timeVars ?? 0)?.['inner_years']}`);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -225,6 +229,7 @@ function enterGetWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + (7);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -234,6 +239,7 @@ function enterGetOddWeekFromDaystart(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -250,6 +256,7 @@ function enterGetNumberSuffix(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -322,6 +329,7 @@ function enterToDaystart(s: GameState, scene: SceneBuilder): void {
     scene.text(`daystart_offset: ${((s as any).temp_timeVars ?? 0)?.['daystart_offset']}`);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -364,6 +372,7 @@ function enterUpdateDaystage(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -392,6 +401,7 @@ function enterGet_DayLength(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).temp_timeVars ?? {})?.['DayLengthMax'] - ((((s as any).temp_timeVars ?? {})?.['DayLengthMax'] - ((s as any).temp_timeVars ?? {})?.['DayLengthMin']) * ((s as any).temp_timeVars ?? {})?.['DayInYear2']) / 182;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -401,6 +411,7 @@ function enterGet_CurTimeSun(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (((s as any).ARGS ?? 0)[1] % 1440) - 780;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -427,6 +438,7 @@ function enterGetDurationString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -457,6 +469,7 @@ function enterGetTimeString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -482,6 +495,7 @@ function enterGetDateString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -509,6 +523,7 @@ function enterGetAge(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) - (1);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,6 +541,7 @@ function enterInitMonthnames(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $monthName[11] = 'November'
   // TODO-QSP: $monthName[12] = 'December'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -538,6 +554,7 @@ function enterInitWeeknames(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $weekName[6] = 'Saturday'
   // TODO-QSP: $weekName[7] = 'Sunday'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -561,6 +578,7 @@ function enterInitMonthends(s: GameState, scene: SceneBuilder): void {
   ((s as any).monthsend ?? {})[11] = 30;
   ((s as any).monthsend ?? {})[12] = 31;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

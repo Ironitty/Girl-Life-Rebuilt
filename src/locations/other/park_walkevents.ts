@@ -13,6 +13,7 @@ function enterEmpty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You take a relaxing and refreshing walk through the park, trying to figure out the meaning of life.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your walk', goto: ['city_park', 'start'] },
   ]);
@@ -142,6 +143,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -246,12 +248,14 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('As you walk through the park, you hear moans and groans coming out of the bush close to one of the paths.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue walking', goto: ['city_park', 'start'] },
     { label: 'Peek', handler: (st: GameState) => {
@@ -529,6 +533,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -584,6 +589,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your walk', goto: ['city_park', 'start'] },
   ]);
@@ -622,6 +628,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -631,6 +638,7 @@ function enter6a(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/rape/2.jpg');
   scene.text('He\'s huge and intimidating, you decide it\'s better to do as he tells you, so can get out of the situation alive, hence you take off your clothes and a cold breeze makes your nipples rock-hard immediately.');
   scene.text('The man is quite enjoying himself, licking his lips as he keeps on observing you taking off your clothes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Now what?', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -674,6 +682,7 @@ function enter6b(s: GameState, scene: SceneBuilder): void {
   scene.text('His odor is quiet strong and his cock smells quite foul and tastes slightly salty. You try your best to disconnect yourself from the foul taste but with every thrust you\'re reminded of it, making you feel nauseous, barely able to hold it in.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'humiliation', 'rough', 'rape');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay focused', handler: (st: GameState) => {
     scene.img('images/locations/city/centralpark/sex/event/rape/7.jpg');
@@ -751,6 +760,7 @@ function enter6c(s: GameState, scene: SceneBuilder): void {
   scene.text('After a while he removes his fingers and starts cutting the ropes. You\'ve finally been released and before he gets any other ideas you quickly get dressed and run away from him.');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the police station', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
@@ -818,6 +828,7 @@ function enter7(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -848,6 +859,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -912,6 +924,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
@@ -934,6 +947,7 @@ function enterRunningImage(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/activities/exercises/running/park_jogn2.jpg');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -951,6 +965,7 @@ function enterRunCooldownImage(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/activities/exercises/running/park_jog_cooln1.jpg');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1181,6 +1196,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1206,6 +1222,7 @@ function enterRunReactions(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You feel great after your jogging session. A bit sweaty, but also that you\'ve managed to improve your stamina as you even feel a bit slimmer.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your run', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1227,6 +1244,7 @@ function enterRunEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'exercise', 'tier2', 30, 'run');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1451,6 +1469,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['park_walkevents', 'empty'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

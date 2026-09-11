@@ -15,6 +15,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
   scene.text('You rub his hard dick through his pants for a few seconds before sliding off his lap, kneeling next to the bed as you unbutton his pants and reach inside. His erect cock springs free as soon as you pull it out, and it seems to almost be pulsing by your touch. He moans softly as you slowly start stroking his dick.');
   qspCall(s, 'arousal', 'hj', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish him off', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/hj2.jpg');
@@ -78,6 +79,7 @@ function enterArtemBj(s: GameState, scene: SceneBuilder): void {
   scene.text('You slide off his lap and keep rubbing his dick through his jeans. As you do, you tell him to stand up. He does so and you unbutton his pants and reach inside, sliding your hand down until you can feel his cock in your hand.');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pull his pants down', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/bj3.jpg');
@@ -166,6 +168,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.text('You impatiently tug at his clothes and finally manage to unbutton his pants. When you reach for his cock, you can feel it\'s already fully erect. You keep kissing him as you jerk him off.');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip down', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/first3.jpg');
@@ -449,6 +452,7 @@ function enterCumSurprise(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -474,6 +478,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 11;
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'second_floor'] },
   ]);
@@ -490,6 +495,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbate');
   qspCall(s, 'arousal', 'bj', 5, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/firstfacial.jpg');
@@ -556,6 +562,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.text(`He smiles at you. "I will, I promise." He slowly pushes his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock further into your ass. He makes slow, shallow thrusts, letting you get used to him.`);
   qspCall(s, 'arousal', 'anal', 5, 'lube');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal bliss', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/firstanal2.jpg');
@@ -600,6 +607,7 @@ function enterAnushka_3some(s: GameState, scene: SceneBuilder): void {
   scene.text('As they get close to the couch, she pushes him down next to you while pulling you up with one hand. She starts stripping down to her underwear while silently encouraging you to do the same. You glance at Artem and see his eyes bulging. You\'re not sure if it\'s because of how she\'s acting or that it\'s really happening. With one of you on each side of him, you start exchanging kisses, but are sure to kiss Artem just as much. As you kiss Artem, Anushka pulls down her panties and bends over, inviting one of you to eat her out.');
   qspCall(s, 'arousal', 'kiss', 2, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', goto: ['artem_sex_uni', 'anushka_3some_oral2'] },
     { label: 'Make Artem eat her out', goto: ['artem_sex_uni', 'anushka_3some_oral1'] },
@@ -622,6 +630,7 @@ function enterAnushka_3someOral1(s: GameState, scene: SceneBuilder): void {
       { label: 'Give Artem a blowjob', goto: ['artem_sex_uni', 'anushka_3some_bj'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -641,6 +650,7 @@ function enterAnushka_3someOral2(s: GameState, scene: SceneBuilder): void {
       { label: 'Give Artem a blowjob', goto: ['artem_sex_uni', 'anushka_3some_bj'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -651,6 +661,7 @@ function enterAnushka_3someBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2);
   qspCall(s, 'arousal', 'cuni', (-2), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell Anushka to suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some5.jpg');
@@ -740,6 +751,7 @@ function enterAnushka_3someRough1(s: GameState, scene: SceneBuilder): void {
   scene.text('Anushka looks up at him while biting her lower lip, but doesn\'t say anything. He looks at you when you speak up, then looks at her, and his gaze hardens just a bit before he looks back at you and nods. He starts ramming into her harder than before, but is still not going all out. Anushka responds by moaning louder.');
   qspCall(s, 'arousal', 'voyeur_sex', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask him to butt fuck you', goto: ['artem_sex_uni', 'anushka_3some_anal'] },
     { label: 'Bend her over', goto: ['artem_sex_uni', 'anushka_3some_doggy'] },
@@ -756,6 +768,7 @@ function enterAnushka_3someAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 2);
   qspCall(s, 'arousal', 'cuni', (-2), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bend her over', goto: ['artem_sex_uni', 'anushka_3some_doggy'] },
     { label: 'Eat her out', handler: (st: GameState) => {
@@ -857,6 +870,7 @@ function enterAnushka_3someDoggy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let him finish', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/sex/nush3some15.jpg');
@@ -877,6 +891,7 @@ function enterAnushka_3someFacial(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'A2', 1);
   qspCall(s, 'cum_call', 'mouth', 'A2', 1);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clean up', goto: ['artem_sex_uni', 'anushka_3some_cleanup'] },
     { label: 'Lick the cum from her face', handler: (st: GameState) => {
@@ -1310,6 +1325,7 @@ function enterAnushka_3someCleanup(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1317,6 +1333,7 @@ function enterNush3someHadFun(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('You smile and kiss him again. "I\'m glad you had fun."');
   scene.text('He laughs and hugs you. "Thank you, thank you for everything. I had a great time. I really needed that." He kisses you again before walking you to the door. As you leave, you think about what just happened. Not only do Anushka\'s words seem to not have bothered him anymore, but there\'s something about his stance, tone of voice and how he acted. He seems to have gotten a little more confident from today\'s events.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['uni_dorm', 'second_floor'] },
   ]);
@@ -1328,6 +1345,7 @@ function enterNush3someHowHeFeels(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile and kiss him again. "Don\'t listen to her. You were great as always." You pause while looking at him; he just seems a little different and more confident. "So, how did that make you feel?"');
   scene.text('He looks thoughtful for a second. "You know what? I feel great, I really do." He pauses, as if he\'s considering what to say next. "I just wish…" he trails off.');
   scene.text('You give him an encouraging look to continue, but he looks at you and blushes. It seems he\'s too embarrassed to say what he wishes. You could prod him, embarrass him, or just let it go.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let it go', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -1473,6 +1491,7 @@ function enterStraponFirst(s: GameState, scene: SceneBuilder): void {
       { label: 'Get a blowjob', goto: ['artem_sex_uni', 'strapon_first_bj'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1482,6 +1501,7 @@ function enterStraponFirstBj(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, take off your shirt and get on the bed," you tell him.');
   qspCall(s, 'arousal', 'foreplay_give', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get the lube', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon5.jpg');
@@ -1598,6 +1618,7 @@ function enterStraponFirstMagic(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, take off your shirt and get on the bed," you tell him.');
   qspCall(s, 'arousal', 'foreplay_give', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get the lube', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon5.jpg');
@@ -1740,6 +1761,7 @@ function enterStraponSecond(s: GameState, scene: SceneBuilder): void {
       { label: 'Get a blowjob', goto: ['artem_sex_uni', 'strapon_second_bj'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1749,6 +1771,7 @@ function enterStraponSecondBj(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, take off your shirt and get on the bed," you tell him.');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get the lube', handler: (st: GameState) => {
     ((s as any).artemQW ?? {})['strapon_count'] = (((s as any).artemQW ?? {})['strapon_count'] ?? 0) + (1);
@@ -1813,6 +1836,7 @@ function enterStraponSecondMagic(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, take off your shirt and get on the bed," you tell him.');
   qspCall(s, 'arousal', 'foreplay_give', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get the lube', handler: (st: GameState) => {
     ((s as any).artemQW ?? {})['strapon_count'] = (((s as any).artemQW ?? {})['strapon_count'] ?? 0) + (1);
@@ -1911,6 +1935,7 @@ function enterStraponAgain(s: GameState, scene: SceneBuilder): void {
       { label: 'Get a blowjob', goto: ['artem_sex_uni', 'strapon_second_bj'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1920,6 +1945,7 @@ function enterStraponAgainBj(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, take off your shirt and get on the bed," you tell him.');
   qspCall(s, 'arousal', 'foreplay_give', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get the lube', handler: (st: GameState) => {
     ((s as any).artemQW ?? {})['strapon_count'] = (((s as any).artemQW ?? {})['strapon_count'] ?? 0) + (1);
@@ -1982,6 +2008,7 @@ function enterStraponAgainMagic(s: GameState, scene: SceneBuilder): void {
   scene.text('"Okay, take off your shirt and get on the bed," you tell him.');
   qspCall(s, 'arousal', 'foreplay_give', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get the lube', handler: (st: GameState) => {
     ((s as any).artemQW ?? {})['strapon_count'] = (((s as any).artemQW ?? {})['strapon_count'] ?? 0) + (1);

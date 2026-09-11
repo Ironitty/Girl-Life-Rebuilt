@@ -15,18 +15,21 @@ function enterGetXpprv(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1 + (146 * (((s as any).ARGS ?? 0)[1] - 1) * (((s as any).ARGS ?? 0)[1] - 1) / 91);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetXpnxt(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 1 + (146 * ((s as any).ARGS ?? 0)[1] * ((s as any).ARGS ?? 0)[1] / 91);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetMaxDeg(s: GameState, scene: SceneBuilder): void {
   (s as any).result = Math.max(200, (102 - Math.min(qspUntranslated(s, "ARGS[1]", { location: "stat_funcs" }), 100) + ((s as any).ARGS ?? 0)[2]) * 100);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -38,6 +41,7 @@ function enterAddAttToList(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $att_desc[$ARGS[1]] = $ARGS[2]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,6 +53,7 @@ function enterAddSklToList(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $skl_desc[$ARGS[1]] = $ARGS[2]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +62,7 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $traitattskl[] = $ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

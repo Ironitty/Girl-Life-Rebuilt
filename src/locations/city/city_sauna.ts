@@ -36,6 +36,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 8) {
     // TODO-QSP: act 'Head to the sauna': gt 'city_sauna', 'sauna2'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -87,6 +88,7 @@ function enterSauna2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_sauna', ''] },
   ]);
@@ -218,6 +220,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Exit to the sauna</b>', goto: ['city_saunawhore', 'saunawork'] },
   ]);
@@ -230,6 +233,7 @@ function enterSaunafitness(s: GameState, scene: SceneBuilder): void {
   scene.text('You do push-ups for 30 minutes, improving your strength.');
   qspCall(s, 'exercise', 'pushups_inner');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

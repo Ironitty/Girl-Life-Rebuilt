@@ -37,6 +37,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to work', goto: ['masseuse_break', 'break_over'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +46,7 @@ function enterBreakOver(s: GameState, scene: SceneBuilder): void {
   scene.text('You head back to your room and buzz Xian.');
   scene.text('"Hey, I\'m done taking my break."');
   scene.text('"Okay, I\'ll tell you when the next client has requested you."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for a client', goto: ['masseuse_work', 'begin'] },
   ]);
@@ -62,6 +64,7 @@ function enterLeiTalk(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hey, I don't think we've met before," you say. "I'm ${((s as any).pcs_firstname ?? 0)}."`);
   scene.text('She puts down her phone to look at you.');
   scene.text('"I\'m Lei." Despite her looks, she speaks Russian flawlessly without even hint of an accent.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Do you like working here?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
@@ -107,6 +110,7 @@ function enterLeiTalk2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Sure."');
   scene.text('You start talking about stuff with her.');
   qspCall(s, 'masseuse_break', 'lei_talk3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -118,6 +122,7 @@ function enterLeiTalk3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your break', goto: ['masseuse_break', 'lei_talk_end'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -186,6 +191,7 @@ function enterLeiSmallTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -244,6 +250,7 @@ function enterLeiFunTalk(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'masseuse_break', 'lei_talk3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -258,6 +265,7 @@ function enterLeiTalkSelf(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     qspCall(st, 'masseuse_break', 'lei_talk3');
@@ -327,6 +335,7 @@ function enterLeiTalkFamily(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     qspCall(st, 'masseuse_break', 'lei_talk3');
@@ -348,6 +357,7 @@ function enterLeiTalkEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('"Welp," you say, standing up. "It\'s probably about time I got back to work now."');
   scene.text('"Yeah, me too," she says, joining you. "See you around sometime."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to work', goto: ['masseuse_break', 'break_over'] },
   ]);

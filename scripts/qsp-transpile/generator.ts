@@ -573,8 +573,9 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     if (lte) return '<=';
     return '===';
   });
-  // QSP ! operator (not equal) between operands: word!word
+  // QSP ! operator (not equal) between operands
   c = c.replace(/(\w)!(\w)/g, '$1!==$2');
+  c = c.replace(/(\])!(\s*')/g, '$1!== $2');
   // QSP array access with literal key: WORD['key'] or WORD["key"] (protect key from identifier replacement)
   // Must run before <<expr>> handler so dynamic keys like WORD['<<$ARGS[1]>>-type'] are handled correctly
   c = c.replace(/\$?([a-zA-Z_]\w*)\[(['"])([^'"]*)\2\]/g, (_, obj, q, key) => {

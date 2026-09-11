@@ -27,6 +27,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Go inside the trailer', goto: ['mitkabuh_group', 'partywithMira'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -146,6 +147,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,6 +157,7 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
   scene.text(`While drinking with Mira, ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })} comes up to you and starts removing your clothes. At the same time ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} does the same to Mira. They tell you, "We want to share you both right now."`);
   // TODO-QSP: dynamic text: <<$boydesc[2]>> looks on but doesn't move or say anything. Mira doesn't bother r...
   scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} looks on but doesn't move or say anything. Mira doesn't bother resisting and goes along with it.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let them continue', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
@@ -501,6 +504,7 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -682,6 +686,7 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +696,7 @@ function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
   scene.text(`While drinking with Mira, ${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })} comes up to you and starts pulling off your clothes. "I'm going to fuck that nice ass of yours right now" he says.`);
   // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> shout their approval of this idea and go ove...
   scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} shout their approval of this idea and go over to do the same to Mira. She doesn't bother resisting and goes along with it.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let <<$boydesc[0]>> fuck your ass', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1

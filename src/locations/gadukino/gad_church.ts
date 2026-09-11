@@ -53,6 +53,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the village square', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -67,6 +68,7 @@ function enterSermon(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
   scene.text('The candles are dimmed as the sermon begins. You listen intently to the priest as he preaches the word of God. You study His teachings, feeling enlightened until you reach the end of the sermon.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up', goto: ['gad_church', 'Narthex'] },
   ]);
@@ -95,6 +97,7 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
   scene.text('You attend the vigil and reflect on the recent events in your life. The harmonies as the hymns and psalms are sung sweep aside some of the worries in your heart; although you know they will return once you leave this holy place, you still enjoy the rest. The sweet scent of incense tickles your nose.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
     { label: 'Stay for the Rite of Mutual Forgiveness', handler: (st: GameState) => {
@@ -132,6 +135,7 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
   scene.text('You join the congregation for the Divine Liturgy. You see mostly older people around, but some people around your age are also present. You participate in the singing, but that\'s about it. Your presence seems to go largely unnoticed, and you have the chance to rest. You feel a lot better.');
   qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 4) + 0);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the church', goto: ['gad_church', 'start'] },
   ]);
@@ -146,6 +150,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/enterchurch.jpg');
   scene.text('You enter the church, and the scent of incense and beeswax fills your lungs. Your eyes are drawn past the Narthex into the Nave with its walls covered in lovingly painted icons while a thousand points of light dance in joy throughout God\'s house from the magnificent chandelier that hangs from the ceiling.');
   scene.text('To your left is a counter with many candles, icons and prayer books, a small jar resting next to it with a few rubles and donations for taking a candle.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the church', goto: ['gad_church', 'start'] },
     { label: 'Light a candle', goto: ['gad_church', 'candle'] },
@@ -168,6 +173,7 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'church_reduction', 'village', 1);
   scene.img('images/locations/pavlovsk/church/ch_candle.jpg');
   scene.text('You approach the counter and take one of the candles, lighting it without giving a donation.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
   ]);
@@ -184,6 +190,7 @@ function enterCandle1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/ch_candle.jpg');
   // TODO-QSP: dynamic text: You approach the counter and put ' + $func('money', 'string_price', 10) + ' in t...
   scene.text('You approach the counter and put \' + $func(\'money\', \'string_price\', 10) + \' in the jar for a candle. Then, you take one of the candles and light it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
   ]);
@@ -211,6 +218,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pray', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

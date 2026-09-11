@@ -15,11 +15,13 @@ function enterGetProgramName(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterProgramName(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -30,6 +32,7 @@ function enterGetFirstPeriod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +93,7 @@ function enterGetFirstPeriodNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +154,7 @@ function enterGetFirstPeriodTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,6 +165,7 @@ function enterGetSecondPeriod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -220,6 +226,7 @@ function enterGetSecondPeriodNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -280,6 +287,7 @@ function enterGetSecondPeriodTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -290,6 +298,7 @@ function enterGetThirdPeriod(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -374,6 +383,7 @@ function enterGetThirdPeriodNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -457,6 +467,7 @@ function enterGetThirdPeriodTeaching(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -469,6 +480,7 @@ function enterSetFirstPeriodAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -599,6 +611,7 @@ function enterSetFirstPeriodActNursing(s: GameState, scene: SceneBuilder): void 
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -691,6 +704,7 @@ function enterSetFirstPeriodActTeaching(s: GameState, scene: SceneBuilder): void
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -703,6 +717,7 @@ function enterSetSecondPeriodAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -796,6 +811,7 @@ function enterSetSecondPeriodActNursing(s: GameState, scene: SceneBuilder): void
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -888,6 +904,7 @@ function enterSetSecondPeriodActTeaching(s: GameState, scene: SceneBuilder): voi
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -900,6 +917,7 @@ function enterSetThirdPeriodAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1089,6 +1107,7 @@ function enterSetThirdPeriodActNursing(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1281,6 +1300,7 @@ function enterSetThirdPeriodActTeaching(s: GameState, scene: SceneBuilder): void
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1291,6 +1311,7 @@ function enterGetExamSchedule(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1355,6 +1376,7 @@ function enterGetExamScheduleNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1419,6 +1441,7 @@ function enterGetExamScheduleTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1429,6 +1452,7 @@ function enterIsExamOver(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1537,6 +1561,7 @@ function enterIsExamOverNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1645,6 +1670,7 @@ function enterIsExamOverTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1657,6 +1683,7 @@ function enterSetExamAct(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1817,6 +1844,7 @@ function enterSetExamActNursing(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1977,6 +2005,7 @@ function enterSetExamActTeaching(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1985,6 +2014,7 @@ function enterUniPeriodFirst(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'uni_programs', 'set_first_period_act');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1993,6 +2023,7 @@ function enterUniPeriodSecond(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'uni_programs', 'set_second_period_act');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2001,6 +2032,7 @@ function enterUniPeriodThird(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'uni_programs', 'set_third_period_act');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2012,6 +2044,7 @@ function enterExam(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'uni_programs', 'set_exam_act');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

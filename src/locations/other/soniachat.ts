@@ -13,6 +13,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).soniaQW ?? {})['happyslut'] = (((s as any).soniaQW ?? {})['happyslut'] ?? 0) + (1);
     ((s as any).soniaQW ?? {})['happyslut_tickday'] = ((s as any).daystart ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -102,6 +103,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -291,6 +293,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You sigh in a way only those who are in love can. "Hopefully <<$ARGS[1]>> and I ...
   scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
   scene.text('She smiles at you. "Best of luck with that."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Change the subject', goto: ['soniachat', 'sonia_chat'] },
@@ -417,6 +420,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'lover_looop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -430,6 +434,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('You shake your head slightly. "You\'ve never met him. I only just met him."');
   scene.text('She smiles. "Just some guy you met, huh?"');
   scene.text('You laugh before you start telling her about him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Keep talking', goto: ['soniachat', 'sonia_chat'] },
@@ -447,6 +452,7 @@ function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/soniacrying.jpg');
   scene.text('You walk over and sit on the bed next to Sonia before leaning in and comforting her as best you can.');
   scene.text('She cries for several more minutes before she stops and looks at you with puffy eyes and a tear stained face. "Why are you here?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'I wanted to see how you were', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
@@ -637,6 +643,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anything you want to talk about?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -739,6 +746,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anything you want to talk about?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -832,6 +840,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -860,6 +869,7 @@ function enterLivingroomChat1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask to go to her room', handler: (st: GameState) => {
     (s as any).SoniaLoc = 2;
@@ -943,6 +953,7 @@ function enterLivingroomChat2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask to go to her room', handler: (st: GameState) => {
     (s as any).SoniaLoc = 2;
@@ -1281,6 +1292,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -1489,6 +1501,7 @@ function enterTellingMarrigeDreams1(s: GameState, scene: SceneBuilder): void {
   scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
   scene.text('She smiles at you. "Why when you can have any boy you want?"');
   scene.text('You start to explain why, but considering what\'s happened in her life, you decide to leave it and change the subject.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Change the subject', goto: ['soniachat', 'sonia_chat_happyslut'] },
@@ -1599,6 +1612,7 @@ function enterBoyfriendChat1(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'lover_loop_bc1'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1612,6 +1626,7 @@ function enterTellAboutGenericBoyfriend1(s: GameState, scene: SceneBuilder): voi
   scene.text('You shake your head slightly. "You\'ve never met him. I only just met him."');
   scene.text('She smiles. "Just some guy you met, huh?"');
   scene.text('You laugh before you start telling her about him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
     { label: 'Keep talking', goto: ['soniachat', 'sonia_chat_happyslut'] },

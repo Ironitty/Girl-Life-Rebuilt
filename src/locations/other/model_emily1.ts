@@ -22,6 +22,7 @@ function enterEmily_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('You\'re walking through the studio when you hear someone shout from behind you.');
   scene.text('"Move bitch!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
@@ -264,6 +265,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -275,6 +277,7 @@ function enterEmilyResolve(s: GameState, scene: SceneBuilder): void {
   scene.text('You hold out your hand as an apology.');
   scene.text('She seems genuinely caught off guard by your actions and takes an actual step back. She quickly composes herself and grabs your hand saying, "Fine. Just… Pay more attention next time," before hurridly walking out of the room.');
   scene.text('You release the breath you didn\'t realize you had been holding. You hope you made the right choice and have fixed things for the future.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
   ]);
@@ -317,6 +320,7 @@ function enterEmilyModelling(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
   ]);
@@ -327,6 +331,7 @@ function enterEmilyWarning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('As you walk through the studio, you hear your "name" ring out from behind you.');
   scene.text('"Hey! Cunt!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/face.jpg');
@@ -407,6 +412,7 @@ function enterEmilyChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/turnback.jpg');

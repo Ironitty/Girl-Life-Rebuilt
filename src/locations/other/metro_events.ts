@@ -15,6 +15,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['metro_events', 'station'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enterFrot(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['metro_events', 'c'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,6 +57,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   }, goto: ['metro_events', 'fin'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -139,6 +142,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   }, goto: ['metro_events', 'fin'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -314,6 +318,7 @@ function enterC(s: GameState, scene: SceneBuilder): void {
   }, goto: ['metro_events', 'fin'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -490,6 +495,7 @@ function enterC(s: GameState, scene: SceneBuilder): void {
 function enterFin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You barely manage to pull away from the horny idiot and force your way through the crowded car to find a new place to stand as far away from him as you can get. After a while, you get to your station.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the car', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -501,6 +507,7 @@ function enterFin(s: GameState, scene: SceneBuilder): void {
 function enterFin2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Now that he\'s gone, and you are covered in his cum, you notice the other passengers staring at you. You should clean up before you step outside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the car', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1103,6 +1110,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1545,6 +1553,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1576,6 +1585,7 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with them', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc1.jpg');
@@ -1737,6 +1747,7 @@ function enterTwobbcfinish(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));
   qspCall(s, 'cum_call', 'breasts', ((s as any).npcID1 ?? 0));
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

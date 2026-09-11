@@ -201,6 +201,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential area (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -665,6 +666,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -11,11 +11,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'home_family_init', 'trackers');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTrackers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
+  // TODO-QSP: end
   scene.build();
 }
 

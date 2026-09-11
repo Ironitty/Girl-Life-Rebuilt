@@ -101,6 +101,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to Gadukino (0:10)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -183,6 +184,7 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   }, goto: ['mitkabuh', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

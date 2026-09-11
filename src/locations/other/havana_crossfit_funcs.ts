@@ -15,6 +15,7 @@ function enterSetupWod(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Open 17.1', 600, 1200, 'for_time', 'dumbbell_snatch');
   qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Open 16.1', 1300, 100, 'for_rounds', 'overhead_lunge');
   qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Karen', 300, 720, 'for_time', 'wallball');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -22,6 +23,7 @@ function enterFran(s: GameState, scene: SceneBuilder): void {
   scene.text('- Thruster 65 lbs');
   scene.text('- Pull-ups');
   scene.text('21-15-9 repetitions each, for time');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -29,12 +31,14 @@ function enterNancy(s: GameState, scene: SceneBuilder): void {
   scene.text('- 400 meter run');
   scene.text('- Overhead squat 65 lbs x 15');
   scene.text('5 rounds for time');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsabel(s: GameState, scene: SceneBuilder): void {
   scene.text('- Snatch 95 pounds');
   scene.text('30 repetitions for time');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +54,7 @@ function enterOpen17_1(s: GameState, scene: SceneBuilder): void {
   scene.text(' - 50 dumbbell snatches');
   scene.text(' - 15 burpee box jump-overs');
   scene.text('For time');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,12 +64,14 @@ function enterOpen16_1(s: GameState, scene: SceneBuilder): void {
   scene.text(' - 25-ft. overhead walking lunge');
   scene.text(' - 8 chest-to-bar pull-ups');
   scene.text('Complete as many rounds and reps as possible in 20 minutes');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterKaren(s: GameState, scene: SceneBuilder): void {
   scene.text('- 150 wallball shots');
   scene.text('For time');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +81,7 @@ function enterAddWod(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: wod_max_score[$ARGS[1]] = ARGS[3]
   // TODO-QSP: $wod_type[$ARGS[1]] = $ARGS[4]
   // TODO-QSP: $wod_video[$ARGS[1]] = $ARGS[5]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -86,6 +94,7 @@ function enterRecordstring(s: GameState, scene: SceneBuilder): void {
     if (((s as any).wod_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'for_rounds') {
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +112,7 @@ function enterUpdateBoxRecords(s: GameState, scene: SceneBuilder): void {
     (s as any).current_record_update_count = ((s as any).current_record_update_count ?? 0) + (1);
     // TODO-QSP: jump 'recordupdateloop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +130,7 @@ function enterBoxRecords(s: GameState, scene: SceneBuilder): void {
     (s as any).crossfit_record_it = ((s as any).crossfit_record_it ?? 0) + (1);
     // TODO-QSP: jump 'recordgeneratorloop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 

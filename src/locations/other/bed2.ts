@@ -11,12 +11,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['bed2', 'mod_sleeptriggers'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed2', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['bed2', 'main'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,6 +60,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of bed', goto: ['bed_get_out', 'start'] },
     { label: 'Take a nap (1:00)', handler: (st: GameState) => {
@@ -81,6 +84,7 @@ function enterWearPantiesDecider(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,6 +98,7 @@ function enterWearButtplugDecider(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +112,7 @@ function enterWearVibeDecider(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,6 +129,7 @@ function enterFin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'nichBedroomServant') {
     scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -40,6 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=    '<td align="center"><a href="exec: minut += 3 & gt ''shop_photography'',''start''"...
   // TODO-QSP: $temp_table += '</tr></table></center>'
   qspCall(s, 'lover', 'lover_events');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -56,6 +57,7 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pushkin/ksenya/mall1.jpg');
   scene.text('As you approach the mall, you see a beautiful, hot pink Ferrari before you. It\'s top is down and it\'s doors are wide open. Inside you see a familiar face. "Hello Ksenya" You say walking up to her.');
   scene.text('She looks up at you with a smile and steps out of the car. You can see she isn\'t wearing her normal exhibition clothes today but with slight movement, you can get a look at her panties as her dress is rather tight and short.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Ksenya', handler: (st: GameState) => {
     (s as any).KsenyaQW = 1;

@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
     (s as any).DimaRudeQW = ((s as any).DimaRudeQW ?? 0) + (1);
@@ -103,6 +104,7 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'dinnpc', 'din_predlog_dima_bj');
+  // TODO-QSP: end
   scene.actions([
     { label: '… is he serious? Think about what he said for a moment', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

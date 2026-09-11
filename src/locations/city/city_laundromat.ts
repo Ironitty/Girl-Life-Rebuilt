@@ -11,6 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/image_needed.png');
   scene.text('The local laundromat, where you can wash your clothes.');
   qspCall(s, 'washer', 'set_washer_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);

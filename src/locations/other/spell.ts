@@ -86,6 +86,7 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel drained, but the energy fizzles out and nothing happens');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,6 +105,7 @@ function enterRegenerate(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'spellTimer', 'add', 'regenerate', 120, 'pcs_health += (5 * ' + qspUntranslated(s, "regenVal>", { location: "spell" }) + ')', 'pcs_health += ' + qspUntranslated(s, "regenVal>", { location: "spell" }) + '');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +114,7 @@ function enterPainblock(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'painkiller', 'spell');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -131,6 +134,7 @@ function enterCuredisease(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'large');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +144,7 @@ function enterCurewounds(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'medical_din', 'healthTreatment', 'spell');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -148,6 +153,7 @@ function enterCurewounds2(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_health = ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5 + 1000;
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -188,6 +194,7 @@ function enterBerserk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'spellTimer', 'add', 'berserk', 120, ((s as any).berserkCode ?? 0), '');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +213,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_breath = 1;
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -221,6 +229,7 @@ function enterGlamour(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'spellTimer', 'add', 'glamour', 120, 'glamouractive = 0');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,6 +237,7 @@ function enterAlterself(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -251,6 +261,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -299,6 +310,7 @@ function enterCosmetica(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'body', 'Update_Appearance');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -315,6 +327,7 @@ function enterPenisenvy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'spellTimer', 'add', 'penisenvy', 30, 'penisEnvyVariable = 0', '');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -325,6 +338,7 @@ function enterFog(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +354,7 @@ function enterClone(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,11 +366,13 @@ function enterStun(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWeapon(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "weapon"
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -376,6 +393,7 @@ function enterWind(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -393,6 +411,7 @@ function enterMulticlone(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -403,6 +422,7 @@ function enterEnergo(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -413,6 +433,7 @@ function enterHaste(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -426,6 +447,7 @@ function enterHeal(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -439,6 +461,7 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -450,6 +473,7 @@ function enterScaldingtouch(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -461,6 +485,7 @@ function enterBurninghands(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -471,6 +496,7 @@ function enterFirebarrier(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -486,6 +512,7 @@ function enterFirestorm(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -496,6 +523,7 @@ function enterFlameshield(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -513,6 +541,7 @@ function enterShock(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -530,6 +559,7 @@ function enterLightning(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -540,6 +570,7 @@ function enterElectricbarrier(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -556,6 +587,7 @@ function enter1000birds(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -566,6 +598,7 @@ function enterDancingsphere(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -584,6 +617,7 @@ function enterQuicksand(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -594,6 +628,7 @@ function enterEarthshield(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -612,6 +647,7 @@ function enterAbyss(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -622,6 +658,7 @@ function enterEarthguardian(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -639,6 +676,7 @@ function enterSando(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -658,6 +696,7 @@ function enterWindgust(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -677,6 +716,7 @@ function enterPressure(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -687,6 +727,7 @@ function enterVacuum(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -706,6 +747,7 @@ function enterVacuumshells(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -716,6 +758,7 @@ function enterDevouringvacuum(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -734,6 +777,7 @@ function enterLeechmana(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -751,6 +795,7 @@ function enterFlood(s: GameState, scene: SceneBuilder): void {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -761,6 +806,7 @@ function enterBlister(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -776,6 +822,7 @@ function enterSharkrockets(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -790,6 +837,7 @@ function enterGreatflood(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

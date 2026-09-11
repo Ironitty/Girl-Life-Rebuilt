@@ -5,6 +5,190 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', '');
+  scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
+  scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
+  scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
+  // TODO-QSP: dynamic text: Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('t...
+  scene.text('Opening hours are \' + $func(\'time\', \'get_time_string\', 7, 0) + \' to \' + $func(\'time\', \'get_time_string\', 23, 0) + \'.');
+  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
+    // TODO-QSP: act 'Enter the cafe': gt 'city_coffee_hole', 'inner'
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return to the city', goto: ['city_island', ''] },
+  ]);
+  scene.build();
+}
+
+function enterInner(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'inner');
+  qspCall(s, 'schedule', 'A14', 'A23', 'A144');
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
+  scene.img('images/locations/city/island/coffee_hole/inside.jpg');
+  scene.text('The cafe looks like it was once some type of industrial building, with tall ceilings, exposed pipes, ductwork and lights. The counter is in the far corner, while the middle of the room contains several tables and chairs.');
+  scene.text('Along the wall opposite the counter is an area with several couches for people to sit and relax. The menu board shows a wide range of flavoured coffees, teas, espressos and pastries, among other things.');
+  (s as any).temp_familiar_here = 0;
+  if (((s as any).locat ?? 0)?.['A144'] === 9) {
+    (s as any).temp_familiar_here = 1;
+    scene.text('You see a familiar face working behind the counter, your former classmate <a href="exec:gt \'city_coffee_hole\', \'anushka_work\'">Anushka.</a>');
+  }
+  if (((s as any).locat ?? 0)?.['katja'] === 30  &&  (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')) {
+    (s as any).temp_familiar_here = 1;
+    // TODO-QSP: dynamic text: You see your'+iif( $university['enrolled_in'] = 'teaching_studies' and katjaQW['...
+    scene.text('You see your\'+iif( $university[\'enrolled_in\'] = \'teaching_studies\' and katjaQW[\'know_katja_uni\'] = 1, \' \', \' former \')+\'classmate <a href="exec:gt \'katja_chat\', \'coffee_hole\'">Katja</a> sitting at a table with a pile of books, a cup of coffee and a plate of food.');
+  }
+  if ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')  &&  ((s as any).AlbinaQW ?? 0)?.['coffee_meet'] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).locat ?? 0)?.['A23'] === 24) {
+      (s as any).temp_familiar_here = 1;
+      scene.text('You see <a href="exec:gt \'albina_events\', \'coffee_hole1\'">Albina</a> sitting at a table with a woman who has her back turned to you.');
+    } else {
+      if (((s as any).locat ?? 0)?.['A23'] === 29) {
+        (s as any).temp_familiar_here = 1;
+        scene.text('You see <a href="exec:gt \'albina_events\', \'coffee_hole2\'">Albina</a> sitting at a table, looking at her phone while drinking a cup of coffee.');
+      }
+    }
+  }
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) >= 2  &&  ((s as any).week ?? 0) === 2  &&  ((s as any).nerd_game ?? 0)?.['fixed_uni_day'] === 0  &&  ((s as any).hour ?? 0) >= 18) {
+    (s as any).temp_familiar_here = 1;
+    scene.text('You see some familiar faces sitting in one of the corners. Some of the <a href="exec:gt \'nerd_game_night\', \'crash_gamenight_uni\'">nerds</a> you went to school with back in Pavlovsk are gathered around a table. It looks like they\'re playing some sort of game.');
+  }
+  qspCall(s, 'natbel_uni_chat', 'set_coffee_hole_chats');
+  if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 18) {
+    // TODO-QSP: act '<b>Join nerds</b>': gt 'nerd_game_night', 'game'
+  }
+  if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 17) {
+    (s as any).temprand = Math.floor(Math.random() * 10) + 1;
+    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) === 2) {
+      if (((s as any).temprand ?? 0) === 1) {
+        scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="exec:gt \'city_coffee_hole\',\'lazar\'">Lazar.</a>');
+      } else {
+        if (((s as any).temprand ?? 0) === 2) {
+          scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="exec:gt \'city_coffee_hole\',\'dimka\'">Dimka.</a>');
+        } else {
+          if (((s as any).temprand ?? 0) === 3) {
+            scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="exec:gt \'city_coffee_hole\',\'marcus\'">Marcus.</a>');
+          }
+        }
+      }
+    }
+    if (((s as any).temprand ?? 0) === 4) {
+      if (((s as any).meet_kendra ?? 0) === 1) {
+        scene.text('You see a familiar face sitting at one of the tables, <a href="exec:gt \'city_coffee_hole\',\'kendra\'">Kendra.</a>');
+      } else {
+        if (((s as any).kendraslave ?? 0) >= 1) {
+          scene.text('You see a familiar face sitting at one of the tables, your mistress <a href="exec:gt \'city_coffee_hole\',\'kendra\'">Kendra.</a>');
+        } else {
+          if (((s as any).pcs_hotcat ?? 0) >= 5) {
+            scene.text('As you look around, you see a beautiful young <a href="exec:gt \'city_coffee_hole\',\'kendra\'">black woman</a> sitting at one of the tables.');
+            scene.text('She notices you and gives you a quick once-over before smiling and leaning back. She seems to be watching you with an inviting smile to join her.');
+          } else {
+            scene.text('As you look around, you see a beautiful young black woman sitting at one of the tables. She notices you and gives you a quick once-over before returning to what she was doing.');
+            scene.text('After a few minutes, she finishes her drink before getting up and leaving.');
+          }
+        }
+      }
+    } else {
+      if (((s as any).temprand ?? 0) === 5) {
+        if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
+          scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="exec:gt \'city_coffee_hole\', \'blacks\'">Djibril</a>, sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
+          scene.text('By their constant glances, you\'re sure that they\'re talking about you.');
+        } else {
+          if (((s as any).pcs_hotcat ?? 0) >= 5) {
+            scene.text('As you look around, you see a group of young <a href="exec:gt \'city_coffee_hole\',\'blacks\'">black African men</a> sitting at one of the tables. When they see you, they start talking amongst themselves.');
+            scene.text('By their constant glances, you\'re sure that they\'re talking about you.');
+          } else {
+            scene.text('As you look around, you see a group of young black African men sitting at one of the tables. They notice you and give you a quick once-over before returning to what they were doing.');
+            scene.text('After a few minutes, they finish their drinks before getting up and leaving.');
+          }
+        }
+      } else {
+        if (((s as any).temprand ?? 0) === 6) {
+          if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
+            scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="exec:gt \'city_coffee_hole\', \'djibril\'">Djibril</a>.');
+          } else {
+            if (((s as any).pcs_hotcat ?? 0) >= 5) {
+              scene.text('As you look around, you see an attractive young <a href="exec:gt \'city_coffee_hole\',\'djibril\'">black man</a> sitting at one of the tables. When he notices you looking at him, he gives you a friendly smile and a wave.');
+              scene.text('It seems he\'s the friendly sort and appears to be interested in you.');
+            } else {
+              scene.text('As you look around, you see an attractive young black man sitting at one of the tables. He notices you and gives you a quick once-over before returning to what he was doing.');
+              scene.text('After a few minutes, he finishes his drink before getting up and leaving.');
+            }
+          }
+        } else {
+          if ((!((s as any).temp_familiar_here ?? 0))) {
+            scene.text('As you look around, you don\'t see anyone you recognize hanging out today.');
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 23) {
+    scene.actions([
+      { label: 'Go up to the counter to order', goto: ['city_coffee_hole', 'counter'] },
+      { label: 'Go to restroom', goto: ['city_coffee_hole', 'toilet'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Exit the cafe', goto: ['city_island', ''] },
+  ]);
+  scene.build();
+}
+
+function enterEat(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'eat');
+  if (((s as any).katjaQW ?? 0)?.['brunch_bought'] === 1) {
+    scene.actions([{ label: 'Continue', goto: ['katja_chat', 'coffee_hole_event'] }]);
+  }
+  scene.img('images/locations/shared/date/cafequiet.jpg');
+  if (((s as any).coffe_hole_ordered ?? 0) === 1) {
+    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (s as any).mood = ((s as any).mood ?? 0) + (5);
+    qspCall(s, 'stat', '');
+    scene.text('You take your order from the counter and find an empty table. You quietly enjoy the ambience of the place and feel your mood brightening as you look around.');
+  } else {
+    qspCall(s, 'stat', '');
+    scene.text('You\'re sitting at a table in the cafe. It\'s nice here.');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
+    scene.actions([
+      { label: 'Open your laptop', handler: (st: GameState) => {
+    qspCall(s, 'internet_mobile', 'get_access', 'free', 'noporn', 'nocamshow');
+  }, goto: ['komp', 'start'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Exit the cafe', goto: ['city_island', ''] },
+    { label: 'Get up from the table', goto: ['city_coffee_hole', 'inner'] },
+  ]);
+  scene.build();
+}
+
+function enterPostKomp(s: GameState, scene: SceneBuilder): void {
+  (s as any).mood = ((s as any).mood ?? 0) + (2);
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/shared/date/cafequiet.jpg');
+  scene.text('You\'re sitting at a table in the coffee shop. You could use your laptop if you wanted, but should buy something to eat or drink first.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Get up from the table', goto: ['city_coffee_hole', 'inner'] },
+  ]);
+  scene.build();
+}
+
+function enterToilet(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'toilet');
+  qspCall(s, 'stat', '');
+  scene.img('images/locations/city/island/coffee_hole/restroom.jpg');
+  scene.text('The first thing you notice about the restroom is there seems to be only one, and it\'s co-ed. The walls are covered in what you can only describe as graffiti art, but it\'s otherwise nice and clean. Several stalls are along one wall, and a row of sinks with mirrors line the other.');
+  qspCall(s, 'din_van', 'tampon');
+  qspCall(s, 'din_van', 'quickwash');
+  qspCall(s, 'din_van', 'basin');
+  qspCall(s, 'din_van', 'publicpan');
+  // TODO-QSP: end
   if (((s as any).args ?? 0)[0]=== 'counter') {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'anushka_konstantinov_schedule', '');
@@ -125,185 +309,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', '');
-  scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
-  scene.img('images/locations/city/island/coffee_hole/street_sign.jpg');
-  scene.text('Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.');
-  // TODO-QSP: dynamic text: Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('t...
-  scene.text('Opening hours are \' + $func(\'time\', \'get_time_string\', 7, 0) + \' to \' + $func(\'time\', \'get_time_string\', 23, 0) + \'.');
-  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
-    // TODO-QSP: act 'Enter the cafe': gt 'city_coffee_hole', 'inner'
-  }
-  scene.actions([
-    { label: 'Return to the city', goto: ['city_island', ''] },
-  ]);
-  scene.build();
-}
-
-function enterInner(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'inner');
-  qspCall(s, 'schedule', 'A14', 'A23', 'A144');
-  qspCall(s, 'stat', '');
-  scene.text('<center><b>Cafe "Coffee Hole"</b></center>');
-  scene.img('images/locations/city/island/coffee_hole/inside.jpg');
-  scene.text('The cafe looks like it was once some type of industrial building, with tall ceilings, exposed pipes, ductwork and lights. The counter is in the far corner, while the middle of the room contains several tables and chairs.');
-  scene.text('Along the wall opposite the counter is an area with several couches for people to sit and relax. The menu board shows a wide range of flavoured coffees, teas, espressos and pastries, among other things.');
-  (s as any).temp_familiar_here = 0;
-  if (((s as any).locat ?? 0)?.['A144'] === 9) {
-    (s as any).temp_familiar_here = 1;
-    scene.text('You see a familiar face working behind the counter, your former classmate <a href="exec:gt \'city_coffee_hole\', \'anushka_work\'">Anushka.</a>');
-  }
-  if (((s as any).locat ?? 0)?.['katja'] === 30  &&  (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')) {
-    (s as any).temp_familiar_here = 1;
-    // TODO-QSP: dynamic text: You see your'+iif( $university['enrolled_in'] = 'teaching_studies' and katjaQW['...
-    scene.text('You see your\'+iif( $university[\'enrolled_in\'] = \'teaching_studies\' and katjaQW[\'know_katja_uni\'] = 1, \' \', \' former \')+\'classmate <a href="exec:gt \'katja_chat\', \'coffee_hole\'">Katja</a> sitting at a table with a pile of books, a cup of coffee and a plate of food.');
-  }
-  if ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1  ||  ((s as any).start_type ?? 0)?.['loc'] === 'sg')  &&  ((s as any).AlbinaQW ?? 0)?.['coffee_meet'] !== ((s as any).daystart ?? 0)) {
-    if (((s as any).locat ?? 0)?.['A23'] === 24) {
-      (s as any).temp_familiar_here = 1;
-      scene.text('You see <a href="exec:gt \'albina_events\', \'coffee_hole1\'">Albina</a> sitting at a table with a woman who has her back turned to you.');
-    } else {
-      if (((s as any).locat ?? 0)?.['A23'] === 29) {
-        (s as any).temp_familiar_here = 1;
-        scene.text('You see <a href="exec:gt \'albina_events\', \'coffee_hole2\'">Albina</a> sitting at a table, looking at her phone while drinking a cup of coffee.');
-      }
-    }
-  }
-  if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) >= 2  &&  ((s as any).week ?? 0) === 2  &&  ((s as any).nerd_game ?? 0)?.['fixed_uni_day'] === 0  &&  ((s as any).hour ?? 0) >= 18) {
-    (s as any).temp_familiar_here = 1;
-    scene.text('You see some familiar faces sitting in one of the corners. Some of the <a href="exec:gt \'nerd_game_night\', \'crash_gamenight_uni\'">nerds</a> you went to school with back in Pavlovsk are gathered around a table. It looks like they\'re playing some sort of game.');
-  }
-  qspCall(s, 'natbel_uni_chat', 'set_coffee_hole_chats');
-  if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 18) {
-    // TODO-QSP: act '<b>Join nerds</b>': gt 'nerd_game_night', 'game'
-  }
-  if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 17) {
-    (s as any).temprand = Math.floor(Math.random() * 10) + 1;
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).yearstart ?? 0) === 2) {
-      if (((s as any).temprand ?? 0) === 1) {
-        scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="exec:gt \'city_coffee_hole\',\'lazar\'">Lazar.</a>');
-      } else {
-        if (((s as any).temprand ?? 0) === 2) {
-          scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="exec:gt \'city_coffee_hole\',\'dimka\'">Dimka.</a>');
-        } else {
-          if (((s as any).temprand ?? 0) === 3) {
-            scene.text('You see a familiar face sitting at one of the tables, your former classmate <a href="exec:gt \'city_coffee_hole\',\'marcus\'">Marcus.</a>');
-          }
-        }
-      }
-    }
-    if (((s as any).temprand ?? 0) === 4) {
-      if (((s as any).meet_kendra ?? 0) === 1) {
-        scene.text('You see a familiar face sitting at one of the tables, <a href="exec:gt \'city_coffee_hole\',\'kendra\'">Kendra.</a>');
-      } else {
-        if (((s as any).kendraslave ?? 0) >= 1) {
-          scene.text('You see a familiar face sitting at one of the tables, your mistress <a href="exec:gt \'city_coffee_hole\',\'kendra\'">Kendra.</a>');
-        } else {
-          if (((s as any).pcs_hotcat ?? 0) >= 5) {
-            scene.text('As you look around, you see a beautiful young <a href="exec:gt \'city_coffee_hole\',\'kendra\'">black woman</a> sitting at one of the tables.');
-            scene.text('She notices you and gives you a quick once-over before smiling and leaning back. She seems to be watching you with an inviting smile to join her.');
-          } else {
-            scene.text('As you look around, you see a beautiful young black woman sitting at one of the tables. She notices you and gives you a quick once-over before returning to what she was doing.');
-            scene.text('After a few minutes, she finishes her drink before getting up and leaving.');
-          }
-        }
-      }
-    } else {
-      if (((s as any).temprand ?? 0) === 5) {
-        if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
-          scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="exec:gt \'city_coffee_hole\', \'blacks\'">Djibril</a>, sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
-          scene.text('By their constant glances, you\'re sure that they\'re talking about you.');
-        } else {
-          if (((s as any).pcs_hotcat ?? 0) >= 5) {
-            scene.text('As you look around, you see a group of young <a href="exec:gt \'city_coffee_hole\',\'blacks\'">black African men</a> sitting at one of the tables. When they see you, they start talking amongst themselves.');
-            scene.text('By their constant glances, you\'re sure that they\'re talking about you.');
-          } else {
-            scene.text('As you look around, you see a group of young black African men sitting at one of the tables. They notice you and give you a quick once-over before returning to what they were doing.');
-            scene.text('After a few minutes, they finish their drinks before getting up and leaving.');
-          }
-        }
-      } else {
-        if (((s as any).temprand ?? 0) === 6) {
-          if (((s as any).DjibrilQW ?? 0)?.['meet'] === 1) {
-            scene.text('You see a familiar face sitting at one of the tables, Olu\'s nephew <a href="exec:gt \'city_coffee_hole\', \'djibril\'">Djibril</a>.');
-          } else {
-            if (((s as any).pcs_hotcat ?? 0) >= 5) {
-              scene.text('As you look around, you see an attractive young <a href="exec:gt \'city_coffee_hole\',\'djibril\'">black man</a> sitting at one of the tables. When he notices you looking at him, he gives you a friendly smile and a wave.');
-              scene.text('It seems he\'s the friendly sort and appears to be interested in you.');
-            } else {
-              scene.text('As you look around, you see an attractive young black man sitting at one of the tables. He notices you and gives you a quick once-over before returning to what he was doing.');
-              scene.text('After a few minutes, he finishes his drink before getting up and leaving.');
-            }
-          }
-        } else {
-          if ((!((s as any).temp_familiar_here ?? 0))) {
-            scene.text('As you look around, you don\'t see anyone you recognize hanging out today.');
-          }
-        }
-      }
-    }
-  }
-  if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 23) {
-    scene.actions([
-      { label: 'Go up to the counter to order', goto: ['city_coffee_hole', 'counter'] },
-      { label: 'Go to restroom', goto: ['city_coffee_hole', 'toilet'] },
-    ]);
-  }
-  scene.actions([
-    { label: 'Exit the cafe', goto: ['city_island', ''] },
-  ]);
-  scene.build();
-}
-
-function enterEat(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'eat');
-  if (((s as any).katjaQW ?? 0)?.['brunch_bought'] === 1) {
-    scene.actions([{ label: 'Continue', goto: ['katja_chat', 'coffee_hole_event'] }]);
-  }
-  scene.img('images/locations/shared/date/cafequiet.jpg');
-  if (((s as any).coffe_hole_ordered ?? 0) === 1) {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).mood = ((s as any).mood ?? 0) + (5);
-    qspCall(s, 'stat', '');
-    scene.text('You take your order from the counter and find an empty table. You quietly enjoy the ambience of the place and feel your mood brightening as you look around.');
-  } else {
-    qspCall(s, 'stat', '');
-    scene.text('You\'re sitting at a table in the cafe. It\'s nice here.');
-  }
-  if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
-    scene.actions([
-      { label: 'Open your laptop', handler: (st: GameState) => {
-    qspCall(s, 'internet_mobile', 'get_access', 'free', 'noporn', 'nocamshow');
-  }, goto: ['komp', 'start'] },
-    ]);
-  }
-  scene.actions([
-    { label: 'Exit the cafe', goto: ['city_island', ''] },
-    { label: 'Get up from the table', goto: ['city_coffee_hole', 'inner'] },
-  ]);
-  scene.build();
-}
-
-function enterPostKomp(s: GameState, scene: SceneBuilder): void {
-  (s as any).mood = ((s as any).mood ?? 0) + (2);
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/shared/date/cafequiet.jpg');
-  scene.text('You\'re sitting at a table in the coffee shop. You could use your laptop if you wanted, but should buy something to eat or drink first.');
-  scene.actions([
-    { label: 'Get up from the table', goto: ['city_coffee_hole', 'inner'] },
-  ]);
-  scene.build();
-}
-
-function enterToilet(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'city_coffee_hole', 'toilet');
-  qspCall(s, 'stat', '');
-  scene.img('images/locations/city/island/coffee_hole/restroom.jpg');
-  scene.text('The first thing you notice about the restroom is there seems to be only one, and it\'s co-ed. The walls are covered in what you can only describe as graffiti art, but it\'s otherwise nice and clean. Several stalls are along one wall, and a row of sinks with mirrors line the other.');
-  qspCall(s, 'din_van', 'tampon');
-  qspCall(s, 'din_van', 'quickwash');
-  qspCall(s, 'din_van', 'basin');
-  qspCall(s, 'din_van', 'publicpan');
   scene.actions([
     { label: 'Exit restroom', goto: ['city_coffee_hole', 'inner'] },
   ]);
@@ -318,6 +323,7 @@ function enterPhotoShoot(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/coffee_hole/pose1.jpg');
   scene.text('Once the last of the customers are gone, Anushka locks the doors before you pull your camera out and have her stand in front of the counter. You start snapping photos of her standing in different poses as you direct her, asking her to hold various items for you as you snap pictures.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spice this up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -463,6 +469,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -514,6 +521,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -557,6 +565,7 @@ function enterMarcus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -672,6 +681,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave her be', goto: ['city_coffee_hole', 'inner'] },
@@ -714,6 +724,7 @@ function enterDjibril(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the cafe', goto: ['city_island', ''] },
     { label: 'Leave him be', goto: ['city_coffee_hole', 'inner'] },
@@ -1027,6 +1038,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1077,6 +1089,6 @@ export const city_coffee_hole: LocationDef = {
   title: 'Cafe "Coffee Hole"',
   region: 'city',
   locationType: 'public_indoors',
-  description: ['As you approach the counter, you see Anushka working. When she sees you, she gives you a friendly smile.'],
+  description: ['Along the street is a sign advertising a cafe called the "Coffee Hole". Following the direction of the sign, you find the door to the cafe in a little nook between two buildings. It would have been hard to see from the street without the sign.'],
   enter: enter,
 };

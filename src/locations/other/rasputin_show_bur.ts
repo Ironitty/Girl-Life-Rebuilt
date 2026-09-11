@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['rasputin_show_bur', 'second_half'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -17,6 +18,7 @@ function enterFirstHalf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/rasputin/rasputin_show_bur_1.jpg');
   scene.text('The staff lead you to your seat. No other patron has show up yet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -52,6 +54,7 @@ function enterFirstHalfStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/pushkin/rasputin/shows/singer_1.jpg');
   scene.text('The curtain slowly lifts as a female singer starts to sing, accompanied by the in house band.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Okay', handler: (st: GameState) => {
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/1.jpg');
@@ -96,6 +99,7 @@ function enterSecondHalf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/rasputin/rasputin_show_bur_2.jpg');
   scene.text('The staff lead you to your seat. Many people are already seated and waiting.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -127,6 +131,7 @@ function enterSecondHalfStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/rasputin/shows/singer_1.jpg');
   scene.text('The stage relights as the dancers enter accompanied by the music.');
   scene.text('The second half of the burlesque show starts.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Okay', handler: (st: GameState) => {
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/5.jpg');

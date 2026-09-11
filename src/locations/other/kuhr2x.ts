@@ -55,6 +55,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Masturbate with a dildo', goto: ['kuhr2x', 'dildo'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -74,6 +75,7 @@ function enterLeak(s: GameState, scene: SceneBuilder): void {
       { label: 'Call Grisha', goto: ['kit_din', 'santehnikgr'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -104,6 +106,7 @@ function enterDildo(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', goto: ['kuhr2x', ''] },
   ]);

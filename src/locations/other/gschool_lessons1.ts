@@ -62,6 +62,7 @@ function enterRussian(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
@@ -799,6 +800,7 @@ function enterGeography(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');
@@ -1482,6 +1484,7 @@ function enterHistory(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/bored.jpg');

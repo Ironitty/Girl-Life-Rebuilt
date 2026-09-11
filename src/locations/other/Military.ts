@@ -21,6 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to town', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Work in the infirmary', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -83,6 +84,7 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Military', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play along', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -114,6 +116,7 @@ function enterSan1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Military', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play along', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -142,6 +145,7 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
   }, goto: ['Military', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Soldier', Math.floor(Math.random() * 17) + 18);
@@ -231,6 +235,7 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', goto: ['military', 'rape'] },
   ]);
@@ -247,6 +252,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/military/sex/rape1.jpg');
   scene.text('…');
   scene.text('You woke up in a barn with a bag on your head, so you can\'t see anything. You also have a headache from the impact to your head, and a leash around your neck.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shout', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/military/sex/rape2.jpg');

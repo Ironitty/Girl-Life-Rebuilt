@@ -19,6 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.text('In the store is an <a href="exec: gt \'uni_shop\', \'atm\'">ATM</a>, from which you can withdraw money and deposit money into your bank account.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Browse the aisles', goto: ['uni_shop', 'cart'] },
     { label: 'Leave the store', handler: (st: GameState) => {
@@ -87,6 +88,7 @@ function enterAtm(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['uni_shop', 'start'] },
   ]);
@@ -99,6 +101,7 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_cart', 'shopping_aisle', 'uni');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/unimarket.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit shopping cart', goto: ['uni_shop', 'start'] },
   ]);

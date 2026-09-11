@@ -37,11 +37,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: You hear <<$boydesc>> groaning loudly, you realize he must be edging and is read...
   scene.text(`You hear ${((s as any).boydesc ?? 0)} groaning loudly, you realize he must be edging and is ready to finish.`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enter0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 10, 'sub');
+  // TODO-QSP: end
   scene.build();
 }
 

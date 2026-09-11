@@ -33,12 +33,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['dream_events', 'mod_sleepevents'] }]);
   }
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'dream_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,6 +55,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,11 +67,13 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,6 +82,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +90,7 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   scene.actions([{ label: 'Continue', goto: ['sleep', 'post_dream'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +100,7 @@ function enterStepdadDream(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = 0;
   (s as any).stepdadQW = ((s as any).stepdadQW ?? 0) + (1);
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,6 +109,7 @@ function enterBraidHairDream(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/anya/braid.jpg');
   scene.text('You dream about the time your sister taught you how to braid your hair. It was one of the more memorable bonding moments you had not long before you moved out.');
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,6 +123,7 @@ function enterSuccubusDream(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pcs_horny = 0;
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -133,6 +143,7 @@ function enterNoDream(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +182,7 @@ function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -248,6 +260,7 @@ function enterDDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -379,6 +392,7 @@ function enterHypnoDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -420,6 +434,7 @@ function enterEroDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -460,6 +475,7 @@ function enterSexDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -478,6 +494,7 @@ function enterBjDreams(s: GameState, scene: SceneBuilder): void {
     scene.text('It seems you subconsciously want to suck a dick…');
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -501,6 +518,7 @@ function enterAnalDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -547,6 +565,7 @@ function enterGangDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -594,6 +613,7 @@ function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -649,6 +669,7 @@ function enterPregDreams(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'dream_events', 'event_end');
+  // TODO-QSP: end
   scene.build();
 }
 

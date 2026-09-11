@@ -16,6 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/isolde/izolda.jpg');
   // TODO-QSP: dynamic text: Isolde opens the door for you. "Hello <<$pcs_nickname>>, come in."
   scene.text(`Isolde opens the door for you. "Hello ${((s as any).pcs_nickname ?? 0)}, come in."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
     { label: 'Enter the apartment', handler: (st: GameState) => {

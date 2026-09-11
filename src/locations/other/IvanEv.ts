@@ -117,6 +117,7 @@ function enterIvanVitekFight1(s: GameState, scene: SceneBuilder): void {
       { label: 'Wish him luck and let him train', goto: ['gdksport', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -125,6 +126,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
   scene.text('You see Ivan near the punching bags, who turns to you when you get close.');
   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>!" he grins, happy to see you. "What are you doing here?"
   scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}!" he grins, happy to see you. "What are you doing here?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and let him train', goto: ['gdksport', 'start'] },
     { label: 'Teach me to box', handler: (st: GameState) => {
@@ -236,6 +238,7 @@ function enterBoxingLessons(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -247,6 +250,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('After your workout with Ivan, you head into the girls locker room and strip down.');
   scene.text('You notice there\'s no one else here at this time of the evening as you head into the showers and take a quick shower to get all the sweat cleaned off your body.');
   scene.text('Once you\'re done with the shower, you turn the water off and head back to the locker room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', handler: (st: GameState) => {
     (s as any).temprand = Math.floor(Math.random() * 4) + 1;
@@ -363,6 +367,7 @@ function enterLockerRoomFuck(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/dick_surprise.jpg');
   scene.text('He grins as he pulls his shorts down and his already rock hard dick springs free. You can\'t help but stare at his dick, your mouth watering and your pussy getting wet just thinking about taking it inside you.');
   scene.text('"Why don\'t you come over and suck it instead of staring at it?" he laughs.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex1.jpg');
@@ -486,6 +491,7 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gschool_lessons', 'short_break'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go into the bathroom', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
@@ -591,6 +597,7 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
   scene.text('He looks at you and smiles. "Okay, head to the old mens restroom they\'re remodeling. I\'ll make sure we won\'t be disturbed and meet you there."');
   scene.text('You walk out of the disco and head for the old mens restroom. It looks like the remodeling was started, but never finished. Budget cuts, no doubt.');
   scene.text('You suddenly hear footsteps behind you and turn to see Ivan following you in.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait to see what he does', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/disco2.jpg');
@@ -797,6 +804,7 @@ function enterLockerRoomDressed(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },
   ]);

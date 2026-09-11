@@ -547,6 +547,7 @@ function enterSextalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse to talk about such topics', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -650,10 +651,12 @@ function enterBjTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBjTalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'It tastes funny', handler: (st: GameState) => {
     scene.text('You wrinkle your nose. "It tastes funny. It\'s like, kinda salty? But also sort of… musty? I don\'t think I mind the act itself that much, but dick has a weird flavor."');

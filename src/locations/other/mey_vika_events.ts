@@ -26,6 +26,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('Vanya, seeing an opportunity decides to help out. But Vicky seems to deliberately prevent him and instead he starts touching her breasts. As you watch on your arousal intensifies.');
   qspCall(s, 'arousal', 'foreplay', 10, 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).alko = 2;
@@ -64,6 +65,7 @@ function enterEndGame(s: GameState, scene: SceneBuilder): void {
   scene.text('"Of course, aunt Tamara! I\'ll be sure to come by."');
   scene.text('Tamara smiles and adds…');
   scene.text('"You don\'t need an invitation from my girls, you can come by any time you want by yourself."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['pav_residential', ''] },
   ]);
@@ -126,6 +128,7 @@ function enterPlayGame(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -203,6 +206,7 @@ function enterPlayGameWish0(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -380,6 +384,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -393,6 +398,7 @@ function enterPlayGameWish2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What could I make you do? Let me think… I want you to kiss Vicky! A real kiss, not a little pecker! And don\'t forget using the tongue!"');
   scene.text('You look at him in amazement.');
   scene.text('"You have to keep your promise. Fulfill my wish!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_game_kiss3.jpg');
@@ -425,6 +431,7 @@ function enterPlayGameWish3(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Wow! Well, you surprised me, ${((s as any).pcs_nickname ?? 0)}! I never thought you were so cool! While I was watching the two of you I wanted to make out with you too, you little tease."`);
   qspCall(s, 'arousal', 'foreplay', 10);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next game', goto: ['mey_vika_events', 'play_game'] },
     { label: 'Finish', goto: ['mey_vika_events', 'end_game'] },
@@ -445,6 +452,7 @@ function enterPlayGameSub(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,6 +522,7 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -542,6 +551,7 @@ function enterBeachStalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_park', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -786,10 +796,12 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
       ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterParkMeetEv(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -799,6 +811,7 @@ function enterCafeQw(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/sex/cafe_qw0.jpg');
   scene.text('You sit in the café, eating pizza and chat with Vicky. You notice Vicky is acting somewhat strange, giggling, pressing herself against Vanya. One of his hands is almost constantly under the table and you can hear Vicky purr quietly, arching her back, and lustfully looking at you, occasionally licking her lips.');
   scene.text('Vanya keeps on joking as if nothing is going on. You observe them and start getting a bit excited without really knowing why. They are clearly playing some kind of game. You keep wondering why Vanya\'s hand is constantly under the table, and why Vicky is acting so strange, like she\'s trying to hide something?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hmm…', handler: (st: GameState) => {
     (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
@@ -856,6 +869,7 @@ function enterCafeRepeatQw(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 18) {
     ((s as any).mey_vika ?? {})['mey_vika_qw'] = (((s as any).mey_vika ?? {})['mey_vika_qw'] ?? 0) + (1);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and leave', goto: ['cafe_parco', 'inner'] },
   ]);
@@ -867,6 +881,7 @@ function enterParkQw(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/building/gschool.jpg');
   // TODO-QSP: dynamic text: After school ends you meet Vicky and Vanya outside. They once again invite you t...
   scene.text(`After school ends you meet Vicky and Vanya outside. They once again invite you to the café, but remembering what happened the previous time you tell them that you don't have any money. You politely decline, even in spite being sure they would put on a new show for you.<br>"Then let's go for a walk together!" Vicky offers. <br>"What do you say, ${((s as any).pcs_nickname ?? 0)}?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('"I\'m sorry, but I can\'t tonight."');
@@ -920,6 +935,7 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
   scene.text('As you get close, Vanya breaks away. "You two go on ahead, I\'m gonna go and jump in the lake."');
   scene.text('You and Vicky roll your eyes at him almost simultaneously, and she points to the snow on the ground. "Shouldn\'t you do that after the sauna?"');
   scene.text('With a shrug, Vanya smiles back with a wink. "Walking with you two lovely ladies has gotten me plenty warm on the way here, I need to cool off." Then, he walks down the path towards the boat dock.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1228,10 +1244,12 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBeachEnder(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go', handler: (st: GameState) => {
     if ((((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PSwim ?? 0) === 1)) {
@@ -1254,6 +1272,7 @@ function enterBeachEvent1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Don\'t be a buzzkill! You should try some yourself." A sweaty Vanya says, handing you a beer.');
   scene.text('The beer is still cold, despite the heat.');
   scene.text('"It\'s all thanks to this cooler bag." Says Vanya. "I won it at one of the competitions I participated in."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('"Well, look at little princess. I would be honored if someone offered me a beer!" Vicky snorts.');
@@ -1401,12 +1420,14 @@ function enterCaseGift(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCaseGiftEnder(s: GameState, scene: SceneBuilder): void {
   ((s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
   scene.actions([{ label: 'Continue', goto: ['mey_home', 'guest_bedroom'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1417,6 +1438,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/sex/case_gift0.jpg');
   scene.text('You walk around the house, hearing the voices of aunt Tamara, Vanya and Vicky. They\'re whispering something, trying to explain how Vicky should carry herself. The door is closed but not locked.');
   scene.text('Your curiosity comes over you and you sneak up to the door wanting to eavesdrop.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pass by', goto: ['mey_home', 'guest_bedroom'] },
     { label: 'Open the door', handler: (st: GameState) => {
@@ -1538,6 +1560,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym0.jpg');
   scene.text('You are walking past Vicky\'s room. The door to the room is opened. You see Vicky warming up inside her room. Seeing you, she smiles…');
   scene.text('"I was just about to start. Come in, let\'s train together."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     ((s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
@@ -1701,6 +1724,7 @@ function enterGym1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1726,6 +1750,7 @@ function enterBathQw0(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/vaccleaner.jpg');
@@ -1751,6 +1776,7 @@ function enterBathQw1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('"No, Vicky, stop, I can\'t right now."<br>"Well, have it your way then!" says Vicky, wiggling her pear shaped butt, while walking back to her room.');
@@ -1768,6 +1794,7 @@ function enterBathCommon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw1.jpg');
   scene.text('The bathroom looks absolutely amazing. Half of the space is occupied by a corner bath and an enormous mirror hangs there.');
   scene.text('You and Vicky quickly take off all the clothes you\'re wearing and climb into the tub.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw3.jpg');
@@ -1875,6 +1902,7 @@ function enterBangKatya(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1887,6 +1915,7 @@ function enterBangKatya2(s: GameState, scene: SceneBuilder): void {
   scene.text('You take Katya\'s panties off, she even helps you by lifting her ass. The most amazing part, she\'s still not waking up!');
   scene.text('There is no question about it, the "sleeping" Katja is clearly enjoying herself! Her pussy is fully opened and wet. You carefully touch Katja\'s clit with your fingers. Katja lets out a quiet moan, spreading even wider.');
   scene.text('Vanya is not taking any part in the teasing, limiting his role to an observer, stroking his cock, as he watches on.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/home/bang_katya4.jpg');

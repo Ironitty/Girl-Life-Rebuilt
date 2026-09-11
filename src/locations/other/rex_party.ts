@@ -36,6 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_1_\' + rand(1, 5) + \'.jpg');
   scene.text('You arrive at Rex\'s apartment for the weekend party. Going inside with the others, the loud music drowns out any noise from outside. As soon as you are inside, several boys immediately start offering you drinks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -59,6 +60,7 @@ function enterRexRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $loc, 'EventUpdate'
   scene.text('<center><b>Rex\'s Room</b></center>');
   qspCall(s, 'rex_party', 'Event<<eventNumber>>', 'RexRoom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['rex_party', 'LivingRoom'] },
   ]);
@@ -71,6 +73,7 @@ function enterLivingRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $loc, 'EventUpdate'
   scene.text('<center><b>Living room</b></center>');
   qspCall(s, 'rex_party', 'Event<<eventNumber>>', 'LivingRoom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Rex\'s room', goto: ['rex_party', 'RexRoom'] },
     { label: 'Go to the kitchen', goto: ['rex_party', 'Kitchen'] },
@@ -87,6 +90,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kitchen room</b></center>');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/kuh.jpg');
   qspCall(s, 'rex_party', 'Event<<eventNumber>>', 'Kitchen');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['rex_party', 'LivingRoom'] },
   ]);
@@ -122,6 +126,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', goto: ['rex_party', 'LivingRoom'] },
   ]);
@@ -134,6 +139,7 @@ function enterEventUpdate(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).eventNumber = 2;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,6 +161,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
       scene.text('You grab two bottle for the <a href="exec: gt \'rex_party_smallEvents\', \'dj_take_beer\'">DJ and his friend</a>.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -186,6 +193,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Some <a href="exec: gt \'rex_party_smallEvents\', \'party_boys\'">guys</a> bang their empty drinks down on the table. Refilling, they offer a cup to you and try to get you to <a href="exec: gt \'rex_party_smallEvents\', \'kitchen_boy_drink\'">drink</a> with them.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

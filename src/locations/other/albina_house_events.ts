@@ -19,6 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['albinahome', 'hallway'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -29,6 +30,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('She then disappears into the kitchen. While she\'s gone, her phone vibrates on the table. You look and see that "Mama" is trying to call her.');
   scene.text('<i>"Strange. She\'s never mentioned her mother. Hell, she barely talks about her father,"</i> you think to yourself.');
   scene.text('The phone rings out as Albina returns with a bottle of wine and two glasses and places them on the table. Noticing her missed call, she quickly picks her phone up and types a message before stuffing it in her pocket.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -283,6 +285,7 @@ function enterFirstVisit2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her back', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'kiss', 2);
@@ -320,6 +323,7 @@ function enterFirstSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 2, 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'arousal', 'massage', (-2), 'no_orgasm_msg', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take it further', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'rimming', 5, 'no_orgasm_msg', 'lesbian');
@@ -397,6 +401,7 @@ function enterTekkenGame(s: GameState, scene: SceneBuilder): void {
   scene.text('You notice the flat-screen TV and a games console sitting in front of it. A row of various Tekken and Mortal Kombat games sit underneath them.');
   scene.text('"I wish I could afford a console..." you mumble.');
   scene.text('She smiles at you. "You want to play a few games?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -518,6 +523,7 @@ function enterTekkenPlay(s: GameState, scene: SceneBuilder): void {
       { label: 'Accept the bet', goto: ['albina_house_events', 'tekken_bet'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,6 +539,7 @@ function enterTekkenBet(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile. "You\'re on. You\'re so going to get fucked!"');
   scene.text('Albina laughs as she brings the strapon over with a bottle of lube and tosses them on the bed before she lies back beside you and picks her controller up. "<i>Please</i>! You\'re so going to lose!"');
   scene.text('She starts the game, and you both fall silent, your focus only on winning.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play until someone wins', handler: (st: GameState) => {
     (s as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_gaming ?? 0);
@@ -619,6 +626,7 @@ function enterSwimWinter1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Duh! You think I enjoy splashing around in ice cold water for the fun of it?" she says, rolling her eyes as she opens up the back door.');
   }
   qspCall(s, 'albina_house_events', 'swim_winter2');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No swimsuit', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
@@ -631,6 +639,7 @@ function enterSwimWinter1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSwimWinter2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'ll pass', handler: (st: GameState) => {
     ((s as any).AlbinaQW ?? {})['skip_tub'] = ((s as any).daystart ?? 0);
@@ -709,6 +718,7 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip naked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
@@ -755,6 +765,7 @@ function enterSwimWinter2Strip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSwimWinter3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hesitate', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/pool_winter.jpg');
@@ -832,6 +843,7 @@ function enterWinterHotTub(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -840,6 +852,7 @@ function enterWinterHotTubNoPanties1(s: GameState, scene: SceneBuilder): void {
   scene.text('Albina grins back at you and starts wriggling around beneath the bubbling water. Her knees briefly breach the surface and a moment later, she pulls up a thin, stringy, piece of fabric. She stretches it between her hands and slingshots it past your head, making a wet slapping sound when it lands on the deck.');
   scene.text('Turning your head to see what it was, you realize as soon as you lay eyes on it: it\'s her thong.');
   scene.text('"Oh <i>fuck...</i>" she moans, leaning further into the water as she turns a dial on the side. "I should do this more often..."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'albina_house_events', 'winter_hot_tub_no_panties2');
@@ -854,6 +867,7 @@ function enterWinterHotTubNoPanties2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/hottub.jpg');
   scene.text('Albina cranks the dial hard and you gasp. Hot water is blasting directly against your pussy, softly tickling your clit. It\'s turning you on and you can feel heat spreading through your hips that <i>isn\'t</i> coming from the water.');
   scene.text('It seems to be having a similar effect on Albina, who\'s openly panting and staring at you with "fuck me" eyes. You lose track of time, but it\'s a very pleasurable experience.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     qspCall(st, 'albina_house_events', 'winter_hot_tub_no_panties3');
@@ -866,6 +880,7 @@ function enterWinterHotTubNoPanties3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/hottub.jpg');
   scene.text('After a while, Albina sighs and shuts off the tub before standing up. Her nude body radiates steam vapors in the winter cold.');
   scene.text('"Come on," she says ruefully. "Let\'s get out before we start pruning."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albina_house_events', 'after_swim_shower'] },
   ]);
@@ -932,6 +947,7 @@ function enterNakedSwim(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -983,6 +999,7 @@ function enterNakedSwim1(s: GameState, scene: SceneBuilder): void {
       { label: 'Follow her', goto: ['albina_house_events', 'after_swim_shower'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1085,6 +1102,7 @@ function enterAfterSwimShower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1106,6 +1124,7 @@ function enterHotTubAsk(s: GameState, scene: SceneBuilder): void {
       { label: 'Chase after her', goto: ['albina_house_events', 'hot_tub2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1114,6 +1133,7 @@ function enterHotTub1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As you walk up to the door, it opens and Albina excitedly greets you. She's wear...
   scene.text(`As you walk up to the door, it opens and Albina excitedly greets you. She's wearing a short silk robe that ends just below her groin. "${((s as any).pcs_nickname ?? 0)}! You want to jump in my hot tub?"`);
   scene.text('A hot tub sounds pretty good right now, so you nod your head and she leads you through the house.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
     if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
@@ -1144,6 +1164,7 @@ function enterHotTub2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['albina_house_events', 'hot_tub3'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1266,6 +1287,7 @@ function enterHotTub3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1298,6 +1320,7 @@ function enterHotTubNoPanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'albina_house_events', 'hot_tub_no_panties2');
   }
   ((s as any).AlbinaQW ?? {})['commando_know'] = ((s as any).trait_vars ?? 0)?.['panty_preference'];
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1306,10 +1329,12 @@ function enterHotTubNoPanties2(s: GameState, scene: SceneBuilder): void {
   scene.text('Turning your head to see what it was, you realize as soon as you lay eyes on it: it\'s her thong. As you turn back, Albina takes a sharp gasp.');
   scene.text('"Oh <i>fuck...</i>" she moans, leaning further into the water. "I should do this more often..."');
   qspCall(s, 'albina_house_events', 'hot_tub_no_panties3');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHotTubNoPanties3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/hottub.jpg');
@@ -1322,6 +1347,7 @@ function enterHotTubNoPanties3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHotTubNoPanties4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -1399,6 +1425,7 @@ function enterGoodieTwoShoes(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Offended', handler: (st: GameState) => {
     scene.text('"Look who\'s talking, bitch!" you scowl, making her laugh out loud.');
@@ -1414,6 +1441,7 @@ function enterTv_1(s: GameState, scene: SceneBuilder): void {
   scene.text('As the ending credits scroll, she turns to you with an excitement you never see, not even when she\'s dancing. "So, what did you think?"');
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It was cool', handler: (st: GameState) => {
     qspCall(s, 'albinahome', 'zoya_schedule');
@@ -1505,6 +1533,7 @@ function enterTv_2(s: GameState, scene: SceneBuilder): void {
   scene.text('As the ending credits scroll, she turns to you with an excitement you never see, not even when she\'s dancing. "So, what did you think?"');
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It was cool', handler: (st: GameState) => {
     qspCall(s, 'albinahome', 'zoya_schedule');
@@ -1599,6 +1628,7 @@ function enterAssTooBig(s: GameState, scene: SceneBuilder): void {
   scene.text('"So what do you want to do?" she asks as she finishes pulling her top on.');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albinahome', 'bedroom'] },
   ]);
@@ -1612,6 +1642,7 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>!! Come and dance with me!"
   scene.text(`"${((s as any).pcs_nickname ?? 0)}!! Come and dance with me!"`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/dance1.jpg');
@@ -1771,6 +1802,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1780,6 +1812,7 @@ function enterAlbYogaStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/hallway.jpg');
   scene.text('"Miss Albina is in the gym right now," she replies. "You can find her there."');
   scene.text('Nodding in thanks, you head off to find your friend.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -1798,6 +1831,7 @@ function enterAlbYoga_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You know she\'s flexible, but some of the poses she does look like they should be impossible. She smiles when she sees your bewildered gaze.');
   scene.text('"You\'re not the only one who appreciates my flexibility. Lazar came over one time and loved my yoga display so much that we ended up having sex right here." She lets out a small laugh. "Dick brained idiot had seen too much porn and tried ripping my yoga pants open! You know how expensive these are?!" She rolls her eyes in a way that\'s somewhere between annoyance and tolerant affection.');
   scene.text('"Anyway, I showed him more of my flexibility by fucking him in positions he could never have imagined," she adds with a sly grin. A short while later, she finishes her routine and you follow her upstairs to her room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
@@ -1838,6 +1872,7 @@ function enterAlbNakedYoga(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she grunts as her muscles clench, her eyes not even mov...
   scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," she grunts as her muscles clench, her eyes not even moving in your direction as she concentrates on her exercise with pure focus. "Gimme a minute, I'm almost done here."`);
   scene.text('You watch as she slowly inhales one more time and then exhales even more slowly, the sound of her breath a soft wind blowing between her lips. As soon as the last of it is gone from her lungs, her body relaxes and unfolds from its contorted position.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/yoga/after.jpg');
@@ -1891,6 +1926,7 @@ function enterAlbinaSunbatheSolo(s: GameState, scene: SceneBuilder): void {
   scene.text('"A visitor for you, Miss Albina," the maid announces. She keeps a straight face, but you see the awkward look in her eyes as she bows and goes back inside.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" Albina grins at you.
   scene.text(`"${((s as any).pcs_nickname ?? 0)}!" Albina grins at you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Greet her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/albpool1.jpg');
@@ -1960,6 +1996,7 @@ function enterAlbinaSunbatheSolo(s: GameState, scene: SceneBuilder): void {
 
 function enterAlbinaShowerTalkStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'albina_house_events', 'albina_shower_talk');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shower with her', goto: ['albina_sex_scenes', 'albina_shower'] },
     { label: 'I\'ll just wait', handler: (st: GameState) => {
@@ -1979,6 +2016,7 @@ function enterAlbinaShowerTalkStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlbinaShowerTalk(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk with her while she showers', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/showering.jpg');
@@ -2044,6 +2082,7 @@ function enterAlbinaShowerTalkMotherSunbathe(s: GameState, scene: SceneBuilder):
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['albinahome', 'bedroom'] },
   ]);
@@ -2051,6 +2090,7 @@ function enterAlbinaShowerTalkMotherSunbathe(s: GameState, scene: SceneBuilder):
 }
 
 function enterAlbinaShowerTalkNakedYoga(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2062,6 +2102,7 @@ function enterAlbinaPhotos(s: GameState, scene: SceneBuilder): void {
   scene.text('"And you want to add me to it?" she asks with a curious gaze.');
   scene.text('You nod. "I could really use the practice and I think you would be a great model."');
   scene.text('She smiles. "Okay. Wait for me by the pool. I\'m going to put on something a little more comfortable first."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head down to the pool', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/photo/pose1.jpg');
@@ -2341,6 +2382,7 @@ function enterAlbBedroomShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['albinahome', 'bedroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

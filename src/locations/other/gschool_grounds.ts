@@ -475,6 +475,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Go and see what he needs', goto: ['strela', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to town', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -582,6 +583,7 @@ function enterSports(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Christina'] === 16) {
     scene.text('Christina and Lina are here, stretching before the upcoming race.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the sports field', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -643,6 +645,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       scene.text('Without answering, she simply smirks at you and walks away.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) === 8) {
@@ -676,6 +679,7 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
   scene.text('You think you might be able to win and sign up to participate in the competition. After quickly changing into your running gear you return to the track. The guys are having their race first, and you watch them as you prepare. As expected, Ivan wins. When the guys have finished, it is the girls\' turn.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the start', handler: (st: GameState) => {
     ((s as any).runnerQW ?? {})['pav_racetype'] = 0;
@@ -783,6 +787,7 @@ function enterSchoolRunResult(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to town', goto: ['gschool_grounds', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -826,6 +831,7 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the start', handler: (st: GameState) => {
     ((s as any).runnerQW ?? {})['races_ran'] = (((s as any).runnerQW ?? {})['races_ran'] ?? 0) + (1);
@@ -960,6 +966,7 @@ function enterSchoolRun2Result(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -987,6 +994,7 @@ function enterChangeRoom(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'pblc_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -1266,6 +1274,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

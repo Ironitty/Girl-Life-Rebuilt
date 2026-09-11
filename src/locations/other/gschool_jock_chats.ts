@@ -162,6 +162,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -281,6 +282,7 @@ function enterSvyatoslav(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -348,6 +350,7 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -562,6 +565,7 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -753,6 +757,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -778,6 +783,7 @@ function enterChristinaTampon(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Ha! That\'s the best thing I\'ve heard all day! Fuck you, enjoy the humiliation!" she grins, flipping you the bird as she walks away. "And start using tampons you fucking loser! Nobody uses pads anymore!" she calls back over her shoulder.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1099,6 +1105,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1132,6 +1139,7 @@ function enterAlbinaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1351,6 +1359,7 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1403,6 +1412,7 @@ function enterVeronikaTampon(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1599,6 +1609,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1646,6 +1657,7 @@ function enterLinaTampon(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1922,6 +1934,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1949,6 +1962,7 @@ function enterLariskaTampon(s: GameState, scene: SceneBuilder): void {
   scene.text('"Just don\'t tell Christina," she whispers. "I don\'t want to leave you hanging but she\'ll kill me if she finds out."');
   scene.text('You run off to the bathroom to go put the tampon in before class starts.');
   (s as any).isprok = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1963,6 +1977,7 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['FedorMisc', 'Fedor Chat'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2385,6 +2400,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
   ]);

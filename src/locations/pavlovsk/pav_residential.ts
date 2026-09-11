@@ -54,6 +54,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/pavresn_\'+ rand(1, 2) +\'.jpg');
     }
   }
+  scene.build();
+}
+
+function enterImage(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+    if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+      scene.img('images/locations/pavlovsk/pavreswinter.jpg');
+    } else {
+      scene.img('images/locations/pavlovsk/pavreswintern.jpg');
+    }
+  } else {
+    if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+      scene.img('images/locations/pavlovsk/pavres.jpg');
+    } else {
+      scene.img('images/locations/pavlovsk/pavresn_\'+ rand(1, 2) +\'.jpg');
+    }
+  }
+  // TODO-QSP: end
   scene.text('<br>The residential area of the town. This area is suburban with more modern houses, dusty roads and pockets of overgrown vegetation stretching out far and wide, but some would say that just adds to the town\'s rustic charm. Apart from the old <a href="exec:view\'images/locations/pavlovsk/palace/pav_palace.jpg\'">Imperial palace</a> built by Catherine the Great, with its surrounding gardens and forest, and the recently remodeled <a href="exec:view\'images/locations/pavlovsk/fortress/bip_hotel.jpg\'">Bip fortress</a>, everything else is relatively modern.');
   // TODO-QSP: dynamic text: <br>Even from here, you can see the <a href="exec:minut += 1 & gt 'pav_church','...
   scene.text('<br>Even from here, you can see the <a href="exec:minut += 1 & gt \'pav_church\',\'start\'">Church of St. Nikolas</a>, the tallest building in town.');
@@ -211,6 +229,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'lover', 'lover_events');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Five Eight estate (0:02)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -241,6 +260,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSuccubusHuntAct(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go hunting near the community center (this can take a lot of time)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (40 + (Math.floor(Math.random() * 21) + 0) - 5 * ((s as any).succublvl ?? 0));
@@ -301,6 +321,7 @@ function enterMeetMishaStreetEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('"Again? Looks like you\'ve been busy, girl. Nice look, it suits you."');
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_residential', ''] },
   ]);
@@ -314,6 +335,7 @@ function enterMeetTatianaMainQW(s: GameState, scene: SceneBuilder): void {
   scene.text('You see Tatiana and Gustav at the entrance to the apartment building. Tatiana adjusts her glasses and looks around, while Gustav seems to have his head in the clouds, not really paying attention to his surroundings. His tattoos are not visible.');
   scene.text('Tatiana closely looks around you. "I felt a burst of energy. Were you attacked by a mage?"');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'No?', goto: ['mainQW', ''] },
   ]);
@@ -325,6 +347,7 @@ function enterBoilerroomRevengeEvent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/lab/event/main.jpg');
   scene.text('It\'s late and you\'re hurrying to get home when you\'re suddenly grabbed from behind. A large hand covers your mouth and you\'re unable to scream as a powerful arm wraps around you and lifts you from your feet. You\'re dragged into an alleyway between two buildings and the arm around you loosens for just a minute.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/lab/event/main.jpg');
@@ -344,6 +367,7 @@ function enterBelyPaydayEvent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
   scene.text('As you walk through Pavlovsk, Vadim Bely\'s Mitsubishi Pajero stops near you.');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the jeep', goto: ['belgang', 'payday'] },
   ]);
@@ -356,6 +380,7 @@ function enterBelyWorkofdebtEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/vadim/belyjeep.jpg');
   scene.text('You see the by now familiar old Mitsubishi Pajero driving through the streets with Vadim Bely and his gang inside. Your heart skips a beat as you notice one of them pointing at you and they pull over.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the jeep', goto: ['belgang', 'workofdebt'] },
   ]);
@@ -365,6 +390,9 @@ function enterBelyWorkofdebtEvent(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'image':
+      enterImage(s, scene);
+      break;
     case 'set_succubus_hunt_act':
       enterSetSuccubusHuntAct(s, scene);
       break;
@@ -394,6 +422,5 @@ export const pav_residential: LocationDef = {
   title: '<center><h2>Pavlovsk</h2></center>',
   region: 'pavlovsk',
   locationType: 'public_outdoors',
-  description: ['You stop under the dim light of a streetlight. Breathing heavy, you occasionally stop to wince from the pain coming from your pussy. You convince yourself not to tell anyone, and to just get home, clean up and go to bed as soon as possible. The sooner you do that, the sooner you can forget this ever happened.'],
   enter: enter,
 };

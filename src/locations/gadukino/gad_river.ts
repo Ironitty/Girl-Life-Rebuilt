@@ -142,6 +142,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,6 +153,7 @@ function enterMirapunish(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mirapunish.jpg');
   scene.text('You approach Mira. She looks distressed and embarrassingly smiles as you start asking what happened. She pleads with you to release her. As you untie her, she explains that Kolyamba punished her for barely biting his cock as she sucked it…');
   scene.text('"Thank God you showed up," she says with a sigh of relief as you untie her. "I\'m glad you found me and not one of those old hags from the village. They would call me a whore, and I would get scolded for being promiscuous. Those old hags hate us, you know. We\'re young and beautiful, and they are just mean old wretches." said the naked Mira, revealing her true feelings about the villagers. She continues quietly, "Or it could have been even worse. Someone could have abused me, raped me or even killed m…" Then, she suddenly stops and lunges in your arms, weeping. "Thank you," she tells you. "You saved my life!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gad_beach', 'start'] },
   ]);
@@ -227,6 +229,7 @@ function enterFishers(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -503,6 +506,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

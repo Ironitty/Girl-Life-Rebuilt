@@ -26,6 +26,7 @@ function enterOnBookingMiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'set_fired', ((s as any).temp_obm_job ?? 0));
     (s as any).pfilmNO = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -44,6 +45,7 @@ function enterPornmiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'set_fired', 'city_pornstudio_actress');
     (s as any).pfilmNO = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,6 +112,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'fillschedule'
   }
   (s as any).temp_sched_tail = (((s as any).job_booking_window_days ?? {})?.['city_pornstudio_actress'] + 1) * 4;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -134,6 +137,7 @@ function enterPornTypeSelector(s: GameState, scene: SceneBuilder): void {
     (s as any).type_i = ((s as any).type_i ?? 0) + (1);
     // TODO-QSP: jump 'type_loop'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cancel', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -156,6 +160,7 @@ function enterDoContract(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'pornschedule', 'contracting');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -167,6 +172,7 @@ function enterDoCancel(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: porntaken[$str(temp_cc_offset) + ',' + $str(temp_cc_slot)] = 0
   qspCall(s, 'stat', '');
   qspCall(s, 'pornschedule', 'canceling');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -270,6 +276,7 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ps_i ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress'] + 1) {
     // TODO-QSP: jump 'pornopt'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,6 +317,7 @@ function enterCanceling(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ps_i ?? 0) < ((s as any).job_booking_window_days ?? 0)?.['city_pornstudio_actress'] + 1) {
     // TODO-QSP: jump 'nopornopt'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -330,6 +338,7 @@ function enterDisplaynum(s: GameState, scene: SceneBuilder): void {
   scene.text(`<table border=0 cellspacing=10><tr><th>${((s as any).pp1 ?? 0)}</th><th>${((s as any).pp2 ?? 0)}</th><th>${((s as any).pp3 ?? 0)}</th><th>${((s as any).pp4 ?? 0)}</th><th>${((s as any).pp5 ?? 0)}</th></tr>`);
   scene.text('');
   scene.text('<a href="exec:killvar \'ppnum\' & gs \'pornschedule\', \'displaynum\'">Clear participant limitations</a>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -463,6 +472,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: *p '<<$weekdayfilter_link>> <<$weekendfilter_link>> <a href="exec:inversefilter = 1 & gs ''pornsched...
   // TODO-QSP: *p '<a href="exec:killvar ''datefilter'' & killvar ''selected'' & weekdayfilter = 0 & weekendfilter ...
+  // TODO-QSP: end
   scene.build();
 }
 

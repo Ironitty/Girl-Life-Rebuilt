@@ -53,6 +53,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
     // TODO-QSP: act 'Enter the shelter': gt 'buklinik', 'holl'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_industrial', ''] },
   ]);
@@ -101,6 +102,7 @@ function enterHoll(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).bumtolik ?? 0) === 0)  ||  ((s as any).bumtolik ?? 0) === 4) {
     // TODO-QSP: act 'Volunteer': gt 'buklinik', 'registr'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_industrial', ''] },
   ]);
@@ -125,6 +127,7 @@ function enterRegistr(s: GameState, scene: SceneBuilder): void {
     scene.text(`You clear your throat, "Hello, my name is ${((s as any).pcs_firstname ?? 0)}, I met a girl named Olga who said that you were in need of volunteers. I would like to sign up…"`);
     scene.text('The woman rushes over, "Hello! We are very pleased to have you here. Just be aware, the work is hard and ungrateful, what you see here is just a small part of it, also help out with the elderly and the less fortunate outside the shelter."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I have to think about it', goto: ['city_industrial', ''] },
     { label: 'Accept', goto: ['buklinik', 'registr2'] },
@@ -143,6 +146,7 @@ function enterRegistr2(s: GameState, scene: SceneBuilder): void {
   scene.text('The woman lets out a sigh of relief, "I am happy to hear that. Fill out this form. We give all our volunteers documentation that they\'ve worked here in case of you need it as a future reference.');
   scene.text('You take some time to fill out the form and hand it back to the woman.');
   scene.text('The woman skims through it, "Great, you see the first door on the right down the corridor, you should find Olga there, tell her that the reception sent you and she\'ll show you around.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue down the corridor', goto: ['buklinik', 'holl'] },
   ]);
@@ -156,6 +160,7 @@ function enterRegistr3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Counter</b></center>');
   scene.img('images/locations/city/industrial/mercyclinic/bukli_reg.jpg');
   scene.text('You usually find either Karina or Regina sitting by the counter, welcoming either the volunteers or people that are in need of help.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue down the corridor', goto: ['buklinik', 'holl'] },
   ]);
@@ -173,6 +178,7 @@ function enterSklad(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bumtolik ?? 0) === 5) {
     // TODO-QSP: act 'Look for Olga': gt 'buklinik', 'olga'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
   ]);
@@ -207,6 +213,7 @@ function enterOlga(s: GameState, scene: SceneBuilder): void {
       { label: 'Visit the managers office', goto: ['buklinik', 'sec'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,6 +242,7 @@ function enterSec(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -264,6 +272,7 @@ function enterDir(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -278,6 +287,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   scene.text('Women: Every odd hour. Males stay out breaking this rule will get you kicked out!!!');
   scene.text('Note: Staff might enter during any hours!');
   scene.text('You shortly stay here as some people might take offense to you being there.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
   ]);
@@ -296,6 +306,7 @@ function enterStol(s: GameState, scene: SceneBuilder): void {
   scene.text('Breakfast: \'+func(\'time\', \'get_time_string\', 8, 0)+\' - \'+func(\'time\', \'get_time_string\', 9, 30)+\'');
   // TODO-QSP: dynamic text: Dinner: '+func('time', 'get_time_string', 17, 0)+' - '+func('time', 'get_time_st...
   scene.text('Dinner: \'+func(\'time\', \'get_time_string\', 17, 0)+\' - \'+func(\'time\', \'get_time_string\', 19, 0)+\'');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the canteen', goto: ['buklinik', 'holl'] },
   ]);
@@ -313,6 +324,7 @@ function enterSpal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bumtolik ?? 0) === 6) {
     // TODO-QSP: act 'Introduce yourself': gt 'buklinik_event', 'pos1'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the dormitory', goto: ['buklinik', 'holl'] },
   ]);
@@ -374,6 +386,7 @@ function enterOlga2(s: GameState, scene: SceneBuilder): void {
     scene.text('Olga keeps showing you around, "Here we have the beds, showers and the canteen where clients eat for free. I think that would be all, ask away if I forgot something to show you. Oh yeah, you\'ve already met them, but the ones sitting at the reception are Regina and Karina. You\'ll run across other volunteers, but I\'ll let yourself get acquainted."');
     scene.text('You thank Olga for the tour as she quickly heads back to the storage room.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
   ]);

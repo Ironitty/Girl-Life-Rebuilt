@@ -8,6 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -62,6 +63,7 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +85,7 @@ function enterSwap(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: :swap_cleanup
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,16 +107,19 @@ function enterSwapGrpMember(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic '$<<$temp_sgm_base>>[''<<$temp_sgm_b>>''] = $temp_stat_feature'
   // TODO-QSP: :swap_gm_cleanup
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetRels(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetSkills(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,6 +142,7 @@ function enterToggleMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'toggle_menu_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -157,6 +164,7 @@ function enterToggleMenuRev(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'toggle_menu_rev_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -172,6 +180,7 @@ function enterToggleMenuSymOpt(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'toggle_menu_sym_opt_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -215,6 +224,7 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +236,7 @@ function enterToggleMenuShowHide(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *p '<b>Show</b>&nbsp;|&nbsp;<a href="exec:<<$ARGS[1]>>=1 & gt ''$menu_settings'', ''status'' & gs ''...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -238,6 +249,7 @@ function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *p $menu_span + '<<$ARGS[2]>> Events:</span><a href="exec: calendar_show[''<<$ARGS[1]>>''] = 0 & gs ...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -248,11 +260,13 @@ function enterShowHideCycleCal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: *p $menu_span + '<<$ARGS[2]>>:</span><a href="exec: calCycleOpts[''show_<<ARGS[1]>>''] = 0 & gs ''ca...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPickTheme(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', '') + $ARGS[1], '<b><<$ARGS[1]>>...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -311,18 +325,21 @@ function enterPrintLifeSimCheat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPrintLifeSimCheatsOff(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $menu_span + 'All life sim features:</span><a href="exec: gs ''$menu_settings'', ''lifesim_cheats_of...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPrintLifeSimCheatsOn(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $menu_span + 'All life sim features:</span><b>Enabled</b> | <a href="exec: gs ''$menu_settings'', ''...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -343,6 +360,7 @@ function enterLifesimCheatsOff(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).cheatVars ?? {})['clothes_dirt'] = 0;
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,6 +369,7 @@ function enterLifesimCheatsOn(s: GameState, scene: SceneBuilder): void {
   scene.text('We strongly discourage the use of this feature, but we also recognize that the life sim aspect is not for everybody.');
   scene.text('Are you sure you want to activate this?');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'No, I do not want to disable all life sim features', goto: ['$menu_settings', ''] },
     { label: 'Yes, disable all life sim features', handler: (st: GameState) => {
@@ -389,6 +408,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     (s as any).music_loop = 0;
   }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +465,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 2, 'Fertile Phase');
   qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 3, 'Luteal Phase');
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -515,6 +536,7 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['arch_difficulty']", '    Archetype...
   scene.text('<font color="grey">✿ = default value</font>');
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -620,6 +642,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cheatVars['shop_alt_color']", 'Filter alternative co...
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -705,6 +728,7 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '</td>'
   // TODO-QSP: *p '</tr></table>'
   // TODO-QSP: *p '</td></tr></table></center>'
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).menu_page = 2;
@@ -771,6 +795,7 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -778,6 +803,7 @@ function enterThemeCustomizeInputFname(s: GameState, scene: SceneBuilder): void 
   if (((s as any).temp_input ?? 0) !== '') {
     ((s as any).custom_theme ?? {})['fname'] = ((s as any).temp_input ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -787,6 +813,7 @@ function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void 
       ((s as any).custom_theme ?? {})['fsize'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 9) ? (9) : (qspUntranslated(s, "val(temp_input)", { location: "_menu_settings" })));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -796,6 +823,7 @@ function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): v
       ((s as any).custom_theme ?? {})['increment'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 1) ? (1) : (qspUntranslated(s, "val(temp_input)", { location: "_menu_settings" })));
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -816,6 +844,7 @@ function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void
       // TODO-QSP: :hsi_exit
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -831,6 +860,7 @@ function enterExtractColorComponent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -852,6 +882,7 @@ function enterThemeCustomizeIncrement(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -860,6 +891,7 @@ function enterThemeCustomizePrintColorLine(s: GameState, scene: SceneBuilder): v
   // TODO-QSP: $result += '<a href="exec: <<$ARGS[2]>> = func(''$menu_settings'', ''theme_customize_increment'', ''...
   // TODO-QSP: $result += '&nbsp;'
   // TODO-QSP: $result += '<a href="exec: <<$ARGS[2]>> = func(''$menu_settings'', ''theme_customize_increment'', ''...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -884,6 +916,7 @@ function enterThemePresetsCopy(s: GameState, scene: SceneBuilder): void {
   ((s as any).custom_theme ?? {})['hypno'] = ((s as any).theme_hex ?? 0)?.['hypno'];
   qspCall(s, 'themes', 'set_theme', 'Custom', 'static');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -910,6 +943,7 @@ function enterThemeExport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "$custom_theme['bimbo']   = '<<$custom_theme['bimbo']>>'"
   // TODO-QSP: "$custom_theme['goth']    = '<<$custom_theme['goth']>>'"
   // TODO-QSP: "$custom_theme['hypno']   = '<<$custom_theme['hypno']>>'"
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['$menu_settings', 'theme_customize'] },
   ]);
@@ -917,6 +951,7 @@ function enterThemeExport(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemePresets(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['$menu_settings', 'theme_customize'] },
     { label: 'White', handler: (st: GameState) => {
@@ -1024,6 +1059,7 @@ function enterStatus(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingtabs', 'Status Window');
   // TODO-QSP: *p '<center><h2>Status Window Settings</h2></center>'
   // TODO-QSP: *p $func('stat_display_menu', 'start')
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1143,6 +1179,7 @@ function enterFonts(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $menu_span + 'Current font color:</span><a href="exec: font_vars[$temp_args1 + ''_color''] = (font_v...
   // TODO-QSP: $menu_span + 'Current font modifier:</span><a href="exec: font_vars[$temp_args1 + ''_mod''] = (font_...
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     dynamicGoto(st, 'temp_loc_font', 'temp_loc_arg_font');
@@ -1194,6 +1231,7 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   scene.text('</center>');
+  // TODO-QSP: end
   scene.actions([
     { label: '<<$temp_act_pre>>Install new mod<<$temp_act_post>>', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'install_new_mod');
@@ -1235,12 +1273,14 @@ function enterDisplayModTable(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
   scene.text(`${((s as any).temp_table ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterInstallNewMod(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'add_mod', ((s as any).mod_temp ?? 0));
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1249,6 +1289,7 @@ function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'mod_system', 'delete_mod', ARGS[1]
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1258,6 +1299,7 @@ function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'mod_system', 'update_all_mods');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1266,6 +1308,7 @@ function enterDeleteAllMods(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mod_system', 'delete_all_mods');
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'menu_settings'); } }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1318,6 +1361,7 @@ function enterTheme(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_table += '</tr></table>'
   // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1352,6 +1396,7 @@ function enterExplanationStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`<h4><center>Girl Life version ${((s as any).version_major ?? 0)+"."+((s as any).version_minor ?? 0)+"."+((s as any).version_revision ?? 0)+"."+((s as any).version_patch ?? 0)+((((s as any).git_hash ?? 0) !== "") ? ('<br>"+$git_hash+" (dev build)') : (''))}<br>built on ${((s as any).builddate ?? 0)}</center></h4>`);
     // TODO-QSP: $settings['table_end']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1409,6 +1454,7 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$menu_settings', 'explanation_start_exit');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the explanation of attributes', goto: ['$menu_settings', 'explanation_attributes'] },
     { label: 'Go back to the Glossary overview', goto: ['$menu_settings', 'explanation_start'] },
@@ -1438,6 +1484,7 @@ function enterExplanationAttributes(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$menu_settings', 'explanation_start_exit');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the explanation of skills', goto: ['$menu_settings', 'explanation_skill'] },
     { label: 'Go back to the Glossary overview', goto: ['$menu_settings', 'explanation_start'] },
@@ -1468,6 +1515,7 @@ function enterExplanationSkill(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$menu_settings', 'explanation_start_exit');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the explanation of status bars', goto: ['$menu_settings', 'explanation_status'] },
     { label: 'Go back to the Glossary overview', goto: ['$menu_settings', 'explanation_start'] },
@@ -1498,6 +1546,7 @@ function enterExplanationStatus(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$menu_settings', 'explanation_start_exit');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the explanation of archetypes', goto: ['$menu_settings', 'explanation_archetypes'] },
     { label: 'Go back to the Glossary overview', goto: ['$menu_settings', 'explanation_start'] },
@@ -1529,6 +1578,7 @@ function enterExplanationArchetypes(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$menu_settings', 'explanation_start_exit');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the Glossary overview', goto: ['$menu_settings', 'explanation_start'] },
     { label: 'Jump back to the explanation of icons', goto: ['$menu_settings', 'explanation_icons'] },
@@ -1599,6 +1649,7 @@ function enterExplanationStartExit(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1622,6 +1673,7 @@ function enterExplanationBuildAttr(s: GameState, scene: SceneBuilder): void {
     ((s as any).explanation_table ?? {})['attr'] = (((s as any).explanation_table ?? {})['attr'] ?? 0) + ('<tr><td><b>Appearance</b></td><td>Is how the average person perceives ' + qspUntranslated(s, "pcs_firstname>", { location: "_menu_settings" }) + '\'s look. This attribute ranges from 1 to 200 and is not gained by earning experience points. Instead, it is composed of many factors, with the most important being your BMI. To achieve the highest value, keep your BMI in the health range of 19 to 24. Your physical attributes, Agility, Endurance, and Strength, also play a role. For all of them, 100 is the ideal value, so if your strength goes above 100 because of weightlifting training, it will detract from your appearance. Additionally, skincare is important. The nicer your skin, the better, so take care of it. Other factors like bad teeth, ugly glasses, and so on have a minor effect. The clothes you wear modify this attribute, and wearing makeup also improves your appearance. You don\'t need to maximize appearance to experience the content of the game. With an appearance of 150, almost everybody will think your character is so hot that they want to be involved with her, and nothing is gated if you have 165. Of course, you might still receive better reactions with a higher appearance. It should also be noted that many NPCs have their own preferences for what makes a girl hot, so your appearance might be modified depending on how well you match their preferences.</td></tr>');
     ((s as any).explanation_table ?? {})['attr'] = (((s as any).explanation_table ?? {})['attr'] ?? 0) + ('</table>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1673,6 +1725,7 @@ function enterExplanationBuildSkill(s: GameState, scene: SceneBuilder): void {
     ((s as any).explanation_table ?? {})['skill'] = (((s as any).explanation_table ?? {})['skill'] ?? 0) + ('<tr><td><b>Medicine</b></td><td>Associated attributes are Intelligence, Perception, and Reaction.</td></tr>');
     ((s as any).explanation_table ?? {})['skill'] = (((s as any).explanation_table ?? {})['skill'] ?? 0) + ('</table>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1696,6 +1749,7 @@ function enterExplanationBuildStat(s: GameState, scene: SceneBuilder): void {
     ((s as any).explanation_table ?? {})['status'] = (((s as any).explanation_table ?? {})['status'] ?? 0) + ('<tr><td><b>Sleep</b></td><td>This measures how awake ' + qspUntranslated(s, "pcs_firstname>", { location: "_menu_settings" }) + ' is, ranging from 0 to 100. It decreases by 5 every hour awake and is regained by sleeping. A low sleep value makes willpower checks harder. Staying awake if sleep is at 0 will decrease mood and earn your character debuffs that impair experience gain, up to halving the amount in the most severe level. These debuffs will only go away if you get a full night of rest.</td></tr>');
     ((s as any).explanation_table ?? {})['status'] = (((s as any).explanation_table ?? {})['status'] ?? 0) + ('</table>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1711,6 +1765,7 @@ function enterExplanationBuildArchetypes(s: GameState, scene: SceneBuilder): voi
     ((s as any).explanation_table ?? {})['archetype'] = (((s as any).explanation_table ?? {})['archetype'] ?? 0) + ('<tr><td><b><font color="' + qspUntranslated(s, "theme_hex['goth']>", { location: "_menu_settings" }) + '">Goth</font></b><br><i>Opposes Preppy & Prude</i></td><td>Boosts spirit, perception, artistic skill, makeup, songwriting, and performance, while penalizing charisma, disposition, people skills, cheerleading, persuasion, sports, and revealing sports. Also regenerates willpower.</td></tr>');
     ((s as any).explanation_table ?? {})['archetype'] = (((s as any).explanation_table ?? {})['archetype'] ?? 0) + ('</table>');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

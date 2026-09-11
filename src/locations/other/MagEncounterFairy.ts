@@ -48,6 +48,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -58,6 +59,7 @@ function enterFairyChatNo1(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a closer look at the floating glowing orb. What you mistook for a large firefly is actually a small woman with translucent wings on her back: A fairy!');
   scene.text('"Hello, biggie!", she says in a high pitched voice. "You can see me, right?"');
   scene.text('"It\'s so nice to meet you! Finally someone who can see me!", she goes on before you have a chance to answer. "Finally someone to chat with!!! You have no idea how annoying it is to be here and nobody recognizes you. It\'s sooo BORING!!!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -121,6 +123,7 @@ function enterFairyShoo(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,6 +131,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/fae.jpg');
   scene.text('You take the few steps over to the glowing orb that apparently only you can recognize as what it truly is: a fairy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -314,6 +318,7 @@ function enterFairychattopic(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go on your way', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -353,6 +358,7 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

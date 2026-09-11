@@ -16,6 +16,7 @@ function enterSetEvent(s: GameState, scene: SceneBuilder): void {
   ((s as any).evt_transient ?? {})['desc'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).evt_transient ?? {})['journal'] = ((s as any).locArgs?.[4] ?? 0);
   ((s as any).evt_transient ?? {})['verbose'] = qspUntranslated(s, "ARGS[5]", { location: "jobs_gigs" });
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +24,7 @@ function enterSetLocCode(s: GameState, scene: SceneBuilder): void {
   ((s as any).evt_transient ?? {})['loc'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).evt_transient ?? {})['arg'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).evt_transient ?? {})['code'] = ((s as any).locArgs?.[3] ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -50,6 +52,7 @@ function enterSetWageScale(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +87,7 @@ function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
     ((s as any).evt_transient ?? {})['event_daystart'] = ((s as any).evt_transient ?? 0)?.['search_day'];
     ((s as any).evt_transient ?? {})['event_dow'] = ((s as any).dateVars ?? 0)?.['week'];
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,11 +112,13 @@ function enterSaveEvtEvent(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['jobs_gigs', 'evt_exit'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEvtExit(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,6 +134,7 @@ function enterDispEvt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +150,7 @@ function enterDispEvt1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'Duration: ' + evt_transient['duration'] / 60 + iif(evt_transient['duration'] < 120, ' hour', ' hour...
   // TODO-QSP: 'Location: ' + $evt_transient['journal']
   // TODO-QSP: 'Job Details: ' + $evt_transient['desc']
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept the job', handler: (st: GameState) => {
     qspCall(st, 'jobs_gigs', 'save_evt_event');
@@ -182,6 +190,7 @@ function enterDispEvt2(s: GameState, scene: SceneBuilder): void {
       scene.text('You haven\'t taken on any jobs yet.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -199,6 +208,7 @@ function enterDispEvt3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).act_tracker ?? 0) < Object.keys((s as any).evt_event ?? {}).length) {
     // TODO-QSP: jump 'jmp_act_create'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +216,7 @@ function enterSetEventAct(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs_gigs', 'job_evt');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Attend your <<$evt_job[evt_event[ARGS[1]]]>> event', handler: (st: GameState) => {
     // TODO-QSP: gs 'jobs_gigs', 'array_init', <<ARGS[1]>>
@@ -228,6 +239,7 @@ function enterJobEvt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $evt_job[4] = 'Dance Show'
   // TODO-QSP: $evt_job[5] = 'Ballet Performance'
   // TODO-QSP: $evt_job[6] = 'Acting'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -255,6 +267,45 @@ function enterDelEvt(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<evt_idx>> - Invalid record - please check your index
   scene.text(`${((s as any).evt_idx ?? 0)} - Invalid record - please check your index`);
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterDelEvt2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterArrayInit(s: GameState, scene: SceneBuilder): void {
+  ((s as any).evtVars ?? {})['verbose'] = qspUntranslated(s, "evt_verbose[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['event'] = qspUntranslated(s, "evt_event[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['event_sub'] = qspUntranslated(s, "evt_event_sub[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['dow'] = qspUntranslated(s, "evt_dow[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['starttime'] = qspUntranslated(s, "evt_starttime[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['duration'] = qspUntranslated(s, "evt_duration[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['wage'] = qspUntranslated(s, "evt_wages[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['journal'] = qspUntranslated(s, "evt_journal[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['loc'] = qspUntranslated(s, "evt_loc[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['loc_arg'] = qspUntranslated(s, "evt_loc_arg[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['content_code'] = qspUntranslated(s, "evt_content_code[ARGS[1]]", { location: "jobs_gigs" });
+  ((s as any).evtVars ?? {})['desc'] = qspUntranslated(s, "evt_desc[ARGS[1]]", { location: "jobs_gigs" });
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterDailyEventCheck(s: GameState, scene: SceneBuilder): void {
+  (s as any).evt_chk = 0;
+  (s as any).job_idx = 0;
+  // TODO-QSP: :daily_event_check
+  if (((s as any).daystart ?? 0) === ((s as any).evt_daystart ?? 0)?.[String((s as any).job_idx ?? 0)]) {
+    (s as any).evt_chk = 1;
+  }
+  (s as any).job_idx = ((s as any).job_idx ?? 0) + (1);
+  if (((s as any).evt_chk ?? 0) === 0  &&  ((s as any).job_idx ?? 0) < Object.keys((s as any).evt_event ?? {}).length) {
+    // TODO-QSP: jump 'daily_event_check'
+  }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -299,6 +350,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'del_evt':
       enterDelEvt(s, scene);
+      break;
+    case 'del_evt2':
+      enterDelEvt2(s, scene);
+      break;
+    case 'array_init':
+      enterArrayInit(s, scene);
+      break;
+    case 'daily_event_check':
+      enterDailyEventCheck(s, scene);
       break;
     default:
       enterDefault(s, scene);

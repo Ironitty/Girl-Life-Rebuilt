@@ -13,16 +13,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterOpen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'state', 'push');
   // TODO-QSP: gt 'help', iif($ARGS[1] <> '', $ARGS[1], 'show')
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShow(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['help', 'generic'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBack(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'state', 'pop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +34,7 @@ function enterDefSection(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_toc_label[$ARGS[1]] = $ARGS[3]
   // TODO-QSP: $help_toc_page[$ARGS[1]] = $ARGS[2]
   // TODO-QSP: $help_toc_loc[$ARGS[1]] = iif($ARGS[4] <> '', $ARGS[4], 'help')
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,6 +52,7 @@ function enterDefGroup(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +65,7 @@ function enterDefChild(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_toc_label[$ARGS[2]] = $ARGS[3]
   // TODO-QSP: $help_toc_page[$ARGS[2]] = $ARGS[2]
   // TODO-QSP: $help_toc_loc[$ARGS[2]] = iif($ARGS[4] <> '', $ARGS[4], 'help')
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -209,6 +215,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'help', 'def_child', 'locs', 'locs_home', 'Home');
   qspCall(s, 'help', 'def_child', 'locs', 'locs_school', 'School');
   qspCall(s, 'help', 'def_child', 'locs', 'locs_town', 'Town');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -219,6 +226,7 @@ function enterRenderBanner(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += ' <small style="opacity:0.4"> [' + $help_from_location_type + ']</small>'
   }
   // TODO-QSP: $result += '</div>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -301,6 +309,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'rt_sec_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,6 +326,7 @@ function enterRender(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_layout +=    '</td>'
   // TODO-QSP: $help_layout += '</tr></table>'
   // TODO-QSP: *p $help_layout
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     qspCall(st, 'help', 'back');
@@ -353,6 +363,7 @@ function enterGeneric(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
   // TODO-QSP: $help_page_content += '</tr></table>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +373,7 @@ function enterUiOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'right shows your character information and navigation icons.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -370,6 +382,7 @@ function enterUiStatbar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'money, energy, mood, and appearance among others.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with real stat descriptions.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -378,6 +391,7 @@ function enterUiMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'your inventory, phone, map, calendar, and this help system.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with icon-by-icon descriptions.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -387,6 +401,7 @@ function enterUiActions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'events, or change your stats.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with further detail.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -396,6 +411,7 @@ function enterMechOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'to cover living expenses.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -405,6 +421,7 @@ function enterMechTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'schedule, and certain events only occur on specific days.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with real time system details.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -414,6 +431,7 @@ function enterMechStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'activities, sleep, eating, and events.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with stat list and ranges.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -423,6 +441,7 @@ function enterMechMoney(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'your current living situation.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with income/expense breakdown.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -432,6 +451,7 @@ function enterCharsOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'that score and your stats.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -441,6 +461,7 @@ function enterCharsFamily(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'over time.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with family member profiles.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -449,6 +470,7 @@ function enterCharsNpc(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Building relationships with them unlocks new events and options.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with NPC roster.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -458,6 +480,7 @@ function enterLocsOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'using the map or direct action links.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -466,6 +489,7 @@ function enterLocsHome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'study, and spend time with family members who live with you.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with room-by-room breakdown.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -474,6 +498,7 @@ function enterLocsSchool(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Between lessons you can socialise, join clubs, or sneak off campus.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with school map and schedule.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -482,6 +507,7 @@ function enterLocsTown(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Most town locations are accessible in the afternoon and evening.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with venue list and opening hours.)</i>'
   qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 

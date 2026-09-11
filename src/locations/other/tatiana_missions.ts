@@ -20,6 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['tatiana_missions', 'mission2'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +35,7 @@ function enterPhoneIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('"Nothing, don\'t worry. Just come by when you have the chance. There are some things we should talk about."');
   scene.text('And before you can question her further, she hangs up on you.');
   scene.text('Guess the only way to find out what she wants is to visit her lab.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the call', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -50,6 +52,7 @@ function enterPhoneMission(s: GameState, scene: SceneBuilder): void {
   scene.text('"I don\'t know if I can make it today. Is it urgent?"');
   scene.text('"Not very, but sooner would be better than later."');
   scene.text('"Alright, I\'ll try to be there as soon as possible," you say, and after a brief goodbye, you hang up.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the call', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -70,6 +73,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('Again and again, you pass dark alleys, and each time you look down them, curious if they are your destination, but Tatiana sticks to the main roads and remains silent. You are more than a little confused when she leads you to a library and walks inside, but you follow her dutifully, wondering what she intends to show you.');
   scene.text('Finally, she stops. "We\'re here."');
   scene.text('You look around, assuming that you would see something strange and extraordinary, but you don\'t - you are simply standing in the middle of a large hall with dozens of bookcases and thousands of books. You didn\'t walk through a secret passage to get here, and you didn\'t see any fairies or demons on your way here either. Even if you didn\'t know about magic, you could have easily ended up here, and in fact you can see a young woman nearby who\'s holding a book on psychology in her arm and apparently looking for more literature on the subject.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Where is the magic?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/library/downlibint.jpg');
@@ -131,6 +135,7 @@ function enterMission1(s: GameState, scene: SceneBuilder): void {
   (s as any).TatianaMissionQW = ((s as any).TatianaMissionQW ?? 0) + (1);
   (s as any).TatianaMissionDay = ((s as any).daystart ?? 0);
   scene.text('"Great!" Tatiana jumps up from her seat and starts walking towards the lab\'s exit. "Let\'s go!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 19) {
@@ -302,6 +307,7 @@ function enterMission2(s: GameState, scene: SceneBuilder): void {
   scene.text('She stops to see if you are following her.');
   scene.text('"And… I suppose that something bad happened?" you ask.');
   scene.text('Tatiana sighs, look pensively at the image. "Yes, it was too good to last. So, when Reinhold called me to deal with this dragon…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A dragon?!', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -374,6 +380,7 @@ function enterMission2A(s: GameState, scene: SceneBuilder): void {
   scene.text('He returns to his work and lets you continue to search for unspeakable evil. <i>Dum Dum DUM!</i>');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Examining the chair', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -551,6 +558,7 @@ function enterMission2B(s: GameState, scene: SceneBuilder): void {
   scene.text(`Smiling, she answers, "Your new temporary identity! Now comes the hard part. Listen, ${((s as any).pcs_nickname ?? 0)}, I can temporarily change your appearance so you can enter agency and look for the curse's focus. Additionally, that will set your magical senses in tune with the curse, making it easier to look for it. So… are you ready?"`);
   scene.text('She takes you delicately by the wrist and raises an eyebrow, looking for approbation.');
   scene.text('"Okay, Tatiana."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'PAIN!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -602,6 +610,7 @@ function enterMission2C(s: GameState, scene: SceneBuilder): void {
   scene.text('She extends a hand, touching you and…');
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bimbos in the center of the mind', handler: (st: GameState) => {
     scene.img('images/characters/city/btatiana/MT1.jpg');
@@ -670,6 +679,7 @@ function enterMission2D(s: GameState, scene: SceneBuilder): void {
   scene.text('Neither the photographer nor you can understand what just happened, but you must talk quickly to Tatiana.');
   (s as any).minut = ((s as any).minut ?? 0) + 12;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -691,6 +701,7 @@ function enterMission2E(s: GameState, scene: SceneBuilder): void {
   scene.text('She nervously licks her lips and continues.');
   scene.text('"Blondie? Yeah, she was the one that warned me about you. She is like this tall, business suit-wearing blonde jerk with a stick up her ass! She told me that the \'other\' Tatiana would send you to banish me and… I was afraid! Can you, like, forget it? I mean, I don\'t want to be banished! I don\'t know what will happen to me if that happens! I just…"');
   scene.text('She stops midsentence, looks around in fear and… freezes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You awaken', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -730,6 +741,7 @@ function enterMission2F(s: GameState, scene: SceneBuilder): void {
   scene.text('Tatiana\'s voice resonates inside your head, and you can only lie there paralyzed, as the now freezing tongue burrows its way through your insides and towards your brain, where it metastasizes into a million tendrils that begin to do… something.');
   // TODO-QSP: dynamic text: "<i>Mmm…</i> So good! What a wonderful taste, <<$pcs_nickname>>!"
   scene.text(`"<i>Mmm…</i> So good! What a wonderful taste, ${((s as any).pcs_nickname ?? 0)}!"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Where are you?', goto: ['tatiana_missions', 'mission2sex'] },
   ]);
@@ -905,6 +917,7 @@ function enterMission2sex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'That feels nice!', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

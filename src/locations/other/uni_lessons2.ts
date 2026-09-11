@@ -56,6 +56,7 @@ function enterGeneralEducation_102(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/bored.jpg');
@@ -356,6 +357,7 @@ function enterTeachingMethods_102(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/bored.jpg');
@@ -672,6 +674,7 @@ function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/bored.jpg');
@@ -979,6 +982,7 @@ function enterPatientCare_102(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/bored.jpg');
@@ -1242,6 +1246,7 @@ function enterAnatomyAndPhysiology_102(s: GameState, scene: SceneBuilder): void 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/bored.jpg');
@@ -1506,6 +1511,7 @@ function enterExaminationAndTreatment_102(s: GameState, scene: SceneBuilder): vo
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/bored.jpg');

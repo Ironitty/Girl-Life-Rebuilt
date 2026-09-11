@@ -20,6 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['love', '2'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).xec ?? 0)} warns you that ${((s as any).xyr ?? 0)} mother is very demanding and rigorous. ${((s as any).npcdesc ?? 0)} says that ${((s as any).xe ?? 0)} loves ${((s as any).xyr ?? 0)} mother and does not want to upset her. Therefore, you must look gorgeous, wear a dress from a boutique, be well-groomed with curled hair and use cosmetics only in moderation.`);
   // TODO-QSP: dynamic text: For your next date, if you are ready, <<$npcdesc>> will take you to <<$xyr>> par...
   scene.text(`For your next date, if you are ready, ${((s as any).npcdesc ?? 0)} will take you to ${((s as any).xyr ?? 0)} parents.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'To invite', handler: (st: GameState) => {
     if ((!((s as any).npcGender ?? 0))) {
@@ -102,6 +104,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'dina', 'brodilr');
@@ -118,6 +121,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).Xec ?? 0)} tells you that you have to look chic, wear a dress from a boutique, be well-groomed with curled hair, use cosmetics only in moderation. ${((s as any).Xec ?? 0)} wants ${((s as any).xyr ?? 0)} friends to get green with envy.`);
   // TODO-QSP: dynamic text: For your next date, if you are totally ready <<$npcdesc>> will take you to <<$xy...
   scene.text(`For your next date, if you are totally ready ${((s as any).npcdesc ?? 0)} will take you to ${((s as any).xyr ?? 0)} friends.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'To invite', handler: (st: GameState) => {
     if ((!((s as any).npcGender ?? 0))) {
@@ -145,6 +149,7 @@ function enterFrends(s: GameState, scene: SceneBuilder): void {
       { label: 'To invite', goto: ['lezbsex', 'startloverhome'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -281,6 +286,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 2;
   // TODO-QSP: dynamic text: "Okay, it's time to go, <<$pcs_nickname>>." says <<$npcdesc>>. You head for the ...
   scene.text(`"Okay, it's time to go, ${((s as any).pcs_nickname ?? 0)}." says ${((s as any).npcdesc ?? 0)}. You head for the exit.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_residential', ''] },
   ]);
@@ -290,6 +296,7 @@ function enterFrends2(s: GameState, scene: SceneBuilder): void {
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.text('(Further actions are available.)');
   ((s as any).npc_love ?? {})[String((s as any).npcID ?? 0)] = 2;
+  // TODO-QSP: end
   scene.actions([
     { label: 'To invite', goto: ['sexm', 'room'] },
   ]);

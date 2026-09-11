@@ -78,6 +78,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the main road (0:01)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -113,6 +114,7 @@ function enterPs1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum1.jpg" ></cen...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/suburb/asylum1.jpg" ></center>`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -126,6 +128,7 @@ function enterPs2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>An old abandoned building<h4></center>');
   scene.img('images/locations/city/suburb/abandoned.jpg');
   scene.text('An abandoned building that spoils the local communities appearance and intimidates local residents.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

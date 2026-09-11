@@ -59,6 +59,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'rasputin_host', 'options');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Apologize for the intrusion and return to the entrance', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -68,6 +69,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'About the shows', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

@@ -16,6 +16,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
   // TODO-QSP: gt $ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -34,6 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait', goto: ['therapist_hotel', 'event_switch'] },
   ]);
@@ -66,6 +68,7 @@ function enterEventSwitch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +79,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   scene.text('When the man walks out of the shower in a heavy bathrobe, your mind becomes blank and you enter the black room.');
   // TODO-QSP: dynamic text: The Therapist walks over to you to check your panties as he makes sure you are n...
   scene.text(`The Therapist walks over to you to check your panties as he makes sure you are not wearing any. Once he realizes this, he moves you over to the bed. "Welcome to my home," he says. "I've lived here since I divorced my wife, just waiting for the divorce to become official." He sits down in front of you. ${qspFunc(s, 'wrap', 'hypno', '"So, when that happens, you will be my wife, but we need to make you want that, so this is the next part of your training."')} He continues.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -130,6 +134,7 @@ function enterEvent1PostShower(s: GameState, scene: SceneBuilder): void {
   scene.text('"Let\'s start off slow. As your husband, you have to keep me calm," he points to under the desk. When he says "get under there", you move under the desk and look at him before he sits in his chair and imprisons you. You just sit there for what feels like a couple of hours before he opens his robe and moves your face to his cock. Knowing what he wants you start to suck on his cock. You only hear, "Don\'t stop, even if I cum, you keep my cock in your mouth" and he goes back to whatever he\'s doing.');
   qspCall(s, 'arousal', 'bj', 60, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -170,6 +175,7 @@ function enterEvent1Morning(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
   scene.text('You wake up alone in a hotel room. You are naked and dripping of cum. You ask yourself, "What did I do last night?" after the hypnosis ends. You only remember sleeping with someone and having sex with them, but you have no idea who. You finally use the shower in the room, dress in what you wore the day before and leave the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'therapist_hotel', 'leave', 'pav_hotel');
@@ -184,6 +190,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/therapist/hotel_arrive2.jpg');
   scene.text('Once more, it\'s Saturday night, and you find yourself entering a hotel room that you have a key to, with the goal of locating the person staying here so that you can return the key to them. However, you find yourself looking directly at him, someone you know, naked and hard while looking you over. Before you can do anything, your mind goes blank and you are in the black room of your hypnotized state, leaving you at his mercy.');
   scene.text('"My wife, you\'ve returned to me. Come, remove your clothes and sit next to me and we\'ll talk" he says to you, and as if your legs move on their own, you remove your clothes before sitting down beside him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -268,6 +275,7 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give Blowjob', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 30, 'sub');
@@ -316,6 +324,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
   // TODO-QSP: dynamic text: You make your way into the hotel room once again and see no one around. You wond...
   scene.text(`You make your way into the hotel room once again and see no one around. You wonder if its empty, but before you can look around, you hear a snap and your mind goes blank. "Welcome back, Wife. ' + $func('wrap', 'hypno', 'Today you will be doing house work for me and you will be doing it naked. You always want to be naked around me. This will change when we have children, but for now, this will be natural for you. When I say, <font color="purple">"This place is a mess"</font>, you will start cleaning up the place on your own. Do a good job and you will get a reward,"') + ' he says and then asks: ${qspFunc(s, 'wrap', 'hypno', '"Got it, wife?"')}`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes Sir', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -408,6 +417,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
   scene.text('You arrive at the hotel room on another Saturday night. You walk in like you own the place and strip down and take a shower. You spend a few minutes cleaning up and come out wearing only a towel, and you see the therapist watching TV.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -493,6 +503,7 @@ function enterEvent4PostWait(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/therapist/hotel_lap.jpg');
   scene.text('He cleans off the desk and places the food on it. When he sits down, he pats his lap. "Come, sit on my lap," he says and you do just that. He wraps an arm around you and feeds you some of his fries. After about 15 minutes, he lifts you up and places you on the bed. Removing his clothes, he lies down next to you and wraps his arms around you. This time, he doesn\'t have sex with you and just cuddles you until you both fall asleep.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sleep', handler: (st: GameState) => {
     ((s as any).therapistQW ?? {})['hotel_visits'] = (((s as any).therapistQW ?? {})['hotel_visits'] ?? 0) + (1);
@@ -528,6 +539,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
   scene.text('You strip down to your birthday suit and turn to show him your body. He pulls you into his lap and moves a hand over your legs before moving it between your legs, feeling you up. "Now, wake up and be my woman."');
   scene.text(' ***Major Choice*** ');
   scene.text('If you continue from this point, you will enter a story moment where there are only 3 ways to break free. If you do not have these conditions meet, they will be passed up and you will fall into this bad end, unless you are into that kind of thing. This is a MAJOR POINT OF NO RETURN.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     ((s as any).therapistQW ?? {})['hotel_submit'] = 10;
@@ -631,6 +643,7 @@ function enterEvent6Submit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/therapist/hotel_shower1.mp4');
   scene.text('You enter the hotel again, but this time it is different. The moment you walk in, you remove your clothes, folding them up before heading into the shower to get cleaned up.');
   scene.text('In your mind, you know this phrase, "A Clean Wife has a Happy Husband" You spend time making sure everything about yourself is clean before you dry off and enter the hotel room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -730,6 +743,7 @@ function enterEvent6Submit2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel', goto: ['therapist_hotel', 'event6_submit3'] },
   ]);
@@ -744,6 +758,7 @@ function enterEvent6Submit3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');
   scene.text('You return to the hotel room with your stuff. When you enter, you see the therapist waiting for you. "Welcome back, my wife. Looks like all went well" he says and you nod.');
   scene.text('"Just put your stuff in the closet there and lay on the bed and wait for me." He says and you strip down, putting your clothes into the closet, then you lay on the bed, naked. You are glad the TV is on and you watch it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 90;
@@ -802,6 +817,7 @@ function enterEvent6Submit4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
   qspCall(s, 'homes_properties', 'set_home', 'hotel_therapist');
   qspCall(s, 'therapist_hotel', 'leave', 'pav_hotel');
+  // TODO-QSP: end
   scene.build();
 }
 

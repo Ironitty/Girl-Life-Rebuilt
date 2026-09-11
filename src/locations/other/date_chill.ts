@@ -15,6 +15,7 @@ function enterKnockStart(s: GameState, scene: SceneBuilder): void {
   scene.text(`You knock on the door and ${((s as any).npcdesc ?? 0)} opens up.`);
   scene.text('"Hey, come on in."');
   qspCall(s, 'date_chill', 'get_ready1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,6 +25,7 @@ function enterWithBoyStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You enter with <<$npcdesc>>.
   scene.text(`You enter with ${((s as any).npcdesc ?? 0)}.`);
   qspCall(s, 'date_chill', 'get_ready1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -33,6 +35,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev[''] = 'home_date'
   ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
   qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,12 +49,14 @@ function enterWatchingImage(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/romance/dates/chill/tv_watch1.jpg');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetReady1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   qspCall(s, 'date_chill', 'get_ready2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -125,6 +130,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +146,7 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'get_ready2');
@@ -174,6 +181,7 @@ function enterDrinkMenuEnd(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'date_chill', 'get_snacks');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'get_ready1');
@@ -194,10 +202,12 @@ function enterGetDrinks(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'get_ready2');
@@ -219,6 +229,7 @@ function enterSnackMenuEnd(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev ?? {})['grab_snacks'] = 1;
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['date_chill', 'get_ready2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -234,6 +245,7 @@ function enterGetSnacks(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -254,6 +266,7 @@ function enterSettleDown1(s: GameState, scene: SceneBuilder): void {
       scene.text(`You settle down on ${((s as any).npcdesc ?? 0)}'s couch.`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch a movie', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'netflix_movie1');
@@ -269,6 +282,7 @@ function enterNetflixMovie1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['watching_image']
   scene.text('The two of you start watching a movie together.');
   scene.actions([{ label: 'Continue', goto: ['date_chill', 'intermission1'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -276,6 +290,7 @@ function enterNetflixTv1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['watching_image']
   scene.text('The two of you start binge watching a TV show together.');
   scene.actions([{ label: 'Continue', goto: ['date_chill', 'intermission1'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -283,6 +298,7 @@ function enterNetflixTv2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $date_ev['watching_image']
   scene.text('The two of you pick up where you left off, starting the next episode of the TV show you were watching together.');
   scene.actions([{ label: 'Continue', goto: ['date_chill', 'intermission1'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -355,10 +371,12 @@ function enterIntermission1(s: GameState, scene: SceneBuilder): void {
       { label: 'Unzip his pants', goto: ['date_chill', 'unzip_pants'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBjInsist(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -394,10 +412,12 @@ function enterUnzipPants(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterChillHj1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Seriously jerk him', handler: (st: GameState) => {
     ((s as any).date_ev ?? {})['sex_pos'] = 'handjob';
@@ -435,6 +455,7 @@ function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -447,6 +468,7 @@ function enterChillBj1(s: GameState, scene: SceneBuilder): void {
   scene.text(`You blow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} seriously.`);
   // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>'s cock as you seriously loudly and noisily s...
   scene.text(`All attention turns to ${((s as any).npcdesc ?? 0)}'s cock as you seriously loudly and noisily scuk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to make him cum', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'chill_cum');
@@ -463,6 +485,7 @@ function enterChillBjWatch1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/television1.jpg');
   // TODO-QSP: dynamic text: You blow <<$npc_usedname[$npcID]>> while continuing to watch.
   scene.text(`You blow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]} while continuing to watch.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'chill_cum');
@@ -473,6 +496,7 @@ function enterChillBjWatch1(s: GameState, scene: SceneBuilder): void {
 
 function enterChillCum(s: GameState, scene: SceneBuilder): void {
   scene.text('He\'s gonna cum.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish him with your hand', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'hand', ((s as any).boy ?? 0), 1);
@@ -511,6 +535,7 @@ function enterChillCum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumSwallowMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Swallow nonchalantly', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 1);
@@ -531,6 +556,7 @@ function enterCumSwallowMenu(s: GameState, scene: SceneBuilder): void {
 function enterCumSwallowNonch(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/mouth/swallow4.mp4');
   scene.text('You take it in stride and casually gulp down each load of cum as it appears in your mouth.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -541,6 +567,7 @@ function enterCumSwallowHappy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/mouth/swallow4.mp4');
   // TODO-QSP: dynamic text: You happily gulp down <<$npc_usedname[$npcID]>>'s cum, sucking every last drop o...
   scene.text(`You happily gulp down ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s cum, sucking every last drop out of his cock.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -550,6 +577,7 @@ function enterCumSwallowHappy(s: GameState, scene: SceneBuilder): void {
 function enterCumSwallowReluc(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/mouth/swallow4.mp4');
   scene.text('You\'d really rather not, but not knowing what else to do, you gulp down the bitter liquid.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -559,6 +587,7 @@ function enterCumSwallowReluc(s: GameState, scene: SceneBuilder): void {
 function enterCumSwallowChoke(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/mouth/gag3.mp4');
   scene.text('The bitter liquid hitting the back of your throat takes you by surprise and you have to choke it down.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -566,6 +595,7 @@ function enterCumSwallowChoke(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumSpitMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spit into a tissue', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0), 1);
@@ -586,6 +616,7 @@ function enterCumSpitMenu(s: GameState, scene: SceneBuilder): void {
 function enterCumSpitTissue(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   scene.text('You grab a tissue from a nearby table and spit his cum into it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -595,6 +626,7 @@ function enterCumSpitTissue(s: GameState, scene: SceneBuilder): void {
 function enterCumSpitCup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   scene.text('You grab a cup from a nearby table and spit his cum into it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -605,6 +637,7 @@ function enterCumSpitSink(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   // TODO-QSP: dynamic text: You quickly get up and hurry over to the bathroom and spit <<$npc_usedname[$npcI...
   scene.text(`You quickly get up and hurry over to the bathroom and spit ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)]}'s cum into the sink. After a quick rinse and a wipe, you head back and curl up on the couch next to him like nothing happened.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
   ]);
@@ -678,6 +711,7 @@ function enterCumSpitFloor(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -686,6 +720,7 @@ function enterFinishWatch(s: GameState, scene: SceneBuilder): void {
   scene.text('You finish watching the show or movie.');
   qspCall(s, 'date_chill', 'date_end_stats');
   qspCall(s, 'date_after', 'after_date');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -693,6 +728,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_ev', 'living_room_img');
   scene.text('Oh forget it. You just need to have sex already.');
   ((s as any).date_ev ?? {})['npc_home_sex'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'sex_ev_start', 'initiate_pre', $npcID, 'npc_home'
@@ -703,6 +739,7 @@ function enterGoToSex(s: GameState, scene: SceneBuilder): void {
 
 function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_count_chill ?? {})[String((s as any).npcID ?? 0)] = (((s as any).date_count_chill ?? {})[String((s as any).npcID ?? 0)] ?? 0) + (1);
+  // TODO-QSP: end
   scene.build();
 }
 

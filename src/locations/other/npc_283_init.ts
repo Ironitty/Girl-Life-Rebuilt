@@ -38,6 +38,8 @@ function enterExamInterview(s: GameState, scene: SceneBuilder): void {
   scene.text('You quickly step across the room to sit in the chair, despite the padding it is disquietingly uncomfortable. You try to find a comfortable sitting position and Rudolph looks up at you.');
   // TODO-QSP: dynamic text: “What are you doing, I told you sit and be quiet.” he snaps at you. You freeze i...
   scene.text(`“What are you doing, I told you sit and be quiet.” he snaps at you. You freeze in position and try to remain calm. “Now ${((s as any).pcs_nickname ?? 0)}, what are we to do with you. You barely scraped a pass, but enough to warrant my time to see why you failed so badly despite your local reputation. If I didn't know your instructor I would have said you slept with them to get a place.”. Rudolph starts to tap the table in a beat you half-recognise and he ignores you whilst he gazes at a document.`);
+  // TODO-QSP: end
+  // TODO-QSP: end
   scene.actions([
     { label: 'Speak up', handler: (st: GameState) => {
     scene.text('“Sir, I…”, Rudolph sharply looks up and glares at you, “Did I give you permission to speak?”. He holds up his hand forestalling any chance you have of rebutting him. “Never mind you can\'t even follow the most basic of instructions. I don\'t see why I should keep wasting my time with such an imbecilic girl.” He slams his hand on to the desk to emphasis the point and you jump at his show of anger.');

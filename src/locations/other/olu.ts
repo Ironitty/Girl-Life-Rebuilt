@@ -17,6 +17,7 @@ function enterOlusex(s: GameState, scene: SceneBuilder): void {
   scene.text('As your thoughts drift, he sits on the bed next to you and gently pushes you off onto your knees before pulling you between his legs. You know what he wants, his hard cock right in front of your face leaving no doubt, so you open your mouth and struggle to take his massive dick in your mouth.');
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take him deeper', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/firstbj2.jpg');
@@ -157,6 +158,7 @@ function enterSeduction(s: GameState, scene: SceneBuilder): void {
   scene.text('He sits on the couch next to you and shows you his phone. "I love my new phone, the camera on it is very good. Look at pictures I have taken."');
   qspCall(s, 'arousal', 'erotic_nudity', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you have to go', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -251,6 +253,7 @@ function enterSeductionStrip(s: GameState, scene: SceneBuilder): void {
   scene.text('"Down on knees now please," he grins.');
   qspCall(s, 'arousal', 'flash', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you have to go', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -430,6 +433,7 @@ function enterOlusex1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/olu/sex/sex1.jpg');
   scene.text('He walks over to the couch with you, but doesn\'t sit down, looking at you with hungry eyes instead.');
   scene.text('"Take off clothes please," he says as his eyes roam over your body.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip for him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/sex2.jpg');
@@ -603,6 +607,7 @@ function enterOluanya(s: GameState, scene: SceneBuilder): void {
   scene.text('He stands next to her as she sits on the couch, opens her mouth and starts eagerly sucking his massive cock as he grabs her hair.');
   qspCall(s, 'arousal', 'voyeur_sex', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', goto: ['olu', 'anyaolusvet'] },
     { label: 'Watch Anya get fucked', handler: (st: GameState) => {
@@ -671,6 +676,7 @@ function enterAnyaolusvet(s: GameState, scene: SceneBuilder): void {
   scene.text('As you watch your sister suck Olu\'s supersized cock, you feel your mouth watering and want to join in, so you strip off your clothes and kneel down next to them. Olu takes the cue and sits down before leaning back as Anya glances at you with a smile and pulls away, allowing you to take his cock into your mouth and start sucking.');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Swap again', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/anya/anyaolusvet2.jpg');
@@ -758,6 +764,7 @@ function enterOlunush(s: GameState, scene: SceneBuilder): void {
   ((s as any).OluQW ?? {})['nush_count'] = (((s as any).OluQW ?? {})['nush_count'] ?? 0) + (1);
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', goto: ['olu', 'nusholusvet'] },
     { label: 'Watch the show', handler: (st: GameState) => {
@@ -874,6 +881,7 @@ function enterNusholusvet(s: GameState, scene: SceneBuilder): void {
   scene.text('He walks over to Anushka, who opens her mouth and lets him shove his cock inside. She tries to take him as deep as she can, but can barely take him halfway down her throat.');
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/anushka/nusholusvet2.jpg');
@@ -1030,6 +1038,7 @@ function enterOlunat(s: GameState, scene: SceneBuilder): void {
   scene.text('She drops down, opens her mouth and starts sucking on his huge dick without having to be told, sliding a hand inside her panties and rubbing herself as she does.');
   qspCall(s, 'arousal', 'voyeur_sex', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Join in', goto: ['olu', 'natolusvet'] },
     { label: 'Watch Natasha get fucked', handler: (st: GameState) => {
@@ -1102,6 +1111,7 @@ function enterNatolusvet(s: GameState, scene: SceneBuilder): void {
   scene.text('Natasha gets up on the couch beside you to watch.');
   qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spin around', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/olu/sex/natasha/natolusvet2.jpg');

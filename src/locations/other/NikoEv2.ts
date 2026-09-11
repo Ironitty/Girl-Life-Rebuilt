@@ -27,6 +27,7 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
   scene.text('"But how much does he want exactly?"');
   scene.text('"Uh… Don\'t worry about that…" he says in an unconvincing tone. "I\'ll handle that when the time comes. Just know that it\'s a lot!"');
   scene.text('You shake your head. "How the hell will we be able to pay \'a lot\' to this man?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Listen to his reply', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -115,6 +116,7 @@ function enterHomeDate(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'d love to!" you eagerly reply and Niko chuckles.');
   scene.text('"Good. Get washed up and we\'ll have some fun."');
   scene.text('You get up and quickly run to the bathroom to clean up.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash up', goto: ['NikoDates', 'quick_wash'] },
   ]);
@@ -130,6 +132,7 @@ function enterReward(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/volkovHome/Rooms/Niko/bedroom.jpg');
   scene.text('As soon as you enter the bedroom, you look around, but don\'t see Niko.');
+  // TODO-QSP: end
   scene.actions([
     { label: '…', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -266,6 +269,7 @@ function enterNikoWake(s: GameState, scene: SceneBuilder): void {
   scene.text('Niko continues kissing your forehead. "I\'ll do everything in my power to protect you. Just stay strong, okay?"');
   scene.text('You nod your head again. "Thank you Niko. I always feel safe in your arms."');
   scene.text('He smiles as he wraps his arms around you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -318,6 +322,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -445,6 +450,7 @@ function enterVickyTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoEv2" }) + '');
   scene.text('As you\'re leaving the cafeteria, you suddenly hear someone calling out to you.');
   scene.text('"I saw what you did in the locker room!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -520,6 +526,7 @@ function enterLunchChat2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -652,6 +659,7 @@ function enterNataliaTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As you're leaving the cafeteria, you bump into Natalia. "Oh <<$pcs_firstname>>. ...
   scene.text(`As you're leaving the cafeteria, you bump into Natalia. "Oh ${((s as any).pcs_firstname ?? 0)}. How are you doing? I've been really worried about you. I asked my mother about how to stop repeated nightmares and she gave me these dissolvable tablets to give you. They're designed to help ease…"`);
   scene.text('You place your hand on Natalia\'s shoulder. "You don\'t need to worry about me. I don\'t get the nightmares anymore. I found the source of my nightmares and faced it head on."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -687,6 +695,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -723,6 +732,7 @@ function enterDiner1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m ready', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -945,6 +955,7 @@ function enterDinerWashup(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/facecleanse.jpg');
   scene.text('You grab a few paper towels and approach the sink to clean yourself as thoroughly as possible while taking a few seconds to enjoy a splash of warm water on your face, leaving you feeling refreshed as you finish up and walk away from the sink.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dry off', goto: ['NikoEv2', 'Diner Exit'] },
   ]);
@@ -962,6 +973,7 @@ function enterDinerExit(s: GameState, scene: SceneBuilder): void {
   scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 2400)} and you look up at him. "I thought that you would give me half? There were at least six men in there."`);
   scene.text('Niko places his hand on your shoulder with a sympathetic look on his face. "I wanted to split it half way, but it would take us too long to pay up on that debt. You don\'t want your reputation to remain this way, do you?"');
   scene.text('You lower your head. "I don\'t… I\'m sorry. I was just being greedy."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Listen to Niko', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -986,6 +998,7 @@ function enterReward2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/kiss.jpg');
   scene.text('As you approach Niko, he throws his cigarette to the ground and wraps his arm around your lower back before pulling you towards him and giving you a very passionate kiss. You eagerly begin massaging his tongue with yours in a long passionate kiss that lasts for a full minute before Niko slowly pulls away. "I\'ve been thinking about you all day and I\'m ready to reward you for all your hard work." He starts leading you to his house.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Niko\'s house', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1068,6 +1081,7 @@ function enterYurikBJ(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/home/livingroom.jpg');
   scene.text('As you reach the bottom of the stairs, you suddenly hear someone calling out to you. "Hey girl."');
   scene.text('You turn to see Yurik sitting in the living room in front of the TV. He motions you to come toward him, so you comply. "Suck my dick," he says while pointing at his crotch. You meekly nod your head, knowing what could happen if you dare to disobey him. You walk up to him and unbutton his pants before pulling out his giant dick and wrapping your lips around it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/yurikev/sex/bj/bj1.mp4');
@@ -1152,6 +1166,7 @@ function enterDiner2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -1225,6 +1240,7 @@ function enterDinerExit2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/kiss1.mp4');
   scene.text('As you and Niko leave the diner, he grabs onto your hand and spins you around before giving you a passionate kiss. You close your eyes and enjoy the caress of Niko\'s tongue massaging yours before he slowly pulls away. "You\'ve been doing an outstanding job and I\'m so proud of you. If we continue doing this everyday, then we\'ll have the money to fix your reputation in no time. Speaking of money, here\'s your share of the profits."');
   scene.text('He hands you your cut of the profits before wrapping his arm around your neck and walking you home while chatting with you about some of his favorite music groups. As you both pass by the park, you can hear someone singing behind you. "Little slut, little slut, there she goes. Little slut, little slut with her leaking holes."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around', handler: (st: GameState) => {
     (s as any).NikoProfit = 0;
@@ -1297,6 +1313,7 @@ function enterDinerSlut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
     (s as any).NikoDiner = Math.floor(Math.random() * 2) + 2;
@@ -1335,6 +1352,7 @@ function enterNikoSearch(s: GameState, scene: SceneBuilder): void {
   scene.text(`As you're leaving the cafeteria, you walk toward the restroom to check up on Niko. When you arrive, you can see the boys chatting with each other before turning to you and whispering at each other before Dan grabs onto your arm. "Hey ${((s as any).pcs_firstname ?? 0)}. I know why you're here. You miss our dicks, don't you?"`);
   scene.text('You recoil. "No, I was just looking for…"');
   scene.text('Dan grips your arm tighter as he unbuttons his pants. "Don\'t worry, my dick is right here." He pushes you down to your knees and presses his dick against your lips while the other gopniks circle around you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck Dan\'s dick', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1371,6 +1389,7 @@ function enterNikoSearch2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big10.jpg');
   scene.text('As you\'re leaving the cafeteria, you carefully approach the restroom. When you arrive, you carefully peek through the door to see that no one\'s there. You can\'t help but feel a bit relieved that none of the boys are there, but you soon hear some boys chatting in the hallway behind you, so you quickly run into one of the stalls while hoping that they don\'t enter. To your dismay, they enter the restroom while continuing their conversation.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Listen to them', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

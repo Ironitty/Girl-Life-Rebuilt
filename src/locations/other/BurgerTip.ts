@@ -33,10 +33,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).bossassrand = Math.floor(Math.random() * 4) + 0;
-  if ((!((s as any).bossassrand ?? 0))) {
-    scene.text('When you bend over to pick up the papers from the table, Anatoly gives you a slap on the ass.');
-  }
   scene.build();
 }
 
@@ -785,6 +781,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
+  (s as any).bossassrand = Math.floor(Math.random() * 4) + 0;
+  if ((!((s as any).bossassrand ?? 0))) {
+    scene.text('When you bend over to pick up the papers from the table, Anatoly gives you a slap on the ass.');
+  }
   scene.build();
 }
 
@@ -833,6 +834,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -905,6 +907,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -934,6 +937,7 @@ function enterToiletWash(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -963,6 +967,7 @@ function enterToiletWash2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1000,6 +1005,7 @@ function enterBjCum(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1010,6 +1016,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
   scene.text('Wanting to get a taste, you pick up the pace to finish him. Soon, his salty semen pours into your mouth. It tastes delicious.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show him how full your mouth is', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1095,6 +1102,7 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1134,6 +1142,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1161,6 +1170,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1200,6 +1210,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1227,6 +1238,7 @@ function enterAnal2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take it in the ass', goto: ['BurgerTip', 'anal2'] },
   ]);
@@ -1238,6 +1250,7 @@ function enterIlyWork(s: GameState, scene: SceneBuilder): void {
   scene.text('The senior manager Ilyushkin shows up in your office.');
   // TODO-QSP: dynamic text: Ilyushkin grins, "<<$pcs_nickname>>, <<$pcs_nickname>>, I would have never imagi...
   scene.text(`Ilyushkin grins, "${((s as any).pcs_nickname ?? 0)}, ${((s as any).pcs_nickname ?? 0)}, I would have never imagined this from a sweet young thing like you." He puts a photo on your desk. You pick it up, and take a look. ${((s as any).BurgerQW ?? 0)?.['IlyQWBlackmailPhoto']}. Ilyushkin is looking at you like a cat about to catch a mouse: "${((s as any).pcs_nickname ?? 0)}, we can't have this our boss has aims at a career in politics. If something like this were to get out it would… well we can't let that happen. I'm afraid you are just going to have to quit. Anatoly can't be known as a man who keeps a slutty secretary."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Plead with him not to show the pictures', goto: ['BurgerTip', 'ily_work2'] },
     { label: 'Keep silent', handler: (st: GameState) => {
@@ -1288,6 +1301,7 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['BurgerTip', 'ily_work3'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Ilyushkin', handler: (st: GameState) => {
     ((s as any).BurgerQW ?? {})['IlyQWBlackmail'] = 2;
@@ -1363,6 +1377,7 @@ function enterIlyWork3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1371,6 +1386,7 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/diner/work7.jpg');
   scene.text('When you refuse, Ilyushkin says, "I\'m tired of messing with you anyway, you stupid cunt. It\'s easier just to get rid of you once and for all." With that, he turns and walks away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
   ]);
@@ -1438,6 +1454,5 @@ export const BurgerTip: LocationDef = {
   name: 'BurgerTip',
   title: 'The intercom on your desk light up. Anatoly Borisovich wants',
   region: 'other',
-  description: ['When you bend over to pick up the papers from the table, Anatoly gives you a slap on the ass.'],
   enter: enter,
 };

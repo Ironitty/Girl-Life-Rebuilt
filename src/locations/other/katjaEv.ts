@@ -59,6 +59,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lernHome ?? 0) > 0  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1  &&  ((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
     // TODO-QSP: act 'Ask Katja if she wants to do homework with Artem': gt 'artem_katja_sex', 'home_work_ask_player_...
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"Let\'s hang out"', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -165,6 +166,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I liked kissing, even if we had to kiss all the boys too, well, all of them but the jerk that called us lesbians." suddenly said Katja. You only snorted in response.');
   }
   scene.text('You eventually arrive at her house, a detached two-story building with attached garages and quite a large garden, giving the impression of neatness and order. Katja shows you inside and to her room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', goto: ['katjaEv', '2'] },
   ]);
@@ -178,6 +180,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14']} ${((s as any).npc_lastname ?? 0)?.['A14']}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('Katja\'s room is not that clean and her things are in a circle around her bed. Katja throws her rucksack to the floor with her textbooks and notebooks falling out.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do homework with Katja', goto: ['KatjaHomeTalk', 'homework'] },
   ]);
@@ -271,6 +274,7 @@ function enterKathan(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -564,6 +568,7 @@ function enterKathan14(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -610,6 +615,7 @@ function enterKathan15(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for something else to do', goto: ['katjaEv', 'kathan'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -679,6 +685,7 @@ function enterKathan16(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -844,6 +851,7 @@ function enterKathan17(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for something else to do', goto: ['katjaEv', 'kathan'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -858,6 +866,7 @@ function enterKathan18(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, Look!"
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, Look!"`);
   scene.text('Vicky and Vanya are embraced and looking towards the lake doing... nothing except enjoying their mutual company. It feels strange that the hyperactive couple can just stop and smell the flowers.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pester them', handler: (st: GameState) => {
     (s as any).random_event = Math.floor(Math.random() * 100) + 1;
@@ -931,6 +940,7 @@ function enterKathan19(s: GameState, scene: SceneBuilder): void {
   scene.text('Catching your attention is a smiling Lizaveta, who, as always, is typing away on her phone. It\'s evident that the girl\'s sixth sense for gossiping has pinpointed Lizaveta towards you, and now the always eager-for-news girl is zeroing in on your position.');
   scene.text('"Time to look for something else to do?"');
   scene.text('Katja seems somewhat troubled, trapped between the need to know and the knowledge that if you aren\'t very careful, anything you tell Lizaveta will end up in everyone\'s ears.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Quickly sneak away', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1162,6 +1172,7 @@ function enterKathan20(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for something else to do', goto: ['katjaEv', 'kathan'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1260,6 +1271,7 @@ function enterKathan21(s: GameState, scene: SceneBuilder): void {
       { label: 'Look for something else to do', goto: ['katjaEv', 'kathan'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1332,6 +1344,7 @@ function enterKathan22(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1392,6 +1405,7 @@ function enterKathan23(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to sneak away', handler: (st: GameState) => {
     (s as any).random_event = Math.floor(Math.random() * 100) + 1;
@@ -1466,6 +1480,7 @@ function enterDiscount(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['katjaEv', 'discountlipbalm'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1507,6 +1522,7 @@ function enterDiscountcosmetics(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1548,6 +1564,7 @@ function enterDiscountvitamins(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1589,6 +1606,7 @@ function enterDiscountlipbalm(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -8,9 +8,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[0] ?? 0) === 'vitek'  ||  ((s as any).locArgs?.[0] ?? 0) === 'dan'  ||  ((s as any).locArgs?.[0] ?? 0) === 'shulga') {
     scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'vitek_dan_vasily'] }]);
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 'lena'  ||  ((s as any).locArgs?.[0] ?? 0) === 'lera') {
-    scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'lena_lera'] }]);
-  }
   scene.build();
 }
 
@@ -30,6 +27,7 @@ function enterVitekDanVasily(s: GameState, scene: SceneBuilder): void {
   }, goto: ['kotovtalker', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with them', handler: (st: GameState) => {
@@ -539,6 +537,7 @@ function enterVitekDanVasilyGetDrunk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -828,6 +827,7 @@ function enterRadomir(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -882,6 +882,7 @@ function enterRadomirDance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -894,6 +895,7 @@ function enterRoman(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big157.jpg');
   scene.text('Roman is hanging out in the dark corner of the hall with the other gopniks. It\'s dim and hard to make out details, but he seems to be talking to several of the other gopniks and sharing some beers they\'ve smuggled in.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -1025,6 +1027,7 @@ function enterValentin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big158.jpg');
   scene.text('Valentin is hanging out in the dark corner of the hall with the other gopniks. It\'s dim and hard to make out details, but he seems to be talking to several of the other gopniks while sharing some beers they\'ve smuggled in.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -1184,6 +1187,7 @@ function enterArkadi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big156.jpg');
   scene.text('Arkadi is hanging out in the dark corner of the hall with the other gopniks. It\'s dim and hard to make out details, but he seems to be talking to several of the other gopniks while sharing some beers they\'ve smuggled in.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with him', handler: (st: GameState) => {
@@ -1297,6 +1301,7 @@ function enterNiko(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'npc_relationship', 'modify', 'A189', 'like', 1, 'pav_disco');
   scene.img('images/characters/shared/headshots_main/big189.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -1495,6 +1500,7 @@ function enterLavrenti(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1513,6 +1519,7 @@ function enterLavrentiDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_gopniks', 'lavrenti_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -1525,6 +1532,10 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big24.jpg');
   scene.text('Pauline is hanging out in the dark corner of the hall with the other gopniks. It\'s dim and hard to make out details, but she seems to be talking to several of the other gopniks while sharing some beers they\'ve smuggled in.');
+  // TODO-QSP: end
+  if (((s as any).locArgs?.[0] ?? 0) === 'lena'  ||  ((s as any).locArgs?.[0] ?? 0) === 'lera') {
+    scene.actions([{ label: 'Continue', goto: ['pav_disco_gopniks', 'lena_lera'] }]);
+  }
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
     { label: 'Hang out with her', handler: (st: GameState) => {
@@ -1881,6 +1892,7 @@ function enterLenaLera(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1899,6 +1911,7 @@ function enterLenaLeraDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_gopniks', 'lena_lera_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -2089,6 +2102,7 @@ function enterNush(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2264,6 +2278,7 @@ function enterAnushkaDance(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);
@@ -2289,6 +2304,7 @@ function enterAnushkaWalkhome(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2448,6 +2464,7 @@ function enterAlyona(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2466,6 +2483,7 @@ function enterAlyonaDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep dancing', goto: ['pav_disco_gopniks', 'alyona_dance'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
   ]);

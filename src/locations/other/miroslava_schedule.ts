@@ -13,6 +13,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A60_loc'], ((s as any).locat ?? 0)?.['A60_arg']);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -25,6 +26,7 @@ function enterWasHere(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = qspFunc(s, 'miroslava_schedule', 'here_core', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locat ?? 0)?.['A60_loc_prev'], ((s as any).locat ?? 0)?.['A60_arg_prev']);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -47,6 +49,7 @@ function enterHereCore(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,12 +139,14 @@ function enterGetLocatFromLoc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['A60_rand'] = Math.floor(Math.random() * 6) + 0;
   ((s as any).locat ?? {})['A60_prost'] = ((Math.floor(Math.random() * 3) + 0) > 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,6 +168,7 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'mira_loop_start'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +177,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).locat ?? {})['A60_arg_prev'] = ((s as any).locat ?? 0)?.['A60_arg'];
   ((s as any).locat ?? {})['A60_arg1_prev'] = ((s as any).locat ?? 0)?.['A60_arg1'];
   qspCall(s, 'miroslava_schedule', 'update_locat');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,6 +263,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: :set_locarg
   qspCall(s, 'miroslava_schedule', 'set_locarg', ((s as any).MiraLoc ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -391,6 +399,7 @@ function enterSetLocarg(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -526,6 +535,7 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -608,6 +618,7 @@ function enterGetLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

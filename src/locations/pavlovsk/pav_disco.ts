@@ -146,6 +146,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -367,21 +368,25 @@ function enterDiscoDance(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['pav_disco', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTooDrunkLowChance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pav_disco', 'too_drunk_base', Math.floor(Math.random() * 10) + 0);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTooDrunkMediumChance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pav_disco', 'too_drunk_base', (Math.floor(Math.random() * (7 - -1 + 1)) + (-1)));
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTooDrunkHighChance(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pav_disco', 'too_drunk_base', (Math.floor(Math.random() * (5 - -2 + 1)) + (-2)));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -404,6 +409,7 @@ function enterTooDrunkBase(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -454,6 +460,7 @@ function enterWallStand(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_disco', ''] },
   ]);
@@ -494,6 +501,7 @@ function enterDancePartner(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pav_disco', 'dance_partner');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -533,6 +541,7 @@ function enterKotovLove(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Vitek', handler: (st: GameState) => {
     (s as any).numnpc = 9;
@@ -558,6 +567,7 @@ function enterReaktDance(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel disgusted by the guy\'s actions.');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,10 +653,12 @@ function enterDanceBoy(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pav_disco', 'dance_react');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDanceReact(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'He\'s boring', handler: (st: GameState) => {
     if (((s as any).pcs_horny ?? 0) > 0) {
@@ -690,6 +702,7 @@ function enterDanceReact(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDanceBoy2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop dancing with him', handler: (st: GameState) => {
     if (((s as any).locArgs?.[1] ?? 0) === 'enjoy_react') {
@@ -943,6 +956,7 @@ function enterInviteOutside(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kotovLoveQW ?? 0) > 0) {
     scene.actions([{ label: 'Continue', goto: ['pav_disco', 'kotov_love'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1076,6 +1090,7 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

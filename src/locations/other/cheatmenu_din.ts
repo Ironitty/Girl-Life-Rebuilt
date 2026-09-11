@@ -14,65 +14,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).cheatmenu ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
   ((s as any).cheatmenu ?? {})['table_end'] = '</td></tr></table></center>';
   ((s as any).cheatmenu ?? {})['empty'] = 'gs \'cheatmenu_din\', \'empty\'';
-  ((s as any).cheatmenu ?? {})['quicktime'] = 'gs \'cheatmenu_din\', \'quicktime\', ARGS[0]';
-  ((s as any).cheatmenu ?? {})['dynamic'] = 'gs \'cheatmenu_din\', \'dynamic\'';
-  ((s as any).cheatmenu ?? {})['vartracker'] = 'gt \'cheatmenu_din\', \'vartracker\'';
-  ((s as any).cheatmenu ?? {})['index'] = 'gt \'cheatmenu_din\', \'index\'';
-  ((s as any).cheatmenu ?? {})['addict'] = 'gs \'cheatmenu_din\', \'addict\'';
-  ((s as any).cheatmenu ?? {})['clothes_dirt'] = 'gs \'cheatmenu_din\', \'clothes_dirt\'';
-  ((s as any).cheatmenu ?? {})['Vibrator'] = 'gs \'cheatmenu_din\', \'Vibrator\'';
-  ((s as any).cheatmenu ?? {})['BimboCloth'] = 'gs \'cheatmenu_din\', \'BimboCloth\'';
-  ((s as any).cheatmenu ?? {})['SmartBimbo'] = 'gs \'cheatmenu_din\', \'SmartBimbo\'';
-  ((s as any).cheatmenu ?? {})['SuccuBimbo'] = 'gs \'cheatmenu_din\', \'SuccuBimbo\'';
-  ((s as any).cheatmenu ?? {})['slutshot'] = 'gs \'cheatmenu_din\', \'slutshot\'';
-  ((s as any).cheatmenu ?? {})['permanent'] = 'gt \'cheatmenu_din\', \'permanent\'';
-  ((s as any).cheatmenu ?? {})['money'] = 'gs \'cheatmenu_din\', \'money\'';
-  ((s as any).cheatmenu ?? {})['bank_money'] = 'gs \'cheatmenu_din\', \'bank_money\'';
-  ((s as any).cheatmenu ?? {})['therapist_reset'] = 'gs \'cheatmenu_din\', \'therapist_reset\'';
-  ((s as any).cheatmenu ?? {})['cycle'] = 'gt \'cheatmenu_din\', \'cycle\'';
-  ((s as any).cheatmenu ?? {})['std_cure'] = 'gs \'cheatmenu_din\', \'std_cure\'';
-  ((s as any).cheatmenu ?? {})['pain_killer'] = 'killvar \'pain\' & gs \'pain\', \'calc\'';
-  ((s as any).cheatmenu ?? {})['force_preg'] = 'gs \'cheatmenu_din\', \'force_preg\'';
-  ((s as any).cheatmenu ?? {})['remove_preg'] = 'gs \'cheatmenu_din\', \'remove_preg\'';
-  ((s as any).cheatmenu ?? {})['state'] = 'gt \'cheatmenu_din\', \'state\'';
-  ((s as any).cheatmenu ?? {})['set_preg_body'] = 'gs \'cheatmenu_din\', \'set_preg_body\', ARGS[0]';
-  ((s as any).cheatmenu ?? {})['set_body_class'] = 'gs \'cheatmenu_din\', \'set_body_class\', ARGS[0]';
-  ((s as any).cheatmenu ?? {})['bodyMod'] = 'gt \'cheatmenu_din\', \'bodyMod\'';
-  ((s as any).cheatmenu ?? {})['age'] = 'gs \'cheatmenu_din\', \'age\'';
-  ((s as any).cheatmenu ?? {})['visualage'] = 'gs \'cheatmenu_din\', \'visualage\'';
-  ((s as any).cheatmenu ?? {})['avatar_hair_set'] = 'gs \'cheatmenu_din\', \'avatar_hair_set\'';
-  ((s as any).cheatmenu ?? {})['rename'] = 'gs \'cheatmenu_din\', \'rename\'';
-  ((s as any).cheatmenu ?? {})['reset_name'] = 'gs \'cheatmenu_din\', \'reset_name\'';
-  ((s as any).cheatmenu ?? {})['setLooks'] = 'gs \'cheatmenu_din\', \'setLooks\', $ARGS[0], ARGS[1]';
-  ((s as any).cheatmenu ?? {})['setLooksInput'] = 'gs \'cheatmenu_din\', \'setLooksInput\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['printLooksLinks'] = 'gs \'cheatmenu_din\', \'printLooksLinks\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['looks'] = 'gt \'cheatmenu_din\', \'looks\'';
-  ((s as any).cheatmenu ?? {})['change_avatar_path'] = 'gs \'cheatmenu_din\', \'change_avatar_path\'';
-  ((s as any).cheatmenu ?? {})['tatoo'] = 'gt \'cheatmenu_din\', \'tatoo\'';
-  ((s as any).cheatmenu ?? {})['setStat'] = 'gs \'cheatmenu_din\', \'setStat\', $ARGS[0], ARGS[1]';
-  ((s as any).cheatmenu ?? {})['setStatInput'] = 'gs \'cheatmenu_din\', \'setStatInput\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['setStatInputInverted'] = 'gs \'cheatmenu_din\', \'setStatInputInverted\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['setAttrs'] = 'gs \'cheatmenu_din\', \'setAttrs\', ARGS[0]';
-  ((s as any).cheatmenu ?? {})['setSkills'] = 'gs \'cheatmenu_din\', \'setSkills\', ARGS[0]';
-  ((s as any).cheatmenu ?? {})['printStatLinks'] = 'gs \'cheatmenu_din\', \'printStatLinks\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['printStatLinksInverted'] = 'gs \'cheatmenu_din\', \'printStatLinksInverted\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['stats'] = 'gt \'cheatmenu_din\', \'stats\'';
-  ((s as any).cheatmenu ?? {})['lover_menu'] = 'gt \'cheatmenu_din\', \'lover_menu\'';
-  ((s as any).cheatmenu ?? {})['input_time'] = 'gs \'cheatmenu_din\', \'input_time\'';
-  ((s as any).cheatmenu ?? {})['week'] = 'gt \'cheatmenu_din\', \'week\'';
-  ((s as any).cheatmenu ?? {})['month'] = 'gt \'cheatmenu_din\', \'month\'';
-  ((s as any).cheatmenu ?? {})['month2'] = 'gs \'cheatmenu_din\', \'month2\', ARGS[0]';
-  ((s as any).cheatmenu ?? {})['time'] = 'gt \'cheatmenu_din\', \'time\'';
-  ((s as any).cheatmenu ?? {})['magicTable'] = 'gs \'cheatmenu_din\', \'magicTable\', $ARGS[0], $ARGS[1]';
-  ((s as any).cheatmenu ?? {})['sucresetdo'] = 'gs \'cheatmenu_din\', \'sucresetdo\'';
-  ((s as any).cheatmenu ?? {})['succubreset'] = 'gt \'cheatmenu_din\', \'succubreset\'';
-  ((s as any).cheatmenu ?? {})['magic'] = 'gt \'cheatmenu_din\', \'magic\'';
-  ((s as any).cheatmenu ?? {})['pain'] = 'gs \'cheatmenu_din\', \'pain\'';
-  ((s as any).cheatmenu ?? {})['traits_cheats'] = 'gt \'cheatmenu_din\', \'traits_cheats\'';
   scene.build();
 }
 
 function enterEmpty(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -131,6 +77,7 @@ function enterCheattabs(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'tabhead', '', ((s as any).menu_page ?? 0));
+  // TODO-QSP: end
   scene.actions([
     { label: 'Settings menu', handler: (st: GameState) => {
     qspCall(st, 'cheatmenu_din', 'menu_exit');
@@ -148,6 +95,8 @@ function enterCheattabs(s: GameState, scene: SceneBuilder): void {
 
 function enterMenuExit(s: GameState, scene: SceneBuilder): void {
   (s as any).settingmode = 0;
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['quicktime'] = 'gs \'cheatmenu_din\', \'quicktime\', ARGS[0]';
   scene.build();
 }
 
@@ -156,6 +105,8 @@ function enterQuicktime(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outdoors', 'weather');
   qspCall(s, 'fertility', 'cum_arrcheat');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['dynamic'] = 'gs \'cheatmenu_din\', \'dynamic\'';
   scene.build();
 }
 
@@ -163,6 +114,8 @@ function enterDynamic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dynamicCommand ?? 0) !== '') {
     // TODO-QSP: dynamic $dynamicCommand
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['vartracker'] = 'gt \'cheatmenu_din\', \'vartracker\'';
   scene.build();
 }
 
@@ -373,6 +326,8 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<pillsleft[ptype]>> <<$pilltype>>pills left of your currently used pack
     scene.text(`${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)]} ${((s as any).pilltype ?? 0)}pills left of your currently used pack`);
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['index'] = 'gt \'cheatmenu_din\', \'index\'';
   scene.actions([
     { label: 'Return to cheat index', goto: ['cheatmenu_din', 'index'] },
   ]);
@@ -406,6 +361,8 @@ function enterIndex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'time', 'Time Cheat in Objects window');
   scene.text('<a href="exec:gt \'cheatmenu_din\', \'vartracker\'"><b>Variable tracker</b></a>');
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['addict'] = 'gs \'cheatmenu_din\', \'addict\'';
   scene.build();
 }
 
@@ -422,6 +379,8 @@ function enterAddict(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars ?? {})['amphetamine_used'] = 0;
     ((s as any).drugVars ?? {})['heroin_used'] = 0;
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['clothes_dirt'] = 'gs \'cheatmenu_din\', \'clothes_dirt\'';
   scene.build();
 }
 
@@ -432,6 +391,8 @@ function enterClothesDirt(s: GameState, scene: SceneBuilder): void {
     ((s as any).cheatVars ?? {})['clothes_dirt'] = 1;
     qspCall(s, 'washer', 'wash_all');
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['Vibrator'] = 'gs \'cheatmenu_din\', \'Vibrator\'';
   scene.build();
 }
 
@@ -443,6 +404,8 @@ function enterVibrator(s: GameState, scene: SceneBuilder): void {
     ((s as any).cheatVars ?? {})['sleep_vib'] = 1;
     ((s as any).sleepVars ?? {})['bedVibrator'] = 1;
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['BimboCloth'] = 'gs \'cheatmenu_din\', \'BimboCloth\'';
   scene.build();
 }
 
@@ -459,6 +422,8 @@ function enterBimboCloth(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'archetypes', 'set_active');
     qspCall(s, 'archetypes', 'seed_snapshots');
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['SmartBimbo'] = 'gs \'cheatmenu_din\', \'SmartBimbo\'';
   scene.build();
 }
 
@@ -468,6 +433,8 @@ function enterSmartBimbo(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).cheatVars ?? {})['smart_bimbo'] = 1;
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['SuccuBimbo'] = 'gs \'cheatmenu_din\', \'SuccuBimbo\'';
   scene.build();
 }
 
@@ -477,6 +444,8 @@ function enterSuccuBimbo(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).cheatVars ?? {})['suc_bimbo'] = 1;
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['slutshot'] = 'gs \'cheatmenu_din\', \'slutshot\'';
   scene.build();
 }
 
@@ -488,6 +457,8 @@ function enterSlutshot(s: GameState, scene: SceneBuilder): void {
     ((s as any).cheatVars ?? {})['no_periods'] = 1;
     (s as any).cycle = 6;
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['permanent'] = 'gt \'cheatmenu_din\', \'permanent\'';
   scene.build();
 }
 
@@ -537,6 +508,8 @@ function enterPermanent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'No dream chance: <a href="exec: cheatVars[''no_dream_chance''] = input(''Enter no dream chance (%)'...
   // TODO-QSP: $cheatmenu['table_end']
   scene.text('<center><b>WARNING!</b></center>');
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['money'] = 'gs \'cheatmenu_din\', \'money\'';
   scene.build();
 }
 
@@ -546,6 +519,8 @@ function enterMoney(s: GameState, scene: SceneBuilder): void {
     (s as any).money = 0;
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'state'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['bank_money'] = 'gs \'cheatmenu_din\', \'bank_money\'';
   scene.build();
 }
 
@@ -556,6 +531,8 @@ function enterBankMoney(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).karta = ((s as any).karta ?? 0) + (((s as any).bankDebtLimit ?? 0));
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'state'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['therapist_reset'] = 'gs \'cheatmenu_din\', \'therapist_reset\'';
   scene.build();
 }
 
@@ -563,6 +540,8 @@ function enterTherapistReset(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'therapist', 'restTherapyVariables');
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'state'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['cycle'] = 'gt \'cheatmenu_din\', \'cycle\'';
   scene.build();
 }
 
@@ -585,6 +564,8 @@ function enterCycle(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec: cycle = 2 & ovulate = 24 + rand(0,20) & EggRH = 160 + 160+rand(0, 5) & gs \'stat\' & gt \'cheatmenu_din\', \'state\'">Ovulation</a>');
     scene.text('<a href="exec: cycle = 3 & gs \'stat\' & gt \'cheatmenu_din\', \'state\'">Luteal</a>');
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['std_cure'] = 'gs \'cheatmenu_din\', \'std_cure\'';
   scene.build();
 }
 
@@ -599,6 +580,7 @@ function enterStdCure(s: GameState, scene: SceneBuilder): void {
   (s as any).TriperOral = 0;
   (s as any).KandidozOnce = 0;
   (s as any).Kandidoz = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -615,6 +597,9 @@ function enterSetNoPeriods(s: GameState, scene: SceneBuilder): void {
   (s as any).RecovH = 0;
   (s as any).babyembryo = 0;
   (s as any).cycle = 1;
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['pain_killer'] = 'killvar \'pain\' & gs \'pain\', \'calc\'';
+  ((s as any).cheatmenu ?? {})['force_preg'] = 'gs \'cheatmenu_din\', \'force_preg\'';
   scene.build();
 }
 
@@ -623,6 +608,8 @@ function enterForcePreg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'fertility', 'force_preg_by', ((s as any).npclastsaved ?? 0));
   return;
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['remove_preg'] = 'gs \'cheatmenu_din\', \'remove_preg\'';
   scene.build();
 }
 
@@ -632,6 +619,8 @@ function enterRemovePreg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FertEgg ?? 0) > 0) {
     (s as any).FertEgg = 0;
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['state'] = 'gt \'cheatmenu_din\', \'state\'';
   scene.build();
 }
 
@@ -721,6 +710,8 @@ function enterState(s: GameState, scene: SceneBuilder): void {
     scene.text(`<font color="grey">Does ${((s as any).pcs_firstname ?? 0)} know she induced lactation herself, or not? (This is only used for some events.)</font>`);
   }
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['set_preg_body'] = 'gs \'cheatmenu_din\', \'set_preg_body\', ARGS[0]';
   scene.build();
 }
 
@@ -731,6 +722,8 @@ function enterSetPregBody(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body', 'softreset');
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'bodyMod'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['set_body_class'] = 'gs \'cheatmenu_din\', \'set_body_class\', ARGS[0]';
   scene.build();
 }
 
@@ -739,6 +732,8 @@ function enterSetBodyClass(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body', 'softreset');
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'bodyMod'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['bodyMod'] = 'gt \'cheatmenu_din\', \'bodyMod\'';
   scene.build();
 }
 
@@ -841,6 +836,8 @@ function enterBodyMod(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['age'] = 'gs \'cheatmenu_din\', \'age\'';
   scene.actions([
     { label: 'Return to last menu', goto: ['cheatmenu_din', 'state'] },
   ]);
@@ -858,6 +855,8 @@ function enterAge(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'tooyoung'
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['visualage'] = 'gs \'cheatmenu_din\', \'visualage\'';
   scene.build();
 }
 
@@ -867,12 +866,16 @@ function enterVisualage(s: GameState, scene: SceneBuilder): void {
     (s as any).vidage = 14;
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['avatar_hair_set'] = 'gs \'cheatmenu_din\', \'avatar_hair_set\'';
   scene.build();
 }
 
 function enterAvatarHairSet(s: GameState, scene: SceneBuilder): void {
   ((s as any).face_style ?? {})['avatar_hair'] = 0;
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['rename'] = 'gs \'cheatmenu_din\', \'rename\'';
   scene.build();
 }
 
@@ -884,18 +887,24 @@ function enterRename(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_input ?? 0) !== '') {
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['reset_name'] = 'gs \'cheatmenu_din\', \'reset_name\'';
   scene.build();
 }
 
 function enterResetName(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'set_default', 'name');
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setLooks'] = 'gs \'cheatmenu_din\', \'setLooks\', $ARGS[0], ARGS[1]';
   scene.build();
 }
 
 function enterSetLooks(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'shortgs', 'setStat', $ARGS[1], ARGS[2]
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setLooksInput'] = 'gs \'cheatmenu_din\', \'setLooksInput\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -907,6 +916,8 @@ function enterSetLooksInput(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['printLooksLinks'] = 'gs \'cheatmenu_din\', \'printLooksLinks\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -917,6 +928,8 @@ function enterPrintLooksLinks(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 1">-1</a> '
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 10">-10</a>...
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setLooks''], ''<<$ARGS[1]>>'', 0">Min</a> '
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['looks'] = 'gt \'cheatmenu_din\', \'looks\'';
   scene.build();
 }
 
@@ -1225,6 +1238,8 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('</td></tr></table>');
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['change_avatar_path'] = 'gs \'cheatmenu_din\', \'change_avatar_path\'';
   scene.build();
 }
 
@@ -1234,12 +1249,14 @@ function enterChangeAvatarPath(s: GameState, scene: SceneBuilder): void {
     ((s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterChangePcsMassBody(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'body', 'Set_mass_distribution_using_body', pcs_mass['body'] + ARGS[1]
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1254,6 +1271,7 @@ function enterChangePcsMassBust(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).pcs_mass ?? {})['bust_message'] = ((s as any).pcs_mass ?? 0)?.['bust'];
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1268,6 +1286,7 @@ function enterChangePcsMassButt(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).pcs_mass ?? {})['butt_message'] = ((s as any).pcs_mass ?? 0)?.['butt'];
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1281,6 +1300,7 @@ function enterTeeth(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'body_desc', 'teeth');
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1297,6 +1317,7 @@ function enterVagenlarge(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1317,6 +1338,7 @@ function enterVagreduce(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1341,6 +1363,7 @@ function enterAssenlarge(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1361,6 +1384,7 @@ function enterAssreduce(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'looks'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1424,6 +1448,7 @@ function enterVneshpara(s: GameState, scene: SceneBuilder): void {
   scene.text(`pcs_eyesize = ${((s as any).pcs_eyesize ?? 0)}`);
   // TODO-QSP: dynamic text: pcs_lip = <<pcs_lip>>
   scene.text(`pcs_lip = ${((s as any).pcs_lip ?? 0)}`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to appearance menu', goto: ['cheatmenu_din', 'looks'] },
   ]);
@@ -1498,6 +1523,8 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
   scene.text(`nrmbfpckct = ${((s as any).nrmbfpckct ?? 0)}`);
   // TODO-QSP: dynamic text: bodyVars['weight_warning'] = <<bodyVars['weight_warning']>>
   scene.text(`bodyVars['weight_warning'] = ${((s as any).bodyVars ?? 0)?.['weight_warning']}`);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['tatoo'] = 'gt \'cheatmenu_din\', \'tatoo\'';
   scene.actions([
     { label: 'Return to appearance menu', goto: ['cheatmenu_din', 'looks'] },
   ]);
@@ -1531,6 +1558,8 @@ function enterTatoo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cosmetic_tattoo ?? 0) >= 1) {
     scene.text('<a href="exec:cosmetic_tattoo = 0 & gt \'cheatmenu_din\', \'tatoo\'">Remove your makup tattoo</a>');
   }
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setStat'] = 'gs \'cheatmenu_din\', \'setStat\', $ARGS[0], ARGS[1]';
   scene.actions([
     { label: 'Return to appearance menu', goto: ['cheatmenu_din', 'looks'] },
   ]);
@@ -1540,6 +1569,8 @@ function enterTatoo(s: GameState, scene: SceneBuilder): void {
 function enterSetStat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'shortgs', 'setStat', $ARGS[1], ARGS[2]
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'stats'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setStatInput'] = 'gs \'cheatmenu_din\', \'setStatInput\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -1551,6 +1582,8 @@ function enterSetStatInput(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'stats'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setStatInputInverted'] = 'gs \'cheatmenu_din\', \'setStatInputInverted\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -1562,6 +1595,8 @@ function enterSetStatInputInverted(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'stats'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setAttrs'] = 'gs \'cheatmenu_din\', \'setAttrs\', ARGS[0]';
   scene.build();
 }
 
@@ -1578,6 +1613,8 @@ function enterSetAttrs(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'set_attrs_loop'
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'stats'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['setSkills'] = 'gs \'cheatmenu_din\', \'setSkills\', ARGS[0]';
   scene.build();
 }
 
@@ -1593,6 +1630,8 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'set_skills_loop'
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'stats'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['printStatLinks'] = 'gs \'cheatmenu_din\', \'printStatLinks\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -1610,6 +1649,8 @@ function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 5">+5</a> '
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl + 10">+10</a> ...
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', 100">Max</a> '
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['printStatLinksInverted'] = 'gs \'cheatmenu_din\', \'printStatLinksInverted\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -1627,6 +1668,8 @@ function enterPrintStatLinksInverted(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 5">+5</a> '
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', <<$ARGS[1]>>_lvl - 10">+10</a> ...
   // TODO-QSP: *p '<a href="exec:dynamic $cheatmenu[''setStat''], ''<<$ARGS[1]>>'', 0">Max</a> '
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['stats'] = 'gt \'cheatmenu_din\', \'stats\'';
   scene.build();
 }
 
@@ -1721,6 +1764,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'printStatLinks', 'cleaning', 'Cleaning');
   qspCall(s, 'cheatmenu_din', 'printStatLinks', 'mdlng', 'Modeling');
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1744,6 +1788,7 @@ function enterStory(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:gs \'calendar\', \'remove\', \'volleyball_tournament\'">Remove Volleyball Tournament</a>');
   }
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2020,6 +2065,8 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<a href="exec: gt \'NPCChanger\', \'Start\'">NPC Editor</a>');
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['lover_menu'] = 'gt \'cheatmenu_din\', \'lover_menu\'';
   scene.build();
 }
 
@@ -2091,6 +2138,8 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loverrelationshiploop'
   }
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['input_time'] = 'gs \'cheatmenu_din\', \'input_time\'';
   scene.actions([
     { label: 'Go Back', goto: ['cheatmenu_din', 'npcs'] },
   ]);
@@ -2107,6 +2156,8 @@ function enterInputTime(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_minut = ((s as any).inputtmp ?? 0);
   }
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'time'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['week'] = 'gt \'cheatmenu_din\', \'week\'';
   scene.build();
 }
 
@@ -2131,6 +2182,8 @@ function enterWeek(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec:temp_daystart += 6 - temp_week & gt \'cheatmenu_din\', \'time\'">Saturday</a>');
   // TODO-QSP: dynamic text: <a href="exec:temp_daystart += 7 - temp_week & gt 'cheatmenu_din', 'time'">Sunda...
   scene.text('<a href="exec:temp_daystart += 7 - temp_week & gt \'cheatmenu_din\', \'time\'">Sunday</a>');
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['month'] = 'gt \'cheatmenu_din\', \'month\'';
   scene.build();
 }
 
@@ -2163,6 +2216,8 @@ function enterMonth(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'month2\', 10">October</a>');
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'month2\', 11">November</a>');
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'month2\', 12">December</a>');
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['month2'] = 'gs \'cheatmenu_din\', \'month2\', ARGS[0]';
   scene.build();
 }
 
@@ -2170,6 +2225,8 @@ function enterMonth2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'time', 'to_daystart', temp_year, ARGS[1], 1
   (s as any).temp_daystart = ((s as any).dateVars ?? 0)?.['daystart'];
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'time'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['time'] = 'gt \'cheatmenu_din\', \'time\'';
   scene.build();
 }
 
@@ -2285,6 +2342,8 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec:daystart = temp_daystart & hour = temp_hour & minut = temp_minut & currtimecheck = 1 & gt \'cheatmenu_din\', \'time\'">Accept target date & time</a>');
   scene.text('<a href="exec:temp_daystart = daystart & temp_hour = hour & temp_minut = minut & gt \'cheatmenu_din\', \'time\'">Reset target date & time</a>');
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['magicTable'] = 'gs \'cheatmenu_din\', \'magicTable\', $ARGS[0], $ARGS[1]';
   scene.build();
 }
 
@@ -2308,11 +2367,15 @@ function enterMagicTable(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: </table>
   // TODO-QSP: </center>"
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['sucresetdo'] = 'gs \'cheatmenu_din\', \'sucresetdo\'';
   scene.build();
 }
 
 function enterSucresetdo(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'magic'] }]);
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['succubreset'] = 'gt \'cheatmenu_din\', \'succubreset\'';
   scene.build();
 }
 
@@ -2320,6 +2383,8 @@ function enterSuccubreset(s: GameState, scene: SceneBuilder): void {
   scene.text('Are you sure you want to reset your Succubus status? You will lose all levels, saved power, and succubus skill levels.');
   scene.text('<a href="exec:gt \'cheatmenu_din\', \'magic\'"><b>No, nevermind.</b></a>');
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'sucresetdo\'"><b>Yes, remove & reset Succubus status</b></a>');
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['magic'] = 'gt \'cheatmenu_din\', \'magic\'';
   scene.build();
 }
 
@@ -2353,6 +2418,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: </table>
   // TODO-QSP: </center>"
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['pain'] = 'gs \'cheatmenu_din\', \'pain\'';
   scene.build();
 }
 
@@ -2517,6 +2584,7 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
   scene.text(`You currently have anal gaping of ${((s as any).agape ?? 0)}`);
   // TODO-QSP: dynamic text: You currently have spanked level <<spanked>>
   scene.text(`You currently have spanked level ${((s as any).spanked ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2544,11 +2612,13 @@ function enterFame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'media', 'Social media');
   ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('</table></center>');
   // TODO-QSP: $table['fame']
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBdimmain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_bisets', 'main');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2704,12 +2774,14 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_gigantic', '40cm dildo');
   }
   scene.text('</center>');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheatPainRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: pain[<<$ARGS[2]>>] = <<pain[$ARGS[1]]>> <a href="exec:pain['<<$ARGS[1]>>'] -= 10...
   scene.text(`pain[${((s as any).locArgs?.[2] ?? 0)}] = ${((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]} <a href="exec:pain['${((s as any).locArgs?.[1] ?? 0)}'] -= 10 & gs 'cheatmenu_din', 'pain'">-10</a> <a href="exec:pain['${((s as any).locArgs?.[1] ?? 0)}'] += 10 & gs 'cheatmenu_din', 'pain'">+10</a>`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2720,16 +2792,19 @@ function enterCheatFameRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $table['fame'] += '<td><<fame[''pushkin_<<$ARGS[1]>>'']>>   <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu_din'', ''fame''">+10</a> <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', 100 & gt ''cheatmenu_din'', ''fame''">+100</a> <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmenu_din'', ''fame''">-10</a> <a href="exec:gs ''fame'', ''pushkin'', ''<<$ARGS[1]>>'', -100 & gt ''cheatmenu_din'', ''fame''">-100</a> </td>'
   // TODO-QSP: $table['fame'] += '<td><<fame[''village_<<$ARGS[1]>>'']>>   <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu_din'', ''fame''">+10</a> <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', 100 & gt ''cheatmenu_din'', ''fame''">+100</a> <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', -10 & gt ''cheatmenu_din'', ''fame''">-10</a> <a href="exec:gs ''fame'', ''village'', ''<<$ARGS[1]>>'', -100 & gt ''cheatmenu_din'', ''fame''">-100</a> </td>'
   ((s as any).table ?? {})['fame'] = (((s as any).table ?? {})['fame'] ?? 0) + ('<tr>');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheatItemQty(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheatItemToggle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2742,6 +2817,7 @@ function enterCheatTattoo(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <a href="exec: gs 'tattoo_management', 'remove', '<<$ARGS[1]>>' & gt 'cheatmenu_...
     scene.text(`<a href="exec: gs 'tattoo_management', 'remove', '${((s as any).locArgs?.[1] ?? 0)}' & gt 'cheatmenu_din', 'tatoo'">Remove your ${((s as any).locArgs?.[2] ?? 0)} tattoo</a>`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2754,12 +2830,14 @@ function enterCheatGradeRow(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cheat_val ?? 0) < 100) {
     // TODO-QSP: *p ' <a href="exec:gs ''grades'', ''grade_award'', ''school'', ''<<$ARGS[1]>>'', 10 & gt ''cheatmenu...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheatBoolRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$ARGS[2]>>: <a href="exec:cheatVars['<<$ARGS[1]>>'] = iif(cheatVars['<<$ARGS[1...
   scene.text(`${((s as any).locArgs?.[2] ?? 0)}: <a href="exec:cheatVars['${((s as any).locArgs?.[1] ?? 0)}'] = iif(cheatVars['${((s as any).locArgs?.[1] ?? 0)}'], 0, 1) & gt 'cheatmenu_din', '${((s as any).cheatmenu ?? 0)?.['this_menu']}'">${((((s as any).cheatVars ?? 0)[((s as any).locArgs?.[1] ?? 0)]) ? (((s as any).temp_cheat_on ?? 0)) : (((s as any).temp_cheat_off ?? 0)))}</a>`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2768,11 +2846,14 @@ function enterCheatNpcRel(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<$temp_cheat_name>>: <<npc_rel[$ARGS[1]]>>  <a href="exec:gs 'npc_relationship'...
   scene.text(`${((s as any).temp_cheat_name ?? 0)}: ${((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]}  <a href="exec:gs 'npc_relationship', 'modify_exact', '${((s as any).locArgs?.[1] ?? 0)}', 10 & gt 'cheatmenu_din', '${((s as any).temp_cheat_page ?? 0)}'">+10</a> <a href="exec:gs 'npc_relationship', 'modify_exact', '${((s as any).locArgs?.[1] ?? 0)}', -10 & gt 'cheatmenu_din', '${((s as any).temp_cheat_page ?? 0)}'">-10</a>`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheatVarRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ARGS[2]+': '+dyneval('result = ' + $ARGS[1])+'  <a href="exec:<<$ARGS[1]>> += 10 & gt ''cheatmenu_d...
+  // TODO-QSP: end
+  ((s as any).cheatmenu ?? {})['traits_cheats'] = 'gt \'cheatmenu_din\', \'traits_cheats\'';
   scene.build();
 }
 
@@ -2881,6 +2962,7 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'show_hidden_traits', 'Show hidden traits as inactive (reveals names and descriptions)');
   scene.text('When enabled, hidden traits that are inactive will display their name and description on the traits page instead of "???".');
   // TODO-QSP: $cheatmenu['table_end']
+  // TODO-QSP: end
   scene.build();
 }
 

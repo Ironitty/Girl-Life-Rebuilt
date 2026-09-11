@@ -335,6 +335,7 @@ function enterMensEntranceEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -353,6 +354,7 @@ function enterMens(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gdktoilet', 'start'] },
     { label: 'Look at the hole', handler: (st: GameState) => {
@@ -536,6 +538,7 @@ function enterMensmast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -546,6 +549,7 @@ function enterMensglory(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/bathroom/mens/sex/1kissing.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Submit', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

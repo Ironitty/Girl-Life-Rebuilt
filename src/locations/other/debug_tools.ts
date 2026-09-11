@@ -46,22 +46,24 @@ function enterTrace(s: GameState, scene: SceneBuilder): void {
   if (((s as any).debug ?? 0)?.['trace_shown'] !== 0) {
     qspCall(s, 'stat_display', '');
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 'trace_list_locs') {
-    (s as any).tmp_i = 0;
-    // TODO-QSP: :list_locs_loop
-    if (((s as any).tmp_i ?? 0) < Object.keys((s as any).trace_locations ?? {}).length) {
-      // TODO-QSP: $tmp_msg += $trace_locations[tmp_i] + '<br>'
-      (s as any).tmp_i = ((s as any).tmp_i ?? 0) + (1);
-      // TODO-QSP: jump 'list_locs_loop'
-    }
-    // TODO-QSP: killvar 'tmp_i'
-    // TODO-QSP: killvar 'tmp_msg'
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'reset') {
-      ((s as any).debug ?? {})['loc_change_trace'] = '';
-      ((s as any).debug ?? {})['direct_trace'] = '';
-    }
+  scene.build();
+}
+
+function enterTraceListLocs(s: GameState, scene: SceneBuilder): void {
+  (s as any).tmp_i = 0;
+  // TODO-QSP: :list_locs_loop
+  if (((s as any).tmp_i ?? 0) < Object.keys((s as any).trace_locations ?? {}).length) {
+    // TODO-QSP: $tmp_msg += $trace_locations[tmp_i] + '<br>'
+    (s as any).tmp_i = ((s as any).tmp_i ?? 0) + (1);
+    // TODO-QSP: jump 'list_locs_loop'
   }
+  scene.build();
+}
+
+function enterReset(s: GameState, scene: SceneBuilder): void {
+  ((s as any).debug ?? {})['loc_change_trace'] = '';
+  ((s as any).debug ?? {})['direct_trace'] = '';
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -70,6 +72,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'trace':
       enterTrace(s, scene);
+      break;
+    case 'trace_list_locs':
+      enterTraceListLocs(s, scene);
+      break;
+    case 'reset':
+      enterReset(s, scene);
       break;
     default:
       enterDefault(s, scene);

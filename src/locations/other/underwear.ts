@@ -18,6 +18,7 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,6 +37,7 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'bras', 'remove');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -49,6 +51,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +63,7 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['backup'], lastwornbranumber['backup']
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -71,6 +75,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'bras', 'wear', $ARGS[1], ARGS[2]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -84,6 +89,7 @@ function enterDresser(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'wearpan');
   qspCall(s, 'din_van', 'removepan');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

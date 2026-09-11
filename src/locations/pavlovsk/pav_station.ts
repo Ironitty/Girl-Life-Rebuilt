@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_tot_booked_pav = ((s as any).policeQW ?? {})?.['shoplift_booked_pav'] + ((s as any).policeQW ?? {})?.['prostitution_booked_pav'];
   scene.build();
 }
 
@@ -14,6 +13,7 @@ function enterStationOutside(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/police/pavext.jpg');
   scene.text('The police station is gleaming in a bright yellow color, clearly making it clear that it can\'t be missed by anyone.');
   scene.text('The officers often abuse their power since no one further up the chain cares about a little town such as Pavlovsk.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the train station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -34,6 +34,7 @@ function enterStationInside(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + (1);
     // TODO-QSP: act 'Visit Captain Katalkin': gt 'katalkin'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -53,6 +54,8 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Report a rape': gt 'pav_station', 'rape_report'
   }
   qspCall(s, 'blackmailer', 'set_police_act');
+  // TODO-QSP: end
+  (s as any).temp_tot_booked_pav = ((s as any).policeQW ?? {})?.['shoplift_booked_pav'] + ((s as any).policeQW ?? {})?.['prostitution_booked_pav'];
   scene.actions([
     { label: 'Just looking around', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -113,6 +116,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,6 +156,7 @@ function enterFirstShoplift(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue further in', goto: ['pav_station', 'booking'] },
   ]);
@@ -193,6 +198,7 @@ function enterFirstProstitution(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue further in', goto: ['pav_station', 'booking'] },
   ]);
@@ -229,6 +235,7 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue further in', goto: ['pav_station', 'booking'] },
   ]);
@@ -263,6 +270,7 @@ function enterMultiple(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue further in', goto: ['pav_station', 'booking'] },
   ]);
@@ -315,6 +323,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue further in', goto: ['pav_station', 'booking'] },
   ]);
@@ -327,6 +336,7 @@ function enterBooking(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['pav_station', 'booking2'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -387,6 +397,7 @@ function enterBooking1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play along', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -462,6 +473,7 @@ function enterTakeFingerprints1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand still', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -563,6 +575,7 @@ function enterBooking1Undress(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Comply', handler: (st: GameState) => {
     ((s as any).policeQW ?? {})['bookingofficer_sex_pav'] = 1;
@@ -683,6 +696,7 @@ function enterBooking2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -753,6 +767,7 @@ function enterTakeFingerprints2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/police/fingerprint.jpg');
   scene.text('You obediently stand still as he takes your fingerprints again. Soon after, the officer points at the wall with the camera pointed at it, silently ordering you to stand there.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand still', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -942,6 +957,7 @@ function enterBooking2Undress(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -954,6 +970,7 @@ function enterBookingVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text('He pushes you back and up onto the desk so you\'re laying on your back. "How many times do I need to explain myself? You should be used to this by now."');
   scene.text('He pulls his dick out and teases your slit with his tip before he thrusts his cock inside you. He then starts rapidly thrusting into you, not caring if you\'re enjoying it or not.');
   scene.text('After a few seconds, he suddenly pulls out of you and starts manhandling you. "Turn over."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn over', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 3, 'inhibition', 'sub', 'rough');
@@ -1013,6 +1030,7 @@ function enterBookingAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('He spins you around before he pushes you forward and bends you over the desk. "How many times do I need to explain myself? You should be used to this by now."');
   scene.text('You feel him working something into your asshole with his fingers before he thrusts his cock up your ass with no warning.');
   scene.text('You gasp in surprise as you grip the desk tightly, but he wastes no time and starts thrusting, not caring if you\'re enjoying it or not.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get reamed', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'anal', 3, 'inhibition', 'sub', 'rough');
@@ -1074,6 +1092,7 @@ function enterHoldingcell(s: GameState, scene: SceneBuilder): void {
   scene.text('Finally, another officer come back and unlocks the cell. "Come on, someone has paid your fine."');
   // TODO-QSP: dynamic text: You walk out of the cell and he closes it behind you before he leads you to the ...
   scene.text(`You walk out of the cell and he closes it behind you before he leads you to the front of the station. As you walk into the main room, you find your ${((s as any).temp_rescuer ?? 0)} staring at you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stare back', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1103,6 +1122,7 @@ function enterRapeReport(s: GameState, scene: SceneBuilder): void {
   scene.text('"Can I help you?"');
   scene.text('"I- I\'d like t-to report a r-rape…" you stammer out. The officer\'s eyes go wide with surprise, but less like he seems shocked at what you said happened to you and more like he didn\'t expect you to have a real complaint.');
   scene.text('"Oh! Well, just come this way, we can take your statement over here."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 4) + 2);

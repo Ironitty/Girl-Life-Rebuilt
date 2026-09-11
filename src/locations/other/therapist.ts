@@ -27,6 +27,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
     ((s as any).trait_vars ?? {})['sensitivity_override'] = 0;
   }
   // TODO-QSP: gt $ARGS[1], $ARGS[2]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,6 +37,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/image_needed.png');
   scene.text('As you make your way over, the nurse stops you. "Since it\'s your first time seeing him, I just need you to fill out a few forms first, consent mostly. NDA\'s and Patient/Doctor stuff.');
   scene.text('Please make sure you read everything. We can\'t have you filing lawsuits or suing us for things that you agreed to" she says and hands you a clipboard and a few forms.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Read the Forms', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -102,6 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -262,6 +265,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -382,6 +386,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Raise your mood and disposition', handler: (st: GameState) => {
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve been feeling a little down lately. I would like some help in raisin...
@@ -489,6 +494,7 @@ function enterTherapyMethod(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -701,12 +707,14 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHypno2(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${Math.floor(Math.random() * 2) + 1}.jpg`);
   qspCall(s, 'therapist', 'hypno3');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -811,6 +819,7 @@ function enterHypno3(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('While you do this, Dr. Pavlov opens up his pants and takes out his dick, slowly masturbating as he watches you. After a while, he stops and motions you closer to him.');
   // TODO-QSP: $func('wrap', 'hypno', '"Come here, <i>Cunt</i>, ' + $hypnoact)
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -829,6 +838,7 @@ function enterSuccubus(s: GameState, scene: SceneBuilder): void {
   scene.text('He nods, still unable to break your gaze.');
   scene.text('"Okay, hands behind your back, wrists together, eyes closed. You will stay there until your next client is buzzed in. You are lucky, if you had tried to look inside the mind of a more powerful Succubus you would have been driven insane by the lust. You will not remember that it is me who is the demon watching you and you won\'t waste my time offering hypnotherapy to me should I return."');
   scene.text('You do not need his confirmation and walk out, leaving him to his psychological bondage. Hopefully it will be some time before his next appointment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'therapist', 'leave', ((st as any).loc ?? 0));
@@ -860,6 +870,7 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip naked', handler: (st: GameState) => {
     (s as any).hypnoStripped = 1;
@@ -1064,6 +1075,7 @@ function enterSecondHypnoStage(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img(`images/locations/pavlovsk/clinic/therapist/hypnotism${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('"Just like before, you will strip naked for the therapy to work. This will be as normal as breathing and you will not think this is strange to do this. Understand?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strip naked', handler: (st: GameState) => {
     (s as any).hypnoStripped = 1;
@@ -1145,6 +1157,7 @@ function enterThirdHypnoStage(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img(`images/locations/pavlovsk/clinic/therapist/hypnotism${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('"Just like before, you will strip naked for the therapy to work. This will be as normal as breathing and you will not think this is strange to do this. Understand?"');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Yes, <i>Master</i>."', handler: (st: GameState) => {
     (s as any).hypnoStripped = 1;
@@ -1232,6 +1245,7 @@ function enterSleepProblems(s: GameState, scene: SceneBuilder): void {
   scene.text('"You are standing in front of a house. This house has three rooms, but each of them can only be reached through the one before. The first room is the green room, then the blue room, and at last the black room…"');
   scene.text('');
   scene.text('Your mind tries to imagine the things the doctor tells you, and this is your last conscious memory.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1374,6 +1388,7 @@ function enterHypnoResist(s: GameState, scene: SceneBuilder): void {
       { label: 'Wake up', goto: ['therapist', 'hypnoEnd'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1384,6 +1399,7 @@ function enterHypnoFuckThroat(s: GameState, scene: SceneBuilder): void {
   }
   scene.img(`images/locations/pavlovsk/clinic/therapist/sex/throatFuck${Math.floor(Math.random() * 3) + 1}.mp4`);
   scene.text('You lay down on the couch with your head hanging off the edge. He places his cock before your face and you feel yourself getting wet between your legs at the sight. Your Master wastes no time and immediately shoves his massive cock down your throat. This makes you gag a bit but as he enthusiastically fucks your face, without a care for you, your throat opens up and accepts his cock.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/throatCum${Math.floor(Math.random() * 2) + 1}.mp4`);
@@ -1414,6 +1430,7 @@ function enterHypnoSitSuck(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/sitBlow${Math.floor(Math.random() * 3) + 1}.mp4`);
   }
   scene.text('Dr. Pavlov sits down and you kneel to suck him off. You feel yourself getting moist between your legs at the sight of his massive dick, and taking it all in your mouth excites you greatly. You continue to pleasure him enthusiastically, and judging from the breathing of your <i>Master</i>, you appear to be doing a great job.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('Finally, Dr. Pavlov groans, grabs your head, and pushes himself deep, filling your mouth with his seed.');
@@ -1449,6 +1466,7 @@ function enterHypnoForceSuck(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/hypnoFuckMouth${Math.floor(Math.random() * 5) + 1}.mp4`);
   }
   scene.text('You kneel to suck off Dr. Pavlov, but instead he grabs you by the head and begins thrusting into your throat full force. Your pussy drools with excitement as he uses you. Judging from the breathing of your <i>Master</i>, he appears to be enjoying the use of your mouth.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('Finally, Dr. Pavlov groans and pushes himself deep, filling your mouth with his seed.');
@@ -1489,6 +1507,7 @@ function enterHypnoSuck(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'bj', 15, 'unaware');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/hypnoBlowCum${Math.floor(Math.random() * 3) + 1}.mp4`);
@@ -1606,6 +1625,7 @@ function enterFuck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/creampie${Math.floor(Math.random() * 3) + 1}.mp4`);
@@ -1705,6 +1725,7 @@ function enterHypnoFuck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/creampie${Math.floor(Math.random() * 3) + 1}.mp4`);
@@ -1748,6 +1769,7 @@ function enterHypnoAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 20, 'unaware');
   qspCall(s, 'cum_call', 'anus', 'A186', 2, 0, 15000, 60);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/CreampieA${Math.floor(Math.random() * 2) + 1}.mp4`);
@@ -1795,6 +1817,7 @@ function enterHypnoDress(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.img('images/locations/pavlovsk/clinic/therapist/dressup.mp4');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).hypnoRandomCounter = ((s as any).hypnoRandomCounter ?? 0) + (1);
@@ -1949,6 +1972,7 @@ function enterHypnoEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('"Good. Now, you are sitting in the black room. Please stand up and start walking through the door. As you close the door of the black room, you will forget…"');
   scene.text('…');
   scene.text('…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/room.jpg');
@@ -2294,6 +2318,7 @@ function enterHypnoRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2480,6 +2505,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2490,6 +2516,7 @@ function enterToldMomPregnantAndReturned(s: GameState, scene: SceneBuilder): voi
   scene.text('"Yes, <i>Master</i>."');
   scene.text('"Good. Now, leave. I have more to prepare."');
   scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoEnd'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3259,6 +3286,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3268,6 +3296,7 @@ function enterTherapistFucked(s: GameState, scene: SceneBuilder): void {
   scene.text('You subconsciously notice your therapist\'s sperm slowly leaking out of your cum filled pussy.');
   scene.text('You feel happier because of this.');
   qspCall(s, 'mood', 'raise', 'tiny');
+  // TODO-QSP: end
   scene.actions([
     { label: 'continue', handler: (st: GameState) => {
     qspCall(st, 'therapist', 'leave', ((st as any).menu_loc ?? 0), ((st as any).menu_arg ?? 0));
@@ -3286,6 +3315,7 @@ function enterPavlov(s: GameState, scene: SceneBuilder): void {
     scene.text('He also has a dark side, because he appears to use his hypnotized female patients to satisfy his own needs with their bodies. He especially seems to like you, not that you would know anything about this since you do not remember anything about what happened to you during your sessions.');
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', goto: ['therapist', 'start'] },
   ]);
@@ -3298,6 +3328,7 @@ function enterRestTherapyVariables(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'cheat', 'cum_addict', (-99));
   qspCall(s, 'calendar', 'remove', 'therapist_appointment');
   qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
+  // TODO-QSP: end
   scene.build();
 }
 

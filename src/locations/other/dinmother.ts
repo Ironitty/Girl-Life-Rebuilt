@@ -25,6 +25,7 @@ function enterDMother1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +46,7 @@ function enterDMother2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,26 +94,32 @@ function enterDMother3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You have a chat with your <<$npc_nickname['A29']>>, and she tells you she had to...
     scene.text(`You have a chat with your ${((s as any).npc_nickname ?? 0)?.['A29']}, and she tells you she had to go to the tailor at the garment factory to get some clothes adjusted after she had went up a few sizes. She proudly added that she had to go back and have them readjusted again when she lost the weight a few months later.`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother5(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother6(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother7(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDMother8(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

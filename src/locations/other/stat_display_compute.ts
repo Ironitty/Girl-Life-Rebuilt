@@ -14,6 +14,7 @@ function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_qa ?? {})['text'] = ((((s as any).locArgs?.[2] ?? 0) !== ''  &&  ((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
   // TODO-QSP: $sd_alerts[] = $sd_qa['text']
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +104,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sd_texts[] = $sd_qm['final_text']
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -125,6 +127,7 @@ function enterComputeData(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat_display_compute', 'compute_misc');
   qspCall(s, 'stat_display_compute', 'compute_images');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -280,6 +283,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sd_attrs_prose += '.'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -798,6 +802,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1047,6 +1052,7 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).stat_nums ?? {})['std_count'] = ((s as any).temp_std_count ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1116,6 +1122,7 @@ function enterComputeAppearance(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat_display_compute', 'queue_alert', 'A used condom is stuck inside you.', 'v_neg');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1455,6 +1462,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'Map', '', 'map', 1, "gt 'map_view', '" + $loc + "'"
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1496,6 +1504,7 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
     ((s as any).sd_cs ?? {})['out'] = (((s as any).sd_cs ?? {})['out'] ?? 0) + (qspFunc(s, 'wrap', '$sd_cs[\'wear_col\']', '[wear \' + $str(ARGS[3]) + \']'));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1509,6 +1518,7 @@ function enterCondFace(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1522,6 +1532,7 @@ function enterCondSweat(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1536,6 +1547,7 @@ function enterCondCoatTemp(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1552,6 +1564,7 @@ function enterCondHeelSkill(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1604,6 +1617,7 @@ function enterCondCloStyle(s: GameState, scene: SceneBuilder): void {
   if (((s as any).result ?? 0) !== '') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1731,6 +1745,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'sd_compute_images_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

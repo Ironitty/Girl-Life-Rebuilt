@@ -73,6 +73,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', 'set_apprnc', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcgeneratec', 'set_other_vars', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'npcgeneratec', 'cleanup');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +100,7 @@ function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).carraynumber = ((s as any).carraynumber ?? 0) + (1);
   // TODO-QSP: $npc_index[$npclastgenerated] = $npclastgenerated
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -110,6 +112,7 @@ function enterAssignDob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: npc_dob[$ARGS[1]] = dateVars['year'] * 10000
   // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['month'] * 100
   // TODO-QSP: npc_dob[$ARGS[1]] += dateVars['day']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -156,6 +159,7 @@ function enterAssignStats(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: npc_sexskill[$ARGS[1]] = rand(1, 100)
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -242,6 +246,7 @@ function enterSetDetails(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $npc_usedname[$ARGS[1]] = $npcgeneratecVars['name']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -478,6 +483,7 @@ function enterGenDick(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -490,6 +496,7 @@ function enterSetDick(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $npc_dick_noun[$ARGS[1]] = $npcgeneratecVars['dick_noun']
   // TODO-QSP: npc_spermpot[$ARGS[1]] = npcgeneratecVars['potency']
   // TODO-QSP: npc_spermvol[$ARGS[1]] = npcgeneratecVars['volume']
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -700,6 +707,7 @@ function enterSetLifestyle(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -715,6 +723,7 @@ function enterSetOccupation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -814,6 +823,7 @@ function enterPoorJobs(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -875,6 +885,7 @@ function enterMiddleJobs(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -924,6 +935,7 @@ function enterRichJobs(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1448,6 +1460,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1907,6 +1920,7 @@ function enterSetPreferences(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npcgeneratecVars ?? 0)?.['MusclePref'] > 0) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1988,6 +2002,7 @@ function enterSetApprnc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $npc_icon[$ARGS[1]] = 'images/system/phone/icons/icon_bf<<npcgeneratecVars[''rand'']>>.png'
     // TODO-QSP: $npc_pic[$ARGS[1]] = 'images/characters/shared/headshots_generic/<<npcgeneratecVars[''rand'']>>.jpg'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2017,10 +2032,12 @@ function enterSetOtherVars(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: copyarr('$ngp_pref', '$npc_pref_traits')
   qspCall(s, 'npc_get_preference', '', ((s as any).locArgs?.[1] ?? 0), 'randomPosIndNeg', 'no_clear');
   // TODO-QSP: $npc_origin_attract[$ARGS[1]] = $ngpPrefResult['HasPos']
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanup(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

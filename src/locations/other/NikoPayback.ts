@@ -17,6 +17,7 @@ function enterPayback(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/fight/grab.jpg');
   scene.text('As you\'re walking towards the hallway, hands covering your mouth and you feel your ribs being struck, causing you to recoil in pain as you\'re dragged into the nearby bathroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -99,6 +100,7 @@ function enterPayback2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
   scene.text('You walk out of the cafeteria and see Niko standing in the hallway on his phone.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A189', Math.floor(Math.random() * 5) + 1);
@@ -238,6 +240,7 @@ function enterPayback3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -584,6 +587,7 @@ function enterPayback4(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -601,6 +605,7 @@ function enterFedorHelp(s: GameState, scene: SceneBuilder): void {
   scene.text(`Fedor gently rubs your back. "Please ${((s as any).pcs_nickname ?? 0)}, tell me what's wrong."`);
   scene.text('Tears stream down your face as you reply. "Niko has been bullying me at lunch every day. Please make him stop."');
   scene.text('Fedor clenches his fist. "That little gopnik shit! I\'ll make him pay. Don\'t worry, the next time he tries, I\'ll bash his face in!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -626,6 +631,7 @@ function enterFedorHelp2(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach Niko and a confident grin covers his face. "You showed up? Good. How will you be paying today?"');
   scene.text('You hesitate before looking him in the eye. "I… I want you to leave me alone."');
   scene.text('He just chuckles. "Well that\'s not up to you now is it? For wasting my time, you\'ll pay me in both money and pleasure. Now let\'s get moving." Niko grabs your hand and starts pulling you into the restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -679,6 +685,7 @@ function enterFyodorHelp(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach Niko and a confident grin covers his face. "You showed up? Good. How will you be paying today?"');
   scene.text('You hesitate before looking him in the eye. "I… I want you to leave me alone."');
   scene.text('He just chuckles. "Well that\'s not up to you now is it? For wasting my time, you\'ll pay me in both money and pleasure. Now let\'s get moving." Niko grabs your hand and starts pulling you into the restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -713,6 +720,7 @@ function enterIvanHelp(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk up to Ivan and downcast your eyes. "Ivan I need your help… I…"');
   // TODO-QSP: dynamic text: Ivan's face saddens as he wraps his arms around you. "What's wrong <<$pcs_nickna...
   scene.text(`Ivan's face saddens as he wraps his arms around you. "What's wrong ${((s as any).pcs_nickname ?? 0)}? You can tell me."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -738,6 +746,7 @@ function enterIvanHelp2(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach Niko and a confident grin covers his face. "You showed up? Goo…" He quickly pauses when he notices Ivan approaching.');
   // TODO-QSP: dynamic text: Ivan drives his fist into Niko's stomach. "I hear that you've been giving <<$pcs...
   scene.text(`Ivan drives his fist into Niko's stomach. "I hear that you've been giving ${((s as any).pcs_nickname ?? 0)} a hard time. Allow me to return the favor." He then begins chocking Niko, who tries to squirm out of Ivan's grasp. After a few seconds, Ivan releases Niko, causing Niko to drop to the ground. "That was a warning. Give ${((s as any).pcs_nickname ?? 0)} a hard time again and I won't hold back."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -759,6 +768,7 @@ function enterNushHelp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
   scene.text('You approach Niko and a confident grin covers his face. "You showed up? Goo…" He never finishes the sentence as Anushka rushes up behind him with a baseball bat and hits him with it. He recoils and turns, only to get hit by Alyona wielding another bat. He tries to fight back, but the surprise of the sudden attack and being outnumbered makes it hard. When he manages to get his hands on one of the bats, the other one smacks him in the legs and he goes down holding his knee. He curls up on the floor as the girls beat him with the bats.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -794,6 +804,7 @@ function enterVitekHelp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You try to speak up, but Vasily intentionally interrupts you. "You need to cheer...
   scene.text(`You try to speak up, but Vasily intentionally interrupts you. "You need to cheer up ${((s as any).pcs_nickname ?? 0)}, you look so glum. Here, I'll tell you a joke."`);
   scene.text('The guys start laughing amongst themselves as you get more and more agitated at them ignoring you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shout out', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -851,6 +862,7 @@ function enterVitekHelp2(s: GameState, scene: SceneBuilder): void {
   scene.text('Vitek\'s eyes widen in rage. "He did WHAT?!" You remain quiet as tears stream down your cheeks. Vitek tosses his bottle to the ground, causing a loud shatter which draws everyone\'s attention as he angrily approaches Niko.');
   scene.text('"Whoa, what\'s going on?" Niko asks as Vitek continues walking towards him.');
   scene.text('"YOU LAID YOUR HANDS ON MY GIRL!?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'See what happens next', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -888,6 +900,7 @@ function enterAlbinaHelp(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/4.jpg');
   scene.text('You approach Niko and he glares at you, causing you to freeze. "What do you want, bitch?" he snarls and you look at him fearfully, but he just scoffs. "Don\'t act stupid. You asked that buttslut fucking whore of a friend to help you out. Well guess what? Wish granted, so you\'re off the hook. Now piss off!"');
   scene.text('Not wanting to anger him further, you quickly walk away as he mutters under his breath about Albina screwing him over. Whatever she done, Albina has saved you from Niko\'s torment. You smile happily as you continue on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_lunch', 'break'] },
   ]);

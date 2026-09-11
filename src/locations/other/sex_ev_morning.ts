@@ -40,6 +40,7 @@ function enterMorningEventCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['morning_event_go'] === 1) {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'morning_events'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,6 +80,7 @@ function enterMorningEvents(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_morning', 'boy_breakfast_offer'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +97,7 @@ function enterNpcMorningShowerDesc(s: GameState, scene: SceneBuilder): void {
       scene.text(`The bed next to you is empty. ${((s as any).npcdesc ?? 0)} is nowhere to be seen.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,6 +109,7 @@ function enterCleanSleepVars(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['sleep_cum_stomach'] = 0;
   ((s as any).sex_ev ?? {})['sleep_cum_back'] = 0;
   ((s as any).sex_ev ?? {})['sleep_cum_butt'] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -252,6 +256,7 @@ function enterMorningMenu1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -267,6 +272,7 @@ function enterMorningMenu2(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -278,6 +284,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You pad your way over to the bathroom and climb into the shower.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn on the water', goto: ['sex_ev_morning', 'shower2'] },
   ]);
@@ -293,6 +300,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You twist the faucet and hot water comes rushing out, pouring over you, soaking into your skin. Slowly over time, your sleepiness washes away and clarity comes back.');
   scene.text('Feeling sufficiently awake, you turn off the tap and step out of the shower.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wrap yourself in a towel', goto: ['sex_ev_morning', 'shower_leave'] },
     { label: 'Just dry off', handler: (st: GameState) => {
@@ -306,6 +314,7 @@ function enter2ndShower(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
   // TODO-QSP: dynamic text: "I need another shower because of you," you say, giving <<$npcdesc>> a look as y...
   scene.text(`"I need another shower because of you," you say, giving ${((s as any).npcdesc ?? 0)} a look as you swagger your way to the bathroom.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shower', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
@@ -347,6 +356,7 @@ function enterShowerLeave(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_morning', 'morning_menu1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -364,6 +374,7 @@ function enterHeadOut(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_leave', 'leaving_dialogue');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -373,10 +384,12 @@ function enterDressImage(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/pc/activities/misc/dress_1.mp4');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEndMorning(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish getting dressed', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -425,6 +438,7 @@ function enterBoyBreakfastOffer(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['breakfast_finished'] = (-1);
@@ -482,6 +496,7 @@ function enterWaitForBreakfast1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_morning', 'breakfast_in_bed_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -492,6 +507,7 @@ function enterBreakfastSearch(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/misc/nude_walk1.mp4');
   // TODO-QSP: dynamic text: You climb out of bed and leave the bedroom, walking through the halls of <<$npcd...
   scene.text(`You climb out of bed and leave the bedroom, walking through the halls of ${((s as any).npcdesc ?? 0)}'s apartment naked as you peek into various rooms searching for him.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['kitchen_room']
@@ -514,6 +530,7 @@ function enterBreakfastInBed(s: GameState, scene: SceneBuilder): void {
     scene.text(`As you finish rubbing the sleep from your eyes ${((s as any).npcdesc ?? 0)} comes in through the doorway carrying a tray.`);
     scene.text('"Hey," he smiles. "I didn\'t want to wake you, so I thought I\'d make breakfast and bring it to you."');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'How sweet', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -532,10 +549,12 @@ function enterBreakfastImage(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/shared/romance/activities/apartment/breakfast/nude_kitchen1.jpg');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBreakfastInBedMenu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Coffee', handler: (st: GameState) => {
     scene.actions([
@@ -691,6 +710,7 @@ function enterWantBreakfast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -713,6 +733,7 @@ function enterWantCoffeeResponse(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_morning', 'boy_breakfast_offer');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -728,6 +749,7 @@ function enterPcMakeBreakfast(s: GameState, scene: SceneBuilder): void {
     scene.text(`You head over to the kitchen and look through ${((s as any).npcdesc ?? 0)} fridge. Opening it, you take a look inside, mulling over what you can make with what he's got...`);
   }
   qspCall(s, 'sex_ev_morning', 'pc_make_breakfast_choices');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -838,6 +860,7 @@ function enterPcMakeBreakfastChoices(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start cooking', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['cooking_total'] === 0) {
@@ -896,6 +919,7 @@ function enterPcMakeBreakfastCooking(s: GameState, scene: SceneBuilder): void {
       scene.text('You get to work preparing all of the things you planned for breakfast and a short while later, you have a nice but simple variety of things to eat.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sex_ev_morning', 'pc_make_breakfast_done'] },
   ]);
@@ -956,6 +980,7 @@ function enterPcMakeBreakfastDone(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_morning', 'eat_breakfast1');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -977,12 +1002,14 @@ function enterNpcCoffeMake(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_morning', 'coffee_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCoffeeMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "How do you take your coffee?" <<$npcdesc>> asks.
   scene.text(`"How do you take your coffee?" ${((s as any).npcdesc ?? 0)} asks.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Black', handler: (st: GameState) => {
     scene.actions([
@@ -1065,6 +1092,7 @@ function enterCoffeeTogether(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_morning', 'breakfast_image');
   // TODO-QSP: dynamic text: The two of you settle down at <<$npcdesc>>'s table and sip away at your coffee, ...
   scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table and sip away at your coffee, casually chit-chatting with each other until there's nothing but dregs left.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash your mugs', goto: ['sex_ev_morning', 'breakfast_dishes'] },
   ]);
@@ -1089,6 +1117,7 @@ function enterEatBreakfast1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat a small portion', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_morning', 'eat_breakfast2');
@@ -1127,6 +1156,7 @@ function enterEatBreakfast2(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('"Not hungry?" he asks curiously.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not really', handler: (st: GameState) => {
     scene.text('"Not really," you shake your head. "Mornings I guess. But you go ahead. Don\'t hold back on account of me."');
@@ -1183,6 +1213,7 @@ function enterEatBreakfast3(s: GameState, scene: SceneBuilder): void {
     scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table and dig in, casually chatting away until you've cleared your plates.`);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
   ]);
@@ -1207,6 +1238,7 @@ function enterEatBreakfast4(s: GameState, scene: SceneBuilder): void {
     scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table and dig in, you especially, happily stuffing your face as the two of you casually chat away until you've cleared your plates.`);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clear your dishes', goto: ['sex_ev_morning', 'breakfast_dishes'] },
   ]);
@@ -1233,6 +1265,7 @@ function enterEatBreakfastCoffee(s: GameState, scene: SceneBuilder): void {
     scene.text(`The two of you settle down at ${((s as any).npcdesc ?? 0)}'s table. You sip at your coffee while he digs in.`);
   }
   scene.text('"Not going to eat?" he asks curiously.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Coffee\'s all I need', handler: (st: GameState) => {
     scene.text('"Coffee\'s all I need," you grin. "But you go ahead. Don\'t hold back on account of me."');
@@ -1359,6 +1392,7 @@ function enterBreakfastDishes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1375,6 +1409,7 @@ function enterAfterBreakfastSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '"Down boy"', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['sex_after_breakfast'] === 1) {
@@ -1512,6 +1547,7 @@ function enterGiveLift(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([{ label: 'Continue', goto: ['pav_complex', 'start'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1524,6 +1560,7 @@ function enterClassmatesSee(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$npcdesc>> gives you a small wave and drives off.
     scene.text(`${((s as any).npcdesc ?? 0)} gives you a small wave and drives off.`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -51,6 +51,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'therapist_overwrite_loop'
     }
   }
+  scene.build();
+}
+
+function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', 'see_trials');
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  scene.img('images\\locations\\city\\residential\\clinic\\experiments\\experiment_form.jpg');
+  scene.text('You look through the long list of various available clinical trials and the following stick out:');
+  // TODO-QSP: *p '<center><table align="center" width=80%>'
+  (s as any).cetl_i = 0;
+  // TODO-QSP: :loop_start
+  if (((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)] === -1  ||  ((s as any).experimentQW ?? 0)['times_participated_' + ((s as any).cetl_i ?? 0)] < ((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)]) {
+    // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><a href="exec: gt ''city_experimen...
+  } else {
+    // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><font color="<<$func("shortgs", "r...
+  }
+  // TODO-QSP: $temp_text += '</td> <td bgcolor="<<$temp_bgcolor>>" align="right"><font color="<<$func("shortgs", "...
+  // TODO-QSP: *p '<<$temp_text>>'
+  (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
+  if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
+    // TODO-QSP: jump 'loop_start'
+  }
+  // TODO-QSP: *p '</table></center>'
+  // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === ((s as any).trial_sections ?? 0)[0]) {
     // TODO-QSP: gs 'core_library', 'setloc', 'city_experimental_trials_list', $trial_sections[0]
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -354,30 +379,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.build();
-}
-
-function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'city_experimental_trials_list', 'see_trials');
-  (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'stat', '');
-  scene.img('images\\locations\\city\\residential\\clinic\\experiments\\experiment_form.jpg');
-  scene.text('You look through the long list of various available clinical trials and the following stick out:');
-  // TODO-QSP: *p '<center><table align="center" width=80%>'
-  (s as any).cetl_i = 0;
-  // TODO-QSP: :loop_start
-  if (((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)] === -1  ||  ((s as any).experimentQW ?? 0)['times_participated_' + ((s as any).cetl_i ?? 0)] < ((s as any).trial_maxs ?? 0)?.[String((s as any).cetl_i ?? 0)]) {
-    // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><a href="exec: gt ''city_experimen...
-  } else {
-    // TODO-QSP: $temp_text += '<tr><td bgcolor="<<$temp_bgcolor>>" align="center"><font color="<<$func("shortgs", "r...
-  }
-  // TODO-QSP: $temp_text += '</td> <td bgcolor="<<$temp_bgcolor>>" align="right"><font color="<<$func("shortgs", "...
-  // TODO-QSP: *p '<<$temp_text>>'
-  (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
-  if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
-    // TODO-QSP: jump 'loop_start'
-  }
-  // TODO-QSP: *p '</table></center>'
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     qspCall(st, 'city_experimental_trials_list', 'killvars');
@@ -387,6 +388,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterActGoBack(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['city_experimental_trials_list', 'see_trials'] },
   ]);
@@ -395,6 +397,7 @@ function enterActGoBack(s: GameState, scene: SceneBuilder): void {
 
 function enterActReturn(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_pay = qspUntranslated(s, "ARGS[1]", { location: "city_experimental_trials_list" });
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the clinic', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).temp_pay ?? 0));
@@ -405,6 +408,7 @@ function enterActReturn(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKillvars(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -433,6 +437,5 @@ export const city_experimental_trials_list: LocationDef = {
   name: 'city_experimental_trials_list',
   title: 'You look through the long list of various available clinical',
   region: 'city',
-  description: ['We have developed a range of enhancement pills that are designed to improve both body and mood. They\'ve just been approved for human trials, so we\'re still cataloguing the effects.'],
   enter: enter,
 };

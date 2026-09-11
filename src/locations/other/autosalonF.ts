@@ -43,6 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $car_table +=  $func('autosalonF', 'vehicle_table_row', 112)
   // TODO-QSP: $car_table += '</table></center>'
   // TODO-QSP: $car_table
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to the manager', goto: ['autosalonF', 'manager1'] },
     { label: 'Return', goto: ['autotraidF', 'start'] },
@@ -56,6 +57,7 @@ function enterVehicleTableRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result +=  '<td> - </td>'
   // TODO-QSP: $result +=  '<td>' + func('money', 'string_price', CarPrice) + '</td>'
   // TODO-QSP: $result += '</tr>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -81,6 +83,7 @@ function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: killvar 'autosalonF_carnum'
@@ -128,6 +131,7 @@ function enterManager1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'autosalonF', 'set_buy_act', 111);
     qspCall(s, 'autosalonF', 'set_buy_act', 112);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['autosalonF', 'start'] },
   ]);
@@ -148,6 +152,22 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'autosalonF', 'buy', <<ARGS[1]>>
   }
   // TODO-QSP: "
+  // TODO-QSP: end
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBuy(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: gs 'car_funcs', 'add_car', ARGS[1]
+  qspCall(s, 'money', 'pay', ((s as any).CarPrice ?? 0), 'bank');
+  ((s as any).car ?? {})['fuel'] = 3;
+  qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
+  scene.text('The manager draws up a purchasing contract, and you inform the bank of the impending transaction. Once the bank has confirmed the write-off, the manager hands you the key to your new car.');
+  scene.text('"It\'s waiting for you outside," he says. "The fuel tank is almost empty though, so you should stop by the gas station right away."');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return', goto: ['autotraidF', 'start'] },
+  ]);
   scene.build();
 }
 
@@ -168,6 +188,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'set_buy_act':
       enterSetBuyAct(s, scene);
+      break;
+    case 'buy':
+      enterBuy(s, scene);
       break;
     default:
       enterDefault(s, scene);

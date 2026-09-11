@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterGetModFame(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).fame ?? {})?.['pav_slut'] + ((s as any).card_game_durak_nude ?? 0) + ((s as any).cg_clother_cum ?? 0) + ((s as any).cg_pussy_licked ?? 0) + ((s as any).npc_vaginal_count ?? {})?.['A9'] + ((s as any).npc_vaginal_count ?? {})?.['A10'] + ((s as any).npc_vaginal_count ?? {})?.['A11'] + ((s as any).npc_anal_count ?? {})?.['A9'] + ((s as any).npc_anal_count ?? {})?.['A10'] + ((s as any).npc_anal_count ?? {})?.['A11'] + ((s as any).npc_oral_count ?? {})?.['A9'] + ((s as any).npc_oral_count ?? {})?.['A10'] + ((s as any).npc_oral_count ?? {})?.['A11'] + ((s as any).vasily ?? {})?.['drunk_sex'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -70,6 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +208,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('</td></tr></table>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -268,6 +271,7 @@ function enterCardGameLost(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -324,6 +328,7 @@ function enterCardGameNosex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Dance for them', goto: ['cardgame_durak', 'card_game_nosex_dance'] },
   ]);
@@ -337,6 +342,7 @@ function enterCardGameNosexDance(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/gif/dance\' + rand(1, 9) + \'.mp4');
   scene.text('The guys put on a popular track with a lot of bass, and lean back. You realize this is your cue to start moving, and somewhat awkwardly begin to dance for them. After a while you get into the song more and become less hesitant in shaking your hips and boobs, trying to give the guys a good show. They did win, after all.');
   scene.text('They all watch you intently, cheering you on and high-fiving their friend who made this possible.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish and put your clothes back on', goto: ['vasilyhome', 'livingroom'] },
   ]);
@@ -354,6 +360,7 @@ function enterCardGameGroupSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/sex/gsex/ev1_1.jpg');
   // TODO-QSP: dynamic text: "Now that you've lost… how about we all get naked, and then see what we will do ...
   scene.text(`"Now that you've lost… how about we all get naked, and then see what we will do with you?" ${((s as any).boydesc ?? 0)} says with a grin, as he takes the remainder of his clothes off. The other guys nod eagerly, and begin to undress as well.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 3, 'gangbang');
@@ -450,6 +457,7 @@ function enterCardGameRoughSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$boydesc>> unceremoniously moves up to you, and thrusts his erect dick into yo...
   scene.text(`${((s as any).boydesc ?? 0)} unceremoniously moves up to you, and thrusts his erect dick into your mouth without saying a word.`);
   scene.text('"This is for you, slut", he hisses as he grabs your hair in his hands, and begins to thrust his hips against your face, fucking your throat roughly.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'anal', 10);
@@ -553,6 +561,7 @@ function enterCardGameCasualSex(s: GameState, scene: SceneBuilder): void {
   scene.text('"What the fucking kind of shit is that! I\'ve not forced you to fuck anyone…"');
   scene.text('"You\'re a bitch, for coming up with all that rubbish you made us do and now you will have to pay for it. So stop your bitching, you lost, so pay up!"');
   scene.text('You have no choice, you lost and now have to pay up the debt by fulfilling his wish.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
@@ -674,6 +683,7 @@ function enterCardGameWon(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make <<$loss_npc_name>> expose a random girl', goto: ['cardgame_durak', 'card_game_won_expose_girl'] },
   ]);
@@ -696,6 +706,7 @@ function enterCardGameWonExposeGirl(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you can reply, his friends say: "You knew the rules! If you lose, you have to do what the winner wants. No questions asked."');
   // TODO-QSP: dynamic text: <<$loss_npc_name>> slumps a little, but he knows his friends are right: "Alright...
   scene.text(`${((s as any).loss_npc_name ?? 0)} slumps a little, but he knows his friends are right: "Alright then, let's get this over with…"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -731,6 +742,7 @@ function enterCardGameWonExposePenis(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you can reply, his friends say: "You knew the rules! If you lose, you have to do what the winner wants. No questions asked."');
   // TODO-QSP: dynamic text: <<$loss_npc_name>> slumps a little, but he knows his friends are right: "Alright...
   scene.text(`${((s as any).loss_npc_name ?? 0)} slumps a little, but he knows his friends are right: "Alright then, let's get this over with…"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -770,6 +782,7 @@ function enterCardGameWonCumOnGirl(s: GameState, scene: SceneBuilder): void {
   scene.text(`His friends are laughing, but ${((s as any).loss_npc_name ?? 0)} suddenly shows a lot more interest in your plan. If you're willing to blow him until he's about to burst, that's more than the others are getting from you today!`);
   // TODO-QSP: dynamic text: You leave the apartment with the guys, who are clearly excited to see this plan ...
   scene.text(`You leave the apartment with the guys, who are clearly excited to see this plan of yours play out. "Let's go find a nice girl for ${((s as any).loss_npc_name ?? 0)}, guys!" you shout happily.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 10);
@@ -827,6 +840,7 @@ function enterCardGameWonLickMyPussy(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'cuni', 8);
@@ -876,6 +890,7 @@ function enterCardGameWonFuckMyAss(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'anal', 10);

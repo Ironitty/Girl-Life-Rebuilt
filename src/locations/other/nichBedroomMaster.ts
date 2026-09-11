@@ -4,7 +4,7 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).sexpartkno = 1;
   qspCall(s, 'boyStat', 'A52');
@@ -63,11 +63,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 'evtGalaMast1') {
-    scene.text('Just before you enter the master bedroom you hear a moan. It sounds like Gala is having fun.');
-    scene.actions([
-      { label: 'Leave', goto: ['nichApartment', ''] },
-      { label: 'Spy', handler: (st: GameState) => {
+  scene.actions([
+    { label: 'Return to the hallway', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichApartment', ''] },
+    { label: 'Go to the master bathroom', handler: (st: GameState) => {
+    (s as any).minut = ((s as any).minut ?? 0) + 1;
+  }, goto: ['nichBathMaster', ''] },
+  ]);
+  scene.build();
+}
+
+function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
+  scene.text('Just before you enter the master bedroom you hear a moan. It sounds like Gala is having fun.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', goto: ['nichApartment', ''] },
+    { label: 'Spy', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/masturbation/mast1.jpg');
     (s as any).evtGalaMast1 = 1;
     scene.actions([
@@ -105,17 +117,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['nichApartment', 'return'] },
     ]);
   } },
-    ]);
-  }
-  scene.actions([
-    { label: 'Return to the hallway', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichApartment', ''] },
-    { label: 'Go to the master bathroom', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-  }, goto: ['nichBathMaster', ''] },
   ]);
   scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'evtGalaMast1':
+      enterEvtGalaMast1(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const nichBedroomMaster: LocationDef = {

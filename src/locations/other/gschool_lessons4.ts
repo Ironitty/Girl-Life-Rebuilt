@@ -456,6 +456,7 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -463,6 +464,7 @@ function enterMathLate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/classroom/late/late.jpg');
   scene.text('You walk down the completely empty halls of the school, passing by several classes already underway as you make your way to math class. You finally arrive at the door to your class and can hear Mr. Tsarev already starting today\'s lesson inside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head into class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/late/latem1.jpg');
@@ -889,6 +891,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -913,6 +916,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
       scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at \' + func(\'time\', \'get_time_string\', 11, 0) + \'. If you want to participate, you should come to school between \' + func(\'time\', \'get_time_string\', 10, 0) + \' and \' + func(\'time\', \'get_time_string\', 11, 0) + \'.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).fizrarand = Math.floor(Math.random() * 8) + 1;
@@ -1433,6 +1437,7 @@ function enterJumpingJacks(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'gschool_lessonsev1', 'fiz_rand');
@@ -1469,6 +1474,7 @@ function enterPushups(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'gschool_lessonsev1', 'fiz_rand');
@@ -1520,6 +1526,7 @@ function enterPostphys(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons4', 'postphys2'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1533,6 +1540,7 @@ function enterPostphys2(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/school/gym/locker/postphys${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You enter the girls locker room and find most of the other girls already inside, undressing, changing, heading for or returning from the showers, or simply chatting with each other. You ignore the girls in various states of undress around you, find your locker, and start to take off your clothes.');
   qspCall(s, 'gschool_gossip', 'gym');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a shower', goto: ['gschool_lessons4', 'shower'] },
     { label: 'Get dressed', goto: ['gschool_lessons4', 'dress'] },
@@ -1546,6 +1554,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/shower/showers.jpg');
   scene.text('After stripping from your clothes, you gather up your towel, washcloth and soap, and head to the showers; you\'re greeted by wafts of steam and several girls giggling and gossiping among themselves, oblivious to your existence.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons4', 'shower2'] },
   ]);
@@ -1738,6 +1747,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the shower.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1793,6 +1803,7 @@ function enterPubeBully(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the abuse', handler: (st: GameState) => {
     qspCall(s, 'mood', 'lower', 'small');
@@ -1885,6 +1896,7 @@ function enterPubeCompliment(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the locker room', goto: ['gschool_post_shower', 'post_shower'] },
   ]);
@@ -1897,6 +1909,7 @@ function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap1.jpg');
   scene.text('You pick one of the empty shower heads which is near the other end of the shower.');
   scene.text('Without warning, you suddenly feel a hard sting on your ass.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yelp', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap2.jpg');
@@ -1931,6 +1944,7 @@ function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a long shower', goto: ['gschool_lessons4', 'long_shower'] },
     { label: 'Return to the locker room', goto: ['gschool_post_shower', 'post_shower'] },
@@ -1946,6 +1960,7 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/shower/watch.jpg');
   scene.text('You enjoy the sensation of the hot water hitting your body and running down it. The steam filling the room gives it an almost sauna-like feel and completely relaxes you. Before you realize it, you find yourself alone in the shower.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep taking a shower', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -2358,6 +2373,7 @@ function enterLongShowerLocker(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/locker/change.jpg');
   scene.text('You walk from the showers back into the locker room and over to your locker, where you grab your towel and diligently dry off your body. With your hair still wet, you\'re ready to put the blow dryer to use. Once you finish blow drying your hair, you look around and see several other girls have left the showers and are getting dried off or dressed as well. By the time you start to get dressed, all the other girls have already left.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', goto: ['gschool_lessons4', 'post_dress'] },
   ]);
@@ -2368,6 +2384,7 @@ function enterShowerWatchEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('After watching for a few more seconds, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
   qspCall(s, 'arousal', 'erotic_nudity', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2617,12 +2634,14 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDress2(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/school/gym/locker/postphys${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('You take your clothes out of your locker and start putting them on. This takes longer than expected, however, since you get distracted several times while getting dressed - sometimes by other girls engaging you in a brief conversation, sometimes by someone or something catching your eye. By the time you are finished, most of the other girls have already left the locker room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons4', 'post_dress'] },
   ]);
@@ -2684,6 +2703,7 @@ function enterPostDress(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'din_van', 'pblc_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave school', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) === 'nude') {

@@ -14,6 +14,7 @@ function enterSetUpAccount(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'internet_mobile', 'use_internet', $access['subscription'], 10
   qspCall(s, 'stat', '');
   scene.text('You log into Youtube to set up a channel for your music. You can upload videos or live stream, but you will need to open a bank account if you want to receive any tips from viewers of your stream.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'available_actions');
@@ -57,6 +58,7 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop the stream', handler: (st: GameState) => {
     qspCall(s, 'music_onlinemusic', 'finish', 'streaming');
@@ -113,6 +115,7 @@ function enterRecordSong(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_onlinemusic', 'finish', 'recording');
@@ -183,6 +186,7 @@ function enterEditSong(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'available_actions');
@@ -214,6 +218,7 @@ function enterUploadmusic(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -240,6 +245,7 @@ function enterUploadallmusic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) < ((s as any).ml_onlinesongcount ?? 0)) {
     // TODO-QSP: jump 'uploadallmusic'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'available_actions');
@@ -251,6 +257,7 @@ function enterUploadallmusic(s: GameState, scene: SceneBuilder): void {
 function enterDeleteoldmusic(s: GameState, scene: SceneBuilder): void {
   scene.text('You go through your recorded musics and delete all the old ones where your playing doesn\'t really reflect what you can do these days');
   qspCall(s, 'music_onlinemusic', 'deleting');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'available_actions');
@@ -295,6 +302,7 @@ function enterDeleting(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'looprebuildsongs'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -319,6 +327,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'music_actions', 'available_actions');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -346,6 +355,7 @@ function enterStreamingStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_streaming ?? {})['total_earnings'] = (((s as any).ml_streaming ?? {})['total_earnings'] ?? 0) + (((s as any).ml_superchats ?? 0));
   ((s as any).ml_streaming ?? {})['unclaimed_earnings'] = (((s as any).ml_streaming ?? {})['unclaimed_earnings'] ?? 0) + (((s as any).ml_superchats ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -372,26 +382,31 @@ function enterRecordingStats(s: GameState, scene: SceneBuilder): void {
     (s as any).ml_uploadablemusic = ((s as any).ml_uploadablemusic ?? 0) + (1);
     (s as any).ml_onlinesongcount = ((s as any).ml_onlinesongcount ?? 0) + (1);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStreamInterruptions(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_no_interruption = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRecordingInterruptions(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_no_interruption = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnushkaStreamingEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'available_actions');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnushkaRecordingEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'available_actions');
+  // TODO-QSP: end
   scene.build();
 }
 

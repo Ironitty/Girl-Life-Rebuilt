@@ -67,11 +67,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'food', 'fast_food');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get back to work', goto: ['burgerWork', 'work3'] },
   ]);
@@ -247,6 +249,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     return;
   }
   scene.actions([{ label: 'Continue', goto: ['burger', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -258,6 +261,7 @@ function enterWork3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/diner/work.jpg');
   scene.text('You sit down and start preparing the contract on the computer.');
   qspCall(s, 'BurgerTip', 'work');
+  // TODO-QSP: end
   scene.build();
 }
 

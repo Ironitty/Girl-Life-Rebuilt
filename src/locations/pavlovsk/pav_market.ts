@@ -87,6 +87,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'camera', 'check_location');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the train station (0:03)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -137,6 +138,7 @@ function enterKidaloa(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello!" she happily exclaims. "We\'re shooting a pilot for a new TV show in which we hand out gifts to random strangers and film their response. It\'s called "Happiness in Russia", and we\'re hoping it will catch on all over the world. We have chosen you to be part of our pilot. Congratulations!"');
   scene.text('She grabs a large box the camera man hands to her. It\'s beautifully wrapped, with a nice bow to boot.');
   scene.text('"This box contains a brand new laptop!" she whispers. "Just act surprised when you open it!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say you have no time', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -267,6 +269,7 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
   scene.text('You can see the other man nod just as they get close to you, and one of the men stops you. "Excuse me, miss. We\'re opening a new fashion store in the city and are looking for a model to feature in our advertisements. We\'ve been looking for just the right girl all day and… I think we just found her!"');
   // TODO-QSP: dynamic text: The second man nods enthusiastically as the first man continues. "We would be ab...
   scene.text('The second man nods enthusiastically as the first man continues. "We would be able to offer you \' + $func(\'money\', \'string_price\', 10000) + \' for an extensive photoshoot featuring our clothing line."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not interested', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

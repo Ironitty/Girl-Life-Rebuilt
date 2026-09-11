@@ -27,11 +27,13 @@ function enterMFCInit(s: GameState, scene: SceneBuilder): void {
       ((s as any).camGirl ?? {})['MFC_camname'] = '' + qspUntranslated(s, "pcs_nickname>", { location: "komp_cam_functions" }) + '';
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHourlyEvents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'komp_cam_functions', 'MFC_hourly_events');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,10 +69,12 @@ function enterMFCHourlyEvents(s: GameState, scene: SceneBuilder): void {
     ((s as any).camGirl ?? {})['MFC_Viewers'] = 0;
     ((s as any).camGirl ?? {})['MFC_Followers'] = ((s as any).camGirl ?? 0)?.['MFC_Passives'];
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -116,6 +120,7 @@ function enterCheckAvailableAnalDildo(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_camVars ?? {})['anal_available'] = 1;
     ((s as any).temp_camVars ?? {})['anal_gigantic_available'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -161,6 +166,7 @@ function enterCheckAvailableVaginalDildo(s: GameState, scene: SceneBuilder): voi
     ((s as any).temp_camVars ?? {})['vaginal_available'] = 1;
     ((s as any).temp_camVars ?? {})['vaginal_gigantic_available'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -201,6 +207,7 @@ function enterCheckAvailableOralDildo(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_camVars ?? {})['oral_available'] = 1;
     ((s as any).temp_camVars ?? {})['oral_gigantic_available'] = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,6 +221,7 @@ function enterCamming(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'komp_cam_functions', 'UpdateStats', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   // TODO-QSP: gs 'komp_cam_functions', 'views', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   // TODO-QSP: gs 'komp_cam_functions', 'donate', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,6 +249,7 @@ function enterUpdateCamBonus(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).camGirl ?? {})['CamBonus'] = ((s as any).camGirl ?? {})?.['CamBonus'] * 480 / (480 + ((s as any).camGirl ?? 0)[((s as any).camGirl ?? {})?.['type'] + '_time']);
   ((s as any).camGirl ?? {})['CamBonus'] = qspUntranslated(s, "min(max(0, camGirl['CamBonus']), 250)", { location: "komp_cam_functions" });
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -268,6 +277,7 @@ function enterMFC_UpdateCamBonus(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_camVars ?? {})['Bonus_base'] = (((s as any).temp_camVars ?? {})['Bonus_base'] ?? 0) + (600);
   }
   ((s as any).temp_camVars ?? {})['fame_bonus'] = ((s as any).fame ?? {})?.['city_sexind'] + ((s as any).fame ?? {})?.['city_social'];
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -277,6 +287,7 @@ function enterUpdateStats(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_UpdateStats', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -300,6 +311,7 @@ function enterMFC_UpdateStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).camGirl ?? {})['MFC_FameInc'] = 0;
   }
   ((s as any).camGirl ?? {})['MFC_fame'] = Math.min((((s as any).fame ?? {})?.['city_sexind'] + ((s as any).fame ?? {})?.['city_social'] + ((s as any).camGirl ?? {})?.['MFC_Followers'] / 50) / 5, 400);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -330,6 +342,7 @@ function enterViews(s: GameState, scene: SceneBuilder): void {
   if (((s as any).camGirl ?? 0)[((s as any).camGirl ?? 0)?.['type'] + '_Followers'] > ((s as any).camGirl ?? 0)[((s as any).camGirl ?? 0)?.['type'] + '_maxFollowers']) {
     // TODO-QSP: camGirl[$camGirl['type'] + '_maxFollowers'] = camGirl[$camGirl['type'] + '_Followers']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -355,6 +368,7 @@ function enterMFCViews(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: cam_viewsVars['AP_g'] *= 2
     // TODO-QSP: cam_viewsVars['PA_g'] /= 4
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +459,7 @@ function enterViewsCore(s: GameState, scene: SceneBuilder): void {
     ((s as any).cam_viewsVars ?? {})['nP'] = (((s as any).cam_viewsVars ?? {})['nP'] ?? 0) - (((s as any).cam_viewsVars ?? 0)?.['nA']);
     ((s as any).cam_viewsVars ?? {})['nA'] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -454,6 +469,7 @@ function enterDonate(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_donate', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -486,6 +502,7 @@ function enterMFCDonate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_camVars ?? 0)?.['payout'] > 0) {
     ((s as any).camGirl ?? {})['MFC_donate_message'] = qspFunc(s, 'wrap', 'v_pos', '+' + qspUntranslated(s, "temp_camVars['payout']>", { location: "komp_cam_functions" }) + ' Tokens');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -507,12 +524,14 @@ function enterPrintStatus(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTokensToRub(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).ARGS ?? 0)[1] * 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -521,12 +540,14 @@ function enterStartCamming(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl ?? {})['type'] = ((s as any).locArgs?.[1] ?? 0);
   // TODO-QSP: camGirl[$camGirl['type'] + '_last_online'] = daystart
   // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_start_camming'
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMFCStartCamming(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'strip');
   qspCall(s, 'underwear', 'wear');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -535,6 +556,7 @@ function enterStopCamming(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: camGirl[$camGirl['type'] + '_last_online'] = daystart
   // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_stop_camming'
   ((s as any).camGirl ?? {})['type'] = '';
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -550,6 +572,7 @@ function enterMFCStopCamming(s: GameState, scene: SceneBuilder): void {
   ((s as any).camGirl ?? {})['MFC_Viewers'] = 0;
   ((s as any).camGirl ?? {})['MFC_Followers'] = ((s as any).camGirl ?? 0)?.['MFC_Passives'];
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.build();
 }
 

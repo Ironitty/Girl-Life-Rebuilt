@@ -29,6 +29,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).placerParameter ?? 0)?.['location_index'] === 0) {
     scene.actions([{ label: 'Continue', goto: ['placer_pav_park', ''] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

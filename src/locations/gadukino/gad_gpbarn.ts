@@ -49,6 +49,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 50) {
     // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the yard', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -127,6 +128,7 @@ function enterSearch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', ''] },
   ]);
@@ -140,6 +142,7 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/horse.jpg');
   scene.text('Grandfather\'s trusted workhorse, Desperado.');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'barn_horse');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -156,6 +159,7 @@ function enterCow(s: GameState, scene: SceneBuilder): void {
   scene.text('Grandma\'s favorite animal, the cow, Dawn.');
   qspCall(s, 'gp_elene', 'check_for_chores', 'cow');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'barn_cow');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -171,6 +175,7 @@ function enterBoar(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/boar.jpg');
   scene.text('One of your grandparents\' dearest possessions, the boar, Nickle.');
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'boar');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -228,6 +233,7 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     scene.text('Your <a href="exec: gt \'komp\',\'start\'">computer</a> is on your desk.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go to the yard</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -251,6 +257,7 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLogStove(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 

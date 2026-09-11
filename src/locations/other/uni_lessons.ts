@@ -82,6 +82,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     ((s as any).university ?? {})['break'] = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +121,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'katja_pantyquest', 'uni');
   qspCall(s, 'uni_lessons', 'schedule');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
   ]);
@@ -140,6 +142,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,6 +152,7 @@ function enterExamSchedule(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'uni_programs', 'set_exam_act');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -233,6 +237,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

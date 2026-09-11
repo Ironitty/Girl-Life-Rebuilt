@@ -298,6 +298,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'din_bad', 'd_cycreport_update');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,6 +318,7 @@ function enterCyc0(s: GameState, scene: SceneBuilder): void {
     (s as any).focH = ((s as any).focH ?? 0) + (1);
   }
   ((s as any).stat ?? {})['cycle_phase'] = 'menstruation';
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,6 +361,7 @@ function enterCyc1(s: GameState, scene: SceneBuilder): void {
     (s as any).cycle = 2;
     (s as any).ferteggage = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -518,6 +521,7 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
       ((s as any).bodyVars ?? {})['bust_menst'] = (((s as any).bodyVars ?? {})['bust_menst'] ?? 0) + (1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -648,6 +652,7 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
       (s as any).lutH = ((s as any).lutH ?? 0) + (1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -670,6 +675,7 @@ function enterCyc4(s: GameState, scene: SceneBuilder): void {
       (s as any).RecovH = ((s as any).RecovH ?? 0) - (1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -756,6 +762,7 @@ function enterPreg(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -787,6 +794,7 @@ function enterFemcycErrhdl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FertEgg ?? 0) < 0) {
     (s as any).FertEgg = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

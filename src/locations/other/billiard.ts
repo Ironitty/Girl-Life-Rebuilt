@@ -244,12 +244,14 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Pool</b></center>');
   scene.img('images/locations/city/citycenter/mall/pool/bil.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['billiard', ''] },
   ]);

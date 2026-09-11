@@ -22,6 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'arrive_together'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,6 +52,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).date_ev ?? {})['meal_cost'] = Math.floor(Math.random() * 251) + 250;
   ((s as any).date_ev ?? {})['activity_count'] = (((s as any).date_ev ?? {})['activity_count'] ?? 0) + (1);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +63,7 @@ function enterFlashImg(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/shared/romance/dates/casual_dining/show_tits_d2.jpg');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -75,6 +78,7 @@ function enterFlashMov(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/shared/romance/dates/casual_dining/show_tits_d2.jpg');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,6 +91,7 @@ function enterPayCash(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +104,7 @@ function enterPayCard(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +126,7 @@ function enterRestaurauntExtImg(s: GameState, scene: SceneBuilder): void {
       ((s as any).date_ev ?? {})['rest_int_bug'] = 1;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +144,7 @@ function enterRestaurauntIntImg(s: GameState, scene: SceneBuilder): void {
       ((s as any).date_ev ?? {})['rest_int_bug'] = 1;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +158,7 @@ function enterRestaurantTalkingImg(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/romance/dates/casual_dining/talking1.jpg');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -211,6 +220,7 @@ function enterArriveSeparate(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -265,6 +275,7 @@ function enterWaitDatePhone(s: GameState, scene: SceneBuilder): void {
   }, goto: ['date_casual_meal', 'wait_npc_arrive'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -374,6 +385,7 @@ function enterWaitDateSmoke(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -387,10 +399,12 @@ function enterWaitNpcArrive(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'date_casual_meal', 'clothing_react');
     qspCall(s, 'date_casual_meal', 'wait_youre_late');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWaitNotLong(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Not long', handler: (st: GameState) => {
     qspCall(s, 'date_casual_meal', 'restauraunt_ext_img');
@@ -405,6 +419,7 @@ function enterWaitNotLong(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitYoureLate(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '"You\'re late!"', handler: (st: GameState) => {
     qspCall(s, 'date_casual_meal', 'restauraunt_ext_img');
@@ -439,6 +454,7 @@ function enterClothingReact(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloStyle2 ?? 0) === 4  ||  ((s as any).PCloSchool ?? 0) === 1) {
     scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'clothing_react_school'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -458,6 +474,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Guys like schoolgirls (joke)', handler: (st: GameState) => {
     scene.text('"Well, I heard guys like a girl in a school uniform," you grin, fanning out your skirt. "Thought I\'d just do something special for you."');
@@ -660,6 +677,7 @@ function enterClothingReactSchool(s: GameState, scene: SceneBuilder): void {
 
 function enterStyleSlutReply(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m just saying, it\'s kind of revealing, don\'t you think? Makes you look like a slut."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'He has a point', handler: (st: GameState) => {
     qspCall(s, 'date_funcs', 'date_rate', 'like');
@@ -743,6 +761,7 @@ function enterArriveTogether(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   // TODO-QSP: dynamic text: You and <<$npcdesc>> walk up to the restaurant together.
   scene.text(`You and ${((s as any).npcdesc ?? 0)} walk up to the restaurant together.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get a table', goto: ['date_casual_meal', 'sit_down'] },
   ]);
@@ -785,6 +804,7 @@ function enterSitDown(s: GameState, scene: SceneBuilder): void {
     scene.text('Here are some menus. I\'ll give you a minute," they say before departing.');
     scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -830,6 +850,7 @@ function enterMenuRead(s: GameState, scene: SceneBuilder): void {
   }, goto: ['date_casual_meal', 'food_menu'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -920,6 +941,7 @@ function enterNpcOrder(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -934,6 +956,7 @@ function enterFoodMenu(s: GameState, scene: SceneBuilder): void {
     ((s as any).date_ev ?? {})['waiter'] = 'waitress';
   }
   scene.text('"What would you like to order?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Vinaigrette salad', handler: (st: GameState) => {
     ((s as any).date_ev ?? {})['food_order'] = 'salad';
@@ -1026,6 +1049,7 @@ function enterPreConverse(s: GameState, scene: SceneBuilder): void {
     scene.text('The waiter takes your orders and heads off to the kitchen to get them started.');
     scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'boy_lead_pre_convo'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1035,6 +1059,7 @@ function enterBoyLeadPreConvo(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'casual_conversation'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1042,6 +1067,7 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   // TODO-QSP: dynamic text: The waitress gives you a polite smile, collecting your menus, and heading off to...
   scene.text(`The waitress gives you a polite smile, collecting your menus, and heading off towards the kitchen. As she turns to leave, you can't help but notice ${((s as any).npcdesc ?? 0)}'s eyes linger on her ass.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
     scene.text('You sigh internally but otherwise ignore his wandering eyes. Boys will be boys after all.');
@@ -1073,6 +1099,7 @@ function enterWaitressOgle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitressOgle2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Grit and grin', handler: (st: GameState) => {
     scene.text('You quickly turn the frown upside down and plaster a smile onto your face.');
@@ -1088,6 +1115,7 @@ function enterAwkwardSilence(s: GameState, scene: SceneBuilder): void {
   ((s as any).date_ev ?? {})['flash_arg'] = 'awkward_flash';
   ((s as any).date_ev ?? {})['talk_mood'] = 'awkward';
   scene.actions([{ label: 'Continue', goto: ['date_talk', 'awkward_start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1098,6 +1126,7 @@ function enterCasualConversation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'eating_menu');
   ((s as any).date_ev ?? {})['talk_mood'] = 'normal';
   scene.actions([{ label: 'Continue', goto: ['date_talk', 'talk_menu'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1105,6 +1134,7 @@ function enterEatingMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your <<$date_ev['food_order']>> finally arrives, delivered by the wait staff and...
   scene.text(`Your ${((s as any).date_ev ?? 0)?.['food_order']} finally arrives, delivered by the wait staff and you both get to digging in.`);
   ((s as any).date_ev ?? {})['dialogue_setting'] = 'between bites of food';
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pick at food', goto: ['date_casual_meal', 'eating_nibble'] },
     { label: 'Eat eagerly', goto: ['date_casual_meal', 'eating_fast'] },
@@ -1120,6 +1150,7 @@ function enterEatingNibble(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You take small bites just nibbling at your food, in some ways moving it around the dish more than actually eating.');
   scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1130,6 +1161,7 @@ function enterEatingFast(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You eat quickly, going through your plate much faster than <<$npcdesc>> does.
   scene.text(`You eat quickly, going through your plate much faster than ${((s as any).npcdesc ?? 0)} does.`);
   scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1139,6 +1171,7 @@ function enterEatingBestFirst(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You dig into your food, eating the most delicious parts parts first.');
   scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1148,6 +1181,7 @@ function enterEatingWorst(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/dates/casual_dining/food1.jpg');
   scene.text('You dig into your food, doing your best to clean the parts you don\'t find as exciting before saving the best parts for last.');
   scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'mid_meal_convo'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1174,6 +1208,7 @@ function enterMidMealConvo(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['date_casual_meal', 'food_ask'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1237,6 +1272,7 @@ function enterEatingCommentary(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1245,6 +1281,7 @@ function enterFoodAsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_talk', 'talk_img');
   // TODO-QSP: dynamic text: "How's your food?" <<$npcdesc>> asks between bites.
   scene.text(`"How's your food?" ${((s as any).npcdesc ?? 0)} asks between bites.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bland', handler: (st: GameState) => {
     scene.text('"Bland," you say flatly, poking around at your dish with your utensil.');
@@ -1275,6 +1312,7 @@ function enterFoodAsk(s: GameState, scene: SceneBuilder): void {
 function enterMidMealConvoMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_funcs', 'set_continue', 'date_casual_meal', 'after_meal_start');
   qspCall(s, 'date_talk', 'talk_menu');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about life', goto: ['date_casual_meal', 'mid_meal_life_convo'] },
     { label: 'Flirt', goto: ['date_casual_meal', 'mid_meal_firt_convo'] },
@@ -1285,6 +1323,7 @@ function enterMidMealConvoMenu(s: GameState, scene: SceneBuilder): void {
 function enterMidMealFoodConvo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/dates/casual_dining/eating1.jpg');
   scene.text('You talk about the food.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_casual_meal', 'after_meal_start'] },
   ]);
@@ -1298,6 +1337,7 @@ function enterMidMealLifeConvo(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You talk about life and get to know each other.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['date_casual_meal', 'after_meal_start'] },
   ]);
@@ -1307,6 +1347,7 @@ function enterMidMealLifeConvo(s: GameState, scene: SceneBuilder): void {
 function enterMidMealFirtConvo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restaurant_talking_img');
   qspCall(s, 'date_talk', 'food_flirt_<<rand(1,3)>>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1314,6 +1355,7 @@ function enterAfterMealStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'restauraunt_int_img');
   scene.text('The waiter comes and clears your dishes.');
   qspCall(s, 'date_casual_meal', 'after_meal_pay');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restaurant', goto: ['date_casual_meal', 'date_end'] },
   ]);
@@ -1445,6 +1487,7 @@ function enterAfterMealPay(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1459,6 +1502,7 @@ function enterAwkwardFlash(s: GameState, scene: SceneBuilder): void {
     scene.text('You catch his eyes with the statement. Not knowing what else to do, you take a glance around and pull down your dress, flashing your tits.');
   }
   scene.text('His eyes go wide in shock. And then...');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Still awkward', handler: (st: GameState) => {
     scene.text('It\'s still awkward.');
@@ -1489,12 +1533,14 @@ function enterCasualFlash(s: GameState, scene: SceneBuilder): void {
     scene.text('You catch his eyes and take a glance around. And then pull down your dress, flashing your tits.');
   }
   qspCall(s, 'date_casual_meal', 'eating_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDateEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_casual_meal', 'date_end_stats');
   scene.actions([{ label: 'Continue', goto: ['date_after', 'after_date'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1514,6 +1560,7 @@ function enterDateEndStats(s: GameState, scene: SceneBuilder): void {
       ((s as any).pc_last_date_paid ?? {})[String((s as any).npcID ?? 0)] = ((s as any).daystart ?? 0);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

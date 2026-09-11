@@ -24,6 +24,7 @@ function enterHousemates(s: GameState, scene: SceneBuilder): void {
   scene.text('Floor 3 - Apartment number');
   scene.text('Floor 4 - Apartment number 17: Anushka Konstantinov');
   scene.text('Floor 5 - Apartment number');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_complexb2', 'etaj_1'] },
   ]);
@@ -40,6 +41,7 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>A dirty and poorly maintained stairwell, the same as any other in your town.</center>');
   scene.text('There\'s a <a href="exec: gt \'pav_complexb2\', \'housemates\'">list</a> of the people who live here on the wall.');
   scene.text('Someone put up some <a href="exec:gt \'pav_complexb2\',\'pod_objava\'">advertisements</a> on the wall near the entrance.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -60,6 +62,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>2nd floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj2.jpg');
   scene.text('<center>The second floor stairwell is clean and well maintained. It was renovated not long ago, and the inhabitants do their best to keep it clean.</center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the first floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -80,6 +83,7 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>3rd floor of the apartment building</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj3.jpg');
   scene.text('<center>The third floor stairwell is clean and well maintained. It was renovated not long ago, and the inhabitants do their best to keep it clean.</center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the second floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -105,6 +109,7 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
       { label: 'Apartment 17: Anushka Konstantinov', goto: ['anushapt', 'home'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the third floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -125,6 +130,7 @@ function enterEtaj_5(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>Floor #5</center>');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/etaj5.jpg');
   scene.text('<center>The fifth floor stairwell looks like most of the other floors, but it has a final set of stairs at the other end of the hall that go up to the roof.</center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the fourth floor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -199,6 +205,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the fifth floor', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
@@ -218,6 +225,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator.jpg');
   scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="exec:gt \'pav_complexb2\',\'elev_objava\',$ARGS[1]">notification</a> in the elevator.</center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Push button: Floor 1', goto: ['pav_complexb2', 'etaj_1'] },
     { label: 'Push button: Floor 2', goto: ['pav_complexb2', 'etaj_2'] },
@@ -237,6 +245,7 @@ function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['pav_complexb2', 'lift_event_2'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -247,6 +256,7 @@ function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('When the elevator door opens, you are surprised to see a naked woman standing in it. She looks at you in panic and is frantically pressing all the elevator buttons. You\'re too baffled to do anything until it\'s too late. The door has already closed, and the elevator is moving away from you.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_complexb2', '<<$ARGS[1]>>'] },
   ]);
@@ -262,6 +272,7 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('The building supervisor has put a sign on the elevator: "Dear tenants, the elevator is out of order for today. Don\'t worry, I should have it working again by tomorrow!"');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_complexb2', '<<$ARGS[1]>>'] },
   ]);
@@ -272,6 +283,7 @@ function enterElevObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator_ob\'+rand(1, 2)+\'.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'pav_complexb2', 'lift', $ARGS[1]
@@ -284,6 +296,7 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob\'+rand(1, 2)+\'.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_complexb2', 'etaj_1'] },
   ]);
@@ -296,6 +309,7 @@ function enterAnushkaFirst(s: GameState, scene: SceneBuilder): void {
   scene.text(`As you walk into the building, you nearly run into Anushka. "Hey ${((s as any).pcs_nickname ?? 0)}, what's up?"`);
   scene.text('You\'re a little surprised to see her, but not disappointed. "Bored and just killing time, you know?"');
   scene.text('She nods and finishes checking the mail. "Yeah, I know the feeling. Want to come up to my place and hang out?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'I can\'t', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

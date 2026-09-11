@@ -38,12 +38,14 @@ function enterNatSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNatbelGo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big16.jpg');
   scene.text('You go up to Natasha and she asks you, "Will you come to my house to do our homework?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Natasha', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -94,6 +96,7 @@ function enterStudyTogether(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ok, let\'s see…" She says as the two of you start on the first task.');
   scene.text('You spend the better part of an hour working through all of your homework. Occasionally explaining things to each other when one of you doesn\'t understand something.');
   scene.text('Once you\'ve finished, you\'re confident you\'ll get a good grade on your homework.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish homework', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -162,6 +165,7 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
   }, goto: ['natbelapt', 'natroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -187,6 +191,7 @@ function enterNatcumresponse(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -196,6 +201,7 @@ function enterNatmomhome(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).NatbelQW ?? {})['MotherHome'] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +232,7 @@ function enterNatMotherState(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -297,6 +304,7 @@ function enterAskState(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['natbelapt', 'hallway'] },
   ]);
@@ -382,6 +390,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to school', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
@@ -401,6 +410,7 @@ function enterSchoolwalk(s: GameState, scene: SceneBuilder): void {
   scene.text('As you reach the bottom of the stairs, you notice Kolka coming down as well.');
   scene.text('Deciding to tease him a bit you grab the bottom of Natasha\'s skirt and pull it up while you bend over yourself to show him both of your asses.');
   scene.text('Natasha quickly slaps your hand away and the two of you resume your walk to school. As you exit the hall you can\'t hear Kolka\'s footsteps. He must have stopped in his tracks at the sight.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue on to school', goto: ['gschool_grounds', 'main'] },
   ]);
@@ -472,6 +482,7 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', handler: (st: GameState) => {
     (st as any).NatashaLoc = 2;
@@ -552,6 +563,7 @@ function enterShowerspy(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['natbelapt', 'hallway'] },
   ]);
@@ -590,6 +602,7 @@ function enterShowerevent1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/shower01.jpg');
@@ -622,11 +635,13 @@ function enterStinkyShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'showerdin');
   qspCall(s, 'stat', '');
   qspCall(s, 'natbelEv', 'shower_escalation');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerEscalation(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Escalation', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha37.jpg');

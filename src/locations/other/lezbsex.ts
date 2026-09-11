@@ -21,6 +21,7 @@ function enterStartloverhome(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk about cohabitation', goto: ['love', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her back and take her to the bedroom', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
@@ -41,6 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/sex/lesbian/lezbsexstart.jpg');
   scene.actions([{ label: 'Continue', goto: ['lezbsex', 'var'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,6 +79,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       { label: 'Play with the dildo', goto: ['lezbsex', 'dvag'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her out', goto: ['lezbsex', 'ukuni'] },
   ]);
@@ -89,6 +92,7 @@ function enterUkuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-5), 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -103,6 +107,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.text('She begins by dragging her tongue up your thighs to your crotch and plants light kisses from the top of your slit down to the opening of your vagina. Her tongue pushes into your slickened hole a few times, then slides back up your cunny to caress your tingling clitoris again.');
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -117,6 +122,7 @@ function enterAnuli(s: GameState, scene: SceneBuilder): void {
   scene.text('She kisses your buttocks in ever-decreasing circles, eventually reaching the center where your puckered anus is waiting. Reaching her goal, she licks all around the tender star to get it plenty moist, then firmly pushes her tongue forward, penetrating your ass with just the tip. Finally, she retracts it, again licking all around your anus, and repeats her tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -131,6 +137,7 @@ function enterUanuli(s: GameState, scene: SceneBuilder): void {
   scene.text('You kiss her buttocks in ever-decreasing circles, eventually reaching the center where her puckered anus is waiting. Reaching your goal, you lick all around the tender star to get it plenty moist, then firmly push your tongue forward, penetrating her ass with just the tip. Finally, you retract it, again licking all around her anus and repeating your tongue invasion into that most private entrance.');
   qspCall(s, 'arousal', 'rimming_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -145,6 +152,7 @@ function enterSvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You put on the strap-on, adjusting it to your hips and centring it, and then insert it slowly into her pussy. She moans and grinds back at you while you fuck her with it.');
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -160,6 +168,7 @@ function enterSanal(s: GameState, scene: SceneBuilder): void {
   scene.text(`You suck on the shaft to get it well-lubed, then put on the strap-on and gently insert it into ${((s as any).lezbsexname ?? 0)}'s anus, pressing into her slowly at first. Then, as she adjusts to the backdoor invasion, you push in and out, faster and faster.`);
   qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -174,6 +183,7 @@ function enterUsvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You watch as she puts on the strap-on, adjusting it to her hips and centring the fake cock, and then she moves to you and inserts it slowly into your pussy. You moan and grind back at her while she fucks you with it.');
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -188,6 +198,7 @@ function enterUsanal(s: GameState, scene: SceneBuilder): void {
   scene.text('She spits on the crack of your ass, collecting some saliva to moisten the tip of the strap-on and slowly presses it against your pucker, firmly pushing it into you as you adjust to the invasion. You feel the fullness of it as it moves in and out of your ass with every thrust, pumping faster and deeper.');
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -202,6 +213,7 @@ function enterDvag(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a dildo and poke her wet pussy with it. She pulls your face to hers and kisses you while you drive one shaft into her cunny with one hand and caress her breasts with a second dildo.');
   qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -217,6 +229,7 @@ function enterDanal(s: GameState, scene: SceneBuilder): void {
   scene.text(`You take a dildo, ensuring that she's watching you slowly lick it, trying to cover it with the maximum amount of your thick saliva, and gently insert it into ${((s as any).lezbsexname ?? 0)}'s anus. At first, you ease it in slowly, getting her used to the invasion, then push it deeper, stroking it into her faster and faster.`);
   qspCall(s, 'arousal', 'anal_dildo_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -232,6 +245,7 @@ function enterUdvag(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).lezbsexname ?? 0)} inserts the dildo into your wet pussy, moving it in and out while constantly twisting and turning it in her hands to stimulate your love hole as much as possible.`);
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -247,6 +261,7 @@ function enterUdanal(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).lezbsexname ?? 0)} spits in your asscrack, watching it slowly glide down to your pucker as she collects some of the saliva and rubs it all around the tip of the dildo before pressing it against your anus. You feel it stretching your puckered hole as it pushes farther inside, bringing you that unique back-door pleasure.`);
   qspCall(s, 'arousal', 'anal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'lezbsex', 'var'
@@ -261,6 +276,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: When you have finished playing, <<$lezbsexname>> thanks you for the excellent ti...
   scene.text(`When you have finished playing, ${((s as any).lezbsexname ?? 0)} thanks you for the excellent time and leaves.`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).gfsex ?? 0) === 1) {

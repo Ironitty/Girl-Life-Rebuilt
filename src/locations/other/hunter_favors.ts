@@ -153,6 +153,7 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -176,6 +177,7 @@ function enterYardCleanup(s: GameState, scene: SceneBuilder): void {
   (s as any).dirty_swamp_yard = 0;
   ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) + (2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Done', goto: ['gad_swamp_yard', 'start'] },
   ]);
@@ -209,6 +211,7 @@ function enterDirtySwamphouse(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).dirty_swamphouse = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_swamphouse', 'start'] },
   ]);
@@ -222,6 +225,7 @@ function enterMeatStew(s: GameState, scene: SceneBuilder): void {
   (s as any).bucket = ((s as any).bucket ?? 0) - (1);
   (s as any).meat_stew = 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -237,6 +241,7 @@ function enterMushroomSoup(s: GameState, scene: SceneBuilder): void {
   (s as any).bucket = ((s as any).bucket ?? 0) - (1);
   (s as any).mushroom_soup = 4;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -278,6 +283,7 @@ function enterCreeksideGangbangRequest(s: GameState, scene: SceneBuilder): void 
   }, goto: ['gad_backwater', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (25);
@@ -659,6 +665,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -673,6 +680,7 @@ function enterNighttimeEntertainment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/sex/hunter/nighttime_entertainment/bj_1.jpg');
   scene.text('The boys immediately encircle you, pulling out their cocks. You can\'t help but giggle a little at how quickly they are ready for you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Grab Igor and Sergei', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;

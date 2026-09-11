@@ -17,6 +17,7 @@ function enterApplyForJob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You answer a few questions the management team asks you and are offered a summer...
   scene.text(`You answer a few questions the management team asks you and are offered a summer position at ${qspFunc(s, 'money', 'string_price', 1000)} per shift of 8 hours during day time. Fresh uniforms are provided daily and training will be you shadowing another guide for the first couple of days to make sure you know the details required to lead your groups.`);
   scene.text('Like any teenager your only questions are about breaks and days off. The manager smiles, not surprised, and tells you that working is voluntary. If you do not show up then obviously you will not make any money that day, but otherwise no daily commitment is required from you. Breaks will be allowed if there are no groups to lead at that time and you will be given a small lunch everyday that you choose to work.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept the position', handler: (st: GameState) => {
     qspCall(s, 'jobs', 'set_employed', 'pav_tour_guide');
@@ -36,6 +37,7 @@ function enterTourstart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Imperial Palace</h2></center>');
   scene.img('images/locations/pavlovsk/palace/pav_palace.jpg');
   scene.text('You spend the first part of your day walking tourists around the more famous parts of the park and museums on the grounds.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat lunch and get back to work', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 240;
@@ -54,6 +56,7 @@ function enterTourran1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/palace/pav_palace.jpg');
   scene.text('Today was pretty boring, nothing interesting happened. You spent most of the time wishing you had gone to the beach or done something else, anything really.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the tours', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -98,6 +101,7 @@ function enterTourran2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just finish the tour', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -109,6 +113,7 @@ function enterTourran3(s: GameState, scene: SceneBuilder): void {
   scene.text('You end up with a group that has several small children. When taking them through some of the gardens a couple kids break loose from their parents and run through some of the flower beds. The parents run after them, grab them, and bring them back to the group, faces red with embarrassment.');
   qspCall(s, 'exp_gain', 'observ', Math.floor(Math.random() * 2) + 0);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the tour', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -129,6 +134,7 @@ function enterTourran4(s: GameState, scene: SceneBuilder): void {
   scene.text('As the tour finishes you yank the translator by the arm and lead him a bit aside, "Why were they laughing every time you translated something from what I said?" you ask him.');
   scene.text('The translator pats you on the head, "You\'re far too young to be doing this kind of work. I didn\'t actually translate anything you said, I was just making stuff up as we went on…"');
   scene.text('You somehow maintain your posture not wanting to make a scene, turning around without saying anything and hurry away before changing your mind.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the tour', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -169,6 +175,7 @@ function enterTourran5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -187,6 +194,7 @@ function enterTourran6(s: GameState, scene: SceneBuilder): void {
   scene.text('It seems that it will be another uneventful tour, as you look around at the gathered group today. As you are halfway through the tour, a rancid smell suddenly reaches your nostrils, making it hard to keep a straight face. You look around and notice one person standing out, as the others have distanced themselves from this person. You keep on being professional throughout the tour, ignoring the rancid smell that just intensifies.');
   scene.text('As the tour ends, thinking you\'ve finally managed to escape, the person comes over to you and starts up a conversation. You try to be polite, but eventually make an excuse about the next group and flee.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the tour', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -201,6 +209,7 @@ function enterTourran7(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: At the end of the tour they thank you for being such a kind guide for putting up...
   scene.text(`At the end of the tour they thank you for being such a kind guide for putting up with them, and hand you some money. You tell them that it is not necessary, but they insist saying "Don't dare make us upset, now take the money and enjoy it, you've deserved it!" and pressing the ${qspFunc(s, 'money', 'string_profit', 150)} into your hand.`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish the tour', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -212,6 +221,7 @@ function enterTourran8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/palace/palace_garden.jpg');
   scene.text('You end up with a group that has an annoying visitor. While talking to the group, you constantly get cut off by the show-off visitor that is contradicting every word you\'re saying and gives some of their own takes, which no one asked for. You notice that the rest of the group is also annoyed by this person and are rolling their eyes as soon as they open their mouth.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue with the tour', goto: ['tour_guide', 'toursdone'] },
   ]);
@@ -228,6 +238,7 @@ function enterRivernude(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'flash', 3, 'exhibitionism');
   qspCall(s, 'outfit', 'strip_all');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give them a show', goto: ['tour_guide', 'riverbate'] },
     { label: 'Seduce one of the cute boys', goto: ['tour_guide', 'riverseduce1'] },
@@ -250,6 +261,7 @@ function enterRiverbate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Once your body settles down, you slip back into the water and wipe the cum off. Most of the guys have pulled their shorts up and are back to splashing around in the water, though a few are still hanging out nearby, hoping you will let them do more.');
   scene.text('You know you have been gone from work too long, any longer and someone will most likely realize you\'re missing. The thought of letting them have their way with you is pretty damn tempting, though.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give in to your desires', goto: ['tour_guide', 'riverseduce2'] },
     { label: 'Alright boys, I have to get back to work', handler: (st: GameState) => {
@@ -278,6 +290,7 @@ function enterRiverseduce1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'bj', 5, 'deepthroat');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Mount him', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${Math.floor(Math.random() * 11) + 5}.jpg`);
@@ -331,6 +344,7 @@ function enterRiverseduce2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'cum_call', 'mouth_swallow');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep going', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', Math.floor(Math.random() * 13) + 18);
@@ -374,6 +388,7 @@ function enterRiverclean(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 4;
   qspCall(s, 'cum_cleanup', '');
   qspCall(s, 'outfit', 'wear_last_worn');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Alright boys, I have to get back to work', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -414,12 +429,14 @@ function enterToursdone(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterResign(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/palace/office/angry_boss.jpg');
   scene.text('You let your boss know you have decided to quit your job for the rest of the summer. He is not pleased about you quitting, but manages to keep his temper and lets you know if you want to come back next summer he will at least consider it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Resign', handler: (st: GameState) => {
     qspCall(s, 'jobs', 'set_terminated', 'pav_tour_guide');
@@ -463,6 +480,7 @@ function enterBackroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take your punishment', goto: ['tour_guide', 'spank'] },
     { label: 'Quit your job', handler: (st: GameState) => {
@@ -509,6 +527,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go change', goto: ['tour_guide', 'after_spank'] },
   ]);
@@ -541,6 +560,7 @@ function enterAfterSpank(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the office', goto: ['pav_park', 'start'] },
   ]);

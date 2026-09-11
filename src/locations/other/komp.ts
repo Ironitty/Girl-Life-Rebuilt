@@ -46,6 +46,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You don\'t have internet access here, and you don\'t even have mobile internet.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shut your computer down', goto: ['komp', 'fin'] },
     { label: 'Play Solitaire (0:20)', goto: ['komp', 'pasians'] },
@@ -145,6 +146,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       { label: 'Check social media on Assbook', goto: ['komp_assbook', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the browser', goto: ['komp', 'start'] },
   ]);
@@ -198,6 +200,7 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -362,6 +365,7 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -396,6 +400,7 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   }, goto: ['komp', 'porno'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -406,6 +411,7 @@ function enterPasians(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/komp.jpg');
   scene.text('You entertain yourself by playing a game of Solitaire.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play for another 20 minutes', goto: ['komp', 'pasians'] },
     { label: 'Return to desktop', goto: ['komp', 'start'] },
@@ -478,6 +484,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -526,6 +533,7 @@ function enterKabtv(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -596,6 +604,7 @@ function enterFoto(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -761,6 +770,7 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -773,6 +783,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Institute for Education Measurement</b></center>');
   scene.img('images/pc/items/accessories/computer/study.jpg');
   scene.text('You spend half an hour on the IEM website, reading news articles and educational blogs. You already feel a bit smarter.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -853,6 +864,7 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Current sale price is listed at: <<$func('money', 'string_price', func('homes_pr...
     scene.text(`Current sale price is listed at: ${qspFunc(s, 'money', 'string_price', qspFunc(s, 'homes_properties', 'get_property_sales_price', 'matryona_mansion'))}.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave this website', goto: ['komp', 'browse'] },
   ]);
@@ -871,6 +883,7 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are overdrawn by ' + $func('wrap', 'neg', '<<$func(''money'', ''format'', bankDebtLimit - karta...
     // TODO-QSP: 'You have a remaining credit limit of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', kar...
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Buy internet time [+$func(\'money\', \'get_cost_string\', 10, \'b...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'bank') === 0) {
@@ -899,6 +912,7 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -70,6 +70,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).university ?? 0)?.['entrance_information'] === 1  &&  ((s as any).university ?? 0)?.['prep_enrolled'] === 0  &&  ((s as any).university ?? 0)?.['student'] === 0  &&  ((s as any).month ?? 0) < 9) {
     qspCall(s, 'uni_admin', 'prep_pay');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -83,6 +84,7 @@ function enterEnrollment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/admin/enrollment1.jpg');
   scene.text('You enter the enrollment office, where there are several desks with women working behind them and a fair number of people around your age waiting in a side room. You inform them that you wish to enroll at the university and they take your name down before asking you to take a seat in the waiting room until your name is called. You walk into the other room and nod at the other prospective students before taking a seat.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
@@ -177,6 +179,7 @@ function enterEnrollmentSemester(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/admin/enrollment1.jpg');
   scene.text('You enter the enrollment office, where there are several desks with women working behind them and a fair number of people around your age waiting in a side room. You inform them that you wish to register for your next semester.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/admin/enrollment2.jpg');
@@ -340,6 +343,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t enroll in any more elective classes', goto: ['uni_admin', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t enroll in any more elective classes', goto: ['uni_admin', 'start'] },
   ]);
@@ -347,6 +351,7 @@ function enterSelectElectives(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPrepPay(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pay for the preparatory classes [+$func(\'money\', \'get_cost_string\', 15000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
@@ -377,6 +382,7 @@ function enterTakePrep(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Preparatory Class</b></center>');
   scene.img('images/locations/city/island/university/admin/prepcourse1.jpg');
   scene.text('You attend the preparatory class for an hour. You pay close attention to what is being said and take notes for the entrance examination later on.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave class', goto: ['uni_admin', 'start'] },
   ]);
@@ -402,6 +408,7 @@ function enterTakeTest(s: GameState, scene: SceneBuilder): void {
       scene.text('You completed the entrance exam, but failed to pass.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the exam room', goto: ['uni_admin', 'start'] },
   ]);
@@ -545,6 +552,7 @@ function enterCourses(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

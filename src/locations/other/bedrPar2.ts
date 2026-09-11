@@ -55,6 +55,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -67,6 +68,7 @@ function enterKamasutra(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img('images/locations/pavlovsk/resident/apartment/home/book.jpg');
   scene.text('The cover says "Kama Sutra"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -87,6 +89,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).family_trip ?? 0) === 1) {
     // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the book', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -98,6 +101,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
 function enterParentsWardrobe(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/wardrobe.jpg');
   scene.text('An old looking wardrobe, probably from the Soviet times.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave ', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -129,6 +133,7 @@ function enterWardrobeSearch(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $findmomtoy[1] = 'Rummaging through your mother''s lingerie, you find a small <a href="exec: gt ''be...
     // TODO-QSP: $findmomtoy[2] = 'You find your mother''s <a href="exec: gt ''bedrPar2'',''momtoy_play''">toy</a>.'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the cabinet', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -160,6 +165,7 @@ function enterMomtoyPlay(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: $OpenInnerThought + 'Maybe I should put the dildo back? <<$npc_nickname[''A29'']>> will probably not...
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put it back', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -176,6 +182,7 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
   scene.text('You crack the door open just a little and see your mother and Vladimir near their bed.');
   scene.text('"Stop! The kids are here," your mother says as Vlad starts running his hands over her body.');
   scene.text('He doesn\'t seem to care about what she says since he doesn\'t stop. "Come on, they won\'t hear us and you know you want it."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

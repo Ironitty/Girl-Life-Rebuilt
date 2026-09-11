@@ -51,6 +51,7 @@ function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +91,7 @@ function enterSisterSleep_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -128,6 +130,7 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her', goto: ['sistersleep', 'sister_sleep_2_kiss'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Act innocent', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -199,6 +202,7 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les3.jpg');
@@ -241,6 +245,7 @@ function enterSisterSleep_3(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les3.jpg');
@@ -348,6 +353,7 @@ function enterSisterSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -357,6 +363,7 @@ function enterSisterLesbian(s: GameState, scene: SceneBuilder): void {
   scene.text('The two of you start kissing and fondling each other as you slowly undress each other. Anya lies back on the bed as you do and your hands roam each other\'s bodies as you undress each other and passionately keep kissing.');
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spread her legs ', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les2.jpg');
@@ -395,6 +402,7 @@ function enterSisterLesbianCuni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian', 'incest');
   qspCall(s, 'arousal', 'vaginal_finger_give', (-5), 'incest', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have her return the favor', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les6.jpg');
@@ -442,6 +450,7 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A33', 'dislike');
@@ -521,6 +530,7 @@ function enterSisterStraponVaginal(s: GameState, scene: SceneBuilder): void {
   scene.text('As it starts feeling better, you start riding the dildo faster and faster. Just as it really starts to feel good, Anya slaps your ass. "Get up and face the wall. I want to be in control now."');
   qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap5.jpg');
@@ -559,6 +569,7 @@ function enterSisterStraponAnal(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pleasure yourself', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap7.jpg');
@@ -592,6 +603,7 @@ function enterDrunkAfterParty(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('<i>I wonder if that\'s Roma\'s cum or someone else\'s…</i>');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['bedrPar', ''] },
   ]);

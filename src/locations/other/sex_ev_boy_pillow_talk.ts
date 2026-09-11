@@ -16,6 +16,7 @@ function enterChecker(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev ?? {})['boy_pillow_talk'] = (((s as any).sex_ev ?? {})['boy_pillow_talk'] ?? 0) + (1);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -100,6 +101,7 @@ function enterBoyTalk(s: GameState, scene: SceneBuilder): void {
       ((s as any).sex_ev ?? {})['boy_pillow_talk'] = 0;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +109,7 @@ function enterTemplate(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['template'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'talk_time_add');
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,6 +120,7 @@ function enterDontSwallowTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   // TODO-QSP: dynamic text: "So you don't swallow?" <<$npcdesc>> asks.
   scene.text(`"So you don't swallow?" ${((s as any).npcdesc ?? 0)} asks.`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -157,6 +161,7 @@ function enterLikeCumTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,6 +188,7 @@ function enterLikeCumTalk2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Getting used to it', handler: (st: GameState) => {
     scene.text('"I\'m... getting used to it," you admit shyly. "It can be a little thick though."');
@@ -215,6 +221,7 @@ function enterLikeCumTalk2(s: GameState, scene: SceneBuilder): void {
 
 function enterDontHaveToSwallowTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('"You know you don\'t have to swallow if you don\'t like it," he says, looking at you a little concerned.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Really?', handler: (st: GameState) => {
     qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 2);
@@ -259,6 +266,7 @@ function enterBoyDrinkOffer(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} gets up for a moment to pull a bottle of clear liquid off a nearby table and takes a swig.`);
     scene.text('"You want a drink?" he asks, holding the bottle out towards you. The scent of his breath leaves no doubt that it contains vodka.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Water?', handler: (st: GameState) => {
     qspCall(s, 'beverage', 'water_stats');
@@ -380,6 +388,7 @@ function enterBoyBrokenCondom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -419,6 +428,7 @@ function enterBoyTakePillNow(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -511,12 +521,14 @@ function enterBoyMorningPillTalk1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBoyAccidentalCreampieTalk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/after/pillow_talk1.jpg');
   qspCall(s, 'sex_ev_boy_pillow_talk', 'boy_accidental_creampie_talk2');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -621,6 +633,7 @@ function enterBoyAccidentalCreampieTalk2(s: GameState, scene: SceneBuilder): voi
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -672,12 +685,14 @@ function enterBoyLikeHairTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBoyCondomRule(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['condom'] !== 1) {
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -738,6 +753,7 @@ function enterBoyTakeShower(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -749,6 +765,7 @@ function enterBoyHatesCondomsStartDesc(s: GameState, scene: SceneBuilder): void 
     // TODO-QSP: dynamic text: "Ugh, condoms are the worst," <<$npcdesc>> sighs. "I can barely feel anything."
     scene.text(`"Ugh, condoms are the worst," ${((s as any).npcdesc ?? 0)} sighs. "I can barely feel anything."`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -756,6 +773,7 @@ function enterBoyHatesCondoms(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['wish_no_condoms_talk'] = 1;
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 3);
   qspCall(s, 'sex_ev_boy_pillow_talk', 'boy_hates_condoms_start_desc');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Disagree', handler: (st: GameState) => {
     scene.actions([
@@ -939,6 +957,7 @@ function enterAgeAskTalk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_boy_pillow_talk', 'age_ask_respond'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell him', handler: (st: GameState) => {
     ((s as any).npc_thinkage ?? {})[String((s as any).npcID ?? 0)] = ((s as any).age ?? 0);
@@ -994,6 +1013,7 @@ function enterAgeAskRespond(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['sex_ev_pillow_talk', 'topic_route'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1003,6 +1023,7 @@ function enterPubesSoftTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1');
   // TODO-QSP: dynamic text: "Your bush is so soft," <<$npcdesc>> murmurs, running his fingers through the sm...
   scene.text(`"Your bush is so soft," ${((s as any).npcdesc ?? 0)} murmurs, running his fingers through the smooth fur of your mound.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get embarrassed', handler: (st: GameState) => {
     scene.text('"What are you saying?!" you squeak, flushing hot with embarrassment as he continues to gently rub your pubic area.');
@@ -1039,6 +1060,7 @@ function enterBodycountAsk(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sex_ev_pillow_talk', 'topic_route'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1050,6 +1072,7 @@ function enterBodycountAnswers(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Answer honestly', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_boy_pillow_talk', 'bodycount_honest'
@@ -1118,6 +1141,7 @@ function enterBodycountHonest(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1170,6 +1194,7 @@ function enterBodycountRecent(s: GameState, scene: SceneBuilder): void {
     scene.text('WIP options');
     scene.actions([{ label: 'Continue', goto: ['sex_ev_boy_pillow_talk', 'bodycount_answers'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1200,6 +1225,7 @@ function enterBodycountSlut(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).npc_bodycount_know ?? {})[String((s as any).npcID ?? 0)] = ((s as any).stat ?? 0)?.['men_fucked'];
   scene.actions([{ label: 'Continue', goto: ['sex_ev_boy_pillow_talk', 'bodycount_slut_responses'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

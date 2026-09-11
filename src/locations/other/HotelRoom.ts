@@ -56,6 +56,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'wardrobe', 'default_clothing_options');
     qspCall(s, 'blackmailer', 'open_package_act');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel lobby', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -119,6 +120,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel lobby', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -182,6 +184,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel lobby', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -242,6 +245,7 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower (0:10)', goto: ['therapist_home', 'shower'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put on your clothes and go to the hotel lobby', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
@@ -315,6 +319,7 @@ function enterShower1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private', 'HotelRoom', ((((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 1) ? ('') : ('bath')));
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -345,6 +350,7 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch TV (1:00)', goto: ['HotelRoom', 'watch_tv'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -373,6 +379,7 @@ function enterWatchTv(s: GameState, scene: SceneBuilder): void {
       { label: 'Watch TV (1:00)', goto: ['HotelRoom', 'watch_tv'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

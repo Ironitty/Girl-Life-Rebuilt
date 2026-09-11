@@ -53,6 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bedroom', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

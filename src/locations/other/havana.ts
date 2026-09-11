@@ -116,6 +116,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=  '</table></center>'
   // TODO-QSP: dynamic text: <<$temp_table>>
   scene.text(`${((s as any).temp_table ?? 0)}`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -277,6 +278,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'din_van', 'tampon');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit the locker room', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PSwim ?? 0))) {
@@ -300,6 +302,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
 function enterFitgirl(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/tanya/gym/idle0.jpg');
   scene.text('The girl notices you and smiles again before heading into the shower.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn away', goto: ['havana', 'dressing_room'] },
     { label: 'Follow her', handler: (st: GameState) => {
@@ -399,6 +402,7 @@ function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m Tanya by the way. I live nearby with my parents. You should come over some time so we can… continue where we left off… I\'m usually home in the late afternoon," she winks before leaving the room.');
   // TODO-QSP: dynamic text: <i>You can now visit Tanya at her parents home in the Downtown area once a day a...
   scene.text('<i>You can now visit Tanya at her parents home in the Downtown area once a day after \'+func(\'time\', \'get_time_string\', 16, 0)+\'.</i>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['havana', 'dressing_room'] },
   ]);
@@ -648,11 +652,13 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'havana', 'exercise_end');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).result = Math.floor(Math.random() * 20) + 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your workout', handler: (st: GameState) => {
     if ((!((s as any).result ?? 0))) {
@@ -945,6 +951,7 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['havana', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

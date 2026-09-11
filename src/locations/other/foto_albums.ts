@@ -36,6 +36,7 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   if (((s as any).model_i ?? 0) < 11) {
     // TODO-QSP: jump 'model_loop'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['foto', 'studio'] },
   ]);
@@ -98,12 +99,14 @@ function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSveta(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the first album and browse through some of the pictures placed inside.');
   scene.text('"These are pictures of me!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: <<$model[\'firstname\']>> <<mid($model[\'lastname\'],1,1)>>', handler: (st: GameState) => {
@@ -199,6 +202,7 @@ function enterSveta(s: GameState, scene: SceneBuilder): void {
 function enterAnastasia(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the first album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Anastasia P', handler: (st: GameState) => {
@@ -231,6 +235,7 @@ function enterAnastasia(s: GameState, scene: SceneBuilder): void {
 function enterKatherine(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the second album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Katherine A', handler: (st: GameState) => {
@@ -264,6 +269,7 @@ function enterKatherine(s: GameState, scene: SceneBuilder): void {
 function enterEmily(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the third album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Emily R', handler: (st: GameState) => {
@@ -296,6 +302,7 @@ function enterEmily(s: GameState, scene: SceneBuilder): void {
 function enterJeff(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the fourth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Jeff M', handler: (st: GameState) => {
@@ -328,6 +335,7 @@ function enterJeff(s: GameState, scene: SceneBuilder): void {
 function enterMiranda(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the fifth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Miranda K', handler: (st: GameState) => {
@@ -360,6 +368,7 @@ function enterMiranda(s: GameState, scene: SceneBuilder): void {
 function enterLily(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the sixth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Lily I', handler: (st: GameState) => {
@@ -392,6 +401,7 @@ function enterLily(s: GameState, scene: SceneBuilder): void {
 function enterMila(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the seventh album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Mila A', handler: (st: GameState) => {
@@ -424,6 +434,7 @@ function enterMila(s: GameState, scene: SceneBuilder): void {
 function enterMari(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the eighth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Mari E', handler: (st: GameState) => {
@@ -467,6 +478,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       scene.text('They seem to be single pictures taken from past photo shoots.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Anushka K', handler: (st: GameState) => {
@@ -499,6 +511,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
 function enterOlga(s: GameState, scene: SceneBuilder): void {
   scene.text('You open up the tenth album and browse through some of the pictures placed inside.');
   scene.text('They seem to be single pictures taken from past photo shoots.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['foto_albums', 'model_portraits'] },
     { label: 'Presenting: Olga K', handler: (st: GameState) => {

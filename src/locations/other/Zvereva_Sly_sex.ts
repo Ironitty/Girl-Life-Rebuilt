@@ -9,6 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlyRandomSexActs(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A248');
@@ -98,6 +99,7 @@ function enterSlyVibe(s: GameState, scene: SceneBuilder): void {
     (s as any).vibratorOUT = 1;
     scene.text('You spread your legs and take the vibrator out of your pussy, letting out a slight moan as you do so. You feel somewhat empty now.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +115,7 @@ function enterSlyPlug(s: GameState, scene: SceneBuilder): void {
       scene.text('Sly pulls the plug out of your asshole, making you give an involuntary moan. You feel empty now.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -149,6 +152,7 @@ function enterChristinaPeek(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,10 +167,12 @@ function enterCumDecide(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['Zvereva_Sly_sex', 'swallow_cum_1'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexEnd(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Clean up', handler: (st: GameState) => {
     ((s as any).slyQW ?? {})['sex_act'] = 0;
@@ -207,6 +213,7 @@ function enterHj_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -239,6 +246,7 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -271,6 +279,7 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -301,6 +310,7 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -339,6 +349,7 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -367,6 +378,7 @@ function enterAnalDoggy_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -392,6 +404,7 @@ function enterAnalStomach_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -418,6 +431,7 @@ function enterAnalPiledriver_1(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -428,6 +442,7 @@ function enterAnalDoggyCum_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'anus', 'A248', 1);
   qspCall(s, 'stat', '');
   qspCall(s, 'Zvereva_Sly_sex', 'sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -438,6 +453,7 @@ function enterVagDoggyCum_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', '', '', 'A248', 1);
   qspCall(s, 'stat', '');
   qspCall(s, 'Zvereva_Sly_sex', 'sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -456,6 +472,7 @@ function enterSwallowCum_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'mouth_swallow', 'A248', 1);
   qspCall(s, 'stat', '');
   qspCall(s, 'Zvereva_Sly_sex', 'sex_end');
+  // TODO-QSP: end
   scene.build();
 }
 

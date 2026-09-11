@@ -17,6 +17,7 @@ function enterProfessors(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A270');
   qspCall(s, 'journal_NPC_information', 'A271');
   qspCall(s, 'journal_uni', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -55,6 +56,7 @@ function enterPavlovskUniversityStudents(s: GameState, scene: SceneBuilder): voi
   qspCall(s, 'journal_NPC_information', 'A7', 'uni');
   qspCall(s, 'journal_NPC_information', 'A159', 'uni');
   qspCall(s, 'journal_uni', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -78,6 +80,7 @@ function enterUniversityStudents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A267', 'uni');
   qspCall(s, 'journal_NPC_information', 'A268', 'uni');
   qspCall(s, 'journal_uni', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -122,6 +125,7 @@ function enterFormerPavlovskStudents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A5', 'uni');
   }
   qspCall(s, 'journal_uni', 'leaveactions');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
   ]);
@@ -129,6 +133,7 @@ function enterFormerPavlovskStudents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;

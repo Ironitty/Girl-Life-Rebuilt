@@ -1,3 +1,5 @@
+import { qspUntranslated } from '../_shared/qspUntranslated';
+
 import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -5,72 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + 10;
-  scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
-  if (((s as any).sucpcinfo ?? 0) >= 4  &&  (!((s as any).locArgs?.[1] ?? 0))) {
-    scene.text('"You are a Succubus. Now, the Succubae are not demons, that impression is a byproduct of the masking spell; they are instead a type of Fae, like that Fairy you told me about, and they are native to this plane of existence. As Fae, Succubae have nothing to do with "souls", but they do feed on the energy released during sex. The most efficient means of getting this energy is semen taken internally, but a lot is gained by lesbian orgasm if the Succubus is in sexual contact with the woman as she cums."');
-    if (((s as any).tatisucsex ?? 0) !== 0) {
-      scene.text('She then gives you a coy smile and says, "I can tell you that sex with a willing Succubus is an <i>amazing experience</i>."');
-    } else {
-      scene.text('She then gives you a searching look as she says, "I\'m told that sex with a willing Succubus is an amazing experience."');
-    }
-    scene.text('"Succubae only reproduce by converting normal humans, and by "normal", I mean non-mages. Whatever that Fairy did, it cannot be the normal Succubus conversion, but I don\'t know <i>what</i> the normal method is.');
-    scene.text('"They can and should eat normal food as they use more energy just staying alive than a human, but they need sexual energy to survive as well, so you can\'t just eat more and not have sex.');
-    if (((s as any).sucskill ?? 0) < 1) {
-      scene.text('"And I will be able to teach you how to tell what your energy levels are."');
-    }
-  }
-  if (((s as any).sucpcinfo ?? 0) >= 5  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 1)) {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    scene.text('"Succubae can exceed normal human limitations in a way similar to the way Gustav does, but unlike Gustav, since they are Fae, the masking spell ignores them.');
-    scene.text('"They automatically store sexual energy in excess of what they need to survive internally, and when this energy builds up enough, let\'s call that point 100 units, their bodies will automatically use this energy to improve themselves; increasing their physical and mental abilities, keeping themselves young looking, and providing a reserve in case they can\'t find food.');
-    scene.text('"While lower level Succubae lose any energy not used for improvements, higher level Succubae can store this unused energy in excess of that 100 unit mark.');
-    if (((s as any).sucskill ?? 0) >= 2) {
-      scene.text('"As you know, they can learn to store energy before their body uses it as well as increase their storage capacity, as long as they have some reserves."');
-    } else {
-      scene.text('"And," she adds with a grin, "I can teach you to store energy before your body uses it and to increase your storage capacity, as long as you have some reserves! Just make sure your reserves are full before we try to teach you."');
-    }
-  }
-  if (((s as any).sucpcinfo ?? 0) >= 6  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 2)) {
-    if (((s as any).sucskill ?? 0) >= 3) {
-      scene.text('"They also learned, as you have, to be more efficient with the sexual energy, increasing the amount of energy they have available for survival and storage."');
-    } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      // TODO-QSP: dynamic text: "They have found, after what she described as a "multiday sex bender", that a Su...
-      scene.text(`"They have found, after what she described as a "multiday sex bender", that a Succubus can learn to be more efficient with the energy, increasing the amount of energy they have available for survival and storage. She then worked out how they did it and passed that to me. In order for this training to not take several days of non-stop sex, I'll need to buy several components worth ${qspFunc(s, 'money', 'string_price', 5000)} and 7 days to build up my own power reserves, and you will need to have at least 3 days of reserve and at least 100 units of stored energy.`);
-      scene.text('"Even with these preparations, the training is still going to take 8 to 10 hours of… Non… Stop… Sex…"');
-      if (((s as any).tatisucsex ?? 0) <= 0) {
-        scene.text('She says those last three words in a tone that is equal parts anticipation and trepidation, and the look in her eyes mirror this.');
-      } else {
-        scene.text('She says those last three words in a tone that is pure seduction with a look that is equal parts anticipation and lust.');
-      }
-    }
-  }
-  if (((s as any).sucpcinfo ?? 0) >= 7  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 3)) {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    scene.text('"Succubae are somewhat territorial when hungry, but when sated, the impulse is weak enough to suppress easily. They seem to have established neutral territories in the flesh-pots of the world, like Amsterdam, Morocco, and Las Vegas. Places like that are not claimed by one Succubus, instead groups of them have made their homes there.');
-    scene.text('"A Succubae\'s body can learn to expend a bit of power to accommodate nearly any size of… implement." She gives you a smug grin with that.');
-    if (((s as any).sucskill ?? 0) < 4) {
-      scene.text('And I can teach you, just go get the biggest dildo they sell at that shop down the street, then bring it and 100 units of stored energy back here.');
-    }
-  }
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
-    scene.text('"They likely have other abilities and weaknesses, but the few Succubae I have encountered were not that willing to part with information, though I have put out requests for more information from my contacts.');
-    scene.text('"As far as I know, you are the only Succubus in the region."');
-    scene.actions([
-      { label: 'Ask if she knows more', handler: (st: GameState) => {
-    scene.text('You ask her if she knows anything else.');
-    scene.text('She replies, "No, that\'s all I know."');
-    scene.actions([
-      { label: 'Continue', goto: ['tatiana_lab', 'Tatiana'] },
-    ]);
-  } },
-    ]);
-  }
-  qspCall(s, 'stat', '');
-  scene.actions([
-    { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
-  ]);
   scene.build();
 }
 
@@ -79,6 +15,7 @@ function enterActive(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,6 +73,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -191,6 +129,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -349,6 +288,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +302,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/body/succubusself.jpg');
   scene.text('Instinctively, you are barely aware of what causes your power to reach out and take hold of your would-be rapist\'s mind.');
   scene.text('You see fear fill his eyes even as lust fills his loins, and you feel his mind fighting your hold.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).scrand = Math.floor(Math.random() * 4) + 0;
@@ -447,6 +388,7 @@ function enterPavResfeed(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/dk_night.jpg');
   scene.text('The disco is in full swing, which means a lot of adolescents going to and from the community center. You find a spot down the street from the community center to lie in wait for your prey.');
   scene.text('You hide for a few minutes, watching groups of students pass you by as you wait for a lone victim to pounce on. You lie in wait for almost thirty minutes, thinking about the meal ahead, your hand finding its way between your legs a few times.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/pc/body/succubusself.jpg');
@@ -527,8 +469,639 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
   (s as any).sucpcinfo = 4;
   (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
   return;
+  // TODO-QSP: end
+  (s as any).minut = ((s as any).minut ?? 0) + 10;
+  scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
+  if (((s as any).sucpcinfo ?? 0) >= 4  &&  (!((s as any).locArgs?.[1] ?? 0))) {
+    scene.text('"You are a Succubus. Now, the Succubae are not demons, that impression is a byproduct of the masking spell; they are instead a type of Fae, like that Fairy you told me about, and they are native to this plane of existence. As Fae, Succubae have nothing to do with "souls", but they do feed on the energy released during sex. The most efficient means of getting this energy is semen taken internally, but a lot is gained by lesbian orgasm if the Succubus is in sexual contact with the woman as she cums."');
+    if (((s as any).tatisucsex ?? 0) !== 0) {
+      scene.text('She then gives you a coy smile and says, "I can tell you that sex with a willing Succubus is an <i>amazing experience</i>."');
+    } else {
+      scene.text('She then gives you a searching look as she says, "I\'m told that sex with a willing Succubus is an amazing experience."');
+    }
+    scene.text('"Succubae only reproduce by converting normal humans, and by "normal", I mean non-mages. Whatever that Fairy did, it cannot be the normal Succubus conversion, but I don\'t know <i>what</i> the normal method is.');
+    scene.text('"They can and should eat normal food as they use more energy just staying alive than a human, but they need sexual energy to survive as well, so you can\'t just eat more and not have sex.');
+    if (((s as any).sucskill ?? 0) < 1) {
+      scene.text('"And I will be able to teach you how to tell what your energy levels are."');
+    }
+  }
+  if (((s as any).sucpcinfo ?? 0) >= 5  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 1)) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.text('"Succubae can exceed normal human limitations in a way similar to the way Gustav does, but unlike Gustav, since they are Fae, the masking spell ignores them.');
+    scene.text('"They automatically store sexual energy in excess of what they need to survive internally, and when this energy builds up enough, let\'s call that point 100 units, their bodies will automatically use this energy to improve themselves; increasing their physical and mental abilities, keeping themselves young looking, and providing a reserve in case they can\'t find food.');
+    scene.text('"While lower level Succubae lose any energy not used for improvements, higher level Succubae can store this unused energy in excess of that 100 unit mark.');
+    if (((s as any).sucskill ?? 0) >= 2) {
+      scene.text('"As you know, they can learn to store energy before their body uses it as well as increase their storage capacity, as long as they have some reserves."');
+    } else {
+      scene.text('"And," she adds with a grin, "I can teach you to store energy before your body uses it and to increase your storage capacity, as long as you have some reserves! Just make sure your reserves are full before we try to teach you."');
+    }
+  }
+  if (((s as any).sucpcinfo ?? 0) >= 6  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 2)) {
+    if (((s as any).sucskill ?? 0) >= 3) {
+      scene.text('"They also learned, as you have, to be more efficient with the sexual energy, increasing the amount of energy they have available for survival and storage."');
+    } else {
+      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      // TODO-QSP: dynamic text: "They have found, after what she described as a "multiday sex bender", that a Su...
+      scene.text(`"They have found, after what she described as a "multiday sex bender", that a Succubus can learn to be more efficient with the energy, increasing the amount of energy they have available for survival and storage. She then worked out how they did it and passed that to me. In order for this training to not take several days of non-stop sex, I'll need to buy several components worth ${qspFunc(s, 'money', 'string_price', 5000)} and 7 days to build up my own power reserves, and you will need to have at least 3 days of reserve and at least 100 units of stored energy.`);
+      scene.text('"Even with these preparations, the training is still going to take 8 to 10 hours of… Non… Stop… Sex…"');
+      if (((s as any).tatisucsex ?? 0) <= 0) {
+        scene.text('She says those last three words in a tone that is equal parts anticipation and trepidation, and the look in her eyes mirror this.');
+      } else {
+        scene.text('She says those last three words in a tone that is pure seduction with a look that is equal parts anticipation and lust.');
+      }
+    }
+  }
+  if (((s as any).sucpcinfo ?? 0) >= 7  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 3)) {
+    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    scene.text('"Succubae are somewhat territorial when hungry, but when sated, the impulse is weak enough to suppress easily. They seem to have established neutral territories in the flesh-pots of the world, like Amsterdam, Morocco, and Las Vegas. Places like that are not claimed by one Succubus, instead groups of them have made their homes there.');
+    scene.text('"A Succubae\'s body can learn to expend a bit of power to accommodate nearly any size of… implement." She gives you a smug grin with that.');
+    if (((s as any).sucskill ?? 0) < 4) {
+      scene.text('And I can teach you, just go get the biggest dildo they sell at that shop down the street, then bring it and 100 units of stored energy back here.');
+    }
+  }
+  if ((!((s as any).locArgs?.[1] ?? 0))) {
+    scene.text('"They likely have other abilities and weaknesses, but the few Succubae I have encountered were not that willing to part with information, though I have put out requests for more information from my contacts.');
+    scene.text('"As far as I know, you are the only Succubus in the region."');
+    scene.actions([
+      { label: 'Ask if she knows more', handler: (st: GameState) => {
+    scene.text('You ask her if she knows anything else.');
+    scene.text('She replies, "No, that\'s all I know."');
+    scene.actions([
+      { label: 'Continue', goto: ['tatiana_lab', 'Tatiana'] },
+    ]);
+  } },
+    ]);
+  }
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed', goto: ['succubus', 'tatianaask'] },
+    { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
+  ]);
+  scene.build();
+}
+
+function enterTatianasex(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).suceatinit ?? 0))) {
+    scene.actions([{ label: 'Continue', goto: ['succubus', 'init'] }]);
+  }
+  (s as any).suceatinit = 0;
+  qspCall(s, 'stat', '');
+  scene.img('images/pc/body/succubusself.jpg');
+  if (((s as any).sucpcinfo ?? 0) < 4) {
+    (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) - (2);
+    // TODO-QSP: dynamic text: Your power reaches through the connection to Tatiana, enflaming her lust even as...
+    scene.text(`Your power reaches through the connection to Tatiana, enflaming her lust even as ${((s as any).sucself1 ?? 0)} grabs ahold of her power.`);
+    // TODO-QSP: dynamic text: At this point, you gain some control back and cause her power to cycle through y...
+    scene.text(`At this point, you gain some control back and cause her power to cycle through you, as ${((s as any).sucself1 ?? 0)} cycles through her making her passion and yours move together.`);
+    scene.text('Tatiana quickly strips down and moves between your legs…');
+  } else {
+    // TODO-QSP: dynamic text: You take control of <<$sucself1>> and, as you softly kiss her, <<$sucself1>> gen...
+    scene.text(`You take control of ${((s as any).sucself1 ?? 0)} and, as you softly kiss her, ${((s as any).sucself1 ?? 0)} gently flows into Tatiana even as you coax her power to flow into you.`);
+    // TODO-QSP: dynamic text: With her power and <<$sucself1>> fully intertwined, you set up a gently flowing ...
+    scene.text(`With her power and ${((s as any).sucself1 ?? 0)} fully intertwined, you set up a gently flowing cycle, making her passion and yours move together.`);
+    scene.text('Tatiana then kisses her way down your body, taking up position between your legs.');
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/city/tatiana/sex/karinsucsex1.jpg');
+    scene.text('As she licks you out, she feels the same things you do until you both have your first orgasm.');
+    scene.text('You then move her around into a "69" position.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/characters/city/tatiana/sex/karinsucsex2.jpg');
+    scene.text('You pleasure each other for some time, orgasming together, and then at some point you flip over.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    if (((s as any).sucpcinfo ?? 0) >= 6  &&  ((s as any).sucskill ?? 0) < 3  &&  ((s as any).sctrainprep ?? 0) === 1) {
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'training3sex'] }]);
+    }
+    scene.img('images/characters/city/tatiana/sex/karinsucsex3.jpg');
+    scene.text('You continue this way for some time, flipping back and forth, having multiple simultaneous orgasms until you sense her body is tiring even though her power level is a bit higher than when you two started.');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    qspCall(s, 'npcStat', 'A176');
+    (s as any).scfeed = 2 + ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
+    if ((!((s as any).tatianaSex ?? 0))) {
+      (s as any).tatianaSex = 1;
+      (s as any).girl = ((s as any).girl ?? 0) + (1);
+    }
+    qspCall(s, 'arousal', 'cuni', 20, 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    (s as any).pcs_horny = 0;
+    (s as any).orgasm = ((s as any).orgasm ?? 0) + (((s as any).scfeed ?? 0));
+    (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).scfeed ?? 0));
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (25 * ((s as any).scfeed ?? 0));
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
+    (s as any).sucabslez = 1;
+    (s as any).minut = ((s as any).minut ?? 0) + (20 + (20 * ((s as any).scfeed ?? 0)) / ((s as any).succublvl ?? 0));
+    (s as any).tatisucsexday = ((s as any).daystart ?? 0) + 1 + ((s as any).scfeed ?? 0) / 3;
+    if (((s as any).sucpcinfo ?? 0) < 4) {
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'tatianaask'] }]);
+    }
+    (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
+    if ((!((s as any).tatisucsex ?? 0))) {
+      (s as any).tatisucsex = 1;
+    }
+    qspCall(s, 'stat', '');
+    scene.text('As you both put yourselves back together, Tatiana says, "That was intense, thank you!"');
+    scene.actions([
+      { label: 'Continue', goto: ['tatiana_lab', 'Tatiana'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  scene.img('images/characters/city/tatiana/sex/karinsucsex3.jpg');
+  scene.text('You continue this way for hours, changing position occasionally, and the whole time you both are causing the massive amount of energy between you to cycle faster and faster until it almost feels as if you and Tatiana are sharing one body that is having a continuous orgasm.');
+  scene.text('You lose track of time and are only barely able to perform the tasks Tatiana said you needed to do.');
+  scene.text('Eventually, you sense that the excess energy is depleted, your energy handling channels are significantly improved, and Tatiana, while exhausted, has had a major boost to her own power.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Finish', handler: (st: GameState) => {
+    (s as any).sucskill = 3;
+    qspCall(s, 'npcStat', 'A176');
+    if ((!((s as any).tatianaSex ?? 0))) {
+      (s as any).tatianaSex = 1;
+    }
+    // TODO-QSP: gs 'arousal', 'cuni', 15 * rand(1, 8), 'dom', 'lesbian'
+    qspCall(s, 'arousal', 'cuni_give', (-15), 'dom', 'lesbian');
+    qspCall(s, 'arousal', 'end');
+    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
+    (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
+    if ((!((s as any).tatisucsex ?? 0))) {
+      (s as any).tatisucsex = 1;
+    }
+    (s as any).pcs_willpwr = ((s as any).willpowermax ?? 0);
+    (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (100);
+    (s as any).succhungry = ((s as any).succhungry ?? 0) + (1);
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (10);
+    (s as any).tatisucsexday = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    (s as any).pcs_hairbsh = 0;
+    if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
+      (s as any).pcs_makeup = 0;
+    }
+    (s as any).pcs_energy = 100;
+    (s as any).pcs_sleep = 40;
+    qspCall(s, 'stat', '');
+    scene.text('As you both put yourselves back together, Tatiana says, "Wow… just wow! That was… indescribable! I have never felt <i>anything</i> like that!" She gives you a gentle kiss before adding, "Thank You!"');
+    scene.text('She then lies down on the couch and immediately drops off to sleep. You toss the blanket over her and prepare to leave.');
+    scene.actions([
+      { label: 'Leave', goto: ['city_center', ''] },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterKompresearch(s: GameState, scene: SceneBuilder): void {
+  (s as any).minut = ((s as any).minut ?? 0) + (10 * (Math.floor(Math.random() * 4) + 3));
+  (s as any).sucpcinfo = 1;
+  qspCall(s, 'stat', '');
+  scene.img('images/pc/items/accessories/computer/succresrch.jpg');
+  scene.text('Other than a host of internet stories, the thing you find that matches closest to what you have been feeling is a succubus, a demonic creature that destroys or corrupts men\'s souls through sex.');
+  scene.text('However, you don\'t feel like you have been corrupting anything, and the match isn\'t that great…');
+  scene.text('Maybe you should go ask Tatiana…');
+  // TODO-QSP: end
+  if (((s as any).args ?? 0)[0] === 'sucwalkinginit') {
+    if (((s as any).loc ?? 0) === 'bedr'  ||  ((s as any).loc ?? 0) === 'nichBedroomServant'  ||  ((s as any).loc ?? 0) === 'dom_gor'  ||  ((s as any).loc ?? 0) === 'uni_dorm'  ||  ((s as any).loc ?? 0) === 'city_house_res_bedr'  ||  (((s as any).loc ?? 0) === 'HotelRoom'  &&  ((s as any).region ?? 0) === 'city')) {
+      (s as any).sucslpzone = 1;
+    } else {
+      if (((s as any).loc ?? 0) === 'bedrPar'  ||  (((s as any).loc ?? 0) === 'HotelRoom'  &&  ((s as any).region ?? 0) === 'pav')) {
+        (s as any).sucslpzone = 2;
+      } else {
+        if (((s as any).loc_arg ?? 0) === 'ybedroom') {
+          (s as any).sucslpzone = 3;
+        } else {
+          if (((s as any).loc ?? 0) === 'bedr2x') {
+            (s as any).sucslpzone = 4;
+          } else {
+            if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp') {
+              (s as any).sucslpzone = 5;
+            } else {
+              return;
+            }
+          }
+        }
+      }
+    }
+    if (((s as any).succublvl ?? 0) <= 2) {
+      if (((s as any).pantyworntype ?? 0) !== 'none') {
+        qspCall(s, 'underwear', 'remove');
+      }
+    } else {
+      if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 1) {
+        qspCall(s, 'underwear', 'wear');
+      } else {
+        if (((s as any).sleepVars ?? 0)?.['bedPanty'] === 2) {
+          qspCall(s, 'underwear', 'remove');
+        }
+      }
+    }
+    if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).sleepVars ?? 0)?.['bedAnal'] === 1) {
+      (s as any).analPlugIn = 0;
+      (s as any).analPlugOut = 0;
+    }
+    if (((s as any).vibratorIN ?? 0) === 1  &&  ((s as any).sleepVars ?? 0)?.['bedVibrator'] === 1) {
+      (s as any).vibratorIN = 0;
+    }
+    if (((s as any).succublvl ?? 0) === 1  &&  ((s as any).lastwornclothingtype ?? 0) !== 'nude') {
+      qspCall(s, 'outfit', 'wear_last_worn');
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+    }
+    // TODO-QSP: $succlocat[0] = 'eroto_dress'
+    // TODO-QSP: $succlocat[1] = 'eroto_outfits'
+    // TODO-QSP: $succlocat[2] = 'eroto_strip'
+    // TODO-QSP: $succlocat[3] = 'scandalicious_dress'
+    // TODO-QSP: $succlocat[4] = 'scandalicious_outfits'
+    // TODO-QSP: $succlocat[5] = 'salacious_outfit'
+    // TODO-QSP: $succlocat[6] = 'salacious_dress'
+    // TODO-QSP: $succlocat[7] = 'fashionista_dress'
+    // TODO-QSP: $succlocat[8] = 'fashionista_oufits'
+    // TODO-QSP: $succlocat[9] = 'cats_dress'
+    // TODO-QSP: $succlocat[10] = 'cats_outfits'
+    // TODO-QSP: $succlocat[11] = 'coco_dress'
+    // TODO-QSP: $succlocat[12] = 'coco_outfits'
+    // TODO-QSP: $succlocat[13] = 'flamingos_dress'
+    // TODO-QSP: $succlocat[14] = 'flamingos_outfits'
+    // TODO-QSP: $succlocat[15] = 'market_outfits'
+    // TODO-QSP: $succlocat[16] = 'gm_outfits'
+    // TODO-QSP: $succlocat[17] = 'gm_dress'
+    // TODO-QSP: $succlocat[18] = 'gm_office'
+    // TODO-QSP: $succlocat[19] = 'gm_school'
+    // TODO-QSP: $succlocat[20] = 'dolls_outfits'
+    // TODO-QSP: $succlocat[21] = 'dolls_dress'
+    // TODO-QSP: $succlocat[22] = 'bomba_outfits'
+    // TODO-QSP: $succlocat[23] = 'bomba_dress'
+    // TODO-QSP: $succlocat[24] = 'danilovich_outfits'
+    // TODO-QSP: $succlocat[25] = 'nerdvana_cosplay'
+    // TODO-QSP: $succlocat[26] = 'nerdvana_outfits'
+    // TODO-QSP: $succlocat[27] = 'moncheri_gown'
+    // TODO-QSP: $succlocat[28] = 'moncheri_dress'
+    // TODO-QSP: $succlocat[29] = 'materinstvo_dress'
+    // TODO-QSP: $succlocat[30] = 'gm_server'
+    // TODO-QSP: $succlocat[31] = 'gm_maid'
+    (s as any).temp_succubus_x = 0;
+    (s as any).temp_succubus_j = 0;
+    // TODO-QSP: :loopclotype
+    // TODO-QSP: gs 'clothing', 'totals', $succlocat[temp_succubus_j]
+    (s as any).temp_succubus_i = 1;
+    // TODO-QSP: :loopclonum
+    if (qspFunc(s, 'clothing', 'can_wear', ((s as any).succlocat ?? 0)?.[String((s as any).temp_succubus_j ?? 0)], ((s as any).temp_succubus_i ?? 0))) {
+      // TODO-QSP: $succlolistn[temp_succubus_x] = $succlocat[temp_succubus_j]
+      ((s as any).succlolisti ?? {})[String((s as any).temp_succubus_x ?? 0)] = ((s as any).temp_succubus_i ?? 0);
+      (s as any).temp_succubus_x = ((s as any).temp_succubus_x ?? 0) + (1);
+    }
+    (s as any).temp_succubus_i = ((s as any).temp_succubus_i ?? 0) + (1);
+    if (((s as any).temp_succubus_i ?? 0) <= ((s as any).total ?? 0)) {
+      // TODO-QSP: jump 'loopclonum'
+    }
+    (s as any).temp_succubus_j = ((s as any).temp_succubus_j ?? 0) + (1);
+    if (((s as any).temp_succubus_j ?? 0) < Object.keys((s as any).succlocat ?? {}).length) {
+      // TODO-QSP: jump 'loopclotype'
+    }
+    if (((s as any).succublvl ?? 0) < 3) {
+      // TODO-QSP: :oops
+      (s as any).clopickrand = (Math.floor(Math.random() * (temp_succubus_x - 1 - 0 + 1)) + (0));
+      if (((s as any).succlolistn ?? 0)?.[String((s as any).clopickrand ?? 0)] === '') {
+        // TODO-QSP: jump 'oops'
+      }
+      // TODO-QSP: gs 'clothing', 'wear', $succlolistn[clopickrand], succlolisti[clopickrand]
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+    }
+    (s as any).z = 0;
+    (s as any).scclocatcnt = 0;
+    // TODO-QSP: :randpoploop_bimbo_outer
+    (s as any).y = 0;
+    // TODO-QSP: :randpoploop_bimbo_inner
+    if (((s as any).succlocat ?? 0)?.[String((s as any).scclocatcnt ?? 0)] === ((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)]) {
+      // TODO-QSP: gs 'clothing_attributes', $succlolistn[y], succlolisti[y]
+      if (((s as any).CloBimbo ?? 0) === 1) {
+        // TODO-QSP: $succlorandn[z] = $succlolistn[y]
+        ((s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+        (s as any).z = ((s as any).z ?? 0) + (1);
+      }
+    }
+    (s as any).y = ((s as any).y ?? 0) + (1);
+    if (((s as any).y ?? 0) <= ((s as any).temp_succubus_x ?? 0)) {
+      // TODO-QSP: jump 'randpoploop_bimbo_inner'
+    }
+    (s as any).scclocatcnt = ((s as any).scclocatcnt ?? 0) + (1);
+    if (((s as any).scclocatcnt ?? 0) <= 6) {
+      // TODO-QSP: jump 'randpoploop_bimbo_outer'
+    }
+    if (((s as any).z ?? 0) < 1) {
+      (s as any).scpckrnd = 1;
+    }
+    if (((s as any).scpckrnd ?? 0) > 0) {
+      if (((s as any).scclocatcnt ?? 0) <= 10) {
+        // TODO-QSP: jump 'randpoploop_bimbo_outer'
+      }
+    }
+    if (((s as any).z ?? 0) < 1) {
+      (s as any).scpckrnd = 0;
+      (s as any).scclocatcnt = 0;
+      // TODO-QSP: :randpoploop_full_outer
+      (s as any).y = 0;
+      // TODO-QSP: :randpoploop_full_inner
+      if (((s as any).succlocat ?? 0)?.[String((s as any).scclocatcnt ?? 0)] === ((s as any).succlolistn ?? 0)?.[String((s as any).y ?? 0)]) {
+        // TODO-QSP: $succlorandn[z] = $succlolistn[y]
+        ((s as any).succlorandi ?? {})[String((s as any).z ?? 0)] = ((s as any).succlolisti ?? 0)?.[String((s as any).y ?? 0)];
+        (s as any).z = ((s as any).z ?? 0) + (1);
+      }
+      (s as any).y = ((s as any).y ?? 0) + (1);
+      if (((s as any).y ?? 0) <= ((s as any).temp_succubus_x ?? 0)) {
+        // TODO-QSP: jump 'randpoploop_full_inner'
+      }
+      (s as any).scclocatcnt = ((s as any).scclocatcnt ?? 0) + (1);
+      if (((s as any).scclocatcnt ?? 0) <= 6) {
+        // TODO-QSP: jump 'randpoploop_full_outer'
+      }
+      if (((s as any).z ?? 0) < 1) {
+        (s as any).scpckrnd = 1;
+      }
+      if (((s as any).scpckrnd ?? 0) > 0) {
+        if (((s as any).scclocatcnt ?? 0) <= 10) {
+          // TODO-QSP: jump 'randpoploop_full_outer'
+        }
+        if (((s as any).z ?? 0) < 1) {
+          (s as any).scpckrnd = 2;
+        }
+        if (((s as any).scpckrnd ?? 0) > 1) {
+          if (((s as any).scclocatcnt ?? 0) <= Object.keys((s as any).succlocat ?? {}).length) {
+            // TODO-QSP: jump 'randpoploop_full_outer'
+          }
+        }
+      }
+    }
+    // TODO-QSP: :oops2
+    (s as any).clopickrand = (Math.floor(Math.random() * (z - 1 - 0 + 1)) + (0));
+    if (((s as any).succlorandn ?? 0)?.[String((s as any).clopickrand ?? 0)] === '') {
+      // TODO-QSP: jump 'oops2'
+    }
+    // TODO-QSP: gs 'clothing', 'wear', $succlorandn[clopickrand], succlorandi[clopickrand]
+    if (((s as any).succublvl ?? 0) < 4) {
+      scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+    }
+    if (((s as any).pcs_hairbsh ?? 0) < 1) {
+      (s as any).pcs_hairbsh = 1;
+    }
+    if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
+      ((s as any).mc_inventory ?? {})['lipbalm'] = (((s as any).mc_inventory ?? {})['lipbalm'] ?? 0) - (1);
+      (s as any).lipkoef = ((s as any).lipkoef ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      if (((s as any).lipkoef ?? 0) > 50) {
+        (s as any).lipkoef = 0;
+        (s as any).pcs_lip = ((s as any).pcs_lip ?? 0) + (1);
+      }
+      (s as any).pcs_lipbalm = ((s as any).pcs_lipbalm ?? 0) + (8);
+    }
+    if (((s as any).pcs_makeup ?? 0) <= 1  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] > 0) {
+      (s as any).pcs_makeup = 4;
+      if (((s as any).mc_inventory ?? 0)?.['cosmetics'] < 3  &&  ((s as any).pcs_makeup ?? 0) === 4) {
+        (s as any).pcs_makeup = 3;
+      }
+      if (((s as any).mc_inventory ?? 0)?.['cosmetics'] < 2  &&  ((s as any).pcs_makeup ?? 0) === 3) {
+        (s as any).pcs_makeup = 2;
+      }
+      if (((s as any).mc_inventory ?? 0)?.['cosmetics'] < 1  &&  ((s as any).pcs_makeup ?? 0) !== 1) {
+        (s as any).pcs_makeup = 1;
+      } else {
+        if (((s as any).pcs_makeup ?? 0) === 2) {
+          ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (1);
+        }
+        if (((s as any).pcs_makeup ?? 0) === 3) {
+          ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (2);
+        }
+        if (((s as any).pcs_makeup ?? 0) === 4) {
+          (s as any).vidageday = ((s as any).vidageday ?? 0) - (1);
+          ((s as any).mc_inventory ?? {})['cosmetics'] = (((s as any).mc_inventory ?? {})['cosmetics'] ?? 0) - (3);
+        }
+      }
+    }
+    scene.actions([{ label: 'Continue', goto: ['succubus', 'sucwalkinggo'] }]);
+  }
+  if (((s as any).args ?? 0)[0] === 'sucwalkinggo') {
+    scene.img('images/shared/home/bedroom/dream/sucrandream3.jpg');
+    if (((s as any).succublvl ?? 0) < 3) {
+    }
+    // TODO-QSP: dynamic text: You dream that you are arguing with <<$sucselftmp>>.
+    scene.text(`You dream that you are arguing with ${((s as any).sucselftmp ?? 0)}.`);
+    scene.text('You don\'t know what it\'s about, but you think you <b><i>lost</i></b>…');
+    (s as any).sucencntrand = (1 + ((s as any).succublvl ?? 0))/2 + (Math.floor(Math.random() * (succublvl - 0 + 1)) + (0));
+    (s as any).scfeed = (((s as any).succublvl ?? 0) * ((s as any).sucencntrand ?? 0)) + ((s as any).rand ?? 0)(1, (4 * ((s as any).sucencntrand ?? 0)));
+    (s as any).minut = ((s as any).minut ?? 0) + (180 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0)));
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5 * (360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))));
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (15 * ((360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))) / 60));
+    ((s as any).pcs_condition ?? {})['lack_of_sleep'] = 0;
+    qspCall(s, 'stat', '');
+    (s as any).inSleep = 0;
+    (s as any).pcs_horny = 0;
+    (s as any).orgasm = ((s as any).orgasm ?? 0) + (((s as any).scfeed ?? 0));
+    (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).scfeed ?? 0));
+    (s as any).succubxp = ((s as any).succubxp ?? 0) + (3 * ((s as any).sucencntrand ?? 0));
+    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (25 * ((s as any).scfeed ?? 0));
+    (s as any).scwalkmon = ((s as any).rand ?? 0) (50, (100 * ((s as any).sucencntrand ?? 0)));
+    qspCall(s, 'money', 'earn', ((s as any).scwalkmon ?? 0), 'cash');
+    (s as any).sucwalkday = ((s as any).daystart ?? 0) + ((s as any).sucencntrand ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    (s as any).sctemp = Math.floor(Math.random() * 10) + 1;
+    if (((s as any).sucencntrand ?? 0) > 1) {
+      if (((s as any).sctemp ?? 0) <= 6) {
+        (s as any).sucabscum = 1;
+      } else {
+        if (((s as any).sctemp ?? 0) === 7) {
+          (s as any).sucabslez = 1;
+        } else {
+          (s as any).sucabslez = 1;
+          (s as any).sucabscum = 1;
+        }
+      }
+    } else {
+      if (((s as any).sctemp ?? 0) <= 7) {
+        (s as any).sucabscum = 1;
+      } else {
+        (s as any).sucabslez = 1;
+      }
+    }
+    // TODO-QSP: killvar 'scfeed'
+    // TODO-QSP: killvar 'sucencntrand'
+    if (((s as any).succublvl ?? 0) >= 4  &&  qspFunc(s, 'car_funcs', 'has_car')  &&  qspFunc(s, 'car_funcs', 'has_wreck') === 0) {
+      if (((s as any).car ?? 0)?.['fuel'] < 5) {
+        if (qspFunc(s, 'money', 'can_afford', (30 * (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'])), 'cash')) {
+          // TODO-QSP: gs 'money', 'pay', (30 * (car['fuel'] - car['fuel'])), 'cash'
+          ((s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
+        } else {
+          if (((s as any).kanistra ?? 0) > 0) {
+            ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) + (5);
+            (s as any).kanistra = ((s as any).kanistra ?? 0) - (1);
+          } else {
+            qspCall(s, 'money', 'set', 0, 'cash');
+            (s as any).scwalkmon = 0;
+            ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) + (qspUntranslated(s, "rand(10, car['tank'])", { location: "succubus" }));
+          }
+        }
+      }
+      (s as any).sctemp = Math.floor(Math.random() * 11) + 1;
+      if (((s as any).sctemp ?? 0) === 1) {
+        qspCall(s, 'car_funcs', 'setloc', 'city_residential', '', 'city');
+      } else {
+        if (((s as any).sctemp ?? 0) === 2) {
+          qspCall(s, 'car_funcs', 'setloc', 'city_center', '', 'city');
+        } else {
+          if (((s as any).sctemp ?? 0) === 3) {
+            qspCall(s, 'car_funcs', 'setloc', 'city_industrial', '', 'city');
+          } else {
+            if (((s as any).sctemp ?? 0) === 4) {
+              qspCall(s, 'car_funcs', 'setloc', 'city_industrial_train', 'outside', 'city');
+            } else {
+              if (((s as any).sctemp ?? 0) === 5) {
+                qspCall(s, 'car_funcs', 'setloc', 'city_lake', 'start', 'city');
+              } else {
+                if (((s as any).sctemp ?? 0) === 6) {
+                  qspCall(s, 'car_funcs', 'setloc', 'city_park', 'start', 'city');
+                } else {
+                  if (((s as any).sctemp ?? 0) === 7) {
+                    qspCall(s, 'car_funcs', 'setloc', 'dachi', '', 'other');
+                  } else {
+                    if (((s as any).sctemp ?? 0) === 8) {
+                      qspCall(s, 'car_funcs', 'setloc', 'pushkin', '', 'pushkin');
+                    } else {
+                      if (((s as any).sctemp ?? 0) === 9) {
+                        qspCall(s, 'car_funcs', 'setloc', 'pav_residential', '', 'pav');
+                      } else {
+                        if (((s as any).sctemp ?? 0) === 10) {
+                          qspCall(s, 'car_funcs', 'setloc', 'gadukino', '', 'gad');
+                        } else {
+                          qspCall(s, 'car_funcs', 'setloc', 'pav_commercial', '', 'pav');
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      ((s as any).car ?? {})['fuel'] = (((s as any).car ?? {})['fuel'] ?? 0) - (Math.floor(Math.random() * 4) + 1);
+      ((s as any).car ?? {})['current_condition'] = (((s as any).car ?? {})['current_condition'] ?? 0) - (Math.floor(Math.random() * 4) + 3);
+      qspCall(s, 'carF', '');
+      (s as any).sccarflag = 1;
+    } else {
+      (s as any).sctemp = Math.floor(Math.random() * 5) + 1;
+      if (((s as any).sucslpzone ?? 0) === 1) {
+        if (((s as any).sctemp ?? 0) === 1) {
+        }
+        if (((s as any).sctemp ?? 0) === 2) {
+        }
+        if (((s as any).sctemp ?? 0) === 3) {
+        }
+        if (((s as any).sctemp ?? 0) === 4) {
+        }
+        if (((s as any).sctemp ?? 0) === 5) {
+        }
+      } else {
+        if (((s as any).sucslpzone ?? 0) === 2) {
+          if (((s as any).sctemp ?? 0) === 1) {
+          }
+          if (((s as any).sctemp ?? 0) === 2) {
+          }
+          if (((s as any).sctemp ?? 0) === 3) {
+          }
+          if (((s as any).sctemp ?? 0) === 4) {
+          }
+          if (((s as any).sctemp ?? 0) === 5) {
+          }
+        } else {
+          if (((s as any).sucslpzone ?? 0) === 3) {
+            if (((s as any).sctemp ?? 0) === 1) {
+            }
+            if (((s as any).sctemp ?? 0) === 2) {
+            }
+            if (((s as any).sctemp ?? 0) === 3) {
+            }
+            if (((s as any).sctemp ?? 0) === 4) {
+            }
+            if (((s as any).sctemp ?? 0) === 5) {
+            }
+          } else {
+            if (((s as any).sucslpzone ?? 0) === 4) {
+              if (((s as any).sctemp ?? 0) === 1) {
+              }
+              if (((s as any).sctemp ?? 0) === 2) {
+              }
+              if (((s as any).sctemp ?? 0) === 3) {
+              }
+              if (((s as any).sctemp ?? 0) === 4) {
+              }
+              if (((s as any).sctemp ?? 0) === 5) {
+              }
+            } else {
+              if (((s as any).sucslpzone ?? 0) === 5) {
+                if (((s as any).sctemp ?? 0) === 1) {
+                }
+                if (((s as any).sctemp ?? 0) === 2) {
+                }
+                if (((s as any).sctemp ?? 0) === 3) {
+                }
+                if (((s as any).sctemp ?? 0) === 4) {
+                }
+                if (((s as any).sctemp ?? 0) === 5) {
+                }
+              }
+            }
+          }
+        }
+      }
+      // TODO-QSP: killvar 'sctemp'
+      // TODO-QSP: killvar 'sucslpzone'
+    }
+    scene.actions([
+      { label: 'Wake Up', handler: (st: GameState) => {
+    (s as any).pcs_sleep = 100;
+    qspCall(s, 'mood', 'raise', 'medium');
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).healthmax ?? 0)/5);
+    (s as any).pcs_stam = ((s as any).stammax ?? 0);
+    (s as any).pcs_mana = (((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0)) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0);
+    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(s, 'stat', '');
+    scene.text('');
+    scene.text('You wake up and realize that you\'re not in your bed…');
+    if (((s as any).pcs_hairbsh ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) > 1) {
+    }
+    // TODO-QSP: dynamic text: Instead, you are fully dressed<<$scwrdtmp>>
+    scene.text(`Instead, you are fully dressed${((s as any).scwrdtmp ?? 0)}`);
+    if (((s as any).scwalkmon ?? 0) > 0) {
+      // TODO-QSP: dynamic text: You find <<$func('money', 'string_profit', scwalkmon)>> stuffed in your cleavage...
+      scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((s as any).scwalkmon ?? 0))} stuffed in your cleavage (which you place in your wallet).`);
+      qspCall(s, 'money', 'earn', ((s as any).scwalkmon ?? 0), 'cash');
+    }
+    scene.text('And you feel absolutely <i>bursting</i> with energy.');
+    scene.text('');
+    scene.text('After a moment, you start wondering where you are…');
+    scene.actions([
+      { label: 'Look around to see where you are', handler: (st: GameState) => {
+    if (((s as any).sccarflag ?? 0) === 1) {
+    } else {
+      scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'sucgoloc', 'sucgometka'); } }]);
+    }
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Continue', goto: ['komp', 'browse'] },
   ]);
   scene.build();
 }
@@ -557,6 +1130,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'tatianaask':
       enterTatianaask(s, scene);
       break;
+    case 'tatianasex':
+      enterTatianasex(s, scene);
+      break;
+    case 'training3sex':
+      enterTraining3sex(s, scene);
+      break;
+    case 'kompresearch':
+      enterKompresearch(s, scene);
+      break;
     default:
       enterDefault(s, scene);
       break;
@@ -567,6 +1149,5 @@ export const succubus: LocationDef = {
   name: 'succubus',
   title: 'and hunger',
   region: 'other',
-  description: ['"You are a Succubus. Now, the Succubae are not demons, that impression is a byproduct of the masking spell; they are instead a type of Fae, like that Fairy you told me about, and they are native to this plane of existence. As Fae, Succubae have nothing to do with "souls", but they do feed on the energy released during sex. The most efficient means of getting this energy is semen taken internally, but a lot is gained by lesbian orgasm if the Succubus is in sexual contact with the woman as she cums."'],
   enter: enter,
 };

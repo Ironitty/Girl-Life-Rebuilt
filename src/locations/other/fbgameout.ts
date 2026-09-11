@@ -68,6 +68,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait to get picked', goto: ['fbgameout', 'football'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +84,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
   scene.text('It doesn\'t take long before all of the participants have been picked and the teams huddle together. "Vanya, you\'ll be in the goal…" Lazar begins calling out the different positions.');
   // TODO-QSP: dynamic text: Saving you for last, Lazar looks at you. "<<$pcs_nickname>>, you'll be playing u...
   scene.text(`Saving you for last, Lazar looks at you. "${((s as any).pcs_nickname ?? 0)}, you'll be playing up front as our star forward." he winks. "Don't worry about anything. Just be ready when the ball comes."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -510,6 +512,7 @@ function enterEndGame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/pickupgames/football/aftergame.jpg');
   scene.text('Once the game is over, you\'re all tired and sweaty, but everyone had a great time. You all go over to the bleachers and find a seat to rest. You talk and joke with one another about the game, the winners bragging while the losers promise revenge. Once rested, everyone starts getting up and saying their goodbyes before going their separate ways.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gschool_grounds', 'main'] },
   ]);

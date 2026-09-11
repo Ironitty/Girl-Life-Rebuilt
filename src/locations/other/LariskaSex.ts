@@ -16,6 +16,7 @@ function enterUndressed1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['LariskaSex', 'undressed2'] },
   ]);
@@ -43,6 +44,7 @@ function enterUndressed2(s: GameState, scene: SceneBuilder): void {
       { label: 'Lariska wears the Strap-on', goto: ['LariskaSex', 'bj_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', goto: ['LariskaSex', 'lick1'] },
     { label: 'Get eaten out', goto: ['LariskaSex', 'lick2'] },
@@ -70,6 +72,7 @@ function enterLick1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
   scene.text('Spent she crawls off of you and you snuggle, exchanging passionate kisses as your bodies come down from the euphoria you both just experienced.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
   ]);
@@ -85,6 +88,7 @@ function enterLick2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'stat', '');
   scene.text('Your legs collapse to the bed, as Lariska kisses her way up your body until she reaches your lips, kissing you deeply, obviously happy to have pleased you so well.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
   ]);
@@ -149,6 +153,7 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
       { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,6 +165,7 @@ function enterBjGive_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'arousal', 'foreplay', (-5), 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -182,6 +188,7 @@ function enterMissGive_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -204,6 +211,7 @@ function enterCowGive_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
   scene.text('Eventually she collapses onto you, limp and unable to move. You both lay there panting for breath, as you regain enough energy to move again.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -226,6 +234,7 @@ function enterDogGive_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -247,6 +256,7 @@ function enterAnalMissGive_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -269,6 +279,7 @@ function enterAnalCowGive_1(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -293,6 +304,7 @@ function enterAnalDogGive_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`Pulling out and letting her hair go, you collapse on top of her, both of you struggling for breath, until she slide out from under you and latches her lips to yours. She only stops that long enough to say, "That was great, ${((s as any).pcs_nickname ?? 0)}!"`);
   qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Missionary', goto: ['LariskaSex', 'miss_give_1'] },
     { label: 'Cowgirl', goto: ['LariskaSex', 'cow_give_1'] },
@@ -342,6 +354,7 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -402,6 +415,7 @@ function enterMiss_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -461,6 +475,7 @@ function enterCow_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -520,6 +535,7 @@ function enterDog_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -582,6 +598,7 @@ function enterAnalMiss_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -643,6 +660,7 @@ function enterAnalCow_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -706,6 +724,7 @@ function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Doggy', goto: ['LariskaSex', 'dog_1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Anal Missionary', goto: ['LariskaSex', 'anal_miss_1'] },
     { label: 'Anal Cowgirl', goto: ['LariskaSex', 'anal_cow_1'] },
@@ -726,6 +745,7 @@ function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
   scene.text('Once everybody is nude, both you and Lariska drop to your knees in front of him.');
   qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_2.jpg');

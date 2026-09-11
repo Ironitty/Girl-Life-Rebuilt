@@ -197,6 +197,7 @@ function enterSexTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -213,6 +214,7 @@ function enterSexTalkContinue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -365,6 +367,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -441,6 +444,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -525,6 +529,7 @@ function enterShaveTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -546,6 +551,7 @@ function enterPenetrationCum(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sister_sex_talk', 'sex_talk_continue');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -553,6 +559,7 @@ function enterAnalVirginity(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/doggy/anal23.jpg');
   scene.text('"Two of my best friends both got their cherry popped by a guy we all hang out with. He was about <i>this close</i> to talking me into giving up mine, but I changed my mind at the last second. I would\'ve let him, but I was still too scared of mom finding out, so I let him fuck my ass instead!" your sister giggles. "Turns out, that was his first ass fucking too. Made me feel special."');
   qspCall(s, 'sister_sex_talk', 'sex_talk_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -670,6 +677,7 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -677,6 +685,7 @@ function enterStylePreference(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW ?? {})['sexstyletalk'] = 1;
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   scene.text('"Do you prefer rough sex or gentle sex?" Anya asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gentle', handler: (st: GameState) => {
     scene.text('"I like it gentle," you reply. "I don\'t like feeling like I\'m getting fucked to death. When it\'s slow and gentle, I can feel everything and concentrate on it."');
@@ -698,6 +707,7 @@ function enterSpitOrSwallow(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW ?? {})['spitswallowtalk'] = 1;
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   scene.text('"When you blow a guy, do you spit or swallow?" Anya asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spit', handler: (st: GameState) => {
     scene.actions([

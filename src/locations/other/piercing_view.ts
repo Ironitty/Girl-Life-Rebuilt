@@ -42,6 +42,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +58,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -76,6 +78,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     return;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +93,7 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['piercing_view', 'view_item_shop'] }]);
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -167,6 +171,7 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

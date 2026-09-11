@@ -28,6 +28,7 @@ function enterMobileCheck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'telefon', 'phone_ring');
     scene.img('images/system/phone/call_accept.png');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,6 +67,7 @@ function enterDSalf(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<a href="exec:gs \'stat\' & gs \'din_bad\', \'d_bag\'"><br><b>Put tissues away</b></a>');
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -82,6 +84,7 @@ function enterDMouthwash(s: GameState, scene: SceneBuilder): void {
   scene.text('Your breath smells minty fresh.');
   scene.text('');
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
     // TODO-QSP: gs 'stat'
@@ -342,6 +345,7 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['newspaper', 'start'] }]);
   }
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'obj_din', 'menu_exit');
@@ -358,6 +362,7 @@ function enterDinalkowin1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/alkowin.jpg');
   scene.text('You take the wine bottle out of your purse and slowly drink half of it. You struggle quite a lot to put the cork back before being able to make it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'din_bad', 'd_bag');
@@ -374,6 +379,7 @@ function enterDinalkowin2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/alkowin.jpg');
   scene.text('You take out the remaining half wine bottle out of your purse, slowly drinking the rest of it. As you finish you throw the empty bottle away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'din_bad', 'd_bag');
@@ -404,6 +410,7 @@ function enterDin_Switch_Condom_Menu(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:gs \'din_bad\', \'din_Do_Condom_Counts\', 4">Sabotage a condom</a>.');
   }
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'din_bad', 'd_bag');
@@ -435,6 +442,7 @@ function enterDin_Table_Condom_Menu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['normal_condoms'] > 0  ||  (!((s as any).preziktype ?? 0))) {
     scene.text('<a href="exec:gs \'din_bad\', \'din_Do_Condom_Counts\', 4">Sabotage a condom</a>.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['stol', 'bc'] },
   ]);
@@ -470,6 +478,7 @@ function enterDin_Do_Condom_Counts(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'din_bad', 'din_Table_Condom_Menu');
   }
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -496,6 +505,7 @@ function enterSetCondomUsed(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -519,6 +529,7 @@ function enterSabotageACondom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -568,6 +579,7 @@ function enterDin_Update_Condom_Counts(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -641,6 +653,7 @@ function enterDTabletkied(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'din_bad', 'd_bag');
@@ -713,6 +726,7 @@ function enterDTabletkiedt(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['stol', 'bc'] },
   ]);
@@ -807,6 +821,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
       { label: 'Return', goto: ['stol', 'bc'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -823,6 +838,7 @@ function enterSetAutoBc(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'din_bad', 'd_tabletkiedt');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -838,6 +854,7 @@ function enterSetBcReminder(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'din_bad', 'd_tabletkiedt');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -848,6 +865,7 @@ function enterTurnOffBcReminder(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'din_bad', 'd_tabletkiedt');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -905,6 +923,7 @@ function enterDCycreportChoice(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('</td></tr></table></center>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit', handler: (st: GameState) => {
     // TODO-QSP: gs 'stat'
@@ -1084,6 +1103,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1099,6 +1119,7 @@ function enterDCycreportUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_texts ?? 0)?.['bc_status'] !== '') {
     // TODO-QSP: $cycreport_txt += ' ' + $stat_texts['bc_status']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1107,6 +1128,7 @@ function enterDCycreportUpduedate(s: GameState, scene: SceneBuilder): void {
   (s as any).gastation_time = (280 * 100) / Math.max(1, qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
   // TODO-QSP: gs 'time', 'to_date', daystart + gastation_time - implant_calc
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1175,6 +1197,7 @@ function enterDPregmovement(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1280,6 +1303,7 @@ function enterTakepill(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'fertility', 'birth_control_status_update');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1299,6 +1323,7 @@ function enterQuickTakepill(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1308,11 +1333,13 @@ function enterPDeodorant(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'deo');
   qspCall(s, 'stat', '');
   qspCall(s, 'din_bad', 'd_bag');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCanMouthwash(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).mc_inventory ?? 0)?.['mouthwash'] > 0  &&  (((s as any).pcs_breath ?? 0) === 0  ||  ((s as any).cumloc ?? 0)[12] === 1));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1323,6 +1350,7 @@ function enterDMouthwashDo(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory ?? {})['mouthwash'] = (((s as any).mc_inventory ?? {})['mouthwash'] ?? 0) - (1);
   qspCall(s, 'stat', '');
   scene.text('Your breath smells minty fresh.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
@@ -1333,12 +1361,14 @@ function enterDMouthwashDo(s: GameState, scene: SceneBuilder): void {
 
 function enterCanQuickTakepill(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  ||  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0)  &&  ((s as any).pilldaychk ?? 0) !== ((s as any).daystart ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterQuickTakepillDo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_bad', 'quick_takepill');
   scene.text('You take your daily birth control pill.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
@@ -1522,6 +1552,7 @@ function enterComputeBcStatus(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'stat_display_compute', 'queue_msg', 'bc_status', ((s as any).bc_color ?? 0), ((s as any).bc_icon ?? 0), 3);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1821,6 +1852,7 @@ function enterComputeCycleState(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).stat ?? {})['cycphase_symptoms'] = ((s as any).daystart ?? 0);
   // TODO-QSP: gs 'stat_display_compute', 'queue_msg', 'cycle_state', '', 'status/cycle/womb', 3, "gs 'din_bad', 'd...
+  // TODO-QSP: end
   scene.build();
 }
 

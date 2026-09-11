@@ -451,6 +451,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -460,6 +461,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'ve had enough', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -486,6 +488,7 @@ function enterBorodachNo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I have to go now', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -512,6 +515,7 @@ function enterBorodachNo2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachDrink(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Another drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -526,6 +530,7 @@ function enterBorodachDrink(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     if ((!((s as any).borodachSex ?? 0))) {
@@ -561,6 +566,7 @@ function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrhj(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate him', handler: (st: GameState) => {
     scene.text('You start stroking his cock with your delicate hands. Quickly Sasha groans, "I can\'t hold on much longer."');
@@ -575,6 +581,7 @@ function enterOhrhj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrhjcum(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate him more', handler: (st: GameState) => {
     (s as any).borodachSexDay = ((s as any).daystart ?? 0);
@@ -592,6 +599,7 @@ function enterOhrhjcum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrbj(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him', handler: (st: GameState) => {
     (s as any).picrand = Math.floor(Math.random() * 4) + 1;
@@ -608,6 +616,7 @@ function enterOhrbj(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck harder', handler: (st: GameState) => {
     (s as any).spafinloc = 12;
@@ -650,6 +659,7 @@ function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOhrsex(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sex', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

@@ -121,6 +121,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -142,6 +143,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You take your chances and ask the owner if you could talk to him in private.');
   scene.img('images/locations/city/citycenter/mall/pet shop/pet8.jpg');
   scene.text('He wraps up his conversation with the other men and takes you to the back office.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

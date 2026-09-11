@@ -22,6 +22,7 @@ function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +47,7 @@ function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +59,7 @@ function enterPickFrom(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspUntranslated(s, "ARGS[temp_randomVars['i']]", { location: "random" });
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +83,7 @@ function enterRoll(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).temp_randomVars ?? 0)?.['roll'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +97,7 @@ function enterMultirand(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_math_multirand'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -104,6 +109,7 @@ function enterSrand(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = (((s as any).result ?? 0) % ((((s as any).ARGS ?? 0)[3] + 1) - ((s as any).ARGS ?? 0)[2])) + ((s as any).ARGS ?? 0)[2];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -121,6 +127,7 @@ function enterStringHash(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).temp_sh_hash ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

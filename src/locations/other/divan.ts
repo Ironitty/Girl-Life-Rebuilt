@@ -36,6 +36,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get off the couch', handler: (st: GameState) => {
     (st as any).divanmastr = 0;
@@ -47,6 +48,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 

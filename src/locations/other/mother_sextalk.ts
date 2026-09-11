@@ -102,6 +102,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -190,6 +191,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -206,6 +208,7 @@ function enterBathroomDildoShriek3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" she sighs before tossing your toy at you and puttin...
   scene.text(`"Again, ${((s as any).pcs_firstname ?? 0)}?" she sighs before tossing your toy at you and putting a hand to her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving stuff like this lying around!"`);
   scene.text('She shuts the door and you hear the faucet turn and water spray from the shower.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -227,6 +230,7 @@ function enterBathroomDildoShriek4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>, you disgusting whore! How dare you leave filth like this ly...
   scene.text(`"${((s as any).pcs_firstname ?? 0)}, you disgusting whore! How dare you leave filth like this lying around the house! This is going straight into the garbage!"`);
   scene.text('She stomps straight past you to the front door and flings it open before going down the stairs.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -263,6 +267,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('She holds up a pair of suction dildos in her hand. The ones you stuck in the bathroom.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shamelessly lie your ass off', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
@@ -402,6 +407,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -424,6 +430,7 @@ function enterBathroomDildos3(s: GameState, scene: SceneBuilder): void {
       scene.text('With that, she walks off into the living room where you hear your stepfather watching TV.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -450,6 +457,7 @@ function enterBathroomDildos4(s: GameState, scene: SceneBuilder): void {
       scene.text('With that, she walks off into the living room where you hear your stepfather watching TV.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -476,6 +484,7 @@ function enterBathroomDildos5(s: GameState, scene: SceneBuilder): void {
       scene.text('With that, she walks off into the living room where you hear your stepfather watching TV.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -512,6 +521,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.text('Oh <i>fuck</i>, they\'re the dildos you left in the bathroom!');
   }
   ((s as any).motherQW ?? {})['bathroom_dildos'] = 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shamelessly lie your ass off', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
@@ -640,6 +650,7 @@ function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -662,6 +673,7 @@ function enterDildoWakeup3(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Again, ${((s as any).pcs_firstname ?? 0)}?" Looking up, you see your mother sighing in the doorway to your bedroom with a hand on her forehead. "God, I hope you washed everything before I touched those. I'm not going to throw them away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving these lying around like that."`);
   }
   scene.text('She walks out of your bedroom and shuts the door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['wakeup_events', 'event_end'] },
   ]);
@@ -706,6 +718,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I didn\'t get to use it yet', handler: (st: GameState) => {
     (s as any).vanrPar_bathtub_dildo = 0;
@@ -862,6 +875,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I didn\'t get to use them yet', handler: (st: GameState) => {
     (s as any).vanrPar_bathtub_dildo = 0;
@@ -982,26 +996,31 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
 
 function enterDildoEnding1(s: GameState, scene: SceneBuilder): void {
   scene.text('She stalks off holding your dildo, moving to another room in the house and leaving you alone in the hallway.');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDildoDumpsterEnding1(s: GameState, scene: SceneBuilder): void {
   scene.text('She stomps past you and out the front door, presumably to make good on her promise to throw away your dildo. You sigh deeply.');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDildoDumpsterEnding2(s: GameState, scene: SceneBuilder): void {
   scene.text('With that, she stalks outside, presumably to throw your dildo into a dumpster.');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDildoShowerEnding1(s: GameState, scene: SceneBuilder): void {
   scene.text('That being her last word on the matter, she walks back inside the bathroom with your dildo and shuts the door on you. Moments later, you hear the shower start spraying.');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDildoShowerEnding2(s: GameState, scene: SceneBuilder): void {
   scene.text('She shuts the door and you hear the faucet turn and water spray from the shower.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1014,6 +1033,7 @@ function enterDiscoverDildo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vanrPar_bath_shower_dildo ?? 0) === 1) {
     (s as any).vanrPar_bath_shower_dildo = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

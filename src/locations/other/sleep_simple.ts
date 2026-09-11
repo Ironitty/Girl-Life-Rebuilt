@@ -19,6 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   qspCall(s, 'sleep', 'calc_minutes_to_wakeup');
   qspCall(s, 'sleep_simple', 'loop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,6 +40,7 @@ function enterForced(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   ((s as any).sleepVars ?? {})['minutes_to_wakeup'] = qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" });
   qspCall(s, 'sleep_simple', 'loop');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,6 +50,7 @@ function enterSleepUntil(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_minutes = ((s as any).temp_minutes ?? 0) + (1440);
   }
   qspCall(s, 'sleep_simple', 'forced', ((s as any).temp_minutes ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,11 +104,13 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
   (s as any).inSleep = 0;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'sleep_simple', 'mod_sleeptriggers');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,6 +133,7 @@ function enterNapBed(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     (st as any).inSleep = 0;
@@ -151,6 +157,7 @@ function enterNap(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   (s as any).inSleep = 0;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get up', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -168,6 +175,7 @@ function enterNapBase(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (((s as any).ARGS ?? 0)[1] / 6);
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).ARGS ?? 0)[1] / 12);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 

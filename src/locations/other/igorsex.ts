@@ -129,6 +129,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -138,6 +139,7 @@ function enterDinIgorEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You should go to the bathroom to freshen up.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bathroom', goto: ['igorhome', 'bathroom'] },
   ]);
@@ -155,6 +157,7 @@ function enterDinKrossdresssex(s: GameState, scene: SceneBuilder): void {
   scene.text('You try teasing him into compliance. "I really like that girl! She was sexy and made me wet straight away!"');
   scene.text('"To hell with it, let\'s do it!" he relents.');
   scene.text('"Sweet!" you happily start clapping your hands, having already planned out every little step.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put on makeup', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/crossdress/makeup.jpg');
@@ -575,6 +578,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -584,6 +588,7 @@ function enterDinSisterkomKrossdress(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk into Igor\'s sister\'s room which, to put it mildly, is a complete mess.');
   scene.text('"I see that cleaning isn\'t her favorite activity!" you say and smile at Igor.');
   scene.text('"That\'s for sure!" he grins back.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open the closet', handler: (st: GameState) => {
     scene.text('<center><b>Igor\'s sister\'s room</b></center>');
@@ -855,6 +860,7 @@ function enterStraponCrossdress(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -870,6 +876,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
   scene.text('He opens his mouth and starts sucking on the dildo, doing a surprisingly good job by the looks of it. Maybe he\'s watched some porn or is just a naturally good cocksucker.');
   qspCall(s, 'arousal', 'foreplay_give', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gag him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd3.jpg');
@@ -1022,6 +1029,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
   scene.text('He opens his mouth and starts sucking on your cock, which feels amazing. Maybe he\'s watched a lot of porn or is just a naturally good cocksucker.');
   qspCall(s, 'arousal', 'magicd_bj', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gag him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd3.jpg');
@@ -1278,6 +1286,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
   scene.text('His knees barely touch the floor before he has his mouth open for you. You push your hips forward, sliding the dildo into his mouth as he starts sucking on it. He looks to be doing an even better job than last time. You can only guess that he\'s been watching porn and practicing.');
   qspCall(s, 'arousal', 'foreplay_give', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gag him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd3.jpg');
@@ -1432,6 +1441,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
   scene.text('His knees barely touch the floor before he has his mouth open for you. You push your hips forward, sliding your dick into his mouth as he starts sucking on it. It feels even better than last time. You guess that he\'s been watching porn and practicing.');
   qspCall(s, 'arousal', 'magicd_bj', 2, 'dom');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gag him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/crossdress/strapon_cd3.jpg');

@@ -7,6 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enterIsHome(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((((s as any).locat ?? 0)?.['A2']).slice((1)-1, ((1)-1)+(4))) === 'home');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -52,6 +53,7 @@ function enterForce(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'artem_chebotarev_schedule', 'set_schedule');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -60,6 +62,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).artemLoc = 0;
   qspCall(s, 'artem_chebotarev_schedule', 'set_schedule');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -567,6 +570,7 @@ function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

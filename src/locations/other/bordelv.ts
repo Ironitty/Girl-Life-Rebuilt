@@ -16,6 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>Is this… a brothel? Am I in the room for… voyeurs?!</i>');
   scene.text('As you\'re processing this information, Vika enters the room dressed in a pink baby doll and lies on the bed.');
   scene.text('She looks at you through the glass as she massages her pussy through her panties.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her work', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/sauna/sex/bvika2.jpg');
@@ -75,6 +76,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   }, goto: ['bordelv', 'sex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['bordelv', 'end'] },
   ]);
@@ -89,6 +91,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('When you re-open them, the men are already gone, and Vika is sitting on the floor covered in cum. She\'s trying to avoid your eyes as she forces herself to get up and leave the room.');
   qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait in the room', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/sauna/sex/bvika9.jpg');
@@ -228,6 +231,7 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'set', 'A220', 0);

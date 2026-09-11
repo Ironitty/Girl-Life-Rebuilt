@@ -18,6 +18,7 @@ function enterBuildBp(s: GameState, scene: SceneBuilder): void {
   ((s as any).bpbID1_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
   ((s as any).bpbID2_arr ?? {})[String((s as any).bp_i ?? 0)] = (-1);
   (s as any).result = ((s as any).bp_i ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +47,7 @@ function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
   if (((s as any).milkedvolume ?? 0) > 0) {
     scene.text('<br><a href="exec:gt\'lact_bp\',\'empty_all_milk_bottles\'">Pour the milk into the sink</a>');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', goto: ['lact_bp', 'bp_milking'] },
   ]);
@@ -65,6 +67,7 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]]/500);
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]] / ((((s as any).pcs_hydra ?? 0)>=100) ? (200) : (100)));
   (s as any).minut = ((s as any).minut ?? 0) + (Math.max(1, (((s as any).mbarrfill ?? 0)[((s as any).ARGS ?? 0)[1]]/1000) + 3));
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     // TODO-QSP: gs 'lact_bp', 'empty_milk_bottle', ARGS[1]
@@ -81,6 +84,7 @@ function enterEmptyMilkBottle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: mbarrcool[ARGS[1]] = 0
   // TODO-QSP: $mbarrstat[ARGS[1]] = 'none'
   // TODO-QSP: $mbarrtemp[ARGS[1]] = 'none'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +103,7 @@ function enterEmptyAllMilkBottles(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/body/tits/milk_sink.jpg');
   scene.text('<center>You pour all of your collected breast milk into the sink and clean up the bottles.</center>');
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_var ?? 0));
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;
@@ -118,6 +123,7 @@ function enterFillMilkBottle(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $mbarrstat[ARGS[1]] = 'fresh'
     // TODO-QSP: $mbarrtemp[ARGS[1]] = 'warm'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +156,7 @@ function enterTimeStamp(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (((s as any).hour ?? 0) * 60);
   (s as any).temp_timestamp = ((s as any).temp_timestamp ?? 0) + (((s as any).minut ?? 0));
   (s as any).result = ((s as any).temp_timestamp ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +233,7 @@ function enterUpdateMbottle(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -243,6 +251,7 @@ function enterUseableSbottleCount(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).result = ((s as any).bottlecounter ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -260,6 +269,7 @@ function enterUseableMbottleCount(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).result = ((s as any).bottlecounter ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -411,6 +421,7 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +456,7 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
       { label: 'Massage your breasts', goto: ['lact_bp', 'man_milking'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -521,6 +533,7 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '5 Minutes', handler: (st: GameState) => {
     (s as any).pumptime = 5;
@@ -805,6 +818,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -835,6 +849,7 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'rbc_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1280,6 +1295,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1334,6 +1350,7 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     (st as any).menu_off = 0;

@@ -54,6 +54,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -159,6 +160,7 @@ function enterPartyalone(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -491,6 +493,7 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -516,6 +519,7 @@ function enterSetContinueActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -636,6 +640,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -643,6 +648,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big63.jpg');
   // TODO-QSP: dynamic text: You are way too drunk and can barely stand. Mitka, noticing your condition, grab...
   scene.text(`You are way too drunk and can barely stand. Mitka, noticing your condition, grabs you by the waist. "Well, well little ${((s as any).pcs_nickname ?? 0)}, had a bit too much to drink? Come with me."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'You mumble something about needing to pee', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/village/drunkgirl.jpg');
@@ -815,6 +821,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -950,6 +957,7 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -957,6 +965,7 @@ function enterSolo_11andup_3boys(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/drunk.jpg');
   scene.text('While you are drinking, Mitka, Kolyamba and Vasyan come up to you and take the shot glass out of your hand. You can have this back after you do something for us.');
   scene.text('"Let us all gangbang you." Mitka commands as he pulls his pants down. Kolyamba and Vasyan quickly follow his lead and start getting their own dicks out.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Smile at them', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mitka/mitka_group/mitkagroup.jpg');
@@ -1032,6 +1041,7 @@ function enterMira_5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Mira is absolutely trashed now, she looks at you and winks before taking Mitka's...
   scene.text('Mira is absolutely trashed now, she looks at you and winks before taking Mitka\'s hand and leading him \'+iif(sunWeather=1, \'behind the trailer out of view \', \' outside the trailer away\')+\' from the other boys.');
   scene.text('A few minutes later, you excuse yourself from talking with Kolyamba and Vasyan and follow after them.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch them', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'sub');
@@ -1074,6 +1084,7 @@ function enterMira_7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('"I\'m bored!" Mitka yells. "Mira get your ass down and give us a show to remember!" he snorts like a pig. "Show us how how loose your holes are whore…"');
   scene.text('Mira refuses. Mitka and the others immediately demand she follow their orders. She continues to refuse to do their bidding. Eventually Mira offers a compromise and they agree with it, she\'ll just strip naked and be made to crawl around in front of them on all fours, portraying a dog…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'erotic_nudity', 15, 'sub');
@@ -1101,6 +1112,7 @@ function enterMira_8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('"I\'m bored!" Mitka yells. "Mira get your ass down and give us a show to remember!" he snorts like a pig. "Show us how how loose your holes are whore…"');
   scene.text('Mira mumbles affirmatively, and undresses.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur_sex', 15, 'sub');
@@ -1130,6 +1142,7 @@ function enterMira_9(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira is super drunk now and can barely stand but keeps asking for more moonshine. Vasyan comes over to her and says with a devilish grin on his face "I have a better idea. How about you service both mine and Kolyamba\'s dicks instead? Then you can have more to drink."');
   scene.text('Mira only chuckles in response and says, "Sure, but can you guys get it up with all the moonshine you have been drinking?" Mitka gives her a pat on the ass, and says that she is a responsible adult and can make up her own mind. Kolyamba meanwhile, walks over to Mira and forcefully presses down on her shoulders.');
   scene.text('Mira, drunkenly giggles, and playfully resists for a few seconds, but eventually gets on her knees. She watches as he unzips his pants and pulls them down to his ankles…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch her and Kolyamba', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'sub');
@@ -1359,6 +1372,7 @@ function enterMira_11andup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

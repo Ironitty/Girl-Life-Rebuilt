@@ -14,6 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The <a href="exec:gs 'carF', 'start'"> <<$car['name']>></a> is standing in the p...
     scene.text(`The <a href="exec:gs 'carF', 'start'"> ${((s as any).car ?? 0)?.['name']}</a> is standing in the parking.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the road', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -45,6 +46,7 @@ function enterObekt2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>An object</h4></center>');
   scene.img('images/locations/construction/obekt.jpg');
   scene.text('There is not much to see at the construction site, only a trailer where a guard sits. The entrance is closed…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the construction site', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -57,6 +59,7 @@ function enterDungeon0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pre/shared/dunpre.jpg');
   scene.text('The man-made cave in depth which shows the door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get out of the dungeon', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -72,6 +75,7 @@ function enterDungeon1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pre/shared/dunpre1.jpg');
   scene.text('Quite large and deserted room in which there is nothing but a bunch of bones in the corner.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Retreat', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -94,6 +98,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Sign in third room': minut += 5
     scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon5'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit from the gallery', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -179,6 +184,7 @@ function enterDungeon3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre3.jpg');
   scene.text('The room in which the middle stands a stone dais on which are various dusty bottles.');
   scene.text('Scrawled on the wall of what is <a href="exec: gt \'obekt\', \'dungeon3_labels\'">signs</a>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -210,6 +216,7 @@ function enterDungeon3Labels(s: GameState, scene: SceneBuilder): void {
   scene.text('9881 = 5');
   scene.text('5531 = 0');
   scene.text('Have a smart sense in such tomfoolery, because often clever fool walks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from labels', goto: ['obekt', 'dungeon3'] },
   ]);
@@ -231,6 +238,7 @@ function enterDungeon4(s: GameState, scene: SceneBuilder): void {
   }, goto: ['obekt', 'dungeon4'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -245,6 +253,7 @@ function enterDungeon4Drums(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.text('Chimes hear soon reconcile those who quarrel.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the barrel', goto: ['obekt', 'dungeon4'] },
   ]);
@@ -257,6 +266,7 @@ function enterDungeon5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).obekt ?? 0)?.['svitokRTS'] === 0) {
     scene.text('In the hands of a skeleton lying <a href="exec: gt \'obekt\', \'dungeon5_scroll\'">scroll</a>.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -270,6 +280,7 @@ function enterDungeon5Scroll(s: GameState, scene: SceneBuilder): void {
   ((s as any).obekt ?? {})['heart'] = (((s as any).obekt ?? {})['heart'] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text('You picked up the scroll and he crumbled. As if you breathed in the wind. You listen to the feelings and understand that you have something changed. You feel like somewhere, as if in another dimension another beating heart belongs to you, which will die for you in battle.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['obekt', 'dungeon5'] },
   ]);

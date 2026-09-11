@@ -329,6 +329,7 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -491,6 +492,7 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -635,6 +637,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -881,6 +884,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1044,6 +1048,7 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1111,6 +1116,7 @@ function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1714,6 +1720,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2259,6 +2266,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -39,6 +39,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -105,6 +106,7 @@ function enterBj1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +172,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,6 +238,7 @@ function enterBj3(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -285,6 +289,7 @@ function enterVaginal1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -334,6 +339,7 @@ function enterVaginal2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -382,6 +388,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -432,6 +439,7 @@ function enterCowgirl(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -456,6 +464,7 @@ function enterAnal1(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower', goto: ['BelSex', 'shower'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -481,6 +490,7 @@ function enterAnal2(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower', goto: ['BelSex', 'shower'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -506,12 +516,14 @@ function enterAnaldoggy(s: GameState, scene: SceneBuilder): void {
       { label: 'Take a shower', goto: ['BelSex', 'shower'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShower(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$boydesc>> is finally done with you. He looks at you all pleased as you get up...
   scene.text(`${((s as any).boydesc ?? 0)} is finally done with you. He looks at you all pleased as you get up and head off to the bathroom to take a quick shower and freshen up.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a 15 minute shower', handler: (st: GameState) => {
     (s as any).noshampoo = 1;

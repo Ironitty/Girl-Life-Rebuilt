@@ -17,6 +17,7 @@ function enterCheckStartEvt(s: GameState, scene: SceneBuilder): void {
       { label: '<b>Travel to the ballet school</b>', goto: ['pushkin_ballet_res', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -37,6 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('"With that out of the way, I will now assign your rooms." She consults her clipboard and starts reading out student names, ticking them off as she allocates rooms.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>?" "Here!" you reply, "You've been assigned...
   scene.text(`"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}?" "Here!" you reply, "You've been assigned to room twelve, first floor to the right of the staircase. Do you have any questions? No? Good I will see you in the communal room once you've settled in."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Find your room', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -142,6 +144,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pushkin_ballet_init', 'debug_menu');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -228,6 +231,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,6 +245,7 @@ function enterMayaRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npc_firstname['A274']>>'s room closely resembles your own. Her wardrobe is op...
   scene.text(`${((s as any).npc_firstname ?? 0)?.['A274']}'s room closely resembles your own. Her wardrobe is open, and you see her collection of tutus hanging from the rails. On her desk there are several books, including an open poetry book. A quick glance reveals the page title "Like a White Stone" by Akhmatova.`);
   scene.text('Next to it is an old picture of a woman in a park with a black ribbon in the corner.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -273,6 +278,7 @@ function enterCommunalArea(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -340,6 +346,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -359,6 +366,7 @@ function enterWardenRoom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'reputation') {
     // TODO-QSP: "That Talk"
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -381,6 +389,7 @@ function enterRules(s: GameState, scene: SceneBuilder): void {
   scene.text('5) All rooms must be kept clean and tidy.');
   scene.text('6) Valuables can be left with the duty warden if required. All thefts or problems are to be reported immediately.');
   scene.text('7) You are to follow the duty warden\'s instructions in an emergency.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -411,6 +420,7 @@ function enterClassSchedule(s: GameState, scene: SceneBuilder): void {
   scene.text('The school operates a zero tolerance policy to all drugs and alcohol. If you are under the influence or suspected of taking substances you will face disciplinary action.');
   // TODO-QSP: dynamic text: If you require assistance at any point you can talk to the residence warden Mada...
   scene.text(`If you require assistance at any point you can talk to the residence warden Madam ${((s as any).npc_lastname ?? 0)?.['A286']} or any teacher.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -438,6 +448,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Listen to the radio (30m)', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'radio');
@@ -465,6 +476,7 @@ function enterRadio(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You listen to the radio for half an hour, taking notes of the performance with the musical concepts from your earlier lessons. Then, you close your eyes and start to relax humming along to the familiar music after a while. ');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn the radio off', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -487,6 +499,7 @@ function enterFeetcare(s: GameState, scene: SceneBuilder): void {
   scene.text('With your checks completed, you reach for your exercise band, commencing a series of foot-stretching exercises, culminating in a soothing massage using a tennis ball on your calves and soles.');
   scene.text('You take a brief moment to unwind before donning your foot warmers, making your way to the kitchen to fetch cold water and investigate the freezer for ice. Fortunately, the school has stored ice cube trays. After replenishing the trays, you fill a bowl and carry it back to your room.');
   scene.text('Seated on your bed, you pour into the bowl the ice cubes and chilled water into a foot bath. Adding a touch of Epsom Salts, you brace yourself as you immerse your feet in the chilling water. Your body shudders briefly from the shock, but after a few moments, the sensation subsides. You close your eyes and attempt to relax.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish feet care', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -505,6 +518,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
   scene.text('You gather your school books and notebook to begin studying ballet movements, history, and musical theory, diligently taking notes as you progress. After an hour of reading, you notice your eyes beginning to glaze over. Recognizing the need for a break, you decide to stand up and stretch.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish studying', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -543,6 +557,7 @@ function enterMakeUp(s: GameState, scene: SceneBuilder): void {
       scene.text('You artfully apply the make-up look with a quick, practiced ease that would leave most girls jealous with envy. The final look is almost flawless and you criticaly review the final result trying to find any imperfections.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish practicing', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'bedroom');
@@ -592,6 +607,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

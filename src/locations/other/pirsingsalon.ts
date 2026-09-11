@@ -8,6 +8,7 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'tattoo_management', 'count');
   qspCall(s, 'piercing_management', 'count');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -24,6 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
   }
   qspCall(s, 'pirsingsalon', 'shop_menu');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -176,6 +178,7 @@ function enterShopMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p      '<td>'
   // TODO-QSP: *p      '</td>'
   // TODO-QSP: *p    '</tr>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -193,6 +196,7 @@ function enterPiercingEars(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -215,6 +219,7 @@ function enterPiercingNose(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -237,6 +242,7 @@ function enterPiercingBrow(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -259,6 +265,7 @@ function enterPiercingLip(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -281,6 +288,7 @@ function enterPiercingTongue(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -303,6 +311,7 @@ function enterPiercingNavel(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -325,6 +334,7 @@ function enterPiercingNipples(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -347,6 +357,7 @@ function enterPiercingPussy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(s, 'shop_utils', 'cleanup');
@@ -369,6 +380,7 @@ function enterTattooAnkle(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -391,6 +403,7 @@ function enterTattooArm(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -413,6 +426,7 @@ function enterTattooAss(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -435,6 +449,7 @@ function enterTattooBack(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -457,6 +472,7 @@ function enterTattooBelly(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -479,6 +495,7 @@ function enterTattooBreast(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -501,6 +518,7 @@ function enterTattooChest(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -523,6 +541,7 @@ function enterTattooFace(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -545,6 +564,7 @@ function enterTattooHand(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -567,6 +587,7 @@ function enterTattooLeg(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -589,6 +610,7 @@ function enterTattooLip(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -611,6 +633,7 @@ function enterTattooNeck(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -633,6 +656,7 @@ function enterTattooPussy(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -655,6 +679,7 @@ function enterTattooShoulder(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -677,6 +702,7 @@ function enterTattooSide(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -699,6 +725,7 @@ function enterTattooTramp(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -721,6 +748,7 @@ function enterTattooUnder(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');
@@ -743,6 +771,7 @@ function enterTattooWrist(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'shop_utils', 'display', 'grid_shop');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     qspCall(st, 'shop_utils', 'cleanup');

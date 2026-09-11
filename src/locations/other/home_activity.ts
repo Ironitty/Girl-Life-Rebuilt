@@ -15,6 +15,7 @@ function enterWashSheets(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/image_needed.png');
   scene.text('You wash your sheets.');
   // TODO-QSP: act'Continue': gt 'bed_get_out', 'start'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -27,6 +28,7 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
     ((s as any).vomit ?? {})['hangover'] = 0;
     ((s as any).vomit ?? {})['unlucky'] = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -123,6 +125,7 @@ function enterVomitingImages(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +146,7 @@ function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $home_activity['vomit_bedroom']
   scene.text('Before you even open your eyes, your stomach churns. Nausea courses through you, acid burns at the back of your throat, and you know without a doubt:');
   scene.text('<b>You\'re about to throw up.</b>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Run to the bathroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -267,10 +271,12 @@ function enterPregScare(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'home_activity', 'preg_scare_react');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterThinkPregReact(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'This is scaring you', handler: (st: GameState) => {
     // TODO-QSP: $home_activity['vomit_bathroom']
@@ -333,6 +339,7 @@ function enterPregScareReact(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I need a test!', handler: (st: GameState) => {
     // TODO-QSP: $home_activity['vomit_bathroom']
@@ -368,6 +375,7 @@ function enterVomitingExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).vomit ?? {})['hangover'] = 0;
   ((s as any).vomit ?? {})['unlucky'] = 0;
   qspCall(s, 'homes_properties', 'go_bathroom');
+  // TODO-QSP: end
   scene.build();
 }
 

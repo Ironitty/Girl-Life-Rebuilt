@@ -464,6 +464,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Go with him', goto: ['huntersex', 'sluthomesex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -525,6 +526,7 @@ function enterStove(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['gad_swamphouse', 'start'] },
     { label: 'Grab something to eat', handler: (st: GameState) => {
@@ -569,6 +571,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
       { label: 'Eat berries', goto: ['food', 'bilberry'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_swamphouse', 'start'] },
     { label: 'Eat jerky and trail mix', goto: ['food', 'jerky'] },
@@ -612,6 +615,7 @@ function enterBucket(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('There\'s no water left in the bucket. You should go out by the creek and bring some in.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move Away', goto: ['gad_swamphouse', 'start'] },
   ]);
@@ -632,6 +636,7 @@ function enterWashstand(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lact_bp', 'massage');
   }
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['gad_swamphouse', 'start'] },
   ]);
@@ -674,6 +679,7 @@ function enterTub(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['gad_swamphouse', 'start'] },
   ]);
@@ -693,6 +699,7 @@ function enterClothesReadMagazines(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/hunters/readmagazines_...
     scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/hunters/readmagazines_nude.jpg"></center>`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -701,6 +708,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/hunters/stackmagazines.jpg');
   scene.text('A stack of all kinds of magazines, there\'s even one with "interesting" pictures.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Read the scientific journal (1:00)', handler: (st: GameState) => {
     qspCall(s, 'library_functions', 'read_book');
@@ -958,11 +966,13 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Get out from under the table': edahot = 1
     qspCall(s, 'gad_swamphouse', 'hunterstable');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHunterstableEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['gad_swamphouse', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1879,6 +1889,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
       { label: 'Go', goto: ['gad_swamphouse', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1887,6 +1898,7 @@ function enterHuntersrelax(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/hunters/hantersrelax1.\'+rand(1, 8)+\'.jpg');
   scene.text('You see the hunters in the hut minding their own business.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Speak with Andrei', goto: ['andreihunter', ''] },
     { label: 'Speak with Sergei', goto: ['sergeihunter', ''] },
@@ -1938,6 +1950,7 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1967,6 +1980,7 @@ function enterDirtySwamphouse(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/dirty_swamphouse.jpg');
   scene.text('Visiting the hut, you notice that it has gotten pretty dirty. "I need to do something about this," you think. So you grab a broom and a rag and begin cleaning.');
   scene.text('After a while, you finish cleaning and put everything back in order again. Finally, you\'re pretty pleased with yourself.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (st as any).dirty_swamphouse = 0;
@@ -2054,6 +2068,7 @@ function enterGetDressed(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

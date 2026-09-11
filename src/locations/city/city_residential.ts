@@ -18,6 +18,7 @@ function enterImage(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/residential/street_night.jpg');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -252,6 +253,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'lover', 'lover_events');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Metro (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

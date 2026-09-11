@@ -8,12 +8,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).shour = 24 - ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['bed', 'mod_sleeptriggers'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed', 'mod_sleeptriggers');
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

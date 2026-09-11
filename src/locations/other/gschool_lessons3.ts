@@ -182,6 +182,7 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Daydream', handler: (st: GameState) => {
     (s as any).daydream = Math.floor(Math.random() * 4) + 1;
@@ -475,6 +476,7 @@ function enterLiteratureLate(s: GameState, scene: SceneBuilder): void {
   (s as any).lit_late_counter = ((s as any).lit_late_counter ?? 0) + (1);
   scene.img('images/locations/pavlovsk/school/classroom/late/late.jpg');
   scene.text('You walk down the completely empty halls of the school, passing by several classes already underway as you make your way to your own class. You finally arrive at the door to your class and can hear Ms. Braakman already starting today\'s lesson inside.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head into class', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/late/latel1.jpg');
@@ -684,6 +686,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     (s as any).bored = Math.floor(Math.random() * 4) + 1;
@@ -1463,6 +1466,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t pay attention in class', handler: (st: GameState) => {
     (s as any).bored = Math.floor(Math.random() * 4) + 1;
@@ -2153,6 +2157,7 @@ function enterMeetAnushka(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you can respond, she starts kissing you.');
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/school/classroom7.jpg');

@@ -22,6 +22,7 @@ function enterArt_101(s: GameState, scene: SceneBuilder): void {
     scene.text('Once everyone is seated, he introduces himself. "I\'m Professor Ilyushin and I\'m going to take you on a wonder adventure in this class. I will be showing you the wonders, amazement and titillation that art can bring to the human soul, as well as how art can evoke some of your baser instincts and desires."');
     scene.text('With that over, he starts talking about art. He seems very passionate about the subject and not only loves to draw and paint, but discusses what art means, as well as its effects and history in the world.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pay attention in class', goto: ['uni_lessons_electives_art1', 'art_101_listen'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_art1', 'art_101_talk'] },
@@ -32,6 +33,7 @@ function enterArt_101(s: GameState, scene: SceneBuilder): void {
 function enterArt_101Listen(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('Professor Ilyushin\'s lecture is fairly entertaining and you have an easy time paying attention to it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_101_model'] },
   ]);
@@ -52,6 +54,7 @@ function enterArt_101Talk(s: GameState, scene: SceneBuilder): void {
       { label: 'Ermias', goto: ['uni_lessons_electives_art1', 'art_101_talk_ermias_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Igor', goto: ['uni_lessons_electives_art1', 'art_101_talk_igor'] },
     { label: 'Feofan', goto: ['uni_lessons_electives_art1', 'art_101_talk_feofan'] },
@@ -67,6 +70,7 @@ function enterArt_102(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
   scene.text('You walk into the classroom and see Professor Ilyushin standing by his desk as the rest of your classmates walk in one by one under his watchful eye. You notice his eyes linger a bit longer on some of the prettier girls that are dressed in revealing clothes.');
   scene.text('Once everyone is seated, he starts talking about art and what it means while being his usual friendly and overly chatty self. He seems very passionate about art and not only loves to draw and paint, but discuss what art means and it\'s history in the world.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pay attention in class', goto: ['uni_lessons_electives_art1', 'art_102_listen'] },
     { label: 'Talk to a classmate', goto: ['uni_lessons_electives_art1', 'art_102_talk'] },
@@ -77,6 +81,7 @@ function enterArt_102(s: GameState, scene: SceneBuilder): void {
 function enterArt_102Listen(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
   scene.text('Professor Ilyushin\'s lecture is fairly entertaining and you have an easy time paying attention.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_102_model'] },
   ]);
@@ -97,6 +102,7 @@ function enterArt_102Talk(s: GameState, scene: SceneBuilder): void {
       { label: 'Ermias', goto: ['uni_lessons_electives_art1', 'art_102_talk_ermias_2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Igor', goto: ['uni_lessons_electives_art1', 'art_102_talk_igor'] },
     { label: 'Feofan', goto: ['uni_lessons_electives_art1', 'art_102_talk_feofan'] },
@@ -131,6 +137,7 @@ function enterArt_101TalkIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_101_model_igor'] },
   ]);
@@ -163,6 +170,7 @@ function enterArt_102TalkIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_102_model_igor'] },
   ]);
@@ -183,6 +191,7 @@ function enterArt_101TalkFeofan(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit next to Feofan and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_101_model_feofan'] },
   ]);
@@ -203,6 +212,7 @@ function enterArt_102TalkFeofan(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit next to Feofan and spend most of the class quietly talking with him. You often get shushed by your fellow students when you get a bit too loud.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_102_model_feofan'] },
   ]);
@@ -239,6 +249,7 @@ function enterArt_101TalkNatasha(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_101_model_natasha'] },
   ]);
@@ -275,6 +286,7 @@ function enterArt_102TalkNatasha(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_102_model_natasha'] },
   ]);
@@ -297,6 +309,7 @@ function enterArt_101TalkErmias_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? 0)}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_101_model_ermias'] },
   ]);
@@ -355,6 +368,7 @@ function enterArt_101TalkErmias_2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_101_model_ermias'] },
   ]);
@@ -377,6 +391,7 @@ function enterArt_102TalkErmias_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? 0)}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_102_model_ermias'] },
   ]);
@@ -435,6 +450,7 @@ function enterArt_102TalkErmias_2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish talking', goto: ['uni_lessons_electives_art1', 'art_102_model_ermias'] },
   ]);
@@ -511,6 +527,7 @@ function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -583,6 +600,7 @@ function enterArt_101ModelIgor(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -658,6 +676,7 @@ function enterArt_101ModelFeofan(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -730,6 +749,7 @@ function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -803,6 +823,7 @@ function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -910,6 +931,7 @@ function enterArt_102Model(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1010,6 +1032,7 @@ function enterArt_102ModelIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
   ]);
@@ -1112,6 +1135,7 @@ function enterArt_102ModelFeofan(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
   ]);
@@ -1218,6 +1242,7 @@ function enterArt_102ModelNatasha(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
   ]);
@@ -1321,6 +1346,7 @@ function enterArt_102ModelErmias(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
   ]);
@@ -1365,12 +1391,14 @@ function enterArt_101Events(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/lecture_hall/lecture_hall.jpg');
   scene.text('You decide to wait out in the hallway for Albina, but she doesn\'t appear.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('You don\'t know what she could be doing and don\'t feel like hanging around any longer, so you decide to leave.');

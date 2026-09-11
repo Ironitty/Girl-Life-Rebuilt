@@ -8,6 +8,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'give_access', 'grandparents_house');
   qspCall(s, 'gad_gphouse', 'nudity_trouble_limit');
   qspCall(s, 'gad_gphouse', 'enter_events');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$locat['A32_loc']>>, <<$locat['A32_arg']>>
     scene.text(`${((s as any).locat ?? 0)?.['A32_loc']}, ${((s as any).locat ?? 0)?.['A32_arg']}`);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +47,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +110,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'gp_elene', 'check_for_chores', 'livingroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -134,6 +138,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the living room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -172,6 +177,7 @@ function enterFamilyTrip(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -181,6 +187,7 @@ function enterFamilyTripAskGoHome(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   // TODO-QSP: dynamic text: <<$npc_nickname['A29']>> asks, "<<$pcs_nickname>>, are you coming home with us o...
   scene.text(`${((s as any).npc_nickname ?? 0)?.['A29']} asks, "${((s as any).pcs_nickname ?? 0)}, are you coming home with us or are you going to stay in the village with your grandparents?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stay with your grandparents', handler: (st: GameState) => {
     (s as any).gadstay = 1;
@@ -208,6 +215,7 @@ function enterToPavlovsk(s: GameState, scene: SceneBuilder): void {
     scene.text('Before leaving, your grandma gives you a big hug goodbye.');
   }
   scene.text('You get into the Volga with the rest of your family, and before you know it, you\'ve arrived back in Pavlovsk.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go home', goto: ['korrPar', ''] },
   ]);
@@ -219,6 +227,7 @@ function enterToGadukino(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 15);
   qspCall(s, 'stat', '');
   scene.text('You get into the Volga with the rest of your family, and before you know it, you\'ve arrived in Gadukino.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to your grandparents house', goto: ['gad_gphouse', 'entry'] },
   ]);
@@ -270,6 +279,7 @@ function enterEnterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -279,6 +289,7 @@ function enterNormalEvents(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'mira_visit'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -332,6 +343,7 @@ function enterNudityTroubleLimit(s: GameState, scene: SceneBuilder): void {
       ((s as any).grandmaQW ?? {})['nudity_trouble_limit'] = (((s as any).grandmaQW ?? {})['nudity_trouble_limit'] ?? 0) + (2);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -357,6 +369,7 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: As you turn to leave, she stops you, "One last thing, here's <<$func('money', 's...
   scene.text(`As you turn to leave, she stops you, "One last thing, here's ${qspFunc(s, 'money', 'string_profit', 75, 'cash')} for the train ticket to get you back to Pavlovsk."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).gadstay = 0;
@@ -377,6 +390,7 @@ function enterWasLostYesterday(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_firstname ?? 0)}, your grandfather and I were so worried when you didn't come home from the forest."`);
   scene.text('"We are so glad you are back safe and sound. Go have a hot meal and shower and relax."');
   scene.text('"Also, don\'t worry about any chores today. Just focus on recovering."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },
   ]);
@@ -393,6 +407,7 @@ function enterNudityTroubleKicked(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your grandmother looks at you coldly from across the room. She is speaking softl...
   scene.text(`Your grandmother looks at you coldly from across the room. She is speaking softly, but somehow that is more unnerving than usual, "I've been more than fair to you, ${((s as any).pcs_firstname ?? 0)}, and given you more chances than maybe even your mother."`);
   scene.text('"If you won\'t at least try to act like a decent lady around here, you are no longer welcome. So take your things and leave. Come back when you\'ve learned at least some basic decency."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).gadstay = 0;
@@ -413,6 +428,7 @@ function enterNudityTrouble(s: GameState, scene: SceneBuilder): void {
   scene.text('Suddenly your grandmother approaches you with a disappointed look on her face. "I had higher expectations of you, young lady! You should be ashamed of yourself for running around outdoors without clothes. You have embarrassed your grandfather and me! Our friends have seen you around naked, as have your grandfather and I, so don\'t even try to hide it."');
   scene.text('"This will be reflected in your allowance, don\'t act surprised at the beginning of the month."');
   scene.text('"Unlike you, we have to live in this village and get along with its people. If you keep this up, I\'ll be cutting your time here short and sending you back to your mother, and she can deal with your sinful behaviour. We better not hear any more about this!" She then walks off before you can even respond.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },
   ]);
@@ -442,6 +458,7 @@ function enterGrandpaDisapointment(s: GameState, scene: SceneBuilder): void {
   scene.text('"Grandpa, I honestly just forg-" you begin, but he cuts you off.');
   scene.text('"Hush, child. I don\'t care for excuses. Now go on. Some of us have work to do."');
   scene.text('<br>You silently turn and walk away, feeling guilty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },
   ]);
@@ -464,6 +481,7 @@ function enterGrandmaDisapointment(s: GameState, scene: SceneBuilder): void {
   scene.text('She softens a little, finally. "It\'s okay, child," she says. "But it makes it harder for me to give you your allowance for sweets if you cannot follow through on your promises."');
   scene.text('"Yes, ma\'am," you nod.');
   scene.text('"All right, child," she says, patting your shoulder softly. "Go on now. I am sure you have things to do."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },
   ]);
@@ -501,6 +519,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['gad_gphouse', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -514,6 +533,7 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
     (s as any).gadstay = 1;
   }
   scene.actions([{ label: 'Continue', goto: ['gad_gphouse', 'main'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -534,6 +554,7 @@ function enterChoresPay(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"We really could have used your help last month," she says mournfully as she counts out some bills. "Maybe this month you\'ll do more to help us?" She looks at you sternly as she puts her purse away.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },
   ]);
@@ -549,6 +570,7 @@ function enterMiraVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('You notice Mira coming towards your grandparents home.');
   // TODO-QSP: dynamic text: You step out on the porch and greet Mira. She replies "Hi <<$pcs_nickname>>, I w...
   scene.text(`You step out on the porch and greet Mira. She replies "Hi ${((s as any).pcs_nickname ?? 0)}, I was really bored being all alone at home. Do you want to do something?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },
   ]);
@@ -613,6 +635,7 @@ function enterVillagecatString(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -657,6 +680,7 @@ function enterVillagecat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Boniface alone', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -680,6 +704,7 @@ function enterVillagecat(s: GameState, scene: SceneBuilder): void {
 function enterGrandmaLeaveEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('As you\'re leaving the house, you grandmother gives you a big hug and tells you to be safe.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -692,6 +717,7 @@ function enterGrandmaLeaveEvent(s: GameState, scene: SceneBuilder): void {
 function enterGrandpaLeaveEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('As you\'re leaving the house, you grandfather tells watch out for yourself and be safe.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

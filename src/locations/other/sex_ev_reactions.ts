@@ -24,6 +24,7 @@ function enterCumReact(s: GameState, scene: SceneBuilder): void {
       { label: 'Collapse', goto: ['sex_ev_after', 'black_out'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -43,6 +44,7 @@ function enterReactMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_reactions', 'no_mouth_cum');
   qspCall(s, 'sex_ev_reactions', 'no_facial');
   qspCall(s, 'sex_ev_reactions', 'no_tits_cum');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,6 +57,7 @@ function enterHandjobReact(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -70,6 +73,7 @@ function enterKuniReact(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -116,6 +120,7 @@ function enterCondomReactions(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +155,7 @@ function enterGoodThingCondom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -189,6 +195,7 @@ function enterBaskSatisfaction(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Quiet satisfaction', goto: ['sex_ev_reactions', 'bask_route'] },
   ]);
@@ -224,6 +231,7 @@ function enterBaskRoute(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'sex_ev_sex', 'sex_end');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -311,6 +319,7 @@ function enterBaskCreampie1(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you just stay like that for a while, panting hard in the aftermath of your rough fucking.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -348,6 +357,7 @@ function enterBaskCreampie2(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you just stay like that for a while, basking in the afterglow of your rough fucking.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -451,6 +461,7 @@ function enterBaskAnalCreampie1(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you just stay like that for a while, panting hard in the aftermath of your rough anal fucking.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -523,6 +534,7 @@ function enterBaskCondom1(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you just stay like that for a while, basking in the afterglow of your rough fucking.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -556,6 +568,7 @@ function enterBaskCondom2(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you just stay like that for a while, basking in the afterglow of your rough fucking.');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -730,6 +743,7 @@ function enterBaskExternalCum1(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('A few minutes pass and your breathing slowly calms, relaxing in a moment of quiet satisfaction.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -776,6 +790,7 @@ function enterBaskExternalCum2(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('A few minutes pass and your breathing slowly calms, the two of you relaxing together in a moment of quiet satisfaction.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -787,6 +802,7 @@ function enterPulloutReactMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_talk', 'creampie_permission1');
     qspCall(s, 'sex_ev_reactions', 'cum_already');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -812,6 +828,7 @@ function enterPulloutThanks(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -837,6 +854,7 @@ function enterPulloutClose(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -946,6 +964,7 @@ function enterWhyNotInside(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -977,6 +996,7 @@ function enterCumMouthLikeThat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1047,10 +1067,12 @@ function enterAnalCpFeltGreat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnalCpFull(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'I feel full', handler: (st: GameState) => {
     // TODO-QSP: iif(sex_ev['cock_inserted'] = 1, '<center><img <<$set_imgh>> src="images/shared/sex/vag/doggy/1.jpg"...
@@ -1126,10 +1148,12 @@ function enterLoveAnalCreampies(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCantPregnant(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Good thing you can\'t get pregnant', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 4) + 2);
@@ -1172,10 +1196,12 @@ function enterFirstAnalCreampie(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAnalDidYouComeInside(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Did you just come inside me?', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['just_cum_inside_me'] = 1;
@@ -1285,6 +1311,7 @@ function enterSwallowReact1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_reactions', 'spit_quit');
     qspCall(s, 'sex_ev_reactions', 'cum_tasty');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1298,6 +1325,7 @@ function enterSwallowForYou(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1310,6 +1338,7 @@ function enterSwallowNotForYou(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1322,6 +1351,7 @@ function enterSpitQuit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1338,6 +1368,7 @@ function enterCumBadTaste(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1345,6 +1376,7 @@ function enter69React(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['position'] === '69') {
     scene.text('placeholder');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1366,11 +1398,13 @@ function enterFacialSmileImg(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFacialReactions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_reactions', 'facial_happy_reacts');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1556,6 +1590,7 @@ function enterFacialHappyReacts(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'sex_ev_reactions', 'ruined_makeup');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1591,10 +1626,12 @@ function enterCumTasty(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWhyLikeSwallowing(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Why do guys like girls who swallow?', handler: (st: GameState) => {
     scene.actions([
@@ -1612,6 +1649,7 @@ function enterWhyLikeSwallowing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWhyLikeSwallowing2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1647,6 +1685,7 @@ function enterFacialRuinedMakeup(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1669,10 +1708,12 @@ function enterCumTitsReact1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCumTitsMess(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'What a mess', handler: (st: GameState) => {
     scene.actions([
@@ -1773,6 +1814,7 @@ function enterCumTitsMess(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLetItGo(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let it go', handler: (st: GameState) => {
     scene.text('You keep your retort to yourself, deciding the best way to handle this is just to move past it.');
@@ -1793,6 +1835,7 @@ function enterCumKissCock(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1812,6 +1855,7 @@ function enterNoCumInsidePic(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $sex_ev['bed_room']
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1953,6 +1997,7 @@ function enterNoCumInside(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1974,6 +2019,7 @@ function enterNoTitsCum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2004,6 +2050,7 @@ function enterNoFacial(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2017,6 +2064,7 @@ function enterCumMouthGross(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2052,10 +2100,12 @@ function enterNoMouthCum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBjWarningThanks(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thanks for the warning', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/smile1.jpg');
@@ -2074,6 +2124,7 @@ function enterBjWarningThanks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjWarningNextTime(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'A little warning?', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -2182,6 +2233,7 @@ function enterBjWarningNextTime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjTasty(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tasty', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -2195,6 +2247,7 @@ function enterBjTasty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjAlready(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Already?', handler: (st: GameState) => {
     scene.actions([
@@ -2229,6 +2282,7 @@ function enterBjAlready(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjAlready2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish up', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/smile1.jpg');
@@ -2246,6 +2300,7 @@ function enterBjAlready2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBjSwallowGross(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gross', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['mouth_cum_gross'] = 1;
@@ -2306,10 +2361,12 @@ function enterBjSwallowGross2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBjSpitGross(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Gross', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['mouth_cum_gross'] = 1;
@@ -2353,6 +2410,7 @@ function enterBjSpitGross2(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'sex_ev_sex', 'sex_end');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2383,6 +2441,7 @@ function enterCumMouthSwallowWhy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Trying to acquire the taste', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -2436,6 +2495,7 @@ function enterCumAlready(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2524,6 +2584,7 @@ function enterQuickshotTease1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2561,6 +2622,7 @@ function enter2pumpSmile(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2598,6 +2660,7 @@ function enter2pumpIrate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2606,6 +2669,7 @@ function enter2pumpReact(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_reactions_creampie', 'creampie_accident_oh_shit');
   qspCall(s, 'sex_ev_reactions_creampie', 'idk_you_panic_instant');
   qspCall(s, 'sex_ev_reactions_creampie', 'did_you_come_inside');
+  // TODO-QSP: end
   scene.actions([
     { label: 'That was fast', handler: (st: GameState) => {
     scene.text('"Did you just come...?" you ask.');
@@ -2650,6 +2714,7 @@ function enter2pumpReactAwkward(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play it off', handler: (st: GameState) => {
     if (((s as any).npc_insecure ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
@@ -2724,6 +2789,7 @@ function enter2pumpReactSelfish(s: GameState, scene: SceneBuilder): void {
   scene.text('"Oh yeah," he sighs blissfully. "Yeah I came... Did you come?"');
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
     scene.text('"Uhh... <i>No</i>." You give him a flat stare of clear disappointment.');
@@ -2738,6 +2804,7 @@ function enter2pumpReactSelfish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter2pumpReact2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ready to go again?', handler: (st: GameState) => {
     scene.img('images/shared/sex/misc/wait.mp4');

@@ -14,6 +14,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'outfit', 'remove_backup', 'lifeguard');
   scene.actions([{ label: 'Continue', goto: ['pav_pool', 'entrance'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,6 +79,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -95,6 +97,7 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You smile in return. "<<$pcs_firstname>>, but people just call me <<$pcs_nicknam...
   scene.text(`You smile in return. "${((s as any).pcs_firstname ?? 0)}, but people just call me ${((s as any).pcs_nickname ?? 0)}."`);
   scene.text('"You can call me Maria. You can go and shower now, but be back tomorrow at the same time to finish your training."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the staff locker room', handler: (st: GameState) => {
     qspCall(s, 'din_van', 'showerdin');
@@ -155,6 +158,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Cool…" he says flatly. "I\'ll see you around I guess…"');
     scene.text('He brushes past you and starts flirting with some pretty girls in the pool, leaving you feeling a little insulted by how dismissive he was of you.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the staff locker room', handler: (st: GameState) => {
     qspCall(s, 'din_van', 'showerdin');
@@ -189,6 +193,7 @@ function enterStaffLockerRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('A row of dilapidated lockers line one wall, with a group of old benches provided as a seating area. The showers are towards the back of the room.');
   // TODO-QSP: dynamic text: A set of <a href="exec:minut += 1 & gt 'pav_pool_lifeguard', 'mirror'">mirrors</...
   scene.text('A set of <a href="exec:minut += 1 & gt \'pav_pool_lifeguard\', \'mirror\'">mirrors</a> where you can brush your hair or do your makeup line the wall opposite the lockers, while an old water fountain provides hydration to anyone desperate enough to use it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'pav_pool_lifeguard', 'cash');
@@ -236,6 +241,7 @@ function enterMirror(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/mirrorsink.jpg');
   // TODO-QSP: dynamic text: The <a href="exec:minut += 1 & gt 'mirror', 'start'">mirrors</a> are is just as ...
   scene.text('The <a href="exec:minut += 1 & gt \'mirror\', \'start\'">mirrors</a> are is just as murky as the rest of the changing room. It\'s almost like the owners don\'t care about the dilapidated appearance.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the changing room', goto: ['pav_pool_lifeguard', 'staff_locker_room'] },
   ]);
@@ -248,6 +254,7 @@ function enterStartShift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('You enter the staff locker room and strip from your clothes, ready to put on your uniform.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a quick shower first', handler: (st: GameState) => {
     qspCall(s, 'din_van', 'showerdin');
@@ -284,6 +291,7 @@ function enterEndShift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lockers.jpg');
   scene.text('You enter the staff locker room and prepare to strip out of your uniform.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Just get dressed', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -501,6 +509,7 @@ function enterShiftPart1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -508,6 +517,7 @@ function enterShiftPart11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
   scene.text('From atop your raised vantage point, you look down into the pool at the crowds of people who are either swimming or playing games in the water.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
@@ -654,6 +664,7 @@ function enterShiftPart2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/pool3.jpg');
   scene.text('You return to the pool area, which is just as noisy and crowded as when you left it. You climb back up into the chair and take a seat to resume your duties.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your shift', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -808,6 +819,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/cafeteria2.jpg');
   scene.text('The clock soon reaches 3 and you climb down from the chair to take your break, heading to the cafeteria to grab something to eat.');
   scene.text('When you arrive, your options are limited to the snacks on display, so you grab one and take a seat.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1146,6 +1158,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fuck my pussy', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 6);
@@ -1242,6 +1255,7 @@ function enterVadimShowerPostsex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/shower/after2.mp4');
   scene.text('Vadim pants loudly as he runs his hands over your wet body. "That was pretty good, hot stuff. Fancy doing it again sometime?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Maybe', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

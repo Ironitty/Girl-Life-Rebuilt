@@ -370,6 +370,7 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -800,6 +801,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1233,6 +1235,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1246,6 +1249,7 @@ function enterToiletBj1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start sucking', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A11');
@@ -1290,6 +1294,7 @@ function enterToiletBj2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start sucking', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A156');
@@ -1443,6 +1448,7 @@ function enterSweet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1581,6 +1587,7 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1780,6 +1787,7 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

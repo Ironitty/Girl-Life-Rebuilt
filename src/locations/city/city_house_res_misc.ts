@@ -39,6 +39,7 @@ function enterFronty(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_house_res_misc', 'fronty'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go inside', goto: ['city_house_res_misc', 'hallw'] },
     { label: 'Go to the city', handler: (st: GameState) => {
@@ -65,6 +66,7 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
     scene.text('There\'s an umbrella hanging on a hook by the door.');
   }
   qspCall(s, 'daily_routine', 'offer_here');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go out front', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -103,6 +105,7 @@ function enterBacky(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go inside', goto: ['city_house_res_misc', 'hallw'] },
   ]);
@@ -152,6 +155,7 @@ function enterLivroom(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry']} completed tapestries.`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['city_house_res_misc', 'hallw'] },
   ]);

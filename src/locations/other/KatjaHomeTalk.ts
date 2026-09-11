@@ -154,6 +154,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['mey_home', 'start'] },
   ]);
@@ -368,6 +369,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell Katja that you and Artem are in an open relationship', goto: ['KatjaHomeTalk', 'artem_opne_relationship'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Chat with Katja', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (1);
@@ -578,6 +580,7 @@ function enterKatjaknows(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
@@ -658,6 +661,7 @@ function enterKatjaknows1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -712,6 +716,7 @@ function enterShowerKissHome(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sit on the edge of the tub', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) - (10);
@@ -742,6 +747,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('You and Katja pour over your books for half an hour. In the end, you feel you understand the material fully.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['KatjaHomeTalk', ''] },
     { label: 'Leave the room', goto: ['mey_home', 'start'] },
@@ -751,6 +757,7 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
 
 function enterHornykiss(s: GameState, scene: SceneBuilder): void {
   scene.text('Katja brings her face so close to yours that you can feel her hot breath on your skin.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bring your face close to hers', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -800,6 +807,7 @@ function enterTenderKiss(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Katja thinks about something before blushing in embarrassment. "<<$pcs_nickname>...
   scene.text(`Katja thinks about something before blushing in embarrassment. "${((s as any).pcs_nickname ?? 0)}… Have you ever… kissed a boy?"`);
   ((s as any).katjaQW ?? {})['boy_lie'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -920,6 +928,7 @@ function enterMarcusKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/katja_kiss.jpg');
   scene.text('Katja almost jumps you and gives you a kiss. Afterward, she looks at you a little hesitantly. "You know, having Marcus over is quite fun, so why don\'t we call him right now?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', goto: ['katja_sex', 'marcus_wait'] },
     { label: 'You\'re not in the mood', handler: (st: GameState) => {
@@ -941,6 +950,7 @@ function enterTamVal(s: GameState, scene: SceneBuilder): void {
   scene.text('Katja mumbles something that sounds like a "hello", then without loosening her grip on your hand, quickly takes you towards her bedroom. As you enter, she throws herself at the bed and muffles a scream in the pillow.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Katja is confused', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['QWstage'] = 2;
@@ -1148,6 +1158,7 @@ function enterTamVal_2(s: GameState, scene: SceneBuilder): void {
   scene.text('She gives you a timid smile before climbing under her bed\'s covers as you leave. This has been a full afternoon. There is nothing more for you here… Except Katja\'s mother waiting for you in the entry hall…');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A Talk', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1209,6 +1220,7 @@ function enterBoyDiscussion(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1238,6 +1250,7 @@ function enterAnalDiscussion(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1260,6 +1273,7 @@ function enterPreventationTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
@@ -1280,6 +1294,7 @@ function enterRandomParkSexTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('Katja gives you the most sultry look she can muster. "You know, sex with Ivan and Marcus is great and all, but I was thinking that it might be time to try other boys."');
   scene.text('"Do you have anybody in mind?" you ask.');
   scene.text('"Not any of the boys in the class. I don\'t think anybody except Ivan could keep their mouth shut about having a threesome with the two hottest chicks in school!" she answers. "I don\'t really know anybody else. You\'ve been much more around than me, so maybe you know somebody?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her about the boys in the park', handler: (st: GameState) => {
     ((s as any).katjaQW ?? {})['horny'] = (((s as any).katjaQW ?? {})['horny'] ?? 0) + (5);
@@ -1321,6 +1336,7 @@ function enterSexWithBoyAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Okay, so why don\'t you?" you ask.');
     scene.text('"I don\'t know how to approach a boy…" she answers. "I don\'t want a boyfriend, I just want to try having sex with a boy. Can\'t you help me arrange it? Please…" she says, looking at you pleadingly with her big eyes.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', goto: ['KatjaHomeTalk', 'boy_discussion'] },
     { label: 'Refuse', handler: (st: GameState) => {
@@ -1365,6 +1381,7 @@ function enterSexWith_ArtemAsk(s: GameState, scene: SceneBuilder): void {
   scene.text('Katja looks at you nervously, but with a look in her eyes that tells you she\'s thinking about something naughty. "You\'ve told me all about how good your sex with Artem is," she meekly says. "It makes me a little jealous, so I… I wonder… I wonder if I could be part of that too…"');
   scene.text('"So you want to join me and Artem for a threesome?" you ask.');
   scene.text('"Yes… I would like to try to have sex with a boy… and you said how nice he is in bed, so I thought that maybe he would be good for my first time. You would also be there and I\'m sure you would help me have a good time," she answers.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree to a threesome with Artem', goto: ['KatjaHomeTalk', 'artem_threesome_planning'] },
     { label: 'Tell Katja that you don\'t want to share Artem', handler: (st: GameState) => {
@@ -1445,6 +1462,7 @@ function enterMarcusAnswerTalk(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1470,6 +1488,7 @@ function enterFirstBoySexFollowUp(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her that she should use birth control', goto: ['KatjaHomeTalk', 'preventation_talk'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', goto: ['KatjaHomeTalk', ''] },
   ]);
@@ -1513,6 +1532,7 @@ function enterFirstBoySex_ArtemFollowUp(s: GameState, scene: SceneBuilder): void
       { label: 'Tell her that she should use birth control', goto: ['KatjaHomeTalk', 'preventation_talk'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', goto: ['KatjaHomeTalk', ''] },
   ]);
@@ -1534,6 +1554,7 @@ function enterAnalSexWithBoyAsk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Okay, so why don\'t you?" you ask.');
     scene.text('"I don\'t know how to approach a boy…" she answers. "I don\'t want a boyfriend, I just want to try having anal sex with a boy. Can\'t you help me arrange it? Please…" she says while looking at you pleadingly with her big eyes.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', goto: ['KatjaHomeTalk', 'anal_discussion'] },
     { label: 'Refuse', handler: (st: GameState) => {
@@ -1609,6 +1630,7 @@ function enterUniTell(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1647,6 +1669,7 @@ function enterKatjaUniTell(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1669,6 +1692,7 @@ function enterBoyNo(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
@@ -1701,6 +1725,7 @@ function enterBoyYes(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
@@ -1726,6 +1751,7 @@ function enterFistingAsk(s: GameState, scene: SceneBuilder): void {
   scene.text('"No, I want you… to…" her voice falters again.');
   scene.text('"You want me to fist you?" you ask. She doesn\'t say anything, but slowly nods. "Right now?"');
   scene.text('Again, she doesn\'t say anything, but nods.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show Katja how fisting is done', goto: ['katja_sex', 'first_fisting'] },
     { label: 'Say you will do it another time', handler: (st: GameState) => {
@@ -1760,6 +1786,7 @@ function enterGoToPark(s: GameState, scene: SceneBuilder): void {
   ((s as any).placerParameter ?? {})['friend_alko'] = 0;
   ((s as any).placerParameter ?? {})['location_index'] = 0;
   scene.actions([{ label: 'Continue', goto: ['placer', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1807,6 +1834,7 @@ function enterArtemTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Katja continues', goto: ['KatjaHomeTalk', 'Artem_talk2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1900,6 +1928,7 @@ function enterArtemTalk2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1913,6 +1942,7 @@ function enterArtemSexDiscussion(s: GameState, scene: SceneBuilder): void {
     scene.text('"I know that you\'ve wanted to try to have sex with a boy for a while, and I\'ve decided that you can join me and Artem in a threesome if you like," you tell Katja.');
   }
   scene.text('Katja\'s face lights up like it was Christmas, and she can barely contain her excitement. "Yes! I\'d very much like that! When do we do it?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell Katja your plan', goto: ['KatjaHomeTalk', 'artem_threesome_planning'] },
   ]);
@@ -1951,6 +1981,7 @@ function enterArtemThreesomePlanning(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
@@ -1969,6 +2000,7 @@ function enterArtemBreakUpTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('"So how are you and Artem?" Katja asks in a tone that indicates she knows you\'ve broken up.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"I\'m heartbroken"', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 6;
@@ -2327,6 +2359,7 @@ function enterArtemOpneRelationship(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
@@ -2375,6 +2408,7 @@ function enterMarcusDiscussion(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the room', goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

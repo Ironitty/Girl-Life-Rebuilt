@@ -74,6 +74,7 @@ function enterGenerousInitiativeBed1Desc(s: GameState, scene: SceneBuilder): voi
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -83,6 +84,7 @@ function enterKuniDeny1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"That\'s... I..." you stammer. "I don\'t let guys go down on me unless I\'m really comfortable with them. It\'s a personal thing..."');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +94,7 @@ function enterKuniDeny2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Nuh uh," you say, snapping your legs closed. "I\'m still not ready for that."');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,6 +111,7 @@ function enterTransition1Desc(s: GameState, scene: SceneBuilder): void {
       scene.text(`You pant tiredly, laying back on the bed as your orgasm slowly winds down. Suddenly ${((s as any).npcdesc ?? 0)}'s cock enters your view, dangling above your head, and he bends over you, trying to push it into your panting mouth.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

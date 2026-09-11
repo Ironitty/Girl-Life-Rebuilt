@@ -68,6 +68,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 50) {
     // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the corridor', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -97,6 +98,7 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', goto: ['sitr', ''] },
   ]);

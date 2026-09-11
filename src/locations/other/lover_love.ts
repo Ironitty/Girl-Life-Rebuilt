@@ -98,6 +98,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -122,6 +123,7 @@ function enterMarry(s: GameState, scene: SceneBuilder): void {
     (s as any).PRinStyle = 1;
     (s as any).PRinStyle2 = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -140,6 +142,7 @@ function enterDivorce(s: GameState, scene: SceneBuilder): void {
     (s as any).PRinStyle = 0;
     (s as any).PRinStyle2 = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

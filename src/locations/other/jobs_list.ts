@@ -26,6 +26,7 @@ function enterCityOfficeSecretary(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +46,7 @@ function enterCityCafeWaitress(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -65,6 +67,7 @@ function enterCityHospitalNurse(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -85,6 +88,7 @@ function enterCityDinerDishwasher(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,6 +110,7 @@ function enterCityDinerFloorWasher(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -128,6 +133,7 @@ function enterCityOfficeCleaner(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -150,6 +156,7 @@ function enterCityOfficeToiletCleaner(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -171,6 +178,7 @@ function enterCityDinerSecretary(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -194,6 +202,7 @@ function enterCityStripBargirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +233,7 @@ function enterCityStripStripper(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -254,6 +264,7 @@ function enterCityPussycatsClerk(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -317,6 +328,7 @@ function enterCityPornstudioActress(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_refresh_desc ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -337,6 +349,7 @@ function enterCityPornstudioDelivery(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -369,6 +382,7 @@ function enterCityAphroditeModel(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_refresh_desc ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -392,6 +406,7 @@ function enterPavHotelMaid(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -414,6 +429,7 @@ function enterPavClinicCleaner(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -440,6 +456,7 @@ function enterPavFactory(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -465,6 +482,7 @@ function enterPavMailgirl(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -486,6 +504,7 @@ function enterPavTourGuide(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -506,6 +525,7 @@ function enterPavBarbershopCleaner(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -525,6 +545,7 @@ function enterPavTrainCleaner(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -554,6 +575,7 @@ function enterPavPoolLifeguard(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -576,6 +598,7 @@ function enterPavVocSchoolTeacher(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -598,6 +621,7 @@ function enterCityMarketSaleswoman(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_add_to_calendar ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -618,6 +642,7 @@ function enterHighwayBrothelProstitute(s: GameState, scene: SceneBuilder): void 
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -642,6 +667,7 @@ function enterNichMaid(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -690,6 +716,7 @@ function enterCitySalonMasseuse(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   ((s as any).job_refresh_desc ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -715,6 +742,7 @@ function enterPavLeonidSlave(s: GameState, scene: SceneBuilder): void {
   ((s as any).job_show_stat_icon ?? {})[String((s as any).temp_job_id ?? 0)] = 1;
   ((s as any).job_schedule_switchable ?? {})[String((s as any).temp_job_id ?? 0)] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

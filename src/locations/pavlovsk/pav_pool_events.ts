@@ -26,6 +26,7 @@ function enterTimedesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +121,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -127,6 +129,7 @@ function enterBuyCheapSwimsuit(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'clothing', 'is_owned', 'scandalicious_bikinis', 46) === 0) {
     qspCall(s, 'clothing', 'add_item', 'scandalicious_bikinis', 46, 40);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -158,6 +161,7 @@ function enterNakedMirror(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'pav_pool', 'mirror', 1
@@ -194,6 +198,7 @@ function enterNakedLocker(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'pav_pool', 'lockerfemale', 1
@@ -219,6 +224,7 @@ function enterLockerClothedToNude(s: GameState, scene: SceneBuilder): void {
       scene.text('As you take your clothes off, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -242,6 +248,7 @@ function enterLockerSwimToNude(s: GameState, scene: SceneBuilder): void {
       scene.text('As you take your swimwear off, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -265,6 +272,7 @@ function enterLockerNudeToClothed(s: GameState, scene: SceneBuilder): void {
       scene.text('As you change back into your clothes, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -288,6 +296,7 @@ function enterLockerNudeToSwim(s: GameState, scene: SceneBuilder): void {
       scene.text('As you put your swimwear on, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -324,6 +333,7 @@ function enterLockerClothedToSwim(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -360,6 +370,7 @@ function enterLockerSwimToClothed(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -374,6 +385,7 @@ function enterShowerLate(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/swim/covershower.jpg');
     scene.text('As you turn off the water, the silence is suddenly broken by a noise behind you. You look back and see a girl staring at you, who is startled at being caught and runs off. You don\'t know how long she was standing there watching you shower.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'showerfemale'] },
   ]);
@@ -456,6 +468,7 @@ function enterRelaxedswim(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -529,6 +542,7 @@ function enterExerciseswim(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -576,6 +590,7 @@ function enterDive(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -616,6 +631,7 @@ function enterEdgepool(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -683,6 +699,7 @@ function enterRelaxedwater(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -733,6 +750,7 @@ function enterFeetwater(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up', goto: ['pav_pool', 'pool'] },
     { label: 'Slide into the water', goto: ['pav_pool', 'poolwater'] },
@@ -752,6 +770,7 @@ function enterWatertoplost(s: GameState, scene: SceneBuilder): void {
       scene.text('You could try to reach the edge of the pool, but you would have to get very close to other people. You could also wait and hope that the pool empties a little without calling attention to yourself.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to reach the edge', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18) {
@@ -795,6 +814,7 @@ function enterWTLNothinghappens(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
   qspCall(s, 'pav_pool_events', 'timedesc');
   scene.text('You wait around topless in the water for a while. You notice several people staring at you and have to avoid others from time to time, but nobody disturbs you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool_events', 'watertoplost'] },
   ]);
@@ -857,6 +877,7 @@ function enterWTLMast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Freeze', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -909,6 +930,7 @@ function enterWTLBoystole(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Reluctantly do it', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -946,6 +968,7 @@ function enterTryreachedgenotop(s: GameState, scene: SceneBuilder): void {
   scene.text('You reach the edge of the pool and manage to climb out unnoticed before running to the locker room. You can get rid of this bottom since it\'s useless now.');
   ((s as any).pav_swimpool ?? {})['toplost'] = 0;
   qspCall(s, 'clothing', 'strip');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
   ]);
@@ -957,6 +980,7 @@ function enterKidsplash(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/kidsplash.jpg');
   scene.text('You\'re minding your own business and quietly swimming when a kid suddenly splashes you hard with water. The little brat seems to have done it on purpose, and he swims away laughing.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -968,6 +992,7 @@ function enterKidsplashgroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/kidsplashgroup.jpg');
   scene.text('While swimming, a group of boys start splashing each other with huge amounts of water and you end up caught in the middle. By the time you can reopen your stinging eyes, they are long gone.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -977,6 +1002,7 @@ function enterKidsplashgroup(s: GameState, scene: SceneBuilder): void {
 function enterDivedickout(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/penisout.jpg');
   scene.text('While diving, you see a guy with his dick hanging out of his shorts. It seems he\'s doing it on purpose as it\'s somewhat hard. Did he swim over to you on purpose so you would see it?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -990,6 +1016,7 @@ function enterApproachbehind(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re at the edge of the pool with your back towards the water when you suddenly feel something hard pressing against your ass. As you turn around, you notice a fat older man resting his stomach against your back with what feels like his hard dick pressing against your ass.');
   scene.text('You turn around with a look of shocked disgust on your face and he backs off.');
   scene.text('"Sorry, I fell…" he says with a grin as he leaves.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -1001,6 +1028,7 @@ function enterKidsunderwater(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/boysdiving.jpg');
   scene.text('While diving, you encounter a group of children who look like they will cause you trouble. You take a different course to avoid them.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -1025,6 +1053,7 @@ function enterPullstringbottom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1033,6 +1062,7 @@ function enterAssgrab(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/assgrab1.jpg');
   scene.text('While swimming, you suddenly feel a hand pawing at and squeezing your ass. You turn in time to see an underwater shadow swimming away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -1044,6 +1074,7 @@ function enterAssgrabbihand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/assgrab2.jpg');
   scene.text('While swimming, you suddenly feel two hands forcefully pawing at and squeezing your ass. You turn in time to see an underwater shadow swimming away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -1056,6 +1087,7 @@ function enterGropedfrombelow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/gropedfrombelow.jpg');
   scene.text('While swimming, you suddenly feel two hands grabbing your waist from below and sliding along your body as you pass above.');
   scene.text('You shiver at the thought that some stranger just assaulted you and decide not to look back.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_pool', 'poolwater'] },
   ]);
@@ -1089,6 +1121,7 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show interest', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/swim/flirtside.jpg');
@@ -1284,6 +1317,7 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1293,6 +1327,7 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/pool5.jpg');
   scene.text('It\'s rather late now and only you and an old man are in the pool. You\'re creeped out by the way he keeps staring at you and avoid him as much as possible as you finish your swim.');
   scene.text('After a few more minutes, you decide it\'s getting late and swim over to the edge to climb out. Just as you\'re about to pull yourself up, a hand suddenly covers your mouth and you\'re dragged kicking and thrashing back into the water.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;

@@ -6,31 +6,37 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterFull(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSleep(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'prepare_sleep'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDream(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['sleep', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWake(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['bed_get_out', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['pre_sleep', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,11 +52,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sleepVars ?? {})['time_to_full'] = (((s as any).sleepVars ?? {})['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   scene.actions([{ label: 'Continue', goto: ['dream_events', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterPostDream(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['sleep', 'sleep_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -61,6 +69,7 @@ function enterSleepHandler(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['sleep', 'post_sleep'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,6 +88,7 @@ function enterCalcMinutesToWakeup(s: GameState, scene: SceneBuilder): void {
   } else {
     ((s as any).sleepVars ?? {})['minutes_to_wakeup'] = ((s as any).sleepVars ?? 0)?.['time_to_full'];
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,6 +111,7 @@ function enterIsTomorrowSchoolVacation(s: GameState, scene: SceneBuilder): void 
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,11 +181,13 @@ function enterSleepLoop(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).sleepVars ?? {})['no_health'] = 0;
   scene.actions([{ label: 'Continue', goto: ['sleep', 'post_sleep'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'sleep', 'mod_sleeptriggers');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -198,6 +211,7 @@ function enterPostSleep(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['wakeup', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

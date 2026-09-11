@@ -82,6 +82,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/park/1.jpg');
   // TODO-QSP: dynamic text: As you walk through the park, you notice a man in a kilt. <<$telsob>> is interes...
   scene.text(`As you walk through the park, you notice a man in a kilt. ${((s as any).telsob ?? 0)} is interested in why he is wearing a kilt and what he's up to.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move on', goto: ['parksvid', '3'] },
     { label: 'See what he\'s doing', handler: (st: GameState) => {
@@ -179,6 +180,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her and say goodbye', goto: ['city_park', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -214,6 +216,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her and invite her to your home', goto: ['lezbsex', 'startloverhome'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

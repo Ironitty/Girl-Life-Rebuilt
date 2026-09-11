@@ -17,6 +17,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "So Ms. <<$pcs_lastname>>, you want to get your hair dyed <<$hairPref>> now is t...
   scene.text(`"So Ms. ${((s as any).pcs_lastname ?? 0)}, you want to get your hair dyed ${((s as any).hairPref ?? 0)} now is that right?"`);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nod', handler: (st: GameState) => {
     scene.text('Knowing there is no way to back out of this now, you meekly nod.');
@@ -60,6 +61,7 @@ function enterMake(s: GameState, scene: SceneBuilder): void {
   scene.text('You can\'t say why, but you feel it would be harder to say no next time if he asked you to change something.');
   ((s as any).npc_compliance ?? {})[String((s as any).npcID ?? 0)] = (((s as any).npc_compliance ?? {})[String((s as any).npcID ?? 0)] ?? 0) - (1);
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['homes_properties', 'go_home'] },
   ]);
@@ -516,10 +518,12 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTatt(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter Tattoo Parlor', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the tattoo parlor, <<$npcdesc>> looks you up and down to decide...
@@ -907,6 +911,7 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLips(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter clinic', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the clinic, <<$npcdesc>> walks up to the front desc and asks to...
@@ -999,6 +1004,7 @@ function enterLips(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTits(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter clinic', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the clinic, <<$npcdesc>> walks up to the front desc and asks to...
@@ -1221,10 +1227,12 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothes(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFigure(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter clinic', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the clinic, <<$npcdesc>> walks up to the front desc and asks to...

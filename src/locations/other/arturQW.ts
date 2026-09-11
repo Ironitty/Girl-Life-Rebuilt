@@ -98,6 +98,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Go with Arthur', goto: ['arturHome', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +113,7 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"What? Damn it! I thought you liked it. It is fine, it is fine, a girl like you should have a decent place to work."');
   scene.text('He appears to be thinking to himself before his eyes light up and he quickly adds. "Look, I fired my bookkeeper, the old hag. Now you can take over her job! You will enjoy it much more, I promise. You will receive twice the money and won\'t have to deal with asshole customers. Just come every day by 16.00, otherwise I will have to fire you, despite your fine ass." Arthur says.');
   scene.text('You see a look of desperation in his eyes as he finishes the job offer. He clearly doesn\'t want to lose having you around every day. You consider your options…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

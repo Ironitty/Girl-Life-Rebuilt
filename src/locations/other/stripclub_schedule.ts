@@ -21,6 +21,7 @@ function enterDoBook(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sb_daystart = ((s as any).daystart ?? 0) + ((s as any).temp_sb_offset ?? 0);
   (s as any).temp_sb_slot = ((s as any).temp_sb_shift ?? 0) - 1;
   (s as any).temp_sb_result = qspFunc(s, 'jobs', 'book_slot', 'city_strip_stripper', ((s as any).temp_sb_daystart ?? 0), ((s as any).temp_sb_slot ?? 0), qspUntranslated(s, "str(temp_sb_shift)", { location: "stripclub_schedule" }));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -35,6 +36,7 @@ function enterDoCancel(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sc_daystart = ((s as any).daystart ?? 0) + ((s as any).temp_sc_offset ?? 0);
   (s as any).temp_sc_slot = ((s as any).temp_sc_shift ?? 0) - 1;
   qspCall(s, 'jobs', 'cancel_booking', 'city_strip_stripper', ((s as any).temp_sc_daystart ?? 0), ((s as any).temp_sc_slot ?? 0));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -87,6 +89,7 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $result +=  '</td></tr>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +115,7 @@ function enterRandomStripperName(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -220,16 +224,19 @@ function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=  '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
   scene.text(`${((s as any).temp_table ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stripclub_schedule', 'set_schedule_base', 0);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterNextWeekSetSchedule(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stripclub_schedule', 'set_schedule_base', 1);
+  // TODO-QSP: end
   scene.build();
 }
 

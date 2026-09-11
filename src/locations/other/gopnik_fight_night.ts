@@ -41,6 +41,7 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gopnik_fight_night', 'gym'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +108,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
       { label: 'Just watch the first few fights', goto: ['gopnik_fight_night', 'first_time'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +122,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   scene.text('None of the girls want to fight Katyusha and some of the guys even shy away from her. Tonight, she challenges a guy about her own size and holds his own for a while, but she keeps coming and her higher skill starts turning the tide before he finally taps out when she gets him in an armlock.');
   scene.text('Just about everyone seems to be afraid of Roman. When he challenges a guy half his size to a fight and beats the pulp out of him, Vitek has to yell out to him twice to make him stop once the other guy goes limp.');
   scene.text('You had forgotten about rule eight when some girl from your brother\'s grade walks up to you and looks you over. "Come on, bitch. Let\'s dance."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fight!', handler: (st: GameState) => {
     ((s as any).gopnik_fight_nightQW ?? {})['nights'] = (((s as any).gopnik_fight_nightQW ?? {})['nights'] ?? 0) + (1);
@@ -147,6 +150,7 @@ function enterStartFight(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).fightEnding = 24;
   scene.actions([{ label: 'Continue', goto: ['fight', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -158,6 +162,7 @@ function enterBarelyWin(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s a tough fight. Your opponent gets a lot of good hits in and your body feels every single one of them, but in the end you mange to make her tap out. She falls on her ass as she gives up and you stand with your hands still up ready for more, but you\'re barely managing to stay on your feet.');
   scene.text('At least no one else knows how close you came to losing. Once you\'re sure she\'s done, you relax and sit on one of the boxes to nurse your wounds as several of your friends come over to congratulate you and check on you.');
   scene.text('Once they\'re sure you\'re okay, they go back to watching the rest of the fights, with some taking part in fights themselves.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) < 23) {
@@ -193,6 +198,7 @@ function enterEasilyWin(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s an easy fight, the other girl being no match for you at all. You often play with her just to make the fight last longer and of course to show off a little. You could end the fight much sooner, but before too long she figures it out as well.');
   scene.text('She goes down after one of your big hits and stays on the ground, giving up. To establish domination even more, you put your foot on her to keep her down as Vitek announces you the winner.');
   scene.text('Your fight over, you move over to stand in the circle to watch the rest of the fights. Several of your friends congratulate you while you notice the looks of respect you\'re getting from some of the other gopniks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) < 23) {
@@ -228,6 +234,7 @@ function enterBarelyLose(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s a tough fight and she gets a lot of good hits in, your body feeling every single one of them. You return the favor almost blow for blow, but in the end you can\'t take anymore.');
   scene.text('With you on your last leg, Vitek steps between the two of you and calls the fight, announcing her as the winner as you sit on one of the boxes to nurse your wounds. Several of your friends come over to give you support and tell you how close you came and how you\'ll get her next time.');
   scene.text('After they check on you and make sure you\'re okay, they go back to watching the rest of the fights, with some taking part in fights themselves.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) < 23) {
@@ -262,6 +269,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s not even close. You have trouble landing solid blows while her blows seem to come out of nowhere lighting fast and with such power behind them that you fall more than once.');
   scene.text('As you\'re struggling to get up after being knocked on your ass once again, you finally just admit defeat and stay down. You tap the ground with one hand to show you are tapping out, the place erupts in cheers as she\'s drowned in cheers for beating the shit out of you as Vitek helps you up and hands you off to Vasily, who helps you over to some of the boxes.');
   scene.text('As you sit on one of them to nurse your wounds, several of your friends come over to check on you. Once they\'re sure you\'re not hurt too badly, they go back to watching the rest of the fights, with some taking part in fights themselves.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) < 23) {
@@ -295,6 +303,7 @@ function enterBadlyLose(s: GameState, scene: SceneBuilder): void {
   scene.text('It\'s not even close. You have trouble landing solid blows while her blows seem to come out of nowhere lighting fast and with such power behind them that you fall more than once.');
   scene.text('As you\'re struggling to get up after being knocked on your ass once again, Vitek comes in and calls the fight. She\'s drowned in cheers for beating the shit out of you as Vitek helps you up and hands you off to Vasily, who helps you over to some of the boxes.');
   scene.text('As you sit on one of them to nurse your wounds, several of your friends come over to check on you. Once they\'re sure you\'re not hurt too badly, they go back to watching the rest of the fights, with some taking part in fights themselves.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) < 23) {

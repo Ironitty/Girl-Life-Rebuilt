@@ -153,6 +153,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -165,6 +166,7 @@ function enterLeaveApartment(s: GameState, scene: SceneBuilder): void {
   ((s as any).NatbelQW ?? {})['seethroughkitchen'] = 0;
   (s as any).natstayroom = 0;
   scene.actions([{ label: 'Continue', goto: ['pod_ezd', 'etaj_4'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -227,6 +229,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -431,6 +434,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -512,6 +516,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'core_library', 'kitchen', 'shared');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['natbelapt', 'hallway'] },
     { label: 'Look in the fridge', goto: ['natbelapt', 'fridge'] },
@@ -535,6 +540,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['natbelapt', 'kitchen'] },
   ]);
@@ -556,6 +562,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['natbelapt', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -761,6 +768,7 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Natasha\'s room', goto: ['natbelapt', 'hallway'] },
     { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },
@@ -771,6 +779,7 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
 function enterSeethorughSurprise(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/natasha/seethrough02.jpg');
   scene.text('When you get back to Natasha\'s room, you see she\'s on her bed reading a book.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move closer', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/seethrough03.jpg');
@@ -1058,6 +1067,7 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -21,6 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big112.jpg');
   scene.text('Sergey is standing at the kitchen counter. He\'s making soup, cutting up ingredients and throwing them into a large pan.');
   qspCall(s, 'Serge_Shulgin', 'rep');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['vasilyhome', 'vasilykitchen'] },
     { label: 'Chat with Sergey', handler: (st: GameState) => {
@@ -74,6 +75,7 @@ function enterKuhBuh(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A112'] >= 50) {
     // TODO-QSP: act 'Ask if you can have some too': gt 'Serge_kuh', 'vodka'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['vasilyhome', 'vasilykitchen'] },
     { label: 'Chat with Sergey', handler: (st: GameState) => {
@@ -317,6 +319,7 @@ function enterVodka(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['vasilyhome', 'vasilykitchen'] },
   ]);
@@ -375,6 +378,7 @@ function enterPosuda(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Serge_kuh', ''] },
   ]);
@@ -395,6 +399,7 @@ function enterHelpEv1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Flirt with Sergey', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -467,6 +472,7 @@ function enterIzdev1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex5-1.jpg');
   scene.text('You look at Sergey and smirk at him: "You want me, don\'t you? It\'s okay, uncle Sergey… I don\'t mind pleasing you. Do you want me to undress?"');
   scene.text('Before he can even reply, you begin to take your clothes off. Sergey tries to raise his hands to stop you, but you deftly slap them away: "No, no touching! Not just yet, anyway!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -556,6 +562,7 @@ function enterIzdev2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex6-1.jpg');
   scene.text('You decide to just be honest, and smile at Sergey: "Uncle Sergey, do you think I have a nice body?"');
   scene.text('He\'s not really sure how to respond, and just stares at your shirt: "Uhh… I guess?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex6-2.jpg');
@@ -688,6 +695,7 @@ function enterIzdev3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za6-1.jpg');
   scene.text('"My mother thinks this skirt is too short… what do you think? It looks nice, right?" you ask Sergey with an impish grin on your face.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -743,6 +751,7 @@ function enterIzdev4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za1-1.jpg');
   scene.text('You make yourself a cup of coffee and lean back against the kitchen counter.');
   scene.text('Sergey looks a bit embarrassed when you smile at him seductively.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -791,6 +800,7 @@ function enterIzdev5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za3-1.jpg');
   scene.text('You move to stand in the middle of the kitchen. Sergey looks at you a bit puzzled, not sure why.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -858,6 +868,7 @@ function enterIzdev6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za5-1.jpg');
   scene.text('"This dress is so warm!" you complain to Sergey. "I can\'t work in the kitchen like this!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za5-2.jpg');
@@ -906,6 +917,7 @@ function enterIzdev7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za11-1.jpg');
   scene.text('"These flowers are lovely, uncle Sergey!" you say. He shrugs and looks at your ass, while you lean over to smell them.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -971,6 +983,7 @@ function enterIzdev8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex2-1.jpg');
   scene.text('You\'re so horny right now, you want him! Despite what he said… how bad could it be, really?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex2-2.jpg');
@@ -1077,6 +1090,7 @@ function enterIzdev9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex3-1.jpg');
   scene.text('"Uncle Sergey, you look thirsty!" you smile at him, while you lean against the fridge. "Is there anything I can get you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex3-2.jpg');
@@ -1191,6 +1205,7 @@ function enterIzdev10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>… why are you taking your pants off!?" Sergey asks you.
   scene.text(`"${((s as any).pcs_nickname ?? 0)}… why are you taking your pants off!?" Sergey asks you.`);
   scene.text('"It\'s just how I prefer to work in the kitchen, uncle Sergey", you reply. "You don\'t mind, do you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za7-2.jpg');
@@ -1261,6 +1276,7 @@ function enterIzdev11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za9-1.jpg');
   scene.text('You lean back against the kitchen counter and ask Sergey confidently: "Say, uncle Sergey… what kind of women are you into, anyway? You can tell me, no need to be ashamed!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1319,6 +1335,7 @@ function enterIzdev12(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>… why are you taking your clothes off!?" Sergey asks you.
   scene.text(`"${((s as any).pcs_nickname ?? 0)}… why are you taking your clothes off!?" Sergey asks you.`);
   scene.text('"It\'s just how I prefer to work in the kitchen, uncle Sergey", you reply. "You don\'t mind, do you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za10-2.jpg');
@@ -1388,6 +1405,7 @@ function enterIzdev13(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>… why are you taking your clothes off!?" Sergey asks you, a bi...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}… why are you taking your clothes off!?" Sergey asks you, a bit uncomfortable with you undressing.`);
   scene.text('"It\'s just how I prefer to work in the kitchen, uncle Sergey", you reply. "You don\'t mind, do you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -1502,6 +1520,7 @@ function enterIzdev14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex4-1.jpg');
   scene.text('You decide to have a glass of juice. While you have a sip, Sergey is looking at you intently.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/sex4-2.jpg');
@@ -1596,6 +1615,7 @@ function enterIzdev15(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za2-1.jpg');
   scene.text('You raise your hands in defence, claiming you\'ll stop. You turn around to wash your hands in the sink, and make your clothes all wet on purpose.');
   scene.text('Sergey feels a bit embarrassed, but at the same time can\'t keep his eyes off you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1645,6 +1665,7 @@ function enterIzdev16(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za4-1.jpg');
   scene.text('You take off your pants and kick them to a corner. When Sergey looks at you confused, you smile at him: "I prefer to be naked when I work in the kitchen. Don\'t worry, I\'ll keep my shirt on…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za4-2.jpg');
@@ -1686,6 +1707,7 @@ function enterIzdev17(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za8-1.jpg');
   // TODO-QSP: dynamic text: Sergey looks at you and says in a stern voice: "<<$pcs_nickname>>, don't be a te...
   scene.text(`Sergey looks at you and says in a stern voice: "${((s as any).pcs_nickname ?? 0)}, don't be a tease. Put your shirt back down."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/za8-2.jpg');
@@ -1761,6 +1783,7 @@ function enterIzn1(s: GameState, scene: SceneBuilder): void {
   scene.text('Sergey immediately rams his cock down your throat, and begins to fuck you with no regard for your feelings whatsoever. You cough and sputter loudly whenever he gives you a chance to breathe, which is not very often. He gives you very little respite and continues fucking your throat almost immediately after. Thick tears roll down your cheeks by the time he\'s done with your mouth, and you urgently gasp for breath.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'rough', 'deepthroat');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra\' + rand(1, 4) + \'.mp4');
@@ -1857,6 +1880,7 @@ function enterIzn2(s: GameState, scene: SceneBuilder): void {
   scene.text('He pulls you down to the ground in front of him, and exposes his fully erect penis. Deciding you don\'t need to get used to it slowly, he begins to fuck your throat right away.');
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'rough', 'deepthroat');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'large');
@@ -1949,6 +1973,7 @@ function enterSex1(s: GameState, scene: SceneBuilder): void {
   scene.text('To prove it, he gently kneads your boobs one by one, and squeezes your nipples. He even leans over and takes them in his mouth, where they steadily harden. He flicks his tongue over your fully erect nipples, making you moan softly. You\'re beginning to feel seriously turned on now, and know you\'re quite wet between your legs.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex1-2.jpg');
@@ -1999,6 +2024,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
   scene.text(`With you teasing him by only placing soft kisses on his cock, it doesn't take long for Sergey to groan: "I want you, ${((s as any).pcs_nickname ?? 0)}! If you're only going to tease me like that, I'll go mad!"`);
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex2-2.jpg');
@@ -2068,6 +2094,7 @@ function enterSex3(s: GameState, scene: SceneBuilder): void {
   scene.text('Sergey gropes your tits with one hand and slides the other hand under your clothes to finger you. He grunts: "You know perfectly well what I mean. Stop teasing me and get to it."');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/sex3-2.jpg');
@@ -2167,6 +2194,7 @@ function enterOrgasm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 70) {
     (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

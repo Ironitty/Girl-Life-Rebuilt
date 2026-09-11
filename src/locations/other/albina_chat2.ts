@@ -42,10 +42,12 @@ function enterFirstModelTalk1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterFirstModelTalkProud2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her (proud)', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -124,6 +126,7 @@ function enterFirstModelTalkProud2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstModelTalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her (nonchalant)', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -226,6 +229,7 @@ function enterFirstModelTalk3(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'albina_chat', 'small_talk');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -305,6 +309,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -320,6 +325,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstModelTalkTell(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nope', handler: (st: GameState) => {
     scene.text('"Nope! You\'re never finding those pics," you reply smugly, enjoying a rare moment of superiority over your friend.');
@@ -344,6 +350,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/shoots/nude/debut/1.jpg');
   scene.text('Her eyes go wide as a gallery fills the screen.');
   scene.text('"Woah! You\'re so fucking hot!" she says, openly gaping at the full frontal nude pictures of you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Embarrassed', handler: (st: GameState) => {
     scene.text('You thought you weren\'t embarrassed by this line of talk, but it\'s hard not to be when the actual pictures are right in front of you, especially when Albina expands them to full screen and takes advantage of the high definition to zoom <i>very</i> far in. A warm blush spreads through your cheeks.');
@@ -422,6 +429,7 @@ function enterFirstModelTalkNude2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -466,6 +474,7 @@ function enterFirstModelTalkNude3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I asked', handler: (st: GameState) => {
     scene.text('"I asked for it," you shrug.');
@@ -546,6 +555,7 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s a requirement', handler: (st: GameState) => {
     scene.text('"It\'s a requirement," you explain. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set."');
@@ -562,6 +572,7 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
 }
 
 function enterFirstModelTalkShy1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her (embarrassed)', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -683,6 +694,7 @@ function enterFirstModelTalkShy2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -719,6 +731,7 @@ function enterFirstModelTalkShy3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I asked', handler: (st: GameState) => {
     scene.text('"I told them I wanted to do one," you say, cheeks heating up.');
@@ -851,6 +864,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -873,6 +887,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/shoots/nude/debut/1.jpg');
   scene.text('Her eyes go wide as a gallery fills the screen.');
   scene.text('"Woah! You\'re so fucking hot!" she says, openly gaping at the full frontal nude pictures of you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Embarrassed', handler: (st: GameState) => {
     scene.text('You blush furiously as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -921,6 +936,7 @@ function enterFirstModelTalkNudeShy2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +961,7 @@ function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s a requirement', handler: (st: GameState) => {
     scene.text('"It\'s a requirement," you explain. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set."');
@@ -963,6 +980,7 @@ function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder
 function enterRecurrentModelTalk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"What\'s it like working as a model?" Albina asks, looking curious.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'It\'s whatever', handler: (st: GameState) => {
     scene.text('"It\'s whatever," you shrug. "Same as any other job I guess. Show up, do the work, get paid."');
@@ -973,12 +991,14 @@ function enterRecurrentModelTalk1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecurrentModelTalk2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRecurrentPornTalk1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   scene.text('"So…" Albina starts hesitantly, nervously drumming her fingers. "How\'s… the uhh… <i>porn stuff</i> going…?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Answer uncomfortably', handler: (st: GameState) => {
     scene.text('"It\'s, uhh, fine…" you reply awkwardly, unable to meet Albina\'s gaze. Not that she\'s doing a good job of maintaining eye contact herself.');
@@ -1001,6 +1021,7 @@ function enterRecurrentPornTalk1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPornHistoryCheck(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1025,6 +1046,7 @@ function enterRecurrentPornTalkUncomfortable(s: GameState, scene: SceneBuilder):
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nothing', handler: (st: GameState) => {
     scene.text('You give her an embarrassed smile. "Nothing really… I haven\'t really shot anything, er, new, recently…"');
@@ -1050,6 +1072,7 @@ function enterRecurrentPornTalkCasual(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Nothing', handler: (st: GameState) => {
     scene.text('You shrug again. "Nothing really. I haven\'t gotten to work for the studios very much recently."');
@@ -1070,10 +1093,12 @@ function enterRecurrentPornTalk2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" Albina says slowly. "I need to ask you… Do you really think...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}…" Albina says slowly. "I need to ask you… Do you really think shooting porn is worth the money?"`);
   qspCall(s, 'albina_chat2', 'recurrent_porn_talk2_menu');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRecurrentPornTalk2Menu(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '"It\'s soul destroying"', handler: (st: GameState) => {
     scene.text('You turn away from your friend, unable to look her in the eyes.');
@@ -1093,6 +1118,7 @@ function enterRecurrentPornTalk2Menu(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRecurrentPornTalk2NeedMoney(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '"I need the money"', handler: (st: GameState) => {
     scene.text('"I <i>need</i> the money, Albina," you reply uncomfortably. "I don\'t have a choice."');
@@ -1111,6 +1137,7 @@ function enterRecurrentPornTalk2End(s: GameState, scene: SceneBuilder): void {
   scene.text('Albina\'s eyes mist up with tears and she looks away, rubbing her eyes with the palm of her hand.');
   scene.text('You let the conversation die off and change subjects.');
   qspCall(s, 'albina_chat', 'small_talk');
+  // TODO-QSP: end
   scene.build();
 }
 

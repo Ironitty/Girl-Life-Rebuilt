@@ -21,6 +21,7 @@ function enterBreakup(s: GameState, scene: SceneBuilder): void {
   ((s as any).NatbelQW ?? {})['blocked'] = 1;
   ((s as any).NatbelQW ?? {})['block_day'] = ((s as any).daystart ?? 0) + ((s as any).ARGS ?? 0)[1];
   ((s as any).NatbelQW ?? {})['block_reason'] = ((s as any).locArgs?.[2] ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enterReconcile(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'array', 'remove_element', 'NatbelQW', 'blocked');
   qspCall(s, 'array', 'remove_element', 'NatbelQW', 'block_day');
   qspCall(s, 'array', 'remove_element', '$NatbelQW', 'block_reason');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -45,6 +47,7 @@ function enterInitSlutfameCheck(s: GameState, scene: SceneBuilder): void {
       ((s as any).NatbelQW ?? {})['know_slut'] = 1;
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +57,7 @@ function enterSlutfameCheck(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['natbel_friend', 'slut_breakup'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +73,7 @@ function enterSlutBreakup(s: GameState, scene: SceneBuilder): void {
   scene.text(`"${((s as any).pcs_nickname ?? 0)} I really regret having to do this but we need to break up! I can't continue with this relationship given the extent of your recent behaviour! I can no longer be associated with you! I'm so sorry it has come to this as I've had a great time with you and this period of being your girlfriend has been one of the happiest for me but it's over. I'm so sorry…" By now she's sobbing.`);
   scene.text('You\'re unsure of what to do for the best but feel it would only make it worse if you tried to persuade her to change her mind.');
   scene.text('So with a long sigh and after a final look at her you get up and leave without responding.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
   ]);
@@ -90,6 +95,7 @@ function enterSlutReconcileDoor(s: GameState, scene: SceneBuilder): void {
   scene.text('You return her smile. "Right then <i>girlfriend</i> are you just going to stand there grinniing at me or are you going to invite me in?"');
   // TODO-QSP: dynamic text: "Yes of course <<$pcs_nickname>> please come in, let's go to my bedroom."
   scene.text(`"Yes of course ${((s as any).pcs_nickname ?? 0)} please come in, let's go to my bedroom."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to her room', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -114,6 +120,7 @@ function enterSlutReconcileSchoolCheck(s: GameState, scene: SceneBuilder): void 
   }
   qspCall(s, 'natbel_friend', 'reconcile');
   // TODO-QSP: gt 'natbel_friend', 'slut_reconcile_school_event', $ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,6 +162,7 @@ function enterSlutReconcileSchoolEvent(s: GameState, scene: SceneBuilder): void 
   // TODO-QSP: dynamic text: Okay <<$pcs_nickname>>, thank you for at least not rejecting me immediately. I h...
   scene.text(`Okay ${((s as any).pcs_nickname ?? 0)}, thank you for at least not rejecting me immediately. I hope to see you after school." She gives you a weak smile and starts heading to the next class.`);
   scene.text('With a deep sigh you start think if you want to get back with her as you also head to your next lesson.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -184,6 +192,7 @@ function enterKissAndBecomeLovers(s: GameState, scene: SceneBuilder): void {
   scene.text(`"I know, ${((s as any).pcs_nickname ?? 0)}," she replies, still licking her lips and savouring the taste of your kiss.`);
   qspCall(s, 'arousal', 'kiss', 1, 'A16', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
     { label: 'Return to her room', goto: ['natbelapt', 'natroom'] },
@@ -202,6 +211,7 @@ function enterSetupShoppingSpree(s: GameState, scene: SceneBuilder): void {
   scene.text('You agree, thinking it would be a good distraction from talking about debts and Christina.');
   scene.text('You grab a few of them and join Natasha on the floor, spending several minutes flipping through page after page, taking turns pointing out dresses and outfits the two you of you like.');
   scene.text('One of the magazines has an advert for the local hairdresser, A Cut Above. Natasha says that at some point she wants a new style when she can afford it and points out a few options she\'d like.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You get an idea', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -268,6 +278,7 @@ function enterShoppingSpree(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Thank you, ${((s as any).pcs_nickname ?? 0)}. I'm sure it'll look awesome. I hope that you'll be happy with the result too."`);
   scene.text('You smile at her, "I\'m sure I will be. So, are you ready for our trip?"');
   scene.text('"Oh, yes!" she beams. "I\'ve been so looking forward to this!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha9.jpg');
@@ -402,6 +413,7 @@ function enterLoveJct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Her eyes light up, and a big smile crosses her face. "<<$pcs_nickname>> do you m...
   scene.text(`Her eyes light up, and a big smile crosses her face. "${((s as any).pcs_nickname ?? 0)} do you mean the shopping trip was our first date?"`);
   scene.text('The question catches you off guard; you\'re not sure you meant "date" literally. Before you can think about it, Natasha starts to bring her face closer to yours.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her to confirm she\'s your girlfriend', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 9;
@@ -492,6 +504,7 @@ function enterDisco_1(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}. It'll be my pleasure."`);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
     { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
@@ -542,6 +555,7 @@ function enterDisco_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave for the disco', goto: ['natbel_friend', 'disco_2_cont'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -596,6 +610,7 @@ function enterDisco_2Cont(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodnight', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -630,6 +645,7 @@ function enterShoppingTrip(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Thank you, ${((s as any).pcs_nickname ?? 0)}. I'm sure whichever one I get, it'll look great. I just hope that you'll like it too."`);
   scene.text('"I\'m sure I will. So, are you ready?"');
   scene.text('"Oh, yes!" she beams. "I\'ve been so looking forward to this! The last trip was great and I love spending time with you."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha9.jpg');
@@ -778,6 +794,7 @@ function enterShoppingTrip2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Oh, yes, ${((s as any).pcs_nickname ?? 0)}!" she beams. "I so look forward to our shopping trips together. The last one was great and I love spending time with you."`);
   scene.text('She continues, "I\'ve also got enough money together for some food after."');
   scene.text('"Oh, that\'ll be a lovely end to our trip before we head home. Let\'s go," you say, smiling at her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Flamingos', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -948,6 +965,7 @@ function enterCityDate1(s: GameState, scene: SceneBuilder): void {
   scene.text(`You are a little concerned and look at her quizzically, "Are you sure Natasha, that's ${qspFunc(s, 'money', 'string_price', 500)} just for a standard room?"`);
   // TODO-QSP: dynamic text: Natasha replies, "Well I wanted to do a little something nice for you so, as I s...
   scene.text(`Natasha replies, "Well I wanted to do a little something nice for you so, as I said I've worked hard and saved up enough for a room and some breakfast plus there should be some left over for something to eat while we are there. I want to make this a special trip for us and spend the night with you without my mother walking in." You both giggle remembering the embarrassing event when ${((s as any).npc_usedname ?? 0)?.['A191']} entered while you were making out.`);
+  // TODO-QSP: end
   scene.actions([
     { label: '<<$npc_usedname[\'A191\']>>\'s present', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha9.jpg');
@@ -1257,6 +1275,7 @@ function enterCityDate1Sporthub(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'din_van', 'tampon');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Use mirror', goto: ['mirror', 'start'] },
     { label: 'Change outfit', goto: ['wardrobe', 'start'] },
@@ -1267,6 +1286,7 @@ function enterCityDate1Sporthub(s: GameState, scene: SceneBuilder): void {
 function enterCityDate1Aftersport(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/citycenter/gym/desk.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Meet Natasha in the gym reception area', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1307,6 +1327,7 @@ function enterCityDate1Mall(s: GameState, scene: SceneBuilder): void {
   scene.text('You decide on a change of clothes as Natasha wants to dress up for you so you start making your way out of the mall and back to the hotel.');
   // TODO-QSP: dynamic text: On impulse passing Lusso Intimo you enter telling Natasha to wait for you outsid...
   scene.text(`On impulse passing Lusso Intimo you enter telling Natasha to wait for you outside. Once inside you pick out a sexy black bra and panties set and pay the ${qspFunc(s, 'money', 'string_price', 1800)} at the desk before exiting and the two of you head to the hotel.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hotel and change', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1520,6 +1541,7 @@ function enterCityDate1Jobshub(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1529,6 +1551,7 @@ function enterCityDate1JobsModel2(s: GameState, scene: SceneBuilder): void {
   scene.text(`Natasha starts fidgeting then looks at you and says in a very quiet voice "Erm… ${((s as any).pcs_nickname ?? 0)} are you ${((s as any).model ?? 0)?.['nickname']}?"`);
   scene.text('You look at her quizzically but she doesn\'t respond and averts her eyes away from you.');
   scene.text('You were hoping she wouldn\'t have brought this up but guess that at some point it would need to be discussed.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No it\'s not me', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/friends/cafe1.jpg');
@@ -1591,6 +1614,7 @@ function enterCityDate1Fashionblog(s: GameState, scene: SceneBuilder): void {
   scene.text('She gets her phone out and shows you the blog. "I don\'t do the content, although I\'ve made some suggestions on content to add or amend; I mainly do the techie stuff."');
   scene.text('"Looks great Natasha, let\'s hope it continues. We might even get tips of where to go if we want to go shopping again or just browse."');
   scene.text('She nods and smiles, probably thinking of hauling you round loads of shops and trying on stuff with her.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to hotel for the night', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 40;
@@ -1693,6 +1717,7 @@ function enterCityDate1Fashionblog(s: GameState, scene: SceneBuilder): void {
 
 function enterCityDate1Cleanup(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['natbel_friend', 'city_date2_start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1706,6 +1731,7 @@ function enterCityDate2Start(s: GameState, scene: SceneBuilder): void {
   scene.text('Natasha slowly comes too and rubbing her eyes asks you. "So what\'s the plan?"');
   scene.text('"Well I was going to spend it looking at the shops in the mall but we did that yesterday sooo you like gardens… right?" You ask. "I have somewhere special in mind but you\'ll need to wait and see where."');
   scene.text('"Yes, they can be so relaxing. Sounds lovely and we can always go to the mall another time."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wake up sex', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
@@ -1813,11 +1839,13 @@ function enterCityDate2Morningsex(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCityDate2WardrobeHub(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/roomservice.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose something else to wear', goto: ['wardrobe', 'start'] },
     { label: 'Wait for breakfast to arrive', handler: (st: GameState) => {
@@ -1844,6 +1872,7 @@ function enterCityDate2Palace(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well first off that\'ll depend on my grades as I\'m not as clever as you."');
   scene.text('Natasha frowns. "You know I\'ll help you don\'t you? If you want to get there you can."');
   scene.text('"Let\'s just see how things go eh?" You say taking hold of Natasha\'s hand and pulling her into the gardens proper.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the Palace gardens', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -2077,11 +2106,13 @@ function enterCityDate2AfterRelTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCityDate2Cleanup(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['natbelapt', 'natroom'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2097,6 +2128,7 @@ function enterIsabellaEnters(s: GameState, scene: SceneBuilder): void {
   scene.text('She looks sad. "Yes well I\'m the parent and so I\'m supposed to set a good example. I won\'t go into it but I do need to reduce my drinking especially when things get on top of me; it\'s not the answer to dealing with life\'s problems."');
   scene.text('Unsure of how to respond you simply smile at her.');
   scene.text('"Anyway I\'m sorry for what happened and very grateful to you two. I\'ll leave you alone now." With that she turns and leaves.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Natasha is concerned', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -2119,6 +2151,7 @@ function enterIsabellaEnters(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEndOfGschool(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'We need a chat about the future', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -2191,6 +2224,7 @@ function enterEndOfGschool(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Natasha gives you an invitation [+$func(\'money\', \'get_cost_string\', 1000)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
@@ -2254,6 +2288,7 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBdayDelParco(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look for Natasha and Isabella', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -2336,6 +2371,7 @@ function enterBirthdayMissed(s: GameState, scene: SceneBuilder): void {
   scene.text('"Anyway, I hope you had a good time."');
   // TODO-QSP: dynamic text: "I did <<$pcs_nickname>> and thank you for your present; it's just what I wanted...
   scene.text(`"I did ${((s as any).pcs_nickname ?? 0)} and thank you for your present; it's just what I wanted."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to her room', goto: ['natbelapt', 'natroom'] },
   ]);

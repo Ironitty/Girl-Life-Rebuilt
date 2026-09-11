@@ -17,6 +17,7 @@ function enterBreakfastChat(s: GameState, scene: SceneBuilder): void {
   scene.text('"Are you hungry? I can have Milena make some breakfast for you."');
   scene.text('You shake your head. "No thanks. I just wanted to chat with you if that\'s okay?"');
   scene.text('She takes a sip of her coffee and places the mug back down before motioning for you to sit down. "Of course."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a seat', goto: ['zoya_chat', 'breakfast_chat1'] },
   ]);
@@ -27,6 +28,7 @@ function enterPoolChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
   scene.text('You take a seat at the edge of the pool and Zoya looks over at you.');
   scene.text('"I normally have a rule against being disturbed when I\'m sunbathing, but I can make an exception for you."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('"Sorry!" you reply. "I\'ll just leave you be."');
@@ -49,6 +51,7 @@ function enterLoungeChat(s: GameState, scene: SceneBuilder): void {
   scene.text('"How can I help you?" she asks as she takes a sip of her wine and places the glass down.');
   scene.text('"I just wanted to chat with you if that\'s okay?" you politely ask.');
   scene.text('She nods. "Of course."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a seat', goto: ['zoya_chat', 'lounge_chat1'] },
   ]);
@@ -58,6 +61,7 @@ function enterLoungeChat(s: GameState, scene: SceneBuilder): void {
 function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
   scene.text('You decide what you want to talk about as Zoya continues eating her breakfast.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her be', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
@@ -624,6 +628,7 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
 
 function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her be', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
@@ -1217,6 +1222,7 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
 function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
   scene.text('You decide what you want to talk about as Zoya takes another sip of her wine before placing the glass back down.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her be', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');

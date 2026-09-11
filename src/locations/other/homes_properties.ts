@@ -48,6 +48,7 @@ function enterCalculateRentablePropertyCount(s: GameState, scene: SceneBuilder):
   ((s as any).accessible_property ?? {})['available_for_rent_home_count'] = ((s as any).accessible_property ?? 0)?.['rentable_home_count'];
   ((s as any).accessible_property ?? {})['available_for_rent_business_count'] = ((s as any).accessible_property ?? 0)?.['rentable_business_count'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -63,6 +64,7 @@ function enterSetHome(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -182,30 +184,35 @@ function enterSetAccess(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsHomeless(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).home ?? 0)?.['current'] === 'homeless');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCanLiveHere(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).accessible_property ?? 0)?.[String((s as any).canlivecode ?? 0)] !== ((s as any).NO_ACCESS ?? 0)  &&  ((s as any).accessible_property ?? 0)?.[String((s as any).canlivecode ?? 0)] !== ((s as any).TENANTS ?? 0)  &&  qspFunc(s, 'homes_properties', 'get_property_construction_status', ((s as any).canlivecode ?? 0)) === 2;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsCurrentHome(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).home ?? 0)?.['current'] === ((s as any).temp_currenthomecode ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsAtAHome(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).accessible_property ?? 0)[((s as any).isathomecode ?? 0) + '-is-home'] === 1);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -235,11 +242,13 @@ function enterIsPropertyOfStatus(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetPropertyCode(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -254,6 +263,7 @@ function enterGetRentedPropertyCount(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -268,6 +278,7 @@ function enterGetAccessiblePropertyCount(s: GameState, scene: SceneBuilder): voi
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -282,6 +293,7 @@ function enterGetRentablePropertyCount(s: GameState, scene: SceneBuilder): void 
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -296,6 +308,7 @@ function enterGetAvailableForRentPropertyCount(s: GameState, scene: SceneBuilder
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -310,6 +323,7 @@ function enterGetFurnishablePropertyCount(s: GameState, scene: SceneBuilder): vo
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +354,7 @@ function enterGetRentedProperties(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -384,6 +399,7 @@ function enterGetOwnedProperties(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -429,6 +445,7 @@ function enterGetAccessibleProperties(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'get_accessible_properties_loop'
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -473,6 +490,7 @@ function enterGetPropertiesForSale(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_hpVars ?? 0)?.['i'] < ((s as any).temp_hpVars ?? 0)?.['max_i']) {
     // TODO-QSP: jump 'get_properties_for_sale_loop'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -515,6 +533,7 @@ function enterGetPropertiesForRent(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'get_properties_for_rent_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -565,17 +584,20 @@ function enterGetInternetEnabledProperties(s: GameState, scene: SceneBuilder): v
     // TODO-QSP: jump 'get_internet_enabled_properties_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCleanUpPropertyData(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSetHomeless(s: GameState, scene: SceneBuilder): void {
   ((s as any).home ?? {})['current'] = 'homeless';
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -585,6 +607,7 @@ function enterGiveAccess(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'set_home', ((s as any).accesscode ?? 0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -602,6 +625,7 @@ function enterBlockAccess(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -611,6 +635,7 @@ function enterHasAccess(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).accessible_property ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== ((s as any).NO_ACCESS ?? 0)  &&  ((s as any).accessible_property ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== ((s as any).TENANTS ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -622,6 +647,7 @@ function enterGetPropertySalesInfo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).property_sales_price = ((((s as any).accessible_property ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-name'] === '') ? (((s as any).property ?? 0)?.['price']) : (((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-sales-price']));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -629,6 +655,7 @@ function enterBuyProperty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_access', ((s as any).locArgs?.[1] ?? 0), ((s as any).OWNED ?? 0));
   ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-sales-price'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -636,6 +663,7 @@ function enterSellProperty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_access', ((s as any).locArgs?.[1] ?? 0), ((s as any).NO_ACCESS ?? 0));
   ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-sales-price'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -651,6 +679,7 @@ function enterTenantsMoveIn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'clean_up_property_data');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -662,6 +691,7 @@ function enterTenantsMoveOut(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -695,6 +725,7 @@ function enterTenantMoveOutCheck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'clean_up_property_data');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -706,6 +737,7 @@ function enterGetPropertySalesPrice(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).property ?? 0)?.['price'];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -713,6 +745,7 @@ function enterRentProperty(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'set_access', ((s as any).locArgs?.[1] ?? 0), ((s as any).RENTED ?? 0));
   // TODO-QSP: gs 'homes_properties', 'set_rent_days', $ARGS[1], ARGS[2]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -727,6 +760,7 @@ function enterCancelRent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'clean_up_property_data');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -734,6 +768,7 @@ function enterPayRent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', accessible_property['<<$ARGS[1]>>-rent'], $ARGS[2]
   qspCall(s, 'homes_properties', 'add_rent_days', ((s as any).locArgs?.[1] ?? 0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -744,6 +779,7 @@ function enterAddRentDays(s: GameState, scene: SceneBuilder): void {
     ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] = (((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] ?? 0) + (qspUntranslated(s, "ARGS[2]", { location: "homes_properties" }));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -754,6 +790,7 @@ function enterSetRentDays(s: GameState, scene: SceneBuilder): void {
     ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-days-left'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -762,12 +799,14 @@ function enterSetRentAmount(s: GameState, scene: SceneBuilder): void {
     ((s as any).accessible_property ?? {})['' + String((s as any).$ARGS[1] || '') + '-rent'] = qspUntranslated(s, "ARGS[2]", { location: "homes_properties" });
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetRentDays(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-days-left'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -779,6 +818,7 @@ function enterGetRentAmount(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).property ?? 0)?.['rent'];
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -795,6 +835,7 @@ function enterProgressPropertyRentTime(s: GameState, scene: SceneBuilder): void 
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -804,12 +845,14 @@ function enterDaysInMonth(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).monthsend ?? 0)?.[String((s as any).month ?? 0)];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGetPropertyConstructionStatus(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).constrstatcheckpropcode ?? 0)) + '-construction-status'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -818,12 +861,14 @@ function enterProgressConstructionStatus(s: GameState, scene: SceneBuilder): voi
     ((s as any).accessible_property ?? {})['' + String((s as any).$constrstatpropcode || '') + '-construction-status'] = (((s as any).accessible_property ?? {})['' + String((s as any).$constrstatpropcode || '') + '-construction-status'] ?? 0) + (1);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsPropertyRenovated(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).accessible_property ?? 0)?.[String(((s as any).checkrenpropcode ?? 0)) + '-renovated'];
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -834,6 +879,7 @@ function enterRenovateProperty(s: GameState, scene: SceneBuilder): void {
     ((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovations'] = (((s as any).accessible_property ?? {})['' + String((s as any).$renovatepropcode || '') + '-renovations'] ?? 0) + (';' + qspUntranslated(s, "ARGS[3]>", { location: "homes_properties" }) + '');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -848,6 +894,7 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -862,6 +909,7 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -877,6 +925,7 @@ function enterGoBathroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Home Error: bathroom location '${((s as any).property ?? 0)?.['bathroom']}' does not exist.`);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -892,6 +941,7 @@ function enterGoBedroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Home Error: bedroom location '${((s as any).property ?? 0)?.['bedroom']}' does not exist.`);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -899,6 +949,7 @@ function enterFreeInternetAvailable(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties_attr', 'get_property_attr', ((((s as any).locArgs?.[1] ?? 0) === '') ? (((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)]) : (((s as any).home_name ?? 0)?.[((s as any).locArgs?.[1] ?? 0)])));
   (s as any).result = qspUntranslated(s, "property['free_internet'] = 1", { location: "homes_properties" });
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -942,6 +993,7 @@ function enterGetHomeDesc(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

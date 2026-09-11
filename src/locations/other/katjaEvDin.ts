@@ -206,6 +206,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -272,6 +273,7 @@ function enterStraponMain(s: GameState, scene: SceneBuilder): void {
   }, goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and talk about something else', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -347,6 +349,7 @@ function enterStraponBj(s: GameState, scene: SceneBuilder): void {
     scene.text('"You look so pretty with that big cock slamming home in your throat baby!" you tell her as her hand darts to her clit and she starts to rub herself furiously.');
     scene.text('In mere seconds, she pushes herself over the edge and starts to tremble violently, all the while moaning around the dildo still pumping her throat.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['KatjaEvDin', 'strapon_main'] },
   ]);
@@ -423,6 +426,7 @@ function enterStraponMiss(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja moans and bites her lip, looking like she\'s already about to orgasm and you lock gazes with her as you increase the pace of your thrusts.');
     scene.text('After only a few seconds, you feel her starting to tremble violently. You let her ride out her orgasm while slowly pushing the dildo in and out of her a few more times, listening to her sweet moaning as she tries to regain her breath.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['KatjaEvDin', 'strapon_main'] },
   ]);
@@ -500,6 +504,7 @@ function enterStraponAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja moans and bites her lip, looking like she\'s already about to orgasm and you lock gazes with her as you increase the pace of your thrusts.');
     scene.text('After only a few seconds, you feel her starting to tremble violently. You let her ride out her orgasm while slowly thrusting the dildo in and out of her a few more times, listening to her sweet moaning as she tries to regain her breath.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['KatjaEvDin', 'strapon_main'] },
   ]);
@@ -512,6 +517,7 @@ function enterStraponStart(s: GameState, scene: SceneBuilder): void {
     ((s as any).katjaQW ?? {})['horny'] = 80;
   }
   scene.text('You grab your handbag and pull out the toy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Strap it on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -541,6 +547,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Use your fist on Katja', goto: ['KatjaEvDin', 'fisting'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
     if (((s as any).pcs_horny ?? 0) < 50) {
@@ -670,6 +677,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -722,6 +730,7 @@ function enterFisting(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -769,6 +778,7 @@ function enterKuniP(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -980,6 +990,7 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1041,6 +1052,7 @@ function enterKissEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1090,6 +1102,7 @@ function enterMoron(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep silent', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/punch.jpg');
@@ -1279,6 +1292,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of the shower', goto: ['KatjaHomeTalk', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

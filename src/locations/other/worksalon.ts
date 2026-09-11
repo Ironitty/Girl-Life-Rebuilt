@@ -301,6 +301,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Go home', goto: ['city_center', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Massage', handler: (st: GameState) => {
     (s as any).masstime = ((s as any).hour ?? 0);
@@ -350,6 +351,7 @@ function enter0(s: GameState, scene: SceneBuilder): void {
   }, goto: ['worksalon', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck him off', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'guy massaged at ' + qspUntranslated(s, "monthName>", { location: "worksalon" }) + ' <<day>>, <<masstime>>h', Math.floor(Math.random() * 23) + 18);
@@ -366,6 +368,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: While massaging one of your clients, the guy asks, "Could I get an erotic breast...
   scene.text(`While massaging one of your clients, the guy asks, "Could I get an erotic breast massage from two girls at the same time? I'll pay you each ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['worksalon', 'start'] },
     { label: 'Go get a second girl', handler: (st: GameState) => {
@@ -415,6 +418,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/sex/ira1.jpg');
   scene.text('After the massage, you send your latest client into the next room to get cleaned up and dressed. You notice one of the other girls coming over. She sits down in the chair next to you and pulls you over, pulling down your top with out a word and starting to suck on your nipple. You are more than a bit shocked and just a bit turned on.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her to stop', goto: ['worksalon', 'start'] },
     { label: 'Don\'t stop her', handler: (st: GameState) => {
@@ -490,6 +494,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['worksalon', 'start'] },
   ]);

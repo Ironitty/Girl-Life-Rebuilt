@@ -29,6 +29,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_elene', 'set_report_chores_acts');
   qspCall(s, 'gp_elene', 'get_random_chore_act');
   qspCall(s, 'gp_elene', 'set_talk_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her alone', goto: ['gp_elene', 'return'] },
   ]);
@@ -45,6 +46,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt 'gad_gphouse', $locat['A31_arg']
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +172,7 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -256,6 +259,7 @@ function enterGetRandomChoreAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -271,6 +275,7 @@ function enterChoreHarvestSwitch(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -291,6 +296,7 @@ function enterSetReportChoresActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gp_elene', 'set_report_gathermushrooms_act');
   qspCall(s, 'gp_elene', 'set_report_gatherberries_act');
   qspCall(s, 'gp_elene', 'set_report_gatherboth_act');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -365,6 +371,7 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -372,6 +379,7 @@ function enterChoreCleanfloor(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "There is always something to do, <<$pcs_nickname>>. I've gotten quite old, and ...
   scene.text(`"There is always something to do, ${((s as any).pcs_nickname ?? 0)}. I've gotten quite old, and my strength is not what it used to be. Could you help me out by cleaning the floor?"`);
   ((s as any).grandmaQW ?? {})['chore_clean_floor'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it soon', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and start cleaning (1:00)', goto: ['gp_elene', 'event_cleanfloor'] },
@@ -386,6 +394,7 @@ function enterEventCleanfloor(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/washfloor.jpg');
   scene.text('You grab a bucket and a rag, get down on your knees and begin scrubbing the floor. Within the hour, the floor shines, and you are satisfied with your work. You put the cleaning supplies into a corner and continue your day.');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandma: clean floor', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'start'] },
     { label: 'Return back to your grandmother', goto: ['gp_elene', 'talk'] },
@@ -411,6 +420,7 @@ function enterSetReportCleanfloorAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -418,6 +428,7 @@ function enterChoreWashclothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>, you can help me wash your grandfather's dirty clo...
   scene.text(`"Of course, ${((s as any).pcs_nickname ?? 0)}, you can help me wash your grandfather's dirty clothes?"`);
   ((s as any).grandmaQW ?? {})['chore_wash_clothes'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will wash them in a little bit', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and start washing (1:00)', goto: ['gp_elene', 'event_washclothes'] },
@@ -431,6 +442,7 @@ function enterEventWashclothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/washclothes1.jpg');
   scene.text('You pick up your grandfather\'s dirty clothes and take them with you outside, where you soak them in the metal basin for an hour.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hang the laundry', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -466,6 +478,7 @@ function enterSetReportWashclothesAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -473,6 +486,7 @@ function enterChoreMilkcows(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, go to the barn and milk the cows."
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, go to the barn and milk the cows."`);
   ((s as any).grandmaQW ?? {})['chore_milk_cow'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it in a bit', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the barn (0:10)', handler: (st: GameState) => {
@@ -496,6 +510,7 @@ function enterEventMilkcow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/milk_cow.jpg');
   scene.text('You start milking Dawn, improving each time you do it.');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandma: milk cow', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpbarn', 'cow'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -525,6 +540,7 @@ function enterSetReportMilkcowAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -532,6 +548,7 @@ function enterChoreGroceries(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Oh yes, <<$pcs_nickname>>. I was going to go down to the store today to buy som...
   scene.text(`"Oh yes, ${((s as any).pcs_nickname ?? 0)}. I was going to go down to the store today to buy some groceries, but my knees are aching. Do you think you could go down there and get them for me? I have a list of what we need, and the grocer will come by later to collect the money."`);
   ((s as any).grandmaQW ?? {})['chore_groceries'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will go to the store later', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the store (0:15)', handler: (st: GameState) => {
@@ -557,6 +574,7 @@ function enterEventGroceries(s: GameState, scene: SceneBuilder): void {
   scene.text('You take your basket of goods to the teller and explain that you are getting these things for your grandmother.');
   scene.text('"Of course! Go ahead and take these on home to her. Tell her I will be by this evening to pick up her payment. I know it\'s hard for her to get out anymore…"');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandma: groceries', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank him and leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -592,6 +610,7 @@ function enterSetReportGroceriesAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -600,6 +619,7 @@ function enterChoreCanMushrooms(s: GameState, scene: SceneBuilder): void {
   scene.text(`"I need to get some of these mushrooms canned, ${((s as any).pcs_nickname ?? 0)}, so we can store them. Can you please help me prepare them?"`);
   ((s as any).grandmaQW ?? {})['chore_can_mushrooms'] = 1;
   qspCall(s, 'gp_elene', 'set_help_can_mushrooms_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will help her in a little while', goto: ['gp_elene', 'talk'] },
   ]);
@@ -642,6 +662,7 @@ function enterSetHelpCanMushroomsAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -650,6 +671,7 @@ function enterChoreCanBerries(s: GameState, scene: SceneBuilder): void {
   scene.text(`"It is time to can these berries, ${((s as any).pcs_nickname ?? 0)}. Can you please help me? My fingers aren't as spry as they used to be."`);
   ((s as any).grandmaQW ?? {})['chore_can_berries'] = 1;
   qspCall(s, 'gp_elene', 'set_help_can_berries_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will help her in a little while', goto: ['gp_elene', 'talk'] },
   ]);
@@ -690,6 +712,7 @@ function enterSetHelpCanBerriesAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -698,6 +721,7 @@ function enterChoreCanVeggies(s: GameState, scene: SceneBuilder): void {
   scene.text(`"We have had good luck with the garden this year, ${((s as any).pcs_nickname ?? 0)}. But now we need to can these vegetables before they spoil. Can you help me, please?"`);
   ((s as any).grandmaQW ?? {})['chore_can_veggies'] = 1;
   qspCall(s, 'gp_elene', 'set_help_can_veggies_act');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will help her in a little while', goto: ['gp_elene', 'talk'] },
   ]);
@@ -740,6 +764,7 @@ function enterSetHelpCanVeggiesAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -747,6 +772,7 @@ function enterChoreFeedchickens(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>. Would you be kind and feed the chickens?"
   scene.text(`"Of course, ${((s as any).pcs_nickname ?? 0)}. Would you be kind and feed the chickens?"`);
   ((s as any).grandmaQW ?? {})['chore_feed_chickens'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it in a little while', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the yard (0:10)', handler: (st: GameState) => {
@@ -770,6 +796,7 @@ function enterEventFeedchickens(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/chickens2.jpg');
   scene.text('You decide to feed the chickens. You pick up a bucket full of bird\'s seed and grain mix and toss it on the ground. They immediately rush over and start to greedily eat. You watch them for a bit before you go about your business.');
   qspCall(s, 'archetypes', 'gain', 'prude', 'tiny', 'Helping grandma: feed chickens', 7);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'start'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -799,6 +826,7 @@ function enterSetReportFeedchickensAct(s: GameState, scene: SceneBuilder): void 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -806,6 +834,7 @@ function enterChoreCheckplants(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, can you please go work in the garden?"
   scene.text(`"${((s as any).pcs_nickname ?? 0)}, can you please go work in the garden?"`);
   ((s as any).grandmaQW ?? {})['chore_work_in_garden'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will get to it later', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the garden (0:10)', handler: (st: GameState) => {
@@ -831,6 +860,7 @@ function enterEventCheckplants(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/work_garden\'+rand(1, 5)+\'.jpg');
   scene.text('You spend some time doing some gardening.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'garden'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -877,6 +907,7 @@ function enterSetReportCheckplantsAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -884,6 +915,7 @@ function enterChoreWaterplants(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Dear <<$pcs_nickname>>, could you go and water the plants in the garden?"
   scene.text(`"Dear ${((s as any).pcs_nickname ?? 0)}, could you go and water the plants in the garden?"`);
   ((s as any).grandmaQW ?? {})['chore_water_garden'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it after a while', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the garden (0:10)', handler: (st: GameState) => {
@@ -909,6 +941,7 @@ function enterEventWaterplants(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/water_garden.jpg');
   scene.text('You spend an hour watering the garden.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'garden'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -938,6 +971,7 @@ function enterSetReportWaterplantsAct(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -945,6 +979,7 @@ function enterChoreCollectstrawberries(s: GameState, scene: SceneBuilder): void 
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> dear, the strawberries are ripe for picking. Could you go ove...
   scene.text(`"${((s as any).pcs_nickname ?? 0)} dear, the strawberries are ripe for picking. Could you go over to the plot and pick them today?"`);
   ((s as any).grandmaQW ?? {})['chore_collect_strawberries'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it in a little bit', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the strawberry plot (0:10)', handler: (st: GameState) => {
@@ -978,6 +1013,7 @@ function enterEventCollectstrawberries(s: GameState, scene: SceneBuilder): void 
     }
   }
   scene.text('You wander through the plot for several hours, collecting ripe strawberries and placing them in the basket.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'strawberry'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -1009,6 +1045,7 @@ function enterSetReportCollectstrawberriesAct(s: GameState, scene: SceneBuilder)
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1016,6 +1053,7 @@ function enterChoreCollectfruit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> dear, the fruits are ripe, and it is time to start collecting...
   scene.text(`"${((s as any).pcs_nickname ?? 0)} dear, the fruits are ripe, and it is time to start collecting them. Could you go and do it today?"`);
   ((s as any).grandmaQW ?? {})['chore_collect_fruit'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it in a little bit', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the orchard (0:10)', handler: (st: GameState) => {
@@ -1049,6 +1087,7 @@ function enterEventCollectfruit(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('You walk around the orchard and pick the ripe fruit hanging from the trees.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'fruit_garden'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -1078,6 +1117,7 @@ function enterSetReportCollectfruitAct(s: GameState, scene: SceneBuilder): void 
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1085,6 +1125,7 @@ function enterChoreHarvestgarden(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> dear, could you go to the garden today? It's time to collect ...
   scene.text(`"${((s as any).pcs_nickname ?? 0)} dear, could you go to the garden today? It's time to collect the harvest."`);
   ((s as any).grandmaQW ?? {})['chore_harvest_garden'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will do it in a little bit', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the garden (0:10)', handler: (st: GameState) => {
@@ -1110,6 +1151,7 @@ function enterEventHarvestgarden(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/harvest_garden\'+rand(1, 5)+\'.jpg');
   scene.text('You spend a few hours harvesting vegetables in the garden.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['gad_gpyard', 'garden'] },
     { label: 'Return back to your grandmother', handler: (st: GameState) => {
@@ -1143,6 +1185,7 @@ function enterSetReportHarvestgardenAct(s: GameState, scene: SceneBuilder): void
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1154,6 +1197,7 @@ function enterChoreGathermushrooms(s: GameState, scene: SceneBuilder): void {
   scene.text('"How much do we need, Grandma?" you ask.');
   // TODO-QSP: dynamic text: "Oh, I would say you should be able to find at least <<grandmaQW['chore_mushroom...
   scene.text(`"Oh, I would say you should be able to find at least ${((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity']} kilos," Grandma replies.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will go get some soon', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the forest (1:00)', handler: (st: GameState) => {
@@ -1223,6 +1267,7 @@ function enterSetReportGathermushroomsAct(s: GameState, scene: SceneBuilder): vo
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1234,6 +1279,7 @@ function enterChoreGatherberries(s: GameState, scene: SceneBuilder): void {
   scene.text('"How much do you want, Grandma?" you ask.');
   // TODO-QSP: dynamic text: "<<grandmaQW['chore_berry_quantity']>> kilos will be a good start," Grandma repl...
   scene.text(`"${((s as any).grandmaQW ?? 0)?.['chore_berry_quantity']} kilos will be a good start," Grandma replies.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will go get some soon', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the forest (1:00)', handler: (st: GameState) => {
@@ -1305,6 +1351,7 @@ function enterSetReportGatherberriesAct(s: GameState, scene: SceneBuilder): void
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1317,6 +1364,7 @@ function enterChoreGatherboth(s: GameState, scene: SceneBuilder): void {
   scene.text('"How much of each should I get?" you ask.');
   // TODO-QSP: dynamic text: "If you could, try to find <<grandmaQW['chore_mushroom_quantity']>> kilos of mus...
   scene.text(`"If you could, try to find ${((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity']} kilos of mushrooms and ${((s as any).grandmaQW ?? 0)?.['chore_berry_quantity']} kilos of berries," Grandma replies. "It is important to stock up while we can."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell her you will go get some soon', goto: ['gp_elene', 'talk'] },
     { label: 'Agree and go to the forest (1:00)', handler: (st: GameState) => {
@@ -1401,6 +1449,7 @@ function enterSetReportGatherbothAct(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1526,6 +1575,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

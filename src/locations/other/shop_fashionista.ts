@@ -23,6 +23,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -76,6 +77,7 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['shop_fashionista', 'changingroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try on dresses', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -108,6 +110,7 @@ function enterDressingclothes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -127,6 +130,7 @@ function enterDressingoutfit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -146,6 +150,7 @@ function enterDressingbra(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -165,6 +170,7 @@ function enterDressingpanties(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -177,6 +183,7 @@ function enterDressingpanties(s: GameState, scene: SceneBuilder): void {
 function enterChangingend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'restore', 'fashionista');
   scene.actions([{ label: 'Continue', goto: ['shop_fashionista', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -190,6 +197,7 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -204,6 +212,7 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
   scene.text('As you try on a particularly spicy set of see-through underwear, you notice that it doesn\'t quite fit you.');
   // TODO-QSP: dynamic text: "This should fit Natasha perfectly though. And it only costs ' + $func('money', ...
   scene.text('"This should fit Natasha perfectly though. And it only costs \' + $func(\'money\', \'string_price\', 750) + \'." You think to yourself, imagining the look on her face if you make her wear it.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Buy it [+$func(\'money\', \'get_cost_string\', 750)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 750) === 0) {
@@ -237,6 +246,7 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Turning your head, you think nobody noticed, but your actions have attracted the saleswoman. The seller is a young girl in a little-too-narrow shirt with the logo of the Boutique, it\'s not enough that her shirt was so tight, but she had to unbutton the top button as well (You think if it was a woman\'s shirt it would be okay, but since it\'s a man you wonder what the administration must be thinking.) she came up to you a little bit uncomfortably and quickly asked:');
   scene.text('"Can I help you with anything?" the seller asks.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'No, thank you', goto: ['shop_fashionista', 'start'] },
     { label: 'Silently leave', handler: (st: GameState) => {

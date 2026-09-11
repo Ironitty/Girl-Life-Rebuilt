@@ -39,6 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
@@ -60,6 +61,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'wine');
   // TODO-QSP: dynamic text: When your food arrives, <<$npcdesc>> pours you a glass of wine and proposes a to...
   scene.text(`When your food arrives, ${((s as any).npcdesc ?? 0)} pours you a glass of wine and proposes a toast to love.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat', handler: (st: GameState) => {
     // TODO-QSP: xgt 'restoranM', 'b'
@@ -74,6 +76,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: After you finish your meal and empty the wine, <<$npcdesc>> offers to take you t...
   scene.text(`After you finish your meal and empty the wine, ${((s as any).npcdesc ?? 0)} offers to take you to his home.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go Home', goto: ['sexm', 'start'] },
   ]);

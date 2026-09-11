@@ -40,6 +40,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'natbel_chat', 'birthday_missed');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
     { label: 'Make small talk', goto: ['natbel_chat', 'small_talk'] },
@@ -51,6 +52,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventsChat(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk about events', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -196,6 +198,7 @@ function enterLoanEventsChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -245,6 +248,7 @@ function enterDemandDebtRepayment(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -261,6 +265,7 @@ function enterForgiveChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask her about what she bought <br> [+$func(\'wrap\', \'neg\', \'This option will b...]', goto: ['natbel_chat', 'debt_forgive2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give her the money (<<$func(\'money\', \'format\', 2000)>>)', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
@@ -287,6 +292,7 @@ function enterForgiveChat(s: GameState, scene: SceneBuilder): void {
 function enterForgiveChat2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You take a moment to consider Natasha's request as you've already lent her <<$fu...
   scene.text(`You take a moment to consider Natasha's request as you've already lent her ${qspFunc(s, 'money', 'format', 7000)} in total over two loans both of which she couldn't repay leading to you having to forgive the debts as you didn't want to treat her harshly. Although you consider her a very good friend you have serious concerns that she won't be able to repay any further loan either so you very carefully consider your options.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Consider your options', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
@@ -367,6 +373,7 @@ function enterDebtForgive(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -397,6 +404,7 @@ function enterDebtForgive2(s: GameState, scene: SceneBuilder): void {
   scene.text(`She shakes her head. "No. I still owe Christina ${qspFunc(s, 'money', 'format', 500)}."`);
   scene.text('"And that\'s the last debt you owe?" you ask her.');
   scene.text('"Yeah, that\'s the last one."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let her deal with the last debt', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['chrispaid'] = 1;
@@ -428,6 +436,7 @@ function enterDebtForgive2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChrisChatSub(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'As her sub you cannot stop Christina bullying Natasha', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['chrispaid'] = 7;
@@ -456,6 +465,7 @@ function enterChrisChatSub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChrisChat(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Christina has been dealt with', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['chrispaid'] = 6;
@@ -581,6 +591,7 @@ function enterLoverEventsChat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
     { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
@@ -589,6 +600,7 @@ function enterLoverEventsChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstKiss(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['FriendLover'] = 2;
@@ -673,6 +685,7 @@ function enterLoverChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['end_of_gschool_chat'] === 0  &&  ((s as any).year ?? 0) === 2017  &&  (((s as any).month ?? 0) === 4  &&  ((s as any).day ?? 0) >= 26  ||  ((s as any).month ?? 0) === 5  &&  ((s as any).day ?? 0) < 26)) {
     qspCall(s, 'natbel_friend', 'end_of_gschool');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss your girlfriend', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A16');
@@ -712,6 +725,7 @@ function enterLoverChat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArrangeShopTrip1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Arrange a shopping trip for a new school uniform', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['FriendLover'] = 4;
@@ -762,6 +776,7 @@ function enterArrangeShopTrip1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArrangeShopTrip2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Arrange a shopping trip for an outfit', handler: (st: GameState) => {
     ((s as any).NatbelQW ?? {})['FriendLover'] = 6;
@@ -804,6 +819,7 @@ function enterArrangeShopTrip2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJobQuestions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Natasha asks a question', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -904,6 +920,7 @@ function enterJobQuestions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJobQuestionsRunner(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Tell Natasha to get her sports kit on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1133,6 +1150,7 @@ function enterJobQuestionsRunner(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJobQuestionsNatbelReturns(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Natasha returns', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/bullied/natasha33.jpg');
@@ -1217,6 +1235,7 @@ function enterFriendChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hangout', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -1243,6 +1262,7 @@ function enterSmallTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('Natasha knows that she lives in a very poor family. She has no father, and her mother works for a pittance at the garment factory. You feel for her and have helped her out so she can now dress smartly and is able to buy some cosmetics and no longer has to wear her mother\'s things.');
   }
   scene.text('You talk with Natasha about this and that, passing fifteen minutes with ease.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
     { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
@@ -1254,6 +1274,7 @@ function enterMomTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Natasha\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
   scene.text('You talk with Natasha about her mother. She tells you that her mother seems to be unhappy a lot of the time. She thinks it\'s because of how dreary her job at the garment factory is.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
     { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
@@ -1265,6 +1286,7 @@ function enterDadTalk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Natasha\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
   scene.text('"What about your father? I\'ve never seen him around." You nudge her gently. "Oh don\'t get me started about that. I mean… Like… Well… It\'s not like I really know what I\'m missing. He left my mom and me just after I was born."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['natbel_chat', 'chat'] },
     { label: 'Stop talking', goto: ['natbelapt', 'natroom'] },
@@ -1277,6 +1299,7 @@ function enterSnacks(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/natasha/bedtalk.jpg');
   scene.text('You bite your lip a moment, unsure if you should ask. It might seem rude, but you could really use a snack and drink. "Hey, Natasha you got anything to snack on or drink?"');
   scene.text('She looks a bit surprised and then a bit abashed. "Yeah sorry, didn\'t think about it. Feel free to just grab something if you want in the future, but for now, follow me."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', goto: ['natbelEv', 'snack'] },
   ]);
@@ -1307,6 +1330,7 @@ function enterNatknows(s: GameState, scene: SceneBuilder): void {
       scene.text('"Well, I hope for the best for both of you. After our babies are both born, we should start setting up play dates." She pauses for a moment before adding, "Honestly, I\'m happy that I won\'t be going through this alone."');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -1349,6 +1373,7 @@ function enterNatknows1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['natbelapt', 'natroom'] },
   ]);
@@ -1462,6 +1487,7 @@ function enterPregChat(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1469,6 +1495,7 @@ function enterBirthdayInvitation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 3) {
     qspCall(s, 'natbel_friend', 'birthday_invitation');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1476,6 +1503,7 @@ function enterBirthdayMissed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 3) {
     scene.actions([{ label: 'Continue', goto: ['natbel_friend', 'birthday_missed'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

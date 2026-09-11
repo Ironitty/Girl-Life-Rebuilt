@@ -11,6 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerAloneDirect(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shower', goto: ['sex_ev_shower', 'after_alone'] },
   ]);
@@ -18,10 +19,12 @@ function enterShowerAloneDirect(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerFinishDirect(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBeforeBorrowShower(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: '"Use your shower?"', handler: (st: GameState) => {
     scene.text('"Mind if I take a quick shower?" you ask.');
@@ -74,6 +77,7 @@ function enterBeforeBorrowShower(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorrowShower2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Save it for later', handler: (st: GameState) => {
     scene.text('"Save it for the bedroom," you smirk, pushing past and heading for the bathroom.');
@@ -93,6 +97,7 @@ function enterBorrowShower2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBorrowShower3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a shower', goto: ['sex_ev_shower', 'before_alone'] },
     { label: 'You could join me', handler: (st: GameState) => {
@@ -115,6 +120,7 @@ function enterBeforeAlone(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['start_shower'] = 1;
   qspCall(s, 'stat', '');
   scene.text('You slip into the bathroom and turn on the faucet. Hot water comes pouring out and you gratefully step under, rinsing the sweat from your body.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
@@ -143,10 +149,12 @@ function enterAfterAlone(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_shower', 'after_alone_shower'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterAfterAloneShower(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash up', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bath_room']
@@ -175,6 +183,7 @@ function enterAfterAloneShower(s: GameState, scene: SceneBuilder): void {
 
 function enterAfterAloneTowel(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['shower'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put on a towel', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['towel'] = 1;
@@ -214,6 +223,7 @@ function enterMorningAlone(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You leave <<$npcdesc>> in the bed and pad your way into the bathroom, yawning al...
     scene.text(`You leave ${((s as any).npcdesc ?? 0)} in the bed and pad your way into the bathroom, yawning along the way..`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shower', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -250,6 +260,7 @@ function enterMorningLook1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/romance/misc/nude_walk1.mp4');
   // TODO-QSP: dynamic text: Curious to know where <<$npcdesc>> is, you climb out of bed, wandering his apart...
   scene.text(`Curious to know where ${((s as any).npcdesc ?? 0)} is, you climb out of bed, wandering his apartment looking for him. A few doors down the hall, you realize you hear water running in the bathroom. He must be taking a shower.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Head back to the bedroom', goto: ['sex_ev_morning', 'morning_menu2'] },
     { label: 'Wait your turn', handler: (st: GameState) => {
@@ -279,10 +290,12 @@ function enterShowerJoin1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: A blast of steam hits you in the face as you open the bathroom door. You pad you...
   scene.text(`A blast of steam hits you in the face as you open the bathroom door. You pad your way inside and open the shower to find ${((s as any).npcdesc ?? 0)} under the faucet.`);
   qspCall(s, 'sex_ev_shower', 'shower_join2');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerJoin2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get under the water with him', handler: (st: GameState) => {
     scene.img('images/shared/sex/shower/grope1.mp4');
@@ -351,6 +364,7 @@ function enterShowerJoin2(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyShowerJoin1(s: GameState, scene: SceneBuilder): void {
   scene.text('After a couple of minutes, you hear the door open.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cover up (playfully)', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/cover_up.jpg');
@@ -364,6 +378,7 @@ function enterBoyShowerJoin1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyShowerJoinResponse1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks', handler: (st: GameState) => {
     scene.text('"No thanks," you smirk. "I like my alone time in the shower."');
@@ -394,6 +409,7 @@ function enterShowerTogether1(s: GameState, scene: SceneBuilder): void {
   scene.text(`Time passes indeterminately as you shower with ${((s as any).npcdesc ?? 0)}, letting the hot water rain down on you. ${((s as any).npcdesc ?? 0)} fills his hands with soap and runs them up and down your body, sudsing you up and grabbing big handfuls of your breasts and ass in the process.`);
   qspCall(s, 'sex_ev_shower', 'wash_boy1');
   qspCall(s, 'sex_ev_shower', 'shower_together_makeout1');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Moan', handler: (st: GameState) => {
     scene.img('images/shared/sex/shower/grope2.mp4');
@@ -417,6 +433,7 @@ function enterShowerTogether1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWashBoy1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash him', handler: (st: GameState) => {
     // TODO-QSP: gs 'arousal', 'massage_give', 5, 'no_orgasm_msg', $sex_ev['prostitution_flag']
@@ -473,10 +490,12 @@ function enterShowerSexMenu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_shower', 'together_bj1');
     qspCall(s, 'sex_ev_shower', 'together_fuck_menu');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerReachCock(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Reach for his cock', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['position'] = 'handjob';
@@ -503,6 +522,7 @@ function enterShowerReachCock(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerTogetherMakeout1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Makeout with <<$npcdesc>>', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['position'] = 'makeout';
@@ -519,6 +539,7 @@ function enterShowerTogetherMakeout1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerTogetherJerkoff1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk his cock', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['position'] = 'handjob';
@@ -541,6 +562,7 @@ function enterShowerTogetherJerkoff1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowerTogetherJerkoff2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk his cock', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['position'] = 'handjob';
@@ -563,6 +585,7 @@ function enterShowerTogetherJerkoff2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTogetherBj1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blow him', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['position'] = 'blowjob';
@@ -623,6 +646,7 @@ function enterTogetherFuckMenu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -758,11 +782,13 @@ function enterFuckCondomCheck(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTogetherFuckBareback(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_shower', '', 'together_fuck_' + qspUntranslated(s, "sex_ev['position']>", { location: "sex_ev_shower" }) + '2');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bareback is fine', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['no_condom'] = 1;
@@ -793,6 +819,7 @@ function enterTogetherFuckMiss1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_shower', 'fuck_condom_check');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -811,6 +838,7 @@ function enterTogetherFuckMiss2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Then, without warning, ${((s as any).npcdesc ?? 0)} stiffens and you feel something hot pour into your pussy.`);
     qspCall(s, 'sex_ev_shower', 'shower_creampie_surprise');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -827,6 +855,7 @@ function enterTogetherFuckDoggy1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_shower', 'fuck_condom_check');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -854,6 +883,7 @@ function enterTogetherFuckDoggy2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'sex_ev_shower', 'shower_cum_ask');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -875,6 +905,7 @@ function enterTogetherFuckDoggyRough1(s: GameState, scene: SceneBuilder): void {
     scene.text(`After what seems like an eternity of pleasure, ${((s as any).npcdesc ?? 0)} moans into your ear.`);
     qspCall(s, 'sex_ev_shower', 'shower_cum_ask');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -898,6 +929,7 @@ function enterShowerCumAsk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
     // TODO-QSP: act 'Come together': gt 'sex_ev_shower', 'shower_cum_together1'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Jerk him off', goto: ['sex_ev_shower', 'shower_together_jerkoff_cum'] },
     { label: 'Suck him dry', goto: ['sex_ev_shower', 'shower_cum_mouth1'] },
@@ -931,6 +963,7 @@ function enterShowerTogetherJerkoffCum(s: GameState, scene: SceneBuilder): void 
     }
   }
   qspCall(s, 'sex_ev_shower', 'shower_together_end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -949,12 +982,14 @@ function enterShowerCumMouth1(s: GameState, scene: SceneBuilder): void {
   scene.text(`He doesn't even manage to finish his warning before he groans loudly and his cock pulses on your tongue. ${((s as any).npcdesc ?? 0)} pulls you further down with his hand and hot salty liquid pours into the back of your throat, your only choice to swallow or choke.`);
   scene.text('Eventually his dick stops throbbing and you gently release him from your lips, looking up at him with seductive eyes.');
   qspCall(s, 'sex_ev_shower', 'shower_cum_mouth2');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerCumMouth2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['cum_mouth'] = (((s as any).sex_ev ?? {})['cum_mouth'] ?? 0) + (1);
   ((s as any).sex_ev ?? {})['last_cum'] = 'mouth';
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spit it out', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
@@ -987,10 +1022,12 @@ function enterShowerCumFacial(s: GameState, scene: SceneBuilder): void {
     scene.text(`You kneel down and ${((s as any).npcdesc ?? 0)} plasters your face with hot, sticky cum.`);
   }
   qspCall(s, 'sex_ev_shower', 'shower_cum_facial_after');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerCumFacialAfter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Rinse off', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/dush.mp4');
@@ -1016,10 +1053,12 @@ function enterShowerCreampie1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> presses you up against the wall, forcing loud squelching from betwe...
   scene.text(`${((s as any).npcdesc ?? 0)} presses you up against the wall, forcing loud squelching from between your legs as he continues fervently fucking your pussy. He pulses inside you and you feel something warm shoot into your womb.`);
   qspCall(s, 'sex_ev_shower', 'shower_creampie2');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerCreampie2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ride it out', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
@@ -1083,10 +1122,12 @@ function enterShowerCumTogether1(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'sex_ev_shower', 'shower_creampie_after');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerCreampieAfter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pull apart', handler: (st: GameState) => {
     // TODO-QSP: iif($sex_ev['position'] = 'miss','<center><video autoplay loop <<$set_imgh>> src="images/shared/sex/...
@@ -1162,6 +1203,7 @@ function enterShowerCreampieSurprise(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take it in stride', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -1212,6 +1254,7 @@ function enterShowerCreampieSurpriseReaction(s: GameState, scene: SceneBuilder):
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pull away', handler: (st: GameState) => {
     if (((s as any).sex_ev ?? 0)?.['position'] === 'miss') {
@@ -1258,6 +1301,7 @@ function enterShowerWhatNow(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'We should stop', handler: (st: GameState) => {
     scene.text('"We should probably stop," you sigh regretfully, turning off the faucet. "We really shouldn\'t have skipped the condom..."');
@@ -1324,10 +1368,12 @@ function enterShowerTogetherEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterShowerTogetherEndingKiss(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
@@ -1437,6 +1483,7 @@ function enterShowerTogetherTowel(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1445,6 +1492,7 @@ function enterBeforeToTheBed(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $sex_ev['bed_room']
   scene.text('The two of you stumble out of the shower to the bed with hands all over each other. You hit the mattress uncaring of the excess moisture on your bodies and you\'re soaking wet, in every sense of the word.');
   qspCall(s, 'sex_ev_foreplay', 'bed_start');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1453,12 +1501,14 @@ function enterBoyShowerFinish(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$npcdesc>> returns to the bedroom with wet hair and a towel wrapped around his...
   scene.text(`${((s as any).npcdesc ?? 0)} returns to the bedroom with wet hair and a towel wrapped around his waist.`);
   qspCall(s, 'sex_ev_shower', 'boy_shower_finish_acts');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterBoyShowerFinishActs(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['boy_in_shower'] = 0;
   ((s as any).sex_ev ?? {})['boy_shower'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: '"Good shower?"', handler: (st: GameState) => {
     // TODO-QSP: '"Did you have a good shower?" you ask' + iif(sex_ev['drawer_rummage'] = 1, ' innocently putting you...

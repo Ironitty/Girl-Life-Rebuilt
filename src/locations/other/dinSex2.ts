@@ -32,6 +32,7 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <center>You have sex with <<$boydesc>>, his stamina: <<$ind_npc>></center>
   scene.text(`<center>You have sex with ${((s as any).boydesc ?? 0)}, his stamina: ${((s as any).ind_npc ?? 0)}</center>`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +81,7 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
     scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips']} lips in pain while tears start to flow from your eyes when ${((s as any).boydesc ?? 0)} penetrates you, breaking your hymen. You moan while crying and ${((s as any).xyr ?? 0)} rubber ${((s as any).dick ?? 0)} centimeter dick fucks your bloody pussy.`);
     // TODO-QSP: gs 'arousal', 'vaginal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[...
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -129,6 +131,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
     scene.text(`You bite your lip in pain while tears stream from your eyes when the bottle enters you, breaking your hymen. You cry out in pain and afterwards reveals a bloody bottle${((s as any).temp_mens ?? 0)}.`);
     // TODO-QSP: gs 'arousal', 'vaginal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -177,6 +180,7 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: gs 'arousal', 'anal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -226,6 +230,7 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: gs 'arousal', 'anal_dildo', ARGS[1], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[8]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -350,6 +355,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'arousal', 'vaginal',  ARGS[1] / 2, $npcID1, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $A...
   // TODO-QSP: gs 'arousal', 'anal',    ARGS[1] / 2, $npcID2, $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $AR...
+  // TODO-QSP: end
   scene.build();
 }
 

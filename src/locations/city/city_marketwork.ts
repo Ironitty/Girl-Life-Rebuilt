@@ -741,6 +741,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -768,10 +769,12 @@ function enterAnswerrin(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', goto: ['city_marketwork', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterTellprice(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Name the price', handler: (st: GameState) => {
     (s as any).prodpay = 0;
@@ -863,6 +866,7 @@ function enterHaggling(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take the item back', goto: ['city_marketwork', 'start'] },
   ]);

@@ -21,6 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterTerminalOfficeScreen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('wrap', 'header b center', $ARGS[1])
   scene.img('images/locations/city/industrial/terminal/\'+$ARGS[2]+\'.jpg');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -29,6 +30,7 @@ function enter00(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'TerminalOffice', 'TerminalOfficeScreen', 'Hall office space', 'terminal4');
   scene.text('You are standing in the lobby of the terminal office.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the office', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -98,6 +100,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   if (((s as any).verakassir ?? 0) === 0  &&  ((s as any).YouNotOpenDoorDir ?? 0) === 0  &&  ((s as any).YouNotOpenDoorBuh ?? 0) === 0  &&  ((s as any).BurgerQW ?? 0)?.['TerminalTask'] === 0) {
     scene.text('You have nothing to say or left to do. You can leave the office.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the office', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -234,6 +237,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -280,6 +284,7 @@ function enter21(s: GameState, scene: SceneBuilder): void {
   }, goto: ['TerminalOffice', '00'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -331,6 +336,7 @@ function enter31(s: GameState, scene: SceneBuilder): void {
   }, goto: ['TerminalOffice', '00'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

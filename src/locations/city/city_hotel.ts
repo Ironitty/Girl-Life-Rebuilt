@@ -42,6 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'lover', 'lover_events');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -70,6 +71,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the foyer', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -117,6 +119,7 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', goto: ['city_hotel', ''] },
   ]);
@@ -187,6 +190,7 @@ function enterRentARoom(s: GameState, scene: SceneBuilder): void {
       { label: 'No thank you', goto: ['city_hotel', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

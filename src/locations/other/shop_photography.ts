@@ -36,6 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'jobs_gigs', 'disp_evt', 3);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to the shop owner', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -100,6 +101,7 @@ function enterCameraOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t buy camera', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
@@ -131,6 +133,7 @@ function enterBuycamera(s: GameState, scene: SceneBuilder): void {
   scene.text('"You have made a momentous decision with this purchase! Here is your very own DSLR camera to do anything from professional commissioned photography to personal snaps of small events. And now that I have launched your photographic crusade to enlightenment, what are you indeed planning to use this opportunity for in this world of possibility?"');
   scene.text('"I\'m thinking of just building a portfolio of pictures for now; something to test how I can build up my ability to frame a scene. I might start by going around the area and looking for pictures to take to build a catalogue of photographs."');
   scene.text('"Fantastic! Brilliant! Tell you what; once you\'ve completed your portfolio, bring it in as I would love to see it! Now go! I release you into this new world of possibility!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['shop_photography', 'start'] },
   ]);
@@ -169,6 +172,7 @@ function enterShowportfolio(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['shop_photography', 'start'] },
   ]);

@@ -16,12 +16,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['bed_events', 'mod_sleepevents'] }]);
   }
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterModSleepevents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mod_system', 'sleep', 'bed_events', 'mod_sleepevents');
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -36,6 +38,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'continue'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -47,11 +50,13 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events')-1);
   }
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_end'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'event_handler'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -59,6 +64,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,16 +72,19 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars ?? {})['stat_display'] = 0;
   scene.actions([{ label: 'Continue', goto: ['bed2', 'start'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRab(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'rab2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterVor(s: GameState, scene: SceneBuilder): void {
   scene.actions([{ label: 'Continue', goto: ['bed_events', 'vor2'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -125,6 +134,7 @@ function enterRab2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suck it', handler: (st: GameState) => {
     if (((s as any).analPlugIn ?? 0) === 1) {
@@ -208,6 +218,7 @@ function enterVor2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -261,6 +272,7 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -289,6 +301,7 @@ function enterVorend(s: GameState, scene: SceneBuilder): void {
     ((s as any).mc_inventory ?? {})['tech_computer'] = 0;
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'bed_events', 'event_end');
@@ -323,6 +336,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -335,6 +349,7 @@ function enterMast1(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re soon twitching on the dildo and juices drip down its length, soaking the floor beneath you. You take a few deep breaths and a smile grows along your face. That was just what you needed!');
   qspCall(s, 'arousal', 'vaginal_dildo', 10, 'masturbate', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Breathe', handler: (st: GameState) => {
     qspCall(st, 'bed_events', 'event_end');
@@ -503,6 +518,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

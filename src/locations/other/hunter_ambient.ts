@@ -14,6 +14,7 @@ function enterNudeModelConvo(s: GameState, scene: SceneBuilder): void {
   ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) + (3);
   scene.text('"I\'m telling you, I\'ve seen her pictures in a men\'s magazine." you overhear Igor.');
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -23,6 +24,7 @@ function enterStripperConvo(s: GameState, scene: SceneBuilder): void {
   ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) - (3);
   scene.text('"I promise you, it was her, I swear!" you overhear Sergei. "She was on the stage, stripping and dancing."');
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -33,6 +35,7 @@ function enterPornstarConvo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "I recently downloaded some porn, and guess who was getting fucked in the video....
   scene.text(`"I recently downloaded some porn, and guess who was getting fucked in the video. Trust me, it was ${((s as any).pcs_firstname ?? 0)}." you overhear Andrei.`);
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -41,6 +44,7 @@ function enterRiverRapeConvo(s: GameState, scene: SceneBuilder): void {
   ((s as any).hunterVars ?? {})['sexual_comfort'] = (((s as any).hunterVars ?? {})['sexual_comfort'] ?? 0) + (7);
   ((s as any).hunterVars ?? {})['collective_opinion'] = (((s as any).hunterVars ?? {})['collective_opinion'] ?? 0) - (10);
   scene.text('"I\'m telling you, everyone in Gadukino has had the pleasure to "test out" the goods." you overhear Andrei.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -230,6 +234,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -264,6 +269,7 @@ function enterYardConvo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['gad_swamp_yard', 'start'] },
   ]);
@@ -345,6 +351,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).hunterVars ?? {})['outside'] = ((((s as any).hunterVars ?? 0)?.['inside'] === 1) ? (0) : (1));
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -359,6 +366,7 @@ function enterBringFood(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['gad_swamp_yard', 'start'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

@@ -134,6 +134,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }, goto: ['mey_home', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the house', handler: (st: GameState) => {
     if (((s as any).PSwim ?? 0) !== 1  ||  ((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -199,6 +200,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'core_library', 'kitchen', 'full');
   qspCall(s, 'library_functions', 'set_home_read_acts');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -224,6 +226,7 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).pcs_nickname ?? 0)},`);
   scene.text('  Here is the key to the house, Our home is your home. You can also clean out what remains in the guest bedroom and make it all yours. just put all of Roma\'s things in some boxes and I\'ll put them in storage.');
   scene.text('~Tamara Meynold');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take Key', goto: ['mey_home', 'kitchen'] },
   ]);
@@ -241,6 +244,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'selfplay', 'suction_dildo');
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -291,6 +295,7 @@ function enterGuestBedroom(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
   qspCall(s, 'wardrobe', 'default_clothing_options');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -307,6 +312,7 @@ function enterLounge(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Lounge</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/hall.jpg');
   scene.text('Spacious room with a sofa and armchairs, on the wall, hangs a large <a href="exec:gt \'TV\',\'meyhome\'">Plasma TV</a>, located next to the bookcase, and on the opposite side is the fireplace. From the hall, there is access to a bright garden overgrown with grapes.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -339,6 +345,7 @@ function enterKatjaBedroom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Katja is not in her room');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -355,6 +362,7 @@ function enterVickyBedroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/vika_room.jpg');
   scene.text('Vicky\'s room is always a mess. It\'s clean, but everything is scattered all over the place. Soft toys are lying around in enormous quantities, and all the walls are plastered with posters of pop stars and film actors.');
   scene.text('There\'s a laptop on the table by the window. It accidentally brings a sense of orderliness. The stacks of magazines resemble music speakers. The room\'s centerpiece is the ginormous bed and a wardrobe next to it. There\'s a lone chair somewhere hidden under all the stuff.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -370,6 +378,7 @@ function enterTamaraBedroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tamara\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/tamara_room.jpg');
   scene.text('If it was not for the bed in the corner, you would say Tamara Meynold\'s room resembles an office. There\'s a computer on a desk, a wardrobe, and a big but pretty modest bed. The room is relatively small and cramped. There are no decorations but one, a sword hanging on the wall. It\'s unclear what it\'s doing there.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -522,6 +531,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to hallway', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -561,6 +571,7 @@ function enterMeyMorningVomit(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Everything is fine', handler: (st: GameState) => {
     scene.text('"Everything is fine!" you lie hurriedly and rush to flush the toilet, not wanting Tamara worrying about you. "Just, uhh, had a bad cramp."');
@@ -579,6 +590,7 @@ function enterMeyPregScare(s: GameState, scene: SceneBuilder): void {
   scene.text('At that moment, a sharp knocking sounds on the door, and you jump in place, shocked by the sudden intrusion. Tamara\'s muffled voice comes through the fine wood.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Are you all right? I thought I heard you throwing up. Is eve...
   scene.text(`"${((s as any).pcs_nickname ?? 0)}? Are you all right? I thought I heard you throwing up. Is everything okay?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Everything is fine!', handler: (st: GameState) => {
     scene.text('"Everything is fine!" you say in a hurry, rushing to flush the toilet and turn on the tap to wash your mouth. "I\'m fine! Don\'t worry, Tamara. Everything is fine!"');

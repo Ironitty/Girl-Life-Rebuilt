@@ -28,6 +28,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore her', goto: ['Nudelake', ''] },
   ]);
@@ -67,6 +68,7 @@ function enterZnakomstvo(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['Nudelake', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,6 +79,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   scene.text('Kat already noticed you walking towards her, and gives you a little wave as you approach her.');
   // TODO-QSP: dynamic text: She smiles: "Hi <<$pcs_nickname>>, how's it going?"
   scene.text(`She smiles: "Hi ${((s as any).pcs_nickname ?? 0)}, how's it going?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Nudelake', ''] },
     { label: 'Suggest playing volleyball', goto: ['Katlake', 'voleybol'] },
@@ -107,6 +110,7 @@ function enterVoleybol(s: GameState, scene: SceneBuilder): void {
   scene.text('The other girls gladly accept your challenge, happy to play together against others instead of just playing against each other.');
   scene.text('You spend the next half hour in a fierce competition, and have a lot of fun playing volleyball with Kat on your team.');
   scene.text('At one point when you fumble and miss the ball, Kat slaps your ass playfully. Her hand stays on your buttocks for way longer than you expected, and she squeezes gently before finally letting go. She gives you a goofy smile and focuses on the game again, but for the rest of the game you can\'t help but keep thinking of her hand on your ass, and how nice it felt…');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Nudelake', ''] },
   ]);
@@ -129,6 +133,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kwalrand ?? 0) >= 90  &&  ((s as any).npc_rel ?? 0)?.['A219'] > 20) {
     scene.actions([{ label: 'Continue', goto: ['Kwlake2', ''] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['Nudelake', ''] },
   ]);
@@ -153,6 +158,7 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   scene.text('"But I really feel oka-" you try to say, but Kat interrupts you.');
   scene.text('She has a caring smile on her face when she says: "I\'m not taking no for an answer. You\'re coming home with me so I can keep an eye on you, and that\'s final!"');
   scene.text('You reluctantly agree to let her take you to her home… after all, your health is important and she just saved you!');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go with Kat', handler: (st: GameState) => {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']

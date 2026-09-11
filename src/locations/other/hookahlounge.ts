@@ -19,6 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Sit Down', goto: ['hookahlounge', 'Smoke_Hookah'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the Lounge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -54,12 +55,14 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the counter', goto: ['hookahlounge', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSmoke_Hookah(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/hookahlounge/HookahSit.jpg');
   scene.text('You sit down at a booth');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Smoke using hookah', handler: (st: GameState) => {
     (s as any).smoketab = 0;

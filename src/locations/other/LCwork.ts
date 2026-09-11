@@ -26,6 +26,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_finger', 10, 'sub', 'gangbang', 'prostitution');
   qspCall(s, 'arousal', 'foreplay', (-10), 'sub', 'gangbang', 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bbq/sex/1b.jpg');
@@ -77,6 +78,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   scene.text('You get into a van with the older man, and are a bit surprised when he enters a narrow side road that leads into the woods. You\'re in the middle of nowhere here!');
   scene.text('He stops the van, and tells you to get out of the van and undress. He lays you on your back in the open side door of his van. As soon as your legs are apart he shoves his old dick in your cunt and starts fucking it. He never says a word, or touches you in any other way, he just fucks your pussy.');
   qspCall(s, 'arousal', 'vaginal', 120, 'sub', 'prostitution');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -118,6 +120,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 120, ((s as any).npcID ?? 0), 'sub', 'group', 'prostitution', 'rough');
   qspCall(s, 'arousal', 'vaginal', (-120), ((s as any).npcID1 ?? 0), 'sub', 'group', 'prostitution', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -219,6 +222,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -248,6 +252,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: She walks you out, giving you <<$func('money', 'string_profit', randLCpay)>>.
   scene.text(`She walks you out, giving you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))}.`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her apartment', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
@@ -270,6 +275,7 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
   scene.text('He leads you to his car and drives to his house in the residential district. For the next hour and a half, he alternates between fucking your wet clit, and making you lick your own juices off his hard cock repeatedly. He doesn\'t go soft once during all this! Such stamina.');
   qspCall(s, 'arousal', 'bj', 90, 'sub', 'prostitution');
   qspCall(s, 'arousal', 'vaginal', (-90), 'sub', 'prostitution');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -303,6 +309,7 @@ function enterToiletsex(s: GameState, scene: SceneBuilder): void {
   scene.text('Not a surprise, he barely lasts any time at all, with in a few minutes he grunts and pulls out of your pussy and shoots his load all over your ass and without a further word he goes back into the cafe.');
   qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the restroom', goto: ['laketoilet', 'main'] },
   ]);

@@ -19,6 +19,7 @@ function enterResetAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_school');
   qspCall(s, 'intro_functions', 'reset_sex');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +55,7 @@ function enterResetTraits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'cheat', 'pain_tolerance', (-99));
   ((s as any).trait_vars ?? {})['nerd_learn_home'] = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -81,6 +83,7 @@ function enterResetBody(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_vag = 15;
   (s as any).pcs_ass = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -126,11 +129,13 @@ function enterResetInventory(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'wear', 'gm', 7);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterResetFame(s: GameState, scene: SceneBuilder): void {
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -143,6 +148,7 @@ function enterResetOther(s: GameState, scene: SceneBuilder): void {
   (s as any).gsAboBeg = 0;
   (s as any).church_moral = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -155,6 +161,7 @@ function enterResetSex(s: GameState, scene: SceneBuilder): void {
   ((s as any).brotherQW ?? {})['know_slut'] = 0;
   (s as any).GspravkaT = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -232,6 +239,7 @@ function enterResetSkills(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_comphckng = ((s as any).pcs_comphckng ?? 0) + (10);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -241,6 +249,7 @@ function enterResetRelationships(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'set', 'A18', 1);
   qspCall(s, 'array', 'remove_element', 'npc_vaginal_count', 'A9');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -272,6 +281,7 @@ function enterResetSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'grade_award', 'school', 'mus', 55);
   qspCall(s, 'grades', 'grade_award', 'school', 'pe', 55);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -284,6 +294,7 @@ function enterSetUniTeacherCourse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_1', 'teaching methods 101', 35);
   qspCall(s, 'grades', 'grade_award', 'uni_teaching_studies_semester_1', 'learning theories 101', 35);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -296,6 +307,7 @@ function enterSetUniNursingCourse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_1', 'anatomy and physiology 101', 35);
   qspCall(s, 'grades', 'grade_award', 'uni_nursing_semester_1', 'examination and treatment 101', 35);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -309,6 +321,7 @@ function enterSetDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

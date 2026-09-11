@@ -27,6 +27,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     scene.text('<ul style="margin:0; padding:0;">🧭 Visit the school sports field to meet your brother, and maybe other jocks.</ul>');
     scene.text('</div>');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Test vcard', handler: (st: GameState) => {
     qspCall(st, 'beta_journal_relationships', 'vcard', 274);
@@ -45,6 +46,7 @@ function enterGameFlags(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     scene.text('Non-magic start - all magic quests is disabled. Please restart game to play the magical questlines.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

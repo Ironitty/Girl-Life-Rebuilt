@@ -32,6 +32,7 @@ function enterAnastasia1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You blush as you come to realization that you've must have looked like a fool ju...
   scene.text(`You blush as you come to realization that you've must have looked like a fool just walking around… "Hi, I'm ${((s as any).model ?? 0)?.['firstname']}, I just got recruited by the agency and was just looking around. I didn't mean to be of any trouble…"`);
   scene.text('"Hi, don\'t worry about it, I\'m sure no one minds! You must be the new girl they\'ve been talking about. Interesting…" she says, looking you up and down. "I\'m Anastasia by the way."');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Pardon?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/face.jpg');
@@ -55,6 +56,7 @@ function enterAnastasia2(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk over to her smiling, "Hello Anastasia."');
   // TODO-QSP: dynamic text: She smiles at you and says, "You seem to be improving greatly <<$model['firstnam...
   scene.text(`She smiles at you and says, "You seem to be improving greatly ${((s as any).model ?? 0)?.['firstname']}. You're a natural at this."`);
+  // TODO-QSP: end
   scene.actions([
     { label: '"Thanks"', handler: (st: GameState) => {
     scene.text('You blush a little, embarrassed at the high praise you\'re receiving from Russia\'s number one model.');
@@ -86,6 +88,7 @@ function enterAnastasia2(s: GameState, scene: SceneBuilder): void {
 function enterAnastasia3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('As you walk through the studio, a faint repetitive noise catches your attention. As you investigate, peering into different sets, the noise increases in clarity. A slapping noise, a bit fleshy, and at regular intervals. It\'s the sound of… sex?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep investigating', handler: (st: GameState) => {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -107,6 +110,7 @@ function enterAnastasia4(s: GameState, scene: SceneBuilder): void {
   ((s as any).anastasia ?? {})['status'] = Math.floor(Math.random() * 3) + 4;
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
   scene.text('Walking about the studio, you pass by Anastasia who is walking around naked but holding a pair of panties. You are unsure if they\'re hers and she\'s going home or if she\'s about to put them on for a shoot.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
     { label: '"Hello Anastasia"', handler: (st: GameState) => {
@@ -138,6 +142,7 @@ function enterAnastasia5(s: GameState, scene: SceneBuilder): void {
   scene.text('"Now hold the pose just like that!" the photographer calls. Despite how awkward the pose looks, Anastasia doesn\'t move even a centimeter while she is illuminated by camera flashes and the air is filled with rapid shutter clicks.');
   scene.text('A true pro, this is what it means to be St. Petersburg\'s number one model.');
   scene.text('Not wanting to interrupt just to talk to her, you decide to try and find her again later.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
   ]);
@@ -152,6 +157,7 @@ function enterAnastasia6(s: GameState, scene: SceneBuilder): void {
   scene.text('One of the men grins and pulls hard on her nipples, eliciting a sound from Anastasia that leaves you undecided on whether it was pain or pleasure.');
   scene.text('"You\'re such a fucking slut Anastasia. I bet you\'ll do anything for money. What would happen to you if all your fans saw you like this right now?"');
   scene.text('Unfazed by his insults she retorts without hesitation, "Then I\'d stand to make a lot more money off of dirty old men like you!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/sex/1.jpg');
@@ -182,10 +188,12 @@ function enterAnastasiaChat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "What did you want to talk about <<$model['firstname']>>?"
   scene.text(`"What did you want to talk about ${((s as any).model ?? 0)?.['firstname']}?"`);
   qspCall(s, 'model_anastasia', 'chat_options');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterChatOptions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
@@ -215,6 +223,7 @@ function enterChatPersonal(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her you saw her having sex in the empty set', goto: ['model_anastasia', 'anastasiasex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
     qspCall(st, 'model_anastasia', 'chat_options');
@@ -276,6 +285,7 @@ function enterModelTalk(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
     qspCall(st, 'model_anastasia', 'chat_options');
@@ -310,6 +320,7 @@ function enterModelTalk(s: GameState, scene: SceneBuilder): void {
 function enterSexTalk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anastasia ?? 0)?.['sex'] === 1) {
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ask for sex advice', goto: ['model_anastasia', 'anastasiasextalk'] },
     { label: 'What\'s your favorite thing to do?', handler: (st: GameState) => {
@@ -327,6 +338,7 @@ function enterAnastasiasex(s: GameState, scene: SceneBuilder): void {
   ((s as any).anastasia ?? {})['sex'] = 1;
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
   scene.text('"Oh you saw that?" She barely even reacts to what you said. She doesn\'t appear to be surprised or embarrassed at all.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/2.jpg');
@@ -451,6 +463,7 @@ function enterAnastasiasex2(s: GameState, scene: SceneBuilder): void {
   scene.text('Anastasia regards you with a slight tilt of the head. "Those men were my clients. Who did you think they were?"');
   scene.text('"Oh," you say. "I thought you were just doing it for fun."');
   scene.text('"Well, I do still fuck for fun," she smiles. "But it\'s much more efficient to charge for it as well. I\'m the number one model in the city after all, it makes it easy to do some escorting on the side. It\'s a good deal for everyone. They get to live their dream, the studio makes more money on set rental, and in the end I get to supplement my sexual and financial needs. Men will pay a lot of money to have sex with a model like me."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Makes sense', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
@@ -489,6 +502,7 @@ function enterAnastasiasex3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/face.jpg');
   scene.text('"We can do that here?" you exclaim.');
   scene.text('"But of course," she smiles at you. "We\'re erotic models in the cultural capital of the nation my dear, it makes it easy to do some escorting on the side. The studio won\'t complain because it makes more money on set rental, and at the same time, girls like you and me get to supplement our financial needs, not to mention all the enjoyable fucking we get to do. Men will pay a lot of money to have sex with a models like us."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wow!', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/anastasia_p/talking/1.jpg');
@@ -512,6 +526,7 @@ function enterAnastasiasextalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Sure <<$model['nickname']>>, what would you like help with?"
   scene.text(`"Sure ${((s as any).model ?? 0)?.['nickname']}, what would you like help with?"`);
   scene.text('If you\'re being honest, her reaction is still a little strange to you. She\'s as nonchalant about this as if you asked her for advice about knitting.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change the subject', handler: (st: GameState) => {
     qspCall(st, 'model_anastasia', 'chat_options');

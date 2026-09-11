@@ -161,6 +161,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['KGOLfight', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Approach the NPC', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -364,12 +365,14 @@ function enterKGOLstat(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>PVP</center>');
   // TODO-QSP: dynamic text: You have won <<KGOLpvpWin>> times and lost <<KGOLpvpLoss>> times.
   scene.text(`You have won ${((s as any).KGOLpvpWin ?? 0)} times and lost ${((s as any).KGOLpvpLoss ?? 0)} times.`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterKGOLstat2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['KGOLgame', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 

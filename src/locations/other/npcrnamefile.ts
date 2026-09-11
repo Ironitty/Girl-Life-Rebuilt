@@ -3,6 +3,16 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterGetNickname(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).locArgs?.[1] ?? 0) === 'rusMale') {
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'rusFemale') {
+    }
+  }
+  // TODO-QSP: end
   if (((s as any).args ?? 0)[0] === 'rusMale') {
     // TODO-QSP: $rntempgen[] = 'Afanas'
     // TODO-QSP: $rntempgen[] = 'Afanasei'
@@ -2414,15 +2424,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $rntempgen[] = 'Yashin'
     // TODO-QSP: $rntempgen[] = 'Yashkin'
     (s as any).irngi = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('rntempgen') - 1);
-  }
-  scene.build();
-}
-
-function enterGetNickname(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'rusMale') {
-  } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'rusFemale') {
-    }
   }
   scene.build();
 }

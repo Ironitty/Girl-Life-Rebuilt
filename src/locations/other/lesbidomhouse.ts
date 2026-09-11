@@ -71,6 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -85,6 +86,7 @@ function enterQW1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The woman is nowhere to be seen, and you're not sure what to do. It would be rud...
   scene.text(`The woman is nowhere to be seen, and you're not sure what to do. It would be rude to just walk around her house. "Hello!?" you shout, hoping she will come. "It's ${((s as any).pcs_nickname ?? 0)}, from the boutique!"`);
   scene.text('The woman then appears, wearing a gorgeous red dress. "Ah, it\'s you," she says dismissively. She wordlessly gestures for you to follow her and walks towards a door, not looking to see if you\'re coming.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -272,6 +274,7 @@ function enterQW2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Reluctantly do as she says', handler: (st: GameState) => {
     (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
@@ -463,6 +466,7 @@ function enterQW3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do as she says', handler: (st: GameState) => {
     (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
@@ -589,6 +593,7 @@ function enterQW4(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show her your pussy', handler: (st: GameState) => {
     (s as any).lesbiQW = 5;
@@ -730,6 +735,7 @@ function enterQW5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to her room', handler: (st: GameState) => {
     (s as any).girl = ((s as any).girl ?? 0) + (1);
@@ -778,6 +784,7 @@ function enterQW6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/natalya/mistress.jpg');
   scene.text('"Undress, quickly!" Mistress snaps as soon as you enter. She\'s obviously in a foul mood today.');
   scene.text('"Yes, Mistress…" you obediently reply and begin to undress as quickly as you can. Her heels clack on the wooden floor as she agitatedly paces around. "I\'m not in the mood today, so let\'s get this over with quickly."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress', handler: (st: GameState) => {
     (s as any).temp = Math.floor(Math.random() * 3) + 0;
@@ -922,6 +929,7 @@ function enterQW7(s: GameState, scene: SceneBuilder): void {
   scene.text('She\'s carrying a small paper bag when she comes back. It looks like it\'s from some fancy boutique. "Here, this is for you," she smiles weakly. "I\'m really sorry about last time, I shouldn\'t have taken my poor mood out on you."');
   scene.text('You nod shyly at her, thanking her for the gift before opening it. You twist and turn the item in your hands, it looks like some sort of jewelry. Then you see it: it\'s a g-string! A very sexy one, with some sort of jewel attached to it.');
   scene.text('Mistress smiles at you. "Go ahead, put it on! When you\'re ready we\'ll go out for a drink, my treat. It\'ll be a good opportunity for me to teach you about how a submissive girl should behave in public in the presence of her domme."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put it on and go to the terrace', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1116,6 +1124,7 @@ function enterQW8(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk towards Mistress', handler: (st: GameState) => {
     (s as any).lesbiQW = 10;
@@ -1188,6 +1197,7 @@ function enterQW9(s: GameState, scene: SceneBuilder): void {
   scene.text('When you enter her apartment, Mistress is already waiting for you in the doorway agitatedly. She immediately pushes you to the wall, and gives you a few hard slaps in the face.');
   scene.text('You were hoping she had forgotten about the last session, but clearly that is not the case.');
   scene.text('"On your knees, bitch!" she screams in your face. "I\'m so fucking tired of teaching you, you senseless whore! Get on your knees right now!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do as she says', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1286,6 +1296,7 @@ function enterQW10(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1367,6 +1378,7 @@ function enterQW10a(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1381,6 +1393,7 @@ function enterQW10b(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['lesbidomhouse', 'QW10b3'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1445,6 +1458,7 @@ function enterQW10b1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1604,6 +1618,7 @@ function enterQW10b2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1686,6 +1701,7 @@ function enterQW10b3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1864,6 +1880,7 @@ function enterQW10c(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1952,6 +1969,7 @@ function enterQW11(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2134,6 +2152,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

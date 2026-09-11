@@ -93,6 +93,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go into the village</b>', handler: (st: GameState) => {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
@@ -274,6 +275,7 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
   }, goto: ['gad_gpyard', 'root_cellar'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the yard', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -288,6 +290,7 @@ function enterChickens(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/chickens1.jpg');
   scene.text('Ordinary chickens clucking about their pen.');
   qspCall(s, 'gp_elene', 'check_for_chores', 'chickens');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['gad_gpyard', 'start'] },
   ]);
@@ -319,6 +322,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
     scene.text('There is also a small plot of land dedicated to growing strawberries and a small fruit tree orchard, but they are not in season right now.');
   }
   qspCall(s, 'gp_elene', 'check_for_chores', 'garden');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the yard', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -370,6 +374,7 @@ function enterStrawberry(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'gp_elene', 'check_for_chores', 'strawberry');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the garden', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -409,6 +414,7 @@ function enterFruitGarden(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'gp_elene', 'check_for_chores', 'fruit_garden');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the garden', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -626,6 +632,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bilberry_stored ?? 0) < 0) {
     (s as any).bilberry_stored = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

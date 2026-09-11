@@ -20,6 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: *p '</center>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -108,6 +109,7 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result +=    '</tr>'
   // TODO-QSP: $result +=  '</table>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -145,6 +147,7 @@ function enterRenderCellNum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result +=    '</tr>'
   // TODO-QSP: $result +=  '</table>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -224,6 +227,7 @@ function enterSectionTable(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result +=  '</table>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -236,6 +240,7 @@ function enterRowCell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -250,6 +255,7 @@ function enterRowFlush(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -273,6 +279,7 @@ function enterWeatherOptions(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -282,6 +289,7 @@ function enterMoneyOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Se...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -297,6 +305,7 @@ function enterTimeOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Da...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -307,6 +316,7 @@ function enterIconsOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Po...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -331,6 +341,7 @@ function enterAlertsOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Ar...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -350,6 +361,7 @@ function enterCalendarOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Al...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +374,7 @@ function enterTextsOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Po...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -371,6 +384,7 @@ function enterLoadsaveOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_cell', $func('stat_display_menu', 'render_cell_opt', 'Bu...
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -384,6 +398,7 @@ function enterMenuBarOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += $func('stat_display_menu', '_reorder_menu_bar')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -419,6 +434,7 @@ function enterStatusOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += $func('stat_display_menu', '_reorder_flat', 'status_bar_order', 'stat_hide_bar', 'status'...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -452,6 +468,7 @@ function enterAttributesOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += $func('stat_display_menu', '_reorder_flat', 'attr_bar_order', 'stat_hide_bar', 'status', ...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -493,6 +510,7 @@ function enterImagesOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += $func('stat_display_menu', '_reorder_flat', 'image_order', 'stat_hide', 'status', '', '')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -517,6 +535,7 @@ function enterSkillsOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += $func('stat_display_menu', '_reorder_nested_skills')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -549,6 +568,7 @@ function enterRelationsOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += $func('stat_display_menu', '_reorder_nested_relations')
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -592,6 +612,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</table></center></td></tr>');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -661,6 +682,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</table></center></td></tr>');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -789,6 +811,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).ro ?? {})['html'] = (((s as any).ro ?? {})['html'] ?? 0) + ('</table></center></td></tr>');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -825,6 +848,7 @@ function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += '</tr></table></center></td></tr>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -873,6 +897,7 @@ function enterGeneralOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('stat_display_menu', '_row_flush')
   // TODO-QSP: $result += '</table>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

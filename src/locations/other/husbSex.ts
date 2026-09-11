@@ -77,6 +77,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +114,7 @@ function enterHusbDebtEvent(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_apprnc ?? 0) >= 60) {
     scene.text('"You have a fine little wife. We will use her and perhaps she will even be able to make us reconsider the amount of your debt. Unless of course you want to come back with us." The thug laughs.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suggest you pay the money [+$func(\'money\', \'get_cost_string\', 100000...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100000) === 0) {
@@ -142,6 +144,7 @@ function enterDolg(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group', 'humiliation', 'rape');
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group', 'humiliation', 'rape');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/d2.jpg');
@@ -226,6 +229,7 @@ function enterDolgend(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'remove_deo');
     scene.text('<br>Your deodorant gets washed away in the shower.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['bedr', ''] },
   ]);
@@ -246,6 +250,7 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
       { label: 'Use a strapon', goto: ['husbsex', 'strapon'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your legs', goto: ['husbsex', 'miss'] },
     { label: 'Get into doggy position', goto: ['husbsex', 'dog'] },
@@ -266,6 +271,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
     scene.text('You think "This is exciting. I am sitting in front of a man, with his dick in my mouth."');
   }
   qspCall(s, 'oral', 'start');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue to suck', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
@@ -312,6 +318,7 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
   scene.text('Soon your skillful movements bring your husband to orgasm and he finishes onto the palms of you hands, covering them with warm and sticky sperm.');
   qspCall(s, 'arousal', 'hj', 20);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bathroom', goto: ['vanr', ''] },
   ]);
@@ -332,6 +339,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     scene.text('Although your husband is very skilled, you soon feel bored.');
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', goto: ['husbsex', 'variant'] },
   ]);
@@ -345,6 +353,7 @@ function enterStrapon(s: GameState, scene: SceneBuilder): void {
   scene.text('You lubricate his anus and enter him with the strap-on. While you fuck his ass, he groans and finally finishes. You pull the strap-on out and go to the bathroom.');
   qspCall(s, 'arousal', 'anal_strap_give', 20, 'dom');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bathroom', goto: ['vanr', ''] },
   ]);
@@ -451,6 +460,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   }
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bathroom', goto: ['vanr', ''] },
   ]);
@@ -469,6 +479,7 @@ function enterMiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 15);
   qspCall(s, 'dinsex', 'sexcum');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bathroom', goto: ['vanr', ''] },
   ]);
@@ -485,6 +496,7 @@ function enterDog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'vaginal_sex', 15, 'sub');
   qspCall(s, 'dinsex', 'sexcum');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bathroom', goto: ['vanr', ''] },
   ]);
@@ -641,6 +653,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

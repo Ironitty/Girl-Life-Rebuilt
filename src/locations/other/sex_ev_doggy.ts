@@ -74,6 +74,7 @@ function enterDoggyGoto(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -93,6 +94,7 @@ function enterDoggyGoto2(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_doggy', 'doggy_goto');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -163,6 +165,7 @@ function enterDoggyStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -183,6 +186,7 @@ function enterDoggyInsertActs(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -284,6 +288,7 @@ function enterDoggyFirstInsertion(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait for him to put it in', handler: (st: GameState) => {
     // TODO-QSP: xgt 'sex_ev_doggy', 'doggy_insert_slow'
@@ -306,6 +311,7 @@ function enterDoggyVirginPre(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/foreplay/miss3.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> pushes you down onto the bed on hands and knees and spreads your ch...
   scene.text(`${((s as any).npcdesc ?? 0)} pushes you down onto the bed on hands and knees and spreads your cheeks apart, preparing to fuck you from behind.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop him (virgin)', goto: ['sex_ev_virgin', 'lover_wait'] },
     { label: 'Let <<$npcdesc>> take your virginity', goto: ['sex_ev_virgin', 'start3'] },
@@ -344,6 +350,7 @@ function enterDoggySwitch(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -362,6 +369,7 @@ function enterDoggySwitch2(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('"I think it\'s time for some doggystyle."');
   scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_slow'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -386,6 +394,7 @@ function enterDoggyBendOver(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'sex_ev_doggy', 'doggy_insert_slow');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -394,6 +403,7 @@ function enterDoggySpitLube(s: GameState, scene: SceneBuilder): void {
   (s as any).ar_vag_lube = 1;
   scene.img('images/shared/sex/vag/doggy/spit1.mp4');
   scene.text('He flips you over and pulls you to your knees. You feel his hands on your ass and hear an <i>aach ptoogh-!</i> from behind you and a glob of something wet lands directly into your pussy.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take it in stride', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You take it in stride as <<$npcdesc>> pushes his finger in and spreads his spit ...
@@ -500,12 +510,14 @@ function enterDoggyInsertSlow(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([{ label: 'Continue', goto: ['sex_ev_doggy', 'doggy_insert_react'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDoggyInsertReact(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_doggy', 'doggy_pain1');
   qspCall(s, 'sex_ev_doggy', 'doggy_insert_orgasm');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoyment', handler: (st: GameState) => {
     if (((s as any).dick_desc ?? 0) === 'long'  ||  ((s as any).dick_desc ?? 0) === 'huge'  ||  ((s as any).dick_desc ?? 0) === 'enormous'  ||  ((s as any).dick_desc ?? 0) === 'lengthy'  ||  ((s as any).dick_desc ?? 0) === 'gigantic'  ||  ((s as any).dick_desc ?? 0) === 'monstrous') {
@@ -701,6 +713,7 @@ function enterDoggyInsertOrgasm(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -724,10 +737,12 @@ function enterDoggyGirlOrgasmContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['position'] = 'doggy';
   ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy' + qspUntranslated(s, "sex_ev['speed']>", { location: "sex_ev_doggy" }) + '';
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterDoggyChangePosition(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/2.jpg');
@@ -754,6 +769,7 @@ function enterDoggyPain1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ouch!', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['fuck_enjoyment'] = 'painful';
@@ -765,6 +781,7 @@ function enterDoggyPain1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoggyPain2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t ruin the mood', handler: (st: GameState) => {
     scene.img('images/shared/sex/vag/doggy/3.jpg');
@@ -882,6 +899,7 @@ function enterDoggyPain3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -897,6 +915,7 @@ function enterDoggyVid(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1140,6 +1159,7 @@ function enterDoggy1(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'sex_ev_doggy', 'doggy_change_position');
+  // TODO-QSP: end
   scene.actions([
     { label: 'This is too slow', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
@@ -1196,6 +1216,7 @@ function enterDoggy1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_doggy', 'doggy1.1_desc');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1335,6 +1356,7 @@ function enterDoggy1_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1346,6 +1368,7 @@ function enterDoggy1_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('And it\'s <i>very boring</i>.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1578,6 +1601,7 @@ function enterDoggy2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'sex_ev_doggy', 'doggy_change_position');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pace is wrong', handler: (st: GameState) => {
     ((s as any).sex_ev ?? {})['orgasm'] = ((s as any).orgasm ?? 0);
@@ -1633,6 +1657,7 @@ function enterDoggy2_1(s: GameState, scene: SceneBuilder): void {
   ((s as any).sex_ev ?? {})['pos_speed'] = 'doggy2';
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1784,6 +1809,7 @@ function enterDoggy2_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1794,6 +1820,7 @@ function enterDoggy2_bored(s: GameState, scene: SceneBuilder): void {
   scene.text('He keeps fucking you at a medium pace. It\'s boring.');
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2155,6 +2182,7 @@ function enterDoggy3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2193,6 +2221,7 @@ function enterDoggy3_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sex_ev_sex', 'fuck_continue');
   }
   qspCall(s, 'sex_ev_doggy', 'doggy_change_position');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2339,6 +2368,7 @@ function enterDoggy3_2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'sex_ev_cum', 'fuck_cum');
   qspCall(s, 'sex_ev_sex', 'fuck_continue');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2432,6 +2462,7 @@ function enterDoggy1StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2515,6 +2546,7 @@ function enterDoggy1StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2574,6 +2606,7 @@ function enterDoggy1BoyTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2597,6 +2630,7 @@ function enterDoggy1BoyTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2670,6 +2704,7 @@ function enterDoggy1EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2738,6 +2773,7 @@ function enterDoggy1_1Desc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2879,6 +2915,7 @@ function enterDoggy1_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2985,6 +3022,7 @@ function enterDoggy1_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3043,6 +3081,7 @@ function enterDoggy1_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3101,6 +3140,7 @@ function enterDoggy2StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3159,6 +3199,7 @@ function enterDoggy2StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3218,6 +3259,7 @@ function enterDoggy2BoyTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3241,6 +3283,7 @@ function enterDoggy2BoyTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3299,6 +3342,7 @@ function enterDoggy2EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3416,6 +3460,7 @@ function enterDoggy2_1Desc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3481,6 +3526,7 @@ function enterDoggy2_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3584,6 +3630,7 @@ function enterDoggy2_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3641,6 +3688,7 @@ function enterDoggy2_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3699,6 +3747,7 @@ function enterDoggy3StartPeriodDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3757,6 +3806,7 @@ function enterDoggy3StartDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3816,6 +3866,7 @@ function enterDoggy3BoyTalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3839,6 +3890,7 @@ function enterDoggy3BoyTalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3908,6 +3960,7 @@ function enterDoggy3EnjoyDesc(s: GameState, scene: SceneBuilder): void {
       scene.text(`Your mind goes blank with pleasure and you groan loudly, letting ${((s as any).npcdesc ?? 0)} fuck you into blissful oblivion.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3978,6 +4031,7 @@ function enterDoggy3TooRough(s: GameState, scene: SceneBuilder): void {
       scene.text(`Tears run down your face and sweat covers your body as ${((s as any).npcdesc ?? 0)} pummels you into the bed.`);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -3993,6 +4047,7 @@ function enterDoggy3SlowDown(s: GameState, scene: SceneBuilder): void {
       scene.text('"Could you-! Slow down-!" you gasp desperately. He releases your hair, letting you collapse face first onto the bed. "I can\'t keep going this hard..."');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4110,6 +4165,7 @@ function enterDoggy3_1Desc(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('And you are loving <i>every second</i> of it.');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4229,6 +4285,7 @@ function enterDoggy3_2MoanDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4344,6 +4401,7 @@ function enterDoggy3_2DirtyTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -4402,6 +4460,7 @@ function enterDoggy3_2SensationDesc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

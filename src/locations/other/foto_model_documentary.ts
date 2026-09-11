@@ -76,6 +76,7 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'No thanks, not interested', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -199,6 +200,7 @@ function enterDocumentary_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You head over to where you were directed and see a group of people standing around several video cameras set up with lights shining on an empty set.');
   scene.text('Walking over to them you say, "Hi, I\'m one of the models who volunteered to be interviewed. Is this the right place?"');
   scene.text('"Sure is," a woman with a notepad says. "We just got done with the last girl, why don\'t you just jump in now."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand on set', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 2);
@@ -271,6 +273,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I thought it seemed fun', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_2'] = 'fun';
@@ -321,6 +324,7 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('"So, would you say that this is something you\'re actively pursuing as a career? Why or why not?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'This is just temporary', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_3'] = 'temporary';
@@ -407,6 +411,7 @@ function enterDocumentary_4(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'It used to be worse but I\'m still a little shy', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_4'] = 'little_shy';
@@ -462,6 +467,7 @@ function enterDocumentary_5(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'It sucks', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_5'] = 'dislike_dresscode';
@@ -507,6 +513,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('"Okay, now for some questions about your life outside the studio. What\'s a hobby of yours?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Reading', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_6'] = 'reading';
@@ -732,6 +739,7 @@ function enterDocumentary_7(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('"What is your ideal date?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'A quiet night in', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_7'] = 'quiet_night';
@@ -779,6 +787,7 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('"For our next question, do you have any guilty pleasures?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eating things I shouldn\'t', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_8'] = 'junk_food';
@@ -840,6 +849,7 @@ function enterDocumentary_9(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('"What do you wear to bed?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Underwear', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_9'] = 'underwear_bed';
@@ -893,6 +903,7 @@ function enterDocumentary_10(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('"What\'s your ideal morning?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Early morning with exercise', handler: (st: GameState) => {
     ((s as any).foto_documentary ?? {})['question_10'] = 'exercise_morning';
@@ -948,6 +959,7 @@ function enterDocumentary_10(s: GameState, scene: SceneBuilder): void {
 function enterDocumentary_11(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish interview', goto: ['foto_model_documentary', '1st_documentary_end'] },
   ]);
@@ -978,6 +990,7 @@ function enter1stDocumentaryEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: After exchanging a few more pleasantries, they hand you an envelope filled with ...
   scene.text(`After exchanging a few more pleasantries, they hand you an envelope filled with bills that count out to ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and call the next girl in from the side.`);
   ((s as any).foto ?? {})['1st_documentary'] = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'studio'] },
   ]);

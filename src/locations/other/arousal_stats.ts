@@ -79,6 +79,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -99,6 +100,7 @@ function enterSetStatFucked(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,6 +121,7 @@ function enterSetStatHiddenFucked(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -469,6 +472,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== 'no_stat') {
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.build();
 }
 

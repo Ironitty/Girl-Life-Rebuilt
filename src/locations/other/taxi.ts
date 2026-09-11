@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hail taxi', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -94,6 +95,7 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the city suburbs', goto: ['taxi', 'trip'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -114,6 +116,7 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
       { label: 'Suggest he fuck you', goto: ['taxi', 'vag1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Suggest you blow him', goto: ['taxi', 'bj'] },
     { label: 'Suggest anal', goto: ['taxi', 'anal'] },
@@ -185,6 +188,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     if (((s as any).pcs_horny ?? 0) > 95  &&  (Math.floor(Math.random() * 5) + 0) < 1) {
@@ -211,6 +215,7 @@ function enterCum1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'stomach', 'Taxi Driver');
   qspCall(s, 'stat', '');
   qspCall(s, 'taxi', 'end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -222,6 +227,7 @@ function enterCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', '', '', 'Taxi Driver');
   qspCall(s, 'stat', '');
   qspCall(s, 'taxi', 'end');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -233,11 +239,13 @@ function enterCum3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', '', '', 'Taxi Driver');
   qspCall(s, 'stat', '');
   qspCall(s, 'taxi', 'end');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('He walks back to the driver\'s door, putting his dick away as he gets in and starts the taxi up. He then turns and asks you where you need to go.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose destination', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -264,6 +272,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose destination', handler: (st: GameState) => {
     qspCall(s, 'taxi', 'locations');
@@ -287,6 +296,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', 'anus', 'Taxi Driver');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose destination', handler: (st: GameState) => {
     qspCall(s, 'taxi', 'locations');
@@ -381,6 +391,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -394,6 +405,7 @@ function enterAlleyvag(s: GameState, scene: SceneBuilder): void {
   scene.text('"You like getting used like a whore, don\'t you slut?" he growls before he stops with his dick buried balls deep in you. As he grunts, you realize he\'s cumming inside you! You feel his spurts of cum filling up your pussy as he grinds himself against you, as if trying to get even deeper. He then suddenly pulls away, causing you to almost stumble backwards as he puts his dick back in his pants.');
   scene.text('Before you\'re fully dressed, you hear the taxi start and look up just in time to see him rapidly backing away and out of the alley.');
   scene.text('"Hey! Wait! Stop!" you yell, but he doesn\'t even slow down, leaving you half-naked and alone in the alley. You hope he at least dropped you off near where you need to go.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -413,6 +425,7 @@ function enterAlleyanal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
     (s as any).pcs_makeup = 0;
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -430,6 +443,7 @@ function enterRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

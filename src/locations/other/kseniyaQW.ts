@@ -25,6 +25,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('While searching for a place to expose yourself, you catch sight of a woman between some tall stalks of grass in the corner of your eye. Although it is difficult to see her face, you can see her large chest, and she appears to be a pretty looking woman of some kind of Asian descent. When you finally decide to meet her, you discover that she has already disappeared.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish walk', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -69,6 +70,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -88,6 +90,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You realize her mistake and say, "I'm <<$pcs_firstname>>"
   scene.text(`You realize her mistake and say, "I'm ${((s as any).pcs_firstname ?? 0)}"`);
   scene.text('"Right, can I ask if you could help me with some pictures?" You see, I want to be a model, and I need some pictures. Can you help?" she asks."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sure, why not?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -144,6 +147,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   scene.text('As you did before you find Ksenya near the edge of the park, exposing herself. She gives you that same look, you just can\'t seem to place.');
   // TODO-QSP: dynamic text: "Hi, <<$pcs_firstname>>. It's your turn, are you up for this?"
   scene.text(`"Hi, ${((s as any).pcs_firstname ?? 0)}. It's your turn, are you up for this?"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'No, sorry', handler: (st: GameState) => {
     scene.text('You tell her that you don\'t want to do it now.');
@@ -196,6 +200,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'flash', (-10));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get started', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 3) + 0);

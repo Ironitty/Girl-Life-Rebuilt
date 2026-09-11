@@ -148,6 +148,7 @@ function enterPavlbar(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -333,6 +334,7 @@ function enterPavlbarcont(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -346,6 +348,7 @@ function enterGetpaidpros(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'money', 'earn', 750);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -379,6 +382,7 @@ function enterPavgenpros(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She gives you a subtle smile and tells you <<$npc_nickname['A217']>> is waiting ...
     scene.text(`She gives you a subtle smile and tells you ${((s as any).npc_nickname ?? 0)?.['A217']} is waiting for you in room 305.`);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to room 305', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -484,6 +488,7 @@ function enterClientselect(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -820,6 +825,7 @@ function enterPavgenprosmf(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -943,6 +949,7 @@ function enterVaginalmf(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -959,6 +966,7 @@ function enterAnalmf(s: GameState, scene: SceneBuilder): void {
     (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the bar', goto: ['pavlin', 'pavlbar'] },
   ]);
@@ -1032,6 +1040,7 @@ function enterPavgenprosmmf(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Allow it', handler: (st: GameState) => {
     (s as any).mmfcond = 0;
@@ -1058,6 +1067,7 @@ function enterSexmmf(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'arousal', 'bj', 10, $npcID[0], 'prostitution', 'sub', 'group'
   // TODO-QSP: gs 'arousal', 'hj', -10, $npcID[1], 'prostitution', 'sub', 'group'
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/sex/prostitution/mmf02.jpg');
@@ -1241,6 +1251,7 @@ function enterPavgenprosff(s: GameState, scene: SceneBuilder): void {
   scene.text('"I can work with this," she whispers in your ear as she starts kneeding your breasts.');
   qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/sex/prostitution/ff02.jpg');
@@ -1358,6 +1369,7 @@ function enterFfshower(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'kiss', 5, 'prostitution');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/sex/prostitution/ffshower02.jpg');
@@ -1471,6 +1483,7 @@ function enterTwins(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You sigh with relief as <<$npc_nickname['A217']>> returns and ushers you both to...
   scene.text(`You sigh with relief as ${((s as any).npc_nickname ?? 0)?.['A217']} returns and ushers you both to his car.`);
   scene.text('He then drives you to a nice house at the outskirts of town.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Meet the client', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0);
@@ -1742,6 +1755,7 @@ function enterTwinhome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A217', 10);
   qspCall(s, 'money', 'earn', 9000);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['korrPar', ''] },
   ]);
@@ -1757,6 +1771,7 @@ function enterClown(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello? Is anyone here?" you call out.');
   scene.text('You receive no reply, so you stumble towards the bed and try the light switch there.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn on the switch near the bed', handler: (st: GameState) => {
     scene.text('You hear the lights starting to buzz, but they don\'t turn on immediately ');
@@ -1905,6 +1920,7 @@ function enterPregBDSM(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).npc_nickname ?? 0)?.['A217']} and ${((s as any).boydesc ?? 0)} have a short discussion about your price.`);
   // TODO-QSP: dynamic text: <<$npc_nickname['A217']>> goes over to the desk girl and comes back with a key. ...
   scene.text(`${((s as any).npc_nickname ?? 0)?.['A217']} goes over to the desk girl and comes back with a key. "We have full access to the hotel basement for the next 2 hours, so let's get on with it."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the basement', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'foreplay', 5, 'rough', 'sub', 'humiliation', 'prostitution');

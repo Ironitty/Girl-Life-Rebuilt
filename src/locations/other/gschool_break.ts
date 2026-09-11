@@ -20,6 +20,7 @@ function enterWatercooler(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop at the water cooler to get a drink, but no one else is around.');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     if (((s as any).breaktype ?? 0) === 'long') {
@@ -62,6 +63,7 @@ function enterBoysRestroom(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
     scene.actions([{ label: 'Continue', goto: ['gschool_break', 'boys_restroom_events'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +76,7 @@ function enterGirlsRestroom(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 3) + 0) === 2) {
     scene.actions([{ label: 'Continue', goto: ['gschool_break', 'girls_restroom_events'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -94,6 +97,7 @@ function enterRestroomActions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan', 'no_prost');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restroom', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -536,6 +540,7 @@ function enterGirlsRestroomEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1225,6 +1230,7 @@ function enterBoysRestroomEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1240,6 +1246,7 @@ function enterAndreyCum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'A147');
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restroom', goto: ['gschool_lessons', 'short_break'] },
   ]);
@@ -1258,6 +1265,7 @@ function enterJoinAlylav(s: GameState, scene: SceneBuilder): void {
   scene.text('You eagerly open your mouth and start sucking his cock while caressing his balls and stroking his shaft.');
   qspCall(s, 'arousal', 'bj', (-2), ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Turn around and get fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/couplefuck.jpg');
@@ -1312,6 +1320,7 @@ function enterSmoke1(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/school/bathroom/smoke${Math.floor(Math.random() * 3) + 1}.jpg`);
   scene.text('You pull out your pack of cigarettes and fish one out. Placing it between your lips, you light the cigarette and take a long slow drag of it.');
   scene.text('You spend a few minutes smoking the cigarette before dropping the bud into the toilet.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your break', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -1328,6 +1337,7 @@ function enterSmoke2(s: GameState, scene: SceneBuilder): void {
   scene.text('You hear the other girls all leave, leaving you alone to enjoy your smoke.');
   qspCall(s, 'drugs', 'smoke');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enjoy your smoke', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/causmo2.jpg');
@@ -1565,6 +1575,7 @@ function enterLenaGop(s: GameState, scene: SceneBuilder): void {
   scene.text('She frowns slightly, but nods anyway.');
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get undressed', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/girls/lena2.jpg');
@@ -1662,6 +1673,7 @@ function enterLenaDom(s: GameState, scene: SceneBuilder): void {
   scene.text('She moans loudly at your ministrations of her cunt.');
   qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', 2);
@@ -1690,6 +1702,7 @@ function enterNakedBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('With all your clothes gone, all you have left is your purse. You could call someone, but who? Your mother wouldn\'t understand, you would be too ashamed to call your stepdad and your sister doesn\'t have a car. The bell rings for the next period and you wait a few more minutes until you can no longer hear anyone.');
   scene.text('You crack open the door, peek out and find the hallway looks empty. You can go to the headmistress - she might have a spare uniform you can use, but she might press you on what happened. Or you could leave the school to go home and get another uniform.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the headmistress', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/afterschool/strip5.jpg');
@@ -1772,6 +1785,7 @@ function enterNakedBathroomEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'clothing', 'wear', 'gm_school', 25);
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her office', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) >= 14) {

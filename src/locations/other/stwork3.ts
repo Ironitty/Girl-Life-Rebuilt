@@ -41,6 +41,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -55,6 +56,7 @@ function enterFirstShift(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Her eyes pierce your gaze and you swear you can somehow <i>feel</i> her in your head before she turns and beckons for you to follow her out into the main area of the club.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -111,6 +113,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/serve.jpg');
   scene.text('The patrons are all in good moods and being busy like this makes time go by rather quickly. If every night were like this, then you\'d have no complaints.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue working', goto: ['stwork3', 'events'] },
   ]);
@@ -122,6 +125,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/serve.jpg');
   scene.text('Your shift isn\'t bad at first, but a group of loud mouthed executive types have hired a private room with multiple strippers and place very particular orders, each changing their minds several times as they tell you what they want.');
   scene.text('You double-check the orders before you leave the room and you\'re sure you have it right, but when you bring them their drinks, each of them complains that something is wrong. It\'s clear they\'re just doing it to mess with you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue working', goto: ['stwork3', 'events'] },
   ]);
@@ -134,6 +138,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/serve.jpg');
   scene.text('Some nights are just fun, and tonight is one of them. There are a large number of regular patrons who are happy to see you and engage you in good-natured banter and teasing.');
   scene.text('Aside from the normal issues that arise, the evening flows smoothly and you make some decent tips.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue working', goto: ['stwork3', 'events'] },
   ]);
@@ -145,6 +150,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/serve.jpg');
   scene.text('A group of tourists from another part of Russia arrive, and they\'re fascinated by the sights of the club. They have to be told multiple times not to take pictures, but they nonetheless vow to tell everyone back home to visit the club whenever they visit the city.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue working', goto: ['stwork3', 'events'] },
   ]);
@@ -156,6 +162,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/serve.jpg');
   scene.text('You\'re rushed off your feet running from table to table taking orders and delivering drinks. It\'s stressful and challenging, not least because of the drunken groping you have to deal with all night.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue working', goto: ['stwork3', 'events'] },
   ]);
@@ -168,6 +175,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/serve.jpg');
   scene.text('Tonight is one of those nights where you wish you\'d just called in sick. The patrons are inexplicably grumpy tonight, but it gets worse when two groups of young men, all of them very drunk, get into a shouting match that rapidly escalates.');
   scene.text('Security escorts them outside where they continue to argue and shout at each other for some time. This puts the patrons in an even fouler mood and you receive less tips than normal.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue working', goto: ['stwork3', 'events'] },
   ]);
@@ -192,6 +200,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat with Nadia', goto: ['stwork3', 'bartender_chat1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a snack [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
@@ -307,6 +316,7 @@ function enterManagerChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to work', goto: ['stwork3', 'events1'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -320,6 +330,7 @@ function enterBartenderChat(s: GameState, scene: SceneBuilder): void {
   scene.text('You giggle. "You must love your job then?"');
   scene.text('He smiles. "What\'s not to love? I get good banter from the regulars <i>and</i> I get to watch hot chicks strutting around in tiny thongs. Hot chicks whose constant advances I\'m forced to turn down," he jokingly pouts.');
   scene.text('You just smile at him and engage in idle chatter until it\'s time for you to get back to work.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['stwork3', 'events1'] },
   ]);
@@ -335,6 +346,7 @@ function enterBartenderChat1(s: GameState, scene: SceneBuilder): void {
   scene.text('She nods and the two of you engage in a lively conversation. "You\'re rocking that cute little bunny outfit! You sure you don\'t want to get up on that stage?" you laugh.');
   scene.text('She giggles. "I thought about it, but I\'m too clumsy to swing around the pole. Those girls make it look so easy."');
   scene.text('You just smile at her and engage in idle chatter until it\'s time for you to get back to work.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['stwork3', 'events1'] },
   ]);
@@ -350,6 +362,7 @@ function enterWaitressChat(s: GameState, scene: SceneBuilder): void {
   scene.text('You frown. "I dunno… Isn\'t that kind of tacky?"');
   scene.text('"Think about it," she replies. "If you can take home more at the end of the night by showing off a little, then why not? My cleavage is always on show in this dress anyway, so I might as well take advantage."');
   scene.text('"I guess that doesn\'t sound too bad..." you admit and continue to engage in idle chatter until it\'s time for you to get back to work.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['stwork3', 'events1'] },
   ]);
@@ -363,6 +376,7 @@ function enterSmokeBreak(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/smoke5.jpg');
   scene.text('You head out the back to smoke a cigarette, feeling yourself relax a little as the smoke fills your lungs.');
   scene.text('Once you\'re done, you flick the remains of the cigarette away and head back inside to continue your shift.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to work', goto: ['stwork3', 'events1'] },
   ]);
@@ -840,6 +854,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -962,6 +977,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -975,6 +991,7 @@ function enterShiftEnd(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   scene.text('As the night crawls into the early hours of the morning, the patrons slowly trickle out until the place is empty and the bar finally closes. Now is a good time to count your tips.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Count your tips', goto: ['stwork3', 'tips'] },
   ]);
@@ -1029,6 +1046,7 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1049,6 +1067,7 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
   scene.text('"You- You know him?" you ask, almost panicking.');
   scene.text('She smiles. "Of course. I badly want to taste his cock, but that man is immune to <i>everything</i>, even the most powerful of my lust charms."');
   scene.text('You feel the sexual energy radiating from her as she rubs her legs together. "Mother would forbid it of course, but… Fuck, I\'m getting wet just thinking about it…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Who are you?', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'voyeur', 2);
@@ -1147,6 +1166,7 @@ function enterIvannaSlave(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/ivanna1.jpg');
   scene.text('Ivanna poses in front of the bar. "There you are. Ready to have some fun, slave?"');
   scene.text('You once again submit to her control and suddenly find yourself back in the private room, on your knees as she jerks her cock in front of you.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pleasure her', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'bj', 5);

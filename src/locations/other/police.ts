@@ -85,6 +85,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Confess everything', handler: (st: GameState) => {
     (s as any).gopdeath = 1;

@@ -33,6 +33,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'adverts_definition', 'therapy');
   qspCall(s, 'adverts_definition', 'hotelmaid');
   (s as any).adv_listSize = 0;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +47,7 @@ function enterModel(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial ?? {})['model'] = 1;
   ((s as any).adv_city_residential ?? {})['model'] = 1;
   ((s as any).adv_city_center ?? {})['model'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -56,6 +58,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance ?? {})['guitar'] = 0;
   ((s as any).adv_pav_commercial ?? {})['guitar'] = 1;
   ((s as any).adv_pav_commcenter ?? {})['guitar'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -67,6 +70,7 @@ function enterSing(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial ?? {})['sing'] = 1;
   ((s as any).adv_city_residential ?? {})['sing'] = 1;
   ((s as any).adv_city_center ?? {})['sing'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -80,6 +84,7 @@ function enterBurlesque(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial ?? {})['burlesque'] = 1;
   ((s as any).adv_city_residential ?? {})['burlesque'] = 1;
   ((s as any).adv_city_center ?? {})['burlesque'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +95,7 @@ function enterSecretary(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance ?? {})['secretary'] = 50;
   ((s as any).adv_pav_commercial ?? {})['secretary'] = 1;
   ((s as any).adv_pav_commcenter ?? {})['secretary'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -101,6 +107,7 @@ function enterDiner(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial ?? {})['diner'] = 1;
   ((s as any).adv_city_residential ?? {})['diner'] = 1;
   ((s as any).adv_city_center ?? {})['diner'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +119,7 @@ function enterFitness(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_city_industrial ?? {})['fitness'] = 1;
   ((s as any).adv_city_residential ?? {})['fitness'] = 1;
   ((s as any).adv_city_center ?? {})['fitness'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -122,6 +130,7 @@ function enterPushkin(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance ?? {})['pushkin'] = 50;
   ((s as any).adv_pav_commercial ?? {})['pushkin'] = 1;
   ((s as any).adv_pav_commcenter ?? {})['pushkin'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -132,6 +141,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance ?? {})['starlets'] = 50;
   ((s as any).adv_pav_commercial ?? {})['starlets'] = 1;
   ((s as any).adv_pav_commcenter ?? {})['starlets'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -142,6 +152,7 @@ function enterTherapy(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance ?? {})['therapy'] = 50;
   ((s as any).adv_pav_commercial ?? {})['therapy'] = 1;
   ((s as any).adv_pav_commcenter ?? {})['therapy'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,6 +163,7 @@ function enterHotelmaid(s: GameState, scene: SceneBuilder): void {
   ((s as any).adv_chance ?? {})['hotelmaid'] = 50;
   ((s as any).adv_pav_commercial ?? {})['hotelmaid'] = 1;
   ((s as any).adv_pav_commcenter ?? {})['hotelmaid'] = 1;
+  // TODO-QSP: end
   scene.build();
 }
 

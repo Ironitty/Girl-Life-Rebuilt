@@ -26,6 +26,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $cum_names[16] = 'hair'
   // TODO-QSP: $cum_names[17] = 'condom_in_pussy'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -451,6 +452,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cumnpcID ?? 0) !== '') {
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -564,6 +566,7 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'cum_c_namemap'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -948,6 +951,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1003,6 +1007,7 @@ function enterCumgather(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1021,6 +1026,7 @@ function enterCumeaterIcon(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'cumeater_icon_jump'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1100,6 +1106,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1126,6 +1133,7 @@ function enterIsPrivateLocation(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1137,6 +1145,7 @@ function enterCheckPrivate(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1153,6 +1162,7 @@ function enterCheckInnerOverflow(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1166,6 +1176,7 @@ function enterGetInnerCapacity(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1176,24 +1187,28 @@ function enterCheckInnards(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'cum_manage', 'check_inner_overflow', qspUntranslated(s, "ARGS[1]", { location: "cum_manage" }));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckVisible(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[11] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckCovered(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((((s as any).cumloc ?? 0)[2] + ((s as any).cumloc ?? 0)[5] + ((s as any).cumloc ?? 0)[8] + ((s as any).cumloc ?? 0)[9] + ((s as any).cumloc ?? 0)[10] + ((s as any).cumloc ?? 0)[14]) > 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckHidden(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (((s as any).cumloc ?? 0)[1] + ((s as any).cumloc ?? 0)[4] + ((s as any).cumloc ?? 0)[15]) > 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1203,6 +1218,7 @@ function enterCheckRemoveableCum(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((qspFunc(s, 'cum_manage', 'check_hidden')  ||  qspFunc(s, 'cum_manage', 'check_inner_overflow', (-1)) === 1) ? (1) : (0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1214,18 +1230,21 @@ function enterCheckRemoveableCumActionable(s: GameState, scene: SceneBuilder): v
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckOutside(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((qspFunc(s, 'cum_manage', 'check_visible')  ||  qspFunc(s, 'cum_manage', 'check_covered')) ? (1) : (0));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterCheckInside(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'cum_manage', 'check_inner_overflow', (-1));
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1306,6 +1325,7 @@ function enterCumDecay(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).cumdectime = ((s as any).totminut ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1378,6 +1398,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1462,6 +1483,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1502,6 +1524,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1542,6 +1565,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1566,6 +1590,7 @@ function enterCumDecayCondomVagina(s: GameState, scene: SceneBuilder): void {
     ((s as any).cumloc ?? {})[0] = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1598,6 +1623,7 @@ function enterCumDecayBodyClothing(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_cleanup', 'cleandeposit', ARGS[1]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

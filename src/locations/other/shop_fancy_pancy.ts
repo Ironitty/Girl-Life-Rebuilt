@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('This small boutique looks more like a dressing room at the nearby burlesque club than a clothing store. Satin, leather, ruffles and glamour make it clear this is not a place to buy a practical outfit.');
   scene.text('It\'s the only place in the city where you can buy outfits suitable for the burlesque club or perhaps spice up things in the bedroom.');
   scene.text('The boutique sells designer winter coats, burlesque clothing, beautiful shoes and exquisite handbags.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the boutique', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -35,6 +36,7 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'init', 'end');
   }
   qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;

@@ -31,6 +31,7 @@ function enterDFbdStart(s: GameState, scene: SceneBuilder): void {
       (s as any).fbde = 1;
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the room', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -108,6 +109,7 @@ function enterDFbdRegular(s: GameState, scene: SceneBuilder): void {
   scene.text(`He's cute! You open your mouth and kiss ${((s as any).npcdesc ?? 0)} enthusiastically, and don't stop him when you feel his hands tugging at your clothes. He's slowly trying to undress you, but doesn't get very far in this position. After a while he gives up and just focuses on kissing you back, rubbing his hand over your thigh.`);
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his cock in your mouth', goto: ['fbDormD', 'd_fbd_blowhim'] },
     { label: 'Keep kissing him', handler: (st: GameState) => {
@@ -167,6 +169,7 @@ function enterDFbdBlowhim(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -202,6 +205,7 @@ function enterDFbdMiss(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -238,6 +242,7 @@ function enterDFbdDog(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -252,6 +257,7 @@ function enterDFbdFace(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/park/sex/fbdface.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> jerks off, while his cock is pointing at your face. You instinctive...
   scene.text(`${((s as any).npcdesc ?? 0)} jerks off, while his cock is pointing at your face. You instinctively stick out your tongue, and he rubs the head of his dick against it while he's approaching his orgasm. Suddenly a jet of sperm hits your face, covering you in cum. Several more follow, some of it getting into your mouth while the rest covers your cheeks and eye lids.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Brush up', goto: ['fbDormD', 'd_fbd_end'] },
   ]);
@@ -286,6 +292,7 @@ function enterDFbdAnal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -308,6 +315,7 @@ function enterDFbdEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Once you're finished, you quickly brush up and begin to put your clothes back on...
   scene.text(`Once you're finished, you quickly brush up and begin to put your clothes back on. ${((s as any).npcdesc ?? 0)} grins at you smugly, already dressed again in a clean fancy dress shirt and pants. He runs his hand through your hair and says: "Thanks for that, ${((s as any).pcs_nickname ?? 0)}. My friend was right, you Pavlovsk girls are fun! My roommates can be back at any time, though… you should probably go? Unless you want to have another go with them too?"`);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
   ]);
@@ -336,6 +344,7 @@ function enterDFbdMass(s: GameState, scene: SceneBuilder): void {
   scene.text(`You quietly drink the booze while you're leaning against ${((s as any).npcdesc1 ?? 0)}. He begins to kiss you, while his friend on the other side begins to gently stroke your ass cheeks through your clothes.`);
   // TODO-QSP: dynamic text: <<$npcdesc1>> grins at you and whispers: "Hey babe… what do you want to do next?...
   scene.text(`${((s as any).npcdesc1 ?? 0)} grins at you and whispers: "Hey babe… what do you want to do next? We can go somewhere a little more private by ourselves, or maybe bring my friend along for a threesome? It's up to you…"`);
+  // TODO-QSP: end
   scene.actions([
     { label: '"I only want you!"', handler: (st: GameState) => {
     (s as any).ppsex = ((s as any).ppsex ?? 0) + (1);
@@ -414,6 +423,7 @@ function enterDFbdMass(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDFbdThreesome(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
     (s as any).ppbj = ((s as any).ppbj ?? 0) + (2);

@@ -19,6 +19,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: gs $loc_id, $hot_link
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,6 +40,7 @@ function enterInitArray(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $array_link[7] = 'beta_journal_notifications'
   // TODO-QSP: $array_tab[8] = 'Glossary'
   // TODO-QSP: $array_link[8] = 'beta_journal_glossary'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -48,6 +50,7 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs $loc_id, 'game_events'
   // TODO-QSP: gs $loc_id, 'gametips'
   scene.text('</center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -77,12 +80,14 @@ function enterNavConstruct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" va...
   scene.text(`<table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? 0)}</tr></table></center>`);
   qspCall(s, 'journal', 'leaveactions');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterGameEvents(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Upcoming Events</h3></center>');
   scene.text('WIP - No events configured or happening');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +97,7 @@ function enterGametips(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3>Girl Life Random Tips</h3>');
   // TODO-QSP: $tip_body[rnd_tip]
   scene.text('</center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -106,6 +112,7 @@ function enterTipsInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $tip_body[7] = "Be wary of Fae gifts."
   // TODO-QSP: $tip_body[8] = 'Exploration can lead to interesting events or surprises.'
   // TODO-QSP: $tip_body[9] = 'Look after ourself as your admirers gauge your beauty is based social interests, you...
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -152,10 +159,12 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $bjq_temp_table += '</table></center>'
   // TODO-QSP: dynamic text: <<$bjq_temp_table>>
   scene.text(`${((s as any).bjq_temp_table ?? 0)}`);
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
     (s as any).jclose = 1;
@@ -182,6 +191,7 @@ function enterFailure(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: 'vcard failed to initialise: ' + $debug['journal']
+  // TODO-QSP: end
   scene.build();
 }
 

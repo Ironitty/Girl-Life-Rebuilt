@@ -16,6 +16,7 @@ function enterQuickie(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 2);
   qspCall(s, 'arousal', 'foreplay_give', (-2));
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You can not resist that ass!', handler: (st: GameState) => {
     scene.img('images/shared/romance/lovers/hookups/gf/gf2.jpg');

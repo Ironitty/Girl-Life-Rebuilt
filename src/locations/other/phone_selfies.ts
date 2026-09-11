@@ -213,6 +213,7 @@ function enterPhoneSelfieTotals(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -234,6 +235,7 @@ function enterOpenCamera(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -249,6 +251,7 @@ function enterCameraTakeSelfie(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: view '<<$temp_phone_img>>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -313,6 +316,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic '<<$selfieLoc[0]>>_closelfie[<<phone_rand>>] = 1'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -329,6 +333,7 @@ function enterCameraTakeSelfieBathing(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: view '<<$temp_phone_img>>'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +345,7 @@ function enterSelfieImageShower(s: GameState, scene: SceneBuilder): void {
     ((s as any).bathroom_showerselfie ?? {})[String((s as any).phone_rand ?? 0)] = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -351,12 +357,14 @@ function enterSelfieImageBathing(s: GameState, scene: SceneBuilder): void {
     ((s as any).bathroom_bathselfie ?? {})[String((s as any).phone_rand ?? 0)] = 1;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSendSelfieHandler(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_suppress_other_selfies = 1;
   scene.actions([{ label: 'Continue', goto: ['phone_selfies', 'view_selfies'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -365,10 +373,12 @@ function enterViewSelfies(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p $func('phone_selfies', 'get_selfie_layout')
   qspCall(s, 'phone_selfies', 'act_exit');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterActExit(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop watching selfies', handler: (st: GameState) => {
     if ((!((s as any).temp_suppress_other_selfies ?? 0))) {
@@ -401,6 +411,7 @@ function enterGetSelfieLayout(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $result += '</table>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -409,6 +420,7 @@ function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: *p $func('phone_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]])
   qspCall(s, 'phone_selfies', 'act_exit');
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
   ]);
@@ -427,6 +439,7 @@ function enterListretrieve(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $result += $func('phone_selfies', 'retrieve_pussyflash_selfies',  ARGS[1], $ARGS[2])
   // TODO-QSP: $result += '</table></center>'
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -456,221 +469,667 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</tr><tr></tr>'
   }
   return;
-  if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_swim_selfies') {
-    if (((s as any).selfieSwimTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-      // TODO-QSP: $result += '<tr><th colspan=5>Swimwear selfies</th></tr>'
-      // TODO-QSP: $result += '<tr></tr><tr>'
-      (s as any).temp_cnum = 0;
-      (s as any).temp_swicnt = 1;
-      // TODO-QSP: :temp_loop1
-      // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_swim[<<temp_swicnt>>]'
-      if (((s as any).phone_locval ?? 0) === 1) {
-        if (((s as any).temp_cnum ?? 0) === 5) {
-          // TODO-QSP: $result += '</tr><tr>'
-          (s as any).temp_cnum = 0;
-        }
-        // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'bikini', ARGS[...
-        (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-      }
-      (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-      if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-        // TODO-QSP: jump 'temp_loop1'
-      }
-      if (((s as any).temp_cnum ?? 0) !== 4) {
-        // TODO-QSP: $result += '<td></td>'
-      }
-      // TODO-QSP: $result += '</tr><tr></tr>'
-    }
-    return;
-  } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_underwear_selfies') {
-      if (((s as any).selfieUndTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-        // TODO-QSP: $result += '<tr><th colspan=5>Underwear selfies</th></tr>'
-        // TODO-QSP: $result += '<tr></tr><tr>'
+  scene.build();
+}
+
+function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieSwimTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Swimwear selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_swicnt = 1;
+    // TODO-QSP: :temp_loop1
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_swim[<<temp_swicnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
         (s as any).temp_cnum = 0;
-        (s as any).temp_undcnt = 1;
-        // TODO-QSP: :temp_loop2
-        // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_undselfie[<<temp_undcnt>>]'
-        if (((s as any).phone_locval ?? 0) === 1) {
-          if (((s as any).temp_cnum ?? 0) === 5) {
-            // TODO-QSP: $result += '</tr><tr>'
-            (s as any).temp_cnum = 0;
-          }
-          // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'underwear', AR...
-          (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-        }
-        (s as any).temp_undcnt = ((s as any).temp_undcnt ?? 0) + (1);
-        if (((s as any).temp_undcnt ?? 0) <= ((s as any).selfieUndTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-          // TODO-QSP: jump 'temp_loop2'
-        }
-        if (((s as any).temp_cnum ?? 0) !== 4) {
-          // TODO-QSP: $result += '<td></td>'
-        }
-        // TODO-QSP: $result += '</tr><tr></tr>'
       }
-      return;
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'bikini', ARGS[...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop1'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrieveUnderwearSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieUndTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Underwear selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_undcnt = 1;
+    // TODO-QSP: :temp_loop2
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_undselfie[<<temp_undcnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'underwear', AR...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_undcnt = ((s as any).temp_undcnt ?? 0) + (1);
+    if (((s as any).temp_undcnt ?? 0) <= ((s as any).selfieUndTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop2'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrieveNudeSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieNudTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Nude selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_nudcnt = 1;
+    // TODO-QSP: :temp_loop3
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_nudselfie[<<temp_nudcnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'nude', ARGS[1]...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_nudcnt = ((s as any).temp_nudcnt ?? 0) + (1);
+    if (((s as any).temp_nudcnt ?? 0) <= ((s as any).selfieNudTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop3'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrieveBathSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieBathTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Bath selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_bathcnt = 1;
+    // TODO-QSP: :temp_loop4
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_bathselfie[<<temp_bathcnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'bath', ARGS[1]...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_bathcnt = ((s as any).temp_bathcnt ?? 0) + (1);
+    if (((s as any).temp_bathcnt ?? 0) <= ((s as any).selfieBathTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop4'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrieveShowerSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieShowerTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Shower selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_showercnt = 1;
+    // TODO-QSP: :temp_loop5
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_showerselfie[<<temp_showercnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'shower', ARGS[...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_showercnt = ((s as any).temp_showercnt ?? 0) + (1);
+    if (((s as any).temp_showercnt ?? 0) <= ((s as any).selfieShowerTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop5'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrieveTitflashSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieTitFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Flashing tits selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_flashtitscnt = 1;
+    // TODO-QSP: :temp_loop6
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_titflash[<<temp_flashtitscnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'titflash', ARG...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_flashtitscnt = ((s as any).temp_flashtitscnt ?? 0) + (1);
+    if (((s as any).temp_flashtitscnt ?? 0) <= ((s as any).selfieTitFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop6'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrieveAssflashSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfieAssFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Flashing ass selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_flashasscnt = 1;
+    // TODO-QSP: :temp_loop7
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_assflash[<<temp_flashasscnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'assflash', ARG...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_flashasscnt = ((s as any).temp_flashasscnt ?? 0) + (1);
+    if (((s as any).temp_flashasscnt ?? 0) <= ((s as any).selfieAssFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop7'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  scene.build();
+}
+
+function enterRetrievePussyflashSelfies(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).selfiePussyFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    // TODO-QSP: $result += '<tr><th colspan=5>Flashing pussy selfies</th></tr>'
+    // TODO-QSP: $result += '<tr></tr><tr>'
+    (s as any).temp_cnum = 0;
+    (s as any).temp_flashpussycnt = 1;
+    // TODO-QSP: :temp_loop8
+    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_pussyflash[<<temp_flashpussycnt>>]'
+    if (((s as any).phone_locval ?? 0) === 1) {
+      if (((s as any).temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).temp_cnum = 0;
+      }
+      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'pussyflash', A...
+      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
+    }
+    (s as any).temp_flashpussycnt = ((s as any).temp_flashpussycnt ?? 0) + (1);
+    if (((s as any).temp_flashpussycnt ?? 0) <= ((s as any).selfiePussyFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: jump 'temp_loop8'
+    }
+    if (((s as any).temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $result += '<td></td>'
+    }
+    // TODO-QSP: $result += '</tr><tr></tr>'
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterGetNpcSelfie(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).npc_lastname ?? 0)['A' + ((s as any).locArgs?.[1] ?? 0)] !== '') {
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterFamily(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Family members</b></center>');
+  (s as any).count1 = 0;
+  (s as any).i = 1;
+  scene.text('<center><table cellspacing="3" width=80%>');
+  // TODO-QSP: :familygruploop
+  if (((s as any).npc_selfieon ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 7) {
+    (s as any).count1 = ((s as any).count1 ?? 0) + (1);
+    // TODO-QSP: $textgrup += '' + '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="im...
+    if (((s as any).count1 ?? 0) === 6) {
+      // TODO-QSP: $textgrup += '</tr><tr>'
+      (s as any).count1 = 0;
+    }
+  }
+  (s as any).i = ((s as any).i ?? 0) + (1);
+  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
+    // TODO-QSP: jump 'familygruploop'
+  }
+  // TODO-QSP: dynamic text: <<$textgrup>>
+  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text('</table></center>');
+  qspCall(s, 'phone_selfies', 'act_exit');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
+  ]);
+  scene.build();
+}
+
+function enterSchool(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>School friends</b></center>');
+  (s as any).count1 = 0;
+  (s as any).i = 1;
+  scene.text('<center><table cellspacing="3" width=80%>');
+  // TODO-QSP: :schoolgruploop
+  if (((s as any).npc_selfieon ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 3  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 5)) {
+    (s as any).count1 = ((s as any).count1 ?? 0) + (1);
+    // TODO-QSP: $textgrup += '' + '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="im...
+    if (((s as any).count1 ?? 0) === 6) {
+      // TODO-QSP: $textgrup += '</tr><tr>'
+      (s as any).count1 = 0;
+    }
+  }
+  (s as any).i = ((s as any).i ?? 0) + (1);
+  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
+    // TODO-QSP: jump 'schoolgruploop'
+  }
+  // TODO-QSP: dynamic text: <<$textgrup>>
+  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text('</table></center>');
+  qspCall(s, 'phone_selfies', 'act_exit');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
+  ]);
+  scene.build();
+}
+
+function enterTeacher(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Teachers</b></center>');
+  (s as any).count1 = 0;
+  (s as any).i = 1;
+  scene.text('<center><table cellspacing="3" width=80%>');
+  // TODO-QSP: :teachergruploop
+  if (((s as any).npc_selfieon ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 6) {
+    (s as any).count1 = ((s as any).count1 ?? 0) + (1);
+    // TODO-QSP: $textgrup += '' + '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="im...
+    if (((s as any).count1 ?? 0) === 6) {
+      // TODO-QSP: $textgrup += '</tr><tr>'
+      (s as any).count1 = 0;
+    }
+  }
+  (s as any).i = ((s as any).i ?? 0) + (1);
+  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
+    // TODO-QSP: jump 'teachergruploop'
+  }
+  // TODO-QSP: dynamic text: <<$textgrup>>
+  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text('</table></center>');
+  qspCall(s, 'phone_selfies', 'act_exit');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
+  ]);
+  scene.build();
+}
+
+function enterPavlovsk(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Pavlovsk friends</b></center>');
+  (s as any).count1 = 0;
+  (s as any).i = 1;
+  scene.text('<center><table cellspacing="3" width=80%>');
+  // TODO-QSP: :pavgruploop
+  if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 8  &&  ((s as any).npc_selfieon ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
+    (s as any).count1 = ((s as any).count1 ?? 0) + (1);
+    // TODO-QSP: $textgrup += '' + '<td bgcolor=<<$theme[''table_bg_alt'']>> align="center"><img height="100" src="im...
+    if (((s as any).count1 ?? 0) === 6) {
+      // TODO-QSP: $textgrup += '</tr><tr>'
+      (s as any).count1 = 0;
+    }
+  }
+  (s as any).i = ((s as any).i ?? 0) + (1);
+  if (((s as any).i ?? 0) <= ((s as any).aarraynumber ?? 0)) {
+    // TODO-QSP: jump 'pavgruploop'
+  }
+  // TODO-QSP: dynamic text: <<$textgrup>>
+  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text('</table></center>');
+  qspCall(s, 'phone_selfies', 'act_exit');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
+  ]);
+  scene.build();
+}
+
+function enterCity(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>City friends</b></center>');
+  qspCall(s, 'phone_selfies', 'act_exit');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
+  ]);
+  scene.build();
+}
+
+function enterPopulateSelfiesList(s: GameState, scene: SceneBuilder): void {
+  (s as any).temp_locationCnt = 1;
+  // TODO-QSP: :LocationTakenLoop
+  (s as any).CloMaxSize = ((s as any).selfieCloTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'closelfie', '$selfieTakenClo', 'clothed', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieSwimTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'swim', '$selfieTakenSwim', 'bikini', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieUndTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'undselfie', '$selfieTakenUnd', 'underwear', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieNudTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'nudselfie', '$selfieTakenNud', 'nude', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieBathTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'bathselfie', '$selfieTakenBath', 'bath', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieShowerTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'showerselfie', '$selfieTakenShower', 'shower', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'titflash', '$selfieTakenTitflash', 'titflash', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'assflash', '$selfieTakenAssflash', 'assflash', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).CloMaxSize = ((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
+  if (((s as any).CloMaxSize ?? 0) > 0) {
+    qspCall(s, 'phone_selfies', 'populateClothesType', 'pussyflash', '$selfieTakenPussyflash', 'pussyflash', ((s as any).CloMaxSize ?? 0));
+  }
+  (s as any).temp_locationCnt = ((s as any).temp_locationCnt ?? 0) + (1);
+  if (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length) {
+    // TODO-QSP: jump 'LocationTakenLoop'
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterPopulateClothesType(s: GameState, scene: SceneBuilder): void {
+  (s as any).CloMaxSize = qspUntranslated(s, "ARGS[4]", { location: "phone_selfies" });
+  (s as any).temp_clocnt = 0;
+  // TODO-QSP: :tempCloTakenLoop
+  // TODO-QSP: dynamic 'phone_locval = <<$selfieLoc[temp_locationCnt]>>_<<$CloTypePrefix>>[<<temp_clocnt>>]'
+  if (((s as any).phone_locval ?? 0) === 1) {
+    // TODO-QSP: dynamic 'tmpIndex = <<$CloArraySize>>'
+    // TODO-QSP: dynamic "<<$CloVar>> = 'images/pc/activities/phone/selfies/<<$selfieLoc[temp_locationCnt]>>/<<$CloFo...
+  }
+  (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
+  if (((s as any).temp_clocnt ?? 0) <= ((s as any).CloMaxSize ?? 0)) {
+    // TODO-QSP: jump 'tempCloTakenLoop'
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterGetNpcSelfieTotals(s: GameState, scene: SceneBuilder): void {
+  (s as any).ps_loopmaxev = 0;
+  (s as any).ps_loopmax = 0;
+  (s as any).ps_loopmaxsveta = 0;
+  (s as any).ps_loopmaxsex = 0;
+  if (((s as any).locArgs?.[1] ?? 0) === 'A1') {
+  } else {
+    if (((s as any).locArgs?.[1] ?? 0) === 'A2') {
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_nude_selfies') {
-        if (((s as any).selfieNudTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-          // TODO-QSP: $result += '<tr><th colspan=5>Nude selfies</th></tr>'
-          // TODO-QSP: $result += '<tr></tr><tr>'
-          (s as any).temp_cnum = 0;
-          (s as any).temp_nudcnt = 1;
-          // TODO-QSP: :temp_loop3
-          // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_nudselfie[<<temp_nudcnt>>]'
-          if (((s as any).phone_locval ?? 0) === 1) {
-            if (((s as any).temp_cnum ?? 0) === 5) {
-              // TODO-QSP: $result += '</tr><tr>'
-              (s as any).temp_cnum = 0;
-            }
-            // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'nude', ARGS[1]...
-            (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-          }
-          (s as any).temp_nudcnt = ((s as any).temp_nudcnt ?? 0) + (1);
-          if (((s as any).temp_nudcnt ?? 0) <= ((s as any).selfieNudTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-            // TODO-QSP: jump 'temp_loop3'
-          }
-          if (((s as any).temp_cnum ?? 0) !== 4) {
-            // TODO-QSP: $result += '<td></td>'
-          }
-          // TODO-QSP: $result += '</tr><tr></tr>'
-        }
-        return;
+      if (((s as any).locArgs?.[1] ?? 0) === 'A3') {
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_bath_selfies') {
-          if (((s as any).selfieBathTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-            // TODO-QSP: $result += '<tr><th colspan=5>Bath selfies</th></tr>'
-            // TODO-QSP: $result += '<tr></tr><tr>'
-            (s as any).temp_cnum = 0;
-            (s as any).temp_bathcnt = 1;
-            // TODO-QSP: :temp_loop4
-            // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_bathselfie[<<temp_bathcnt>>]'
-            if (((s as any).phone_locval ?? 0) === 1) {
-              if (((s as any).temp_cnum ?? 0) === 5) {
-                // TODO-QSP: $result += '</tr><tr>'
-                (s as any).temp_cnum = 0;
-              }
-              // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'bath', ARGS[1]...
-              (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-            }
-            (s as any).temp_bathcnt = ((s as any).temp_bathcnt ?? 0) + (1);
-            if (((s as any).temp_bathcnt ?? 0) <= ((s as any).selfieBathTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-              // TODO-QSP: jump 'temp_loop4'
-            }
-            if (((s as any).temp_cnum ?? 0) !== 4) {
-              // TODO-QSP: $result += '<td></td>'
-            }
-            // TODO-QSP: $result += '</tr><tr></tr>'
-          }
-          return;
+        if (((s as any).locArgs?.[1] ?? 0) === 'A4') {
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_shower_selfies') {
-            if (((s as any).selfieShowerTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-              // TODO-QSP: $result += '<tr><th colspan=5>Shower selfies</th></tr>'
-              // TODO-QSP: $result += '<tr></tr><tr>'
-              (s as any).temp_cnum = 0;
-              (s as any).temp_showercnt = 1;
-              // TODO-QSP: :temp_loop5
-              // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_showerselfie[<<temp_showercnt>>]'
-              if (((s as any).phone_locval ?? 0) === 1) {
-                if (((s as any).temp_cnum ?? 0) === 5) {
-                  // TODO-QSP: $result += '</tr><tr>'
-                  (s as any).temp_cnum = 0;
-                }
-                // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'shower', ARGS[...
-                (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-              }
-              (s as any).temp_showercnt = ((s as any).temp_showercnt ?? 0) + (1);
-              if (((s as any).temp_showercnt ?? 0) <= ((s as any).selfieShowerTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-                // TODO-QSP: jump 'temp_loop5'
-              }
-              if (((s as any).temp_cnum ?? 0) !== 4) {
-                // TODO-QSP: $result += '<td></td>'
-              }
-              // TODO-QSP: $result += '</tr><tr></tr>'
-            }
-            return;
+          if (((s as any).locArgs?.[1] ?? 0) === 'A5') {
           } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_titflash_selfies') {
-              if (((s as any).selfieTitFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-                // TODO-QSP: $result += '<tr><th colspan=5>Flashing tits selfies</th></tr>'
-                // TODO-QSP: $result += '<tr></tr><tr>'
-                (s as any).temp_cnum = 0;
-                (s as any).temp_flashtitscnt = 1;
-                // TODO-QSP: :temp_loop6
-                // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_titflash[<<temp_flashtitscnt>>]'
-                if (((s as any).phone_locval ?? 0) === 1) {
-                  if (((s as any).temp_cnum ?? 0) === 5) {
-                    // TODO-QSP: $result += '</tr><tr>'
-                    (s as any).temp_cnum = 0;
-                  }
-                  // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'titflash', ARG...
-                  (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-                }
-                (s as any).temp_flashtitscnt = ((s as any).temp_flashtitscnt ?? 0) + (1);
-                if (((s as any).temp_flashtitscnt ?? 0) <= ((s as any).selfieTitFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-                  // TODO-QSP: jump 'temp_loop6'
-                }
-                if (((s as any).temp_cnum ?? 0) !== 4) {
-                  // TODO-QSP: $result += '<td></td>'
-                }
-                // TODO-QSP: $result += '</tr><tr></tr>'
-              }
-              return;
+            if (((s as any).locArgs?.[1] ?? 0) === 'A6') {
             } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_assflash_selfies') {
-                if (((s as any).selfieAssFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-                  // TODO-QSP: $result += '<tr><th colspan=5>Flashing ass selfies</th></tr>'
-                  // TODO-QSP: $result += '<tr></tr><tr>'
-                  (s as any).temp_cnum = 0;
-                  (s as any).temp_flashasscnt = 1;
-                  // TODO-QSP: :temp_loop7
-                  // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_assflash[<<temp_flashasscnt>>]'
-                  if (((s as any).phone_locval ?? 0) === 1) {
-                    if (((s as any).temp_cnum ?? 0) === 5) {
-                      // TODO-QSP: $result += '</tr><tr>'
-                      (s as any).temp_cnum = 0;
-                    }
-                    // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'assflash', ARG...
-                    (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
-                  }
-                  (s as any).temp_flashasscnt = ((s as any).temp_flashasscnt ?? 0) + (1);
-                  if (((s as any).temp_flashasscnt ?? 0) <= ((s as any).selfieAssFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-                    // TODO-QSP: jump 'temp_loop7'
-                  }
-                  if (((s as any).temp_cnum ?? 0) !== 4) {
-                    // TODO-QSP: $result += '<td></td>'
-                  }
-                  // TODO-QSP: $result += '</tr><tr></tr>'
-                }
-                return;
+              if (((s as any).locArgs?.[1] ?? 0) === 'A7') {
               } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 'retrieve_pussyflash_selfies') {
-                  if (((s as any).selfiePussyFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
-                    // TODO-QSP: $result += '<tr><th colspan=5>Flashing pussy selfies</th></tr>'
-                    // TODO-QSP: $result += '<tr></tr><tr>'
-                    (s as any).temp_cnum = 0;
-                    (s as any).temp_flashpussycnt = 1;
-                    // TODO-QSP: :temp_loop8
-                    // TODO-QSP: dynamic 'phone_locval = <<$ARGS[2]>>_pussyflash[<<temp_flashpussycnt>>]'
-                    if (((s as any).phone_locval ?? 0) === 1) {
-                      if (((s as any).temp_cnum ?? 0) === 5) {
-                        // TODO-QSP: $result += '</tr><tr>'
-                        (s as any).temp_cnum = 0;
+                if (((s as any).locArgs?.[1] ?? 0) === 'A8') {
+                } else {
+                  if (((s as any).locArgs?.[1] ?? 0) === 'A9') {
+                  } else {
+                    if (((s as any).locArgs?.[1] ?? 0) === 'A10') {
+                    } else {
+                      if (((s as any).locArgs?.[1] ?? 0) === 'A11') {
+                      } else {
+                        if (((s as any).locArgs?.[1] ?? 0) === 'A12') {
+                        } else {
+                          if (((s as any).locArgs?.[1] ?? 0) === 'A13') {
+                          } else {
+                            if (((s as any).locArgs?.[1] ?? 0) === 'A14') {
+                            } else {
+                              if (((s as any).locArgs?.[1] ?? 0) === 'A15') {
+                              } else {
+                                if (((s as any).locArgs?.[1] ?? 0) === 'A16') {
+                                } else {
+                                  if (((s as any).locArgs?.[1] ?? 0) === 'A17') {
+                                  } else {
+                                    if (((s as any).locArgs?.[1] ?? 0) === 'A18') {
+                                    } else {
+                                      if (((s as any).locArgs?.[1] ?? 0) === 'A19') {
+                                      } else {
+                                        if (((s as any).locArgs?.[1] ?? 0) === 'A20') {
+                                        } else {
+                                          if (((s as any).locArgs?.[1] ?? 0) === 'A21') {
+                                          } else {
+                                            if (((s as any).locArgs?.[1] ?? 0) === 'A22') {
+                                            } else {
+                                              if (((s as any).locArgs?.[1] ?? 0) === 'A23') {
+                                              } else {
+                                                if (((s as any).locArgs?.[1] ?? 0) === 'A24') {
+                                                } else {
+                                                  if (((s as any).locArgs?.[1] ?? 0) === 'A25') {
+                                                    (s as any).ps_loopmax = 0;
+                                                    (s as any).ps_loopmaxsveta = 0;
+                                                    (s as any).ps_loopmaxsex = 0;
+                                                  } else {
+                                                    if (((s as any).locArgs?.[1] ?? 0) === 'A26') {
+                                                    } else {
+                                                      if (((s as any).locArgs?.[1] ?? 0) === 'A28') {
+                                                      } else {
+                                                        if (((s as any).locArgs?.[1] ?? 0) === 'A29') {
+                                                        } else {
+                                                          if (((s as any).locArgs?.[1] ?? 0) === 'A33') {
+                                                          } else {
+                                                            if (((s as any).locArgs?.[1] ?? 0) === 'A34') {
+                                                            } else {
+                                                              if (((s as any).locArgs?.[1] ?? 0) === 'A35') {
+                                                              } else {
+                                                                if (((s as any).locArgs?.[1] ?? 0) === 'A54') {
+                                                                } else {
+                                                                  if (((s as any).locArgs?.[1] ?? 0) === 'A56') {
+                                                                  } else {
+                                                                    if (((s as any).locArgs?.[1] ?? 0) === 'A57') {
+                                                                    } else {
+                                                                      if (((s as any).locArgs?.[1] ?? 0) === 'A69') {
+                                                                      } else {
+                                                                        if (((s as any).locArgs?.[1] ?? 0) === 'A82') {
+                                                                          (s as any).ps_loopmaxev = 2;
+                                                                          (s as any).ps_loopmax = 0;
+                                                                          (s as any).ps_loopmaxsveta = 0;
+                                                                          (s as any).ps_loopmaxsex = 0;
+                                                                        } else {
+                                                                          if (((s as any).locArgs?.[1] ?? 0) === 'A112') {
+                                                                          } else {
+                                                                            if (((s as any).locArgs?.[1] ?? 0) === 'A128') {
+                                                                            } else {
+                                                                              if (((s as any).locArgs?.[1] ?? 0) === 'A129') {
+                                                                              } else {
+                                                                                if (((s as any).locArgs?.[1] ?? 0) === 'A130') {
+                                                                                } else {
+                                                                                  if (((s as any).locArgs?.[1] ?? 0) === 'A131') {
+                                                                                  } else {
+                                                                                    if (((s as any).locArgs?.[1] ?? 0) === 'A132') {
+                                                                                    } else {
+                                                                                      if (((s as any).locArgs?.[1] ?? 0) === 'A133') {
+                                                                                      } else {
+                                                                                        if (((s as any).locArgs?.[1] ?? 0) === 'A134') {
+                                                                                        } else {
+                                                                                          if (((s as any).locArgs?.[1] ?? 0) === 'A135') {
+                                                                                          } else {
+                                                                                            if (((s as any).locArgs?.[1] ?? 0) === 'A136') {
+                                                                                            } else {
+                                                                                              if (((s as any).locArgs?.[1] ?? 0) === 'A137') {
+                                                                                              } else {
+                                                                                                if (((s as any).locArgs?.[1] ?? 0) === 'A138') {
+                                                                                                } else {
+                                                                                                  if (((s as any).locArgs?.[1] ?? 0) === 'A139') {
+                                                                                                  } else {
+                                                                                                    if (((s as any).locArgs?.[1] ?? 0) === 'A140') {
+                                                                                                    } else {
+                                                                                                      if (((s as any).locArgs?.[1] ?? 0) === 'A141') {
+                                                                                                      } else {
+                                                                                                        if (((s as any).locArgs?.[1] ?? 0) === 'A142') {
+                                                                                                        } else {
+                                                                                                          if (((s as any).locArgs?.[1] ?? 0) === 'A143') {
+                                                                                                          } else {
+                                                                                                            if (((s as any).locArgs?.[1] ?? 0) === 'A144') {
+                                                                                                              (s as any).ps_loopmaxev = 9;
+                                                                                                              (s as any).ps_loopmax = 0;
+                                                                                                              (s as any).ps_loopmaxsveta = 0;
+                                                                                                              (s as any).ps_loopmaxsex = 0;
+                                                                                                            } else {
+                                                                                                              if (((s as any).locArgs?.[1] ?? 0) === 'A145') {
+                                                                                                              } else {
+                                                                                                                if (((s as any).locArgs?.[1] ?? 0) === 'A146') {
+                                                                                                                } else {
+                                                                                                                  if (((s as any).locArgs?.[1] ?? 0) === 'A147') {
+                                                                                                                  } else {
+                                                                                                                    if (((s as any).locArgs?.[1] ?? 0) === 'A148') {
+                                                                                                                    } else {
+                                                                                                                      if (((s as any).locArgs?.[1] ?? 0) === 'A149') {
+                                                                                                                      } else {
+                                                                                                                        if (((s as any).locArgs?.[1] ?? 0) === 'A150') {
+                                                                                                                        } else {
+                                                                                                                          if (((s as any).locArgs?.[1] ?? 0) === 'A151') {
+                                                                                                                          } else {
+                                                                                                                            if (((s as any).locArgs?.[1] ?? 0) === 'A152') {
+                                                                                                                            } else {
+                                                                                                                              if (((s as any).locArgs?.[1] ?? 0) === 'A153') {
+                                                                                                                              } else {
+                                                                                                                                if (((s as any).locArgs?.[1] ?? 0) === 'A154') {
+                                                                                                                                } else {
+                                                                                                                                  if (((s as any).locArgs?.[1] ?? 0) === 'A155') {
+                                                                                                                                  } else {
+                                                                                                                                    if (((s as any).locArgs?.[1] ?? 0) === 'A156') {
+                                                                                                                                    } else {
+                                                                                                                                      if (((s as any).locArgs?.[1] ?? 0) === 'A157') {
+                                                                                                                                      } else {
+                                                                                                                                        if (((s as any).locArgs?.[1] ?? 0) === 'A158') {
+                                                                                                                                        } else {
+                                                                                                                                          if (((s as any).locArgs?.[1] ?? 0) === 'A159') {
+                                                                                                                                          } else {
+                                                                                                                                            if (((s as any).locArgs?.[1] ?? 0) === 'A165') {
+                                                                                                                                            } else {
+                                                                                                                                              if (((s as any).locArgs?.[1] ?? 0) === 'A189') {
+                                                                                                                                              }
+                                                                                                                                            }
+                                                                                                                                          }
+                                                                                                                                        }
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
-                      // TODO-QSP: $result += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie', $ARGS[2], 'pussyflash', A...
-                      (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
                     }
-                    (s as any).temp_flashpussycnt = ((s as any).temp_flashpussycnt ?? 0) + (1);
-                    if (((s as any).temp_flashpussycnt ?? 0) <= ((s as any).selfiePussyFlashTot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-                      // TODO-QSP: jump 'temp_loop8'
-                    }
-                    if (((s as any).temp_cnum ?? 0) !== 4) {
-                      // TODO-QSP: $result += '<td></td>'
-                    }
-                    // TODO-QSP: $result += '</tr><tr></tr>'
                   }
-                  return;
                 }
               }
             }
@@ -679,6 +1138,118 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'phone_selfies', 'get_npc_selfie_totals', ((s as any).locArgs?.[1] ?? 0));
+  scene.text(`<center><b>${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]} pictures</b></center>`);
+  if (((s as any).ps_loopmaxev ?? 0) > 0) {
+    // TODO-QSP: $ps_temp_table += '<tr><th colspan=5>Pictures</th></tr>'
+    // TODO-QSP: $ps_temp_table += '<tr></tr><tr>'
+    (s as any).ps_temp_cnum = 0;
+    (s as any).ps_lr2_pic_i = 1;
+    // TODO-QSP: :temp_loopev
+    // TODO-QSP: dynamic '$selfie = <<$ps_selfienpc>>photo[<<ps_lr2_pic_i>>]'
+    if (parseFloat(((s as any).selfie ?? 0)) === 1) {
+      if (((s as any).ps_temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).ps_temp_cnum = 0;
+      }
+      // TODO-QSP: $ps_temp_table += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie2', $ps_photoloc, ps_...
+      (s as any).ps_temp_cnum = ((s as any).ps_temp_cnum ?? 0) + (1);
+    }
+    (s as any).ps_lr2_pic_i = ((s as any).ps_lr2_pic_i ?? 0) + (1);
+    if (((s as any).ps_lr2_pic_i ?? 0) <= ((s as any).ps_loopmax ?? 0)) {
+      // TODO-QSP: jump 'temp_loopev'
+    }
+    if (((s as any).ps_temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $ps_temp_table += '<td></td>'
+    }
+    // TODO-QSP: $ps_temp_table += '</tr><tr></tr>'
+  }
+  if (((s as any).loopmax ?? 0) > 0) {
+    // TODO-QSP: $ps_temp_table += '<tr><th colspan=5>Regular selfies</th></tr>'
+    // TODO-QSP: $ps_temp_table += '<tr></tr><tr>'
+    (s as any).ps_temp_cnum = 0;
+    (s as any).ps_lr2_regself_i = 1;
+    // TODO-QSP: :temp_loopselfies
+    // TODO-QSP: dynamic '$selfie = <<$ps_selfienpc>>[<<ps_lr2_regself_i>>]'
+    if (parseFloat(((s as any).selfie ?? 0)) === 1) {
+      if (((s as any).ps_temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).ps_temp_cnum = 0;
+      }
+      // TODO-QSP: $ps_temp_table += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie2', $ps_imgloc, ps_lr...
+      (s as any).ps_temp_cnum = ((s as any).ps_temp_cnum ?? 0) + (1);
+    }
+    (s as any).ps_lr2_regself_i = ((s as any).ps_lr2_regself_i ?? 0) + (1);
+    if (((s as any).ps_lr2_regself_i ?? 0) <= ((s as any).ps_loopmax ?? 0)) {
+      // TODO-QSP: jump 'temp_loopselfies'
+    }
+    if (((s as any).ps_temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $ps_temp_table += '<td></td>'
+    }
+    // TODO-QSP: $ps_temp_table += '</tr><tr></tr>'
+  }
+  if (((s as any).ps_loopmaxsveta ?? 0) > 0) {
+    // TODO-QSP: $ps_temp_table += '<tr><th colspan=5>Selfies with me</th></tr>'
+    // TODO-QSP: $ps_temp_table += '<tr></tr><tr>'
+    (s as any).ps_temp_cnum = 0;
+    (s as any).ps_lr2_swm_i = 1;
+    // TODO-QSP: :temp_loopselfiessveta
+    // TODO-QSP: dynamic '$selfie = <<$ps_selfienpc>>sveta[<<ps_lr2_swm_i>>]'
+    if (parseFloat(((s as any).selfie ?? 0)) === 1) {
+      if (((s as any).ps_temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).ps_temp_cnum = 0;
+      }
+      // TODO-QSP: $ps_temp_table += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie2', '<<$ps_imgloc>>sv...
+      (s as any).ps_temp_cnum = ((s as any).ps_temp_cnum ?? 0) + (1);
+    }
+    (s as any).ps_lr2_swm_i = ((s as any).ps_lr2_swm_i ?? 0) + (1);
+    if (((s as any).ps_lr2_swm_i ?? 0) <= ((s as any).ps_loopmaxsveta ?? 0)) {
+      // TODO-QSP: jump 'temp_loopselfiessveta'
+    }
+    if (((s as any).ps_temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $ps_temp_table += '<td></td>'
+    }
+    // TODO-QSP: $ps_temp_table += '</tr><tr></tr>'
+  }
+  if (((s as any).ps_loopmaxsex ?? 0) > 0) {
+    // TODO-QSP: $ps_temp_table += '<tr><th colspan=5>Sex selfies</th></tr>'
+    // TODO-QSP: $ps_temp_table += '<tr></tr><tr>'
+    (s as any).ps_temp_cnum = 0;
+    (s as any).ps_lr2_sex_i = 1;
+    // TODO-QSP: :temp_loopselfiessex
+    // TODO-QSP: dynamic '$selfie = <<$ps_selfienpc>>sex[<<ps_lr2_sex_i>>]'
+    if (parseFloat(((s as any).selfie ?? 0)) === 1) {
+      if (((s as any).ps_temp_cnum ?? 0) === 5) {
+        // TODO-QSP: $result += '</tr><tr>'
+        (s as any).ps_temp_cnum = 0;
+      }
+      // TODO-QSP: $ps_temp_table += '<td width="20%">' + $func('phone_selfies_popup', 'set_selfie2', '<<$ps_imgloc>>se...
+      (s as any).ps_temp_cnum = ((s as any).ps_temp_cnum ?? 0) + (1);
+    }
+    (s as any).ps_lr2_sex_i = ((s as any).ps_lr2_sex_i ?? 0) + (1);
+    if (((s as any).ps_lr2_sex_i ?? 0) <= ((s as any).ps_loopmaxsex ?? 0)) {
+      // TODO-QSP: jump 'temp_loopselfiessex'
+    }
+    if (((s as any).ps_temp_cnum ?? 0) !== 4) {
+      // TODO-QSP: $ps_temp_table += '<td></td>'
+    }
+    // TODO-QSP: $ps_temp_table += '</tr><tr></tr>'
+  }
+  // TODO-QSP: $ps_temp_table += '</table>'
+  // TODO-QSP: *p $ps_temp_table
+  qspCall(s, 'phone_selfies', 'act_exit');
+  return;
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Back', goto: ['phone_selfies', 'view_selfies'] },
+  ]);
   scene.build();
 }
 
@@ -726,6 +1297,60 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'retrieve_clothed_selfies':
       enterRetrieveClothedSelfies(s, scene);
+      break;
+    case 'retrieve_swim_selfies':
+      enterRetrieveSwimSelfies(s, scene);
+      break;
+    case 'retrieve_underwear_selfies':
+      enterRetrieveUnderwearSelfies(s, scene);
+      break;
+    case 'retrieve_nude_selfies':
+      enterRetrieveNudeSelfies(s, scene);
+      break;
+    case 'retrieve_bath_selfies':
+      enterRetrieveBathSelfies(s, scene);
+      break;
+    case 'retrieve_shower_selfies':
+      enterRetrieveShowerSelfies(s, scene);
+      break;
+    case 'retrieve_titflash_selfies':
+      enterRetrieveTitflashSelfies(s, scene);
+      break;
+    case 'retrieve_assflash_selfies':
+      enterRetrieveAssflashSelfies(s, scene);
+      break;
+    case 'retrieve_pussyflash_selfies':
+      enterRetrievePussyflashSelfies(s, scene);
+      break;
+    case 'get_npc_selfie':
+      enterGetNpcSelfie(s, scene);
+      break;
+    case 'family':
+      enterFamily(s, scene);
+      break;
+    case 'school':
+      enterSchool(s, scene);
+      break;
+    case 'teacher':
+      enterTeacher(s, scene);
+      break;
+    case 'pavlovsk':
+      enterPavlovsk(s, scene);
+      break;
+    case 'city':
+      enterCity(s, scene);
+      break;
+    case 'PopulateSelfiesList':
+      enterPopulateSelfiesList(s, scene);
+      break;
+    case 'populateClothesType':
+      enterPopulateClothesType(s, scene);
+      break;
+    case 'get_npc_selfie_totals':
+      enterGetNpcSelfieTotals(s, scene);
+      break;
+    case 'listretrieve2':
+      enterListretrieve2(s, scene);
       break;
     default:
       enterDefault(s, scene);

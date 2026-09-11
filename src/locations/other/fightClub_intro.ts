@@ -26,6 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('He hands you his business card. "If you\'re interested, just give me a call and we\'ll talk somewhere more private."');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'That sounds more than suspicious', handler: (st: GameState) => {
     ((s as any).fightClubQW ?? {})['declined'] = 1;
@@ -50,6 +51,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fightClub_phone', 'sultan');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the locker room', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/fightclub/athlete_gym.jpg');
@@ -82,6 +84,7 @@ function enterOffice1(s: GameState, scene: SceneBuilder): void {
   scene.text('"You heard him, Dove, just go through, he\'s waiting for you."');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You knock at the door and enter', goto: ['fightClub_intro', 'office2'] },
   ]);
@@ -97,6 +100,7 @@ function enterOffice2(s: GameState, scene: SceneBuilder): void {
   scene.text('He\'s obviously turned on the charm, and he\'s got a lot of it. He is a bit too quick with his compliments. You want to slow down the things a bit. Your gaze falls on a picture on the wall.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You point at the pic', goto: ['fightClub_intro', 'office3'] },
   ]);
@@ -119,6 +123,7 @@ function enterOffice3(s: GameState, scene: SceneBuilder): void {
   scene.text('Sultan shakes his head. "He disappeared shortly after our fight. Some say he doped himself with some secret painkillers that were actually intended for the military and got problems with the Secret Service. Others claim that he fought under the protection of an ancient Baltic witch, but that he ended up angering her. Anyway, one evening he went for a jog in the woods - and never came out again.” He sighs. "But, enough of the old days. Sit down, sweetie, and let\'s talk about your options."');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You take a seat', goto: ['fightClub_intro', 'office4'] },
   ]);
@@ -143,6 +148,7 @@ function enterOffice4(s: GameState, scene: SceneBuilder): void {
   scene.text('You look at him. He seems really confident in you.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ultimate Fighting is too brutal for you', goto: ['fightClub_intro', 'office_end'] },
     { label: 'You are persuaded and agree', goto: ['fightClub_intro', 'office_sign'] },
@@ -156,6 +162,7 @@ function enterOfficeEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('You politely decline and leave. Oleg at his desk looks very disappointed.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['city_industrial', 'start'] },
   ]);
@@ -178,6 +185,7 @@ function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
   scene.text('"Very good! If you want, you can start right away on Sunday, because we always fight on Sundays. I already have the ideal opponent for you. If that\'s too quick for you, just give me a call next week and I\'ll arrange a fight for you."');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Why put it off?', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
@@ -209,6 +217,7 @@ function enterRide(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod and look thoughtfully out of the car. You\'re in an area you don\'t know. ');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You arrive', goto: ['fightClub_intro', 'arena'] },
   ]);
@@ -222,6 +231,7 @@ function enterArena(s: GameState, scene: SceneBuilder): void {
   scene.text('The wealth you see there doesn\'t quite fit in with this industrial ruin. Sultan drives to the end of the hall. You get out. He points to a battered door with a nod. "That\'s the way to the changing room, Superstar. Go on ahead. I\'ll be right with you."');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You search for the locker room', goto: ['fightClub_intro', 'changingroom'] },
   ]);
@@ -242,6 +252,7 @@ function enterChangingroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'striptease');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You take it with a frown', goto: ['fightClub_intro', 'starjersey'] },
   ]);
@@ -259,6 +270,7 @@ function enterStarjersey(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
   ((s as any).fightClubQW ?? {})['name'] = 'Dark Star';
+  // TODO-QSP: end
   scene.actions([
     { label: 'Choose a fight name (Default: <<$fightClubQW[\'name\']>>)', handler: (st: GameState) => {
     ((s as any).fightClubQW ?? {})['name'] = 0;
@@ -279,6 +291,7 @@ function enterPreparations(s: GameState, scene: SceneBuilder): void {
   scene.text(`But Sultan is already out the door to give the ring announcer your fight name "${((s as any).fightClubQW ?? 0)?.['name']}".`);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Let\'s go!', goto: ['fightClub_intro', 'firstfight'] },
   ]);
@@ -292,6 +305,7 @@ function enterFirstfight(s: GameState, scene: SceneBuilder): void {
   scene.text('You can feel the adrenaline, the blood rushing in your ears. Someone taps you on the shoulder. It\'s Oleg, who gives you an encouraging nod. You are happy and relieved, that he is in your corner. To your surprise it\'s a classical boxing ring, no cage.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You climb into the ring', goto: ['fightClub_intro', 'opponent'] },
   ]);
@@ -304,6 +318,7 @@ function enterOpponent(s: GameState, scene: SceneBuilder): void {
   scene.text('She screams and it sounds like hatred and destruction. This is different from the gym. This isn\'t sparring, this isn\'t a sporting showdown between amateurs - this is serious.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'The bell rings for the first round', goto: ['fightClub_intro', 'round1'] },
   ]);
@@ -315,6 +330,7 @@ function enterRound1(s: GameState, scene: SceneBuilder): void {
   scene.text('Your opponent is obviously determined to make it a short fight. She charges at you and tries to land a haymaker. You react instinctively, back away, duck and feel the blow whizz over you. The second one follows. You also let it miss. She roars and continues to attack. You raise your guard, intercept the blow and land a few quick jabs to her face.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You study your opponent', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/fightclub/femalefighters3.jpg');
@@ -336,6 +352,7 @@ function enterBreak(s: GameState, scene: SceneBuilder): void {
   scene.text('The ring bell sounds.');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Second round!', goto: ['fightClub_intro', 'round2'] },
   ]);
@@ -348,6 +365,7 @@ function enterRound2(s: GameState, scene: SceneBuilder): void {
   scene.text('You gasp for air, jump back and block a kick with your shin. You were reckless - but this is a warning to you. It\'s time to call it a day. You let them come and counter. Your left shoots forward, catching her square in the face. She staggers back, smiles stupidly and topples over. Out.');
   qspCall(s, 'exercise', 'tier4', 5, 'jab', 'punch', 'kick', 'def');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Victory!', goto: ['fightClub_intro', 'knockout'] },
   ]);
@@ -361,6 +379,7 @@ function enterKnockout(s: GameState, scene: SceneBuilder): void {
   ((s as any).fightClubQW ?? {})['winKO'] = (((s as any).fightClubQW ?? {})['winKO'] ?? 0) + (1);
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a victory lap', goto: ['fightClub_intro', 'victorylap'] },
   ]);
@@ -375,6 +394,7 @@ function enterVictorylap(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', 7500, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You go back to the locker room', goto: ['fightClub_intro', 'thelion'] },
   ]);
@@ -389,6 +409,7 @@ function enterThelion(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'m Berik Tobayev, better known as The Lion, I’m one of the organizers of this club and, by the way, a former world champion. I also own a boxing stable. So if you\'re ever looking for a real manager - come to me!"');
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Someone is getting between you', goto: ['fightClub_intro', 'shadowandlion'] },
   ]);
@@ -408,6 +429,7 @@ function enterShadowandlion(s: GameState, scene: SceneBuilder): void {
   scene.text('"Not an issue for you, got it? Good. Take a deep breath. The ring doc will have a look at you. I\'ll be with you in a minute, but I first have to promote my new superstar out in the arena."');
   (s as any).minut = ((s as any).minut ?? 0) + 6;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You enter the locker room', goto: ['fightClub_intro', 'ringdoctor'] },
   ]);
@@ -425,6 +447,7 @@ function enterRingdoctor(s: GameState, scene: SceneBuilder): void {
   scene.text('"And here I am! Take your clothes off, I need to see what you\'ve got."');
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You agree to undress', goto: ['fightClub_intro', 'undress'] },
     { label: 'You don\'t feel like undressing', goto: ['fightClub_intro', 'hesitation'] },
@@ -443,6 +466,7 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 10, 'striptease', 'massage');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time to take a shower', goto: ['fightClub_intro', 'shower'] },
   ]);
@@ -454,6 +478,7 @@ function enterHesitation(s: GameState, scene: SceneBuilder): void {
   scene.text('He shakes his head angrily. "A fight like that can cause hidden injuries. And I won\'t find them if you don\'t undress."');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Sighing, you undress', goto: ['fightClub_intro', 'undress'] },
   ]);
@@ -466,6 +491,7 @@ function enterRefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, then don\'t." He closes his doctor bag and disappears, shaking his head.');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time to take a shower', goto: ['fightClub_intro', 'shower'] },
   ]);
@@ -477,6 +503,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   scene.text('The shower looks like a nightmare, but the water is hot and refreshing.');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Time to change', goto: ['fightClub_intro', 'wardrobe'] },
   ]);
@@ -508,6 +535,7 @@ function enterWardrobe(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['fightClub_intro', 'conclusion'] },
     { label: 'Use mirror', goto: ['mirror', 'start'] },
@@ -531,6 +559,7 @@ function enterConclusion(s: GameState, scene: SceneBuilder): void {
   scene.text('That was a bit abrupt.');
   (s as any).minut = ((s as any).minut ?? 0) + 7;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You just want to go home', goto: ['fightClub_intro', 'drive1'] },
   ]);
@@ -550,6 +579,7 @@ function enterDrive1(s: GameState, scene: SceneBuilder): void {
   scene.text('The way he drives, he surely needs them.');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You stare ahead', goto: ['fightClub_intro', 'drive2'] },
   ]);
@@ -567,6 +597,7 @@ function enterDrive2(s: GameState, scene: SceneBuilder): void {
   scene.text('Oleg slows down now.');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'You look out of the window', goto: ['fightClub_intro', 'drive3'] },
   ]);
@@ -584,6 +615,7 @@ function enterDrive3(s: GameState, scene: SceneBuilder): void {
   scene.text('Oleg laughs. "Dove, they only respect the laws they make themselves."');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Now you know why Sultan sometimes seems so melancholy', goto: ['fightClub_intro', 'drive4'] },
   ]);
@@ -598,6 +630,7 @@ function enterDrive4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Thanks, Oleg."');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Give him a quick kiss on the cheek', goto: ['fightClub_intro', 'home'] },
   ]);
@@ -611,6 +644,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Note:</b> You can train with Oleg at Havana Gym on Wednesdays and Thursdays between 9 and 12.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt $home['location'], $home['location_arg']

@@ -17,6 +17,7 @@ function enterSisboyQWExpel(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Your sister asks you to briefly leave the room.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['korrPar', ''] },
   ]);
@@ -94,6 +95,7 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave them in peace', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -131,6 +133,7 @@ function enterSpy1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sisterQW', 'caress'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -161,6 +164,7 @@ function enterSpy2(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sisterQW', 'caress'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -193,6 +197,7 @@ function enterSpy3(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sisterQW', 'caress'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -224,6 +229,7 @@ function enterSpy4(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sisterQW', 'caress'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -256,6 +262,7 @@ function enterSpy5(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sisterQW', 'caress'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -341,6 +348,7 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -360,6 +368,7 @@ function enterCaress(s: GameState, scene: SceneBuilder): void {
   scene.text('Your muscles contract, your breath shortens. Realizing you\'ve hit your peak, you bite your lip to stifle your moans.');
   qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['korrPar', ''] },
   ]);
@@ -393,6 +402,7 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
   scene.text('Anya notices you and Roma frees her from his embrace. She walks slowly towards you while giving you an intimate hug and pulling you towards the bed.');
   qspCall(s, 'arousal', 'foreplay', 2, 'lesbian', 'incest');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'This is wrong', handler: (st: GameState) => {
     (s as any).sisboytrioQW = (-1);
@@ -444,6 +454,7 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
   scene.text('You and Anya are soon topless. "Now kiss."');
   qspCall(s, 'arousal', 'flash', 2, 'lesbian', 'incest', 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some4.jpg');
@@ -628,6 +639,7 @@ function enterRefuseToFuckRoma(s: GameState, scene: SceneBuilder): void {
   scene.text('Doing as Roma says, you straddle Anya\'s face and she starts licking your pussy as Roma fucks her. He fucks her for some time, and you occasionally glance back at what they are doing, seeing him sometimes switch holes. A few minutes later, a massive orgasm rocks her body, which causes Roma to start grunting, clearly on the verge of an orgasm himself.');
   qspCall(s, 'arousal', 'cuni', 15, ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['sisterQW', 'first_cum_shot'] },
   ]);
@@ -681,6 +693,7 @@ function enterFirstCumShot(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

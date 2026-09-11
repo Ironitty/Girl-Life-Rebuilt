@@ -42,6 +42,7 @@ function enterFacefuck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -51,6 +52,7 @@ function enterArtlick(s: GameState, scene: SceneBuilder): void {
   scene.text('Arthur pulls his slimy dick out of your mouth and starts slapping it against your lips, the heavy weight of the large cock stinging you with every hit. You instinctively stick out your tongue and attempt to lick the shaft as it beats against you. Arthur occasionally adjusts his aim and bangs against your nose or cheeks, dickslapping you as hard as he pleases.');
   qspCall(s, 'arousal', 'bj', 5, 'rough', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['arturdin', 'facefuck'] },
   ]);
@@ -63,6 +65,7 @@ function enterArtchik(s: GameState, scene: SceneBuilder): void {
   scene.text('Arthur places his dick between your cheek and teeth and strikes at your cheek with his palm. "Yes, whore! just like that. This is how Uncle Arturik likes it!" He says as he continues smacking you.');
   qspCall(s, 'arousal', 'bj', 5, 'rough', 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['arturdin', 'facefuck'] },
   ]);
@@ -99,6 +102,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -120,6 +124,7 @@ function enterBedmiss(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -135,6 +140,7 @@ function enterSexmiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5);
   qspCall(s, 'stat', '');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
@@ -153,6 +159,7 @@ function enterSexmissCum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   qspCall(s, 'dinsex', 'sexcum');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['arturend', ''] },
   ]);
@@ -168,6 +175,7 @@ function enterSexdog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5);
   qspCall(s, 'stat', '');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
@@ -186,6 +194,7 @@ function enterSexdogCum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   qspCall(s, 'dinsex', 'sexcum');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['arturend', ''] },
   ]);
@@ -204,6 +213,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 5);
   qspCall(s, 'stat', '');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')
@@ -221,6 +231,7 @@ function enterAnalCum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 5);
   qspCall(s, 'stat', '');
   qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).lubonus = 0;
@@ -247,6 +258,7 @@ function enterCum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/arthur/sex/cum0.jpg');
   scene.text('Arthur suddenly yanks you up out of bed, nearly dislocating your arm, before pushing you to your knees. He grunts, stroking his cock, as a jet of sperm hits you in the face.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -299,6 +311,7 @@ function enterFist(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal_finger', 5, 'rough', 'sub');
     qspCall(s, 'stat', '');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: gt 'arturdin', iif(rand(0, 1) = 0, 'bed', 'bedmiss')

@@ -112,6 +112,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Your sister <a href="exec:gt \'sister\', \'pav_commcenter\'">Anya</a> is sitting with a group of boys and girls, drinking beer.');
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -130,6 +131,7 @@ function enterAlley(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/piss.jpg');
   scene.text('The alley is a quiet place that young people often use instead of the toilet.');
   scene.text('Some girls are currently using it for such a purpose.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
   ]);

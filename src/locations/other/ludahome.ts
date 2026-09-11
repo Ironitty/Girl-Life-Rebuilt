@@ -219,6 +219,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -232,6 +233,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
   if (((s as any).OluQW ?? 0)?.['nat_inv'] === 1  &&  ((s as any).NatbelQW ?? 0)?.['Debt'] > 0  &&  ((s as any).OluQW ?? 0)?.['nat_busy'] !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: act 'Text Natasha': gt 'ludahome', 'textnatasha'
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have fun without a third', handler: (st: GameState) => {
     (st as any).OluLoc = 5;
@@ -286,6 +288,7 @@ function enterTextanya(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for Anya', goto: ['olu', 'oluanya'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -333,6 +336,7 @@ function enterTextnush(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for Anushka', goto: ['olu', 'olunush'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -378,6 +382,7 @@ function enterTextnatasha(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for Natasha', goto: ['olu', 'olunat'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -391,6 +396,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/ludahome/hall.jpg');
   scene.text('The first thing you notice is how clean and organized everything is. Inside the door is a coat rack, and all the coats and umbrellas are neatly hung up. A small mirror is on the wall opposite the coat rack.');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave Luda\'s apartment</b>', goto: ['pod_ezd', 'etaj_4'] },
     { label: 'Luda\'s Room', goto: ['ludahome', 'ludaroom'] },
@@ -415,6 +421,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'prvt_pee');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['ludahome', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
@@ -443,6 +450,7 @@ function enterLudaroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Luda\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/ludahome/bedroom.jpg');
   scene.text('The room is spotless and neat. Right next to the window is a bed. Next to the door are the closet, dresser and wardrobe. The room is otherwise very empty.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hallway', goto: ['ludahome', 'hallway'] },
   ]);
@@ -486,6 +494,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the living room', goto: ['ludahome', 'hallway'] },
   ]);
@@ -563,6 +572,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -602,6 +612,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kit_din', 'fill_bottle');
   qspCall(s, 'kit_din', 'driwater');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['ludahome', 'hallway'] },
     { label: 'Look in the fridge', goto: ['ludahome', 'fridge'] },
@@ -666,6 +677,7 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -824,6 +836,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['ludahome', 'kitchen'] },
   ]);
@@ -1317,6 +1330,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1330,6 +1344,7 @@ function enterTellAboutGenericBoyfreind(s: GameState, scene: SceneBuilder): void
   // TODO-QSP: dynamic text: You tell her about <<$ARGS[1]>>, and as you do, she nods and has a knowing smile...
   scene.text(`You tell her about ${((s as any).locArgs?.[1] ?? 0)}, and as you do, she nods and has a knowing smile.`);
   scene.text('"Well, that\'s an interesting way to meet a boy, but I\'ve heard of worse ways. As long as he makes you happy, that\'s all that matters."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['ludahome', 'chat_luda'] },
     { label: 'Stop talking', goto: ['ludahome', 'livingroom'] },
@@ -1401,6 +1416,7 @@ function enterChatOlu(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Make small talk', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1530,6 +1546,7 @@ function enterTimecheck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

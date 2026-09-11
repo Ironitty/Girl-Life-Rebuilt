@@ -27,6 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'gad_gpbath', 'alone');
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -74,6 +75,7 @@ function enterSetLeaveActs(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -184,6 +186,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'din_van', 'private');
   qspCall(s, 'home_events', 'bathroom');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -218,10 +221,12 @@ function enterWith_Mira(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterWith_MiraCore(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch Mira clean herself', handler: (st: GameState) => {
     qspCall(s, 'stat', '');

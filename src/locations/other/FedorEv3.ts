@@ -10,6 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/couple.jpg');
   scene.text('As you and Fedor arrive at the cinema, Fedor presented the tickets at the entrance then brought you to the concession stand.');
   scene.text('Fedor then asks, "What can I treat my beautiful girlfriend to today?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Small popcorn and medium drink', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -50,6 +51,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/seat.jpg');
   scene.text('Upon entering the theater you notice plenty of empty seats, a few seats in the front next to the big screen,');
   scene.text('2 seats in the crowded middle and 4 seats in the back in a secluded corner. Fedor turns to you and asks "which seat would you like?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'At the front', goto: ['FedorEv3', 'Front'] },
     { label: 'In the middle', goto: ['FedorEv3', 'Middle'] },
@@ -72,6 +74,7 @@ function enterFood2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/seat.jpg');
   scene.text('Upon entering the theater you notice plenty of empty seats, a few seats in the front next to the big screen,');
   scene.text('2 seats in the crowded middle and 4 seats in the back in a secluded corner. Fedor turns to you and asks "which seat would you like?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'At the front', goto: ['FedorEv3', 'Front'] },
     { label: 'in the middle', goto: ['FedorEv3', 'Middle'] },
@@ -91,6 +94,7 @@ function enterFront(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You point to the front seats. "Let\'s sit up front, so that we can get the best view in the theater." And Fedor responds, "Just seeing you is the best view I could ask for"');
   scene.text('You lightly flick his nose with your finger as you reply. "Oh stop, you\'re going to make me blush"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a seat', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'small');
@@ -146,6 +150,7 @@ function enterFrontHJ(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish and continue watching the movie', goto: ['FedorEv3', 'Movies 2'] },
   ]);
@@ -161,6 +166,7 @@ function enterFrontCaught(s: GameState, scene: SceneBuilder): void {
   scene.text('Does she have no shame?" her boyfriend responds, "Some girls just have no morals." while trying to hide the envious look on his face');
   scene.text('as he watches you and Fedor. You to pull your hand back as you bite your lip with embarrassment while trying to watch the movie, hoping that they will forget what they saw.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue watching the movie', goto: ['FedorEv3', 'Movies 2'] },
   ]);
@@ -178,6 +184,7 @@ function enterMiddle(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You point to the middle seats. "I hear the middle is the warmest." and Fedor responds, "It may be warm but you\'re the only hot one here."');
   scene.text('You lightly flick his nose with your finger as you reply, "Oh stop, you\'re going to make me blush ');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a seat', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'small');
@@ -230,6 +237,7 @@ function enterBack(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You point to the back seats. "Let\'s sit in the back where we can get some privacy." and Fedor responds, "Like it in the back huh?"');
   scene.text('You lightly flick his nose with your finger as you reply, "Oh stop, you\'re going to make me blush');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take a seat', handler: (st: GameState) => {
     qspCall(s, 'mood', 'raise', 'small');
@@ -308,6 +316,7 @@ function enterBackSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'exhibitionism');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish watching the movie', goto: ['FedorEv3', 'Movies 2'] },
   ]);
@@ -322,6 +331,7 @@ function enterBackCaught(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'exhibitionism');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the theater', goto: ['FedorEv3', 'Movies 3'] },
   ]);
@@ -337,6 +347,7 @@ function enterBackPreg(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('Fedor leans forward and whispers in your ear. "Would you like to try for a baby here or would you like me to pull out?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cum inside me', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -387,6 +398,7 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
       { label: 'I\'d like to wash up first', goto: ['FedorEv3', 'Restroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'I\'m ready to go home', goto: ['FedorEv3', 'Movies 3'] },
   ]);
@@ -402,6 +414,7 @@ function enterRestroomBreak(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('You turn to Fedor. "I need to use the restroom, I\'ll be back soon." as you lean over and give Fedor a quick kiss. Fedor then asks "Will you be alright on your own or would you like me walk you to the restroom?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk with me', goto: ['fedorev3', 'Restroom Fedor'] },
     { label: 'I\'ll be fine on my own', goto: ['fedorev3', 'Restroom'] },
@@ -413,6 +426,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/restrooms.jpg');
   scene.text('You give Fedor a kiss on the cheek then head to the restroom, once you get there you see the men\'s restroom and the ladies restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the ladies room', goto: ['FedorEv3', 'Ladies Room'] },
     { label: 'Enter the Men\'s room', goto: ['FedorEv3', 'Mens Room'] },
@@ -435,6 +449,7 @@ function enterLadiesRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to the theater', goto: ['FedorEv3', 'Movies 2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a quick wash (0:10)', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 10) + 1;
@@ -463,6 +478,7 @@ function enterMensRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to the theater', goto: ['FedorEv3', 'Movies 2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Have a quick wash (0:10)', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 20) + 1;
@@ -499,6 +515,7 @@ function enterRestroomFedor(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: You and Fedor head toward the restroom while chatting about the movie on the way...
   scene.text(`You and Fedor head toward the restroom while chatting about the movie on the way there. When you both arrive, Fedor tells you "Go on ${((s as any).pcs_nickname ?? 0)}, I'll wait for you here."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Enter the ladies room', goto: ['FedorEv3', 'Ladies Room'] },
     { label: 'Enter the men\'s room', goto: ['FedorEv3', 'Mens Room'] },
@@ -519,6 +536,7 @@ function enterFedorRestroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big5.jpg');
   }
   scene.text('You grab Fedor by the hand and pull him into the restroom with you. Fedor is surprised at first then starts to fondle your breasts as you pull down his pants then kneel in front of him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Fedor/fedrest1.jpg');
@@ -688,6 +706,7 @@ function enterRestroomLady(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Ladies/lady1.jpg');
   scene.text('As you approach the sink you see a woman. She appears to be applying her mascara. You stand next to her and she gives you a friendly smile as she continues brushing her eyelashes. You turn on the water and prepare to wash up when you notice that the girl is checking you out while biting her lip clearly aroused.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Seduce her', handler: (st: GameState) => {
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
@@ -850,6 +869,7 @@ function enterRestroomMan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Ignore him and continue washing up', goto: ['FedorEv3', 'Restroom Wash 2'] },
   ]);
@@ -864,6 +884,7 @@ function enterRestroomMan2(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach the sink and turn on the water then suddenly you feel your shirt being pulled down and someone\'s hands on your breasts. You jump in shock and the man behind you whispers in your ear "Keep quiet bitch and this will be over quickly."');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Splash water in his face', handler: (st: GameState) => {
     (s as any).VK = Math.floor(Math.random() * 3) + 1;
@@ -929,6 +950,7 @@ function enterRestroomEscape(s: GameState, scene: SceneBuilder): void {
       { label: 'Escape', goto: ['FedorEv3', 'Movies 2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -939,6 +961,7 @@ function enterRestroomRape(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/rape.jpg');
   scene.text('You carefully move your hand under the tap and fill your hand with water and then splash it in the attackers face but sadly it only makes him angrier, he then slams you against the wall and then punches you in the stomach as he strips you. The man grabs you by the throat as he exclaims "STUPID BITCH! I warned you but you had to be a brave little bitch! now I\'m going to take my time with you!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Plead', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/rape1.mp4');
@@ -999,6 +1022,7 @@ function enterRestroomGang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/Restroom/Men/Gang/hide.jpg');
   scene.text('You approach the sink then turn on the water, when you hear some rowdy guys outside, you quickly run into one of the stalls then hear the door slam open and the guys start hollering as they share stories that you can\'t quite hear.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eavesdrop', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1153,6 +1177,7 @@ function enterRestroomRescue(s: GameState, scene: SceneBuilder): void {
   scene.text('You approach the sink and turn on the water then suddenly you feel your shirt being pulled down and someone\'s hands on your breasts. You jump in shock and the man behind you whispers in your ear "Keep quiet bitch and this will be over quickly."');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'rough');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Cry for help', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -1228,6 +1253,7 @@ function enterRestroomWash(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1261,6 +1287,7 @@ function enterRestroomWash2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1287,6 +1314,7 @@ function enterRestroomWash3(s: GameState, scene: SceneBuilder): void {
       { label: 'Go back to the theater', goto: ['FedorEv3', 'Movies 2'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1307,6 +1335,7 @@ function enterMovies3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Fedor walks you home and you both spend the whole time talking about the movie a...
   scene.text(`Fedor walks you home and you both spend the whole time talking about the movie and some future films you both want to see. After a few minutes you are right in front of your building and Fedor gives your ass a grab as he says, to you "${((s as any).pcs_firstname ?? 0)} I hope you had as much fun as I had. I can't wait to see you again." You respond, "Don't worry Fedor, you won't have to wait long." as you kiss him and then walk away with a confident smile.`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/kiss.mp4');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['pav_residential', ''] },
   ]);

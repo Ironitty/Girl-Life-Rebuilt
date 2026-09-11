@@ -13,6 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/cafe/larek.jpg');
   scene.text('<a href="exec: gs \'larek\', \'sofood\' ">Select Products</a>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -28,6 +29,7 @@ function enterSofood(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.actions([{ label: 'Continue', goto: ['larek', 'food'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +92,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Exit Department', goto: ['larek', 'start'] },
     { label: 'Buy tea biscuits [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
@@ -119,6 +122,7 @@ function enterBuyfood(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['larek', 'buyfood_1'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -137,6 +141,7 @@ function enterBuyfood_1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'money', 'pay', portion * 50
     scene.text('You paid cash for the food.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the counter', goto: ['larek', 'food'] },
   ]);
@@ -153,6 +158,7 @@ function enterBuyfood2(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['larek', 'buyfood2_1'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -170,6 +176,7 @@ function enterBuyfood2_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/cafe/larek.jpg');
     scene.text('You paid cash for the food.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the counter', goto: ['larek', 'food'] },
   ]);

@@ -44,6 +44,7 @@ function enterGoForWalk1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You go for a walk along the main square of Pavlovsk Park. Most people leave the park as it gets dark, and only a few still hang around after dark. They mainly congregate around the movie theater, cafe or some of the benches near the park\'s entrance, which are still well lit. Few venture deeper into the park at night.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue your walk', goto: ['pav_parkev', 'walk1'] },
   ]);
@@ -364,6 +365,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your walk', goto: ['pav_park', 'start'] },
   ]);
@@ -406,6 +408,7 @@ function enterGoForWalk2(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk along one of the trails deep in the park, and there are few people around. You know the more secluded area of the park has a reputation for being dangerous; it\'s popular with gopniks, prostitutes and criminals wanting to hide away from prying eyes.');
     scene.text('The darkness makes everything creepier; there are few light sources in the area and you occasionally hear the sounds of animals or even what seems like people\'s voices in the gloom.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_parkev', 'walk2'] },
   ]);
@@ -679,6 +682,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish your walk', goto: ['pav_park', 'deeper_park'] },
   ]);
@@ -828,6 +832,7 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -836,6 +841,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
   scene.text('Lena, Lera, Alyona and Anushka are sitting at a picnic table, drinking beers and smoking cigarettes and weed. They\'re getting wasted and having a good time, laughing and messing around.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
     { label: 'Join them', handler: (st: GameState) => {
@@ -928,6 +934,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
   scene.text('Vitek, Dan, Lavrenti, Niko, Roman, Arkadi, Vasily and Pauline are sitting at a picnic table, drinking beers and smoking cigarettes and weed. They\'re getting wasted and having a good time, laughing and messing around.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
     { label: 'Join them', handler: (st: GameState) => {
@@ -1074,6 +1081,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
   scene.text('Vitek, Dan, Lavrenti, Roman, Arkadi, Niko, Valentin, Radomir, Vasily, Pauline, Lena, Lera, Anushka and Alyona are all sitting at a picnic table, drinking beers and smoking cigarettes & weed. They\'re getting wasted and having a good time, laughing and messing around.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
     { label: 'Join them', handler: (st: GameState) => {

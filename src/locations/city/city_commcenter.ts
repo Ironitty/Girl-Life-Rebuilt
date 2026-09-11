@@ -18,6 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: The Vladimir Lenin center is open from ' + func('time', 'get_time_string', 9, 0)...
   scene.text('The Vladimir Lenin center is open from \' + func(\'time\', \'get_time_string\', 9, 0) + \' through to \' + func(\'time\', \'get_time_string\', 17, 0) + \' on weekdays, but is closed on weekends. It is a local community certification and lessons center.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the center', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -40,6 +41,7 @@ function enterLessons(s: GameState, scene: SceneBuilder): void {
   scene.text('Secretarial certification - \' + $func(\'money\', \'string_price\', 15000) + \' for ten classes to get your Secretarial certification, <a href="exec:gt \'city_commcenter\', \'secretarialschool\'">Classes in room 204</a>.');
   // TODO-QSP: dynamic text: Singing lessons - ' + $func('money', 'string_price', 500) + ' per class <a href=...
   scene.text('Singing lessons - \' + $func(\'money\', \'string_price\', 500) + \' per class <a href="exec:gt \'city_commcenter\', \'singingtutor\'">Classes in room 213. </a>');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -53,6 +55,7 @@ function enterPayments(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the <<$ARGS[1]>> cou...
   scene.text(`You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the ${((s as any).locArgs?.[1] ?? 0)} course and are now booked in for your lesson. Please refer to the noticeboard for class times and rooms.`);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -168,6 +171,7 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -260,6 +264,7 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -316,6 +321,7 @@ function enterMasseuse(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -369,6 +375,7 @@ function enterSingingtutor(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

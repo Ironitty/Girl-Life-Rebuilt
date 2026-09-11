@@ -11,6 +11,7 @@ function enterIsFree(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= ((s as any).npc_start_free_time ?? 0)[((s as any).locArgs?.[1] ?? 0)]  &&  ((s as any).hour ?? 0) <= ((s as any).npc_end_free_time ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
     (s as any).result = 1;
   }
+  // TODO-QSP: end
   scene.build();
 }
 

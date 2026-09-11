@@ -14,6 +14,7 @@ function enterMaster(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/masterbed.jpg');
   scene.text('Master bedroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the landing', goto: ['bdsm_landing', ''] },
   ]);
@@ -39,6 +40,7 @@ function enterCheckMasterEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -47,6 +49,7 @@ function enterMasterEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You see a submissive woman in lingerie and on a leash, she appears to have earned herself a treat from a dominant man in a suit.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedwest', 'master'] },
   ]);
@@ -58,6 +61,7 @@ function enterMasterEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('A dominant woman is being pleasured by her sub.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedwest', 'master'] },
   ]);
@@ -69,6 +73,7 @@ function enterMasterEvent_3(s: GameState, scene: SceneBuilder): void {
   scene.text('Ooo, a spanking, someone\'s been a bad girl.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedwest', 'master'] },
   ]);
@@ -85,6 +90,7 @@ function enterMasterEvent_4(s: GameState, scene: SceneBuilder): void {
   scene.text('You meekly nod your head. "Sorry, I will be more careful in the future."');
   scene.text('"You don\'t sound very sorry, I think I need to teach you a lesson." With that he pulls you into the room and bares your ass, then he pulls off his belt and spanks you until tears are running down your face.');
   scene.text('Once he believes you learned your lesson he leaves, leaving you behind to rub your sore ass.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedwest', 'master'] },
   ]);
@@ -97,6 +103,7 @@ function enterGuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/beda.jpg');
   scene.text('Guest bedroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the landing', goto: ['bdsm_landing', ''] },
   ]);
@@ -108,6 +115,7 @@ function enterCheckGuestEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   scene.actions([{ label: 'Continue', goto: ['bdsm_bedwest', 'guest_event_<<rand(1, 2)>>'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -116,6 +124,7 @@ function enterGuestEvent_1(s: GameState, scene: SceneBuilder): void {
   scene.text('A submissive woman is being tied to a bed by a dominant man.');
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedwest', 'guest'] },
   ]);
@@ -128,6 +137,7 @@ function enterGuestEvent_2(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside you a man wearing women\'s clothes being fucked by his mistress wearing a strap-on.');
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['bdsm_bedwest', 'guest'] },
   ]);

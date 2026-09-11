@@ -21,6 +21,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['Palatka', 'pal1'] }]);
   }
   scene.text('To your surprise, the tent is a quite spacious. It has a bed, a <a href="exec:gt \'mirror\', \'start\'">mirror</a>, and even has an improvised <a href="exec:gt \'vann\', \'start\'">shower</a>.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Military', 'start'] },
     { label: 'Sleep', handler: (st: GameState) => {
@@ -49,6 +50,7 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
   }, goto: ['palatka', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Post', handler: (st: GameState) => {
     qspCall(s, 'npcgeneratec', '', 0, 'Soldier', Math.floor(Math.random() * 17) + 18);
@@ -82,6 +84,7 @@ function enterPal1(s: GameState, scene: SceneBuilder): void {
   }, goto: ['palatka', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Repay in full', handler: (st: GameState) => {
     (s as any).sexpartkno = 1;

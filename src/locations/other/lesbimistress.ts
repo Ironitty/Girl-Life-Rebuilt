@@ -152,6 +152,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -166,6 +167,7 @@ function enterGholefinish(s: GameState, scene: SceneBuilder): void {
   scene.text('You meekly smile at her. "I umm… I did as you asked, Mistress…"');
   scene.text('"I know," she smiles proudly at you before laughing at your surprised expression. "What? You thought I wouldn\'t keep tabs on my precious slave?"');
   scene.text('She looks dreamily at you for a second. "Peter told me all about you. You\'re such a good girl!" she beams at you. "Come on, why don\'t you show your Mistress how much you love her?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Show her', handler: (st: GameState) => {
     (s as any).mistressqwest = 0;
@@ -196,6 +198,7 @@ function enterGholepunish(s: GameState, scene: SceneBuilder): void {
   scene.text('She puts her hand under your chin and makes you look up, locking her piercing gaze onto your eyes. "Was I not clear?!" she snarls. "Why are you here, slave?"');
   scene.text('"I\'m sorry Mistress, I wi-" you sniffle, tears forming in your eyes.');
   scene.text('"You stupid whore!" she shouts and slaps you in the face. "I told you not to come back until you suck twelve cocks! Take off your damn clothes! I\'ll teach you a lesson you\'ll never forget!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     (s as any).pcs_horny = 0;
@@ -272,6 +275,7 @@ function enterSevere_1(s: GameState, scene: SceneBuilder): void {
   scene.text('After you\'ve been bound for about two hours, Mistress comes back and carefully takes the vase out of your stretched pussy. She caresses it for a moment before untying you.');
   // TODO-QSP: dynamic text: "You looked beautiful, <<$pcs_nickname>>. I have the pictures to prove it," she ...
   scene.text(`"You looked beautiful, ${((s as any).pcs_nickname ?? 0)}. I have the pictures to prove it," she winks, indicating that you can go now.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and leave', goto: ['city_residential', ''] },
   ]);
@@ -309,6 +313,7 @@ function enterSevere_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You immediately begin to coat her other foot with saliva, knowing she\'s probably going to want to change it up a few times. Minutes later she does indeed. Even though it doesn\'t help much, it still feels a little less painful.');
   scene.text('Half an hour later, Mistress pulls her foot out and smirks at your widely gaping hole. You wince when she tests how far she can stretch it open with two fingers.');
   scene.text('"That\'s one well trained hole," she nods, satisfied with her own work. "You may now thank me for training you, slave. Make it quick, I don\'t have all day."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Thank her with your mouth', handler: (st: GameState) => {
     (s as any).MistressObedience = ((s as any).MistressObedience ?? 0) + (1);
@@ -388,6 +393,7 @@ function enterSevere_3(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -450,6 +456,7 @@ function enterSevere_4(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed and leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -527,6 +534,7 @@ function enterPunish_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -543,6 +551,7 @@ function enterPunish_2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I should be back in a few hours,", she says before slamming the door shut. You lie on the stool for what feels like eternity in her empty apartment.');
   scene.text('When Mistress finally returns, she looks tired. "You\'re dismissed, slave," she says and unties you. "See yourself out, I\'m going to take a nap."');
   scene.text('As you try to rub the numbness out of your sore muscles, you watch Mistress go to her bedroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her apartment', goto: ['city_residential', ''] },
   ]);
@@ -645,6 +654,7 @@ function enterPunish_3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -669,6 +679,7 @@ function enterPunish_4(s: GameState, scene: SceneBuilder): void {
   scene.text('Mistress nods, barely giving it any thought. "To you? Of course. She\'ll do whatever you want."');
   scene.text('Masha grins and licks her lips greedily, already looking forward to the day. After nearly two hours, Mistress says you can get up and leave for today.');
   scene.text('Masha smiles deviously as you move to the hallway. "See you soon, slave! I can\'t wait to get to know you…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and leave', goto: ['city_residential', ''] },
   ]);
@@ -748,6 +759,7 @@ function enterPunish_5(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed and leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -760,6 +772,7 @@ function enterPunish_6(s: GameState, scene: SceneBuilder): void {
   scene.text('When you enter, you see a metal dildo mounted on a pole with a plateau underneath it.');
   // TODO-QSP: dynamic text: Mistress smirks at you. "You've been rather unruly, <<$pcs_nickname>>. However, ...
   scene.text(`Mistress smirks at you. "You've been rather unruly, ${((s as any).pcs_nickname ?? 0)}. However, I'll give you a chance to redeem yourself. Put those shoes on and step over here, please."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Do as she says', handler: (st: GameState) => {
     (s as any).MistressObedience = ((s as any).MistressObedience ?? 0) + (1);
@@ -958,6 +971,7 @@ function enterNeutral_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed and leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -978,6 +992,7 @@ function enterNeutral_2(s: GameState, scene: SceneBuilder): void {
   scene.text(`After half an hour, she can't take it any more. "Very nice, ${((s as any).pcs_nickname ?? 0)}. You've convinced me! Now, stop teasing me with your body and give me what I want!" she groans and spreads her legs.`);
   qspCall(s, 'arousal', 'anal_dildo', 30, 'sub', 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her to orgasm', handler: (st: GameState) => {
     (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
@@ -1027,6 +1042,7 @@ function enterNeutral_3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Yes, Mistress," you nod. On the table you find… very little, actually. The hipster panties look cute, but the heavy duty blindfold catches your eye first and foremost. There\'s also a large ball gag, and a delicate studded collar. You were just putting on the ball gag when Mistress comes back into the room.');
   // TODO-QSP: dynamic text: She's wearing a business-like attire that still shows a lot of cleavage. "No tim...
   scene.text(`She's wearing a business-like attire that still shows a lot of cleavage. "No time for games today, ${((s as any).pcs_nickname ?? 0)}. I'm preparing for an important meeting. Nevertheless, you can help me get ready for it," she winks at you.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Be a laptop holder', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 120;
@@ -1071,6 +1087,7 @@ function enterNeutral_4(s: GameState, scene: SceneBuilder): void {
   scene.text('After two hours, she gets up from the couch and unties you before tossing the pantyhose in the trash.');
   scene.text('"That was fun, but at the same time rather unnerving," she chuckles. "I felt like I was being watched by a bank robber while I was reading my novel!"');
   scene.text('You laugh while you rub some feeling back into your sore muscles before Mistress kisses you on your cheek. "Thanks. I needed that. See yourself out, will you?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and leave', goto: ['city_residential', ''] },
   ]);
@@ -1091,6 +1108,7 @@ function enterNeutral_5(s: GameState, scene: SceneBuilder): void {
   scene.text('You follow Mistress into the kitchen on your hands and knees, where she puts her dirty dishes on the ground. "Make them shine."');
   scene.text('You remain on your knees licking the dishes clean until your tongue feels numb. When Mistress comes to check up on you, she looks at the dishes and shrugs, only moderately satisfied.');
   scene.text('She then extends one of her legs. "You may now thank me for giving your life purpose, slave."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her feet', handler: (st: GameState) => {
     (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (1);
@@ -1146,6 +1164,7 @@ function enterNeutral_6(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed and leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1164,6 +1183,7 @@ function enterNeutral_7(s: GameState, scene: SceneBuilder): void {
   scene.text('You shake your head. "N-no Mistress! I\'ll do it! I\'ll do it as soon as I can."');
   scene.text('Mistress gives you a confident nod. "I know you\'ll make me proud, slave. Come, I\'ll let you out."');
   scene.text('"Good luck, slave!" the other woman grins as you walk by her on your way out.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave her apartment', goto: ['city_residential', ''] },
   ]);
@@ -1214,6 +1234,7 @@ function enterNeutral_8(s: GameState, scene: SceneBuilder): void {
       { label: 'Get dressed and leave', goto: ['city_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1228,6 +1249,7 @@ function enterNeutral_9(s: GameState, scene: SceneBuilder): void {
   scene.text('You quickly put your clothes back on, struggling slightly to get them on because of the cuffs. When you\'re ready to go, Mistress tugs on your cuffs to make sure they\'re secure. "Very nice… They\'re going to love you!" she says dreamily.');
   scene.text('Wait, what!? Where are we going?" you ask, but she seems to be in a good enough mood to let you get away with it.');
   scene.text('"Out," she states. "I think we can make an extra stop on the way…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go out with Mistress', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['exhibitionist'] < 1) {
@@ -1323,6 +1345,7 @@ function enterTreat_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Erm… They\'ll be done in about ten minutes, Mistress. How may I serve you in the meantime?" you ask.');
   // TODO-QSP: dynamic text: Mistress nods her head idly and sits down with a sigh. "Entertain me, <<$pcs_nic...
   scene.text(`Mistress nods her head idly and sits down with a sigh. "Entertain me, ${((s as any).pcs_nickname ?? 0)}. Be creative."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 240;
@@ -1376,6 +1399,7 @@ function enterTreat_2(s: GameState, scene: SceneBuilder): void {
   scene.text('She begins with the easy-going items, having you test all the leather cuffs and collars first while softly spanking you with the crop. She also has you test the ball gags one by one to see which one you like best.');
   scene.text('To finish up, she locks your hands behind your back with a set of heavy metal cuffs and places a matching collar around your neck. The metal feels cold to the touch and very restrictive. She then makes you open your mouth to put your favourite ball gag in, but doesn\'t lock it in place.');
   scene.text('"What do you think?" she asks with a grin. You nod your head approvingly and look humbly into her eyes. She smiles and removes the items from you. "I knew you\'d like them! Now, how are you going to thank me for getting you these nice things to wear?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Offer to wear them longer', handler: (st: GameState) => {
     (s as any).MistressAdoration = ((s as any).MistressAdoration ?? 0) + (2);
@@ -1549,6 +1573,7 @@ function enterTreat_3(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1580,6 +1605,7 @@ function enterTreat_4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Thank you, Mistress! Thank you… Thank you…" you mutter, unable to form a coherent sentence.');
   scene.text('Mistress smiles at you benevolently while she sucks on her finger. "You\'re welcome, slave. I\'m glad you liked your training. See yourself out, will you?"');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and leave', goto: ['city_residential', ''] },
   ]);
@@ -1693,6 +1719,7 @@ function enterAmazing_1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1737,6 +1764,7 @@ function enterAmazing_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 90;
@@ -1769,6 +1797,7 @@ function enterAmazing_3(s: GameState, scene: SceneBuilder): void {
   scene.text('"I feel like relaxing today. Let\'s go swimming!" Mistress says.');
   scene.text('"Mistress, could we stop by my apartment really quick? I didn\'t bring a bathing suit!" you reply.');
   scene.text('"All taken care of, dear. In fact, why don\'t you change into it now? You can wear it under your clothes while we go there" she says with that devious smile on her lips as she hands you a bag.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put on the bathing suit', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -1934,6 +1963,7 @@ function enterRenewal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1977,11 +2007,13 @@ function enterBDSMEV(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMistvisit(s: GameState, scene: SceneBuilder): void {
   scene.text('The doorbell rings.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Answer it', handler: (st: GameState) => {
     scene.text('You approach the door and look through the peephole. Outside, you see the familiar female figure of your obviously drunk Mistress.');
@@ -2060,6 +2092,7 @@ function enterMistmeet(s: GameState, scene: SceneBuilder): void {
   scene.text('As you\'re walking down the street, you suddenly bump into your Mistress. Seeing you, an evil grin suddenly appears on her lips and she quickly whispers something to her companion.');
   scene.text('After a moment, you find yourself sandwiched between them and Mistress exposes your breasts to passers-by.');
   scene.text('"I\'m not so easy to escape, am I bitch?!" she hisses in your ear.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/city/natalya/sex/mistmeet1.jpg');

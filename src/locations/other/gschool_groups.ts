@@ -24,6 +24,7 @@ function enterTeachers(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_teach_text
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -46,6 +47,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $nerd_text
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -68,6 +70,7 @@ function enterJocks(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $jock_text
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -90,6 +93,7 @@ function enterPopular(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $pop_text
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +116,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $gop_text
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -134,6 +139,7 @@ function enterOutcasts(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $oc_text
   scene.text('</table></center>');
+  // TODO-QSP: end
   scene.build();
 }
 

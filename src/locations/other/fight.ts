@@ -7,21 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $AttackType[0] = 'Kick'
-  // TODO-QSP: $AttackSkill[0] = 'kick'
-  ((s as any).AttackMin ?? {})[0] = 5;
-  ((s as any).AttackMax ?? {})[0] = 8;
-  ((s as any).AttackTime ?? {})[0] = 40;
-  // TODO-QSP: $AttackType[1] = 'Hard Punch'
-  // TODO-QSP: $AttackSkill[1] = 'punch'
-  ((s as any).AttackMin ?? {})[1] = 4;
-  ((s as any).AttackMax ?? {})[1] = 6;
-  ((s as any).AttackTime ?? {})[1] = 30;
-  // TODO-QSP: $AttackType[2] = 'Jab'
-  // TODO-QSP: $AttackSkill[2] = 'jab'
-  ((s as any).AttackMin ?? {})[2] = 2;
-  ((s as any).AttackMax ?? {})[2] = 3;
-  ((s as any).AttackTime ?? {})[2] = 15;
   scene.build();
 }
 
@@ -40,14 +25,17 @@ function enterInitFight(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $pcs_image[0] = $func('$face_image')
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClearPCSArray(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterClearPCSArrayPlayer(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -69,6 +57,7 @@ function enterRandomOpp(s: GameState, scene: SceneBuilder): void {
   ((s as any).opp_react ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
   ((s as any).opp_willpwr ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
   ((s as any).opp_shoot ?? {})[String((s as any).i ?? 0)] = (Math.floor(Math.random() * 50) + 1) + ((s as any).OppDiffBonus ?? 0);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -117,6 +106,7 @@ function enterApplyDamage(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: "
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +154,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'OppTimerInit'
   }
   (s as any).fight_start = 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Fight!', goto: ['fight', 'main'] },
   ]);
@@ -205,6 +196,7 @@ function enterFindActiveTimer(s: GameState, scene: SceneBuilder): void {
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'LowTimerLoop2'
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -221,6 +213,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fight', 'result_check');
   qspCall(s, 'fight', 'findActiveTimer');
   // TODO-QSP: gt 'fight', $fightTimType, fightTimNum
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -285,6 +278,7 @@ function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <td align=right> Initiative </td>
   // TODO-QSP: <td align=right> <b><font color = orange><<fightPStats['Timer']>></font></b> </td>
   // TODO-QSP: </tr><tr><td colspan=4 bgcolor=grey></td></tr>"
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -309,6 +303,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'PCSLoopRC1'
   }
   // TODO-QSP: $fightStatText += "</table>"
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -330,6 +325,22 @@ function enterResultCheck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
+  // TODO-QSP: $AttackType[0] = 'Kick'
+  // TODO-QSP: $AttackSkill[0] = 'kick'
+  ((s as any).AttackMin ?? {})[0] = 5;
+  ((s as any).AttackMax ?? {})[0] = 8;
+  ((s as any).AttackTime ?? {})[0] = 40;
+  // TODO-QSP: $AttackType[1] = 'Hard Punch'
+  // TODO-QSP: $AttackSkill[1] = 'punch'
+  ((s as any).AttackMin ?? {})[1] = 4;
+  ((s as any).AttackMax ?? {})[1] = 6;
+  ((s as any).AttackTime ?? {})[1] = 30;
+  // TODO-QSP: $AttackType[2] = 'Jab'
+  // TODO-QSP: $AttackSkill[2] = 'jab'
+  ((s as any).AttackMin ?? {})[2] = 2;
+  ((s as any).AttackMax ?? {})[2] = 3;
+  ((s as any).AttackTime ?? {})[2] = 15;
   scene.build();
 }
 
@@ -412,6 +423,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic "<<$fightAtk_AttackerType>>_timer[<<fightAtk_AttackerNumber>>] += AttackTime[<<fightAtk_Type...
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['fight', 'main'] },
   ]);
@@ -501,6 +513,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic '<<$fightAtk_TargetType>>_stun[<<fightAtk_TargetNumber>>] += 1'
   // TODO-QSP: dynamic '<<$fightAtk_TargetType>>_timer[<<fightAtk_TargetNumber>>] += AttackTime[<<fightAtk_Type>>]'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -635,6 +648,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -770,6 +784,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -785,6 +800,7 @@ function enterAvailableTargets(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -795,6 +811,7 @@ function enterRandomTarget(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (-1);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -842,12 +859,14 @@ function enterFightAlgorithm(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([{ label: 'Continue', goto: ['fight', 'main'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterOpponent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fight', 'statDisplay');
   // TODO-QSP: gs 'fight', 'fightAlgorithm', 'opp', ARGS[1]
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -888,6 +907,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: gs 'fight', 'fightAlgorithm', 'pcs', ARGS[2]
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -901,6 +921,7 @@ function enterBuildCasterSpellList(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $casterSpellList[] = $trim($tmpStr)
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -922,6 +943,7 @@ function enterSpellCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -936,11 +958,13 @@ function enterSpellListCheck(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).ActionMade1 ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSpellcast(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: func('spellBook', 'targetable', '$combatSpells', 'gt ''fight'', ''main''', 'pcs_timer[0] += 50')
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', goto: ['fight', 'main'] },
   ]);

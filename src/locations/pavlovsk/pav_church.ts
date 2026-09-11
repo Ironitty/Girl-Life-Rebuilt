@@ -77,6 +77,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'camera', 'check_location');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the residential area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -173,6 +174,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -182,6 +184,7 @@ function enterSermon(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
   scene.text('The candles dim as the sermon begins. You and your mother listen intently to the priest as he preaches the word of god. You study his teachings, feeling enlightened until you reach the end of the sermon. You turn to your mother and she gives you an approving smile before you both stand up.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stand up', goto: ['pav_church', 'Narthex'] },
   ]);
@@ -298,6 +301,7 @@ function enterExcuses(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -338,6 +342,7 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['pav_church', 'Narthex'] },
     { label: 'Stay for the Rite of Mutual Forgiveness', handler: (st: GameState) => {
@@ -456,6 +461,7 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -472,10 +478,12 @@ function enterServiceEnd(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['pav_church', 'start'] }]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterSexApproachRun(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Hurry away', handler: (st: GameState) => {
     if (((s as any).fame ?? 0)?.['pav_prostitute'] >= 150  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
@@ -497,6 +505,7 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "You're <<$pcs_nickname>>, aren't you?"
   scene.text(`"You're ${((s as any).pcs_nickname ?? 0)}, aren't you?"`);
   qspCall(s, 'pav_church', 'sex_approach_run');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Answer (shy)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -557,6 +566,7 @@ function enterSexOffer(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'pav_church', 'sex_approach_run');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 3) + 1);
@@ -601,6 +611,7 @@ function enterRestroomHandjob(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
     // TODO-QSP: gs 'money', 'earn', temp['prost_money']
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'pav_church', 'restroom_sex_end');
@@ -638,6 +649,7 @@ function enterRestroomBlowjob(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'pav_church', 'restroom_cum_mouth');
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -706,6 +718,7 @@ function enterRestroomFuck(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -714,6 +727,7 @@ function enterRestroomFuckBareback(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
   qspCall(s, 'pav_church', 'restroom_fuck_thoughts');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -722,10 +736,12 @@ function enterRestroomFuckCondom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
   qspCall(s, 'pav_church', 'restroom_fuck_thoughts');
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRestroomFuckThoughts(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wait patiently', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 6) + 5, 'prostitution', 'no_orgasm_msg');
@@ -789,6 +805,7 @@ function enterRestroomFuckCondomCum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['approach_type'] === 'prostitute') {
     // TODO-QSP: gs 'money', 'earn', temp['prost_money']
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'pav_church', 'restroom_sex_end');
@@ -839,10 +856,12 @@ function enterRestroomFuckBarebackCum(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterRestroomCumHand(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish him with your hand', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'hands', 'man at church');
@@ -863,6 +882,7 @@ function enterRestroomCumHand(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomCumFace(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his cum on your face', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'face', 'man at church');
@@ -883,6 +903,7 @@ function enterRestroomCumFace(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his cum in your mouth', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/cum11.mp4');
@@ -923,6 +944,7 @@ function enterRestroomCumMouth(s: GameState, scene: SceneBuilder): void {
 function enterRestroomSexEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   scene.actions([{ label: 'Continue', goto: ['pav_church', 'Narthex'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -942,6 +964,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Go to confession': confessday = daystart
     scene.actions([{ label: 'Continue', goto: ['pav_church2', 'confession'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the church', goto: ['pav_church', 'start'] },
     { label: 'Light a candle', goto: ['pav_church', 'candle'] },
@@ -1045,6 +1068,7 @@ function enterNarthexMom(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', goto: ['pav_church', 'Leave'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1055,6 +1079,7 @@ function enterLeaveEarly(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You approach your mother. "I had a great time <<$npc_nickname['A29']>>, but I sh...
   scene.text(`You approach your mother. "I had a great time ${((s as any).npc_nickname ?? 0)?.['A29']}, but I should be heading home now."`);
   scene.text('"Alright. Thank you for stopping by. I hope you learned something about yourself today," she replies and lightly pats your arm before going back to praying.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the residential area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1127,6 +1152,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the residential area', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1189,6 +1215,7 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to Narthex', goto: ['pav_church', 'Narthex'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1214,6 +1241,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Pray', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1375,6 +1403,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
       scene.text('<br>You already made amends today.');
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk to the priest', handler: (st: GameState) => {
     (s as any).church_moral = ((s as any).church_moral ?? 0) + (Math.floor(Math.random() * 4) + 0);
@@ -1489,6 +1518,7 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1500,6 +1530,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
   scene.text('You pale slightly. You don\'t know what your mother would do, but it would be a lot worse than getting spanked by a priest, so you do as he says and expose your ass before bending over his desk. He then grabs a shoe from inside his desk.');
   qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Bear it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/event/spank2.jpg');
@@ -1638,6 +1669,7 @@ function enterFillers(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

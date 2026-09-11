@@ -54,6 +54,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -134,6 +135,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
       { label: '<b>Leave Rolan\'s apartment</b>', goto: ['pav_complex', 'start'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Rolan\'s room', goto: ['rolanapt', 'room'] },
     { label: 'Go to the bathroom', goto: ['rolanbath', 'start'] },
@@ -164,6 +166,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Confront Rolan', goto: ['rolanapt', 'mypanty'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -179,6 +182,7 @@ function enterGuestroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] === 8) {
     scene.text('Rolan is here');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -214,6 +218,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -326,6 +331,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sup_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).sup_count = 1;
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
     { label: 'Look in the fridge', goto: ['rolanapt', 'holodil'] },
@@ -512,6 +518,7 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['rolanapt', 'kitchen'] },
   ]);
@@ -604,6 +611,7 @@ function enterGrandmaroom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -616,6 +624,7 @@ function enterKuhBuh(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/rolanapple0.jpg');
   // TODO-QSP: dynamic text: "Hello Miss <<$pcs_lastname>>! Great day, isn't it?" he shouts cheerfully.
   scene.text(`"Hello Miss ${((s as any).pcs_lastname ?? 0)}! Great day, isn't it?" he shouts cheerfully.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['rolanapt', 'kitchen'] },
     { label: 'Chat with Rolan', handler: (st: GameState) => {
@@ -638,6 +647,7 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, would you be so kind as to help an old man"?
   scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, would you be so kind as to help an old man"?`);
   (s as any).rollrolan = Math.floor(Math.random() * 4) + 1;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['rolanapt', 'kitchen'] },
     { label: 'Help Rolan', handler: (st: GameState) => {
@@ -731,6 +741,7 @@ function enterKuhbaz(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat some more', goto: ['rolanapt', 'kuhbaz'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
   ]);
@@ -819,6 +830,7 @@ function enterDrawer(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop snooping', goto: ['rolanapt', 'room'] },
   ]);
@@ -923,6 +935,7 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
       { label: 'Move away from Rolan', goto: ['rolanapt', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -1936,6 +1949,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2080,6 +2094,7 @@ function enterWorker(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2137,6 +2152,7 @@ function enterRolanroute(s: GameState, scene: SceneBuilder): void {
     ((s as any).RolanLoc ?? {})[23] = 3;
     (s as any).RolanLocSet = ((s as any).daystart ?? 0);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

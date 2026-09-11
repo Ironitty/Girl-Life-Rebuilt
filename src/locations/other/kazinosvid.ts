@@ -13,6 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/boyfriend/sex/event/cards/0.jpg');
   // TODO-QSP: dynamic text: You sit down with <<$telsob>> to have some drinks, and play some cards.
   scene.text(`You sit down with ${((s as any).telsob ?? 0)} to have some drinks, and play some cards.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
     if (((s as any).telsob ?? 0) === 'Alla') {
@@ -98,6 +99,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Would you lovely ladies care to join us in our room for a game of cards," one man offers.');
   // TODO-QSP: dynamic text: <<$telsob>> says she does't mind, and looks at you for an answer.
   scene.text(`${((s as any).telsob ?? 0)} says she does't mind, and looks at you for an answer.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['kazinosvid', '3'] },
     { label: 'Agree', handler: (st: GameState) => {
@@ -191,6 +193,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Would you lovely ladies like to join me in my room for a private game?" he asks.');
   // TODO-QSP: dynamic text: <<$telsob>> says she does't mind, and looks at you for an answer.
   scene.text(`${((s as any).telsob ?? 0)} says she does't mind, and looks at you for an answer.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', goto: ['kazinosvid', '3'] },
     { label: 'Agree', handler: (st: GameState) => {
@@ -265,6 +268,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite her to your home', goto: ['lezbsex', 'startloverhome'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

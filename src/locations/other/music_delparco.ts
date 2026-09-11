@@ -25,6 +25,7 @@ function enterTalkwithzariyah(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['cafe_parco', 'start'] },
   ]);
@@ -36,6 +37,7 @@ function enterDelparcoAccept(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_delparcoQW ?? {})['Stage'] = 2;
   scene.text('You accept.');
   scene.text('(Warning - the event is unfinished, so there is lack of pictures and the text is simplified)');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Discuss the live music with', goto: ['music_delparco', 'firstdiscussion'] },
     { label: 'Leave', goto: ['cafe_parco', 'start'] },
@@ -56,6 +58,7 @@ function enterFirstdiscussion(s: GameState, scene: SceneBuilder): void {
   scene.text(`She wiggles the pen, writing down some of what she say "And we would pay you. It's not a lot of money, but we pay you ${qspFunc(s, 'money', 'string_profit', 800)}. And we would like to start two weeks from now at 8 in the evening."`);
   // TODO-QSP: dynamic text: You think for a moment. <<$func('money', 'string_profit', 800)>> is way more tha...
   scene.text(`You think for a moment. ${qspFunc(s, 'money', 'string_profit', 800)} is way more than you can get anywhere else in Pavlovsk. On the other hand, 30 minutes is quite a few songs, and you will have to practice a lot in the beginning to do it.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept the offer', handler: (st: GameState) => {
     ((s as any).ml_delparcoQW ?? {})['Stage'] = 4;
@@ -96,6 +99,7 @@ function enterAcceptafterthinking(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towa...
   scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at \'+func(\'time\', \'get_time_string\', 20, 0)+\', so please be here latest half past seven.');
   scene.text('Trust me, you will need the time to set yourself up. And then every Friday if it works out."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['cafe_parco', 'start'] },
   ]);
@@ -138,6 +142,7 @@ function enterEveningshow(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('(The event is unfinished - do not complain about quality - report only serious bugs)');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['cafe_parco', 'start'] },
   ]);

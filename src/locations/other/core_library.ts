@@ -24,6 +24,7 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -31,6 +32,7 @@ function enterStageTitle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><h2><<$setloc['StageTitle']>></h2></center>
   scene.text(`<center><h2>${((s as any).setloc ?? 0)?.['StageTitle']}</h2></center>`);
   scene.img(`images/${((s as any).setloc ?? 0)?.['StageImage']}`);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,6 +41,7 @@ function enterEventViewer(s: GameState, scene: SceneBuilder): void {
     (s as any).array_idx = 0;
   }
   // TODO-QSP: $events_viewer[] = 'gs <<$ARGS[3]>>, <<$ARGS[4]>>, <<array_idx>>'
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -53,6 +56,7 @@ function enterCorridor(s: GameState, scene: SceneBuilder): void {
     if (((((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public') {
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -111,6 +115,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -144,6 +149,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', 'driwater');
   qspCall(s, 'kit_din', 'dritea');
   qspCall(s, 'kit_din', 'fill_bottle');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,6 +166,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'exercise', 'start');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Relax on your bed', goto: ['bed', 'start'] },
     { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },

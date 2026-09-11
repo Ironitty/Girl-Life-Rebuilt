@@ -33,6 +33,7 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'reset_PCoatVars');
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -54,6 +55,7 @@ function enterResetDerivedVars(s: GameState, scene: SceneBuilder): void {
   (s as any).PCoverFront = 0;
   (s as any).PCoverBack = 0;
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -112,6 +114,7 @@ function enterSetDerivedVars(s: GameState, scene: SceneBuilder): void {
   (s as any).CoverBack = ((s as any).PCoverBack ?? 0);
   (s as any).CoverFront = ((s as any).PCoverFront ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -122,6 +125,7 @@ function enterUndress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'outfit', 'backup', ((s as any).locArgs?.[1] ?? 0));
   qspCall(s, 'outfit', 'strip_all');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -135,6 +139,7 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore');
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -166,6 +171,7 @@ function enterNudeBackup(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: lastworncoatnumber[$ARGS[1]]    = 0
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -197,6 +203,7 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: lastworncoatnumber[$ARGS[1]]    = coatwornnumber
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -260,6 +267,7 @@ function enterSafeBackup(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -280,6 +288,7 @@ function enterTransferBackup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $lastworncoattype[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = $lastworncoattype[iif($ARGS[1]    = '...
   // TODO-QSP: lastworncoatnumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastworncoatnumber[iif($ARGS[1]    =...
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -316,6 +325,7 @@ function enterSafeTransferBackup(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: lastworncoatnumber[iif($ARGS[2]    = '', ARGS[2], $ARGS[2])]  = lastworncoatnumber[iif($ARGS[1]    =...
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -340,6 +350,7 @@ function enterRemoveBackup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'array', 'remove_element', 'lastworncoatnumber', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -368,6 +379,7 @@ function enterRestore(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'coats',    'wear', $lastworncoattype[$ARGS[1]],  lastworncoatnumber[$ARGS[1]]
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -379,6 +391,7 @@ function enterStripAll(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'strip');
   qspCall(s, 'purses', 'strip');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -389,6 +402,7 @@ function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'coats', 'wear', 'last_worn');
   qspCall(s, 'purses', 'wear', 'last_worn');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -398,6 +412,7 @@ function enterRecoverLostOutfit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', ((s as any).locArgs?.[1] ?? 0));
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -416,6 +431,7 @@ function enterGetHourlyMoodBonus(s: GameState, scene: SceneBuilder): void {
     (s as any).result = ((s as any).result ?? 0) + (2);
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -445,6 +461,7 @@ function enterCalcClothingBonus(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).PCloQuality ?? 0) * ((s as any).tempRevealing ?? 0) / 76 + ((s as any).tempDirt ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -478,6 +495,7 @@ function enterCalcAccessoriesBonus(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = ((s as any).coatQualityBonus ?? 0) + ((s as any).PShoQuality ?? 0) + ((s as any).pantyBonus ?? 0) + ((s as any).braBonus ?? 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -487,6 +505,7 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'outfit', 'increase_outfit_wear', ARGS[1]
   // TODO-QSP: gs 'outfit', 'heel_stat_skill_pain', ARGS[1]
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -499,6 +518,7 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purses', 'reset_immutables');
   qspCall(s, 'coats', 'reset_immutables');
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -646,6 +666,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -843,6 +864,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -969,6 +991,7 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -2002,6 +2025,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
     }
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

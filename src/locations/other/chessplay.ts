@@ -21,6 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).chess_move = 0;
   (s as any).total_chess_time = 0;
   scene.actions([{ label: 'Continue', goto: ['chessplay', 'game'] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -66,6 +67,7 @@ function enterExpfame(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -151,6 +153,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -164,6 +167,7 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
       (s as any).chessM = Math.floor(Math.random() * 8) + 2;
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Play conservatively', handler: (st: GameState) => {
     if (((s as any).chessM ?? 0) <= 1) {
@@ -472,6 +476,7 @@ function enterAdvantage(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

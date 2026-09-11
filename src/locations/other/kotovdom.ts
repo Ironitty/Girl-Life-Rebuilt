@@ -56,6 +56,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -64,6 +65,7 @@ function enterKor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Hallway</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/korr.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to Vitek\'s bedroom', goto: ['kotovdom', 'kotovkom'] },
     { label: 'Go to the bathroom', goto: ['kotovdom', 'vann'] },
@@ -84,6 +86,7 @@ function enterVann(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'dinsex', 'after_anal', 'pc');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Wash in the shower (0:15)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -120,6 +123,7 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Dress yourself': gs 'shortgs', 'dress'
     scene.actions([{ label: 'Continue', goto: ['kotovdom', 'kotovkom'] }]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['kotovdom', 'kor'] },
   ]);
@@ -133,6 +137,7 @@ function enterKuh(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/vitekhome/kuh.jpg');
   qspCall(s, 'kit_din', 'fill_bottle');
   qspCall(s, 'kit_din', 'driwater');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the hallway', goto: ['kotovdom', 'kor'] },
     { label: 'Look in the fridge', goto: ['kotovdom', 'fridge'] },
@@ -271,6 +276,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Close the refrigerator', goto: ['kotovdom', 'kuh'] },
   ]);
@@ -307,6 +313,7 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stop talking', goto: ['kotovdom', 'kotovkom'] },
     { label: 'Make small talk', handler: (st: GameState) => {
@@ -375,6 +382,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Say goodbye and leave', goto: ['pav_residential', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -387,6 +395,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('When you climb to the second floor of your apartment building and reach the door, Vitek hugs you tightly in his powerful arms. He kisses you passionately, and his hands grope your butt roughly.');
   scene.text('For a moment you wonder if he\'s going to want to have sex with you right here in the stairwell, but as soon as you think that he lets you go. "I\'ll see you soon, kitten. Don\'t miss me too much!" he says with a grin before turning around and walking down the stairs.');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
   ]);

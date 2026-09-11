@@ -114,6 +114,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
       { label: 'You don\'t have time today', goto: ['gschool_grounds', 'main'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -124,6 +125,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/igorhome/kor.jpg');
   scene.text('This is the entrance hall to Igor\'s house, which leads to the other rooms in the house. It is tastefully decorated.');
+  // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave Igor\'s home</b>', goto: ['pav_residential', ''] },
     { label: 'Igor\'s Room', goto: ['igorhome', 'igorroom'] },
@@ -146,6 +148,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You can do your hair and makeup in the <a href="exec:gt 'mirror', 'start'">mirro...
   scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink, where you can \' + iif(pcs_hairbsh < 1, \'<a href="exec:gt \'mirror\', \'brush\'">brush</a>\', \'brush\') + \' your hair.');
   qspCall(s, 'din_van', 'private');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the bathroom', goto: ['igorhome', 'hallway'] },
   ]);
@@ -239,6 +242,7 @@ function enterIgorroom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Igor\'s room', goto: ['igorhome', 'hallway'] },
     { label: 'Excuse yourself', goto: ['igorhome', 'hallway'] },
@@ -390,6 +394,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Keep talking', goto: ['igorhome', 'chat'] },
     { label: 'Excuse yourself', goto: ['igorhome', 'hallway'] },
@@ -409,6 +414,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Igor\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/boy/igor/study.jpg');
   scene.text('You sit next to Igor as he pulls out his books and notes. He\'s a very good tutor and you learn a lot by studying with him.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave Igor\'s room', goto: ['igorhome', 'hallway'] },
     { label: 'Chat', goto: ['igorhome', 'chat'] },
@@ -600,6 +606,7 @@ function enterSisterroom(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['igorhome', 'hallway'] },
   ]);
@@ -633,10 +640,12 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the living room', goto: ['igorhome', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterLivingroom1(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
     ((s as any).IgorQW ?? {})['met_dad'] = 1;
@@ -727,6 +736,7 @@ function enterLivingroom1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLivingroom2(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
     ((s as any).IgorQW ?? {})['met_dad'] = 1;
@@ -794,6 +804,7 @@ function enterLivingroom2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
     ((s as any).IgorQW ?? {})['met_dad'] = 1;
@@ -888,6 +899,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLivingroom4(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.actions([
     { label: 'Talk', handler: (st: GameState) => {
     ((s as any).IgorQW ?? {})['met_dad'] = 1;
@@ -998,6 +1010,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('Igor\'s mother isn\'t here, so this might be a good time to grab a snack.');
     qspCall(s, 'core_library', 'kitchen', 'shared');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the kitchen', goto: ['igorhome', 'hallway'] },
   ]);
@@ -1009,6 +1022,7 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
   scene.text('She looks up, eyeing you from head to toe before turning to Igor.');
   scene.text('"Igor dear, what have I told you about inviting strangers into our home without letting me know?"');
   scene.text('He nervously tries avoiding her judging eyes, only being able to answer in an inaudible murmur.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.text('You look confidently at her judging eyes, excusing yourself that it wasn\'t you intention to intrude.');
@@ -1134,6 +1148,7 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Try to be friendly', handler: (st: GameState) => {
     scene.text('You feel a bit ashamed as Igor\'s mother aggressively keeps ranting about you and your outfit.');
@@ -1177,6 +1192,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
   scene.text('As the two of you walk into the kitchen, you notice a woman in her mid-forties sitting by the table drinking tea. Igor walks up to the woman and hugs her.');
   scene.text('"Igor dear, who\'s this lovely girl you brought home with you?"');
   scene.text('"She\'s a friend from school," he proudly proclaims.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.text('You shyly look at her, not really knowing what to say.');
@@ -1264,6 +1280,7 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
   scene.text('As you walk around the house, you hear someone calling you over from the kitchen.');
   scene.text('"Who are you? My god I didn\'t know that my little boy was friends with such a lovely girl."');
   scene.text('You blush and thank her for the compliment.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Introduce yourself', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>> <<$pcs_lastname>>. I'm glad I'm finally able to meet you....
@@ -1320,6 +1337,7 @@ function enterKitchen5(s: GameState, scene: SceneBuilder): void {
   scene.text('"What is this, Igor? Explain yourself! When did you started hanging out with a hoodlum? I taught you better than this. Just look at her! You should know better!"');
   scene.text('Igor tries to explain that you\'re friends, but she\'s not having it.');
   scene.text('"Igor, tell your \'friend\' to leave this house right away! I don\'t want her near our household. I forbid you from being friends with this girl!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Speak up', handler: (st: GameState) => {
     scene.text('You try to speak up, but she instantly tells you to shut up.');
@@ -1341,6 +1359,7 @@ function enterKitchen6(s: GameState, scene: SceneBuilder): void {
   scene.text('"What is this, Igor? Explain yourself! When did you started hanging out with a hoodlum? I taught you better than this. Just look at her! You should know better!"');
   scene.text('Igor tries to explain that you\'re friends, but she\'s not having it.');
   scene.text('"Igor, tell your \'friend\' to leave this house right away! I don\'t want her near our household. I forbid you from being friends with this girl!"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.text('You try to speak up, but she instantly tells you to shut up.');
@@ -1375,6 +1394,7 @@ function enterKitchen6(s: GameState, scene: SceneBuilder): void {
 function enterKitchen7(s: GameState, scene: SceneBuilder): void {
   scene.text('As you\'re walking into the kitchen, you suddenly hear Igor\'s mother.');
   scene.text('"Who are you? Why are you dressed like that? Are you one of those hoodlums I\'ve heard of?"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Answer her', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You can see that she clearly loathes you. "I'm <<$pcs_nickname>> <<$pcs_lastname...
@@ -1424,6 +1444,7 @@ function enterIgorparents(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Igor\'s parent\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/igorhome/bedroom.jpg');
   scene.text('The room is very clean, neat and beautifully decorated. Everything is perfectly in place and the wooden furniture is all highly polished.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1470,12 +1491,14 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterHome2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/igorhome/house.jpg');
   scene.text('No one answers and you\'re just about to leave when you see movement inside. Maybe they don\'t want to be disturbed or they didn\'t hear you knocking. Or maybe someone broke into their house?! What should you do?');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },
     { label: 'Knock again', handler: (st: GameState) => {

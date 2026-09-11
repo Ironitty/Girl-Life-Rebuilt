@@ -39,6 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
@@ -83,6 +84,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Watch the movie', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
@@ -108,6 +110,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: <<$npcdesc>> cannot take it any longer and shoots his load into the condom. Once...
   scene.text(`${((s as any).npcdesc ?? 0)} cannot take it any longer and shoots his load into the condom. Once he is finished, you move back to your seat and straighten out your clothes. Once you both are fully dressed again, you look at each other and stifle a laugh. Your act went unnoticed and you watch the rest of the movie holding hands.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kinoM', 'b'
@@ -127,6 +130,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   scene.text(`Soon ${((s as any).npcdesc ?? 0)} can no longer hold back and shoots his load into your mouth, flooding it with spurts of hot sperm. You keep your lips wrapped tightly around his dick until he is finished unloading. Lacking any better options, you swallow it all down and suck his dick clean. Once done you sit back up. The two of you look at each other and stifle a laugh, as no one seems to have noticed what you just did. You watch the rest of the movie holding hands quietly.`);
   qspCall(s, 'arousal', 'bj', 10, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kinoM', 'b'
@@ -144,6 +148,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
   scene.text('Soon your skillful movements make him shoot his load in the condom. Once done, you lean back and watch the rest of the movie holding hands.');
   qspCall(s, 'arousal', 'hj', 10, 'sub');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
     // TODO-QSP: xgt 'kinoM', 'b'
@@ -157,6 +162,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) + (1);
   scene.text('The movie ends and the lights switch on in the theater. Soon the audience heads for the exits.');
   qspCall(s, 'arousal', 'end');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Home', goto: ['sexm', 'start'] },
   ]);

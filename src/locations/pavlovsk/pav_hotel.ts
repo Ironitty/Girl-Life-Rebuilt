@@ -109,6 +109,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'lover', 'lover_events');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave the hotel', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -129,6 +130,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>It doesn\'t look like a glamorous job, but at least it\'s honest work.</i>');
   ((s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
   return;
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['pav_hotel', ''] },
     { label: 'Go to the reception', handler: (st: GameState) => {
@@ -160,6 +162,7 @@ function enterResepEvent1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'exp_gain', 'observ', 3);
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the market', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -175,6 +178,7 @@ function enterResepEvent2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/sex/resep_event2.jpg');
   scene.text('You enter the lobby and see the desk girl and the manager talking to each other. When they notice you, they both give you a very disappointed look.');
   scene.text('You get the feeling you interrupted something here.');
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -196,6 +200,7 @@ function enterResepEvent3(s: GameState, scene: SceneBuilder): void {
   scene.text('You remember the pictures you found in his office and wonder why he\'s acting so surprised.');
   scene.text('"Oh! Mr. Leonidovich!" she says while pouting. "I\'ve been a bad little girl, haven\'t I, Daddy?"');
   scene.text('You figure they\'re just playing a game and being caught flashing was all part of their weird little role play.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/hotel/sex/resep_event9.jpg');
@@ -584,6 +589,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['pav_hotel', 'skip_resepevent'] },
   ]);

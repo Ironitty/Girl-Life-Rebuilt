@@ -124,6 +124,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -446,6 +447,7 @@ function enterLearn(s: GameState, scene: SceneBuilder): void {
       { label: 'Explore his room', goto: ['artemhome', 'artemroom'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -455,6 +457,7 @@ function enterFinalrefuse(s: GameState, scene: SceneBuilder): void {
   scene.text('You shake your head. "Fine, if that\'s the way you want it to be."');
   scene.text('You get up and grab your stuff before heading for the door. "I never want to see you again!" he says as you head out.');
   scene.text('You walk out of his room and down the hall to the front door.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
   ]);
@@ -466,6 +469,7 @@ function enterStriptease(s: GameState, scene: SceneBuilder): void {
   scene.text('You do a little dance on your knees as you slowly undress, teasing him without showing him anything but the hint of your panties. You then slowly remove your bottoms, leaving you with only your top and panties on.');
   qspCall(s, 'arousal', 'striptease', 2);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Remove your top', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/strip3.jpg');
@@ -504,6 +508,7 @@ function enterArtemdryhump(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks, and you can feel him hesitating for a second before he starts squeezing your ass and rubbing it with his hands. After a few minutes of this, he places one of his hands on your shoulder and pushes you forward, bending you over. He then grabs onto you and you feel something hard pressing between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock against your clothes.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcumc.jpg');
@@ -529,6 +534,7 @@ function enterArtemdryhump1(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re wearing only your panties from the waist down. You bend over for him and feel his hard cock pressed against your ass. When you glance back over your shoulder, you see him rubbing his erect cock against your panties.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcump.jpg');
@@ -554,6 +560,7 @@ function enterArtemdryhump2(s: GameState, scene: SceneBuilder): void {
   scene.text('You turn so he has a nice view of your ass. He carefully runs his hands over your ass cheeks while pulling your clothes off until you\'re naked from the waist down. You bend over for him and feel his hard cock pressed between your ass cheeks. When you glance back over your shoulder, you see him rubbing his erect cock between your ass cheeks as he pushes them together.');
   qspCall(s, 'arousal', 'foreplay', 3);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/buttcumn.jpg');

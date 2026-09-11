@@ -60,6 +60,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'people_loop'
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -83,6 +84,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -92,6 +94,7 @@ function enterCheckPerson(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic ' act ''Ask to take a photo'': camera_found["<<$ARGS[1]>>"] = 1 & gt ''camera'', $camera_eve...
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -107,6 +110,7 @@ function enterEugene(s: GameState, scene: SceneBuilder): void {
   scene.text('You nod. "Yes, I just need more practice. Which is where you come in."');
   scene.text('She laughs softly. "Okay, why not? I haven\'t taken a break yet today. So we can go to my place, and you can take my picture there. Sound good?"');
   scene.text('You nod. "Sure, that works for me." She tells her sister she\'s taking a break and leads you out of the cafe to her apartment building. She leads you upstairs and into her apartment. Once inside, you take out your camera.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Start taking her picture', goto: ['eugeneev1', 'photography'] },
   ]);
@@ -126,6 +130,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
   scene.text('"I don\'t have time for that. Just take my picture." she sternly replies.');
   scene.text('"Please?" you plead.');
   scene.text('She shakes her head. "Fine. The things I do for you kids…"');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take her photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -160,6 +165,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
   scene.text('You shrug a little. "I just love doing it. If I get good enough, I could do it for a living. So, please? I need the practice, and I think you would make a great subject."');
   scene.text('She giggles. "Fine, but something classy."');
   scene.text('You nod. "Deal."');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take her photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -185,6 +191,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
   scene.text('You smile at him as you pull out your camera. "Hey, do you mind if I take your photograph for my portfolio?"');
   scene.text('He smiles. "Sure, but only if you promise to show me your portfolio when you\'re done."');
   scene.text('You nod your head. "Deal." He jogs over to Kolka and his classmates playing.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take his photo', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -208,6 +215,7 @@ function enterCityLibrary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('You make your way over to the city library. It is a grand building and would make for a beautiful photograph. You move around several times until you find the perfect spot and take several photos before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -223,6 +231,7 @@ function enterCityUni(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('You make your way over to the university. It is a grand building and would make for a beautiful photograph. You move around several times until you find the perfect spot and take several photos before pausing and checking them. You can\'t help but notice all the students moving around and feel they would make for a great shot. You stop and take several more photos of the students before stopping. You\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -238,6 +247,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in the village, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. You can\'t help but notice the houses and feel that they would also make for a great photo. You stop and take several pictures of different places before finally settling on your grandparents\' home. You\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -253,6 +263,7 @@ function enterGadForest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in the forest, you are amazed by how breathtakingly beautiful it is. You take photos of the trees until you\'re happy and check all the shots you\'ve taken. Finally, you feel confident that you\'ve found something to add to your portfolio and put your camera away.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -268,6 +279,7 @@ function enterPavChurch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in front of the local church, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. You then spot the cemetery and take some photos of it. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -283,6 +295,7 @@ function enterPavTrainHall(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in front of the local train station, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -298,6 +311,7 @@ function enterPavComplex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in the courtyard, you realize this place would make a wonderful photo. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -313,6 +327,7 @@ function enterPavSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Standing in front of the school, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -328,6 +343,7 @@ function enterPavPark(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/photography/sveta_camera.jpg');
   scene.text('Walking through the park, you realize what a wonderful photo this place would make. You move around several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -347,6 +363,7 @@ function enterPavLake(s: GameState, scene: SceneBuilder): void {
     scene.text('Just as you\'re about to put your camera away, you notice a girl sunbathing topless. It takes you a minute to realize that it\'s Sonia, and she appears alone. You wonder if she would make a good subject, a take on how innocence can be lost in a cruel world.');
     qspCall(s, 'camera', 'pav_lake_sonia');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Put your camera away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -359,6 +376,7 @@ function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'describe') {
     scene.text('You notice a girl sunbathing topless and realize that it\'s Sonia. You wonder if she would make a good subject, a take on how innocence can be lost in a cruel world.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Take her photograph', handler: (st: GameState) => {
     ((s as any).camera_found ?? {})['sonia'] = 1;

@@ -68,6 +68,7 @@ function enterConfrontation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Ignoring his question you bluntly say, "I know you've been fucking <<$npc_nickna...
   scene.text(`Ignoring his question you bluntly say, "I know you've been fucking ${((s as any).npc_nickname ?? 0)?.['A29']}." He pauses briefly at your words and glances around the room at the customers.`);
   scene.text('"Why don\'t we talk about this in the back?" he says calmly. "We don\'t want to cause trouble for your mother do we?" You give him a hard look and follow him as he escorts you into a back room of the cafe.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
@@ -167,6 +168,7 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/trainstation/cafe/gkafe2.jpg');
   scene.text('"Back room. Now."');
   scene.text('You forcefully spit words at him and then move straightaway to the back room and wait for him at his desk.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
@@ -350,6 +352,7 @@ function enterWorkShift(s: GameState, scene: SceneBuilder): void {
       { label: 'You want to fuck anyway', goto: ['motherkafeboss', 'slava_deal'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -375,6 +378,7 @@ function enterWorkCock(s: GameState, scene: SceneBuilder): void {
       { label: 'You want to fuck anyway', goto: ['motherkafeboss', 'slava_deal'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -385,6 +389,7 @@ function enterFirstSex1(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Oh come now ${((s as any).pcs_nickname ?? 0)}, I thought you were serious about this. If you're going to take your mother's place then you might as well start now, shouldn't you?"`);
   scene.text('"I-! I-!" You have to admit, you didn\'t entirely think this through. When you talked about the deal you thought of it as something in the distant future, not something about to happen right now!');
   scene.text('"W-w-what about your customers?" you try to say as an excuse.');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Eek-!"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/strip2.mp4');
@@ -781,6 +786,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -833,6 +839,7 @@ function enterSlavaDeal(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -850,6 +857,7 @@ function enterDuty(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slava_fuck_pick ?? 0) === 4) {
     scene.actions([{ label: 'Continue', goto: ['motherkafeboss', 'cloth_bj'] }]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -891,6 +899,7 @@ function enterClothBj(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -918,6 +927,7 @@ function enterClothPreFuck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['motherkafeboss', 'cloth_fuck'] },
   ]);
@@ -1340,6 +1350,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 

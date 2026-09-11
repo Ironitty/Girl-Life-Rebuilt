@@ -24,6 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sewng ?? 0) > 50  &&  ((s as any).mc_inventory ?? 0)?.['sewing_fabric'] >= 1) {
     scene.text('You can resize your own clothing when viewing items in the wardrobe list <a href="exec:gt \'clothing_view\', \'view_lists_list\', \'wardrobe\'">here</a>.');
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -126,6 +127,7 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 

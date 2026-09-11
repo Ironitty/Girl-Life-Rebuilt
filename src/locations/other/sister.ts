@@ -113,6 +113,7 @@ function enterPavCommcenter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -248,6 +249,7 @@ function enterPartyanswer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -671,6 +673,7 @@ function enterScene1(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -678,6 +681,7 @@ function enterScene2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/anya/community/anyaroma1.jpg');
   scene.text('The bottles of beer are quickly drained and everyone seems a little tipsy at this point as they get up and stagger inside. As they go, they all shout goodbye at you, so you wave to them and head on your way.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_commcenter', ''] },
   ]);

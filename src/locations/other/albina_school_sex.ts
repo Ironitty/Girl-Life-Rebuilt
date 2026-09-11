@@ -14,6 +14,7 @@ function enterBreakFun_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You look around for Albina, but she\'s nowhere to be seen. Just then, you get an alert on your phone and open it to find a message from her.');
   scene.text('"Come to the girls restroom now. No questions."');
   scene.text('You decide not to keep her waiting and make your way to the restroom.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Go to the restroom', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/bathroom/bathroom1.jpg');
@@ -128,6 +129,7 @@ function enterBreakFun_2(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -160,6 +162,7 @@ function enterLunchFun_1(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big23.jpg');
@@ -193,6 +196,7 @@ function enterLunchFun_1_2(s: GameState, scene: SceneBuilder): void {
   scene.text('Julia blushes and squirms even more as she looks at the floor. "I, I... What are you... Talking about?"');
   // TODO-QSP: dynamic text: "Don't be like that, Julia! I'd like it, no <i>love</i> it, if you played with m...
   scene.text(`"Don't be like that, Julia! I'd like it, no <i>love</i> it, if you played with my ass right here, right now. '+iif(func('pcs_has_attr', 'OR', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble'),'I bet you'd love to have a feel of ${((s as any).pcs_nickname ?? 0)}'s ass as well, wouldn't you?',')+'"`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/threesome2.jpg');
@@ -273,6 +277,7 @@ function enterLunchFun_2(s: GameState, scene: SceneBuilder): void {
   scene.text('She moans loudly in pleasure as you start eating her out, her moans growing louder and her pussy growing wetter as she starts grinding against you, smearing her wetness across your face.');
   scene.text('After a few more seconds where she moans even louder and grinds even faster, she suddenly pulls herself off of you, her breath heavy.');
   qspCall(s, 'arousal', 'cuni_give', 2);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/sex/school/classroom/class2.jpg');

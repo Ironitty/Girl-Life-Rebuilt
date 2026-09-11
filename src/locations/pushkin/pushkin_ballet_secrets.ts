@@ -44,6 +44,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to Okhlopkov Square', goto: ['pushkin_sq', ''] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -57,6 +58,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gt $ARGS[1], $ARGS[2]
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -78,6 +80,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('"Of course, as you are aware the school is sponsoring these costs, but only for the first year she says and you will need to manage your own equipment after this.", Madame Pushkina advises.');
   // TODO-QSP: dynamic text: "Is there anything else you need? No? Good, I will see you again in two weeks fo...
   scene.text(`"Is there anything else you need? No? Good, I will see you again in two weeks for your final shoe fitting. I would like to extend my congratulations and wish you a successful career Ms. ${((s as any).pcs_lastname ?? 0)}."`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
     { label: 'Return to shop', goto: ['pushkin_ballet_secrets', 'init'] },
@@ -134,6 +137,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Changing rooms', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -158,6 +162,7 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
   scene.text('The gym offers a weekly or monthly subscription for \' + $func(\'money\', \'string_price\', 1500) + \' or \' + $func(\'money\', \'string_price\', 4500) + \' to use the facilities with some courses included. Physio appointments and personal trainers are charged separately.');
   scene.text('The subscriptions include classes in gymnastics, yoga and introductory ballet. For advanced classes, there is an additional instructor fee. A personal trainer is on hand to assist at all times if you so need one.');
   scene.text('We also have a small café which attracts a members discount and your membership card can purchase items directly from the vending machine which will be billed to your account.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the studio entrance', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -221,6 +226,7 @@ function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   qspCall(s, 'core_library', 'bathroom');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the studio reception', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -237,6 +243,7 @@ function enterPhysio(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/physio.jpg';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
   ]);
@@ -249,6 +256,7 @@ function enterGymnasticsCourses(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageImage'] = ((s as any).setloc ?? {})?.['imagepath'] + '/gymnastics.jpg';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
   ]);
@@ -314,6 +322,7 @@ function enterBalletCourses(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin_ballet_secrets', 'reception'] },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Return to the studio reception', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -403,10 +412,12 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterJobs(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -417,6 +428,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
   ]);
@@ -430,6 +442,7 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
   ]);
@@ -444,6 +457,7 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('There\'s a small café next to the reception, but there is no-one at the counter. A notice on the counter is claims they are presently short staffed. Luckily there is an vending machine to provide drinks and food to help you relax and gain some energy back after your sessions. It also has some knick knacks in case you forgot to bring items for your class. Annoyingly the vending machine only accepts debit cards.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -480,6 +494,7 @@ function enterEnergyBar(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_breath = 0;
   qspCall(s, 'stat', '');
   scene.text('You purchase and eat an over-priced energy bar with your cash card from the vending machine. It tastes like cardboard but it does the job and gives you a small energy boost.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -496,6 +511,7 @@ function enterEnergyDrink(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'beverage', 'energy_drink_stats');
   qspCall(s, 'stat', '');
   scene.text('You purchase and drink your energy drink with your cash card from the vending machine. It\'s overly sweet, but after a few moments it gives you a much needed boost');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;

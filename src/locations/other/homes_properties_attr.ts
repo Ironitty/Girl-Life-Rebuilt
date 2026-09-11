@@ -487,6 +487,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -496,6 +497,7 @@ function enterGetPropertyAttribute(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).result = ((s as any).property ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -503,6 +505,7 @@ function enterRegisterModGetPropertyAttributeCall(s: GameState, scene: SceneBuil
   if ((Array.isArray((s as any).home_property_attr_calls) ? ((s as any).home_property_attr_calls as any[]).indexOf(((s as any).temp_hpac ?? 0)) : -1) < 0) {
     // TODO-QSP: $home_property_attr_calls[] = $temp_hpac
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -519,6 +522,7 @@ function enterRemoveModGetPropertyAttributeCall(s: GameState, scene: SceneBuilde
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -538,6 +542,7 @@ function enterAddNewHomeLocation(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -546,6 +551,7 @@ function enterAddNewTrainStation(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $train_station[$ARGS[1]] = "gt '<<$ARGS[2]>>', '<<$ARGS[3]>>'"
   }
+  // TODO-QSP: end
   scene.build();
 }
 

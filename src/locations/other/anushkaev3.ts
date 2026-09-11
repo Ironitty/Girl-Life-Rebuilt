@@ -37,6 +37,7 @@ function enterGetpleasured(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -103,6 +104,7 @@ function enterButtplug(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -115,6 +117,7 @@ function enterButtplug1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Turn around and bend over." you demand and she does as you ask. You squirt some lube on her asshole and work it around until it\'s lubed up, then squirt some lube onto the butt plug and coat it nicely until it is nice and slick. You kneel next to her and spread her ass while you hold up the butt plug, checking to make sure it\'s lubed properly. When you notice her looking back over her shoulder at you, you tell her. "That\'s right I\'m going to shove this thing right up your ass and work it until you\'re nice and loose like the butt slut you are."');
   qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Stick the butt plug inside', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/buttplug2.jpg');
@@ -195,6 +198,7 @@ function enterBedstrapongive(s: GameState, scene: SceneBuilder): void {
   scene.text('You laugh and start putting the harness on. She helps you get it into place and you pull on the straps. "So how should I fuck you? Maybe I should fuck your pussy first? Or maybe I should just go straight to that cute little ass?" you ask her rhetorically. She doesn\'t respond and seems to be fine with either idea.');
   qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Straight to the ass', goto: ['anushkaev3', 'bedstrapongiveanal'] },
     { label: 'Fuck her pussy', handler: (st: GameState) => {
@@ -251,6 +255,7 @@ function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
   scene.text(`You laugh and help her get into the harness. Once she has the harness firmly in place, she pushes you down onto your back. "Spread your legs," she commands and you do as she says before she scoots up between your legs and rubs the tip of the dildo against your wet slit. Once she's sure you're wet enough, she slides the ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo into your pussy, slowly working it in and steadily starting to fuck you with it.`);
   qspCall(s, 'arousal', 'vaginal_strap', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapme7.jpg');
@@ -340,6 +345,7 @@ function enterBedstrapongetanal(s: GameState, scene: SceneBuilder): void {
   ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);
   qspCall(s, 'arousal', 'anal_strap', 3, 'lesbian', 'lube');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Get butt fucked', handler: (st: GameState) => {
     ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) - (1);
@@ -382,6 +388,7 @@ function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
   scene.text('You place your hand on her hip, but she doesn\'t seem to be pulling away at all. "Oh god yes, fuck my ass! Please fuck my ass!" she begs you.');
   qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Rip her ass up', handler: (st: GameState) => {
     ((s as any).anushkaQW ?? {})['dom_nush'] = (((s as any).anushkaQW ?? {})['dom_nush'] ?? 0) + (1);
@@ -430,6 +437,7 @@ function enterBedroomLesbian(s: GameState, scene: SceneBuilder): void {
   ((s as any).npc_had_sex ?? {})['A144'] = 1;
   qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Undress', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -495,6 +503,7 @@ function enterBedroomLesbianFinger(s: GameState, scene: SceneBuilder): void {
   scene.text('You push her onto her back and spread her legs wide before running your hand down her inner thighs until you reach her soaking wet pussy. Your fingers slide into her easily, causing her to moan softly as you slowly start fingerbanging her. After a few minutes, you pull your wet finger out of her and raise it up to her mouth. She opens her mouth and sucks your finger, tasting herself. Pulling your finger out of her mouth, you gently slap her on the hip. You tell her to roll over and get her on her knees while keeping her face against the bed.');
   qspCall(s, 'arousal', 'vaginal_finger_give', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Spank her', goto: ['anushkaev3', 'bedroom_lesbian_spank'] },
     { label: 'Eat her', goto: ['anushkaev3', 'bedroom_lesbian_eatnush'] },
@@ -509,6 +518,7 @@ function enterBedroomLesbianSpank(s: GameState, scene: SceneBuilder): void {
   scene.text('With her ass presented to you like this, you can\'t help yourself. You give her ass a smack, causing her to yelp and moan before you proceed to spank her until her ass is red.');
   qspCall(s, 'arousal', 'foreplay_give', 1, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Eat her', goto: ['anushkaev3', 'bedroom_lesbian_eatnush'] },
   ]);
@@ -522,6 +532,7 @@ function enterBedroomLesbianEatnush(s: GameState, scene: SceneBuilder): void {
   scene.text('You move in behind her and place your face between her ass cheeks as you start licking her pussy from behind. Her soft moans slowly grow louder as you keep licking at her pussy while occasionally smacking her ass, which makes her yelp and moan even louder.');
   qspCall(s, 'arousal', 'cuni_give', 3, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Lick her pussy', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -547,6 +558,7 @@ function enterBedroomLesbianFacesit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'massage', (-3), 'lesbian');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Scissor her', goto: ['anushkaev3', 'bedroom_lesbian_scissor'] },
     { label: 'Finish', goto: ['anushkaev3', 'bedroom_lesbian_finish'] },
@@ -587,6 +599,7 @@ function enterBedroomLesbianScissor(s: GameState, scene: SceneBuilder): void {
   scene.text('You crawl between her legs, slipping one of your legs over her and the other under one of her legs until your clits are rubbing together. You start rubbing yourself against her, causing you both to moan loudly. After a few minutes of this, she cries out again with a second orgasm. Feeling a little worn down, you disentangle yourself from her.');
   qspCall(s, 'arousal', 'trib', 2, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['anushkaev3', 'bedroom_lesbian_finish'] },
   ]);
@@ -600,6 +613,7 @@ function enterBedroomLesbianFinish(s: GameState, scene: SceneBuilder): void {
   scene.text('As you move away from her, she suddenly grabs you and pulls you over her so you\'re laying across her. You feel a sharp sting as she smacks your ass fairly hard, followed by several more spanks. Yelping, you try and pull away as she tries to hold you in place and spank you, but she starts laughing and you manage to break free.');
   qspCall(s, 'arousal', 'foreplay', 1, 'lesbian');
   qspCall(s, 'stat', '');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Afterglow', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;

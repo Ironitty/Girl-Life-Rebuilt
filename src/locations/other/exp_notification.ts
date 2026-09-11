@@ -19,6 +19,7 @@ function enterTrackExp(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $exp_tracked_names[] = $ARGS[1]
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -39,12 +40,14 @@ function enterGetMessage(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'exp_notification_loop'
   }
   return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterIsEmpty(s: GameState, scene: SceneBuilder): void {
   (s as any).result = (Object.keys((s as any).exp_tracked_names ?? {}).length === 0);
   return;
+  // TODO-QSP: end
   scene.build();
 }
 

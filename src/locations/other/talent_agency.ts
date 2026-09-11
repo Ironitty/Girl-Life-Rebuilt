@@ -21,6 +21,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).casting = 0;
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_center', ''] },
     { label: 'Go to the interview rooms', goto: ['talent_agency', 'hallway'] },
@@ -30,6 +31,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/auditions/hallway.jpg');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['talent_agency', ''] },
     { label: 'Room 1', goto: ['talent_agency', 'room1'] },
@@ -51,6 +53,7 @@ function enterRoom1(s: GameState, scene: SceneBuilder): void {
       { label: 'Step out', goto: ['talent_agency', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -63,6 +66,7 @@ function enterRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Step out', goto: ['talent_agency', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -79,6 +83,7 @@ function enterRoom3(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -91,6 +96,7 @@ function enterRoom4(s: GameState, scene: SceneBuilder): void {
       { label: 'Step out', goto: ['talent_agency', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -103,6 +109,7 @@ function enterRoom5(s: GameState, scene: SceneBuilder): void {
       { label: 'Step out', goto: ['talent_agency', 'hallway'] },
     ]);
   }
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -119,12 +126,14 @@ function enterRoom6(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).actpayfin ?? 0));
   scene.actions([{ label: 'Continue', goto: ['talent_agency', ''] }]);
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -136,6 +145,7 @@ function enterWrongday(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hi, is this the audition for ${((s as any).role ?? 0)}?"`);
   scene.text('"No, this isn\'t the audition for that," they say as they look back at you with annoyance." "You have the day wrong. Go check your time for casting again."');
   scene.text('Cringing with embarrassment, you apologize and leave the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['talent_agency', 'hallway'] },
   ]);
@@ -150,6 +160,7 @@ function enterWrongRoom2(s: GameState, scene: SceneBuilder): void {
   scene.text(`"Hi, uhh, is this the audition for ${((s as any).role ?? 0)}?"`);
   scene.text('"No, that\'s a speaking role. We don\'t do auditions for those in here. Try one of the other rooms."');
   scene.text('Cringing with embarrassment, you apologize and leave the room.');
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['talent_agency', 'hallway'] },
   ]);
@@ -163,6 +174,7 @@ function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the interview room, and someone is there waiting for you.');
   // TODO-QSP: dynamic text: "Ahh! Hello! You must be Miss <<$pcs_lastname>>. I'm Artur Yanovich. But you can...
   scene.text(`"Ahh! Hello! You must be Miss ${((s as any).pcs_lastname ?? 0)}. I'm Artur Yanovich. But you can call me Mr Yanovich," he says, holding his hand.`);
+  // TODO-QSP: end
   scene.actions([
     { label: 'Shake his hand', handler: (st: GameState) => {
     scene.text('You shake his hand and smile. "I was told I was supposed to come here to prepare for the shoot today?"');
@@ -215,6 +227,7 @@ function enterSMTVShy(s: GameState, scene: SceneBuilder): void {
   scene.text(`"You have a beautiful body, Miss ${((s as any).pcs_lastname ?? 0)}…"`);
   scene.text('"Uhm… ah… Thank you, Mr Yanovich…" you stammer.');
   scene.text('"Right then, let\'s go!"');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Wait! What are you-!"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
@@ -314,6 +327,7 @@ function enterSMTVConfident(s: GameState, scene: SceneBuilder): void {
   scene.text(`"You have a beautiful body, Miss ${((s as any).pcs_lastname ?? 0)}…"`);
   scene.text('"Thank you very much Mr Yanovich," you say unabashedly.');
   scene.text('"Right then, let\'s go!"');
+  // TODO-QSP: end
   scene.actions([
     { label: '"Leave"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
@@ -573,6 +587,7 @@ function enterWrongRoom(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
+  // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['talent_agency', 'hallway'] },
   ]);
