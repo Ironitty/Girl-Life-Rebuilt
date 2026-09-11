@@ -34,12 +34,11 @@ export default function GameScreen() {
     if (e.ctrlKey && (e.key === 'Z' || (e.key === 'z' && e.shiftKey))) { e.preventDefault(); useGameStore.getState().redoAction(); return; }
     if (!e.shiftKey || (e.key !== 't' && e.key !== 'T')) return;
     e.preventDefault();
-    const store = useGameStore.getState();
     const locs = getRegisteredLocations().filter(n => n !== 'start' && n !== 'map_view');
     for (let i = 0; i < 20; i++) {
       const loc = locs[Math.floor(Math.random() * locs.length)];
-      store.doGoto(loc, '');
-      const sc = store.scene;
+      useGameStore.getState().doGoto(loc, '');
+      const sc = useGameStore.getState().scene;
       if (sc && (sc.mainText || sc.curActs?.length || sc.backimage)) break;
     }
   };
