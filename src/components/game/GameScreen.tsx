@@ -35,7 +35,7 @@ export default function GameScreen() {
     if (!e.shiftKey || (e.key !== 't' && e.key !== 'T')) return;
     e.preventDefault();
     const locs = getRegisteredLocations().filter(n => n !== 'start' && n !== 'map_view');
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 50; i++) {
       const loc = locs[Math.floor(Math.random() * locs.length)];
       useGameStore.getState().doGoto(loc, '');
       const sc = useGameStore.getState().scene;
