@@ -110,6 +110,13 @@ export default function GameScreen() {
                 className="p-4 rounded-lg max-w-3xl mx-auto"
                 style={{ background: 'rgba(0,0,0,0.7)', color: 'var(--gl-fg)' }}
               >
+                {!scene.mainText && !scene.backimage && scene.curActs.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="mb-4 opacity-70">No content for this location.</p>
+                    <button onClick={goMap} className="px-4 py-2 rounded" style={{ background: 'var(--gl-accent)', color: '#000' }}>Open Map</button>
+                  </div>
+                ) : (
+                <>
                 <div
                   className="whitespace-pre-wrap"
                   dangerouslySetInnerHTML={{ __html: scene.mainText }}
@@ -129,6 +136,8 @@ export default function GameScreen() {
                     style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--gl-border)' }}
                     dangerouslySetInnerHTML={{ __html: scene.statText }}
                   />
+                )}
+                </>
                 )}
               </div>
             );
